@@ -1,6 +1,11 @@
 #ifndef QTPVDBCOMPETENCY_H
 #define QTPVDBCOMPETENCY_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <map>
 #include <QColor>
 #include <QIcon>

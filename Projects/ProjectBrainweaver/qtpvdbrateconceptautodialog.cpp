@@ -1,6 +1,15 @@
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
+//#include own header file as first substantive line of code, from:
+// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpvdbrateconceptautodialog.h"
 
 #include <cassert>
+#include <numeric>
+
 #include <vector>
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/conversion/cast.hpp>
@@ -35,18 +44,21 @@ QtPvdbRateConceptAutoDialog::QtPvdbRateConceptAutoDialog(
   const int n_edge_examples
     = std::accumulate(
       m_map->GetEdges().begin(),
-      m_map->GetEdges().end(),0,
-        [](const boost::shared_ptr<const pvdb::Edge>& edge)
+      m_map->GetEdges().end(),
+      static_cast<int>(0),
+        [](int init, const boost::shared_ptr<const pvdb::Edge>& edge)
         {
-          return edge->GetConcept()->GetExamples()->Get().size();
+          assert(edge);
+          return init + boost::numeric_cast<int>(edge->GetConcept()->GetExamples()->Get().size());
         }
-      );
+    );
   ui->table->setRowCount(n_examples + n_edges + n_edge_examples);
-  for (int i = 0; i!=n_examples; ++i)
+  int current_row = 0;
+  for (const boost::shared_ptr<const pvdb::Example> example: focal_concept->GetExamples()->Get())
   {
-    const boost::shared_ptr<const pvdb::Example> example = focal_concept->GetExamples()->Get().at(i);
+    //const boost::shared_ptr<const pvdb::Example> example = focal_concept->GetExamples()->Get().at(i);
     assert(example);
-    const int row = i;
+    //const int row = i;
     const int n_cols = 4;
     assert(n_cols == 4);
     for (int col=0; col!=n_cols; ++col)
@@ -72,19 +84,77 @@ QtPvdbRateConceptAutoDialog::QtPvdbRateConceptAutoDialog(
         const std::string s = example->GetText();
         i->setText(s.c_str());
       }
-      ui->table->setItem(row, col, i);
+      ui->table->setItem(current_row, col, i);
     }
+    ++current_row;
   }
 
   //Collect all relations of the focal node of this sub concept map
-  //Put X checkbox in the relation's name
   for(const boost::shared_ptr<pvdb::Edge> edge:sub_concept_map->GetEdges())
   {
-    edge->GetConcept()->
+    //Put X checkbox in the relation's name
+    //Keep C and S columns empty
+    {
+      //Put X checkbox in the relation's name
+      QTableWidgetItem * const i = new QTableWidgetItem;
+      i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+      i->setCheckState(edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked);
+      const int column = 0;
+      ui->table->setItem(current_row, column, i);
+    }
+    {
+      //Put the relation's name in place
+      QTableWidgetItem * const i = new QTableWidgetItem;
+      i->setFlags(
+          Qt::ItemIsSelectable
+        | Qt::ItemIsEnabled);
+      const std::string s = edge->GetConcept()->GetName();
+      i->setText(s.c_str());
+      const int column = 3;
+      ui->table->setItem(current_row, column, i);
+    }
+
+    ++current_row;
+
     //Of every relation, collect all examples
     //Put X,C,S checkboxes in front
-  }
 
+    for (const boost::shared_ptr<const pvdb::Example> example: edge->GetConcept()->GetExamples()->Get())
+    {
+      //const boost::shared_ptr<const pvdb::Example> example = focal_concept->GetExamples()->Get().at(i);
+      assert(example);
+      //const int row = i;
+      const int n_cols = 4;
+      assert(n_cols == 4);
+      for (int col=0; col!=n_cols; ++col)
+      {
+        QTableWidgetItem * const i = new QTableWidgetItem;
+        if (col != 3)
+        {
+          i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+          switch (col)
+          {
+            case 0: i->setCheckState(example->GetIsComplex() ? Qt::Checked : Qt::Unchecked); break;
+            case 1: i->setCheckState(example->GetIsConcrete() ? Qt::Checked : Qt::Unchecked); break;
+            case 2: i->setCheckState(example->GetIsSpecific() ? Qt::Checked : Qt::Unchecked); break;
+            default: assert(!"Should not get here");
+          }
+        }
+        else
+        {
+          //Text
+          i->setFlags(
+              Qt::ItemIsSelectable
+            | Qt::ItemIsEnabled);
+          const std::string s = example->GetText();
+          i->setText(s.c_str());
+        }
+        ui->table->setItem(current_row, col, i);
+      }
+      ++current_row;
+    }
+
+  }
 }
 
 QtPvdbRateConceptAutoDialog::~QtPvdbRateConceptAutoDialog()

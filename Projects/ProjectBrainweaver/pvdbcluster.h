@@ -1,6 +1,11 @@
 #ifndef PVDBCLUSTER_H
 #define PVDBCLUSTER_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <map>
 #include <vector>
 #include <boost/shared_ptr.hpp>

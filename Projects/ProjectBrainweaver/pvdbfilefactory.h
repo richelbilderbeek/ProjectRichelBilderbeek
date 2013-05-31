@@ -1,6 +1,11 @@
 #ifndef PVDBFILEFACTORY_H
 #define PVDBFILEFACTORY_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <boost/shared_ptr.hpp>
 
 namespace pvdb {

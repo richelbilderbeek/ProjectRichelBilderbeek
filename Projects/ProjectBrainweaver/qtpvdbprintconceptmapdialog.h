@@ -1,6 +1,11 @@
 #ifndef QTPVDBPRINTCONCEPTMAPDIALOG_H
 #define QTPVDBPRINTCONCEPTMAPDIALOG_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <boost/shared_ptr.hpp>
 
 #include "pvdbfwd.h"

@@ -1,6 +1,11 @@
 #ifndef QTPVDBOVERVIEWWIDGET_H
 #define QTPVDBOVERVIEWWIDGET_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <boost/shared_ptr.hpp>
 
 

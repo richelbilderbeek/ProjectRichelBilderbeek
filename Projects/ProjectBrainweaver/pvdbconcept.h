@@ -1,6 +1,11 @@
 #ifndef PVDBCONCEPT_H
 #define PVDBCONCEPT_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
@@ -33,6 +38,12 @@ struct Concept
   ///Get the examples of the concept, e.g. 'Plato', 'Aristotle'
   const boost::shared_ptr<const pvdb::Examples> GetExamples() const;
   const boost::shared_ptr<pvdb::Examples>& GetExamples() { return m_examples; }
+
+  ///Has an assessor rated the name of this concept as being an addition to the complexity?
+  ///This is something different than m_rating_complexity:
+  ///m_is_complex can be used to help the assessor determine a m_rating_complexity,
+  ///but m_rating_complexity is the final and complete rating
+  bool GetIsComplex() const { return m_is_complex; }
 
   ///Get the name of the concept, e.g. 'Philosphy'
   const std::string& GetName() const { return m_name; }
@@ -102,6 +113,12 @@ struct Concept
 
   ///Examples of the concept, e.g. 'Plato', 'Aristotle'
   boost::shared_ptr<pvdb::Examples> m_examples;
+
+  ///Has an assessor rated the name of this concept as being an addition to the complexity?
+  ///This is something different than m_rating_complexity:
+  ///m_is_complex can be used to help the assessor determine a m_rating_complexity,
+  ///but m_rating_complexity is the final and complete rating
+  bool m_is_complex;
 
   ///The name of the concept, e.g. 'Philosphy'
   std::string m_name;

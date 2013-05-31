@@ -1,6 +1,11 @@
 #ifndef PVDBEXAMPLEFACTORY_H
 #define PVDBEXAMPLEFACTORY_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <vector>
 #include <boost/shared_ptr.hpp>
 #include "pvdbcompetency.h"

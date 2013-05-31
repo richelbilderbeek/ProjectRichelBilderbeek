@@ -1,6 +1,11 @@
 #ifndef QTPVDBDISPLAY_H
 #define QTPVDBDISPLAY_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <boost/shared_ptr.hpp>
 
 #ifdef PVDB_USE_FORWARD_DECLARATIONS_248738

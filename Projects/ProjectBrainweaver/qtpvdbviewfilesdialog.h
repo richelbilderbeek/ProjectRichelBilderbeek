@@ -1,6 +1,11 @@
 #ifndef QTPVDBVIEWFILESDIALOG_H
 #define QTPVDBVIEWFILESDIALOG_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <string>
 #include "qthideandshowdialog.h"
 

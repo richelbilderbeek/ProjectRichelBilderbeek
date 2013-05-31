@@ -1,6 +1,11 @@
 #ifndef QTPVDBRATECONCEPTAUTODIALOG_H
 #define QTPVDBRATECONCEPTAUTODIALOG_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 #include "pvdbfwd.h"
@@ -18,6 +23,7 @@ public:
   explicit QtPvdbRateConceptAutoDialog(
     const boost::shared_ptr</* const */ pvdb::ConceptMap> sub_concept_map,
     QWidget *parent = 0);
+
   ~QtPvdbRateConceptAutoDialog();
   
   ///Obtain the suggested complexity, calculated from this dialog

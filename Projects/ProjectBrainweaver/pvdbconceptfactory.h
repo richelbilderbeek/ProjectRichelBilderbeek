@@ -1,6 +1,11 @@
 #ifndef PVDBCONCEPTFACTORY_H
 #define PVDBCONCEPTFACTORY_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <array>
 #include <vector>
 

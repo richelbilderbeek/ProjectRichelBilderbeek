@@ -1,6 +1,11 @@
 #ifndef QTPVDBNEWARROW_H
 #define QTPVDBNEWARROW_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <string>
 #include <vector>
 

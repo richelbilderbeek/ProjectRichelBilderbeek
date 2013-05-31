@@ -28,6 +28,7 @@ pvdb::Concept::Concept(
   const int rating_concreteness,
   const int rating_specificity)
   : m_examples(examples),
+    m_is_complex(true),
     m_name(name),
     m_rating_complexity(rating_complexity),
     m_rating_concreteness(rating_concreteness),

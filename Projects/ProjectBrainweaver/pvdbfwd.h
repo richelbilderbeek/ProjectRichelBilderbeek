@@ -1,6 +1,11 @@
 #ifndef PVDBFWD_H
 #define PVDBFWD_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 ///Forward declarations
 namespace pvdb

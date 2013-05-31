@@ -1,6 +1,11 @@
 #ifndef PVDBFILE_H
 #define PVDBFILE_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <regex>
 #include <string>
 #include <vector>

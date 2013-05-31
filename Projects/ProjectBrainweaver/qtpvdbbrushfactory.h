@@ -1,6 +1,11 @@
 #ifndef QTPVDBBRUSHFACTORY_H
 #define QTPVDBBRUSHFACTORY_H
 
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 #include <QBrush>
 
 ///Class for holding some QBrush instances
