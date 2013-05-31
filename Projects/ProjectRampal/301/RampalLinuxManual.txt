@@ -1,0 +1,17 @@
+RampalLinuxExe manual
+
+Call the program with either no or two parameters:
+
+./RampalLinuxExe
+./RampalLinuxExe [theta] "[phylogeny]"
+
+For example:
+
+./RampalLinuxExe
+./RampalLinuxExe 10.0 "((2,2),2)"
+
+If the program is called without parameters, the parameters are read from the files 'theta.txt' and 'phylogeny.txt'.
+
+The result will be written to screen and to the file 'Results.txt'
+
+

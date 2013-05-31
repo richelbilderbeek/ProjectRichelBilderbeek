@@ -1,0 +1,53 @@
+./Sim4
+usf 0
+#
+setplotting off
+settext off
+#
+usf all
+setsimtime 1000
+#
+setd 0
+setdconsta 0.2
+setdconstb 2.0
+setdconstc 5.0
+setdconstd 0.2
+#
+setf 0
+setfconsta 1
+#
+setg 0
+setgconsta 0.0
+#
+setm 1
+setmconsta 0.05
+#
+setn 0
+setnconsta 0.0
+setnconstb 1.0
+setnconstc 0.1
+setnconstd 1.5
+setnconste 15.0
+#
+setp 1
+setpconsta 1.0
+setpconstb 1.0
+setpconstc 0.1
+setpconstd 2.0 
+setpconsta 2.0
+#
+setq 1
+setqconsta 1.0
+setqconstb 0
+setqconstc 10.0
+#
+setr 0
+setrconsta 100
+setrconstb 0.001
+#
+setw 1
+setwconsta 0.0
+setwconstb 5,0
+setwconstc 0.1
+setwconstd 0.5
+ 

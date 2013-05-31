@@ -1,0 +1,656 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>XXX</title>
+  <meta name="description" content="C++ XXX"/>
+  <meta name="keywords" content="C++ XXX code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppXXX.htm">XXX</a></h1>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+  <li><img src="PicMobile.png" alt="Mobile"/> <a href="CppMobileApplication.htm">Mobile application</a></li>
+  <li><img src="PicWeb.png" alt="Web"/> <a href="CppWebApplication.htm">Web application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicAndroid.png" alt="Android"/> <a href="CppAndroid.htm">Android</a></li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 11.04 (natty)</li>
+  <li><img src="PicMaemo.png" alt="Maemo"/> <a href="CppMaemo.htm">Maemo</a></li>
+  <li><img src="PicNds.png" alt="NDS"/> <a href="CppNds.htm">NDS</a></li>
+  <li><img src="PicSymbian.png" alt="Symbian"/> <a href="CppSymbian.htm">Symbian</a></li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicCl.png" alt="Command line"/> command line</li>
+  <li><img src="PicCppBuilder.png" alt="C++ Builder"/> <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+  <li><img src="PicCpp0x.png" alt="C++0x"/> <a href="Cpp0x.htm">C++0x</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.5.2</li>
+  <li>Borland <a href="CppBcc32Exe.htm">BCC32.EXE</a> version 6.0.10.157</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.42</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.7.2 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.5.2</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.1.9</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolTestSelectFileDialogWebsite.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2011-07-01T12:01:36<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+LIBS += -lwt -lwthttp -lboost_program_options<br/>
+TARGET = ToolTestSelectFileDialog<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+<br/>
+INCLUDEPATH += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppCopy_if.htm">CppCopy_if</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a><br/>
+<br/>
+SOURCES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a>/<a href="CppWtSelectFileDialog.htm">wtselectfiledialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wttestselectfile<a href="CppDial.htm">dial</a>ogmenu<a href="CppDial.htm">dial</a>og.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wttestselectfile<a href="CppDial.htm">dial</a>og<a href="CppMain.htm">main</a><a href="CppDial.htm">dial</a>og.cpp<br/>
+<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a>/<a href="CppWtSelectFileDialog.htm">wtselectfiledialog</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wttestselectfile<a href="CppDial.htm">dial</a>ogmenu<a href="CppDial.htm">dial</a>og.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wttestselectfile<a href="CppDial.htm">dial</a>og<a href="CppMain.htm">main</a><a href="CppDial.htm">dial</a>og.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppCopy_if.htm">CppCopy_if</a>/<a href="CppCopy_if.htm">copy_if</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h<br/>
+<br/>
+RESOURCES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ToolTestSelectFileDialog.qrc<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>, <a href="Tools.htm">tool</a> to test the SelectFileDialog <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestSelectFileDialog.htm">ToolTestSelectFileDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtSelectFileDialog.htm">wtselectfiledialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "wttestselectfiledialogmenudialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog);<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(env);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWtSelectFileDialog.htm">WtSelectFileDialog</a>::SetPath(<a href="CppFilesystem.htm">boost::filesystem</a>::path(<a href="CppArgc.htm">argv</a>[0]).parent_path().string());<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.Run();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wttestselectfiledialogmaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>, <a href="Tools.htm">tool</a> to test the SelectFileDialog <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestSelectFileDialog.htm">ToolTestSelectFileDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WAnchor&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.htm">WGroupBox</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWFileResource.htm">WFileResource</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "wttestselectfiledialogmaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtSelectFileDialog.htm">wtselectfiledialog</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="ToolTestSelectFileDialog.htm">ToolTestSelectFileDialog</a>Welcome.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(<a href="CppQFile.htm">QFile</a>::exists(s.c_str())))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> f( (<a href="CppString.htm">std::string</a>(":/images/") <a href="CppOperatorPlus.htm">+</a> s).c_str() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.copy(s.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(s.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;Show();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog::OnSelect()<br/>
+{<br/>
+&nbsp;&nbsp;ui.m_anchor-&gt;setText((<a href="CppString.htm">std::string</a>("Download ") <a href="CppOperatorPlus.htm">+</a> ui.m_dialog-&gt;GetSelectedFile()).c_str() );<br/>
+&nbsp;&nbsp;ui.m_anchor-&gt;setResource(<b><a href="CppNew.htm">new</a></b> <a href="CppWFileResource.htm">Wt::WFileResource</a>(ui.m_dialog-&gt;GetSelectedFile(),ui.m_dialog-&gt;GetSelectedFile()));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog::Show()<br/>
+{<br/>
+&nbsp;&nbsp;clear();<br/>
+&nbsp;&nbsp;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
+<br/>
+&nbsp;&nbsp;ui.m_anchor <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWAnchor.htm">Wt::WAnchor</a>;<br/>
+&nbsp;&nbsp;ui.m_dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtSelectFileDialog.htm">WtSelectFileDialog</a>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_anchor);<br/>
+<br/>
+&nbsp;&nbsp;ui.m_dialog-&gt;m_signal_selected.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog::OnSelect,<b><a href="CppThis.htm">this</a></b>));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wttestselectfiledialogmaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>, <a href="Tools.htm">tool</a> to test the SelectFileDialog <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestSelectFileDialog.htm">ToolTestSelectFileDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> WTTESTSELECTFI<a href="CppLed.htm">LED</a>IALOGMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> WTTESTSELECTFI<a href="CppLed.htm">LED</a>IALOGMAINDIALOG_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> { <b><a href="CppStruct.htm">struct</a></b> WAnchor; }<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWtSelectFileDialog.htm">WtSelectFileDialog</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/OnSelect is called when a user selects a file<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnSelect();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Show is called at startup<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Show();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The user <a href="CppInterface.htm">interface</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Ui<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Ui() : m_anchor(0), m_dialog(0) {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWAnchor.htm">Wt::WAnchor</a> * m_anchor;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWtSelectFileDialog.htm">WtSelectFileDialog</a> * m_dialog;<br/>
+&nbsp;&nbsp;} ui;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTSELECTFI<a href="CppLed.htm">LED</a>IALOGMAINDIALOG_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wttestselectfiledialogmenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>, <a href="Tools.htm">tool</a> to test the SelectFileDialog <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestSelectFileDialog.htm">ToolTestSelectFileDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.htm">WGroupBox</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.htm">WImage</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.htm">WStackedWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.htm">WMenu</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.htm">WMenuItem</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppCopy_if.htm">copy_if</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtSelectFileDialog.htm">wtselectfiledialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "wttestselectfiledialogmaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "wttestselectfiledialogmenudialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.htm">Wt::WLabel</a> * <b><a href="CppConst.htm">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;title-&gt;setStyleClass("title");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(title);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Menu<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.htm">Wt::WStackedWidget</a> * <b><a href="CppConst.htm">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.htm">Wt::WStackedWidget</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.htm">Wt::WMenu</a> * <b><a href="CppConst.htm">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.htm">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Using CSS style<b><a href="CppClass.htm">class</a></b> is the best (only?) way to display the menu well<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;setStyleClass("menu");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Welcome",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewWelcomeDialog());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Start",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewMainDialog());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.htm">About</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.htm">About</a>Dialog());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display menu on top<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(menu);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display contents below menu<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(contents);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp; <a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the SelectFileDialog <b><a href="CppClass.htm">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"the 15th of July 2011",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestSelectFileDialog.htm">ToolTestSelectFileDialog</a>.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppCopy_if.htm">Copy_if</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppCopy_if.htm">Copy_if</a>_<a href="CppVersion.htm">version</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtSelectFileDialog.htm">WtSelectFileDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtSelectFileDialog.htm">WtSelectFileDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>(a,<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog * <b><a href="CppConst.htm">const</a></b> d<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MainDialog;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
+&nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
+&nbsp;&nbsp;dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Welcome to <a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a> tests the <a href="CppWtSelectFileDialog.htm">WtSelectFileDialog</a> <b><a href="CppClass.htm">class</a></b>:",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<a href="CppWGroupBox.htm">Wt::WGroupBox</a> * <b><a href="CppConst.htm">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>("Example",dialog);<br/>
+&nbsp;&nbsp;<a href="CppWImage.htm">Wt::WImage</a> * <b><a href="CppConst.htm">const</a></b> image <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWImage.htm">Wt::WImage</a>("<a href="ToolTestSelectFileDialog.htm">ToolTestSelectFileDialog</a>Welcome.png");<br/>
+&nbsp;&nbsp;box-&gt;addWidget(image);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> dialog;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-07-01: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-07-15: <a href="CppVersion.htm">Version</a> 1.1: added downloading of selected files");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wttestselectfiledialogmenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>, <a href="Tools.htm">tool</a> to test the SelectFileDialog <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestSelectFileDialog.htm">ToolTestSelectFileDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> WTTESTSELECTFI<a href="CppLed.htm">LED</a>IALOGMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> WTTESTSELECTFI<a href="CppLed.htm">LED</a>IALOGMENUDIALOG_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestSelectFileDialog.htm">TestSelectFileDialog</a>MenuDialog();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTSELECTFI<a href="CppLed.htm">LED</a>IALOGMENUDIALOG_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>zip.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#!/bin/sh<br/>
+#zip packs all the files to port into a single .zip file,<br/>
+#minicking the same folder structure<br/>
+#Folder structure<br/>
+# *<br/>
+#&nbsp;&nbsp; * <a href="CppClass.htm">Classes</a><br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppAbout.htm">CppAbout</a><br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppCopy_if.htm">CppCopy_if</a><br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppTrace.htm">CppTrace</a><br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppWtAboutDialog.htm">CppWtAboutDialog</a><br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppWtAutoConfig.htm">CppWtAutoConfig</a><br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a><br/>
+#&nbsp;&nbsp; * <a href="Tools.htm">Tools</a><br/>
+#&nbsp;&nbsp;&nbsp;&nbsp;* ToolTestSelectFileDialog<br/>
+<br/>
+echo "Converting DIA to PNG"<br/>
+dia --filter=png ToolTestSelectFileDialogArchitecture.dia<br/>
+<br/>
+echo "Removing previous user's information"<br/>
+rm ToolTestSelectFileDialogDesktop.pro.user<br/>
+rm ToolTestSelectFileDialogWebsite.pro.user<br/>
+<br/>
+echo "Mimicking file structure"<br/>
+mkdir temp_zip<br/>
+mkdir temp_zip/<a href="CppClass.htm">Classes</a><br/>
+mkdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a><br/>
+mkdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppCopy_if.htm">CppCopy_if</a><br/>
+mkdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
+mkdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a><br/>
+mkdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a><br/>
+mkdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a><br/>
+mkdir temp_zip/<a href="Tools.htm">Tools</a><br/>
+mkdir temp_zip/<a href="Tools.htm">Tools</a>/ToolTestSelectFileDialog<br/>
+<br/>
+echo "Copying files"<br/>
+cp ../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/*.* temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a><br/>
+cp ../../<a href="CppClass.htm">Classes</a>/<a href="CppCopy_if.htm">CppCopy_if</a>/*.* temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppCopy_if.htm">CppCopy_if</a><br/>
+cp ../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/*.* temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
+cp ../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/*.* temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a><br/>
+cp ../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/*.* temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a><br/>
+cp ../../<a href="CppClass.htm">Classes</a>/<a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a>/*.* temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a><br/>
+cp ../../<a href="Tools.htm">Tools</a>/ToolTestSelectFileDialog/*.* temp_zip/<a href="Tools.htm">Tools</a>/ToolTestSelectFileDialog<br/>
+<br/>
+FILENAME=ToolTestSelectFileDialogSource_1_1<br/>
+ZIP_FILENAME=$FILENAME".zip"<br/>
+<br/>
+echo "Remove previous zip"<br/>
+rm $ZIP_FILENAME<br/>
+<br/>
+#echo "Compressing files"<br/>
+cd temp_zip<br/>
+zip -r $FILENAME <a href="CppClass.htm">Classes</a><br/>
+#zip -r $FILENAME <a href="CppLibrary.htm">Libraries</a><br/>
+#zip -r $FILENAME Projects<br/>
+zip -r $FILENAME <a href="Tools.htm">Tools</a><br/>
+cd ..<br/>
+cp "temp_zip/"$ZIP_FILENAME $ZIP_FILENAME<br/>
+<br/>
+echo "Cleaning up"<br/>
+<br/>
+#<a href="CppClass.htm">Classes</a><br/>
+rm temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/*.*<br/>
+rm temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppCopy_if.htm">CppCopy_if</a>/*.*<br/>
+rm temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/*.*<br/>
+rm temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/*.*<br/>
+rm temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/*.*<br/>
+rm temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a>/*.*<br/>
+rmdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a><br/>
+rmdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppCopy_if.htm">CppCopy_if</a><br/>
+rmdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
+rmdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a><br/>
+rmdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a><br/>
+rmdir temp_zip/<a href="CppClass.htm">Classes</a>/<a href="CppWtSelectFileDialog.htm">CppWtSelectFileDialog</a><br/>
+rmdir temp_zip/<a href="CppClass.htm">Classes</a><br/>
+<br/>
+#<a href="Tools.htm">Tools</a><br/>
+rm temp_zip/<a href="Tools.htm">Tools</a>/ToolTestSelectFileDialog/*.*<br/>
+rmdir temp_zip/<a href="Tools.htm">Tools</a>/ToolTestSelectFileDialog<br/>
+rmdir temp_zip/<a href="Tools.htm">Tools</a><br/>
+rm temp_zip/*.*<br/>
+rmdir temp_zip<br/>
+echo "Done"<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

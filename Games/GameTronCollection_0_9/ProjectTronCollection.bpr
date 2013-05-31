@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="ProjectTronCollection.exe"/>
+    <OBJFILES value="ProjectTronCollection.obj UnitFormTronCollectionMenu.obj 
+      UnitClassicTronPlayer.obj UnitFormClassicTronAbout.obj 
+      UnitFormClassicTronGame.obj UnitFormClassicTronMenu.obj 
+      UnitSuperTronPlayer.obj UnitFormSuperTronAbout.obj 
+      UnitFormSuperTronGame.obj UnitFormSuperTronMenu.obj UnitGraphics.obj 
+      UnitFormChart.obj UnitFormPressKey.obj UnitFormSelectColor.obj 
+      UnitTronTurboPlayer.obj"/>
+    <RESFILES value="ProjectTronCollection.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) UnitFormTronCollectionMenu.dfm UnitFormClassicTronAbout.dfm 
+      UnitFormClassicTronGame.dfm UnitFormClassicTronMenu.dfm 
+      UnitFormSuperTronAbout.dfm UnitFormSuperTronGame.dfm 
+      UnitFormSuperTronMenu.dfm UnitFormChart.dfm UnitFormPressKey.dfm 
+      UnitFormSelectColor.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="tee.lib rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib tee.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi bcb2kaxserver.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="ProjectTronCollection.cpp"/>
+    <INCLUDEPATH value="..\..\..;Projects\Games\TronCollection;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\..\..;Projects\Games\TronCollection;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\..\.. -IProjects\Games\TronCollection -I$(BCB)\include 
+      -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="ProjectTronCollection.res" FORMNAME="" UNITNAME="ProjectTronCollection.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ProjectTronCollection.cpp" FORMNAME="" UNITNAME="ProjectTronCollection" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormTronCollectionMenu.cpp" FORMNAME="FormTronCollectionMenu" UNITNAME="UnitFormTronCollectionMenu" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitClassicTronPlayer.cpp" FORMNAME="" UNITNAME="UnitClassicTronPlayer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormClassicTronAbout.cpp" FORMNAME="FormClassicTronAbout" UNITNAME="UnitFormClassicTronAbout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormClassicTronGame.cpp" FORMNAME="FormClassicTronGame" UNITNAME="UnitFormClassicTronGame" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormClassicTronMenu.cpp" FORMNAME="FormClassicTronMenu" UNITNAME="UnitFormClassicTronMenu" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSuperTronPlayer.cpp" FORMNAME="" UNITNAME="UnitSuperTronPlayer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSuperTronAbout.cpp" FORMNAME="FormSuperTronAbout" UNITNAME="UnitFormSuperTronAbout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSuperTronGame.cpp" FORMNAME="FormSuperTronGame" UNITNAME="UnitFormSuperTronGame" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSuperTronMenu.cpp" FORMNAME="FormSuperTronMenu" UNITNAME="UnitFormSuperTronMenu" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitGraphics.cpp" FORMNAME="" UNITNAME="UnitGraphics" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormChart.cpp" FORMNAME="FormChart" UNITNAME="UnitFormChart" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormPressKey.cpp" FORMNAME="FormPressKey" UNITNAME="UnitFormPressKey" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSelectColor.cpp" FORMNAME="FormSelectColor" UNITNAME="UnitFormSelectColor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTronTurboPlayer.cpp" FORMNAME="" UNITNAME="UnitTronTurboPlayer.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Richel Bilderbeek
+FileDescription=The Tron Collection
+FileVersion=1.0.0.0
+InternalName=The Tron Collection
+LegalCopyright=Richel Bilderbeek
+LegalTrademarks=Richel Bilderbeek
+OriginalFilename=The Tron Collection
+ProductName=The Tron Collection
+ProductVersion=1.0.0.0
+Comments=Licenced under GPL 3.0
+Website=http://www.richelbilderbeek.nl
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

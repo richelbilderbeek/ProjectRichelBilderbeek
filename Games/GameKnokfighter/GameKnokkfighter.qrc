@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>RichelLooptLinks1.png</file>
+        <file>RichelLooptLinks2.png</file>
+        <file>RichelLooptRechts1.png</file>
+        <file>RichelLooptRechts2.png</file>
+        <file>JoostLooptLinks1.png</file>
+        <file>JoostLooptLinks2.png</file>
+        <file>JoostLooptRechts1.png</file>
+        <file>JoostLooptRechts2.png</file>
+    </qresource>
+</RCC>

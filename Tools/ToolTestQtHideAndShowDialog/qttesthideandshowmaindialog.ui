@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestHideAndShowMainDialog</class>
+ <widget class="QDialog" name="QtTestHideAndShowMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>226</width>
+    <height>137</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Press ESC to close this window</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_width_constructor">
+     <property name="text">
+      <string>Dialog width (construction): ?</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_width_showevent">
+     <property name="text">
+      <string>Dialog width (showEvent): ?</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_spacer">
+     <property name="text">
+      <string>[spacer]</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button">
+     <property name="text">
+      <string>Create a &amp;new child window</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

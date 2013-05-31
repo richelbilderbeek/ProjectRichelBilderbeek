@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtBeerWanterMenuDialog</class>
+ <widget class="QDialog" name="QtBeerWanterMenuDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>224</width>
+    <height>340</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>28</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>BeerWanter</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="beerwanter.qrc">
+    <normaloff>:/PicR.png</normaloff>:/PicR.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_image">
+     <property name="text">
+      <string>BeerWanter</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_title">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="beerwanter.qrc">:/Beer.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_start">
+     <property name="text">
+      <string>Start</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>About</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="beerwanter.qrc"/>
+ </resources>
+ <connections/>
+</ui>

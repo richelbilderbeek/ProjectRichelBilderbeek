@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtCreateQtProjectZipFileMenuDialog</class>
+ <widget class="QDialog" name="QtCreateQtProjectZipFileMenuDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>303</width>
+    <height>203</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>36</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>CreateQtProjectZipFile</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolCreateQtProjectZipFile.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #606060, stop: 1 #ffffff);
+}
+
+QPushButton { font: 32px, &quot;Courier&quot; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_qt">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="ToolCreateQtProjectZipFile.qrc">:/images/PicQtCreator14x14.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_to">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="ToolCreateQtProjectZipFile.qrc">:/images/PicTo14x14.png</pixmap>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_zip">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="ToolCreateQtProjectZipFile.qrc">:/images/PicZip14x14.png</pixmap>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_start">
+     <property name="text">
+      <string>Start</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>About</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ToolCreateQtProjectZipFile.qrc"/>
+ </resources>
+ <connections/>
+</ui>

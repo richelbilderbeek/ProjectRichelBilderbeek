@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>ToolCodeToHtmlWelcome.png</file>
+        <file>ToolCodeToHtmlHelloWorld.png</file>
+    </qresource>
+</RCC>

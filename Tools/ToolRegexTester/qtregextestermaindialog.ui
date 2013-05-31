@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtRegexTesterMainDialog</class>
+ <widget class="QDialog" name="QtRegexTesterMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>695</width>
+    <height>544</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Courier New</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Regex tester</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 #B0B0B0, stop: 1 #ffffff);
+}
+QLabel { 
+  font-size: 18px;
+  font-family: Courier;
+  font-weight: bold
+}
+QPushButton { 
+  font-family: Courier New;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #999, stop: 0.1 #aaa, stop: 0.49 #ddd, stop: 0.5 #ccc, stop: 1 #ddd);
+  border-width: 3px;
+  border-color: #444;
+  border-style: solid;
+  border-radius: 7;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget_regex" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_regex">
+        <property name="text">
+         <string>Regex: </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="edit_regex"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_line" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_line">
+        <property name="text">
+         <string>Line:    </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="edit_line">
+        <property name="text">
+         <string>Both '1234 AB' and '9999 ZZ' are valid Dutch zip codes</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_regex_valid">
+     <property name="text">
+      <string>Regex valid: yes</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_regex_match">
+     <property name="text">
+      <string>Regex matches line: yes</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_regex_found">
+     <property name="text">
+      <string>Regex found in line: yes</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="edit_matching_regexes">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_line_2" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_line_2">
+        <property name="text">
+         <string>Format:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="edit_format">
+        <property name="text">
+         <string>$0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="edit_replaced_regexes">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>edit_regex</tabstop>
+  <tabstop>edit_line</tabstop>
+  <tabstop>edit_matching_regexes</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

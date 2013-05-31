@@ -1,0 +1,44 @@
+Hometrainer (C) 2009 Richel Bilderbeek
+
+//ToolHometrainerExerciseMillingMachineWithLegend.png is from http://commons.wikimedia.org/wiki/File:Milling_machine_(Vertical,_Manual)_NT.PNG
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat voor type freesmachine is dit?,Verticale frees,Horizontale frees,Universele frees,CNC frees
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat is 1?,Frees,Hoofdspil,Tandwiel,Opzetstuk
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat is 2?,Hoofdspil,Langsslede,Telescoopschroefspil,Kniestuk
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat is 4?,Tandwielkast,Voetplaat,Kniestuk,Langsslede,Dwarsslede
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat is 5?,Langsslede,Dwarsslede,Kniestuk,Tandwielkast,Voetplaat
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat is 6?,Dwarsslede,Langsslede,Kniestuk,Tandwielkast,Voetplaat
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat is 7?,Kniestuk,Tandwielkast,Langsslede,Dwarsslede,Voetplaat
+ToolHometrainerExerciseMillingMachineWithLegend.png,Hoe heet de spil waarover we het kniestuk verplaatsen?,Telescoopschroefspil,Hoofdspil,Langsslede,Dwarsslede
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat is 8?,Voetplaat,Tandwielkast,Langsslede,Dwarsslede,Kniestuk
+ToolHometrainerExerciseMillingMachineWithLegend.png,Wat is 9?,Hoofdschakelaar,Versnellingszwengel,Snelheidszwengel,Frees
+
+//ToolHometrainerExerciseSideCutter.jpg is from http://en.wikipedia.org/wiki/File:MillingCutterHSSSlab.jpg
+ToolHometrainerExerciseSideCutter.jpg,Wat voor soort frees is dit?,Mantelfrees,Vlakfrees,Vingerfrees,Spiefrees
+
+//ToolHometrainerExerciseSideAndFaceCutter.jpg is from http://en.wikipedia.org/wiki/File:MillSideAndFaceCutter.jpg 
+ToolHometrainerExerciseSideAndFaceCutter.jpg,Wat voor soort frees is dit?,Mantelkopfrees,Vlakfrees,Mantelfrees,Vingerfrees,Spiefrees
+
+//ToolHometrainerExerciseMillingCutterHobbingInvolute.jpg from http://en.wikipedia.org/wiki/File:MillingCutterHobbingInvolute.jpg
+ToolHometrainerExerciseMillingCutterHobbingInvolute.jpg,Wat voor soort frees is dit?,Tandwielfrees,Mantelkopfrees,Vlakfrees,Mantelfrees,Vingerfrees,Spiefrees
+
+//ToolHometrainerExerciseWoodruffCuttersKeys.jpg is from http://en.wikipedia.org/wiki/File:WoodruffCutters-Keys.jpg
+ToolHometrainerExerciseWoodruffCuttersKeys.jpg,Wat voor soort frees is dit?,T-gleuffrees,Tandwielfrees,Mantelkopfrees,Vlakfrees,Mantelfrees,Vingerfrees,Spiefrees
+
+//ToolHometrainerExerciseCncMillingMachine.jpg is from http://commons.wikimedia.org/wiki/File:DeckelMaho-DMU50e-MachiningCenter.jpg
+ToolHometrainerExerciseCncMillingMachine.jpg,Wat voor type freesmachine is dit?,CNC frees,Verticale frees,Horizontale frees,Universele frees
+
+//ToolHometrainerExerciseHorizontalMillingMachine.jpg is from http://commons.wikimedia.org/wiki/File:Preparando_la_m%C3%A1quina.IES_Polit%C3%A9cnico_Sevilla.JPG
+ToolHometrainerExerciseHorizontalMillingMachine.jpg,Wat voor type freesmachine is dit?,CNC frees,Verticale frees,Horizontale frees,Universele frees
+
+//ToolHometrainerExerciseMillingMachineToolHolder.jpg is from http://commons.wikimedia.org/wiki/File:1941-G.jpg 
+ToolHometrainerExerciseMillingMachineToolHolder.jpg,Wat voor type bevestiging is dit?,Weldonbevestiging,Autolock-bevestiging
+
+//Questions without images
+-,Welke uitspraak is waar? Een universele freesmachine...,lijkt het meest op een horizontale freesmachine,lijkt het meest op een vertical freesmachine,lijkt het meest op een CNC freesmachine,is een CNC freesmachine
+-,Welk type freesmachine is geen conventionele freesmachine?,CNC freesmachine,horizontale freesmachine,verticale freesmachine,universele freemachine
+-,De standtijd van een frees is de tijd ...,na vervanging tot vervanging van de bijtels,dat je deze aaneengesloten kunt gebruiken op een dag,dat je nog garantie hebt bij de levarancier tegen bot worden van de frees,dat deze maximaal in een opslagrek mag staan zonder gebruikt te worden
+-,(1) Welke freesmethode zorgt voor een langere standtijd? (2) En welke voor hogere snijsnelheden?,(1) Meelopend (2) Meelopend,(1) Tegenlopend (2) Meelopend,(1) Meelopend (2) Tegenlopend,(1) Tegenlopend (2) Tegenlopend 
+-,(1) Bij welke freesmethode kan de frees zich niet in het werkstuk trekken? (2) En welke zorgt voor minder slijtage aan schroefspil en moeren?,(1) Tegenlopend (2) Tegenlopend,(1) Meelopend (2) Meelopend,(1) Tegenlopend (2) Meelopend,(1) Meelopend (2) Tegenlopend 
+-,(1) Bij welke freesmethode zie je geen sporen van opgebouwde snijkanten op het bewerkte vlak? (2) En welke levert een gunstigere tandbelasting op?,(1) Tegenlopend (2) Meelopend,(1) Meelopend (2) Tegenlopend,(1) Tegenlopend (2) Tegenlopend,(1) Meelopend (2) Meelopend
+-,Een voordeel van een meskopfrees is ...,dat de snijpunten kunnen worden vervangen,deze snijdt zowel aan de omtrek als aan het kopvlak,hiermee kun je het best diepe sleuven frezen,hiermee kun je het best spiesleuven frezen 
+-,Als bij een schijffrees een tand is afgebroken dan,moet je ze allemaal vervangen,moet je alleen deze vervangen,moet je de hele schijffrees weggooien,moet je deze en de tand aan de overzijde vervangen

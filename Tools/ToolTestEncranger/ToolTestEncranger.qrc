@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ToolTestEncrangerArrowDown16x16.png</file>
+        <file>ToolTestEncrangerArrowUp16x16.png</file>
+        <file>ToolTestEncrangerArrowDown34x34.png</file>
+        <file>ToolTestEncrangerArrowUp34x34.png</file>
+        <file>ToolTestEncrangerWelcome.png</file>
+    </qresource>
+</RCC>

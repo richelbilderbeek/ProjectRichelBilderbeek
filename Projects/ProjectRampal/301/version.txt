@@ -1,0 +1,144 @@
+Version 1: User input removed, but used old source files
+Version 2: Obtained new source files from Rampal
+Version 5: Added writing answer to file expected_probability.txt
+Version 6: Read theta from theta.txt, phylogeny from phylogeny.txt, output expected_probability to expected_probability.txt
+Version 7: Tried to make the file output optional, but too complicated to do.
+Version 8: Changed the phylogeny characters '(' and ')' to angel wings
+Version 9: Added VikramReadFile, which can be called with theta only. The phylogeny is read from the file phylogeny.txt
+Version 10: Added extra lines to make Matlab able to read the DLL
+Version 11: Added interface.h file
+Version 12: Final version of part #1
+Version 13: Initial speed-up version
+Version 14: Start fixing linker errors
+Version 17: Abandoned use of DLL's
+Version 18: Use of exectable of version 12
+Version 19: Renamed units
+Version 20: Removed DllHandle class
+Version 21: Removed UnitMain.h (which was used for DLL export)
+Version 22: Removed ReadThetaFromFile
+version 23: Improved ReadPhylogenyFromFile
+Version 24: Changed phy_to_find from a huge static array to a std::vector!
+Version 25: Removed some useless functions and comments
+Version 26: Removed some useless functions and comments
+Version 27: Make the program run under C++ Builder, added UnitHelper
+Version 28: Improved layout
+Version 29: Improved layout, removed some local variables declarations
+Version 30: Added default constructor to NewickNumber
+Version 31: Localized variables and more cleaning up
+Version 32: Localized variables and more cleaning up
+Version 33: Localized variables and more cleaning up
+Version 34: Localized variable theta
+Version 35: Put UnitCalculate and UnitSort in one unit called UnitVikram
+Version 36: Removed globals 'globals_string' and 'global_line'
+Version 37: Removed global 'denom'
+Version 38: Use of std:: functions, removed global 'current'
+Version 39: Removed global 'expected_phylogeny'
+Version 40: Removed global 'phy_to_find'
+Version 41: Removed global 'current_phy'
+Version 42: Removed global 'ni'
+Version 43: Removed global 'phy_to_find_entries'
+Version 44: Removed global 'string_pos'
+Version 45: Removed global 'eqns'
+Version 46: Removed global 'error'
+Version 47: Removed global 'pass_back'
+Version 48: Removed global 'MAX_PROBABILITIES'
+Version 49: Changed char* to std::string
+Version 50: Changed char* to std::string
+Version 51: Improved memory use of std::strings
+Version 52: Improved memory use of std::strings
+Version 53: Improved memory use of std::strings
+Version 54: Set up equivalence and speed test trials
+Version 55: use of std::string in Termisnot1 + suggestions for speed increase
+Version 56: Abandoned
+Version 57: Removed non-standard fact and itoa functions
+Version 58: Simplified function call of Ewens function
+Version 59: Made it possible to use the function profiler called 'Shiny'!
+Version 60: Need to improve speed of 'Find_probability', obtained proof that this must be done by making the std::vector phy_to_find static. Problem is that Vikram made his functions not multiple-callable. Need to modify the use of phy_to_find.
+Version 61: Made code compatible for C++ Builder (removes Shiny calls)
+Version 62: Some small changes in 'find_probability' and 'find_eqns'
+Version 63: Removed use of file for exchange of data, need for high precision doubles
+Version 64: No need for high precision doubles, need to convert doubles to and from string in high precision (see output.txt for a trace of values in simulation and compare it to phy_dat3.rtf -> they're the same!)
+Version 65: Fix bug in solve_eqns. Fixed by finding out that solve_current_eqn_oldschool and solve_current_eqn (new version) are the same. Can remove solve_current_eqn_oldschool in next version. Program runs successfully in C++ Builder !
+Version 66: Removed solve_current_eqn_oldschool
+Version 67: Need to make functions have no state (i.e. if Vikram is called twice, it produces different results), which succeeded. Changed char* in NewickNumber to std::string.
+Version 68: ABANDONED
+Version 69: Started preparations in speeding up find_probability
+Version 70: Cleaned up compiler warnings
+Version 71: No limited-sized std::vector anymore! Speed improved!
+Version 72: Localized some 'global_string's
+Version 73: Localized some 'global_string's, removed some useless code
+Version 74: Localized some globals, made some variables const-correct
+Version 75: Improved sort_phylogeny function prototype, removed a pass_back std::string
+Version 76: Improved use of right increment operator
+Version 77: Removed useless NewickProbability::newick initialization
+Version 78: Removed useless NewickNumber::newick initialization
+Version 79: Removed more useless NewickNumber::newick initializations. Need to improve speed of PROFILER_BLOCK(44)
+Version 80: Tried to improve speed in PROFILER_BLOCK(44) but measured no successre possible (2 out of 4 cases)
+Version 82: Created struct called Newick to prevent string parsing all program long
+Version 83: Got Newick to compile
+Version 84: Put Newick in NewickProbability
+Version 85: Measured the need to remove string conversions
+Version 86: ABANDONED: Added first Newick use in critical section
+Version 87: ABANDONED: Use of a Newick in Denominator
+Version 88: ABANDONED: Measured need to improve Ewens_Formula, improved layout
+Version 89: ABANDONED: Found error in newick parsing, took too long to finx
+Version 90: Cleaning up.
+Version 91: Set up test to improve TermIsNotOne
+Version 92: Adapted TermIsNotOne to use a Newick instead of a string. Test succeeded.
+Version 93: Set up test to improve LoseBrackets
+Version 94: Improved LoseBrackets, tested with success, start setting up new TermIsOne
+Version 95: Set up test to improve TermIsOne
+Version 96: Improving TermIsOne, test succeeded
+Version 97: Reduced state in function passing, added more tests, improved functions, debugged tests, need to fix error in phylogy ((1,2),5,(3,4))
+Version 98: Started fixing error in phylogy ((1,2),5,(3,4)), removed UnitGlobals.h and globals, renamed #defines
+Version 99: Started fixing error in phylogy ((1,2),5,(3,4)), removed unnecessary use of references
+Version 100: Assumed ((1,2),5,(3,4)) is parsed correctly by newer version (but not by older version), increase use of Newick as std::vector<int> in TermIsNotOne
+Version 101: Use of Newick as std::vector<int> in EwensFormula, fixed error in GetNewickIndex
+Version 102: Some clean-up
+Version 103: NewickNumber now works with a Newick instead of a std::string
+Verison 104: Some clean-up, measured need to make SortPhylogeny work with Newicks instead of std::string (and to a less degree : Find_eqn)
+Version 105: Make SortPhylogeny work with a Newick, but discarded use of SortPhylogeny instead (it never modified a std::string!). Measured need to remove some leftover NewickToString conversions.
+Version 106: Removed some leftover NewickToString conversions
+Version 107: More use of newer functions using Newick instead of std::string, measure need to remove more Newick to std::string conversions
+Version 108: Cleaned up naming of older functions: using _old_x naming, measured need of speed increase in IsNumber (Profiler point #21) and Find_eqn
+Version 109: ABANDONED Improved Find_eqn and renamed to FindEquation
+Version 110: Improved Test function and discovered new errors
+Version 111: Fixed new errors. Again measured need of speed increase in IsNumber (Profiler point #21) and Find_eqn
+Version 112: Setting up test for improving Find_eqn, renamed Find_eqn to FindEquations
+Version 113: Improving FindEquations, not all tests succeed yet...?
+Version 114: Take operator= into account of speed. Changed profiler to distinguish between different classes' operator=. Measured need to improve BlockNewickOperatorAssign (65%).
+Version 115: Inspected profiler outcomes. Outcomes are very different and strange. For example this measurement (profiler115_4.rtf): 98% and 5 msec in FindEquations for a run of ten minutes! Where is the program actually sticking most of the time? Therefore added more profiler measurement points.
+Version 116: Created recurrent Richel::FindProbability! Measured speed increases from >100x to >4x compared to old version, the newer version losing its lead for larger phylogeny. Need of big-O analysis.
+Version 117: Created ProjectRampalAnalyse tool. Measured Rampal phylogeny on RuG computer, std::bad_alloc exception thrown, because of memory shortage (2.51 GB was needed)
+Version 118: Try to reduce memory usage. Created Storage<T> class for this, improved Newick->ShortNewick->FullNewick
+Version 119: std::bad_alloc handling with call to Storage<T>::CleanUp, start of creating a SortedNewick
+Version 120: Some cleanup
+Version 121: Made the storage of Newicks compile for both C++ Builder (as Storage<T>) and g++ (as SortedNewickStorage)
+Version 122: Added StorageTree for perhaps faster lookup and less memory consumption. Started profiling.
+//---------------------------------------------------------------------------
+Compiled with:
+g++ -o RampalLinuxExe UnitMain.cpp UnitRichel.cpp UnitStorageTree.cpp UnitVikram.cpp UnitNewick.cpp UnitNewicks.cpp UnitHelper.cpp UnitEquation.cpp UnitNewickProbability.cpp UnitShortNewick.cpp UnitFullNewick.cpp UnitFullNewicks.cpp UnitSortedNewick.cpp UnitSortedNewickStorage.cpp ../Shiny/ShinyManager.cpp ../Shiny/ShinyNode.cpp ../Shiny/ShinyNodePool.cpp ../Shiny/ShinyTools.cpp ../Shiny/ShinyOutput.cpp -D NTRACE -D NDEBUG -D NTEST
+
+Building a DLL
+gcc -c interface1_July302.c
+gcc -c sort1_July302.c
+gcc -c calculate_July302.c
+gcc -o Ravindran.dll interface1_July302.o sort1_July302.o calculate_July302.o
+
+Building a shared object
+g++ -shared -o RampalSo.so -Wl,--out-implib,RamppalSo.dll.a UnitMain.cpp UnitRichel.cpp UnitStorageTree.cpp UnitVikram.cpp UnitNewick.cpp UnitNewicks.cpp UnitHelper.cpp UnitEquation.cpp UnitNewickProbability.cpp UnitShortNewick.cpp UnitFullNewick.cpp UnitFullNewicks.cpp UnitSortedNewick.cpp UnitSortedNewickStorage.cpp ../Shiny/ShinyManager.cpp ../Shiny/ShinyNode.cpp ../Shiny/ShinyNodePool.cpp ../Shiny/ShinyTools.cpp ../Shiny/ShinyOutput.cpp -D NTRACE -D NDEBUG -D NTEST
+//---------------------------------------------------------------------------
+Version 130: First Ubuntu version
+
+//133: 2010-03-18:      : Concluded that Windows and Linux version produce same result
+//134: 2010-03-21: V.2.1: Start removing obsolete tests.
+//135: 2010-03-21:      : Commented out obsolete classes
+//136: 2010-03-21:      : Removed obsolete classes, let program output log10 of answer
+//137: 2010-03-29:      : Use of old code to create simpler Newicks, instead of recreating the most optimal
+//138: 2010-04-04: V.2.2: ProjectCreateSubs V.1.0. Not yet reviewed by Etienne & Janzen
+//139: 2010-04-04: V.2.3: ProjectRampalQt and ProjectTest V.1.0. Not yet reviewed by Etienne & Janzen
+//140: 2010-04-05:      : Start finding number of combinations in phylogenies, found problem: numerator gets too big quickly
+//141: 2010-04-10:      : Made improvements on the calculation of combinations in phylogeny, but still using std::vector<int>. Might a double bring the answer?
+//142: 2010-04-11: V.2.4: calculation of combinations in phylogeny in double, calculation of Ewens probability successfull!
+
+

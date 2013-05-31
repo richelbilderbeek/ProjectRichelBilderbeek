@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtPvdbViewTestsDialog</class>
+ <widget class="QDialog" name="QtPvdbViewTestsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>View tests</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Brainweaver.qrc">
+    <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>780</width>
+        <height>580</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="Brainweaver.qrc"/>
+ </resources>
+ <connections/>
+</ui>

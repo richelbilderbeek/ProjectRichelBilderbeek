@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestPylosGameTestsDialog</class>
+ <widget class="QDialog" name="QtTestPylosGameTestsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>652</width>
+    <height>598</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Courier New</family>
+    <pointsize>14</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Tests performed</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolTestPylos.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>619</width>
+        <height>1063</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_1">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ToolTestPylos.qrc">:/images/ToolTestPylosMustRemove.png</pixmap>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPlainTextEdit" name="text_1">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Test that in basic play, no marbles must be removed. Test that in advanced play, marbles must be removed.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ToolTestPylos.qrc">:/images/ToolTestPylosCanMove.png</pixmap>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPlainTextEdit" name="text_3">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Test that marble 5 can be moved up to the location indicated by arrow 1. Test that marble 3 cannot be moved up to the location indicated by arrow 2. Test that marble 1 cannot be moved to the location specified by arrow 3.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ToolTestPylos.qrc">:/images/ToolTestPylosDoubleRemoveTest.png</pixmap>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPlainTextEdit" name="text_2">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Test that is possible to select marbles 1 and 5 for removal and that the actual remove is valid.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>259</width>
+           <height>259</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ToolTestPylos.qrc">:/images/ToolTestPylosMoveMustRemove.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPlainTextEdit" name="text_4">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Test is after specified move it is recognized that player is allowed to remove one or two marbles.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ToolTestPylos.qrc"/>
+ </resources>
+ <connections/>
+</ui>

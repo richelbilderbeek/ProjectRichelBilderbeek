@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestQrcFileMainDialog</class>
+ <widget class="QDialog" name="QtTestQrcFileMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>929</width>
+    <height>613</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TestQrcFile</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolTestQrcFile.qrc">
+    <normaloff>:/images/ToolTestQrcFileIcon.png</normaloff>:/images/ToolTestQrcFileIcon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QLabel { font: 16px, &quot;monospace&quot; }
+QLineEdit { font: 16px, &quot;monospace&quot; }</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label_folder">
+       <property name="text">
+        <string>QRC file folder: ../../</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="edit">
+       <property name="text">
+        <string>somefolder/somefolder</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPlainTextEdit" name="text_result"/>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ToolTestQrcFile.qrc"/>
+ </resources>
+ <connections/>
+</ui>

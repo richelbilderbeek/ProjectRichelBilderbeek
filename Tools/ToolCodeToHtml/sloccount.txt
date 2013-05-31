@@ -1,0 +1,8 @@
+WARNING!!! Not a file nor a directory (so ignored): ../ProjectCodeToHtml
+Categorizing files.
+Skipping non-directory *
+Computing results.
+
+
+SLOC	Directory	SLOC-by-Language (Sorted)
+SLOC total is zero, no further analysis performed.

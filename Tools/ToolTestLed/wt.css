@@ -1,0 +1,24 @@
+/* Set all fonts to Courier New */
+* { font-family:"Courier New"; }
+
+body
+{
+  background-image:url('RichelbilderbeekNlBackground.png');
+  background-position:center center;
+}
+
+.title
+{
+  font-weight:bold;
+  font-size:xx-large;
+}
+
+table, th, td
+{
+  border: 1px solid black;
+}
+
+td
+{
+  padding:12px;
+}

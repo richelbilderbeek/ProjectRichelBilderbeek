@@ -1,0 +1,11 @@
+//The mapping file
+#define IDH_OVERVIEW_INTRODUCTION 100
+#define IDH_BIRD_BASE             500
+#define IDH_SINGLE_FEMALE_POOL    600
+#define IDH_SINGLE_MALE_POOL      610
+#define IDH_COUPLE_POOL           620
+#define IDH_MIGRATION_POOL        630
+#define IDH_DEAD_POOL             640
+
+
+

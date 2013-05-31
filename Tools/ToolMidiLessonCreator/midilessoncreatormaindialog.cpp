@@ -1,0 +1,1 @@
+#include "midilessoncreatormaindialog.h"

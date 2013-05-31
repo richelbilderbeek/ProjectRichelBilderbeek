@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtSimMysteryMachineRealMachineDialog</class>
+ <widget class="QDialog" name="QtSimMysteryMachineRealMachineDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>664</width>
+    <height>361</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>The real MysteryMachine</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolSimMysteryMachine.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ff8080, stop: 0.5 #80ff80, stop: 1 #8080ff);
+}
+QDialog { 
+selection-color: black;
+selection-background-color: white
+}
+
+QPushButton { font: 48px, &quot;Verdana&quot; }
+QPushButton{ 
+selection-color: black;
+selection-background-color: white
+}
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QLabel" name="image_machine">
+     <property name="maximumSize">
+      <size>
+       <width>320</width>
+       <height>320</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolSimMysteryMachine.qrc">:/images/ToolSimMysteryMachine.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="image_prototype">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>320</width>
+       <height>320</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolSimMysteryMachine.qrc">:/images/ToolSimMysteryMachinePrototype.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_machine">
+     <property name="text">
+      <string>MysteryMachine</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_prototype">
+     <property name="text">
+      <string>MysteryMachine prototype</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ToolSimMysteryMachine.qrc"/>
+ </resources>
+ <connections/>
+</ui>

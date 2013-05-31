@@ -1,0 +1,75 @@
+Hometrainer (C) 2009 Richel Bilderbeek
+ToolHometrainerExerciseHometrainer2 (C) 2009 Richel Bilderbeek
+ToolHometrainerExerciseAdapter.jpg,Hoe heet dit ding?,Adapter,DI,Stekkerdoos,Microfoonontvanger
+ToolHometrainerExerciseBakMetFilters.jpg,Wat zit er in dit ding?,Filters,Filtervellen,Filterhouders,Lichtplannen
+ToolHometrainerExerciseCdSpelerNumarck.jpg,Hoe heet dit ding?,CD speler,MD speler,DCC speler,LP speler
+ToolHometrainerExerciseDcc.jpg,Wat is dit?,DCC,MD,Casette,Dimmerpack
+ToolHometrainerExerciseDi.jpg,Hoe heet dit ding?,DI,Kabeltester,Dimmerpack,Flightcase
+ToolHometrainerExerciseDimmerpack.jpg,Hoe heet dit ding?,Dimmerpack,DI,Krachtstroom-stekkerdoos,Lichttafel
+ToolHometrainerExerciseDmxMannetje.jpg,Welk type connector is dit?,DMX,XLR,Euro,Krachtstroom
+ToolHometrainerExerciseDmxMannetjeConnector.jpg,Welk type connector is dit?,DMX,XLR,Euro,Krachtstroom
+ToolHometrainerExerciseDmxVrouwtje.jpg,Welk type connector is dit?,DMX,XLR,Euro,Krachtstroom
+ToolHometrainerExerciseDmxVrouwtjeConnector.jpg,Welk type connector is dit?,DMX,XLR,Euro,Krachtstroom
+ToolHometrainerExerciseEuroMannetjeConnector.jpg,Welk type connector is dit?,Euro,Jack,Tulp,Schuko
+ToolHometrainerExerciseEuroVrouwtje.jpg,Welk type connector is dit?,Euro,Jack,Tulp,Schuko
+ToolHometrainerExerciseFilter.jpg,Hoe heet dit ding?,Filter,Filtervel,Filterhouder,Filterboekje
+ToolHometrainerExerciseFilterBoekje.jpg,Hoe heet dit ding?,Filterboekje,Filter,Filtervel,Filterhouder
+ToolHometrainerExerciseFilterHouder.jpg,Hoe heet dit ding?,Filterhouder,Filterboekje,Filter,Filtervel
+ToolHometrainerExerciseFiltervellen.jpg,Hoe heet een ding in de bak?,Filtervel,Filterhouder,Filterboekje,Filter
+ToolHometrainerExerciseFlightcase.jpg,Hoe heet dit ding?,Flightcase,Koffer,Hoes,Kist
+ToolHometrainerExerciseFresnel.jpg,Hoe heet deze lamp?,Fresnel,Par,PC,Horizonbak
+ToolHometrainerExerciseGeluidstafelAlesis.jpg,Wat is dit?,Geluidstafel,Lichttafel,DJ tafel,Videomixer
+ToolHometrainerExerciseGeluidstafelYamaha.jpg,Wat is dit?,Geluidstafel,Lichttafel,DJ tafel,Videomixer
+ToolHometrainerExerciseGordijnhaak.jpg,Hoe heet dit ding?,Gordijnhaak,Lamphaak,Safety,Trussklem
+ToolHometrainerExerciseHaspel.jpg,Hoe heet dit ding?,Haspel,Stekkerdoos,Verlengsnoer,Rolstekkerdoos
+ToolHometrainerExerciseJackMannetjeMono.jpg,Hoeveel kanalen heeft deze plug?,1,2,3,4
+ToolHometrainerExerciseJackMannetjeMono.jpg,Welk type connector is dit?,Jack,Tulp,Schuko,Mini-jack
+ToolHometrainerExerciseJackVrouwtjeConnector.jpg,Welk type connector is dit?,Jack,Tulp,Schuko,Mini-jack
+ToolHometrainerExerciseJackVrouwtjeEnXlrVrouwtjeConnector.jpg,Welke types connectoren passen hierin?,Jack en XLR,DMX en jack,Jack en speakon,Speakon en jack
+ToolHometrainerExerciseKabeltester.jpg,Hoe heet dit ding?,Kabeltester,Multimeter,DI,Dimmerpack
+ToolHometrainerExerciseKrachtstroomMannetje.jpg,Welk type connector is dit?,Krachtstroom,XLR,DMX,Euro
+ToolHometrainerExerciseKrachtstroomMannetjeConnector.jpg,Welk type connector is dit?,Krachtstroom,XLR,DMX,Euro
+ToolHometrainerExerciseKrachtstroomVrouwtjeConnector.jpg,Welk type connector is dit?,Krachtstroom,XLR,DMX,Euro
+ToolHometrainerExerciseLamp500W.jpg,Welke uitspraak is waar?,Een lamp mag je nooit met de handen aanraken,Je mag nooit in de lamp kijken als deze buiten het lamphuis brandt,Een lamp mag je niet vervangen bij te harde muziek,Als een lamp stukvalt moet jouw team weglopen voor de vrijkomende (mild) giftige dampen
+ToolHometrainerExerciseLichttafel.jpg,Wat is dit?,Lichttafel,Geluidstafel,DJ tafel,Videomixer
+ToolHometrainerExerciseMdGrijs.jpg,Wat is dit?,MD,DCC,Casette,Dimmerpack
+ToolHometrainerExerciseMdSpeler.jpg,Hoe heet dit ding?,MD speler,CD speler,DCC speler,LP speler
+ToolHometrainerExerciseMdTransparent.jpg,Wat is dit?,MD,DCC,Casette,Dimmerpack
+ToolHometrainerExerciseMicrofoonShureSm58.jpg,Hoe heet dit ding?,Zangmicrofoon,Instrumentmicrofoon,Condensatormicrofoon,Richtmicrofoon
+ToolHometrainerExerciseMicrofoonShureSm58.jpg,Welk type connector is dit?,XLR,DMX,Euro,Krachtstroom
+ToolHometrainerExerciseMiniJackStereoVrouwJackStereoMan.jpg,Welk type connector zit er aan de voorste kant (rechtsonder)?,Mini-jack (stereo),Mini-jack (mono),Jack (stereo),Jack (mono)
+ToolHometrainerExerciseMiniJackStereoVrouwJackStereoMan.jpg,Welk type connector zit er aan de achterste kant (linksboven)?,Jack (stereo),Jack (mono),Mini-jack (stereo),Mini-jack (mono)
+ToolHometrainerExerciseMiniJackStereoVrouwJackStereoMan.jpg,Hoeveel kanalen heeft deze plug?,2,1,3,4
+ToolHometrainerExerciseMultikabelMannetjeConnector.jpg,Welk type connector is dit?,Multikabel,DMX,XLR,Krachtstroom
+ToolHometrainerExerciseMultikabelVrouwtjeConnector.jpg,Welk type connector is dit?,Multikabel,DMX,XLR,Krachtstroom
+ToolHometrainerExerciseMultimeterMetex.jpg,Hoe heet dit ding?,Multimeter,Kabeltester,Flightcase,Spanningsmeter
+ToolHometrainerExerciseMultistekkerdoos.jpg,Hoe heet dit ding?,Multi-stekkerdoos,Stekkerdoos,Geluidstafel,Dimmerpack
+ToolHometrainerExerciseOpwindstatief.jpg,Hoe heet dit ding?,Opwindstatief,Statief,Lampenstatief,Theaterstatief
+ToolHometrainerExercisePar.jpg,Hoe heet deze lamp?,Par,Fresnel,PC,Profielspot
+ToolHometrainerExercisePc.jpg,Hoe heet deze lamp?,PC,Par,Fresnel,Horizonbak
+ToolHometrainerExerciseProfielspot.jpg,Hoe heet deze lamp?,Profielspot,PC,Par,Fresnel
+ToolHometrainerExerciseRgbLamp.jpg,Hoe heet deze lamp?,RGB-lamp,Discolamp,LED-lamp,Multicolor
+ToolHometrainerExerciseSafety.jpg,Hoe heet dit ding?,Safety,Seeftie,Savety,Savetie
+ToolHometrainerExerciseScartMannetje.jpg,Welk type connector is dit?,Scart,VGA,Multikabel,DMX
+ToolHometrainerExerciseSchukoVrouwtjeConnector.jpg,Welk type connector is dit?,Schuko,Euro,Krachtstroom,Tulp
+ToolHometrainerExerciseSpanningsmeterFluke.jpg,Hoe heet dit ding?,Spanningsmeter,Multimeter,Kabeltester,Flightcase
+ToolHometrainerExerciseSpeakerEvent3000.jpg,Wat heet dit ding?,Speaker,Flightcase,Monitor,Subwoofer
+ToolHometrainerExerciseSpeakonVrouwSpeakonVrouw.jpg,Welk type connector is dit?,Speakon,VGA,XLR,DMX
+ToolHometrainerExerciseSpeakonVrouwtjeConnector.jpg,Welk type connector is dit?,Speakon,VGA,XLR,DMX
+ToolHometrainerExerciseStekkerdoos.jpg,Hoe heet dit ding?,Stekkerdoos,Multi-stekkerdoos,Geluidstafel,Dimmerpack
+ToolHometrainerExerciseTbar.jpg,Hoe heet dit ding?,T-bar,Truss,Multiconnector,Powerbar
+ToolHometrainerExerciseTruss.jpg,Hoe heet dit ding?,Truss,Trus,Trust,Trusst
+ToolHometrainerExerciseTrussHaarspeld.jpg,Hoe heet dit ding?,Truss-haarspeld,Truss-pin,Truss-verbindingsstuk,Truss-klem
+ToolHometrainerExerciseTrussklem.jpg,Hoe heet dit ding?,Truss-klem,Truss-verbindingsstuk,Truss-pin,Truss-haarspeld
+ToolHometrainerExerciseTrussPin.jpg,Hoe heet dit ding?,Truss-pin,Truss-verbindingsstuk,Truss-klem,Truss-haarspeld
+ToolHometrainerExerciseTrussVerbindingsstuk.jpg,Hoe heet dit ding?,Truss-verbindingsstuk,Truss-pin,Truss-klem,Truss-haarspeld
+ToolHometrainerExerciseTulpMannetje.jpg,Welk type connector is dit?,Tulp,Schuko,Euro,Jack
+ToolHometrainerExerciseTulpMannetje.jpg,Welke (geluids)kant is de rode?,Rechts,Links,Beide,Kun je niet weten 
+ToolHometrainerExerciseTulpMannetje.jpg,Welke (geluids)kant is de witte?,Links,Rechts,Beide,Kun je niet weten 
+ToolHometrainerExerciseVerloopstukje.jpg,Hoe heet dit ding?,Verloopstukje,Transfer,Multi-connector,Many-plug
+ToolHometrainerExerciseVersterkerSamson.jpg,Wat is dit voor apparaat?,Versterker,Effectenbak,MD speler,Limiter
+ToolHometrainerExerciseVgaVrouwVgaVrouw.jpg,Welk type connector is dit?,VGA,Scart,DMX,Multikabel
+ToolHometrainerExerciseVoetstatief.jpg,Hoe heet dit ding?,Voetstatief,Lampstatief,Opwindstatief,Truss
+ToolHometrainerExerciseXlrVrouwtje.jpg,Welk type connector is dit?,XLR,DMX,Euro,Krachtstroom
+ToolHometrainerExerciseXlrMannetjeConnector.jpg,Welk type connector is dit?,XLR,DMX,Euro,Krachtstroom
+ToolHometrainerExerciseZekering.jpg,Hoe heet dit ding?,Zekering,Meterkast,Stop,Limiter

@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtPvdbPrintRatingDialog</class>
+ <widget class="QDialog" name="QtPvdbPrintRatingDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>733</width>
+    <height>1014</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Printen assessor preview</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Brainweaver.qrc">
+    <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_5">
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>703</width>
+        <height>971</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>703</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QFrame" name="frame_header">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_title">
+            <property name="text">
+             <string>ANALYSE VAN DE CONCEPT MAP VAN DE PERSOONLIJKE WERKTHEORIE</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_focal_question">
+            <property name="text">
+             <string>FOCUS VRAAG: ?</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_student_name">
+            <property name="text">
+             <string> VAN: ?</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_assessor_name">
+            <property name="text">
+             <string>ASSESSOR: ?</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_date">
+            <property name="text">
+             <string>Datum: ?</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_concept_map">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QLabel" name="label_concept_map">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Concept map</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QtPvdbConceptMapRateWidget" name="concept_map" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_concept_map_as_text">
+         <property name="text">
+          <string>Conceptmap als tekst</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_concept_map_as_text" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_4"/>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_concepts">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Overzicht concepten</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="table_concepts">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderHighlightSections">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Complexiteit</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Concreetheid</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Specificiteit</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_competencies">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>278</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLabel" name="label_concepts">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Verdeling van de voorbeelden/toelichting over de zes objecten van kennis</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="table_examples">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>235</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>324</width>
+              <height>235</height>
+             </size>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <row>
+             <property name="text">
+              <string>Kennis van het beroepsdomein</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Kennis van organisaties</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Kennis van de sociale omgeving</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Kennis van de doelgroep</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Technisch instrumentele kennis</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Kennis van de eigen persoon</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Overige</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string>%</string>
+             </property>
+            </column>
+            <item row="0" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="1" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="2" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="3" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="4" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="5" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item row="6" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_values">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Gevonden waarden</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="table_values">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>144</height>
+             </size>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>200</number>
+            </attribute>
+            <attribute name="horizontalHeaderMinimumSectionSize">
+             <number>100</number>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>Complexiteit</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Concreetheid</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Specificiteit</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>Rijkheid</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string>Experimentele waarde</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Geschatte waarde</string>
+             </property>
+            </column>
+            <item row="0" column="0">
+             <property name="text">
+              <string>X_e</string>
+             </property>
+            </item>
+            <item row="0" column="1">
+             <property name="text">
+              <string>X_s</string>
+             </property>
+            </item>
+            <item row="1" column="0">
+             <property name="text">
+              <string>C_e</string>
+             </property>
+            </item>
+            <item row="1" column="1">
+             <property name="text">
+              <string>C_s</string>
+             </property>
+            </item>
+            <item row="2" column="0">
+             <property name="text">
+              <string>S_e</string>
+             </property>
+            </item>
+            <item row="2" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+            <item row="3" column="0">
+             <property name="text">
+              <string>R_e</string>
+             </property>
+            </item>
+            <item row="3" column="1">
+             <property name="text">
+              <string>-</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_print">
+     <property name="text">
+      <string>&amp;Print</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtPvdbConceptMapRateWidget</class>
+   <extends>QWidget</extends>
+   <header>qtpvdbconceptmapratewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="Brainweaver.qrc"/>
+ </resources>
+ <connections/>
+</ui>

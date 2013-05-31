@@ -1,0 +1,44 @@
+Reading configuration file: /home/richel/Projects/Tools/ToolRichelbilderbeekNlSitemapGenerator/config.xml
+Opened URLLIST file: /home/richel/Projects/Tools/ToolRichelbilderbeekNlSitemapGenerator/urllist.txt
+Walking DIRECTORY "/home/richel/RichelbilderbeekNl/"
+Sorting and normalizing collected URLs.
+Writing Sitemap file "/home/richel/Projects/Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemap.xml.gz" with 4583 URLs
+Notifying search engines.
+Notifying: www.google.com
+Count of file extensions on URLs:
+       5  (no extension)
+      22  .abc
+       8  .bmp
+       2  .css
+      17  .dia
+      51  .doc
+       6  .docx
+       1  .exe
+       1  .gif
+       1  .gz
+    2289  .htm
+       3  .html
+       1  .ico
+     187  .jpg
+      24  .mid
+     120  .mp3
+       9  .mus
+       4  .ods
+      36  .odt
+       2  .ogg
+       1  .ogv
+       1  .patch
+       9  .pdf
+     717  .png
+       6  .ppt
+      19  .ps
+       2  .sh
+       3  .skp
+     267  .txt
+       1  .wav
+       7  .wmv
+      13  .xls
+     747  .zip
+       1  /
+Number of errors: 0
+Number of warnings: 0

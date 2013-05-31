@@ -1,0 +1,72 @@
+Hometrainer2 (C) 2009 Richel Bilderbeek
+-,Gisteren,hier
+-,Vandaag,aujourd'hui
+-,Morgen,demain
+-,Geel,jaune
+-,Groen,vert
+-,Ik mis het,il me manques
+-,Ik mis je,tu me manques
+-,Lopen,marcher
+-,Kussen/zoenen,baiser
+-,De kus/zoen,le baiser
+-,Spellen (van een woord),eEpeler
+-,Indien,si
+-,Desondanks/desalniettemin,neEanmoins
+-,Als we aannemen dat,si nous supposons que
+-,De mond,la bouche
+-,De neus,le nez
+-,Ik zie de oplossing,je vois la solution
+-,Ik kijk in jouw ogen,je regarde dans vos jeux
+-,ik ruik de geur van het bos,je sens l'odeur de la foreEet
+-,Luisteren,eEcouter
+-,Horen,entendre
+-,Ik voel me goed,je me sens biens
+-,Nu denk ik aan programmeren,maintenant je pense que la programmation
+-,De angst,la peur
+-,Sinds,depuis
+-,Straks,bientoOot
+-,Zojuist,reEcemment
+-,Verheugen,jouir
+-,Vervelen,ennuyer
+-,De verveling,l'ennui
+-,Het plezier,le plaisir
+-,Ik zou willen,je voudrais
+-,Aanbellen,sonner
+-,De deurbel,la sonnette
+-,Het geluk,le bonheur
+-,Het hart pompt bloed door het lichaam,le coeur pompe le sang dans le corps
+-,Ik probeer onvoorspelbaar te zijn,j'essaie d'eEetre impreEvisible
+-,De kennis,connaissances
+-,De pech,le malchanceux
+-,Het schaakspel,le jeu d'eEchecs
+-,De pion (schaakspel),le pion
+-,Het paard (schaakspel),le cavalier
+-,De loper (schaakspel),le fou
+-,De toren (schaakspel),la tour
+-,De dame (schaakspel),la dame
+-,De koning (schaakspel),le roi
+-,Het bewijs,la preuve
+-,De zin (taalkunde),la phrase
+-,Ik heb soms geen zin,j'ai parfois ne se sentent pas
+-,Misschien,peut-eEetre
+-,Ik heb veel spieren,j'ai beaucoup de muscles
+-,Ik kom bijna nooit te laat,je suis presque jamais en retard
+-,Ik kom altijd te vroeg,je viens toujours trop toOot
+-,De lip (mond),la lEevre
+-,De wang (gezicht),la joue
+-,Het voorhoofd,le front
+-,De kin,le menton
+-,Ik vertel nooit een leugen,je n'ai jamais dit un mensonge
+-,Ik lieg nooit,je ne mens jamais
+-,De waarheid,la veriteE
+-,Het stof,la poussiEere
+-,Neurien,fredonner
+-,Kauwen,maAacher
+-,De mond/bek (van een dier),la gueule
+-,Ik geloof dat het goed zit/is/komt,Je crois qu'il est bon
+-,Schudden,agiter
+-,De staart,la queue
+-,Beven,trembler
+-,Wegrennen/vluchten,enfuyer
+-,Gezellig,douillette
+-,Het doel van het leven,le but de la vie

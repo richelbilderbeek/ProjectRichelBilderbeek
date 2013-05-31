@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>ToolKalmanFiltererWelcome.png</file>
+        <file>PicYellow.png</file>
+        <file>PicBlack.png</file>
+        <file>PicGreen.png</file>
+        <file>PicOrange.png</file>
+        <file>PicRed.png</file>
+        <file>PicTransparent.png</file>
+    </qresource>
+</RCC>

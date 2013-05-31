@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtKalmanFilterExamplesDialog</class>
+ <widget class="QDialog" name="QtKalmanFilterExamplesDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>212</width>
+    <height>302</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QtKalmanFilterExamplesDialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolKalmanFilterer.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QPushButton" name="button_1">
+     <property name="text">
+      <string>Example &amp;1: Voltage</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_2">
+     <property name="text">
+      <string>Example &amp;2: Accelerating car (2 states)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_3">
+     <property name="text">
+      <string>Example &amp;3: Cannonball</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_4">
+     <property name="text">
+      <string>Example &amp;4: Spring</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_5">
+     <property name="text">
+      <string>Example &amp;5: Airhockey puck</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_6">
+     <property name="text">
+      <string>Example &amp;6: System under investigation</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_7">
+     <property name="text">
+      <string>Example &amp;7: System under investigation</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_8">
+     <property name="text">
+      <string>Example &amp;8: Accelerating car (3 states)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_9">
+     <property name="text">
+      <string>Example &amp;9: LSQ</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_10">
+     <property name="text">
+      <string>Example 1&amp;0: SUI with LSQ</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="ToolKalmanFilterer.qrc"/>
+ </resources>
+ <connections/>
+</ui>

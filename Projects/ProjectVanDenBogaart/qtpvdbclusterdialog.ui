@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtPvdbClusterDialog</class>
+ <widget class="QDialog" name="QtPvdbClusterDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>855</width>
+    <height>748</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Associeer- en cluster-scherm</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ProjectVanDenBogaart.qrc">
+    <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_text_top">
+     <property name="text">
+      <string>Als u denkt aan de focusvraag:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_question">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="text">
+         <string>'Als lerarenopleider wiskunde heb ik verstand van ...',</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_text_bottom">
+     <property name="text">
+      <string>Welke belangrijke kennis- en houdingsaspecten, voorbeelden, ervaringen, waarden en idealen komen dan bij u op? </string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Maak een lijst en groepeer de items.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QtPvdbClusterWidget" name="tree">
+     <column>
+      <property name="text">
+       <string notr="true">1</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_add" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="edit">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_add">
+        <property name="text">
+         <string>Voeg toe</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_bottom" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="button_save">
+        <property name="text">
+         <string>&amp;Sla clustering op</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_next">
+        <property name="text">
+         <string>&amp;Bouw de concept map</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtPvdbClusterWidget</class>
+   <extends>QTreeWidget</extends>
+   <header>qtpvdbclusterwidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="ProjectVanDenBogaart.qrc"/>
+ </resources>
+ <connections/>
+</ui>

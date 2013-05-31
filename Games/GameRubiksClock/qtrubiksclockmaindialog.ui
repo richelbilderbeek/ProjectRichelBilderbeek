@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtRubiksClockMainDialog</class>
+ <widget class="QDialog" name="QtRubiksClockMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>234</width>
+    <height>266</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Rubik's Clock</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="GameRubiksClock.qrc">
+    <normaloff>:/images/GameRubiksClockIcon14x14.png</normaloff>:/images/GameRubiksClockIcon14x14.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #8080ff, stop: 1 #ffffff);
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QWidget" name="widget_hold_clock" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="margin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QtRubiksClockWidget" name="clock" native="true"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_flip">
+     <property name="text">
+      <string>Flip</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtRubiksClockWidget</class>
+   <extends>QWidget</extends>
+   <header>qtrubiksclockwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="GameRubiksClock.qrc"/>
+ </resources>
+ <connections/>
+</ui>

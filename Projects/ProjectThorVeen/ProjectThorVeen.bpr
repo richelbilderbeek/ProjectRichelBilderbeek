@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="ProjectThorVeen.exe"/>
+    <OBJFILES value="ProjectThorVeen.obj UnitWeather.obj assert.obj UnitBird.obj 
+      UnitBirdFactory.obj UnitBirdGeneralParameters.obj 
+      UnitBirdHawkDoveParameters.obj UnitBirdWatcher.obj UnitBreeding.obj 
+      UnitBreedingParameters.obj UnitCouple.obj UnitCouplePool.obj 
+      UnitDeadPool.obj UnitDisplayOptions.obj UnitEnumBirdType.obj 
+      UnitEnumFemaleChoice.obj UnitEnumMatingSystem.obj UnitEnumMigration.obj 
+      UnitEnumPedigreeCharter.obj UnitEnumSimulationType.obj UnitExceptions.obj 
+      UnitFemaleChoice.obj UnitFormAboutTheAuthor.obj UnitFormParameters.obj 
+      UnitFormResults.obj UnitFormTest.obj UnitHelperFunctions.obj 
+      UnitInitialBirdNumbers.obj UnitMain.obj UnitMatingSystem.obj 
+      UnitMigration.obj UnitMigrationPool.obj UnitPedigreeCharter.obj 
+      UnitRandom.obj UnitResults.obj UnitSimulation.obj 
+      UnitSimulationFunctions.obj UnitSimulationParameters.obj 
+      UnitSimulationType.obj UnitSingleFemalePool.obj UnitSingleMalePool.obj"/>
+    <RESFILES value="ProjectThorVeen.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) UnitFormAboutTheAuthor.dfm UnitFormParameters.dfm 
+      UnitFormResults.dfm UnitFormTest.dfm UnitMain.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="vcl.lib rtl.lib tee.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi bcb97axserver.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_NDEBUG"/>
+    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <MAINSOURCE value="ProjectThorVeen.cpp"/>
+    <INCLUDEPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;H:\THEOBIO\Richel\ThorVeenProject\1;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;H:\THEOBIO\Richel\ThorVeenProject\1;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I&quot;C:\Program Files\Borland\CBuilder6\Projects&quot; 
+      -IH:\THEOBIO\Richel\ThorVeenProject\1 -I$(BCB)\include 
+      -I$(BCB)\include\vcl -src_suffix cpp -D_NDEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="ProjectThorVeen.res" FORMNAME="" UNITNAME="ProjectThorVeen.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ProjectThorVeen.cpp" FORMNAME="" UNITNAME="ProjectThorVeen" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitWeather.cpp" FORMNAME="" UNITNAME="UnitWeather.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="assert.cpp" FORMNAME="" UNITNAME="assert.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitBird.cpp" FORMNAME="" UNITNAME="UnitBird.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitBirdFactory.cpp" FORMNAME="" UNITNAME="UnitBirdFactory.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitBirdGeneralParameters.cpp" FORMNAME="" UNITNAME="UnitBirdGeneralParameters.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitBirdHawkDoveParameters.cpp" FORMNAME="" UNITNAME="UnitBirdHawkDoveParameters.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitBirdWatcher.cpp" FORMNAME="" UNITNAME="UnitBirdWatcher.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitBreeding.cpp" FORMNAME="" UNITNAME="UnitBreeding.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitBreedingParameters.cpp" FORMNAME="" UNITNAME="UnitBreedingParameters.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitCouple.cpp" FORMNAME="" UNITNAME="UnitCouple.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitCouplePool.cpp" FORMNAME="" UNITNAME="UnitCouplePool.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitDeadPool.cpp" FORMNAME="" UNITNAME="UnitDeadPool.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitDisplayOptions.cpp" FORMNAME="" UNITNAME="UnitDisplayOptions.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumBirdType.cpp" FORMNAME="" UNITNAME="UnitEnumBirdType.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumFemaleChoice.cpp" FORMNAME="" UNITNAME="UnitEnumFemaleChoice.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumMatingSystem.cpp" FORMNAME="" UNITNAME="UnitEnumMatingSystem.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumMigration.cpp" FORMNAME="" UNITNAME="UnitEnumMigration.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumPedigreeCharter.cpp" FORMNAME="" UNITNAME="UnitEnumPedigreeCharter.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumSimulationType.cpp" FORMNAME="" UNITNAME="UnitEnumSimulationType.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitExceptions.cpp" FORMNAME="" UNITNAME="UnitExceptions.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFemaleChoice.cpp" FORMNAME="" UNITNAME="UnitFemaleChoice.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormAboutTheAuthor.cpp" FORMNAME="FormAboutTheAuthor" UNITNAME="UnitFormAboutTheAuthor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormParameters.cpp" FORMNAME="FormParameters" UNITNAME="UnitFormParameters" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormResults.cpp" FORMNAME="FormResults" UNITNAME="UnitFormResults" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormTest.cpp" FORMNAME="FormTest" UNITNAME="UnitFormTest" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitHelperFunctions.cpp" FORMNAME="" UNITNAME="UnitHelperFunctions.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitInitialBirdNumbers.cpp" FORMNAME="" UNITNAME="UnitInitialBirdNumbers.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMain.cpp" FORMNAME="FormThorVeenProject" UNITNAME="UnitMain" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMatingSystem.cpp" FORMNAME="" UNITNAME="UnitMatingSystem.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMigration.cpp" FORMNAME="" UNITNAME="UnitMigration.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMigrationPool.cpp" FORMNAME="" UNITNAME="UnitMigrationPool.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitPedigreeCharter.cpp" FORMNAME="" UNITNAME="UnitPedigreeCharter.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitRandom.cpp" FORMNAME="" UNITNAME="UnitRandom.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitResults.cpp" FORMNAME="" UNITNAME="UnitResults.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimulation.cpp" FORMNAME="" UNITNAME="UnitSimulation.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimulationFunctions.cpp" FORMNAME="" UNITNAME="UnitSimulationFunctions.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimulationParameters.cpp" FORMNAME="" UNITNAME="UnitSimulationParameters.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimulationType.cpp" FORMNAME="" UNITNAME="UnitSimulationType.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSingleFemalePool.cpp" FORMNAME="" UNITNAME="UnitSingleFemalePool.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSingleMalePool.cpp" FORMNAME="" UNITNAME="UnitSingleMalePool.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1043
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=1
+Item0=C:\Program Files\Borland\CBuilder6\Projects;H:\THEOBIO\Richel\ThorVeenProject\1;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=1
+Item0=C:\Program Files\Borland\CBuilder6\Projects;H:\THEOBIO\Richel\ThorVeenProject\1;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=4
+Item0=_NDEBUG
+Item1=_NDEBUG;NDEBUG
+Item2=NDEBUG
+Item3=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

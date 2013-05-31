@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtRandomCodeMainDialog</class>
+ <widget class="QDialog" name="QtRandomCodeMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>433</width>
+    <height>405</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Courier New</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>RandomCode</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolRandomCode.qrc">
+    <normaloff>:/images/ToolRandomCodeIcon14x14.png</normaloff>:/images/ToolRandomCodeIcon14x14.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #606060, stop: 1 #ffffff);
+}
+
+QLabel { font: 24px, &quot;Courier&quot; }
+QPushButton { font: 24px, &quot;Courier&quot; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QPushButton" name="button_generate">
+     <property name="text">
+      <string>Generate random code</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="textEdit">
+     <property name="font">
+      <font>
+       <family>Courier New</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>button_generate</tabstop>
+  <tabstop>textEdit</tabstop>
+ </tabstops>
+ <resources>
+  <include location="ToolRandomCode.qrc"/>
+ </resources>
+ <connections/>
+</ui>

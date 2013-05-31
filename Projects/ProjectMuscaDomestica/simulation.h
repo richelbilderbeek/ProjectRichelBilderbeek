@@ -1,0 +1,10 @@
+#ifndef PROJECTMUSCADOMESTICA_SIMULATION_H
+#define PROJECTMUSCADOMESTICA_SIMULATION_H
+
+class Simulation
+{
+public:
+    Simulation();
+};
+
+#endif // PROJECTMUSCADOMESTICA_SIMULATION_H

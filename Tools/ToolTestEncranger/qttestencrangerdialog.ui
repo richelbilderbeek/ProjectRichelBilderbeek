@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestEncrangerDialog</class>
+ <widget class="QDialog" name="QtTestEncrangerDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>614</width>
+    <height>114</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TestEncranger</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="7">
+    <widget class="QLineEdit" name="edit_plaintext">
+     <property name="text">
+      <string>This is plaintext</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_arrow_down">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestEncranger.qrc">:/images/ToolTestEncrangerArrowDown34x34.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_encrypt">
+     <property name="text">
+      <string>Encrypt</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="label_key">
+     <property name="text">
+      <string>Key</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QLineEdit" name="edit_key">
+     <property name="text">
+      <string>12345</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>About</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QPushButton" name="button_deencrypt">
+     <property name="text">
+      <string>Deencrypt</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="6">
+    <widget class="QLabel" name="label_arrow_up">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestEncranger.qrc">:/images/ToolTestEncrangerArrowUp34x34.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="7">
+    <widget class="QLineEdit" name="edit_encrypted_text"/>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="ToolTestEncranger.qrc"/>
+ </resources>
+ <connections/>
+</ui>

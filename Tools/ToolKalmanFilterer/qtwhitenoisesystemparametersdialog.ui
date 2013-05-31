@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtWhiteNoiseSystemParametersDialog</class>
+ <widget class="QDialog" name="QtWhiteNoiseSystemParametersDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>182</width>
+    <height>66</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QtWhiteNoiseSystemParametersDialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolKalmanFilterer.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QComboBox" name="box_white_noise_system_type">
+     <property name="currentIndex">
+      <number>-1</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>Standard white noise system</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Lagged white noise system</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label_lag">
+       <property name="text">
+        <string>Lag (timesteps)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_lag"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="ToolKalmanFilterer.qrc"/>
+ </resources>
+ <connections/>
+</ui>

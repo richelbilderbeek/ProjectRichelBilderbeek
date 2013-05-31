@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>sprite_hole.png</file>
+        <file>sprite_player1_remove.png</file>
+        <file>sprite_player2_remove.png</file>
+        <file>sprite_player1.png</file>
+        <file>sprite_player2.png</file>
+        <file>PylosGoal1.png</file>
+        <file>PylosGoal2.png</file>
+        <file>PylosMove.png</file>
+        <file>PylosPlace.png</file>
+        <file>PylosRemove1.png</file>
+        <file>PylosRemove2.png</file>
+        <file>PylosLine.png</file>
+        <file>PylosSquare.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="ProjectMuscaDomestica.exe"/>
+    <OBJFILES value="ProjectMuscaDomestica.obj UnitFormMain.obj"/>
+    <RESFILES value="ProjectMuscaDomestica.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) UnitFormMain.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="vclx.lib nmfast.lib tee.lib rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib tee.lib nmfast.lib vclx.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi bcb97axserver.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="ProjectMuscaDomestica.cpp"/>
+    <INCLUDEPATH value="..\7;&quot;..\6 Working&quot;;..\5;..\4;..\3;&quot;G:\Data\My Documents\EvolGenRes\Practical\MagdaModel&quot;;D:\Richel\Magda\2;..\b_version_1_4;..\b_version_2_0;..\b_version_1_3\b_v_1_31;..\..\b_version_1_4;..;b_v_1_31;..\b_version_1_2;..\b_version_1_3;&quot;C:\Program Files\Borland\CBuilder6\Bin&quot;;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\7;&quot;..\6 Working&quot;;..\5;..\4;..\3;&quot;G:\Data\My Documents\EvolGenRes\Practical\MagdaModel&quot;;D:\Richel\Magda\2;..\b_version_1_4;..\b_version_2_0;..\b_version_1_3\b_v_1_31;..\..\b_version_1_4;..;b_v_1_31;..\b_version_1_2;..\b_version_1_3;&quot;C:\Program Files\Borland\CBuilder6\Bin&quot;;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\7 -I&quot;..\6 Working&quot; -I..\5 -I..\4 -I..\3 
+      -I&quot;G:\Data\My Documents\EvolGenRes\Practical\MagdaModel&quot; 
+      -ID:\Richel\Magda\2 -I..\b_version_1_4 -I..\b_version_2_0 
+      -I..\b_version_1_3\b_v_1_31 -I..\..\b_version_1_4 -I.. -Ib_v_1_31 
+      -I..\b_version_1_2 -I..\b_version_1_3 
+      -I&quot;C:\Program Files\Borland\CBuilder6\Bin&quot; -I$(BCB)\include 
+      -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="ProjectMuscaDomestica.res" FORMNAME="" UNITNAME="ProjectMuscaDomestica.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ProjectMuscaDomestica.cpp" FORMNAME="" UNITNAME="ProjectMuscaDomestica" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormMain.cpp" FORMNAME="Form1" UNITNAME="UnitFormMain" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=28
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Richel Bilderbeek
+FileDescription=Project Musca Domestica
+FileVersion=28.0.0.0
+InternalName=Project Musca Domestica
+LegalCopyright=Richel Bilderbeek
+LegalTrademarks=Richel Bilderbeek
+OriginalFilename=Project Musca Domestica
+ProductName=Project Musca Domestica
+ProductVersion=1.0.0.0
+Comments=
+Licence=GPL 3.0
+Webiste=http://www.richelbilderbeek.nl
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

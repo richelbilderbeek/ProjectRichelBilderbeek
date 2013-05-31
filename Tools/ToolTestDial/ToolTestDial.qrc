@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ToolTestDialWelcome_2_1.png</file>
+        <file>R.png</file>
+    </qresource>
+</RCC>

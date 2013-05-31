@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ToolRasperGpioLayout.png</file>
+        <file>ToolRasperRaspberryPiTop.jpg</file>
+        <file>ToolRasperRaspberryPiDiagonally.jpg</file>
+        <file>RichelbilderbeekNlBackground.png</file>
+    </qresource>
+</RCC>

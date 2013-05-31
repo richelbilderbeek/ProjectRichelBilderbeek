@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>GameRubiksClock.png</file>
+        <file>GameRubiksClockWelcome_2_1.png</file>
+        <file>GameRubiksClockIcon14x14.png</file>
+        <file>GameRubiksClockWelcomeNoLegend.png</file>
+        <file>GameRubiksClockTransparent.png</file>
+    </qresource>
+</RCC>

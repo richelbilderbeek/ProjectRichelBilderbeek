@@ -1,0 +1,14 @@
+:Base ProjectHelp.HLP
+:Title The Thor Veen Project Help file
+1 Overview
+2 Introduction=IDH_OVERVIEW_INTRODUCTION
+1 Classes
+2 Birds
+3 Bird Base=IDH_BIRD_BASE
+2 Pools
+3 Single Female Pool=IDH_SINGLE_FEMALE_POOL
+3 Single Male Pool=IDH_SINGLE_MALE_POOL
+3 Couple Pool=IDH_COUPLE_POOL
+3 Migration Pool=IDH_MIGRATION_POOL
+3 Dead Pool=IDH_DEAD_POOL
+1 About

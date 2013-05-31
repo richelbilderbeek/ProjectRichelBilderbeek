@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>PicArrow14x14.png</file>
+        <file>PicArrow28x28.png</file>
+        <file>PicBlue14x14.png</file>
+        <file>PicCyan14x14.png</file>
+        <file>PicGreen14x14.png</file>
+        <file>PicOrange14x14.png</file>
+        <file>PicPurple14x14.png</file>
+        <file>PicRed14x14.png</file>
+        <file>PicWhite14x14.png</file>
+        <file>PicYellow14x14.png</file>
+        <file>ConceptMapEdit.png</file>
+        <file>Cluster.png</file>
+    </qresource>
+    <qresource prefix="/files">
+        <file>1.cmp</file>
+        <file>2.cmp</file>
+        <file>3.cmp</file>
+        <file>4.cmp</file>
+    </qresource>
+</RCC>

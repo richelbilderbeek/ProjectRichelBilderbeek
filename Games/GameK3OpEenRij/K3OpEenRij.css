@@ -1,0 +1,20 @@
+* 
+{ 
+  font-family:Verdana, Geneva, sans-serif; 
+  font-weight:bold;
+  color:#ED76AC;
+}
+
+body
+{
+  background-image:url('K3OpEenRijBackground.png');
+  background-repeat:no-repeat;
+  background-position:center center;
+  color:#ED76AC;
+}
+
+.title
+{
+  font-weight:bold;
+  font-size:xx-large;
+}

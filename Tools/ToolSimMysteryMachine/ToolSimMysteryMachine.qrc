@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ToolSimMysteryMachineWelcome.png</file>
+        <file>R.png</file>
+        <file>ToolSimMysteryMachine.png</file>
+        <file>ToolSimMysteryMachinePrototype.png</file>
+    </qresource>
+</RCC>

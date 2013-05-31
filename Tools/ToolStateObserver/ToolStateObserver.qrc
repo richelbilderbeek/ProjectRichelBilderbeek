@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ToolStateObserverWelcome.png</file>
+    </qresource>
+</RCC>

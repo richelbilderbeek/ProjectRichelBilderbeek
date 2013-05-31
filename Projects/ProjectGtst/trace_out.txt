@@ -1,0 +1,3 @@
+TRACE 'content_type' line 115 in file '../ToolCodeToHtml/main.cpp': 'auto'
+TRACE 'source' line 116 in file '../ToolCodeToHtml/main.cpp': ''
+TRACE 'tech_info' line 117 in file '../ToolCodeToHtml/main.cpp': 'yes'

@@ -1,0 +1,23 @@
+Phylogeny: (((((((((((2,2),2),2),2),2),2),2),2),2),2),2)
+Theta : 10
+Starting simulation 'Storage<SortedNewick>'
+Probability: 1.87734905986617797924733866579363847405693500338514053854246538256215316470668061951503069462177109e-32
+log10(probability): -31.72645497049017393464964698068797588348388671875
+Ewens probability: 1.42187283165206258461726529595746699595644468860911047158879227936267852783203125e-12
+Program took 0 seconds to complete.
+                                                                       
+  The Rampal Etienne Project, calculates the probability of a phylogeny
+  (C) 2009 Richel Bilderbeek                                           
+                                                                       
+  This program is free software: you can redistribute it and/or modify 
+  it under the terms of the GNU General Public License as published by 
+  the Free Software Foundation, either version 3 of the License, or    
+  (at your option) any later version.                                  
+                                                                       
+  This program is distributed in the hope that it will be useful,      
+  but WITHOUT ANY WARRANTY; without even the implied warranty of       
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        
+  GNU General Public License for more details.                         
+  You should have received a copy of the GNU General Public License    
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+                                                                       

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtMaziakMainDialog</class>
+ <widget class="QWidget" name="QtMaziakMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Maziak (C) 2007 Richel Bilderbeek</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="gamemaziak.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QWidget" name="widget" native="true"/>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="gamemaziak.qrc"/>
+ </resources>
+ <connections/>
+</ui>

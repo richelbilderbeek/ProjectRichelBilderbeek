@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="ProjectChrisWiley.exe"/>
+    <OBJFILES value="ProjectChrisWiley.obj UnitMain.obj UnitSimulation.obj UnitParameters.obj 
+      UnitEnums.obj UnitHelperFunctions.obj UnitBird.obj UnitMatingSystem.obj 
+      UnitFemaleSampling.obj UnitDensityDependentSelection.obj UnitTimePoint.obj 
+      UnitTimeSeries.obj UnitResults.obj UnitTallies.obj UnitRandom.obj 
+      UnitThreeDotsChasing.obj UnitAboutBox2.obj"/>
+    <RESFILES value="ProjectChrisWiley.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) UnitMain.dfm UnitThreeDotsChasing.dfm UnitAboutBox2.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="tee.lib rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib tee.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi bcb2kaxserver.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="ProjectChrisWiley.cpp"/>
+    <INCLUDEPATH value="&quot;..\..\..\..\My Units&quot;;..\..\..\Trip\ThreeDotsChasing;G:\Data\Desktop;C:\;..;ChrisWiley;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="&quot;..\..\..\..\My Units&quot;;..\..\..\Trip\ThreeDotsChasing;G:\Data\Desktop;C:\;..;ChrisWiley;D:\SDLSUITE\SDLSuite70C6\cbuilder60;D:\NixComponents\LibC6;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I&quot;..\..\..\..\My Units&quot; -I..\..\..\Trip\ThreeDotsChasing 
+      -IG:\Data\Desktop -IC:\. -I.. -IChrisWiley -I$(BCB)\include 
+      -I$(BCB)\include\vcl -src_suffix cpp NDEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="ProjectChrisWiley.res" FORMNAME="" UNITNAME="ProjectChrisWiley.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ProjectChrisWiley.cpp" FORMNAME="" UNITNAME="ProjectChrisWiley" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMain.cpp" FORMNAME="FormMain" UNITNAME="UnitMain" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimulation.cpp" FORMNAME="" UNITNAME="UnitSimulation" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitParameters.cpp" FORMNAME="" UNITNAME="UnitParameters" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnums.cpp" FORMNAME="" UNITNAME="UnitEnums" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitHelperFunctions.cpp" FORMNAME="" UNITNAME="UnitHelperFunctions" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitBird.cpp" FORMNAME="" UNITNAME="UnitBird" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMatingSystem.cpp" FORMNAME="" UNITNAME="UnitMatingSystem" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFemaleSampling.cpp" FORMNAME="" UNITNAME="UnitFemaleSampling" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitDensityDependentSelection.cpp" FORMNAME="" UNITNAME="UnitDensityDependentSelection" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTimePoint.cpp" FORMNAME="" UNITNAME="UnitTimePoint" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTimeSeries.cpp" FORMNAME="" UNITNAME="UnitTimeSeries" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitResults.cpp" FORMNAME="" UNITNAME="UnitResults" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTallies.cpp" FORMNAME="" UNITNAME="UnitTallies" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitRandom.cpp" FORMNAME="" UNITNAME="UnitRandom" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitThreeDotsChasing.cpp" FORMNAME="FormThreeDotsChasing" UNITNAME="UnitThreeDotsChasing" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitAboutBox2.cpp" FORMNAME="FormAboutBox2" UNITNAME="UnitAboutBox2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=26
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=2057
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Richel Bilderbeek
+FileDescription=The Chris Wiley Project
+FileVersion=26.0.0.0
+InternalName=The Chris Wiley Project
+LegalCopyright=Richel Bilderbeek
+LegalTrademarks=Richel Bilderbeek
+OriginalFilename=The Chris Wiley Project
+ProductName=The Chris Wiley Project
+ProductVersion=1.0.0.0
+Comments=
+Licence=GPL 3.0
+Website=http://www.richelbilderbeek.nl
+
+[HistoryLists\hlIncludePath]
+Count=2
+Item0=..\..\..\..\My Units;..\..\..\Trip\ThreeDotsChasing;G:\Data\Desktop;C:\;..;ChrisWiley;$(BCB)\include;$(BCB)\include\vcl
+Item1=G:\Data\Desktop;C:\;..;ChrisWiley;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=2
+Item0=..\..\..\..\My Units;..\..\..\Trip\ThreeDotsChasing;G:\Data\Desktop;C:\;..;ChrisWiley;D:\SDLSUITE\SDLSuite70C6\cbuilder60;D:\NixComponents\LibC6;$(BCB)\lib\obj;$(BCB)\lib
+Item1=G:\Data\Desktop;C:\;..;ChrisWiley;D:\SDLSUITE\SDLSuite70C6\cbuilder60;D:\NixComponents\LibC6;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=4
+Item0=NDEBUG
+Item1=_DEBUG
+Item2=_DEBUG;NDEBUG
+Item3=_DEBUG NDEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

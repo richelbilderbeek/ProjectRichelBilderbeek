@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>PicBoost.png</file>
+        <file>PicCpp11.png</file>
+        <file>PicQt.png</file>
+        <file>PicR.png</file>
+        <file>PicCppTr1.png</file>
+    </qresource>
+</RCC>

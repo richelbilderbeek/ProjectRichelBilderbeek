@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>ToolMusicTheory.png</file>
+        <file>PicGreen.png</file>
+        <file>PicRed.png</file>
+    </qresource>
+</RCC>

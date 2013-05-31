@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>PicR.png</file>
+        <file>RichelbilderbeekNlBackground.png</file>
+        <file>ProjectRichelBilderbeekWelcome.png</file>
+    </qresource>
+</RCC>

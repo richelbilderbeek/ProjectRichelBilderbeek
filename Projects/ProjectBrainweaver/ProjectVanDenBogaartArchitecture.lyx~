@@ -1,0 +1,162 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+ProjectVanDenBogaart architecture
+\end_layout
+
+\begin_layout Section
+Goal
+\end_layout
+
+\begin_layout Standard
+For the PVDB architecture, I want the following:
+\end_layout
+
+\begin_layout Itemize
+Each dialog only does its thing, without knowing the previous and next dialog(s)
+\end_layout
+
+\begin_layout Itemize
+There must be undo functionality
+\end_layout
+
+\begin_layout Section
+Method
+\end_layout
+
+\begin_layout Standard
+There are multiple methods to explore
+\end_layout
+
+\begin_layout Subsection
+The purpose-driven signal-and-slot method
+\end_layout
+
+\begin_layout Standard
+This method has the following characteristics:
+\end_layout
+
+\begin_layout Itemize
+Upon creation of a dialog, all signals and slots are connected to the Program
+ Flow Manager
+\end_layout
+
+\begin_layout Itemize
+When a dialog has achieved its purpose, it closes and is deleted
+\end_layout
+
+\begin_layout Itemize
+Every dialog, the state variables are stored for undo functionality
+\end_layout
+
+\begin_layout Standard
+In a table:
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsection
+The stupid method
+\end_layout
+
+\begin_layout Standard
+The stupid method ignores the goals.
+\end_layout
+
+\begin_layout Itemize
+Every dialog knows its next dialogs
+\end_layout
+
+\begin_layout Itemize
+Every dialog simply closes to go back
+\end_layout
+
+\begin_layout Itemize
+Every dialog stores the current state of all variables
+\end_layout
+
+\begin_layout Section
+About
+\end_layout
+
+\begin_layout Standard
+Programming by Richel Bilderbeek, 
+\end_layout
+
+\begin_layout Author
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.richelbilderbeek.nl
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

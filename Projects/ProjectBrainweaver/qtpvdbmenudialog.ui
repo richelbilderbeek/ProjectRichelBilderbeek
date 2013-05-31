@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtPvdbMenuDialog</class>
+ <widget class="QDialog" name="QtPvdbMenuDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>681</width>
+    <height>627</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Menu voor de ontwikkelaar</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Brainweaver.qrc">
+    <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QWidget" name="widget_3" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Main menus</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_student">
+        <property name="text">
+         <string>&amp;1. Student menu</string>
+        </property>
+        <property name="default">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_assessor">
+        <property name="text">
+         <string>&amp;2. Assessor menu</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="QWidget" name="widget_debug_2" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_additional_screens">
+        <property name="text">
+         <string>Additional developer test dialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_view_files">
+        <property name="text">
+         <string>&amp;D. File viewer</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_about">
+        <property name="text">
+         <string>&amp;E. About screen</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_overview">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>&amp;F. Program overview</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_view_test_concept_maps">
+        <property name="text">
+         <string>&amp;G. Concept maps used in testing</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_qtroundedtextrectitem">
+        <property name="text">
+         <string>&amp;H. QtRoundedTextRectItem</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_qtroundededitrectitem">
+        <property name="text">
+         <string>&amp;I. QtRoundedEditRectItem</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_arrowitems">
+        <property name="text">
+         <string>&amp;J. QtArrowItems</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_concept">
+        <property name="text">
+         <string>&amp;K. QtPvdbConceptItem</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_node_item">
+        <property name="text">
+         <string>&amp;L. QtPvdbNodeItem</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_edge_item">
+        <property name="text">
+         <string>&amp;M. QtPvdbEdgeItem</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_qtconceptmapdisplaywidget">
+        <property name="text">
+         <string>&amp;N. QtConceptMapDisplayWidget</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_qtconceptmapeditwidget">
+        <property name="text">
+         <string>&amp;O. QtConceptMapEditWidget</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_qtconceptmapratewidget">
+        <property name="text">
+         <string>&amp;P. QtConceptMapRateWidget</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_create_test_files">
+        <property name="text">
+         <string>&amp;Q. Create test files</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_modify_stylesheet">
+        <property name="text">
+         <string>&amp;R. Modify stylesheet</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_create_sub_concept_map">
+        <property name="text">
+         <string>&amp;S. Create sub-concept map</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QWidget" name="widget_debug_1" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_main_screens">
+        <property name="text">
+         <string>Shortcuts to screens</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_student">
+        <property name="text">
+         <string>Student</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_conceptedit">
+        <property name="text">
+         <string>&amp;3. QtConceptEditDialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_cluster">
+        <property name="text">
+         <string>&amp;4. QtClusterDialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_test_conceptmap">
+        <property name="text">
+         <string>&amp;5. QtConceptMapEditWidget</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_print_concept_map">
+        <property name="text">
+         <string>&amp;6. QtPrintConceptMap</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_assessor">
+        <property name="text">
+         <string>Assessor</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_rate_concept_map">
+        <property name="text">
+         <string>&amp;7. QtRateConceptMapDialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_rate_examples">
+        <property name="text">
+         <string>&amp;8. QtRateExamplesDialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_rate_concept">
+        <property name="text">
+         <string>&amp;9. QtRateConceptDialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_rate_concept_auto">
+        <property name="text">
+         <string>&amp;A. QtRateConceptAutoDialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_rating">
+        <property name="text">
+         <string>&amp;B. QtRatingDialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_print_rating">
+        <property name="text">
+         <string>&amp;C. QtPrintRatingDialog</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>80</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+  <zorder>widget_debug_1</zorder>
+  <zorder>widget_debug_2</zorder>
+  <zorder>widget_3</zorder>
+ </widget>
+ <tabstops>
+  <tabstop>button_student</tabstop>
+  <tabstop>button_assessor</tabstop>
+  <tabstop>button_test_conceptedit</tabstop>
+  <tabstop>button_test_cluster</tabstop>
+  <tabstop>button_test_conceptmap</tabstop>
+  <tabstop>button_print_concept_map</tabstop>
+  <tabstop>button_rate_concept_map</tabstop>
+  <tabstop>button_rate_examples</tabstop>
+  <tabstop>button_rate_concept</tabstop>
+  <tabstop>button_rate_concept_auto</tabstop>
+  <tabstop>button_rating</tabstop>
+  <tabstop>button_print_rating</tabstop>
+  <tabstop>button_view_files</tabstop>
+  <tabstop>button_about</tabstop>
+  <tabstop>button_overview</tabstop>
+  <tabstop>button_view_test_concept_maps</tabstop>
+  <tabstop>button_test_qtroundedtextrectitem</tabstop>
+  <tabstop>button_test_qtroundededitrectitem</tabstop>
+  <tabstop>button_test_arrowitems</tabstop>
+  <tabstop>button_concept</tabstop>
+  <tabstop>button_test_node_item</tabstop>
+  <tabstop>button_test_edge_item</tabstop>
+  <tabstop>button_test_qtconceptmapdisplaywidget</tabstop>
+  <tabstop>button_test_qtconceptmapeditwidget</tabstop>
+  <tabstop>button_test_qtconceptmapratewidget</tabstop>
+  <tabstop>button_create_test_files</tabstop>
+  <tabstop>button_modify_stylesheet</tabstop>
+ </tabstops>
+ <resources>
+  <include location="Brainweaver.qrc"/>
+ </resources>
+ <connections/>
+</ui>

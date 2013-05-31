@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtAsciiArterMainDialog</class>
+ <widget class="QDialog" name="QtAsciiArterMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>576</width>
+    <height>474</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AsciiArter</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolAsciiArter.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }
+QPushButton { font: 16px, &quot;monospace&quot; }</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="button_load">
+     <property name="text">
+      <string>Load image</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLineEdit" name="edit_width">
+     <property name="text">
+      <string>80</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QPlainTextEdit" name="text">
+     <property name="font">
+      <font>
+       <family>Courier New</family>
+       <pointsize>6</pointsize>
+      </font>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_width">
+     <property name="text">
+      <string>Desired width (chars)</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="ToolAsciiArter.qrc"/>
+ </resources>
+ <connections/>
+</ui>

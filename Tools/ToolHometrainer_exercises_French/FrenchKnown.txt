@@ -1,0 +1,51 @@
+Hometrainer2 (C) 2009 Richel Bilderbeek
+//-,Maandag,lundi
+//-,Dinsdag,mardi
+//-,Woensdag,mercredi
+//-,Donderdag,jeudi
+//-,Vrijdag,vendredi
+//-,Zaterdag,samedi
+//-,Zondag,dimanche
+-,Gisteren,hier
+-,Vandaag,aujourd'hui
+-,Morgen,demain
+//-,Rood,rouge
+//-,Oranje,orange
+-,Geel,jaune
+-,Groen,vert
+//-,Blauw,bleu
+//-,Paars,violet
+//-,Roze,rose
+//-,Omdat,parce que
+-,Ik mis het,il me manques
+-,Ik mis je,tu me manques
+-,Ik geef om je,je me soucie de toi
+-,Lopen,marcher
+-,Kussen/zoenen,baiser
+-,Spellen (van een woord),eEpeler
+-,Indien,si
+-,Desondanks/desalniettemin,neEanmoins
+-,Als we aannemen dat,si nous supposons que
+-,De mond,la bouche
+-,De neus,le nez
+-,Zien,voir
+-,Kijken,regarder
+-,Ruiken,odeur
+-,Luisteren,eEcouter
+-,Horen,entendre
+-,Voelen,sentent
+-,Op dit moment,actuellement
+-,De angst,la peur
+-,Sinds,depuis
+-,Straks,bientoOot
+-,Zojuist,reEcemment
+-,Verheugen,jouir
+-,Vervelen,ennuyer
+-,De verveling,l'ennui
+-,Het plezier,le plaisir
+-,Ik zou willen,je voudrais
+-,Aanbellen,sonner
+-,De deurbel,la sonnette
+-,Het geluk,le bonheur
+-,Het hart,le coeur
+-,Onvoorspelbaar,impreEvisible

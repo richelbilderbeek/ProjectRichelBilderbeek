@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ConnectThreeComputer1.png</file>
+        <file>ConnectThreeComputer2.png</file>
+        <file>ConnectThreeComputer3.png</file>
+        <file>ConnectThreeComputerGrey.png</file>
+        <file>ConnectThreeEmpty.png</file>
+        <file>ConnectThreePlayer1.png</file>
+        <file>ConnectThreePlayer1Grey.png</file>
+        <file>ConnectThreePlayer2.png</file>
+        <file>ConnectThreePlayer2Grey.png</file>
+        <file>ConnectThreePlayer3.png</file>
+        <file>ConnectThreePlayer3Grey.png</file>
+        <file>ConnectThreeGood1.png</file>
+        <file>ConnectThreeGood2.png</file>
+        <file>ConnectThreeWrong.png</file>
+    </qresource>
+</RCC>

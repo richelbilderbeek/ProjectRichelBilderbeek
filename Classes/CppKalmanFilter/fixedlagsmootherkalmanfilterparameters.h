@@ -1,0 +1,47 @@
+#ifndef FIXEDLAGSMOOTHERKALMANFILTERPARAMETERS_H
+#define FIXEDLAGSMOOTHERKALMANFILTERPARAMETERS_H
+
+#include <boost/shared_ptr.hpp>
+
+#include "kalmanfilterparameters.h"
+#include "kalmanfiltertype.h"
+#include "standardkalmanfilterparameters.h"
+
+struct FixedLagSmootherKalmanFilterParameters : public KalmanFilterParameters
+{
+  FixedLagSmootherKalmanFilterParameters(
+    const boost::shared_ptr<StandardKalmanFilterParameters>& standard_parameters,
+    const int lag);
+
+  ///Obtain the lag in timesteps
+  int GetLag() const { return m_lag; }
+
+  ///The parameters from a standard Kalman filter
+  const boost::shared_ptr<const StandardKalmanFilterParameters> GetStandardParameters() const
+    { return m_standard_parameters; }
+
+  ///Obtain the Kalman filter type as an enum
+  KalmanFilterType GetType() const { return KalmanFilterType::fixed_lag_smoother; }
+
+  ///Obtain the version of this class
+  static const std::string GetVersion();
+
+  ///Obtain the version history of this class
+  static const std::vector<std::string> GetVersionHistory();
+
+  ///Check if this parameter set has a certain type of KalmanFilterParameter
+  static bool HasParameterType(const KalmanFilterParameterType type);
+
+  private:
+  ///Can only be deleted by boost::checked_delete
+  ~FixedLagSmootherKalmanFilterParameters() {}
+  friend void boost::checked_delete<>(FixedLagSmootherKalmanFilterParameters*);
+
+  ///The lag in timesteps
+  const int m_lag;
+
+  ///The parameters from a standard Kalman filter
+  const boost::shared_ptr<const StandardKalmanFilterParameters> m_standard_parameters;
+};
+
+#endif // FIXEDLAGSMOOTHERKALMANFILTERPARAMETERS_H

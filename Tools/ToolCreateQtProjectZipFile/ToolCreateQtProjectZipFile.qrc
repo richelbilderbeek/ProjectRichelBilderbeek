@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>PicQtCreator14x14.png</file>
+        <file>PicTo14x14.png</file>
+        <file>PicZip14x14.png</file>
+    </qresource>
+</RCC>

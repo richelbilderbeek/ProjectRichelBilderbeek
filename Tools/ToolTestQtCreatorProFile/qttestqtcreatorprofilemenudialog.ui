@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestQtCreatorProFileMenuDialog</class>
+ <widget class="QDialog" name="QtTestQtCreatorProFileMenuDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>314</width>
+    <height>378</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>36</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>TestQtCreatorProFile</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolTestQtCreatorProFile.qrc">
+    <normaloff>:/images/PicQtCreator.png</normaloff>:/images/PicQtCreator.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="image">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestQtCreatorProFile.qrc">:/images/ToolTestQtCreatorProFile.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_start">
+     <property name="text">
+      <string>Start</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>About</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ToolTestQtCreatorProFile.qrc"/>
+ </resources>
+ <connections/>
+</ui>

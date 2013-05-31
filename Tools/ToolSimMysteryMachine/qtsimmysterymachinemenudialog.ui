@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtSimMysteryMachineMenuDialog</class>
+ <widget class="QDialog" name="QtSimMysteryMachineMenuDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>707</width>
+    <height>372</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Courier New</family>
+    <pointsize>20</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>SimMysteryMachine</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolSimMysteryMachine.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #ff8080, stop: 0.5 #80ff80, stop: 1 #8080ff);
+}
+QDialog { 
+selection-color: black;
+selection-background-color: white
+}
+
+QPushButton { font: 48px, &quot;Verdana&quot; }
+QPushButton{ 
+selection-color: black;
+selection-background-color: white
+}
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QtLedWidget" name="led_1" native="true"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="button_instructions">
+     <property name="text">
+      <string>Instructions</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QtLedWidget" name="led_2" native="true"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_start">
+     <property name="text">
+      <string>Start</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QtLedWidget" name="led_3" native="true"/>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="button_real">
+     <property name="text">
+      <string>The real MysteryMachine</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QtLedWidget" name="led_4" native="true"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>About</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QtLedWidget" name="led_5" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QtLedWidget</class>
+   <extends>QWidget</extends>
+   <header>qtledwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>button_instructions</tabstop>
+  <tabstop>button_start</tabstop>
+  <tabstop>button_real</tabstop>
+  <tabstop>button_about</tabstop>
+  <tabstop>button_quit</tabstop>
+ </tabstops>
+ <resources>
+  <include location="ToolSimMysteryMachine.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtPerfectElasticCollisionMainDialog</class>
+ <widget class="QDialog" name="QtPerfectElasticCollisionMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>504</width>
+    <height>557</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PerfectElasticCollision</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolPerfectElasticCollision.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget_top" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_dials" native="true">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>91</height>
+      </size>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QDial" name="dial_impulse_angle1">
+        <property name="sliderPosition">
+         <number>17</number>
+        </property>
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDial" name="dial_angle">
+        <property name="sliderPosition">
+         <number>14</number>
+        </property>
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDial" name="dial_impulse_angle2">
+        <property name="sliderPosition">
+         <number>75</number>
+        </property>
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_sliders" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QSlider" name="slider_impulse_1">
+        <property name="sliderPosition">
+         <number>50</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSlider" name="slider_impulse_2">
+        <property name="sliderPosition">
+         <number>50</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_bottom" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="check_demo">
+        <property name="text">
+         <string>Demo mode</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_error">
+        <property name="text">
+         <string>Change in impulse:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="ToolPerfectElasticCollision.qrc"/>
+ </resources>
+ <connections/>
+</ui>

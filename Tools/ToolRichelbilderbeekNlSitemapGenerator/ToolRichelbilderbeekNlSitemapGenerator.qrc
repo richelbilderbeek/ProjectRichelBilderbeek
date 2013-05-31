@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>PicSitemap14x14.png</file>
+        <file>PicTo14x14.png</file>
+        <file>PicR14x14.png</file>
+    </qresource>
+    <qresource prefix="/files">
+        <file>sitemap_gen.py</file>
+    </qresource>
+</RCC>

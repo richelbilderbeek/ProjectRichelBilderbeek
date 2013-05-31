@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>ToolPerfectElasticCollision.png</file>
+    </qresource>
+</RCC>

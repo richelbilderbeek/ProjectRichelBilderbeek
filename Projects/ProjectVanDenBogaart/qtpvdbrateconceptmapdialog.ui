@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtPvdbRateConceptMapDialog</class>
+ <widget class="QDialog" name="QtPvdbRateConceptMapDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>602</width>
+    <height>517</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Evalueer concept map</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ProjectVanDenBogaart.qrc">
+    <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_name">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Naam student: John Doe</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QtPvdbConceptMapRateWidget" name="widget"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>F1: beoordeeld concept, F2: beoordeel voorbeelden</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_todo">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Klik een concept aan om te beoordelen</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="button_save">
+       <property name="text">
+        <string>&amp;Sla beoordeling op</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_next">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string>&amp;Genereer kentallen</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtPvdbConceptMapRateWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>qtpvdbconceptmapratewidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="ProjectVanDenBogaart.qrc"/>
+ </resources>
+ <connections/>
+</ui>

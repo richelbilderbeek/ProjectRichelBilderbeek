@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtPvdbConceptMapDialog</class>
+ <widget class="QDialog" name="QtPvdbConceptMapDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>550</width>
+    <height>497</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Construeer een concept map-scherm</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ProjectVanDenBogaart.qrc">
+    <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QtPvdbConceptMapEditWidget" name="widget"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="button_save">
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
+       <property name="text">
+        <string>&amp;Sla concept map op</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_print">
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
+       <property name="text">
+        <string>&amp;Print concept map</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtPvdbConceptMapEditWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>qtpvdbconceptmapeditwidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>button_print</tabstop>
+ </tabstops>
+ <resources>
+  <include location="ProjectVanDenBogaart.qrc"/>
+ </resources>
+ <connections/>
+</ui>

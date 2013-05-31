@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtCodeToHtmlMainDialog</class>
+ <widget class="QDialog" name="QtCodeToHtmlMainDialog">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>584</width>
+    <height>657</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>CodeToHtml</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolCodeToHtml.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+
+QPushButton { font: 18 px, &quot;monospace&quot; }
+QTabWidget { font: 12 px, &quot;monospace&quot; }
+QLabel { font: 12px, &quot;monospace&quot; }
+QComboBox { font: 12px, &quot;monospace&quot; }
+QPlainTextEdit { font: 10px, &quot;monospace&quot; }
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_page_type">
+     <property name="text">
+      <string>Page type</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="box_header">
+     <item>
+      <property name="text">
+       <string>C++</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Music</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Text</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Tool</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_tech_info">
+     <property name="text">
+      <string>Technical information</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="box_tech_info">
+     <item>
+      <property name="text">
+       <string>Auto</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Yes</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>No</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_content_type">
+     <property name="text">
+      <string>Content type</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QComboBox" name="box_source">
+     <item>
+      <property name="text">
+       <string>C++</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Project file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Text</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QTabWidget" name="tab_source">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab_source_snippet">
+      <attribute name="title">
+       <string>&amp;1. Text snippet</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QPlainTextEdit" name="edit_source_snippet">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="plainText">
+          <string>#include &lt;iostream&gt;
+
+int main()
+{
+  std::cout &lt;&lt; &quot;Hello world\n&quot;;
+}</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_source_file">
+      <attribute name="title">
+       <string>&amp;2. File or folder</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLineEdit" name="edit_source">
+         <property name="text">
+          <string>/home/richel/Projects/Tools/ToolCodeToHtml</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QTabWidget" name="tab_widget">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tab_result_webpage">
+      <attribute name="title">
+       <string>&amp;3. Webpage</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Temporarily removed QWebView due to errors</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_result_text">
+      <attribute name="title">
+       <string>&amp;4. HTML text</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QPlainTextEdit" name="edit_html">
+         <property name="font">
+          <font>
+           <family>,monospace</family>
+           <pointsize>-1</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QPushButton" name="button_convert">
+     <property name="text">
+      <string>&amp;Convert</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="ToolCodeToHtml.qrc"/>
+ </resources>
+ <connections/>
+</ui>

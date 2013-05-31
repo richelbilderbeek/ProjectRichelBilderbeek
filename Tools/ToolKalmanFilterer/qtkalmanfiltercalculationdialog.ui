@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtKalmanFilterCalculationDialog</class>
+ <widget class="QDialog" name="QtKalmanFilterCalculationDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1172</width>
+    <height>31</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QtKalmanFilterCalculationDialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolKalmanFilterer.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+ </widget>
+ <resources>
+  <include location="ToolKalmanFilterer.qrc"/>
+ </resources>
+ <connections/>
+</ui>

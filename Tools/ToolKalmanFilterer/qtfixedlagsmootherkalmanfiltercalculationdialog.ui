@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtFixedLagSmootherKalmanFilterCalculationDialog</class>
+ <widget class="QDialog" name="QtFixedLagSmootherKalmanFilterCalculationDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>799</width>
+    <height>521</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolKalmanFilterer.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_time">
+     <property name="text">
+      <string>Time: ?</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_1" native="true">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label_title_1">
+        <property name="text">
+         <string>1) Prediction error covariances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_top_1_1">
+        <property name="text">
+         <string>P(i)'s</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_top_2_1">
+        <property name="text">
+         <string>P</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="label_top_3_1">
+        <property name="text">
+         <string>A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLabel" name="label_top_4_1">
+        <property name="text">
+         <string>K</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7">
+       <widget class="QLabel" name="label_top_5_1">
+        <property name="text">
+         <string>H</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="11">
+       <widget class="QLabel" name="label_top_8_1">
+        <property name="text">
+         <string>i</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QTableWidget" name="table_state_predicted">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="label_math_1">
+        <property name="text">
+         <string>= </string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QTableWidget" name="table_state_transition">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLabel" name="label_math_2">
+        <property name="text">
+         <string>( (</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <widget class="QTableWidget" name="table_gain_1">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="6">
+       <widget class="QTableWidget" name="table_observation_model">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="7">
+       <widget class="QTableWidget" name="table_previous_state_estimate">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="10">
+       <widget class="QLabel" name="label_math_5">
+        <property name="text">
+         <string>)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_bottom_1_1">
+        <property name="text">
+         <string>Augmented predicted
+error covariances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="label_bottom_2_1">
+        <property name="text">
+         <string>Prediction error covariance</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QLabel" name="label_bottom_3_1">
+        <property name="text">
+         <string>State transition matrix</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="6">
+       <widget class="QLabel" name="label_bottom_4_1">
+        <property name="text">
+         <string>Observation
+model</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="7">
+       <widget class="QLabel" name="label_bottom_5_1">
+        <property name="text">
+         <string>Previous
+state estimate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="5">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="9">
+       <widget class="QLabel" name="label_math_4">
+        <property name="text">
+         <string>T</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="8">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label_title_2">
+        <property name="text">
+         <string>2) Augmented Kalman gains</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_top_1_2">
+        <property name="text">
+         <string>K(i)'s</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_top_2_2">
+        <property name="text">
+         <string>P(i)'s</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="label_top_3_2">
+        <property name="text">
+         <string>H^T</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QLabel" name="label_top_4_2">
+        <property name="text">
+         <string>H</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLabel" name="label_top_5_2">
+        <property name="text">
+         <string>P</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7">
+       <widget class="QLabel" name="label_top_6_2">
+        <property name="text">
+         <string>H^T</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="10">
+       <widget class="QLabel" name="label_top_7_2">
+        <property name="text">
+         <string>R</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="12">
+       <widget class="QLabel" name="label_top_8_2">
+        <property name="text">
+         <string>-1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QTableWidget" name="table_state_predicted_2">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="label_math_6">
+        <property name="text">
+         <string>=</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QTableWidget" name="table_state_transition_2">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QTableWidget" name="table_gain_3">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="5">
+       <widget class="QTableWidget" name="table_observation_model_2">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="6">
+       <widget class="QTableWidget" name="table_previous_state_estimate_2">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="7">
+       <widget class="QTableWidget" name="table_control_2">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="10">
+       <widget class="QTableWidget" name="table_input_2">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="11">
+       <widget class="QLabel" name="label_math_10">
+        <property name="text">
+         <string>)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_bottom_1_2">
+        <property name="text">
+         <string>Augmented Kalman
+gains</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="label_bottom_2_2">
+        <property name="text">
+         <string>Augmented predicted
+error covariances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLabel" name="label_bottom_3_2">
+        <property name="text">
+         <string>Observation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="5">
+       <widget class="QLabel" name="label_bottom_4_2">
+        <property name="text">
+         <string>Observation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="6">
+       <widget class="QLabel" name="label_bottom_5_2">
+        <property name="text">
+         <string>Prediction error covariance</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="7">
+       <widget class="QLabel" name="label_bottom_6_2">
+        <property name="text">
+         <string>Observation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="10">
+       <widget class="QLabel" name="label_bottom_7_2">
+        <property name="text">
+         <string>Estimated measurement
+error covariance</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>(</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="8">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="9">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>+</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_3" native="true">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label_title_3">
+        <property name="text">
+         <string>3) Augmented state estimate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_top_1_3">
+        <property name="text">
+         <string>x_predicteds</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="label_top_3_3">
+        <property name="text">
+         <string>x_predicted</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLabel" name="label_top_5_3">
+        <property name="text">
+         <string>x_predicteds_prev</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="8">
+       <widget class="QLabel" name="label_top_6_3">
+        <property name="text">
+         <string>Augmented Kalman
+gains</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="9">
+       <widget class="QLabel" name="label_top_7_3">
+        <property name="text">
+         <string>Innovation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QTableWidget" name="table_state_predicted_3">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="label_math_11">
+        <property name="text">
+         <string>=</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QTableWidget" name="table_state_transition_3">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QTableWidget" name="table_gain_5">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="5">
+       <widget class="QTableWidget" name="table_observation_model_3">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="6">
+       <widget class="QTableWidget" name="table_previous_state_estimate_3">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="7">
+       <widget class="QLabel" name="label_math_14">
+        <property name="text">
+         <string>+</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="8">
+       <widget class="QTableWidget" name="table_control_3">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="2" column="9">
+       <widget class="QTableWidget" name="table_input_3">
+        <row>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_bottom_1_3">
+        <property name="text">
+         <string>Augmented predicted
+ states</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="label_bottom_2_3">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLabel" name="label_bottom_3_3">
+        <property name="text">
+         <string>Predicted state</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="6">
+       <widget class="QLabel" name="label_bottom_5_3">
+        <property name="text">
+         <string>Previous augmented
+predicted states</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="8">
+       <widget class="QLabel" name="label_bottom_6_3">
+        <property name="text">
+         <string>K(i)'s</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="9">
+       <widget class="QLabel" name="label_bottom_7_3">
+        <property name="text">
+         <string>y</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>+</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ToolKalmanFilterer.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,12 @@
+phy_prob_12.exe manual
+
+1) Put the value of theta in file 'theta.txt'
+
+2) Put the phylogeny in file 'phylogeny.txt'
+
+3) Start phy_prob_12.exe
+
+4) The probability is written to 'expected_probability.txt'
+
+
+

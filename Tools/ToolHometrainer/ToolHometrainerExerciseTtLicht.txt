@@ -1,0 +1,51 @@
+Hometrainer (C) 2009 Richel Bilderbeek
+-,Welk soort licht past het best bij een monoloog?,Frontlicht,Zijlicht,Tegenlicht,Toplicht
+-,Welk soort licht past het best bij dans?,Zijlicht,Tegenlicht,Toplicht,Frontlicht
+-,Welk soort licht past het best bij een moordscene waarbij je het gezicht van de moordenaar niet ziet?,Tegenlicht,Toplicht,Frontlicht,Zijlicht
+-,Hoe heet het overzicht waarop je alle lampposities ziet?,Lichtplan,Priklijst,Standenplot,Patchlijst
+-,Hoe heet het overzicht waarop je alle lichtstanden ziet?,Standenplot,Patchlijst,Lichtplan,Priklijst
+-,Welke lichtfilter zit er standaard in een warm front?,152,106,119,139
+ToolHometrainerExerciseLichtplan.jpg,Waar zit het publiek?,Onder de onderste lampen,Boven de bovenste lampen,Links van de linker lampen,Rechts van de rechter lampen
+ToolHometrainerExerciseLichtplan.jpg,Wat voor soort licht geven de lampen met de getallen 152?,Frontlicht,Zijlicht,Tegenlicht,Voetlicht
+ToolHometrainerExerciseLichtplan.jpg,Wat voor soort licht geven de lampen met de getallen 179?,Zijlicht,Tegenlicht,Voetlicht,Frontlicht
+ToolHometrainerExerciseLichtplan.jpg,Wat voor soort licht geven de bovenste lampen met de getallen 117?,Tegenlicht,Voetlicht,Frontlicht,Zijlicht
+ToolHometrainerExerciseLichtplan.jpg,Welke lichtsoort ontbreekt op dit lichtplan?,Voetlicht,Frontlicht,Zijlicht,Tegenlicht
+ToolHometrainerExerciseLichtplan.jpg,Wat betekent OW?,Open Wit,Open Wide,Ordered Whitespace,Offset White
+ToolHometrainerExerciseLichtplan.jpg,Wat voor soort lamp worden er in dit lichtplan gebruikt?,Fresnel,PC,Par,Horizonbak
+ToolHometrainerExerciseLichtplanDeBruiloften.jpg,Hoe heten de twee lampen die zich linksboven en rechtsboven bevinden?,Profielspot,Fresnel,PC,Par
+ToolHometrainerExerciseLichtplanDeBruiloften.jpg,Hoe heten de tien lampen die zich links en rechts bevinden?,Fresnel,Profielspot,PC,Horizonbak
+ToolHometrainerExerciseLichtplanDeBruiloften.jpg,Hoe heten de vijf lampen die zich in het midden bevinden?,PC,Fresnel,Profielspot,Horizonbak
+ToolHometrainerExercisePar.jpg,Hoe verander je de bundelgrootte van een par?,Een andere lamp erin doen,Met een stelknop aan de onderkant,Dit kan niet,Door er een extra lens voor te plaatsen
+ToolHometrainerExercisePc.jpg,Hoe verander je de bundelgrootte van een PC?,Met een stelknop aan de onderkant,Dit kan niet,Door er een extra lens voor te plaatsen,Een andere lamp erin doen
+ToolHometrainerExerciseFresnel.jpg,Hoe verander je de bundelgrootte van een fresnel?,Met een stelknop aan de onderkant,Dit kan niet,Door er een extra lens voor te plaatsen,Een andere lamp erin doen
+ToolHometrainerExerciseProfielspot.jpg,Hoe verander je de bundelgrootte van een profielspot?,Met twee stelknoppen,Met een stelknop aan de onderkant,Dit kan niet,Een andere lamp erin doen
+-,Met welk type lamp kun je de scherpte van de lichtbundel aanpassen?,Profielspot,PC,Fresnel,Par
+-,Met welk type lamp kun je een vierkant lichtbundel maken?,Profielspot,PC,Fresnel,Par
+-,Hoe heet het lamponderdeel waardoor je een vierkante lichtbundel kunt maken?,De messen,De stelknoppen,Het diafragma,De filterhouder
+-,Een lamp staat op zijn kleinste lichtbundel. Toch wil je de lichtbundel nog meer versmallen. Waarmee kan dat?,Een diafragma,Een frostfilter,Een filterhouder,Een lamphaak
+-,Hoe heet het lamponderdeel dat je aan een truss bevestigd?,Lamphaak,Lamphuis,Stelschroef,Filterhouder
+ToolHometrainerExercisePc.jpg,Wat betekent 'PC'?,Plano Convex,Par Complex,Photon Contour,Photon Centralize
+ToolHometrainerExerciseSpringV2.jpg,De lichttafel is direct verbonden met...,het dimmerpack,de lampen,de krachtstroom,de mutistekkerdozen
+-,De krachtstroom is direct verbonden met ...,het dimmerpack,de multistekkerdozen,de lichttafel,zowel licht- als geluidstafel
+ToolHometrainerExerciseSpringV2.jpg,Het signaal van de lichttafel gaat door ...,een DMX kabel,een XLR kabel,een multikabel,een krachtstroomkabel
+ToolHometrainerExerciseSpringV2.jpg,Welke faders moet je verzetten om lampen te laten branden?,Geen van deze antwoorden,Alleen de faders 1 t/m 24 op de bovenste rij,Alleen de faders 1 t/m 24 op de onderste rij,De faders 1 t/m 24 van zowel de bovenste en de onderste rij
+ToolHometrainerExerciseSpringV2.jpg,Hoe kun je gemakkelijk een black-out maken?,De master omlaag doen,De crossfader omzetten,De signaalkabel eruit trekken,De lichttafel uitzetten
+-,Iemand verwisselt twee stekkers in een multistekkerdoos. Hoe heet dit?,Hardpatchen,Softpatchen,Dit heeft geen naam,Switching
+ToolHometrainerExercisePriklijst.jpg,Hoe heet dit overzicht?,Priklijst,Standenplot,Lichtplan,Changementplan
+ToolHometrainerExerciseStandenplot.jpg,Hoe heet dit overzicht?,Standenplot,Lichtplan,Changementplan,Priklijst
+ToolHometrainerExerciseStandenplot.jpg,Hoeveel lichtsferen zijn er?,3,10,3 + het aantal geluidscues,10 + het aantal geluidscues
+ToolHometrainerExerciseStandenplot.jpg,Wat betekent FF voor een kanaal?,Dit kanaal moet helemaal open staan,Dit kanaal moet helemaal uitstaan,Er moet worden geflitst met dat kanaal,Dit kanaal moet geleidelijk in- en uitfaden
+ToolHometrainerExerciseStandenplot.jpg,Wat betekent 50 voor een kanaal?,Dit kanaal moet half open staan,Er moet worden soms worden geflitst met dat kanaal,Dit kanaal moet op halve snelheid geleidelijk in- en uitfaden,Dit kanaal is maar in de helft van de gevallen nodig
+ToolHometrainerExerciseStandenplot.jpg,Welk soort licht verwacht je op kanaal 1 en 2?,Front,Zij,Tegen,Speciaal
+-,Met welk soort licht maak je een scherpe lichtcirkel voor op een presentator van een TV show?,Profielspot,Fresnel,PC,Par
+ToolHometrainerExerciseFresnel.jpg,Hoe heet deze lamp?,Fresnel,Par,PC,Horizonbak
+ToolHometrainerExercisePar.jpg,Hoe heet deze lamp?,Par,Fresnel,PC,Profielspot
+ToolHometrainerExercisePc.jpg,Hoe heet deze lamp?,PC,Par,Fresnel,Horizonbak
+ToolHometrainerExerciseProfielspot.jpg,Hoe heet deze lamp?,Profielspot,PC,Par,Fresnel
+ToolHometrainerExerciseRgbLamp.jpg,Hoe heet deze lamp?,RGB-lamp,Discolamp,LED-lamp,Multicolor
+ToolHometrainerExerciseFilter.jpg,Hoe heet dit ding?,Filter,Filterhouder,Filterboekje,Filtervel
+ToolHometrainerExerciseFilterhouder.jpg,Hoe heet dit ding?,Filterhouder,Filterboekje,Filtervel,Filter
+ToolHometrainerExerciseFilterboekje.jpg,Hoe heet dit ding?,Filterboekje,Filtervel,Filter,Filterhouder
+ToolHometrainerExerciseFiltervellen.jpg,Hoe heten deze dingen?,Filtervellen,Filters,Filterhouders,Filterboekjes
+ToolHometrainerExerciseVoetstatief.jpg,Hoe heet dit ding?,Voetstatief,Bureaustatief,Keyboardstatief,Monitorstatief
+ToolHometrainerExercise500Wlamp.jpg,Als je een lamp vervangt moet je ...,het glas van de nieuwe lamp niet aanraken met je handen,de nieuwe lamp in slow-motion erin doen,de nieuwe lamp niet op zijn kop houden,niet praten richting de nieuwe lamp
