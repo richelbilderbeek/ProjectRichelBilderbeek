@@ -21,12 +21,13 @@
 
 QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
   const boost::shared_ptr<const pvdb::ConceptMap> concept_map,
-  const int node_index,
+  const boost::shared_ptr<const pvdb::Node> node,
   QWidget *parent)
   : QDialog(parent),
     ui(new Ui::QtPvdbRatedConceptWidget)
 {
   ui->setupUi(this);
+  assert(node);
 
   const int font_in_list_height = 16;
   {
@@ -35,8 +36,6 @@ QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
     ui->list_concept_examples->setFont(font);
     ui->list_cluster_relations->setFont(font);
   }
-
-  const boost::shared_ptr<const pvdb::Node> node = concept_map->GetNodes().at(node_index);
 
   ui->label_name->setText(
     (std::string("Cluster bij concept: ") + node->GetConcept()->GetName()).c_str()
@@ -65,10 +64,10 @@ QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
 
   for (const boost::shared_ptr<const pvdb::Edge> edge: concept_map->GetEdges())
   {
-    if (edge->GetFrom() == node_index || edge->GetTo() == node_index)
+    if (edge->GetFrom() == node || edge->GetTo() == node)
     {
       //Dependent on arrow
-      if (edge->GetFrom() == node_index)
+      if (edge->GetFrom() == node)
       {
         const std::string first_arrow
           = ( edge->HasTailArrow() ? "<- " : "-- ");
@@ -78,19 +77,19 @@ QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
           = first_arrow
           + edge->GetConcept()->GetName()
           + second_arrow
-          + concept_map->GetNodes().at(edge->GetTo())->GetConcept()->GetName();
+          + node->GetConcept()->GetName();
         ui->list_cluster_relations->addItem(new QListWidgetItem(text.c_str()));
       }
-      else if (edge->GetTo() == node_index)
+      else if (edge->GetTo() == node)
       {
-        assert(edge->GetTo() == node_index);
+        assert(edge->GetTo() == node);
         const std::string first_arrow  = (edge->HasHeadArrow() ? "<- " : "-- ");
         const std::string second_arrow = (edge->HasTailArrow() ? " -> " : " -- ");
         const std::string text
           = first_arrow
           + edge->GetConcept()->GetName()
           + second_arrow
-          + concept_map->GetNodes().at(edge->GetFrom())->GetConcept()->GetName();
+          + node->GetConcept()->GetName();
         ui->list_cluster_relations->addItem(new QListWidgetItem(text.c_str()));
       }
       //Indendent on arrow: all examples

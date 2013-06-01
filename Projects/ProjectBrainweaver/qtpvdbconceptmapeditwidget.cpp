@@ -52,8 +52,10 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(QWidget* parent)
-  : QtPvdbConceptMapWidget(parent),
+QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+  QWidget* parent)
+  : QtPvdbConceptMapWidget(concept_map,parent),
     m_arrow(nullptr),
     m_highlighter(new QtPvdbItemHighlighter(0)),
     m_tools(new QtPvdbToolsItem)
@@ -75,21 +77,19 @@ QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget()
 }
 
 void QtPvdbConceptMapEditWidget::AddEdge(
-  const boost::shared_ptr<pvdb::Edge>& edge,
-  const std::vector<QtPvdbNodeItem*>& qtnodes)
+  const boost::shared_ptr<pvdb::Edge>& edge)
 {
-  //ERROR IN THIS LINE: THE NODE CONCEPTS HAVE GOTTEN A DIFFERENT ORDER!
-  //SOLUTION: MAKE NODE_CONCEPTS LOCAL AND IN THE SAME ORDER
-  //const std::vector<QtPvdbNodeConcept*> node_concepts = Collect<QtPvdbNodeConcept>(scene());
-  assert(edge->GetFrom() < static_cast<int>(qtnodes.size()));
-  assert(edge->GetTo()   < static_cast<int>(qtnodes.size()));
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
+  QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
+  assert(from);
+  QtPvdbNodeItem * const to   = FindQtNode(edge->GetFrom());
+  assert(to);
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
     edge,
     qtconcept,
-    qtnodes[edge->GetFrom()],
-    qtnodes[edge->GetTo()]
+    from,
+    to
   );
 
   //General: inform an Observer that this item has changed
@@ -112,30 +112,30 @@ void QtPvdbConceptMapEditWidget::AddEdge(
   assert(qtedge->pos().y() == edge->GetY());
 }
 
-void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const from, QtPvdbNodeItem* const to)
+void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbNodeItem* const qt_to)
 {
-  assert(from);
-  assert(to);
-  assert(from != to);
-  assert(!dynamic_cast<const QtPvdbToolsItem*>(to  ) && "Cannot select a ToolsItem");
-  assert(!dynamic_cast<const QtPvdbToolsItem*>(from) && "Cannot select a ToolsItem");
+  assert(qt_from);
+  assert(qt_to);
+  assert(qt_from != qt_to);
+  assert(!dynamic_cast<const QtPvdbToolsItem*>(qt_to  ) && "Cannot select a ToolsItem");
+  assert(!dynamic_cast<const QtPvdbToolsItem*>(qt_from) && "Cannot select a ToolsItem");
   //Does this edge already exists? If yes, modify it
   {
     const std::vector<QtPvdbEdgeItem*> edges = Collect<QtPvdbEdgeItem>(scene());
     const auto iter = std::find_if(edges.begin(),edges.end(),
-      [from,to](const QtPvdbEdgeItem* const other_edge)
+      [qt_from,qt_to](const QtPvdbEdgeItem* const other_edge)
       {
         return
-            (other_edge->GetArrow()->GetFromItem() == from && other_edge->GetArrow()->GetToItem() == to  )
-         || (other_edge->GetArrow()->GetFromItem() == to   && other_edge->GetArrow()->GetToItem() == from);
+            (other_edge->GetArrow()->GetFromItem() == qt_from && other_edge->GetArrow()->GetToItem() == qt_to  )
+         || (other_edge->GetArrow()->GetFromItem() == qt_to   && other_edge->GetArrow()->GetToItem() == qt_from);
       }
     );
     if (iter != edges.end())
     {
       QtPvdbEdgeItem * const qtedge = *iter;
       assert(qtedge);
-      if (qtedge->GetArrow()->GetToItem()   == to && !qtedge->GetArrow()->HasHead()) { qtedge->SetHasHeadArrow(true); }
-      if (qtedge->GetArrow()->GetFromItem() == to && !qtedge->GetArrow()->HasTail()) { qtedge->SetHasTailArrow(true); }
+      if (qtedge->GetArrow()->GetToItem()   == qt_to && !qtedge->GetArrow()->HasHead()) { qtedge->SetHasHeadArrow(true); }
+      if (qtedge->GetArrow()->GetFromItem() == qt_to && !qtedge->GetArrow()->HasTail()) { qtedge->SetHasTailArrow(true); }
       this->scene()->update();
       return;
     }
@@ -146,10 +146,10 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const from, QtPvdbNode
   const boost::shared_ptr<pvdb::Concept> concept(pvdb::ConceptFactory::Create());
   const bool head_arrow = true;
   const bool tail_arrow = false;
-  const auto from_iter = std::find(qtnodes.begin(),qtnodes.end(),from);
+  const auto from_iter = std::find(qtnodes.begin(),qtnodes.end(),qt_from);
   //const std::vector<QtPvdbConceptItem*> qtconcepts = Collect<QtPvdbConceptItem>(scene());
   assert(from_iter != qtnodes.end());
-  const auto to_iter = std::find(qtnodes.begin(),qtnodes.end(),to);
+  const auto to_iter = std::find(qtnodes.begin(),qtnodes.end(),qt_to);
   assert(to_iter != qtnodes.end());
   const int from_index = std::distance(qtnodes.begin(),from_iter);
   assert(from_index >= 0);
@@ -157,21 +157,25 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const from, QtPvdbNode
   const int to_index = std::distance(qtnodes.begin(),to_iter);
   assert(to_index >= 0);
   assert(to_index < static_cast<int>(qtnodes.size()));
+  const boost::shared_ptr<pvdb::Node> from = qt_from->GetNode();
+  assert(from);
+  const boost::shared_ptr<pvdb::Node> to = qt_to->GetNode();
+  assert(to);
   const boost::shared_ptr<pvdb::Edge> edge(
     pvdb::EdgeFactory::Create(
       concept,
-      (from->pos().x() + to->pos().x()) / 2.0,
-      (from->pos().y() + to->pos().y()) / 2.0,
-      from_index,
+      (qt_from->pos().x() + qt_to->pos().x()) / 2.0,
+      (qt_from->pos().y() + qt_to->pos().y()) / 2.0,
+      from,
       tail_arrow,
-      to_index,
+      to,
       head_arrow));
 
   //Step 1: Create an Edge concept
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
 
-  QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(edge,qtconcept,from,to);
+  QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(edge,qtconcept,qt_from,qt_to);
 
   //General: inform an Observer that this item has changed
   qtedge->m_signal_item_has_updated.connect(
@@ -264,11 +268,16 @@ void QtPvdbConceptMapEditWidget::CleanMe()
   }
 }
 
+#ifndef NDEBUG
 std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapEditWidget::CreateNewDerived() const
 {
-  std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t);
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map
+    = pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+  assert(concept_map);
+  std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t(concept_map));
   return p;
 }
+#endif
 
 void QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const edge)
 {

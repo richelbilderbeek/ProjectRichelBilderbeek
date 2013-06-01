@@ -1,5 +1,7 @@
 #include "qtpvdbtestcreatesubconceptmapdialog.h"
 
+#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
+
 #include <cassert>
 #include <boost/numeric/conversion/cast.hpp>
 #include "pvdbconceptmapfactory.h"
@@ -53,3 +55,5 @@ void QtPvdbTestCreateSubConceptMapDialog::OnSubConceptMapChanged()
   ui->sub_concept_map->ReadFromConceptMap(sub);
 
 }
+
+#endif

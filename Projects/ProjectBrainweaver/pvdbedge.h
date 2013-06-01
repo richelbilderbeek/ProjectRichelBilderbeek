@@ -24,17 +24,16 @@ struct EdgeFactory;
 ///An Edge goes from one Node to another, which must a different Node
 struct Edge : public boost::noncopyable
 {
-  ///Obtain an Edge from an XML std::string
-  static const boost::shared_ptr<pvdb::Edge> FromXml(const std::string& s);
-
   const boost::shared_ptr<const pvdb::Concept>  GetConcept() const { return m_concept; }
   const boost::shared_ptr<      pvdb::Concept>  GetConcept()       { return m_concept; }
 
-  ///Get the Node index this edge originates from
-  int GetFrom() const { return m_from; }
+  ///Get the Node this edge originates from
+  const boost::shared_ptr<const pvdb::Node> GetFrom() const { return m_from; }
+  const boost::shared_ptr<      pvdb::Node> GetFrom()       { return m_from; }
 
   ///Get the Node index this edge goes to
-  int GetTo() const { return m_to; }
+  const boost::shared_ptr<const pvdb::Node> GetTo() const { return m_to; }
+  const boost::shared_ptr<      pvdb::Node> GetTo()       { return m_to; }
 
   ///Get the x coordinat
   double GetX() const { return m_x; }
@@ -51,13 +50,11 @@ struct Edge : public boost::noncopyable
   ///Does the edge have an arrow at the tail?
   bool HasTailArrow() const { return m_tail_arrow; }
 
-  ///Get some testing edges
-  static const std::vector<boost::shared_ptr<pvdb::Edge> > GetTests();
 
   void SetConcept(const boost::shared_ptr<pvdb::Concept> concept) { m_concept = concept; } //NEW 2013-01-07
 
   ///Set the Node index this edge originates from
-  void SetFrom(const int from);
+  void SetFrom(const boost::shared_ptr<pvdb::Node> from);
 
   ///Set if the head has an arrow
   void SetHeadArrow(const bool has_head_arrow);
@@ -66,7 +63,7 @@ struct Edge : public boost::noncopyable
   void SetTailArrow(const bool has_tail_arrow);
 
   ///Set the Node index this edge goes to
-  void SetTo(const int to);
+  void SetTo(const boost::shared_ptr<pvdb::Node> to);
 
   ///Convert an Edge from an XML std::string
   static const std::string ToXml(const boost::shared_ptr<const pvdb::Edge>& c);
@@ -80,7 +77,9 @@ struct Edge : public boost::noncopyable
   boost::shared_ptr<pvdb::Concept> m_concept;
 
   ///The Node index this edge originates from
-  int m_from;
+  ///Cannot be an index, see [1] below
+  //int m_from;
+  boost::shared_ptr<pvdb::Node> m_from;
 
   ///Is there an arrowhead at the 'to' node?
   bool m_head_arrow;
@@ -89,7 +88,9 @@ struct Edge : public boost::noncopyable
   bool m_tail_arrow;
 
   ///The Node index this edge goes to
-  int m_to;
+  ///Cannot be an index, see [1] below
+  //int m_to;
+  boost::shared_ptr<pvdb::Node> m_to;
 
   ///The x-coordinat
   double m_x;
@@ -114,9 +115,9 @@ struct Edge : public boost::noncopyable
     const boost::shared_ptr<pvdb::Concept> & concept,
     const double concept_x,
     const double concept_y,
-    const int from,
+    const boost::shared_ptr<pvdb::Node> from,
     const bool tail_arrow,
-    const int to,
+    const boost::shared_ptr<pvdb::Node> to,
     const bool head_arrow);
 
 };
@@ -136,6 +137,25 @@ bool operator!=(const pvdb::Edge& lhs, const pvdb::Edge& rhs) = delete;
 
 } //~namespace pvdb
 
+///Notes:
+///  [1] Node::m_from and Node::m_to cannot be indices, because of the desired copying behavior
+///      of Edge: when copying an edge, it is natural that it keeps pointing to the same nodes.
+///      When using pointers, this will work. Indices, on the other hand, are context-specific:
+///      Example: imagine a concept map like this:
+///
+///      NodeA Edge1 NodeB Edge2 NodeC
+///      [0]         [1]         [2]
+///
+///      In this example, Edge2 goes from [1] to [2]
+///
+///      A sub-concept map will be (when NodeC is the focal node):
+///
+///                  NodeB Edge2 NodeC
+///                  [0]         [1]
+///
+///      In this example, Edge2 goes from [0] to [1]! Due to this, the same Edge2 cannot behave identical in the different contexts
+///
+///      Indices are only used when saving and loading
 
 #ifndef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbedgefactory.h"

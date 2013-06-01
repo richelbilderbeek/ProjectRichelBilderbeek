@@ -40,6 +40,9 @@ struct ConceptMapFactory
     const boost::shared_ptr<const pvdb::ConceptMap>& map);
   #endif
 
+  ///Obtain a ConceptMap from an XML std::string
+  static const boost::shared_ptr<pvdb::ConceptMap> FromXml(const std::string& s);
+
   ///Get all the other tests as one vector
   static const std::vector<boost::shared_ptr<pvdb::ConceptMap> > GetAllTests();
 

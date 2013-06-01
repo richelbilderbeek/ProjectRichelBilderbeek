@@ -33,9 +33,13 @@ void QtPvdbConceptMapEditWidget::Test()
   }
   //Test base class (after having tested cloning of derived class)
   {
-    boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t);
-    assert(widget);
-    QtPvdbConceptMapWidget::Test(widget);
+    const auto v = pvdb::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<pvdb::ConceptMap> concept_map: v)
+    {
+      boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
+      assert(widget);
+      QtPvdbConceptMapWidget::Test(widget);
+    }
   }
   TRACE("QtPvdbConceptMapEditWidget::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507

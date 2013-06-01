@@ -14,6 +14,7 @@
 #include "qtpvdbexamplesitem.h"
 #include "pvdbhelper.h"
 #include "pvdbconceptmap.h"
+#include "pvdbconceptmapfactory.h"
 #include "qtpvdbcenternodeitem.h"
 #include "qtpvdbnodeitem.h"
 #include "qtpvdbdisplayconceptitem.h"
@@ -37,8 +38,10 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(QWidget* parent)
-  : QtPvdbConceptMapWidget(parent)
+QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+  QWidget* parent)
+  : QtPvdbConceptMapWidget(concept_map,parent)
 {
   #ifndef NDEBUG
   Test();
@@ -48,23 +51,20 @@ QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(QWidget* parent)
 
 
 void QtPvdbConceptMapDisplayWidget::AddEdge(
-  const boost::shared_ptr<pvdb::Edge>& edge,
-  const std::vector<QtPvdbNodeItem*>& qtnodes)
+  const boost::shared_ptr<pvdb::Edge>& edge)
 {
-  TRACE_FUNC();
-  //ERROR IN THIS LINE: THE NODE CONCEPTS HAVE GOTTEN A DIFFERENT ORDER!
-  //SOLUTION: MAKE NODE_CONCEPTS LOCAL AND IN THE SAME ORDER
-  //const std::vector<QtPvdbRateConcept*> node_concepts = Collect<QtPvdbRateConcept>(scene());
   assert(edge);
-  assert(edge->GetFrom() < static_cast<int>(qtnodes.size()));
-  assert(edge->GetTo()   < static_cast<int>(qtnodes.size()));
   const boost::shared_ptr<QtPvdbConceptItem> concept(new QtPvdbDisplayConceptItem(edge->GetConcept()));
   assert(concept);
+  QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
+  assert(from);
+  QtPvdbNodeItem * const to   = FindQtNode(edge->GetFrom());
+  assert(to);
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
     edge,
     concept,
-    qtnodes[edge->GetFrom()],
-    qtnodes[edge->GetTo()]
+    from,
+    to
   );
   assert(qtedge);
   //Add the EdgeConcepts to the scene
@@ -130,13 +130,18 @@ void QtPvdbConceptMapDisplayWidget::CleanMe()
   TRACE_FUNC();
 }
 
+#ifndef NDEBUG
 std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapDisplayWidget::CreateNewDerived() const
 {
   TRACE_FUNC();
-  std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t);
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map
+    = pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+  assert(concept_map);
+  std::unique_ptr<QtPvdbConceptMapWidget> p(new QtPvdbConceptMapDisplayWidget(concept_map));
   assert(p);
   return p;
 }
+#endif
 
 void QtPvdbConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {

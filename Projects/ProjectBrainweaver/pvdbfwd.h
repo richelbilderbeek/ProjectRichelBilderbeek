@@ -31,6 +31,8 @@ struct QtPvdbConceptEditDialog;
 struct QtPvdbConceptItem;
 struct QtPvdbConceptMapDialog;
 struct QtPvdbConceptMapItem;
+struct QtPvdbConceptMapDisplayWidget;
+struct QtPvdbConceptMapEditWidget;
 struct QtPvdbConceptMapRateWidget;
 struct QtPvdbConceptMapWidget;
 struct QtPvdbRateConceptDialog;

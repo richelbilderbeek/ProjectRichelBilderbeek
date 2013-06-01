@@ -39,12 +39,11 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent) :
         QLabel * const label = new QLabel((std::string("[")+boost::lexical_cast<std::string>(i)+std::string("]")).c_str());
         assert(label);
         mylayout->addWidget(label);
-        QtPvdbConceptMapDisplayWidget * const widget = new QtPvdbConceptMapDisplayWidget;
-        assert(widget);
         assert(m_v[i]);
         const boost::shared_ptr<pvdb::ConceptMap> concept_map(m_v[i]);
         assert(concept_map);
-        widget->ReadFromConceptMap(concept_map); //BUG HERE FIXED: added isPaintingActive
+        QtPvdbConceptMapDisplayWidget * const widget = new QtPvdbConceptMapDisplayWidget(concept_map);
+        assert(widget);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + 2); //NEW 2013-05-11
         mylayout->addWidget(widget);
       }
@@ -57,11 +56,11 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent) :
       {
         TRACE(i);
         mylayout->addWidget(new QLabel((std::string("[")+boost::lexical_cast<std::string>(i)+std::string("]")).c_str()));
-        QtPvdbConceptMapWidget * const widget = new QtPvdbConceptMapDisplayWidget;
-        assert(widget);
         //widget->setMinimumHeight(minheight);
-        assert(v[i]);
-        widget->ReadFromConceptMap(v[i]);
+        const auto concept_map = v[i];
+        assert(concept_map);
+        QtPvdbConceptMapWidget * const widget = new QtPvdbConceptMapDisplayWidget(concept_map);
+        assert(widget);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + 2); //NEW 2013-05-11
         mylayout->addWidget(widget);
       }
@@ -74,11 +73,11 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent) :
       {
         TRACE(i);
         mylayout->addWidget(new QLabel((std::string("[")+boost::lexical_cast<std::string>(i)+std::string("]")).c_str()));
-        QtPvdbConceptMapWidget * const widget = new QtPvdbConceptMapDisplayWidget;
+        const auto concept_map = v[i];
+        assert(concept_map);
+        QtPvdbConceptMapWidget * const widget = new QtPvdbConceptMapDisplayWidget(concept_map);
         assert(widget);
         //widget->setMinimumHeight(minheight);
-        assert(v[i]);
-        widget->ReadFromConceptMap(v[i]);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + 2); //NEW 2013-05-11
         mylayout->addWidget(widget);
       }

@@ -47,6 +47,8 @@ private:
 
   ///m_file be const, as the Display Concept map cannot deal with const pvdb::ConceptMap (yet?)
   const boost::shared_ptr<pvdb::File> m_file;
+
+  QtPvdbConceptMapRateWidget * const m_widget;
 };
 
 #endif // QTPVDBPRINTRATINGDIALOG_H

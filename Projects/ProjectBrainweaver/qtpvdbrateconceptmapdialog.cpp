@@ -32,7 +32,8 @@ QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   QWidget* parent)
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbRateConceptMapDialog),
-  m_file(file)
+  m_file(file),
+  m_widget(new QtPvdbConceptMapRateWidget(file->GetConceptMap()))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -41,7 +42,14 @@ QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   #endif
   boost::shared_ptr<pvdb::ConceptMap> concept_map = m_file->GetConceptMap();
   assert(concept_map);
-  ui->widget->ReadFromConceptMap(concept_map);
+
+  {
+    assert(!ui->widget->layout());
+    QLayout * const layout = new QGridLayout;
+    ui->widget->setLayout(layout);
+    layout->addWidget(m_widget);
+  }
+
   {
     const std::string s = std::string("Naam student: ") + m_file->GetStudentName();
     ui->label_name->setText(s.c_str());
@@ -62,8 +70,8 @@ QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog()
 
 QtPvdbConceptMapRateWidget * QtPvdbRateConceptMapDialog::GetWidget()
 {
-  assert(ui); assert(ui->widget);
-  return ui->widget;
+  assert(m_widget);
+  return m_widget;
 }
 
 void QtPvdbRateConceptMapDialog::keyPressEvent(QKeyEvent* e)
@@ -76,7 +84,7 @@ void QtPvdbRateConceptMapDialog::keyPressEvent(QKeyEvent* e)
 void QtPvdbRateConceptMapDialog::on_button_next_clicked()
 {
   const boost::shared_ptr<pvdb::ConceptMap> concept_map
-    = ui->widget->WriteToConceptMap();
+    = m_widget->WriteToConceptMap();
   assert(concept_map);
   m_file->SetConceptMap(concept_map);
   QtPvdbRatingDialog d(m_file);

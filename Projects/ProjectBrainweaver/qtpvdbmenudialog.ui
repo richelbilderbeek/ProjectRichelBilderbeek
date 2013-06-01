@@ -129,6 +129,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="button_test_edge_item">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>&amp;M. QtPvdbEdgeItem</string>
         </property>
@@ -136,6 +139,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="button_test_qtconceptmapdisplaywidget">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>&amp;N. QtConceptMapDisplayWidget</string>
         </property>
@@ -143,6 +149,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="button_test_qtconceptmapeditwidget">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>&amp;O. QtConceptMapEditWidget</string>
         </property>
@@ -150,6 +159,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="button_test_qtconceptmapratewidget">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>&amp;P. QtConceptMapRateWidget</string>
         </property>
@@ -171,6 +183,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="button_test_create_sub_concept_map">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>&amp;S. Create sub-concept map</string>
         </property>

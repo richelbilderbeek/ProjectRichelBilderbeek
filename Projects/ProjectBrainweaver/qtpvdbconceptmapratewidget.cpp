@@ -48,8 +48,10 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(QWidget* parent)
-  : QtPvdbConceptMapWidget(parent)
+QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+  QWidget* parent)
+  : QtPvdbConceptMapWidget(concept_map,parent)
 {
   #ifndef NDEBUG
   Test();
@@ -57,23 +59,20 @@ QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(QWidget* parent)
 }
 
 void QtPvdbConceptMapRateWidget::AddEdge(
-  const boost::shared_ptr<pvdb::Edge>& edge,
-  const std::vector<QtPvdbNodeItem*>& qtnodes)
+  const boost::shared_ptr<pvdb::Edge>& edge)
 {
-  //ERROR IN THIS LINE: THE NODE CONCEPTS HAVE GOTTEN A DIFFERENT ORDER!
-  //SOLUTION: MAKE NODE_CONCEPTS LOCAL AND IN THE SAME ORDER
-  //const std::vector<QtPvdbRateConcept*> node_concepts = Collect<QtPvdbRateConcept>(scene());
-  assert(edge->GetFrom() < static_cast<int>(qtnodes.size()));
-  assert(edge->GetTo()   < static_cast<int>(qtnodes.size()));
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
-
+  QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
+  assert(from);
+  QtPvdbNodeItem * const to   = FindQtNode(edge->GetFrom());
+  assert(to);
 
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
     edge,
     qtconcept,
-    qtnodes[edge->GetFrom()],
-    qtnodes[edge->GetTo()]
+    from,
+    to
   );
 
   //General
@@ -161,12 +160,16 @@ void QtPvdbConceptMapRateWidget::CleanMe()
 
 }
 
-
+#ifndef NDEBUG
 std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapRateWidget::CreateNewDerived() const
 {
-  std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t);
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map
+    = pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+  assert(concept_map);
+  std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t(concept_map));
   return p;
 }
+#endif
 
 const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubConceptMap(QtPvdbNodeItem * const item)
 {
@@ -174,12 +177,11 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
   //Collect all nodes first
   const std::vector<QtPvdbEdgeItem*> qtedges = FindEdges(item);
   std::vector<boost::shared_ptr<pvdb::Node> > nodes;
-  //const boost::shared_ptr<pvdb::Concept> focal_concept = pvdb::ConceptFactory::DeepCopy(item->GetConcept());
   //assert(focal_concept);
   const boost::shared_ptr<pvdb::Node> focal_node = item->GetNode(); //FIX?
-  //const boost::shared_ptr<pvdb::Node> focal_node = pvdb::NodeFactory::DeepCopy(item->GetNode()); //BUG 2013-01-06
   assert(focal_node);
   nodes.push_back(focal_node);
+
   assert(nodes[0]->GetConcept() == item->GetNode()->GetConcept());
 
   std::vector<boost::shared_ptr<pvdb::Edge> > edges;
@@ -204,10 +206,7 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
       ? qtedge->GetTo()->GetNode()
       : qtedge->GetFrom()->GetNode();
     assert(other_node);
-    const boost::shared_ptr<pvdb::Node> node = other_node; //2013-05-31 REJECT DEEP COPIES
-    //const boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::DeepCopy(other_node); //2013-05-31 REJECT DEEP COPIES
-    assert(node);
-    nodes.push_back(node);
+    nodes.push_back(other_node);
 
     const int from_index = qtedge->GetFrom()->GetNode() == focal_node ? 0 : i + 1;
     const int to_index   = qtedge->GetFrom()->GetNode() == focal_node ? i + 1 : 0;
@@ -217,12 +216,12 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
     assert(qtedge);
     assert(qtedge->GetEdge());
     const boost::shared_ptr<pvdb::Edge> edge(pvdb::EdgeFactory::Create(
-      qtedge->GetEdge()->GetConcept(), //Deep copy
-      qtedge->GetEdge()->GetX(), //FIX 2013-04-19
-      qtedge->GetEdge()->GetY(), //FIX 2013-04-19
-      from_index,
+      qtedge->GetEdge()->GetConcept(),
+      qtedge->GetEdge()->GetX(),
+      qtedge->GetEdge()->GetY(),
+      focal_node,
       qtedge->GetEdge()->HasTailArrow(),
-      to_index,
+      other_node,
       qtedge->GetEdge()->HasHeadArrow()
       )
     );

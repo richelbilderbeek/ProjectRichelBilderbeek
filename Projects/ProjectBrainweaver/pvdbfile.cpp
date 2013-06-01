@@ -146,7 +146,7 @@ const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<concept_map>.*</concept_map>)"));
     assert(v.size() == 1);
-    f->m_concept_map = ConceptMap::FromXml(v[0]);
+    f->m_concept_map = ConceptMapFactory::FromXml(v[0]);
   }
   //m_student_name
   {

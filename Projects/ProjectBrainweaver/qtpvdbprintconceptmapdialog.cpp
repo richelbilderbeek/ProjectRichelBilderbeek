@@ -19,15 +19,24 @@
 #include "pvdbconceptmapfactory.h"
 #include "qtpvdbratedconceptwidget.h"
 #include "ui_qtpvdbprintconceptmapdialog.h"
+#include "qtpvdbconceptmapdisplaywidget.h"
 
 QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   const boost::shared_ptr<pvdb::File>& file,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintConceptMapDialog),
-    m_file(file)
+    m_file(file),
+    m_widget(new QtPvdbConceptMapDisplayWidget(file->GetConceptMap()))
 {
   ui->setupUi(this);
+
+  {
+    assert(m_widget);
+    assert(ui->frame_concept_map->layout());
+    ui->frame_concept_map->layout()->addWidget(m_widget);
+  }
+
 
   ui->label_student_name->setText(
     (std::string("Concept map van ")
@@ -116,16 +125,16 @@ void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
 {
   //Concept map
   {
-    const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
-      = m_file->GetConceptMap();
     //const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
-    //  = pvdb::ConceptMapFactory::DeepCopy(m_file->GetConceptMap()); //2013-05-31 REJECT DEEP COPIES
-    ui->concept_map->ReadFromConceptMap(copy_concept_map);
-    ui->concept_map->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->concept_map->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->concept_map->setMinimumHeight(ui->concept_map->scene()->itemsBoundingRect().height() + 2);
+    //  = m_file->GetConceptMap();
+    assert(m_widget->GetConceptMap());
+
+    //m_widget->ReadFromConceptMap(copy_concept_map);
+    m_widget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_widget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_widget->setMinimumHeight(m_widget->scene()->itemsBoundingRect().height() + 2);
     //Fit concept map to widget
-    ui->concept_map->fitInView(ui->concept_map->scene()->itemsBoundingRect());
+    m_widget->fitInView(m_widget->scene()->itemsBoundingRect());
   }
   //Concept map as text
   {
@@ -135,8 +144,10 @@ void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     const int n_nodes = static_cast<int>(m_file->GetConceptMap()->GetNodes().size());
     for (int node_index = 1; node_index != n_nodes; ++node_index) //1: skip center node
     {
+      const boost::shared_ptr<pvdb::Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
+      assert(node);
       QtPvdbRatedConceptWidget * const widget
-        = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node_index);
+        = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node);
       assert(widget);
       widget->HideRating();
       ui->frame_concept_map_as_text->layout()->addWidget(widget);

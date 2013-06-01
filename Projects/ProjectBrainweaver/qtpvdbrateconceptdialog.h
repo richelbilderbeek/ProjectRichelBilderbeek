@@ -51,6 +51,7 @@ private:
   ///Cannot be const, only used in calculating the suggestions
   const boost::shared_ptr<pvdb::ConceptMap> m_sub_concept_map;
 
+  QtPvdbConceptMapRateWidget * const m_widget;
 
   ///Test this class
   static void Test();

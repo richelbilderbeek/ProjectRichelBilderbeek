@@ -7,6 +7,8 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpvdbtestconceptmapeditwidgetdialog.h"
 
+#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
+
 #include <cassert>
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -169,3 +171,5 @@ void QtPvdbTestConceptMapEditWidgetDialog::on_button_modify_clicked()
   );
   ui->concept_map->GetScene()->update();
 }
+
+#endif

@@ -35,7 +35,7 @@
         <x>0</x>
         <y>0</y>
         <width>703</width>
-        <height>971</height>
+        <height>961</height>
        </rect>
       </property>
       <property name="maximumSize">
@@ -113,9 +113,6 @@
              <string>Concept map</string>
             </property>
            </widget>
-          </item>
-          <item>
-           <widget class="QtPvdbConceptMapRateWidget" name="concept_map" native="true"/>
           </item>
          </layout>
         </widget>
@@ -479,14 +476,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QtPvdbConceptMapRateWidget</class>
-   <extends>QWidget</extends>
-   <header>qtpvdbconceptmapratewidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="Brainweaver.qrc"/>
  </resources>

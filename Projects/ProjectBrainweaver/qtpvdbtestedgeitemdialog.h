@@ -6,6 +6,8 @@
 #undef __STRICT_ANSI__
 #endif
 
+#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
+
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
@@ -59,5 +61,7 @@ private:
 
   static void Test();
 };
+#endif
 
 #endif // QTPVDBTESTEDGEITEMDIALOG_H
+

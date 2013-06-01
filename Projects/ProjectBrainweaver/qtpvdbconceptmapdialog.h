@@ -60,8 +60,13 @@ private:
   ///Must we go back to the student menu?
   bool m_back_to_menu;
 
-  ///The File
+  ///The file
   boost::shared_ptr<pvdb::File> m_file;
+
+  ///The concept map widget
+  QtPvdbConceptMapEditWidget * const m_widget;
+
+  static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::File> file);
 
   ///NEW 2013-01-07
   void OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item);

@@ -46,6 +46,10 @@ void QtPvdbConceptMapDialog::Test()
     []
     {
   #endif
+
+  typedef std::vector<boost::shared_ptr<pvdb::Edge> > Edges;
+  typedef std::vector<boost::shared_ptr<pvdb::Node> > Nodes;
+
   //If this dialog is fed with a file with only a focal question, it will create a one-node concept map
   {
     const std::string question = "TESTQUESTION";
@@ -105,13 +109,16 @@ void QtPvdbConceptMapDialog::Test()
     const boost::shared_ptr<pvdb::Node> node_a(pvdb::NodeFactory::Create(question));
     const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(3));
     const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(4));
-    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,0,false,1,true));
-    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,1,false,2,true));
-    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,2,false,0,true));
+
+    const Nodes nodes = { node_a, node_b, node_c };
+
+    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<pvdb::ConceptMap> concept_map(
       pvdb::ConceptMapFactory::Create(
-        { node_a, node_b, node_c },
+        nodes,
         { edge_a, edge_b, edge_c }
       )
     );
@@ -137,13 +144,16 @@ void QtPvdbConceptMapDialog::Test()
     const boost::shared_ptr<pvdb::Node> node_a(pvdb::NodeFactory::Create(question));
     const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
     const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,0,false,1,true));
-    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,1,false,2,true));
-    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,2,false,0,true));
+
+    const Nodes nodes = { node_a, node_b, node_c };
+
+    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<pvdb::ConceptMap> concept_map(
       pvdb::ConceptMapFactory::Create(
-        { node_a, node_b, node_c },
+        nodes,
         { edge_a, edge_b, edge_c }
       )
     );
@@ -174,13 +184,16 @@ void QtPvdbConceptMapDialog::Test()
     const boost::shared_ptr<pvdb::Node> node_a(pvdb::NodeFactory::Create(question));
     const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
     const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,0,false,1,true));
-    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,1,false,2,true));
-    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,2,false,0,true));
+
+    const Nodes nodes = { node_a, node_b, node_c };
+
+    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<pvdb::ConceptMap> concept_map(
       pvdb::ConceptMapFactory::Create(
-        { node_a, node_b, node_c },
+        nodes,
         { edge_a, edge_b, edge_c }
       )
     );

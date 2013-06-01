@@ -65,9 +65,12 @@ const std::vector<T> Sort(const std::vector<T>& v)
   return w;
 }
 
-QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(QWidget* parent)
+QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+  QWidget* parent)
   : QtKeyboardFriendlyGraphicsView(parent),
-    m_examples(new QtPvdbExamplesItem)
+    m_examples(new QtPvdbExamplesItem),
+    m_concept_map(concept_map)
 {
 
   //Cannot test this ABC here, its derived classes will test themselves
@@ -100,7 +103,6 @@ QtPvdbConceptMapWidget::~QtPvdbConceptMapWidget()
 const std::vector<QtPvdbEdgeItem*> QtPvdbConceptMapWidget::FindEdges(
   const QtPvdbNodeItem* const from) const
 {
-
   assert(from);
   const std::vector<QtPvdbEdgeItem*> v = Collect<QtPvdbEdgeItem>(scene());
   std::vector<QtPvdbEdgeItem*> w;
@@ -113,7 +115,7 @@ const std::vector<QtPvdbEdgeItem*> QtPvdbConceptMapWidget::FindEdges(
   return w;
 }
 
-const QtPvdbEdgeItem * QtPvdbConceptMapWidget::FindEdge(
+const QtPvdbEdgeItem * QtPvdbConceptMapWidget::FindQtEdge(
   const QtPvdbNodeItem* const from,
   const QtPvdbNodeItem* const to) const
 {
@@ -132,6 +134,17 @@ const QtPvdbEdgeItem * QtPvdbConceptMapWidget::FindEdge(
   );
   if (iter == edge_concepts.end()) return nullptr;
   return * iter;
+}
+
+QtPvdbNodeItem * QtPvdbConceptMapWidget::FindQtNode(const boost::shared_ptr<pvdb::Node> node) const
+{
+  const std::vector<QtPvdbNodeItem *> qtnodes = Collect<QtPvdbNodeItem>(scene());
+  for (QtPvdbNodeItem * qtnode: qtnodes)
+  {
+    if (qtnode->GetNode() == node) return qtnode;
+  }
+  assert(!"Should always find QtNode");
+  throw std::logic_error("QtPvdbConceptMapWidget::FindQtNode");
 }
 
 const QtPvdbNodeItem * QtPvdbConceptMapWidget::GetCenterNode() const
@@ -236,6 +249,7 @@ void QtPvdbConceptMapWidget::OnRequestSceneUpdate()
 
 }
 
+#ifdef PERHAPS_THIS_IS_NEEDED_AFTER_ALL_QUESTIONMARK
 void QtPvdbConceptMapWidget::ReadFromConceptMap(const boost::shared_ptr<pvdb::ConceptMap>& map)
 {
 
@@ -307,6 +321,7 @@ void QtPvdbConceptMapWidget::ReadFromConceptMap(const boost::shared_ptr<pvdb::Co
   TestMe(map);
   #endif
 }
+#endif
 
 void QtPvdbConceptMapWidget::RepositionItems()
 {
@@ -579,15 +594,19 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapWidget::WriteToConcept
       assert(to_index >= 0 && to_index < static_cast<int>(qtnodes.size()));
       const bool tail_arrow = qtedge->GetEdge()->HasTailArrow();
       const bool head_arrow = qtedge->GetEdge()->HasHeadArrow();
+      const auto from_node = qtedge->GetEdge()->GetFrom();
+      assert(from_node);
+      const auto to_node   = qtedge->GetEdge()->GetTo();
+      assert(to_node);
 
       boost::shared_ptr<pvdb::Edge> edge(
         pvdb::EdgeFactory::Create(
           concept,
           qtedge->pos().x(),
           qtedge->pos().y(),
-          from_index,
+          from_node,
           tail_arrow,
-          to_index,
+          to_node,
           head_arrow));
       edges.push_back(edge);
     }

@@ -40,7 +40,8 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbRateConceptDialog),
     m_concept(sub_concept_map->GetNodes().at(0)->GetConcept()),
-    m_sub_concept_map(sub_concept_map)
+    m_sub_concept_map(sub_concept_map),
+    m_widget(new QtPvdbConceptMapRateWidget(sub_concept_map))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -51,7 +52,11 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   assert(!m_sub_concept_map->GetNodes().empty());
   assert(m_sub_concept_map->GetNodes()[0]);
 
-  ui->widget->ReadFromConceptMap(sub_concept_map);
+  {
+    assert(m_widget);
+    assert(ui->concept_map_layout);
+    ui->concept_map_layout->addWidget(m_widget);
+  }
 
   assert(m_concept);
 

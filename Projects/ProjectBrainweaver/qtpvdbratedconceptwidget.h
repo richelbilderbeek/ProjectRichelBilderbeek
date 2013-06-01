@@ -24,7 +24,7 @@ public:
 
   explicit QtPvdbRatedConceptWidget(
     const boost::shared_ptr<const pvdb::ConceptMap> concept_map,
-    const int node_index,
+    const boost::shared_ptr<const pvdb::Node> node,
     QWidget *parent = 0);
   ~QtPvdbRatedConceptWidget();
 

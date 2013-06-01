@@ -15,6 +15,7 @@
 #include <QRegExp>
 #include "pvdbconcept.h"
 #include "pvdbedgefactory.h"
+#include "pvdbnode.h"
 #include "pvdbconceptfactory.h"
 #include "pvdbhelper.h"
 #include "trace.h"
@@ -27,9 +28,9 @@ pvdb::Edge::Edge(
   const boost::shared_ptr<pvdb::Concept> & concept,
   const double concept_x,
   const double concept_y,
-  const int from,
+  const boost::shared_ptr<pvdb::Node> from,
   const bool tail_arrow,
-  const int to,
+  const boost::shared_ptr<pvdb::Node> to,
   const bool head_arrow)
   : m_concept(concept),
     m_from(from),
@@ -42,115 +43,16 @@ pvdb::Edge::Edge(
   #ifndef NDEBUG
   Test();
   #endif
-  assert(from >= 0);
-  assert(to >= 0);
+  assert(from);
+  assert(to);
   assert(from != to);
   assert(m_concept);
 }
 
-const boost::shared_ptr<pvdb::Edge> pvdb::Edge::FromXml(const std::string& s)
+
+void pvdb::Edge::SetFrom(const boost::shared_ptr<pvdb::Node> from)
 {
-  assert(s.size() >= 13);
-  assert(s.substr(0,6) == std::string("<edge>"));
-  assert(s.substr(s.size() - 7,7) == std::string("</edge>"));
-  //m_concept
-  boost::shared_ptr<pvdb::Concept> concept;
-  {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
-    assert(v.size() == 1);
-    concept = Concept::FromXml(v[0]);
-  }
-  //m_from
-  int from = -1;
-  {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<from>.*</from>)"));
-    assert(v.size() == 1);
-    from = boost::lexical_cast<int>(StripXmlTag(v[0]));
-  }
-  //m_head_arrow
-  bool head_arrow = false;
-  {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<head_arrow>.*</head_arrow>)"));
-    assert(v.size() == 1);
-    head_arrow = boost::lexical_cast<bool>(StripXmlTag(v[0]));
-  }
-  //m_tail_arrow
-  bool tail_arrow = false;
-  {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<tail_arrow>.*</tail_arrow>)"));
-    assert(v.size() == 1);
-    tail_arrow = boost::lexical_cast<bool>(StripXmlTag(v[0]));
-  }
-  //m_to
-  int to = -1;
-  {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<to>.*</to>)"));
-    assert(v.size() == 1);
-    to = boost::lexical_cast<int>(StripXmlTag(v[0]));
-  }
-  //m_x
-  double x = 0.0;
-  {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
-    assert(v.size() == 1);
-    x = boost::lexical_cast<double>(StripXmlTag(v[0]));
-  }
-  //m_y
-  double y = 0.0;
-  {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
-    assert(v.size() == 1);
-    y = boost::lexical_cast<double>(StripXmlTag(v[0]));
-  }
-
-  const boost::shared_ptr<pvdb::Edge> edge(new Edge(concept,x,y,from,tail_arrow,to,head_arrow));
-  assert(edge);
-  return edge;
-}
-
-const std::vector<boost::shared_ptr<pvdb::Edge> > pvdb::Edge::GetTests()
-{
-  const auto test_concepts = ConceptFactory::GetTests();
-
-  std::vector<boost::shared_ptr<pvdb::Edge> > result;
-
-  std::for_each(test_concepts.begin(),test_concepts.end(),
-    [&result](const boost::shared_ptr<pvdb::Concept>& concept)
-    {
-      {
-        const boost::shared_ptr<pvdb::Edge> edge(new Edge(concept,1.2,3.4,0,false,1,true));
-        result.push_back(edge);
-      }
-      /*
-      {
-        const boost::shared_ptr<pvdb::Edge> edge(new Edge(concept,0,2,true));
-        result.push_back(edge);
-      }
-      {
-        const boost::shared_ptr<pvdb::Edge> edge(new Edge(concept,0,3,true));
-        result.push_back(edge);
-      }
-      {
-        const boost::shared_ptr<pvdb::Edge> edge(new Edge(concept,1,2,false));
-        result.push_back(edge);
-      }
-      {
-        const boost::shared_ptr<pvdb::Edge> edge(new Edge(concept,1,3,false));
-        result.push_back(edge);
-      }
-      {
-        const boost::shared_ptr<pvdb::Edge> edge(new Edge(concept,2,3,false));
-        result.push_back(edge);
-      }
-      */
-    }
-  );
-  return result;
-}
-
-void pvdb::Edge::SetFrom(const int from)
-{
-  assert(from >= 0);
+  assert(from);
   if (m_from != from)
   {
     m_from = from;
@@ -176,12 +78,13 @@ void pvdb::Edge::SetTailArrow(const bool has_tail_arrow)
   }
 }
 
-void pvdb::Edge::SetTo(const int to)
+void pvdb::Edge::SetTo(const boost::shared_ptr<pvdb::Node> to)
 {
-  assert(to >= 0);
+  assert(to);
   if (m_to != to)
   {
     m_to = to;
+
     m_signal_changed(this);
   }
 }
@@ -202,20 +105,21 @@ void pvdb::Edge::Test()
   //Test member variables
   TRACE("Started pvdb::Edge::Test");
   {
-    const std::vector<boost::shared_ptr<const pvdb::Edge> > v = AddConst(Edge::GetTests());
-    std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<const pvdb::Edge>& edge)
-      {
-        //Test copy constructor
-        assert(edge);
-        const boost::shared_ptr<const pvdb::Edge> c = pvdb::EdgeFactory::DeepCopy(edge);
-        assert(c);
-        assert(edge == c); assert(c == edge);
-        const std::string s = ToXml(c);
-        const boost::shared_ptr<pvdb::Edge> d = FromXml(s);
-        assert(c == d);
-      }
-    );
+    const auto nodes = Node::GetTests();
+    assert(nodes.size() >= 2);
+    const auto node_from = nodes[0];
+    const auto node_to   = nodes[1];
+    for (const boost::shared_ptr<const pvdb::Edge>& edge: EdgeFactory::GetTests(node_from,node_to))
+    {
+      //Test copy constructor
+      assert(edge);
+      const boost::shared_ptr<const pvdb::Edge> c = pvdb::EdgeFactory::DeepCopy(edge,node_from,node_to);
+      assert(c);
+      assert(edge == c); assert(c == edge);
+      const std::string s = ToXml(c);
+      const boost::shared_ptr<pvdb::Edge> d = pvdb::EdgeFactory::FromXml(s,nodes);
+      assert(c == d);
+    }
   }
   TRACE("Edge::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507

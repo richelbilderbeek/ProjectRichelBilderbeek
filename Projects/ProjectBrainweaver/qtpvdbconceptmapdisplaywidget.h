@@ -7,6 +7,7 @@
 #endif
 
 #include <boost/shared_ptr.hpp>
+#include <boost/noncopyable.hpp>
 #include "qtpvdbconceptmapwidget.h"
 
 #ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
@@ -23,14 +24,18 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
 {
   typedef QtPvdbConceptMapDisplayWidget This_t;
 
-  QtPvdbConceptMapDisplayWidget(QWidget* parent = 0);
+  QtPvdbConceptMapDisplayWidget(
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+    QWidget* parent = 0);
   ~QtPvdbConceptMapDisplayWidget() {}
-  QtPvdbConceptMapDisplayWidget(const QtPvdbConceptMapDisplayWidget& other) = delete;
-  QtPvdbConceptMapDisplayWidget& operator=(const QtPvdbConceptMapDisplayWidget& other) = delete;
+  //QtPvdbConceptMapDisplayWidget(const QtPvdbConceptMapDisplayWidget& other) = delete;
+  //QtPvdbConceptMapDisplayWidget& operator=(const QtPvdbConceptMapDisplayWidget& other) = delete;
 
+  #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
   std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const;
+  #endif
 
   ///Do something random
   void DoRandomStuff() {}
@@ -48,9 +53,7 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
 private:
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as it has a Concept on it that the user might want to edit
-  void AddEdge(
-    const boost::shared_ptr<pvdb::Edge>& edge,
-    const std::vector<QtPvdbNodeItem*>& qtnodes);
+  void AddEdge(const boost::shared_ptr<pvdb::Edge>& edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node>& node);

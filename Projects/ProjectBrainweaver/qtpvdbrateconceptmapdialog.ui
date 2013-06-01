@@ -32,7 +32,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QtPvdbConceptMapRateWidget" name="widget"/>
+    <widget class="QWidget" name="widget" native="true"/>
    </item>
    <item>
     <widget class="QLabel" name="label">
@@ -77,13 +77,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QtPvdbConceptMapRateWidget</class>
-   <extends>QGraphicsView</extends>
-   <header>qtpvdbconceptmapratewidget.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="Brainweaver.qrc"/>
  </resources>

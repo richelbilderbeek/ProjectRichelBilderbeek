@@ -46,6 +46,8 @@ private slots:
 private:
   Ui::QtPvdbRateConceptMapDialog *ui;
   boost::shared_ptr<pvdb::File> m_file;
+  QtPvdbConceptMapRateWidget * const m_widget;
+
   static void Test();
 };
 

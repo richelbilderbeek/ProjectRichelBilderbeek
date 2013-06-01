@@ -24,6 +24,7 @@
 #include "pvdbcompetency.h"
 #include "pvdbedgefactory.h"
 #include "pvdbexamplefactory.h"
+#include "pvdbhelper.h"
 #include "pvdbexamplesfactory.h"
 #include "pvdbnodefactory.h"
 #include "pvdbhelper.h"
@@ -50,6 +51,9 @@ void pvdb::ConceptMap::Test()
     {
   #endif
   TRACE("Started pvdb::ConceptMap::Test");
+  typedef std::vector<boost::shared_ptr<pvdb::Edge> > Edges;
+  typedef std::vector<boost::shared_ptr<pvdb::Node> > Nodes;
+
   //Brute force tests
   {
     const std::vector<boost::shared_ptr<const pvdb::ConceptMap> > v = AddConst(pvdb::ConceptMapFactory::GetAllTests());
@@ -61,7 +65,7 @@ void pvdb::ConceptMap::Test()
         assert(c == m);
         //Test XML conversions
         const std::string s = ToXml(c);
-        const boost::shared_ptr<pvdb::ConceptMap> d = FromXml(s);
+        const boost::shared_ptr<pvdb::ConceptMap> d = pvdb::ConceptMapFactory::FromXml(s);
         assert(c == d);
       }
     );
@@ -229,12 +233,16 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::Concept> concept_e22(pvdb::ConceptFactory::Create("8"));
       const boost::shared_ptr<pvdb::Concept> concept_e23(pvdb::ConceptFactory::Create("7"));
 
-      const boost::shared_ptr<pvdb::Edge> edge_11(pvdb::EdgeFactory::Create(concept_e11,1.2,3.4,0,false,1,true));
-      const boost::shared_ptr<pvdb::Edge> edge_12(pvdb::EdgeFactory::Create(concept_e12,2.3,4.5,0,false,2,true));
-      const boost::shared_ptr<pvdb::Edge> edge_13(pvdb::EdgeFactory::Create(concept_e13,3.4,5.6,1,false,2,true));
-      const boost::shared_ptr<pvdb::Edge> edge_21(pvdb::EdgeFactory::Create(concept_e21,4.5,6.7,0,false,1,true));
-      const boost::shared_ptr<pvdb::Edge> edge_22(pvdb::EdgeFactory::Create(concept_e22,5.6,7.8,0,false,2,true));
-      const boost::shared_ptr<pvdb::Edge> edge_23(pvdb::EdgeFactory::Create(concept_e23,6.7,8.9,1,false,2,true));
+      const Nodes nodes_1 = { node_11, node_12, node_13 };
+      const Nodes nodes_2 = { node_21, node_22, node_23 };
+
+      const boost::shared_ptr<pvdb::Edge> edge_11(pvdb::EdgeFactory::Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
+      const boost::shared_ptr<pvdb::Edge> edge_12(pvdb::EdgeFactory::Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
+      const boost::shared_ptr<pvdb::Edge> edge_13(pvdb::EdgeFactory::Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
+
+      const boost::shared_ptr<pvdb::Edge> edge_21(pvdb::EdgeFactory::Create(concept_e21,4.5,6.7,nodes_2.at(0),false,nodes_2.at(1),true));
+      const boost::shared_ptr<pvdb::Edge> edge_22(pvdb::EdgeFactory::Create(concept_e22,5.6,7.8,nodes_2.at(0),false,nodes_2.at(2),true));
+      const boost::shared_ptr<pvdb::Edge> edge_23(pvdb::EdgeFactory::Create(concept_e23,6.7,8.9,nodes_2.at(1),false,nodes_2.at(2),true));
 
       const boost::shared_ptr<pvdb::ConceptMap> map_a(pvdb::ConceptMapFactory::Create(
         { node_11, node_12, node_13 },
@@ -262,22 +270,6 @@ void pvdb::ConceptMap::Test()
 
 
     {
-      const boost::shared_ptr<pvdb::Concept> concept_n21(pvdb::ConceptFactory::Create("1"));
-      const boost::shared_ptr<pvdb::Concept> concept_n22(pvdb::ConceptFactory::Create("3"));
-      const boost::shared_ptr<pvdb::Concept> concept_n23(pvdb::ConceptFactory::Create("2"));
-
-      const boost::shared_ptr<pvdb::Node> node_21(pvdb::NodeFactory::Create(concept_n21,123,234));
-      const boost::shared_ptr<pvdb::Node> node_22(pvdb::NodeFactory::Create(concept_n22,321,432));
-      const boost::shared_ptr<pvdb::Node> node_23(pvdb::NodeFactory::Create(concept_n23,345,456));
-
-      const boost::shared_ptr<pvdb::Concept> concept_e21(pvdb::ConceptFactory::Create("2->3"));
-      const boost::shared_ptr<pvdb::Concept> concept_e22(pvdb::ConceptFactory::Create("1->2"));
-      const boost::shared_ptr<pvdb::Concept> concept_e23(pvdb::ConceptFactory::Create("1->3"));
-
-      const boost::shared_ptr<pvdb::Edge> edge_21(pvdb::EdgeFactory::Create(concept_e21,1.2,3.4,2,false,1,true));
-      const boost::shared_ptr<pvdb::Edge> edge_22(pvdb::EdgeFactory::Create(concept_e22,2.3,4.5,0,false,2,true));
-      const boost::shared_ptr<pvdb::Edge> edge_23(pvdb::EdgeFactory::Create(concept_e23,3.4,4.5,0,false,1,true));
-
       const boost::shared_ptr<pvdb::Concept> concept_n11(pvdb::ConceptFactory::Create("1"));
       const boost::shared_ptr<pvdb::Concept> concept_n12(pvdb::ConceptFactory::Create("2"));
       const boost::shared_ptr<pvdb::Concept> concept_n13(pvdb::ConceptFactory::Create("3"));
@@ -290,9 +282,28 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::Concept> concept_e12(pvdb::ConceptFactory::Create("1->3"));
       const boost::shared_ptr<pvdb::Concept> concept_e13(pvdb::ConceptFactory::Create("2->3"));
 
-      const boost::shared_ptr<pvdb::Edge> edge_11(pvdb::EdgeFactory::Create(concept_e11,1.2,3.4,0,false,1,true));
-      const boost::shared_ptr<pvdb::Edge> edge_12(pvdb::EdgeFactory::Create(concept_e12,2.3,4.5,0,false,2,true));
-      const boost::shared_ptr<pvdb::Edge> edge_13(pvdb::EdgeFactory::Create(concept_e13,3.4,5.6,1,false,2,true));
+      const boost::shared_ptr<pvdb::Concept> concept_n21(pvdb::ConceptFactory::Create("1"));
+      const boost::shared_ptr<pvdb::Concept> concept_n22(pvdb::ConceptFactory::Create("3"));
+      const boost::shared_ptr<pvdb::Concept> concept_n23(pvdb::ConceptFactory::Create("2"));
+
+      const boost::shared_ptr<pvdb::Node> node_21(pvdb::NodeFactory::Create(concept_n21,123,234));
+      const boost::shared_ptr<pvdb::Node> node_22(pvdb::NodeFactory::Create(concept_n22,321,432));
+      const boost::shared_ptr<pvdb::Node> node_23(pvdb::NodeFactory::Create(concept_n23,345,456));
+
+      const boost::shared_ptr<pvdb::Concept> concept_e21(pvdb::ConceptFactory::Create("2->3"));
+      const boost::shared_ptr<pvdb::Concept> concept_e22(pvdb::ConceptFactory::Create("1->2"));
+      const boost::shared_ptr<pvdb::Concept> concept_e23(pvdb::ConceptFactory::Create("1->3"));
+
+      const Nodes nodes_1 = { node_11, node_12, node_13 };
+      const Nodes nodes_2 = { node_21, node_22, node_23 };
+
+      const boost::shared_ptr<pvdb::Edge> edge_21(pvdb::EdgeFactory::Create(concept_e21,1.2,3.4,nodes_2.at(2),false,nodes_2.at(1),true));
+      const boost::shared_ptr<pvdb::Edge> edge_22(pvdb::EdgeFactory::Create(concept_e22,2.3,4.5,nodes_2.at(0),false,nodes_2.at(2),true));
+      const boost::shared_ptr<pvdb::Edge> edge_23(pvdb::EdgeFactory::Create(concept_e23,3.4,4.5,nodes_2.at(0),false,nodes_2.at(1),true));
+
+      const boost::shared_ptr<pvdb::Edge> edge_11(pvdb::EdgeFactory::Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
+      const boost::shared_ptr<pvdb::Edge> edge_12(pvdb::EdgeFactory::Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
+      const boost::shared_ptr<pvdb::Edge> edge_13(pvdb::EdgeFactory::Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
 
       const boost::shared_ptr<pvdb::ConceptMap> map_a(pvdb::ConceptMapFactory::Create(
         { node_11, node_12, node_13 },
@@ -422,7 +433,7 @@ void pvdb::ConceptMap::Test()
         const boost::shared_ptr<pvdb::ConceptMap> m(pvdb::ConceptMapFactory::CreateFromCluster("Focal question",cluster));
         assert(m);
         const std::string s = pvdb::ConceptMap::ToXml(m);
-        const boost::shared_ptr<pvdb::ConceptMap> n = pvdb::ConceptMap::FromXml(s);
+        const boost::shared_ptr<pvdb::ConceptMap> n = pvdb::ConceptMapFactory::FromXml(s);
         assert(n);
         assert(m == n);
       }

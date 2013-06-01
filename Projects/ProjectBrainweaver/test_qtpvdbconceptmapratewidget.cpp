@@ -29,8 +29,13 @@ void QtPvdbConceptMapRateWidget::Test()
   #endif
   //Test base class
   {
-    boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t);
-    QtPvdbConceptMapWidget::Test(widget);
+    const auto v = pvdb::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<pvdb::ConceptMap> concept_map: v)
+    {
+      boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
+      assert(widget);
+      QtPvdbConceptMapWidget::Test(widget);
+    }
   }
   {
     //QtPvdbConceptMapRateWidget w;

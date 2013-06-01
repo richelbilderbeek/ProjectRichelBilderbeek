@@ -19,14 +19,18 @@ struct QtPvdbConceptMapRateWidget : public QtPvdbConceptMapWidget
 {
   typedef QtPvdbConceptMapRateWidget This_t;
 
-  QtPvdbConceptMapRateWidget(QWidget* parent = 0);
+  QtPvdbConceptMapRateWidget(
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+    QWidget* parent = 0);
   ~QtPvdbConceptMapRateWidget() {}
   QtPvdbConceptMapRateWidget(const QtPvdbConceptMapRateWidget& other) = delete;
   QtPvdbConceptMapRateWidget& operator=(const QtPvdbConceptMapRateWidget& other) = delete;
 
+  #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
   std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const;
+  #endif
 
   ///Do something random
   void DoRandomStuff();
@@ -45,8 +49,7 @@ private:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   void AddEdge(
-    const boost::shared_ptr<pvdb::Edge>& edge,
-    const std::vector<QtPvdbNodeItem*>& qtnodes);
+    const boost::shared_ptr<pvdb::Edge>& edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///For rating and editing, the node must be non-cost

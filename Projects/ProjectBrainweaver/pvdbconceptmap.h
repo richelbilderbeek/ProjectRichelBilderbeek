@@ -39,9 +39,6 @@ struct ConceptMap : public boost::noncopyable
   ///Check if the ConceptMap is empty
   bool Empty() const;
 
-  ///Obtain a ConceptMap from an XML std::string
-  static const boost::shared_ptr<pvdb::ConceptMap> FromXml(const std::string& s);
-
   ///Get the edges
   const std::vector<boost::shared_ptr<const pvdb::Edge> >  GetEdges() const;
   const std::vector<boost::shared_ptr<      Edge> >& GetEdges() { return m_edges; }

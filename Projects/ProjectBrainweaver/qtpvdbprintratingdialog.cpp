@@ -35,7 +35,8 @@ QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintRatingDialog),
-    m_file(file)
+    m_file(file),
+    m_widget(new QtPvdbConceptMapRateWidget(file->GetConceptMap()))
 {
   ui->setupUi(this);    
   assert(m_file);
@@ -51,6 +52,14 @@ QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
     (std::string("ASSESSOR: ")
       + m_file->GetAssessorName()).c_str()
   );
+
+  {
+    assert(m_widget);
+    assert(ui->frame_concept_map->layout());
+    ui->frame_concept_map->layout()->addWidget(m_widget);
+  }
+
+
   {
     std::time_t my_time;
     std::time( &my_time );
@@ -150,17 +159,17 @@ void QtPvdbPrintRatingDialog::showEvent(QShowEvent *)
 {
   //Concept map
   {
-    const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
-      = m_file->GetConceptMap();
+    //const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
+    //  = m_file->GetConceptMap();
     //const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
     //  = pvdb::ConceptMapFactory::DeepCopy(m_file->GetConceptMap()); //2013-05-31 REJECT DEEP COPIES
-    ui->concept_map->ReadFromConceptMap(copy_concept_map);
-    ui->concept_map->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->concept_map->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->concept_map->setMaximumHeight(ui->concept_map->scene()->itemsBoundingRect().height() + 2);
-    ui->concept_map->setMinimumHeight(ui->concept_map->scene()->itemsBoundingRect().height() + 2);
+    //m_widget->ReadFromConceptMap(copy_concept_map);
+    m_widget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_widget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_widget->setMaximumHeight(m_widget->scene()->itemsBoundingRect().height() + 2);
+    m_widget->setMinimumHeight(m_widget->scene()->itemsBoundingRect().height() + 2);
     //Fit concept map to widget
-    ui->concept_map->fitInView(ui->concept_map->scene()->itemsBoundingRect());
+    m_widget->fitInView(m_widget->scene()->itemsBoundingRect());
   }
   //Concept map as text
   {
@@ -169,8 +178,10 @@ void QtPvdbPrintRatingDialog::showEvent(QShowEvent *)
     const int n_nodes = static_cast<int>(m_file->GetConceptMap()->GetNodes().size());
     for (int node_index = 1; node_index != n_nodes; ++node_index) //1: skip center node
     {
+      const auto node = m_file->GetConceptMap()->GetNodes().at(node_index);
+      assert(node);
       QtPvdbRatedConceptWidget * const widget
-        = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node_index);
+        = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node);
       assert(widget);
       ui->widget_concept_map_as_text->layout()->addWidget(widget);
     }

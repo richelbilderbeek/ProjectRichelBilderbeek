@@ -6,6 +6,7 @@
 #undef __STRICT_ANSI__
 #endif
 
+#include <boost/noncopyable.hpp>
 #include "qtkeyboardfriendlygraphicsview.h"
 
 #ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
@@ -19,15 +20,17 @@
 #endif
 
 
-class QtPvdbConceptMapWidget : public QtKeyboardFriendlyGraphicsView
+class QtPvdbConceptMapWidget : public QtKeyboardFriendlyGraphicsView, boost::noncopyable
 {
   Q_OBJECT
 
 public:
-  explicit QtPvdbConceptMapWidget(QWidget* parent = 0);
+  explicit QtPvdbConceptMapWidget(
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+    QWidget* parent = 0);
   virtual ~QtPvdbConceptMapWidget();
-  QtPvdbConceptMapWidget& operator=(const QtPvdbConceptMapWidget& other) = delete;
-  QtPvdbConceptMapWidget(const QtPvdbConceptMapWidget& other) = delete;
+  //QtPvdbConceptMapWidget& operator=(const QtPvdbConceptMapWidget& other) = delete;
+  //QtPvdbConceptMapWidget(const QtPvdbConceptMapWidget& other) = delete;
 
   ///Clone the derived class
   ///std::unique_ptr is used to:
@@ -37,12 +40,17 @@ public:
   ///TOO MUCH WORK, TOO LITTLE GAIN
   //virtual std::unique_ptr<QtPvdbConceptMapWidget> Clone() const = 0;
 
+  #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
   virtual std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const = 0;
+  #endif
 
   ///Do something random
   virtual void DoRandomStuff() = 0;
+
+  ///Obtain the concept map
+  const boost::shared_ptr<const pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
 
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const;
@@ -56,7 +64,7 @@ public:
   ///  assert(m == n);
   ///instead, use
   ///  assert(HasSameContent(m,n));
-  void ReadFromConceptMap(const boost::shared_ptr<pvdb::ConceptMap>& map);
+  //void ReadFromConceptMap(const boost::shared_ptr<pvdb::ConceptMap>& map);
 
   ///Shuffle the concepts (used in debugging)
   void Shuffle();
@@ -70,19 +78,18 @@ public:
   const boost::shared_ptr<pvdb::ConceptMap> WriteToConceptMap() const;
 
 public slots:
+
   virtual void keyPressEvent(QKeyEvent *event);
 
 protected:
+
 
   ///The item showing the examples
   QtPvdbExamplesItem * m_examples;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
-  ///qtnodes are the QtNodeItems with the same indices as in a pvdb::ConceptMap
-  virtual void AddEdge(
-    const boost::shared_ptr<pvdb::Edge>& edge,
-    const std::vector<QtPvdbNodeItem*>& qtnodes) = 0;
+  virtual void AddEdge(const boost::shared_ptr<pvdb::Edge>& edge) = 0;
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtPvdbNodeConcept added to the scene
@@ -95,9 +102,12 @@ protected:
   const std::vector<QtPvdbEdgeItem*> FindEdges(const QtPvdbNodeItem * const from) const;
 
   //Find the edge with the same from and to
-  const QtPvdbEdgeItem * FindEdge(
+  const QtPvdbEdgeItem * FindQtEdge(
     const QtPvdbNodeItem* const from,
     const QtPvdbNodeItem* const to) const;
+
+  ///Find the QtNode containing the Node
+  QtPvdbNodeItem * FindQtNode(const boost::shared_ptr<pvdb::Node> node) const;
 
   ///Obtain the center node
   const QtPvdbNodeItem * GetCenterNode() const;
@@ -128,6 +138,9 @@ signals:
   void GiveHint(const QString hint);
 
 private:
+
+  ///The concept map to work on
+  const boost::shared_ptr<pvdb::ConceptMap> m_concept_map;
 
   ///Implemention of OnItemUpdateRequest
   virtual void OnItemRequestUpdateImpl(const QGraphicsItem* const item) = 0;

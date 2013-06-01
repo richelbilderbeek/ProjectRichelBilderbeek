@@ -102,6 +102,7 @@ bool pvdb::ConceptMap::CanConstruct(
   //The center node CAN have examples, when the center node is the focal node of a sub-concept map
   ///if (!nodes[0]->GetConcept()->GetExamples().empty()) { return false; }
   //Test if all edges are in range
+  /*
   {
     const int n_nodes = static_cast<int>(nodes.size());
     const int n_invalid = std::count_if(edges.begin(), edges.end(),
@@ -115,6 +116,7 @@ bool pvdb::ConceptMap::CanConstruct(
       return false;
     }
   }
+  */
   //Test if there are 'two-way' edges, that is, one edge going from A to B
   //and another edge going from B to A
   {
@@ -122,22 +124,24 @@ bool pvdb::ConceptMap::CanConstruct(
     for (int i=0; i!=n_edges; ++i)
     {
       const boost::shared_ptr<pvdb::Edge> & a = edges[i];
-      const int a_from = a->GetFrom();
-      const int a_to   = a->GetTo();
+      const auto a_from = a->GetFrom();
+      const auto a_to   = a->GetTo();
       for (int j=i+1; j!=n_edges; ++j)
       {
         assert(i != j);
         assert(j < n_edges);
         const boost::shared_ptr<pvdb::Edge> & b = edges[j];
         assert(a.get() != b.get() && "Assume different pointers");
-        const int b_from = b->GetFrom();
-        const int b_to   = b->GetTo();
+        const auto b_from = b->GetFrom();
+        const auto b_to   = b->GetTo();
         if (a_from == b_from && a_to == b_to)
         {
+          //Cannot have two edges from the same node to the same node
           return false;
         }
         if (a_from == b_to && a_to == b_from)
         {
+          //Cannot have two edges from the same node to the same node
           return false;
         }
       }
@@ -174,80 +178,34 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMap::Create
   assert(m_nodes.size() >= 1 && "Concept map must have a focal question");
 
   std::vector<boost::shared_ptr<pvdb::ConceptMap> > v;
-  const int n_nodes = static_cast<int>(m_nodes.size());
-  for (int i=0; i!=n_nodes; ++i)
+  for (const boost::shared_ptr<pvdb::Node> focal_node: m_nodes)
+  //for (int i=0; i!=n_nodes; ++i)
   {
-    //Collect all edges connected top the focal node (which is m_nodes[i])
-    std::vector<boost::shared_ptr<pvdb::Edge> > edges;
-    std::set<int> node_indices_set; //Which nodes must be copied later?
-    const int n_edges = static_cast<int>(m_edges.size());
-    for (int j=0; j!=n_edges; ++j)
-    {
-      //const boost::shared_ptr<pvdb::Edge> focal_edge = pvdb::EdgeFactory::DeepCopy(m_edges[j]); //FIX? 2013-05-26 //REJECTED 2013-05-31
-      const boost::shared_ptr<pvdb::Edge> focal_edge = m_edges[j]; //FIX? 2013-05-26 //REJECTED 2013-05-31
-      if (focal_edge->GetFrom() == i || focal_edge->GetTo() == i)
-      {
-        edges.push_back(focal_edge); //FIX? 2012-12-31
-        //const boost::shared_ptr<pvdb::Edge> new_edge(new pvdb::Edge(focal_edge)); //BUG? 2012-12-31
-        //edges.push_back(new_edge); //BUG? 2012-12-31
-        node_indices_set.insert(focal_edge->GetFrom());
-        node_indices_set.insert(focal_edge->GetTo());
-      }
-    }
-    const std::vector<int> node_indices(node_indices_set.begin(), node_indices_set.end());
-    assert(std::is_sorted(node_indices.begin(),node_indices.end()));
+    assert(focal_node);
 
-    //Copy the collected node indices
+    //Collect all edges connected top the focal node (which is m_nodes[i])
     std::vector<boost::shared_ptr<pvdb::Node> > nodes;
-    std::transform(node_indices.begin(),node_indices.end(),
-      std::back_inserter(nodes),
-      [this](const int& index)
-      {
-        assert(index < static_cast<int>(m_nodes.size()));
-        boost::shared_ptr<pvdb::Node> node = m_nodes[index];
-        return node;
-        //return pvdb::NodeFactory::DeepCopy(); //FIX? 2013-05-25 //REJECTED 2013-05-31
-        //const boost::shared_ptr<pvdb::Node> new_node = pvdb::NodeFactory::Create(*m_nodes[index])); //BUG? 2012-12-31 //REJECTED 2013-05-25
-        //return new_node; //BUG? 2012-12-31
-      }
-    );
-    //Make the to and from indices of the new concept map correct
-    //Luckily, we already have a remapping table:
-    //new node index = the index in the std::vector node_indices
-    std::for_each(edges.begin(),edges.end(),
-      [node_indices](boost::shared_ptr<pvdb::Edge>& edge)
-      {
-        //Remap
-        {
-          const int index_old = edge->GetFrom();
-          assert(std::count(node_indices.begin(),node_indices.end(),index_old) == 1
-            && "There must be only one unique known index");
-          const auto new_index_iter = std::find(node_indices.begin(),node_indices.end(),index_old);
-          assert(new_index_iter != node_indices.end());
-          const int index_new = std::distance(node_indices.begin(),new_index_iter);
-          assert(index_new >= 0);
-          edge->SetFrom(index_new);
-        }
-        {
-          const int index_old = edge->GetTo();
-          assert(std::count(node_indices.begin(),node_indices.end(),index_old) == 1
-            && "There must be only one unique known index");
-          const auto new_index_iter = std::find(node_indices.begin(),node_indices.end(),index_old);
-          assert(new_index_iter != node_indices.end());
-          const int index_new = std::distance(node_indices.begin(),new_index_iter);
-          assert(index_new >= 0);
-          edge->SetTo(index_new);
-        }
-      }
-    );
-    if (nodes.empty())
+    std::vector<boost::shared_ptr<pvdb::Edge> > edges;
+
+    nodes.push_back(focal_node);
+
+    for (const boost::shared_ptr<pvdb::Edge> focal_edge: m_edges)
     {
-      //An unconnected node is zoomed in on
-      nodes.push_back(m_nodes[i]); //FIX? 2012-12-31
-      //const boost::shared_ptr<pvdb::Node> new_node(new pvdb::Node(*m_nodes[i])); //BUG? 2012-12-31
-      //nodes.push_back(new_node); //BUG? 2012-12-31
+      if (focal_edge->GetFrom() == focal_node)
+      {
+        edges.push_back(focal_edge);
+        assert(focal_edge->GetTo() != focal_node);
+        nodes.push_back(focal_edge->GetTo());
+      }
+      else if (focal_edge->GetTo() == focal_node)
+      {
+        edges.push_back(focal_edge);
+        assert(focal_edge->GetFrom() != focal_node);
+        nodes.push_back(focal_edge->GetFrom());
+      }
     }
     assert(!nodes.empty());
+    assert(pvdb::ConceptMap::CanConstruct(nodes,edges) && "Only construct valid concept maps");
     const boost::shared_ptr<pvdb::ConceptMap> concept_map(new pvdb::ConceptMap(nodes,edges));
     v.push_back(concept_map);
   }
@@ -259,60 +217,6 @@ bool pvdb::ConceptMap::Empty() const
   return m_nodes.empty() && m_edges.empty();
 }
 
-const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMap::FromXml(const std::string &s)
-{
-  assert(s.size() >= 27);
-  assert(s.substr(0,13) == std::string("<concept_map>"));
-  assert(s.substr(s.size() - 14,14) == std::string("</concept_map>"));
-
-
-  //Obtain the <concept_map> ... </concept_map> string
-  const std::vector<std::string> v
-    = pvdb::GetRegexMatches(s,QRegExp("(<concept_map>.*</concept_map>)"));
-  assert(v.size() == 1);
-  //Strip the <concept_map> tags
-  const std::string concept_map_str = pvdb::StripXmlTag(v[0]);
-
-  std::vector<boost::shared_ptr<pvdb::Node> > nodes;
-  {
-    //Obtain the <nodes> ... </nodes> strings
-    const std::vector<std::string> w
-      = pvdb::GetRegexMatches(concept_map_str,QRegExp("(<nodes>.*</nodes>)"));
-    assert(w.size() == 1);
-    //Strip the <nodes> tags
-    const std::string nodes_str = pvdb::StripXmlTag(w[0]);
-    //Obtain the <concept> ... </concept> strings
-    const std::vector<std::string> x
-      = pvdb::GetRegexMatches(nodes_str,QRegExp("(<node>.*</node>)"));
-    std::for_each(x.begin(),x.end(),
-      [&nodes](const std::string& s)
-      {
-        nodes.push_back( Node::FromXml(s) );
-      }
-    );
-  }
-  std::vector<boost::shared_ptr<pvdb::Edge> > edges;
-  {
-    //Obtain the <edges> ... </edges> strings
-    const std::vector<std::string> w
-      = pvdb::GetRegexMatches(concept_map_str,QRegExp("(<edges>.*</edges>)"));
-    assert(w.size() == 1);
-    //Strip the <edges> tags
-    const std::string nodes_str = pvdb::StripXmlTag(w[0]);
-    //Obtain the <edge> ... </edge> strings
-    const std::vector<std::string> x
-      = pvdb::GetRegexMatches(nodes_str,QRegExp("(<edge>.*</edge>)"));
-    std::for_each(x.begin(),x.end(),
-      [&edges](const std::string& s)
-      {
-        edges.push_back( Edge::FromXml(s) );
-      }
-    );
-  }
-
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map(new ConceptMap(nodes,edges));
-  return concept_map;
-}
 
 const std::vector<boost::shared_ptr<const pvdb::Edge> > pvdb::ConceptMap::GetEdges() const
 {
@@ -433,13 +337,11 @@ bool pvdb::ConceptMap::HasSameContent(
     const int sz = lhs->GetEdges().size();
     for (int i=0; i!=sz; ++i)
     {
-      const int index_from = lhs->GetEdges()[i]->GetFrom();
-      assert(index_from >= 0 && index_from < static_cast<int>(lhs->GetNodes().size()));
-      const std::string str_from = lhs->GetNodes()[index_from]->GetConcept()->GetName();
+      const auto from_node = lhs->GetEdges()[i]->GetFrom();
+      const std::string str_from = from_node->GetConcept()->GetName();
       const std::string str_mid = lhs->GetEdges()[i]->GetConcept()->GetName();
-      const int index_to = lhs->GetEdges()[i]->GetTo();
-      assert(index_to >= 0 && index_to < static_cast<int>(lhs->GetNodes().size()));
-      const std::string str_to = lhs->GetNodes()[index_to]->GetConcept()->GetName();
+      const auto to_node = lhs->GetEdges()[i]->GetTo();
+      const std::string str_to = to_node->GetConcept()->GetName();
       //Only if arrow is reversed, reverse the fake edge
       if (
            lhs->GetEdges()[i]->HasTailArrow() == true
@@ -464,13 +366,11 @@ bool pvdb::ConceptMap::HasSameContent(
     FakeEdges w;
     for (int i=0; i!=sz; ++i)
     {
-      const int index_from = rhs->GetEdges()[i]->GetFrom();
-      assert(index_from >= 0 && index_from < static_cast<int>(rhs->GetNodes().size()));
-      const std::string str_from = rhs->GetNodes()[index_from]->GetConcept()->GetName();
+      const auto from_node = rhs->GetEdges()[i]->GetFrom();
+      const std::string str_from = from_node->GetConcept()->GetName();
       const std::string str_mid = rhs->GetEdges()[i]->GetConcept()->GetName();
-      const int index_to = rhs->GetEdges()[i]->GetTo();
-      assert(index_to >= 0 && index_to < static_cast<int>(rhs->GetNodes().size()));
-      const std::string str_to = rhs->GetNodes()[index_to]->GetConcept()->GetName();
+      const auto to_node = rhs->GetEdges()[i]->GetTo();
+      const std::string str_to = to_node->GetConcept()->GetName();
       //w.push_back(std::make_tuple(str_from,str_mid,str_to));
       //Only if arrow is reversed, reverse the fake edge
       if (
