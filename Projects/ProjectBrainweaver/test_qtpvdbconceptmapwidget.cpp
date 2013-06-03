@@ -34,7 +34,7 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
       auto w = widget->CreateNewDerived();
       assert(w);
       w->ReadFromConceptMap(v[i]);
-      const boost::shared_ptr<pvdb::ConceptMap> n = w->WriteToConceptMap();
+      const boost::shared_ptr<pvdb::ConceptMap> n = w->GetConceptMap();
       if (!pvdb::ConceptMap::HasSameContent(v[i],n))
       {
         TRACE(i);
@@ -52,7 +52,7 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
       auto w = widget->CreateNewDerived();
       assert(w);
       w->ReadFromConceptMap(v[i]);
-      const boost::shared_ptr<pvdb::ConceptMap> n = w->WriteToConceptMap();
+      const boost::shared_ptr<pvdb::ConceptMap> n = w->GetConceptMap();
       if (!pvdb::ConceptMap::HasSameContent(v[i],n))
       {
         TRACE(i);
@@ -69,7 +69,7 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
     {
       auto w = widget->CreateNewDerived();
       w->ReadFromConceptMap(v[i]);
-      const boost::shared_ptr<pvdb::ConceptMap> n = w->WriteToConceptMap();
+      const boost::shared_ptr<pvdb::ConceptMap> n = w->GetConceptMap();
       if (!pvdb::ConceptMap::HasSameContent(v[i],n))
       {
         TRACE(i);
@@ -86,7 +86,7 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
       {
         auto w = widget->CreateNewDerived();
         w->ReadFromConceptMap(m);
-        const boost::shared_ptr<pvdb::ConceptMap> n = w->WriteToConceptMap();
+        const boost::shared_ptr<pvdb::ConceptMap> n = w->GetConceptMap();
         assert(pvdb::ConceptMap::HasSameContent(m,n));
       }
     );

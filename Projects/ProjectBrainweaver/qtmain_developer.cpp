@@ -134,5 +134,6 @@ int main(int argc, char *argv[])
 /// - Do not change a QGraphicItem (that is: call a paint event) outside of the paint event
 ///   (this was the case by signals that caused a repaint)
 ///   -> trick: check for QGraphicsRectItem::paintingActive()
-/// - Instead of overloading operator== for all combinations of smart pointers,
-///   block operator== and use IsEqual(const T&)
+/// - Use the default operator== for pointer comparison of smart pointers
+/// - Instead of overloading operator== to compare the content for all combinations of smart pointers,
+///   use IsEqual(const T&)

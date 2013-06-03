@@ -55,7 +55,19 @@ pvdb::ConceptMap::ConceptMap(
     const std::size_t n_edges = edges.size();
     for (std::size_t i=0; i!=n_edges; ++i)
     {
-      std::cout << i << ": " << pvdb::Edge::ToXml(edges[i]) << '\n';
+      const auto edge = edges[i];
+      const auto const_nodes = AddConst(nodes);
+      #ifndef NDEBUG
+      const auto from_iter = std::find(nodes.begin(),nodes.end(),edge->GetFrom());
+      const auto to_iter = std::find(nodes.begin(),nodes.end(),edge->GetTo());
+      if (from_iter == nodes.end())
+      {
+        TRACE("BREAK");
+      }
+      assert(from_iter != nodes.end());
+      assert(to_iter != nodes.end());
+      #endif
+      std::cout << i << ": " << pvdb::Edge::ToXml(edge,const_nodes) << '\n';
     }
 
     TRACE("BREAK");
@@ -241,6 +253,7 @@ bool pvdb::ConceptMap::HasSameContent(
   const boost::shared_ptr<const pvdb::ConceptMap>& lhs,
   const boost::shared_ptr<const pvdb::ConceptMap>& rhs)
 {
+  if (!rhs) { return !lhs; }
   assert(lhs); assert(rhs);
   if (lhs->GetQuestion() != rhs->GetQuestion())
   {
@@ -455,21 +468,17 @@ const std::string pvdb::ConceptMap::ToXml(const boost::shared_ptr<const pvdb::Co
   s << "<concept_map>";
   s << "<nodes>";
   const std::vector<boost::shared_ptr<const pvdb::Node> >& nodes = map->GetNodes();
-  std::for_each(nodes.begin(), nodes.end(),
-    [&s](const boost::shared_ptr<const pvdb::Node>& node)
-    {
-      s << Node::ToXml(node);
-    }
-  );
+  for (const boost::shared_ptr<const pvdb::Node> node: nodes)
+  {
+    s << Node::ToXml(node);
+  }
   s << "</nodes>";
   s << "<edges>";
   const std::vector<boost::shared_ptr<const pvdb::Edge> >& edges = map->GetEdges();
-  std::for_each(edges.begin(), edges.end(),
-    [&s](const boost::shared_ptr<const pvdb::Edge>& edge)
-    {
-      s << Edge::ToXml(edge);
-    }
-  );
+  for (const boost::shared_ptr<const pvdb::Edge> edge: edges)
+  {
+    s << Edge::ToXml(edge,nodes);
+  }
   s << "</edges>";
   s << "</concept_map>";
 
@@ -495,7 +504,7 @@ bool IsEqual(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs)
     const int n_nodes = static_cast<int>(lhs_nodes.size());
     for (int i=0; i!=n_nodes; ++i)
     {
-      if (lhs_nodes[i] != rhs_nodes[i]) return false;
+      if (!IsEqual(*lhs_nodes[i],*rhs_nodes[i])) return false;
     }
   }
   //Compare edges
@@ -506,7 +515,7 @@ bool IsEqual(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs)
     const int n_edges = static_cast<int>(lhs_edges.size());
     for (int i=0; i!=n_edges; ++i)
     {
-      if (lhs_edges[i] != rhs_edges[i]) return false;
+      if (!IsEqual(*lhs_edges[i],*rhs_edges[i])) return false;
     }
   }
   return true;
@@ -517,6 +526,7 @@ bool IsEqual(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs)
 
 bool operator==(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs)
 {
+  if (!lhs) { return !rhs; }
   assert(lhs); assert(rhs);
   return IsEqual(*lhs,*rhs);
 }

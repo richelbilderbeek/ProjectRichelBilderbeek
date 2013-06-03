@@ -19,7 +19,7 @@
 #include "pvdbconceptmap.h"
 #endif
 
-
+//An ABC View with a ConceptMap as the Model
 class QtPvdbConceptMapWidget : public QtKeyboardFriendlyGraphicsView, boost::noncopyable
 {
   Q_OBJECT
@@ -51,6 +51,7 @@ public:
 
   ///Obtain the concept map
   const boost::shared_ptr<const pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
+  //    boost::shared_ptr<      pvdb::ConceptMap> GetConceptMap()       { return m_concept_map; }
 
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const;
@@ -75,7 +76,7 @@ public:
   #endif
 
   ///Write the widget its data to a cluster
-  const boost::shared_ptr<pvdb::ConceptMap> WriteToConceptMap() const;
+  //const boost::shared_ptr<pvdb::ConceptMap> WriteToConceptMap() const;
 
 public slots:
 
@@ -139,14 +140,17 @@ signals:
 
 private:
 
-  ///The concept map to work on
+  ///The concept map to work on, the Model
+  ///m_concept_map->GetNodes()[0] contains the focal node
   const boost::shared_ptr<pvdb::ConceptMap> m_concept_map;
 
   ///Implemention of OnItemUpdateRequest
   virtual void OnItemRequestUpdateImpl(const QGraphicsItem* const item) = 0;
 
   ///Put the central node at index zero
+  #ifdef BELIEF_THAT_INDEXLESS_EDGES_NEED_SORTING_672357462547263842756287
   const std::vector<QtPvdbNodeItem* > Sort(const std::vector<QtPvdbNodeItem*>& v) const;
+  #endif
 
 public slots:
 

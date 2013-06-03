@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestfunctionparsermenudialog.h"
 
 QtTestFunctionParserMenuDialog::QtTestFunctionParserMenuDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestFunctionParserMenuDialog)
 {
   ui->setupUi(this);
@@ -47,15 +47,17 @@ QtTestFunctionParserMenuDialog::~QtTestFunctionParserMenuDialog()
 void QtTestFunctionParserMenuDialog::on_button_start_clicked()
 {
   QtTestFunctionParserMainDialog d;
-  hide();
-  d.exec();
-  show();
+  d.setStyleSheet(this->styleSheet());
+  d.setWindowIcon(this->windowIcon());
+  ShowChild(&d);
 }
 
 void QtTestFunctionParserMenuDialog::on_button_about_clicked()
 {
   About a = TestFunctionParserMenuDialog::GetAbout();
   QtAboutDialog d(a);
+  d.setStyleSheet(this->styleSheet());
+  d.setWindowIcon(this->windowIcon());
   hide();
   d.exec();
   show();

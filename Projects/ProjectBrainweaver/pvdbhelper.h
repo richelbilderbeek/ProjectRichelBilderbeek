@@ -27,7 +27,13 @@ template <class T>
 const std::vector<boost::shared_ptr<const T> > AddConst(
   const std::vector<boost::shared_ptr<T> > v)
 {
-  return std::vector<boost::shared_ptr<const T> >(v.begin(),v.end());
+  const std::vector<boost::shared_ptr<const T> > w(v.begin(),v.end());
+  #ifndef NDEBUG
+  assert(v.size() == w.size());
+  const std::size_t sz = v.size();
+  for (std::size_t i=0; i!=sz; ++i) { assert(v[i] == w[i]); }
+  #endif
+  return w;
 }
 
 namespace pvdb {

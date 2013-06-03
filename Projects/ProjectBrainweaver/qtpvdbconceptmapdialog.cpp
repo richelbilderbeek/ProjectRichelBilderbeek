@@ -35,7 +35,26 @@
 #include "qtpvdbconceptmapwidget.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
+#include "pvdbnodefactory.h"
 #include "ui_qtpvdbconceptmapdialog.h"
+
+///Collect all QGraphicsItems with class T in an unorderly way
+template <class T>
+std::vector<T*> Collect(const QGraphicsScene* const scene)
+{
+  std::vector<T*> v;
+  const QList<QGraphicsItem *> items = scene->items();
+  std::transform(items.begin(),items.end(),std::back_inserter(v),
+    [](QGraphicsItem* const item)
+    {
+      assert(item);
+      return dynamic_cast<T*>(item);
+    }
+  );
+  v.erase(std::remove(v.begin(),v.end(),nullptr),v.end());
+  assert(std::count(v.begin(),v.end(),nullptr)==0);
+  return v;
+}
 
 QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   const boost::shared_ptr<pvdb::File> file,
@@ -44,19 +63,22 @@ QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
     ui(new Ui::QtPvdbConceptMapDialog),
     m_back_to_menu(false),
     m_file(file),
-    m_widget(CreateWidget(file))
+    m_widget(CreateWidget(file->GetConceptMap()))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   assert(m_file);
   assert(m_file->GetConceptMap());
-  assert(IsEqual(*file,*m_file));
+  assert(file == m_file);
   assert(m_widget);
+  assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
   assert(this->layout());
   #endif
 
   this->layout()->addWidget(m_widget);
+
+  assert(Collect<QtPvdbNodeItem>(m_widget->scene()).empty());
 
   //Center the dialog
   {
@@ -76,6 +98,16 @@ QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog()
   delete ui;
 }
 
+QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::ConceptMap> concept_map)
+{
+  assert(concept_map);
+  QtPvdbConceptMapEditWidget * const widget = new QtPvdbConceptMapEditWidget(concept_map);
+  assert(widget);
+  return widget;
+}
+
+
+/*
 QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
@@ -92,47 +124,42 @@ QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::s
     assert((file->GetCluster()->Get().size() + 1)
       == (concept_map->GetNodes().size())
       && "As much cluster items as nodes + focus question");
-
-    file->SetConceptMap(concept_map);
-
-    assert(file->GetConceptMap());
-    assert(file->GetConceptMap()->GetNodes().size() >= 1);
   }
   else
   {
     //TRACE("User starts constructing a concept map from scratch or already filled in one");
-    concept_map = file->GetConceptMap();
+    if (file->GetConceptMap()->GetNodes().empty())
+    {
+      const boost::shared_ptr<pvdb::Node > node = pvdb::NodeFactory::Create(file->GetQuestion());
+      assert(node);
+      const std::vector<boost::shared_ptr<pvdb::Node> > nodes = { node };
+      const std::vector<boost::shared_ptr<pvdb::Edge> > edges = { };
+      concept_map = pvdb::ConceptMapFactory::Create(nodes,edges);
+    }
+    else
+    {
+      concept_map = file->GetConceptMap();
+    }
   }
   assert(concept_map);
+  file->SetConceptMap(concept_map);
+
+  assert(file->GetConceptMap());
+  assert(file->GetConceptMap()->GetNodes().size() >= 1);
+
   QtPvdbConceptMapEditWidget * const widget = new QtPvdbConceptMapEditWidget(concept_map);
   assert(widget);
   return widget;
 }
+*/
 
 
 void QtPvdbConceptMapDialog::DoRandomStuff()
 {
-  assert(pvdb::ConceptMap::HasSameContent(
-    this->m_file->GetConceptMap(),
-    this->GetWidget()->WriteToConceptMap()));
-
   //Do random stuff
   this->GetWidget()->DoRandomStuff();
-
-  assert(!pvdb::ConceptMap::HasSameContent(
-      this->m_file->GetConceptMap(),
-      this->GetWidget()->WriteToConceptMap()));
-
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map
-    = this->GetWidget()->WriteToConceptMap();
-  m_file->SetConceptMap(concept_map);
-
-  assert(pvdb::ConceptMap::HasSameContent(
-      this->m_file->GetConceptMap(),
-      this->GetWidget()->WriteToConceptMap()));
-
-  assert(m_file->GetConceptMap()->GetNodes().size() > 1);
   assert(!m_file->GetConceptMap()->GetEdges().empty());
+  assert( m_file->GetConceptMap()->GetNodes().size() > 1);
 }
 
 const QtPvdbConceptMapWidget * QtPvdbConceptMapDialog::GetWidget() const
@@ -229,10 +256,10 @@ void QtPvdbConceptMapDialog::on_button_save_clicked()
 
 void QtPvdbConceptMapDialog::Save() const
 {
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map = GetWidget()->WriteToConceptMap();
-  assert(concept_map);
-  assert(m_file);
-  m_file->SetConceptMap(concept_map);
+  //const boost::shared_ptr<pvdb::ConceptMap> concept_map = GetWidget()->GetConceptMap();
+  //assert(concept_map);
+  assert(m_file->GetConceptMap() == GetWidget()->GetConceptMap());
+  //m_file->SetConceptMap(concept_map);
 }
 
 void QtPvdbConceptMapDialog::Save(const std::string& filename) const

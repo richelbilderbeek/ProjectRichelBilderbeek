@@ -85,7 +85,9 @@ const std::vector<boost::shared_ptr<pvdb::Node> > pvdb::Node::GetTests()
 
 bool pvdb::Node::HasSameContent(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs)
 {
-  return lhs->GetConcept() == rhs->GetConcept();
+  assert(lhs);
+  assert(rhs);
+  return IsEqual(*lhs->GetConcept(),*rhs->GetConcept());
 }
 
 #ifndef NDEBUG
@@ -108,11 +110,14 @@ void pvdb::Node::Test()
       [](const boost::shared_ptr<pvdb::Node>& node)
       {
         //Test copy constructor
+        assert(node);
         const boost::shared_ptr<const pvdb::Node> c = NodeFactory::DeepCopy(node);
-        assert(node == c);
+        assert(c);
+        assert(IsEqual(*node,*c));
         const std::string s = ToXml(c);
         const boost::shared_ptr<pvdb::Node> d = FromXml(s);
-        assert(c == d);
+        assert(d);
+        assert(IsEqual(*c,*d));
       }
     );
   }
@@ -121,19 +126,21 @@ void pvdb::Node::Test()
     {
       const boost::shared_ptr<pvdb::Concept> c(pvdb::ConceptFactory::Create("1"));
       const boost::shared_ptr<pvdb::Concept> d(pvdb::ConceptFactory::Create("1"));
-      assert(c == d);
+      assert(IsEqual(*c,*d));
       const boost::shared_ptr<pvdb::Node> a(new Node(c));
       const boost::shared_ptr<pvdb::Node> b(new Node(d));
+      assert(a);
+      assert(b);
       assert(HasSameContent(a,b));
-      assert(a == b);
+      assert(IsEqual(*a,*b));
     }
     const int sz = static_cast<int>(ConceptFactory::GetTests().size());
     for (int i=0; i!=sz; ++i)
     {
       const boost::shared_ptr<pvdb::Concept> c = ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized} } );
       const boost::shared_ptr<pvdb::Concept> d = ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized} } );
-      assert(&c != &d);
-      assert(c == d);
+      assert(c != d);
+      assert(IsEqual(*c,*d));
       const boost::shared_ptr<pvdb::Node> a(new Node(c));
       const boost::shared_ptr<pvdb::Node> b(new Node(d));
       assert(HasSameContent(a,b));
@@ -143,17 +150,19 @@ void pvdb::Node::Test()
       //Cannot shuffle Concept its examples. No need to as well: the order is important
       const boost::shared_ptr<pvdb::Concept> c = ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized},{"3", pvdb::Competency::uninitialized} } );
       const boost::shared_ptr<pvdb::Concept> d = ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized},{"3", pvdb::Competency::uninitialized} } );
-      assert(c == d);
+      assert(c != d);
+      assert(IsEqual(*c,*d));
       const boost::shared_ptr<pvdb::Node> a(new Node(c));
       const boost::shared_ptr<pvdb::Node> b(new Node(d));
       assert(HasSameContent(a,b));
-      assert(a == b);
+      assert(IsEqual(*a,*b));
     }
     {
       //Cannot shuffle Concept its examples. No need to as well: the order is important
       const boost::shared_ptr<pvdb::Concept> c = ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized},{"3", pvdb::Competency::uninitialized} } );
       const boost::shared_ptr<pvdb::Concept> d = ConceptFactory::Create("1", { {"3", pvdb::Competency::uninitialized},{"2", pvdb::Competency::uninitialized} } );
       assert(c != d);
+      assert(!IsEqual(*c,*d));
       const boost::shared_ptr<pvdb::Node> a(new Node(c));
       const boost::shared_ptr<pvdb::Node> b(new Node(d));
       assert(!HasSameContent(a,b) && "Order in examples is important and cannot be shuffled");
@@ -164,10 +173,12 @@ void pvdb::Node::Test()
       const boost::shared_ptr<pvdb::Concept> c = ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized},{"3", pvdb::Competency::uninitialized} } );
       const boost::shared_ptr<pvdb::Concept> d = ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized} } );
       assert(c != d);
+      assert(!IsEqual(*c,*d));
       const boost::shared_ptr<pvdb::Node> a(new Node(c));
       const boost::shared_ptr<pvdb::Node> b(new Node(d));
-      assert(!HasSameContent(a,b));
       assert(a != b);
+      assert(!HasSameContent(a,b));
+      assert(!IsEqual(*a,*b));
     }
   }
   //Test ConceptFactory reproductions
@@ -177,12 +188,13 @@ void pvdb::Node::Test()
     {
       const boost::shared_ptr<pvdb::Concept> c = ConceptFactory::GetTests()[i];
       const boost::shared_ptr<pvdb::Concept> d = ConceptFactory::GetTests()[i];
-      assert(&c != &d);
-      assert(c == d);
+      assert(c != d);
+      assert(IsEqual(*c,*d));
       const boost::shared_ptr<pvdb::Node> a(new Node(c));
       const boost::shared_ptr<pvdb::Node> b(new Node(d));
+      assert(a != b);
       assert(HasSameContent(a,b));
-      assert(a==b);
+      assert(IsEqual(*a,*b));
     }
   }
   //Test ConceptFactory reproductions
@@ -193,24 +205,27 @@ void pvdb::Node::Test()
       for (int j=0; j!=sz; ++j)
       {
         const boost::shared_ptr<pvdb::Concept> c = ConceptFactory::GetTests()[i];
+        assert(c);
         const boost::shared_ptr<pvdb::Concept> d = ConceptFactory::GetTests()[j];
+        assert(d);
+        assert(c != d);
         if (i!=j)
         {
-          assert(&c != &d);
-          assert(c != d);
+          assert(!IsEqual(*c,*d));
           const boost::shared_ptr<pvdb::Node> a(new Node(c));
           const boost::shared_ptr<pvdb::Node> b(new Node(d));
-          assert(!HasSameContent(a,b));
           assert(a != b);
+          assert(!HasSameContent(a,b));
+          assert(!IsEqual(*a,*b));
         }
         else
         {
-          assert(&c != &d);
-          assert(c == d);
+          assert(IsEqual(*c,*d));
           const boost::shared_ptr<pvdb::Node> a(new Node(c));
           const boost::shared_ptr<pvdb::Node> b(new Node(d));
+          assert(a != b);
           assert(HasSameContent(a,b));
-          assert(a == b);
+          assert(IsEqual(*a,*b));
         }
       }
     }
@@ -255,10 +270,12 @@ bool IsEqual(const pvdb::Node& lhs, const pvdb::Node& rhs)
     && lhs.GetY()       == rhs.GetY();
 }
 
+/*
 bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs)
 {
-  assert(lhs); assert(rhs);
-  return IsEqual(*lhs,*rhs);
+  return lhs == rhs;
+  //assert(lhs); assert(rhs);
+  //return IsEqual(*lhs,*rhs);
 }
 
 bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs)
@@ -295,6 +312,6 @@ bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_pt
 {
   return boost::shared_ptr<const pvdb::Node>(lhs) != boost::shared_ptr<const pvdb::Node>(rhs);
 }
-
+*/
 
 } //~namespace pvdb

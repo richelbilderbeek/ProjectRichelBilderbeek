@@ -206,13 +206,8 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
       ? qtedge->GetTo()->GetNode()
       : qtedge->GetFrom()->GetNode();
     assert(other_node);
+    assert(other_node != focal_node);
     nodes.push_back(other_node);
-
-    const int from_index = qtedge->GetFrom()->GetNode() == focal_node ? 0 : i + 1;
-    const int to_index   = qtedge->GetFrom()->GetNode() == focal_node ? i + 1 : 0;
-    assert(from_index < static_cast<int>(nodes.size()));
-    assert(to_index   < static_cast<int>(nodes.size()));
-
     assert(qtedge);
     assert(qtedge->GetEdge());
     const boost::shared_ptr<pvdb::Edge> edge(pvdb::EdgeFactory::Create(

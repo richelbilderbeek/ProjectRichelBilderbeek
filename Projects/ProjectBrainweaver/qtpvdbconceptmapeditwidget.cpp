@@ -144,23 +144,18 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
   //Edge does not exist yet, create a new one
   const std::vector<QtPvdbNodeItem*> qtnodes = Collect<QtPvdbNodeItem>(scene());
   const boost::shared_ptr<pvdb::Concept> concept(pvdb::ConceptFactory::Create());
+  assert(concept);
   const bool head_arrow = true;
   const bool tail_arrow = false;
-  const auto from_iter = std::find(qtnodes.begin(),qtnodes.end(),qt_from);
-  //const std::vector<QtPvdbConceptItem*> qtconcepts = Collect<QtPvdbConceptItem>(scene());
-  assert(from_iter != qtnodes.end());
-  const auto to_iter = std::find(qtnodes.begin(),qtnodes.end(),qt_to);
-  assert(to_iter != qtnodes.end());
-  const int from_index = std::distance(qtnodes.begin(),from_iter);
-  assert(from_index >= 0);
-  assert(from_index < static_cast<int>(qtnodes.size()));
-  const int to_index = std::distance(qtnodes.begin(),to_iter);
-  assert(to_index >= 0);
-  assert(to_index < static_cast<int>(qtnodes.size()));
   const boost::shared_ptr<pvdb::Node> from = qt_from->GetNode();
   assert(from);
   const boost::shared_ptr<pvdb::Node> to = qt_to->GetNode();
   assert(to);
+  if (from == to)
+  {
+    TRACE("BREAK");
+  }
+  assert(from != to);
   const boost::shared_ptr<pvdb::Edge> edge(
     pvdb::EdgeFactory::Create(
       concept,
@@ -354,6 +349,7 @@ void QtPvdbConceptMapEditWidget::DoRandomStuff()
   const boost::shared_ptr<pvdb::Node> node2(pvdb::NodeFactory::Create(concept2));
   QtPvdbNodeItem * const qtnode2 = AddNode(node2);
 
+  assert(qtnode1->GetNode() != qtnode2->GetNode());
   this->AddEdge(qtnode1,qtnode2);
 }
 

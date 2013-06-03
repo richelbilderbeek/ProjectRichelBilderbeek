@@ -59,22 +59,23 @@ void QtPvdbConceptMapDialog::Test()
     file->SetConceptMap(concept_map);
     assert(file->GetQuestion() == question);
     QtPvdbConceptMapDialog d(file);
-    assert(d.GetWidget()->WriteToConceptMap()->GetNodes().size() == 1);
+    assert(d.GetWidget()->GetConceptMap()->GetNodes().size() == 1);
   }
   //If this dialog is fed with a file with a cluster and without a concept map (that is, one node (the focal question) only_
   //it will create a concept map from the cluster
   {
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(question));
-    assert(concept_map);
     const boost::shared_ptr<pvdb::Concept> concept_a(pvdb::ConceptFactory::Create("Concept A"));
     const boost::shared_ptr<pvdb::Cluster> cluster(pvdb::ClusterFactory::Create( { concept_a } ));
-    file->SetConceptMap(concept_map);
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::CreateFromCluster(question,cluster));
+    assert(concept_map);
     file->SetCluster(cluster);
+    file->SetConceptMap(concept_map);
+    //file->CreateConceptMapFromCluster();
     assert(file->GetQuestion() == question);
     const QtPvdbConceptMapDialog d(file);
-    assert(d.GetWidget()->WriteToConceptMap()->GetNodes().size()
+    assert(d.GetWidget()->GetConceptMap()->GetNodes().size()
       == cluster->Get().size() + 1); //+1 because of focus question
   }
   {
@@ -85,14 +86,14 @@ void QtPvdbConceptMapDialog::Test()
     file->SetCluster(cluster);
     assert(cluster->Get().size() == 3);
 
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(question));
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::CreateFromCluster(question,cluster));
     assert(concept_map);
     file->SetConceptMap(concept_map);
     assert(file->GetQuestion() == question);
     const QtPvdbConceptMapDialog d(file);
-    assert(d.GetWidget()->WriteToConceptMap()->GetNodes().size()
+    assert(d.GetWidget()->GetConceptMap()->GetNodes().size()
       == cluster->Get().size() + 1); //+1 because of focus question
-    assert(d.GetWidget()->WriteToConceptMap()->GetEdges().size() == 0);
+    assert(d.GetWidget()->GetConceptMap()->GetEdges().size() == 0);
   }
   //If this dialog is fed with a file with a cluster and a concept map
   //it will read the concept map
@@ -124,12 +125,15 @@ void QtPvdbConceptMapDialog::Test()
     );
     assert(concept_map);
     file->SetConceptMap(concept_map);
+    assert(file->GetConceptMap() == concept_map);
 
     assert(file->GetQuestion() == question);
+
     const QtPvdbConceptMapDialog d(file);
-    assert(d.GetWidget()->WriteToConceptMap()->GetNodes().size()
+    assert(d.GetWidget()->GetConceptMap() == concept_map);
+    assert(d.GetWidget()->GetConceptMap()->GetNodes().size()
       == concept_map->GetNodes().size() ); //+0 because focus question is node[0]
-    assert(d.GetWidget()->WriteToConceptMap()->GetEdges().size()
+    assert(d.GetWidget()->GetConceptMap()->GetEdges().size()
       == concept_map->GetEdges().size());
   }
   //If this dialog is fed with a file without a cluster, but with concept map
@@ -162,13 +166,14 @@ void QtPvdbConceptMapDialog::Test()
 
     assert(file->GetQuestion() == question);
     const QtPvdbConceptMapDialog d(file);
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map_out
-      = d.GetWidget()->WriteToConceptMap();
-    assert(concept_map_out->GetNodes().size()
-      == concept_map->GetNodes().size() ); //+0 because focus question is node[0]
-    assert(concept_map_out->GetEdges().size()
-      == concept_map->GetEdges().size());
-    assert(pvdb::ConceptMap::HasSameContent(concept_map,concept_map_out));
+    assert(d.GetWidget()->GetConceptMap() == concept_map);
+    //const boost::shared_ptr<pvdb::ConceptMap> concept_map_out
+    //  = d.GetWidget()->GetConceptMap();
+    //assert(concept_map_out->GetNodes().size()
+    //  == concept_map->GetNodes().size() ); //+0 because focus question is node[0]
+    //assert(concept_map_out->GetEdges().size()
+    //  == concept_map->GetEdges().size());
+    //assert(pvdb::ConceptMap::HasSameContent(concept_map,concept_map_out));
   }
 
   //If this dialog is fed with a file without a cluster, but with concept map
@@ -203,16 +208,17 @@ void QtPvdbConceptMapDialog::Test()
 
     //Let the dialog position the nodes
     const QtPvdbConceptMapDialog d(file);
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map_out
-      = d.GetWidget()->WriteToConceptMap();
+    assert(concept_map == d.GetWidget()->GetConceptMap());
+    //const boost::shared_ptr<pvdb::ConceptMap> concept_map_out
+    //  = d.GetWidget()->GetConceptMap();
 
-    assert(concept_map_out->GetNodes().size()
-      == concept_map->GetNodes().size() ); //+0 because focus question is node[0]
-    assert(concept_map_out->GetEdges().size()
-      == concept_map->GetEdges().size());
-    assert(pvdb::ConceptMap::HasSameContent(concept_map,concept_map_out));
-    assert(concept_map != concept_map_out
-      && "QtConceptMapDialog repositions the nodes");
+    //assert(concept_map_out->GetNodes().size()
+    //  == concept_map->GetNodes().size() ); //+0 because focus question is node[0]
+    //assert(concept_map_out->GetEdges().size()
+    //  == concept_map->GetEdges().size());
+    //assert(pvdb::ConceptMap::HasSameContent(concept_map,concept_map_out));
+    //assert(concept_map != concept_map_out
+    //  && "QtConceptMapDialog repositions the nodes");
     //Save the repositioned nodes
     file->Save(pvdb::File::GetTestFileName());
 
@@ -243,15 +249,16 @@ void QtPvdbConceptMapDialog::Test()
           const boost::shared_ptr<QtPvdbConceptMapDialog> dialog(new QtPvdbConceptMapDialog(file));
           assert(dialog);
           assert(dialog->GetWidget());
-          const boost::shared_ptr<pvdb::ConceptMap> dialog_concept_map = dialog->GetWidget()->WriteToConceptMap();
-          assert(dialog_concept_map);
-          if (!pvdb::ConceptMap::HasSameContent(dialog_concept_map,file_concept_map))
-          {
-            TRACE(pvdb::ConceptMap::ToXml(file_concept_map));
-            TRACE(pvdb::ConceptMap::ToXml(dialog_concept_map));
-          }
-          assert(pvdb::ConceptMap::HasSameContent(dialog_concept_map,file_concept_map)
-            && "ConceptMap written must have the same content as the ConceptMap read");
+          assert(file_concept_map == dialog->GetWidget()->GetConceptMap());
+          //const boost::shared_ptr<pvdb::ConceptMap> dialog_concept_map = dialog->GetWidget()->GetConceptMap();
+          //assert(dialog_concept_map);
+          //if (!pvdb::ConceptMap::HasSameContent(dialog_concept_map,file_concept_map))
+          //{
+          //  TRACE(pvdb::ConceptMap::ToXml(file_concept_map));
+          //  TRACE(pvdb::ConceptMap::ToXml(dialog_concept_map));
+          //}
+          //assert(pvdb::ConceptMap::HasSameContent(dialog_concept_map,file_concept_map)
+          //  && "ConceptMap written must have the same content as the ConceptMap read");
         }
       }
     );

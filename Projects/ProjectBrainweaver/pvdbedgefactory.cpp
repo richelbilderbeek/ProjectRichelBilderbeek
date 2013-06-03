@@ -15,6 +15,7 @@
 #include "pvdbedge.h"
 #include "pvdbedgefactory.h"
 #include "pvdbhelper.h"
+#include "trace.h"
 
 #ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
 namespace pvdb {
@@ -31,6 +32,9 @@ const boost::shared_ptr<pvdb::Edge> pvdb::EdgeFactory::Create(
 {
   assert(concept);
   assert(concept->GetExamples());
+  assert(from);
+  assert(to);
+  assert(from != to);
   boost::shared_ptr<pvdb::Edge> p(new Edge(concept,concept_x,concept_y,from,tail_arrow,to,head_arrow));
   assert(p);
   return p;
@@ -45,6 +49,9 @@ const boost::shared_ptr<pvdb::Edge> pvdb::EdgeFactory::DeepCopy(
   assert(edge);
   assert(edge->GetConcept());
   assert(edge->GetConcept()->GetExamples());
+  assert(from);
+  assert(to);
+  assert(from != to);
   const boost::shared_ptr<pvdb::Concept> concept = pvdb::ConceptFactory::DeepCopy(edge->GetConcept());
   assert(concept);
   const boost::shared_ptr<pvdb::Edge> p = pvdb::EdgeFactory::Create(
@@ -81,7 +88,6 @@ const boost::shared_ptr<pvdb::Edge> pvdb::EdgeFactory::FromXml(
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<from>.*</from>)"));
     assert(v.size() == 1);
-    assert(!"HIERO");
     from = boost::lexical_cast<int>(StripXmlTag(v[0]));
   }
   //m_head_arrow

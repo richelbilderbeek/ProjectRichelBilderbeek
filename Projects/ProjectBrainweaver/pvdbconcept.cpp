@@ -202,6 +202,7 @@ bool IsEqual(const pvdb::Concept& lhs, const pvdb::Concept& rhs)
     && lhs.GetRatingSpecificity()  == rhs.GetRatingSpecificity();
 }
 
+/*
 bool operator==(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs)
 {
   assert(lhs); assert(rhs);
@@ -249,6 +250,7 @@ bool operator!=(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared
   assert(lhs); assert(rhs);
   return boost::shared_ptr<const pvdb::Concept>(lhs) != boost::shared_ptr<const pvdb::Concept>(rhs);
 }
+*/
 
 bool operator<(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs)
 {

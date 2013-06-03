@@ -91,6 +91,8 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
     //this->scene()->setBackgroundBrush(linearGradient);
     this->scene()->setBackgroundBrush(QBrush(QColor(255,255,255)));
   }
+
+  assert(GetConceptMap() == concept_map);
 }
 
 
@@ -442,6 +444,7 @@ void QtPvdbConceptMapWidget::Shuffle()
   scene()->update();
 }
 
+#ifdef BELIEF_THAT_INDEXLESS_EDGES_NEED_SORTING_672357462547263842756287
 const std::vector<QtPvdbNodeItem*> QtPvdbConceptMapWidget::Sort(const std::vector<QtPvdbNodeItem*>& v_original) const
 {
 
@@ -465,6 +468,7 @@ const std::vector<QtPvdbNodeItem*> QtPvdbConceptMapWidget::Sort(const std::vecto
     && "Focus question must be at index zero");
   return v;
 }
+#endif
 
 #ifndef NDEBUG
 void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptMap>& map) const
@@ -519,7 +523,7 @@ void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptM
   {
     ///Note that the ConceptMap read out again differs from the original,
     ///because the Nodes are placed
-    if (!pvdb::ConceptMap::HasSameContent(WriteToConceptMap(),map))
+    if (!pvdb::ConceptMap::HasSameContent(GetConceptMap(),map))
     {
       //OH OH, AN ERROR! HELP ME OUT AND GIMME LOTS OF DEBUG INFO!
       {
@@ -532,30 +536,38 @@ void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptM
       }
       {
         const std::vector<std::string> v
-          = pvdb::XmlToPretty(pvdb::ConceptMap::ToXml(WriteToConceptMap()));
-        std::clog << "WriteToConceptMap():\n";
+          = pvdb::XmlToPretty(pvdb::ConceptMap::ToXml(GetConceptMap()));
+        std::clog << "GetConceptMap():\n";
         std::clog << "\n";
         std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::clog,"\n"));
         std::clog << "\n";
       }
 
-      TRACE(pvdb::ConceptMap::ToXml(WriteToConceptMap()));
+      TRACE(pvdb::ConceptMap::ToXml(GetConceptMap()));
       TRACE(pvdb::ConceptMap::ToXml(map));
     }
   }
-  assert(pvdb::ConceptMap::HasSameContent(WriteToConceptMap(),map)
+  assert(pvdb::ConceptMap::HasSameContent(GetConceptMap(),map)
     && "The concept map supplied must be homomorphous to the one created in the widget");
 
 }
 #endif
 
-const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapWidget::WriteToConceptMap() const
+#ifdef BELIEVE_THAT_GETCONCEPTMAP_DOES_NOT_SUFFICE
+const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapWidget::GetConceptMap() const
 {
 
   //Get the Nodes
   std::vector<boost::shared_ptr<pvdb::Node> > nodes;
 
+  assert(scene());
+  if (Collect<QtPvdbNodeItem>(scene()).empty())
+  {
+    TRACE("BREAK");
+  }
+  assert(!Collect<QtPvdbNodeItem>(scene()).empty());
   const std::vector<QtPvdbNodeItem*> qtnodes = Sort(Collect<QtPvdbNodeItem>(scene()));
+  assert(!qtnodes.empty());
   {
     assert(IsCenterNode(qtnodes[0]) && "Now the first index must be the unmovable center node");
     std::transform(qtnodes.begin(),qtnodes.end(),
@@ -565,7 +577,6 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapWidget::WriteToConcept
         assert(qtnode);
         assert(qtnode->GetNode());
         boost::shared_ptr<pvdb::Node> new_node = qtnode->GetNode();
-        //boost::shared_ptr<pvdb::Node> new_node = pvdb::NodeFactory::DeepCopy(qtnode->GetNode()); //2013-05-31 REJECT DEEP COPY
         assert(new_node);
         assert(IsEqual(*qtnode->GetNode(),*new_node));
         new_node->SetX( qtnode->x() );
@@ -584,14 +595,6 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapWidget::WriteToConcept
     {
       assert(qtedge);
       const boost::shared_ptr<pvdb::Concept> concept = qtedge->GetConcept(); //FIX? 2012-12-31
-      const auto from_iter = std::find(qtnodes.begin(),qtnodes.end(),qtedge->GetFrom());
-      assert(from_iter != qtnodes.end());
-      const int from_index = std::distance(qtnodes.begin(),from_iter);
-      assert(from_index >= 0 && from_index < static_cast<int>(qtnodes.size()));
-      const auto to_iter = std::find(qtnodes.begin(),qtnodes.end(),qtedge->GetTo());
-      assert(to_iter != qtnodes.end());
-      const int to_index = std::distance(qtnodes.begin(),to_iter);
-      assert(to_index >= 0 && to_index < static_cast<int>(qtnodes.size()));
       const bool tail_arrow = qtedge->GetEdge()->HasTailArrow();
       const bool head_arrow = qtedge->GetEdge()->HasHeadArrow();
       const auto from_node = qtedge->GetEdge()->GetFrom();
@@ -616,3 +619,4 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapWidget::WriteToConcept
     pvdb::ConceptMapFactory::Create(nodes,edges));
   return concept_map;
 }
+#endif

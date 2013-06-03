@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
+#include <boost/noncopyable.hpp>
 
 #ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
@@ -21,7 +22,7 @@
 namespace pvdb {
 
 ///The File used, also the main director of the program's flow
-struct File
+struct File : public boost::noncopyable
 {
   //Start an empty file
   File();
@@ -36,9 +37,11 @@ struct File
     const std::string& version
   );
 
-  File(const File& other) = delete;
+  //File(const File& other) = delete;
+  //File& operator=(const File& other) = delete;
 
-  File& operator=(const File& other) = delete;
+  ///Convert the Cluster to a ConceptMap
+  //void CreateConceptMapFromCluster();
 
   ///Convert XML to File
   static const boost::shared_ptr<pvdb::File> FromXml(const std::string& s);
@@ -89,9 +92,11 @@ struct File
   void SetAssessorName(const std::string& assessor_name);
 
   ///Write a new clustering of concepts and examples
+  ///Can only be done exactly once
   void SetCluster(const boost::shared_ptr<pvdb::Cluster>& cluster);
 
   ///Write a new ConceptMap from a Cluster
+  ///Can only be done exactly once
   void SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept_map);
 
   ///Set the student his/her name
@@ -111,9 +116,11 @@ struct File
   std::string m_assessor_name;
 
   ///The clustering of items
+  ///Initially will be nullptr
   boost::shared_ptr<pvdb::Cluster> m_cluster;
 
   ///The concept map
+  ///Initially will be nullptr
   boost::shared_ptr<pvdb::ConceptMap> m_concept_map;
 
   ///The file extension of a a File

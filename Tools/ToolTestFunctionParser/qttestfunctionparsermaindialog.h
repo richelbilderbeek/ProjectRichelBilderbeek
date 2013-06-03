@@ -21,13 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTFUNCTIONPARSERMAINDIALOG_H
 #define QTTESTFUNCTIONPARSERMAINDIALOG_H
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 namespace Ui {
 class QtTestFunctionParserMainDialog;
 }
 
-class QtTestFunctionParserMainDialog : public QDialog
+class QtTestFunctionParserMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

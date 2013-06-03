@@ -62,11 +62,11 @@ void pvdb::ConceptMap::Test()
       {
         //Test copy constructor
         const boost::shared_ptr<pvdb::ConceptMap> c(pvdb::ConceptMapFactory::DeepCopy(m));
-        assert(c == m);
+        assert(IsEqual(*c,*m));
         //Test XML conversions
         const std::string s = ToXml(c);
         const boost::shared_ptr<pvdb::ConceptMap> d = pvdb::ConceptMapFactory::FromXml(s);
-        assert(c == d);
+        assert(IsEqual(*c,*d));
       }
     );
   }

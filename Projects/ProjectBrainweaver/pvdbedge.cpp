@@ -116,7 +116,11 @@ void pvdb::Edge::Test()
       const boost::shared_ptr<const pvdb::Edge> c = pvdb::EdgeFactory::DeepCopy(edge,node_from,node_to);
       assert(c);
       assert(edge == c); assert(c == edge);
-      const std::string s = ToXml(c);
+      assert(c->GetFrom() == node_from);
+      assert(c->GetFrom() == AddConst(nodes)[0]);
+      assert(c->GetTo() == node_to);
+      assert(c->GetTo() == AddConst(nodes)[1]);
+      const std::string s = ToXml(c,AddConst(nodes));
       const boost::shared_ptr<pvdb::Edge> d = pvdb::EdgeFactory::FromXml(s,nodes);
       assert(c == d);
     }
@@ -130,15 +134,34 @@ void pvdb::Edge::Test()
 }
 #endif
 
-const std::string pvdb::Edge::ToXml(const boost::shared_ptr<const pvdb::Edge>& edge)
+const std::string pvdb::Edge::ToXml(
+  const boost::shared_ptr<const pvdb::Edge>& edge,
+  const std::vector<boost::shared_ptr<const pvdb::Node> >& nodes)
 {
   std::stringstream s;
   s << "<edge>";
   s << Concept::ToXml(edge->GetConcept());
-  s << "<from>" << edge->GetFrom() << "</from>";
+
+  const auto from_iter = std::find(nodes.begin(),nodes.end(),edge->GetFrom());
+  const auto to_iter = std::find(nodes.begin(),nodes.end(),edge->GetTo());
+  if (from_iter == nodes.end())
+  {
+    TRACE("BREAK");
+  }
+  assert(from_iter != nodes.end());
+  assert(to_iter != nodes.end());
+  const int from_index = std::distance(nodes.begin(),from_iter);
+  const int to_index = std::distance(nodes.begin(),to_iter);
+  assert(from_index >= 0);
+  assert(from_index < boost::numeric_cast<int>(nodes.size()));
+  assert(to_index >= 0);
+  assert(to_index < boost::numeric_cast<int>(nodes.size()));
+  assert(from_index != to_index);
+
+  s << "<from>" << from_index << "</from>";
   s << "<head_arrow>" << edge->HasHeadArrow() << "</head_arrow>";
   s << "<tail_arrow>" << edge->HasTailArrow() << "</tail_arrow>";
-  s << "<to>" << edge->GetTo() << "</to>";
+  s << "<to>" << to_index << "</to>";
   s << "<x>" << edge->GetX() << "</x>";
   s << "<y>" << edge->GetY() << "</y>";
   s << "</edge>";

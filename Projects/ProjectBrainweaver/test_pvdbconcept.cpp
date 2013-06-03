@@ -49,26 +49,33 @@ void pvdb::Concept::Test()
       const boost::shared_ptr<      pvdb::Concept> b = tmp_b.at(i);
       assert(b); //FAILS AT CROSSCOMPILER
       assert(a);
-      assert(a==a); assert(a==b); assert(b==a); assert(b==b);
+      assert(a!=b);
+      assert(IsEqual(*a,*a));
+      assert(IsEqual(*b,*a));
+      assert(IsEqual(*a,*b));
+      assert(IsEqual(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
         const boost::shared_ptr<const pvdb::Concept> c = ConceptFactory::GetTests().at(j);
         const boost::shared_ptr<      pvdb::Concept> d = ConceptFactory::GetTests().at(j);
         assert(c); assert(d);
-        assert(c==c); assert(c==d); assert(d==c); assert(d==d);
+        assert(IsEqual(*c,*c));
+        assert(IsEqual(*d,*c));
+        assert(IsEqual(*c,*d));
+        assert(IsEqual(*d,*d));
         if (i==j)
         {
-          assert(a==c); assert(a==d);
-          assert(b==c); assert(b==d);
-          assert(c==a); assert(c==b);
-          assert(d==a); assert(d==b);
+          assert(IsEqual(*a,*c)); assert(IsEqual(*a,*d));
+          assert(IsEqual(*b,*c)); assert(IsEqual(*b,*d));
+          assert(IsEqual(*c,*a)); assert(IsEqual(*c,*b));
+          assert(IsEqual(*d,*a)); assert(IsEqual(*d,*b));
         }
         else
         {
-          assert(a!=c); assert(a!=d);
-          assert(b!=c); assert(b!=d);
-          assert(c!=a); assert(c!=b);
-          assert(d!=a); assert(d!=b);
+          assert(!IsEqual(*a,*c)); assert(!IsEqual(*a,*d));
+          assert(!IsEqual(*b,*c)); assert(!IsEqual(*b,*d));
+          assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b));
+          assert(!IsEqual(*d,*a)); assert(!IsEqual(*d,*b));
         }
       }
     }
@@ -125,15 +132,15 @@ void pvdb::Concept::Test()
         //Test copy constructor and operator==
         boost::shared_ptr<pvdb::Concept> c = ConceptFactory::DeepCopy(original);
         assert(c);
-        assert(c == original);
+        assert(IsEqual(*c,*original));
         //Test operator!=
         c->m_name = c->m_name + " (modified)";
-        assert(c != original);
+        assert(!IsEqual(*c,*original));
         //Test ToXml and FromXml
         const std::string s = ToXml(c);
         const boost::shared_ptr<pvdb::Concept> d = FromXml(s);
         assert(d);
-        assert(c == d);
+        assert(IsEqual(*c,*d));
       }
     );
   }

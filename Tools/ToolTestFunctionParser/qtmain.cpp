@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QtGui/QApplication>
 #include "qttestfunctionparsermenudialog.h"
 
-
+/*
 const std::string CreateStyleSheet()
 {
   const std::string s =
@@ -51,11 +51,12 @@ const std::string CreateStyleSheet()
     "} ";
   return s;
 }
+*/
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  a.setStyleSheet(CreateStyleSheet().c_str());
+  //a.setStyleSheet(CreateStyleSheet().c_str());
   QtTestFunctionParserMenuDialog w;
   w.show();
   return a.exec();

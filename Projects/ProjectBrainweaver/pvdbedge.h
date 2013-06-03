@@ -66,7 +66,12 @@ struct Edge : public boost::noncopyable
   void SetTo(const boost::shared_ptr<pvdb::Node> to);
 
   ///Convert an Edge from an XML std::string
-  static const std::string ToXml(const boost::shared_ptr<const pvdb::Edge>& c);
+  ///The container of nodes is needed to convert the 'to' and 'from'
+  ///field to indices
+  static const std::string ToXml(
+    const boost::shared_ptr<const pvdb::Edge>& c,
+    const std::vector<boost::shared_ptr<const pvdb::Node> >& nodes
+    );
 
   ///Emitted when an Edge attribute has changed
   boost::signals2::signal<void (const Edge*)> m_signal_changed;

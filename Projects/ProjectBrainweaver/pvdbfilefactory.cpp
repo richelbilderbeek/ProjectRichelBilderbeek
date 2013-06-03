@@ -31,16 +31,22 @@ const boost::shared_ptr<pvdb::File> pvdb::FileFactory::Create()
 const boost::shared_ptr<pvdb::File> pvdb::FileFactory::DeepCopy(const boost::shared_ptr<const pvdb::File>& file)
 {
   assert(file);
-  assert(file->GetCluster());
-  const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
-  assert(cluster);
-  assert(file->GetCluster());
-  assert(IsEqual(*cluster,*file->GetCluster()));
 
-  assert(file->GetConceptMap());
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::DeepCopy(file->GetConceptMap());
-  assert(concept_map);
-  assert(IsEqual(*concept_map,*file->GetConceptMap()));
+  boost::shared_ptr<pvdb::Cluster> cluster;
+  if (file->GetCluster())
+  {
+    cluster = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
+    assert(cluster);
+    assert(IsEqual(*cluster,*file->GetCluster()));
+  }
+
+  boost::shared_ptr<pvdb::ConceptMap> concept_map;
+  if (file->GetConceptMap())
+  {
+    concept_map = pvdb::ConceptMapFactory::DeepCopy(file->GetConceptMap());
+    assert(concept_map);
+    assert(IsEqual(*concept_map,*file->GetConceptMap()));
+  }
 
   const boost::shared_ptr<pvdb::File> p(
     new File(

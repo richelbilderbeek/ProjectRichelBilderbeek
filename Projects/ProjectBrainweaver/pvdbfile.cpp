@@ -40,8 +40,8 @@ const std::string pvdb::File::m_filename_extension = "cmp";
 pvdb::File::File()
   : m_about("ProjectVanDenBogaart"),
     m_assessor_name(""),
-    m_cluster(pvdb::ClusterFactory::Create( {} )),
-    m_concept_map(pvdb::ConceptMapFactory::Create("...File::File_29...")),
+    m_cluster(),
+    m_concept_map(), //nullptr
     m_student_name(""),
     m_version("0.3")
 {
@@ -49,8 +49,8 @@ pvdb::File::File()
   Test();
   #endif
 
-  assert(m_cluster);
-  assert(m_concept_map);
+  assert(!m_cluster);
+  assert(!m_concept_map);
 }
 
 pvdb::File::File(
@@ -69,10 +69,8 @@ pvdb::File::File(
 {
   #ifndef NDEBUG
   Test();
+  assert(!concept_map || this->GetQuestion() == concept_map->GetQuestion());
   #endif
-  assert(m_cluster);
-  assert(m_concept_map);
-  assert(this->GetQuestion() == concept_map->GetQuestion());
 }
 
 void pvdb::File::AutoSave() const
@@ -101,6 +99,27 @@ const std::string pvdb::File::ConvertFrom_0_2(const std::string& s)
   const std::string a = boost::algorithm::replace_all_copy(s,"</about><cluster>","</about><assessor_name></assessor_name><cluster>");
   return a;
 }
+
+/*
+void pvdb::File::CreateConceptMapFromCluster()
+{
+  assert(GetCluster());
+  assert(GetConceptMap());
+  assert(GetConceptMap()->Empty());
+
+  GetConceptMap()->ReadFromCluster(
+    file->GetConceptMap()->GetQuestion(),
+    file->GetCluster());
+
+  // = pvdb::ConceptMapFactory::CreateFromCluster(
+  //    file->GetConceptMap()->GetQuestion(),
+  //    file->GetCluster()
+  //  );
+  assert((file->GetCluster()->Get().size() + 1)
+    == (concept_map->GetNodes().size())
+    && "As much cluster items as nodes + focus question");
+}
+*/
 
 const std::string pvdb::File::FileToStr(const std::string& filename)
 {
@@ -139,14 +158,28 @@ const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
   //m_cluster
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<cluster>.*</cluster>)"));
-    assert(v.size() == 1);
-    f->m_cluster = Cluster::FromXml(v[0]);
+    if (!v.empty())
+    {
+      assert(v.size() == 1);
+      f->m_cluster = Cluster::FromXml(v[0]);
+    }
+    else
+    {
+      //No cluster yet
+    }
   }
   //m_concept_map
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<concept_map>.*</concept_map>)"));
-    assert(v.size() == 1);
-    f->m_concept_map = ConceptMapFactory::FromXml(v[0]);
+    if (!v.empty())
+    {
+      assert(v.size() == 1);
+      f->m_concept_map = ConceptMapFactory::FromXml(v[0]);
+    }
+    else
+    {
+      //No concept map yet
+    }
   }
   //m_student_name
   {
@@ -167,8 +200,15 @@ const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
 
 const std::string pvdb::File::GetQuestion() const
 {
-  assert(m_concept_map);
-  return m_concept_map->GetQuestion();
+  if (m_concept_map)
+  {
+    assert(m_concept_map);
+    return m_concept_map->GetQuestion();
+  }
+  else
+  {
+    return "";
+  }
 }
 
 const std::string pvdb::File::GetTempFileName()
@@ -282,6 +322,7 @@ void pvdb::File::SetAssessorName(const std::string& assessor_name)
 void pvdb::File::SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept_map)
 {
   assert(concept_map);
+  assert(!m_concept_map);
   m_concept_map = concept_map;
   this->AutoSave();
 }
@@ -289,6 +330,7 @@ void pvdb::File::SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept
 void pvdb::File::SetCluster(const boost::shared_ptr<pvdb::Cluster>& cluster)
 {
   assert(cluster);
+  //assert(!m_cluster); //Don't care
   m_cluster = cluster;
   this->AutoSave();
 }
@@ -433,15 +475,15 @@ void pvdb::File::Test()
 
 const std::string pvdb::File::ToXml(const File& file)
 {
-  assert(file.m_cluster);
-  assert(file.m_concept_map);
+  //assert(file.m_cluster);
+  //assert(file.m_concept_map);
 
   std::stringstream s;
   s << "<file>";
   s << "<about>" << file.GetAbout() << "</about>";
   s << "<assessor_name>" << file.GetAssessorName() << "</assessor_name>";
-  s << Cluster::ToXml(file.GetCluster());
-  s << ConceptMap::ToXml(file.GetConceptMap());
+  if (file.GetCluster()   ) s << Cluster::ToXml(file.GetCluster());
+  if (file.GetConceptMap()) s << ConceptMap::ToXml(file.GetConceptMap());
   s << "<student_name>" << file.GetStudentName() << "</student_name>";
   s << "<version>" << file.GetVersion() << "</version>";
   s << "</file>";
@@ -460,14 +502,20 @@ namespace pvdb {
 
 bool IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
 {
-  assert(lhs.GetCluster());
-  assert(lhs.GetConceptMap());
-  assert(rhs.GetCluster());
-  assert(rhs.GetConceptMap());
+  //assert(lhs.GetCluster());
+  //assert(lhs.GetConceptMap());
+  //assert(rhs.GetCluster());
+  //assert(rhs.GetConceptMap());
   return
      lhs.GetAssessorName() == rhs.GetAssessorName()
-  && IsEqual(*lhs.GetCluster(),*rhs.GetCluster())
-  && IsEqual(*lhs.GetConceptMap(),*rhs.GetConceptMap())
+  && (
+       (!lhs.GetCluster() && !rhs.GetCluster())
+      || IsEqual(*lhs.GetCluster(),*rhs.GetCluster())
+     )
+  && (
+       (!lhs.GetConceptMap() && !rhs.GetConceptMap())
+       || IsEqual(*lhs.GetConceptMap(),*rhs.GetConceptMap())
+     )
   && lhs.GetStudentName() == rhs.GetStudentName()
   && lhs.GetVersion() == rhs.GetVersion();
 }
@@ -475,11 +523,11 @@ bool IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
 bool operator==(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs)
 {
   assert(lhs);
-  assert(lhs->GetCluster());
-  assert(lhs->GetConceptMap());
+  //assert(lhs->GetCluster());
+  //assert(lhs->GetConceptMap());
   assert(rhs);
-  assert(rhs->GetCluster());
-  assert(rhs->GetConceptMap());
+  //assert(rhs->GetCluster());
+  //assert(rhs->GetConceptMap());
   return IsEqual(*lhs,*rhs);
 }
 

@@ -40,8 +40,8 @@ QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   Test();
   assert(file);
   #endif
-  boost::shared_ptr<pvdb::ConceptMap> concept_map = m_file->GetConceptMap();
-  assert(concept_map);
+  //boost::shared_ptr<pvdb::ConceptMap> concept_map = m_file->GetConceptMap();
+  //assert(concept_map);
 
   {
     assert(!ui->widget->layout());
@@ -83,10 +83,11 @@ void QtPvdbRateConceptMapDialog::keyPressEvent(QKeyEvent* e)
 
 void QtPvdbRateConceptMapDialog::on_button_next_clicked()
 {
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map
-    = m_widget->WriteToConceptMap();
-  assert(concept_map);
-  m_file->SetConceptMap(concept_map);
+  assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
+  //const boost::shared_ptr<pvdb::ConceptMap> concept_map
+  //  = m_widget->GetConceptMap();
+  //assert(concept_map);
+  //m_file->SetConceptMap(concept_map);
   QtPvdbRatingDialog d(m_file);
   ShowChild(&d);
   if (d.GetBackToMenu())
@@ -119,7 +120,7 @@ void QtPvdbRateConceptMapDialog::Test()
         = pvdb::ConceptMapFactory::DeepCopy(file->GetConceptMap());
       QtPvdbRateConceptMapDialog d(file);
       assert(pvdb::ConceptMap::HasSameContent(
-        old_concept_map,d.GetWidget()->WriteToConceptMap()));
+        old_concept_map,d.GetWidget()->GetConceptMap()));
     }
   }
   TRACE("QtPvdbRateConceptMapDialog::Test finished successfully");
@@ -160,10 +161,11 @@ void QtPvdbRateConceptMapDialog::Save(const std::string& filename)
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
     && "File must have correct file extension name");
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map = GetWidget()->WriteToConceptMap();
-  assert(concept_map);
-  m_file->SetConceptMap(concept_map);
-  assert(IsEqual(*m_file->GetConceptMap(),*GetWidget()->WriteToConceptMap()));
+  assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
+  //const boost::shared_ptr<pvdb::ConceptMap> concept_map = GetWidget()->GetConceptMap();
+  //assert(concept_map);
+  //m_file->SetConceptMap(concept_map);
+  //assert(IsEqual(*m_file->GetConceptMap(),*GetWidget()->GetConceptMap()));
   m_file->Save(filename);
 }
 

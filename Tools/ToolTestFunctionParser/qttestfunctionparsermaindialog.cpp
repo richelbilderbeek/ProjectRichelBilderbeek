@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestfunctionparsermaindialog.h"
 
 QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestFunctionParserMainDialog)
 {
   ui->setupUi(this);
