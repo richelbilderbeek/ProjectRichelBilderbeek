@@ -10,6 +10,12 @@
 |* (See lgpl.txt and gpl.txt for the license text.)                        *|
 \***************************************************************************/
 
+//Added by Richel Bilderbeek
+#ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#undef __STRICT_ANSI__
+#endif
+
 /* NOTE:
  This file contains generated code (from the optimizer sources) and is
  not intended to be modified by hand. If you want to modify the optimizer,
