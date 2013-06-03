@@ -363,16 +363,17 @@ void pvdb::File::Test()
     f->SetAssessorName("debug assessor name");
     f->SetStudentName("debug student name");
     const boost::shared_ptr<pvdb::File> g = pvdb::FileFactory::DeepCopy(f);
-    assert(f == g);
+    assert(f != g);
+    assert(IsEqual(*f,*g));
     //Modify g, to test operator!=
     g->SetStudentName( f->GetStudentName() + " (modified)");
-    assert(f != g);
+    assert(!IsEqual(*f,*g));
     g->SetStudentName( f->GetStudentName());
-    assert(f == g);
+    assert(IsEqual(*f,*g));
     g->SetAssessorName( f->GetAssessorName() + " (modified)");
-    assert(f != g);
+    assert(!IsEqual(*f,*g));
     g->SetAssessorName( f->GetAssessorName());
-    assert(f == g);
+    assert(IsEqual(*f,*g));
   }
   //Test Save/Load on empty File
   {
@@ -380,10 +381,11 @@ void pvdb::File::Test()
     firstfile->Save(tmp_filename);
     const boost::shared_ptr<pvdb::File> secondfile(File::Load(tmp_filename));
     assert(firstfile->GetQuestion() == secondfile->GetQuestion());
-    assert(firstfile == secondfile);
+    assert(firstfile != secondfile);
+    assert(IsEqual(*firstfile,*secondfile));
     //Modify f, to test operator!=
     firstfile->SetStudentName( firstfile->GetStudentName() + " (modified)");
-    assert(firstfile != secondfile);
+    assert(!IsEqual(*firstfile,*secondfile));
   }
   //Test Save/Load on file
   {

@@ -134,25 +134,31 @@ void pvdb::Example::Test()
     {
       boost::shared_ptr<const pvdb::Example> a = pvdb::ExampleFactory::GetTests().at(i);
       boost::shared_ptr<      Example> b = pvdb::ExampleFactory::GetTests().at(i);
-      assert(a==a); assert(a==b); assert(b==a); assert(b==b);
+      assert(IsEqual(*a,*a));
+      assert(IsEqual(*a,*b));
+      assert(IsEqual(*b,*a));
+      assert(IsEqual(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
         boost::shared_ptr<const pvdb::Example> c = pvdb::ExampleFactory::GetTests().at(j);
         boost::shared_ptr<      Example> d = pvdb::ExampleFactory::GetTests().at(j);
-        assert(c==c); assert(c==d); assert(d==c); assert(d==d);
+        assert(IsEqual(*c,*c));
+        assert(IsEqual(*c,*d));
+        assert(IsEqual(*d,*c));
+        assert(IsEqual(*d,*d));
         if (i==j)
         {
-          assert(a==c); assert(a==d);
-          assert(b==c); assert(b==d);
-          assert(c==a); assert(c==b);
-          assert(d==a); assert(d==b);
+          assert(IsEqual(*a,*c)); assert(IsEqual(*a,*d));
+          assert(IsEqual(*b,*c)); assert(IsEqual(*b,*d));
+          assert(IsEqual(*c,*a)); assert(IsEqual(*c,*b));
+          assert(IsEqual(*d,*a)); assert(IsEqual(*d,*b));
         }
         else
         {
-          assert(a!=c); assert(a!=d);
-          assert(b!=c); assert(b!=d);
-          assert(c!=a); assert(c!=b);
-          assert(d!=a); assert(d!=b);
+          assert(!IsEqual(*a,*c)); assert(!IsEqual(*a,*d));
+          assert(!IsEqual(*b,*c)); assert(!IsEqual(*b,*d));
+          assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b));
+          assert(!IsEqual(*d,*a)); assert(!IsEqual(*d,*b));
         }
       }
     }
@@ -162,9 +168,9 @@ void pvdb::Example::Test()
     const boost::shared_ptr<pvdb::Example> a = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<pvdb::Example> b = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<pvdb::Example> c = ExampleFactory::Create("1",Competency::uninitialized);
-    assert(a == a); assert(a == b); assert(a != c);
-    assert(b == a); assert(b == b); assert(b != c);
-    assert(c != a); assert(c != b); assert(c == c);
+    assert( IsEqual(*a,*a)); assert( IsEqual(*a,*b)); assert(!IsEqual(*a,*c));
+    assert( IsEqual(*b,*a)); assert( IsEqual(*b,*b)); assert(!IsEqual(*b,*c));
+    assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b)); assert( IsEqual(*c,*c));
   }
   //Conversion between std::string and competency
   {

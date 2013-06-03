@@ -53,16 +53,19 @@ private:
 
 
 bool IsEqual(const pvdb::Examples& lhs, const pvdb::Examples& rhs);
-bool operator==(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs);
-bool operator==(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs);
-bool operator==(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs);
-bool operator==(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs);
+
+/*
+bool operator==(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator==(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs) = delete;
+bool operator==(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator==(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs) = delete;
 bool operator==(const pvdb::Examples& lhs, const pvdb::Examples& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs);
-bool operator!=(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs);
-bool operator!=(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs);
-bool operator!=(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs);
+bool operator!=(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator!=(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs) = delete;
+bool operator!=(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator!=(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs) = delete;
 bool operator!=(const pvdb::Examples& lhs, const pvdb::Examples& rhs) = delete;
+*/
 
 ///Two pvdb::Examples instances are sorted as follows:
 ///(1) By their number of examples

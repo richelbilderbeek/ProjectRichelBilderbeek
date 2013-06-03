@@ -64,8 +64,8 @@ const boost::shared_ptr<pvdb::File> pvdb::FileFactory::DeepCopy(const boost::sha
     TRACE(pvdb::File::ToXml(*p));
   }
   #endif
-  assert(file == p);
-  assert(IsEqual(*file,*p));
+  assert(file != p && "It must be a DEEP copy");
+  assert(IsEqual(*file,*p) && "It must be a deep COPY");
   return p;
 }
 #endif

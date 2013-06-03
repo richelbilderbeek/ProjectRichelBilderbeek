@@ -146,12 +146,12 @@ bool pvdb::ConceptMap::CanConstruct(
         assert(a.get() != b.get() && "Assume different pointers");
         const auto b_from = b->GetFrom();
         const auto b_to   = b->GetTo();
-        if (a_from == b_from && a_to == b_to)
+        if (a_from.get() == b_from.get() && a_to.get() == b_to.get())
         {
           //Cannot have two edges from the same node to the same node
           return false;
         }
-        if (a_from == b_to && a_to == b_from)
+        if (a_from.get() == b_to.get() && a_to.get() == b_from.get())
         {
           //Cannot have two edges from the same node to the same node
           return false;
@@ -522,8 +522,7 @@ bool IsEqual(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs)
 
 }
 
-
-
+/*
 bool operator==(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs)
 {
   if (!lhs) { return !rhs; }
@@ -565,5 +564,6 @@ bool operator!=(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::sha
 {
   return boost::shared_ptr<const pvdb::ConceptMap>(lhs) != boost::shared_ptr<const pvdb::ConceptMap>(rhs);
 }
+*/
 
 } //~namespace pvdb
