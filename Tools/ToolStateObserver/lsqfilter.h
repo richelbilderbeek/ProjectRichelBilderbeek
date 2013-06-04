@@ -13,9 +13,9 @@ struct LsqFilter
   int64_t Estimate(const int64_t measurement);
 
   private:
-  int64_t m_val1;
-  int64_t m_val2;
   int64_t m_filter_shift;
+  int64_t m_value_active;
+  int64_t m_value_hidden;
 };
 
 #endif // LSQFILTER_H

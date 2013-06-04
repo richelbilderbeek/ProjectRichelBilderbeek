@@ -14,9 +14,9 @@ LsqFilter::LsqFilter(
   const int filter_shift,
   const int64_t value_active,
   const int64_t value_hidden)
-  : m_val1(value_hidden),
-    m_val2(value_active),
-    m_filter_shift(filter_shift)
+  : m_filter_shift(filter_shift),
+    m_value_active(value_active),
+    m_value_hidden(value_hidden)
 {
   assert(m_filter_shift >=  0 && "A bitshift should not be done with negative values");
   assert(m_filter_shift <= 63 && "An int can maximally be shifted 63 bits to the right");
@@ -24,7 +24,7 @@ LsqFilter::LsqFilter(
 
 int64_t LsqFilter::Estimate(const int64_t measurement)
 {
-  m_val1 += ((measurement  - m_val1) >> m_filter_shift);
-  m_val2 += ((m_val1 - m_val2) >> m_filter_shift);
-  return m_val2;
+  m_value_hidden += ((measurement    - m_value_hidden) >> m_filter_shift);
+  m_value_active += ((m_value_hidden - m_value_active) >> m_filter_shift);
+  return m_value_active;
 }

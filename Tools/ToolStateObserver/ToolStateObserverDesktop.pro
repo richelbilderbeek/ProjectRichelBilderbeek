@@ -1,7 +1,4 @@
-#Uncomment to ensure Release mode
-#DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-
-#Use static when crosscompiling
+#Use static when crosscompiling from Lubuntu to Windows
 win32 {
   #CONFIG += static
 }
@@ -11,101 +8,68 @@ TEMPLATE = app
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
-    ../../Classes/CppKalmanFilter \
-    ../../Classes/CppMatrix \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppStateObserver \
     ../../Classes/CppTrace
 
 SOURCES += \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterexample.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterparameter.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterparameters.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterparametertype.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfiltertype.cpp \
-    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.cpp \
-    ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.cpp \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemparameters.cpp \
-    ../../Classes/CppMatrix/matrix.cpp \
+    ../../Classes/CppAbout/about.cpp \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../../Classes/CppStateObserver/alphabetafilter.cpp \
     ../../Classes/CppStateObserver/alphabetagammafilter.cpp \
     ../../Classes/CppStateObserver/alphafilter.cpp \
+    ../../Classes/CppStateObserver/integeralphafilter.cpp \
+    ../../Classes/CppStateObserver/integerstateobserver.cpp \
+    ../../Classes/CppStateObserver/integersymmetricalphafilter.cpp \
     ../../Classes/CppStateObserver/multialphafilter.cpp \
+    ../../Classes/CppStateObserver/multiintegerstateobserver.cpp \
     lsqfilter.cpp \
     noisefunctionparser.cpp \
     qtmain.cpp \
     qtstateobservermaindialog.cpp \
     qtstateobservermenudialog.cpp \
     slidingmodeobserver.cpp \
-    stateobservermenudialog.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtype.cpp \
-    ../../Classes/CppQtModel/modelfunctionparser.cpp
+    slsqfilter.cpp \
+    stateobservermenudialog.cpp
 
 HEADERS  += \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterexample.h \
-    ../../Classes/CppKalmanFilter/kalmanfilter.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterparameter.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterparametertype.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltertype.h \
-    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.h \
-    ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemparameters.h \
-    ../../Classes/CppMatrix/matrix.h \
+    ../../Classes/CppAbout/about.h \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppStateObserver/alphabetafilter.h \
     ../../Classes/CppStateObserver/alphabetagammafilter.h \
     ../../Classes/CppStateObserver/alphafilter.h \
+    ../../Classes/CppStateObserver/integeralphafilter.h \
+    ../../Classes/CppStateObserver/integerstateobserver.h \
+    ../../Classes/CppStateObserver/integersymmetricalphafilter.h \
     ../../Classes/CppStateObserver/multialphafilter.h \
+    ../../Classes/CppStateObserver/multiintegerstateobserver.h \
+    ../../Classes/CppStateObserver/stateobserverfwd.h \
     ../../Classes/CppTrace/trace.h \
     lsqfilter.h \
     noisefunctionparser.h \
     qtstateobservermaindialog.h \
     qtstateobservermenudialog.h \
-    slidingmodeobserver.h \
-    stateobservermenudialog.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtype.h \
-    ../../Classes/CppQtModel/modelfunctionparser.h
+    slsqfilter.h \
+    stateobservermenudialog.h
 
 FORMS    += \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     qtstateobservermaindialog.ui \
-    qtstateobservermenudialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+    qtstateobservermenudialog.ui
 
 RESOURCES += \
     ToolStateObserver.qrc
 
 OTHER_FILES += \
-    ../../Classes/CppMatrix/Licence.txt \
-    ../../Classes/CppStateObserver/Licence.txt \
-    ../../Classes/ToolStateObserver/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt \
+    ../../Classes/CppStateObserver/Licence.txt \
+    ../../Classes/CppTrace/Licence.txt \
+    ../../Classes/ToolStateObserver/Licence.txt \
     crosscompiletowindows.sh \
     zip.sh
 

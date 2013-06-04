@@ -31,7 +31,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
 #include "alphafilter.h"
+#include "integeralphafilter.h"
+#include "integerstateobserver.h"
+#include "integersymmetricalphafilter.h"
 #include "multialphafilter.h"
+#include "multiintegerstateobserver.h"
 
 const About StateObserverMenuDialog::GetAbout()
 {
@@ -39,7 +43,7 @@ const About StateObserverMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "StateObserver",
     "tool to examine state observers",
-    "the 25th of May 2013",
+    "the 4th of June 2013",
     "2013",
     "http://www.richelbilderbeek.nl/ToolStateObserver.htm",
     GetVersion(),
@@ -47,19 +51,24 @@ const About StateObserverMenuDialog::GetAbout()
   a.AddLibrary("AlphaFilter version: " + AlphaFilter::GetVersion());
   a.AddLibrary("AlphaBetaFilter version: " + AlphaBetaFilter::GetVersion());
   a.AddLibrary("AlphaBetaGammaFilter version: " + AlphaBetaGammaFilter::GetVersion());
+  a.AddLibrary("IntegerAlphaFilter version: " + IntegerAlphaFilter::GetVersion());
+  a.AddLibrary("IntegerStateObserver version: " + IntegerStateObserver::GetVersion());
+  a.AddLibrary("IntegerSymmetricalAlphaFilter version: " + IntegerSymmetricalAlphaFilter::GetVersion());
   a.AddLibrary("MultiAlphaFilter version: " + MultiAlphaFilter::GetVersion());
+  a.AddLibrary("MultiIntegerStateObserver version: " + MultiIntegerStateObserver::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
 const std::string StateObserverMenuDialog::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> StateObserverMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");
+  v.push_back("2013-06-04: version 1.1: added more state observers, allow plotting of subset of state observers");
   return v;
 }

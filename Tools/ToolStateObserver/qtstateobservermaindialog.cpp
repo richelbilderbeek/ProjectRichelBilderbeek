@@ -17,13 +17,17 @@
 #include "qwt_plot_zoomer.h"
 #include "qwt_plot_panner.h"
 
-#include "alphafilter.h"
 #include "alphabetafilter.h"
-#include "lsqfilter.h"
 #include "alphabetagammafilter.h"
+#include "alphafilter.h"
+#include "integeralphafilter.h"
+#include "integersymmetricalphafilter.h"
+#include "lsqfilter.h"
 #include "multialphafilter.h"
+#include "multiintegerstateobserver.h"
 #include "noisefunctionparser.h"
 #include "slidingmodeobserver.h"
+#include "slsqfilter.h"
 #include "ui_qtstateobservermaindialog.h"
 
 QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
@@ -34,7 +38,9 @@ QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
   m_curve_outputs_alpha_beta(new QwtPlotCurve("Alpha beta filter estimations")),
   m_curve_outputs_alpha_beta_gamma(new QwtPlotCurve("Alpha beta gamma filter estimations")),
   m_curve_outputs_lsq(new QwtPlotCurve("LSQ filter estimations")),
-  m_curve_outputs_ma(new QwtPlotCurve("Multi alpha filter estimations"))
+  m_curve_outputs_slsq(new QwtPlotCurve("SLSQ filter estimations")),
+  m_curve_outputs_ma(new QwtPlotCurve("Multi alpha filter estimations")),
+  m_curve_outputs_miso(new QwtPlotCurve("Multi integer state observer estimations"))
 {
   ui->setupUi(this);
 
@@ -48,32 +54,61 @@ QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
 
   m_curve_inputs->attach(ui->plot);
   m_curve_inputs->setStyle(QwtPlotCurve::Lines);
-  m_curve_inputs->setPen(QPen(QColor(128,128,128)));
+  m_curve_inputs->setPen(QPen(QColor(0,0,0)));
 
   m_curve_outputs_alpha->attach(ui->plot);
   m_curve_outputs_alpha->setStyle(QwtPlotCurve::Lines);
-  m_curve_outputs_alpha->setPen(QPen(QColor(255,0,0)));
+  m_curve_outputs_alpha->setPen(QPen(QColor(196,0,0)));
 
   m_curve_outputs_alpha_beta->attach(ui->plot);
   m_curve_outputs_alpha_beta->setStyle(QwtPlotCurve::Lines);
-  m_curve_outputs_alpha_beta->setPen(QPen(QColor(0,196,0)));
+  m_curve_outputs_alpha_beta->setPen(QPen(QColor(255,127,0)));
 
   m_curve_outputs_alpha_beta_gamma->attach(ui->plot);
   m_curve_outputs_alpha_beta_gamma->setStyle(QwtPlotCurve::Lines);
-  m_curve_outputs_alpha_beta_gamma->setPen(QPen(QColor(196,196,0)));
+  m_curve_outputs_alpha_beta_gamma->setPen(QPen(QColor(212,212,0)));
 
-  m_curve_outputs_lsq->attach(ui->plot);
-  m_curve_outputs_lsq->setStyle(QwtPlotCurve::Lines);
-  m_curve_outputs_lsq->setPen(QPen(QColor(0,0,255)));
+  //LSQ
+  {
+    m_curve_outputs_lsq->attach(ui->plot);
+    m_curve_outputs_lsq->setStyle(QwtPlotCurve::Lines);
+    QPen pen;
+    pen.setColor(QColor(0,196,0));
+    pen.setWidth(3);
+    pen.setDashPattern( {2.0,2.0} );
+    m_curve_outputs_lsq->setPen(pen);
+  }
+
+  //SLSQ
+  {
+    m_curve_outputs_slsq->attach(ui->plot);
+    m_curve_outputs_slsq->setStyle(QwtPlotCurve::Lines);
+    QPen pen;
+    pen.setColor(QColor(0,196,196));
+    pen.setWidth(3);
+    pen.setDashPattern( {2.0,3.0} );
+    m_curve_outputs_slsq->setPen(pen);
+  }
 
   m_curve_outputs_ma->attach(ui->plot);
   m_curve_outputs_ma->setStyle(QwtPlotCurve::Lines);
-  m_curve_outputs_ma->setPen(QPen(QColor(0,196,196)));
+  m_curve_outputs_ma->setPen(QPen(QColor(0,0,212)));
+
+  //MI
+  {
+    m_curve_outputs_miso->attach(ui->plot);
+    m_curve_outputs_miso->setStyle(QwtPlotCurve::Lines);
+    QPen pen;
+    pen.setColor(QColor(196,0,196));
+    pen.setWidth(3);
+    pen.setDashPattern( {3.0,3.0} );
+    m_curve_outputs_miso->setPen(pen);
+  }
 
   //Add grid
   {
     QwtPlotGrid * const grid = new QwtPlotGrid;
-    grid->setPen(QPen(QColor(128,128,128)));
+    grid->setPen(QPen(QColor(0,0,0)));
     grid->attach(ui->plot);
 
   }
@@ -99,11 +134,25 @@ QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
   QObject::connect(ui->box_beta_ab,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_beta_abg,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_gamma_abg,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->slider_shift,SIGNAL(valueChanged(int)),this,SLOT(Run()));
+  QObject::connect(ui->box_lsq_shift,SIGNAL(valueChanged(int)),this,SLOT(Run()));
+  QObject::connect(ui->check_miso_1,SIGNAL(clicked()),this,SLOT(Run()));
+  QObject::connect(ui->check_miso_2,SIGNAL(clicked()),this,SLOT(Run()));
+  QObject::connect(ui->box_slsq_shift,SIGNAL(valueChanged(int)),this,SLOT(Run()));
+  QObject::connect(ui->box_miso_shift_1,SIGNAL(valueChanged(int)),this,SLOT(Run()));
+  QObject::connect(ui->box_miso_shift_2,SIGNAL(valueChanged(int)),this,SLOT(Run()));
   QObject::connect(ui->box_timesteps,SIGNAL(valueChanged(int)),this,SLOT(Run()));
   QObject::connect(ui->edit_noise,SIGNAL(textChanged(QString)),this,SLOT(Run()));
   QObject::connect(ui->box_ma_1,SIGNAL(valueChanged(double)),this,SLOT(Run()));
   QObject::connect(ui->box_ma_2,SIGNAL(valueChanged(double)),this,SLOT(Run()));
+
+  QObject::connect(ui->groupbox_abg,SIGNAL(clicked()),this,SLOT(Run()));
+  QObject::connect(ui->groupbox_alpha,SIGNAL(clicked()),this,SLOT(Run()));
+  QObject::connect(ui->groupbox_beta,SIGNAL(clicked()),this,SLOT(Run()));
+  QObject::connect(ui->groupbox_lsq,SIGNAL(clicked()),this,SLOT(Run()));
+  QObject::connect(ui->groupBox_ma,SIGNAL(clicked()),this,SLOT(Run()));
+  QObject::connect(ui->groupBox_miso,SIGNAL(clicked()),this,SLOT(Run()));
+  QObject::connect(ui->groupBox_slsq,SIGNAL(clicked()),this,SLOT(Run()));
+
   Run();
 }
 
@@ -112,24 +161,93 @@ QtStateObserverMainDialog::~QtStateObserverMainDialog()
   delete ui;
 }
 
+const boost::shared_ptr<AlphaFilter> QtStateObserverMainDialog::CreateAlphaFilter() const
+{
+  const double alpha  = ui->box_alpha_a->value();
+  const double dt = CreateDt();
+  const boost::shared_ptr<AlphaFilter> filter(new AlphaFilter(alpha,dt));
+  assert(filter);
+  return filter;
+}
+
+const boost::shared_ptr<AlphaBetaFilter> QtStateObserverMainDialog::CreateAlphaBetaFilter() const
+{
+  const double alpha = ui->box_alpha_ab->value();
+  const double beta = ui->box_beta_ab->value();
+  const double dt = CreateDt();
+  const boost::shared_ptr<AlphaBetaFilter> filter(new AlphaBetaFilter(alpha,beta,dt));
+  assert(filter);
+  return filter;
+}
+
+const boost::shared_ptr<AlphaBetaGammaFilter> QtStateObserverMainDialog::CreateAlphaBetaGammaFilter() const
+{
+  const double alpha = ui->box_alpha_abg->value();
+  const double beta = ui->box_beta_abg->value();
+  const double gamma = ui->box_gamma_abg->value();
+  const double dt = CreateDt();
+  const boost::shared_ptr<AlphaBetaGammaFilter> filter(new AlphaBetaGammaFilter(alpha,beta,gamma,dt));
+  assert(filter);
+  return filter;
+}
+
+const boost::shared_ptr<LsqFilter> QtStateObserverMainDialog::CreateLsqFilter() const
+{
+  const int shift_lsq = ui->box_lsq_shift->value();
+  const boost::shared_ptr<LsqFilter> filter(new LsqFilter(shift_lsq));
+  assert(filter);
+  return filter;
+}
+
+const boost::shared_ptr<SlsqFilter> QtStateObserverMainDialog::CreateSlsqFilter() const
+{
+  const int shift_slsq = ui->box_slsq_shift->value();
+  const boost::shared_ptr<SlsqFilter> filter(new SlsqFilter(shift_slsq));
+  assert(filter);
+  return filter;
+}
+
+
+const boost::shared_ptr<MultiAlphaFilter> QtStateObserverMainDialog::CreateMultiAlphaFilter() const
+{
+  const double ma_1 = ui->box_ma_1->value();
+  const double ma_2 = ui->box_ma_2->value();
+  const std::vector<double> alphas = { ma_1, ma_2 };
+  const boost::shared_ptr<MultiAlphaFilter> filter(new MultiAlphaFilter(alphas));
+  assert(filter);
+  return filter;
+}
+
+const boost::shared_ptr<MultiIntegerStateObserver> QtStateObserverMainDialog::CreateMiso() const
+{
+  std::vector<boost::shared_ptr<IntegerStateObserver> > state_observers;
+  {
+    const bool is_symmetric = ui->check_miso_1->isChecked();
+    const int alpha = ui->box_miso_shift_1->value();
+    boost::shared_ptr<IntegerStateObserver> state_observer;
+    if (!is_symmetric) state_observer.reset(new IntegerAlphaFilter(alpha));
+    else state_observer.reset(new IntegerSymmetricalAlphaFilter(alpha));
+    assert(state_observer);
+    state_observers.push_back(state_observer);
+  }
+  {
+    const bool is_symmetric = ui->check_miso_2->isChecked();
+    const int alpha = ui->box_miso_shift_2->value();
+    boost::shared_ptr<IntegerStateObserver> state_observer;
+    if (!is_symmetric) state_observer.reset(new IntegerAlphaFilter(alpha));
+    else state_observer.reset(new IntegerSymmetricalAlphaFilter(alpha));
+    assert(state_observer);
+    state_observers.push_back(state_observer);
+  }
+
+  const boost::shared_ptr<MultiIntegerStateObserver> filter(new MultiIntegerStateObserver(state_observers));
+  assert(filter);
+  return filter;
+}
+
 void QtStateObserverMainDialog::Run()
 {
   const int timesteps = ui->box_timesteps->value();
-  const double alpha_a  = ui->box_alpha_a->value();
-  const double alpha_ab = ui->box_alpha_ab->value();
-  const double alpha_abg = ui->box_alpha_abg->value();
-
-  const double ma_1 = ui->box_ma_1->value();
-  const double ma_2 = ui->box_ma_2->value();
-
-  const double beta_ab = ui->box_beta_ab->value();
-  const double beta_abg = ui->box_beta_abg->value();
-  const double dt = 1.0;
-
-  const double gamma_abg = ui->box_gamma_abg->value();
-
-  const int shift = ui->slider_shift->value();
-
   const std::string noise_function_str = ui->edit_noise->text().toStdString();
   try
   {
@@ -147,36 +265,49 @@ void QtStateObserverMainDialog::Run()
   std::vector<double> outputs_alpha_beta;
   std::vector<double> outputs_alpha_beta_gamma;
   std::vector<double> outputs_lsq;
+  std::vector<double> outputs_slsq;
   std::vector<double> outputs_ma;
+  std::vector<double> outputs_miso;
 
-
-  ui->label_value_dt_a->setText(QString::number(dt));
-
-  ui->label_value_shift->setText(QString::number(shift));
+  ui->label_value_dt_a->setText(QString::number(CreateDt()));
 
   //Use filters
   {
-    AlphaFilter filter_alpha(alpha_a,dt);
-    AlphaBetaFilter filter_alpha_beta(alpha_ab,beta_ab,dt);
-    AlphaBetaGammaFilter filter_alpha_beta_gamma(alpha_abg,beta_abg,gamma_abg,dt);
-    LsqFilter filter_lsq(shift);
-    MultiAlphaFilter filter_ma( { ma_1, ma_2 } );
+    const auto filter_alpha = CreateAlphaFilter();
+    const auto filter_alpha_beta = CreateAlphaBetaFilter();
+    const auto filter_alpha_beta_gamma = CreateAlphaBetaGammaFilter();
+    const auto filter_lsq = CreateLsqFilter();
+    const auto filter_slsq = CreateSlsqFilter();
+    const auto filter_ma = CreateMultiAlphaFilter();
+    const auto filter_miso = CreateMiso();
     for (int t=0; t!=timesteps; ++t)
     {
       const double measurement             = noise_function.Evaluate(static_cast<double>(t));
-      const double output_alpha            = filter_alpha.Estimate(measurement);
-      const double output_alpha_beta       = filter_alpha_beta.Estimate(measurement);
-      const double output_alpha_beta_gamma = filter_alpha_beta_gamma.Estimate(measurement);
-      const double output_lsq              = filter_lsq.Estimate(measurement);
-      const double output_ma               = filter_ma.Estimate(measurement);
+      const double output_alpha            = filter_alpha->Estimate(measurement);
+      const double output_alpha_beta       = filter_alpha_beta->Estimate(measurement);
+      const double output_alpha_beta_gamma = filter_alpha_beta_gamma->Estimate(measurement);
+      const double output_lsq              = filter_lsq->Estimate(measurement);
+      const double output_slsq             = filter_slsq->Estimate(measurement);
+      const double output_ma               = filter_ma->Estimate(measurement);
+      const double output_miso             = filter_miso->Estimate(measurement);
       inputs.push_back(measurement);
       outputs_alpha.push_back(output_alpha);
       outputs_alpha_beta.push_back(output_alpha_beta);
       outputs_alpha_beta_gamma.push_back(output_alpha_beta_gamma);
       outputs_lsq.push_back(output_lsq);
+      outputs_slsq.push_back(output_slsq);
       outputs_ma.push_back(output_ma);
+      outputs_miso.push_back(output_miso);
     }
   }
+  //Clear all plots
+  m_curve_outputs_alpha->setData(new QwtPointArrayData(0,0,0));
+  m_curve_outputs_alpha_beta->setData(new QwtPointArrayData(0,0,0));
+  m_curve_outputs_alpha_beta_gamma->setData(new QwtPointArrayData(0,0,0));
+  m_curve_outputs_lsq->setData(new QwtPointArrayData(0,0,0));
+  m_curve_outputs_slsq->setData(new QwtPointArrayData(0,0,0));
+  m_curve_outputs_ma->setData(new QwtPointArrayData(0,0,0));
+  m_curve_outputs_miso->setData(new QwtPointArrayData(0,0,0));
   //Plot
   {
     std::vector<double> timeseries;
@@ -186,18 +317,43 @@ void QtStateObserverMainDialog::Run()
     }
     #ifdef _WIN32
     m_curve_inputs->setData(new QwtPointArrayData(&timeseries[0],&inputs[0],inputs.size()));
-    m_curve_outputs_alpha->setData(new QwtPointArrayData(&timeseries[0],&outputs_alpha[0],outputs_alpha.size()));
-    m_curve_outputs_alpha_beta->setData(new QwtPointArrayData(&timeseries[0],&outputs_alpha_beta[0],outputs_alpha_beta.size()));
-    m_curve_outputs_alpha_beta_gamma->setData(new QwtPointArrayData(&timeseries[0],&outputs_alpha_beta_gamma[0],outputs_alpha_beta_gamma.size()));
-    m_curve_outputs_lsq->setData(new QwtPointArrayData(&timeseries[0],&outputs_lsq[0],outputs_lsq.size()));
-    m_curve_outputs_ma->setData(new QwtPointArrayData(&timeseries[0],&outputs_ma[0],outputs_ma.size()));
+    if (ui->groupbox_alpha->isChecked())
+    {
+      m_curve_outputs_alpha->setData(new QwtPointArrayData(&timeseries[0],&outputs_alpha[0],outputs_alpha.size()));
+    }
+    if (ui->groupbox_beta->isChecked())
+    {
+      m_curve_outputs_alpha_beta->setData(new QwtPointArrayData(&timeseries[0],&outputs_alpha_beta[0],outputs_alpha_beta.size()));
+    }
+    if (ui->groupbox_abg->isChecked())
+    {
+      m_curve_outputs_alpha_beta_gamma->setData(new QwtPointArrayData(&timeseries[0],&outputs_alpha_beta_gamma[0],outputs_alpha_beta_gamma.size()));
+    }
+    if (ui->groupbox_lsq->isChecked())
+    {
+      m_curve_outputs_lsq->setData(new QwtPointArrayData(&timeseries[0],&outputs_lsq[0],outputs_lsq.size()));
+    }
+    if (ui->groupBox_slsq->isChecked())
+    {
+      m_curve_outputs_slsq->setData(new QwtPointArrayData(&timeseries[0],&outputs_slsq[0],outputs_slsq.size()));
+    }
+    if (ui->groupBox_ma->isChecked())
+    {
+      m_curve_outputs_ma->setData(new QwtPointArrayData(&timeseries[0],&outputs_ma[0],outputs_ma.size()));
+    }
+    if (ui->groupBox_miso->isChecked())
+    {
+      m_curve_outputs_miso->setData(new QwtPointArrayData(&timeseries[0],&outputs_miso[0],outputs_miso.size()));
+    }
     #else
     m_curve_inputs->setData(&timeseries[0],&inputs[0],inputs.size());
     m_curve_outputs_alpha->setData(&timeseries[0],&outputs_alpha[0],outputs_alpha.size());
     m_curve_outputs_alpha_beta->setData(&timeseries[0],&outputs_alpha_beta[0],outputs_alpha_beta.size());
     m_curve_outputs_alpha_beta_gamma->setData(&timeseries[0],&outputs_alpha_beta_gamma[0],outputs_alpha_beta_gamma.size());
     m_curve_outputs_lsq->setData(&timeseries[0],&outputs_lsq[0],outputs_lsq.size());
+    m_curve_outputs_slsq->setData(&timeseries[0],&outputs_slsq[0],outputs_slsq.size());
     m_curve_outputs_ma->setData(&timeseries[0],&outputs_ma[0],outputs_ma.size());
+    m_curve_outputs_miso->setData(&timeseries[0],&outputs_miso[0],outputs_miso.size());
     #endif
     ui->plot->replot();
   }
