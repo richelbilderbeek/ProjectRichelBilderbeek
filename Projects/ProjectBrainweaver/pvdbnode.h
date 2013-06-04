@@ -85,14 +85,14 @@ struct Node : public boost::noncopyable
 bool IsEqual(const pvdb::Node& lhs, const pvdb::Node& rhs);
 
 /*
-bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs);
-bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs);
-bool operator==(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs);
-bool operator==(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs);
-bool operator!=(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs);
-bool operator!=(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs);
-bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs);
-bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs);
+bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs) = delete;
+bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs) = delete;
+bool operator==(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs) = delete;
+bool operator==(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs) = delete;
+bool operator!=(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs) = delete;
+bool operator!=(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs) = delete;
+bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs) = delete;
+bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs) = delete;
 */
 
 } //~namespace pvdb
