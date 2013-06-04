@@ -63,7 +63,7 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
+      <item row="5" column="1">
        <spacer name="verticalSpacer_5">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -79,17 +79,30 @@
       <item row="2" column="0" colspan="2">
        <widget class="QLabel" name="label_noise_mean">
         <property name="toolTip">
-         <string>The value that would be measured without noise</string>
+         <string>The value that will be measured, with or without noise added</string>
         </property>
         <property name="text">
-         <string>Noise</string>
+         <string>Value to be estimated</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QLineEdit" name="edit_noise">
+        <property name="toolTip">
+         <string>Enter any function of t here, for example '1000-(0.5*t/5)+rand(t/5)'</string>
+        </property>
+        <property name="text">
+         <string>1000-(0.5*t/5)+rand(t/5)</string>
         </property>
        </widget>
       </item>
       <item row="3" column="0" colspan="2">
-       <widget class="QLineEdit" name="edit_noise">
+       <widget class="QLabel" name="label">
+        <property name="toolTip">
+         <string>For example 'rand(10)'</string>
+        </property>
         <property name="text">
-         <string>1000-(0.5*t/5)+rand(t/5)</string>
+         <string>(can use 'rand' to add noise)</string>
         </property>
        </widget>
       </item>
@@ -649,12 +662,26 @@
  <tabstops>
   <tabstop>button_rerun</tabstop>
   <tabstop>box_timesteps</tabstop>
+  <tabstop>edit_noise</tabstop>
+  <tabstop>groupbox_lsq</tabstop>
+  <tabstop>box_lsq_shift</tabstop>
+  <tabstop>groupBox_slsq</tabstop>
+  <tabstop>box_slsq_shift</tabstop>
+  <tabstop>groupBox_miso</tabstop>
+  <tabstop>box_miso_shift_1</tabstop>
+  <tabstop>check_miso_1</tabstop>
+  <tabstop>box_miso_shift_2</tabstop>
+  <tabstop>check_miso_2</tabstop>
+  <tabstop>groupbox_alpha</tabstop>
   <tabstop>box_alpha_a</tabstop>
+  <tabstop>groupbox_beta</tabstop>
   <tabstop>box_alpha_ab</tabstop>
   <tabstop>box_beta_ab</tabstop>
+  <tabstop>groupbox_abg</tabstop>
   <tabstop>box_alpha_abg</tabstop>
   <tabstop>box_beta_abg</tabstop>
   <tabstop>box_gamma_abg</tabstop>
+  <tabstop>groupBox_ma</tabstop>
   <tabstop>box_ma_1</tabstop>
   <tabstop>box_ma_2</tabstop>
  </tabstops>

@@ -53,8 +53,13 @@ QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
   ui->plot->setAxisAutoScale(QwtPlot::yLeft);
 
   m_curve_inputs->attach(ui->plot);
-  m_curve_inputs->setStyle(QwtPlotCurve::Lines);
-  m_curve_inputs->setPen(QPen(QColor(0,0,0)));
+  m_curve_inputs->setStyle(QwtPlotCurve::Dots);
+  {
+    QPen pen;
+    pen.setColor(QColor(0,0,0));
+    pen.setWidth(2);
+    m_curve_inputs->setPen(pen);
+  }
 
   m_curve_outputs_alpha->attach(ui->plot);
   m_curve_outputs_alpha->setStyle(QwtPlotCurve::Lines);
