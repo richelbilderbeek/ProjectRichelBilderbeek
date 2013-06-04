@@ -115,14 +115,14 @@ void pvdb::Edge::Test()
       assert(edge);
       const boost::shared_ptr<const pvdb::Edge> c = pvdb::EdgeFactory::DeepCopy(edge,node_from,node_to);
       assert(c);
-      assert(edge == c); assert(c == edge);
-      assert(c->GetFrom() == node_from);
-      assert(c->GetFrom() == AddConst(nodes)[0]);
-      assert(c->GetTo() == node_to);
-      assert(c->GetTo() == AddConst(nodes)[1]);
+      assert(IsEqual(*edge,*c)); assert(IsEqual(*c,*edge));
+      assert(IsEqual(*c->GetFrom(),*node_from));
+      assert(IsEqual(*c->GetFrom(),*nodes[0]));
+      assert(IsEqual(*c->GetTo(),*node_to));
+      assert(IsEqual(*c->GetTo(),*nodes[1]));
       const std::string s = ToXml(c,AddConst(nodes));
       const boost::shared_ptr<pvdb::Edge> d = pvdb::EdgeFactory::FromXml(s,nodes);
-      assert(c == d);
+      assert(IsEqual(*c,*d));
     }
   }
   TRACE("Edge::Test finished successfully");
@@ -183,8 +183,8 @@ bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs)
   assert(lhs.GetConcept()); assert(rhs.GetConcept());
   return
        IsEqual(*lhs.GetConcept(),*rhs.GetConcept())
-    && lhs.GetFrom()      == rhs.GetFrom()
-    && lhs.GetTo()        == rhs.GetTo()
+    && IsEqual(*lhs.GetFrom(),*rhs.GetFrom())
+    && IsEqual(*lhs.GetTo(),*rhs.GetTo())
     && lhs.GetX()         == rhs.GetX()
     && lhs.GetY()         == rhs.GetY()
     && lhs.HasHeadArrow() == rhs.HasHeadArrow()

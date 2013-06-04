@@ -224,13 +224,13 @@ void QtPvdbConceptMapDialog::Test()
 
     //Load the repositioned nodes
     const boost::shared_ptr<pvdb::File> file_again = pvdb::File::Load(pvdb::File::GetTestFileName());
-    assert(pvdb::ConceptMap::HasSameContent(file->GetConceptMap(),file_again->GetConceptMap()));
-    assert(file->GetConceptMap() == file_again->GetConceptMap()
+    assert(pvdb::ConceptMap::HasSameContent(*file->GetConceptMap(),*file_again->GetConceptMap()));
+    assert(IsEqual(*file->GetConceptMap(),*file_again->GetConceptMap())
       && "Save and load must yield identical concept maps");
 
     //Let another dialog keep the node positions in the same place
     const QtPvdbConceptMapDialog d_again(file_again);
-    assert(file->GetConceptMap() == file_again->GetConceptMap()
+    assert(IsEqual(*file->GetConceptMap(),*file_again->GetConceptMap())
       && "QtPvdbConceptMapDialog must not reposition concept maps");
 
     std::remove(pvdb::File::GetTestFileName().c_str());
@@ -249,7 +249,7 @@ void QtPvdbConceptMapDialog::Test()
           const boost::shared_ptr<QtPvdbConceptMapDialog> dialog(new QtPvdbConceptMapDialog(file));
           assert(dialog);
           assert(dialog->GetWidget());
-          assert(file_concept_map == dialog->GetWidget()->GetConceptMap());
+          assert(IsEqual(*file_concept_map,*dialog->GetWidget()->GetConceptMap()));
           //const boost::shared_ptr<pvdb::ConceptMap> dialog_concept_map = dialog->GetWidget()->GetConceptMap();
           //assert(dialog_concept_map);
           //if (!pvdb::ConceptMap::HasSameContent(dialog_concept_map,file_concept_map))
@@ -282,7 +282,7 @@ void QtPvdbConceptMapDialog::Test()
       //loading it, the resulting concept map must be homomorphous with the input map
       {
         const boost::shared_ptr<pvdb::File> file = pvdb::File::Load(pvdb::File::GetTestFileName());
-        assert(pvdb::ConceptMap::HasSameContent(file->GetConceptMap(),v[i]));
+        assert(pvdb::ConceptMap::HasSameContent(*file->GetConceptMap(),*v[i]));
         std::remove(pvdb::File::GetTestFileName().c_str());
       }
     }

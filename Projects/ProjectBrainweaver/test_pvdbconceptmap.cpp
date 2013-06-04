@@ -120,7 +120,7 @@ void pvdb::ConceptMap::Test()
       assert(map_b->GetNodes().at(0)->GetConcept());
       assert(map_b->GetNodes().at(0)->GetConcept()->GetExamples());
       assert(map_b->GetNodes().at(0)->GetConcept()->GetExamples()->Get().size() == 0);
-      assert(HasSameContent(map_a,map_b));
+      assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
 
       const boost::shared_ptr<pvdb::ConceptMap> map_c(
@@ -133,8 +133,8 @@ void pvdb::ConceptMap::Test()
           }
         )
       );
-      assert(!HasSameContent(map_a,map_c));
-      assert(!HasSameContent(map_b,map_c));
+      assert(!HasSameContent(*map_a,*map_c));
+      assert(!HasSameContent(*map_b,*map_c));
 
     }
     {
@@ -170,7 +170,7 @@ void pvdb::ConceptMap::Test()
           }
         )
       );
-      assert(HasSameContent(map_a,map_b));
+      assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
 
       const boost::shared_ptr<pvdb::Concept> concept_g(pvdb::ConceptFactory::Create("7",{ {"8",pvdb::Competency::misc},{"9",pvdb::Competency::misc} } ));
@@ -182,10 +182,10 @@ void pvdb::ConceptMap::Test()
           }
         )
       );
-      assert(!HasSameContent(map_a,map_c));
-      assert(!HasSameContent(map_b,map_c));
       assert(map_a != map_c);
       assert(map_b != map_c);
+      assert(!HasSameContent(*map_a,*map_c));
+      assert(!HasSameContent(*map_b,*map_c));
     }
     {
       const boost::shared_ptr<pvdb::Concept> concept_a(pvdb::ConceptFactory::Create("FOCAL QUESTION"));
@@ -202,12 +202,12 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::Node> node_f(pvdb::NodeFactory::Create(concept_f,901,012));
       const boost::shared_ptr<pvdb::ConceptMap> map_a(pvdb::ConceptMapFactory::Create( { node_a, node_b, node_c } ));
       const boost::shared_ptr<pvdb::ConceptMap> map_b(pvdb::ConceptMapFactory::Create( { node_d, node_f, node_e } )); //Swap e and f
-      assert(HasSameContent(map_a,map_b));
+      assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
 
       const boost::shared_ptr<pvdb::ConceptMap> map_c(pvdb::ConceptMapFactory::Create( { node_d, node_d, node_d } ));
-      assert(!HasSameContent(map_a,map_c));
-      assert(!HasSameContent(map_b,map_c));
+      assert(!HasSameContent(*map_a,*map_c));
+      assert(!HasSameContent(*map_b,*map_c));
       assert(map_a != map_c);
       assert(map_b != map_c);
     }
@@ -254,7 +254,7 @@ void pvdb::ConceptMap::Test()
         { edge_21, edge_22, edge_23 }
         )
       );
-      assert(HasSameContent(map_a,map_b));
+      assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
 
       const boost::shared_ptr<pvdb::ConceptMap> map_c(pvdb::ConceptMapFactory::Create(
@@ -262,8 +262,8 @@ void pvdb::ConceptMap::Test()
         { edge_21, edge_22 }
         )
       );
-      assert(!HasSameContent(map_a,map_c));
-      assert(!HasSameContent(map_b,map_c));
+      assert(!HasSameContent(*map_a,*map_c));
+      assert(!HasSameContent(*map_b,*map_c));
       assert(map_a != map_c);
       assert(map_b != map_c);
     }
@@ -315,7 +315,7 @@ void pvdb::ConceptMap::Test()
         { edge_21, edge_22, edge_23 }
         )
       );
-      assert(HasSameContent(map_a,map_b));
+      assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
     }
     {
@@ -327,23 +327,23 @@ void pvdb::ConceptMap::Test()
         {
           const boost::shared_ptr<const pvdb::ConceptMap> a(pvdb::ConceptMapFactory::DeepCopy(v[i]));
           assert(a);
-          assert(a == v[i]); assert(v[i] == a);
+          assert(IsEqual(*a,*v[i])); assert(IsEqual(*v[i],*a));
           const boost::shared_ptr<const pvdb::ConceptMap> b(pvdb::ConceptMapFactory::DeepCopy(v[j]));
-          assert(b == v[j]);
+          assert(IsEqual(*b,*v[j]));
           if (i == j)
           {
-            assert(pvdb::ConceptMap::HasSameContent(a,b));
-            assert(a == b);
+            assert(pvdb::ConceptMap::HasSameContent(*a,*b));
+            assert(IsEqual(*a,*b));
           }
           else
           {
-            if (pvdb::ConceptMap::HasSameContent(a,b))
+            if (pvdb::ConceptMap::HasSameContent(*a,*b))
             {
               std::stringstream s;
               s << "Testing concept maps #" << i << " and #" << j << " must not be the same";
               TRACE(s.str());
             }
-            assert(!pvdb::ConceptMap::HasSameContent(a,b));
+            assert(!pvdb::ConceptMap::HasSameContent(*a,*b));
             assert(a != b);
           }
         }
@@ -360,25 +360,24 @@ void pvdb::ConceptMap::Test()
         {
           const boost::shared_ptr<const pvdb::ConceptMap> a(pvdb::ConceptMapFactory::DeepCopy(v[i]));
           assert(a);
-          assert(a == v[i]);
+          assert(IsEqual(*a,*v[i]));
           const boost::shared_ptr<const pvdb::ConceptMap> b(pvdb::ConceptMapFactory::DeepCopy(v[j]));
           assert(b);
-          assert(b == v[j]);
+          assert(IsEqual(*b,*v[j]));
+          assert(a != b);
           if (i == j)
           {
-            assert(pvdb::ConceptMap::HasSameContent(a,b));
-            assert(a == b);
+            assert(pvdb::ConceptMap::HasSameContent(*a,*b));
           }
           else
           {
-            if (!pvdb::ConceptMap::HasSameContent(a,b))
+            if (!pvdb::ConceptMap::HasSameContent(*a,*b))
             {
               std::stringstream s;
               s << "Testing simple concept maps #" << i << " and #" << j << " must be homomorphous";
               TRACE(s.str());
             }
-            assert(pvdb::ConceptMap::HasSameContent(a,b));
-            assert(a != b);
+            assert(pvdb::ConceptMap::HasSameContent(*a,*b));
           }
         }
       }
@@ -393,24 +392,23 @@ void pvdb::ConceptMap::Test()
         for (int j = 0; j!=sz; ++j)
         {
           const boost::shared_ptr<const pvdb::ConceptMap> a(pvdb::ConceptMapFactory::DeepCopy(v[i]));
-          assert(a == v[i]);
+          assert(IsEqual(*a,*v[i]));
           const boost::shared_ptr<const pvdb::ConceptMap> b(pvdb::ConceptMapFactory::DeepCopy(v[j]));
-          assert(b == v[j]);
-          if (i == j)
+          assert(a != b);
+          assert(IsEqual(*b,*v[j]));
+          if (i != j)
           {
-            assert(pvdb::ConceptMap::HasSameContent(a,b));
-            assert(a == b);
+            assert(pvdb::ConceptMap::HasSameContent(*a,*b));
           }
           else
           {
-            if (!pvdb::ConceptMap::HasSameContent(a,b))
+            if (!pvdb::ConceptMap::HasSameContent(*a,*b))
             {
               std::stringstream s;
               s << "Testing complex concept maps #" << i << " and #" << j << " must be homomorphous";
               TRACE(s.str());
             }
-            assert(pvdb::ConceptMap::HasSameContent(a,b));
-            assert(a != b);
+            assert(pvdb::ConceptMap::HasSameContent(*a,*b));
           }
         }
       }
@@ -435,7 +433,7 @@ void pvdb::ConceptMap::Test()
         const std::string s = pvdb::ConceptMap::ToXml(m);
         const boost::shared_ptr<pvdb::ConceptMap> n = pvdb::ConceptMapFactory::FromXml(s);
         assert(n);
-        assert(m == n);
+        assert(IsEqual(*m,*n));
       }
     );
   }

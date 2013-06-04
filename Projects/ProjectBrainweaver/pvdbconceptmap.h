@@ -51,10 +51,11 @@ struct ConceptMap : public boost::noncopyable
   const std::string GetQuestion() const;
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality
-  static bool HasSameContent(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs);
-  static bool HasSameContent(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs);
-  static bool HasSameContent(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs);
-  static bool HasSameContent(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs);
+  static bool HasSameContent(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs);
+  //static bool HasSameContent(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs);
+  //static bool HasSameContent(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs);
+  //static bool HasSameContent(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs);
+  //static bool HasSameContent(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs);
 
   ///Convert a ConceptMap from an XML std::string
   static const std::string ToXml(const boost::shared_ptr<const pvdb::ConceptMap>& c);

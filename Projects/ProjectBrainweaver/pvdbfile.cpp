@@ -413,10 +413,10 @@ void pvdb::File::Test()
     }
     #endif
     assert(second_file->GetQuestion() == firstfile->GetQuestion());
-    assert(firstfile == second_file);
+    assert(IsEqual(*firstfile,*second_file));
     //Modify f, to test operator!=
     firstfile->SetStudentName( firstfile->GetStudentName() + " (modified)");
-    assert(firstfile != second_file);
+    assert(!IsEqual(*firstfile,*second_file));
   }
   {
     for (int i=1; i!=5; ++i)

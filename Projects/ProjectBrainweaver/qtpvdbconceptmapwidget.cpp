@@ -523,7 +523,7 @@ void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptM
   {
     ///Note that the ConceptMap read out again differs from the original,
     ///because the Nodes are placed
-    if (!pvdb::ConceptMap::HasSameContent(GetConceptMap(),map))
+    if (!pvdb::ConceptMap::HasSameContent(*GetConceptMap(),*map))
     {
       //OH OH, AN ERROR! HELP ME OUT AND GIMME LOTS OF DEBUG INFO!
       {
@@ -547,7 +547,7 @@ void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptM
       TRACE(pvdb::ConceptMap::ToXml(map));
     }
   }
-  assert(pvdb::ConceptMap::HasSameContent(GetConceptMap(),map)
+  assert(pvdb::ConceptMap::HasSameContent(*GetConceptMap(),*map)
     && "The concept map supplied must be homomorphous to the one created in the widget");
 
 }

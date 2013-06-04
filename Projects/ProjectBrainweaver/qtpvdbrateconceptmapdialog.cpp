@@ -120,7 +120,7 @@ void QtPvdbRateConceptMapDialog::Test()
         = pvdb::ConceptMapFactory::DeepCopy(file->GetConceptMap());
       QtPvdbRateConceptMapDialog d(file);
       assert(pvdb::ConceptMap::HasSameContent(
-        old_concept_map,d.GetWidget()->GetConceptMap()));
+        *old_concept_map,*d.GetWidget()->GetConceptMap()));
     }
   }
   TRACE("QtPvdbRateConceptMapDialog::Test finished successfully");

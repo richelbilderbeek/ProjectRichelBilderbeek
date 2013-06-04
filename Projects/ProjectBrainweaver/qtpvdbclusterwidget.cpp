@@ -309,14 +309,14 @@ void QtPvdbClusterWidget::Test()
         w.ReadFromCluster(c);
         assert(w.topLevelItemCount() == static_cast<int>(c->Get().size()));
         const boost::shared_ptr<pvdb::Cluster> d = w.WriteToCluster();
-        assert(c == d);
+        assert(IsEqual(*c,*d));
         QtPvdbTreeWidgetItem * const item = new QtPvdbTreeWidgetItem(
           pvdb::Competency::misc,0,1,2);
         item->setText(0,QString("An extra line"));
         w.addTopLevelItem(item);
         assert(w.topLevelItemCount() == static_cast<int>(c->Get().size()) + 1);
         const boost::shared_ptr<pvdb::Cluster> e = w.WriteToCluster();
-        assert(c != e);
+        assert(!IsEqual(*c,*e));
       }
     );
   }

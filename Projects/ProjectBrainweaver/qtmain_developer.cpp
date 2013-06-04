@@ -136,4 +136,4 @@ int main(int argc, char *argv[])
 ///   -> trick: check for QGraphicsRectItem::paintingActive()
 /// - Use the default operator== for pointer comparison of smart pointers
 /// - Instead of overloading operator== to compare the content for all combinations of smart pointers,
-///   use IsEqual(const T&)
+///   use IsEqual(const T&,const T&)

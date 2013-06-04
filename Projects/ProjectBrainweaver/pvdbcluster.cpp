@@ -113,33 +113,21 @@ bool IsEqual(const pvdb::Cluster& lhs, const pvdb::Cluster& rhs)
   const std::vector<boost::shared_ptr<const pvdb::Concept> > lhs_concepts = lhs.Get(); //For cross-compiler
   const std::vector<boost::shared_ptr<const pvdb::Concept> > rhs_concepts = rhs.Get();
   if (lhs_concepts.size() != rhs_concepts.size()) return false;
-  const int sz = static_cast<int>(lhs_concepts.size());
+  const int sz = static_cast< int>(lhs_concepts.size());
   for (int i=0; i!=sz; ++i)
   {
     assert(lhs_concepts[i]);
     assert(rhs_concepts[i]);
-    if (lhs_concepts[i] != rhs_concepts[i]) return false;
+    if (!IsEqual(*lhs_concepts[i],*rhs_concepts[i])) return false;
   }
   return true;
 }
 
+/*
 bool operator==(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs)
 {
   assert(lhs); assert(rhs);
   return IsEqual(*lhs,*rhs);
-  /*
-  const std::vector<boost::shared_ptr<const pvdb::Concept> > lhs_concepts = lhs->Get(); //For cross-compiler
-  const std::vector<boost::shared_ptr<const pvdb::Concept> > rhs_concepts = rhs->Get();
-  if (lhs_concepts.size() != rhs_concepts.size()) return false;
-  const int sz = static_cast<int>(lhs_concepts.size());
-  for (int i=0; i!=sz; ++i)
-  {
-    assert(lhs_concepts[i]);
-    assert(rhs_concepts[i]);
-    if (lhs_concepts[i] != rhs_concepts[i]) return false;
-  }
-  return true;
-  */
 }
 
 bool operator==(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs)
@@ -183,6 +171,6 @@ bool operator!=(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared
   assert(lhs); assert(rhs);
   return !(lhs == rhs);
 }
-
+*/
 
 } //~namespace pvdb

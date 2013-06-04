@@ -211,7 +211,7 @@ void pvdb::Example::Test()
         assert(e);
         const std::string s = pvdb::Example::ToXml(e);
         const boost::shared_ptr<const pvdb::Example> f(Example::FromXml(s));
-        assert(e == f);
+        assert(IsEqual(*e,*f));
       }
     );
   }
@@ -228,12 +228,12 @@ void pvdb::Example::Test()
         const std::string t = pvdb::Example::ToXml(f);
         if (i == j)
         {
-          assert(e == f);
+          assert(IsEqual(*e,*f));
           assert(s == t);
         }
         else
         {
-          assert(e != f);
+          assert(!IsEqual(*e,*f));
           assert(s != t);
         }
       }
@@ -271,6 +271,14 @@ const std::string pvdb::Example::ToXml(const boost::shared_ptr<const pvdb::Examp
 namespace pvdb {
 #endif
 
+bool IsEqual(const pvdb::Example& lhs, const pvdb::Example& rhs)
+{
+  return
+       lhs.GetText() == rhs.GetText()
+    && lhs.GetCompetency() == rhs.GetCompetency();
+}
+
+/*
 bool operator==(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
 {
   assert(lhs && rhs);
@@ -313,6 +321,7 @@ bool operator!=(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_
 {
   return boost::shared_ptr<const pvdb::Example>(lhs) != boost::shared_ptr<const pvdb::Example>(rhs);
 }
+*/
 
 bool operator<(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
 {

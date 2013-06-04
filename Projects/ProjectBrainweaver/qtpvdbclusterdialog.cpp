@@ -70,7 +70,7 @@ QtPvdbClusterDialog::QtPvdbClusterDialog(const boost::shared_ptr<pvdb::File> fil
     assert(file);
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->WriteToCluster();
     file->SetCluster(cluster);
-    assert(file->GetCluster() == GetWidget()->WriteToCluster());
+    assert(IsEqual(*file->GetCluster(),*GetWidget()->WriteToCluster()));
   }
   #endif
 }
@@ -183,9 +183,10 @@ void QtPvdbClusterDialog::on_button_add_clicked()
     //Check that writing to pvdb::File works
     const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::DeepCopy(m_file));
     assert(file);
+    assert(file != m_file);
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->WriteToCluster();
     file->SetCluster(cluster);
-    assert(file->GetCluster() == GetWidget()->WriteToCluster());
+    assert(IsEqual(*file->GetCluster(),*GetWidget()->WriteToCluster()));
   }
   #endif
 }
@@ -243,9 +244,9 @@ void QtPvdbClusterDialog::Test()
       [](const boost::shared_ptr<pvdb::File> & file)
       {
         boost::shared_ptr<QtPvdbClusterDialog> d(new QtPvdbClusterDialog(file));
-        assert(file->GetCluster() == d->GetWidget()->WriteToCluster());
+        assert(IsEqual(*file->GetCluster(),*d->GetWidget()->WriteToCluster()));
         d->GetWidget()->Add("Modification!");
-        assert(file->GetCluster() != d->GetWidget()->WriteToCluster());
+        assert(!IsEqual(*file->GetCluster(),*d->GetWidget()->WriteToCluster()));
       }
     );
   }
@@ -255,10 +256,10 @@ void QtPvdbClusterDialog::Test()
       [](const boost::shared_ptr<pvdb::File> & file)
       {
         boost::shared_ptr<QtPvdbClusterDialog> d(new QtPvdbClusterDialog(file));
-        assert(file->GetCluster() == d->GetWidget()->WriteToCluster());
+        assert(IsEqual(*file->GetCluster(),*d->GetWidget()->WriteToCluster()));
         d->ui->edit->setText("modification");
         d->on_button_add_clicked();
-        assert(file->GetCluster() != d->GetWidget()->WriteToCluster());
+        assert(!IsEqual(*file->GetCluster(),*d->GetWidget()->WriteToCluster()));
       }
     );
   }
@@ -338,7 +339,7 @@ void QtPvdbClusterDialog::on_edit_textChanged(const QString &arg1)
     assert(file);
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->WriteToCluster();
     file->SetCluster(cluster);
-    assert(file->GetCluster() == GetWidget()->WriteToCluster());
+    assert(IsEqual(*file->GetCluster(),*GetWidget()->WriteToCluster()));
   }
   #endif
 }

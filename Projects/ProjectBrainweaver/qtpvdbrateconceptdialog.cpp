@@ -135,7 +135,8 @@ void QtPvdbRateConceptDialog::Test()
     assert(concept);
     const boost::shared_ptr<pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
     assert(old_concept);
-    assert(concept == old_concept);
+    assert(concept != old_concept);
+    assert(IsEqual(*concept,*old_concept));
     QtPvdbRateConceptDialog d(concept_map);
     assert(concept->GetRatingComplexity() == d.ui->box_complexity->currentIndex());
     assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
@@ -143,7 +144,7 @@ void QtPvdbRateConceptDialog::Test()
     //Change a box
     d.ui->box_complexity->setCurrentIndex( (d.ui->box_complexity->currentIndex() + 1) % 3);
     //But do not click OK
-    assert(concept == old_concept && "Without clicking OK, QtPvdbRateConceptDialog must not change the concept");
+    assert(IsEqual(*concept,*old_concept) && "Without clicking OK, QtPvdbRateConceptDialog must not change the concept");
   }
   {
     const boost::shared_ptr<pvdb::ConceptMap> concept_map
@@ -153,7 +154,8 @@ void QtPvdbRateConceptDialog::Test()
     assert(concept);
     const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
     assert(old_concept);
-    assert(concept == old_concept);
+    assert(concept != old_concept);
+    assert(IsEqual(*concept,*old_concept));
     QtPvdbRateConceptDialog d(concept_map);
     assert(concept->GetRatingComplexity()   == d.ui->box_complexity->currentIndex());
     assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
@@ -161,7 +163,7 @@ void QtPvdbRateConceptDialog::Test()
     //Change a box
     d.ui->box_complexity->setCurrentIndex( (d.ui->box_complexity->currentIndex() + 1) % 3);
     d.ui->button_ok->click();
-    assert(concept != old_concept && "QtPvdbRateConceptDialog must change the concept when clicked OK");
+    assert(!IsEqual(*concept,*old_concept) && "QtPvdbRateConceptDialog must change the concept when clicked OK");
   }
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }

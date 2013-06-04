@@ -63,10 +63,10 @@ void pvdb::Cluster::Test()
       //assert(std::all_of(tmp_tests_b.begin(),tmp_tests_b.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } ));
       const boost::shared_ptr<pvdb::Cluster> b = tmp_tests_b.at(i);
       assert(a); assert(b);
-      assert(a==a);
-      assert(a==b);
-      assert(b==a);
-      assert(b==b);
+      assert(IsEqual(*a,*a));
+      assert(IsEqual(*a,*b));
+      assert(IsEqual(*b,*a));
+      assert(IsEqual(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
         const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_c = pvdb::ClusterFactory::GetTests(); //For crosscompiler
@@ -80,20 +80,23 @@ void pvdb::Cluster::Test()
         assert(c);
         const boost::shared_ptr<      pvdb::Cluster> d = tmp_tests_d.at(j);
         assert(c); assert(d);
-        assert(c==c); assert(c==d); assert(d==c); assert(d==d);
+        assert(IsEqual(*c,*c));
+        assert(IsEqual(*c,*d));
+        assert(IsEqual(*d,*c));
+        assert(IsEqual(*d,*d));
         if (i==j)
         {
-          assert(a==c); assert(a==d);
-          assert(b==c); assert(b==d);
-          assert(c==a); assert(c==b);
-          assert(d==a); assert(d==b);
+          assert(IsEqual(*a,*c)); assert(IsEqual(*a,*d));
+          assert(IsEqual(*b,*c)); assert(IsEqual(*b,*d));
+          assert(IsEqual(*c,*a)); assert(IsEqual(*c,*b));
+          assert(IsEqual(*d,*a)); assert(IsEqual(*d,*b));
         }
         else
         {
-          assert(a!=c); assert(a!=d);
-          assert(b!=c); assert(b!=d);
-          assert(c!=a); assert(c!=b);
-          assert(d!=a); assert(d!=b);
+          assert(!IsEqual(*a,*c)); assert(!IsEqual(*a,*d));
+          assert(!IsEqual(*b,*c)); assert(!IsEqual(*b,*d));
+          assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b));
+          assert(!IsEqual(*d,*a)); assert(!IsEqual(*d,*b));
         }
       }
     }
@@ -110,7 +113,8 @@ void pvdb::Cluster::Test()
         const std::string s = ToXml(c);
         const boost::shared_ptr<pvdb::Cluster> d = FromXml(s);
         assert(d);
-        assert(c == d);
+        assert(c != d);
+        assert(IsEqual(*c,*d));
       }
     );
   }

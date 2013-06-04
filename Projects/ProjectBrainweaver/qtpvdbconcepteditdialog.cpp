@@ -163,14 +163,15 @@ void QtPvdbConceptEditDialog::Test()
       [](const boost::shared_ptr<pvdb::Concept>& concept)
       {
         const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
-        assert(concept == old_concept);
+        assert(concept != old_concept);
+        assert(IsEqual(*concept,*old_concept));
         QtPvdbConceptEditDialog d(concept);
         //Do nothing...
         d.on_button_ok_clicked();
         #ifdef PVDB_WRITE_TO_CONCEPT
         assert(d.WriteToConcept() == old_concept);
         #else
-        assert(concept == old_concept);
+        assert(IsEqual(*concept,*old_concept));
         #endif
       }
     );
@@ -182,7 +183,7 @@ void QtPvdbConceptEditDialog::Test()
       [](const boost::shared_ptr<pvdb::Concept>& concept)
       {
         const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
-        assert(concept == old_concept);
+        assert(IsEqual(*concept,*old_concept));
         QtPvdbConceptEditDialog d(concept);
         d.ui->edit_concept->setText(d.ui->edit_concept->text() + "MODIFICATION");
         d.on_button_ok_clicked();
@@ -202,7 +203,7 @@ void QtPvdbConceptEditDialog::Test()
       [](const boost::shared_ptr<pvdb::Concept>& concept)
       {
         const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
-        assert(concept == old_concept);
+        assert(IsEqual(*concept,*old_concept));
         QtPvdbConceptEditDialog d(concept);
         assert(d.ui->edit_text->text().isEmpty());
         d.ui->edit_text->setText("TO BE ADDED EXAMPLE");
@@ -225,7 +226,7 @@ void QtPvdbConceptEditDialog::Test()
       [](const boost::shared_ptr<pvdb::Concept>& concept)
       {
         const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
-        assert(concept == old_concept);
+        assert(IsEqual(*concept,*old_concept));
         QtPvdbConceptEditDialog d(concept);
         //Change name
         d.ui->edit_concept->setText(d.ui->edit_concept->text() + "MODIFICATION");
@@ -237,7 +238,7 @@ void QtPvdbConceptEditDialog::Test()
         #ifdef PVDB_WRITE_TO_CONCEPT
         TRACE("TODO");
         #else
-        assert(concept == old_concept);
+        assert(IsEqual(*concept,*old_concept));
         #endif
       }
     );

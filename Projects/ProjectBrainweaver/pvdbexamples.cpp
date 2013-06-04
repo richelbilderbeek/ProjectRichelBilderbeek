@@ -129,25 +129,31 @@ void pvdb::Examples::Test()
     {
       boost::shared_ptr<const pvdb::Examples> a = ExamplesFactory::GetTests().at(i);
       boost::shared_ptr<      Examples> b = ExamplesFactory::GetTests().at(i);
-      assert(a==a); assert(a==b); assert(b==a); assert(b==b);
+      assert(IsEqual(*a,*a));
+      assert(IsEqual(*a,*b));
+      assert(IsEqual(*b,*a));
+      assert(IsEqual(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
         boost::shared_ptr<const pvdb::Examples> c = ExamplesFactory::GetTests().at(j);
         boost::shared_ptr<      Examples> d = ExamplesFactory::GetTests().at(j);
-        assert(c==c); assert(c==d); assert(d==c); assert(d==d);
+        assert(IsEqual(*c,*c));
+        assert(IsEqual(*c,*d));
+        assert(IsEqual(*d,*c));
+        assert(IsEqual(*d,*d));
         if (i==j)
         {
-          assert(a==c); assert(a==d);
-          assert(b==c); assert(b==d);
-          assert(c==a); assert(c==b);
-          assert(d==a); assert(d==b);
+          assert(IsEqual(*a,*c)); assert(IsEqual(*a,*d));
+          assert(IsEqual(*b,*c)); assert(IsEqual(*b,*d));
+          assert(IsEqual(*c,*a)); assert(IsEqual(*c,*b));
+          assert(IsEqual(*d,*a)); assert(IsEqual(*d,*b));
         }
         else
         {
-          assert(a!=c); assert(a!=d);
-          assert(b!=c); assert(b!=d);
-          assert(c!=a); assert(c!=b);
-          assert(d!=a); assert(d!=b);
+          assert(!IsEqual(*a,*c)); assert(!IsEqual(*a,*d));
+          assert(!IsEqual(*b,*c)); assert(!IsEqual(*b,*d));
+          assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b));
+          assert(!IsEqual(*d,*a)); assert(!IsEqual(*d,*b));
         }
       }
     }
@@ -161,7 +167,7 @@ void pvdb::Examples::Test()
         assert(e);
         const std::string s = pvdb::Examples::ToXml(e);
         const boost::shared_ptr<const pvdb::Examples> f(Examples::FromXml(s));
-        assert(e == f);
+        assert(IsEqual(*e,*f));
       }
     );
   }
@@ -178,12 +184,12 @@ void pvdb::Examples::Test()
         const std::string t = pvdb::Examples::ToXml(f);
         if (i == j)
         {
-          assert(e == f);
+          assert(IsEqual(*e,*f));
           assert(s == t);
         }
         else
         {
-          assert(e != f);
+          assert(!IsEqual(*e,*f));
           assert(s != t);
         }
       }
@@ -194,18 +200,18 @@ void pvdb::Examples::Test()
     const boost::shared_ptr<pvdb::Example> a = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<pvdb::Example> b = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<pvdb::Example> c = ExampleFactory::Create("1",Competency::uninitialized);
-    assert(a == a); assert(a == b); assert(a != c);
-    assert(b == a); assert(b == b); assert(b != c);
-    assert(c != a); assert(c != b); assert(c == c);
+    assert( IsEqual(*a,*a)); assert( IsEqual(*a,*b)); assert(!IsEqual(*a,*c));
+    assert( IsEqual(*b,*a)); assert( IsEqual(*b,*b)); assert(!IsEqual(*b,*c));
+    assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b)); assert( IsEqual(*c,*c));
     std::vector<boost::shared_ptr<const pvdb::Example> > v; v.push_back(a);
     std::vector<boost::shared_ptr<const pvdb::Example> > w; w.push_back(b);
     std::vector<boost::shared_ptr<const pvdb::Example> > x; x.push_back(c);
     const boost::shared_ptr<pvdb::Examples> d = ExamplesFactory::Create(v);
     const boost::shared_ptr<pvdb::Examples> e = ExamplesFactory::Create(w);
     const boost::shared_ptr<pvdb::Examples> f = ExamplesFactory::Create(x);
-    assert(d == d); assert(d == e); assert(d != f);
-    assert(e == d); assert(e == e); assert(e != f);
-    assert(f != d); assert(f != e); assert(f == f);
+    assert( IsEqual(*d,*d)); assert( IsEqual(*d,*e)); assert(!IsEqual(*d,*f));
+    assert( IsEqual(*e,*d)); assert( IsEqual(*e,*e)); assert(!IsEqual(*e,*f));
+    assert(!IsEqual(*f,*d)); assert(!IsEqual(*f,*e)); assert( IsEqual(*f,*f));
   }
   TRACE("Examples::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -253,7 +259,7 @@ bool IsEqual(const pvdb::Examples& lhs, const pvdb::Examples& rhs)
   return std::equal(v.begin(),v.end(),w.begin(),
     [](const boost::shared_ptr<const pvdb::Example>& a, const boost::shared_ptr<const pvdb::Example>& b)
     {
-      return a == b;
+      return IsEqual(*a,*b);
     }
   );
 }

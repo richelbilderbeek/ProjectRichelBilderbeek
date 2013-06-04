@@ -250,26 +250,24 @@ const std::string pvdb::ConceptMap::GetQuestion() const
 }
 
 bool pvdb::ConceptMap::HasSameContent(
-  const boost::shared_ptr<const pvdb::ConceptMap>& lhs,
-  const boost::shared_ptr<const pvdb::ConceptMap>& rhs)
+  const pvdb::ConceptMap& lhs,
+  const pvdb::ConceptMap& rhs)
 {
-  if (!rhs) { return !lhs; }
-  assert(lhs); assert(rhs);
-  if (lhs->GetQuestion() != rhs->GetQuestion())
+  if (lhs.GetQuestion() != rhs.GetQuestion())
   {
     return false;
   }
-  if (lhs->GetEdges().size() != rhs->GetEdges().size())
+  if (lhs.GetEdges().size() != rhs.GetEdges().size())
   {
     return false;
   }
-  if (lhs->GetNodes().size() != rhs->GetNodes().size())
+  if (lhs.GetNodes().size() != rhs.GetNodes().size())
   {
     return false;
   }
   //Same Concepts
   {
-    const std::vector<boost::shared_ptr<const pvdb::Node> > nodes_lhs = lhs->GetNodes();
+    const std::vector<boost::shared_ptr<const pvdb::Node> > nodes_lhs = lhs.GetNodes();
     std::multiset<boost::shared_ptr<const pvdb::Concept> > concepts_lhs;
     std::transform(nodes_lhs.begin(),nodes_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
@@ -281,7 +279,7 @@ bool pvdb::ConceptMap::HasSameContent(
       }
     );
 
-    const std::vector<boost::shared_ptr<const pvdb::Node> > nodes_rhs = rhs->GetNodes();
+    const std::vector<boost::shared_ptr<const pvdb::Node> > nodes_rhs = rhs.GetNodes();
 
     std::multiset<boost::shared_ptr<const pvdb::Concept> > concepts_rhs;
     std::transform(nodes_rhs.begin(),nodes_rhs.end(),
@@ -295,7 +293,7 @@ bool pvdb::ConceptMap::HasSameContent(
       [](const boost::shared_ptr<const pvdb::Concept>& a,
         const boost::shared_ptr<const pvdb::Concept>& b)
         {
-          return a == b;
+          return IsEqual(*a,*b);
         }
       )
       != std::make_pair(concepts_lhs.end(),concepts_rhs.end()))
@@ -305,7 +303,7 @@ bool pvdb::ConceptMap::HasSameContent(
   }
   //Same Edges
   {
-    const std::vector<boost::shared_ptr<const pvdb::Edge> > edges_lhs = lhs->GetEdges();
+    const std::vector<boost::shared_ptr<const pvdb::Edge> > edges_lhs = lhs.GetEdges();
     std::multiset<boost::shared_ptr<const pvdb::Concept> > concepts_lhs;
     std::transform(edges_lhs.begin(),edges_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
@@ -317,7 +315,7 @@ bool pvdb::ConceptMap::HasSameContent(
       }
     );
 
-    const std::vector<boost::shared_ptr<const pvdb::Edge> > edges_rhs = rhs->GetEdges();
+    const std::vector<boost::shared_ptr<const pvdb::Edge> > edges_rhs = rhs.GetEdges();
 
     std::multiset<boost::shared_ptr<const pvdb::Concept> > concepts_rhs;
     std::transform(edges_rhs.begin(),edges_rhs.end(),
@@ -331,7 +329,7 @@ bool pvdb::ConceptMap::HasSameContent(
       [](const boost::shared_ptr<const pvdb::Concept>& a,
         const boost::shared_ptr<const pvdb::Concept>& b)
         {
-          return a == b;
+          return IsEqual(*a,*b);
         }
       )
       != std::make_pair(concepts_lhs.end(),concepts_rhs.end()))
@@ -344,25 +342,25 @@ bool pvdb::ConceptMap::HasSameContent(
     typedef std::tuple<std::string,std::string,std::string> FakeEdge;
     typedef std::vector<FakeEdge> FakeEdges;
 
-    assert(lhs->GetEdges().size() == rhs->GetEdges().size());
+    assert(lhs.GetEdges().size() == rhs.GetEdges().size());
 
     FakeEdges v;
-    const int sz = lhs->GetEdges().size();
+    const int sz = lhs.GetEdges().size();
     for (int i=0; i!=sz; ++i)
     {
-      const auto from_node = lhs->GetEdges()[i]->GetFrom();
+      const auto from_node = lhs.GetEdges()[i]->GetFrom();
       const std::string str_from = from_node->GetConcept()->GetName();
-      const std::string str_mid = lhs->GetEdges()[i]->GetConcept()->GetName();
-      const auto to_node = lhs->GetEdges()[i]->GetTo();
+      const std::string str_mid = lhs.GetEdges()[i]->GetConcept()->GetName();
+      const auto to_node = lhs.GetEdges()[i]->GetTo();
       const std::string str_to = to_node->GetConcept()->GetName();
       //Only if arrow is reversed, reverse the fake edge
       if (
-           lhs->GetEdges()[i]->HasTailArrow() == true
-        && lhs->GetEdges()[i]->HasHeadArrow() == false)
+           lhs.GetEdges()[i]->HasTailArrow() == true
+        && lhs.GetEdges()[i]->HasHeadArrow() == false)
       {
         v.push_back(std::make_tuple(str_to,str_mid,str_from));
       }
-      else if (lhs->GetEdges()[i]->HasTailArrow() == lhs->GetEdges()[i]->HasHeadArrow())
+      else if (lhs.GetEdges()[i]->HasTailArrow() == lhs.GetEdges()[i]->HasHeadArrow())
       {
         //Two-way or zero-way arrow, add it in both directions
         v.push_back(std::make_tuple(str_to,str_mid,str_from));
@@ -379,20 +377,20 @@ bool pvdb::ConceptMap::HasSameContent(
     FakeEdges w;
     for (int i=0; i!=sz; ++i)
     {
-      const auto from_node = rhs->GetEdges()[i]->GetFrom();
+      const auto from_node = rhs.GetEdges()[i]->GetFrom();
       const std::string str_from = from_node->GetConcept()->GetName();
-      const std::string str_mid = rhs->GetEdges()[i]->GetConcept()->GetName();
-      const auto to_node = rhs->GetEdges()[i]->GetTo();
+      const std::string str_mid = rhs.GetEdges()[i]->GetConcept()->GetName();
+      const auto to_node = rhs.GetEdges()[i]->GetTo();
       const std::string str_to = to_node->GetConcept()->GetName();
       //w.push_back(std::make_tuple(str_from,str_mid,str_to));
       //Only if arrow is reversed, reverse the fake edge
       if (
-           rhs->GetEdges()[i]->HasTailArrow() == true
-        && rhs->GetEdges()[i]->HasHeadArrow() == false)
+           rhs.GetEdges()[i]->HasTailArrow() == true
+        && rhs.GetEdges()[i]->HasHeadArrow() == false)
       {
         w.push_back(std::make_tuple(str_to,str_mid,str_from));
       }
-      else if (rhs->GetEdges()[i]->HasTailArrow() == rhs->GetEdges()[i]->HasHeadArrow())
+      else if (rhs.GetEdges()[i]->HasTailArrow() == rhs.GetEdges()[i]->HasHeadArrow())
       {
         //Two-way or zero-way arrow, add it in both directions
         w.push_back(std::make_tuple(str_to,str_mid,str_from));
@@ -430,36 +428,6 @@ bool pvdb::ConceptMap::HasSameContent(
     }
   }
   return true;
-}
-
-bool pvdb::ConceptMap::HasSameContent(
-  const boost::shared_ptr<const pvdb::ConceptMap>& lhs,
-  const boost::shared_ptr<pvdb::ConceptMap>& rhs)
-{
-  return HasSameContent(
-    boost::shared_ptr<const pvdb::ConceptMap>(lhs),
-    boost::shared_ptr<const pvdb::ConceptMap>(rhs)
-  );
-}
-
-bool pvdb::ConceptMap::HasSameContent(
-  const boost::shared_ptr<pvdb::ConceptMap>& lhs,
-  const boost::shared_ptr<const pvdb::ConceptMap>& rhs)
-{
-  return HasSameContent(
-    boost::shared_ptr<const pvdb::ConceptMap>(lhs),
-    boost::shared_ptr<const pvdb::ConceptMap>(rhs)
-  );
-}
-
-bool pvdb::ConceptMap::HasSameContent(
-  const boost::shared_ptr<pvdb::ConceptMap>& lhs,
-  const boost::shared_ptr<pvdb::ConceptMap>& rhs)
-{
-  return HasSameContent(
-    boost::shared_ptr<const pvdb::ConceptMap>(lhs),
-    boost::shared_ptr<const pvdb::ConceptMap>(rhs)
-  );
 }
 
 const std::string pvdb::ConceptMap::ToXml(const boost::shared_ptr<const pvdb::ConceptMap>& map)

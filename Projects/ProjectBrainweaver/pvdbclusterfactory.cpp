@@ -39,14 +39,15 @@ const boost::shared_ptr<pvdb::Cluster> pvdb::ClusterFactory::DeepCopy(const boos
       assert(c);
       const boost::shared_ptr<pvdb::Concept> d = pvdb::ConceptFactory::DeepCopy(c);
       assert(d);
-      assert(c == d);
+      assert(c != d);
+      assert(IsEqual(*c,*d));
       return d;
     }
   );
 
   boost::shared_ptr<pvdb::Cluster> p(new Cluster(w));
   assert(p);
-  assert(p == cluster);
+  assert(p != cluster);
   assert(IsEqual(*p,*cluster));
   return p;
 }
