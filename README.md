@@ -12,7 +12,16 @@ It consists of:
 
 Absent (yet) is Richel Bilderbeek's HTML work
 
+Libraries used that are also in this repository are:
+* [Boost (version 1.53.0)](http://www.boost.org)
+* [Qwt (version 6.0.01)](http://qwt.sourceforge.net)
+* [Warp's function parser (versions 4.4.3 and 4.5.1)](http://warp.povusers.org/FunctionParser)
+* [Matt McCutchen's BigInteger (version 2010.04.30)](https://mattmccutchen.net/bigint)
+
+These libraries are added to allow easy crosscompilation to Windows using the often-supplied 'crosscompile.sh' scripts.
+
 External links
 --------------
 
 * [Richel Bilderbeek's HTML webpage](http://www.richelbilderbeek.nl)
+* [Warp's function parser](http://warp.povusers.org/FunctionParser)
