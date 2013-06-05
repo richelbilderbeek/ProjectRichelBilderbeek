@@ -9,8 +9,7 @@ It consists of:
 * A web application called ProjectRichelBilderbeekWebsite (in Projects) containing the bundled (Wt) web applications
 * A console application called ProjectRichelBilderbeekConsole (in Projects) containing the bundled console applications
 * C++ Builder Windows-only code, to be ported to cross-platform Qt Creator code
-
-Absent (yet) is Richel Bilderbeek's HTML work
+* The core of Richel Bilderbeek's HTML website
 
 Libraries used that are also in this repository are:
 * [Boost (version 1.53.0)](http://www.boost.org)
@@ -24,4 +23,3 @@ External links
 --------------
 
 * [Richel Bilderbeek's HTML webpage](http://www.richelbilderbeek.nl)
-* [Warp's function parser](http://warp.povusers.org/FunctionParser)
