@@ -306,6 +306,7 @@ void QtStateObserverMainDialog::Run()
     }
   }
   //Clear all plots
+  #ifdef _WIN32
   m_curve_outputs_alpha->setData(new QwtPointArrayData(0,0,0));
   m_curve_outputs_alpha_beta->setData(new QwtPointArrayData(0,0,0));
   m_curve_outputs_alpha_beta_gamma->setData(new QwtPointArrayData(0,0,0));
@@ -313,6 +314,15 @@ void QtStateObserverMainDialog::Run()
   m_curve_outputs_slsq->setData(new QwtPointArrayData(0,0,0));
   m_curve_outputs_ma->setData(new QwtPointArrayData(0,0,0));
   m_curve_outputs_miso->setData(new QwtPointArrayData(0,0,0));
+  #else
+  m_curve_outputs_alpha->setData(0,0,0);
+  m_curve_outputs_alpha_beta->setData(0,0,0);
+  m_curve_outputs_alpha_beta_gamma->setData(0,0,0);
+  m_curve_outputs_lsq->setData(0,0,0);
+  m_curve_outputs_slsq->setData(0,0,0);
+  m_curve_outputs_ma->setData(0,0,0);
+  m_curve_outputs_miso->setData(0,0,0);
+  #endif
   //Plot
   {
     std::vector<double> timeseries;
@@ -352,13 +362,34 @@ void QtStateObserverMainDialog::Run()
     }
     #else
     m_curve_inputs->setData(&timeseries[0],&inputs[0],inputs.size());
-    m_curve_outputs_alpha->setData(&timeseries[0],&outputs_alpha[0],outputs_alpha.size());
-    m_curve_outputs_alpha_beta->setData(&timeseries[0],&outputs_alpha_beta[0],outputs_alpha_beta.size());
-    m_curve_outputs_alpha_beta_gamma->setData(&timeseries[0],&outputs_alpha_beta_gamma[0],outputs_alpha_beta_gamma.size());
-    m_curve_outputs_lsq->setData(&timeseries[0],&outputs_lsq[0],outputs_lsq.size());
-    m_curve_outputs_slsq->setData(&timeseries[0],&outputs_slsq[0],outputs_slsq.size());
-    m_curve_outputs_ma->setData(&timeseries[0],&outputs_ma[0],outputs_ma.size());
-    m_curve_outputs_miso->setData(&timeseries[0],&outputs_miso[0],outputs_miso.size());
+    if (ui->groupbox_alpha->isChecked())
+    {
+      m_curve_outputs_alpha->setData(&timeseries[0],&outputs_alpha[0],outputs_alpha.size());
+    }
+    if (ui->groupbox_beta->isChecked())
+    {
+      m_curve_outputs_alpha_beta->setData(&timeseries[0],&outputs_alpha_beta[0],outputs_alpha_beta.size());
+    }
+    if (ui->groupbox_abg->isChecked())
+    {
+      m_curve_outputs_alpha_beta_gamma->setData(&timeseries[0],&outputs_alpha_beta_gamma[0],outputs_alpha_beta_gamma.size());
+    }
+    if (ui->groupbox_lsq->isChecked())
+    {
+      m_curve_outputs_lsq->setData(&timeseries[0],&outputs_lsq[0],outputs_lsq.size());
+    }
+    if (ui->groupBox_slsq->isChecked())
+    {
+      m_curve_outputs_slsq->setData(&timeseries[0],&outputs_slsq[0],outputs_slsq.size());
+    }
+    if (ui->groupBox_ma->isChecked())
+    {
+      m_curve_outputs_ma->setData(&timeseries[0],&outputs_ma[0],outputs_ma.size());
+    }
+    if (ui->groupBox_miso->isChecked())
+    {
+      m_curve_outputs_miso->setData(&timeseries[0],&outputs_miso[0],outputs_miso.size());
+    }
     #endif
     ui->plot->replot();
   }

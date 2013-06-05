@@ -517,7 +517,12 @@ SOURCES += \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.cpp \
     ../../Classes/CppQtMatrix/qtmatrix.cpp \
-    ../../Classes/CppQtExercise/qtexercise.cpp
+    ../../Classes/CppQtExercise/qtexercise.cpp \
+    ../../Classes/CppStateObserver/multiintegerstateobserver.cpp \
+    ../../Classes/CppStateObserver/integersymmetricalphafilter.cpp \
+    ../../Classes/CppStateObserver/integerstateobserver.cpp \
+    ../../Classes/CppStateObserver/integeralphafilter.cpp \
+    ../../Tools/ToolStateObserver/slsqfilter.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -893,7 +898,13 @@ HEADERS += \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h \
     ../../Classes/CppQtMatrix/qtmatrix.h \
-    ../../Classes/CppQtExercise/qtexercise.h
+    ../../Classes/CppQtExercise/qtexercise.h \
+    ../../Classes/CppStateObserver/stateobserverfwd.h \
+    ../../Classes/CppStateObserver/multiintegerstateobserver.h \
+    ../../Classes/CppStateObserver/integersymmetricalphafilter.h \
+    ../../Classes/CppStateObserver/integerstateobserver.h \
+    ../../Classes/CppStateObserver/integeralphafilter.h \
+    ../../Tools/ToolStateObserver/slsqfilter.h
 
 
 RESOURCES += \
