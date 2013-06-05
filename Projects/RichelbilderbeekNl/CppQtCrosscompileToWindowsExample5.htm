@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt Creator FAQ: How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 5: any application, using Qt Creator -spec approach</title>
+  <meta name="description" content="C++ Qt Creator FAQ: How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 5: any application, using Qt Creator -spec approach"/>
+  <meta name="keywords" content="C++ Qt Creator FAQ: How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 5: any application, using Qt Creator -spec approach"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtCrosscompileToWindowsExample5.htm">How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 5: any application, using Qt Creator -spec approach</a></h1>
+<p>&nbsp;</p>
+<p>This is example 5, and a failed solutions of answering the <a href="CppQtFaq.htm">Qt FAQ</a> <a href="CppQtCrosscompileToWindows.htm">How to cross-compile a Qt Creator project from Ubuntu to a windows executable?</a>,
+which follows [1].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Downloads</h2>
+<p>&nbsp;</p>
+<ul>
+<!--  <li><a href="CppQtCrosscompileToWindowsExample5.zip">Download the Qt Creator project 'CppQtCrosscompileToWindowsExample5' (zip)</a></li> -->
+<!--  <li><a href="CppQtCrosscompileToWindowsExample5.exe">Download the resulting Windows executable 'CppQtCrosscompileToWindowsExample5.exe' (exe)</a></li> -->
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Project information</p>
+<p>&nbsp;</p>
+<p>The project is a standard <a href="CppHelloBoostQtCreatorUbuntu.htm">Hello Boost</a> program.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Process</h2>
+<p>&nbsp;</p>
+<p>I set the <a href="CppQmake.htm">qmake</a> arguments to '-xplatform win32-g++' and got the following error:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+***Unknown option -xplatform<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>[3-5] do not mention the existence of the '-xplatform' option.
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li>
+    http://www.linuxjournal.com/content/cross-compiling-qt<br/>
+    &nbsp;<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    What is important is if you want to build Qt static or dynamic, if you want to use platform libs for various features (libjpeg, zlib, libpng, etc). Another important, and not so straight forward, configuration option is the compiler to use. This is controlled by what is known as an mkspec - a make specification.<br/>
+    <br/>
+    Qt comes with quite a few prepared mkspecs, but it is not uncommon to tweak them a little. They are all kept in the mkspec subdirectory of Qt, with another subdirectory for embedded targets called qws. The spec consists of the files qmake.conf and qplatformdefs.h. The latter is pretty easy to reuse between Linuxes. It defines a number of structures and functions for the underlaying system. The former, qmake.conf, tells qmake how to compile.<br/>
+    <br/>
+    Once having found the file, reading it is pretty straight forward. For instance, the QMAKE_CXX variable should list the C++ compiler to use, QMAKE_CXXFLAGS lists the flags to use when invoking the C++ compiler, and so on.<br/>
+    <br/>
+    Having all this in place, simply use the -xplatform to specify the spec to use. This argument uses the mkspec directory as base, so to use the $(QTDIR)/mkspec/qws/linux-arm-g++ specify -xplatform qws/linux-arm-g++.<br/>
+    <br/>
+    Finally, adding the arguments -nomake demos and -nomake examples can save quite a lot of time.<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+    &nbsp;<br/>
+  </li>
+  <li>
+    http://pepper.troll.no/s60prereleases/doc/qmake-running.html<br/>
+    &nbsp;<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    -spec spec<br/>
+    qmake will use spec as a path to platform and compiler information, and the value of QMAKESPEC will be ignored.<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+    &nbsp;<br/>
+  </li>
+  <li>
+    http://doc.trolltech.com/4.2/qmake-environment-reference.html
+  </li>
+  <li>
+    http://www.qtcentre.org/wiki/index.php?title=Undocumented_qmake
+  </li>
+  <li>
+    http://paulf.free.fr/undocumented_qmake.html
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+  

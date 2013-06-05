@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>compile warning: 'auto' will change meaning in C++0x; please remove it</title>
+  <meta name="description" content="C++ compile warning: 'auto' will change meaning in C++0x; please remove it"/>
+  <meta name="keywords" content="C++ compile compiler warning 'auto' will change meaning in C++0x; please remove it"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCompileWarningAutoWillChangeMeaningInC++0x.htm">'auto' will change meaning in C++0x; please remove it</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCompileWarning.htm">Compile warning</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full warning message</h2>
+<p>&nbsp;</p>
+<!-- Start code-->
+<table border = "1"><tr><td><code>
+MyMain.cpp:3: warning: 'auto' will change meaning in C++0x; please remove it<br/>
+</code></td></tr></table>
+<!-- End of code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 1.2.1</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p>Project type: Qt4 Console Application</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>Remove <a href="CppAuto.htm">auto</a>. Never use <a href="CppAuto.htm">auto</a> [1], until <a href="Cpp11.htm">C++11</a> arrives.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 28 guideline: 'Never write auto'.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

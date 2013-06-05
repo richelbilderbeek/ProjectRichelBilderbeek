@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>File Error: Cannot overwrite file ~/.config/Nokia/toolChains.xml</title>
+  <meta name="description" content="C++ File Error: Cannot overwrite file ~/.config/Nokia/toolChains.xml"/>
+  <meta name="keywords" content="C++ Misc error Qt Creator Lubuntu File Error: Cannot overwrite file ~/.config/Nokia/toolChains.xml Nokia toolChains XML"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppMiscErrorFileErrorCannotOverwriteNokiaToolchainsXml.htm">File Error: Cannot overwrite file ~/.config/Nokia/toolChains.xml</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppMiscError.htm">Misc error</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full error message</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+File Error: Cannot overwrite file ~/.config/Nokia/<a href="Tools.htm">tool</a>Chains.xml: Input/output error<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppMiscErrorFileErrorCannotOverwriteNokiaToolchainsXml.png">View a screenshot of this error</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 11.10 (oneiric)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.3.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.6.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.42</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.6.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solutions</h2>
+<p>&nbsp;</p>
+<p>Unknown</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li>
+    Post by Alliancemd on http://www.qtcentre.org/threads/45538-S-Privileges-Permissions-problems-after-running-Qt-Creator-with-priviliges-on-Linux:<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    Hello,<br/>
+    I've runned <a href="CppQtCreator.htm">Qt Creator</a> with root rights and now it gives me Permissions errors on 2 files when I run <a href="CppQt.htm">Qt</a> without priviliges.<br/>
+    On run:<br/>
+    1: "Cannot overwrite file [my home dir]/.config/Nokia/qt<a href="CppVersion.htm">version</a>.xml: Permission denied" <a href="CppOperatorMinus.htm">-</a> 4 <a href="CppTime.htm">time</a>s appeared <b><a href="CppThis.htm">this</a></b> error<br/>
+    On exit:<br/>
+    1: "Cannot overwrite file [my home dir]/.config/Nokia/<a href="Tools.htm">tool</a>Chains.xml: Permission denied"<br/>
+    Ok, solved the problem myself <br/>
+    went into the folder:<br/>
+    "cd ~/.config/Nokia"<br/>
+    then changed the mode <b><a href="CppFor.htm">for</a></b> <b><a href="CppThis.htm">this</a></b> 2 files:<br/>
+    1. "sudo <a href="CppOperatorMinus.htm">-</a>s"<br/>
+    2. "chmod g+w qt<a href="CppVersion.htm">version</a>.xml"<br/>
+    (I tried chmod <a href="CppOperatorPlus.htm">+</a>w <b><a href="CppFor.htm">for</a></b> both files and didn't worked, some<a href="CppTime.htm">time</a>s u have to indicate <b><a href="CppIf.htm">if</a></b> it's user, group or other)<br/>
+    3. "chmod o+w qt<a href="CppVersion.htm">version</a>.xml"<br/>
+    u can <b><a href="CppTry.htm">try</a></b> "chmod go+w qt<a href="CppVersion.htm">version</a>.xml" so u don't have to write 2 <a href="CppTime.htm">time</a>s <a href="CppOperatorMinus.htm">-</a> I didn't tried<br/>
+    4. "chmod o+w <a href="Tools.htm">tool</a>Chains.xml"<br/>
+    5. "chmod <a href="CppOperatorPlus.htm">+</a>r qt<a href="CppVersion.htm">version</a>.xml" (same here, u may <b><a href="CppTry.htm">try</a></b> "chmod go+rw qt<a href="CppVersion.htm">version</a>.xml" <a href="CppOperatorMinus.htm">-</a> I didn't tried)<br/>
+    6. "exit"<br/>
+    That's it.<br/>
+    Edit:<br/>
+    1 more:<br/>
+    "Cannot overwrite file [my home dir]/.config/Nokia/qtcreator/<b><a href="CppDefault.htm">default</a></b>.qws: Permission denied"<br/>
+    The solution:<br/>
+    "sudo <a href="CppOperatorMinus.htm">-</a>s chmod o+w ~/.config/Nokia/qtcreator/<b><a href="CppDefault.htm">default</a></b>.qws"<br/>
+    Last edited by Alliancemd; 27th October 2011 at 18:58.<br/>
+<   </code></td></tr></table>
+    <!-- end of the code -->
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

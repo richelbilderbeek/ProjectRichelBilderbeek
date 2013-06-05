@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::overflow_error</title>
+  <meta name="description" content="C++ std::overflow_error"/>
+  <meta name="keywords" content="C++ std::overflow_error code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppOverflow_error.htm">std::overflow_error</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppOverflow_error.htm">std::overflow_error</a> (a <a href="CppDerivedClass.htm">derived class</a> from <a href="CppRuntime_error.htm">std::runtime_error</a>) is <a href="CppThrow.htm">thrown</a> if a 'mathematical overflow occurs'. I did not yet succeed in producing such a mathematical overflow.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Too bad <a href="CppFmod.htm">std::fmod</a> does not <b><a href="CppThrow.htm">throw</a></b> <a href="CppOverflow_error.htm">std::overflow_error</a> :-(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppFmod.htm">std::fmod</a>(1.0,0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppOverflow_error.htm">std::overflow_error</a>&amp; e)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Will not get here :-(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+-nan<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

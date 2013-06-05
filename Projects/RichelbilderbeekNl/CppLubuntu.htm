@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Lubuntu</title>
+  <meta name="description" content="C++ Lubuntu"/>
+  <meta name="keywords" content="C++ Lubuntu code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicLubuntu.png" alt="Lubuntu"/> 
+  <a href="CppLubuntu.htm">Lubuntu</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppLubuntu.htm">Lubuntu</a> is an <a href="CppOs.htm">operating system</a>. 
+<a href="CppLubuntu.htm">Lubuntu</a> is a light-weight variant of <a href="CppUbuntu.htm">Ubuntu</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppLubuntuOneiricReview.htm">Lubuntu Oneiric Ocelot review</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>My <a href="CppLubuntu.htm">Lubuntu</a> programs</h2>
+<p>&nbsp;</p>
+<p>A list of my favorite programs:</p>
+<ul>
+  <li>Programming: qtcreator</li>
+  <li>Plaintext editing: gedit, vim</li>
+  <li>Documents: lyx</li>
+  <li>Spreadsheet: gnumeric</li>
+  <li>Audio CD ripping: audex</li>
+  <li>Web browsers: chromium-browser, firefox, lynx</li>
+  <li>ftp: gftp, ftp</li>
+  <li>SSH: putty</li>
+  <li>Touch typing: ktouch</li>
+  <li>Math practice: tuxmath</li>
+  <li>Misc: wine</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>My <a href="CppLubuntu.htm">Lubuntu</a> notes</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Change mouse cursor speed</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+xset m 10 4<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>If at startup the mouse is slow again, put this command in /etc/xdg/lxsession/LXDE/autostart.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Building the latest version of <a href="CppBoost.htm">Boost</a></h3>
+<p>&nbsp;</p>
+<p>Install an older version of <a href="CppBoost.htm">Boost</a> using Synaptic. Then download and extract the newest version.
+In the extracted folder, for example 'boost_1_46_1' use bjam:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+./bootstrap
+./bjam --build-dir=/tmp/build-boost toolset=gcc stage<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+./bootstrap
+sudo ./b2 --build-dir=/usr/local/lib/boost<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Keyboard shortcuts</h3>
+<p>&nbsp;</p>
+<p>From '/home/my_user_name/.config/openbox/lubuntu-rc.xml':</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+SUPER-E: File manager<br/>
+SUPER-R: Run<br/>
+CTRL-ESCAPE: Menu<br/>
+CTRL-ALT-DEL: Task manager<br/>
+CTRL-ALT-T: Start Terminal<br/>
+CTRL-ALT-D: File manager<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>'I hear no sound' problem</h3>
+<p>&nbsp;</p>
+<p>Sure, there are multiple reasons. For me it was because of the front speaker (not the master) had its volume set to 0%. Use alsamixer:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+alsamixer<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

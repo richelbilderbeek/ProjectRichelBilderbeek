@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Answer of exercise #9: No for-loops #27</title>
+  <meta name="description" content="C++ Answer of exercise #9: No for-loops #27"/>
+  <meta name="keywords" content="C++ Answer of exercise #9: No for-loops #27 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseNoForLoopsAnswer27.htm">Answer of exercise #9: No for-loops #27</a></h1>
+<p>&nbsp;</p>
+<p>This is the answer of <a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #27: HasId on std::vector&lt;Person*&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(id) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetId() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_id;<br/>
+};<br/>
+<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> HasId(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]-&gt;GetId() <a href="CppOperatorEqual.htm">==</a> id) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> Answer using <a href="CppBoost.htm">Boost</a>.Bind</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(id) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetId() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_id;<br/>
+};<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> HasId(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFind_if.htm">std::find_if</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;Person::GetId, <a href="CppLambda.htm">boost::lambda</a>::_1) <a href="CppOperatorEqual.htm">==</a> id<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorNotEqual.htm">!=</a> v.end();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

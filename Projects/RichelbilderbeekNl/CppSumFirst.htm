@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SumFirst</title>
+  <meta name="description" content="C++ SumFirst"/>
+  <meta name="keywords" content="C++ SumFirst sum first of pair std::pair code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSumFirst.htm">SumFirst</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSumFirst.htm">SumFirst</a> is the answer of question #21 of <a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a> <a href="CppSumFirst.htm">SumFirst</a></h2>
+<p>&nbsp;</p>
+<p>You may <a href="Contact.htm">contact me</a> if you have an <a href="CppStl.htm">STL</a> solution...</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>.Bind <a href="CppSumFirst.htm">SumFirst</a></h2>
+<p>&nbsp;</p>
+<p>Thanks to 'ofwolfandman':</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUtilityH.htm">utility</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppSumFirst.htm">SumFirst</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAccumulate.htm">std::accumulate</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPlus.htm">std::plus</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(&amp;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::first, _2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>.Lambda <a href="CppSumFirst.htm">SumFirst</a></h2>
+<p>&nbsp;</p>
+<p>Thanks to 'ofwolfandman':</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUtilityH.htm">utility</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/bind.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppSumFirst.htm">SumFirst</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAccumulate.htm">std::accumulate</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLambda.htm">boost::lambda</a>::_1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLambda.htm">boost::lambda</a>::bind(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>, <b><a href="CppInt.htm">int</a></b>&gt;::first, <a href="CppLambda.htm">boost::lambda</a>::_2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

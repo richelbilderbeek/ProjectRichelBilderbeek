@@ -1,0 +1,165 @@
+ 
+<title>ConvertMatrix</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ ConvertMatrix</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek ConvertMatrix 2D container vector std::vector convert matrix</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>7</o:Revision>
+  <o:TotalTime>140</o:TotalTime>
+  <o:Created>2010-02-19T10:32:00Z</o:Created>
+  <o:LastSaved>2010-02-19T10:39:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>234</o:Words>
+  <o:Characters>1334</o:Characters>
+  <o:Category>C++ Richel Bilderbeek ConvertMatrix</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>11</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1638</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ </head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppConvertMatrix.htm">ConvertMatrix</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppContainer.htm">Container</a> <a
+href="CppCodeSnippets.htm">code snippet</a> that   <a href="CppConvert.htm">converts</a> a   <a
+href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;X&gt;
+&gt; to <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Y&gt;
+&gt; using <a href="CppStatic_cast.htm">static_cast</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>* <a href="CppConvertMatrix.txt">View the code
+of 'ConvertMatrix' in plain text</a></p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppConvertMatrix.htm</p>
+
+<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;<b><a
+href="CppClass.htm">class</a></b> Source, <b><a href="CppClass.htm">class</a></b>
+Target&gt;</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  <a href="CppVector.htm">std::vector</a>&lt;<a
+href="CppVector.htm">std::vector</a>&lt;Target&gt; &gt; ConvertMatrix(</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a
+href="CppVector.htm">std::vector</a>&lt;Source&gt; &gt;&amp; v)</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+maxy = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(v.size());</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(maxy&gt;0);</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+maxx = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(v[0].size());</p>
+
+<p>
+ <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Target&gt;
+&gt; t(maxy, <a href="CppVector.htm">std::vector</a>&lt;Target&gt;(maxx));</p>
+
+<p>
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+y=0; y!=maxy; ++y)</p>
+
+<p>
+ {</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+x=0; x!=maxx; ++x)</p>
+
+<p> 
+ {</p>
+
+<p>     t[y][x] = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;Target&gt;(v[y][x]);</p>
+
+<p> 
+ }</p>
+
+<p>
+ }</p>
+
+<p>
+ <b><a href="CppReturn.htm">return</a></b> t;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

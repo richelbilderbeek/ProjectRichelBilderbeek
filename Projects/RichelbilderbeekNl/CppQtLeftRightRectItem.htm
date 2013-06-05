@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QtLeftRightRectItem</title>
+  <meta name="description" content="C++ QtLeftRightRectItem"/>
+  <meta name="keywords" content="C++ QtLeftRightRectItem code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtLeftRightRectItem.htm">QtLeftRightRectItem</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQtLeftRightRectItem-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicCygwin.png" alt="Cygwin"/> <a href="CppCygwin.htm">Cygwin</a> 1.7.7</li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
+  <li><img src="PicWine.png" alt="Wine"/> <a href="CppWine.htm">Wine</a> 1.4.1</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicCppBuilder.png" alt="C++ Builder"/> <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li>Borland <a href="CppBcc32Exe.htm">BCC32.EXE</a> version 6.0.10.157</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBigInt.png" alt="BigInt"/> <a href="CppBigInt.htm">BigInteger</a>: version 2010.04.30</li>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+  <li><img src="PicVcl.png" alt="VCL"/> <a href="CppVcl.htm">VCL</a>: supplied with <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtleftrightrectitem.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtleftrightrectitem.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppQt.htm">Qt</a>LeftRightRectItem, <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a> with a left and right <a href="CppRectangle.htm">rectangle</a><br/>
+Copyright (C) 2012&nbsp;&nbsp;Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppQt.htm">Qt</a>LeftRightRectItem.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTLEFTRIGHTRECTITEM_H<br/>
+<a href="CppDefine.htm">#define</a> QTLEFTRIGHTRECTITEM_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>A rect item that has two focuses: left and right!<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>LeftRightRectItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>LeftRightRectItem(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* parent <a href="CppOperatorAssign.htm">=</a> 0, <a href="CppQGraphicsScene.htm">QGraphicsScene</a>* scene <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.htm">Signal</a> to request a scene update, because <b><a href="CppThis.htm">this</a></b> item has moved/changed<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_request_scene_update;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to key press<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to mouse move<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseMoveEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a> *event);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.htm">Paint</a> <b><a href="CppThis.htm">this</a></b> item<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a>* option, <a href="CppQWidget.htm">QWidget</a>* <a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> Focus { left, right } m_focus;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTLEFTRIGHTRECTITEM_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtleftrightrectitem.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtleftrightrectitem.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppQt.htm">Qt</a>LeftRightRectItem, <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a> with a left and right <a href="CppRectangle.htm">rectangle</a><br/>
+Copyright (C) 2012&nbsp;&nbsp;Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppQt.htm">Qt</a>LeftRightRectItem.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "qtleftrightrectitem.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>LeftRightRectItem::<a href="CppQt.htm">Qt</a>LeftRightRectItem(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* parent, <a href="CppQGraphicsScene.htm">QGraphicsScene</a>* scene)<br/>
+ : <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>(parent,scene),<br/>
+&nbsp;&nbsp; m_focus(Focus::left)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlags(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsFocusable<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsSelectable);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setRect(-16.0,-16.0,32.0,32.0);<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>LeftRightRectItem::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>LeftRightRectItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2012-12-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>LeftRightRectItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_F1:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_focus <a href="CppOperatorAssign.htm">=</a> Focus::left;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_signal_request_scene_update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_F2:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_focus <a href="CppOperatorAssign.htm">=</a> Focus::right;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_signal_request_scene_update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>::keyPressEvent(event);<br/>
+<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>LeftRightRectItem::mouseMoveEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a>* event)<br/>
+{<br/>
+&nbsp;&nbsp;m_signal_request_scene_update();<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>::mouseMoveEvent(event);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>LeftRightRectItem::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a>* , <a href="CppQWidget.htm">QWidget</a>* )<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Always draw the outer rect<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;hasFocus() <a href="CppOperatorLogicalOr.htm">||</a> <b><a href="CppThis.htm">this</a></b>-&gt;isSelected())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;setPen(QPen(<a href="CppQt.htm">Qt</a>::DashLine));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;painter-&gt;drawRect(rect());<br/>
+&nbsp;&nbsp;painter-&gt;setPen(QPen(<a href="CppQt.htm">Qt</a>::SolidLine));<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> hw <a href="CppOperatorAssign.htm">=</a> 0.5 * rect().width(); <a href="CppComment.htm">//</a>Half-width<br/>
+&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>F rect_left&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> rect().adjusted(&nbsp;&nbsp; 2.0,2.0,-hw-2.0,-2.0);<br/>
+&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>F rect_right <a href="CppOperatorAssign.htm">=</a> rect().adjusted(hw+2.0,2.0,&nbsp;&nbsp; <a href="CppOperatorMinus.htm">-</a>2.0,-2.0);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The item can be selected by clicking on it<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The item can have focus by moving towards it<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_focus)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Focus::left:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawRect(rect_right);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;setPen(QPen(<a href="CppQColor.htm">QColor</a>(255,0,0)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawRect(rect_left);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Focus::right:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawRect(rect_left);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;setPen(QPen(<a href="CppQColor.htm">QColor</a>(255,0,0)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawRect(rect_right);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

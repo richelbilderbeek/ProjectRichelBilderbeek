@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>IntToStrWithSep</title>
+  <meta name="description" content="C++ IntToStrWithSep"/>
+  <meta name="keywords" content="C++ IntToStrWithSep IntToStr Int to Str String std::string with thousands seperators seperator thousand code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppIntToStrWithSep.htm">IntToStrWithSep</a> is an <a href="CppInt.htm">int</a>/<a href="CppCl_I.htm">cln::cl_I</a> <a href="CppConvert.htm">conversion</a> <a href="CppCodeSnippets.htm">code snippet</a> to <a href="CppConvert.htm">convert</a> an <a href="CppInt.htm">int</a> to <a href="CppString.htm">std::string</a> and adding the thousands seperators.</p>
+<p>&nbsp;</p>
+<p><a href="CppIntToStrWithSep.htm">IntToStrWithSep</a> has multiple flavors:</p>
+<ol>
+  <li><a href="CppStl.htm">STL</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a></li>
+  <li><a href="CppCln.htm">CLN</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppStl.htm">STL</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>/<a href="CppIntToStrWithSep.htm">IntToStrWithSep</a> converts an integer to <a href="CppString.htm">std::string</a><br/>
+<a href="CppComment.htm">//</a>/and adds thousands seperators.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>(<b><a href="CppInt.htm">int</a></b> i)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i%10);<br/>
+&nbsp;&nbsp;i<a href="CppOperatorDivideAssign.htm">/=</a>10;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> d <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i%10)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (d <a href="CppOperatorModulus.htm">%</a> 3 <a href="CppOperatorEqual.htm">==</a> 0 ? "," : "")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i<a href="CppOperatorDivideAssign.htm">/=</a>10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>d;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i=1;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> n_zeros=0; n_zeros<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorIncrement.htm">++</a>n_zeros)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>(i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ' '<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>(-i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i<a href="CppOperatorMultiplyAssign.htm">*=</a>10;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+1 -1<br/>
+10 -10<br/>
+100 -100<br/>
+1,000 -1,000<br/>
+10,000 -10,000<br/>
+100,000 -100,000<br/>
+1,000,000 -1,000,000<br/>
+10,000,000 -10,000,000<br/>
+100,000,000 -100,000,000<br/>
+1,000,000,000 -1,000,000,000<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppCln.htm">CLN</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;cln/cln.h&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>/<a href="CppIntToStrWithSep.htm">IntToStrWithSep</a> converts an integer to <a href="CppString.htm">std::string</a><br/>
+<a href="CppComment.htm">//</a>/and adds thousands seperators.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>(<a href="CppCl_I.htm">cln::cl_I</a> i)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCln.htm">cln</a>::mod(i,10));<br/>
+&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.htm">cln</a>::floor1(i,10);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> d <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (!<a href="CppCln.htm">cln</a>::zerop(i))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCln.htm">cln</a>::mod(i,10))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (d <a href="CppOperatorModulus.htm">%</a> 3 <a href="CppOperatorEqual.htm">==</a> 0 ? "," : "")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.htm">cln</a>::floor1(i,10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>d;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> i("123456789012345678901234567890");<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "i without seperators: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>(i);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "i with seperators: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+i without seperators: 123456789012345678901234567890<br/>
+i with seperators: 123,456,789,012,345,678,901,234,567,890<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

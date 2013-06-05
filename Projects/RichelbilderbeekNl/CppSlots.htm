@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>slots</title>
+  <meta name="description" content="C++ slots"/>
+  <meta name="keywords" content="C++ Qt Creator slots code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSlots.htm">slots</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSlots.htm">slots</a> is a <a href="CppQt.htm">Qt</a> 
+<a href="CppKeyword.htm">keyword</a> to 
+<a href="CppDeclaration.htm">declare</a> slots, so <a href="CppQtSignal.htm">Qt signals</a> 
+can be connected with them.</p>
+<p>&nbsp;</p>
+<p>In the example below (from <a href="CppQtStretchDraw.htm">How to StretchDraw an image?</a>), the slot 'onTimer' is <a href="CppDeclaration.htm">declared</a>. Probably there's a timer that needs to call the onTimer slot (note: there is in the full example).</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> DIALOGBLOCKYRECT_H<br/>
+<a href="CppDefine.htm">#define</a> DIALOGBLOCKYRECT_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> MyClass;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> MyClass : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Lots of MyClass code <br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onTimer();<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

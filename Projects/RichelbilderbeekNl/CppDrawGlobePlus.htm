@@ -1,0 +1,137 @@
+ 
+<title>DrawGlobePlus</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet DrawGlobePlus</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek DrawGlobePlus Draw globe vcl builder clx C++ Builder Turbo C++ Borland Developer Studio VCL CLX</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>122</o:TotalTime>
+  <o:Created>2007-10-21T11:54:00Z</o:Created>
+  <o:LastSaved>2008-06-28T10:25:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>183</o:Words>
+  <o:Characters>1044</o:Characters>
+  <o:Category>C++ Code Snippet Richel Bilderbeek DrawGlobePlus</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>8</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1282</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDrawGlobePlus.htm">DrawGlobePlus</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a href="CppGraphics.htm">Graphics</a> <a
+href="CppCodeSnippets.htm"> code
+snippet</a> to d  raw
+a globe with a plus on it.</p>
+
+<p>Assumes
+that you have already defined the <a href="CppDrawGlobe.htm">DrawGlobe</a>
+function.</p>
+
+<p>* <a
+href="CppDrawGlobePlus.txt">View the code of 'DrawGlobePlus' in plain text</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include &lt;ExtCtrls.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppDrawGlobePlus.htm</p>
+
+<p>void DrawGlobePlus(TImage * const
+image,</p>
+
+<p>
+ const unsigned char red,</p>
+
+<p>
+ const unsigned char green,</p>
+
+<p>
+ const unsigned char blue)</p>
+
+<p>{</p>
+
+<p>
+ DrawGlobe(image,red,green,blue);</p>
+
+<p>
+ const int height = image-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>
+ const int width    =
+image-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>
+ image-&gt;Canvas-&gt;Pen-&gt;Width = height / 10;</p>
+
+<p>
+ image-&gt;Canvas-&gt;Pen-&gt;Color =
+static_cast&lt;TColor&gt;(RGB(red,green,blue));</p>
+
+<p>
+ image-&gt;Canvas-&gt;MoveTo(1 * width / 4,height / 2);</p>
+
+<p>
+ image-&gt;Canvas-&gt;LineTo(3 * width / 4,height / 2);</p>
+
+<p>
+ image-&gt;Canvas-&gt;MoveTo(width / 2,1 * height / 4);</p>
+
+<p>
+ image-&gt;Canvas-&gt;LineTo(width / 2,3 * height / 4);</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

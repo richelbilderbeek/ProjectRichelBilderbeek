@@ -1,0 +1,156 @@
+ 
+<title>VCL ClearChart</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>VCL TImage</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ VCL Richel Bilderbeek TImage Image VCL Builder Turbo</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>7</o:Revision>
+  <o:TotalTime>155</o:TotalTime>
+  <o:Created>2009-08-06T09:59:00Z</o:Created>
+  <o:LastSaved>2009-08-06T10:04:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>115</o:Words>
+  <o:Characters>661</o:Characters>
+  <o:Category>C++ VCL Richel Bilderbeek TImage</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>5</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>811</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:940843753;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-584433118 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+ 
+@list l1
+	{mso-list-id:1826774892;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-359340106 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:*;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	mso-hansi-font-family:"Courier New";}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>
+<a href="CppVcl.htm">VCL</a>) <a href="CppClearChart.htm">ClearChart</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppTChart.htm">TChart</a> <a
+href="CppVclCodeSnippets.htm"> code
+snippet</a> to   clear
+all series  .</p>
+
+<p>&nbsp;</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppClearChart.txt">View the code of 'ClearChart' in plain text</a></p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;Chart.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppClearChart.htm</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  <a href="CppClearChart.htm">ClearChart</a>(<a
+href="CppTChart.htm">TChart</a> * <b><a href="CppConst.htm">const</a></b> c)</p>
+
+<p>{</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(c); // c must be an initialized <a
+href="CppPointer.htm">pointer</a></p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+sz = c-&gt;SeriesCount();</p>
+
+<p>
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+i=0; i!=sz; ++i)</p>
+
+<p>
+ {</p>
+
+<p> 
+ c-&gt;Series[i]-&gt;Clear();</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

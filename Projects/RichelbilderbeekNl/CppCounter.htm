@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Counter</title>
+  <meta name="description" content="C++ Counter"/>
+  <meta name="keywords" content="C++ Counter code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCounter.htm">Counter</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCounter.htm">Counter</a> is a <a href="CppClass.htm">class</a>
+for tallying.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>counter.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppCounter.htm">Counter</a>, an incrementing <a href="CppCounter.htm">counter</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppCounter.htm">CppCounter</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> COUNTER_H<br/>
+<a href="CppDefine.htm">#define</a> COUNTER_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppCounter.htm">Counter</a> is a <a href="CppCounter.htm">counter</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppCounter.htm">Counter</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppCounter.htm">Counter</a> is <a href="CppConstructor.htm">construct</a>ed with an initial count, which is initialized to<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/zero by <b><a href="CppDefault.htm">default</a></b><br/>
+&nbsp;&nbsp;<a href="CppCounter.htm">Counter</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> initial_count <a href="CppOperatorAssign.htm">=</a> 0) : m_count(initial_count) {}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Count <a href="CppReturn.htm">returns</a> the current count and increments it afterwards<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Count() { <b><a href="CppReturn.htm">return</a></b> m_count<a href="CppOperatorIncrement.htm">++</a>; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The count<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_count;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> COUNTER_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>counter.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppCounter.htm">Counter</a>, an incrementing <a href="CppCounter.htm">counter</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppCounter.htm">CppCounter</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppCounter.htm">counter</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppCounter.htm">Counter</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppCounter.htm">Counter</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-08-20: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

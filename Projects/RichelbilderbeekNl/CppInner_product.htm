@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::inner_product</title>
+  <meta name="description" content="C++ std::inner_product"/>
+  <meta name="keywords" content="C++ std::inner_product code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppInner_product.htm">std::inner_product</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppInner_product.htm">std::inner_product</a> is an <a href="CppStl.htm">STL</a> <a href="CppAlgorithm.htm">algorithm</a> to calculate the inner product of one or two <a href="CppContainer.htm">containers</a>.</p> 
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFunctorIncrease.htm">FunctorIncrease</a>.htm<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppFunctorIncrease.htm">Increase</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppVoid.htm">void</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppFunctorIncrease.htm">Increase</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> initValue <a href="CppOperatorAssign.htm">=</a> 0) : mValue(initValue) {}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; anything)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;anything <a href="CppOperatorAssign.htm">=</a> mValue;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>mValue;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mValue;<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetIncVector.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; GetIncVector(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> init_val <a href="CppOperatorAssign.htm">=</a> 0)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(sz,0);<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppFunctorIncrease.htm">Increase</a>(init_val));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> 5;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v0(sz,0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v1(sz,1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v2 <a href="CppOperatorAssign.htm">=</a> GetIncVector(sz);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>v0 <a href="CppOperatorAssign.htm">=</a> { 0,0,0,0,0 }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>v1 <a href="CppOperatorAssign.htm">=</a> { 1,1,1,1,1 }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>v2 <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3,4 }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> (0*0) <a href="CppOperatorPlus.htm">+</a> (0*0) <a href="CppOperatorPlus.htm">+</a> (0*0) <a href="CppOperatorPlus.htm">+</a> (0*0) <a href="CppOperatorPlus.htm">+</a> (0*0) <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppInner_product.htm">std::inner_product</a>(v0.begin(),v0.end(),v0.begin(),0) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> (1*1) <a href="CppOperatorPlus.htm">+</a> (1*1) <a href="CppOperatorPlus.htm">+</a> (1*1) <a href="CppOperatorPlus.htm">+</a> (1*1) <a href="CppOperatorPlus.htm">+</a> (1*1) <a href="CppOperatorAssign.htm">=</a> 5<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppInner_product.htm">std::inner_product</a>(v1.begin(),v1.end(),v1.begin(),0) <a href="CppOperatorEqual.htm">==</a> 5);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> (0*1) <a href="CppOperatorPlus.htm">+</a> (0*1) <a href="CppOperatorPlus.htm">+</a> (0*1) <a href="CppOperatorPlus.htm">+</a> (0*1) <a href="CppOperatorPlus.htm">+</a> (0*1) <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppInner_product.htm">std::inner_product</a>(v0.begin(),v0.end(),v1.begin(),0) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> (0*0) <a href="CppOperatorPlus.htm">+</a> (0*1) <a href="CppOperatorPlus.htm">+</a> (0*2) <a href="CppOperatorPlus.htm">+</a> (0*3) <a href="CppOperatorPlus.htm">+</a> (0*4) <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppInner_product.htm">std::inner_product</a>(v0.begin(),v0.end(),v2.begin(),0) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> (1*0) <a href="CppOperatorPlus.htm">+</a> (1*1) <a href="CppOperatorPlus.htm">+</a> (1*2) <a href="CppOperatorPlus.htm">+</a> (1*3) <a href="CppOperatorPlus.htm">+</a> (1*4) <a href="CppOperatorAssign.htm">=</a> 10<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppInner_product.htm">std::inner_product</a>(v1.begin(),v1.end(),v2.begin(),0) <a href="CppOperatorEqual.htm">==</a> 10);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> (0*0) <a href="CppOperatorPlus.htm">+</a> (1*1) <a href="CppOperatorPlus.htm">+</a> (2*2) <a href="CppOperatorPlus.htm">+</a> (3*3) <a href="CppOperatorPlus.htm">+</a> (4*4) <a href="CppOperatorAssign.htm">=</a> 40<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppInner_product.htm">std::inner_product</a>(v2.begin(),v2.end(),v2.begin(),0) <a href="CppOperatorEqual.htm">==</a> 30);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.cppreference.com/wiki/stl/algorithm/inner_product">Cppreference.com page about std::inner_product</a></li>
+  <li><a href="http://www.cplusplus.com/reference/std/numeric/inner_product">Cplusplus.com page about std::inner_product</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

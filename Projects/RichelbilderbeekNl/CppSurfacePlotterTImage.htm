@@ -1,0 +1,544 @@
+ 
+<title>SurfacePlotterTImage</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet SurfacePlotterTImage</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>Richel Bilderbeek C++ Code Snippet SurfacePlotterTImage surface plot plotter TImage class</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>22</o:Revision>
+  <o:TotalTime>182</o:TotalTime>
+  <o:Created>2007-07-16T21:47:00Z</o:Created>
+  <o:LastSaved>2010-02-07T13:45:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>900</o:Words>
+  <o:Characters>5132</o:Characters>
+  <o:Category>Richel Bilderbeek C++ Code Snippet</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>42</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>6302</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:136918064;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-940813852 1796798878 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+@list l1
+	{mso-list-id:1777825652;
+	mso-list-type:hybrid;
+	mso-list-template-ids:6481968 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:*;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	mso-hansi-font-family:"Courier New";}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>) <a
+href="CppSurfacePlotterTImage.htm">SurfacePlotter (TImage)</a></h1>
+
+<p>&nbsp;</p>
+
+<p>Simple
+class to make a surface plot of a 2D <a href="CppVector.htm">std::vector</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>The
+<a href="Tools.htm"> tool</a>
+<a href="ToolSurfacePlotter.htm">SurfacePlotter</a> demonstrates the use of this
+class.</p>
+
+<p>&nbsp;</p>
+
+<p>The
+class SurfacePlotter needs a <a href="CppTImage.htm">Extctrls::TImage</a> to
+work on, but does not manage the <a href="CppDelete.htm">deletion</a> of it.</p>
+
+<p>&nbsp;</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSurfacePlotterTImageVcl.txt">View the VCL code for 'SurfacePlotter' in
+plain text</a></p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSurfacePlotterTImageClx.txt">(obsolete) View the CLX code for
+'SurfacePlotter' in plain text</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Code</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>/*</p>
+
+<p> 
+ SurfacePlotter, class to plot a 2D std::vector</p>
+
+<p> 
+ Copyright (C) 2010    Richel
+Bilderbeek</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ This program is free software: you can redistribute it and/or modify</p>
+
+<p> 
+ it under the terms of the GNU General Public License as published by</p>
+
+<p> 
+ the Free Software Foundation, either version 3 of the License, or</p>
+
+<p> 
+ (at your option) any later version.</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ This program is distributed in the hope that it will be useful,</p>
+
+<p> 
+ but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
+
+<p> 
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the</p>
+
+<p> 
+ GNU General Public License for more details.</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ You should have received a copy of the GNU General Public License</p>
+
+<p> 
+ along with this program.    If not,
+see &lt;http://www.gnu.org/licenses/&gt;.</p>
+
+<p>*/</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>// From http://www.richelbilderbeek.nl</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#ifndef UnitSurfacePlotterH</p>
+
+<p>#define UnitSurfacePlotterH</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#include &lt;algorithm&gt;</p>
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>#include &lt;vector&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>#include &lt;Graphics.hpp&gt; //VCL
+specific</p>
+
+<p>#include &lt;ExtCtrls.hpp&gt; //VCL
+specific</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>struct SurfacePlotter</p>
+
+<p>{</p>
+
+<p> 
+ SurfacePlotter(Extctrls::TImage * const image)</p>
+
+<p> 
+ : mImage(image)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ assert(mImage);</p>
+
+<p>   
+ assert(mImage-&gt;Picture-&gt;Bitmap!=0);</p>
+
+<p>   
+ assert(mImage-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit);</p>
+
+<p> 
+ }</p>
+
+<p> 
+ //Sets the image of the surface plot to the values of the vector</p>
+
+<p> 
+ //The doubles can be in any range</p>
+
+<p> 
+ void SetSurfaceGrey(const std::vector&lt;std::vector&lt;double&gt;
+&gt;&amp; surface)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ //Get the size</p>
+
+<p>   
+ const int maxx = surface.size();</p>
+
+<p>   
+ const int maxy = surface[0].size();</p>
+
+<p>   
+ //Resize Image to the correct size</p>
+
+<p>   
+ mImage-&gt;Picture-&gt;Bitmap-&gt;Width  
+ = maxx;</p>
+
+<p>   
+ mImage-&gt;Picture-&gt;Bitmap-&gt;Height = maxy;</p>
+
+<p>   
+ //Minimum and maximum are not given, so these need to be calculated</p>
+
+<p>   
+ double minVal =
+*(std::min_element(surface[0].begin(),surface[0].end()));</p>
+
+<p>   
+ double maxVal = *(std::max_element(surface[0].begin(),surface[0].end()));</p>
+
+<p>   
+ for (int x=1; x!=maxx; ++x) //1, because 0 gets know the lines above</p>
+
+<p>   
+ {</p>
+
+<p>       const double localMinVal =
+*(std::min_element(surface[x].begin(),surface[x].end()));</p>
+
+<p>       const double localMaxVal =
+*(std::max_element(surface[x].begin(),surface[x].end()));</p>
+
+<p>       if (localMinVal &lt; minVal) minVal = localMinVal;</p>
+
+<p>       if (localMaxVal &gt; maxVal) maxVal = localMaxVal;</p>
+
+<p>   
+ }</p>
+
+<p>   
+ if (minVal == maxVal)</p>
+
+<p>   
+ {</p>
+
+<p>       //Draw black</p>
+
+<p>       for (int y=0; y!=maxy; ++y)</p>
+
+<p>       {</p>
+
+<p>         unsigned char * const line</p>
+
+<p>           = static_cast&lt;unsigned char
+*&gt;(mImage-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>         for (int x=0; x!=maxx; ++x)</p>
+
+<p>         {</p>
+
+<p>           line[x*3+0] = 0; //Blue</p>
+
+<p>           line[x*3+1] = 0; //Green</p>
+
+<p>           line[x*3+2] = 0; //Red</p>
+
+<p>         }</p>
+
+<p>       }</p>
+
+<p>       return;</p>
+
+<p>   
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>   
+ //Draw the pixels</p>
+
+<p>   
+ for (int y=0; y!=maxy; ++y)</p>
+
+<p>   
+ {</p>
+
+<p>       unsigned char * const line</p>
+
+<p>         = static_cast&lt;unsigned char
+*&gt;(mImage-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>       for (int x=0; x!=maxx; ++x)</p>
+
+<p>       {</p>
+
+<p>         assert(minVal != maxVal);</p>
+
+<p>         assert(minVal &lt; maxVal);</p>
+
+<p>         const double greyValueDouble = (surface[x][y] - minVal) /
+(maxVal - minVal);</p>
+
+<p>         assert(greyValueDouble &gt;= 0.0 &amp;&amp; greyValueDouble
+&lt;= 1.0);</p>
+
+<p>         const char greyValue = greyValueDouble * 255.0;</p>
+
+<p>         line[x*3+0] = greyValue; //Blue</p>
+
+<p>         line[x*3+1] = greyValue; //Green</p>
+
+<p>         line[x*3+2] = greyValue; //Red</p>
+
+<p>       }</p>
+
+<p>   
+ }</p>
+
+<p> 
+ }</p>
+
+<p> 
+ //Sets the image of the surface plot to the values of the vector</p>
+
+<p> 
+ //Assumes that the chars are in the range [0,255] (a char's range)</p>
+
+<p> 
+ //If the chars are in a shorter range, they will NOT be rescaled to
+[0,255]</p>
+
+<p> 
+ void SetSurfaceGrey(const std::vector&lt;std::vector&lt;char&gt;
+&gt;&amp; surface)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ const int maxx = surface.size();</p>
+
+<p>   
+ const int maxy = surface[0].size();</p>
+
+<p>   
+ mImage-&gt;Picture-&gt;Bitmap-&gt;Width = maxx;</p>
+
+<p>   
+ mImage-&gt;Picture-&gt;Bitmap-&gt;Height = maxy;</p>
+
+<p>&nbsp;</p>
+
+<p>   
+ for (int y=0; y!=maxy; ++y)</p>
+
+<p>   
+ {</p>
+
+<p>       unsigned char * const line</p>
+
+<p>         = static_cast&lt;unsigned char
+*&gt;(mImage-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>       for (int x=0; x!=maxx; ++x)</p>
+
+<p>       {</p>
+
+<p>         const char greyValue = surface[x][y];</p>
+
+<p>         line[x*3+0] = greyValue; //Blue</p>
+
+<p>         line[x*3+1] = greyValue; //Green</p>
+
+<p>         line[x*3+2] = greyValue; //Red</p>
+
+<p>       }</p>
+
+<p>   
+ }</p>
+
+<p> 
+ }</p>
+
+<p> 
+ private:</p>
+
+<p> 
+ Extctrls::TImage * const mImage;</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p>#endif</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppLicence.htm"> Licence</a> </h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p> 
+ SurfacePlotter, class to plot a 2D std::vector</p>
+
+<p> 
+ Copyright (C) 2010    Richel
+Bilderbeek</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ This program is free software: you can redistribute it and/or modify</p>
+
+<p> 
+ it under the terms of the GNU General Public License as published by</p>
+
+<p> 
+ the Free Software Foundation, either version 3 of the License, or</p>
+
+<p> 
+ (at your option) any later version.</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ This program is distributed in the hope that it will be useful,</p>
+
+<p> 
+ but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
+
+<p> 
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the</p>
+
+<p> 
+ GNU General Public License for more details.</p>
+
+<p> 
+ You should have received a copy of the GNU General Public License</p>
+
+<p> 
+ along with this program.    If not,
+see &lt;http://www.gnu.org/licenses/&gt;.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

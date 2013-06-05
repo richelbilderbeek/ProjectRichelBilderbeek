@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>sizeof</title>
+  <meta name="description" content="C++ sizeof"/>
+  <meta name="keywords" content="C++ sizeof code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSizeof.htm">sizeof</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSizeof.htm">sizeof</a> is a compile-time <a href="CppOperator.htm">operator</a> to determine the size of a <a href="CppDataType.htm">data type</a> in bytes.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppBool.htm">bool</a></b> size: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppSizeof.htm">sizeof</a></b>(<b><a href="CppBool.htm">bool</a></b>) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppInt.htm">int</a></b> size : " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppSizeof.htm">sizeof</a></b>(<b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppSizeof.htm">sizeof</a> being a compile-time <a href="CppOperator.htm">operator</a></h2>
+<p>&nbsp;</p>
+<p>Because <a href="CppSizeof.htm">sizeof</a> is a compile-time <a href="CppOperator.htm">operator</a>, one can use on it:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> <a href="CppStatic_assert.htm">static_assert</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> <a href="CppBOOST_STATIC_ASSERT.htm">BOOST_STATIC_ASSERT</a></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppSizeof.zip">Download the Qt Creator project 'CppSizeof' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<b><a href="CppSizeof.htm">sizeof</a></b>("")&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorEqual.htm">==</a> 1,"The <b><a href="CppSizeof.htm">sizeof</a></b> of a string is its number of <a href="CppChar.htm">character</a>s <a href="CppOperatorPlus.htm">+</a> 1");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<b><a href="CppSizeof.htm">sizeof</a></b>("1")&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 2,"The <b><a href="CppSizeof.htm">sizeof</a></b> of a string is its number of <a href="CppChar.htm">character</a>s <a href="CppOperatorPlus.htm">+</a> 1");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<b><a href="CppSizeof.htm">sizeof</a></b>("12")&nbsp;&nbsp; <a href="CppOperatorEqual.htm">==</a> 3,"The <b><a href="CppSizeof.htm">sizeof</a></b> of a string is its number of <a href="CppChar.htm">character</a>s <a href="CppOperatorPlus.htm">+</a> 1");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<b><a href="CppSizeof.htm">sizeof</a></b>("123")&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 4,"The <b><a href="CppSizeof.htm">sizeof</a></b> of a string is its number of <a href="CppChar.htm">character</a>s <a href="CppOperatorPlus.htm">+</a> 1");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<b><a href="CppSizeof.htm">sizeof</a></b>("1234") <a href="CppOperatorEqual.htm">==</a> 5,"The <b><a href="CppSizeof.htm">sizeof</a></b> of a string is its number of <a href="CppChar.htm">character</a>s <a href="CppOperatorPlus.htm">+</a> 1");<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

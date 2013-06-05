@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>DoPerfectElasticCollision</title>
+  <meta name="description" content="C++ DoPerfectElasticCollision"/>
+  <meta name="keywords" content="C++ perfect elastic collision DoPerfectElasticCollision math code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a> is a <a href="CppMath.htm">math</a> <a href="CppCodeSnippets.htm">code snippet</a> to determine the velocities and angles of two 2D round objects after a perfect elastic collision.</p>
+<p>&nbsp;</p>
+<p>When two perfect globes (or disks) collide and bounce perfectly elastically, all impulse is maintained and transferred maximally. Near-perfect elastic collisions can be observed when playing snooker or air-hockey. It is a relatively mathematical complex function and <a href="CppDoPerfectElasticCollision.PNG">the image showing all angles and vectors (png)</a> should clear up on the function's working. The function assumes equals mass of both players.</p>
+<p>&nbsp;</p>
+<p>I (re)developed <a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a> for the <a href="Games.htm">game</a> <a href="GameBoenken.htm">Boenken</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppDoPerfectElasticCollision.PNG">View an image showing all angles and vectors (png)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>To use <a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>, you must already have <a href="CppDefinition.htm">defined</a> the <a href="CppGetAngle.htm">GetAngle</a> <a href="CppFunction.htm">function</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angleCollision,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; angle1,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; speed1,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; angle2,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; speed2)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 1 (assumes both players have equal mass!)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> A <a href="CppOperatorAssign.htm">=</a> speed1;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 2 (assumes both players have equal mass!)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> E <a href="CppOperatorAssign.htm">=</a> speed2;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The angles between the two globes<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> c <a href="CppOperatorAssign.htm">=</a> angleCollision;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The angle between c and the impulse direction of player 1<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> a <a href="CppOperatorAssign.htm">=</a> c <a href="CppOperatorMinus.htm">-</a> angle1;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The angle between c and the impulse direction of player 2<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b <a href="CppOperatorAssign.htm">=</a> c <a href="CppOperatorPlus.htm">+</a> M_PI <a href="CppOperatorMinus.htm">-</a> angle2;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Seperate the impulses to their impulses paralel and othoganal the angle of collision<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 1 parallel to the collision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> B <a href="CppOperatorAssign.htm">=</a> A * <a href="CppCos.htm">std::cos</a>(a);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 1 orthogonal to the collision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> C <a href="CppOperatorAssign.htm">=</a> A * <a href="CppSin.htm">std::sin</a>(a);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 2 parallel to the collision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> F <a href="CppOperatorAssign.htm">=</a> E * <a href="CppCos.htm">std::cos</a>(b);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 2 orthogonal to the collision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> G <a href="CppOperatorAssign.htm">=</a> E * <a href="CppSin.htm">std::sin</a>(b);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Seperate the impulses in X and Y directions<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> BdX <a href="CppOperatorAssign.htm">=</a> B *  <a href="CppSin.htm">std::sin</a>(c <a href="CppOperatorPlus.htm">+</a> (0.0 * M_PI));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> BdY <a href="CppOperatorAssign.htm">=</a> B * <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c <a href="CppOperatorPlus.htm">+</a> (0.0 * M_PI));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> CdX <a href="CppOperatorAssign.htm">=</a> C *  <a href="CppSin.htm">std::sin</a>(c <a href="CppOperatorPlus.htm">+</a> (1.5 * M_PI));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> CdY <a href="CppOperatorAssign.htm">=</a> C * <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c <a href="CppOperatorPlus.htm">+</a> (1.5 * M_PI));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> FdX <a href="CppOperatorAssign.htm">=</a> F *  <a href="CppSin.htm">std::sin</a>(c <a href="CppOperatorPlus.htm">+</a> (1.0 * M_PI));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> FdY <a href="CppOperatorAssign.htm">=</a> F * <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c <a href="CppOperatorPlus.htm">+</a> (1.0 * M_PI));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GdX <a href="CppOperatorAssign.htm">=</a> G *  <a href="CppSin.htm">std::sin</a>(c <a href="CppOperatorPlus.htm">+</a> (0.5 * M_PI));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GdY <a href="CppOperatorAssign.htm">=</a> G * <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c <a href="CppOperatorPlus.htm">+</a> (0.5 * M_PI));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulses<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulse of player 1 in the X direction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> DdX <a href="CppOperatorAssign.htm">=</a> CdX <a href="CppOperatorPlus.htm">+</a> FdX;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulse of player 1 in the Y direction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> DdY <a href="CppOperatorAssign.htm">=</a> CdY <a href="CppOperatorPlus.htm">+</a> FdY;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulse of player 2 in the X direction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> HdX <a href="CppOperatorAssign.htm">=</a> BdX <a href="CppOperatorPlus.htm">+</a> GdX;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulse of player 2 in the Y direction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> HdY <a href="CppOperatorAssign.htm">=</a> BdY <a href="CppOperatorPlus.htm">+</a> GdY;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write the final results<br/>
+&nbsp;&nbsp;angle1 <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>(DdX, DdY);<br/>
+&nbsp;&nbsp;angle2 <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>(HdX, HdY);<br/>
+&nbsp;&nbsp;speed1 <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( (DdX * DdX) <a href="CppOperatorPlus.htm">+</a> (DdY * DdY) ); <a href="CppComment.htm">//</a>Pythagoras<br/>
+&nbsp;&nbsp;speed2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( (HdX * HdX) <a href="CppOperatorPlus.htm">+</a> (HdY * HdY) ); <a href="CppComment.htm">//</a>Pythagoras<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

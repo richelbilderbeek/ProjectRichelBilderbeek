@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt Creator: How to create a simple 2D graphics program from a console application</title>
+  <meta name="description" content="C++ Qt Creator How to create a simple 2D graphics program from a console application"/>
+  <meta name="keywords" content="C++ Qt Creator How to create a simple 2D graphics program from a console application"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQt2dGraphicsConsole.htm">How to create a simple 2D graphics program from a console application?</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppQt2dGraphicsConsole.htm">simple 2D graphics program</a> has the goal to create a colored gradient by setting the colors of individual pixels from a console application.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+This guide is not yet finished: I haven't gotten it to work yet.<br/>
+The screenshots from this guide are made using <a href="CppQtCreator.htm">Qt Creator</a> 1.3.1 running under Ubuntu 10.04.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>To create this <a href="CppQt2dGraphicsConsole.htm">simple 2D graphics program from a console application</a> in <a href="CppQtCreator.htm">Qt Creator</a>, you can follow the steps below:</p>
+<ul>
+  <li>Step #1: Setting up the Qt4 Console application project</li>
+  <li>Step #2: Coding the <a href="CppDefinition.htm">definition</a> of <a href="CppMain.htm">main</a></li>
+  <li>Step #3: Running the program</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Step #1: Setting up the Qt4 Console application project</h2>
+<p>&nbsp;</p>
+<ol>
+  <li>Start <a href="CppQtCreator.htm">Qt Creator</a>.</li>
+  <li>If you are not shown the welcome screen, click on 'Welcome' on the left</li>
+  <li>If, in the welcome screen, the 'Develop' tab is not shown, click on 'Develop' to view the <a href="CppQtCreatorWelcomeDevelop_2_1_0.png">Welcome screen Develop tab</a></li>
+  <li>In the <a href="CppQtCreatorWelcomeDevelop_2_1_0.png">Welcome screen Develop tab</a>, click 'Create New Project' to go to the <a href="CppQtCreatorNewProject_2_5_2.png">New project dialog</a></li> 
+  <li>In the <a href="CppQtCreatorNewProject_2_5_2.png">New project dialog</a>, click 'QT4 Gui Application' to go to the <a href="CppQtIntroduction.png">introduction and project location dialog</a></li>
+  <li>In the <a href="CppQtIntroduction.png">Introduction and project location dialog</a>, you must specify a name and location to save your (project) files. For example, after 'Name' type 'CppQt2dGraphicsConsole'. Click next</li>
+  <li>In the <a href="CppQtCreatorSelectRequiredModules.png">select required modules dialog</a>, make sure QtCore and QtGui are checked and click 'Next'</li>
+  <li>In the <a href="CppQtProjectManagement.png">project management dialog</a>, click 'Finish'</li>
+</ol>
+<p>&nbsp;</p>
+<p>Now your Qt4 Console application project is successfully set up. Your screen might look like <a href="CppQt2dGraphicsConsole1.png">this</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Step #2: Coding the <a href="CppDefinition.htm">definition</a> of <a href="CppMain.htm">main</a></h2>
+<p>&nbsp;</p>
+<p>Your screen might look like <a href="CppQt2dGraphicsConsole1.png">this</a>.</p>
+<p>&nbsp;</p>
+<ol>
+  <li>On the left menu bar, you can see you are now in 'Edit' mode (instead of 'Welcome' mode). You can see your project right of this menu bar. You can see a 'CppQt2dGraphicsConsole' project folder, containing the following folders and files:
+    <ol>
+      <li>CppQt2dGraphicsConsole.pro</li>
+      <li>main.cpp (in folder 'Sources')</li>
+    </ol>
+    Double-click on 'main.cpp' to be taken to the code editor.
+  </li>
+  <li>Your screen then might look like <a href="CppQt2dGraphicsConsole2.png">this</a> with the following source code: 
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    <a href="CppInclude.htm">#include</a> &lt;QtCore/<a href="CppQCoreApplication.htm">QCoreApplication</a>&gt;<br/>
+    <br/>
+    <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+    {<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQCoreApplication.htm">QCoreApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+    <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+    }<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+  </li>
+  <li>Change this code to the following:
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+    <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+    <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+    <br/>
+    <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+    {<br/>
+    &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+    <br/>
+    &nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> scene;<br/>
+    &nbsp;&nbsp;scene.addText("Hello, world!");<br/>
+    <br/>
+    &nbsp;&nbsp;<a href="CppQGraphicsView.htm">QGraphicsView</a> view(&scene);<br/>
+    &nbsp;&nbsp;view.show();<br/>
+    <br/>
+    &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+    }<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Step #3: Running the program</h2>
+<p>&nbsp;</p>
+<ol>
+  <li>Press CTRL-R to start the program</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

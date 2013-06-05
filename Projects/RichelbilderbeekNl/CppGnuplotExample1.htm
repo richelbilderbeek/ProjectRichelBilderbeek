@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>gnuplot example 1: creating and saving a plot</title>
+  <meta name="description" content="C++ gnuplot example 1: creating and saving a plot"/>
+  <meta name="keywords" content="C++ gnuplot example 1: creating and saving a plot Qt creator code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGnuplotExample1.htm">gnuplot example 1: creating and saving a plot</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGnuplotExample1.htm">gnuplot example 1</a> is a <a href="CppGnuplot.htm">gnuplot</a> example.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGnuplotExample1.png">View a screenshot of this example (png)</a></li>
+  <li><a href="CppGnuplotExample1.zip">Download the Qt Creator project 'CppGnuplotExample1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.04 (precise)</li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.4.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.6.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.6.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppGnuplotExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG += qt<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;
+<br/>
+
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()
+<br/>
+{
+<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> WIN32
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe <a href="CppOperatorAssign.htm">=</a> "C:\\Progra~1\\<a href="CppGnuplot.htm">gnuplot</a>\\bin\\<a href="CppGnuplot.htm">gnuplot</a>.exe";
+<br/>
+&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> exe <a href="CppOperatorAssign.htm">=</a> "<a href="CppGnuplot.htm">gnuplot</a>";
+<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a>
+<br/>
+
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> "test.txt";
+<br/>
+&nbsp;&nbsp;{
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());
+<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"set terminal pngcairo\n"
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"set output 'test.png'\n"
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"set key inside left top vertical Right noreverse enhanced <b><a href="CppAuto.htm">auto</a></b>titles box linetype <a href="CppOperatorMinus.htm">-</a>1 linewidth 1.000\n"
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"set samples 50, 50\n"
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"plot [-10:10] sin(x),atan(x),cos(atan(x))";
+<br/>
+&nbsp;&nbsp;}
+<br/>
+
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> exe <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> filename;
+<br/>
+
+<br/>
+&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>(cmd.c_str());
+<br/>
+
+<br/>
+
+<br/>
+}
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

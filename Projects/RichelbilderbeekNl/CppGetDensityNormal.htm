@@ -1,0 +1,106 @@
+ 
+<title>GetDensityNormal</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>Richel Bilderbeek C++ Code Snippet GetDensityNormal Get Density Normal Distribution</o:Keywords>
+  <o:LastAuthor>Richel</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>112</o:TotalTime>
+  <o:Created>2007-07-16T19:14:00Z</o:Created>
+  <o:LastSaved>2007-07-30T09:05:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>115</o:Words>
+  <o:Characters>661</o:Characters>
+  <o:Lines>5</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>811</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+
+ 
+
+ 
+
+<p> Back to <a
+href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p> Back to <a
+href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<h1>GetDensityNormal</h1>
+
+<p>  &nbsp;</p>
+
+<p> Gets the
+density at a certain <b><i>x</i></b> of a normal distribution with a certain
+mean and standard deviation.</p>
+
+<p>  &nbsp;</p>
+
+<p> Code in
+plain text can be found <a href="CppGetDensityNormal.txt">here</a>.</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+ 
+
+<p> #include &lt;cmath&gt;</p>
+
+<p>  &nbsp;</p>
+
+<p> //From
+http://www.richelbilderbeek.nl/CppGetDensityNormal.htm</p>
+
+<p> double GetDensityNormal(const double x, const
+double mean, const double stddev)</p>
+
+<p> {</p>
+
+<p>     const
+double firstTerm = 1.0 / (stddev * std::sqrt(2.0 * M_PI));</p>
+
+<p>   
+ const double secondTerm = -( (x - mean) * (x - mean) / (2.0 * stddev *
+stddev) );</p>
+
+<p>   
+ const double result = firstTerm * std::exp(secondTerm);</p>
+
+<p>   
+ return result;</p>
+
+<p> }</p>
+
+</div>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p> Back to <a
+href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p> Back to <a
+href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>  &nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

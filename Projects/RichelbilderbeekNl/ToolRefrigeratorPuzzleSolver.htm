@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Tool Refrigerator Puzzle Solver</title>
+  <meta name="description" content="C++ Tool Refrigerator Puzzle Solver"/>
+  <meta name="keywords" content="C++ Tool Refrigerator Monkey Puzzle Solver solve"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolRefrigeratorPuzzleSolver.htm">Refrigerator Puzzle Solver</a></h1>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+This type of puzzle is also called a monkey puzzle [1].<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="ToolRefrigeratorPuzzleSolver.htm">Refrigerator Puzzle Solver</a> was programmed to solve a puzzle on my refrigerator. I had a bet with my girlfriend that I could find the solution quicker by writing a program, than her trying by hand. I won (as one would expect, see 'Calcalute the number of configurations to test').</p>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="ToolRefrigeratorPuzzleSolverPuzzle.png">View a photo of the refrigerator puzzle (png)</a></li>
+  <li><a href="ToolRefrigeratorPuzzleSolver_1_0.png">View a screenshot of 'Refrigerator Puzzle Solver' (png)</a></li>
+  <li><a href="ToolRefrigeratorPuzzleSolverExe_1_0.zip">Download the 'Refrigerator Puzzle Solver' Windows executable (version 1.0)(zip)</a>.</li>
+  <li><a href="ToolRefrigeratorPuzzleSolverSource_1_0.zip">Download the 'Refrigerator Puzzle Solver' source code (version 1.0)(zip)</a>.</li>
+</ol>
+<p>&nbsp;</p>
+<p><a href="ToolRefrigeratorPuzzleSolver.htm">Refrigerator Puzzle Solver</a> was programmed at the 28th of December of 2008 in <a href="Cpp.htm">C++</a> using the IDE <a href="CppBuilder.htm">C++ Builder</a> 6.0. It uses the <a href="CppStl.htm">STL</a>, <a href="CppVcl.htm">VCL</a> and <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">libraries</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Calculate the number of configurations to test</h2>
+<p>&nbsp;</p>
+<p>The nine puzzle pieces can be put in 9*8*7*6*5*4*3*2*1 = 9! = 362880 sequences.</p>
+<p>&nbsp;</p>
+<p>One puzzle piece has four orientations.</p>
+<p>&nbsp;</p>
+<p>For a certain sequence of the nine pieces, there are 4^9=262144 configurations.</p>
+<p>&nbsp;</p>
+<p>Therefore, the number of possibilities to test equals 362880 * 262144 = 95126814720.</p>
+<p>&nbsp;</p>
+<p>Because there four solutions of the puzzle (due to rotation) one expects to need to test 95126814720 / 4 = 23781703680 configurations. That is more then 23 billion configurations!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>How the program solves the puzzle</h2>
+<p>&nbsp;</p>
+<p>The program starts with an ordering of the nine puzzle pieces.</p>
+<p>&nbsp;</p>
+<p>First, one or more puzzle pieces are rotated in a systematic way, as systematic as adding one to a four-digit number system.</p>
+<p>&nbsp;</p>
+<p>Second, these (rotated) puzzle pieces are put in a recursive function. This function takes a set of used and fitting puzzle pieces and a set of unused puzzle pieces. It tries to put an unused puzzle piece in the next place, trying all unused pieces. If successful, the function calls itself with the (new) set of used puzzle pieces and the (new) set of unused puzzle pieces. If the function fails, it returns an empty solution.</p>
+<p>&nbsp;</p>
+<p>Click on 'Display current' in the program to see the computer do this. Every try is shown for about 100 milliseconds, so one can actually see what happens.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li>David Harel. Computers Ltd.: What They Really Can't Do. 2000. ISBN-10: 0198505558.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppLicence.htm">Licence</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+&nbsp;&nbsp;The Refrigerator Puzzle Solver, program to solve a refrigerator puzzle<br/>
+&nbsp;&nbsp;Copyright (C) 2008  Richel Bilderbeek<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt Creator project type</title>
+  <meta name="description" content="C++ Qt Creator project type"/>
+  <meta name="keywords" content="C++ Qt Creator project type code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQtProjectType.htm">Qt Creator project type</a></h1>
+<p>&nbsp;</p>
+<p>The <a href="CppQtProjectType.htm">Qt Creator project type</a> is the type of 
+<a href="CppQtCreator.htm">Qt Creator</a> <a href="CppQtProject.htm">project</a>.</p>
+<p>&nbsp;</p>
+<p>There are multiple <a href="CppQtProjectType.htm">project types</a> for 
+<a href="CppDesktopApplication.htm">desktop applications</a>:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    <img src="PicConsole.png" alt="console"/> 
+    <a href="CppConsoleApplication.htm">Console application</a>: 
+    a <a href="CppDesktopApplication.htm">desktop applications</a>
+    that must be called from the command line and/or display plain text only
+  </li>
+  <li>
+    <img src="PicGui.png" alt="GUI"/> 
+    <a href="CppGuiApplication.htm">GUI application</a>:
+    a <a href="CppDesktopApplication.htm">desktop applications</a>
+    that displays not just plain text, but, for example, images
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Determining the <a href="CppQtProjectType.htm">project type</a></h2>
+<p>&nbsp;</p>
+<p>There are multiple ways to determine the <a href="CppQtProjectType.htm">project type</a>:</p>
+<ul>
+  <li>select the project type</li>
+  <li>modify the <a href="CppQtProjectFile.htm">project file</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Determining the <a href="CppQtProjectType.htm">project type</a>: select the project type</h3>
+<p>&nbsp;</p>
+<p>When creating a new project, the <a href="CppQtProjectType.htm">project type</a> can be selected in the
+'New Project' screen:</p>
+<ul>
+  <li><a href="CppQtCreatorNewProject_1_2_1.png">View the 'New Project' screen (Qt Creator version 1.2.1)</a></li>
+  <li><a href="CppQtCreatorNewProject_2_0_0.png">View the 'New Project' screen (Qt Creator version 2.0.0)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Selecting a <a href="CppQtProjectType.htm">project type</a> only lets <a href="CppQtCreator.htm">Qt Creator</a>
+help in writing a <a href="CppQtProjectFile.htm">project file</a>. This <a href="CppQtProjectFile.htm">project file</a>
+can always be modified to change the <a href="CppQtProjectType.htm">project type</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Determining the <a href="CppQtProjectType.htm">project type</a>: modify the <a href="CppQtProjectFile.htm">project file</a></h3>
+<p>&nbsp;</p>
+<p>The <a href="CppQtProjectFile.htm">project file</a> determines the <a href="CppQtProjectType.htm">project type</a>.</p>
+<p>&nbsp;</p>
+<p>The <a href="CppQtProjectFile.htm">project file</a> of a <a href="CppConsoleApplication.htm">console application</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2011-01-14T13:36:30<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+TARGET = CppConsoleApplication<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The <a href="CppQtProjectFile.htm">project file</a> of a <a href="CppGuiApplication.htm">GUI application</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2011-01-14T13:37:45<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+TARGET = CppGuiApplication<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mainwindow.cpp<br/>
+HEADERS&nbsp;&nbsp;+= mainwindow.h<br/>
+FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= mainwindow.ui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

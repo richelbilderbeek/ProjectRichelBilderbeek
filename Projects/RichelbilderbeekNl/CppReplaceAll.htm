@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ReplaceAll</title>
+  <meta name="description" content="C++ ReplaceAll"/>
+  <meta name="keywords" content="C++ ReplaceAll code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppReplaceAll.htm">ReplaceAll</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppReplaceAll.htm">ReplaceAll</a> is a <a href="CppString.htm">std::string</a> 
+<a href="CppReplace.htm">replace</a> <a href="CppCodeSnippets.htm">code snippet</a>
+to replace a substring by another in a certain std::string.</p>
+<p>&nbsp;</p>
+<p>There are multiple versions of <a href="CppReplaceAll.htm">ReplaceAll</a>:</p>
+<p>&nbsp;</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> ReplaceAll #1: uses Boost Strings Algorithm Library</li>
+  <li><img src="PicQt.png" alt="Qt"/> ReplaceAll #2: uses Qt library</li>
+  <li><img src="PicStl.png" alt="STL"/> ReplaceAll #3: uses STL only</li>
+</ul>
+<p>&nbsp;</p>
+<p>Below the <a href="CppCodeSnippets.htm">code snippets</a> a program that tests the 
+<a href="CppReplaceAll.htm">ReplaceAll</a> <a href="CppCodeSnippets.htm">code snippets</a> can be viewed and downloaded.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> ReplaceAll #1: uses Boost Strings Algorithm Library</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/replace.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Replaces all occurences of a substring<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppReplaceAll.htm">ReplaceAll</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppReplaceAll.htm">ReplaceAll</a>(<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; before,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; after)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(s,before,after);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicQt.png" alt="Qt"/> ReplaceAll #2: uses Qt library</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQString.htm">QString</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Replaces all occurences of a substring<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppReplaceAll.htm">ReplaceAll</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppReplaceAll.htm">ReplaceAll</a>(<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; before,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; after)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQString.htm">QString</a> q(s.c_str());<br/>
+&nbsp;&nbsp;q.replace(before.c_str(),after.c_str());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> q.toStdString();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicStl.png" alt="Stl"/> ReplaceAll #3: uses STL only</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Replaces all occurences of a substring<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppReplaceAll.htm">ReplaceAll</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppReplaceAll.htm">ReplaceAll</a>(<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; before,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; after)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pos <a href="CppOperatorAssign.htm">=</a> s.find(before);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (pos<a href="CppOperatorEqual.htm">==</a>-1) <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.replace(pos,before.size(),after);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full testing code</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppReplaceAll.zip">Download the Qt Creator project 'CppReplaceAll' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppReplaceAll.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG += qt<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/replace.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Replaces all occurences of a substring<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppReplaceAll.htm">ReplaceAll</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppBoost.htm">Boost</a>(<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; before,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; after)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(s,before,after);<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQString.htm">QString</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Replaces all occurences of a substring<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppReplaceAll.htm">ReplaceAll</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppQt.htm">Qt</a>(<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; before,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; after)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQString.htm">QString</a> q(s.c_str());<br/>
+&nbsp;&nbsp;q.replace(before.c_str(),after.c_str());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> q.toStdString();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">///</a>Replaces all occurences of a substring<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppReplaceAll.htm">ReplaceAll</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppReplaceAll.htm">ReplaceAll</a>Stl(<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; before,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; after)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pos <a href="CppOperatorAssign.htm">=</a> s.find(before);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (pos<a href="CppOperatorEqual.htm">==</a>-1) <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.replace(pos,before.size(),after);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test single <b><a href="CppChar.htm">char</a></b> replacement<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>s: input string<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>x: expected output string<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>b: before<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>a: after<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abcdbef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x <a href="CppOperatorAssign.htm">=</a> "a_cd_ef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> b <a href="CppOperatorAssign.htm">=</a> "b";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> a <a href="CppOperatorAssign.htm">=</a> "_";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppBoost.htm">Boost</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppQt.htm">Qt</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a>Stl(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test single <b><a href="CppChar.htm">char</a></b> to multiple <b><a href="CppChar.htm">char</a></b>s replacement<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abcdbef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x <a href="CppOperatorAssign.htm">=</a> "a__cd__ef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> b <a href="CppOperatorAssign.htm">=</a> "b";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> a <a href="CppOperatorAssign.htm">=</a> "__";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppBoost.htm">Boost</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppQt.htm">Qt</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a>Stl(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test single <b><a href="CppChar.htm">char</a></b> to no <b><a href="CppChar.htm">char</a></b> replacement<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abcdbef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x <a href="CppOperatorAssign.htm">=</a> "acdef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> b <a href="CppOperatorAssign.htm">=</a> "b";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> a <a href="CppOperatorAssign.htm">=</a> "";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppBoost.htm">Boost</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppQt.htm">Qt</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a>Stl(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test multiple <b><a href="CppChar.htm">char</a></b>s to multiple <b><a href="CppChar.htm">char</a></b>s replacement<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abcdbcef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x <a href="CppOperatorAssign.htm">=</a> "a__d__ef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> b <a href="CppOperatorAssign.htm">=</a> "bc";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> a <a href="CppOperatorAssign.htm">=</a> "__";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppBoost.htm">Boost</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppQt.htm">Qt</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a>Stl(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test multiple <b><a href="CppChar.htm">char</a></b>s to more <b><a href="CppChar.htm">char</a></b>s replacement<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abcdbcef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x <a href="CppOperatorAssign.htm">=</a> "a___d___ef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> b <a href="CppOperatorAssign.htm">=</a> "bc";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> a <a href="CppOperatorAssign.htm">=</a> "___";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppBoost.htm">Boost</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppQt.htm">Qt</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a>Stl(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test multiple <b><a href="CppChar.htm">char</a></b>s to single <b><a href="CppChar.htm">char</a></b> replacement<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abcdbcef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x <a href="CppOperatorAssign.htm">=</a> "a_d_ef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> b <a href="CppOperatorAssign.htm">=</a> "bc";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> a <a href="CppOperatorAssign.htm">=</a> "_";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppBoost.htm">Boost</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppQt.htm">Qt</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a>Stl(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test multiple <b><a href="CppChar.htm">char</a></b>s to no <b><a href="CppChar.htm">char</a></b> replacement<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abcdbcef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x <a href="CppOperatorAssign.htm">=</a> "adef";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> b <a href="CppOperatorAssign.htm">=</a> "bc";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> a <a href="CppOperatorAssign.htm">=</a> "";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppBoost.htm">Boost</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a><a href="CppQt.htm">Qt</a>(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppReplaceAll.htm">ReplaceAll</a>Stl(s,b,a) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetDifference</title>
+  <meta name="description" content="C++ GetDifference"/>
+  <meta name="keywords" content="C++ GetDifference get the difference between two vectors std::vectors subtract math code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetDifference.htm">GetDifference</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetDifference.htm">GetDifference</a> is a <a href="CppMath.htm">math</a> <a href="CppCodeSnippets.htm">code snippet</a> to get get a difference <a href="CppVector.htm">std::vector</a> from <a href="CppVector.htm">std::vectors</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDifference.htm">GetDifference</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt; <a href="CppGetDifference.htm">GetDifference</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; a,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; b)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a.size()<a href="CppOperatorEqual.htm">==</a>b.size());<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt; v(a);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]<a href="CppOperatorMinusAssign.htm">-=</a>b[i];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

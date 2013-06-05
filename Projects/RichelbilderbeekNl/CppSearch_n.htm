@@ -1,0 +1,225 @@
+ 
+<title>std::search_n</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ std::search_n</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek std::search_n std search_n search algorithm</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>15</o:Revision>
+  <o:TotalTime>166</o:TotalTime>
+  <o:Created>2009-05-07T10:05:00Z</o:Created>
+  <o:LastSaved>2009-05-07T10:20:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>261</o:Words>
+  <o:Characters>1491</o:Characters>
+  <o:Category>C++ Richel Bilderbeek std::search_n</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>12</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1831</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:535242744;
+	mso-list-type:hybrid;
+	mso-list-template-ids:958540298 -923387128 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-text:"\[%1\]";
+	mso-level-tab-stop:.35in;
+	mso-level-number-position:left;
+	margin-left:.35in;
+	text-indent:-.35in;}
+@list l1
+	{mso-list-id:1921482205;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1377681346 -1585966586 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+	{mso-level-start-at:0;
+	mso-level-tab-stop:.35in;
+	mso-level-number-position:left;
+	margin-left:.35in;
+	text-indent:-.35in;}
+@list l2
+	{mso-list-id:1941837107;
+	mso-list-type:hybrid;
+	mso-list-template-ids:74638006 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-start-at:0;
+	mso-level-text:"\[%1\]";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.5in;}
+@list l2:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1><a name="_Toc194762537"></a><a name="_Toc198191045"><span style='mso-bookmark:
+_Toc194762537'> (</a><a
+href="Cpp.htm"><span style='mso-bookmark:_Toc198191045'><span style='mso-bookmark:
+_Toc194762537'> C++   <span
+style='mso-bookmark:_Toc198191045'><span style='mso-bookmark:_Toc194762537'></a><span
+style='mso-bookmark:_Toc198191045'><span style='mso-bookmark:_Toc194762537'> )    <a
+href="CppSearch_n.htm"><span style='mso-bookmark:_Toc194762537'> <span
+style='mso-bookmark:_Toc198191045'>  std::search_n</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppAlgorithm.htm">Algorithm</a> to find a repeating sequence in a <a
+href="CppContainer.htm">container</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>Prefer
+algorithm calls over hand-written loops <span style='mso-field-code:"REF _Ref229461454 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200320039003400360031003400350034000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref229461455 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200320039003400360031003400350035000000</w:data>
+</xml><![endif]--> .</p>
+
+<h2>Example</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppStringH.htm">string</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>
+s = &quot;abc***def&quot;;</p>
+
+<p>
+ /* <b><a href="CppConst.htm">const</a></b> */ <b><a href="CppInt.htm">int</a></b>
+n = 3; //Number of repeats //Note: Must leave out <b><a href="CppConst.htm">const</a></b>,
+don't known why</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>
+c = '*'; //Character to find</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Assume three Kleene stars can be found</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::
+<a href="CppConst_iterator.htm">const_iterator</a> i =   <a
+href="CppSearch_n.htm"> std::search_n</a> ( s.begin(),s.end(),n,c);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>( i != s.end() );</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Assume four Kleene stars cannot be found</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::<a
+href="CppConst_iterator.htm">const_iterator</a> j =   <a
+href="CppSearch_n.htm"> std::search_n</a> ( s.begin(),s.end(),n+1,c);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>( j == s.end() );</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm">References</a></h2>
+
+<p class=MsoNormal style='margin-left:.35in;text-indent:-.35in;mso-list:l0 level1 lfo5;
+tab-stops:list .35in'>  [0] &nbsp;     <a
+href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming
+Language (3rd edition). ISBN: 0-201-88954-4. Chapter 18.12.1: 'Prefer
+algorithms to loops'.</p>
+
+<p class=MsoNormal style='margin-left:.35in;text-indent:-.35in;mso-list:l0 level1 lfo5;
+tab-stops:list .35in'>  [1] &nbsp;     <a href="CppScottMeyers.htm">Scott
+Meyers</a>. Effective STL. ISBN: 0-201-74962-9. Item 43: 'Prefer algorithm
+calls over hand-written loops'</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

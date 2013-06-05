@@ -1,0 +1,103 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>AddColoredNoise</title>
+  <meta name="description" content="C++ AddColoredNoise"/>
+  <meta name="keywords" content="C++ AddColoredNoise add colored noise VCL code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppAddColoredNoise.htm">AddColoredNoise</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppAddColoredNoise.htm">AddColoredNoise</a> is a <a href="CppVclGraphics.htm">VCL graphics</a> 
+<a href="CppVclCodeSnippets.htm">code snippet</a> to add colored noise to a 
+<a href="CppTImage.htm">Extctrls::TImage</a>.</p>
+<p>&nbsp;</p>
+<p>The <a href="Tools.htm">tool</a> <a href="ToolBarbaImage.htm">BarbaImage</a> uses 
+<a href="CppAddColoredNoise.htm">AddColoredNoise</a> as one of its image operations.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppAddColoredNoise.png">View an image demonstrating 'AddColoredNoise' (png)</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Extctrls.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>s colored noise in range [0,max_rand&gt;<br/>
+/<a href="CppOperatorDivide.htm">/</a> * max_rand <a href="CppOperatorAssign.htm">=</a> 0 denotes no noise added (image untouched)<br/>
+/<a href="CppOperatorDivide.htm">/</a> * max_rand <a href="CppOperatorAssign.htm">=</a> 255 denotes max noise added (image unrecognizable)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppAdd.htm">Add</a>ColoredNoise.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ColoredNoise (<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Extctrls::<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> source,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_rand,<br/>
+&nbsp;&nbsp;Extctrls::<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> target)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(max_rand <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(max_rand &lt; 256);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image bitmap is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(target<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(target-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image bitmap is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(target-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the width and height from the source<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> source-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> source-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the target's width and height<br/>
+&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;Width <a href="CppOperatorAssign.htm">=</a> width;<br/>
+&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> height;<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineSource<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineTarget<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> rand <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> max_rand;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> blue <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(lineSource[x*3+0]) <a href="CppOperatorPlus.htm">+</a> rand) <a href="CppOperatorModulus.htm">%</a> 256;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> green <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(lineSource[x*3+1]) <a href="CppOperatorPlus.htm">+</a> rand) <a href="CppOperatorModulus.htm">%</a> 256;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> red <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(lineSource[x*3+2]) <a href="CppOperatorPlus.htm">+</a> rand) <a href="CppOperatorModulus.htm">%</a> 256;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(red <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(red &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(green <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(green &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(blue <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(blue &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+0]=blue; <a href="CppOperatorDivide.htm">/</a>/Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+1]=green; <a href="CppOperatorDivide.htm">/</a>/Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+2]=red; <a href="CppOperatorDivide.htm">/</a>/Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

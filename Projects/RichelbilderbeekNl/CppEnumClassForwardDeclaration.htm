@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>enum class forward declaration</title>
+  <meta name="description" content="C++ C++0x enum class forward declaration"/>
+  <meta name="keywords" content="C++ C++0x enum class forward declaration code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppEnumClassForwardDeclaration.htm">enum class forward declaration</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppEnumClassForwardDeclaration.htm">enum class forward declaration</a> is a technique
+that has different meanings, depending on the <a href="CppStandard.htm">standard</a> used:</p>
+<ul>
+  <li>
+    <img src="PicCpp98.png" alt="C++98"/> 
+    <a href="CppEnumClassForwardDeclaration.htm">enum class forward declaration</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
+  </li>
+  <li>
+    <img src="PicCpp11.png" alt="C++11"/> 
+    <a href="CppEnumClassForwardDeclaration.htm">enum class forward declaration</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/> 
+  <a href="CppEnumClassForwardDeclaration.htm">enum class forward declaration</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
+</h2>
+<p>&nbsp;</p>
+<p><a href="CppEnumClassForwardDeclaration.htm">enum class forward declaration</a> is not supported in <a href="Cpp98.htm">C++98</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp11.png" alt="C++11"/> 
+  <a href="CppEnumClassForwardDeclaration.htm">enum class forward declaration</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
+</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppEnumClassForwardDeclaration.zip">Download the Qt Creator project 'CppEnumClassForwardDeclaration' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>An <a href="CppEnumClassForwardDeclaration.htm">enum class forward declaration</a> is technique to do a 
+<a href="CppForwardDeclaration.htm">forward declaration</a> on an <a href="CppEnumClass.htm">enum class</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>Forward declaration<br/>
+<b><a href="CppEnumClass.htm">enum class</a></b> MyEnum;<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppDefinition.htm">Definition</a><br/>
+<b><a href="CppEnumClass.htm">enum class</a></b> MyEnum { a,b,c };<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> MyEnum x <a href="CppOperatorAssign.htm">=</a> MyEnum::a;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Technical note: the code shown did not <a href="CppCompile.htm">compile</a> using the 
+<a href="CppGpp.htm">G++</a> 4.4.5 <a href="CppCompiler.htm">compiler</a>,
+which is supplied with the <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 <a href="CppIde.htm">IDE</a>,
+but is expected to <a href="CppCompile.htm">compile</a> in <a href="CppGpp.htm">G++</a> version 4.6 [1].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://gcc.gnu.org/projects/cxx0x.html">GCC page about C++0x support</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

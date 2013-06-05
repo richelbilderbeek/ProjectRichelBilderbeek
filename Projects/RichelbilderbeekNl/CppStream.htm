@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>stream</title>
+  <meta name="description" content="C++ stream"/>
+  <meta name="keywords" content="C++ stream"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStream.htm">stream</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppStream.htm">Streams</a> are like flexible flow-through <a href="CppContainer.htm">containers</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c <a href="CppOperatorAssign.htm">=</a> 'c';<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d <a href="CppOperatorAssign.htm">=</a> 1.1;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppBool.htm">bool</a></b> b: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> b <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppChar.htm">char</a></b> c: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> c <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppInt.htm">int</a></b>eger i: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppDouble.htm">double</a></b> d: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+bool b: 1<br/>
+char c: c<br/>
+integer i: 1<br/>
+double d: 1.1<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppGlobal.htm">Global</a> <a href="CppStream.htm">streams</a></h2>
+<p>&nbsp;</p>
+<p>Examples of <a href="CppGlobal.htm">global</a> <a href="CppStream.htm">streams</a> are:</p>
+<ul>
+  <li><a href="CppCout.htm">std::cout</a> (an <a href="CppOstream.htm">std::ostream</a>)</li>
+  <li><a href="CppCin.htm">std::cin</a> (an <a href="CppIstream.htm">std::istream</a>)</li>
+  <li><a href="CppClog.htm">std::clog</a> (an <a href="CppOstream.htm">std::ostream</a>)</li>
+  <li><a href="CppCerr.htm">std::cerr</a> (an <a href="CppOstream.htm">std::ostream</a>)</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppStream.htm">stream</a> <a href="CppDataType.htm">(data) types</a></h2>
+<p>&nbsp;</p>
+<p>Types of <a href="CppStream.htm">streams</a> are:</p>
+<ul>
+  <li><a href="CppStringstream.htm">std::stringstream</a>: a <a href="CppString.htm">std::string</a> <a href="CppStream.htm">stream</a></li>
+  <li><a href="CppOstream.htm">std::ostream</a>: output <a href="CppStream.htm">stream</a></li>
+  <li><a href="CppIstream.htm">std::istream</a>: input <a href="CppStream.htm">stream</a></li>
+  <li><a href="CppFstream.htm">std::fstream</a>: file <a href="CppStream.htm">stream</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppStream.htm">stream</a> operations</h2>
+<p>&nbsp;</p>
+<p>Things one can do on a <a href="CppStream.htm">stream</a>:</p> 
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppEndl.htm">std::endl</a>: adds newline ('\n') and flushes the <a href="CppStream.htm">stream</a></li>
+  <li><a href="CppEnds.htm">std::ends</a>: adds null ('\0') to the <a href="CppStream.htm">stream</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppStream.htm">Stream</a> format flags</h2>
+<p>&nbsp;</p>
+<p>A <a href="CppStream.htm">stream</a> format flag is something that can be on or off. <a href="CppStream.htm">Stream</a> format flags are:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>std::ios::skipws: skip whitespace (on by default for input streams)</li>
+  <li>std::ios::showbase: indicate the numeric base</li>
+  <li>std::ios::showpoint: show decimal point and trailing zeroes for doubles</li>
+  <li>std::ios::uppercase: show uppercase characters in hex (ABCDEF) and scientific (E) notation</li>
+  <li>std::ios::showpos</li>
+  <li>std::ios::unitbuf</li>
+</ul>
+<p>&nbsp;</p>
+<p>Turning a flag on and off is shown in the code below.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>.setf(std::ios::showpos);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>.unsetf(std::ios::showpos);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppStream.htm">Stream</a> flag field</h2>
+<p>&nbsp;</p>
+<p>A <a href="CppStream.htm">stream</a> flag field is a group of options of which only one can be in effect, similar to a radiogroup control. To set a certain option, one needs to clear the flag group field, then set the desired option.</p>
+<p>&nbsp;</p>
+<p><a href="CppStream.htm">Stream</a> format flags are:</p>
+<ul>
+  <li>std::ios::basefield: std::ios::dec, std::ios::hex, std::ios::oct</li>
+  <li>std::ios::floatfield: std::ios::fixed, std::ios::scientific</li>
+  <li>std::ios::adjustfield: std::ios::left, std::ios::right, std::ios::internal</li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turns on decimal notation,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>clears current notation (i.e. basefield)<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>.setf(std::ios::dec,std::ios::basefield);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 15 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turns on hexadecimal notation,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>clears current notation (i.e. basefield)<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>.setf(std::ios::hex,std::ios::basefield);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 15 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turns on octal notation,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>clears current notation (i.e. basefield)<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>.setf(std::ios::oct,std::ios::basefield);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 15 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppStream.htm">Stream</a> manipulators</h2>
+<p>&nbsp;</p>
+<p><a href="CppStream.htm">Stream</a> manipulators are like <a href="CppStream.htm">stream</a> formatting flags and formatting fields, except that manipulators are the streamable version of flags and fields.</p>
+<p>&nbsp;</p>
+<p><a href="CppStream.htm">Stream</a> manipulators are:</p>
+<ul>
+  <li><a href="CppNl.htm">nl</a></li>
+  <li><a href="CppFixed.htm">std::fixed</a></li>
+  <li><a href="CppInternal.htm">std::internal</a></li>
+  <li><a href="CppLeft.htm">std::left</a></li>
+  <li><a href="CppNoshowbase.htm">std::noshowbase</a></li>
+  <li><a href="CppNoshowpoint.htm">std::noshowpoint</a></li>
+  <li><a href="CppNoshowpos.htm">std::noshowpos</a></li>
+  <li><a href="CppNoskipws.htm">std::noskipws</a></li>
+  <li><a href="CppNouppercase.htm">std::nouppercase</a></li>
+  <li><a href="CppResetiosflags.htm">std::resetiosflags</a></li>
+  <li><a href="CppRight.htm">std::right</a></li>
+  <li><a href="CppScientific.htm">std::scientific</a></li>
+  <li><a href="CppSetbase.htm">std::setbase</a></li>
+  <li><a href="CppSetfill.htm">std::setfill</a></li>
+  <li><a href="CppSetiosflags.htm">std::setiosflags</a></li>
+  <li><a href="CppSetprecision.htm">std::setprecision</a></li>
+  <li><a href="CppSetw.htm">std::setw</a></li>
+  <li><a href="CppShowbase.htm">std::showbase</a></li>
+  <li><a href="CppShowpoint.htm">std::showpoint</a></li>
+  <li><a href="CppShowpos.htm">std::showpos</a></li>
+  <li><a href="CppSkipws.htm">std::skipws</a></li>
+  <li><a href="CppUppercase.htm">std::uppercase</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn on decimal notation<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppDec.htm">std::dec</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 15 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn on hexidecimal notation<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppHex.htm">std::hex</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 15 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn on octal notation<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppOct.htm">std::oct</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 15 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppStream.htm">stream</a> code snippets</h2>
+<p>&nbsp;</p>
+<p>Some code snippets one can use when working witj <a href="CppStream.htm">stream</a>:</p> 
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppVectorToStream.htm">Read and write a std::vector from/to a std::stream</a></li>
+  <li><a href="CppVectorToStream.htm">Write and read a std::vector to/from a std::stream</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

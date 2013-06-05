@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Comparing shared_ptrs</title>
+  <meta name="description" content="C++ Comparing shared_ptrs"/>
+  <meta name="keywords" content="C++ Comparing compare shared_ptr shared_ptrs boost::shared_ptr std::shared_ptr boost::weak_ptr std::weak_ptr code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCompareShared_ptrs.htm">Comparing shared_ptrs</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> describes an architectural problem and then compares two solutions, using the
+<a href="Cpp98.htm">C++98</a> and <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standards</a> respectively.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppCompareShared_ptrs.zip">Download the Qt Creator project 'CppCompareShared_ptrs' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The problem</h2>
+<p>&nbsp;</p>
+<p>Suppose you have a <a href="CppClass.htm">class</a> called 'Test' you want to have managed. So, a <a href="CppClass.htm">class</a> called
+'Source' is written for simply this purpose. It is kind of a source, because it produces read-only versions of the Test managed by it. These
+read-only Tests are used by Observer.</p>
+<p>&nbsp;</p>
+<p>An example where one would want to do this, is when a program loads its parameters from file. These parameters are not to be altered,
+but might be used throughout the program.</p>
+<p>&nbsp;</p>
+<p>But the problem is as follows: what if the original source changes the thing its manages? How can the observer know this?</p>
+<p>&nbsp;</p>
+<p>The code below compiles, runs but does not meet our needs:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Test<br/>
+{<br/>
+&nbsp;&nbsp;Test(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0) : m_x(x) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Source<br/>
+{<br/>
+&nbsp;&nbsp;Source() : m_test(<b><a href="CppNew.htm">new</a></b> Test(1)) {}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note the added constness<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetTest(<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt;&amp; test) { m_test <a href="CppOperatorAssign.htm">=</a> test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; m_test;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Observer<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetTest(<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt;&amp; test) { m_test <a href="CppOperatorAssign.htm">=</a> test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; m_test;<br/>
+};<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Source source;<br/>
+&nbsp;&nbsp;Observer observer;<br/>
+&nbsp;&nbsp;observer.SetTest(source.Get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source.Get()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(observer.Get()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Put another Test in the Source, <a href="CppMake.htm">make</a>s Observer observing an older Test<br/>
+&nbsp;&nbsp;source.SetTest(<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt;(<b><a href="CppNew.htm">new</a></b> Test(2)));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source.Get()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(observer.Get()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 2); <a href="CppComment.htm">//</a>Observer still has old <a href="CppVersion.htm">version</a><br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The final line of code shows the problem: the observer still has an old copy of Test (with a value of one), instead of the new one (with
+a value of two).</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/> Solution #1: use of the <a href="Cpp98.htm">C++98</a> <a href="CppShared_ptr.htm">boost::shared_ptr</a></h2>
+<p>&nbsp;</p>
+<p>When instead of the observer having a <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt;, 
+this is changed to <a href="CppWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt;, the program will
+give a fine run-time error:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/weak_ptr.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Test<br/>
+{<br/>
+&nbsp;&nbsp;Test(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0) : m_x(x) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+};<br/>
+<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Source<br/>
+{<br/>
+&nbsp;&nbsp;Source() : m_test(<b><a href="CppNew.htm">new</a></b> Test(1)) {}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note the added constness<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetTest(<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt;&amp; test) { m_test <a href="CppOperatorAssign.htm">=</a> test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; m_test;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Observer<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_test; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Change: use of <a href="CppWeak_ptr.htm">boost::weak_ptr</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetTest(<b><a href="CppConst.htm">const</a></b> <a href="CppWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt;&amp; test) { m_test <a href="CppOperatorAssign.htm">=</a> test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Change: use of <a href="CppWeak_ptr.htm">boost::weak_ptr</a><br/>
+&nbsp;&nbsp;<a href="CppWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; m_test;<br/>
+};<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Source source;<br/>
+&nbsp;&nbsp;Observer observer;<br/>
+&nbsp;&nbsp;observer.SetTest(source.Get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source.Get()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(observer.Get().lock()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Put another Test in the Source, <a href="CppMake.htm">make</a>s Observer observing an older Test<br/>
+&nbsp;&nbsp;source.SetTest(<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt;(<b><a href="CppNew.htm">new</a></b> Test(2)));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source.Get()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(observer.Get().lock()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 2); <a href="CppComment.htm">//</a>Good: run-<a href="CppTime.htm">time</a> error: '<a href="CppAssert.htm">Assert</a>ion 'px <a href="CppOperatorNotEqual.htm">!=</a> 0' failed'.<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Sure, a run-time error has its drawbacks, but with a debugger its source can be located easily.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp11.png" alt="C++11"/> Solution #2: use of the <a href="Cpp11.htm">C++11</a> <a href="CppShared_ptr.htm">std::shared_ptr</a></h2>
+<p>&nbsp;</p>
+<p>When replacing <a href="CppShared_ptr.htm">boost::shared_ptr</a> and <a href="CppWeak_ptr.htm">boost::weak_ptr</a> 
+to <a href="CppShared_ptr.htm">std::shared_ptr</a> and <a href="CppWeak_ptr.htm">std::weak_ptr</a> respectively also gives a fine run-time error:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>/The solution: <a href="CppWeak_ptr.htm">std::weak_ptr</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Test<br/>
+{<br/>
+&nbsp;&nbsp;Test(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0) : m_x(x) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+};<br/>
+<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Source<br/>
+{<br/>
+&nbsp;&nbsp;Source() : m_test(<b><a href="CppNew.htm">new</a></b> Test(1)) {}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note the added constness<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetTest(<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt;&amp; test) { m_test <a href="CppOperatorAssign.htm">=</a> test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt; m_test;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Observer<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWeak_ptr.htm">std::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_test; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Change: use of <a href="CppWeak_ptr.htm">boost::weak_ptr</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetTest(<b><a href="CppConst.htm">const</a></b> <a href="CppWeak_ptr.htm">std::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt;&amp; test) { m_test <a href="CppOperatorAssign.htm">=</a> test; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Change: use of <a href="CppWeak_ptr.htm">boost::weak_ptr</a><br/>
+&nbsp;&nbsp;<a href="CppWeak_ptr.htm">std::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Test&gt; m_test;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Source source;<br/>
+&nbsp;&nbsp;Observer observer;<br/>
+&nbsp;&nbsp;observer.SetTest(source.Get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source.Get()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(observer.Get().lock()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Put another Test in the Source, <a href="CppMake.htm">make</a>s Observer observing an older Test<br/>
+&nbsp;&nbsp;source.SetTest(<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt;(<b><a href="CppNew.htm">new</a></b> Test(2)));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source.Get()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(observer.Get().lock()-&gt;m_x <a href="CppOperatorEqual.htm">==</a> 2); <a href="CppComment.htm">//</a>Mediocre: segmentation fault, but no reason is given<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The problem is, that in this case, a segmentation fault is given, instead of a failed assertion. Also, the debugger could not get me to
+pinpoint to the source of the error.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Conclusion</h2>
+<p>&nbsp;</p>
+<ul>
+  <li>weak_ptr's are better observers than std::shared_ptr's</li>
+  <li>you might want to use boost::shared_ptr instead of std::shared_ptr until debug support is better</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

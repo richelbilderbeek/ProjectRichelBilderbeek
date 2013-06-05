@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Call a dynamically loaded DLL</title>
+  <meta name="description" content="C++ Call a dynamically loaded DLL"/>
+  <meta name="keywords" content="C++ Call a dynamically loaded DLL code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a> using G++) <a href="CppGppCallDllDynamic.htm">Call a dynamically loaded DLL</a></h1>
+<p>&nbsp;</p>
+<p>One of the two ways to <a href="CppGppCallDll.htm">call a DLL</a>,
+the other way is to <!--<a href="CppGppCallDllStatic.htm">call a statically loaded DLL</a>-->
+call a statically loaded DLL.</p>
+<p>&nbsp;</p>
+<p>In the two equivalent examples below, the function GetAnswerOfLife is called from
+the file Functions.DLL and its answer (which should be 42) is checked.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;windows.h&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> DllHandle<br/>
+{<br/>
+&nbsp;&nbsp;DllHandle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> filename)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: h(Load<a href="CppLibrary.htm">Library</a>(filename)) {}<br/>
+&nbsp;&nbsp;~DllHandle() { <b><a href="CppIf.htm">if</a></b> (h) Free<a href="CppLibrary.htm">Library</a>(h); }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> HINSTANCE Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> h; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;HINSTANCE h;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain a handle to the DLL<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> DllHandle h("<a href="CppFunction.htm">Function</a>s.DLL");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!h.Get())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MessageBox(0,"Could not load DLL","UnitCallDll",MB_OK);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain a handle to the GetAnswerOfLife <a href="CppFunction.htm">function</a><br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> (*GetAnswerOfLife<a href="CppFunction.htm">Function</a>)();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GetAnswerOfLife<a href="CppFunction.htm">Function</a> AnswerOfLife<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppReinterpret_cast.htm">reinterpret_cast</a></b>&lt;GetAnswerOfLife<a href="CppFunction.htm">Function</a>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetProc<a href="CppAddress.htm">Address</a>(h.Get(),"GetAnswerOfLife")); <br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!AnswerOfLife) <a href="CppComment.htm">//</a>No handle obtained<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MessageBox(0,"Loading AnswerOfLife failed","UnitCallDll",MB_OK);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (AnswerOfLife() <a href="CppOperatorNotEqual.htm">!=</a> 42)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MessageBox(0,"<a href="CppFunction.htm">Function</a> AnswerOfLife failed","UnitCallDll",MB_OK);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MessageBox(0,"<a href="CppFunction.htm">Function</a> AnswerOfLife successful!","UnitCallDll",MB_OK);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>When you look at the GetProcAddress function, you'll note that, unlike <a href="CppBuilder.htm">C++ Builder</a>, 
+there is no leading underscore added in the function name.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Building the executable</h2>
+<p>&nbsp;</p>
+<p>Use the following G++ command:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+g++ -o Main UnitMain.cpp lm<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Now start the executable called Main.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGppCallDllDynamic.zip">Download the project (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

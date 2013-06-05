@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::remove</title>
+  <meta name="description" content="C++ std::remove"/>
+  <meta name="keywords" content="C++ std::remove std remove STL algorithm file I/O code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppRemove.htm">std::remove</a></h1>
+<p>&nbsp;</p>
+<p>There exist two different versions of <a href="CppRemove.htm">std::remove</a> in the <a href="CppStl.htm">STL</a>:</p>
+<ol>
+  <li><a href="CppRemove.htm">std::remove</a> in the <a href="CppHeaderFile.htm">header file</a> <a href="CppAlgorithmH.htm">algorithm.h</a>: <a href="CppAlgorithm.htm">algorithm</a> to remove elements from a <a href="CppContainer.htm">container</a></li>
+  <li><a href="CppRemove.htm">std::remove</a> in the <a href="CppHeaderFile.htm">header file</a> <a href="CppCstdioH.htm">cstdio.h</a>: <a href="CppFileIo.htm">File I/O</a> <a href="CppFunction.htm">function</a> to remove a file</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example</h2>
+<p>&nbsp;</p>
+<p>The example below shows both versions of <a href="CppRemove.htm">std::remove</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove elements from a <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>using <a href="CppRemove.htm">std::remove</a> from <a href="CppAlgorithmH.htm">algorithm.h</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "v before <a href="CppRemove.htm">std::remove</a>: ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::iterator new_end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRemove.htm">std::remove</a>(v.begin(),v.end(),42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "v after <a href="CppRemove.htm">std::remove</a>, before erase: ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.erase(new_end,v.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "v after erase: ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove a file using <a href="CppRemove.htm">std::remove</a> in cstdio.h<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Try to <b><a href="CppDelete.htm">delete</a></b> the non-existing test.txt file<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> deletion_failed <a href="CppOperatorAssign.htm">=</a> <a href="CppRemove.htm">std::remove</a>("test.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(deletion_failed);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the file test.txt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("test.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Delete it again<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> deletion_failed <a href="CppOperatorAssign.htm">=</a> <a href="CppRemove.htm">std::remove</a>("test.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!deletion_failed);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+v before std::remove: 0 42 1 42 2 42 3 <br/>
+v after std::remove, before erase: 0 1 2 3 2 42 3 <br/>
+v after erase: 0 1 2 3 <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>compile error: bzconfig.h: Unknown compiler</title>
+  <meta name="description" content="C++ compile error: bzconfig.h: Unknown compiler"/>
+  <meta name="keywords" content="C++ compile error: bzconfig.h: Unknown compiler"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCompileErrorBzconfigHunknownCompiler.htm">bzconfig.h: Unknown compiler</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCompileError.htm">Compile error</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full error message</h2>
+<p>&nbsp;</p>
+<!-- Start code-->
+<table border = "1"><tr><td><code>
+[C++ Fatal Error] bzconfig.h(48): F1003 Error directive: Unknown compiler
+</code></td></tr></table>
+<!-- End of code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppBuilder.htm">C++ Builder</a> 6.0</p>
+<p><a href="CppCompiler.htm">Compiler</a>: Borland BCC32.EXE version 6.0.10.157</p>
+<p><a href="CppBlitzpp.htm">Blitz++</a> version: 0.9</p>
+<p>Project type: Console Application</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;blitz/array.h&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+<br/>
+} <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The <a href="CppCompiler.htm">compiler</a> will show you the code of blitz/bzconfig.h:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#if defined(__APPLE)<br/>
+<a href="CppComment.htm">/*</a> IBM xlc compiler for Darwin <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;blitz/apple/bzconfig.h&gt;<br/>
+&nbsp;<br/>
+#elif defined(__ICC)<br/>
+<a href="CppComment.htm">/*</a> Intel icc compiler <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;blitz/intel/bzconfig.h&gt;<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a>Other compilers<br/>
+&nbsp;<br/>
+#else<br/>
+#error Unknown compiler <a href="CppComment.htm">//</a>THIS LINE<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>Use a <a href="CppCompiler.htm">compiler</a> that <a href="CppBlitzpp.htm">Blitz++</a> supports.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

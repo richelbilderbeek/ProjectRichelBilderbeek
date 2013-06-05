@@ -1,0 +1,332 @@
+ 
+<title>HexStrIsInt</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>Richel Bilderbeek C++ Code Snippet HexStrIsInt hex string integer hexadecimal std::string check</o:Keywords>
+  <o:LastAuthor>Richel</o:LastAuthor>
+  <o:Revision>11</o:Revision>
+  <o:TotalTime>119</o:TotalTime>
+  <o:Created>2007-07-16T18:03:00Z</o:Created>
+  <o:LastSaved>2007-07-30T09:57:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>485</o:Words>
+  <o:Characters>2767</o:Characters>
+  <o:Lines>23</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3398</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+
+ 
+
+ 
+
+<p> Back to <a
+href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p> Back to <a
+href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<h1>HexStrIsInt</h1>
+
+<p>  &nbsp;</p>
+
+<p> Check if a hexadecimal
+std::string can be converted to an integer.</p>
+
+<p>  &nbsp;</p>
+
+<p> There are
+two options:</p>
+
+<p> * Option #1
+accepts a shorter range, but can also accept negatives</p>
+
+<p> * Option #2
+accepts a much larger range, but cannot accept negatives</p>
+
+<p>  &nbsp;</p>
+
+<p> Code in
+plain text can be found <a href="CppHexStrIsInt1.txt">here (#1)</a> and <a
+href="CppHexStrIsInt2.txt">here (#2)</a>.</p>
+
+<p>  &nbsp;</p>
+
+<h3>Option #1</h3>
+
+<p>  &nbsp;</p>
+
+ 
+
+<p> #include &lt;sstream&gt;</p>
+
+<p> #include &lt;cassert&gt;</p>
+
+<p>  &nbsp;</p>
+
+<p> //From http://www.richelbilderbeek.nl/CppHexStrIsInt.htm</p>
+
+<p> //Checks whether a std::string containg
+hexadecimal</p>
+
+<p> //can be converted to an int.</p>
+
+<p> //Returns true if possible, also returning
+this integer by referencing.</p>
+
+<p> //Returns false otherwise, setting the
+referenced int to zero.</p>
+
+<p><b> bool </b>  IsHexInt(<b>const</b> std::string&amp; s, <b>int</b>&amp;
+rInt)</p>
+
+<p> {</p>
+
+<p>   
+ std::istringstream i(s);</p>
+
+<p>     i
+&gt;&gt; std::hex;</p>
+
+<p>     <b>if</b>
+(!(i &gt;&gt; rInt))</p>
+
+<p>     {</p>
+
+<p>     
+ rInt = 0; <b>return false</b>;</p>
+
+<p>     }</p>
+
+<p>     <b>return
+true</b>;</p>
+
+<p> }</p>
+
+<p>  &nbsp;</p>
+
+<p><b> int </b>  main()</p>
+
+<p> {</p>
+
+<p>     <b>int</b>
+temp = -1;</p>
+
+<p>   
+ assert(IsHexInt(&quot;0&quot;,temp) == <b>true</b>);</p>
+
+<p>   
+ assert(IsHexInt(&quot;9&quot;,temp) == <b>true</b>);</p>
+
+<p>     assert(IsHexInt(&quot;A&quot;,temp)
+== <b>true</b>);</p>
+
+<p>   
+ assert(IsHexInt(&quot;F&quot;,temp) == <b>true</b>);</p>
+
+<p>   
+ assert(IsHexInt(&quot;-F&quot;,temp) == <b>true</b>);</p>
+
+<p>   
+ assert(IsHexInt(&quot;-F85AE&quot;,temp) == <b>true</b>);</p>
+
+<p>   
+ assert(IsHexInt(&quot;80000000&quot;,temp) == <b>true</b>); //Maximal
+value</p>
+
+<p>   
+ assert(IsHexInt(&quot;80000001&quot;,temp) == <b>false</b>); //Out of
+range</p>
+
+<p>   
+ assert(IsHexInt(&quot;G&quot;,temp) == false);</p>
+
+<p>  &nbsp;</p>
+
+<p>   
+ assert(IsHexInt(&quot;--80000000&quot;,temp) == <b>false</b>);</p>
+
+<p>   
+ assert(IsHexInt(&quot;-800-00000&quot;,temp) == <b>true</b>); //Does not
+detect ill-formed numbers</p>
+
+<p>   
+ assert(IsHexInt(&quot;80000-000&quot;,temp) == <b>true</b>); //Does not
+detect ill-formed numbers</p>
+
+<p> }</p>
+
+</div>
+
+<p>  &nbsp;</p>
+
+<p> Note that
+the std::string cannot have a value higher then <b>80000000</b>.</p>
+
+<p>  &nbsp;</p>
+
+<h3>Option #2</h3>
+
+<p>  &nbsp;</p>
+
+<p> Suggested by
+<a href="http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069">AsmGuru62</a>:</p>
+
+<p>  &nbsp;</p>
+
+ 
+
+<p> #include &lt;cstring&gt;</p>
+
+<p> #include &lt;cassert&gt;</p>
+
+<p>  &nbsp;</p>
+
+<p> //From http://www.richelbilderbeek.nl/CppHexStrIsInt.htm</p>
+
+<p> //This solution was inspired by AsmGuru62</p>
+
+<p> //http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069</p>
+
+<p> //Checks if a C-style string only contains
+hexadecimal characters</p>
+
+<p><b> bool </b>  IsAllHex (<b>const char</b>* <b>const</b>
+must_be_hex)</p>
+
+<p> {</p>
+
+<p>     <b>char</b>
+copy_of_param[64];</p>
+
+<p>  &nbsp;</p>
+
+<p>     <b>return</b>(</p>
+
+<p>     
+ std::strtok (</p>
+
+<p>       
+ std::strcpy(copy_of_param, must_be_hex),</p>
+
+<p>       
+ &quot;0123456789ABCDEFabcdef&quot;) == 0);</p>
+
+<p> }</p>
+
+<p>  &nbsp;</p>
+
+<p><b> int </b>  main()</p>
+
+<p> {</p>
+
+<p>   
+ assert(IsAllHex(&quot;0&quot;)==<b>true</b>);</p>
+
+<p>   
+ assert(IsAllHex(&quot;9&quot;)==<b>true</b>);</p>
+
+<p>   
+ assert(IsAllHex(&quot;A&quot;)==<b>true</b>);</p>
+
+<p>   
+ assert(IsAllHex(&quot;F&quot;)==<b>true</b>);</p>
+
+<p>   
+ assert(IsAllHex(&quot;-F&quot;)==<b>false</b>); //Does not accept
+negatives</p>
+
+<p>   
+ assert(IsAllHex(&quot;-F85AE&quot;)==<b>false</b>); //Does not accept
+negatives</p>
+
+<p>   
+ assert(IsAllHex(&quot;FFFFFFFFFFFFFFFFFFFFFFFFFFF&quot;)==<b>true</b>);</p>
+
+<p>   
+ assert(IsAllHex(&quot;G&quot;)==<b>false</b>);</p>
+
+<p> }</p>
+
+</div>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p> As option #1
+also has defects in detecting negatives, you might want to change the <b>IsAllHex</b>
+to the one below:</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+ 
+
+<p> //From http://www.richelbilderbeek.nl/CppHexStrIsInt.htm</p>
+
+<p> //This solution was inspired by AsmGuru62</p>
+
+<p> //http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069</p>
+
+<p> //Checks if a C-style string only contains
+hexadecimal characters</p>
+
+<p> //and minuses</p>
+
+<p> bool IsAllHex (const char* const must_be_hex)</p>
+
+<p> {</p>
+
+<p>     char
+copy_of_param[64];</p>
+
+<p>  &nbsp;</p>
+
+<p>   
+ return(</p>
+
+<p>     
+ std::strtok (</p>
+
+<p>       
+ std::strcpy(copy_of_param, must_be_hex),</p>
+
+<p>       
+ &quot;0123456789ABCDEFabcdef-&quot;) == 0);</p>
+
+<p> }</p>
+
+</div>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p> Back to <a
+href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p> Back to <a
+href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>  &nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

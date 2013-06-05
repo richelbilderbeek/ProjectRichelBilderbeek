@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Exercise #11: Obtaining a std::vector of read-only (smart?) pointers</title>
+  <meta name="description" content="C++ Exercise #11: Obtaining a std::vector of read-only (smart?) pointers"/>
+  <meta name="keywords" content="C++ Exercise #11: Obtaining a std::vector of read-only (smart?) pointers code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicCpp98.png" alt="C++98"/>
+  <a href="CppExerciseReadonlyVectorOfPointers.htm">Exercise #11: Obtaining a std::vector of read-only (smart?) pointers</a>
+</h1>
+<p>&nbsp;</p>
+<p>Difficulty: 2/10</p>
+<p>Date added: 30th of March 2011</p>
+<p>&nbsp;</p>
+<p>This <a href="CppExercise.htm">exercise</a> shows that working with 
+<a href="CppSmartPointer.htm">smart pointers</a> is not always easy...</p>
+<p>&nbsp;</p>
+<p>This <a href="CppExercise.htm">exercise</a> is a continuation on
+<a href="CppExerciseReadonlyPointer.htm">Exercise #10: Obtaining a read-only (smart?) pointer</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The problem</h2>
+<p>&nbsp;</p>
+<p>Following <a href="CppExerciseReadonlyPointer.htm">Exercise #10: Obtaining a read-only (smart?) pointer</a> a programmer
+has written the following <a href="CppClass.htm">class</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyStruct<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;~MyStruct() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(MyStruct *);<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Writing such a <a href="CppClass.htm">class</a> enables safe 
+<a href="CppForwardDeclaration.htm">forward declarations</a> and forces the user of this 
+<a href="CppClass.htm">class</a> to use <a href="CppSmartPointer.htm">smart pointers</a>,
+which is a good thing [1].</p>
+<p>&nbsp;</p>
+<p>This programmer wants to use a <a href="CppClass.htm">class</a> managing a <a href="CppVector.htm">std::vector</a> of
+<a href="CppShared_ptr.htm">boost::shared_ptr</a> of MyStruct, but he/she also wants
+to let the user obtain a <a href="CppVector.htm">std::vector</a> of read-only
+<a href="CppSmartPointer.htm">smart pointers</a>/<a href="CppPointer.htm">pointers</a>, that
+can be copied freely.</p>
+<p>&nbsp;</p>
+<p>The code below shows the choices and some lines that should and should not <a href="CppCompiler.htm">compile</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/shared_ptr.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyStruct<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;~MyStruct() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(MyStruct *);<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyStructKeeper<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppComment.htm">/*</a> ??? <a href="CppComment.htm">*/</a>&gt; Get() <b><a href="CppConst.htm">const</a></b> { <a href="CppComment.htm">/*</a> ??? <a href="CppComment.htm">*/</a> }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyStruct&gt; &gt; m_v;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;MyStructKeeper k1;<br/>
+&nbsp;&nbsp;MyStructKeeper k2;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppComment.htm">/*</a> ??? <a href="CppComment.htm">*/</a>&gt; v1 <a href="CppOperatorAssign.htm">=</a> k1.Get();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppComment.htm">/*</a> ??? <a href="CppComment.htm">*/</a>&gt; v2 <a href="CppOperatorAssign.htm">=</a> k2.Get();<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v2.begin(),v2.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v1));<br/>
+&nbsp;&nbsp;v1[0]-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Should not <a href="CppCompile.htm">compile</a><br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> v1[0].get(); <a href="CppComment.htm">//</a>Should not <a href="CppCompile.htm">compile</a><br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>What should the question marks be?</p>
+<p>&nbsp;</p>
+<p><a href="CppExerciseReadonlyVectorOfPointersAnswer.htm">View the answer of this part of the exercise</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--
+<h2>Post your feedback</h2>
+<p>&nbsp;</p>
+<p>Feedback can be posted at <a
+href="http://www.programmersheaven.com/article/102868-C%2b%2b+exercise%3a+library+trouble/info.aspx">
+the Programmer's Heaven page about this exercise</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+-->
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 13: 'Ensure resources are owned by objects. Use explicit RAII and smart pointers.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

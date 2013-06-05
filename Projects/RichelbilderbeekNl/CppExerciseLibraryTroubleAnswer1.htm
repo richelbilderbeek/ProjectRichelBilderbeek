@@ -1,0 +1,413 @@
+ 
+<title>Answer of exercise #8: Library trouble #1</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Answer of exercise #8: Library trouble #1</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Answer of exercise #8: Library trouble #1</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>22</o:Revision>
+  <o:TotalTime>376</o:TotalTime>
+  <o:Created>2009-05-31T13:02:00Z</o:Created>
+  <o:LastSaved>2009-05-31T13:29:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>678</o:Words>
+  <o:Characters>3868</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Answer of exercise #8: Library trouble #1</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>32</o:Lines>
+  <o:Paragraphs>7</o:Paragraphs>
+  <o:CharactersWithSpaces>4750</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+  @list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:1941837107;
+	mso-list-type:hybrid;
+	mso-list-template-ids:74638006 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+ 
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppExerciseLibraryTroubleAnswer1.htm">Answer of exercise #8: Library
+trouble #1</a></h1>
+
+<p>&nbsp;</p>
+
+<p>This
+is the answer of <a href="CppExerciseLibraryTrouble.htm">Exercise #8: library
+trouble</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>There
+are six solutions solutions, as listed below:</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Abandon const-correctness (0/10)</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>const std::string s =
+&quot;abc***def&quot;;</p>
+
+<p><b><span lang=NL
+style='mso-bidi-font-family:"Courier New";color:red'>/* const */ </b>  int n = 3; //Number of
+repeats</p>
+
+<p>std::search_n( s.begin(),s.end(),n,'*');</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Using
+const is good <span style='mso-field-code:"REF _Ref203610550 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300033003600310030003500350030000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref203610371 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300033003600310030003300370031000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref203610382 \\r \\h"'>[2]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300033003600310030003300380032000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref203610385 \\r \\h"'>[3]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300033003600310030003300380035000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref203610386 \\r \\h"'>[4]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300033003600310030003300380036000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref202766402 \\r \\h"'>[5]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300032003700360036003400300032000000</w:data>
+</xml><![endif]--> , abondoning const-correctness is not.</p>
+
+<p>&nbsp;</p>
+
+<h2>Use a C-style cast (1/10)</h2>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>const std::string s =
+&quot;abc***def&quot;;</p>
+
+<p>const int n = 3; //Number of repeats</p>
+
+<p>std::search_n( s.begin(),s.end(), <b><span
+style='color:red'>(int) </b> n,'*');</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Don't
+use C-style casts, but use one of the four more-specific C++ casting keywords <span
+style='mso-field-code:"REF _Ref231546357 \\r \\h"'>[6]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200330031003500340036003300350037000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref231546358 \\r \\h"'>[7]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200330031003500340036003300350038000000</w:data>
+</xml><![endif]--> .</p>
+
+<p>&nbsp;</p>
+
+<h2>Use of reinterpret_cast (1/10)</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>const std::string s =
+&quot;abc***def&quot;;</p>
+
+<p>const int n = 3; //Number of repeats</p>
+
+<p>std::search_n( s.begin(),s.end(),<b><span
+style='color:red'>reinterpret_cast&lt;int&gt;(n) </b>,'*');</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>The
+use of <a href="CppReinterpret_cast.htm">reinterpret_cast</a> is nonsense here,
+because int and const int are closely related. Also, it still will not compile,
+with the same compile error.</p>
+
+<p>&nbsp;</p>
+
+<h2>Use of dynamic_cast (1/10)</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>const std::string s =
+&quot;abc***def&quot;;</p>
+
+<p>const int n = 3; //Number of repeats</p>
+
+<p>std::search_n( s.begin(),s.end(),<b><span
+style='color:red'>dynamic_cast&lt;int&gt;(n) </b>,'*');</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>The
+use of <a href="CppDynamic_cast.htm">dynamic_cast</a> is nonsense here, because
+int and const int are not members of the same class hierarchy. Also, it still
+will not compile, because a dynamic_cast cannot cast from 'const int' to 'int'.</p>
+
+<p>&nbsp;</p>
+
+<h2>Use of const_cast (8/10)</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>const std::string s =
+&quot;abc***def&quot;;</p>
+
+<p>const int n = 3; //Number of repeats</p>
+
+<p>std::search_n( s.begin(),s.end(),<b><span
+style='color:red'>const_cast&lt;int&gt;(n) </b>,'*');</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>The
+use of <a href="CppConst_cast.htm">const_cast</a> is my favorite solution. As
+it is the most correct solution, as all we want to do is to cast away the const.
+But too bad, it does not compile!</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p><b><i>  &nbsp;   </i></b></p>
+
+<p><b><i> If you know why const_cast does not
+compile and static_cast does, please send me an <a href="Email.PNG">email</a>.  </i></b></p>
+
+<p><b><i>  &nbsp;   </i></b></p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Use of static_cast (10/10)</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>const std::string s =
+&quot;abc***def&quot;;</p>
+
+<p>const int n = 3; //Number of repeats</p>
+
+<p>std::search_n( s.begin(),s.end(),<b><span
+style='color:red'>static_cast&lt;int&gt;(n) </b>,'*');</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>I
+regret that the use of <a href="CppStatic_cast.htm">static_cast</a> is the best
+solution, as a const_cast is more clear. But const_cast does not compile, so
+one is left to use static_cast.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p><b><i>  &nbsp;   </i></b></p>
+
+<p><b><i> If you know why const_cast does not
+compile and static_cast does, please send me an <a href="Email.PNG">email</a>.  </i></b></p>
+
+<p><b><i>  &nbsp;   </i></b></p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm">References</a></h2>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo3;
+tab-stops:list .5in'>   [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN:
+0-201-88954-4 7.9.3: 'Use const extensively and consistently'</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo3;
+tab-stops:list .5in'>   [1] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition).ISBN: 0-321-33487-6. Item 3: 'Use
+const whenever possible'</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo3;
+tab-stops:list .5in'>   [2] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppJarrodHollingworth.htm">Jarrod Hollingworth</a>, <a href="CppBobSwart.htm">Bob Swart</a>, <a href="CppMarkCashman.htm">Mark Cashman</a>, <a href="CppPaulGustavson.htm">Paul Gustavson</a>. Sams C++ Builder 6 Developer's Guide. ISBN: 0-672-32480-6.
+Chapter 3: 'Understand and use const in your code'</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo3;
+tab-stops:list .5in'>   [3] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN: 0-672-32224-2. Hour
+8, chapter 'Const member functions': 'Use const whenever possible.'</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo3;
+tab-stops:list .5in'>   [4] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 2:
+'Prefer consts, enums and inlines to #defines'</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo3;
+tab-stops:list .5in'>   [5] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppHerbSutter.htm">  Herb
+Sutter    , <a
+href="CppAndreiAlexandrescu.htm"><span style='mso-bookmark:_Ref202766402'> Andrei Alexandrescu</a><span style='mso-bookmark:_Ref202766402'> . C++ coding standards: 101 rules, guidelines, and best practices.
+ISBN: 0-32-111358-6. Item 15: 'Use const proactively'.</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo3;
+tab-stops:list .5in'><a name="_Ref231546357">  [6] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppBjarneStroustrup.htm"><span
+style='mso-bookmark:_Ref231546357'> Bjarne Stroustrup  <span style='mso-bookmark:_Ref231546357'></a><span
+style='mso-bookmark:_Ref231546357'> . The C++ Programming Language (3rd edition). ISBN:
+0-201-88954-4 6.5.5: 'When explicit type conversion is necessary, prefer the
+more specific cast operators to the C-style cast'</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo3;
+tab-stops:list .5in'><a name="_Ref231546358">  [7] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppHerbSutter.htm"><span style='mso-bookmark:
+_Ref231546358'> Herb
+Sutter  <span style='mso-bookmark:_Ref231546358'></a><span
+style='mso-bookmark:_Ref231546358'> , <a href="CppAndreiAlexandrescu.htm"><span
+style='mso-bookmark:_Ref231546358'> Andrei Alexandrescu  <span style='mso-bookmark:_Ref231546358'></a><span
+style='mso-bookmark:_Ref231546358'> . C++ coding standards: 101 rules, guidelines, and best
+practices. ISBN: 0-32-111358-6. Item 95: 'Don't use C-style casts'.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

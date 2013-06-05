@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Avoid duplication in const and non-const member functions</title>
+  <meta name="description" content="C++ Avoid duplication in const and non-const member functions"/>
+  <meta name="keywords" content="C++ Avoid duplication in const and non-const member functions code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppAvoidDuplicationInConstAndNonConstMemberFunctions.htm">Avoid duplication in const and non-const member functions</a></h1>
+<p>&nbsp;</p>
+<p>In good <a href="CppMemberFunctionDesign.htm">member function design</a>, avoid duplication in const and non-const member functions [1,2]. Instead, have the non-const <a href="CppMemberFunction.htm">member function</a> call the <a href="CppConstMemberFunction.htm">const member function</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> StoreTenInts<br/>
+{<br/>
+&nbsp;&nbsp;StoreTenInts() : mV(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(10,0)) {}<br/>
+ <br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b>&amp; <b><a href="CppOperator.htm">operator</a></b>[](<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Calls the <b><a href="CppConst.htm">const</a></b> version of <b><a href="CppOperator.htm">operator</a></b>[]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<b><a href="CppConst.htm">const</a></b> member functions [1]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&amp;&gt;(<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> StoreTenInts&amp;&gt;(*<b><a href="CppThis.htm">this</a></b>)[i]);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; <b><a href="CppOperator.htm">operator</a></b>[](<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The actual work of <b><a href="CppOperator.htm">operator</a></b>[]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i &lt; 10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mV[i];<br/>
+&nbsp;&nbsp;}<br/>
+ <br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; mV;<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 94: 'Avoid casting away const', item 'Exceptions'</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 3, paragraph 'Avoid duplication in const and non-const member functions'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

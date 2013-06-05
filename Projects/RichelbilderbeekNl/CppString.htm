@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::string</title>
+  <meta name="description" content="C++ std::string"/>
+  <meta name="keywords" content="C++ std::string std string"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppString.htm">std::string</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppString.htm">std::string</a> is an <a href="CppStl.htm">STL</a> <a href="CppContainer.htm">container</a> for storing <a href="CppChar.htm">char</a>. Or: 'the thing you use for storing words'.</p>
+<p>&nbsp;</p>
+<p>The <a href="CppDefinition.htm">definition</a> of <a href="CppString.htm">std::string</a> is in <a href="CppStringH.htm">string.h</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s1 = "Hello";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s2 = "World";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s3 = s1 + " " + s2;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s3 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Prefer using <a href="CppString.htm">std::string</a> over an <a href="CppArray.htm">array</a> of <a href="CppChar.htm">char</a> [1][2][3][4].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppString.htm">std::string</a> example</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "ABCD";<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.find("xx")<a href="CppOperatorEqual.htm">==</a><a href="CppString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.find("BC")<a href="CppOperatorNotEqual.htm">!=</a><a href="CppString.htm">std::string</a>::npos);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppString.htm">std::string</a> <a href="CppCodeSnippets.htm">code snippets</a></h2>
+<p>&nbsp;</p>
+<p>Note that among these are also the more general <a href="CppContainer.htm">container</a> <a href="CppCodeSnippets.htm">code snippets</a>.</p>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppAnsiToStr.htm">AnsiToStr, convert AnsiString to std::string</a></li>
+  <li><a href="CppAppend.htm">Append two std::strings, Append</a></li>
+  <li><a href="CppAppend.htm">Append, append two std::strings</a></li>
+  <li><a href="CppAskUserForDouble.htm">Ask user to input a double, AskUserForDouble</a></li>
+  <li><a href="CppAskUserForString.htm">Ask user to input a std::string, AskUserForString</a></li>
+  <li><a href="CppAskUserForDouble.htm">AskUserForDouble, ask user to input a double</a></li>
+  <li><a href="CppAskUserForString.htm">AskUserForString, ask user to input a std::string</a></li>
+  <li><a href="CppIsDouble.htm">Check if std::string can be converted to double, IsDouble</a></li>
+  <li><a href="CppIsInt.htm">Check if std::string can be converted to integer, IsInt</a></li>
+  <li><a href="CppAnsiToStr.htm">Convert AnsiString to std::string</a></li>
+  <li><a href="CppDoubleToStr.htm">Convert double to std::string</a></li>
+  <li><a href="CppIntToStr.htm">Convert integer to std::string</a></li>
+  <li><a href="CppStrToAnsi.htm">Convert std::string to AnsiString</a></li>
+  <li><a href="CppStrToDouble.htm">Convert std::string to double</a></li>
+  <li><a href="CppStrToInt.htm">Convert std::string to integer</a></li>
+  <li><a href="CppStrToLower.htm">Convert std::string to lower case</a></li>
+  <li><a href="CppStrToUpper.htm">Convert std::string to upper case</a></li>
+  <li><a href="CppStrToWide.htm">Convert std::string to WideString</a></li>
+  <li><a href="CppWideToStr.htm">Convert WideString to std::string</a></li>
+  <li><a href="CppDoubleToStr.htm">DoubleToStr, convert double to std::string</a></li>
+  <li><a href="CppFindString.htm">Find std::string in std::string</a></li>
+  <li><a href="CppFindString.htm">FindString, find std::string in std::string</a></li>
+  <li><a href="CppGetExtension.htm">Get the extension of a filename</a></li>
+  <li><a href="CppGetPath.htm">Get the path of a filename, GetPath</a></li> 
+  <li><a href="CppGetExtension.htm">GetExtension, get the extension of a filename</a></li>
+  <li><a href="CppGetLongestStringLength.htm">GetLongestString, find the length of the std::string with the most characters in a container</a></li> 
+  <li><a href="CppGetPath.htm">GetPath, get the path of a filename</a></li> 
+  <li><a href="CppGetShortestStringLength.htm">GetShortestString, find the length of the std::string with the least characters in a container</a></li> 
+  <li><a href="CppIntToStr.htm">IntToStr, convert integer to std::string</a></li>
+  <li><a href="CppIsDouble.htm">IsDouble, check if std::string can be converted to double</a></li>
+  <li><a href="CppIsInt.htm">IsInt, check if std::string can be converted to integer</a></li>
+  <li><a href="CppLoopReader.htm">LoopReader, reading a container looped</a></li> 
+  <li><a href="CppLoopReader.htm">Reading a container looped, LoopReader</a></li>
+  <li><a href="CppRemoveExtension.htm">Remove the extension of a filename</a></li>
+  <li><a href="CppRemovePath.htm">Remove the path of a filename, RemovePath</a></li>
+  <li><a href="CppRemoveExtension.htm">RemoveExtension, remove the extension of a filename</a></li>
+  <li><a href="CppRemovePath.htm">RemovePath, remove the path of a filename</a></li>
+  <li><a href="CppReplaceOnce.htm">Replace a substring by another in a certain std::string once, ReplaceOnce</a></li>
+  <li><a href="CppReplaceAll.htm">Replace all substrings by another in a certain std::string, ReplaceAll</a></li>
+  <li><a href="CppReplaceAll.htm">ReplaceAll, replace all substrings by another in a certain std::string</a></li>
+  <li><a href="CppReplaceOnce.htm">ReplaceOnce, replace a substring by another in a certain std::string once</a></li>
+  <li><a href="CppReverseString.htm">ReverseString, reverse a std::string</a></li>
+  <li><a href="CppReverseString.htm">Reverse a std::string, ReverseString</a></li>
+  <li><a href="CppSeperateString.htm">Seperate a std::string into multiple std::strings, seperated by a seperator</a></li>
+  <li><a href="CppSeperateString.htm">SeperateString, seperate a std::string into multiple std::strings, seperated by a seperator</a></li>
+  <li><a href="CppSimplifyPath.htm">SimplifyPath, simplify a path</a></li>
+  <li><a href="CppStrToAnsi.htm">StrToAnsi, convert std::string to AnsiString</a></li>
+  <li><a href="CppStrToDouble.htm">StrToDouble, convert std::string to double</a></li>
+  <li><a href="CppStrToInt.htm">StrToInt, convert std::string to integer</a></li>
+  <li><a href="CppStrToLower.htm">StrToLower, convert std::string to lower case</a></li>
+  <li><a href="CppStrToUpper.htm">StrToUpper, convert std::string to upper case</a></li>
+  <li><a href="CppStrToWide.htm">StrToWide, convert std::string to WideString</a></li>
+  <li><a href="CppSumStringLength.htm">SumStringLength, sum the lengths of std::strings irn a container</a></li> 
+  <li><a href="CppTrim.htm">Trim the leading and trailing spaces from a std::string</a></li>
+  <li><a href="CppTrim.htm">Trim, trim the leading and trailing spaces from a std::string</a></li>
+  <li><a href="CppWideToStr.htm">WideToStr, convert WideString to std::string</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.boost.org/doc/libs/1_38_0/doc/html/string_algo.html">Boost string algorithms</a></li>
+  <li><a href="http://www.cplusplus.com/reference/string/string">Cplusplus.com page about std::string</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 5.8.5: 'Use string rather then zero-terminated arrays of char'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 77: 'Use vector and string instead of arrays'.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective STL. ISBN: 0-201-74962-9. Item 13: 'Prefer vector and string to dynamically allocated arrays'</li>
+  <li><a href="CppJarrodHollingworth.htm">Jarrod Hollingworth</a>, <a href="CppBobSwart.htm">Bob Swart</a>, <a href="CppMarkCashman.htm">Mark Cashman</a>, <a href="CppPaulGustavson.htm">Paul Gustavson</a>. Sams C++ Builder 6 Developer's Guide. ISBN: 0-672-32480-6. Chapter 3.1: 'Use a string class instead of char*'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

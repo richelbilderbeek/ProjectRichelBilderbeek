@@ -1,0 +1,483 @@
+ 
+<title>ThresholdFilter</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet ThresholdFilter</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek ThresholdFilter Threshold Filter perform VCL Builder Turbo</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>13</o:Revision>
+  <o:TotalTime>151</o:TotalTime>
+  <o:Created>2008-01-02T09:46:00Z</o:Created>
+  <o:LastSaved>2008-07-28T11:08:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>1198</o:Words>
+  <o:Characters>6830</o:Characters>
+  <o:Category>C++ Code Snippet Richel Bilderbeek ThresholdFilter</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>56</o:Lines>
+  <o:Paragraphs>13</o:Paragraphs>
+  <o:CharactersWithSpaces>8387</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="CppCodeSnippets.htm">Go back to Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppThresholdFilter.htm">ThresholdFilter</a></h1>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppVcl.htm">VCL</a> <a href="CppGraphics.htm"><span
+style='mso-bidi-font-family:"Times New Roman"'>graphics</a> <a href="CppCodeSnippets.htm">code snippet</a> to perform a threshold filter
+operation on a <a href="CppVcl.htm">VCL</a> <a href="CppTImage.htm">TImage</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>There
+are two types of <a href="CppThresholdFilter.htm">ThresholdFilter</a>
+operations: ThresholdFilterColor and ThresholdFilterNoColor.
+ThresholdFilterColor makes a pixel black if its color is below the threshold.
+ThresholdFilterNoColor additionally makes a pixel white if it is above or equal
+to the thresholdvalue. <a href="CppThresholdFilter.PNG">This example image</a>
+show the difference between the two versions.</p>
+
+<p>&nbsp;</p>
+
+<p>The
+tool <a href="ToolThresholdFilterer.htm">ThresholdFilterer</a> demonstrates
+the use of <a href="CppThresholdFilter.htm">ThresholdFilter</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>* <a
+href="CppThresholdFilter.PNG">View an example image</a></p>
+
+<p>* <a
+href="CppThresholdFilter.txt">View the code of 'ThresholdFilter' in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;vcl.h&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//If a pixel's grey value is below
+threshold, the pixel is made black</p>
+
+<p>//Else it keeps it color</p>
+
+<p>//From http://www.richelbilderbeek.nl/CppThresholdFilter.htm</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  ThresholdFilterColor(</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a>
+* <b><a href="CppConst.htm">const</a></b> imageOriginal,</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+threshold,</p>
+
+<p> 
+ <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b>
+imageResult)</p>
+
+<p>{</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageOriginal!=0</p>
+
+<p>   
+ &amp;&amp; &quot;imageOriginal must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture !=0</p>
+
+<p>   
+ &amp;&amp; &quot;Picture of imageOriginal must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture-&gt;Bitmap
+!=0</p>
+
+<p>   
+ &amp;&amp; &quot;Bitmap of imageOriginal must not be NULL&quot;);</p>
+
+<p>     <a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit</p>
+
+<p>   
+ &amp;&amp; &quot;Bitmap of imageOriginal must be 24 bit&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageResult!=0</p>
+
+<p>   
+ &amp;&amp; &quot;imageResult must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageResult-&gt;Picture !=0</p>
+
+<p>   
+ &amp;&amp; &quot;Picture of imageResult must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageResult-&gt;Picture-&gt;Bitmap
+!=0</p>
+
+<p>   
+ &amp;&amp; &quot;Bitmap of imageResult must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageResult-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit</p>
+
+<p>   
+ &amp;&amp; &quot;Bitmap of imageResult must be 24 bit&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(threshold &gt;= 0 &amp;&amp;
+threshold &lt; 256</p>
+
+<p>   
+ &amp;&amp; &quot;Threshold must be in range [0,255]&quot;);</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+width    =
+imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+height = imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p> 
+ imageResult-&gt;Picture-&gt;Bitmap-&gt;Width    = width;</p>
+
+<p> 
+ imageResult-&gt;Picture-&gt;Bitmap-&gt;Height = height;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+y=0; y!=height; ++y)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b>
+lineOriginal</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+*&gt;(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>   
+ <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+* <b><a href="CppConst.htm">const</a></b> lineResult</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+*&gt;(imageResult-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>   
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+x=0; x!=width; ++x)</p>
+
+<p>   
+ {</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> grey</p>
+
+<p>         = (lineOriginal[x*3+2] + lineOriginal[x*3+1] +
+lineOriginal[x*3+0]) / 3;</p>
+
+<p>       <b><a href="CppIf.htm">if</a></b> (grey &lt; threshold)</p>
+
+<p>       {</p>
+
+<p>         lineResult[x*3+2] = 0; //Red</p>
+
+<p>         lineResult[x*3+1] = 0; //Green</p>
+
+<p>         lineResult[x*3+0] = 0; //Blue</p>
+
+<p>       }</p>
+
+<p>       <b><a href="CppElse.htm">else</a> </b></p>
+
+<p>       {</p>
+
+<p>         lineResult[x*3+2] = lineOriginal[x*3+2]; //Red</p>
+
+<p>         lineResult[x*3+1] = lineOriginal[x*3+1]; //Green</p>
+
+<p>         lineResult[x*3+0] = lineOriginal[x*3+0]; //Blue</p>
+
+<p>       }</p>
+
+<p>   
+ }</p>
+
+<p> 
+ }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;vcl.h&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>//If a pixel's grey value is below
+threshold, the pixel is made black</p>
+
+<p>//Else it is made white</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppThresholdFilter.htm</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  ThresholdFilterNoColor(</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a>
+* <b><a href="CppConst.htm">const</a></b> imageOriginal,</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+threshold,</p>
+
+<p> 
+ <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b>
+imageResult)</p>
+
+<p>{</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageOriginal!=0</p>
+
+<p>   
+ &amp;&amp; &quot;imageOriginal must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture !=0</p>
+
+<p>   
+ &amp;&amp; &quot;Picture of imageOriginal must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture-&gt;Bitmap
+!=0</p>
+
+<p>   
+ &amp;&amp; &quot;Bitmap of imageOriginal must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit</p>
+
+<p>   
+ &amp;&amp; &quot;Bitmap of imageOriginal must be 24 bit&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageResult!=0</p>
+
+<p>   
+ &amp;&amp; &quot;imageResult must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageResult-&gt;Picture !=0</p>
+
+<p>   
+ &amp;&amp; &quot;Picture of imageResult must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageResult-&gt;Picture-&gt;Bitmap
+!=0</p>
+
+<p>   
+ &amp;&amp; &quot;Bitmap of imageResult must not be NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(imageResult-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit</p>
+
+<p>   
+ &amp;&amp; &quot;Bitmap of imageResult must be 24 bit&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(threshold &gt;= 0 &amp;&amp;
+threshold &lt; 256</p>
+
+<p>   
+ &amp;&amp; &quot;Threshold must be in range [0,255]&quot;);</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+width    = imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+height = imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p> 
+ imageResult-&gt;Picture-&gt;Bitmap-&gt;Width    = width;</p>
+
+<p> 
+ imageResult-&gt;Picture-&gt;Bitmap-&gt;Height = height;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+y=0; y!=height; ++y)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b>
+lineOriginal</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+*&gt;(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>   
+ <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+* <b><a href="CppConst.htm">const</a></b> lineResult</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+*&gt;(imageResult-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>   
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+x=0; x!=width; ++x)</p>
+
+<p>   
+ {</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> grey</p>
+
+<p>         = (lineOriginal[x*3+2] + lineOriginal[x*3+1] +
+lineOriginal[x*3+0]) / 3;</p>
+
+<p>       <b><a href="CppIf.htm">if</a></b> (grey &lt; threshold)</p>
+
+<p>       {</p>
+
+<p>         lineResult[x*3+2] = 0; //Red</p>
+
+<p>         lineResult[x*3+1] = 0; //Green</p>
+
+<p>         lineResult[x*3+0] = 0; //Blue</p>
+
+<p>       }</p>
+
+<p>       <b><a href="CppElse.htm">else</a> </b></p>
+
+<p>       {</p>
+
+<p>         lineResult[x*3+2] = 255; //Red</p>
+
+<p>         lineResult[x*3+1] = 255; //Green</p>
+
+<p>         lineResult[x*3+0] = 255; //Blue</p>
+
+<p>       }</p>
+
+<p>   
+ }</p>
+
+<p> 
+ }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCodeSnippets.htm">Go back to Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

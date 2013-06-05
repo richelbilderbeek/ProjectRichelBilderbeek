@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Shape</title>
+  <meta name="description" content="C++ Shape"/>
+  <meta name="keywords" content="C++ Shape code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppShape.htm">Shape</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppShape.htm">Shape</a> is a <a href="CppClass.htm">class</a> for a shape.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>shape.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppShape.htm">Shape</a>, <a href="CppShape.htm">shape</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppShape.htm">CppShape</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> SHAPE_H<br/>
+<a href="CppDefine.htm">#define</a> SHAPE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppShape.htm">Shape</a> is a <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> a regular polygonal <a href="CppShape.htm">shape</a><br/>
+<a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">///</a>A <a href="CppShape.htm">Shape</a> can be a circle, ellipse, triange, square, rhombus, <a href="CppRectangle.htm">rectangle</a><br/>
+<a href="CppComment.htm">///</a>A <a href="CppShape.htm">Shape</a> cannot yet be a minus, plus, star<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppShape.htm">Shape</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppShape.htm">Shape</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_corners,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rotation,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue <a href="CppOperatorAssign.htm">=</a> 255);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the blueness of the <a href="CppShape.htm">Shape</a> its color<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_blue; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the greenness of the <a href="CppShape.htm">Shape</a> its color<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_green; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the number of corners of the <a href="CppShape.htm">Shape</a><br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetNumberOfCorners() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_n_corners; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the redness of the <a href="CppShape.htm">Shape</a> its color<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_red; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the rotation of the <a href="CppShape.htm">Shape</a><br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetRotation() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_rotation; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the number of corners of the <a href="CppShape.htm">Shape</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetNumberOfCorners(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_corners);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the rotation of the <a href="CppShape.htm">Shape</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetRotation(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rotation);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.htm">signal</a> <a href="CppEmit.htm">emitted</a> when the <a href="CppShape.htm">Shape</a> position is changed<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_changed;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppShape.htm">Shape</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppShape.htm">Shape</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppShape.htm">Shape</a>*);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>&amp; rhs);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of corners<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_n_corners;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The rotation<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The rotation is a value between 0.0 and 2.0 * <a href="CppM_PI.htm">M_PI</a>,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/in which&nbsp;&nbsp;0.0 * <a href="CppM_PI.htm">M_PI</a> is the equivalent to 12:00 o'clock<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/and which 0.5 * <a href="CppM_PI.htm">M_PI</a> is the equivalent to&nbsp;&nbsp;3:00 o'clock<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Values not in <b><a href="CppThis.htm">this</a></b> range are accepted nonetheless<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_rotation;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShape.htm">shape</a> its redness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_red;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShape.htm">shape</a> its greenness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_green;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShape.htm">shape</a> its blueness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_blue;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>&amp; rhs);<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SHAPE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>shape.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppShape.htm">Shape</a>, <a href="CppShape.htm">shape</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppShape.htm">CppShape</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppShape.htm">shape</a>.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppShape.htm">Shape</a>::<a href="CppShape.htm">Shape</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_corners,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rotation,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;: m_red(red),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_green(green),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_blue(blue)<br/>
+{<br/>
+&nbsp;&nbsp;SetNumberOfCorners(n_corners);<br/>
+&nbsp;&nbsp;SetRotation(rotation);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppShape.htm">Shape</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppShape.htm">Shape</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-07-13: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-08-08: <a href="CppVersion.htm">Version</a> 2.0: conformized architecture to <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppShape.htm">Shape</a>::SetNumberOfCorners(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_corners)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_corners <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;m_n_corners <a href="CppOperatorAssign.htm">=</a> n_corners;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppShape.htm">Shape</a>::SetRotation(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rotation)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_rotation <a href="CppOperatorNotEqual.htm">!=</a> rotation)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_rotation <a href="CppOperatorAssign.htm">=</a> rotation;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_changed();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetAngle.htm">GetAngle</a>.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppShape.htm">Shape</a>::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>In which quadrant are we?<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dX &gt; 0.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dY &gt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quadrant IV<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>(dX <a href="CppOperatorDivide.htm">/</a> dY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(angle &gt; 0.5 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> angle &lt; 1.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dY &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorLessEqual.htm">&lt;=</a> 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quadrant I<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> (0.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>(dX <a href="CppOperatorDivide.htm">/</a> dY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(angle &gt; 0.0 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> angle &lt; 0.5 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On Y-axis, right side<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 0.5 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dX &lt; 0.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dY &gt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quadrant III<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>(dX <a href="CppOperatorDivide.htm">/</a> dY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(angle &gt; 1.0 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> angle &lt; 1.5 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dY &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quadrant II<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> (2.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>(dX <a href="CppOperatorDivide.htm">/</a> dY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(angle &gt; 1.5 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> angle &lt; 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On X-axis<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 1.5 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dY &gt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On Y-axis, right side of origin<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX<a href="CppOperatorEqual.htm">==</a>0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 1.0 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dY &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On Y-axis, left side of origin<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX<a href="CppOperatorEqual.htm">==</a>0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 0.0 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On origin<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX<a href="CppOperatorEqual.htm">==</a>0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 0.0 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetDistance.htm">GetDistance</a>.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppShape.htm">Shape</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>( (dX * dX) <a href="CppOperatorPlus.htm">+</a> (dY * dY) );<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.m_blue <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp; lhs.m_green <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp; lhs.m_n_corners <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_n_corners<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp; lhs.m_red <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp; lhs.m_rotation <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_rotation;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -1,0 +1,988 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Design Pattern: State</title>
+  <meta name="description" content="C++ State"/>
+  <meta name="keywords" content="C++ State design pattern code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDesignPatternState.htm">State</a> (<a href="CppDesignPattern.htm">Design Pattern</a>)</h1>
+<p>&nbsp;</p>
+<p>The <a href="CppDesignPatternState.htm">State</a> is a <a href="CppDesignPattern.htm">Design Pattern</a> to 'allow an object to alter its behavior 
+when its internal state changes. The object will appear to change its class' [1]</p>
+<p>&nbsp;</p>
+<p>Below is an example from [2].</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppDesignPatternState.zip">Download the Qt Creator project 'CppDesignPatternState' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.10 (maverick)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.42</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppDesignPatternState.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2011-04-14T15:44:05<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+TARGET = <a href="CppDesignPattern.htm">CppDesignPattern</a>State<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;gumballmachine.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hasquarterstate.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;noquarterstate.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;soldoutstate.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;soldstate.cpp<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;gumballmachine.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hasquarterstate.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;noquarterstate.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;state.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;soldoutstate.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;soldstate.h<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>gumballmachine.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "gumballmachine.h"<br/>
+<a href="CppInclude.htm">#include</a> "hasquarterstate.h"<br/>
+<a href="CppInclude.htm">#include</a> "noquarterstate.h"<br/>
+<a href="CppInclude.htm">#include</a> "soldoutstate.h"<br/>
+<a href="CppInclude.htm">#include</a> "soldstate.h"<br/>
+<a href="CppInclude.htm">#include</a> "state.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+GumballMachine::GumballMachine(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_gumballs)<br/>
+&nbsp;&nbsp;: m_has_quarter_state(<b><a href="CppNew.htm">new</a></b> HasQuarter<a href="CppState.htm">State</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_no_quarter_state(<b><a href="CppNew.htm">new</a></b> NoQuarter<a href="CppState.htm">State</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_sold_out_state(<b><a href="CppNew.htm">new</a></b> SoldOut<a href="CppState.htm">State</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_sold_state(<b><a href="CppNew.htm">new</a></b> Sold<a href="CppState.htm">State</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_count(n_gumballs)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> m_state; <a href="CppComment.htm">//</a>Should not be possible<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_count)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Set<a href="CppState.htm">State</a>(GetNoQuarter<a href="CppState.htm">State</a>());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Set<a href="CppState.htm">State</a>(GetSoldOut<a href="CppState.htm">State</a>());<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> GumballMachine::EjectQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;m_state-&gt;EjectQuarter();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> GumballMachine::GetCount() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_count <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_count;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppState.htm">State</a> * GumballMachine::GetHasQuarter<a href="CppState.htm">State</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_has_quarter_state.get();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppState.htm">State</a> * GumballMachine::GetNoQuarter<a href="CppState.htm">State</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_no_quarter_state.get();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppState.htm">State</a> * GumballMachine::GetSoldOut<a href="CppState.htm">State</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_sold_out_state.get();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppState.htm">State</a> * GumballMachine::GetSold<a href="CppState.htm">State</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_sold_state.get();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppState.htm">State</a> * GumballMachine::Get<a href="CppState.htm">State</a>() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_state;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> GumballMachine::InsertQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;m_state-&gt;InsertQuarter();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> GumballMachine::ReleaseBall()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "A gumball comes rolling out of the solt...\n";<br/>
+&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>m_count;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_count <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> GumballMachine::Set<a href="CppState.htm">State</a>(<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> state)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(state);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>No need to <b><a href="CppDelete.htm">delete</a></b> the old m_state, <b><a href="CppThis.htm">this</a></b> is done<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>by the <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>'s<br/>
+&nbsp;&nbsp;m_state <a href="CppOperatorAssign.htm">=</a> state;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> GumballMachine::TurnCrank()<br/>
+{<br/>
+&nbsp;&nbsp;m_state-&gt;TurnCrank();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GumballMachine&amp; gumballMachine)<br/>
+{<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Mighty Gumball, Inc.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="Cpp.htm">C++</a>-enab<a href="CppLed.htm">led</a> Standing Gumball Model #2004\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Inventory: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> gumballMachine.GetCount()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " gumballs\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> gumballMachine.Get<a href="CppState.htm">State</a>()-&gt;GetDescription()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GumballMachine * <b><a href="CppConst.htm">const</a></b> gumballMachine)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(gumballMachine);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(os,*gumballMachine);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;GumballMachine&gt;&amp; gumballMachine)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(gumballMachine);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(os,gumballMachine.get());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>gumballmachine.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> GUMBALLMACHINE_H<br/>
+<a href="CppDefine.htm">#define</a> GUMBALLMACHINE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScope.htm">scope</a>d_ptr.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppState.htm">State</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> GumballMachine<br/>
+{<br/>
+&nbsp;&nbsp;GumballMachine(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_gumballs <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> EjectQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> InsertQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> TurnCrank();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ReleaseBall();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetCount() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppState.htm">State</a> machinery<br/>
+&nbsp;&nbsp;<a href="CppState.htm">State</a> * GetNoQuarter<a href="CppState.htm">State</a>();<br/>
+&nbsp;&nbsp;<a href="CppState.htm">State</a> * GetHasQuarter<a href="CppState.htm">State</a>();<br/>
+&nbsp;&nbsp;<a href="CppState.htm">State</a> * GetSoldOut<a href="CppState.htm">State</a>();<br/>
+&nbsp;&nbsp;<a href="CppState.htm">State</a> * GetSold<a href="CppState.htm">State</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppState.htm">State</a> * Get<a href="CppState.htm">State</a>() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppState.htm">State</a>(<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> state);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~GumballMachine() {}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: 'Be<b><a href="CppFriend.htm">friend</a></b>ing <b><a href="CppTemplate.htm">template</a></b>s'.<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(GumballMachine* x);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_has_quarter_state;<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_no_quarter_state;<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_sold_out_state;<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_sold_state;<br/>
+&nbsp;&nbsp;<a href="CppState.htm">State</a> * m_state;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_count;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GumballMachine&amp; gumballMachine);<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GumballMachine * <b><a href="CppConst.htm">const</a></b> gumballMachine);<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;GumballMachine&gt;&amp; gumballMachine);<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> GUMBALLMACHINE_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>hasquarterstate.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "gumballmachine.h"<br/>
+<a href="CppInclude.htm">#include</a> "hasquarterstate.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+HasQuarter<a href="CppState.htm">State</a>::HasQuarter<a href="CppState.htm">State</a>(GumballMachine * gummballMachine)<br/>
+&nbsp;&nbsp;: m_gumballMachine(gummballMachine)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_gumballMachine);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> m_gumballMachine; <a href="CppComment.htm">//</a>Should not be possible<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> HasQuarter<a href="CppState.htm">State</a>::Dispense()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "No gummball dispensed\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> HasQuarter<a href="CppState.htm">State</a>::EjectQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Quarter <b><a href="CppReturn.htm">return</a></b>ed\n";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Change the state<br/>
+&nbsp;&nbsp;m_gumballMachine-&gt;Set<a href="CppState.htm">State</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_gumballMachine-&gt;GetNoQuarter<a href="CppState.htm">State</a>());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> HasQuarter<a href="CppState.htm">State</a>::GetDescription() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "The machine has had a quarter inserted";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> HasQuarter<a href="CppState.htm">State</a>::InsertQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You can insert another quarter\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> HasQuarter<a href="CppState.htm">State</a>::TurnCrank()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You turned...\n";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Change the state<br/>
+&nbsp;&nbsp;m_gumballMachine-&gt;Set<a href="CppState.htm">State</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_gumballMachine-&gt;GetSold<a href="CppState.htm">State</a>());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>hasquarterstate.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> HASQUARTERSTATE_H<br/>
+<a href="CppDefine.htm">#define</a> HASQUARTERSTATE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "state.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> GumballMachine;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> HasQuarter<a href="CppState.htm">State</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppState.htm">State</a><br/>
+{<br/>
+&nbsp;&nbsp;HasQuarter<a href="CppState.htm">State</a>(GumballMachine * gummballMachine);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Dispense();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> EjectQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetDescription() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> InsertQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> TurnCrank();<br/>
+<br/>
+&nbsp;&nbsp;GumballMachine * <b><a href="CppConst.htm">const</a></b> m_gumballMachine;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> HASQUARTERSTATE_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScope.htm">scope</a>d_ptr.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "state.h"<br/>
+<a href="CppInclude.htm">#include</a> "gumballmachine.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;GumballMachine&gt; gumballMachine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> GumballMachine(5));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> gumballMachine.get(); <a href="CppComment.htm">//</a>Should not be possible<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(gumballMachine);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> gumballMachine <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;gumballMachine-&gt;InsertQuarter();<br/>
+&nbsp;&nbsp;gumballMachine-&gt;TurnCrank();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> gumballMachine <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;gumballMachine-&gt;InsertQuarter();<br/>
+&nbsp;&nbsp;gumballMachine-&gt;TurnCrank();<br/>
+&nbsp;&nbsp;gumballMachine-&gt;InsertQuarter();<br/>
+&nbsp;&nbsp;gumballMachine-&gt;TurnCrank();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> gumballMachine <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>noquarterstate.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "gumballmachine.h"<br/>
+<a href="CppInclude.htm">#include</a> "noquarterstate.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+NoQuarter<a href="CppState.htm">State</a>::NoQuarter<a href="CppState.htm">State</a>(GumballMachine * gummballMachine)<br/>
+&nbsp;&nbsp;: m_gumballMachine(gummballMachine)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_gumballMachine);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> m_gumballMachine; <a href="CppComment.htm">//</a>Should not be possible<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> NoQuarter<a href="CppState.htm">State</a>::Dispense()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You need to pay first\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> NoQuarter<a href="CppState.htm">State</a>::EjectQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You haven\'t inserted a quarter\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> NoQuarter<a href="CppState.htm">State</a>::GetDescription() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "The gumballmachine has gumballs in it, but no quarter inserted";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> NoQuarter<a href="CppState.htm">State</a>::InsertQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You inserted a quarter\n";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Change the state<br/>
+&nbsp;&nbsp;m_gumballMachine-&gt;Set<a href="CppState.htm">State</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_gumballMachine-&gt;GetHasQuarter<a href="CppState.htm">State</a>());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> NoQuarter<a href="CppState.htm">State</a>::TurnCrank()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You turned, but there\'s no quarter\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>noquarterstate.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> NOQUARTERSTATE_H<br/>
+<a href="CppDefine.htm">#define</a> NOQUARTERSTATE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "state.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> GumballMachine;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> NoQuarter<a href="CppState.htm">State</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppState.htm">State</a><br/>
+{<br/>
+&nbsp;&nbsp;NoQuarter<a href="CppState.htm">State</a>(GumballMachine * gummballMachine);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Dispense();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> EjectQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetDescription() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> InsertQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> TurnCrank();<br/>
+<br/>
+&nbsp;&nbsp;GumballMachine * <b><a href="CppConst.htm">const</a></b> m_gumballMachine;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> NOQUARTERSTATE_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>soldoutstate.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "gumballmachine.h"<br/>
+<a href="CppInclude.htm">#include</a> "soldoutstate.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+SoldOut<a href="CppState.htm">State</a>::SoldOut<a href="CppState.htm">State</a>(GumballMachine * gummballMachine)<br/>
+&nbsp;&nbsp;: m_gumballMachine(gummballMachine)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_gumballMachine);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> m_gumballMachine; <a href="CppComment.htm">//</a>Should not be possible<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> SoldOut<a href="CppState.htm">State</a>::Dispense()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You need to pay first\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> SoldOut<a href="CppState.htm">State</a>::EjectQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You haven\'t inserted a quarter\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> SoldOut<a href="CppState.htm">State</a>::GetDescription() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "The gumballmachine is empty and has no quarter inserted";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> SoldOut<a href="CppState.htm">State</a>::InsertQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You inserted a quarter\n";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Change the state<br/>
+&nbsp;&nbsp;m_gumballMachine-&gt;Set<a href="CppState.htm">State</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_gumballMachine-&gt;GetHasQuarter<a href="CppState.htm">State</a>());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> SoldOut<a href="CppState.htm">State</a>::TurnCrank()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You turned, but there\'s no quarter\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>soldoutstate.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> SOLDOUTSTATE_H<br/>
+<a href="CppDefine.htm">#define</a> SOLDOUTSTATE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "state.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> GumballMachine;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> SoldOut<a href="CppState.htm">State</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppState.htm">State</a><br/>
+{<br/>
+&nbsp;&nbsp;SoldOut<a href="CppState.htm">State</a>(GumballMachine * gummballMachine);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Dispense();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> EjectQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetDescription() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> InsertQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> TurnCrank();<br/>
+<br/>
+&nbsp;&nbsp;GumballMachine * <b><a href="CppConst.htm">const</a></b> m_gumballMachine;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SOLDOUTSTATE_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>soldstate.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "gumballmachine.h"<br/>
+<a href="CppInclude.htm">#include</a> "soldstate.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+Sold<a href="CppState.htm">State</a>::Sold<a href="CppState.htm">State</a>(GumballMachine * gummballMachine)<br/>
+&nbsp;&nbsp;: m_gumballMachine(gummballMachine)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_gumballMachine);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> m_gumballMachine; <a href="CppComment.htm">//</a>Should not be possible<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> Sold<a href="CppState.htm">State</a>::Dispense()<br/>
+{<br/>
+&nbsp;&nbsp;m_gumballMachine-&gt;ReleaseBall();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_gumballMachine-&gt;GetCount() &gt; 0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Change the state<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_gumballMachine-&gt;Set<a href="CppState.htm">State</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_gumballMachine-&gt;GetNoQuarter<a href="CppState.htm">State</a>());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Oops, out of gumballs\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Change the state<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_gumballMachine-&gt;Set<a href="CppState.htm">State</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_gumballMachine-&gt;GetSoldOut<a href="CppState.htm">State</a>());<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> Sold<a href="CppState.htm">State</a>::EjectQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Sorry, you already turned the crank\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Sold<a href="CppState.htm">State</a>::GetDescription() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "The gumballmachine has a gumball lying in its slot";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> Sold<a href="CppState.htm">State</a>::InsertQuarter()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please wait, we\'re already giving you a gumball\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> Sold<a href="CppState.htm">State</a>::TurnCrank()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Turning twice doesn\'t get you another gumball\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>soldstate.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> SOLDSTATE_H<br/>
+<a href="CppDefine.htm">#define</a> SOLDSTATE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "state.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> GumballMachine;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> Sold<a href="CppState.htm">State</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppState.htm">State</a><br/>
+{<br/>
+&nbsp;&nbsp;Sold<a href="CppState.htm">State</a>(GumballMachine * gummballMachine);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Dispense();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> EjectQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetDescription() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> InsertQuarter();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> TurnCrank();<br/>
+<br/>
+&nbsp;&nbsp;GumballMachine * <b><a href="CppConst.htm">const</a></b> m_gumballMachine;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SOLDSTATE_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>state.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>, demonstrates the <a href="CppState.htm">State</a> <a href="CppDesignPattern.htm">design pattern</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either <a href="CppVersion.htm">version</a> 3 of the License, or<br/>
+(at your option) any later <a href="CppVersion.htm">version</a>.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDesignPattern.htm">CppDesignPattern</a><a href="CppState.htm">State</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> STATE_H<br/>
+<a href="CppDefine.htm">#define</a> STATE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppState.htm">State</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>All state transitions are abstract methods<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Dispense() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> EjectQuarter() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> InsertQuarter() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> TurnCrank() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetDescription() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppState.htm">State</a>() {}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: 'Be<b><a href="CppFriend.htm">friend</a></b>ing <b><a href="CppTemplate.htm">template</a></b>s'.<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppState.htm">State</a>* x);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> STATE_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppErichGamma.htm">Erich Gamma</a>, <a href="CppRichardHelm.htm">Richard Helm</a>, <a href="CppRalphJohnson.htm">Ralph Johnson</a>, <a href="CppJohnVlissides.htm">John Vlissides</a>. Design Patterns. 1995. ISBN: 0201633612.</li>
+  <li><a href="CppEricFreeman.htm">Eric Freeman</a>, <a href="CppElisabethFreeman.htm">Elisabeth Freeman</a>. Head First Design Patterns. 2004. ISBN: 978-0-596-00712-6.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+
+
+
+
+
+

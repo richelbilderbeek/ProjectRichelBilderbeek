@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QUndoView: Example 1</title>
+  <meta name="description" content="C++ QUndoView: Example 1"/>
+  <meta name="keywords" content="C++ QUndoView: Example 1 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQUndoViewExample1.htm">QUndoView: Example 1</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppQUndoViewExample1.htm">QUndoView: Example 1</a> is a <a href="CppQUndoView.htm">QUndoView</a> example.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQUndoViewExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppQUndoViewExample1.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtdialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtbuttonincrementcommand.cpp<br/>
+<br/>
+HEADERS&nbsp;&nbsp;+= qtdialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtbuttonincrementcommand.h<br/>
+<br/>
+FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= qtdialog.ui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtbuttonincrementcommand.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtbuttonincrementcommand.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTBUTTONINCREMENTCOMMAND_H<br/>
+<a href="CppDefine.htm">#define</a> QTBUTTONINCREMENTCOMMAND_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQUndoCommand.htm">QUndoCommand</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQPushButton.htm">QPushButton</a>;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>ButtonIncrementCommand : <b><a href="CppPublic.htm">public</a></b> <a href="CppQUndoCommand.htm">QUndoCommand</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>ButtonIncrementCommand(<a href="CppQPushButton.htm">QPushButton</a> * <b><a href="CppConst.htm">const</a></b> button);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Virtual <a href="CppFunction.htm">function</a> supplied by <a href="CppQUndoCommand.htm">QUndoCommand</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> redo();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Virtual <a href="CppFunction.htm">function</a> supplied by <a href="CppQUndoCommand.htm">QUndoCommand</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> undo();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppQPushButton.htm">QPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button;<br/>
+<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBUTTONINCREMENTCOMMAND_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtbuttonincrementcommand.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtbuttonincrementcommand.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtbuttonincrementcommand.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPushButton.htm">QPushButton</a>&gt;<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>ButtonIncrementCommand::<a href="CppQt.htm">Qt</a>ButtonIncrementCommand(<br/>
+&nbsp;&nbsp;<a href="CppQPushButton.htm">QPushButton</a> * <b><a href="CppConst.htm">const</a></b> button)<br/>
+&nbsp;&nbsp;: m_button(button)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_button);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ButtonIncrementCommand::redo()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> current_number <a href="CppOperatorAssign.htm">=</a> m_button-&gt;text().toInt();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> new_number <a href="CppOperatorAssign.htm">=</a> current_number <a href="CppOperatorPlus.htm">+</a> 1;<br/>
+&nbsp;&nbsp;m_button-&gt;setText(<a href="CppQString.htm">QString</a>::number(new_number) );<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setText("Incremented number to " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>::number(new_number));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ButtonIncrementCommand::undo()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> current_number <a href="CppOperatorAssign.htm">=</a> m_button-&gt;text().toInt();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> new_number <a href="CppOperatorAssign.htm">=</a> current_number <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;m_button-&gt;setText(<a href="CppQString.htm">QString</a>::number(new_number) );<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtdialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQUndoStack.htm">QUndoStack</a>;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Dialog();<br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_clicked();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQUndoStack.htm">QUndoStack</a> * <b><a href="CppConst.htm">const</a></b> m_stack;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtdialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQUndoStack.htm">QUndoStack</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQUndoView.htm">QUndoView</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qtbuttonincrementcommand.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtdialog.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Dialog::<a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog),<br/>
+&nbsp;&nbsp;m_stack(<b><a href="CppNew.htm">new</a></b> <a href="CppQUndoStack.htm">QUndoStack</a>(<b><a href="CppThis.htm">this</a></b>))<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the <a href="CppQUndoView.htm">QUndoView</a> and be done with it<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Craate the <a href="CppQUndoView.htm">QUndoView</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQUndoView.htm">QUndoView</a> * <b><a href="CppConst.htm">const</a></b> view <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQUndoView.htm">QUndoView</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let it display the <a href="CppQUndoStack.htm">QUndoStack</a> m_stack<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;view-&gt;setStack(m_stack);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let it have some height<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;view-&gt;setMinimumHeight(200);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> it to <b><a href="CppThis.htm">this</a></b> dialog's layout<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;layout());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;layout()-&gt;addWidget(view);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Dialog::~<a href="CppQt.htm">Qt</a>Dialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Dialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( (e-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ControlModifier)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !(e-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ShiftModifier)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> e-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Z)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_stack-&gt;undo();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( (e-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ControlModifier)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (e-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ShiftModifier)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> e-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Z)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_stack-&gt;redo();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( e-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;close();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Dialog::on_button_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ButtonIncrementCommand * <b><a href="CppConst.htm">const</a></b> cmd<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>ButtonIncrementCommand(ui-&gt;button);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>By pushing the command, redo is called<br/>
+&nbsp;&nbsp;m_stack-&gt;push(cmd);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

@@ -1,0 +1,105 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>nullptr</title>
+  <meta name="description" content="C++ nullptr"/>
+  <meta name="keywords" content="C++ nullptr code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppNullptr.htm">nullptr</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppNullptr.htm">nullptr</a> is a <a href="CppKeyword.htm">keyword</a> 
+that has different meanings, depending
+on the <a href="CppStandard.htm">standard</a> used:</p>
+<ul>
+  <li>
+    <img src="PicCpp98.png" alt="C++98"/> 
+    <a href="CppNullptr.htm">nullptr</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
+  </li>
+  <li>
+    <img src="PicCpp11.png" alt="C++11"/> 
+    <a href="CppNullptr.htm">nullptr</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/> 
+  <a href="CppNullptr.htm">nullptr</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
+</h2>
+<p>&nbsp;</p>
+<p><a href="CppNullptr.htm">nullptr</a> is not supported in <a href="Cpp98.htm">C++98</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp11.png" alt="C++11"/> 
+  <a href="CppNullptr.htm">nullptr</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
+</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppNullptr.zip">Download the Qt Creator project 'CppNullptr' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="CppNullptr.htm">nullptr</a> is a <a href="CppKeyword.htm">keyword</a> to indicate an
+unitialized <a href="CppPointer.htm">pointer</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <b><a href="CppNew.htm">new</a></b> p<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get rid of the current p<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p;<br/>
+&nbsp;&nbsp;p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <b><a href="CppNew.htm">new</a></b> p<br/>
+&nbsp;&nbsp;p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://gcc.gnu.org/projects/cxx0x.html">GCC page about C++0x support</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

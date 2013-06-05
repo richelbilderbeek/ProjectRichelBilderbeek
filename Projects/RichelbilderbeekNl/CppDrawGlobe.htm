@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>DrawGlobe</title>
+  <meta name="description" content="C++ DrawGlobe"/>
+  <meta name="keywords" content="C++ Builder VCL Qt Creator DrawGlobe draw globe code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDrawGlobe.htm">DrawGlobe</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppDrawGlobe.htm">DrawGlobe</a> is a <a href="CppGraphics.htm">graphics</a> <a href="CppCodeSnippets.htm">code snippet</a> to draw a globe.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppDrawGlobe.png">View an example of 'DrawGlobe' (png)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppDrawGlobe.htm">DrawGlobe</a> using the <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppDrawGlobe.zip">Download the Qt Creator project 'CppDrawGlobe' (zip)</a></li>
+  <li><a href="CppDrawGlobeQt.htm">View the Qt Creator source code of 'CppDrawGlobe' as a web page (htm)</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.htm">DrawGlobe</a>.htm<br/>
+<a href="CppQPixmap.htm">QPixmap</a> <a href="CppDrawGlobe.htm">DrawGlobe</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> g,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> b)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> pixmap(width,height);<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> image <a href="CppOperatorAssign.htm">=</a> pixmap.toImage();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image.bytesPerLine() <a href="CppOperatorDivide.htm">/</a> width <a href="CppOperatorEqual.htm">==</a> 4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume there are 4 bytes per pixel");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> r_max <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(r);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> g_max <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(g);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b_max <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(b);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midX <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width ) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midY <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max_dist <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(midX,midY);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image.scanLine(y));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y_d <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_d <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dist<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((x_d <a href="CppOperatorMinus.htm">-</a> midX) * (x_d <a href="CppOperatorMinus.htm">-</a> midX))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ((y_d <a href="CppOperatorMinus.htm">-</a> midY) * (y_d <a href="CppOperatorMinus.htm">-</a> midY)) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dist <a href="CppOperatorLessEqual.htm">&lt;=</a> max_dist)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rel_dist <a href="CppOperatorAssign.htm">=</a> dist <a href="CppOperatorDivide.htm">/</a> max_dist;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r_here <a href="CppOperatorAssign.htm">=</a> rel_dist * r_max;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g_here <a href="CppOperatorAssign.htm">=</a> rel_dist * g_max;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b_here <a href="CppOperatorAssign.htm">=</a> rel_dist * b_max;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r_here <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r_here &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g_here <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g_here &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b_here <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b_here &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*4+3] <a href="CppOperatorAssign.htm">=</a> 255; <a href="CppComment.htm">//</a>Alpha value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*4+2] <a href="CppOperatorAssign.htm">=</a> r_here; <a href="CppComment.htm">//</a>Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*4+1] <a href="CppOperatorAssign.htm">=</a> g_here; <a href="CppComment.htm">//</a>Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*4+0] <a href="CppOperatorAssign.htm">=</a> b_here; <a href="CppComment.htm">//</a>Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*4+3] <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Alpha value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*4+2] <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*4+1] <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*4+0] <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;pixmap <a href="CppOperatorAssign.htm">=</a> pixmap.fromImage(image);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> transparency<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQBitmap.htm">QBitmap</a> mask <a href="CppOperatorAssign.htm">=</a> pixmap.createMaskFromColor(<a href="CppQColor.htm">QColor</a>(0,0,0,0).rgb());<br/>
+&nbsp;&nbsp;pixmap.setMask(mask);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pixmap;<br/>
+}<br/>
+<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppDrawGlobe.htm">DrawGlobe</a> using the <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt; <a href="CppComment.htm">//</a>For <a href="CppMin.htm">std::min</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;&nbsp;&nbsp; <a href="CppComment.htm">//</a>For <a href="CppAssert.htm">assert</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>For <a href="CppSqrt.htm">std::sqrt</a><br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.htm">DrawGlobe</a>.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppDrawGlobe.htm">DrawGlobe</a>(<br/>
+&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> rMax,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> gMax,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> bMax)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midX <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width ) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midY <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxDist <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(midX,midY);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dist <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( ((xD <a href="CppOperatorMinus.htm">-</a> midX) * (xD <a href="CppOperatorMinus.htm">-</a> midX)) <a href="CppOperatorPlus.htm">+</a> ((yD <a href="CppOperatorMinus.htm">-</a> midY) * (yD <a href="CppOperatorMinus.htm">-</a> midY)) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dist <a href="CppOperatorLessEqual.htm">&lt;=</a> maxDist)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> relDist <a href="CppOperatorAssign.htm">=</a> dist <a href="CppOperatorDivide.htm">/</a> maxDist;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(rMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(gMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(bMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> (r <a href="CppOperatorEqual.htm">==</a> 0 ? 1 : r); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> (g <a href="CppOperatorEqual.htm">==</a> 0 ? 1 : g); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+0] <a href="CppOperatorAssign.htm">=</a> (b <a href="CppOperatorEqual.htm">==</a> 0 ? 1 : b); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+0] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

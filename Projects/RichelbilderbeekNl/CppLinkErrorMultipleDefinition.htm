@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Multiple definition of 'X'</title>
+  <meta name="description" content="C++ Multiple definition of 'X'"/>
+  <meta name="keywords" content="C++ linker link error Multiple definition of LinkErrorMultipleDefinition code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLinkErrorMultipleDefinition.htm">Multiple definition of 'X'</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppLinkErrorMultipleDefinition.htm">Multiple definition of 'X'</a> is a <a href="CppLinkError.htm">link error</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppLinkErrorMultipleDefinition.htm">Multiple definition of 'X'</a> is caused when the <a href="CppLinker.htm">linker</a>
+encounters multiple <a href="CppDefinition.htm">definitions</a> of the same 
+<a href="CppMemberFunction.htm">(member)</a> <a href="CppFunction.htm">function</a>. For example, see the code below:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> A_H<br/>
+<a href="CppDefine.htm">#define</a> A_H<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> A<br/>
+{<br/>
+&nbsp;&nbsp;A();<br/>
+};<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+A::A() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hi\n"; }<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> A_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>This <a href="CppHeaderFile.htm">header file</a> contains both a <a href="CppDeclaration.htm">declaration</a> and 
+<a href="CppDefinition.htm">definition</a> of the <a href="CppConstructor.htm">constructor</a> of <a href="CppClass.htm">class</a> A.</p>
+<p>&nbsp;</p>
+<p>'Huh, but there is an <a href="CppIncludeGuard.htm">#include guard</a>!', you might think. Correct, this does prevent the
+<a href="CppCompileError.htm">compile error</a> <a href="CppCompileErrorRedefinition.htm">'Redefinition of '</a>.
+But the (non-<a href="CppInline.htm">inline</a>) <a href="CppDefinition.htm">definition</a> of the 
+<a href="CppConstructor.htm">constructor</a> of <a href="CppClass.htm">class</a> A
+will be present in all <a href="CppUnit.htm">translation units</a> that <a href="CppInclude.htm">#include</a> this <a href="CppHeaderFile.htm">header file</a>.</p>
+<p>&nbsp;</p>
+<p>This is an example of data (in this case a <a href="CppMemberFunction.htm">member function</a>) with <a href="CppExternalLinkage.htm">external linkage</a>. 
+Avoid data with <a href="CppExternalLinkage.htm">external linkage</a> at 
+<a href="CppFileScope.htm">file scope</a> [1]. Avoid non-<a href="CppInline.htm">inline</a> <a href="CppFunction.htm">function</a> 
+<a href="CppDefinition.htm">definitions</a> in <a href="CppHeaderFile.htm">header files</a> [2].</p>
+<p>&nbsp;</p>
+<p>Some solutions are:</p>
+<ul>
+  <li>
+    Put the <a href="CppDeclaration.htm">declarations</a> in <a href="CppHeaderFile.htm">header files</a>, put the <a href="CppDefinition.htm">definitions</a>
+    in <a href="CppImplementationFile.htm">implementation files</a>
+  </li>
+  <li>Make the <a href="CppDeclaration.htm">declarations</a> <a href="CppInline.htm">inline</a></li>
+  <li>Ensure the <a href="CppHeaderFile.htm">header file</a> is used by exactly one <a href="CppUnit.htm">unit</a><li>
+</ul>
+<p>&nbsp;</p>
+<p>The first solution is by far the most common. The latter solution is not always possible.</p>
+<p>&nbsp;</p>
+<p>Below is a full project with this <a href="CppLinkError.htm">link error</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppLinkErrorMultipleDefinition.zip">Download the Qt Creator project 'CppLinkErrorMultipleDefinition' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppLinkErrorMultipleDefinition.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+SOURCES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a.cpp<br/>
+<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a.h<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>a.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> A_H<br/>
+<a href="CppDefine.htm">#define</a> A_H<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> A<br/>
+{<br/>
+&nbsp;&nbsp;A();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> SayHelloInline() <b><a href="CppConst.htm">const</a></b>;<br/>
+};<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>A::A() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppConstructor.htm">Constructor</a>\n"; } <a href="CppComment.htm">//</a>Illegal, cannot put <a href="CppConstructor.htm">constructor</a> here<br/>
+<br/>
+<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> A::SayHello() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello\n"; } <a href="CppComment.htm">//</a>Illegal, cannot put non-<b><a href="CppInline.htm">inline</a></b> <a href="CppDefinition.htm">definition</a> here<br/>
+<br/>
+<b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> A::SayHelloInline() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "HelloInline\n"; }<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> A_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>a.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "a.h"<br/>
+<br/>
+A::A() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppConstructor.htm">Constructor</a>\n"; } <a href="CppComment.htm">//</a>Legal, can put <a href="CppConstructor.htm">constructor</a> here<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> A::SayHello() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello\n"; } <a href="CppComment.htm">//</a>Legal, can put non-<b><a href="CppInline.htm">inline</a></b> <a href="CppDefinition.htm">definition</a> here<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "a.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;A a;<br/>
+&nbsp;&nbsp;a.SayHello();<br/>
+&nbsp;&nbsp;a.SayHelloInline();<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.3.1, page 70: 'Avoid data with external linkage at file scope'</li>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Section 9.5, item 4: 'Avoid non-inline function definitions in headers'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

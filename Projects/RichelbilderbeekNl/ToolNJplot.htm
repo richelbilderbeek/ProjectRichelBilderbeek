@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>NJplot</title>
+  <meta name="description" content="C++ tool NJplot"/>
+  <meta name="keywords" content="C++ tool NJplot sim brainiac freeware GPL"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Tools.htm">Tool</a>) <a href="ToolNJplot.htm">NJplot</a></h1>
+<p>&nbsp;</p>
+<p><a href="ToolNJplot.htm">NJplot</a> is a <a href="Tools.htm">tool</a> written in C (with French comments) that I use
+to plot <a href="CppNewick.htm">Newick</a> trees.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="ToolNJplot.htm">NJplot</a> command-line example</h2>
+<p>&nbsp;</p>
+<p>When using <a href="ToolNJplot.htm">NJplot</a> from command line, the following should work:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+njplot -psonly tree.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>(assuming tree.txt exists, which it does). The reply I get, however, is the following:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Segmentation fault<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>To solve this problem, use the following command instead:</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+newicktops "tree.txt"<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Your tree will be written to 'tree.ps'.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Personal <a href="ToolNJplot.htm">NJplot</a> source code remarks</h2>
+<p>&nbsp;</p>
+<ul>
+  <li>Comments are written in French, where Enlish would allow more people to read these</li>
+  <li>Class and function names are written in French, where Enlish would allow more people to read these</li>
+  <li>Near-random indentation, rendering the code unreadable in some places</li>
+  <li>Use of a mysterious LisT data type (indeed, 'LisT'), where a more standard data type could probably be used as well</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

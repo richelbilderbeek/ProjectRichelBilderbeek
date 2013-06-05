@@ -1,0 +1,262 @@
+ 
+<title>GetDC</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ GetDC</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek GetDC get device context win32api winapi</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>9</o:Revision>
+  <o:TotalTime>156</o:TotalTime>
+  <o:Created>2010-02-06T08:03:00Z</o:Created>
+  <o:LastSaved>2010-02-06T08:23:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>352</o:Words>
+  <o:Characters>2010</o:Characters>
+  <o:Category>C++ Richel Bilderbeek GetDC</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>16</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2468</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:2019504653;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1780080174 -326961976 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+ @list l0:level2
+	{mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:1.75in;
+	mso-level-number-position:left;
+	margin-left:1.75in;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.25in;
+	mso-level-number-position:left;
+	margin-left:2.25in;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:2.75in;
+	mso-level-number-position:left;
+	margin-left:2.75in;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.25in;
+	mso-level-number-position:left;
+	margin-left:3.25in;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:3.75in;
+	mso-level-number-position:left;
+	margin-left:3.75in;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.25in;
+	mso-level-number-position:left;
+	margin-left:4.25in;
+	text-indent:-.25in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppGetDC.htm">GetDC</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppWindows.htm">Windows</a> <a href="CppFunction.htm">function</a> to get
+a <a href="CppHDC.htm">handle to a device context</a> from a window handle.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+
+<p><a
+href="CppHDC.htm">HDC</a> <a href="CppGetDC.htm">GetDC</a>(HWND
+handle_to_window);</p>
+
+<p>&nbsp;</p>
+
+<p>If handle_to_window
+is <a href="CppNull.htm">null</a>, the <a href="CppHDC.htm">HDC</a> of the
+desktop is obtained</p>
+
+<p>If <a
+href="CppGetDC.htm">GetDC</a> fails, <a href="CppNull.htm">null</a> is returned</p>
+
+<p>&nbsp;</p>
+
+<p>Do not
+forget to call ReleaseDC on the obtained <a
+href="CppHDC.htm">HDC</a>!</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppGetDC.htm">GetDC</a> is declared in winuser.h
+(at least in the library that shipped with <a href="CppBuilder.htm">C++ Builder</a>
+6.0).</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='tab-stops:86.25pt'>  &nbsp;</p>
+
+<h2>Example: <a href="CppMakeScreenshot.htm">MakeScreenshot</a></h2>
+
+<p>&nbsp;</p>
+
+<p><a href="CppMakeScreenshot.htm">MakeScreenshot</a>
+retrieves the <a href="CppHDC.htm">HDC</a> of the desktop and copies it (using 
+BitBlt) on a bitmap (or more specific: a 
+Graphics::TBitmap).</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppMakeScreenshot.htm">MakeScreenshot</a> uses the <a
+href="CppVcl.htm">VCL</a> <a href="CppDataType.htm">data type</a> Graphics::TBitmap supplied with <a
+href="CppBuilder.htm">C++ Builder</a> 6.0.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;windows.h&gt;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;Extctrls.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppMakeScreenshot.htm</p>
+
+<p><b> <a
+href="CppVoid.htm">void</a> </b>  <a
+href="CppMakeScreenshot.htm">MakeScreenshot</a>(Graphics::TBitmap
+* <b><a href="CppConst.htm">const</a></b> b)</p>
+
+<p>{</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(b);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(b-&gt;PixelFormat
+== pf32bit);</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b> <a
+href="CppHDC.htm">HDC</a> desktop = <a href="CppGetDC.htm">GetDC</a>(0);</p>
+
+<p>   b-&gt;Width  
+ = Screen-&gt;Width;</p>
+
+<p>   b-&gt;Height = Screen-&gt;Height;</p>
+
+<p>   BitBlt(b-&gt;Canvas-&gt;Handle,
+0, 0, b-&gt;Width, b-&gt;Height, desktop, 0, 0, SRCCOPY);</p>
+
+<p>   b-&gt;Modified = <b><a href="CppTrue.htm">true</a></b>;</p>
+
+<p>   ReleaseDC(0,
+desktop);</p>
+
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm"> References</a></h2>
+
+<p>  [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ...</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>forward declaration</title>
+  <meta name="description" content="C++ forward declaration"/>
+  <meta name="keywords" content="C++ forward declaration code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppForwardDeclaration.htm">forward declaration</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppForwardDeclaration.htm">forward declaration</a> is the  
+<a href="CppDeclaration.htm">declaration</a> of a <a href="CppDataType.htm">data type</a> the 
+<a href="CppCompiler.htm">compiler</a> will encounter further on. Because this lets the 
+<a href="CppCompiler.htm">compiler</a> check less code, 
+<a href="CppForwardDeclaration.htm">forward declarations</a> speed up compilation.</p>
+<p>&nbsp;</p>
+<p>Never <a href="CppInclude.htm">#include</a> a <a href="CppHeaderFile.htm">header file</a> when a 
+<a href="CppForwardDeclaration.htm">forward declaration</a> will suffice [1].</p>
+<p>&nbsp;</p>
+<p>A <a href="CppForwardDeclaration.htm">forward declaration</a> of a <a href="CppClass.htm">class</a> 
+can be used when nothing needs to be known about that <a href="CppClass.htm">class</a>:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>The <a href="CppMemberFunction.htm">member functions</a> of the <a href="CppClass.htm">class</a> are not called</li>
+  <li>Only a <a href="CppReference.htm">reference</a> to the <a href="CppClass.htm">class</a> is used (all references occupy the same space in memory)</li>
+  <li>Only a <a href="CppPointer.htm">pointer</a> to the <a href="CppClass.htm">class</a> is used (all pointers occupy the same space in memory)</li>
+</ul>
+<p>&nbsp;</p>
+<p>For a list of <a href="CppVclForwardDeclaration.htm">VCL forward declarations</a>, 
+<a href="CppVclForwardDeclaration.htm">go to the VCL forward declaration page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example</h2>
+<p>&nbsp;</p>
+<p>This example shows the header file of a class before and after using as
+much <a href="CppForwardDeclaration.htm">forward declarations</a> as possible.  </p>
+<p>&nbsp;</p>
+<h3>Before</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> Unit1H<br/>
+<a href="CppDefine.htm">#define</a> Unit1H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "UnitX.h"<br/>
+<a href="CppInclude.htm">#include</a> "UnitY.h"<br/>
+<a href="CppInclude.htm">#include</a> "UnitZ.h"<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;MyClass(X &amp;x) : m_x(x) {}<br/>
+&nbsp;&nbsp;X&amp; m_x;<br/>
+&nbsp;&nbsp;Y* m_y;<br/>
+&nbsp;&nbsp;Z m_z;<br/>
+};<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Unit1&amp; y);<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3> After</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> Unit1H<br/>
+<a href="CppDefine.htm">#define</a> Unit1H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> X;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Y;<br/>
+<a href="CppInclude.htm">#include</a> "UnitZ.h"<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;MyClass(X &amp;x) : m_x(x) {}<br/>
+&nbsp;&nbsp;X&amp; m_x;<br/>
+&nbsp;&nbsp;Y* m_y;<br/>
+&nbsp;&nbsp;Z m_z;<br/>
+};<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Unit1&amp; y);<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN: 0-201-61562-2. Item 26: 'Never #include a header when a forward declaration will suffice'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

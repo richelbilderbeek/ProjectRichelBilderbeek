@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>class design</title>
+  <meta name="description" content="C++ class design"/>
+  <meta name="keywords" content="C++ class design how to write"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppClassDesign.htm">Class design</a></h1>
+<p>&nbsp;</p>
+<p>The design of a <a href="CppClass.htm">class</a>.</p>
+<p>&nbsp;</p>
+<p>Although entire books are written on this subject, here some guidelines from some experts:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>Follow a good <a href="CppMemberFunctionDesign.htm">member function design</a></li>
+  <li>Make <a href="CppInterface.htm">interfaces</a> easy to use correctly and hard to use incorrectly [1]</li>
+  <li>Treat class design as type design [2]</li>
+  <li>Prefer pass-by-reference-to-const to pass-by-value [3]</li>
+  <li>Don't try to <a href="CppReturn.htm">return</a> a <a href="CppReference.htm">reference</a> when you must return an object [4]</li>
+  <li>Declare data members <a href="CppPrivate.htm">private</a> [5][9][19][27], except in behaviourless aggregates (C-style structs) [19]</li>
+  <li>Prefer non-member non-friend <a href="CppFunction.htm">functions</a> to <a href="CppMemberFunction.htm">member functions</a> [6,22]</li>
+  <li>Declare non-member functions when type conversion should apply to all parameters [7]</li>
+  <li>Consider support for a non-throwing <a href="CppSwap.htm">swap</a> [8]</li>
+  <li>Be clear what kind of class you're writing [10]</li>
+  <li>Prefer minimal classes to monolithic classes [11]</li>
+  <li>Prefer composition to inheritance[12]</li>
+  <li>Avoid inheriting from classes that were not designed to be <a href="CppBaseClass.htm">base classes</a> [13]</li>
+  <li>Prefer providing abstract interfaces [14]</li>
+  <li>Public inheritance is substitutability. Inherit, not te reuse, but to be reused [15]</li>
+  <li>Practive safe overriding [16]</li>
+  <li>Consider making virtual functions nonpublic, and public functions nonvirtual [17]</li>
+  <li>Avoid providing implicit conversions [18]</li>
+  <li>Don't give away your internals [20]</li>
+  <li><a href="CppPimpl.htm">Pimpl</a> judiciously [21]</li>
+  <li>Always provide <a href="CppNew.htm">new</a> and <a href="CppDelete.htm">delete</a> together [23]</li>
+  <li>If you provide any class-specific new, provide all of the standard forms (plain, in-place, and nothrow) [24]</li>
+</ul>
+<p>&nbsp;</p>
+<h2>References</h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 18: Make interfaces easy to use correctly and hard to use incorrectly.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 19: Treat class design as type design.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 20: Prefer pass-by-reference-to-const to pass-by-value.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 21: Don't try to return a reference when you must return an object.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 22: Declare data members private.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 23: Prefer non-member non-friend functions to member functions.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 24: Declare non-member functions when type conversion should apply to all parameters</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 25: Consider support for a non-throwing swap.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 11: 'Hide information'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 32: 'Be clear what kind of class you're writing'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 33: 'Prefer minimal classes to monolithic classes'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 34: 'Prefer composition to inheritance'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 35: 'Avoid inheriting from classes that were not designed to be base classes'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 36: 'Prefer providing abstract interfaces'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 37: 'Public inheritance is substitutability. Inherit, not te reuse, but to be reused'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 38: 'Practive safe overriding'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 39: 'Consider making virtual functions nonpublic, and public functions nonvirtual'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 40: 'Avoid providing implicit conversions'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 41: 'Make data members private, except in behaviourless aggregates (C-style structs).</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 42: 'Don't give away your internals'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 43: 'Pimpl judiciously'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 44: 'Prefer writing nonmember nonfriend functions'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 45: 'Always provide new and delete together'.</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 46: 'If you provide any class-specific new, provide all of the standard forms (plain, in-place, and nothrow)'.</li>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>'s C++ glossary: http://www.research.att.com/~bs/glossary.html#Gclass</p>
+  <li>C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 14.1.2.</li>
+  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

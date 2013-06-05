@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SeperateString</title>
+  <meta name="description" content="C++ SeperateString"/>
+  <meta name="keywords" content="C++ SeperateString split seperate string std::string delimiter code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSeperateString.htm">SeperateString</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSeperateString.htm">SeperateString</a> is a <a href="CppString.htm">std::string</a> <a href="CppCodeSnippets.htm">code snippet</a> that seperates a <a href="CppString.htm">std::string</a> into a multiple <a href="CppString.htm">std::strings</a> (in a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;) by a certain seperator.</p> 
+<p>&nbsp;</p>
+<p>I have multiple versions of SeperateString:</p>
+<ol>
+  <li><img src="PicBoost.png" alt="Boost"/> SeperateString #1: Seperator is a <a href="CppChar.htm">char</a>, uses Boost String Algorithms Library</li>
+  <li><img src="PicStl.png" alt="STL"/> SeperateString #2: Seperator is a <a href="CppChar.htm">char</a>, uses <a href="CppAlgorithm.htm">algorithms</a>, short version</li>
+  <li><img src="PicStl.png" alt="STL"/>SeperateString #3: Seperator is a <a href="CppChar.htm">char</a>, uses <a href="CppAlgorithm.htm">algorithms</a>, long version</li>
+  <li><img src="PicStl.png" alt="STL"/>SeperateString #4: Seperator is a <a href="CppChar.htm">char</a>, does not use algorithms</li>
+  <li><img src="PicStl.png" alt="STL"/>SeperateString #5: Seperator is a <a href="CppString.htm">std::string</a>, uses algorithms</li>
+  <li><img src="PicStl.png" alt="STL"/>SeperateString #6: Seperator is a <a href="CppString.htm">std::string</a>, does not use algorithms</li>
+</ol>
+<p>&nbsp;</p>
+<p>Of each version of <a href="CppSeperateString.htm">SeperateString</a>, I also wrote some test code on it.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> SeperateString #1: Seperator is a <a href="CppChar.htm">char</a>, uses Boost String Algorithms Library</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/split.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppSplit.htm">boost::algorithm::split</a>(v,input,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::token_compress_on);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicStl.png" alt="STL"/> SeperateString #2: Seperator is a <a href="CppChar.htm">char</a>, uses <a href="CppAlgorithm.htm">algorithms</a>, short version</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input, <br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIstringstream.htm">std::istringstream</a> is(input);<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> sub;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(is, sub, seperator);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(sub))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Empty <b><a href="CppFor.htm">for</a></b> loop<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicStl.png" alt="STL"/> SeperateString #3: Seperator is a <a href="CppChar.htm">char</a>, uses <a href="CppAlgorithm.htm">algorithms</a>, long version</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAssert.htm">assert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input, <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>&amp; seperator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppString.htm">std::string</a>::const_iterator Iterator;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Iterator end <a href="CppOperatorAssign.htm">=</a> input.end();<br/>
+&nbsp;&nbsp;Iterator i1 <a href="CppOperatorAssign.htm">=</a> input.begin();<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy until first comma<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Iterator i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppFind.htm">std::find</a>(i1,end,',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1,i2,<a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (i1<a href="CppOperatorNotEqual.htm">!=</a>end)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy from comma to (comma <a href="CppOperatorLogicalOr.htm">||</a> end)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Iterator i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppFind.htm">std::find</a>(i1 <a href="CppOperatorPlus.htm">+</a> 1,end,',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i2 <a href="CppOperatorEqual.htm">==</a> end <a href="CppOperatorLogicalOr.htm">||</a> *i2 <a href="CppOperatorEqual.htm">==</a> ',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1+1,i2,<a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicStl.png" alt="STL"/> SeperateString #4: Seperator is a <a href="CppChar.htm">char</a>, does not use algorithms</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAssert.htm">assert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<a href="CppString.htm">std::string</a> input, <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>&amp; seperator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input[0]<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input[input.size()-1]<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; result;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(pos&lt;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(input.size()))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (input[pos]<a href="CppOperatorEqual.htm">==</a>seperator)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> found <a href="CppOperatorAssign.htm">=</a> input.substr(0,pos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push_back(found);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input <a href="CppOperatorAssign.htm">=</a> input.substr(pos+1,input.size()-pos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>pos;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;result.push_back(input);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicStl.png" alt="STL"/> SeperateString #5: Seperator is a <a href="CppString.htm">std::string</a>, uses algorithms</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAssert.htm">assert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; seperator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppString.htm">std::string</a>::const_iterator Iterator;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Iterator end <a href="CppOperatorAssign.htm">=</a> input.end();<br/>
+&nbsp;&nbsp;Iterator i1 <a href="CppOperatorAssign.htm">=</a> input.begin();<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy until first comma<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Iterator i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch.htm">std::search</a>(i1,end,seperator.begin(), seperator.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1,i2,<a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (i1<a href="CppOperatorNotEqual.htm">!=</a>end)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy from comma to (comma <a href="CppOperatorLogicalOr.htm">||</a> end)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Iterator i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch.htm">std::search</a>(i1 <a href="CppOperatorPlus.htm">+</a> 1,end,seperator.begin(), seperator.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i2 <a href="CppOperatorEqual.htm">==</a> end <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppEqual.htm">std::equal</a>(seperator.begin(),seperator.end(),i2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1+1,i2,<a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicStl.png" alt="STL"/> SeperateString #6: Seperator is a <a href="CppString.htm">std::string</a>, does not use algorithms</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAssert.htm">assert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>Old(<a href="CppString.htm">std::string</a> input, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; seperator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.substr(0,seperator.size()) <a href="CppOperatorNotEqual.htm">!=</a> seperator);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.substr(input.size()-seperator.size(),seperator.size())<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; result;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(pos&lt;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(input.size()))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (input.substr(pos,seperator.size())<a href="CppOperatorEqual.htm">==</a>seperator)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> found <a href="CppOperatorAssign.htm">=</a> input.substr(0,pos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push_back(found);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input <a href="CppOperatorAssign.htm">=</a> input.substr(pos+seperator.size(),input.size()-pos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>pos;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;result.push_back(input);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

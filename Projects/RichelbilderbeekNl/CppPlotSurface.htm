@@ -1,0 +1,304 @@
+ 
+<title>PlotSurface</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ PlotSurface</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek PlotSurface Plot Surface double vector std::vector</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>11</o:Revision>
+  <o:TotalTime>136</o:TotalTime>
+  <o:Created>2008-07-26T13:55:00Z</o:Created>
+  <o:LastSaved>2008-07-27T14:57:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>1084</o:Words>
+  <o:Characters>6180</o:Characters>
+  <o:Category>C++ Richel Bilderbeek PlotSurface</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>51</o:Lines>
+  <o:Paragraphs>12</o:Paragraphs>
+  <o:CharactersWithSpaces>7589</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppPlotSurface.htm">PlotSurface</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a href="CppAsciiArt.htm">ASCII art</a> <a
+href="CppCodeSnippets.htm"> code
+snippet</a> that displays a 2D (y-x-ordered) <a href="CppVector.htm">std::vector</a>
+of <a href="CppDouble.htm">double</a> as a surface chart using <a
+href="CppAsciiArt.htm">ASCII art</a> characters (see an example below the
+code).</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppPlotSurface.htm">PlotSurface</a> uses <a
+href="CppGetAsciiArtGradient.htm">GetAsciiArtGradient</a>, <a href="CppMinElement.htm">MinElement</a> and <a
+href="CppMaxElement.htm">MaxElement</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>* <a href="CppPlotSurface.txt">View the code
+of 'PlotSurface' in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//The 2D
+std::vector must be y-x-ordered</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppPlotSurface.htm</p>
+
+<p><b> <a
+href="CppVoid.htm">void</a> </b>  <a
+href="CppPlotSurface.htm">PlotSurface</a>(<b><a href="CppConst.htm">const</a></b>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v)</p>
+
+<p>{</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(v.empty()
+== false &amp;&amp; &quot;Surface must have a size&quot;);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(v[0].size()
+&gt; 0 &amp;&amp; &quot;Surface must have a two-dimensional size&quot;);</p>
+
+<p>&nbsp;</p>
+
+<p>   //Obtain the ASCII art gradient and its size</p>
+
+<p>   <b><a href="CppStatic.htm">static</a></b> <b><a
+href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppChar.htm">char</a></b>&gt; asciiArtGradient = <a
+href="CppGetAsciiArtGradient.htm">GetAsciiArtGradient</a>();</p>
+
+<p>   <b><a href="CppStatic.htm">static</a></b> <b><a
+href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nAsciiArtGradientChars
+= asciiArtGradient.size();</p>
+
+<p>&nbsp;</p>
+
+<p>   //Minimum and maximum are not given, so
+these need to be calculated</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> minVal = <a href="CppMinElement.htm">MinElement</a>(v);</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> maxVal = <a href="CppMaxElement.htm">MaxElement</a>(v);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(minVal !=
+maxVal);</p>
+
+<p>&nbsp;</p>
+
+<p>   //Draw the pixels</p>
+
+<p>&nbsp;</p>
+
+<p>   //Iterator through all rows</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b> <a
+href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt; &gt;::<a href="CppConst_iterator.htm">const_iterator</a>
+rowEnd = v.end();</p>
+
+<p>   <b><a href="CppFor.htm">for</a></b> (<a
+href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt; &gt;::<a href="CppConst_iterator.htm">const_iterator</a>
+row = v.begin();</p>
+
+<p>     row != rowEnd;</p>
+
+<p>       ++row)</p>
+
+<p>   {</p>
+
+<p>     //Iterate through each row's collumns</p>
+
+<p>     <b><a href="CppConst.htm">const</a></b> <a
+href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::<a
+href="CppConst_iterator.htm">const_iterator</a> colEnd = row-&gt;end();</p>
+
+<p>     <b><a href="CppFor.htm">for</a></b> (<a
+href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::<a
+href="CppConst_iterator.htm">const_iterator</a> col = row-&gt;begin();</p>
+
+<p>       col != colEnd;</p>
+
+<p>       ++col)</p>
+
+<p>     {</p>
+
+<p>       //Scale the found grey value to an ASCII
+art character</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(maxVal
+- minVal != 0.0);</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> greyValueDouble = ( (*col) - minVal) /
+(maxVal - minVal);</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(greyValueDouble
+&gt;= 0.0 &amp;&amp; greyValueDouble &lt;= 1.0);</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> greyValueInt = greyValueDouble *
+nAsciiArtGradientChars;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> greyValue</p>
+
+<p>         = ( greyValueInt &lt; 0</p>
+
+<p>         ? 0 : (greyValueInt &gt;
+nAsciiArtGradientChars - 1</p>
+
+<p>           ? nAsciiArtGradientChars - 1:
+greyValueInt) );</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(greyValue
+&gt;= 0 &amp;&amp; greyValue &lt; nAsciiArtGradientChars);</p>
+
+<p>       <a href="CppCout.htm">std::cout</a>
+&lt;&lt; asciiArtGradient[greyValue];</p>
+
+<p>     }</p>
+
+<p>     <a href="CppCout.htm">std::cout</a>
+&lt;&lt; <a href="CppEndl.htm">std::endl</a>;</p>
+
+<p>   }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Example</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>`            ``.--://+oossyyyyyyyyssoo+//:--.``              ``.--:/++oossyyyyyyyysso</p>
+
+<p>``         ``..--://++osssyyyyyyyssso++/::--.```         ``..--://++osssyyyyyyyssoo</p>
+
+<p>``````````..--::/++oosssyyyyyysssoo++/::--..``````````..--::/++oosssyyyyyysssoo</p>
+
+<p>..`````...---://++oossssyyyyyssssoo++//:---...`````...---://++oosssyyyyyyssssoo</p>
+
+<p>-......----:://++oossssyyyyyyssssoo++//::----......----:://++oossssyyyyyyssssoo</p>
+
+<p>-------:::://+++oossssyyyyyyyssssoo+++//::::-------:::://+++oosssyyyyyyyyssssoo</p>
+
+<p>::::::////+++ooossssyyyyyyyyyyssssoo+++/////::::::////+++ooossssyyyyyyyyyysssso</p>
+
+<p>/////+++++oooossssyyyyyyyyyyyyyssssoooo+++++/////+++++oooossssyyyyyyyyyyyyyssss</p>
+
+<p>oooooooooosssssyyyyyyyyhhyyyyyyyysssssoooooooooooooooosssssyyyyyyyyhhyyyyyyyyss</p>
+
+<p>sssssssssssyyyyyyyyhhhhhhhhhyyyyyyyysssssssssssssssssssyyyyyyyyhhhhhhhhhyyyyyyy</p>
+
+<p>yyyyyyyyyyyyyhhhhhhhhhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyyyyhhhhhhhhhhhhhhhhhhhhyy</p>
+
+<p>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
+
+<p>dddddddddddhhhhhhhhhhhhhhhhhhhhhhddddddddddddddddddddddhhhhhhhhhhhhhhhhhhhhhhdd</p>
+
+<p>mmmmmmddddddddhhhhhhhhhhhhhhhddddddddmmmmmmmmmmmmmddddddddhhhhhhhhhhhhhhhdddddd</p>
+
+<p>NNNmmmmmmdddddhhhhhhhhhhhhhhdddddmmmmmmNNNNNNNNmmmmmmdddddhhhhhhhhhhhhhhdddddmm</p>
+
+<p>NNNNNmmmmddddhhhhhhyyyhhhhhhddddmmmmNNNNNNNNNNNNNmmmmddddhhhhhhyyyhhhhhhddddmmm</p>
+
+<p>MMNNNNmmmdddhhhyyyyyyyyyyhhhdddmmmNNNNMMMMMMMMNNNNmmmdddhhhyyyyyyyyyyhhhdddmmmN</p>
+
+<p>MMMNNNmmdddhhyyyyysssyyyyyhhdddmmNNNMMMMMMMMMMMNNNmmddhhhyyyyysssyyyyyhhdddmmNN</p>
+
+<p>MMNNNmmddhhyyyssssssssssyyyhhddmmNNNMMMMMMMMMMNNNmmddhhyyyssssssssssyyyhhddmmNN</p>
+
+<p>MMNNmmddhhyysssooooooosssyyhhddmmNNMMMMMMMMMMMNNmmddhhyysssooooooosssyyhhddmmNN</p>
+
+<p>MNNmmddhyyssooo++++++ooossyyhddmmNNMMMMMMMMMMNNmmddhyyssooo++++++ooossyyhddmmNN</p>
+
+<p>NNmmdhhyssoo++///////++oossyhhdmmNNMMMMMMMMMNNmmdhhyssoo++///////++oossyhhdmmNN</p>
+
+<p>Nmddhyysoo++//:::::://++oosyyhddmNNNMMMMMMNNNmddhyysoo++//:::::://++oosyyhddmNN</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

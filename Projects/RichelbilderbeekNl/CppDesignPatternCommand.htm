@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Design Pattern: Command</title>
+  <meta name="description" content="C++ Command"/>
+  <meta name="keywords" content="C++ Command design pattern code"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDesignPatternCommand.htm">Command</a> (<a href="CppDesignPattern.htm">Design Pattern</a>)</h1>
+<p>&nbsp;</p>
+<p>The <a href="CppDesignPatternCommand.htm">Command</a> <a href="CppDesignPattern.htm">Design Pattern</a> 'encapsulates a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations' [1]</p>
+<p>&nbsp;</p>
+<p>Personally, I view a <a href="CppDesignPatternCommand.htm">Command</a> as a <a href="CppClass.htm">class</a> containing a single push button (labeled 'Execute'), where the class itself does not know what this push button does.</p>
+<p>&nbsp;</p>
+<p>In [1] a <a href="CppDesignPatternCommand.htm">Command</a> <a href="CppBaseClass.htm">base class</a> is described. But instead I show two of my personal flavors of the <a href="CppDesignPatternCommand.htm">Command</a> <a href="CppDesignPattern.htm">Design Pattern</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example of two general template commands</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/CppDesignPatternCommand.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/shared_ptr.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Command<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppVoid.htm">void</a></b> (*FunctionPointer)(T&amp; target);<br/>
+<br/>
+&nbsp;&nbsp;Command(<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;T&gt; target, <b><a href="CppConst.htm">const</a></b> FunctionPointer functionPointer)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: mTarget(target), mFunction(functionPointer) { }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Execute() { mFunction( *( mTarget.get() ) ); }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;T&gt; mTarget;<br/>
+&nbsp;&nbsp;FunctionPointer mFunction;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> MemFunCommand<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppVoid.htm">void</a></b> (T::* MemFunPtr)();<br/>
+<br/>
+&nbsp;&nbsp;MemFunCommand(<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;T&gt; target, <b><a href="CppConst.htm">const</a></b> MemFunPtr memFun)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: mTarget(target), mFunction(memFun) { }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Execute() { (mTarget.get()-&gt;*mFunction)(); }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;T&gt; mTarget;<br/>
+&nbsp;&nbsp;MemFunPtr mFunction;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> MdPlayer<br/>
+{<br/>
+&nbsp;&nbsp;MdPlayer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : mId(id) {}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Play()   { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Play   #" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> mId <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Record() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Record #" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> mId <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppFunctorIncrease.htm">Increase</a>Id() { <a href="CppOperatorIncrement.htm">++</a>mId; <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppFunctorIncrease.htm">Increase</a>d ID to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> mId <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DecreaseId() { <a href="CppOperatorDecrement.htm">--</a>mId; <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Decreased ID to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> mId <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DecreaseId() { <a href="CppOperatorDecrement.htm">--</a>mId; <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Decreased ID to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> mId <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mId;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppFunctorIncrease.htm">Increase</a>Id(MdPlayer&amp; player)<br/>
+{<br/>
+&nbsp;&nbsp;player.<a href="CppFunctorIncrease.htm">Increase</a>Id();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> DecreaseId(MdPlayer&amp; player)<br/>
+{<br/>
+&nbsp;&nbsp;player.DecreaseId();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MdPlayer&gt; p0(<b><a href="CppNew.htm">new</a></b> MdPlayer(0));<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MdPlayer&gt; p1(<b><a href="CppNew.htm">new</a></b> MdPlayer(1));<br/>
+&nbsp;&nbsp;MemFunCommand&lt;MdPlayer&gt; b0(p0,&amp;MdPlayer::Play);<br/>
+&nbsp;&nbsp;MemFunCommand&lt;MdPlayer&gt; b1(p1,&amp;MdPlayer::Record);<br/>
+<br/>
+&nbsp;&nbsp;Command&lt;MdPlayer&gt; c0(p0,&amp;IncreaseId);<br/>
+&nbsp;&nbsp;Command&lt;MdPlayer&gt; c1(p1,&amp;DecreaseId);<br/>
+&nbsp;&nbsp;b0.Execute();<br/>
+&nbsp;&nbsp;b1.Execute();<br/>
+&nbsp;&nbsp;c0.Execute();<br/>
+&nbsp;&nbsp;c1.Execute();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Play   #0<br/>
+
+Record #1<br/>
+Increased ID to 1<br/>
+Decreased ID to 0<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppErichGamma.htm">Erich Gamma</a>, <a href="CppRichardHelm.htm">Richard Helm</a>, <a href="CppRalphJohnson.htm">Ralph Johnson</a>, <a href="CppJohnVlissides.htm">John Vlissides</a>. Design Patterns. 1995. ISBN: 0201633612.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+
+
+
+
+
+

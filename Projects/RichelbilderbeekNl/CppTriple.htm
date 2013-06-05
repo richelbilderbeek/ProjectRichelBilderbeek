@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Triple</title>
+  <meta name="description" content="C++ Triple"/>
+  <meta name="keywords" content="C++ Triple"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppTriple.htm">Triple</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppContainer.htm">Container</a> <a href="CppCodeSnippets.htm">code snippet</a> to triple all values in a <a href="CppContainer.htm">container</a>.</p>
+<p>&nbsp;</p>
+<p>There are multiple ways to perform <a href="CppTriple.htm">Triple</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicStl.png" alt="STL"/> The general <a href="CppAlgorithm.htm">algorithm</a> way using <a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> The general <a href="CppAlgorithm.htm">algorithm</a> way using <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> The general <a href="CppAlgorithm.htm">algorithm</a> way using <a href="CppLambda.htm">boost::lambda</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicStl.png" alt="STL"/> The <a href="Cpp98.htm">C++98</a> algorithm way on a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppInt.htm">int</a>&gt;</li>
+  <li><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using a <a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expressions</a> on a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppInt.htm">int</a>&gt;</li>
+  <li><img src="PicCpp98.png" alt="C++98"/> The <a href="CppFor.htm">for</a>-loop way on a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppInt.htm">int</a>&gt;</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppTriple.zip">Download the Qt Creator project 'CppTriple' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicStl.png" alt="STL"/> The general <a href="CppAlgorithm.htm">algorithm</a> way using <a href="CppBind2nd.htm">std::bind2nd</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppTriple.htm">Triple</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppTriple.htm">Triple</a>(Container&amp; c)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(c.begin(),c.end(),c.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppMultiplies.htm">std::multiplies</a>&lt;<b><a href="CppTypename.htm">typename</a></b> Container::value_type&gt;(),3));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> The general <a href="CppAlgorithm.htm">algorithm</a> way using <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/foreach.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppTriple.htm">Triple</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppTriple.htm">Triple</a>(Container&amp; c)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppTypename.htm">typename</a></b> Container::value_type&amp; i, c)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i<a href="CppOperatorMultiplyAssign.htm">*=</a>3;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> The general <a href="CppAlgorithm.htm">algorithm</a> way using <a href="CppLambda.htm">boost::lambda</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppTriple.htm">Triple</a>(Container&amp; c)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(c.begin(),c.end(), <a href="CppLambda.htm">boost::lambda</a>::_1 <a href="CppOperatorMultiplyAssign.htm">*=</a>3);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicStl.png" alt="STL"/> The <a href="Cpp98.htm">C++98</a> algorithm way on a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppInt.htm">int</a>&gt;</h2>
+<p>&nbsp;</p>
+<p>This version is given as the answer of <a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithm.htm">algorithm</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppTriple.htm">Triple</a>.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppTriple.htm">Triple</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(v.begin(),v.end(),v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppMultiplies.htm">std::multiplies</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(),3));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using a <a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expressions</a> on a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppInt.htm">int</a>&gt;</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppTriple.htm">Triple</a>.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppTriple.htm">Triple</a>Cpp0x(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppInt.htm">int</a></b>&amp; i) { i<a href="CppOperatorMultiplyAssign.htm">*=</a>3; } );<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/> The <a href="CppFor.htm">for</a>-loop way on a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppInt.htm">int</a>&gt;</h2>
+<p>&nbsp;</p>
+<p>Prefer <a href="CppAlgorithm.htm">algorithms</a> over loops [1][2]</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppTriple.htm">Triple</a>.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppTriple.htm">Triple</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]<a href="CppOperatorMultiplyAssign.htm">*=</a>3;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4. Chapter 18.12.1: 'Prefer algorithms over loops'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a> and <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 84: 'Prefer algorithm calls to handwritten loops'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,596 @@
+ 
+<title>Answer #1 of exercise #3: Don't give away your internals</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Answer of exercise #3: Don't give away your internals</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Answer of exercise #3: Don't give away your internals</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>14</o:Revision>
+  <o:TotalTime>428</o:TotalTime>
+  <o:Created>2008-07-25T10:36:00Z</o:Created>
+  <o:LastSaved>2008-07-25T11:40:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>1080</o:Words>
+  <o:Characters>6159</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Answer of exercise #3: Don't give away your internals</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>51</o:Lines>
+  <o:Paragraphs>12</o:Paragraphs>
+  <o:CharactersWithSpaces>7563</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:1457676245;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2023291324 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+  
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppExerciseDontGiveAwayYourInternalsAnswer1.htm"> Answer of exercise #3: Don't give
+away your internals, #1</a></h1>
+
+<p>&nbsp;</p>
+
+<p>This
+is part #1 of the answer of   <a
+href="CppExerciseDontGiveAwayYourInternals.htm"> exercise #3: Don't give away your internals</a> and the follow-up of   <a href="CppExerciseDontGiveAwayYourInternalsAnswer0.htm"> Answer of exercise #3: Don't give
+away your internals, #0</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>Part #1: checking you checking</h2>
+
+<p>&nbsp;</p>
+
+<p>Let's
+again start by defining a similar test suite.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;boost/shared_ptr.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppStruct.htm">struct</a> </b>  Animal //An abstract base
+class</p>
+
+<p>{</p>
+
+<p>
+ int mX; //It does not matter what mX is...</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppStruct.htm">struct</a> </b>  Zoo</p>
+
+<p>{</p>
+
+<p>
+ //The GetAnimals method...</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b><a href="CppPrivate.htm">private</a></b>:</p>
+
+<p>
+ <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Animal&gt;
+&gt; mAnimals;</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>
+ Zoo zoo;</p>
+
+<p>
+ zoo.GetAnimals[0]-&gt;mX = 123; //Must not compile!</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>For
+the GetAnimals method, there are now even more possibilities:</p>
+
+<p>*
+The <a href="CppMemberFunction.htm">member function</a> can be a <a href="CppConstMemberFunction.htm">const member function</a> yes or no</p>
+
+<p>*
+The <a href="CppReturnType.htm">return type</a> can be a <a
+href="CppConstReturnType.htm">const return type</a> yes or no</p>
+
+<p>*
+The <a href="CppReturnType.htm">return type</a> can have a const or non-const <a
+href="CppShared_ptr.htm">boost::shared_ptr</a>.</p>
+
+<p>*
+The <a href="CppReturnType.htm">return type</a> can have a const or non-const
+Animal held by the <a href="CppShared_ptr.htm">boost::shared_ptr</a>.</p>
+
+<p>*
+The animals can be given by using a <a href="CppReference.htm">reference</a> or
+a copy</p>
+
+<p>&nbsp;</p>
+
+<p>Again,
+
+we do not need a copy of those Animals (Note: perhaps later we will get back to
+this!) and we do not use the non-<a href="CppConstMethod.htm">const member functions</a>.
+</p>
+
+<p>&nbsp;</p>
+
+<p>This
+leaves only eight options left, which I'll give numbers from now on:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>     std::vector&lt;      
+ boost::shared_ptr&lt;      
+ Animal&gt; &gt;&amp; GetAnimals0() const;</p>
+
+<p>const std::vector&lt;        boost::shared_ptr&lt;        Animal&gt; &gt;&amp; GetAnimals1()
+const;</p>
+
+<p>     std::vector&lt;const boost::shared_ptr&lt;        Animal&gt; &gt;&amp; GetAnimals2()
+const;</p>
+
+<p>const std::vector&lt;const
+boost::shared_ptr&lt;        Animal&gt;
+&gt;&amp; GetAnimals3() const;</p>
+
+<p>     std::vector&lt;      
+ boost::shared_ptr&lt;const Animal&gt; &gt;&amp; GetAnimals4() const;</p>
+
+<p>const std::vector&lt;        boost::shared_ptr&lt;const Animal&gt;
+&gt;&amp; GetAnimals5() const;</p>
+
+<p>     std::vector&lt;const boost::shared_ptr&lt;const Animal&gt;
+&gt;&amp; GetAnimals6() const;</p>
+
+<p>const std::vector&lt;const
+boost::shared_ptr&lt;const Animal&gt; &gt;&amp; GetAnimals7() const;</p>
+
+<p></p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Now
+the real tests start, even before defining the GetAnimal methods.</p>
+
+<p>&nbsp;</p>
+
+<p>The
+following line must not compile:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>zoo.GetAnimalsX()[0]-&gt;mX = 123;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>The
+first Four versions of GetAnimals will compile against our goal! The
+boost::shared_ptr must hold a const Animal, because <a
+href="CppConstIsNotDeep.htm">const is not deep</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>With
+three methods left in the race, it's time to (try to) define them:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>std::vector&lt;boost::shared_ptr&lt;const
+Animal&gt; &gt;&amp; GetAnimals4() const</p>
+
+<p>{</p>
+
+<p>
+ return mAnimals; //Does not compile!</p>
+
+<p>}</p>
+
+<p>const
+std::vector&lt;boost::shared_ptr&lt;const Animal&gt; &gt;&amp; GetAnimals5()
+const</p>
+
+<p>{</p>
+
+<p>
+ return mAnimals; //Does not compile!</p>
+
+<p>}</p>
+
+<p>std::vector&lt;const
+boost::shared_ptr&lt;const Animal&gt; &gt;&amp; GetAnimals6() const</p>
+
+<p>{</p>
+
+<p>
+ return mAnimals; //Does not compile!</p>
+
+<p>}</p>
+
+<p>const std::vector&lt;const
+boost::shared_ptr&lt;const Animal&gt; &gt;&amp; GetAnimals7() const</p>
+
+<p>{</p>
+
+<p>
+ return mAnimals; //Does not compile!</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Blimey,
+none of these compiles! This is because a Zoo holds non-const Animals inside
+its <a href="CppShared_ptr.htm">boost::shared_ptr</a>s. Because of this it is
+impossible to return a reference of const Animals back! How can we solve this?</p>
+
+<p>&nbsp;</p>
+
+<p>The
+solution is...</p>
+
+<p>&nbsp;</p>
+
+<p>(I
+wrote that I'd get back to it)</p>
+
+<p>&nbsp;</p>
+
+<p>It
+is...</p>
+
+<p>&nbsp;</p>
+
+<p>(and
+now is the time)</p>
+
+<p>&nbsp;</p>
+
+<p>To
+make a copy!</p>
+
+<p>&nbsp;</p>
+
+<p>I'll
+directly show you the methods in full:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>std::vector&lt;boost::shared_ptr&lt;const
+Animal&gt; &gt; GetAnimals4() const</p>
+
+<p>{</p>
+
+<p>
+ return std::vector&lt;boost::shared_ptr&lt;const Animal&gt;
+&gt;(mAnimals.begin(),mAnimals.end());</p>
+
+<p>}</p>
+
+<p>const
+std::vector&lt;boost::shared_ptr&lt;const Animal&gt; &gt; GetAnimals5() const</p>
+
+<p>{</p>
+
+<p>
+ return std::vector&lt;boost::shared_ptr&lt;const Animal&gt;
+&gt;(mAnimals.begin(),mAnimals.end());</p>
+
+<p>}</p>
+
+<p>std::vector&lt;const boost::shared_ptr&lt;const
+Animal&gt; &gt; GetAnimals6() const</p>
+
+<p>{</p>
+
+<p>
+ return std::vector&lt;const boost::shared_ptr&lt;const Animal&gt;
+&gt;(mAnimals.begin(),mAnimals.end());</p>
+
+<p>}</p>
+
+<p>const std::vector&lt;const
+boost::shared_ptr&lt;const Animal&gt; &gt; GetAnimals7() const</p>
+
+<p>{</p>
+
+<p>
+ return std::vector&lt;const boost::shared_ptr&lt;const Animal&gt;
+&gt;(mAnimals.begin(),mAnimals.end());</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Does
+this makes you head spin? It might, but it's for a good cause: to not give away
+our internals.</p>
+
+<p>&nbsp;</p>
+
+<p>After
+this change, all four GetAnimals methods correctly refrain from compiling in
+this test:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>zoo.GetAnimalsX()[0]-&gt;mX = 123;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Great,
+we cannot modify an Animal. But, we might be able to modify a
+boost::shared_ptr!</p>
+
+<p>&nbsp;</p>
+
+<p>Time
+for another test:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>zoo.GetAnimalsX()[0].reset();</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>This
+will compile for GetAnimals4, so it's taken off our list, leaving only three
+candidates:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>const
+std::vector&lt;boost::shared_ptr&lt;const Animal&gt; &gt; GetAnimals5() const</p>
+
+<p>{</p>
+
+<p>
+ return std::vector&lt;boost::shared_ptr&lt;const Animal&gt;
+&gt;(mAnimals.begin(),mAnimals.end());</p>
+
+<p>}</p>
+
+<p>std::vector&lt;const
+boost::shared_ptr&lt;const Animal&gt; &gt; GetAnimals6() const</p>
+
+<p>{</p>
+
+<p>
+ return std::vector&lt;const boost::shared_ptr&lt;const Animal&gt;
+&gt;(mAnimals.begin(),mAnimals.end());</p>
+
+<p>}</p>
+
+<p>const std::vector&lt;const
+boost::shared_ptr&lt;const Animal&gt; &gt; GetAnimals7() const</p>
+
+<p>{</p>
+
+<p>
+ return std::vector&lt;const boost::shared_ptr&lt;const Animal&gt;
+&gt;(mAnimals.begin(),mAnimals.end());</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Though
+unexpected, this exercise is finished. When using a boost::shared_ptr, I cannot
+show that GetAnimals5 is not the candidate your're looking for. I cannot show
+this, because a boost::shared_ptr does not have a non-const-method that does
+not change an Animal. The difference between GetAnimals6 and GetAnimals7 only
+appear in a very small percentage of code.</p>
+
+<p>&nbsp;</p>
+
+<p>My
+favorite would be GetAnimals7, because it has the most consts:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>struct Zoo</p>
+
+<p>{</p>
+
+<p>
+ const std::vector&lt;const boost::shared_ptr&lt;const Animal&gt; &gt;
+GetAnimals7() const</p>
+
+<p>
+ {</p>
+
+<p> 
+ return std::vector&lt;const boost::shared_ptr&lt;const Animal&gt;
+&gt;(mAnimals.begin(),mAnimals.end());</p>
+
+<p>
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>
+ private:</p>
+
+<p>
+ std::vector&lt;boost::shared_ptr&lt;Animal&gt; &gt; mAnimals;</p>
+
+<p>};</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>I
+hope you enjoyed this exercise.</p>
+
+<h2>Epilogue</h2>
+
+<p>&nbsp;</p>
+
+<p>The
+exercise is called 'Don't give away your internals' (after <span
+style='mso-field-code:"REF _Ref204681867 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300034003600380031003800360037000000</w:data>
+</xml><![endif]--> ). On of the points of this item was the question:
+'What do you want to do with this information?'. If you want to use std::cout
+on the implementation of Zoo (that is, the std::vector of Animal), why not
+enable to use std::cout on Zoo itself? Think if you perhaps do not need the
+GetAnimals (or similar, as in your code) method after all.</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm"><span
+style='mso-bookmark:_Toc194762542'>  Reference</a></h2>
+
+<p>&nbsp;</p>
+
+<p></a><a name="_Ref204681867">   [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a><a href="CppHerbSutter.htm"><span
+style='mso-bookmark:_Ref204681867'><span style='mso-bookmark:_Ref202766402'> Herb Sutter   <span
+style='mso-bookmark:_Ref204681867'><span style='mso-bookmark:_Ref202766402'></a><span
+style='mso-bookmark:_Ref204681867'><span style='mso-bookmark:_Ref202766402'> , <a
+href="CppAndreiAlexandrescu.htm"><span style='mso-bookmark:_Ref204681867'>  Andrei Alexandrescu   <span style='mso-bookmark:
+_Ref204681867'><span style='mso-bookmark:_Ref202766402'></a><span
+style='mso-bookmark:_Ref204681867'><span style='mso-bookmark:_Ref202766402'> . C++ coding standards: 101
+rules, guidelines, and best practices. ISBN: 0-32-111358-6.    <span
+style='mso-bookmark:_Ref204681867'> Item 28: 'Don't give away your internals'</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

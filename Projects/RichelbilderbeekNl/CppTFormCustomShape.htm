@@ -1,0 +1,115 @@
+ 
+<title>VCL TForm custom shape</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>VCL TForm custom shape</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ VCL Richel Bilderbeek TForm custom shape VCL Builder Turbo</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>6</o:Revision>
+  <o:TotalTime>149</o:TotalTime>
+  <o:Created>2009-04-28T09:19:00Z</o:Created>
+  <o:LastSaved>2009-04-28T09:23:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>119</o:Words>
+  <o:Characters>680</o:Characters>
+  <o:Category>C++ VCL Richel Bilderbeek TForm custom shape</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>5</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>835</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ </head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>
+<a href="CppVcl.htm">VCL</a>) <a href="CppTFormCustomShape.htm">TForm custom
+shape</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppVcl.htm">VCL</a> <a href="CppVclGraphics.htm">graphics</a> <a href="CppVclCodeSnippets.htm"> code snippet</a> to use a custom TForm shape.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>__fastcall
+TForm1::TForm1(TComponent* Owner)</p>
+
+<p>       : TForm(Owner)</p>
+
+<p>{</p>
+
+<p>
+ HRGN h1 = CreateEllipticRgn(0,0,100,100);</p>
+
+<p>
+ HRGN h2 = CreateEllipticRgn(90,0,190,100);</p>
+
+<p>
+ HRGN h3 = CreateEllipticRgn(180,0,280,100);</p>
+
+<p>
+ CombineRgn(h1,h1,h2,RGN_OR);</p>
+
+<p>
+ CombineRgn(h1,h1,h3,RGN_OR);</p>
+
+<p>
+ SetWindowRgn(Handle,h1,true);</p>
+
+<p>
+ DeleteObject(h1);</p>
+
+<p>
+ DeleteObject(h2);</p>
+
+<p>
+ DeleteObject(h3);</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

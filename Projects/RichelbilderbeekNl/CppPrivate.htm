@@ -1,0 +1,74 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>private</title>
+  <meta name="description" content="C++ private"/>
+  <meta name="keywords" content="C++ private code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppPrivate.htm">private</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppPrivate.htm">private</a> is a <a href="CppKeyword.htm">keyword</a> for setting 
+<a href="CppClass.htm">class</a>
+access level to <a href="CppPrivate.htm">private</a> (the other access levels
+are <a href="CppPublic.htm">public</a> and <a href="CppProtected.htm">protected</a>)
+or for <a href="CppPrivateInheritance.htm">private inheritance</a>.</p>
+<p>&nbsp;</p>
+<p>A <a href="CppClass.htm">class</a> created with the <a href="CppKeyword.htm">keyword</a>
+<a href="CppClass.htm">class</a> has a <a href="CppPrivate.htm">private</a>
+access level by default, a <a href="CppClass.htm">class</a> created by the <a
+href="CppKeyword.htm">keyword</a> <a href="CppStruct.htm">struct</a> has <a
+href="CppPublic.htm">public</a> access level by default.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppClass.htm">class</a></b> Test<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> YouCanCallMe();<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> YouCannotCallMe();<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Test t;<br/>
+&nbsp;&nbsp;t.YouCanCallMe();<br/>
+&nbsp;&nbsp;t.YouCannotCallMe(); <a href="CppComment.htm">//</a>Illegal<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.2: Major Design Rules, Chapter 2, page 820: 'Keep class data members private'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

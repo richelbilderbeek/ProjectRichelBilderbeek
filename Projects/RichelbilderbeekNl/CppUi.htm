@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Ui</title>
+  <meta name="description" content="C++ Ui"/>
+  <meta name="keywords" content="C++ Qt Creator Ui namespace code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppUi.htm">Ui</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppUi.htm">Ui</a> is the <a href="CppNamespace.htm">namespace</a> that <a href="CppQtCreator.htm">Qt Creator</a> puts the designed <a href="CppGui.htm">GUI</a>'s in.</p>
+<p>&nbsp;</p>
+<p>The code below shows the code of a default-created <a href="CppQtCreator.htm">Qt Creator</a> dialog, with added <a href="CppComment.htm">comments</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> DIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> DIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppForwardDeclaration.htm">Forward declaration</a> of <a href="CppUi.htm">Ui</a>::Dialog<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppUi.htm">Ui</a> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~Dialog();<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppPointer.htm">Pointer</a> to this <a href="CppUi.htm">Ui</a>::Dialog<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog *ui;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOG_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

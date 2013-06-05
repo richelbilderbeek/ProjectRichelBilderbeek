@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>FANN example 2: solving the XOR problem</title>
+  <meta name="description" content="C++ FANN example 2: solving the XOR problem"/>
+  <meta name="keywords" content="C++ FANN example 2: solving the XOR problem"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppFannExample2.htm">FANN example 2: solving the XOR problem</a></h1>
+<p>&nbsp;</p>
+<p>This example shows how <a href="CppFann.htm">FANN</a> creates a neural network that learns to solve the XOR problem.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppFannExample2.zip">Download the Qt Creator project 'CppFannExample2' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: <a href="CppGui.htm">GUI</a> application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li> -->
+  <li><a href="CppFann.htm">FANN</a>: version 1.2.0-1</li>
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-08-12T16:54:00<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core<br/>
+QT       -= gui<br/>
+LIBS += -L/usr/local/lib -lfann<br/>
+TARGET = CppFannExample2<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;floatfann.h&gt;<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileExists.htm">FileExists</a>.htm<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppFileExists.htm">FileExists</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
+&nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(fileName)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; myVector;<br/>
+&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(fileName.c_str());<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> myString;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,myString);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;myVector.push_back(myString);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> myVector;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCoutContainer.htm">CoutContainer</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppCoutContainer.htm">CoutContainer</a>(<b><a href="CppConst.htm">const</a></b> Container&amp; c)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(c.begin(),c.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppTypename.htm">typename</a></b> Container::value_type&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSaveContainer.htm">SaveContainer</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppSaveContainer.htm">SaveContainer</a>(<b><a href="CppConst.htm">const</a></b> Container&amp; c, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(c.begin(),c.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppTypename.htm">typename</a></b> Container::value_type&gt;(f,"\n"));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> CreateXorProblemTrainingFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; s;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>First line:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> 4: number of training sets<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> 2: number of inputs<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> 1: number of outputs<br/>
+&nbsp;&nbsp;s.push_back("4 2 1");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Second line: <b><a href="CppIf.htm">if</a></b> the two inputs are 1.0 and 1.0....<br/>
+&nbsp;&nbsp;s.push_back("1.0 1.0");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Third line: the XOR network should <b><a href="CppReturn.htm">return</a></b> a <a href="CppOperatorMinus.htm">-</a>1.0<br/>
+&nbsp;&nbsp;s.push_back("-1.0");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Fourth line: <b><a href="CppIf.htm">if</a></b> the two inputs are <a href="CppOperatorMinus.htm">-</a>1.0 and <a href="CppOperatorMinus.htm">-</a>1.0....<br/>
+&nbsp;&nbsp;s.push_back("-1.0 <a href="CppOperatorMinus.htm">-</a>1.0");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Fifth line: the XOR network should <b><a href="CppReturn.htm">return</a></b> a <a href="CppOperatorMinus.htm">-</a>1.0<br/>
+&nbsp;&nbsp;s.push_back("-1.0");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>And so one...<br/>
+&nbsp;&nbsp;s.push_back("-1.0 1.0"); <a href="CppComment.htm">//</a>In<br/>
+&nbsp;&nbsp;s.push_back(&nbsp;&nbsp; "1.0"&nbsp;&nbsp;); <a href="CppComment.htm">//</a>Expected out<br/>
+&nbsp;&nbsp;s.push_back("1.0 <a href="CppOperatorMinus.htm">-</a>1.0"); <a href="CppComment.htm">//</a>In<br/>
+&nbsp;&nbsp;s.push_back(&nbsp;&nbsp; "1.0"&nbsp;&nbsp;); <a href="CppComment.htm">//</a>Expected out<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppSaveContainer.htm">SaveContainer</a>(s,filename);<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> num_input&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> num_hidden <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> num_output <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>&gt; layer_sizes;<br/>
+&nbsp;&nbsp;layer_sizes.push_back(num_input);<br/>
+&nbsp;&nbsp;layer_sizes.push_back(num_hidden);<br/>
+&nbsp;&nbsp;layer_sizes.push_back(num_output);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> file_input&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "XorProblemTrainingSet.txt";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> file_output <a href="CppOperatorAssign.htm">=</a> "Output.txt";<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> desired_error <a href="CppOperatorAssign.htm">=</a> 0.00001;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> max_epochs <a href="CppOperatorAssign.htm">=</a> 100000;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> epochs_between_reports <a href="CppOperatorAssign.htm">=</a> 100;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> learning_rate <a href="CppOperatorAssign.htm">=</a> 0.05;<br/>
+<br/>
+&nbsp;&nbsp;fann * <b><a href="CppConst.htm">const</a></b> n <a href="CppOperatorAssign.htm">=</a> fann_create_shortcut_array(learning_rate, layer_sizes.size(),&amp;layer_sizes[0]);<br/>
+<br/>
+&nbsp;&nbsp;fann_set_activation_function_hidden(n, FANN_SIGMOID_SYMMETRIC);<br/>
+&nbsp;&nbsp;fann_set_activation_function_output(n, FANN_SIGMOID_SYMMETRIC);<br/>
+<br/>
+&nbsp;&nbsp;CreateXorProblemTrainingFile(file_input);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>FANN is not <b><a href="CppConst.htm">const</a></b>-correct...<br/>
+&nbsp;&nbsp;fann_train_on_file(n,<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>*&gt;(file_input.c_str()), max_epochs, epochs_between_reports, desired_error);<br/>
+<br/>
+&nbsp;&nbsp;fann_save(n,file_output.c_str());<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Showing output file: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>(file_output);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCoutContainer.htm">CoutContainer</a>(v);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;fann_destroy(n);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Screen output</h2>
+<p>&nbsp;</p>
+<p>Note that screen output differs between runs, because the random number generator is initialized randomly.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Max epochs   100000. Desired error: 0.0000100000<br/>
+Epochs            1. Current error: 0.2508820593<br/>
+Epochs          100. Current error: 0.1011718586<br/>
+Epochs          200. Current error: 0.0171126649<br/>
+Epochs          300. Current error: 0.0025421339<br/>
+Epochs          400. Current error: 0.0002089983<br/>
+Epochs          470. Current error: 0.0000094494<br/>
+Showing output file: <br/>
+FANN_FLO_1.1<br/>
+3 0.050000 1.000000 1 5 5 5.00000000000000000000e-01 5.00000000000000000000e-01<br/>
+3 4 2 <br/>
+0 0 0 <br/>
+3 3 3 0 <br/>
+6 0 <br/>
+(0 4.18440580368041992188e+00) (1 4.06674432754516601562e+00) (2 3.74954080581665039062e+00) (0 4.17614841461181640625e+00) (1 4.05507659912109375000e+00) (2 3.76885223388671875000e+00) (0 -2.67808938026428222656e+00) (1 -2.79252290725708007812e+00) (2 1.96936237812042236328e+00) (0 -2.83534169197082519531e+00) (1 -2.52798914909362792969e+00) (3 4.44841718673706054688e+00) (4 4.85006999969482421875e+00) (5 4.21606016159057617188e+00) (6 -5.98922777175903320312e+00) <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SortContainer</title>
+  <meta name="description" content="C++ SortContainer"/>
+  <meta name="keywords" content="C++ STL SortContainer sort container sorting vector array collection set code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSortContainer.htm">SortContainer</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSortVector.htm">SortVector</a> is a <a href="CppSort.htm">sorting</a> <a href="CppCodeSnippets.htm">code snippet</a> to <a href="CppSort.htm">sort</a> a <a href="CppContainer.htm">container</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/foreach.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSortContainer.htm">SortContainer</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+T <a href="CppSortContainer.htm">SortContainer</a>(<b><a href="CppConst.htm">const</a></b> T&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;T w(v);<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(w.begin(),w.end());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppVector.htm">std::vector</a> with five random values<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorIncrement.htm">++</a>i) v.push_back(<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 100);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, v) <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " ";<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w(<a href="CppSortContainer.htm">SortContainer</a>(v));<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, w) <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " ";<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+83 86 77 15 93<br/> 
+15 77 83 86 93<br/> 
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+

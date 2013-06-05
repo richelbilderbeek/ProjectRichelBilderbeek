@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>method</title>
+  <meta name="description" content="C++ method"/>
+  <meta name="keywords" content="C++ method code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppMemberFunction.htm">member function</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppMemberFunction.htm">member function</a> is a 
+<a href="CppFunction.htm">function</a> working on a <a href="CppClass.htm">class</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppConst.htm">Const</a> methods do not change the (non-<a href="CppMutable.htm">mutable</a>) member variables.</p>
+<p>&nbsp;</p>
+<p>Follow a standard <a href="CppMemberFunctionDesign.htm">member function design</a>.</p>
+<p>&nbsp;</p>
+<p>Prefer writing short <a href="CppMemberFunction.htm">member functions</a> [3]. Calling a <a href="CppMemberFunction.htm">member function</a> a 'method' is wrong [2].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppHelloWorld.htm">HelloWorld</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Say<a href="CppHelloWorld.htm">HelloWorld</a>() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppHelloWorld.htm">Hello World</a>\n"; }<br/>
+};<br/>
+ <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppHelloWorld.htm">HelloWorld</a> h;<br/>
+&nbsp;&nbsp;h.Say<a href="CppHelloWorld.htm">HelloWorld</a>();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The class 'HelloWorld' has a single <a href="CppConst.htm">const</a> method called
+'SayHelloWorld'. It is called in <a href="CppMain.htm">main</a>, producing the
+same output as a <a href="CppHelloWorld.htm">Hello World program</a>.</p>
+<p>&nbsp;</p>
+<p>Avoid calling <a href="CppVirtual.htm">virtual</a> <a href="CppMemberFunction.htm">member functions</a> in 
+<a href="CppConstructor.htm">constructors</a> and <a href="CppDestructor.htm">destructors</a> [1].
+Avoid <a href="CppPublic.htm">public</a> <a href="CppVirtual.htm">virtual</a> <a href="CppMemberFunction.htm">member functions</a>; 
+prefer using the <a href="CppDesignPatternTemplateMethod.htm">Template Method Design Pattern</a> instead [4].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!-- 1 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 49: 'Avoid calling virtual functions in constructors and destructors'</li>
+  <li><!-- 2 -->Stephen C. Dewhurst. C++ Gotchas. 2003. ISBN: 0-321-12518-5. Gotcha #9: 'Wrong: method, right: member function'</li>
+  <li><!-- 3 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 1: 'Any one function (or method) will contain no more than 200 logical source lines of code.'</li>
+  <li><!-- 4 --><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppExceptionalCpp.htm">Exceptional C++</a>. ISBN: 0-201-61562-2. Item 23, page 84, guideline: 'Avoid public virtual functions; prefer using the Template Method pattern instead'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

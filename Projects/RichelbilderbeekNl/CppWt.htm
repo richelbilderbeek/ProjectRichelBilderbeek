@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Wt</title>
+  <meta name="description" content="C++ Wt"/>
+  <meta name="keywords" content="C++ Wt witty dynamic website library free GPL"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicWt.png" alt="Wt"/> 
+  <a href="CppWt.htm">Wt</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppWt.htm">Wt</a> (we pronounce that as 'witty') is a <a href="Cpp.htm">C++</a> 
+<a href="CppLibrary.htm">library</a> for developing interactive 
+<a href="CppWebApplication.htm">web applications</a> [1].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppHelloWt.htm">'Hello Wt' program</a></li>
+  <li><a href="CppWtArticle.htm">Wt articles</a></li>
+  <li><a href="CppWtAssert.htm">Wt and assert</a></li>
+  <li><a href="CppWtClass.htm">Wt classes</a></li>
+  <li><a href="CppWtDeploy.htm">Wt deployment</a></li>
+  <li><a href="CppWtExample.htm">Wt examples</a></li>
+  <li><a href="CppWtFaq.htm">Wt FAQ</a></li>
+  <li><a href="CppWtWithOtherLibraries.htm">Wt with other libraries</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicQtCreator.png" alt="Qt Creator"/> Note for <a href="CppQtCreator.htm">Qt Creator</a> users</h2>
+<p>&nbsp;</p>
+<p>Add the following line to your <a href="CppQtProjectFile.htm">Qt project file</a> (to prevent 
+<a href="CppLinkError.htm">link errors</a> like 
+<a href="CppLinkErrorUndefinedReferenceToWtWrun.htm">undefined reference to 'Wt::WRun(int, char**, Wt::WApplication* (*)(Wt::WEnvironment const&amp;))'</a>):</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+LIBS += -lwt -lwthttp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>For a <a href="CppWt.htm">Wt</a> application to run, choose one of these options:</p>
+<p>&nbsp;</p>
+<ol>
+  <li>
+    Use my <a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppClass.htm">class</a>:
+    <p>&nbsp;</p>
+    <ul>
+      <li>
+        Add the following line to your <a href="CppQtProjectFile.htm">Qt project file</a>:
+        <p>&nbsp;</p>
+        <!-- start of code -->
+        <table border = "1"><tr><td><code>
+        INCLUDEPATH <a href="CppOperatorPlusAssign.htm">+=</a> ../../<a href="CppClass.htm">Classes</a>/Cpp<a href="CppWtAutoConfig.htm">WtAutoConfig</a><br/>
+        </code></td></tr></table>
+        <!-- end of the code -->
+        <p>&nbsp;</p>
+      </li>
+      <li>
+        Change your <a href="CppMain.htm">main</a> to the following, to let <a href="CppWtAutoConfig.htm">WtAutoConfig</a> add the arguments:
+        <p>&nbsp;</p>
+        <!-- start of code -->
+        <table border = "1"><tr><td><code>
+        <a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
+        <br/>
+        <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+        {<br/>
+        &nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
+        &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.Run();<br/>
+        }<br/>
+        </code></td></tr></table>
+        <!-- end of the code -->
+      </li>
+    </ul>
+    <p>&nbsp;</p>
+    I follow this approach in my larger programs, for example in <a href="ToolTestGroupWidgetSource_1_2.htm">TestGroupWidget (version 1.2)</a>.
+    <p>&nbsp;</p>
+  </li>
+  <li>
+    Change your <a href="CppMain.htm">main</a> to the following, to call WRun with the arguments added with 
+    a <a href="Cpp11.htm">C++11</a> <a href="CppInitializerList.htm">initializer list</a>:
+    <p>&nbsp;</p>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+    {<br/>
+    &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.htm">C++11</a> <a href="CppInitializerList.htm">initializer list</a><br/>
+    &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> v[7] <a href="CppOperatorAssign.htm">=</a><br/>
+    &nbsp;&nbsp;{<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppArgc.htm">argv</a>[0],<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppOperatorDecrement.htm">--</a>docroot", ".",<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppOperatorDecrement.htm">--</a>http-port", "8080",<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppOperatorDecrement.htm">--</a>http-address", "0.0.0.0"<br/>
+    &nbsp;&nbsp;};<br/>
+    &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(7, <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>**&gt;(v), &amp;Create<a href="CppApplication.htm">Application</a>);<br/>
+    }<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+    <p>&nbsp;</p>
+    I follow this approach my very small, mostly demonstrational, programs, for example in <a href="CppMemcheckExample6.htm">memcheck example 6</a>.
+    <p>&nbsp;</p>
+  </li>
+  <li>
+    Add the following arguments to the <a href="CppQtCreatorRunSettings.png">Run Settings</a> (to prevent the 
+    <a href="CppMiscError.htm">misc error</a> 
+    <a href="CppMiscErrorStatNoSuchFileOrDirectoryDocumentRootNotValid.htm">stat: No such file or directory. Document root ("") not valid.</a>
+    <p>&nbsp;</p>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    --docroot . --http-address 0.0.0.0 --http-port 8080<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+    <p>&nbsp;</p>
+    <p>Or to redirect the output to a log file (untested):</p>
+    <p>&nbsp;</p>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    --docroot . --http-address 0.0.0.0 --http-port 8080 --accesslog access.log &gt; /dev/null 2&gt;&amp;1 &amp;<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+    <p>&nbsp;</p>
+    I never follow this approach, because I prefer my solutions in code.
+    <p>&nbsp;</p>
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.webtoolkit.eu/wt">Wt homepage</a></li>
+  <li><a href="http://www.webtoolkit.eu/wt/doc/reference/html/annotated.html">Wt class documentation</a></li>
+  <li><a href="http://redmine.webtoolkit.eu/projects/wt/wiki">Wt wiki</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://www.webtoolkit.eu/wt">Wt homepage</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

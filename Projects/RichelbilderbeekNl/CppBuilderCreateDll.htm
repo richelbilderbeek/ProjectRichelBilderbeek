@@ -1,0 +1,592 @@
+ 
+<title>Builder Create a DLL</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Builder Create a DLL</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Builder Richel Bilderbeek Create a DLL creating starting making make start write</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>32</o:Revision>
+  <o:TotalTime>188</o:TotalTime>
+  <o:Created>2009-06-01T06:58:00Z</o:Created>
+  <o:LastSaved>2009-06-01T09:52:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>1441</o:Words>
+  <o:Characters>8215</o:Characters>
+  <o:Category>C++ Builder Richel Bilderbeek Create a DLL</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>68</o:Lines>
+  <o:Paragraphs>16</o:Paragraphs>
+  <o:CharactersWithSpaces>10088</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ </head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a
+href="CppBuilder.htm">C++ Builder</a>) <a href="CppBuilderCreateDll.htm">Create
+a DLL</a></h1>
+
+<p>&nbsp;</p>
+
+<p>Before being able to   <a href="CppBuilderCallDll.htm">call
+a DLL</a>, one has to <a href="CppBuilderCreateDll.htm">create a DLL</a> first.
+</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppBuilderCreateDll.zip">Download all files created in this page (zip)</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>To
+create a <a href="CppBuilderDll.htm">DLL</a> in C++ Builder, do the following
+steps:</p>
+
+  <li>
+    'File
+| Close All'</p>
+
+  <li>
+    'File
+| New | Other | DLL Wizard'</p>
+
+  <li>
+    Select
+'C++' as the 'Source Type'. Uncheck all checkboxes, unless you need them</p>
+
+<p>&nbsp;</p>
+
+<p>The
+following code is produced, in the default-named Unit1.cpp.</p>
+
+<p>&nbsp;</p>
+
+<h2>Unit1.cpp, created after   'File | New | Other | DLL Wizard'</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;windows.h&gt;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//   
+ Important note about DLL memory management when your DLL uses the</p>
+
+<p>//   
+ static version of the RunTime Library:</p>
+
+<p>//</p>
+
+<p>//   
+ If your DLL exports any functions that pass String objects (or structs/</p>
+
+<p>//   
+ classes containing nested Strings) as parameter or function results,</p>
+
+<p>//   
+ you will need to add the library MEMMGR.LIB to both the DLL project and</p>
+
+<p>//   
+ any other projects that use the DLL.  
+ You will also need to use MEMMGR.LIB</p>
+
+<p>//   
+ if any other projects which use the DLL will be performing new or delete</p>
+
+<p>//   
+ operations on any non-TObject-derived classes which are exported from
+the</p>
+
+<p>//   
+ DLL. Adding MEMMGR.LIB to your project will change the DLL and its
+calling</p>
+
+<p>//   
+ EXE's to use the BORLNDMM.DLL as their memory manager.    In these cases,</p>
+
+<p>//   
+ the file BORLNDMM.DLL should be deployed along with your DLL.</p>
+
+<p>//</p>
+
+<p>//   
+ To avoid using BORLNDMM.DLL, pass string information using &quot;char
+*&quot; or</p>
+
+<p>//   
+ ShortString parameters.</p>
+
+<p>//</p>
+
+<p>//   
+ If your DLL uses the dynamic version of the RTL, you do not need to</p>
+
+<p>//   
+ explicitly add MEMMGR.LIB as this will be done implicitly for you</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppPragma.htm">#pragma</a> <a
+href="CppArgsused.htm">argsused</a></p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  WINAPI
+DllEntryPoint(HINSTANCE
+hinst, <b><a href="CppUnsigned.htm">unsigned</a> <a href="CppLong.htm">long</a></b>
+reason, <b><a href="CppVoid.htm">void</a></b>* lpReserved)</p>
+
+<p>{</p>
+
+<p>       <b><a href="CppReturn.htm">return</a></b> 1;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppBuilderCreateDllEntryPointCpp.txt">View this code in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>You
+might want to 'File | Save All' and save this unit as 'UnitEntryPoint.cpp' and
+the project as 'ProjectDll.bpr'.</p>
+
+<p>&nbsp;</p>
+
+<p>Now
+it's time to add a function. Do 'File | New | Unit'. Save the newly created
+unit as 'UnitFunctions.cpp'.</p>
+
+<p>&nbsp;</p>
+
+<p>View
+UnitFunctions.h first.</p>
+
+<h2>UnitFunctions.h before adding our function</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><a href="CppIfndef.htm">#ifndef</a>
+UnitFunctionsH</p>
+
+<p><a href="CppDefine.htm">#define</a>
+UnitFunctionsH</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppEndif.htm">#endif</a></p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>There
+is nothing in UnitFunctions.h yet, except for an <a href="CppIncludeGuard.htm">#include
+guard</a>. Below 'UnitFunctions.h' has one function added.</p>
+
+<h2>UnitFunctions.h after adding our function</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><a href="CppIfndef.htm">#ifndef</a>
+UnitFunctionsH</p>
+
+<p><a href="CppDefine.htm">#define</a>
+UnitFunctionsH</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppIfdef.htm">#ifdef</a>
+__cplusplus</p>
+
+<p><b> <a href="CppExtern.htm">extern</a> </b>  &quot;C&quot;</p>
+
+<p>{</p>
+
+<p><a href="CppEndif.htm">#endif</a></p>
+
+<p>&nbsp;</p>
+
+<p><b> __declspec </b>  (dllexport) <b><a
+href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+GetAnswerOfLife();</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppIfdef.htm">#ifdef</a>
+__cplusplus</p>
+
+<p>}</p>
+
+<p><a href="CppEndif.htm">#endif</a></p>
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><a href="CppEndif.htm">#endif</a></p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppBuilderCreateDllUnitFunctionsH.txt">View this code in plain text</a></p>
+
+<p>&nbsp;</p>
+
+<p>The
+function put in the DLL is called GetAnswerOfLife and will return the value of
+42. Note the <a href="CppIfdef.htm">#ifdef</a>'s before and after the function.
+These are obligatory!</p>
+
+<p>&nbsp;</p>
+
+<p>Now
+the function GetAnswerOfLife must be defined in UnitFunctions.cpp. Upon viewing
+it, the code looks like below</p>
+
+<p>&nbsp;</p>
+
+<h2>UnitFunctions.cpp, before adding own code</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p class=MsoNormal style='text-align:justify;border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'> <a href="CppPragma.htm">#pragma</a>
+hdrstop</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&quot;UnitFunctions.h&quot;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppPragma.htm">#pragma</a>
+package(smart_init)</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Now
+add the code of GetAnswerOfLife in the regular way, as shown below</p>
+
+<p>&nbsp;</p>
+
+<h2>UnitFunctions.cpp, after adding own code</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><a href="CppPragma.htm">#pragma</a>
+hdrstop</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&quot;UnitFunctions.h&quot;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  <b><a href="CppInt.htm">int</a></b>
+GetAnswerOfLife()</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppReturn.htm">return</a></b> 42;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><a href="CppPragma.htm">#pragma</a>
+package(smart_init)</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppBuilderCreateDllUnitFunctionsCpp.txt">View this code in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>Press
+F9 and you have just created your first DLL! After it is created an error will
+appear 'One cannot debug project unless a host application is defined.'. No
+problem, as, again, you have just created your first DLL. Time to <a
+href="CppBuilderCallDll.htm">call a function from your DLL</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>Adding some diagnostic features (optional)</h2>
+
+<p>&nbsp;</p>
+
+<p>If
+you are new to using DLL's, you might want to add some diagnostic features to
+UnitEntryPoint.cpp. If not, perhaps you want to <a href="CppBuilderCallDll.htm">call
+a DLL</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>UnitEntryPoint.cpp with diagnostic features added</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;windows.h&gt;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//   
+ Important note about DLL memory management when your DLL uses the</p>
+
+<p>//   
+ static version of the RunTime Library:</p>
+
+<p>//</p>
+
+<p>//   
+ If your DLL exports any functions that pass String objects (or structs/</p>
+
+<p>//   
+ classes containing nested Strings) as parameter or function results,</p>
+
+<p>//   
+ you will need to add the library MEMMGR.LIB to both the DLL project and</p>
+
+<p>//   
+ any other projects that use the DLL.  
+ You will also need to use MEMMGR.LIB</p>
+
+<p>//   
+ if any other projects which use the DLL will be performing new or delete</p>
+
+<p>//   
+ operations on any non-TObject-derived classes which are exported from
+the</p>
+
+<p>//   
+ DLL. Adding MEMMGR.LIB to your project will change the DLL and its
+calling</p>
+
+<p>//   
+ EXE's to use the BORLNDMM.DLL as their memory manager.    In these cases,</p>
+
+<p>//   
+ the file BORLNDMM.DLL should be deployed along with your DLL.</p>
+
+<p>//</p>
+
+<p>//   
+ To avoid using BORLNDMM.DLL, pass string information using &quot;char
+*&quot; or</p>
+
+<p>//   
+ ShortString parameters.</p>
+
+<p>//</p>
+
+<p>//   
+ If your DLL uses the dynamic version of the RTL, you do not need to</p>
+
+<p>//   
+ explicitly add MEMMGR.LIB as this will be done implicitly for you</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppPragma.htm">#pragma</a> <a
+href="CppArgsused.htm">argsused</a></p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  WINAPI
+DllEntryPoint(HINSTANCE
+hinst, <b><a href="CppUnsigned.htm">unsigned</a> <a href="CppLong.htm">long</a></b>
+reason, <b><a href="CppVoid.htm">void</a></b>* lpReserved)</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppSwitch.htm">switch</a></b> (reason)</p>
+
+<p>
+ {</p>
+
+<p> 
+ <b><a href="CppCase.htm">case</a></b> DLL_PROCESS_ATTACH:</p>
+
+<p>     <b><a href="CppIf.htm">if</a></b> (lpReserved)</p>
+
+<p>         
+ MessageBox(0,&quot;Process has attached
+to DLL by static loading&quot;,</p>
+
+<p>         &quot;UnitEntryPoint.cpp&quot;,MB_OK);</p>
+
+<p>     <b><a href="CppElse.htm">else</a> </b></p>
+
+<p>         MessageBox  (0,&quot;Process has attached
+to DLL by dynamic loadinging&quot;,</p>
+
+<p>         &quot;UnitEntryPoint.cpp&quot;,MB_OK);</p>
+
+<p>     <b><a href="CppBreak.htm">break</a></b>;</p>
+
+<p> 
+ <b><a href="CppCase.htm">case</a></b> DLL_THREAD_ATTACH:</p>
+
+<p>       MessageBox  (0,&quot;Thread has attached
+to DLL&quot;,</p>
+
+<p>       &quot;UnitEntryPoint.cpp&quot;,MB_OK);</p>
+
+<p>     <b><a href="CppBreak.htm">break</a></b>;</p>
+
+<p> 
+ <b><a href="CppCase.htm">case</a></b> DLL_THREAD_DETACH:</p>
+
+<p>       MessageBox  (0,&quot;Thread has detached
+from DLL&quot;,</p>
+
+<p>       &quot;UnitEntryPoint.cpp&quot;,MB_OK);</p>
+
+<p>     <b><a href="CppBreak.htm">break</a></b>;</p>
+
+<p> 
+ <b><a href="CppCase.htm">case</a></b> DLL_PROCESS_DETACH:</p>
+
+<p>       MessageBox  (0,&quot;Process has
+detached from DLL&quot;,</p>
+
+<p>       &quot;UnitEntryPoint.cpp&quot;,MB_OK);</p>
+
+<p>     <b><a href="CppBreak.htm">break</a></b>;</p>
+
+<p>
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b><a href="CppReturn.htm">return</a></b> 1;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Note the use MessageBox   instead of <a
+href="CppVclShowMessage.htm">ShowMessage</a>, as   
+MessageBox   is a Win32 API function (so it can be found in 
+windows.h), where <a href="CppVclShowMessage.htm">ShowMessage</a>
+is a <a href="CppVcl.htm">VCL</a> function.</p>
+
+<p>&nbsp;</p>
+
+<p>Perhaps
+you now want to <a href="CppBuilderCallDll.htm">go to the calling a DLL page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

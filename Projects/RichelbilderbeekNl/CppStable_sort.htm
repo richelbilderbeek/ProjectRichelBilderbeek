@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::stable_sort</title>
+  <meta name="description" content="C++ std::stable_sort"/>
+  <meta name="keywords" content="C++ std::stable_sort std stable_sort STL stable sort algorithm code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStable_sort.htm">std::stable_sort</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppStable_sort.htm">std::stable_sort</a> is an <a href="CppStl.htm">STL</a> 
+<a href="CppSort.htm">sorting</a> <a href="CppAlgorithm.htm">algorithm</a>. It differs from
+<a href="CppSort.htm">std::sort</a> in that it preserves the order in equivalent elemenst 
+(where <a href="CppSort.htm">std::sort</a> might change this order).</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> something)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_id(id), m_something(something) {}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_id;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_something;<br/>
+};<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> MyClass&amp; lhs, <b><a href="CppConst.htm">const</a></b> MyClass&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note: m_something is not tested <b><a href="CppFor.htm">for</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.m_id &lt; rhs.m_id;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;MyClass&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(MyClass(2,2));<br/>
+&nbsp;&nbsp;v.push_back(MyClass(1,2)); <a href="CppOperatorDivide.htm">/</a>/These three <a href="CppInstance.htm">instances</a><br/>
+&nbsp;&nbsp;v.push_back(MyClass(1,1)); <a href="CppOperatorDivide.htm">/</a>/will remain in the same<br/>
+&nbsp;&nbsp;v.push_back(MyClass(1,0)); <a href="CppOperatorDivide.htm">/</a>/order after <a href="CppStable_sort.htm">std::stable_sort</a><br/>
+&nbsp;&nbsp;v.push_back(MyClass(0,0));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStable_sort.htm">std::stable_sort</a>(v.begin(),v.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0].m_id <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[0].m_something <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1].m_id <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[1].m_something <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2].m_id <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[2].m_something <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[3].m_id <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[3].m_something <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[4].m_id <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[4].m_something <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</2h>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.sgi.com/tech/stl/stable_sort.html">SGI page about std::stable_sort</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

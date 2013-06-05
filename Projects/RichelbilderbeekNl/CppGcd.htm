@@ -1,0 +1,231 @@
+ 
+<title>Greatest Common Divisor</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet Greatest Common Divisor GCD</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek Greatest Common Divisor GCD</o:Keywords>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>121</o:TotalTime>
+  <o:Created>2007-07-29T12:24:00Z</o:Created>
+  <o:LastSaved>2007-08-11T09:55:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>199</o:Words>
+  <o:Characters>1138</o:Characters>
+  <o:Lines>9</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1397</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p>Back
+to <a href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>Back
+to <a href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>GCD</h1>
+
+<p>&nbsp;</p>
+
+<p>The
+greatest common divisor can be calculated</p>
+
+<p>*
+using a for-loop</p>
+
+<p>*
+using recursion</p>
+
+<p>*
+using the <a href="http://www.boost.org/">Boost</a> library</p>
+
+<p>&nbsp;</p>
+
+<p>Code
+in plain text can be found <a href="CppGcd.txt">here</a>.</p>
+
+<h2>A for-loop</h2>
+
+<p>&nbsp;</p>
+
+<p>Using
+Euclid's algorithm.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>int GreatestCommonDivisor(int x, int
+y)</p>
+
+<p>{</p>
+
+<p>
+ while (y != 0)</p>
+
+<p>
+ {</p>
+
+<p> 
+ const int temp = y;</p>
+
+<p> 
+ y = x % y;</p>
+
+<p> 
+ x = temp;</p>
+
+<p>
+ }</p>
+
+<p>
+ return x;</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Using recursion</h2>
+
+<p>&nbsp;</p>
+
+<p>Using
+Euclid's algorithm, a recursive function:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>int GreatestCommonDivisor(const int
+x, const int y)</p>
+
+<p>{</p>
+
+<p>
+ if (y==0) return x;</p>
+
+<p>
+ return GreatestCommonDivisor(y,x%y);</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Using the <a href="http://www.boost.org/"> Boost</a> library</h2>
+
+<p>&nbsp;</p>
+
+<p>From
+<a href="http://www.boost.org/doc/html/boost_math/gcd_lcm.html">http://www.boost.org/doc/html/boost_math/gcd_lcm.html</a>:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include
+&lt;boost/math/common_factor.hpp&gt;</p>
+
+<p>#include &lt;algorithm&gt;</p>
+
+<p>#include &lt;iterator&gt;</p>
+
+<p>#include &lt;iostream&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>int main()</p>
+
+<p>{</p>
+
+<p>
+ using std::cout;</p>
+
+<p>
+ using std::endl;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ cout &lt;&lt; &quot;The GCD and LCM of 6 and 15 are &quot;</p>
+
+<p>
+ &lt;&lt; boost::math::gcd(6, 15) &lt;&lt; &quot; and &quot;</p>
+
+<p>
+ &lt;&lt; boost::math::lcm(6, 15) &lt;&lt; &quot;, respectively.&quot;</p>
+
+<p>
+ &lt;&lt; endl;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ cout &lt;&lt; &quot;The GCD and LCM of 8 and 9 are &quot;</p>
+
+<p>
+ &lt;&lt; boost::math::static_gcd&lt;8, 9&gt;::value</p>
+
+<p>
+ &lt;&lt; &quot; and &quot;</p>
+
+<p>
+ &lt;&lt; boost::math::static_lcm&lt;8, 9&gt;::value</p>
+
+<p>
+ &lt;&lt; &quot;, respectively.&quot; &lt;&lt; endl;</p>
+
+<p>
+ std::cin.get();</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Back
+to <a href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>Back
+to <a href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

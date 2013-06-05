@@ -1,0 +1,257 @@
+ 
+<title>VCL Convert</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>VCL Convert</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ VCL Code Snippet Convert Richel Bilderbeek conversion</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>10</o:Revision>
+  <o:TotalTime>401</o:TotalTime>
+  <o:Created>2009-04-28T08:20:00Z</o:Created>
+  <o:LastSaved>2009-04-28T08:30:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>508</o:Words>
+  <o:Characters>2898</o:Characters>
+  <o:Category>C++ VCL Code Snippet Convert Richel Bilderbeek</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>24</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3558</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ 
+ 
+h2
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Courier New";
+	mso-ansi-language:NL;
+	mso-bidi-font-style:italic;}
+ 
+ 
+ 
+ 
+a:link, span.MsoHyperlink
+	{mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+ 
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:70587389;
+	mso-list-type:hybrid;
+	mso-list-template-ids:242541958 -1153271394 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.5in;}
+@list l1
+	{mso-list-id:580412749;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-230293118 1255712948 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+	{mso-level-start-at:0;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.5in;}
+@list l2
+	{mso-list-id:1941374712;
+	mso-list-type:hybrid;
+	mso-list-template-ids:800900212 1255712948 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-start-at:0;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.5in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1><a name="_Toc194730639"> (</a><a
+href="Cpp.htm"><span style='mso-bookmark:_Toc194730639'> C++  <span
+style='mso-bookmark:_Toc194730639'></a><span style='mso-bookmark:_Toc194730639'>    <a href="CppVcl.htm"><span style='mso-bookmark:_Toc194730639'> VCL  <span style='mso-bookmark:_Toc194730639'></a><span
+style='mso-bookmark:_Toc194730639'> )  <a name="_Toc194730649"></a> <a
+href="CppConvert.htm"><span style='mso-bookmark:_Toc194730639'><span
+style='mso-bookmark:_Toc194730649'> Conver    t</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCodeSnippets.htm">Code snippets</a> to convert a certain <a
+href="CppVcl.htm">VCL</a> <a href="CppDataType.htm">data type</a> to another
+one.</p>
+
+<p>&nbsp;</p>
+
+<p>For
+conversions from and to <a href="CppStl.htm">STL</a> and <a href="CppBoost.htm">boost</a>
+<a href="CppClass.htm">classes</a>, <a href="CppConvert.htm">go to the STL and
+boost convert page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p><a name="_Toc194730647"></a><a href="CppCheck.htm"><span
+style='mso-bookmark:_Toc194730647'> Checks  <span
+style='mso-bookmark:_Toc194730647'></a> <a href="CppCodeSnippets.htm">code
+snippets</a> check if this conversion can be succesfull.</p>
+
+<p>&nbsp;</p>
+
+   0. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppVectorToImage.htm">Convert 2D std::vector to TImage, VectorToImage</a></p>
+
+   1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAnsiToDouble.htm">Convert AnsiString to double</a></p>
+
+   2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAnsiToInt.htm">Convert AnsiString to integer</a></p>
+
+   3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAnsiToLower.htm">Convert AnsiString to lower case</a></p>
+
+   4. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAnsiToStr.htm">Convert AnsiString to std::string</a></p>
+
+   5. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAnsiToUpper.htm">Convert AnsiString to upper case</a></p>
+
+   6. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAnsiToWide.htm">Convert AnsiString to WideString</a></p>
+
+   7. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDoubleToAnsi.htm">Convert double to AnsiString</a></p>
+
+   8. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppIntToAnsi.htm">Convert integer to AnsiString</a></p>
+
+   9. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppColorToRgb.htm">Convert RGB values to TColor</a></p>
+
+   10. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppStrToAnsi.htm">Convert std::string to AnsiString</a></p>
+
+   11. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppStrToWide.htm">Convert std::string to WideString</a></p>
+
+   12. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppColorToRgb.htm">Convert TColor to RGB values</a></p>
+
+   13. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppImageToVector.htm">Convert TImage to 2D std::vector, ImageToVector</a></p>
+
+   14. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppImageToStringList.htm">Convert TImage to TStringList</a> (<a
+href="CppAsciiArt.htm">ASCII art</a>)</p>
+
+   15. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppStringGridToVector.htm">Convert TStringGrid to 2D std::vector,
+StringGridToVector</a></p>
+
+   16. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppWideToAnsi.htm">Convert WideString to AnsiString</a></p>
+
+   17. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppWideToDouble.htm">Convert WideString to double</a></p>
+
+   18. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppWideToInt.htm">Convert WideString to integer</a></p>
+
+   19. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppWideToStr.htm">Convert WideString to std::string</a></p>
+
+   20. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppImageToVector.htm">ImageToVector, converts TImage to 2D std::vector</a></p>
+
+   21. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppStringGridToVector.htm">StringGridToVector, converts a TStringGrid to
+2D std::vector</a></p>
+
+   22. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppImageToStringList.htm">ImageToStringList, convert TImage to TStringList</a>
+(<a href="CppAsciiArt.htm">ASCII art</a>)</p>
+
+   23. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppVectorToImage.htm">VectorToImage, converts a 2D std::vector to TImage</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+</div>
+
+</body>
+
+</html>

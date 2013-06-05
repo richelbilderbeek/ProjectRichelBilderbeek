@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Wt example 4: broadcasting using WtBroadcastServer</title>
+  <meta name="description" content="C++ Wt example 4: broadcasting using WtBroadcastServer"/>
+  <meta name="keywords" content="C++ Wt example 4: broadcasting using WtBroadcastServer code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtExample4.htm">Wt example 4: broadcasting using WtBroadcastServer</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppWtExample4.htm">Wt example 4: broadcasting using WtBroadcastServera</a> is an <a href="CppArticle.htm">article</a> about 
+a simple <a href="CppWt.htm">Wt</a> <a href="CppWtExample.htm">example</a> in which is shown how multiple clients can respond to the same
+data source and be notified when needed.</p>
+<p>&nbsp;</p>
+<p>This <a href="CppWtExample.htm">example</a> shows how to use two <a href="CppClass.htm">classes</a>
+to do most of the work for you. For a complete view of all delegated tasks, <a href="CppWtExample3.htm">Wt example 3: broadcasting</a>
+gives a complete view of all bookkeeping necessary.</p>
+<p>&nbsp;</p>
+<p>The code shown is simplified from the <a href="Tools.htm">tool</a> <a href="ToolTestBroadcastServer.htm">TestBroadcastServer</a> (version 1.0).</p>
+<p>&nbsp;</p>
+<p>This example has the following players:</p>
+<ul>
+  <li>
+    <a href="CppWtBroadcastServer.htm">WtBroadcastServer</a>: a server <a href="CppSingleton.htm">singleton</a> <a href="CppClass.htm">class</a> 
+    that notifies its <a href="CppWtBroadcastServerClient.htm">WtBroadcastServerClients</a> every 100 milliseconds
+  </li>
+  <li>
+    WtMainDialog: a <a href="CppDerivedClass.htm">derived class</a> of <a href="CppWtBroadcastServerClient.htm">WtBroadcastServerClients</a>
+    that has contents editable and viewable to all web page visitos
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>The program does the following:</p>
+<ul>
+  <li>
+    WtMainDialog displays one <a href="CppWLineEdit.htm">Wt::WLineEdit</a> that acts as one shared edit box for all visitors
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>Below, the WtMainDialog and its communication to the <a href="CppWtBroadcastServer.htm">WtBroadcastServer</a> is discussed in detail,
+starting at its <a href="CppHeaderFile.htm">header file</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The <a href="CppWtBroadcastServer.htm">WtBroadcastServer</a> <a href="CppHeaderFile.htm">header file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> WtMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>, <a href="CppWtBroadcastServerClient.htm">WtBroadcastServerClient</a><br/>
+{<br/>
+&nbsp;&nbsp;WtMainDialog();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The user <a href="CppInterface.htm">interface</a><br/>
+&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Ui<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Ui() : m_edit(0) {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * m_edit;<br/>
+&nbsp;&nbsp;} ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The user changes the text in the <a href="CppWLineEdit.htm">Wt::WLineEdit</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnEditChanged();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The server updates the page<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> UpdatePage();<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>This header file has the following elements:</p>
+<ul>
+  <li>
+    WtMainDialog is a <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>, because it <a href="CppInheritance.htm">inherits</a> from 
+    <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>. <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> is used as a 
+    <a href="CppBaseClass.htm">base class</a> to let WtMainDialog be a dialog
+  </li>
+  <li>
+    WtMainDialog is a <a href="CppWtBroadcastServerClient.htm">WtBroadcastServerClient</a>, because it also <a href="CppInheritance.htm">inherits</a> from 
+    <a href="CppWtBroadcastServerClient.htm">WtBroadcastServerClient</a>. <a href="CppWtBroadcastServerClient.htm">WtBroadcastServerClient</a> is
+    used as a <a href="CppBaseClass.htm">base class</a> to let WtMainDialog be a client to the <a href="CppWtBroadcastServer.htm">WtBroadcastServer</a>.
+    This imposes a rule on WtMainDialog: it must define an UpdatePage method, which will be called every 100 milliseconds
+  </li>
+  <li>
+    WtMainDialog uses a nested <a href="CppStruct.htm">struct</a> called 'Ui', short for 'User Interface', which contains the only
+    visible control: the <a href="CppWLineEdit.htm">Wt::WLineEdit</a> called m_edit. In this example, one could also easily put m_edit as a direct member of
+    WtMainDialog. For reasons of following the same approach as <a href="CppQt.htm">Qt</a>, this is done in this (and in many more)
+    examples
+  </li>
+  <li>
+    WtMainDialog has a method called 'OnEditChanged', which will be called when the <a href="CppWLineEdit.htm">Wt::WLineEdit</a> is changed
+    by one of its possibly many users
+  </li>
+  <li>
+    WtMainDialog has a method called 'UpdatePage', which will be called when the <a href="CppWLineEdit.htm">Wt::WLineEdit</a> is changed
+    by one of its possibly many users. Because WtMainDialog is a <a href="CppWtBroadcastServerClient.htm">WtBroadcastServerClient</a>, it
+    must define this <a href="CppAbstract.htm">abstract</a> method, otherwise the <a href="CppCompiler.htm">compiler</a> will indicate this
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The <a href="CppWtBroadcastServer.htm">WtBroadcastServer</a> <a href="CppImplementationFile.htm">implementation file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+WtMainDialog::WtMainDialog()<br/>
+{<br/>
+&nbsp;&nbsp;ui.m_edit <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;ui.m_edit-&gt;keyWentUp().connect(<b><a href="CppThis.htm">this</a></b>,&amp;WtMainDialog::OnEditChanged);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> WtMainDialog::OnEditChanged()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWtBroadcastServer.htm">WtBroadcastServer</a>::GetInstance()-&gt;SetData(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>(ui.m_edit-&gt;text().toUTF8()));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> WtMainDialog::UpdatePage()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> text;<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;text <a href="CppOperatorAssign.htm">=</a> <a href="CppAny_cast.htm">boost::any_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppWtBroadcastServer.htm">WtBroadcastServer</a>::GetInstance()-&gt;GetData());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppBoost.htm">boost</a>::bad_any_cast&amp;)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;text <a href="CppOperatorAssign.htm">=</a> "<a href="ToolTestBroadcastServer.htm">TestBroadcastServer</a>";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;ui.m_edit-&gt;setText(text.c_str());<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>WtMainDialog has only three methods:</p>
+<ul>
+  <li>
+    WtMainDialog::WtMainDialog: the WtMainDialog <a href="CppConstructor.htm">constructor</a>: in it, the ui.m_edit is <a href="CppConstructor.htm">constructed</a> and
+    its keyWentUp signal is connected to WtMainDialog::OnEditChanged: when the user releases a key when ui.m_edit is in focus, 
+    WtMainDialog::OnEditChanged is called
+  </li>
+  <li>
+    WtMainDialog::OnEditChanged: sets the data of the server to the freshly edited text in the Wt::WLineEdit. 
+    <a href="CppWtBroadcastServer.htm">WtBroadcastServer</a> holds only one piece of data, in the form of 
+    <a href="CppAny.htm">boost::any</a>. In this case, the data is of type <a href="CppString.htm">std::string</a>, but it can be
+    any (no pun intended) much more complex <a href="CppDataType.htm">data type</a>
+  </li>
+  <li>
+    WtMainDialog::UpdatePage: this method is called every 100 milliseconds and gets the data of the server and puts it in the Wt::WLineEdit.
+    The use of <a href="CppAny_cast.htm">boost::any_cast</a> is needed, because
+    <a href="CppWtBroadcastServer.htm">WtBroadcastServer</a> holds only one piece of data, in the form of 
+    <a href="CppAny.htm">boost::any</a>. It can be true, however, that <a href="CppWtBroadcastServer.htm">WtBroadcastServer</a> has no
+    data yet. In such a case, <a href="CppAny_cast.htm">boost::any_cast</a> throws boost::bad_any_cast and the content content of the 
+    Wt::WLineEdit is set to the name of the application
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Conclusion</h2>
+<p>&nbsp;</p>
+<p>Compared to the previous <a href="CppWtExample.htm">example</a>, that is <a href="CppWtExample3.htm">Wt example 3: broadcasting</a>,
+this <a href="CppWtExample.htm">example</a> is shorter and, in my humble opinion, better focussed: all bookkeeping is done by
+<a href="CppWtBroadcastServer.htm">WtBroadcastServer</a> and <a href="CppWtBroadcastServerClient.htm">WtBroadcastServerClient</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

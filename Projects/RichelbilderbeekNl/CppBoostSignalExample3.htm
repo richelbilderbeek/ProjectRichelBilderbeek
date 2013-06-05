@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Boost signal example 3: emitting two arguments and reading a result</title>
+  <meta name="description" content="C++ Boost signal example 3: emitting two arguments and reading a result"/>
+  <meta name="keywords" content="C++ Boost signal example 3: emitting two arguments and reading a result code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBoostSignalExample3.htm">Boost signal example 3: emitting two arguments and reading a result</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppBoostSignal.htm">Boost signal</a> example shows how to emit <a href="CppThis.htm">this</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppBoostSignalExample3.zip">Download the Qt Creator project 'CppBoostSignalExample3' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppBoostSignalExample3.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppFunction.htm">function</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0) : m_x(x) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Plus( <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_x <a href="CppOperatorPlus.htm">+</a> x; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Minus(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_x <a href="CppOperatorMinus.htm">-</a> x; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppFunction.htm">boost::function</a>&lt;<b><a href="CppInt.htm">int</a></b>(<b><a href="CppConst.htm">const</a></b> MyClass*,<b><a href="CppInt.htm">int</a></b>)&gt; <a href="CppFunction.htm">Function</a>;<br/>
+&nbsp;&nbsp;MyClass c;<br/>
+&nbsp;&nbsp;<a href="CppFunction.htm">Function</a> f1 <a href="CppOperatorAssign.htm">=</a> &amp;MyClass::Plus;<br/>
+&nbsp;&nbsp;<a href="CppFunction.htm">Function</a> f2 <a href="CppOperatorAssign.htm">=</a> &amp;MyClass::Minus;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f1(&amp;c,1000) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1000 );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f2(&amp;c,1000) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1000 );<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+
+
+

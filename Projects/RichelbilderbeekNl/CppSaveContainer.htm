@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SaveContainer</title>
+  <meta name="description" content="C++ SaveContainer"/>
+  <meta name="keywords" content="C++ STL SaveContainer Save Container to file code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSaveContainer.htm">SaveContainer</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSaveContainer.htm">SaveContainer</a> is a <a href="CppContainer.htm">container</a> and <a href="CppFileIo.htm">file I/O</a> <a href="CppCodeSnippets.htm">code snippet</a> to save a <a href="CppContainer.htm">container</a> to file, one element per line.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppSaveContainer.htm">SaveContainer</a> using the <a href="CppGpp.htm">G++</a> (version 4.4.1) <a href="CppCompiler.htm">compiler</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSaveContainer.htm">SaveContainer</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppSaveContainer.htm">SaveContainer</a>(<b><a href="CppConst.htm">const</a></b> Container&amp; c, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(c.begin(),c.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppTypename.htm">typename</a></b> Container::value_type&gt;(f,"\n"));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppSaveContainer.htm">SaveContainer</a> using the <a href="CppBuilder.htm">C++ Builder</a> 6.0 <a href="CppCompiler.htm">compiler</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSaveContainer.htm">SaveContainer</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppSaveContainer.htm">SaveContainer</a>(<b><a href="CppConst.htm">const</a></b> Container&amp; c, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(c.begin(),c.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;Container::value_type&gt;(f,"\n"));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

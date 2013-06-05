@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SDL example 5: moving an image over a background image in a 2D OpenGL environment</title>
+  <meta name="description" content="C++ SDL example 5: moving an image over a background image in a 2D OpenGL environment"/>
+  <meta name="keywords" content="C++ SDL example 5: moving an image over a background image in a 2D OpenGL environment code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSdlExample5.htm">SDL example 5: moving an image over a background image in a 2D OpenGL environment</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppSdl.htm">SDL</a> example shows an image moving over a background image, like <a href="CppSdlExample5.png">this screenshot (png)</a>.</p>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a></p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 Console Application</p>
+<p><a href="CppQtCreatorSelectRequiredModules.png">Selected required modules</a>: QtCore</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p>Additional <a href="CppLibrary.htm">libraries</a>: <a href="CppSdl.htm">SDL</a>, <a href="CppOpenGl.htm">OpenGL</a>, <a href="CppBoost.htm">Boost</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-17T14:57:33<br/>
+#<br/>
+#-------------------------------------------------<br/>
+<br/>
+QT       += core<br/>
+<br/>
+QT       -= gui<br/>
+<br/>
+TARGET = CppSdlExample5<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+<br/>
+TEMPLATE = app<br/>
+<br/>
+LIBS += -L/usr/local/lib -lSDL<br/>
+LIBS += -L/usr/local/lib -lGL<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/timer.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;SDL/SDL.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;SDL/SDL_opengl.h&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> full_screen <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Initialization<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( SDL_Init( SDL_INIT_VIDEO) &lt; 0 )<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Assume SDL initialization does not fail");<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Per<b><a href="CppFor.htm">for</a></b>m SDL_Quit at program exit<br/>
+&nbsp;&nbsp;<a href="CppAtexit.htm">std::atexit</a>(SDL_Quit);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Load the background<br/>
+&nbsp;&nbsp;SDL_Surface * <b><a href="CppConst.htm">const</a></b> background <a href="CppOperatorAssign.htm">=</a> SDL_LoadBMP("Background512x256.bmp");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(background <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume background image is found in same folder as binary");<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> screen_width  <a href="CppOperatorAssign.htm">=</a> background-&gt;w;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> screen_height <a href="CppOperatorAssign.htm">=</a> background-&gt;h;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Check that the image's dimensions are a power of 2<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( (screen_width &amp;amp; (screen_width <a href="CppOperatorMinus.htm">-</a> 1)) <a href="CppOperatorNotEqual.htm">!=</a> 0 )<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "warning: background image width is not a power of 2\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( (screen_height &amp;amp; (screen_height <a href="CppOperatorMinus.htm">-</a> 1)) <a href="CppOperatorNotEqual.htm">!=</a> 0 )<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "warning: background image width is not a power of 2\n";<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create screen of same size as background<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> bits_per_pixel <a href="CppOperatorAssign.htm">=</a> 32;<br/>
+&nbsp;&nbsp;SDL_Surface * <b><a href="CppConst.htm">const</a></b>  screen <a href="CppOperatorAssign.htm">=</a> SDL_SetVideoMode( screen_width, screen_height, bits_per_pixel, SDL_OPENGL | (full_screen ? SDL_FULLSCREEN : 0));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(screen <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume SDL video mode setting does not fail");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (full_screen)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;screen_width  <a href="CppOperatorAssign.htm">=</a> screen-&gt;w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;screen_height <a href="CppOperatorAssign.htm">=</a> screen-&gt;h;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Load the sprite<br/>
+&nbsp;&nbsp;SDL_Surface * <b><a href="CppConst.htm">const</a></b> sprite <a href="CppOperatorAssign.htm">=</a> SDL_LoadBMP("Butterfly128x128_Alpha.bmp");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(background <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume sprite image is found in same folder as binary");<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Initialize OpenGL<br/>
+&nbsp;&nbsp;glClearColor( 0, 0, 0, 0 );<br/>
+&nbsp;&nbsp;glMatrixMode( GL_PROJECTION );<br/>
+&nbsp;&nbsp;glLoadIdentity();<br/>
+&nbsp;&nbsp;glOrtho( 0, screen_width, screen_height, 0, <a href="CppOperatorMinus.htm">-</a>1, 1 );<br/>
+&nbsp;&nbsp;glMatrixMode( GL_MODELVIEW );<br/>
+&nbsp;&nbsp;glLoadIdentity();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( glGetError() <a href="CppOperatorNotEqual.htm">!=</a> GL_NO_ERROR )<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Assume OpenGL initialization does not fail");<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;GL<b><a href="CppEnum.htm">enum</a></b> texture_format;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GL<b><a href="CppInt.htm">int</a></b> bytes_per_pixel <a href="CppOperatorAssign.htm">=</a> background-&gt;format-&gt;BytesPerPixel;<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (bytes_per_pixel)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: texture_format <a href="CppOperatorAssign.htm">=</a> (SDL_BYTEORDER <a href="CppOperatorNotEqual.htm">!=</a> SDL_BIG_ENDIAN ? GL_BGR  : GL_RGB ); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 4: texture_format <a href="CppOperatorAssign.htm">=</a> (SDL_BYTEORDER <a href="CppOperatorNotEqual.htm">!=</a> SDL_BIG_ENDIAN ? GL_BGRA : GL_RGBA); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate a texture object handle <b><a href="CppFor.htm">for</a></b> the background<br/>
+&nbsp;&nbsp;GLu<b><a href="CppInt.htm">int</a></b> texture_background;<br/>
+&nbsp;&nbsp;glGenTextures( 1, &amp;texture_background);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Bind the texture object<br/>
+&nbsp;&nbsp;glBindTexture( GL_TEXTURE_2D, texture_background);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Set the texture's stretching properties<br/>
+&nbsp;&nbsp;glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );<br/>
+&nbsp;&nbsp;glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Edit the texture object's image data <b><a href="CppUsing.htm">using</a></b> the information SDL_Surface gives us<br/>
+&nbsp;&nbsp;glTexImage2D( GL_TEXTURE_2D, 0, bytes_per_pixel, background-&gt;w, background-&gt;h, 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;texture_format, GL_UNSIGNED_BYTE, background-&gt;pixels );<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate a texture object handle <b><a href="CppFor.htm">for</a></b> the sprite<br/>
+&nbsp;&nbsp;GLu<b><a href="CppInt.htm">int</a></b> texture_sprite;<br/>
+&nbsp;&nbsp;glGenTextures( 1, &amp;texture_sprite);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Bind the texture object<br/>
+&nbsp;&nbsp;glBindTexture( GL_TEXTURE_2D, texture_sprite);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Set the texture's stretching properties<br/>
+&nbsp;&nbsp;glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );<br/>
+&nbsp;&nbsp;glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Edit the texture object's image data <b><a href="CppUsing.htm">using</a></b> the information SDL_Surface gives us<br/>
+&nbsp;&nbsp;glTexImage2D( GL_TEXTURE_2D, 0, bytes_per_pixel, sprite-&gt;w, sprite-&gt;h, 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GL_BGRA, GL_UNSIGNED_BYTE, sprite-&gt;pixels );<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set up sprite<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sprite_width <a href="CppOperatorAssign.htm">=</a> sprite-&gt;w;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sprite_height <a href="CppOperatorAssign.htm">=</a> sprite-&gt;h;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_x <a href="CppOperatorAssign.htm">=</a> (screen_width  <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (sprite_width  <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_y <a href="CppOperatorAssign.htm">=</a> (screen_height <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (sprite_height <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_dx <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_dy <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> frames_per_second <a href="CppOperatorAssign.htm">=</a> 60;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> ticks_per_second <a href="CppOperatorAssign.htm">=</a> 1000 <a href="CppOperatorDivide.htm">/</a> frames_per_second;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use timer to keep frame rate <b><a href="CppConst.htm">const</a></b>ant<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> timer;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Enable user to terminate program<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SDL_Event event;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SDL_PollEvent( &amp;event );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(  event.type <a href="CppOperatorEqual.htm">==</a> SDL_KEYDOWN<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> event.type <a href="CppOperatorEqual.htm">==</a> SDL_MOUSEBUTTONDOWN<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> event.type <a href="CppOperatorEqual.htm">==</a> SDL_QUIT) <b><a href="CppBreak.htm">break</a></b>;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Move the square<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sprite_x<a href="CppOperatorPlusAssign.htm">+=</a>sprite_dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sprite_y<a href="CppOperatorPlusAssign.htm">+=</a>sprite_dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Make the square bounce<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sprite_x &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> sprite_x <a href="CppOperatorPlus.htm">+</a> sprite_width  &gt; screen_width  ) sprite_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>sprite_dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sprite_y &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> sprite_y <a href="CppOperatorPlus.htm">+</a> sprite_height &gt; screen_height ) sprite_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>sprite_dy;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Clear the screen<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glClear( GL_COLOR_BUFFER_BIT );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw background<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glBindTexture( GL_TEXTURE_2D, texture_background );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>glBlendFunc(GL_ZERO, GL_ZERO);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>glDisable(GL_BLEND);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glEnable(GL_TEXTURE_2D);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glBegin( GL_QUADS );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTexCoord2i( 0, 0 ); glVertex2i( 0           , 0            );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTexCoord2i( 1, 0 ); glVertex2i( screen_width, 0            );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTexCoord2i( 1, 1 ); glVertex2i( screen_width, screen_height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTexCoord2i( 0, 1 ); glVertex2i( 0           , screen_height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glEnd();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the sprite<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glBindTexture( GL_TEXTURE_2D, texture_sprite );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glBegin( GL_QUADS );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTexCoord2i( 0, 0 ); glVertex2i( sprite_x               , sprite_y                );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTexCoord2i( 1, 0 ); glVertex2i( sprite_x <a href="CppOperatorPlus.htm">+</a> sprite_width, sprite_y                );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTexCoord2i( 1, 1 ); glVertex2i( sprite_x <a href="CppOperatorPlus.htm">+</a> sprite_width, sprite_y <a href="CppOperatorPlus.htm">+</a> sprite_height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTexCoord2i( 0, 1 ); glVertex2i( sprite_x               , sprite_y <a href="CppOperatorPlus.htm">+</a> sprite_height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glEnd();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glDisable(GL_TEXTURE_2D);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Reset<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glLoadIdentity();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Update screen<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SDL_GL_SwapBuffers();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Keep frame rate <b><a href="CppConst.htm">const</a></b>ant<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> ticks_elapsed <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(timer.elapsed() * 1000.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ticks_elapsed &lt; ticks_per_second)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDL_Delay( ticks_per_second <a href="CppOperatorMinus.htm">-</a> ticks_elapsed );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;SDL_FreeSurface( screen );<br/>
+&nbsp;&nbsp;glDeleteTextures( 1, &amp;texture_background );<br/>
+}<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>boost::filesystem::copy_file</title>
+  <meta name="description" content="C++ boost::filesystem::copy_file"/>
+  <meta name="keywords" content="C++ STL boost::filesystem::copy_file boost filesystem boost.filesystem copy_file code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCopy_file.htm">boost::filesystem::copy_file</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCopy_file.htm">boost::filesystem::copy_file</a> is a <a href="CppFilesystem.htm">Boost.Filesystem</a> <a href="CppFileIo.htm">file I/O</a> <a href="CppFunction.htm">function</a> to copy a file.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> from <a href="CppOperatorAssign.htm">=</a> "from.txt";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> to <a href="CppOperatorAssign.htm">=</a> "to.txt";<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::is_regular_file(from)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume file is present");<br/>
+&nbsp;&nbsp;<a href="CppCopy_file.htm">boost::filesystem::copy_file</a>(from,to);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicQtCreator.png" alt="Qt Creator"/> Note for <a href="CppQtCreator.htm">Qt Creator</a> users</h2>
+<p>&nbsp;</p>
+<p>Add the following line to your <a href="CppQtProjectFile.htm">project file</a> (to prevent the <a href="CppLinkError.htm">link error</a> <a href="CppLinkErrorUndefinedReferenceToBoostSystemGet_system_category.htm">undefined reference to 'boost::system::get_system_category()'</a>):</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+LIBS += -lboost_system -lboost_filesystem<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+

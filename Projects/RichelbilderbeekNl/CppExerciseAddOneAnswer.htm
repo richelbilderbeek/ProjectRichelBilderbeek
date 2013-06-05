@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Answer of exercise #7: add one</title>
+  <meta name="description" content="C++: Answer of exercise #7: add one"/>
+  <meta name="keywords" content="C++: Answer of exercise #7: add one C++0x profile profiler gprof cachegrind benchmark"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseAddOneAnswer.htm">Answer of exercise #7: AddOne</a></h1>
+<p>&nbsp;</p>
+<p>This is the answer of <a href="CppExerciseAddOne.htm">exercise #7: AddOne</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #0: How many correct ways are there to do this?</h2>
+<p>&nbsp;</p>
+<p>The answer is a product of the number of ways to add one to an <a href="CppInt.htm">int</a> and the number of ways to iterate through a <a href="CppVector.htm">std::vector</a>.</p>
+<p>&nbsp;</p>
+<p>The number of ways to add one to an <a href="CppInt.htm">int</a> are five:</p>
+<p>&nbsp;</p>
+<ol>
+  <li>Assignment 1st (x=1+x)</li>
+  <li>Assignment 2nd (x=x+1)</li>
+  <li>Increase (x+=1)</li>
+  <li>Post-increment (x++)</li>
+  <li>Pre-increment (++x)</li>
+</ol>
+<p>&nbsp;</p>
+<p>The number of ways to iterate through a <a href="CppVector.htm">std::vector</a> are twelve:</p>
+<p>&nbsp;</p>
+<ol>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using a <a href="CppFor.htm">for</a>-loop, requesting the <a href="CppVector.htm">std::vector</a> its size only once</li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using a <a href="CppFor.htm">for</a>-loop, requesting the <a href="CppVector.htm">std::vector</a> its size every iteration</li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using an <a href="CppIterator.htm">iterator</a>, requesting the <a href="CppVector.htm">std::vector</a> its end only once</li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using an <a href="CppIterator.htm">iterator</a>, requesting the <a href="CppVector.htm">std::vector</a> its end only every iteration</li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using an <a href="CppAlgorithm.htm">algorithm</a> to a non-<a href="CppInline.htm">inlined</a> <a href="CppFunction.htm">function</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using an <a href="CppAlgorithm.htm">algorithm</a> to an <a href="CppInline.htm">inlined</a> <a href="CppFunction.htm">function</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using an <a href="CppAlgorithm.htm">algorithm</a> to a <a href="CppFunctor.htm">functor</a> with a non-<a href="CppInline.htm">inlined</a> operator()</li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using an <a href="CppAlgorithm.htm">algorithm</a> to a <a href="CppFunctor.htm">functor</a> with an <a href="CppInline.htm">inlined</a> operator()</li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicBoost.png" alt="Boost"/> Using <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><img src="PicBoost.png" alt="Boost"/> Using the <a href="CppBoost.htm">Boost</a> <a href="CppLambda.htm">Lambda</a> <a href="CppLibrary.htm">library</a></li>
+  <li><img src="PicSpacer.png" alt=" "/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using the <a href="Cpp11.htm">C++11</a> its ranged <a href="CppFor.htm">for</a>-loop</li>
+  <li><img src="PicSpacer.png" alt=" "/><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Using the <a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expressions</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>This makes the number of ways to do this sixty!</p>
+<p>&nbsp;</p>
+<p>There are two more:</p>
+<p>&nbsp;</p>
+<ol>
+  <li>Using an <a href="CppAlgorithm.htm">algorithm</a> to <a href="CppPlus.htm">std::plus</a> using <a href="CppBind1st.htm">std::bind1st</a></li>
+  <li>Using an <a href="CppAlgorithm.htm">algorithm</a> to <a href="CppPlus.htm">std::plus</a> using <a href="CppBind2nd.htm">std::bind2nd</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>Total: there are sixty-two ways to add one to each element in a std::vector!</p>
+<p>&nbsp;</p>
+<p>P.S. an additional way (though beyond this exercise) is to use assembler.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #1: Write a program that tests which way is fastest</h2>
+<p>&nbsp;</p>
+<p>This kind of program is called a <a href="CppBenchmark.htm">benchmark</a>.</p>
+<p>&nbsp;</p>
+<p>There are too many ways to write one, so I'll just show you mine:</p>
+<ul>
+  <li><a href="CppExerciseAddOneAnswer.zip">Download the Qt Creator project 'CppExerciseAddOneAnswer' (zip)</a></li>
+  <li><a href="CppExerciseAddOneAnswerSource_2_0.htm">View the Qt Creator project 'CppExerciseAddOneAnswer' as a web page (version 2.0)(htm)</a></li>
+  <li><a href="CppExerciseAddOneAnswerSource_1_0.htm">View the Qt Creator project 'CppExerciseAddOneAnswer' as a web page (version 1.0)(htm)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>In the zip file, the results of the <a href="CppProfiler.htm">profilers</a> <a href="CppGprof.htm">gprof</a> and 
+<a href="CppCachegrind.htm">cachegrind</a> are included as text files.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

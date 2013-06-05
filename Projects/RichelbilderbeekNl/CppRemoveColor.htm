@@ -1,0 +1,260 @@
+ 
+<title>RemoveColor</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet RemoveColor</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek RemoveColor Remove Color removes VCL</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>123</o:TotalTime>
+  <o:Created>2007-12-31T13:15:00Z</o:Created>
+  <o:LastSaved>2007-12-31T13:29:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>336</o:Words>
+  <o:Characters>1917</o:Characters>
+  <o:Category>C++ Code Snippet Richel Bilderbeek RemoveColor</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>15</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>2354</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="CppCodeSnippets.htm">Go back to Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><b><span lang=NL style='font-size:16.0pt;mso-bidi-font-family:
+"Courier New";mso-font-kerning:16.0pt'>RemoveColor   </b></p>
+
+<p>&nbsp;</p>
+
+<p>Removes
+a certain color from a TImage by replacing it by black.</p>
+
+<p>* <s>View
+the code of 'RemoveColor (CLX)' in plain text</s>.</p>
+
+<p>* <a
+href="CppRemoveColorVcl.txt">View the code of 'RemoveColor (VCL)' in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2><span lang=NL style='mso-font-kerning:16.0pt'>RemoveColor (CLX) <span
+lang=NL style='mso-font-kerning:16.0pt;font-weight:normal'></h2>
+
+<p>&nbsp;</p>
+
+<p>To
+be done...</p>
+
+<p>&nbsp;</p>
+
+<h2><span lang=NL style='mso-font-kerning:16.0pt'>RemoveColor (VCL) <span
+lang=NL style='mso-font-kerning:16.0pt;font-weight:normal'></h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>//From
+http://www.richelbilderbeek.nl</p>
+
+<p><b> void </b>  RemoveColor(TImage * <b>const</b>
+image, <b>const</b> TColor color)</p>
+
+<p>{</p>
+
+<p>
+ assert(image!=0);</p>
+
+<p>
+ assert(image-&gt;Picture-&gt;Bitmap != 0);</p>
+
+<p>
+ assert(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b>const int</b> maxx = image-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>
+ <b>const int</b> maxy = image-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>
+ <b>const unsigned char</b> red   
+ = GetRValue(color);</p>
+
+<p>
+ <b>const unsigned char</b> green = GetGValue(color);</p>
+
+<p>
+ <b>const unsigned char</b> blue  
+ = GetBValue(color);</p>
+
+<p>
+ <b>for</b> (<b>int</b> y = 0; y != maxy; ++y)</p>
+
+<p>
+ {</p>
+
+<p> 
+ <b>unsigned char</b> * <b>const</b> myLine</p>
+
+<p>     = <b>static_cast</b>&lt;<b>unsigned char</b>*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p> 
+ <b>for</b> (<b>int</b> x = 0; x != maxx; ++x)</p>
+
+<p> 
+ {</p>
+
+<p>     <b>if</b> ( myLine[x*3+2] == red      //Red</p>
+
+<p>       &amp;&amp; myLine[x*3+1] == green    //Green</p>
+
+<p>       &amp;&amp; myLine[x*3+0] == blue ) //Blue</p>
+
+<p>     {</p>
+
+<p>       myLine[x*3+2] = 0 ; //Red</p>
+
+<p>         myLine[x*3+1] = 0 ;
+//Green</p>
+
+<p>       myLine[x*3+0] = 0 ; //Blue</p>
+
+<p>     }</p>
+
+<p> 
+ }</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>//From
+http://www.richelbilderbeek.nl</p>
+
+<p><b> void </b>  RemoveColor(TImage * <b>const</b>
+image,</p>
+
+<p>
+ <b>const unsigned char</b> red,</p>
+
+<p>
+ <b>const unsigned char</b> green,</p>
+
+<p>
+ <b>const unsigned char</b> blue  
+ )</p>
+
+<p>{</p>
+
+<p>
+ assert(image!=0);</p>
+
+<p>
+ assert(image-&gt;Picture-&gt;Bitmap != 0);</p>
+
+<p>
+ assert(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b>const int</b> maxx = image-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>
+ <b>const int</b> maxy = image-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>
+ <b>for</b> (<b>int</b> y = 0; y != maxy; ++y)</p>
+
+<p>
+ {</p>
+
+<p>     <b>unsigned char</b> * <b>const</b>
+myLine</p>
+
+<p>     = <b>static_cast</b>&lt;<b>unsigned char</b>*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p> 
+ <b>for</b> (<b>int</b> x = 0; x != maxx; ++x)</p>
+
+<p> 
+ {</p>
+
+<p>     <b>if</b> ( myLine[x*3+2] == red      //Red</p>
+
+<p>       &amp;&amp; myLine[x*3+1] == green    //Green</p>
+
+<p>       &amp;&amp; myLine[x*3+0] == blue ) //Blue</p>
+
+<p>     {</p>
+
+<p>       myLine[x*3+2] = 0 ; //Red</p>
+
+<p>       myLine[x*3+1] = 0 ; //Green</p>
+
+<p>       myLine[x*3+0] = 0 ; //Blue</p>
+
+<p>     }</p>
+
+<p> 
+ }</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCodeSnippets.htm">Go back to Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

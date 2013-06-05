@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>fork</title>
+  <meta name="description" content="C fork"/>
+  <meta name="keywords" content="C fork function code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppFork.htm">fork</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppFork.htm">fork</a> is a non-<a href="CppStl.htm">STL</a> C <a href="CppFunction.htm">function</a> 
+to fork a process.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppFork.zip">Download the Qt Creator project 'CppFork' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;uni<a href="CppStd.htm">std</a>.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppFork.htm">fork</a>() example, adapted from dempl_dempl<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Start of <a href="CppFork.htm">fork</a>() example (shared code)\n";<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pid <a href="CppOperatorAssign.htm">=</a> <a href="CppFork.htm">fork</a>();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(pid <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "pid <a href="CppOperatorEqual.htm">==</a> 0 code (unique code)\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (pid &gt; 0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "pid <a href="CppOperatorEqual.htm">==</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> pid <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " (unique code)\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (pid &lt; 0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppFork.htm">fork</a>() call failed (unique code)\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "End of <a href="CppFork.htm">fork</a>() example (shared code)\n";<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Start of fork() example (shared code)<br/>
+pid == 5954 (unique code)<br/>
+End of fork() example (shared code)<br/>
+Start of fork() example (shared code)<br/>
+pid == 0 code (unique code)<br/>
+End of fork() example (shared code)<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

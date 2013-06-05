@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ShinyButtonWidget</title>
+  <meta name="description" content="C++ ShinyButtonWidget"/>
+  <meta name="keywords" content="C++ ShinyButtonWidget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a></h1>
+<p>&nbsp;</p>
+<h2>shinybuttonwidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>, <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppShinyButtonWidget.htm">CppShinyButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> SHINYBUTTONWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> SHINYBUTTONWIDGET_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppShinyButton.htm">ShinyButton</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text <a href="CppOperatorAssign.htm">=</a> "");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a> to <a href="CppShinyButton.htm">ShinyButton</a><br/>
+&nbsp;&nbsp;<a href="CppShinyButton.htm">ShinyButton</a> * Get<a href="CppShinyButton.htm">ShinyButton</a>() { <b><a href="CppReturn.htm">return</a></b> m_button.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a> to <a href="CppShinyButton.htm">ShinyButton</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButton.htm">ShinyButton</a> * Get<a href="CppShinyButton.htm">ShinyButton</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_button.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the user clicking on <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppShinyButton.htm">ShinyButton</a>&gt; m_button;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&amp; button);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&amp; button);<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SHINYBUTTONWIDGET_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>shinybuttonwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>, <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppShinyButtonWidget.htm">CppShinyButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppShinyButton.htm">shinybutton</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text)<br/>
+&nbsp;&nbsp;: m_button(<b><a href="CppNew.htm">new</a></b> <a href="CppShinyButton.htm">ShinyButton</a>(color,gradient,text))<br/>
+{<br/>
+<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2011-09-21: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&amp; button)<br/>
+{<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *button.m_button<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> button.GetGeometry()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -1,0 +1,205 @@
+ 
+<title>HigherJump</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>Texas TI-84 plus code HigherJump</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>Richel Bilderbeek Texas TI-84 plus code HigherJump higher jump length allometry</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>16</o:Revision>
+  <o:TotalTime>111</o:TotalTime>
+  <o:Created>2007-11-14T07:34:00Z</o:Created>
+  <o:LastSaved>2007-11-14T12:37:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>182</o:Words>
+  <o:Characters>1042</o:Characters>
+  <o:Category>Richel Bilderbeek Texas TI-84 plus code HigherJump</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>8</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1279</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="TexasCodeSnippets.htm">Go back to Richel Bilderbeek's Texas Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>HigherJump</h2>
+
+<p>&nbsp;</p>
+
+<p>A
+program to compare jumping height from two person's lengths.</p>
+
+<p>&nbsp;</p>
+
+<p>The
+calculation uses many simplistic assumptions.</p>
+
+<p>&nbsp;</p>
+
+<p>Gravitational
+energy (<i>E<sub>z</sub></i>) equals mass (<i>m</i>) * gravitational constant (<i>g</i>)
+* height (<i>h</i>).</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>E<sub>z</sub> = m * g * h</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Mass
+is proportianal to a persons length (<i>l</i>) to the third power.</p>
+
+<p>&nbsp;</p>
+
+<p>Energy
+one's muscles can produce is proportional to a persons length (<i>l</i>) to the
+second power.</p>
+
+<p>&nbsp;</p>
+
+<p>This
+makes the equation</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>(c<sub>1</sub> * l<sup>2</sup>) = (c<sub>2</sub>
+* l<sup>3</sup>) * g * h</p>
+
+<p>&nbsp;</p>
+
+<p>c<sub>3</sub> = c<sub>2</sub> * g</p>
+
+<p>&nbsp;</p>
+
+<p>h = (c<sub>1</sub> * l<sup>2</sup>)
+/ (c<sub>3</sub>    * l<sup>3</sup>)</p>
+
+<p>&nbsp;</p>
+
+<p>c<sub>4</sub> = c<sub>1</sub> / c<sub>3</sub></p>
+
+<p>&nbsp;</p>
+
+<p>h = c<sub>4</sub> * l<sup>-1</sup></p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Relative
+higher jumping height of the second person equals</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>Rel<sub>h</sub> = (h<sub>2</sub> - h<sub>1</sub>)
+/ h<sub>1</sub></p>
+
+<p>&nbsp;</p>
+
+<p>h<sub>1</sub> = c<sub>4</sub> * l<sub>1</sub><sup>-1</sup></p>
+
+<p>h<sub>2</sub> = c<sub>4</sub> * l<sub>2</sub><sup>-1</sup></p>
+
+<p>&nbsp;</p>
+
+<p>Rel<sub>h</sub> = (( c<sub>4</sub> *
+l<sub>2</sub><sup>-1</sup> ) - ( c<sub>4</sub> * l<sub>1</sub><sup>-1</sup> ))
+/ ( c<sub>4</sub> * l<sub>1</sub><sup>-1</sup> ) = ( l<sub>2</sub><sup>-1</sup>
+- l<sub>1</sub><sup>-1</sup> ) /    l<sub>1</sub><sup>-1</sup>
+</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>The
+code in the Texas TI-84 might look like this:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>: ClrHome</p>
+
+<p>: Disp &quot;Please enter two
+lengths.&quot;</p>
+
+<p>: Prompt A</p>
+
+<p>: Prompt B</p>
+
+<p>: 100 + ( (100 * (B<sup>-1</sup> - A<sup>-1</sup>))
+/ A<sup>-1</sup> ) -&gt; C</p>
+
+<p>: Disp &quot;B will jump&quot;</p>
+
+<p>: Disp C</p>
+
+<p>: Disp &quot;Percent higher,&quot;</p>
+
+<p>: Disp &quot;compared to A.&quot;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="TexasCodeSnippets.htm">Go back to Richel Bilderbeek's Texas Code Snippets</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>  &nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

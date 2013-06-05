@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>auto</title>
+  <meta name="description" content="C++ C++0x auto"/>
+  <meta name="keywords" content="C++ C++0x auto keyword"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppAuto.htm">auto</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppAuto.htm">auto</a> is a <a href="CppKeyword.htm">keyword</a> that has different meanings, depending
+on the <a href="CppStandard.htm">standard</a> used:</p>
+<ul>
+  <li>
+    <img src="PicCpp98.png" alt="C++98"/> 
+    <a href="CppAuto.htm">auto</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
+  </li>
+  <li>
+    <img src="PicCpp11.png" alt="C++11"/> 
+    <a href="CppAuto.htm">auto</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/> 
+  <a href="CppAuto.htm">auto</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
+</h2>
+<p>&nbsp;</p>
+<p><a href="CppAuto.htm">auto</a> as described in the ISO/IEC 14882:2003 C++ Standard is a <a href="CppKeyword.htm">keyword</a> to specify that a <a href="CppLocal.htm">locally</a> <a href="CppDeclaration.htm">declared</a> <a href="CppVariable.htm">variable</a> is destroyed at the end of its <a href="CppScope.htm">scope</a>. In other words: to specify to do, what already will be done. Never write <a href="CppAuto.htm">auto</a> [1].</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Never write <b><a href="CppAuto.htm">auto</a></b> [1]<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that when using the <a href="CppQtCreator.htm">Qt Creator</a> <a href="CppIde.htm">IDE</a>, 
+the above code already results in the <a href="CppCompileWarning.htm">compile warning</a> <a href="CppCompileWarningAutoWillChangeMeaningInC++0x.htm">'auto' will change meaning in C++0x; please remove it</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp11.png" alt="C++11"/> 
+  <a href="CppAuto.htm">auto</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
+</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppAuto.zip">Download the Qt Creator project 'CppAuto' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>In the <a href="Cpp11.htm">C++11</a> Standard, <a href="CppAuto.htm">auto</a> is useful
+to let the <a href="CppCompiler.htm">compiler</a> determine a 
+<a href="CppVariable.htm">variable</a>'s <a href="CppDataType.htm">data type</a>
+In the example below, 'i' is inferred to be of type
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::const_iterator.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(1);<br/>
+&nbsp;&nbsp;v.push_back(2);<br/>
+&nbsp;&nbsp;v.push_back(3);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppAuto.htm">auto</a></b> determines the type<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> j <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Technical note: the code shown is <a href="CppCompile.htm">compiled</a> successfully using the 
+<a href="CppGpp.htm">G++</a> 4.4.5 <a href="CppCompiler.htm">compiler</a>,
+which is supplied with the <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 <a href="CppIde.htm">IDE</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicQtCreator.png" alt="Qt Creator"/> Note for <a href="CppQtCreator.htm">Qt Creator</a> users</h2>
+<p>&nbsp;</p>
+<p>Add the following line to your <a href="CppQtProjectFile.htm">Qt project file</a> to work with <a href="Cpp11.htm">C++11</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QMAKE_CXXFLAGS += -std=c++0x<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 28 guideline: 'Never write auto'.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

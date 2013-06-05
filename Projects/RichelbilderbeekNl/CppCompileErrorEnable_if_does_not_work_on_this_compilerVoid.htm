@@ -1,0 +1,148 @@
+ 
+<title>enable_if_does_not_work_on_this_compiler&lt;void&gt;</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ enable_if_does_not_work_on_this_compiler&lt;void&gt;</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek [C++ Error] enable_if.hpp(100): E2029 'enable_if_does_not_work_on_this_compiler&lt;void&gt;' must be a previously defined class or struct compile error compile-error</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>128</o:TotalTime>
+  <o:Created>2008-07-03T14:40:00Z</o:Created>
+  <o:LastSaved>2009-05-07T09:56:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>148</o:Words>
+  <o:Characters>847</o:Characters>
+  <o:Category>C++ Richel Bilderbeek compile error enable_if_does_not_work_on_this_compiler&lt;void&gt;</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>7</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>1040</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ </head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppCompileErrorEnable_if_does_not_work_on_this_compilerVoid.htm">enable_if_does_not_work_on_this_compiler&lt;void&gt;</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCompileError.htm">Compile error</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>Full error message</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>[C++ Error] enable_if.hpp(100):
+E2029 'enable_if_does_not_work_on_this_compiler&lt;void&gt;' must be a
+previously defined class or struct</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Cause</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include &lt;boost/asio.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>IDE:
+<a href="CppBuilder.htm">C++ Builder</a> 6.0</p>
+
+<p><a
+href="CppCompiler.htm">Compiler</a>: Borland BCC32.EXE version 6.0.10.157</p>
+
+<p>Boost
+version: 1.35.0.</p>
+
+<p>&nbsp;</p>
+
+<h2>Solution</h2>
+
+<p>&nbsp;</p>
+
+<p>Hypothesis:
+boost::enable_if does not work on this compiler. Use a different compiler.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Notes</h2>
+
+<p>&nbsp;</p>
+
+<p>This
+approach did not work:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include
+&lt;boost/utility/enable_if.hpp&gt;</p>
+
+<p>#include &lt;boost/asio.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

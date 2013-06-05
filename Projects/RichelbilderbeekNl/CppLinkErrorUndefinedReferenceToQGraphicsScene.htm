@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>link error: Undefined reference to 'QGraphicsScene::QGraphicsScene(QObject*)'</title>
+  <meta name="description" content="C++ link error: Undefined reference to 'QGraphicsScene::QGraphicsScene(QObject*)'"/>
+  <meta name="keywords" content="C++ link error: Undefined reference to 'QGraphicsScene::QGraphicsScene(QObject*)'"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLinkErrorUndefinedReferenceToQGraphicsScene.htm">Undefined reference to 'QGraphicsScene::QGraphicsScene(QObject*)'</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppLinkError.htm">Link error</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full error message</h2>
+<p>&nbsp;</p>
+<!-- Start code-->
+<table border = "1"><tr><td><code>
+/MyFolder/main.cpp:9: undefined reference to 'QGraphicsScene::QGraphicsScene(QObject*)'<br/>
+/MyFolder/main.cpp:5: undefined reference to 'QGraphicsScene::~QGraphicsScene()'<br/>
+</code></td></tr></table>
+<!-- End of code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 1.3.1</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 Console Application</p>
+<p><a href="CppQtCreatorSelectRequiredModules.png">Selected required modules</a>: QtCore</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;QtGui/<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> scene;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>As the <a href="CppLinkError.htm">link error</a> indicates, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> is included but not added to project. The project file might look like this:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-04-30T13:50:36<br/>
+#<br/>
+#-------------------------------------------------<br/>
+<br/>
+QT       -= gui<br/>
+<br/>
+TARGET = CppQtHelloWorldWindowed<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+<br/>
+TEMPLATE = app<br/>
+<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>If you want to work with <a href="CppQGraphicsScene.htm">QGraphicsScene</a> you will need to add QtGui to your project in the <a href="CppQtCreatorSelectRequiredModules.png">select required modules dialog</a> in the project creation wizard. One (correct or incorrect?) way to remove it is by changing the project file to:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-04-30T13:50:36<br/>
+#<br/>
+#-------------------------------------------------<br/>
+<br/>
+TARGET = CppQtHelloWorldWindowed<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+<br/>
+TEMPLATE = app<br/>
+<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

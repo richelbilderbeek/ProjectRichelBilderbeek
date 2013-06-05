@@ -1,0 +1,259 @@
+ 
+<title>compile error: borland.hpp: Only member functions may be 'const' or
+'volatile'</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ compile error: borland.hpp: Only member functions may be 'const' or 'volatile'</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek compile error borland.hpp: Only member functions may be 'const' or 'volatile'</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>15</o:Revision>
+  <o:TotalTime>171</o:TotalTime>
+  <o:Created>2010-02-11T10:00:00Z</o:Created>
+  <o:LastSaved>2010-02-11T11:22:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>291</o:Words>
+  <o:Characters>1659</o:Characters>
+  <o:Category>C++ Richel Bilderbeek compile error borland.hpp: Only member functions may be 'const' or 'volatile'</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>13</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>2037</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:1941837107;
+	mso-list-type:hybrid;
+	mso-list-template-ids:74638006 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+ @list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a
+href="CppCompileErrorYourCompilerAndOrConfigurationIsUnsupportedByThisVerionsOfUblas.htm">Your
+compiler and/or configuration is unsupported by this verions of uBLAS</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCompileError.htm">Compile error</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Full error message</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>[C++ Fatal
+Error] config.hpp(170): F1003 Error directive: Your compiler and/or
+configuration is unsupported by this verions of uBLAS. Define
+BOOST_UBLAS_UNSUPPORTED_COMPILER=0 to override this message. Boost 1.32.0
+includes uBLAS with support for many older compilers.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Cause</h2>
+
+<p>&nbsp;</p>
+
+<p>IDE:
+<a
+href="CppBuilder.htm">C++
+Builder</a> 6.0</p>
+
+<p><a
+href="CppCompiler.htm">Compiler</a>:
+Borland BCC32.EXE version 6.0.10.157</p>
+
+<p>Boost
+version: 1.38.0.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;boost/numeric/ublas/matrix.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a
+href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>&nbsp;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>The compiler will show you the code of boost/numeric/ublas/detail/config.hpp:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//More
+code...</p>
+
+<p>&nbsp;</p>
+
+<p>// Cannot
+continue with an unsupported compiler</p>
+
+<p>#if
+defined(BOOST_UBLAS_UNSUPPORTED_COMPILER) &amp;&amp;
+(BOOST_UBLAS_UNSUPPORTED_COMPILER != 0)</p>
+
+<p>#error Your
+compiler and/or configuration is unsupported by this verions of uBLAS. Define
+BOOST_UBLAS_UNSUPPORTED_COMPILER=0 to override this message. Boost 1.32.0
+includes uBLAS with support for many older compilers.</p>
+
+<p>#endif</p>
+
+<p>&nbsp;</p>
+
+<p>//More
+code...</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Solution</h2>
+
+<p>&nbsp;</p>
+
+<p>Probably,
+you should obtain a better <a href="CppCompiler.htm">compiler</a> :-(.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm">References</a></h2>
+
+<p>  [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ...</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

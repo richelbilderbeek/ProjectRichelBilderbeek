@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Thinking Qt 1: general</title>
+  <meta name="description" content="C++ Thinking Qt 1: general"/>
+  <meta name="keywords" content="C++ Thinking Qt 1 general code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppThinkingQt1.htm">Thinking Qt 1: general</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> shows one way to think about program architecture when using the 
+<a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>. Because I use this program architecture also when using 
+the  <a href="CppWt.htm">Wt</a> <a href="CppLibrary.htm">library</a>, this <a href="CppArticle.htm">article</a>
+is very similar to <a href="CppThinkingWt1.htm">Thinking Wt 1: general</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Downloads</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppThinkingQt1.png">View a screenshot of the application developed in this article (png)</a></li>
+  <li><a href="CppThinkingQt1.zip">Download the Qt Creator source code of 'CppThinkingQt1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Overview</h2>
+<p>&nbsp;</p>
+<p>In the first two paragraph I will explain the rationale behind the architecture proposed. The following paragraphs
+describes the steps in implementing this architecture in a top-down way, followed by a conclusion.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Why these guidelines?</h2>
+<p>&nbsp;</p>
+<p><a href="CppQt.htm">Qt</a> is 'a cross-platform application and UI framework'. I see many 
+resemblances in its architecture with the <a href="CppWt.htm">Wt</a> <a href="CppLibrary.htm">library</a>,
+suitable for, among others, web applications. Due to their different running environments, <a href="CppQt.htm">Qt</a>
+(desktop) and <a href="CppWt.htm">Wt</a> (web) are mutually exclusive. Because I enjoy porting applications to as
+much platforms as possible, I have developed some applications that use both (but not simultaneously) a 
+<a href="CppQt.htm">Qt</a> and a <a href="CppWt.htm">Wt</a> front-end. To be able to do this easily, I follow the
+guidelines presented in this <a href="CppArticle.htm">article</a>. Additionally, I like to reuse my own widgets and
+dialogs in multiple applications, which is only possible with a proper architecture.</p>
+<p>&nbsp;</p>
+<p>Note that I follow the same guidelines for <a href="CppWt.htm">Wt</a> front-ends.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Architecture</h2>
+<p>&nbsp;</p>
+<p>The architecture, from biggest to smallest, is: <a href="CppMain.htm">main</a>, 
+<a href="CppQApplication.htm">Qt::QApplication</a>, dialog, widget:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Every C++ program has a single <a href="CppMain.htm">main</a> <a href="CppFunction.htm">function</a>. The purpose
+    of this <a href="CppMain.htm">main</a> <a href="CppFunction.htm">function</a> is to create a 
+    <a href="CppQApplication.htm">Qt::QApplication</a> and the first dialog. 
+    Optionally, <a href="CppMain.htm">main</a> can parse the command-line arguments
+  </li>
+  <li>
+    The purpose of the <a href="CppQApplication.htm">Qt::QApplication</a> is to manage 
+    <a href="CppQtSignal.htm">signals</a>. In this <a href="CppArticle.htm">article</a> I will not
+    create a <a href="CppDerivedClass.htm">derived class</a> of <a href="CppQApplication.htm">Qt::QApplication</a>,
+    but let <a href="CppMain.htm">main</a> create the first dialog
+  </li>
+  <li>
+    A dialog is a collection of at least one widget. The purpose of a dialog is to respond to its widgets or
+    creating other dialogs. A menu is an example of a dialog that creates other dialogs. A TicTacToe dialog
+    would display a TicTacToe widget, but additionally shows the score, responding to a player winning
+    and allowing the user to close it
+  </li>
+  <li>
+    A widget is a single visual element. The purpose of a widget is to repond to interaction and emitting 
+    signals when needed. For example, a TicTacToe widget responds to the clicking of the user and emits
+    a signal when the game is finished. The signal might (or might not) be used by the dialog it is in
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Implementing <a href="CppMain.htm">main</a></h2>
+<p>&nbsp;</p>
+<p>In this example, <a href="CppMain.htm">main</a> creates a single
+<a href="CppQApplication.htm">Qt::WApplication</a>, and creates the first (and only) dialog.</p>
+<p>&nbsp;</p>
+<p>The most basic <a href="CppMain.htm">main</a> <a href="CppFunction.htm">function</a> would only call WRun
+with a createApplication <a href="CppFunction.htm">function</a> that only <a href="CppReturn.htm">returns</a>
+a <a href="CppNew.htm">newly</a> created <a href="CppWApplication.htm">Qt::WApplication</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>This code can be created by <a href="CppQtCreator.htm">Qt Creator<a>, by starting a 
+<a href="CppGui.htm">GUI</a> application and instead of using a 
+<a href="CppQMainWindow.htm">Qt::QMainWindow</a> called
+'MainWindow', use a <a href="CppQDialog.htm">Qt::QDialog</a> called 'QtDialog'.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Implementing the <a href="CppQApplication.htm">Qt::QApplication</a></h2>
+<p>&nbsp;</p>
+<p><a href="CppQtSignal.htm">signals</a>. In this <a href="CppArticle.htm">article</a> I will not
+create a <a href="CppDerivedClass.htm">derived class</a> of <a href="CppQApplication.htm">Qt::QApplication</a>,
+but let <a href="CppMain.htm">main</a> create the first dialog, as shown above.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Implementing the dialog</h2>
+<p>&nbsp;</p>
+<p>Because a dialog is, well, a dialog, QtDialog is a <a href="CppDerivedClass.htm">derived class</a> 
+of <a href="CppQDialog.htm">Qt::QDialog</a>. QtDialog manages two widgets, but does not respond
+to their signals.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>QtDialog.h</h2>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Widget;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Widget * <b><a href="CppConst.htm">const</a></b> m_widget1;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Widget * <b><a href="CppConst.htm">const</a></b> m_widget2;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>QtDialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtwidget.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Dialog::<a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_widget1(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Widget(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_widget2(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Widget(<b><a href="CppThis.htm">this</a></b>))<br/>
+{<br/>
+&nbsp;&nbsp;m_widget1-&gt;setGeometry( 0,0,32,32);<br/>
+&nbsp;&nbsp;m_widget2-&gt;setGeometry(32,0,32,32);<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+
+<p>&nbsp;</p>
+<p>Note that this <a href="CppClass.htm">class</a> must be split in a 
+<a href="CppHeaderFile.htm">header (.h) file</a> and an 
+<a href="CppImplementationFile.htm">implementation (.cpp) file</a>. Putting both
+QtDialog's <a href="CppDeclaration.htm">declaration</a> and <a href="CppDefinition.htm">definition</a> in a single 
+<a href="CppHeaderFile.htm">header (.h) file</a> will result in the <a href="CppLinkError.htm">link error</a>
+<a href="CppLinkErrorUndefinedReferenceToVtableForMyDialog.htm">undefined reference to 'vtable for MyDialog'</a>.</p>
+<p>&nbsp;</p>
+<p>Because the <a href="CppPointer.htm">pointers</a> m_widget1 and m_widget2 are set to have their parent to 'this'
+in the QtDialog's constructor, these should not be <a href="CppDelete.htm">deleted</a> 
+(doing so results in a double <a href="CppDelete.htm">deletion</a>).</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Implementing the widget</h2>
+<p>&nbsp;</p>
+<p>A widget is a single visual element. In this example, QtWidget is a button (and thus a 
+<a href="CppDerivedClass.htm">derived class</a> of <a href="CppQPushButton.htm">Qt::QPushButton</a>), 
+that displays how often it is clicked.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>QtWidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> QTWIDGET_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPushButton.htm">QPushButton</a>&gt;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Widget : <b><a href="CppPublic.htm">public</a></b> <a href="CppQPushButton.htm">QPushButton</a><br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Widget(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_count;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTWIDGET_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>QtWidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtwidget.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Widget::<a href="CppQt.htm">Qt</a>Widget(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQPushButton.htm">QPushButton</a>(parent),<br/>
+&nbsp;&nbsp;m_count(0)<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Widget::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>m_count;<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setText(<a href="CppQString.htm">QString</a>::number(m_count));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Running the Qt application</h2>
+<p>&nbsp;</p>
+<p>Click 'Build -&gt; Run' or CTRL-R to run the application.
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Conclusion</h2>
+<p>&nbsp;</p>
+<p>In this <a href="CppArticle.htm">article</a> I have shown one of many <a href="CppQt.htm">Qt</a>
+program architectures you can use, for a very basic application. 
+In my humble opinion, this architecture makes sense, but I am
+open to discussion on this subject.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppThinkingQt1.png">View a screenshot of the application developed in this article (png)</a></li>
+  <li><a href="CppThinkingQt1.zip">Download the Qt Creator source code of 'CppThinkingQt1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://qt.nokia.com/products">Qt homepage</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

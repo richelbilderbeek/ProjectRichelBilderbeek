@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt example 3: a changing background in 2D</title>
+  <meta name="description" content="C++ Qt example 3: a changing background in 2D"/>
+  <meta name="keywords" content="C++ Qt example 3: a changing background in 2D"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtExample3.htm">Qt example 3: a changing background in 2D</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppQt.htm">Qt</a> example shows a changing background in 2D, like <a href="CppQtExample3.png">this screenshot (png)</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppQtExample3.zip">Download the Qt Creator project file 'QtExample3' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a></p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 GUI Application</p>
+<p><a href="CppQtCreatorSelectRequiredModules.png">Selected required modules</a>: QtCore, QtGui</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-19T14:59:00<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core gui<br/>
+TARGET = QtExample3<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/shared_ptr.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> ChangingBackground : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a><br/>
+{<br/>
+&nbsp;&nbsp;ChangingBackground(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: z(0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> m(width,height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(m);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().toImage();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> i.width();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> i.height();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0;y<a href="CppOperatorNotEqual.htm">!=</a>height;<a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0;x<a href="CppOperatorNotEqual.htm">!=</a>width;<a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.setPixel(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a>(x,y), <a href="CppComment.htm">//</a>Position<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQColor.htm">QColor</a>(      <a href="CppComment.htm">//</a>Color<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x+z+0)%256,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(y+z+0)%256,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x+y+z)%256)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.rgb());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(<b><a href="CppThis.htm">this</a></b>-&gt;pixmap().fromImage(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>z;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> z;<br/>
+};<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a scene to add the background sprite to<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt; scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a background sprite to add to the scene<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;ChangingBackground&gt; background(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> ChangingBackground(256,256));<br/>
+&nbsp;&nbsp;scene-&gt;addItem(background.get());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a view to display the scene<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt; view(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a>);<br/>
+&nbsp;&nbsp;view-&gt;setScene(scene.get());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a timer to call 'advance' on the scene and its sprite<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQTimer.htm">QTimer</a>&gt; timer(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(scene.get()));<br/>
+&nbsp;&nbsp;timer-&gt;connect(timer.get(), <a href="CppSIGNAL.htm">SIGNAL</a>(timeout()), scene.get(), <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;timer-&gt;start(20);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the view<br/>
+&nbsp;&nbsp;view-&gt;show();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Move the view to the screen center<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;view-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> view-&gt;rect().center() );<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

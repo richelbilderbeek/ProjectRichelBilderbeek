@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Kalman filter example 3: single state, use of 1x1 boost::numeric::ublas::matrix</title>
+  <meta name="description" content="C++ Kalman filter example 3: single state, use of 1x1 boost::numeric::ublas::matrix"/>
+  <meta name="keywords" content="C++ Kalman filter example 3: single state, use of 1x1 boost::numeric::ublas::matrix code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppKalmanFilterExample3.htm">Kalman filter example 3: single state, use of 1x1 boost::numeric::ublas::matrix</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppKalmanFilterExample3.htm">Kalman filter example 3: single state, use of 1x1 boost::numeric::ublas::matrix</a> is an example to use a <a href="CppKalmanFilter.htm">Kalman filter</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppKalmanFilterExample3.zip">Download the Qt Creator project 'CppKalmanFilterExample3' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppKalmanFilterExample3.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppKalmanFilterExample3.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+QMAKE_CXXFLAGS += <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;INCLUDEPATH += E:/boost_1_50_0<br/>
+<br/>
+&nbsp;&nbsp;LIBS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;-LE:/boost_1_50_0/stage/lib&nbsp;&nbsp;\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#-lboost_system-mgw47-mt-d-1_50 \&nbsp;&nbsp;&nbsp;&nbsp; #NEXT for GCC 4.7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#<a href="CppFilesystem.htm">-lboost_filesystem</a>-mgw47-mt-d-1_50 \ #NEXT for GCC 4.7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#<a href="CppRegex.htm">-lboost_regex</a>-mgw47-mt-d-1_50 \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#NEXT for GCC 4.7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;-lboost_system-mgw44-mt-1_50 \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#PREV for GCC 4.4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a>-mgw44-mt-1_50 \&nbsp;&nbsp;&nbsp;&nbsp;#PREV for GCC 4.4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a>-mgw44-mt-1_50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #PREV for GCC 4.4<br/>
+<br/>
+}<br/>
+<br/>
+<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;kalmanfilter.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;whitenoisesystem.cpp<br/>
+<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;kalmanfilter.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;whitenoisesystem.h<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>kalmanfilter.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="kalmanfilter.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> KALMANFILTER_H<br/>
+<a href="CppDefine.htm">#define</a> KALMANFILTER_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/ublas/matrix.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/ublas/matrix.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> KalmanFilter<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Initialize the filter with a first measurent<br/>
+&nbsp;&nbsp;KalmanFilter(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; first_x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; first_p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; measurement_noise,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; process_noise<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Give the filter a real measurement, so it will update itself<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SupplyMeasurement(<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; x);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Let the filter predict<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; Predict() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_x; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Let the filter predict<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; PredictCovariance() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_p; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>R: Estimated measurement noise: How to estimate <b><a href="CppThis.htm">this</a></b>?<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_measurement_noise;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The (current prediction of the) covariance<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_p;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Q: Process noise: How to estimate <b><a href="CppThis.htm">this</a></b>?<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_process_noise;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The (current prediction of the) measurement<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_x;<br/>
+<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> KALMANFILTER_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>kalmanfilter.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="kalmanfilter.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "kalmanfilter.h"<br/>
+<br/>
+<br/>
+<br/>
+KalmanFilter::KalmanFilter(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; first_x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; first_p,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; measurement_noise,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; process_noise)<br/>
+&nbsp;&nbsp;: m_measurement_noise(measurement_noise),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_p(first_p),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_process_noise(process_noise),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_x(first_x)<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Inverse(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; m)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.size2() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Can only calculate the inverse of square matrices");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m.size2() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Only <b><a href="CppFor.htm">for</a></b> 1x1 matrices");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,0) <a href="CppOperatorNotEqual.htm">!=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Cannot take the inverse of matrix [0]");<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n(1,1);<br/>
+&nbsp;&nbsp;n(0,0) <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1.0 <a href="CppOperatorDivide.htm">/</a> m(0,0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> KalmanFilter::SupplyMeasurement(<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::identity_matrix;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::prod;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 1/7) <a href="CppState.htm">State</a> prediction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; x_current <a href="CppOperatorAssign.htm">=</a> m_x;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 2/7) Covariance prediction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; p_current <a href="CppOperatorAssign.htm">=</a> m_p <a href="CppOperatorPlus.htm">+</a> m_process_noise;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 3/7) Innovation (y with a squiggle above it)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; z_measured <a href="CppOperatorAssign.htm">=</a> x; <a href="CppComment.htm">//</a>x has noise in it<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; innovation <a href="CppOperatorAssign.htm">=</a> z_measured <a href="CppOperatorMinus.htm">-</a> x_current;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 4/7) Innovation covariance (S)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; innovation_covariance <a href="CppOperatorAssign.htm">=</a> p_current <a href="CppOperatorPlus.htm">+</a> m_measurement_noise;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 5/7) Kalman gain (K)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; kalman_gain<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> prod(p_current,Inverse(innovation_covariance));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 6/7) Update state prediction<br/>
+&nbsp;&nbsp;m_x <a href="CppOperatorAssign.htm">=</a> x_current <a href="CppOperatorPlus.htm">+</a> prod(kalman_gain,innovation);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 7/7) Update covariance prediction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> identity_matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; my_identity_matrix(kalman_gain.size1());<br/>
+&nbsp;&nbsp;m_p <a href="CppOperatorAssign.htm">=</a> prod(my_identity_matrix <a href="CppOperatorMinus.htm">-</a> kalman_gain,p_current);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">///</a><a href="CppKalmanFilter.htm">Kalman filter</a> example<br/>
+<a href="CppComment.htm">///</a>Adapted from merge from www.adrianboeing.com and http://greg.czerniak.info/guides/kalman1<br/>
+<a href="CppComment.htm">///</a>now working with matrices<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/ublas/matrix.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/ublas/matrix.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "kalmanfilter.h"<br/>
+<a href="CppInclude.htm">#include</a> "whitenoisesystem.h"<br/>
+<br/>
+<a href="CppComment.htm">///</a>Context:<br/>
+<a href="CppComment.htm">///</a>A constant DC voltage measured with a noisy mul<a href="CppTime.htm">time</a>ter<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The state matrix<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; x_real(1,1,1.25); <a href="CppComment.htm">//</a>Volts<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Real measurement noise<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; x_real_noise(1,1,0.25);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Guess of the state matrix<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; x_first_guess(1,1,10.0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Guess of the covariances<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; p_first_guess(1,1,1.0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Estimated measurement noise<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; measurement_noise(1,1,0.1);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Estimated process noise<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; process_noise(1,1,0.0001);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> WhiteNoiseSystem s(x_real,x_real_noise);<br/>
+<br/>
+&nbsp;&nbsp;KalmanFilter k(x_first_guess,p_first_guess,measurement_noise,process_noise);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Real,measured,Kalman\n";<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0;i<a href="CppOperatorNotEqual.htm">!=</a>100;<a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Perform a noisy measurement<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; z_measured <a href="CppOperatorAssign.htm">=</a> s.Measure();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Pass <b><a href="CppThis.htm">this</a></b> measurement to the filter<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;k.SupplyMeasurement(z_measured);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display what the filter predicts<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; x_est_last <a href="CppOperatorAssign.htm">=</a> k.Predict();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x_real(0,0) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> z_measured(0,0) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x_est_last(0,0) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>whitenoisesystem.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="whitenoisesystem.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> WHITENOISESYSTEM_H<br/>
+<a href="CppDefine.htm">#define</a> WHITENOISESYSTEM_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/ublas/matrix.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> WhiteNoiseSystem<br/>
+{<br/>
+&nbsp;&nbsp;WhiteNoiseSystem(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; real_value,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; stddev);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Measure a value from <b><a href="CppThis.htm">this</a></b> system with normally distributed noise<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Measure() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Peek what the real value is<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; PeekAtRealValue() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_mean; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The real value of the system<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_mean;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The amount of noise in the system<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A noise of zero indicates a system that can be measured accurately to infinite precision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_stddev;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a <a href="CppRandomNumber.htm">random number</a> from a normal distribution<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/CppGetRandomNormal.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> GetRandomNormal(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean <a href="CppOperatorAssign.htm">=</a> 0.0, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sigma <a href="CppOperatorAssign.htm">=</a> 1.0);<br/>
+<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WHITENOISESYSTEM_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>whitenoisesystem.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="whitenoisesystem.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "whitenoisesystem.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/random/normal_distribution.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/random/lagged_fibonacci.hpp&gt;<br/>
+<br/>
+WhiteNoiseSystem::WhiteNoiseSystem(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; real_value,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; stddev)<br/>
+&nbsp;&nbsp;: m_mean(real_value),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_stddev(stddev)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_mean.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_stddev.size1() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Every value must have one measurement noise");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_mean.size2() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_stddev.size2() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Every value must have one measurement noise");<br/>
+}<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> WhiteNoiseSystem::GetRandomNormal(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sigma)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::normal_distribution&lt;<b><a href="CppDouble.htm">double</a></b>&gt; norm_dist(mean, sigma);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoost.htm">boost</a>::lagged_fibonacci19937 engine;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> value <a href="CppOperatorAssign.htm">=</a> norm_dist.<b><a href="CppOperator.htm">operator</a></b> () &lt;<a href="CppBoost.htm">boost</a>::lagged_fibonacci19937&gt;((engine));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> value;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; WhiteNoiseSystem::Measure() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_rows <a href="CppOperatorAssign.htm">=</a> m_mean.size1();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_cols <a href="CppOperatorAssign.htm">=</a> m_mean.size2();<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::numeric::ublas::matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; measured(n_rows,n_cols);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> row <a href="CppOperatorAssign.htm">=</a> 0; row<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+row)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> col <a href="CppOperatorAssign.htm">=</a> 0; col<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+col)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measured(row,col) <a href="CppOperatorAssign.htm">=</a> GetRandomNormal(m_mean(row,col),m_stddev(row,col));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> measured;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

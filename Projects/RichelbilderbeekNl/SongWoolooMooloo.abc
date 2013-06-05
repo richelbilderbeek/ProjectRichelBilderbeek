@@ -1,0 +1,26 @@
+X:1
+T:Al heb je blauw haar
+C:Richel Bilderbeek
+L:1/4
+Q:1/4=196
+M:4/4
+K:Bb
+V:V1 clef=treble
+V:V2 clef=bass
+%
+% 1-4
+%
+[V:V1] f e d e | z2  f2 | f e d c | z2 d2 | e d c B | z2 c2 | c B A B | z4  |
+w: Hon- dert stu- den ten, in een dis- co- theek
+[V:V2] B,,4    | B,4    | A,,4    | A,4   | G,,4    | G,4   | F,,4    | F,4 |
+%      
+%
+% 5-8
+%
+%
+% 9-12
+%
+%
+% 13-16
+%
+

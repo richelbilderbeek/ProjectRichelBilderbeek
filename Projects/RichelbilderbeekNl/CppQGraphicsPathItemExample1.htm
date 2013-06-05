@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QGraphicsPathItem example 1: basic</title>
+  <meta name="description" content="C++ QGraphicsPathItem example 1: basic"/>
+  <meta name="keywords" content="C++ QGraphicsPathItem example 1: basic code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicQt.png" alt="Qt"/>
+  <a href="CppQGraphicsPathItemExample1.htm">QGraphicsPathItem example 1: basic</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppQGraphicsPathItemExample1.htm">QGraphicsPathItem example 1: basic</a> is a 
+<a href="CppQGraphicsPathItem.htm">QGraphicsPathItem</a>
+example. This example shows how to draw some selectable and movable <a href="CppQGraphicsPathItem.htm">QGraphicsPathItem</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppQGraphicsPathItemExample1.png">View a screenshot of 'CppQGraphicsPathItemExample1' (png)</a></li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQGraphicsPathItemExample1.zip">Download the Qt Creator project 'CppQGraphicsPathItemExample1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.3 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQGraphicsPathItemExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+TARGET = CppQGraphicsPathItemExample1<br/>
+TEMPLATE = app<br/>
+<br/>
+SOURCES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppWidget.htm">widget</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtitem.cpp<br/>
+<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppWidget.htm">widget</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtitem.h<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtitem.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTITEM_H<br/>
+<a href="CppDefine.htm">#define</a> QTITEM_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPathItem.htm">QGraphicsPathItem</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Item : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPathItem.htm">QGraphicsPathItem</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Item(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTITEM_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtitem.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qtitem.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Item::<a href="CppQt.htm">Qt</a>Item(<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsPathItem.htm">QGraphicsPathItem</a>(parent,scene)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlags(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsSelectable<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set a simple path<br/>
+&nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a> path;<br/>
+&nbsp;&nbsp;path.quadTo(100,0,100,100);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPath(path);<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppWidget.htm">Widget</a> w;<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Resize the dialog and put it in the screen center<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w.setGeometry(0,0,600,400);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w.move( screen.center() <a href="CppOperatorMinus.htm">-</a> w.rect().center() );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtwidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> QTWIDGET_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>The <a href="CppWidget.htm">widget</a> holding the items<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTWIDGET_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qtitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a><a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsView.htm">QGraphicsView</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>,parent)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items <a href="CppOperatorAssign.htm">=</a> 16;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_items; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * <a href="CppM_PI.htm">M_PI</a> * (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_items));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1 <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppSin.htm">std::sin</a>(angle) * 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1 <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle) * 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(x1,y1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

@@ -1,0 +1,192 @@
+ 
+<title>Link error: Error processing module JConsts.pas</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Link error: Error processing module JConsts.pas</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek C++ Link error: Error processing module JConsts.pas</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>11</o:Revision>
+  <o:TotalTime>152</o:TotalTime>
+  <o:Created>2009-05-09T12:31:00Z</o:Created>
+  <o:LastSaved>2009-05-09T12:37:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>183</o:Words>
+  <o:Characters>1046</o:Characters>
+  <o:Category>C++ Richel Bilderbeek C++ Link error: Error processing module JConsts.pas</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>8</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1284</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ </head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(  <a href="Cpp.htm">C++</a> ) <a
+href="CppLinkErrorErrorProcessingModuleJConstsPas.htm">Error processing module
+JConsts.pas</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a href="CppLinkError.htm">Link error</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>IDE:   <a
+href="CppBuilder.htm"> C++
+Builder</a> 6.0</p>
+
+<p>Project type: <a href="CppVcl.htm">VCL</a></p>
+
+<p>&nbsp;</p>
+
+<h2>Full error messages</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>[Linker Error] Error processing module
+JConsts.pas</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Cause</h2>
+
+<p>&nbsp;</p>
+
+<p>Not sure, but I did both two things below:</p>
+
+<p>&nbsp;</p>
+
+<p>Added the following line to support JPEGs, to only one of the <a
+href="CppImplementationFile.htm">implementation files (.cpp)</a> that will need
+it:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include &lt;jpeg.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Or made a too difficult std::string concatenation</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>std::vector&lt;std::string&gt; v;</p>
+
+<p>v.push_back(&quot; &quot; + m_question-&gt;m_filename
++ &quot; &quot;);</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Solution</h2>
+
+<p>&nbsp;</p>
+
+<p>Not sure which one of the two hypothesized solutions is the real one. I
+just did both.</p>
+
+<p>&nbsp;</p>
+
+<p>I added the following line to the other <a
+href="CppImplementationFile.htm">implementation files (.cpp)</a> that will need
+it:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include &lt;jpeg.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>I also broke apart the std::string concatenation</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>std::vector&lt;std::string&gt; v;</p>
+
+<p>const std::string filename = &quot;
+&quot; + m_question-&gt;m_filename + &quot; &quot;;</p>
+
+<p>v.push_back(filename);</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

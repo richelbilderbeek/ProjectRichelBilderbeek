@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetStdDev</title>
+  <meta name="description" content="C++ GetStdDev"/>
+  <meta name="keywords" content="C++ GetStdDev get calculate std dev standard deviation"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetStdDev.htm">GetStdDev</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetStdDev.htm">GetStdDev</a> is a <a href="CppMath.htm">math</a> <a href="CppCodeSnippets.htm">code snippet</a> to calculate the standard deviation of the values in a <a href="CppContainer.htm">container</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b>  &lt;<b><a href="CppClass.htm">class</a></b> T&gt; <b><a href="CppStruct.htm">struct</a></b> SquareAccumulator<br/>
+&nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> <a href="CppBinary_function.htm">std::binary_function</a>&lt;T,T,T&gt;<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T <b><a href="CppOperator.htm">operator</a></b>()(<b><a href="CppConst.htm">const</a></b> T&amp; sum, <b><a href="CppConst.htm">const</a></b> T&amp; x) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppReturn.htm">return</a></b> sum+(x*x); }<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetStdDev.htm">GetStdDev</a>.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppGetStdDev.htm">GetStdDev</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() &gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Can only calculate standard deviations from "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"data sets with size 2 or larger");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sum_x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sum_x_squared<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0,SquareAccumulator&lt;<b><a href="CppDouble.htm">double</a></b>&gt;());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(((sz*sum_x_squared)-(sum_x*sum_x))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> (sz*(sz-1.0)));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppGetStdDev.htm">GetStdDev</a> test</h2>
+<p>&nbsp;</p>
+<p><a href="CppGetStdDev.htm">GetStdDev</a> was tested by a previous version of this code snippet.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b>  &lt;<b><a href="CppClass.htm">class</a></b> T&gt; <b><a href="CppStruct.htm">struct</a></b> SquareAccumulator<br/>
+&nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> <a href="CppBinary_function.htm">std::binary_function</a>&lt;T,T,T&gt;<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T <b><a href="CppOperator.htm">operator</a></b>()(<b><a href="CppConst.htm">const</a></b> T&amp; sum, <b><a href="CppConst.htm">const</a></b> T&amp; x) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppReturn.htm">return</a></b> sum+(x*x); }<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetStdDev.htm">GetStdDev</a>.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppGetStdDev.htm">GetStdDev</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() &gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Can only calculate standard deviations from "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"data sets with size 2 or larger");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sum_x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sum_x_squared<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0,SquareAccumulator&lt;<b><a href="CppDouble.htm">double</a></b>&gt;());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(((sz*sum_x_squared)-(sum_x*sum_x))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> (sz*(sz-1.0)));<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetStdDev.htm">GetStdDev</a>.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppGetStdDev.htm">GetStdDev</a>Old(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sz&gt;1);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sumX <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sumXsquared <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sumX<a href="CppOperatorPlusAssign.htm">+=</a>x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sumXsquared<a href="CppOperatorPlusAssign.htm">+=</a>(x*x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dSize <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sz);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(((dSize*sumXsquared)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>(sumX*sumX))/(dSize *(dSize-1.0)));<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetStdDev.htm">GetStdDev</a>.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppGetRandomUniform.htm">GetRandomUniform</a>());<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppGetRandomUniform.htm">GetRandomUniform</a>());<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> max <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (max <a href="CppOperatorNotEqual.htm">!=</a> 33554432)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>max; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppGetRandomUniform.htm">GetRandomUniform</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> max <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ":\t"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetStdDev.htm">GetStdDev</a>(v) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\t"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetStdDev.htm">GetStdDev</a>Old(v) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;max<a href="CppOperatorMultiplyAssign.htm">*=</a>2;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Starting /MyFolder/MyProject...<br/>
+2:	0.207834	0.207834<br/>
+4:	0.273555	0.273555<br/>
+8:	0.2501	0.2501<br/>
+16:	0.295567	0.295567<br/>
+32:	0.301386	0.301386<br/>
+64:	0.28569	0.28569<br/>
+128:	0.290935	0.290935<br/>
+256:	0.283272	0.283272<br/>
+512:	0.283464	0.283464<br/>
+1024:	0.289154	0.289154<br/>
+2048:	0.288763	0.288763<br/>
+4096:	0.288992	0.288992<br/>
+8192:	0.288068	0.288068<br/>
+16384:	0.288728	0.288728<br/>
+32768:	0.288723	0.288723<br/>
+65536:	0.28853	0.28853<br/>
+131072:	0.288398	0.288398<br/>
+262144:	0.288527	0.288527<br/>
+524288:	0.288621	0.288621<br/>
+1048576:	0.288542	0.288542<br/>
+2097152:	0.288646	0.288646<br/>
+4194304:	0.288659	0.288659<br/>
+8388608:	0.288658	0.288658<br/>
+16777216:	0.288649	0.288649<br/>
+/MyFolder/MyProject exited with code 0<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

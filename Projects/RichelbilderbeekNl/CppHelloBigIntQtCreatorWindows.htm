@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>'Hello BigInt' using Qt Creator under Windows</title>
+  <meta name="description" content="C++ 'Hello BigInt' using Qt Creator under Windows"/>
+  <meta name="keywords" content="C++ Hello BigInt Big Integer Library using Qt Creator under Windows code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicBigInt.png" alt="BigInt"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicWindows.png" alt="Windows"/> 
+  <a href="CppHelloBigIntQtCreatorWindows.htm">'Hello BigInt' using Qt Creator under Windows</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppHelloBigInt.htm">Hello BigInt</a> working under <a href="CppQtCreator.htm">Qt Creator</a> under Windows.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Operating system: Windows XP</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: console application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><a href="CppBigInt.htm">BigInt</a>: version 2010.04.30li>
+<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li> -->
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-10-01T15:39:17<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+unix:INCLUDEPATH += ../../Libraries/bigint-2010.04.30<br/>
+win32:INCLUDEPATH += ../../Libraries/bigint-2010.04.30<br/>
+TARGET = CppHelloBigInt<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+unix: SOURCES += \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigInteger.cc \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigUnsigned.cc \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc \<br/>
+&nbsp;&nbsp;main.cpp<br/>
+win32: SOURCES += \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigInteger.cc \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigUnsigned.cc \<br/>
+&nbsp;&nbsp;../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc \<br/>
+&nbsp;&nbsp;main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> Sample program demonstrating the use of the Big <a href="CppInt.htm">Integer</a> Library.<br/>
+<a href="CppComment.htm">//</a> Standard libraries<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a> '<a href="CppBigInt.htm">BigIntegerLibrary</a>.hh' includes all of the library headers.<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppBigInt.htm">BigIntegerLibrary</a>.hh"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>() {<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a> The library <b><a href="CppThrow.htm">throw</a></b>s '<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> *' error messages when things go<br/>
+&nbsp;&nbsp; * wrong.&nbsp;&nbsp;It's a good idea to <b><a href="CppCatch.htm">catch</a></b> them <b><a href="CppUsing.htm">using</a></b> a '<b><a href="CppTry.htm">try</a></b>' block like <b><a href="CppThis.htm">this</a></b><br/>
+&nbsp;&nbsp; * one.&nbsp;&nbsp;Your <a href="Cpp.htm">C++</a> compiler might need a command-line option to compile<br/>
+&nbsp;&nbsp; * code that uses exceptions. <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBigInt.htm">BigInteger</a> a; <a href="CppComment.htm">//</a> a is 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> 535;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> Any primitive <a href="CppInt.htm">integer</a> can be converted implicitly to a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppBigInt.htm">BigInteger</a>. <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a <a href="CppOperatorAssign.htm">=</a> b;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> The reverse conversion requires a method call (implicit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * conversions were previously supported but caused trouble).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * If a were too big <b><a href="CppFor.htm">for</a></b> an <b><a href="CppInt.htm">int</a></b>, the library would <b><a href="CppThrow.htm">throw</a></b> an<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * exception. <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b <a href="CppOperatorAssign.htm">=</a> a.toInt();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBigInt.htm">BigInteger</a> c(a); <a href="CppComment.htm">//</a> Copy a <a href="CppBigInt.htm">BigInteger</a>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> The <b><a href="CppInt.htm">int</a></b> literal is converted to a <a href="CppBigInt.htm">BigInteger</a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBigInt.htm">BigInteger</a> d(-314159265);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> This won't compile (at least on 32-bit machines) because the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * number is too big to be a primitive <a href="CppInt.htm">integer</a> literal, and<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * there's no such thing as a <a href="CppBigInt.htm">BigInteger</a> literal. <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBigInt.htm">BigInteger</a> e(3141592653589793238462643383279);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Instead you can convert the number from a string.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s("3141592653589793238462643383279");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBigInt.htm">BigInteger</a> f <a href="CppOperatorAssign.htm">=</a> stringTo<a href="CppBigInt.htm">BigInteger</a>(s);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> You can convert the other way too.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s2 <a href="CppOperatorAssign.htm">=</a> big<a href="CppInt.htm">Integer</a>ToString(f);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> f is implicitly stringified and sent to <a href="CppCout.htm">std::cout</a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> Let's <b><a href="CppDo.htm">do</a></b> some math!&nbsp;&nbsp;The library overloads most of the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * mathematical <a href="CppOperator.htm">operators</a> (including assignment <a href="CppOperator.htm">operators</a>) to<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * work on <a href="CppBigInt.htm">BigInteger</a>s.&nbsp;&nbsp;There are also ''copy-less''<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * operations; see 'BigUnsigned.hh' <b><a href="CppFor.htm">for</a></b> details. <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Arithmetic <a href="CppOperator.htm">operators</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBigInt.htm">BigInteger</a> g(314159), h(265);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (g <a href="CppOperatorPlus.htm">+</a> h) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (g <a href="CppOperatorMinus.htm">-</a> h) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (g * h) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (g <a href="CppOperatorDivide.htm">/</a> h) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (g <a href="CppOperatorModulus.htm">%</a> h) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Bitwise <a href="CppOperator.htm">operators</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;BigUnsigned i(0xFF0000FF), j(0x0000FFFF);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> The library's <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppOperator.htm">operator</a></b> recognizes base flags.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>.flags(<a href="CppStd.htm">std</a>::ios::hex | <a href="CppStd.htm">std</a>::ios::showbase);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (i &amp; j) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (i | j) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (i ^ j) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Shift distances are ordinary <b><a href="CppUnsigned.htm">unsigned</a></b> ints.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (j <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 21) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (j <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 10) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>.flags(<a href="CppStd.htm">std</a>::ios::dec);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Let's <b><a href="CppDo.htm">do</a></b> some heavy lifting and calculate powers of 314.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> maxPower <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;BigUnsigned x(1), big314(314);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> power <a href="CppOperatorAssign.htm">=</a> 0; power <a href="CppOperatorLessEqual.htm">&lt;=</a> maxPower; power<a href="CppOperatorIncrement.htm">++</a>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "314^" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> power <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorMultiplyAssign.htm">*=</a> big314; <a href="CppComment.htm">//</a> A <a href="CppBigInt.htm">BigInteger</a> assignment <b><a href="CppOperator.htm">operator</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Some big-<a href="CppInt.htm">integer</a> <a href="CppAlgorithm.htm">algorithm</a>s (albeit on small <a href="CppInt.htm">integer</a>s).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> gcd(BigUnsigned(60), 72) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> modinv(BigUnsigned(7), 11) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> modexp(BigUnsigned(314), 159, 2653) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> your own code here to experiment with the library.<br/>
+&nbsp;&nbsp;} <b><a href="CppCatch.htm">catch</a></b>(<b><a href="CppChar.htm">char</a></b> <b><a href="CppConst.htm">const</a></b>* err) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "The library threw an exception:\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> err <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+The original sample program produces <b><a href="CppThis.htm">this</a></b> output:<br/>
+<br/>
+3141592653589793238462643383279<br/>
+314424<br/>
+313894<br/>
+83252135<br/>
+1185<br/>
+134<br/>
+0xFF<br/>
+0xFF00FFFF<br/>
+0xFF00FF00<br/>
+0x1FFFE00000<br/>
+0x3F<br/>
+314^0 <a href="CppOperatorAssign.htm">=</a> 1<br/>
+314^1 <a href="CppOperatorAssign.htm">=</a> 314<br/>
+314^2 <a href="CppOperatorAssign.htm">=</a> 98596<br/>
+314^3 <a href="CppOperatorAssign.htm">=</a> 30959144<br/>
+314^4 <a href="CppOperatorAssign.htm">=</a> 9721171216<br/>
+314^5 <a href="CppOperatorAssign.htm">=</a> 3052447761824<br/>
+314^6 <a href="CppOperatorAssign.htm">=</a> 958468597212736<br/>
+314^7 <a href="CppOperatorAssign.htm">=</a> 300959139524799104<br/>
+314^8 <a href="CppOperatorAssign.htm">=</a> 94501169810786918656<br/>
+314^9 <a href="CppOperatorAssign.htm">=</a> 29673367320587092457984<br/>
+314^10 <a href="CppOperatorAssign.htm">=</a> 9317437338664347031806976<br/>
+12<br/>
+8<br/>
+1931<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

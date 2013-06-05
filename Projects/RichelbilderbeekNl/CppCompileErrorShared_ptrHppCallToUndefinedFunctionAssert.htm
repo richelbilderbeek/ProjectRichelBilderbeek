@@ -1,0 +1,199 @@
+ 
+<title></title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ </o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>6</o:Revision>
+  <o:TotalTime>136</o:TotalTime>
+  <o:Created>2008-05-12T15:17:00Z</o:Created>
+  <o:LastSaved>2010-02-11T11:10:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>267</o:Words>
+  <o:Characters>1522</o:Characters>
+  <o:Category>C++ Richel Bilderbeek </o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>12</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>1869</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ </head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppCompileErrorShared_ptrHppCallToUndefinedFunctionAssert.htm">shared_ptr.hpp:
+call to undefined function 'assert'</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCompileError.htm">Compile error</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Cause</h2>
+
+<p>&nbsp;</p>
+
+<p>IDE:
+<a
+href="CppBuilder.htm">C++
+Builder</a> 6.0</p>
+
+<p><a
+href="CppCompiler.htm">Compiler</a>:
+Borland BCC32.EXE version 6.0.10.157</p>
+
+<p>Boost
+version: 1.35.0.</p>
+
+<p>&nbsp;</p>
+
+<p>I
+don't know why, but I've got this error in the following section of code, in
+the second line.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>//shared_ptr.hpp</p>
+
+<p>&nbsp;</p>
+
+<p>T * operator-&gt; () <b><a
+href="CppConst.htm">const</a></b> // never throws</p>
+
+<p>{</p>
+
+<p> 
+ BOOST_ASSERT(px != 0);</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> px;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>I
+still do not understand why it occurs (as on top of the header file
+boost/assert.hpp is <a href="CppInclude.htm">#included</a>).</p>
+
+<p>&nbsp;</p>
+
+<p>This
+error started to occur when I split a multi-unit project over multiple folders,
+in which I had defined by own assert.h (instead of Assert.hpp) and use assert
+(instead of Assert).</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Solution</h2>
+
+<p>&nbsp;</p>
+
+<p>Move
+the 'Auto-Create Forms' to 'Available' (Choose 'Project | Options | Forms').</p>
+
+<p>Now
+compiling should be successful.</p>
+
+<p>Move
+the 'Available' Forms back</p>
+
+<p>&nbsp;</p>
+
+<p>Why
+this works? I don't know.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Alternative possible solution</h2>
+
+<p>&nbsp;</p>
+
+<p>*
+remove all files from the project</p>
+
+<p>*
+remove all project directories (i.e. the multiple paths for the project)</p>
+
+<p>*
+rename your own assert.h to Assert.hpp, use Assert instead of assert</p>
+
+<p>*
+add the removed files to the project again</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

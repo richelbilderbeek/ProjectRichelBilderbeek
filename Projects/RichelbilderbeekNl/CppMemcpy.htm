@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::memcpy</title>
+  <meta name="description" content="C++ std::memcpy"/>
+  <meta name="keywords" content="C++ std::memcpy std memcpy mem memory cpy copy code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppMemcpy.htm">std::memcpy</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppMemcpy.htm">std::memcpy</a> (an abbreviation of 'memory copy') is an <a href="CppStl.htm">STL</a> <a href="CppFunction.htm">function</a> to copy raw memory.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppMemcpy.zip">Download the Qt Creator project 'CppMemcpy' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">cstring</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a scrambled <a href="CppString.htm">std::string</a><br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "HellABCorld";<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the <a href="CppString.htm">std::string</a> to fix s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> "o w";<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy all three <a href="CppChar.htm">character</a>s of t to the fifth <a href="CppChar.htm">character</a> of s<br/>
+&nbsp;&nbsp;<a href="CppMemcpy.htm">std::memcpy</a>(&amp;s[4],&amp;t[0],3);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume <a href="CppMemcpy.htm">std::memcpy</a> worked<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "Hello world");<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

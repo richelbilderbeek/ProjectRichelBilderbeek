@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt Creator: Hello World (console)</title>
+  <meta name="description" content="C++ Qt Creator Hello World console"/>
+  <meta name="keywords" content="C++ Qt Creator Hello World console"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQtHelloWorldConsole.htm">Hello World program (console)</a></h1>
+<p>&nbsp;</p>
+<p>To create a 'Hello World' (console) program in <a href="CppQtCreator.htm">Qt Creator</a>, you can follow the steps below:</p>
+<p>&nbsp;</p>
+<ol>
+  <li>Start <a href="CppQtCreator.htm">Qt Creator</a>.</li>
+  <li>If you are not shown the welcome screen, click on 'Welcome' on the left</li>
+  <li>If, in the welcome screen, the 'Develop' tab is not shown, click on 'Develop' to view the <a href="CppQtCreatorWelcomeDevelop_2_1_0.png">Welcome screen Develop tab</a></li>
+  <li>In the <a href="CppQtCreatorWelcomeDevelop_2_1_0.png">Welcome screen Develop tab</a>, click 'Create New Project' to go to the <a href="CppQtCreatorNewProject_2_5_2.png">New project dialog</a></li> 
+  <li>In the <a href="CppQtCreatorNewProject_2_5_2.png">New project dialog</a>, click 'QT4 Console Application' to go to the <a href="CppQtIntroduction.png">introduction and project location dialog</a>.</li>
+  <li>In the <a href="CppQtIntroduction.png">Introduction and project location dialog</a>, you must specify a name and location to save your (project) files. For example, after 'Name' type 'HelloWorld'. Click next</li>
+  <li>In the <a href="CppQtCreatorSelectRequiredModules.png">select required modules dialog</a>', all checks are correct (only QtCore is checked), so click 'Next'</li>
+  <li>In the <a href="CppQtProjectManagement.png">project management dialog</a>, click 'Finish'</li>
+  <li>Now your project is set up. On the left menu bar, you can see you are now in 'Edit' mode (instead of 'Welcome' mode). You can see your project right of this menu bar. You can see a 'HelloWorld' project folder, containing 'HelloWorld.pro' and a folder called 'Sources'. Click on this 'Sources' folder. The source file 'main.cpp' is shown, double-click it. Note: under Xubuntu, there is no folder created called 'Sources', just double-click on 'main.cpp' directly</li>
+  <li><p>Now you are taken to the source code of 'main.cpp':</p>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    <a href="CppInclude.htm">#include</a> &lt;QtCore/QCoreApplication&gt;<br/>
+    <br/>
+    <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+    {<br/>
+    &nbsp;&nbsp;QCoreApplication a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+    &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+    }<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+  </li>
+  <li><p>Replace this code by the following:</p>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+    <br/>
+    <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+    {<br/>
+    &nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello world\n";<br/>
+    &nbsp;&nbsp;<a href="CppCin.htm">std::cin</a>.get();<br/>
+    }<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+  </li>
+  <li>Press 'Run' on the left menu bar (or use CTRL-R) to run your application. If a 'Save Changes' dialog is shown, you might want to check 'Always save files before build' and click on 'Save All'</li>
+  <li>The program is build and run. Under Microsoft Windows, a console window appears and shows the text 'Hello world' and waits for a key press to terminate. Under Xubuntu, the text is shown in a panel called 'Application output' (if you want this text to be shown in a terminal, click on the left menu bar item 'Projects', then click the tab 'Run settings' and check 'Run in terminal'.</li>
+</ol>
+<p>&nbsp;</p>
+<p>If the console window is not shown, <a href="CppGpp.htm">G++</a> is probably not installed. You can check it if you click on the warning traingle on the left menu bar. The 'Compile output' is shown, probably with the text 'make: g++: Command not found' in red. The solution is to install <a href="CppGpp.htm">G++</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

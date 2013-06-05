@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>new</title>
+  <meta name="description" content="C++ new"/>
+  <meta name="keywords" content="C++ new keyword code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppNew.htm">new</a></h1>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">C++</a> <a href="CppKeyword.htm">keyword</a> to dynamically allocate 
+<a href="CppMemory.htm">memory</a> and <a href="CppReturn.htm">returning</a> a 
+<a href="CppPointer.htm">pointer</a> to this <a href="CppMemory.htm">memory</a> location.
+If the allocation of <a href="CppMemory.htm">memory</a> fails, <a href="CppBad_alloc.htm">std::bad_alloc</a>
+is <a href="CppThrow.htm">thrown</a> and a <a href="CppPointer.htm">pointer</a> to <a href="CppNull.htm">null</a>
+is <a href="CppReturn.htm">returned</a>.</p>
+<p>&nbsp;</p>
+<p>When the <a href="CppPointer.htm">pointer</a> is no longer needed, <a href="CppDelete.htm">delete</a> must be
+called.</p>
+<p>&nbsp;</p>
+<p>Prefer the use of <a href="CppAuto_ptr.htm">std::auto_ptr</a> (or other <a
+href="CppSmartPointer.htm">smart pointers</a>) over the use of plain <a
+href="CppPointer.htm">pointers</a> [1][2].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example with simple class</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> MyClass * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> MyClass; <a href="CppComment.htm">//</a>Bad practice<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use p<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p; <a href="CppComment.htm">//</a>Do not forget to <b><a href="CppDelete.htm">delete</a></b> p<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example with base and derived class</h2>
+<p>&nbsp;</p>
+<p>Suppose
+you have a <a href="CppBaseClass.htm">base class</a> called Animal and a 
+<a href="CppDerivedClass.htm">derived class</a> called Monkey. Then you can store
+a Monkey as an Animal in the following way.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Animal * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Monkey; <a href="CppComment.htm">//</a>Bad practice<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use the Animal <a href="CppInterface.htm">interface</a> of p (p does not know it is monkey anymore)<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p; <a href="CppComment.htm">//</a>Do not forget to <b><a href="CppDelete.htm">delete</a></b> p<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example with <a href="CppBaseClass.htm">base</a> and <a href="CppDerivedClass.htm">derived class</a> using <a href="CppAuto_ptr.htm">std::auto_ptr</a></h2>
+<p>&nbsp;</p>
+<p>Prefer the use of <a href="CppAuto_ptr.htm">std::auto_ptr</a> (or other <a
+href="CppSmartPointer.htm">smart pointers</a>) over the use of plain <a
+href="CppPointer.htm">pointers</a> [1-3].</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;Animal&gt; p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Monkey;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use the Animal <a href="CppInterface.htm">interface</a> of p (p does not know it is monkey anymore)<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAuto_ptr.htm">std::auto_ptr</a> deletes p automatically<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 13: 'Use objects to manage resources'.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 17: 'Store <a href="CppNew.htm">new</a>ed objects in <a href="CppSmartPointer.htm">smart pointer</a>s in standalone statements'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 13: 'Ensure resources are owned by objects. Use explicit RAII and smart pointers.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

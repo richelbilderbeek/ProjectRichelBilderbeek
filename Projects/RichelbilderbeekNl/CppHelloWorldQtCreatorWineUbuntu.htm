@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Hello World using Qt Creator under Wine under Ubuntu</title>
+  <meta name="description" content="C++ Hello World using Qt Creator under Wine under Ubuntu"/>
+  <meta name="keywords" content="C++ Hello World using Qt Creator under Wine under Ubuntu code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicWine.png" alt="Wine"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicDesktop.png" alt="Desktop"/>
+  <a href="CppHelloWorldQtCreatorWineUbuntu.htm">Hello World using (a Windows version of) Qt Creator under Wine under Ubuntu</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppHelloWorld.htm">Hello World</a> (or 'The Hello World program') is a standard 
+example program to see if your programming environment works. Note that this example code is
+not standarized, so multiple and similar variants are on the Internet. A more demanding example
+is <a href="CppHelloBoost.htm">Hello Boost</a>, which also tests if the <a href="CppBoost.htm">Boost</a> 
+<a href="CppLibrary.htm">libraries</a> are installed correctly.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppHelloWorldQtCreatorWineUbuntu.png">View a screenshot of 'CppHelloWorldQtCreatorWineUbuntu' (png)</a></li>
+  <li><a href="CppHelloWorldQtCreatorWineUbuntuExe.zip">Download the 'CppHelloWorldQtCreatorWineUbuntu' Windows executable (zip)</a></li>
+  <li><a href="CppHelloWorldQtCreatorWineUbuntu.zip">Download the Qt Creator project 'CppHelloWorldQtCreatorWineUbuntu' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.10 (maverick)</li>
+  <li><img src="PicWine.png" alt="Wine"/> <a href="CppWine.htm">Wine</a> 1.3.4</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 </li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloWorld.pro</h2>
+<p>&nbsp;</p>
+<p>The <a href="CppQtProjectFile.htm">Qt project file</a> used is a default-created 
+<a href="CppConsoleApplication.htm">console application</a> <a href="CppQtProjectFile.htm">Qt project file</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-09-29T14:58:49<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+TARGET = CppHelloWorld<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<p>A default <a href="CppHelloWorld.htm">Hello World</a> <a href="CppMain.htm">main</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello World\n";<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Run Settings</h2>
+<p>&nbsp;</p>
+<p>Do 'Projects (CTRL-5) | Run | Check 'Run in terminal'
+(<a href="CppHelloWorldQtCreatorWineUbuntuRunSettings.png">screenshot (png)</a>). </p>
+<p>&nbsp;</p>
+<p>If this step is forgotten, no output will be shown.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Starting the program</h2>
+<p>&nbsp;</p>
+<p>Click 'Run' in the bottom-left of press CTRL-R.
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppHelloWorldQtCreatorWineUbuntu.png">View a screenshot of 'CppHelloWorldQtCreatorWineUbuntu' (png)</a></li>
+  <li><a href="CppHelloWorldQtCreatorWineUbuntu.zip">Download the Qt Creator project 'CppHelloWorldQtCreatorWineUbuntu' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

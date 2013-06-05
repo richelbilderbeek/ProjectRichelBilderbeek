@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>StringToNewick</title>
+  <meta name="description" content="C++ StringToNewick"/>
+  <meta name="keywords" content="C++ StringToNewick convert Newick string to std::vector vector STL code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStringToNewick.htm">StringToNewick</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppStringToNewick.htm">StringToNewick</a> is a <a href="CppNewick.htm">Newick</a> <a href="CppCodeSnippets.htm">code snippets</a> to <a href="CppConvert.htm">convert</a> a well formed <a href="CppNewick.htm">Newick</a> <a href="CppString.htm">std::string</a> to <a href="CppNewick.htm">Newick</a> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> { bracket_open&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1 };<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> { bracket_close <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>2 };<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> { comma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>3 };<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> { new_line&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>4 };<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> { null&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>5 };<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>/<a href="CppStringToNewick.htm">StringToNewick</a> converts a <a href="CppString.htm">std::string</a> to a <a href="CppNewick.htm">Newick</a> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;.<br/>
+<a href="CppComment.htm">//</a>/<a href="CppStringToNewick.htm">StringToNewick</a> assumes that the input is well-formed and<br/>
+<a href="CppComment.htm">//</a>/has both trailing and tailing brackets.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppNewickToVector.htm">NewickToVector</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppStringToNewick.htm">StringToNewick</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; newick)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!newick.empty()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "s must not be empty");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(newick[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0]<a href="CppOperatorEqual.htm">==</a>'('<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "s must begin with a '('");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(newick[newick.size()-1]<a href="CppOperatorEqual.htm">==</a>')'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "s must end with a ')'");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> value <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> i,newick)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorEqual.htm">==</a> '(')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value<a href="CppOperatorNotEqual.htm">!=</a>0) v.push_back(value);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::bracket_open);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorEqual.htm">==</a> ')')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value<a href="CppOperatorNotEqual.htm">!=</a>0) v.push_back(value);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::bracket_close);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorEqual.htm">==</a> ',')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value<a href="CppOperatorNotEqual.htm">!=</a>0) v.push_back(value);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> '0' <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i <a href="CppOperatorLessEqual.htm">&lt;=</a> '9'); <a href="CppComment.htm">//</a>Should be a number<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;value<a href="CppOperatorMultiplyAssign.htm">*=</a>10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;value<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(value <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Final bracket close must set value to zero");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+

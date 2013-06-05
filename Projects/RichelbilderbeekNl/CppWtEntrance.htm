@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>WtEntrance</title>
+  <meta name="description" content="C++ WtEntrance"/>
+  <meta name="keywords" content="C++ WtEntrance code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtEntrance.htm">WtEntrance</a></h1>
+<p>&nbsp;</p>
+<h2>wtentrance.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> WTENTRANCE_H<br/>
+<a href="CppDefine.htm">#define</a> WTENTRANCE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppIpAddress.htm">IpAddress</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a>\brief<br/>
+<a href="CppComment.htm">///</a><a href="CppWtEntrance.htm">WtEntrance</a> is a <b><a href="CppVirtual.htm">virtual</a></b> entrance <b><a href="CppFor.htm">for</a></b> all webpage visitors<br/>
+<a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">///</a><a href="CppWtEntrance.htm">WtEntrance</a> is a <a href="CppDesignPatternSingleton.htm">Singleton</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the one-and-only <a href="CppWtEntrance.htm">WtEntrance</a> <a href="CppInstance.htm">instance</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppWtEntrance.htm">WtEntrance</a> * Get();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Look up the <a href="CppIpAddress.htm">IP address</a> its name<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetName(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a> * <b><a href="CppConst.htm">const</a></b> ip_address) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get all the <a href="CppIpAddress.htm">IP address</a>es their names<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; GetNames() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppWtEntrance.htm">WtEntrance</a> <a href="CppVersion.htm">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppWtEntrance.htm">WtEntrance</a> <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get all the <a href="CppIpAddress.htm">IP address</a>es their visits<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; GetVisits() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppIpAddress.htm">IP address</a> its name<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetName(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a> * <b><a href="CppConst.htm">const</a></b> ip_address, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; name) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Log a visit<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Visit(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a> * <b><a href="CppConst.htm">const</a></b> ip_address);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This <a href="CppSignal.htm">signal</a> <a href="CppEmit.htm">emitted</a> when a user changes his/her name<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_name_changed;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This <a href="CppSignal.htm">signal</a> <a href="CppEmit.htm">emitted</a> when there is a <b><a href="CppNew.htm">new</a></b> user visiting<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_new_visit;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWtEntrance.htm">WtEntrance</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The filename of the file mapping <a href="CppIpAddress.htm">IP address</a>es to names<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_filename_names;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The filename of the file mapping <a href="CppIpAddress.htm">IP address</a>es to visits<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_filename_visits;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The one-and-only <a href="CppWtEntrance.htm">WtEntrance</a> <a href="CppInstance.htm">instance</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppWtEntrance.htm">WtEntrance</a> * <a href="CppInstance.htm">m_instance</a>;&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConvert.htm">Convert</a> a file to a <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns date in YYYY-MM-DD format<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDateIso8601.htm">GetDateIso8601</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the current <a href="CppTime.htm">time</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetTime.htm">GetTime</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetTime.htm">GetTime</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns the current date and <a href="CppTime.htm">time</a> as a YYYY_MM_DD_HH_MM_SS <a href="CppString.htm">std::string</a>,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<b><a href="CppFor.htm">for</a></b> example '2011_07_01_11_35_38'<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetTimestamp.htm">GetTimestamp</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetTimestamp.htm">GetTimestamp</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Split a <a href="CppString.htm">std::string</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp; <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTENTRANCE_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtentrance.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/date_<a href="CppTime.htm">time</a>/posix_<a href="CppTime.htm">time</a>/posix_<a href="CppTime.htm">time</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/date_<a href="CppTime.htm">time</a>/gregorian/gregorian.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppIpaddress.htm">ipaddress</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtEntrance.htm">wtentrance</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtEntrance.htm">WtEntrance</a>::m_filename_names&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "<a href="CppWtEntrance.htm">wtentrance</a>_names.txt";<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtEntrance.htm">WtEntrance</a>::m_filename_visits <a href="CppOperatorAssign.htm">=</a> "<a href="CppWtEntrance.htm">wtentrance</a>_visits.txt";<br/>
+<a href="CppWtEntrance.htm">WtEntrance</a> * <a href="CppWtEntrance.htm">WtEntrance</a>::<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWtEntrance.htm">WtEntrance</a>::<a href="CppWtEntrance.htm">WtEntrance</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(m_filename_names))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(m_filename_names);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(m_filename_visits))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(m_filename_visits);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(m_filename_names));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(m_filename_visits));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtEntrance.htm">WtEntrance</a>::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename));<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!s.empty()) v.push_back(s);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWtEntrance.htm">WtEntrance</a> * <a href="CppWtEntrance.htm">WtEntrance</a>::Get()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppInstance.htm">m_instance</a>) <a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtEntrance.htm">WtEntrance</a>();<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppInstance.htm">m_instance</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppInstance.htm">m_instance</a>;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtEntrance.htm">WtEntrance</a>::<a href="CppGetDateIso8601.htm">GetDateIso8601</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::gregorian::date today<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::gregorian::day_clock::local_day();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::gregorian::to_iso_extended_string(today);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.size()<a href="CppOperatorEqual.htm">==</a>10);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[4]<a href="CppOperatorEqual.htm">==</a>'-');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[7]<a href="CppOperatorEqual.htm">==</a>'-');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtEntrance.htm">WtEntrance</a>::GetName(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a> * <b><a href="CppConst.htm">const</a></b> ip_address) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> GetNames();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ip_address_str <a href="CppOperatorAssign.htm">=</a> ip_address-&gt;Get();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppFind_if.htm">std::find_if</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[ip_address_str](<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt;&amp; p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p.first <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ip_address_str;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v.end()) <b><a href="CppReturn.htm">return</a></b> ip_address_str;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (*i).second;<br/>
+<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; <a href="CppWtEntrance.htm">WtEntrance</a>::GetNames() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>(m_filename_names);<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; x;<br/>
+&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBack_inserter.htm">std::back_inserter</a>(x),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>(s,',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (w.size() <a href="CppOperatorNotEqual.htm">!=</a> 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppMake_pair.htm">std::make_pair</a>(w[0],w[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtEntrance.htm">WtEntrance</a>::<a href="CppGetTime.htm">GetTime</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the local <a href="CppTime.htm">time</a><br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::posix_<a href="CppTime.htm">time</a>::p<a href="CppTime.htm">time</a> now<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::posix_<a href="CppTime.htm">time</a>::second_clock::local_<a href="CppTime.htm">time</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> the <a href="CppTime.htm">time</a> to <a href="CppStringstream.htm">std::stringstream</a><br/>
+&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> now.<a href="CppTime.htm">time</a>_of_day();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Return the <a href="CppString.htm">std::string</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtEntrance.htm">WtEntrance</a>::<a href="CppGetTimestamp.htm">GetTimestamp</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>() <a href="CppOperatorPlus.htm">+</a> '_' <a href="CppOperatorPlus.htm">+</a> <a href="CppGetTime.htm">GetTime</a>();<br/>
+&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),':','_');<br/>
+&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),'-','_');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtEntrance.htm">WtEntrance</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtEntrance.htm">WtEntrance</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-09-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; <a href="CppWtEntrance.htm">WtEntrance</a>::GetVisits() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>(m_filename_visits);<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; x;<br/>
+&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBack_inserter.htm">std::back_inserter</a>(x),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>(s,',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppMake_pair.htm">std::make_pair</a>(w[0],w[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtEntrance.htm">WtEntrance</a>::<a href="CppSeperateString.htm">SeperateString</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIstringstream.htm">std::istringstream</a> is(input);<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> sub;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(is, sub, seperator);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(sub))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Empty <b><a href="CppFor.htm">for</a></b> loop<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtEntrance.htm">WtEntrance</a>::SetName(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a> * <b><a href="CppConst.htm">const</a></b> ip_address, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; name) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> GetNames();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ip_address_str <a href="CppOperatorAssign.htm">=</a> ip_address-&gt;Get();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppFind_if.htm">std::find_if</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[ip_address_str](<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt;&amp; p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p.first <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ip_address_str;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v.end())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(ip_address_str,name));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(*i).second <a href="CppOperatorAssign.htm">=</a> name;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(m_filename_names);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f,"\n"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&amp;f](<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt;&amp; p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p.first <a href="CppOperatorPlus.htm">+</a> "," <a href="CppOperatorPlus.htm">+</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;m_signal_name_changed();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtEntrance.htm">WtEntrance</a>::Visit(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a> * <b><a href="CppConst.htm">const</a></b> ip_address)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(m_filename_visits,<a href="CppStd.htm">std</a>::ios::app);<br/>
+&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ip_address-&gt;Get() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ',' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppGetTimestamp.htm">GetTimestamp</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;m_signal_new_visit();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

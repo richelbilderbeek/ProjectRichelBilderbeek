@@ -1,0 +1,268 @@
+ 
+<title>DrawLymphocyte</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet DrawLymphocyte</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek DrawLymphocyte Draw Lymphocyte Circle shaded shade 3D C++ Builder Turbo C++ Borland Developer Studio VCL CLX</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>129</o:TotalTime>
+  <o:Created>2008-03-31T09:35:00Z</o:Created>
+  <o:LastSaved>2008-06-28T10:26:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>462</o:Words>
+  <o:Characters>2639</o:Characters>
+  <o:Category>C++ Code Snippet Richel Bilderbeek DrawLymphocyte</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>21</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3240</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDrawLymphocyte.htm">DrawLymphocyte</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a href="CppGraphics.htm">Graphics</a> <a
+href="CppCodeSnippets.htm"> code
+snippet</a> to
+draw a lymphocyte</p>
+
+<p>* <a
+href="CppDrawLymphocyte.PNG">View an example image of an image created by
+'DrawLymphocyte'</a>.</p>
+
+<p>* <a
+href="CppDrawLymphocyteVcl.txt">View the code of 'DrawLymphocyte' for VCL in
+plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>CLX</h2>
+
+<p>Under
+construction. Probably forever.</p>
+
+<p>&nbsp;</p>
+
+<h2>VCL</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include &lt;cassert&gt;     //For assert</p>
+
+<p>#include &lt;cmath&gt;       //For std::sqrt</p>
+
+<p>#include &lt;algorithm&gt; //For
+std::min</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppDrawLymphocyte.htm</p>
+
+<p>void DrawLymphocyte(</p>
+
+<p>
+ TImage * const image,</p>
+
+<p>
+ const unsigned char rMax,</p>
+
+<p>
+ const unsigned char gMax,</p>
+
+<p>
+ const unsigned char bMax)</p>
+
+<p>{</p>
+
+<p>
+ assert(image!=0);</p>
+
+<p>
+ const int width    =
+image-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>
+ const int height = image-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>
+ const double midX = static_cast&lt;double&gt;(width ) / 2.0;</p>
+
+<p>
+ const double midY = static_cast&lt;double&gt;(height) / 2.0;</p>
+
+<p>
+ const double maxDist = std::min(midX,midY); //Distance to end</p>
+
+<p>
+ const double edgeDist = maxDist * 0.7; //Distance to edge</p>
+
+<p>&nbsp;</p>
+
+<p>
+ for (int y=0; y!=height; ++y)</p>
+
+<p>
+ {</p>
+
+<p> 
+ unsigned char * const line</p>
+
+<p>     = static_cast&lt;unsigned char
+*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p> 
+ const double yD = static_cast&lt;double&gt;(y);</p>
+
+<p> 
+ for (int x=0; x!=width; ++x)</p>
+
+<p> 
+ {</p>
+
+<p>     const double xD = static_cast&lt;double&gt;(x);</p>
+
+<p>     const double dist = std::sqrt( ((xD - midX) * (xD - midX)) +
+((yD - midY) * (yD - midY)) );</p>
+
+<p>     if (dist &lt;= edgeDist)</p>
+
+<p>  
+    {</p>
+
+<p>       const double relDist = dist / edgeDist;</p>
+
+<p>       const int r = (0.5 + (0.5 * relDist)) *
+static_cast&lt;double&gt;(rMax);</p>
+
+<p>       const int g = (0.5 + (0.5 * relDist)) *
+static_cast&lt;double&gt;(gMax);</p>
+
+<p>       const int b = (0.5 + (0.5 * relDist)) * static_cast&lt;double&gt;(bMax);</p>
+
+<p>       assert( r &gt;= 0);</p>
+
+<p>       assert( r &lt; 256);</p>
+
+<p>       assert( g &gt;= 0);</p>
+
+<p>       assert( g &lt; 256);</p>
+
+<p>       assert( b &gt;= 0);</p>
+
+<p>       assert( b &lt; 256);</p>
+
+<p>       line[x*3+2] = (r == 0 ? 1 : r); //Never use a zero for red</p>
+
+<p>       line[x*3+1] = (g == 0 ? 1 : g); //Never use a zero for
+green</p>
+
+<p>       line[x*3+0] = (b == 0 ? 1 : b); //Never use a zero for blue</p>
+
+<p>     }</p>
+
+<p>     else if (dist &lt;= maxDist)</p>
+
+<p>     {</p>
+
+<p>       const double relDist = (dist - edgeDist) / (maxDist -
+edgeDist);</p>
+
+<p>       const int r = (0.5 + (0.5 * (1.0 - relDist))) *
+static_cast&lt;double&gt;(rMax);</p>
+
+<p>       const int g = (0.5 + (0.5 * (1.0 - relDist))) *
+static_cast&lt;double&gt;(gMax);</p>
+
+<p>       const int b = (0.5 + (0.5 * (1.0 - relDist))) *
+static_cast&lt;double&gt;(bMax);</p>
+
+<p>       assert( r &gt;= 0);</p>
+
+<p>       assert( r &lt; 256);</p>
+
+<p>       assert( g &gt;= 0);</p>
+
+<p>       assert( g &lt; 256);</p>
+
+<p>       assert( b &gt;= 0);</p>
+
+<p>       assert( b &lt; 256);</p>
+
+<p>       line[x*3+2] = (r == 0 ? 1 : r); //Never use a zero for red</p>
+
+<p>       line[x*3+1] = (g == 0 ? 1 : g); //Never use a zero for
+green</p>
+
+<p>       line[x*3+0] = (b == 0 ? 1 : b); //Never use a zero for blue</p>
+
+<p>     }</p>
+
+<p>     else</p>
+
+<p>     {</p>
+
+<p>       line[x*3+2] = 0;</p>
+
+<p>       line[x*3+1] = 0;</p>
+
+<p>       line[x*3+0] = 0;</p>
+
+<p>     }</p>
+
+<p> 
+ }</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

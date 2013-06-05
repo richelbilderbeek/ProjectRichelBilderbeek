@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>OpenCvExample1</title>
+  <meta name="description" content="C++ OpenCvExample1"/>
+  <meta name="keywords" content="C++ OpenCvExample1 OpenCV example 1 display an image convert image to grey gray code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppOpenCvExample1.htm">OpenCvExample1</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppOpenCvExample1.htm">OpenCvExample1</a> is a <a href="CppOpenCv.htm">OpenCV</a> example how to display an image
+and how to convert one to greyscale.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppOpenCvExample1.png">View a screenshot of this example</a></li>
+  <li><a href="CppOpenCvExample1.zip">Download the Qt Creator project 'CppOpenCvExample1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.04 (precise)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.3.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.6.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicOpenCv.png" alt="OpenCv"/> <a href="CppOpenCv.htm">OpenCV</a>: version 2.3.1</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.6.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppOpenCvExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2012-07-11T13:49:58<br/>
+#<br/>
+#-------------------------------------------------<br/>
+<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp; CONFIG += link_pkgconfig<br/>
+&nbsp;&nbsp; PKGCONFIG += opencv<br/>
+}<br/>
+<br/>
+#LIBS += -lopencv<br/>
+<br/>
+TARGET = CppOpenCvExample1<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+<br/>
+TEMPLATE = app<br/>
+<br/>
+<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+RESOURCES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CppOpenCvExample1.qrc<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;QResource&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;opencv2/opencv.hpp&gt;<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> "image.jpg";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the source image <b><a href="CppIf.htm">if</a></b> it does not exist<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> f((<a href="CppString.htm">std::string</a>(":/images/") <a href="CppOperatorPlus.htm">+</a> filename).c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.copy(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Load the image<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> cv::Mat image_original <a href="CppOperatorAssign.htm">=</a> cv::imread(filename);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image_original.data);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the resulting image<br/>
+&nbsp;&nbsp;cv::Mat image_result;<br/>
+&nbsp;&nbsp;cv::cvtColor(image_original,image_result,CV_RGB2GRAY );<br/>
+&nbsp;&nbsp;cv::imwrite("R_grey.png", image_result );<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the original<br/>
+&nbsp;&nbsp;cv::imshow("Original",image_original );<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the result<br/>
+&nbsp;&nbsp;cv::imshow("Result", image_result );<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Wait <b><a href="CppFor.htm">for</a></b> a key press<br/>
+&nbsp;&nbsp;cv::waitKey(0);<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

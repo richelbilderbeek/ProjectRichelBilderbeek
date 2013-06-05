@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>helgrind example 2: two counting threads using std::mutex</title>
+  <meta name="description" content="C++ helgrind example 2: two counting threads using std::mutex"/>
+  <meta name="keywords" content="C++ helgrind example 2: two counting threads using std::mutex code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicWt.png" alt="Wt"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicWeb.png" alt="Web"/>
+  <a href="CppHelgrindExample3.htm">helgrind example 3: Hello Wt</a>
+</h1>
+<p>&nbsp;</p>
+<p>This <a href="CppHelgrind.htm">helgrind</a> example tests a slightly adapted version of
+<a href="CppHelloWtQtCreatorUbuntu.htm">'Hello Wt' using Qt Creator under Ubuntu</a> for possible problems.</p>
+
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppHelgrindExample3.htm">Download the Qt Creator project 'CppHelgrindExample3' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The original version was adapted to let the program quit. 
+So, I added a <a href="CppWPushButton.htm">Wt::WPushButton</a> that calls <a href="CppExit.htm">std::exit</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicWeb.png" alt="Web"/> <a href="CppWebApplication.htm">Web application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 11.04 (natty)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.5.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.42</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.5.2</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.1.9</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelgrindExample3.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2010-11-18T12:10:20<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+TARGET = CppHelgrindExample3<br/>
+LIBS += -lwt -lwthttp<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+ * Copyright (C) 2008 Emweb bvba, Heverlee, Belgium.<br/>
+ *<br/>
+ * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.htm">WLineEdit</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.htm">WText</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppVersion.htm">version</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a>;<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * A simple hello world <a href="CppApplication.htm">application</a> <b><a href="CppClass.htm">class</a></b> which demonstrates how to react<br/>
+ * to events, read input, and give feed-back.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> Hello<a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">WApplication</a><br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;Hello<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWLineEdit.htm">WLineEdit</a> *nameEdit_;<br/>
+&nbsp;&nbsp;<a href="CppWText.htm">WText</a> *greeting_;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> greet();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> quit(); <a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>ed by RJCB<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * The env argument contains information <a href="CppAbout.htm">about</a> the <b><a href="CppNew.htm">new</a></b> session, and<br/>
+ * the initial request. It must be passed to the <a href="CppWApplication.htm">WApplication</a><br/>
+ * <a href="CppConstructor.htm">constructor</a> so it is typically also an argument <b><a href="CppFor.htm">for</a></b> your custom<br/>
+ * <a href="CppApplication.htm">application</a> <a href="CppConstructor.htm">constructor</a>.<br/>
+<a href="CppComment.htm">*/</a><br/>
+Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;: <a href="CppWApplication.htm">WApplication</a>(env)<br/>
+{<br/>
+&nbsp;&nbsp;setTitle("Hello world");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> <a href="CppApplication.htm">application</a> title<br/>
+<br/>
+&nbsp;&nbsp;root()-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">WText</a>("Your name, please ? "));&nbsp;&nbsp;<a href="CppComment.htm">//</a> show some text<br/>
+&nbsp;&nbsp;nameEdit_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">WLineEdit</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> allow text input<br/>
+&nbsp;&nbsp;nameEdit_-&gt;setFocus();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> give focus<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">WPushButton</a> *b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">WPushButton</a>("Greet me.", root()); <a href="CppComment.htm">//</a> create a button<br/>
+&nbsp;&nbsp;b-&gt;setMargin(5, Left);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> add 5 pixels margin<br/>
+<br/>
+&nbsp;&nbsp;root()-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">WBreak</a>());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> insert a line <b><a href="CppBreak.htm">break</a></b><br/>
+<br/>
+&nbsp;&nbsp;greeting_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">WText</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> empty text<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;root()-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">WBreak</a>());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> RJCB<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">WPushButton</a> * <b><a href="CppConst.htm">const</a></b> q <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">WPushButton</a>("Quit", root()); <a href="CppComment.htm">//</a> RJCB<br/>
+&nbsp;&nbsp;q-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;Hello<a href="CppApplication.htm">Application</a>::quit);&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> RJCB<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * Connect <b><a href="CppQtSignals.htm">signals</a></b> with <b><a href="CppSlots.htm">slots</a></b><br/>
+&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> simple <a href="CppWt.htm">Wt</a>-way<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;b-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;Hello<a href="CppApplication.htm">Application</a>::greet);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppUsing.htm">using</a></b> an arbitrary <a href="CppFunction.htm">function</a> object (binding values with <a href="CppBind.htm">boost::bind</a>())<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;nameEdit_-&gt;enterPressed().connect<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppBind.htm">boost::bind</a>(&amp;Hello<a href="CppApplication.htm">Application</a>::greet, <b><a href="CppThis.htm">this</a></b>));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Hello<a href="CppApplication.htm">Application</a>::greet()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * Update the text, <b><a href="CppUsing.htm">using</a></b> text input into the nameEdit_ field.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;greeting_-&gt;setText("Hello there, " <a href="CppOperatorPlus.htm">+</a> nameEdit_-&gt;text());<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Method added by RJCB<br/>
+<b><a href="CppVoid.htm">void</a></b> Hello<a href="CppApplication.htm">Application</a>::quit()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppExit.htm">std::exit</a>(0);<br/>
+}<br/>
+<br/>
+<a href="CppWApplication.htm">WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * You could read information from the environment to decide whether<br/>
+&nbsp;&nbsp; * the user has permission to start a <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.htm">application</a><br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> Hello<a href="CppApplication.htm">Application</a>(env);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * Your <a href="CppMain.htm">main</a> method may set up some shared resources, but should then<br/>
+&nbsp;&nbsp; * start the server <a href="CppApplication.htm">application</a> (FastCGI or httpd) that starts listening<br/>
+&nbsp;&nbsp; * <b><a href="CppFor.htm">for</a></b> requests, and handles all of the <a href="CppApplication.htm">application</a> life cycles.<br/>
+&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp; * The last argument to WRun specifies the <a href="CppFunction.htm">function</a> that will instantiate<br/>
+&nbsp;&nbsp; * <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.htm">application</a> objects. That <a href="CppFunction.htm">function</a> is executed when a <b><a href="CppNew.htm">new</a></b> user surfs<br/>
+&nbsp;&nbsp; * to the <a href="CppWt.htm">Wt</a> <a href="CppApplication.htm">application</a>, and after the <a href="CppLibrary.htm">library</a> has negotiated browser<br/>
+&nbsp;&nbsp; * support. The <a href="CppFunction.htm">function</a> should <b><a href="CppReturn.htm">return</a></b> a newly instantiated <a href="CppApplication.htm">application</a><br/>
+&nbsp;&nbsp; * object.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.htm">Application</a>);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>helgrind.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#!/bin/sh<br/>
+<a href="CppValgrind.htm">valgrind</a> --tool=helgrind --log-file=helgrind.txt ../CppHelgrindExample3-build-desktop/./CppHelgrindExample3 --docroot=. --http-address=0.0.0.0 --http-port=8080<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>memcheck.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#!/bin/sh<br/>
+<a href="CppValgrind.htm">valgrind</a> --leak-check=full -v --show-reachable=yes --log-file=memcheck.txt ../CppHelgrindExample3-build-desktop/./CppHelgrindExample3 --docroot=. --http-address=0.0.0.0 --http-port=8080 <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>helgrind.txt</h2>
+<p>&nbsp;</p>
+<p>helgrind.txt is the output file created by <a href="CppHelgrind.htm">helgrind</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+==17884== Helgrind, a thread error detector<br/>
+==17884== Copyright (C) 2007-2010, and GNU GPL'd, by OpenWorks LLP et al.<br/>
+==17884== Using Valgrind-3.6.1 and LibVEX; rerun with -h for copyright info<br/>
+==17884== Command: ../CppHelgrindExample3-build-desktop/./CppHelgrindExample3 --docroot=. --http-address=0.0.0.0 --http-port=8080<br/>
+==17884== Parent PID: 17883<br/>
+==17884== <br/>
+==17884== Thread #3 was created<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4A9A728: clone (clone.S:111)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x48894B5: pthread_create@@GLIBC_2.1 (createthread.c:256)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026E2D: pthread_create_WRK (hg_intercepts.c:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F8B: pthread_create@* (hg_intercepts.c:288)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48D7C: boost::thread::start_thread() (thread.cpp:185)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C2C6D: Wt::WServer::start() (thread.hpp:191)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C3A38: Wt::WRun(int, char**, boost::function&lt;Wt::WApplication* ()(Wt::WEnvironment const&amp;)&gt;) (WServer.C:492)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x804ADED: main (in /home/richel/Projects/Website/CppHelgrindExample3-build-desktop/CppHelgrindExample3)<br/>
+==17884== <br/>
+==17884== Thread #2 was created<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4A9A728: clone (clone.S:111)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x48894B5: pthread_create@@GLIBC_2.1 (createthread.c:256)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026E2D: pthread_create_WRK (hg_intercepts.c:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F8B: pthread_create@* (hg_intercepts.c:288)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48D7C: boost::thread::start_thread() (thread.cpp:185)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C2C6D: Wt::WServer::start() (thread.hpp:191)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C3A38: Wt::WRun(int, char**, boost::function&lt;Wt::WApplication* ()(Wt::WEnvironment const&amp;)&gt;) (WServer.C:492)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x804ADED: main (in /home/richel/Projects/Website/CppHelgrindExample3-build-desktop/CppHelgrindExample3)<br/>
+==17884== <br/>
+==17884== Possible data race during read of size 4 at 0x4b5318c by thread #3<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4B48E44: _ZN5boost9call_onceIPFvvEEEvRNS_9once_flagET_.clone.101 (once.hpp:49)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48F96: boost::detail::set_current_thread_data(boost::detail::thread_data_base*) (thread.cpp:104)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B4901D: thread_proxy (thread.cpp:117)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F60: mythread_wrapper (hg_intercepts.c:221)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4888E98: start_thread (pthread_create.c:304)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4A9A73D: clone (clone.S:130)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous write of size 4 by thread #2<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4B48F3D: _ZN5boost9call_onceIPFvvEEEvRNS_9once_flagET_.clone.101 (once.hpp:72)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48F96: boost::detail::set_current_thread_data(boost::detail::thread_data_base*) (thread.cpp:104)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B4901D: thread_proxy (thread.cpp:117)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F60: mythread_wrapper (hg_intercepts.c:221)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4888E98: start_thread (pthread_create.c:304)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4A9A73D: clone (clone.S:130)<br/>
+==17884== <br/>
+==17884== Possible data race during read of size 4 at 0x4b53188 by thread #3<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4B48E4A: _ZN5boost9call_onceIPFvvEEEvRNS_9once_flagET_.clone.101 (once.hpp:49)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48F96: boost::detail::set_current_thread_data(boost::detail::thread_data_base*) (thread.cpp:104)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B4901D: thread_proxy (thread.cpp:117)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F60: mythread_wrapper (hg_intercepts.c:221)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4888E98: start_thread (pthread_create.c:304)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4A9A73D: clone (clone.S:130)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous write of size 4 by thread #2<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4B48F43: _ZN5boost9call_onceIPFvvEEEvRNS_9once_flagET_.clone.101 (once.hpp:72)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48F96: boost::detail::set_current_thread_data(boost::detail::thread_data_base*) (thread.cpp:104)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B4901D: thread_proxy (thread.cpp:117)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F60: mythread_wrapper (hg_intercepts.c:221)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4888E98: start_thread (pthread_create.c:304)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4A9A73D: clone (clone.S:130)<br/>
+==17884== <br/>
+==17884== Possible data race during read of size 4 at 0x4b531f4 by thread #3<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4B4E85F: boost::detail::get_once_per_thread_epoch() (once.cpp:40)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48E54: _ZN5boost9call_onceIPFvvEEEvRNS_9once_flagET_.clone.101 (once.hpp:50)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48F96: boost::detail::set_current_thread_data(boost::detail::thread_data_base*) (thread.cpp:104)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B4901D: thread_proxy (thread.cpp:117)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F60: mythread_wrapper (hg_intercepts.c:221)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4888E98: start_thread (pthread_create.c:304)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4A9A73D: clone (clone.S:130)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous write of size 4 by thread #2<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x488E34D: pthread_key_create (pthread_key_create.c:44)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B4E7F9: create_epoch_tss_key (once.cpp:32)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x488E99F: pthread_once (pthread_once.S:122)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48E54: _ZN5boost9call_onceIPFvvEEEvRNS_9once_flagET_.clone.101 (once.hpp:50)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48F96: boost::detail::set_current_thread_data(boost::detail::thread_data_base*) (thread.cpp:104)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B4901D: thread_proxy (thread.cpp:117)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F60: mythread_wrapper (hg_intercepts.c:221)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4888E98: start_thread (pthread_create.c:304)<br/>
+==17884== <br/>
+==17884== Thread #9 was created<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4A9A728: clone (clone.S:111)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x48894B5: pthread_create@@GLIBC_2.1 (createthread.c:256)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026E2D: pthread_create_WRK (hg_intercepts.c:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F8B: pthread_create@* (hg_intercepts.c:288)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48D7C: boost::thread::start_thread() (thread.cpp:185)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C2C6D: Wt::WServer::start() (thread.hpp:191)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C3A38: Wt::WRun(int, char**, boost::function&lt;Wt::WApplication* ()(Wt::WEnvironment const&amp;)&gt;) (WServer.C:492)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x804ADED: main (in /home/richel/Projects/Website/CppHelgrindExample3-build-desktop/CppHelgrindExample3)<br/>
+==17884== <br/>
+==17884== Possible data race during write of size 4 at 0x613f638 by thread #9<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x43B9069: Wt::WebSession::setState(Wt::WebSession::State, int) (WebSession.C:222)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43B914E: Wt::WebSession::setLoaded() (WebSession.C:209)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43C0994: Wt::WebSession::handleRequest(Wt::WebSession::Handler&amp;) (WebSession.C:1214)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43D86A3: Wt::WebController::handleAsyncRequest(Wt::WebRequest*) (WebController.C:638)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43D9703: Wt::WebController::handleRequest(Wt::WebRequest*) (WebController.C:512)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BE959: Wt::WServer::handleRequest(Wt::WebRequest*) (WServer.C:372)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C690D: http::server::WtReply::consumeRequestBody(char const*, char const*, http::server::Request::State) (WtReply.C:187)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C7CDB: http::server::WtReply::consumeData(char const*, char const*, http::server::Request::State) (WtReply.C:81)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45889DF: http::server::RequestParser::parseBody(http::server::Request&amp;, boost::shared_ptr&lt;http::server::Reply&gt;, char const*&amp;, char const*) (RequestParser.C:137)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x456F58D: http::server::Connection::handleReadBody() (Connection.C:172)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571A8B: http::server::Connection::handleReadRequest0() (Connection.C:120)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571C89: http::server::Connection::handleReadRequest(boost::system::error_code const&amp;, unsigned int) (Connection.C:154)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous read of size 4 by thread #2<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x43D85BD: Wt::WebController::handleAsyncRequest(Wt::WebRequest*) (WebController.C:590)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43D9703: Wt::WebController::handleRequest(Wt::WebRequest*) (WebController.C:512)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BE959: Wt::WServer::handleRequest(Wt::WebRequest*) (WServer.C:372)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C690D: http::server::WtReply::consumeRequestBody(char const*, char const*, http::server::Request::State) (WtReply.C:187)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C7CDB: http::server::WtReply::consumeData(char const*, char const*, http::server::Request::State) (WtReply.C:81)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45889DF: http::server::RequestParser::parseBody(http::server::Request&amp;, boost::shared_ptr&lt;http::server::Reply&gt;, char const*&amp;, char const*) (RequestParser.C:137)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x456F58D: http::server::Connection::handleReadBody() (Connection.C:172)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571A8B: http::server::Connection::handleReadRequest0() (Connection.C:120)<br/>
+==17884==&nbsp;&nbsp;Address 0x613f638 is 144 bytes inside a block of size 1472 alloc'd<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x402647D: operator new(unsigned int) (vg_replace_malloc.c:255)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43D89ED: Wt::WebController::handleAsyncRequest(Wt::WebRequest*) (WebController.C:613)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43D9703: Wt::WebController::handleRequest(Wt::WebRequest*) (WebController.C:512)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BE959: Wt::WServer::handleRequest(Wt::WebRequest*) (WServer.C:372)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C690D: http::server::WtReply::consumeRequestBody(char const*, char const*, http::server::Request::State) (WtReply.C:187)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C7CDB: http::server::WtReply::consumeData(char const*, char const*, http::server::Request::State) (WtReply.C:81)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45889DF: http::server::RequestParser::parseBody(http::server::Request&amp;, boost::shared_ptr&lt;http::server::Reply&gt;, char const*&amp;, char const*) (RequestParser.C:137)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x456F58D: http::server::Connection::handleReadBody() (Connection.C:172)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571A8B: http::server::Connection::handleReadRequest0() (Connection.C:120)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571C89: http::server::Connection::handleReadRequest(boost::system::error_code const&amp;, unsigned int) (Connection.C:154)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45B6071: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::_bi::bind_t&lt;void, boost::_mfi::mf2&lt;void, http::server::Connection, boost::system::error_code const&amp;, unsigned int&gt;, boost::_bi::list3&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)(), boost::arg&lt;2&gt; (*)()&gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (mem_fn_template.hpp:271)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4598445: boost::asio::detail::task_io_service&lt;boost::asio::detail::epoll_reactor&lt;false&gt; &gt;::run(boost::system::error_code&amp;) (handler_queue.hpp:39)<br/>
+==17884== <br/>
+==17884== Possible data race during write of size 4 at 0x614c8f0 by thread #2<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4928DFE: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C64D7: http::server::WtReply::nextContentBuffer() (basic_string.h:787)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457F722: http::server::Reply::encodeNextContentBuffer(std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;&amp;, int&amp;, int&amp;) (Reply.C:527)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4580BD1: http::server::Reply::nextBuffers(std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;&amp;) (Reply.C:369)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45713FA: http::server::Connection::startWriteResponse() (Connection.C:201)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457123F: http::server::Connection::handleWriteResponse() (Connection.C:225)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571385: http::server::Connection::handleWriteResponse(boost::system::error_code const&amp;) (Connection.C:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BC10F: boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;::operator()(boost::system::error_code const&amp;, unsigned int) (mem_fn_template.hpp:156)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BCBD1: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (bind_handler.hpp:96)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4598445: boost::asio::detail::task_io_service&lt;boost::asio::detail::epoll_reactor&lt;false&gt; &gt;::run(boost::system::error_code&amp;) (handler_queue.hpp:39)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x458E4ED: http::server::Server::run() (io_service.ipp:68)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C413A: Wt::WServerImpl::runThread(Wt::WServer*) (WServer.C:123)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous read of size 4 by thread #9<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4927D5E: std::string::swap(std::string&amp;) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C64EF: http::server::WtReply::nextContentBuffer() (WtReply.C:329)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457F722: http::server::Reply::encodeNextContentBuffer(std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;&amp;, int&amp;, int&amp;) (Reply.C:527)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4580BD1: http::server::Reply::nextBuffers(std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;&amp;) (Reply.C:369)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45713FA: http::server::Connection::startWriteResponse() (Connection.C:201)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457123F: http::server::Connection::handleWriteResponse() (Connection.C:225)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571385: http::server::Connection::handleWriteResponse(boost::system::error_code const&amp;) (Connection.C:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BC10F: boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;::operator()(boost::system::error_code const&amp;, unsigned int) (mem_fn_template.hpp:156)<br/>
+==17884==&nbsp;&nbsp;Address 0x614c8f0 is 8 bytes inside a block of size 65 alloc'd<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x402647D: operator new(unsigned int) (vg_replace_malloc.c:255)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x49289F7: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator&lt;char&gt; const&amp;) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4169873: char* std::string::_S_construct&lt;char*&gt;(char*, char*, std::allocator&lt;char&gt; const&amp;, std::forward_iterator_tag) (basic_string.tcc:138)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457D674: http::server::HTTPRequest::flush(Wt::WebRequest::ResponseState, boost::function&lt;void ()()&gt;) (basic_string.h:1649)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43C041E: Wt::WebSession::handleRequest(Wt::WebSession::Handler&amp;) (WebSession.C:1254)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43D86A3: Wt::WebController::handleAsyncRequest(Wt::WebRequest*) (WebController.C:638)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43D9703: Wt::WebController::handleRequest(Wt::WebRequest*) (WebController.C:512)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BE959: Wt::WServer::handleRequest(Wt::WebRequest*) (WServer.C:372)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C690D: http::server::WtReply::consumeRequestBody(char const*, char const*, http::server::Request::State) (WtReply.C:187)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C7CDB: http::server::WtReply::consumeData(char const*, char const*, http::server::Request::State) (WtReply.C:81)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45889DF: http::server::RequestParser::parseBody(http::server::Request&amp;, boost::shared_ptr&lt;http::server::Reply&gt;, char const*&amp;, char const*) (RequestParser.C:137)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x456F58D: http::server::Connection::handleReadBody() (Connection.C:172)<br/>
+==17884== <br/>
+==17884== Thread #10 was created<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4A9A728: clone (clone.S:111)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x48894B5: pthread_create@@GLIBC_2.1 (createthread.c:256)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026E2D: pthread_create_WRK (hg_intercepts.c:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F8B: pthread_create@* (hg_intercepts.c:288)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48D7C: boost::thread::start_thread() (thread.cpp:185)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C2C6D: Wt::WServer::start() (thread.hpp:191)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C3A38: Wt::WRun(int, char**, boost::function&lt;Wt::WApplication* ()(Wt::WEnvironment const&amp;)&gt;) (WServer.C:492)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x804ADED: main (in /home/richel/Projects/Website/CppHelgrindExample3-build-desktop/CppHelgrindExample3)<br/>
+==17884== <br/>
+==17884== Possible data race during write of size 4 at 0x49816f0 by thread #2<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x48EF2B9: std::locale::locale(std::locale::_Impl*) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x48F1505: std::locale::classic() (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x42679FB: std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; boost::posix_time::to_simple_string_type&lt;char&gt;(boost::posix_time::ptime) (date_formatting.hpp:85)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4266507: Wt::WLogEntry::operator&lt;&lt;(Wt::WLogger::TimeStamp const&amp;) (time_formatters.hpp:184)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457F35E: http::server::Reply::logReply(Wt::WLogger&amp;) (Reply.C:469)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571111: http::server::Connection::handleWriteResponse() (Connection.C:232)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571385: http::server::Connection::handleWriteResponse(boost::system::error_code const&amp;) (Connection.C:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BC10F: boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;::operator()(boost::system::error_code const&amp;, unsigned int) (mem_fn_template.hpp:156)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BCBD1: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (bind_handler.hpp:96)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4598445: boost::asio::detail::task_io_service&lt;boost::asio::detail::epoll_reactor&lt;false&gt; &gt;::run(boost::system::error_code&amp;) (handler_queue.hpp:39)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x458E4ED: http::server::Server::run() (io_service.ipp:68)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C413A: Wt::WServerImpl::runThread(Wt::WServer*) (WServer.C:123)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous write of size 4 by thread #10<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x48EF2B9: std::locale::locale(std::locale::_Impl*) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x48F1505: std::locale::classic() (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x42679FB: std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; boost::posix_time::to_simple_string_type&lt;char&gt;(boost::posix_time::ptime) (date_formatting.hpp:85)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4266507: Wt::WLogEntry::operator&lt;&lt;(Wt::WLogger::TimeStamp const&amp;) (time_formatters.hpp:184)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43B8DC0: Wt::WebSession::log(std::string const&amp;) const (WebSession.C:131)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x43C3CB1: Wt::WebSession::~WebSession() (WebSession.C:171)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x436F078: boost::detail::sp_counted_impl_p&lt;Wt::WebSession&gt;::dispose() (checked_delete.hpp:34)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x804B8F7: boost::detail::shared_count::~shared_count() (in /home/richel/Projects/Website/CppHelgrindExample3-build-desktop/CppHelgrindExample3)<br/>
+==17884== <br/>
+==17884== Possible data race during write of size 4 at 0x6144d40 by thread #2<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x45C5106: http::server::WtReply::~WtReply() (WtReply.C:63)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C56B1: http::server::WtReply::~WtReply() (WtReply.C:72)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4587AE7: boost::detail::sp_counted_impl_p&lt;http::server::WtReply&gt;::dispose() (checked_delete.hpp:34)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x804B8F7: boost::detail::shared_count::~shared_count() (in /home/richel/Projects/Website/CppHelgrindExample3-build-desktop/CppHelgrindExample3)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571179: http::server::Connection::handleWriteResponse() (shared_ptr.hpp:169)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571385: http::server::Connection::handleWriteResponse(boost::system::error_code const&amp;) (Connection.C:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BC10F: boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;::operator()(boost::system::error_code const&amp;, unsigned int) (mem_fn_template.hpp:156)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BCBD1: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (bind_handler.hpp:96)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4598445: boost::asio::detail::task_io_service&lt;boost::asio::detail::epoll_reactor&lt;false&gt; &gt;::run(boost::system::error_code&amp;) (handler_queue.hpp:39)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x458E4ED: http::server::Server::run() (io_service.ipp:68)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C413A: Wt::WServerImpl::runThread(Wt::WServer*) (WServer.C:123)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C4041: boost::detail::thread_data&lt;boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, Wt::WServerImpl, Wt::WServer*&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;Wt::WServerImpl*&gt;, boost::_bi::value&lt;Wt::WServer*&gt; &gt; &gt; &gt;::run() (mem_fn_template.hpp:165)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous read of size 4 by thread #10<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x45889ED: http::server::RequestParser::parseBody(http::server::Request&amp;, boost::shared_ptr&lt;http::server::Reply&gt;, char const*&amp;, char const*) (RequestParser.C:139)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x456F58D: http::server::Connection::handleReadBody() (Connection.C:172)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571A8B: http::server::Connection::handleReadRequest0() (Connection.C:120)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571C89: http::server::Connection::handleReadRequest(boost::system::error_code const&amp;, unsigned int) (Connection.C:154)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45B6071: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::_bi::bind_t&lt;void, boost::_mfi::mf2&lt;void, http::server::Connection, boost::system::error_code const&amp;, unsigned int&gt;, boost::_bi::list3&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)(), boost::arg&lt;2&gt; (*)()&gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (mem_fn_template.hpp:271)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4598445: boost::asio::detail::task_io_service&lt;boost::asio::detail::epoll_reactor&lt;false&gt; &gt;::run(boost::system::error_code&amp;) (handler_queue.hpp:39)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x458E4ED: http::server::Server::run() (io_service.ipp:68)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C413A: Wt::WServerImpl::runThread(Wt::WServer*) (WServer.C:123)<br/>
+==17884==&nbsp;&nbsp;Address 0x6144d40 is 0 bytes inside a block of size 476 alloc'd<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x402647D: operator new(unsigned int) (vg_replace_malloc.c:255)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4586C67: http::server::RequestHandler::handleRequest(http::server::Request&amp;) (RequestHandler.C:145)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45719FB: http::server::Connection::handleReadRequest0() (Connection.C:116)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571C89: http::server::Connection::handleReadRequest(boost::system::error_code const&amp;, unsigned int) (Connection.C:154)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45B6071: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::_bi::bind_t&lt;void, boost::_mfi::mf2&lt;void, http::server::Connection, boost::system::error_code const&amp;, unsigned int&gt;, boost::_bi::list3&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)(), boost::arg&lt;2&gt; (*)()&gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (mem_fn_template.hpp:271)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4598445: boost::asio::detail::task_io_service&lt;boost::asio::detail::epoll_reactor&lt;false&gt; &gt;::run(boost::system::error_code&amp;) (handler_queue.hpp:39)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x458E4ED: http::server::Server::run() (io_service.ipp:68)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C413A: Wt::WServerImpl::runThread(Wt::WServer*) (WServer.C:123)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C4041: boost::detail::thread_data&lt;boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, Wt::WServerImpl, Wt::WServer*&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;Wt::WServerImpl*&gt;, boost::_bi::value&lt;Wt::WServer*&gt; &gt; &gt; &gt;::run() (mem_fn_template.hpp:165)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B49028: thread_proxy (thread.cpp:120)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F60: mythread_wrapper (hg_intercepts.c:221)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4888E98: start_thread (pthread_create.c:304)<br/>
+==17884== <br/>
+==17884== Thread #8 was created<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4A9A728: clone (clone.S:111)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x48894B5: pthread_create@@GLIBC_2.1 (createthread.c:256)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026E2D: pthread_create_WRK (hg_intercepts.c:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F8B: pthread_create@* (hg_intercepts.c:288)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48D7C: boost::thread::start_thread() (thread.cpp:185)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C2C6D: Wt::WServer::start() (thread.hpp:191)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C3A38: Wt::WRun(int, char**, boost::function&lt;Wt::WApplication* ()(Wt::WEnvironment const&amp;)&gt;) (WServer.C:492)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x804ADED: main (in /home/richel/Projects/Website/CppHelgrindExample3-build-desktop/CppHelgrindExample3)<br/>
+==17884== <br/>
+==17884== Thread #11 was created<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x4A9A728: clone (clone.S:111)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x48894B5: pthread_create@@GLIBC_2.1 (createthread.c:256)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026E2D: pthread_create_WRK (hg_intercepts.c:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4026F8B: pthread_create@* (hg_intercepts.c:288)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4B48D7C: boost::thread::start_thread() (thread.cpp:185)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C2C6D: Wt::WServer::start() (thread.hpp:191)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C3A38: Wt::WRun(int, char**, boost::function&lt;Wt::WApplication* ()(Wt::WEnvironment const&amp;)&gt;) (WServer.C:492)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x804ADED: main (in /home/richel/Projects/Website/CppHelgrindExample3-build-desktop/CppHelgrindExample3)<br/>
+==17884== <br/>
+==17884== Possible data race during read of size 4 at 0x497fe8c by thread #8<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x491C438: std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp; std::__ostream_insert&lt;char, std::char_traits&lt;char&gt; &gt;(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;, char const*, int) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4265C7A: Wt::WLogger::addLine(std::string const&amp;) const (basic_string.h:2605)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x426621F: Wt::WLogEntry::~WLogEntry() (WLogger.C:27)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457F49E: http::server::Reply::logReply(Wt::WLogger&amp;) (Reply.C:464)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571111: http::server::Connection::handleWriteResponse() (Connection.C:232)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571385: http::server::Connection::handleWriteResponse(boost::system::error_code const&amp;) (Connection.C:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BC10F: boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;::operator()(boost::system::error_code const&amp;, unsigned int) (mem_fn_template.hpp:156)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BCBD1: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (bind_handler.hpp:96)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4598445: boost::asio::detail::task_io_service&lt;boost::asio::detail::epoll_reactor&lt;false&gt; &gt;::run(boost::system::error_code&amp;) (handler_queue.hpp:39)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x458E4ED: http::server::Server::run() (io_service.ipp:68)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C413A: Wt::WServerImpl::runThread(Wt::WServer*) (WServer.C:123)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C4041: boost::detail::thread_data&lt;boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, Wt::WServerImpl, Wt::WServer*&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;Wt::WServerImpl*&gt;, boost::_bi::value&lt;Wt::WServer*&gt; &gt; &gt; &gt;::run() (mem_fn_template.hpp:165)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous write of size 4 by thread #11<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x491C53C: std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp; std::__ostream_insert&lt;char, std::char_traits&lt;char&gt; &gt;(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;, char const*, int) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4265C7A: Wt::WLogger::addLine(std::string const&amp;) const (basic_string.h:2605)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x426621F: Wt::WLogEntry::~WLogEntry() (WLogger.C:27)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457F49E: http::server::Reply::logReply(Wt::WLogger&amp;) (Reply.C:464)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571111: http::server::Connection::handleWriteResponse() (Connection.C:232)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571385: http::server::Connection::handleWriteResponse(boost::system::error_code const&amp;) (Connection.C:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BC10F: boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;::operator()(boost::system::error_code const&amp;, unsigned int) (mem_fn_template.hpp:156)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BCBD1: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (bind_handler.hpp:96)<br/>
+==17884== <br/>
+==17884== Possible data race during write of size 4 at 0x497fe8c by thread #8<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x491C53C: std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp; std::__ostream_insert&lt;char, std::char_traits&lt;char&gt; &gt;(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;, char const*, int) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4265C7A: Wt::WLogger::addLine(std::string const&amp;) const (basic_string.h:2605)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x426621F: Wt::WLogEntry::~WLogEntry() (WLogger.C:27)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457F49E: http::server::Reply::logReply(Wt::WLogger&amp;) (Reply.C:464)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571111: http::server::Connection::handleWriteResponse() (Connection.C:232)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571385: http::server::Connection::handleWriteResponse(boost::system::error_code const&amp;) (Connection.C:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BC10F: boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;::operator()(boost::system::error_code const&amp;, unsigned int) (mem_fn_template.hpp:156)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BCBD1: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (bind_handler.hpp:96)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4598445: boost::asio::detail::task_io_service&lt;boost::asio::detail::epoll_reactor&lt;false&gt; &gt;::run(boost::system::error_code&amp;) (handler_queue.hpp:39)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x458E4ED: http::server::Server::run() (io_service.ipp:68)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C413A: Wt::WServerImpl::runThread(Wt::WServer*) (WServer.C:123)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45C4041: boost::detail::thread_data&lt;boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, Wt::WServerImpl, Wt::WServer*&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;Wt::WServerImpl*&gt;, boost::_bi::value&lt;Wt::WServer*&gt; &gt; &gt; &gt;::run() (mem_fn_template.hpp:165)<br/>
+==17884==&nbsp;&nbsp;This conflicts with a previous write of size 4 by thread #11<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;at 0x491C53C: std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp; std::__ostream_insert&lt;char, std::char_traits&lt;char&gt; &gt;(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;, char const*, int) (in /usr/lib/i386-linux-gnu/libstdc++.so.6.0.14)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4265C7A: Wt::WLogger::addLine(std::string const&amp;) const (basic_string.h:2605)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x426621F: Wt::WLogEntry::~WLogEntry() (WLogger.C:27)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x457F49E: http::server::Reply::logReply(Wt::WLogger&amp;) (Reply.C:464)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571111: http::server::Connection::handleWriteResponse() (Connection.C:232)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x4571385: http::server::Connection::handleWriteResponse(boost::system::error_code const&amp;) (Connection.C:257)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BC10F: boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;::operator()(boost::system::error_code const&amp;, unsigned int) (mem_fn_template.hpp:156)<br/>
+==17884==&nbsp;&nbsp;&nbsp;&nbsp;by 0x45BCBD1: boost::asio::detail::handler_queue::handler_wrapper&lt;boost::asio::detail::binder2&lt;boost::asio::detail::write_handler&lt;boost::asio::basic_stream_socket&lt;boost::asio::ip::tcp, boost::asio::stream_socket_service&lt;boost::asio::ip::tcp&gt; &gt;, std::vector&lt;boost::asio::const_buffer, std::allocator&lt;boost::asio::const_buffer&gt; &gt;, boost::asio::detail::transfer_all_t, boost::_bi::bind_t&lt;void, boost::_mfi::mf1&lt;void, http::server::Connection, boost::system::error_code const&amp;&gt;, boost::_bi::list2&lt;boost::_bi::value&lt;boost::shared_ptr&lt;http::server::Connection&gt; &gt;, boost::arg&lt;1&gt; (*)()&gt; &gt; &gt;, boost::system::error_code, unsigned int&gt; &gt;::do_call(boost::asio::detail::handler_queue::handler*) (bind_handler.hpp:96)<br/>
+==17884== <br/>
+==17884== <br/>
+==17884== For counts of detected and suppressed errors, rerun with: -v<br/>
+==17884== Use --history-level=approx or =none to gain increased speed, at<br/>
+==17884== the cost of reduced accuracy of conflicting-access information<br/>
+==17884== ERROR SUMMARY: 35 errors from 9 contexts (suppressed: 9621 from 566)<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>35 errors!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QShowEvent example 1: visibility</title>
+  <meta name="description" content="C++ QShowEvent example 1: visibility"/>
+  <meta name="keywords" content="C++ QShowEvent example 1: visibility code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQShowEventExample1.htm">QShowEvent example 1: visibility</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppQShowEventExample1.htm">QShowEvent example 1: visibility</a> is a <a href="CppQShowEvent.htm">QShowEvent</a> example
+that verifies that a <a href="CppQWidget.htm">widget</a> is invisible in a <a href="CppQDialog.htm">dialog</a> its 
+<a href="CppConstructor.htm">constructor</a>, but is visible in the showEvent <a href="CppMemberFunction.htm">member function</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicDesktop.png" alt="Desktop"/> <a href="CppQShowEventExample1.png">View a screenshot of 'CppQShowEventExample1' (png)</a></li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQShowEventExample1.zip">Download the 'CppQShowEventExample1' source code (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQShowEventExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppQShowEventExample1.pro" border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2013-05-04T15:13:50<br/>
+#<br/>
+#-------------------------------------------------<br/>
+<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+TARGET = CppQShowEventExample1<br/>
+TEMPLATE = app<br/>
+<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog.cpp<br/>
+<br/>
+<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= dialog.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= dialog.ui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>dialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="dialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> DIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> DIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~Dialog();<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> showEvent(<a href="CppQShowEvent.htm">QShowEvent</a> *);<br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> * <b><a href="CppConst.htm">const</a></b> m_label;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>dialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="dialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "dialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Q<a href="CppDebug.htm">Debug</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQShowEvent.htm">QShowEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "ui_dialog.h"<br/>
+<br/>
+Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog),<br/>
+&nbsp;&nbsp;m_label(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>("My label"))<br/>
+<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<b><a href="CppThis.htm">this</a></b>-&gt;layout() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "No layout is present yet");<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setLayout(<b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;layout() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Vertical layout is present");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;layout()-&gt;addWidget(m_label);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_label-&gt;isVisible() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Label is not visible yet");<br/>
+&nbsp;&nbsp;q<a href="CppDebug.htm">Debug</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "End of <a href="CppConstructor.htm">constructor</a>";<br/>
+}<br/>
+<br/>
+Dialog::~Dialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog::showEvent(<a href="CppQShowEvent.htm">QShowEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_label-&gt;isVisible() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Label has been made visible now");<br/>
+&nbsp;&nbsp;q<a href="CppDebug.htm">Debug</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "End of showEvent";<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;Dialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

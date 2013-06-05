@@ -1,0 +1,172 @@
+ 
+<title>GetImageHistogram</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ GetImageHistogram</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek GetImageHistogram Get Histogram TImage Image VCL CLX Builder</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>9</o:Revision>
+  <o:TotalTime>132</o:TotalTime>
+  <o:Created>2008-07-11T17:09:00Z</o:Created>
+  <o:LastSaved>2008-07-11T17:28:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>314</o:Words>
+  <o:Characters>1790</o:Characters>
+  <o:Category>C++ Richel Bilderbeek GetImageHistogram</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>14</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>2198</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppGetImageHistogram.htm">GetImageHistogram</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppGraphics.htm">Graphics</a> <a
+href="CppCodeSnippets.htm"> code
+snippet</a> to get a histogram of a <a href="CppVcl.htm">VCL</a> <a
+href="CppTImage.htm">TImage</a> its color values.</p>
+
+<p>&nbsp;</p>
+
+<p>* <a
+href="CppGetImageHistogram.txt">View the code of 'GetImageHistogram' in plain
+text</a></p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//From
+htpp://www.richelbilderbeek.nl/CppGetImageHistogram.htm</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; GetImageHistogram(<b><a href="CppConst.htm">const</a></b>
+TImage * <b><a href="CppConst.htm">const</a></b> image)</p>
+
+
+<p>{</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(image!=0 &amp;&amp; &quot;Image is
+NULL&quot;);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap!=0
+&amp;&amp; &quot;Image bitmap is NULL&quot;);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit &amp;&amp; &quot;Image bitmap must be 24 bit&quot;);</p>
+
+<p>
+ //Get the width and height from the source</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+width    =
+image-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+height = image-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+histogram(256,0); //There are 256 different color values</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+y=0; y!=height; ++y)</p>
+
+<p>
+ {</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> unsigned char * line</p>
+
+<p>     = static_cast&lt;const unsigned char *&gt;(</p>
+
+<p>       image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+x=0; x!=width; ++x)</p>
+
+<p> 
+ {</p>
+
+<p>     <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> grey</p>
+
+<p>       = (line[x*3+0] + line[x*3+1] + line[x*3+2]) / 3;</p>
+
+<p>     ++histogram[grey];</p>
+
+<p> 
+ }</p>
+
+<p>
+ }</p>
+
+<p>
+ <b><a href="CppReturn.htm">return</a></b> histogram;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

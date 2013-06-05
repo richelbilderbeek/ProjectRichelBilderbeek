@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Factorial</title>
+  <meta name="description" content="C++ Factorial"/>
+  <meta name="keywords" content="C++ Factorial"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppFactorial.htm">Factorial</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppMath.htm">Math</a> <a href="CppCodeSnippets.htm">code snippet</a> to calculate a factorial.</p>
+<p>There are multiple ways to calculate a factorial:</p>
+<ol>
+  <li>A plain function (best)</li>
+  <li>A recursive function</li>
+  <li>The algorithm way</li>
+  <li>A template metaprogram</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>plain function</h2>
+<p>&nbsp;</p>
+<p>Using a for-loop withing the function.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> Factorial(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n<a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> result = 1;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorLessEqual.htm">&lt;=</a>n; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;result<a href="CppOperatorMultiplyAssign.htm">*=</a>i;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(0)<a href="CppOperatorEqual.htm">==</a>1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(1)<a href="CppOperatorEqual.htm">==</a>1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(2)<a href="CppOperatorEqual.htm">==</a>2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(3)<a href="CppOperatorEqual.htm">==</a>6);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(4)<a href="CppOperatorEqual.htm">==</a>24);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(5)<a href="CppOperatorEqual.htm">==</a>120);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Recursive function</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> Factorial(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n<a href="CppOperatorEqual.htm">==</a>0) <b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (n * Factorial(n-1));<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(0)<a href="CppOperatorEqual.htm">==</a>1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(1)<a href="CppOperatorEqual.htm">==</a>1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(2)<a href="CppOperatorEqual.htm">==</a>2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(3)<a href="CppOperatorEqual.htm">==</a>6);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(4)<a href="CppOperatorEqual.htm">==</a>24);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Factorial(5)<a href="CppOperatorEqual.htm">==</a>120);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The algorithm way</h2>
+<p>&nbsp;</p>
+<p>The code belows shows a way how to use <a href="CppAlgorithm.htm">algorithms</a> to calculate a <a href="CppFactorial.htm">factorial</a>. This is not the preferred option.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppFunctorIncrease.htm<br/>
+<b><a href="CppStruct.htm">struct</a></b> Increase : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppVoid.htm">void</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Increase(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; initValue = 0) : mValue(initValue) {}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperator.htm">operator</a></b>()(<b><a href="CppInt.htm">int</a></b>&amp; anything)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;anything = mValue;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>mValue;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mValue;<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetFactorialTerms.htm">GetFactorialTerms</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppGetFactorialTerms.htm">GetFactorialTerms</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(n);<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(), v.end(),Increase(1));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFactorial.htm">Factorial</a>.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppFactorial.htm">Factorial</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v = <a href="CppFactorial.htm">Factorial</a>Terms(n);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),1,<a href="CppMultiplies.htm">std::multiplies</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;());<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFactorial.htm">Factorial</a>(0)<a href="CppOperatorEqual.htm">==</a>1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFactorial.htm">Factorial</a>(1)<a href="CppOperatorEqual.htm">==</a>1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFactorial.htm">Factorial</a>(2)<a href="CppOperatorEqual.htm">==</a>2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFactorial.htm">Factorial</a>(3)<a href="CppOperatorEqual.htm">==</a>6);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFactorial.htm">Factorial</a>(4)<a href="CppOperatorEqual.htm">==</a>24);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFactorial.htm">Factorial</a>(5)<a href="CppOperatorEqual.htm">==</a>120);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Program finished successsfully" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Template metaprogram</h2>
+<p>&nbsp;</p>
+<p>With compile-time checking using a template version of assert.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppBool.htm">bool</a></b>&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> CtAssert;<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> CtAssert&lt;<b><a href="CppTrue.htm">true</a></b>&gt; {};<br/>
+<br/>
+<a href="CppComment.htm">//</a>The <b><a href="CppTemplate.htm">template</a></b> metaprogram <b><a href="CppFor.htm">for</a></b> factorial<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> N&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> factorial<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppConst.htm">const</a></b> value = N * factorial&lt;N-1&gt;::value;<br/>
+};<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> factorial&lt;0&gt;<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppConst.htm">const</a></b> value = 1;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;CtAssert&lt;(factorial&lt;0&gt;::value<a href="CppOperatorEqual.htm">==</a>1)&gt;();<br/>
+&nbsp;&nbsp;CtAssert&lt;(factorial&lt;1&gt;::value<a href="CppOperatorEqual.htm">==</a>1)&gt;();<br/>
+&nbsp;&nbsp;CtAssert&lt;(factorial&lt;2&gt;::value<a href="CppOperatorEqual.htm">==</a>2)&gt;();<br/>
+&nbsp;&nbsp;CtAssert&lt;(factorial&lt;3&gt;::value<a href="CppOperatorEqual.htm">==</a>6)&gt;();<br/>
+&nbsp;&nbsp;CtAssert&lt;(factorial&lt;4&gt;::value<a href="CppOperatorEqual.htm">==</a>24)&gt;();<br/>
+&nbsp;&nbsp;CtAssert&lt;(factorial&lt;5&gt;::value<a href="CppOperatorEqual.htm">==</a>120)&gt;();<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

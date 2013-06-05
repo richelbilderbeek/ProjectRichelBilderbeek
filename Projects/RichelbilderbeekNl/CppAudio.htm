@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>audio</title>
+  <meta name="description" content="C++ audio"/>
+  <meta name="keywords" content="C++ audio sound music code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppAudio.htm">Audio</a></h1>
+<p>&nbsp;</p>
+<p>The standard <a href="Cpp.htm">C++</a> <a href="CppLibrary.htm">library</a> (the <a href="CppStl.htm">STL</a>) does not supply audio by default. Below some audio <a href="CppLibrary.htm">libraries</a> I have used are described.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Comparison of C++ audio libraries</h2>
+<p>&nbsp;</p>
+<p>This comparison is not thorough. When no <a href="CppReferences.htm">reference</a> is given, I know this from personal experience. If I do not know something sure, the items starts with a question mark.</p>
+<p>My personal goal is to use the <a href="CppAudio.htm">audio</a> <a href="CppLibrary.htm">library</a> to produce a beep of any frequency in C++ source code. To me it seems that not all libraries seem to be used from source code and omit code examples on their web sites.</p>
+<p>&nbsp;</p>
+
+<table border="1">
+  <tr>
+    <td><p><b><a href="CppLibrary.htm">Library</a><br/>name</b></p></td> 
+    <td><p><b>Comes <br/>with <br/><a href="CppIde.htm">IDE</a></b></p></td> 
+    <td><p><b>Audio<br/>analysis</b></p></td> 
+    <td><p><b>Audio<br/>synthesis</b></p></td>
+    <td><p><b>Could I <br/> produce a <br/>beep in C++<br/> source code?</b></p></td>  
+    <td><p><b><a href="CppLicence.htm">Licence</a></b></p></td> 
+    <td><p><b>Supports</b></p></td> 
+    <td><p><b>Homepage</b></p></td> 
+  </tr>
+  <tr>
+    <td><p><a href="CppClam.htm">CLAM</a></p></td> 
+    <td><p>?none</p></td> 
+    <td><p>Yes [1]</p></td> 
+    <td><p>Yes [1]</p></td> 
+    <td><p>No</p></td> 
+    <td><p>GPL 2.0 [1]</p></td> 
+    <td><p>Linux [1],<br/>Mac [1],<br/>Windows [1]</p></td> 
+    <td><p><a href="http://clam-project.org">CLAM homepage</a></p></td> 
+  </tr>
+  <tr>
+    <td><p>CLS</p></td> 
+    <td><p>?none</p></td> 
+    <td><p>Yes [1]</p></td> 
+    <td><p>Yes [1]</p></td> 
+    <td><p>From file <br/>only</p></td> 
+    <td><p>?Freeware</p></td> 
+    <td><p>?Linux,<br/>?Mac,<br/>?Windows</p></td> 
+    <td><p><a href="http://fastlabinc.com/CSL/index.html">CLS homepage</a></p></td> 
+  </tr>
+  <tr>
+    <td><p>Marsyas</p></td> 
+    <td><p>?none</p></td> 
+    <td><p>Yes [1]</p></td> 
+    <td><p>No [1]</p></td> 
+    <td><p>From file <br/>only</p></td> 
+    <td><p>?Freeware</p></td> 
+    <td><p>?Linux,<br/>?Mac,<br/>?Windows</p></td> 
+    <td><p><a href="http://marsyas.info/documentation">Marsyas homepage</a></p></td> 
+  </tr>
+  <tr>
+    <td><p>Open Sound<br/> World</p></td> 
+    <td><p>?none</p></td> 
+    <td><p>No [1]</p></td> 
+    <td><p>Yes [1][4]</p></td> 
+    <td><p>No</p></td> 
+    <td><p>LGPL-like [4]</p></td> 
+    <td><p>Linux [4],<br/>Mac [4],<br/>Windows [4]</p></td> 
+    <td><p><a href="http://osw.sourceforge.net">OSW homepage</a></p></td> 
+  </tr>
+  <tr>
+    <td><p><a href="CppPhonon.htm">Phonon</a></p></td> 
+    <td><p><a href="CppQtCreator.htm">Qt Creator</a></p></td> 
+    <td><p>?</p></td> 
+    <td><p>?</p></td> 
+    <td><p>No</p></td> 
+    <td><p>Free software</p></td> 
+    <td><p>Linux,<br/>Mac,<br/>Windows</p></td> 
+    <td><p><a href="http://phonon.kde.org">Phonon homepage</a></p></td> 
+  </tr>
+  <tr>
+    <td><p><a href="CppStk.htm">STK</a></p></td> 
+    <td><p>?none</p></td> 
+    <td><p>No [1]</p></td> 
+    <td><p>Yes [1][2]</p></td> 
+    <td><p>Yes</p></td> 
+    <td><p>LGPL-like [3]</p></td> 
+    <td><p>Linux [2],<br/>Mac [2],<br/>Windows [2]</p></td> 
+    <td><p><a href="https://ccrma.stanford.edu/software/stk/index.html">STK homepage</a></p></td> 
+  </tr>
+</table> 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://clam-project.org/wiki/Frequenly_Asked_Questions">The CLAM FAQ page</a>.</li>
+  <li><a href="https://ccrma.stanford.edu/software/stk/information.html">The STK Information page</a>.</li>
+  <li><a href="https://ccrma.stanford.edu/software/stk/faq.html">The STK FAQ page</a>.</li>
+  <li><a href="http://osw.sourceforge.net">The OCS FAQ page</a>.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

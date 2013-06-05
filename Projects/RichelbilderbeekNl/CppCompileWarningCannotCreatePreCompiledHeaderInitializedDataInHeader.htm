@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>compile warning: cannot create pre-compiled header: initialized data in header</title>
+  <meta name="description" content="C++ compile warning: cannot create pre-compiled header: initialized data in header"/>
+  <meta name="keywords" content="C++ compile warning: cannot create pre-compiled header: initialized data in header"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCompileWarningCannotCreatePreCompiledHeaderInitializedDataInHeader.htm">Cannot create pre-compiled header: initialized data in header</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCompileError.htm">Compile warning</a>.</p>
+<p>&nbsp;</p>
+<p>If you get this <a href="CppCompileWarning.htm">compile warning</a>, compiling will be significantly slowed down. Luckily, the problem is easy to solve.</p>
+<p>&nbsp;</p>
+<p>There are many ways to get this warning. Below I'll show how to cause one and how to solve all.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full warning message</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[C++ Warning] locale(150): W8058 Cannot create pre-compiled header: initialized data in header<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+#pragma hdrstop<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Which takes you to the following line in 'include/stlport/locale':</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> __LOCALE_INITIALIZED<br/>
+<a href="CppDefine.htm">#define</a> __LOCALE_INITIALIZED<br/>
+<a href="CppComment.htm">//</a> Global initializer object, to ensure initialization of locale subsystem.<br/>
+<a href="CppIfndef.htm">#ifndef</a> __BORLANDC<br/>
+<b><a href="CppStatic.htm">static</a></b><br/>
+#else<br/>
+<b><a href="CppExtern.htm">extern</a></b> _STLP_DECLSPEC<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+ios_base::_Loc_init _LocInit;      <a href="CppComment.htm">//</a>This line<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppBuilder.htm">C++ Builder</a> 6.0</p>
+<p><a href="CppCompiler.htm">Compiler</a>: Borland BCC32.EXE version 6.0.10.157</p>
+<p>Project type: <a href="CppVcl.htm">VCL</a></p>
+<p><a href="CppBoost.htm">Boost</a> version: 1.35.0</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>Put the #include of the header that causes this behind the #pragma:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#pragma hdrstop<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>#define</title>
+  <meta name="description" content="C++ #define"/>
+  <meta name="keywords" content="C++ #define code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDefine.htm">#define</a></h1>
+<p>&nbsp;</p>
+<p>The <a href="CppPreprocessor.htm">preprocessor</a> directive <a href="CppDefine.htm">#define</a> can be used for:</p>
+<ul>
+  <li><a href="CppIncludeGuard.htm">#include guards</a></li>
+  <li><a href="CppAssert.htm">assert</a></li>
+  <li><a href="CppMacro.htm">macro's</a> (not recommended)</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Use of <a href="CppDefine.htm">#define</a> in <a href="CppIncludeGuard.htm">#include guards</a></h2>
+<p>&nbsp;</p>
+<p>The
+<a href="CppPreprocessor.htm">preprocessor</a> statements <a href="CppIfndef.htm">#ifndef</a>, <a href="CppDefine.htm">#define</a> and 
+<a href="CppEndif.htm">#endif</a> can be used for <a href="CppIncludeGuard.htm">#include guards</a>. These
+prevent a <a href="CppHeaderFile.htm">header file</a> to be <a href="CppInclude.htm">#included</a> multiple times, causing a redeclaration
+error. Always write (internal) <a href="CppIncludeGuard.htm"> #include guards</a> [3,10]. Consider using 
+<a href="CppDefine.htm">#define</a> only for <a href="CppIncludeGuard.htm">#include guards</a> [14].</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> MYHEADERFILE_H<br/>
+<a href="CppDefine.htm">#define</a> MYHEADERFILE_H<br/>
+<br/>
+<a href="CppComment.htm">//</a>Your <a href="CppHeaderFile.htm">header file</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Use of <a href="CppDefine.htm">#define</a> in the <a href="CppAssert.htm">assert</a> statement</h2>
+<p>&nbsp;</p>
+<p><a href="CppDefine.htm">#define</a> is used for the <a
+href="CppDebug.htm">debugging</a> <a href="CppDefine.htm">#define</a> <a href="CppNDEBUG.htm">NDEBUG</a>
+used by <a href="CppAssert.htm">assert</a> (among others). Assert liberally to
+document internal assumptions and invariants [4-5,11].</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> <a href="CppNDEBUG.htm">NDEBUG</a> <a href="CppComment.htm">//</a>Uncomment to remove all <a href="CppAssert.htm">assert</a>s<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> Invert(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x<a href="CppOperatorNotEqual.htm">!=</a>0.0); <a href="CppComment.htm">//</a>Divisions by zero are illegal<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1.0/x;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Use of <a href="CppDefine.htm"> #define</a> in <a href="CppMacro.htm"> macro's</a></h2>
+<p>&nbsp;</p>
+<p>The <a href="CppPreprocessor.htm">preprocessor</a> directive   <a
+href="CppDefine.htm"> #define</a> is used to define <a href="CppMacro.htm"> macro's</a>.</p>
+<p>&nbsp;</p>
+<p>Avoid <a href="CppMacro.htm"> macro's</a> [1-2,7] as there are better, type-safe alternatives: <a
+href="CppConst.htm">const</a>s, <a href="CppEnum.htm">enum</a>s and <a
+href="CppInline.htm">inline</a>s.</p>
+<p>&nbsp;</p>
+<p>The example code below states that the <a href="CppPreprocessor.htm">preprocessor</a>
+must replace the text 'DOZEN' by the value of twelve.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppDefine.htm">#define</a> DOZEN 12<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Prefer <a href="CppConst.htm">const</a> over this type of #define [1,7-8,13].</p>
+<p>&nbsp;</p>
+<p>The example code below states that the <a href="CppPreprocessor.htm">preprocessor</a>
+must replace the 'x' between brackets by 'x+1':</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppDefine.htm">#define</a> PLUS_ONE(x) x+1<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Prefer <a href="CppInline.htm">inline</a> over this type of <a href="CppDefine.htm"> #define</a> [1,7,9,12].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><!-- [ 1] --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN:0-321-33487-6. Item 2: Prefer consts, enums and inlines to #defines</li>
+  <li><!-- [ 2] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4. Chapter 7.9.4: 'Avoid macro's'</li>
+  <li><!-- [ 3] --><a href="CppHerbSutter.htm">Herb Sutter</a> and <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 24: 'Always write internal #include guards. Never write external #include guards'.</li>
+  <li><!-- [ 4] --><a href="CppHerbSutter.htm">Herb Sutter </a> and <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 68: 'Assert liberally to document internal assumptions and invariants'.</li>
+  <li><!-- [ 5] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4. Advice 24.5.18: 'Explicitly express preconditions, postconditions, and other assertions as assertions'.</li>
+  <li><!-- [ 6] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4. Chapter 7.9.10: 'If you must use macro's, use ugly names with lots of capital letters'.</li>
+  <li><!-- [ 7] --><a href="CppJarrodHollingworth.htm">Jarrod Hollingworth</a>, <a href="CppBobSwart.htm">Bob Swart</a>, <a href="CppMarkCashman.htm">Mark Cashman</a>, <a href="CppPaulGustavson.htm">Paul Gustavson</a>. Sams C++ Builder 6 Developer's Guide. ISBN:0-672-32480-6. Chapter 3, paragraph 'Know when to use the preprocessor', lines 1-2: 'It is not appropriate to use the preprocessor for defining constants or for creating function macro's. Instead, you should use const variables or enum types for constants and use inline function (or inline template function) to replace a function macro.</li>
+  <li><!-- [ 8] --><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN:0-672-32224-2. Hour 21, chapter 'Using #define for constants': 'This is almost never a good idea, however, because #define merely makes a string substitution and does no type checking.'</li>
+  <li><!-- [ 9] --><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN:0-672-32224-2. Hour 21, chapter 'Macros versus functions and templates': 'Macros suffer from four problems in C++. [...] The final problem, however is the biggest: macros are not type safe. [...] Templates overcome this problem.'</li>
+  <li><!-- [10] --><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN:0-672-32224-2. Hour 21, chapter 'Inclusion and inclusion guards': 'It never hurts to use inclusion guards. Often they will save you hours of debugging time'. Also: hour 24, chapter 'include guards': 'All header files should use inclusion guards'.</li>
+  <li><!-- [11] --><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN:0-672-32224-2. Hour 24, chapter 'assert()': 'Use assert freely'.</li>
+  <li><!-- [12] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 29: 'The #define pre-processor directive shall not be used to create inline macros. Inline functions shall be used instead.'</li>
+  <li><!-- [13] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 30: 'The #define pre-processor directive shall not be used to define constant values. Instead, the const qualifier shall be applied to variable declarations to specify constant values.'</li>
+  <li><!-- [14] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 31: 'The #define pre-processor directive will only be used as part of the technique to prevent multiple inclusions of the same header file.'</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

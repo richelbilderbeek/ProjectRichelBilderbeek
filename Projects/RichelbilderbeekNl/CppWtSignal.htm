@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Wt signal</title>
+  <meta name="description" content="C++ Wt signal"/>
+  <meta name="keywords" content="C++ WtSignal Wt Signal code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicWt.png" alt="Wt"/> <a href="WtSignal.htm">Wt signal</a></h1>
+<p>&nbsp;</p>
+<p>The <a href="CppWt.htm">Wt</a> way of sending a <a href="CppSignal.htm">signal</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/W<a href="CppSignal.htm">Signal</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Emitter : <b><a href="CppPublic.htm">public</a></b> <a href="CppWObject.htm">Wt::WObject</a><br/>
+{<br/>
+ <b><a href="CppVoid.htm">void</a></b> Do<a href="CppEmit.htm">Emit</a>()<br/>
+ {<br/>
+&nbsp;&nbsp; <a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Emitter: emitting <a href="CppSignal.htm">signal</a>\n";<br/>
+&nbsp;&nbsp; m_signal.<b><a href="CppEmit.htm">emit</a></b>();<br/>
+ }<br/>
+ <a href="CppWtSignal.htm">Wt::Signal</a>&lt;<a href="CppWt.htm">Wt</a>::NoClass&gt; m_signal;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Receiver : <b><a href="CppPublic.htm">public</a></b> <a href="CppWObject.htm">Wt::WObject</a><br/>
+{<br/>
+ <b><a href="CppVoid.htm">void</a></b> OnReceive()<br/>
+ {<br/>
+&nbsp;&nbsp; <a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Receiver: received <a href="CppSignal.htm">signal</a>\n";<br/>
+ }<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+ <a href="CppComment.htm">//</a>Create emitter<br/>
+ Emitter e;<br/>
+ <a href="CppComment.htm">//</a>Create receiver<br/>
+ Receiver r;<br/>
+ <a href="CppComment.htm">//</a>Connect emitter's <a href="CppSignal.htm">signal</a> to receiver<br/>
+ e.m_signal.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &amp;r,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &amp;Receiver::OnReceive);<br/>
+ e.Do<a href="CppEmit.htm">Emit</a>();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

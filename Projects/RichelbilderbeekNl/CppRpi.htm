@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Raspberry Pi</title>
+  <meta name="description" content="Raspberry Pi"/>
+  <meta name="keywords" content="Raspberry Pi main home Richel Bilderbeek"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppRpi.htm">Raspberry Pi</a></h1>
+<p>&nbsp;</p>
+<p>My <a href="CppRpi.htm">Raspberry Pi</a> notes.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppRpiExample1.htm">Raspberry Pi example 1: toggle all GPIO pins on and off</a></li>
+  <li><a href="CppRpiExample2.htm">Raspberry Pi example 2: turn GPIO pins on and off</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Connecting to RPi via LAN</h2>
+<p>&nbsp;</p>
+<p>Instead of using a monitor, I connect to the RPi using a router. My router has an IP address that I visited with a webbrowser. The router's admin screens
+showed me that IP adresses were created from IP address 123.456.789. Using the Lubuntu Software Center I downloaded 'Putty ssh client' and started it
+with the command 'putty'. Putty requested an IP address and I entered the router's new IP address start + 1: 123.456.790. Putty showed me a screen with the
+text: 'login as: '. I entered 'pi', the default login name. Then it showed 'pi@123.456.790's password: ' and I entered 'raspberry', the default
+password.</p>
+<p>&nbsp;</p>
+<p>I was in!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Which board revision do I have?</h2>
+<p>&nbsp;</p>
+<p>To check out the board you have, in the command line type:</p>
+<p>&nbsp;</p>
+<p>cat /proc/cpuinfo</p>
+<p>&nbsp;</p>
+<p>The result I got:</p>
+<p>&nbsp;</p>
+<p><img src="RpiObtainBoardVersion.png" alt="Screenshot"/></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Problem: crosscompile to RPi via Putty</h2>
+<p>&nbsp;</p>
+<p>Perhaps this is not needed: g++ is installed already.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Problem: RCA to VGA does not appear to work</h2>
+<p>&nbsp;</p>
+<p>The RPi has an RCA video output (the yellow female port) that I wanted to connect to a VGA monitor (Nu W512A). In the shop I bought an
+RCA-to-VGA wire. This wire, however, had three RCA male connectors in the colors red, green and blue. Connecting the VGA monitor to the
+RPi with any of these RCA males failed</p>
+<p>&nbsp;</p>
+<p>Hypothesis: wrong cable, incorrect monitor</p>
+<p>&nbsp;</p>
+<p>Solution: try connecting via LAN</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

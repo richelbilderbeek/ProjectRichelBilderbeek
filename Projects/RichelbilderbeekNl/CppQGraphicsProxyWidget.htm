@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QGraphicsProxyWidget</title>
+  <meta name="description" content="C++ QGraphicsProxyWidget"/>
+  <meta name="keywords" content="C++ QGraphicsProxyWidget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicQt.png" alt="Qt"/> 
+  <a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a> is the <a href="CppClass.htm">class</a> that is 
+<a href="CppReturn.htm">returned</a> when a <a href="CppQWidget.htm">QWidget</a> is added to a 
+<a href="CppQGraphicsScene.htm">QGraphicsScene</a>. From that moment on, the <a href="CppQWidget.htm">QWidget</a> can be modified
+in its original form, but also by its <a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a>, the latter enabling for
+scaling and rotation.</p>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    <a href="CppQGraphicsProxyWidgetExample1.htm">QGraphicsProxyWidget example 1</a>: 
+    <a href="CppQGraphicsProxyWidgetExample1.png">screenshot (png)</a>, displays a single <a href="CppQLineEdit.htm">QLineEdit</a>
+  </li>
+  <li>
+    <a href="CppQGraphicsProxyWidgetExample2.htm">QGraphicsProxyWidget example 2</a>: 
+    <a href="CppQGraphicsProxyWidgetExample2.png">screenshot (png)</a>, displays multiple <a href="CppQLineEdit.htm">QLineEdits</a>
+  </li>
+  <li>
+    <a href="CppQGraphicsProxyWidgetExample3.htm">QGraphicsProxyWidget example 3</a>: 
+    <a href="CppQGraphicsProxyWidgetExample3.png">screenshot (png)</a>, multiple movable widgets with a window frame
+  </li>
+  <li>
+    <a href="CppQGraphicsProxyWidgetExample4.htm">QGraphicsProxyWidget example 4</a>: 
+    <a href="CppQGraphicsProxyWidgetExample4.png">screenshot (png)</a>, multiple unmovable widgets despite QGraphicsItem::ItemIsMovable flag
+  </li>
+  <li>
+    <a href="CppQGraphicsProxyWidgetExample5.htm">QGraphicsProxyWidget example 5</a>: 
+    <a href="CppQGraphicsProxyWidgetExample5.png">screenshot (png)</a>, multiple movable widgets that cannot be focused on
+  </li>
+  <li>
+    <a href="CppQGraphicsProxyWidgetExample6.htm">QGraphicsProxyWidget example 6</a>: 
+    <a href="CppQGraphicsProxyWidgetExample6.png">screenshot (png)</a>, multiple movable focusable widgets
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.3 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQGraphicsProxyWidgetExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += gui<br/>
+QMAKE_CXXFLAGS += <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+TARGET = CppQGraphicsProxy<a href="CppWidget.htm">Widget</a>Example1<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;QLineEdit&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the <a href="CppApplication.htm">application</a><br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> app(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the <a href="CppQt.htm">Qt</a> Graphics Framework <a href="CppComponent.htm">component</a>s<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> scene;<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsView.htm">QGraphicsView</a> view(&amp;scene);<br/>
+&nbsp;&nbsp;view.setGeometry(100,100,400,200);<br/>
+&nbsp;&nbsp;view.show();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppQWidget.htm">QWidget</a><br/>
+&nbsp;&nbsp;QLineEdit *<b><a href="CppConst.htm">const</a></b> edit <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QLineEdit;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the <a href="CppQWidget.htm">QWidget</a> and obtain its proxy<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a> * <b><a href="CppConst.htm">const</a></b> proxy <a href="CppOperatorAssign.htm">=</a> scene.addWidget(edit);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Modify the <a href="CppWidget.htm">widget</a> by <b><a href="CppUsing.htm">using</a></b> its proxy<br/>
+&nbsp;&nbsp;proxy-&gt;setScale(2.0);<br/>
+&nbsp;&nbsp;proxy-&gt;setRotation(30);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> app.exec();<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

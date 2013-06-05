@@ -1,0 +1,285 @@
+ 
+<title>Bleach</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Bleach</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek TImage Image VCL Builder Bleach</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>15</o:Revision>
+  <o:TotalTime>190</o:TotalTime>
+  <o:Created>2009-12-31T12:39:00Z</o:Created>
+  <o:LastSaved>2009-12-31T12:56:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>835</o:Words>
+  <o:Characters>4762</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Bleach</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>39</o:Lines>
+  <o:Paragraphs>9</o:Paragraphs>
+  <o:CharactersWithSpaces>5848</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppBleach.htm">Bleach</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppVclGraphics.htm">Graphics</a> <a
+href="CppVclCodeSnippets.htm"> code
+snippet</a> to bleach a <a href="CppTImage.htm">Extctrls::TImage</a>. To darken a <a
+href="CppTImage.htm">Extctrls::TImage</a> use <a href="CppDarken.htm">Darken</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>The <a href="Tools.htm">tool</a> <a
+href="ToolBarbaImage.htm">BarbaImage</a> uses   <a href="CppBleach.htm">Bleach</a>
+as one of its image operations.</p>
+
+<p>&nbsp;</p>
+
+  <li>     <a href="CppBleach.PNG">View an example of a composition image
+demonstrating Bleach</a></p>
+
+  <li>     <a href="CppBleach.txt">View the code of 'Bleach' in plain text</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;Extctrls.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppComment.htm">//</a>Bleach an image by fraction f</p>
+
+<p><a
+href="CppComment.htm">//</a> * f = 0.0 denotes no bleaching    (image untouched)</p>
+
+<p><a
+href="CppComment.htm">//</a> * f = 1.0 denotes max bleaching (image white)</p>
+
+<p><a
+href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppBleach.htm</p>
+
+<p><b> <a
+href="CppVoid.htm">void</a> </b>  <a href="CppBleach.htm">Bleach</a>(</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b> <a
+href="CppTImage.htm">Extctrls::TImage</a> * <b><a href="CppConst.htm">const</a></b>
+source,</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> f,                </p>
+
+<p>   <a href="CppTImage.htm">Extctrls::TImage</a>
+* <b><a href="CppConst.htm">const</a></b> target)</p>
+
+<p>{</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(f
+&gt;=    0.0);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(f
+&lt;=    1.0);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(source!=0
+&amp;&amp; &quot;Image is NULL&quot;);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(source-&gt;Picture-&gt;Bitmap!=0
+&amp;&amp; &quot;Image bitmap is NULL&quot;);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(source-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit &amp;&amp; &quot;Image bitmap must be 24 bit&quot;);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(target!=0
+&amp;&amp; &quot;Image is NULL&quot;);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(target-&gt;Picture-&gt;Bitmap!=0
+&amp;&amp; &quot;Image bitmap is NULL&quot;);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(target-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit &amp;&amp; &quot;Image bitmap must be 24 bit&quot;);</p>
+
+<p>   //Get the width and height from the source</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> width    =
+source-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> height =
+source-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>   //Set the target's width and height</p>
+
+<p>   target-&gt;Picture-&gt;Bitmap-&gt;Width    = width;</p>
+
+<p>   target-&gt;Picture-&gt;Bitmap-&gt;Height =
+height;</p>
+
+<p>&nbsp;</p>
+
+<p>   <b><a href="CppFor.htm">for</a></b> (<b><a
+href="CppInt.htm">int</a></b> y=0; y!=height; ++y)</p>
+
+<p>   {</p>
+
+<p>     <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *
+lineSource</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> *&gt;(</p>
+
+<p>       
+ source-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>     <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> * lineTarget</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+*&gt;(</p>
+
+<p>       
+ target-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>     <b><a href="CppFor.htm">for</a></b> (<b><a
+href="CppInt.htm">int</a></b> x=0; x!=width; ++x)</p>
+
+<p>     {</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> r = lineSource[x*3+2]; //Red;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> g = lineSource[x*3+1]; //Green;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> b = lineSource[x*3+0]; //Blue;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> max_dist_r = 256 - r;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> max_dist_g = 256 - g;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> max_dist_b = 256 - b;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> dist_r = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(max_dist_r) * f;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> dist_g = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(max_dist_g) * f;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> dist_b = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(max_dist_b) * f;</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> new_r = r + <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(dist_r);</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> new_g = g + <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(dist_g);</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> new_b = b + <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(dist_b);</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(new_r
+&gt;=     0);</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(new_r
+&lt;    256);</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(new_g
+&gt;=     0);</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(new_g
+&lt;    256);</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(new_b
+&gt;=     0);</p>
+
+<p>         <a
+href="CppAssert.htm">assert</a>(new_b &lt;  
+ 256);</p>
+
+<p>       lineTarget[x*3+2] = new_r; //Red</p>
+
+<p>       lineTarget[x*3+1] = new_g; //Green</p>
+
+<p>       lineTarget[x*3+0] = new_b; //Blue</p>
+
+<p>     }</p>
+
+<p>   }</p>
+
+<p>&nbsp;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

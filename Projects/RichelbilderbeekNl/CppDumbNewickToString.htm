@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>DumbNewickToString</title>
+  <meta name="description" content="C++ DumbNewickToString"/>
+  <meta name="keywords" content="C++ DumbNewickToString dumb Newick to string std::string code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDumbNewickToString.htm">DumbNewickToString</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppDumbNewickToString.htm">DumbNewickToString</a> is a <a href="CppNewick.htm">Newick</a> <a href="CppCodeSnippets.htm">code snippets</a> to convert a -possibly invalid- <a href="CppNewick.htm">Newick</a> to <a href="CppString.htm">std::string</a>. <a href="CppNewickToString.htm">NewickToString</a> is the checked version of <a href="CppDumbNewickToString.htm">DumbNewickToString</a>.</p> 
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>/<a href="CppDumbNewickToString.htm">DumbNewickToString</a> converts a <a href="CppNewick.htm">Newick</a> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; to a<br/>
+<a href="CppComment.htm">//</a>/standard-format <a href="CppString.htm">std::string</a> without error checking.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppDumbNewickToString.htm">DumbNewickToString</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppDumbNewickToString.htm">DumbNewickToString</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;s.reserve(2 * v.size()); <a href="CppComment.htm">//</a>Just a guess<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> next <a href="CppOperatorAssign.htm">=</a> v[i+1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (next &gt; 0 <a href="CppOperatorLogicalOr.htm">||</a> next <a href="CppOperatorEqual.htm">==</a> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::bracket_open)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>",";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (x<a href="CppOperatorEqual.htm">==</a><a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::bracket_open)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>"(";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (x<a href="CppOperatorEqual.htm">==</a><a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::bracket_close)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>")";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Final closing bracket?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i+1<a href="CppOperatorEqual.htm">==</a>sz) <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> next <a href="CppOperatorAssign.htm">=</a> v[i+1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (next &gt; 0 <a href="CppOperatorLogicalOr.htm">||</a> next <a href="CppOperatorEqual.htm">==</a> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::bracket_open)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>",";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>"x"; <a href="CppComment.htm">//</a>Unknown <b><a href="CppChar.htm">char</a></b>acter<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

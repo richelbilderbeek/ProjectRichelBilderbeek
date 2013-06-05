@@ -1,0 +1,793 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Porting an application from C++ Builder to Qt Creator</title>
+  <meta name="description" content="C++ Porting an application from C++ Builder to Qt Creator"/>
+  <meta name="keywords" content="C++ Porting an application from C++ Builder to Qt Creator code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) 
+  <img src="PicDesktop.png" alt="Desktop"/><img src="PicTo.png" alt="to"/><img src="PicWeb.png" alt="Web"/>
+  <img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicUbuntu.png" alt="Ubuntu"/>
+  <a href="CppFromDesktopToWebApplication.htm">Create a web application from a desktop application</a>
+</h1>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> describes how to create a <a href="CppWt.htm">Wt</a>
+<a href="CppWebApplication.htm">web application</a> from a <a href="CppDesktopApplication.htm">desktop application</a>,
+leaving both to be used.</p>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> uses the architecture described in the <a href="CppArticle.htm">article</a>
+<a href="CppThinkingQt1.htm">Thinking Qt 1: general</a> and <a href="CppThinkingWt1.htm">Thinking Wt 1: general</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Overview</h2>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> follows these steps:</p>
+<ol>
+  <li>Discussing the starting point</li>
+
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Starting point</h2>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a>'s starting point is the code from 
+<a href="ToolAsciiArterSource_4_0.htm">AsciiArter source code version 4.0</a>,
+which was described in the <a href="CppArticle.htm">article</a> 
+<a href="CppFromCppBuilderToQtCreator.htm">Porting an application from C++ Builder to Qt Creator</a>.</p>
+<p>&nbsp;</p>
+
+<!--
+<p>Taking a look at the code, the following improvements can be made:</p>
+<ul>
+  <li>
+    Put all Ascii-arter functionality in a <a href="CppClass.htm">class</a> called 
+    <a href="CppAsciiArter.htm">AsciiArter</a>
+  </li>
+  <li>
+    Put the <a href="CppGui.htm">GUI</a> logic in a platform-independent <a href="CppClass.htm">class</a> 
+    called <a href="CppTestAsciiArterDialog.htm">TestAsciiArterDialog</a>
+  </li>
+  <li>
+    Put the <a href="CppQt.htm">Qt</a> <a href="CppGui.htm">GUI</a> functionality in a <a href="CppClass.htm">class</a> 
+    called <a href="CppQtTestAsciiArterDialog.htm">QtTestAsciiArterDialog</a>
+  </li>
+</ul>
+-->
+<p>&nbsp;</p>
+<p>This change in architecture can be displayed graphically:</p>
+<ul>
+  <li>
+    <img src="PicCppBuilder.png" alt="C++ Builder"/>
+    <a href="CppFromCppBuilderToQtCreatorBefore.png">C++ Builder architecture (png)</a>: all functionality in one 
+    <a href="CppClass.htm">class</a>
+  </li>
+  <li>
+    <img src="PicQtCreator.png" alt="Qt Creator"/>
+    <a href="CppFromCppBuilderToQtCreator.png">Qt Creator architecture (png)</a>: all functionality 
+    distributed over multiple <a href="CppClass.htm">classes</a>, keeping open the possibility to transform it 
+    into a <a href="CppWt.htm">Wt</a> <a href="CppWebApplication.htm">web applications</a> (in dashed lines)</p>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Put all Ascii-arter functionality in a <a href="CppClass.htm">class</a> called <a href="CppAsciiArter.htm">AsciiArter</a></h2>
+<p>&nbsp;</p>
+<p>I did the following things:</p>
+<ul>
+  <li>
+    Removed the use of the <a href="CppWindows.htm">Windows</a>-only <a href="CppTImage.htm">TImage</a> 
+    <a href="CppClass.htm">class</a>, replaced it by requesting a Y-X ordered 2D <a href="CppVector.htm">std::vector</a> 
+    of greyscales
+  </li>
+  <li>
+    Put all <a href="CppGlobal.htm">global</a> <a href="CppFunction.htm">functions</a> in the 
+    <a href="CppAsciiArter.htm">AsciiArter</a> <a href="CppClass.htm">class</a> 
+    <a href="CppNamespace.htm">namespace</a>
+  </li>
+  <li>Added versioning</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>asciiarter.h</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> ASCIIARTER_H<br/>
+<a href="CppDefine.htm">#define</a> ASCIIARTER_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/tuple/tuple.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAsciiArter.htm">AsciiArter</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; Pixel;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; ImageToAscii(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetVersion();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetVersionHistory();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; m_gradient;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; GetAsciiArtGradient();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> GetGreyness(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> GetGreyness(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> GetGreyness(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> GetFractionGrey(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> ASCIIARTER_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>asciiarter.cpp</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/scoped_ptr.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "asciiarter.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; <a href="CppAsciiArter.htm">AsciiArter</a>::m_gradient<br/>
+&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAsciiArter.htm">AsciiArter</a>::GetAsciiArtGradient();<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; <a href="CppAsciiArter.htm">AsciiArter</a>::GetAsciiArtGradient()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; <b><a href="CppChar.htm">char</a></b>s;<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('M');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('N');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('m');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('d');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('h');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('y');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('s');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('o');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('+');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('/');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back(':');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('-');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('.');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('`');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back(' ');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppChar.htm">char</a></b>s;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppAsciiArter.htm">AsciiArter</a>::GetGreyness(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!image.empty()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(image.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is beyond image height");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(image[y].size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> greyness <a href="CppOperatorAssign.htm">=</a> image[y][x];<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(greyness <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(greyness <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> greyness;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>Get a line of pixel's average greyness<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppAsciiArter.htm">AsciiArter</a>::GetGreyness(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!image.empty()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x1 coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x2 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x2 coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(image.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is beyond image height");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 &lt; x2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "X-coordinats must be different and ordered");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(image[y].size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x1 coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x2 &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(image[y].size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x2 coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image[y].begin() <a href="CppOperatorPlus.htm">+</a> x2 <a href="CppOperatorNotEqual.htm">!=</a> image[y].end()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x2 coordinat iterator must not be beyond image width");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> average_greyness <a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.htm">std::accumulate</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;image[y].begin() <a href="CppOperatorPlus.htm">+</a> x1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;image[y].begin() <a href="CppOperatorPlus.htm">+</a> x2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;0.0) <a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x2-x1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(average_greyness <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(average_greyness <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> average_greyness;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>Get a square of pixels' average greyness<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppAsciiArter.htm">AsciiArter</a>::GetGreyness(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 &lt; y2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Y-coordinats must be ordered");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=y1; y<a href="CppOperatorNotEqual.htm">!=</a>y2; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> grey <a href="CppOperatorAssign.htm">=</a> GetGreyness(image,x1,x2,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(grey <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> grey &lt; 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>grey;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> average_greyness <a href="CppOperatorAssign.htm">=</a> sum<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y2 <a href="CppOperatorMinus.htm">-</a> y1);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(average_greyness <a href="CppOperatorGreaterEqual.htm">&gt;=</a>0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> average_greyness <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> average_greyness;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>Generalizes a pixel, line or rectangle to one average greyness<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppAsciiArter.htm">AsciiArter</a>::GetFractionGrey(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 <a href="CppOperatorLessEqual.htm">&lt;=</a> x2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 <a href="CppOperatorLessEqual.htm">&lt;=</a> y2);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x1 <a href="CppOperatorEqual.htm">==</a> x2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y1 <a href="CppOperatorEqual.htm">==</a> y2) <b><a href="CppReturn.htm">return</a></b> GetGreyness(image,x1,y1);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y1 <a href="CppOperatorEqual.htm">==</a> y2) <b><a href="CppReturn.htm">return</a></b> GetGreyness(image,x1,x2,y1);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x1 <a href="CppOperatorEqual.htm">==</a> x2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 &lt; y2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=y1; y<a href="CppOperatorNotEqual.htm">!=</a>y2; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> g <a href="CppOperatorAssign.htm">=</a> GetGreyness(image,x1,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(g <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(g <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>g;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> average_greyness<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> sum <a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y2-y1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(average_greyness <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(average_greyness <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> average_greyness;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetGreyness(image,x1,y1,x2,y2);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppAsciiArter.htm">AsciiArter</a>::GetVersion()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppAsciiArter.htm">AsciiArter</a>::GetVersionHistory()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-03-23: Version 1.0: initial version");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>'image' must be a y-x-ordered <a href="CppVector.htm">std::vector</a> of grey values<br/>
+<a href="CppComment.htm">//</a>ranging from [0.0,1.0], where 0.0 denotes black and<br/>
+<a href="CppComment.htm">//</a>1.0 denotes white.<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppImageToAscii.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppAsciiArter.htm">AsciiArter</a>::ImageToAscii(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width) <b><a href="CppConst.htm">const</a></b> <a href="CppComment.htm">//</a>How many <b><a href="CppChar.htm">char</a></b>s the ASCII image will be wide<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If the number of <b><a href="CppChar.htm">char</a></b>s is below 5,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>the calculation would be more complicated due to a too trivial value of <b><a href="CppChar.htm">char</a></b>Width<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(width <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 5);<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Maxy is in proportion with the bitmap<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> image_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image[0].size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> image_height <a href="CppOperatorAssign.htm">=</a> image.size();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(image_width))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(image_height);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxy &gt; 0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(image_width)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(image_height)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxy);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &gt; 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dY &gt; 0.0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x) * dX,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image_width&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> 1.0) <a href="CppOperatorPlus.htm">+</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y) * dY,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image_height <a href="CppOperatorMinus.htm">-</a> 1.0) <a href="CppOperatorPlus.htm">+</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2 <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x) * dX) <a href="CppOperatorPlus.htm">+</a> dX,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image_width&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> 1.0) <a href="CppOperatorPlus.htm">+</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2 <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y) * dY) <a href="CppOperatorPlus.htm">+</a> dY,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image_height <a href="CppOperatorMinus.htm">-</a> 1.0) <a href="CppOperatorPlus.htm">+</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x2 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y2 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 &lt; image_width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x2 &lt; image_width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 &lt; image_height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y2 &lt; image_height);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f <a href="CppOperatorAssign.htm">=</a> GetFractionGrey(image,x1,y1,x2,y2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> f <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f * <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(m_gradient.size() <a href="CppOperatorMinus.htm">-</a> 1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_gradient.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c <a href="CppOperatorAssign.htm">=</a> m_gradient[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>c;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  Put the <a href="CppGui.htm">GUI</a> logic in a platform-independent <a href="CppClass.htm">class</a> 
+  called <a href="CppTestAsciiArterDialog.htm">TestAsciiArterDialog</a>
+</h2>
+<p>&nbsp;</p>
+<p>I did the following things:</p>
+<ul>
+  <li>
+    Removed the use of the <a href="CppWindows.htm">Windows</a>-only <a href="CppTImage.htm">TImage</a> 
+    <a href="CppClass.htm">class</a>, replaced it by requesting a Y-X ordered 2D <a href="CppVector.htm">std::vector</a> 
+    of greyscales
+  </li>
+  <li>Added versioning</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>testasciiarterdialog.h</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> TESTASCIIARTERDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> TESTASCIIARTERDIALOG_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/scoped_ptr.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "about.h"<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAsciiArter.htm">AsciiArter</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog<br/>
+{<br/>
+&nbsp;&nbsp;<a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetAsciiArt() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_asciiart; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Can<a href="CppConvert.htm">Convert</a>() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppConvert.htm">Convert</a>();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> Get<a href="CppAbout.htm">About</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetVersion();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetVersionHistory();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetImage(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWidth(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_asciiart;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; m_image;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_width;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppAsciiArter.htm">AsciiArter</a>&gt; m_asciiarter;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTASCIIARTERDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>testasciiarterdialog.cpp</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "asciiarter.h"<br/>
+<a href="CppInclude.htm">#include</a> "testasciiarterdialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::<a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog()<br/>
+&nbsp;&nbsp;: m_width(0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_asciiarter(<b><a href="CppNew.htm">new</a></b> <a href="CppAsciiArter.htm">AsciiArter</a>)<br/>
+{<br/>
+<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::Can<a href="CppConvert.htm">Convert</a>() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !m_image.empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_width &gt; 5;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::<a href="CppConvert.htm">Convert</a>()<br/>
+{<br/>
+&nbsp;&nbsp;m_asciiart <a href="CppOperatorAssign.htm">=</a> m_asciiarter-&gt;ImageToAscii(m_image,m_width);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::Get<a href="CppAbout.htm">About</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestAsciiArter.htm">TestAsciiArter</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"tool to test the <a href="CppAsciiArter.htm">AsciiArter</a> <b><a href="CppClass.htm">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"the 23rd of March 2011",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2006-2011",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/Tool<a href="ToolTestAsciiArter.htm">TestAsciiArter</a>.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GetVersion(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GetVersionHistory());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppAsciiArter.htm">AsciiArter</a> version: " <a href="CppOperatorPlus.htm">+</a> <a href="CppAsciiArter.htm">AsciiArter</a>::GetVersion());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::GetVersion()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "4.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::GetVersionHistory()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2006-12-13: Version 1.0: initial version (then called '<a href="CppAsciiArter.htm">AsciiArter</a>') programmed in <a href="Cpp.htm">C++</a> Builder");<br/>
+&nbsp;&nbsp;v.push_back("2006-12-16: Version 2.0: minor improvements");<br/>
+&nbsp;&nbsp;v.push_back("2008-06-21: Version 3.0: minor improvements");<br/>
+&nbsp;&nbsp;v.push_back("2011-03-23: Version 4.0: port to <a href="CppQtCreator.htm">Qt Creator</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::SetImage(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; image)<br/>
+{<br/>
+&nbsp;&nbsp;m_image <a href="CppOperatorAssign.htm">=</a> image;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::SetWidth(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(width &gt; 5);<br/>
+&nbsp;&nbsp;m_width <a href="CppOperatorAssign.htm">=</a> width;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+    Put the <a href="CppQt.htm">Qt</a> <a href="CppGui.htm">GUI</a> functionality in a <a href="CppClass.htm">class</a> 
+    called <a href="CppQtTestAsciiArterDialog.htm">QtTestAsciiArterDialog</a>
+</h2>
+<p>&nbsp;</p>
+<p>I did the following things:</p>
+<ul>
+  <li>
+    Let GUI library used, Qt in this case, convert the QImage to the requested Y-X ordered 2D <a href="CppVector.htm">std::vector</a> 
+    of greyscales
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>qttestasciiarterdialog.h</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTTESTASCIIARTERDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTTESTASCIIARTERDIALOG_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/scoped_ptr.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "testasciiarterdialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQImage.htm">QImage</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog();<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog *ui;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog&gt; m_dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawAsciiArt();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConvert.htm">Convert</a>ToGreyYx(<b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a> * <b><a href="CppConst.htm">const</a></b> i);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_edit_width_textChanged(<a href="CppQString.htm">QString</a> );<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_load_clicked();<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTASCIIARTERDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>qttestasciiarterdialog.cpp</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/foreach.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;QFileDialog&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "asciiarter.h"<br/>
+<a href="CppInclude.htm">#include</a> "testasciiarterdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtaboutdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qttestasciiarterdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qttestasciiarterdialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::<a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;ui-&gt;edit_width-&gt;setText("80");<br/>
+&nbsp;&nbsp;on_edit_width_textChanged("80");<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::DrawAsciiArt()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_dialog-&gt;Can<a href="CppConvert.htm">Convert</a>()) <b><a href="CppReturn.htm">return</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;m_dialog-&gt;<a href="CppConvert.htm">Convert</a>();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;GetAsciiArt();<br/>
+&nbsp;&nbsp;ui-&gt;text-&gt;clear();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText(s.c_str());<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::on_button_load_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;QFileDialog d;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> filename <a href="CppOperatorAssign.htm">=</a> d.getOpenFileName();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!QFile::exists(filename))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> p(filename);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; v<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppConvert.htm">Convert</a>ToGreyYx(&amp;p);<br/>
+<br/>
+&nbsp;&nbsp;m_dialog-&gt;SetImage(v);<br/>
+&nbsp;&nbsp;DrawAsciiArt();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>Returns a Y-X-ordered <a href="CppVector.htm">std::vector</a> of greynesses.<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::<a href="CppConvert.htm">Convert</a>ToGreyYx(<b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a> * <b><a href="CppConst.htm">const</a></b> i)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> i-&gt;height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> i-&gt;width();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_bytes <a href="CppOperatorAssign.htm">=</a> i-&gt;bytesPerLine() <a href="CppOperatorDivide.htm">/</a> maxx;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line <a href="CppOperatorAssign.htm">=</a> i-&gt;scanLine(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> byte=0; byte<a href="CppOperatorNotEqual.htm">!=</a>n_bytes; <a href="CppOperatorIncrement.htm">++</a>byte)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum <a href="CppOperatorPlusAssign.htm">+=</a> line[(x * n_bytes) <a href="CppOperatorPlus.htm">+</a> byte];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> greyness<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (<a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sum)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_bytes))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 256.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(greyness <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(greyness <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.back().push_back(greyness);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::on_edit_width_textChanged(<a href="CppQString.htm">QString</a> q)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> q.toStdString();<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>&amp;)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (width <a href="CppOperatorLessEqual.htm">&lt;=</a> 5) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_dialog-&gt;SetWidth(width);<br/>
+&nbsp;&nbsp;DrawAsciiArt();<br/>
+<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::on_button_about_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestAsciiArter.htm">TestAsciiArter</a>Dialog::Get<a href="CppAbout.htm">About</a>();<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;d.exec();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Conclusion</h2>
+<p>&nbsp;</p>
+<p>Instead of explaining all steps in detail, this <a href="CppArticle.htm">article</a> shows
+a change in architecture from Windows-only GUI-dependent to platform-independent as described 
+in the <a href="CppArticle.htm">article</a> <a href="CppThinkingQt1.htm">Thinking Qt 1: general</a>.
+These changes can be viewed in in image and in code:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    <img src="PicCppBuilder.png" alt="C++ Builder"/>
+    <a href="CppFromCppBuilderToQtCreatorBefore.png">C++ Builder architecture (png)</a>: 
+    <a href="ToolAsciiArterSource_1_0.htm">AsciiArter source code version 1.0</a>
+  </li>
+  <li>
+    <img src="PicQtCreator.png" alt="Qt Creator"/>
+    <a href="CppFromCppBuilderToQtCreator.png">Qt Creator architecture (png)</a>: 
+    <a href="ToolTestAsciiArterSource_4_0.htm">AsciiArter source code version 4.0</a>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

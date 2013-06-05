@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>FindEquilibrium</title>
+  <meta name="description" content="C++ FindEquilibrium"/>
+  <meta name="keywords" content="C++ FindEquilibrium code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppFindEquilibrium.htm">FindEquilibrium</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppFindEquilibrium.htm">FindEquilibrium</a> is a <a href="CppBiology.htm">biology</a> <a
+href="CppCodeSnippets.htm">code snippet</a> to find the equilibrium of a cycle.</p>
+<p>&nbsp;</p>
+<p>How would one find an equilibrium of a cycle? Easy: one keeps track of the values
+and their occurance in time. If a value is found that has already been tracked,
+the period is found, as this equals the actual time minus the time at which
+this value has been tracked before.</p>
+<p>&nbsp;</p>
+<p>In the code below, the function <b><i>GetPeriod</i></b> finds the period of a function
+in equilibrium. To do so, I use a <b><i>std::map&lt;double,int&gt;</i></b> in
+which the double's are values and the integers are the number of timesteps
+corresponding to this value. When a certain value is already present in this
+map, the period of this function is the actual timestep minus the time this
+value appeared for the first time.</p>
+<p>&nbsp;</p>
+<p>Note that the function shown here is a 'brute-force' approach that will always work.
+An improvement of it would be to first track the value in time: if the value
+first increases, then one might start mapping after the value has had its first
+decrease (i.e. it crossed the value it is attracted to).</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppFunction.htm">Function</a>Base<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x) <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppFunction.htm">Function</a>Base() {} <a href="CppComment.htm">//</a><a href="CppBaseClass.htm">Base class</a> must have <b><a href="CppVirtual.htm">virtual</a></b> <a href="CppDestructor.htm">destructor</a><br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppFunction.htm">Function</a>LogisticGrowth : <b><a href="CppPublic.htm">public</a></b> <a href="CppFunction.htm">Function</a>Base<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFunction.htm">Function</a>LogisticGrowth(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> r) : mR(r) {}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The discrete <a href="CppTime.htm">time</a> <a href="CppVersion.htm">version</a> of the logistic growth equation<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assumes a K of 1.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (mR * x * (1.0 <a href="CppOperatorMinus.htm">-</a> x));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mR;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppFindEquilibrium.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> GetPeriod(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">Function</a>Base&gt;&amp; <a href="CppAny.htm">any</a><a href="CppFunction.htm">Function</a>,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xZero,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxT)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; values; <a href="CppComment.htm">//</a>value, <a href="CppTime.htm">time</a><br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> xZero;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> t=0; t<a href="CppOperatorNotEqual.htm">!=</a>maxT; <a href="CppOperatorPlus.htm">+</a>+t)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (values.find(x)<a href="CppOperatorNotEqual.htm">!=</a>values.end())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The previous <a href="CppTime.htm">time</a> <b><a href="CppThis.htm">this</a></b> value was found<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> tPrev <a href="CppOperatorAssign.htm">=</a> values[x];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The distance between now and the previous <a href="CppTime.htm">time</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> period <a href="CppOperatorAssign.htm">=</a> t-tPrev;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> period;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Map <b><a href="CppThis.htm">this</a></b> population size to the <a href="CppTime.htm">time</a> now<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;values[x] <a href="CppOperatorAssign.htm">=</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the value to the next value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorAssign.htm">=</a> <a href="CppAny.htm">any</a><a href="CppFunction.htm">Function</a>-&gt;GetY(x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTime.htm">Time</a> too <b><a href="CppLong.htm">long</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> maxT;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppFindEquilibrium.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Of the logistic growth equation, determine the period length <b><a href="CppFor.htm">for</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>different values of intrinsic growth rate ('r')<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxT <a href="CppOperatorAssign.htm">=</a> 100000;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xZero <a href="CppOperatorAssign.htm">=</a> 0.1;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> r <a href="CppOperatorAssign.htm">=</a> 0.1; r &lt; 4.0; r<a href="CppOperatorPlusAssign.htm">+=</a>0.001)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">Function</a>Base&gt; my<a href="CppFunction.htm">Function</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppFunction.htm">Function</a>LogisticGrowth(r));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> r <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " : "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetPeriod(my<a href="CppFunction.htm">Function</a>,xZero,maxT) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Results</h2>
+<p>&nbsp;</p>
+<p>The results of this simulation, for 10M generations, I have put here.</p>
+<p>The cycle lengths can be viewed as <a href="CppFindEquilibriumLogisticGrowth.txt">a text file here</a>,
+<a href="CppFindEquilibriumLogisticLog.png">a logarithmic chart here</a> or as <a
+href="CppFindEquilibriumLogistic16.png">a linear chart here</a>. Note that if a period was not found,
+I plotted it to a period length of 0 (which makes it disappear in the
+logarithmic chart). The linear chart plots a 16-cycle at maximum. If a heigher
+period length was found, I plot it as 16 as well.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Discussion</h2>
+<p>&nbsp;</p>
+<p>I
+always thought that, when the value of <b><i>r</i></b> is increased, starting
+at r = 0.0, a 1-cycle was followed by a 2-cycle, 4-cycle, 8-cycle and so on
+until chaos is reached. I assumed that this was so clear-cut due to
+mathematical proof with infinite precision. Computer simulations are not
+infinitely precise. The results of this simulation show this very clearly, as
+there is not a single transition value of <b><i>r</i></b> where an cycle period
+changes.</p>
+<p>&nbsp;</p>
+<p>An artefact can be found at <b><i>r</i></b> = 1.0: due to rounding-off, this
+is set to 1.0 - <b><i>&#949;</i></b>, in which <b><i>&#949;</i></b> is a very small
+value. The population size will drop to zero in time, but not within 10M
+generations. Therefore, the period length is not found. Also <b><i>r</i></b> =
+2.0 suffers a similar problem.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>IsSquare</title>
+  <meta name="description" content="C++ IsSquare"/>
+  <meta name="keywords" content="C++ is square IsSquare Qt Creator Builder STL boost container vector code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppIsSquare.htm">IsSquare</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppIsSquare.htm">IsSquare</a> is a <a href="CppVector.htm">std::vector</a> <a href="CppCodeSnippets.htm">code snippet</a> to check if a 2D-<a href="CppVector.htm">std::vector</a> is square.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtCreator.htm">Qt Creator</a> source code</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppIsSquare.zip">Download the Qt Creator project 'CppIsSquare' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/foreach.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsSquare.htm">IsSquare</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsSquare.htm">IsSquare</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<a href="CppVector.htm">std::vector</a>&lt;T&gt; row, v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row.size()<a href="CppOperatorNotEqual.htm">!=</a>v.size()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; v;<br/>
+&nbsp;&nbsp;v.resize(4);<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; row, v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;row.resize(4);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsSquare.htm">IsSquare</a>(v)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;v[3].resize(5);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsSquare.htm">IsSquare</a>(v)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppBuilder.htm">C++ Builder</a> source code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsSquare.htm">IsSquare</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsSquare.htm">IsSquare</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;::const_iterator j <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;::const_iterator i <a href="CppOperatorAssign.htm">=</a> v.begin();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( ; i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sz <a href="CppOperatorNotEqual.htm">!=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i-&gt;size())) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

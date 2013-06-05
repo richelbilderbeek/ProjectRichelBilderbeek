@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>operator--</title>
+  <meta name="description" content="C++ operator--"/>
+  <meta name="keywords" content="C++ operator-- decrement -- operator"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppOperatorDecrement.htm">operator--</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppOperatorDecrement.htm">operator--</a> (also called the <a href="CppOperatorDecrement.htm">decrement operator</a>) decreases an <a href="CppInt.htm">integer</a>'s value by one. To increase an <a href="CppInt.htm">integer</a>'s value by one, use <a href="CppOperatorIncrement.htm">operator++</a></p>
+<p>&nbsp;</p>
+<p><a href="CppOperatorDecrement.htm">operator--</a> has a pre-fix and post-fix form, which are '--i' and 'i--' respectively. The prefix form <a href="CppReturn.htm">returns</a> the value of i its new value, the postfix form <a href="CppReturn.htm">returns</a> the value of i before its decrement. Prefer '--i' over 'i--' [1].</p> 
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>i; <a href="CppComment.htm">//</a> preferred [1]<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i<a href="CppOperatorEqual.htm">==</a>1);<br/>
+&nbsp;&nbsp;i<a href="CppOperatorDecrement.htm">--</a>; <a href="CppComment.htm">//</a> not preferred [1]<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i<a href="CppOperatorEqual.htm">==</a>2);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>There are four ways to decrement a value by 1, that make use of different <a href="CppOperator.htm">operators</a> and some of temporary copies.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1">
+  <tr><td><p><b>Code</b></p></td><td><p><b>Temporary copy yes/no</b></p></td></tr>
+  <tr><td><code>i <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorMinus.htm">-</a> 1;</code></td><td><p>yes</p></td></tr>
+  <tr><td><code>i <a href="CppOperatorMinusAssign.htm">-=</a> 1;</code></td><td><p>no</p></td></tr>
+  <tr><td><code><a href="CppOperatorDecrement.htm">--</a>i;</code></td><td><p>yes</p></td></tr>
+  <tr><td><code>i<a href="CppOperatorDecrement.htm">--</a>;</code></td><td><p>no</p></td></tr>
+  </table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppOverload.htm">Overloading</a> <a href="CppOperatorDecrement.htm">operator--</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> MyInt<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Prefix<br/>
+&nbsp;&nbsp;MyInt&amp; <b><a href="CppOperatorDecrement.htm">operator--</a></b>()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>mX;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>Decrement<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *<b><a href="CppThis.htm">this</a></b>; <a href="CppComment.htm">//</a>Return <b><a href="CppClass.htm">class</a></b> reference<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Postfix<br/>
+&nbsp;&nbsp;MyInt <b><a href="CppOperatorDecrement.htm">operator--</a></b>(<b><a href="CppInt.htm">int</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MyInt old(*<b><a href="CppThis.htm">this</a></b>); <a href="CppComment.htm">//</a>Copy<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>(*<b><a href="CppThis.htm">this</a></b>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Decrement original <b><a href="CppUsing.htm">using</a></b> prefix<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> old;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>Return old copy<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mX;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;MyInt m;<br/>
+&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>m;<br/>
+&nbsp;&nbsp;m<a href="CppOperatorDecrement.htm">--</a>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Item 19.5.7: 'Prefer ++p to p++'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

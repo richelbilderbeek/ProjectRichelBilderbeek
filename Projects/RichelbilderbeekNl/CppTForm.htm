@@ -1,0 +1,818 @@
+ 
+<title>VCL TImage</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>VCL TImage</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ VCL Richel Bilderbeek TImage Image VCL Builder Turbo</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>26</o:Revision>
+  <o:TotalTime>178</o:TotalTime>
+  <o:Created>2009-04-28T09:30:00Z</o:Created>
+  <o:LastSaved>2009-04-28T12:10:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>964</o:Words>
+  <o:Characters>5495</o:Characters>
+  <o:Category>C++ VCL Richel Bilderbeek TImage</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>45</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>6748</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:26955743;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-622824160 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+ 
+@list l1
+	{mso-list-id:531921784;
+	mso-list-type:hybrid;
+	mso-list-template-ids:464713118 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:*;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	mso-hansi-font-family:"Courier New";}
+@list l2
+	{mso-list-id:559757188;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1785028680 529070786 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+@list l3
+	{mso-list-id:1440489866;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1440963536 996939042 1630824376 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:*;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	mso-hansi-font-family:"Courier New";}
+@list l3:level2
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+@list l4
+	{mso-list-id:1486508478;
+	mso-list-type:hybrid;
+	mso-list-template-ids:493928490 -1713232946 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l4:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+@list l5
+	{mso-list-id:1906839990;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1230287930 1647333154 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l5:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>
+<a href="CppVcl.htm">VCL</a>) TForm</h1>
+
+<p>&nbsp;</p>
+
+<p>VCL data type for a form, the
+Component you put all others on. Without any
+others on it, it is an empty window. Can be found in the <a
+href="CppHeaderFile.htm">header file</a> <b>Forms.hpp</b>.</p>
+
+<p>&nbsp;</p>
+
+<p>For
+  <a href="CppVclCodeSnippets.htm"> code snippets</a> using TForm, <a
+href="CppVclGraphics.htm">go to the VCL graphics code snippets page</a></p>
+
+<p>&nbsp;</p>
+
+<h2><a name="_Toc228690578"></a><a name="_Toc228691145"><span style='mso-bookmark:
+_Toc228690578'> Page overview</a></h2>
+
+<p class=MsoToc2 style='tab-stops:right dotted 431.5pt'><!--[if supportFields]> <span style='mso-element:
+field-begin'>    TOC \o
+&quot;2-9&quot; \h \z <span style='mso-element:field-separator'>  <![endif]--><span
+class=MsoHyperlink> <a href="#_Toc228691145">Page overview<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>   <!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'>  <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc228691145 \h  <span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'>  <![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1 <span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320038003600390031003100340035000000</w:data>
+</xml><![endif]--> <!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'>  <![endif]--></a> <span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'></p>
+
+<p class=MsoToc2 style='tab-stops:right dotted 431.5pt'><span
+class=MsoHyperlink> <a href="#_Toc228691146">Multiple TForms<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>   <!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'>  <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc228691146 \h  <span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'>  <![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1 <span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320038003600390031003100340036000000</w:data>
+</xml><![endif]--> <!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'>  <![endif]--></a> <span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'></p>
+
+<p class=MsoToc3 style='tab-stops:right dotted 431.5pt'><span
+class=MsoHyperlink> <a href="#_Toc228691147">An Auto-created Form
+showing another auto-created Form<span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1 dotted'>   <!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'>  <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc228691147 \h  <span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'>  <![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1 <span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320038003600390031003100340037000000</w:data>
+</xml><![endif]--> <!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'>  <![endif]--></a> <span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'></p>
+
+<p class=MsoToc3 style='tab-stops:right dotted 431.5pt'><span
+class=MsoHyperlink> <a href="#_Toc228691148">An Auto-created MDI
+Form showing another auto-created MDI Child<span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1'>   <!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'>  <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc228691148 \h  <span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'>  <![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1 <span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320038003600390031003100340038000000</w:data>
+</xml><![endif]--> <!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'>  <![endif]--></a> <span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'></p>
+
+<p class=MsoToc3 style='tab-stops:right dotted 431.5pt'><span
+class=MsoHyperlink> <a href="#_Toc228691149">An Auto-created MDI
+Form showing multiple dynamically-created  
+ MDI Childs<span style='color:windowtext;display:none;mso-hide:screen;
+text-decoration:none;text-underline:none'><span style='mso-tab-count:1'>   <!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'>  <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc228691149 \h  <span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'>  <![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>2 <span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320038003600390031003100340039000000</w:data>
+</xml><![endif]--> <!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'>  <![endif]--></a> <span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'></p>
+
+<p class=MsoToc2 style='tab-stops:right dotted 431.5pt'><span
+class=MsoHyperlink> <a href="#_Toc228691150"> Get a TForm in a TForm <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>   <!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'>  <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc228691150 \h  <span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'>  <![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>3 <span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320038003600390031003100350030000000</w:data>
+</xml><![endif]--> <!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'>  <![endif]--></a> <span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'></p>
+
+<p class=MsoToc2 style='tab-stops:right dotted 431.5pt'><span
+class=MsoHyperlink> <a href="#_Toc228691151">Transparency<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>   <!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'>  <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc228691151 \h  <span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'>  <![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>3 <span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320038003600390031003100350031000000</w:data>
+</xml><![endif]--> <!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'>  <![endif]--></a> <span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'></p>
+
+<p class=MsoToc2 style='tab-stops:right dotted 431.5pt'><span
+class=MsoHyperlink> <a href="#_Toc228691152">TForm troubles<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>   <!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'>  <span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc228691152 \h  <span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'>  <![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>3 <span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003200320038003600390031003100350032000000</w:data>
+</xml><![endif]--> <!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'>  <![endif]--></a> <span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'></p>
+
+<p><!--[if supportFields]> <span style='mso-element:field-end'>  <![endif]-->  &nbsp;</p>
+
+<h2><a name="_Toc228690579"></a><a name="_Toc228691146"><span style='mso-bookmark:
+_Toc228690579'> Multiple TForms</a></h2>
+
+<p>&nbsp;</p>
+
+<p>There
+are multiple options when you want to develop an application with multiple
+forms. You can use Auto-created Forms (default) or create them dynamically
+yourself. Also you can choose between using normal Forms or use MDI Parents and
+MDI Childs. MDI is an abbreviation for 'Multiple Document Interface'.</p>
+
+<p>&nbsp;</p>
+
+<h3><a name="_Toc228690580"></a><a name="_Toc228691147"><span style='mso-bookmark:
+_Toc228690580'> An Auto-created Form showing another auto-created
+Form</a></h3>
+
+<p>&nbsp;</p>
+
+<p>To
+have multiple (non-parent) TForms in your program, do (using default names):</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Start
+a new <a href="CppVcl.htm">VCL</a> Application (called Project1 with Unit1 and
+Form1)</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Create
+a new Form (called Unit2 and Form2)</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Save
+all in the same directory under their default names</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+Form1</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+'Project | Add to Project | Unit2.cpp'</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+'File | Include Unit Hdr | Unit2'</p>
+
+<p>&nbsp;</p>
+
+<p>Now
+you can type, e.g. under an OnClick event:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>
+ Form2-&gt;Show();</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h3><a name="_Toc228690581"></a><a name="_Toc228691148"><span style='mso-bookmark:
+_Toc228690581'> An Auto-created MDI Form showing another
+auto-created MDI Child</a></h3>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Start
+a new <a href="CppVcl.htm">VCL</a> Application</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Set
+the Form Name to FormParent</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Set
+FormParent's FormStyle to fsMDIForm.</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Save
+this Form as UnitFormParent.cpp.</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Create
+a new Form called FormChild</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Set
+FormChild's FormStyle to fsMDIChild</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Save
+this Form as UnitFormChild.cpp</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+FormParent</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+'Project | Add to Project | UnitFormChild.cpp'</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+'File | Include Unit Hdr | UnitFormChild'</p>
+
+<p>&nbsp;</p>
+
+<p>Now
+you can type, e.g. under an OnClick event:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>
+ FormChild-&gt;Show();</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Note
+that this is not the standard use of an MDI application, as we only have one
+single Child, which only has one <a href="CppInstance.htm">instance</a>. But
+the Child does have different behaviour compared to standard Forms.</p>
+
+<p>&nbsp;</p>
+
+<h3><a name="_Toc228690582"></a><a name="_Toc228691149"><span style='mso-bookmark:
+_Toc228690582'> An Auto-created MDI Form showing multiple dynamically-created    MDI Childs</a></h3>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Start
+a new <a href="CppVcl.htm">VCL</a> Application</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Set
+the Form Name to FormParent</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Set
+FormParent's FormStyle to fsMDIForm</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Save
+this Form as UnitFormParent.cpp</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Create
+a new Form called FormChild</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Set
+FormChild's FormStyle to fsMDIChild</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Save
+this Form as UnitFormChild.cpp</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+FormParent</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+'Project | Add to Project | UnitFormChild.cpp'</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Select
+'File | Include Unit Hdr | UnitFormChild'</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Do
+'Project | Options | (tab) Forms', then remove 'FormChild' from the Auto-create
+list</p>
+
+<p>&nbsp;</p>
+
+<p>Creating
+an instance of a Child can be done like this:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>
+ //Somewhere in code of FormParent, e.g. under an OnClick Event</p>
+
+<p>
+ TFormChild * child = new TFormChild(this);</p>
+
+<p>
+ //Code</p>
+
+<p>
+ <b><a href="CppDelete.htm">delete</a></b> child;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>Or
+using a <a href="CppAuto_ptr.htm">std::auto_ptr</a>:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>
+ //Headers</p>
+
+<p>
+ #include &lt;memory&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Somewhere in code of FormParent, e.g. under an OnClick Event</p>
+
+<p>
+ std::auto_ptr&lt;TFormChild&gt; child(new TFormChild(this));</p>
+
+<p>
+ //Code</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>But
+this simple code is not enough, as you probably want to keep the Child Forms on
+the Parent Form. So you could use a <a href="CppVector.htm">std::vector</a>
+storing these child <a href="CppPointer.htm">pointers</a>. I use the <a
+href="CppShared_ptr.htm">boost::shared_ptr</a> for this:</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//UnitFormParent.h</p>
+
+<p>&nbsp;</p>
+
+<p>//Add these headers</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;boost/shared_ptr&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//Add to the <a href="CppPrivate.htm">private</a>
+section of the class <a href="CppDeclaration.htm">declaration</a>:</p>
+
+<p><a href="CppVector.htm">std::vector</a>&lt;<a
+href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;TFormChild&gt; &gt; mChilds;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Then
+add to FormParent's definitions:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>//A button for creating a new Child</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  <b>
+__fastcall</b> TFormMain::ButtonNewClick()</p>
+
+<p>{</p>
+
+<p>
+ mChilds.push_back(<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;TFormChild&gt;(<b><a
+href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>)));</p>
+
+<p>
+ //Optionally: (you'll need to add a Label to the Child)</p>
+
+<p>
+ mChilds.back()-&gt;Label1-&gt;Caption = &quot;Child #&quot; +
+IntToStr(Tag);</p>
+
+<p>
+ ++Tag;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//A button for removing a Child</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  <b>
+__fastcall</b> TFormMain::ButtonDeleteClick()</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppIf.htm">if</a></b> (!mChilds.empty()) mChilds.pop_back();</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppTFormCustomShape.htm"><span style='mso-field-code:
+"HYPERLINK \0022CppTFormInTForm\.htm\0022"'><span style='mso-bookmark:_Toc228691150'> Get a TForm in a TForm  <span
+style='mso-bookmark:_Toc228691150'></a><![if !supportNestedAnchors]><a
+name="_Toc228691150"></a></h2>
+
+<p>&nbsp;</p>
+
+<p>You
+can get a TForm in a TForm
+as if it were a TPanel. <a
+href="CppTFormCustomShape.htm"><span style='mso-field-code:"HYPERLINK \0022CppTFormInTForm\.htm\0022"'>Go
+to the page 'Get a TForm in a TForm'</a></p>
+
+<p>&nbsp;</p>
+
+<h2><a name="_Toc228690583"></a><a name="_Toc228691151"><span style='mso-bookmark:
+_Toc228690583'> Transparency</a></h2>
+
+<p>&nbsp;</p>
+
+<p>Making
+a Form transparent is easy. First set the <b>AlphaBlend</b> property to true.
+Then the <b>AlphaBlendValue</b> determines the transparency. An <b>AlphaBlendValue</b>
+of 0 denotes total transparence (you won't see it anymore), an <b>AlphaBlendValue</b>
+of 255 denotes the standard non-transparency.</p>
+
+<p class=MsoNormal style='margin-left:.25in'>  &nbsp;</p>
+
+<h2><a name="_Toc228690584"></a><a name="_Toc228691152"><span style='mso-bookmark:
+_Toc228690584'> TForm troubles</a></h2>
+
+<p>&nbsp;</p>
+
+<p>Never
+change the TForm <a href="CppConstructor.htm">constructor</a>
+to the following:</p>
+
+<p></p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><b> __fastcall </b>  TFormParent::TFormParent(TComponent* Owner, <b><a
+href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) //Don't
+do this!</p>
+
+<p>
+ : TForm(Owner)</p>
+
+<p>
+ //Rest of the code</p>
+
+<p>{</p>
+
+<p>
+ //Rest of the code</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>This
+will (strangely) result in a <a href="CppStackOverflow.htm">stack overflow</a>.
+</p>
+
+<p>&nbsp;</p>
+
+<p>One
+workaround is to use <a href="CppAnsiString.htm">AnsiString</a> instead of an <a
+href="CppInt.htm">integer</a>:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><b> __fastcall </b>  TFormParent::TFormParent(TComponent* Owner, <b><a
+href="CppConst.htm">const</a></b> <a href="CppAnsiString.htm">AnsiString</a> i)
+</p>
+
+<p>
+ : TForm(Owner)</p>
+
+<p>
+ //Rest of the code</p>
+
+<p>{</p>
+
+<p>
+ //Rest of the code</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

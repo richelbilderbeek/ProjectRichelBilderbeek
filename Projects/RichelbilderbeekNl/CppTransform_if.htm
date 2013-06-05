@@ -1,0 +1,291 @@
+ 
+<title>Transform_if</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Transform_if</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Transform_if algorithm</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>16</o:Revision>
+  <o:TotalTime>228</o:TotalTime>
+  <o:Created>2009-12-30T14:57:00Z</o:Created>
+  <o:LastSaved>2009-12-30T15:09:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>602</o:Words>
+  <o:Characters>3437</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Transform_if</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>28</o:Lines>
+  <o:Paragraphs>6</o:Paragraphs>
+  <o:CharactersWithSpaces>4220</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:1941837107;
+	mso-list-type:hybrid;
+	mso-list-template-ids:74638006 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+ @list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(  <a href="Cpp.htm">C++</a> ) <a
+href="CppTransform_if.htm">Transform_if</a></h1>
+
+<p>&nbsp;</p>
+
+<p>My modification of <a href="CppTransform.htm">std::transform</a> to make
+it work with a <a href="CppPredicate.htm">predicate</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>Prefer <a href="CppAlgorithm.htm">algorithms</a> over hand-written loops
+<span style='mso-field-code:"REF _Ref249866509 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340039003800360036003500300039000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref249866511 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340039003800360036003500310031000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref249866533 \\r \\h"'>[2]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340039003800360036003500330033000000</w:data>
+</xml><![endif]--> . View   <a
+href="CppExerciseNoForLoops.htm"> Exercise
+#9: No for-loops</a> to learn how to remove hand-written loops  .</p>
+
+<p>&nbsp;</p>
+
+<h2>Transform_if function definition</h2>
+
+<p>&nbsp;</p>
+
+<p>Simplified from the STL that ships with C++ Builder 6.0.</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppTransform_if.txt">View the Transform_if function definition
+in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppTransform_if.htm</p>
+
+<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> InputIter,</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> OutputIter,</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> Predicate,</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> UnaryOperation</p>
+
+<p> 
+ &gt;</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  OutputIter
+Transform_if(</p>
+
+<p> 
+ InputIter first,</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a> </b>InputIter last,</p>
+
+<p> 
+ OutputIter result,</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a> </b>Predicate pred,</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a> </b>UnaryOperation opr)</p>
+
+<p>{</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> ( ; first != last; ++first,
+++result)</p>
+
+<p>   
+ *result = pred(*first) ? opr(*first) : *first;</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> result;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppTransform_if.htm</p>
+
+<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> InputIter1,</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> InputIter2,</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> OutputIter,</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> Predicate,</p>
+
+<p> 
+ <b><a href="CppClass.htm">class</a></b> BinaryOperation&gt;</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  OutputIter
+Transform_if(</p>
+
+<p> 
+ InputIter1 first1,</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> InputIter1 last1,</p>
+
+<p> 
+ InputIter2 first2,</p>
+
+<p> 
+ OutputIter result,</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> Predicate pred,</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> BinaryOperation binary_op)</p>
+
+<p>{</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> ( ; first1 != last1; ++first1,
+++first2, ++result)</p>
+
+<p>   
+ *result = pred(*first1) ? binary_op(*first1, *first2) : *first1;</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> result;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Example</h2>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm">   References   <span
+style='mso-bookmark:_Toc194762542'> <span style='mso-bookmark:_Toc198191050'></a><![if !supportNestedAnchors]><a
+name="_Toc198191050"></a> </h2>
+
+<p><a name="_Ref249866509">  [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Bjarne Stroustrup. The C++ Programming Language (3rd
+edition). ISBN: 0-201-88954-4. Chapter 18.12.1 : 'Prefer algorithms over loops'</a> </p>
+
+<p><a name="_Ref249866511">  [1] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Herb Sutter and Andrei Alexandrescu. C++ coding
+standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6.
+Chapter 84: 'Prefer algorithm calls to handwritten loops.'</a> </p>
+
+<p><a name="_Ref249866533">  [2] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Herb Sutter and Andrei Alexandrescu. C++ coding
+standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6.
+Chapter 88: 'Prefer function objects over functions as algorithm and comparer
+arguments.'</a> </p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

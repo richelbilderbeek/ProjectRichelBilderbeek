@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt module</title>
+  <meta name="description" content="C++  Qt module"/>
+  <meta name="keywords" content="C++ Qt module modules"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQtModule.htm">Modules</a></h1>
+<p>&nbsp;</p>
+<p>When setting up a Qt project, you need to select required <a href="CppQtModule.htm">modules</a> in the <a href="CppQtCreatorSelectRequiredModules.png">select required modules dialog</a>.</p>
+<p>&nbsp;</p>
+<p>The modules supplied with <a href="CppQtCreator.htm">Qt Creator</a> 1.3.1 are:</p>
+<ol>
+  <li>QtCore</li>
+  <li>QtGui</li>
+  <li>QtNetwork</li>
+  <li>QtOpenFL</li>
+  <li>QtSql</li>
+  <li>QtScript</li>
+  <li>QtScriptTools</li>
+  <li>QtSvg</li>
+  <li>QtWebKit</li>
+  <li>QtXml</li>
+  <li>QtXmlPatterns</li>
+  <li><a href="CppPhonon.htm">Phonon</a></li>
+  <li>QtMultimedia</li>
+  <li>Qt3Support</li>
+  <li>QtTest</li>
+  <li>QtDBus</li>
+</ol>
+
+<p>&nbsp;</p>
+<p>Which <a href="CppQtModule.htm">modules</a> were selected is stored in the project file with the QT parameter. Below some project files are shown with different module combinations.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Project file of a Qt4 console application with no <a href="CppQtModule.htm">modules</a> selected</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-05-01T10:23:29<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       -= core gui<br/>
+TARGET = MyProjectName<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that the <a href="CppQtModule.htm">modules</a> QtCore and QtGui need to be removed explicitly.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Project file of a Qt4 console application with only the QtCore <a href="CppQtModule.htm">module</a> selected</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-05-01T10:26:31<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       -= gui<br/>
+TARGET = MyProjectName<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that the <a href="CppQtModule.htm">module</a> QtGui need to be removed explicitly.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Project file of a Qt4 console application with only QtCore and QtGui <a href="CppQtModule.htm">modules</a> selected</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-05-01T10:27:59<br/>
+#<br/>
+#-------------------------------------------------<br/>
+TARGET = MyProjectName<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that no <a href="CppQtModule.htm">module</a> need to be added explicitly.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Project file of a Qt4 console application with all <a href="CppQtModule.htm">modules</a> selected</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-05-01T10:14:58<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += network opengl sql script scripttools svg webkit xml xmlpatterns phonon multimedia qt3support testlib dbus<br/>
+TARGET = MyProjectName<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that the <a href="CppQtModule.htm">modules</a> QtCore and QtGui need not to be added explicitly.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

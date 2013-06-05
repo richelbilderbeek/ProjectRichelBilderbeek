@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt example 16: using resources</title>
+  <meta name="description" content="C++ Qt example 16: using resources"/>
+  <meta name="keywords" content="C++ Qt example 16: using resources resource image creator"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtExample16.htm">Qt example 16: using resources</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppQt.htm">Qt</a> example shows how to using resources, like <a href="CppQtExample16.png">this screenshot (png)</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppQtExample16.zip">Download the Qt Project of 'QtExample16' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a></p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 GUI Application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>
+  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+<!--  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li> -->
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Using resources in <a href="CppQt.htm">Qt Creator</a> 2.0.0</h2>
+<p>&nbsp;</p>
+<p>Here follows a step-by-step guide to add a bitmap as a resource to a <a href="CppQt.htm">Qt Creator</a> project:</p>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppQtExample16_1.png">View screenshot</a></li>
+  <li>In the Project Manager, right-click on the project name on on the 'Sources' folder. Click 'Add New'</li>
+  <li><a href="CppQtExample16_2.png">View screenshot</a></li>
+  <li>In the 'New File' dialog, select to create a new 'Qt Resource file'</li>
+  <li><a href="CppQtExample16_3.png">View screenshot</a></li>
+  <li>In the 'New Qt Resource file -> Location' dialog, give the resource file a name. For example, 'MyResources'</li>
+  <li><a href="CppQtExample16_4.png">View screenshot</a></li>
+  <li>In the 'New Qt Resource file -> Project management' dialog, click 'Finish'</li>
+  <li><a href="CppQtExample16_5.png">View screenshot</a></li>
+  <li>As you can see, 'MyResources.qrc' has now been added to the Project Manager. Double-click on 'MyResources.qrt' and click 'Add -> Add Prefix' (which is all there is to choose yet)</li>
+  <li><a href="CppQtExample16_6.png">View screenshot</a></li>
+  <li>Change the prefix to a more fitting name, for example 'MyImages'. 
+  <li><a href="CppQtExample16_7.png">View screenshot</a></li>
+  <li>Click 'Add -> Add Files' and add an image. In this example, this is a file called 'BeerSmall.bmp' (a sprite from <a href="GameBeerWanter.htm">BeerWanter</a>)</li>
+  <li><a href="CppQtExample16_8.png">View screenshot</a></li>
+  <li>Now, the file has been added to your resources. The image can be accessed with the filename ':/MyImages/BeerSmall.bmp'</li>
+  <li><a href="CppQtExample16_9.png">View screenshot</a></li>
+  <li>Copy-paste the example code below</li>
+  <li><a href="CppQtExample16.png">View final screenshot</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-24T12:13:47<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core gui<br/>
+TARGET = CppQtExample16<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+RESOURCES += \<br/>
+    MyResources.qrc<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/shared_ptr.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Load the resource in a pixmap<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> pixmap(":/MyImages/BeerSmall.bmp");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!pixmap.isNull() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume bitmap is found");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the pixmap in a label<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQLabel.htm">QLabel</a>&gt; label(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>);<br/>
+&nbsp;&nbsp;label-&gt;setPixmap(pixmap);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> label in a layout<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt; layout(<b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget( label.get() );<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create and show a window<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQDialog.htm">QDialog</a>&gt; dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppQDialog.htm">QDialog</a>);<br/>
+&nbsp;&nbsp;dialog-&gt;setLayout(layout.get());<br/>
+&nbsp;&nbsp;dialog-&gt;show();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,165 @@
+ 
+<title>DrawTextCentered</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ DrawTextCentered</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek DrawTextCentered Draw text center centered middle central VCL Builder CLX C++ Builder Turbo C++ Borland Developer Studio VCL CLX</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>10</o:Revision>
+  <o:TotalTime>129</o:TotalTime>
+  <o:Created>2008-04-28T08:44:00Z</o:Created>
+  <o:LastSaved>2008-06-28T10:20:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>398</o:Words>
+  <o:Characters>2271</o:Characters>
+  <o:Category>C++ Richel Bilderbeek DrawTextCentered</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>18</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2788</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppDrawTextCentered.htm">DrawTextCentered</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppGraphics.htm">Graphics</a> <a href="CppCodeSnippets.htm">code snippet</a>
+to draw some text centered on a TImage.</p>
+
+<p>Assumes
+you have already defined <a href="CppGetFontHeight.htm">GetFontHeight</a>.</p>
+
+<p>* <a
+href="CppDrawTextCentered.txt">View the code of 'DrawTextCentered' in plain
+text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppStringH.htm">string</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppDrawTextCentered.htm</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  DrawTextCentered(TImage * <b><a
+href="CppConst.htm">const</a></b> image, <b><a href="CppConst.htm">const</a></b>
+<a href="CppString.htm">std::string</a>&amp; s)</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+textWidth <a href="CppOperatorAssign.htm">=</a>
+image-&gt;Canvas-&gt;TextWidth(s.c_str());</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+textHeight <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFontHeight.htm">GetFontHeight</a>(image);</p>
+
+<p>   <a href="CppAssert.htm">assert</a>(textHeight
+&gt;= 0);</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+midX <a href="CppOperatorAssign.htm">=</a>
+image-&gt;Picture-&gt;Graphic-&gt;Width  
+ <a href="CppOperatorDivide.htm">/</a> 2;</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+midY <a href="CppOperatorAssign.htm">=</a>
+image-&gt;Picture-&gt;Graphic-&gt;Height <a href="CppOperatorDivide.htm">/</a>
+2;</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+x1 <a href="CppOperatorAssign.htm">=</a> midX <a href="CppOperatorMinus.htm">-</a>
+(textWidth    <a
+href="CppOperatorDivide.htm">/</a> 2);</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+y1 <a href="CppOperatorAssign.htm">=</a> midY <a href="CppOperatorMinus.htm">-</a>
+(textHeight <a href="CppOperatorDivide.htm">/</a> 2);</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+x2 <a href="CppOperatorAssign.htm">=</a> midX <a href="CppOperatorPlus.htm">+</a>
+(textWidth    <a
+href="CppOperatorDivide.htm">/</a> 2);</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+y2 <a href="CppOperatorAssign.htm">=</a> midY <a href="CppOperatorPlus.htm">+</a>
+(textHeight <a href="CppOperatorDivide.htm">/</a> 2);</p>
+
+<p>
+ image-&gt;Canvas-&gt;TextRect(</p>
+
+<p> 
+ TRect(x1,y1,x2,y2),</p>
+
+<p> 
+ x1,y1,s.c_str());</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

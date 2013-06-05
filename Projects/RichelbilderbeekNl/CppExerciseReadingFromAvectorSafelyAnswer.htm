@@ -1,0 +1,310 @@
+ 
+<title>Answer of exercise #4: Reading from a std::vector safely</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Answer of exercise #4: Reading from a std::vector safely</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Answer of exercise #4: Reading from a std::vector safely</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>7</o:Revision>
+  <o:TotalTime>158</o:TotalTime>
+  <o:Created>2008-07-13T12:13:00Z</o:Created>
+  <o:LastSaved>2008-07-14T11:00:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>505</o:Words>
+  <o:Characters>2882</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Answer of exercise #4: Reading from a std::vector safely</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>24</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3539</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ 
+ 
+ 
+ 
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-alt:solid windowtext .5pt;
+	padding:0in;
+	mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt;
+	font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:NL;
+	font-style:italic;}
+ 
+ 
+ 
+ 
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppExerciseDivideAnswer.htm"><span style='mso-bidi-font-family:"Courier New";
+color:windowtext;text-decoration:none;text-underline:none'><span
+style='mso-field-code:"HYPERLINK \0022CppExerciseReadingFromAvectorSafelyAnswer\.htm\0022"'><u><span
+style='color:blue'>Answer of exercise #4: Reading from a std::vector safely </u></a></h1>
+
+<p>&nbsp;</p>
+
+<p>This
+is the answer of <a href="CppExerciseDivide.htm"><span style='mso-field-code:
+"HYPERLINK \0022CppExerciseDivide\.htm\0022"'><span style='mso-field-code:"HYPERLINK \0022CppExerciseReadingFromAvectorSafely\.htm\0022"'>Exercise
+#4: Reading from a std::vector safely</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>First,
+I start this answer with one of my favorite <a href="CppQuotes.htm">quotes</a>:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p class=MsoNormal align=center style='text-align:center;border:none;
+mso-border-alt:solid windowtext .5pt;padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'>  &nbsp;</p>
+
+<p> Van mijn std::vector bestaat deze index
+zeker.</p>
+
+<p class=MsoNormal align=center style='text-align:center;border:none;
+mso-border-alt:solid windowtext .5pt;padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'>  &nbsp;</p>
+
+<p class=MsoNormal align=center style='text-align:center;border:none;
+mso-border-alt:solid windowtext .5pt;padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'> Many, many of my students
+before an access violation</p>
+
+<p class=MsoNormal align=center style='text-align:center;border:none;
+mso-border-alt:solid windowtext .5pt;padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'>  &nbsp;</p>
+
+<p class=MsoNormal align=center style='text-align:center;border:none;
+mso-border-alt:solid windowtext .5pt;padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'> Translation: I am sure that
+this is a valid index in my std::vector</p>
+
+<p class=MsoNormal align=center style='text-align:center;border:none;
+mso-border-alt:solid windowtext .5pt;padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'>  &nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>
+ <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+v;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Lots of code #0</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+maxIndex = v.size();</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Lots of code #1</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+index = <a href="CppRand.htm">std::rand</a>() % maxIndex; //Draw a random index</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Lots of code #2</p>
+
+<p>&nbsp;</p>
+
+<p>
+ v[index] = 0;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Lots of code #3</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>0) What problem might occur?</h2>
+
+<p>&nbsp;</p>
+
+<p>The
+problem that might occur, as hinted by the title of the exercise, is in the
+following line:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>
+ v[index] = 0;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>It
+might be true that the variable 'index' is not a valid index of <a
+href="CppVector.htm">std::vector</a> 'v':</p>
+
+<p>#0)
+at the time 'maxIndex' was defined, the <a href="CppVector.htm">std::vector</a>
+'v' might have changed in size</p>
+
+<p>#1)
+at the time 'index' was defined, the <a href="CppVector.htm">std::vector</a>
+'v' might have changed in size</p>
+
+<p>&nbsp;</p>
+
+<h2>1) How can you prevent this?</h2>
+
+<p>&nbsp;</p>
+
+<p>You
+assume that 'index' is a valid index of <a href="CppVector.htm">std::vector</a>
+'v'.</p>
+
+<p>So
+use <a href="CppAssert.htm">assert</a>:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppAssert.htm">assert</a>(index
+&gt;=0 &amp;&amp; index &lt; static_cast&lt;int&gt;(v.size() );</p>
+
+<p>v[index] = 0;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Note</h2>
+
+<p>&nbsp;</p>
+
+<p>Writing
+asserts for each <a href="CppVector.htm">std::vector</a> access is not
+necessary.</p>
+
+<p>&nbsp;</p>
+
+<p>If
+the <a href="CppVector.htm">std::vector</a> in this exercise was a <a
+href="CppConst.htm">const</a> <a href="CppVector.htm">std::vector</a>, you can
+be 100% sure that it did not change in size, so you can be sure the <a
+href="CppVector.htm">std::vector</a> access is valid.</p>
+
+<p>&nbsp;</p>
+
+<p>If short
+pieces of code (IMHO: 5 lines) in which you do not see an change of <a
+href="CppVector.htm">std::vector</a>'s size, you can be 99,9% sure that <a
+href="CppVector.htm">std::vector</a> access is valid. Be aware that this short
+piece of code can expand in time, decreasing the certainty that the access is
+valid.</p>
+
+<p>&nbsp;</p>
+
+<p>If
+your program gives an access violation (perhaps in the form of <a
+href="CppRuntimeErrorExternalExceptionEefface.htm">external exception EEFFACE</a>),
+it will always be time-inexpensive to add <a href="CppAssert.htm">assert</a>.
+And you might have found the problem. To again <a href="CppQuotes.htm">quote</a>
+many of my students 'I am sure that this is a valid index in my std::vector'.
+How often have they been wrong...</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

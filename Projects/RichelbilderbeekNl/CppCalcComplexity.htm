@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CalcComplexity</title>
+  <meta name="description" content="C++ CalcComplexity"/>
+  <meta name="keywords" content="C++ CalcComplexity Calculate Newick complexity code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCalcComplexity.htm">CalcComplexity</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCalcComplexity.htm">CalcComplexity</a> is a <a href="CppNewick.htm">Newick</a> <a href="CppCodeSnippets.htm">code snippets</a> to calculate the complexity of a <a href="CppNewick.htm">Newick</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppCalcComplexity.htm">CalcComplexity</a> has two flavors:</p>
+<ol>
+  <li><a href="CppStl.htm">STL</a> <a href="CppCalcComplexity.htm">CalcComplexity</a>: for complexities to around 2 billion</li>
+  <li><a href="CppCln.htm">CLN</a> <a href="CppCalcComplexity.htm">CalcComplexity</a>: for nearly any complexity</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppStl.htm">STL</a> <a href="CppCalcComplexity.htm">CalcComplexity</a></h2>
+<p>&nbsp;</p>
+<p>If the complexity exceeds the maximum <a href="CppInt.htm">integer</a> value, a <a href="CppRange_error.htm">std::range_error</a> is <a href="CppThrow.htm">thrown</a>. Use the <a href="CppCln.htm">CLN</a> version if you do need to calculate higher complexities.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>/<a href="CppCalcComplexity.htm">CalcComplexity</a> calculates the complexity of a <a href="CppNewick.htm">Newick</a>.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppCalcComplexity.htm">CalcComplexity</a>.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppCalcComplexity.htm">CalcComplexity</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsNewick.htm">IsNewick</a>(v));<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> complexity <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_frequencies <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; 0) <b><a href="CppContinue.htm">continue</a></b>; <a href="CppComment.htm">//</a>Ignore <b><a href="CppIf.htm">if</a></b> x is not a number<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>n_frequencies;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;complexity<a href="CppOperatorMultiplyAssign.htm">*=</a>x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> complexity exceeded integer limit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (complexity &lt; 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRange_error.htm">std::range_error</a>("<a href="CppNewick.htm">Newick</a> complexity exceeds integer maximum value");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;complexity<a href="CppOperatorMultiplyAssign.htm">*=</a>n_frequencies;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> complexity exceeded integer limit<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (complexity &lt; 0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRange_error.htm">std::range_error</a>("<a href="CppNewick.htm">Newick</a> complexity exceeds integer maximum value");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> complexity;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppCln.htm">CLN</a> <a href="CppCalcComplexity.htm">CalcComplexity</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>/<a href="CppCalcComplexity.htm">CalcComplexity</a> calculates the complexity of a <a href="CppNewick.htm">Newick</a>.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppCalcComplexity.htm">CalcComplexity</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> <a href="CppCalcComplexity.htm">CalcComplexity</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsNewick.htm">IsNewick</a>(v));<br/>
+&nbsp;&nbsp;<a href="CppCl_I.htm">cln::cl_I</a> complexity <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_frequencies <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; 0) <b><a href="CppContinue.htm">continue</a></b>; <a href="CppComment.htm">//</a>Ignore <b><a href="CppIf.htm">if</a></b> x is not a number<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>n_frequencies;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;complexity<a href="CppOperatorMultiplyAssign.htm">*=</a><a href="CppCl_I.htm">cln::cl_I</a>(x);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;complexity<a href="CppOperatorMultiplyAssign.htm">*=</a><a href="CppCl_I.htm">cln::cl_I</a>(n_frequencies);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> complexity;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+X:1
+T:Leontien
+C:Richel Bilderbeek
+%Melody and lyrics written by Richel Bilderbeek
+%On the 5th April 2002 
+%From http://www.richelbilderbeek.nl/SongLeontien.htm
+L:1/4
+Q:1/4=180
+M:4/4
+K:C
+V:V1 clef=treble
+V:V2 clef=bass
+%
+[V:V1] G  G/2  G  G/2 G   | A    A  B      z |
+w:     Pe-ters le-ven was | mooi en schoon   |
+[V:V2] G,,4          | G,4          |
+%
+%
+%
+[V:V1] G   G/2 G   G/2    G    | A    A  G    z |
+w:     Die jon-gen leefde echt | in een droom   |
+[V:V2] A,,4          | A,4          |
+%
+%
+%
+[V:V1] G   G/2 G     G/2 G    | A      A  B    z |
+w:     had de  vrouw van zijn | dromen ge-zien   |
+[V:V2] B,,4          | B,4          |
+%
+%
+%
+[V:V1] G   G/2 G  G/2  G    | B  A  G    z |
+w:     't lek-'re ding heet | Le-on-tien   |
+[V:V2] C,4                  | C4           |

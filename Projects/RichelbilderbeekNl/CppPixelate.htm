@@ -1,0 +1,358 @@
+ 
+<title>Pixelate</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet Pixelate</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek Pixelate pixel blur VCL</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>132</o:TotalTime>
+  <o:Created>2008-01-05T13:33:00Z</o:Created>
+  <o:LastSaved>2008-01-05T14:08:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>506</o:Words>
+  <o:Characters>2885</o:Characters>
+  <o:Category>C++ Code Snippet Richel Bilderbeek Pixelate</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>24</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3542</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="CppCodeSnippets.htm">Go back to Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>Pixelate</h1>
+
+<p>&nbsp;</p>
+
+<p>The
+'pixelate' function generalizes multiple pixels into one. The function relies heavily
+on the <a href="CppGetPixel.htm">GetPixel</a>, <a href="CppGetGreyness.htm">GetGreyness</a>,
+<a href="CppSetPixel.htm">SetPixel</a> and <a href="CppSetGreyness.htm">SetGreyness</a>
+functions.</p>
+
+<p>&nbsp;</p>
+
+<p>'Pixelate'
+works under both CLX and VCL.</p>
+
+<p>&nbsp;</p>
+
+<p>* <a
+href="CppPixelateExample.PNG">View an example image demonstrating the
+'Pixelate' function</a>.</p>
+
+<p>* <a
+href="CppPixelate.txt">View the code of 'Pixelate' in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>#include &lt;algorithm&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl</p>
+
+<p><b> void </b>  DoPixelateRgb(</p>
+
+<p>
+ <b>const</b> TImage * <b>const</b> imageOriginal,</p>
+
+<p>
+ TImage * <b>const</b> imageResult,</p>
+
+<p>
+ <b>const int</b> pixelSize)</p>
+
+<p>{</p>
+
+<p>
+ assert(imageOriginal!=0);</p>
+
+<p>
+ assert(imageResult!=0);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ imageResult-&gt;Picture-&gt;Graphic =
+imageOriginal-&gt;Picture-&gt;Graphic;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width    ==
+imageResult-&gt;Picture-&gt;Bitmap-&gt;Width );</p>
+
+<p>
+ assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height ==
+imageResult-&gt;Picture-&gt;Bitmap-&gt;Height);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b>const int</b> width    =
+imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>
+ <b>const int </b>height =
+imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>
+ <b>const int</b> maxx = 1 + (width  
+ / pixelSize);</p>
+
+<p>
+ <b>const int </b>maxy = 1 + (height / pixelSize);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b>for</b> (<b>int</b> y=0; y!=maxy; ++y)</p>
+
+<p>
+ {</p>
+
+<p> 
+ <b>const int</b> y1 = (y * pixelSize);</p>
+
+<p> 
+ <b>if</b> (y1 &gt;= height) <b>continue</b>;</p>
+
+<p> 
+ <b>const int </b>y2 = std::min( y1 + pixelSize, height);</p>
+
+<p> 
+ assert(y1 &lt;= height);</p>
+
+<p> 
+ assert(y2 &lt;= height);</p>
+
+<p> 
+ assert(y1!=y2);</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b>for</b> (<b>int</b> x=0; x!=maxx; ++x)</p>
+
+<p> 
+ {</p>
+
+<p>     <b>const int</b> x1 = (x * pixelSize);</p>
+
+<p>     <b>if </b>(x1 &gt;= width) continue;</p>
+
+<p>     <b>const int</b> x2 = std::min( x1 + pixelSize, width);</p>
+
+<p>     assert(x1 &lt;= width);</p>
+
+<p>     assert(x2 &lt;= width);</p>
+
+<p>     assert(x1!=x2);</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>     <b>unsigned char</b> r,g,b;</p>
+
+<p>     GetPixel(imageOriginal,</p>
+
+<p>       x1, y1, x2, y2,</p>
+
+<p>       r,g,b);</p>
+
+<p>     SetPixel(</p>
+
+<p>       imageResult,</p>
+
+<p>  
+      x1, y1, x2, y2,</p>
+
+<p>       r,g,b);</p>
+
+<p> 
+ }</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>#include &lt;algorithm&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl</p>
+
+<p><b> void </b>  DoPixelateGrey(</p>
+
+<p>
+ <b>const</b> TImage * <b>const</b> imageOriginal,</p>
+
+<p>
+ TImage * <b>const</b> imageResult,</p>
+
+<p>
+ <b>const int</b> pixelSize)</p>
+
+<p>{</p>
+
+<p>
+ assert(imageOriginal!=0);</p>
+
+<p>
+ assert(imageResult!=0);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ imageResult-&gt;Picture-&gt;Graphic =
+imageOriginal-&gt;Picture-&gt;Graphic;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width    ==
+imageResult-&gt;Picture-&gt;Bitmap-&gt;Width );</p>
+
+<p>
+ assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height ==
+imageResult-&gt;Picture-&gt;Bitmap-&gt;Height);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b>const int</b> width    =
+imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>
+ <b>const int</b> height =
+imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>
+ <b>const int</b> maxx = 1 + (width  
+ / pixelSize);</p>
+
+<p>
+ <b>const int</b> maxy = 1 + (height / pixelSize);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b>for</b> (<b>int</b> y=0; y!=maxy; ++y)</p>
+
+<p>
+ {</p>
+
+<p> 
+ <b>const int</b> y1 = (y * pixelSize);</p>
+
+<p> 
+ <b>if</b> (y1 &gt;= height) continue;</p>
+
+<p> 
+ <b>const int</b> y2 = std::min( y1 + pixelSize, height );</p>
+
+<p> 
+ assert(y1 &lt;= height);</p>
+
+<p> 
+ assert(y2 &lt;= height);</p>
+
+<p> 
+ assert(y1!=y2);</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b>for</b> (<b>int</b> x=0; x!=maxx; ++x)</p>
+
+<p> 
+ {</p>
+
+<p>     <b>const int</b> x1 = (x * pixelSize);</p>
+
+<p>     <b>if</b> (x1 &gt;= width) continue;</p>
+
+<p>     <b>const int</b> x2 = std::min( x1 + pixelSize, width );</p>
+
+<p>     assert(x1 &lt;= width);</p>
+
+<p>     assert(x2 &lt;= width);</p>
+
+<p>     assert(x1!=x2);</p>
+
+<p>     <b>const int</b> grey = GetGreyness(imageOriginal,x1,y1,x2,y2);</p>
+
+<p>     SetGreyness(imageResult,x1,y1,x2,y2,grey);</p>
+
+<p> 
+ }</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCodeSnippets.htm">Go back to Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

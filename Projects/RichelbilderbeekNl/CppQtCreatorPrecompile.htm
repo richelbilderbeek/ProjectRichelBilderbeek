@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt Creator precompiling</title>
+  <meta name="description" content="C++ Qt Creator precompiling"/>
+  <meta name="keywords" content="C++ Qt Creator precompiling"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtCreatorPrecompile.htm">Qt Creator precompiling</a></h1>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3><a href="CppReferences.htm">References</a></h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>[1] http://pepper.troll.no/s60prereleases/doc/qmake-precompiledheaders.html</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Using Precompiled Headers<br/>
+<br/>
+Precompiled headers are a performance feature supported by some compilers to compile a stable body of code, and store the compiled state of the code in a binary file. During subsequent compilations, the compiler will load the stored state, and continue compiling the specified file. Each subsequent compilation is faster because the stable code does not need to be recompiled.<br/>
+<br/>
+qmake supports the use of precompiled headers (PCH) on some platforms and build environments, including:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* Windows<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o nmake<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o Dsp projects (VC 6.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o Vcproj projects (VC 7.0 &amp; 7.1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* Mac OS X<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o Makefile<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o Xcode<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* Unix<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o GCC 3.4 and above<br/>
+<br/>
+Adding Precompiled Headers to Your Project<br/>
+Contents of the Precompiled Header File<br/>
+<br/>
+The precompiled header must contain code which is stable and static throughout your project. A typical PCH might look like this:<br/>
+Example: stable.h<br/>
+<br/>
+ // Add C includes here<br/>
+<br/>
+ #if defined __cplusplus<br/>
+ // Add C++ includes here<br/>
+ #include &lt;stdlib&gt;<br/>
+ #include &lt;iostream&gt;<br/>
+ #include &lt;vector&gt;<br/>
+ #include &lt;QApplication&gt; // Qt includes<br/>
+ #include &lt;QPushButton&gt;<br/>
+ #include &lt;QLabel&gt;<br/>
+ #include "thirdparty/include/libmain.h"<br/>
+ #include "my_stable_class.h"<br/>
+ ...<br/>
+ #endif<br/>
+<br/>
+Note that a precompiled header file needs to separate C includes from C++ includes, since the precompiled header file for C files may not contain C++ code.<br/>
+Project Options<br/>
+<br/>
+To make your project use PCH, you only need to define the PRECOMPILED_HEADER variable in your project file:<br/>
+<br/>
+ PRECOMPILED_HEADER = stable.h<br/>
+<br/>
+qmake will handle the rest, to ensure the creation and use of the precompiled header file. You do not need to include the precompiled header file in HEADERS, as qmake will do this if the configuration supports PCH.<br/>
+<br/>
+All platforms that support precompiled headers have the configuration option precompile_header set. Using this option, you may trigger conditional blocks in your project file to add settings when using PCH. For example:<br/>
+<br/>
+ precompile_header:!isEmpty(PRECOMPILED_HEADER) {<br/>
+ DEFINES += USING_PCH<br/>
+ }<br/>
+<br/>
+Notes on Possible Issues<br/>
+<br/>
+On some platforms, the file name suffix for precompiled header files is the same as that for other object files. For example, the following declarations may cause two different object files with the same name to be generated:<br/>
+<br/>
+ PRECOMPILED_HEADER = window.h<br/>
+ SOURCES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= window.cpp<br/>
+<br/>
+To avoid potential conflicts like these, it is good practice to ensure that header files that will be precompiled are given distinctive names.<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

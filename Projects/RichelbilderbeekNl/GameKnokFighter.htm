@@ -1,0 +1,311 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<title>KnokFighter</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Game KnokFighter</o:Subject>
+  <o:Author>Richèl Bilderbeek</o:Author>
+  <o:Keywords>Richèl Bilderbeek C++ Game Exe Source GPL 3.0 3 KnokFighter</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>173</o:TotalTime>
+  <o:Created>2007-11-28T16:46:00Z</o:Created>
+  <o:LastSaved>2007-11-28T16:47:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>178</o:Words>
+  <o:Characters>1016</o:Characters>
+  <o:Category>Richèl Bilderbeek C++ Game KnokFighter</o:Category>
+  <o:Manager>Richèl Bilderbeek</o:Manager>
+  <o:Company>Richèl Bilderbeek</o:Company>
+  <o:Lines>8</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1247</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Showcard Gothic";
+	panose-1:4 2 9 4 2 1 2 2 6 4;
+	mso-font-charset:0;
+	mso-generic-font-family:decorative;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"Rockwell Extra Bold";
+	panose-1:2 6 9 3 4 5 5 2 4 3;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:1627421319 -2147483648 8 0 66047 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:NL;}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:Arial;
+	mso-font-kerning:16.0pt;
+	mso-ansi-language:NL;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:Arial;
+	mso-ansi-language:NL;
+	mso-bidi-font-style:italic;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:13.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:Arial;
+	mso-ansi-language:NL;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.Richel1, li.Richel1, div.Richel1
+	{mso-style-name:Richel1;
+	mso-style-update:auto;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:20.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Showcard Gothic";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:NL;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	text-decoration:underline;
+	text-underline:single;}
+p.Richel2, li.Richel2, div.Richel2
+	{mso-style-name:Richel2;
+	mso-style-update:auto;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:16.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Rockwell Extra Bold";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:NL;}
+p.Richel3, li.Richel3, div.Richel3
+	{mso-style-name:Richel3;
+	mso-style-update:auto;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:NL;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><a
+href="Games.htm">Go back to Richel Bilderbeek's Games page</a>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span lang=NL style='font-size:16.0pt;mso-bidi-font-family:
+"Courier New";mso-font-kerning:16.0pt'>KnokFighter<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'>#tekst<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'>* <s><a
+href="GameKnokFighterScreenshot.PNG">View a screenshot of 'KnokFighter'</a></s>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'>* <s><a
+href="GameKnokFighterExe.rar">Download a Windows executable of 'KnokFighter'</a></s>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'>* <s><a
+href="GameKnokFighterSource.rar">Download the source code of 'KnokFighter'</a></s>.<o:p></o:p></span></p>
+
+<h2><span lang=NL>Licence</span></h2>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<div style='border:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>NAME<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>Copyright (C) 2007<span style="mso-spacerun: yes">  </span>Richel
+Bilderbeek<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>This program is free software: you can redistribute it and/or modify<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>it under the terms of the GNU General Public License as published by<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>the Free Software Foundation, either version 3 of the License, or<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>(at your option) any later version.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>This program is distributed in the hope that it will be useful,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>but WITHOUT ANY WARRANTY; without even the implied warranty of<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<span
+style="mso-spacerun: yes">  </span>See the<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>GNU General Public License for more details.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>You should have received a copy of the GNU General Public License<o:p></o:p></span></p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'><span lang=NL
+style='mso-bidi-font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>along with this program.<span style="mso-spacerun: yes">  </span>If not,
+see &lt;http://www.gnu.org/licenses/&gt;.<o:p></o:p></span></p>
+
+</div>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><a
+href="Games.htm">Go back to Richel Bilderbeek's Games page</a>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=NL style='mso-bidi-font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CalcNumOfCombinations</title>
+  <meta name="description" content="C++ CalcNumOfCombinations"/>
+  <meta name="keywords" content="C++ CalcNumOfCombinations calculate the number of combinations configurations Newick code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a> is a <a href="CppNewick.htm">Newick</a> <a href="CppCodeSnippets.htm">code snippets</a> to calculate the number of combinations a <a href="CppNewick.htm">Newick</a> has.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>/<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a> <b><a href="CppReturn.htm">return</a></b>s the number of combinations a <a href="CppNewick.htm">Newick</a> can have.<br/>
+<a href="CppComment.htm">//</a>/<br/>
+<a href="CppComment.htm">//</a>/The number of possible combinations equals<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp;&nbsp;&nbsp; !(v0 <a href="CppOperatorPlus.htm">+</a> v1 <a href="CppOperatorPlus.htm">+</a> v2 <a href="CppOperatorPlus.htm">+</a> etc)<br/>
+<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> N <a href="CppOperatorAssign.htm">=</a> -------------------------- <a href="CppOperatorDivide.htm">/</a> 2^number_of_symmetries<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp;&nbsp;&nbsp; !v0 * !v1 * !v2 * etc<br/>
+<a href="CppComment.htm">//</a>/<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> --- <a href="CppOperatorDivide.htm">/</a> 2^number_of_symmetries<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d<br/>
+<a href="CppComment.htm">//</a>/<br/>
+<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> where v denotes an element in vector v in range [1,-&gt; &gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> where v0 denotes the first element in vector v<br/>
+<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> and where !v0 denotes the factorial of v0<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp;&nbsp;&nbsp; {factorial(!SUM(v)) product terms}<br/>
+<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> N <a href="CppOperatorAssign.htm">=</a> --------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp;&nbsp;&nbsp; {product terms} <a href="CppOperatorPlus.htm">+</a> { number_symmetries times a '2'}<br/>
+<a href="CppComment.htm">//</a>/<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp;&nbsp;&nbsp; numerator_terms<br/>
+<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> N <a href="CppOperatorAssign.htm">=</a> --------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>/&nbsp;&nbsp;&nbsp;&nbsp; denominator_terms with appended number_symmetries times a '2'<br/>
+<a href="CppComment.htm">//</a>/<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> <a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsNewick.htm">IsNewick</a>(v));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get all positives<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppCl_I.htm">cln::cl_I</a>&gt; positives;<br/>
+&nbsp;&nbsp;<a href="CppCopy_if.htm">Copy_if</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBack_inserter.htm">std::back_inserter</a>(positives),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppGreater.htm">std::greater</a>&lt;<a href="CppCl_I.htm">cln::cl_I</a>&gt;(),0));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain numerator <a href="CppOperatorAssign.htm">=</a> (SUM(x))!<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_values <a href="CppOperatorAssign.htm">=</a> Accumulate_if(v.begin(),v.end(),0,<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppGreater.htm">std::greater</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(),0));<br/>
+&nbsp;&nbsp;<a href="CppCl_I.htm">cln::cl_I</a> numerator <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.htm">cln</a>::factorial(sum_values);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain factorialated positives<br/>
+&nbsp;&nbsp;<a href="CppCl_I.htm">cln::cl_I</a> denominator <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; i, v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorLessEqual.htm">&lt;=</a>0) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> i_temp <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.htm">cln</a>::factorial(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;denominator<a href="CppOperatorMultiplyAssign.htm">*=</a>i_temp;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain number_of_symmetries<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> number_of_symmetries <a href="CppOperatorAssign.htm">=</a> <a href="CppCalcNumOfSymmetries.htm">CalcNumOfSymmetries</a>(v);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> number_of_symmetries times a 2 to denominator terms<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>number_of_symmetries; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> i_temp <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;denominator<a href="CppOperatorMultiplyAssign.htm">*=</a>i_temp;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Return the division<br/>
+&nbsp;&nbsp;numerator<a href="CppOperatorDivideAssign.htm">/=</a>denominator;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> numerator;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

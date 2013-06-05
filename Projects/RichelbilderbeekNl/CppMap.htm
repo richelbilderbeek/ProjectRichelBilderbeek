@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::map</title>
+  <meta name="description" content="C++ std::map"/>
+  <meta name="keywords" content="C++ std::map std map"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppMap.htm">std::map</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppMap.htm">std::map</a> is an <a href="CppStl.htm">STL</a> <a href="CppContainer.htm">container</a> for mapping two kinds of <a href="CppDataType.htm">data types</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<a href="CppString.htm">std::string</a>, <b><a href="CppInt.htm">int</a></b>&gt; phonebook;<br/>
+&nbsp;&nbsp;phonebook["Bilderbikkel"] = 1234567890; <a href="CppComment.htm">//</a>Store<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> phonebook["Bilderbikkel"] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; <a href="CppComment.htm">//</a>Read<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The <a href="CppString.htm">std::string</a> is the key (in this case a last name) and the <a href="CppInt.htm">int</a> is termed the value (in this calse the persons telephone number).</p>
+<p>&nbsp;</p>
+<p>One key can only have one value. If a key needs to have one or more values, use a <a href="CppMultimap.htm">std::multimap</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppMap.htm">std::map</a> <a href="CppCodeSnippets.htm">code snippets</a></h2>
+<p>&nbsp;</p>
+<p>Note that among these are also more general <a href="CppContainer.htm">container</a> <a href="CppCodeSnippets.htm">code snippets</a>.</p>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppIsKeyInMap.htm">IsKeyInMap, checks if a key is in a std::map</a></li>
+  <li><a href="CppGetKeyWithMaxValue.htm">GetKeyWithMaxValue, get the key with the highest value</a></li>
+  <li><a href="CppGetValueInMap.htm">GetValueInMap, get a value in a std::map</a></li>
+  <li><a href="CppIsKeyInMap.htm">Check if a key is in a std::map, IsKeyInMap</a></li>
+  <li><a href="CppGetValueInMap.htm">Get a value in a std::map, GetValueInMap</a></li>
+  <li><a href="CppLoopReader.htm">LoopReader, reading a container looped</a></li>
+  <li><a href="CppLoopReader.htm">Reading a container looped, LoopReader</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://www.sgi.com/tech/stl/Map.html">SGI page about std::map</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

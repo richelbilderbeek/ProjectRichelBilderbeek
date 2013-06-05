@@ -1,0 +1,150 @@
+ 
+<title>Derived class</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Derived class</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Derived class derive</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>6</o:Revision>
+  <o:TotalTime>136</o:TotalTime>
+  <o:Created>2008-07-03T14:19:00Z</o:Created>
+  <o:LastSaved>2008-07-03T14:21:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>386</o:Words>
+  <o:Characters>2205</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Derived class</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>18</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2707</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppDerivedClass.htm">Derived class</a></h1>
+
+<p>&nbsp;</p>
+
+<p>A <a
+href="CppClass.htm">class</a> that has <a href="CppInheritance.htm">inherited</a>
+member variables and <a href="CppMemberFunction.htm">member functions</a> from a <a
+href="CppBaseClass.htm">base class</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>The
+code below shows how an Animal is used as a <a href="CppBaseClass.htm">base
+class</a> and Cat and Dog are <a href="CppDerivedClass.htm">derived classes</a>
+(of Animal).</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppIostreamH.htm">iostream</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppStringH.htm">string</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppStruct.htm">struct</a> </b>  Animal            <a href="CppComment.htm">//</a>Animal
+is a (non-abstract) base class</p>
+
+<p>{</p>
+
+<p>
+ <a href="CppString.htm">std::string</a> mName;     <a href="CppComment.htm">//</a>All animals have a name (note:
+should better be <a href="CppConst.htm">const</a>)</p>
+
+<p>
+ <b><a href="CppVirtual.htm">virtual</a></b> ~Animal() {} <a
+href="CppComment.htm">//</a>All animals have a <a href="CppDestructor.htm">destructor</a></p>
+
+<p>                        <a
+href="CppComment.htm">//</a>All base classes must have a <a
+href="CppVirtual.htm">virtual</a> <a href="CppDestructor.htm">destructor</a></p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppStruct.htm">struct</a> </b>  Cat : <b><a
+href="CppPublic.htm">public</a></b> Animal <a href="CppComment.htm">//</a>A cat
+is a-kind-of animal</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppVoid.htm">void</a></b> Meow() <b><a href="CppConst.htm">const</a></b>
+{ <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>
+&quot;Meow&quot; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a
+href="CppEndl.htm">std::endl</a>; }</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppStruct.htm">struct</a> </b>  Dog : <b><a
+href="CppPublic.htm">public</a></b> Animal <a href="CppComment.htm">//</a>A dog
+is a-kind-of animal</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppVoid.htm">void</a></b> Bark() <b><a href="CppConst.htm">const</a></b>
+{ <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>
+&quot;Bark&quot; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a
+href="CppEndl.htm">std::endl</a>; }</p>
+
+<p>
+ bool mHasBone;</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

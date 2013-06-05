@@ -1,0 +1,212 @@
+ 
+<title>utilities.hpp: Invalid template argument list</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ utilities.hpp: Invalid template argument list</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek [C++ Error] utilities.hpp(305): E2401 Invalid template argument list compile error C++ Builder VCL boost</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>134</o:TotalTime>
+  <o:Created>2008-07-17T09:30:00Z</o:Created>
+  <o:LastSaved>2010-02-11T11:13:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>207</o:Words>
+  <o:Characters>1183</o:Characters>
+  <o:Category>C++ Richel Bilderbeek utilities.hpp: Invalid template argument list</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>9</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1452</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppCompileErrorUtilitiesHppInvalidTemplateArgumentList.htm">utilities.hpp:
+Invalid template argument list</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCompileError.htm">Compile error</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Full error message</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>[C++ Error] utilities.hpp(305):
+E2401 Invalid template argument list</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Cause</h2>
+
+<p>&nbsp;</p>
+
+<p>IDE:
+<a
+href="CppBuilder.htm">C++
+Builder</a> 6.0</p>
+
+<p><a
+href="CppCompiler.htm">Compiler</a>:
+Borland BCC32.EXE version 6.0.10.157</p>
+
+<p>Boost
+version: 1.35.0.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include
+&lt;boost/gil/gil_all.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Which
+takes you to the following line in 'include/boost/gil/utilities.hpp':</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>/// \ingroup
+ColorSpaceAndLayoutModel</p>
+
+<p>/// \brief Represents a color space
+and ordering of channels in memory</p>
+
+<p>template &lt;typename ColorSpace,
+typename ChannelMapping</p>
+
+<p>
+ = mpl::range_c&lt;int,0,mpl::size&lt;ColorSpace&gt;::value&gt; &gt;       //<b>This line</b></p>
+
+<p>struct layout {</p>
+
+<p> 
+ typedef ColorSpace      
+ color_space_t;</p>
+
+<p> 
+ typedef ChannelMapping  
+ channel_mapping_t;</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Solution</h2>
+
+<p>&nbsp;</p>
+
+<p>This
+compiler is not supported by Boost. Change to another compiler.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

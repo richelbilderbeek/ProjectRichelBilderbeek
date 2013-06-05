@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Global Wt deployment on a home server with the Ubuntu Server operating system</title>
+  <meta name="description" content="C++ global Wt deployment on a home server with the Ubuntu Server operating system"/>
+  <meta name="keywords" content="C++ global Wt deploy deployment on a home server with the Ubuntu Server operating system put on website"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>)
+  <img src="PicWt.png" alt="Wt"/><img src="PicUbuntu.png" alt="Ubuntu"/>
+  <a href="CppWtDeployGlobalHomeUbuntuServer.htm">Global Wt deployment on a home server with the Ubuntu Server operating system</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppWtDeployGlobalHomeUbuntuServer.htm">Global Wt deployment on a home server with the Ubuntu Server operating system</a> is a type of
+<a href="CppWtDeployGlobalHome.htm">global Wt deployment on a home server</a> where the server has the
+Ubuntu Server operating system.</p>
+<p>&nbsp;</p>
+<p>The deployment consists of the following steps:</p>
+<ul>
+  <li>Installing Ubuntu Server edition</li>
+  <li>Finding out your IP address</li>
+  <li>(when behind a router) port forwarding</li>
+  <li>Starting the Wt application</li>
+  <li>(Optional) Register a name for your IP-address</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Installing Ubuntu Server edition</h2>
+<p>&nbsp;</p>
+<p>Install Ubuntu Server edition on the server-to-be.</p>
+<p>&nbsp;</p>
+<p>I did so by burning a CD from the ISO image that can be downloaded from the
+Ubuntu Server edition homepage. During installation I kept all options at their default.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Finding out your IP address</h2>
+<p>&nbsp;</p>
+<p>On the server-to-be, find out its IP address. To do, there are multiple options:</p>
+<ul>
+  <li>Install lynx and visit the cmyip.com website:<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    sudo apt-get install lynx<br/>
+    lynx<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+  </li>
+  <li>Install snarf and read the cmyip.com website:<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    sudo apt-get install snarf<br/>
+    snarf www.cmyip.com - | less<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+  </li>
+  <li>(if you can access another computer connected to the same router) visit the wwww.cmyip.com website with any browser</li>
+  <li>(when behind a router) visit the router internals (see next step)</li>
+</ul>
+<p>&nbsp;</p>
+<p>Write down this IP address, you will need it to access your Wt application.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>(when behind a router) port forwarding</h2>
+<p>&nbsp;</p>
+<p>When behind a router, ports 80 an 8080 need to be forwarded to the server. How to do this depends
+on your router. Below I show how to do it using a router called the 'KPN Experia box'</p>
+<p>&nbsp;</p>
+<p>To set up the port forwarding with the KPN Experia box, I used the web browser Google Chrome to access this router.
+According to the Experia box's manual, I would need to surft to http://192.168.2.254. After doing so, the
+<a href="CppExperiaLogin.png">Experia login screen</a> was shown. After submitting the correct pasword, the
+<a href="CppExperiaStatus.png">Experia status screen</a> was shown. On this screen, 
+<a href="CppExperiaStatusHighlight.png">I can see the local 
+(useful for computers connected to the router only) IP address and the global IP address (the IP address any 
+Internet users can access</a>. In this example, my server is called 'bbserver' and has a local IP address
+of 192.168.2.3, where the global IP address is 84.85.246.65.</p>
+<p>&nbsp;</p>
+<p>In the <a href="CppExperiaPortMapping.png">Experia port mapping menu</a>, ports 80 and 8080 are routed to the 
+local IP address of the server, in this case 192.168.2.3.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Starting the Wt application</h2>
+<p>&nbsp;</p>
+<p>If you haven't installed the <a href="CppWt.htm">Wt</a> <a href="CppLibrary.htm">library</a>, do so:</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+sudo apt-get install witty<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Start the <a href="CppWt.htm">Wt</a> application (in this case 'CppHelloWorldQtCreatorUbuntu'):</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+sudo ./CppHelloWtQtCreatorUbuntu --docroot . --http-address 0.0.0.0 --http-port 8080<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>After submitting your password, the server is running. From another computer it can be accessed
+from its global IP address with ':8080' appended. In this example, surfing to 
+84.85.246.65:8080 would show up the application.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>(Optional) Register a name for your IP-address</h2>
+<p>&nbsp;</p>
+<p>An IP address is not an easy-to-remember thing. When visiting a free dynamic DNS service, for 
+example the changeip.net page, after a free registration, a human-readable name can be coupled
+to the IP address. In this example, I coupled the name 'richelbilderbeek.changeip.net' 
+to the IP address 84.85.246.65. From then on, surfing to 
+richelbilderbeek.changeip.net:8080 will show up the application.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+
+  <li><a href="http://www.webtoolkit.eu/wt">Wt homepage</a></li>
+  <li><a href="http://redmine.webtoolkit.eu/projects/wt/wiki/Wt_Deployment">Wt wiki's page about Wt deployment</a></li>
+  <li><a href="http://www.ubuntu.com/server">Ubuntu Server edition homepage</a></li>
+  <li><a href="http://cmyip.com">cmyip.com page</a></li>
+  <li><a href="http://www.changeip.net">changeip.net page</a></li>
+  <li><a href="http://www.kpnadsl.com/index_experia.html">KPN Experia box homepage</a></li>
+  <li><a href="http://www.youtube.com/watch?v=-rKDhZJignU">Tinkernut's YouTube video 'How To Set Up A Home Server'</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li>...</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

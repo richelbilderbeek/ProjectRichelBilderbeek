@@ -1,0 +1,1219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Exercise #9: no for-loops</title>
+  <meta name="description" content="C++ Exercise #9: no for-loops"/>
+  <meta name="keywords" content="C++ Exercise #9: no for-loops for loop"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a></h1>
+<p>&nbsp;</p>
+<p>Difficulty: 5/10</p>
+<p>Date added: 29th of December 2009</p>
+<p>&nbsp;</p>
+<p>In this <a href="CppExercise.htm">exercise</a>, you learn to replace <a href="CppFor.htm">for</a>-loops by <a href="CppAlgorithm.htm">algorithms</a>.</p>
+<p>&nbsp;</p>
+<p>Reading the literature, one reads:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Prefer algorithms over loops [1][2]<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>This is easier said than done.</p>
+<p>&nbsp;</p>
+<p>In this exercise you must replace <b><a href="CppFor.htm">for</a></b>-loops by using a combination of all those algorithm things like <a href="CppFor_each.htm">std::for_each</a>, <a href="CppTransform.htm">std::transform</a>, <a href="CppBind1st.htm">std::bind1st</a>, <a href="CppBind2nd.htm">std::bind2nd</a>, <a href="CppMultiplies.htm">std::multiplies</a> and more of the likes. It is up to you to find the correct combination.</p>
+<p>&nbsp;</p>
+<p>The exercises are unordered. Some require <a href="CppBoost.htm">Boost</a>, but will be in <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppStd.htm">std</a> after the <a href="Cpp11.htm">C++11</a> standard.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Table of contents</h2>
+<p>&nbsp;</p>
+<ul>
+  <li>Question #0: <a href="CppTriple.htm">Triple</a></li>
+  <li>Question #1: <a href="CppAddTwo.htm">AddTwo</a></li>
+  <li>Question #2: <a href="CppMultiply.htm">Multiply</a></li>
+  <li>Question #3: <a href="CppAdd.htm">Add</a></li>
+  <li>Question #4: Widget::DoIt on Widget</li>
+  <li>Question #5: Widget::DoItOften on Widget</li>
+  <li>Question #6: Widget::DoIt on Widget*</li>
+  <li>Question #7: Widget::DoItOften on Widget*</li>
+  <li>Question #8: <a href="CppGetSum.htm">GetSum</a></li>
+  <li>Question #9: <a href="CppProduct.htm">Product</a></li>
+  <li>Question #10: Widget::DoIt on boost::shared_ptr&lt;Widget&gt;</li>
+  <li>Question #11: <a href="CppReplaceZeroByOne.htm">ReplaceZeroByOne</a></li>
+  <li>Question #12: <a href="CppReplaceNegativeByZero.htm">ReplaceNegativeByZero</a></li>
+  <li>Question #13: <a href="CppMakeAbs.htm">MakeAbs</a></li>
+  <li>Question #14: <a href="CppMakeSquare.htm">MakeSquare</a></li>
+  <li>Question #15: <a href="CppCoutVector.htm">CoutVector</a></li>
+  <li>Question #16: <a href="CppReciprocal.htm">Reciprocal</a></li>
+  <li>Question #17: <a href="CppHalve.htm">Halve</a></li>
+  <li>Question #18: <a href="CppSumPositives.htm">SumPositives</a></li>
+  <li>Question #19: <a href="CppProductNonZeroPositives.htm">ProductNonZeroPositives</a></li>
+  <li>Question #20: <a href="CppCountNonZeroPositives.htm">CountNonZeroPositives</a></li>
+  <li>Question #21: <a href="CppCopyFirst.htm">CopyFirst</a></li>
+  <li>Question #22: <a href="CppCopySecond.htm">CopySecond</a></li>
+  <li>Question #23: <a href="CppSumFirst.htm">SumFirst</a></li>
+  <li>Question #24: <a href="CppSumSecond.htm">SumSecond</a></li>
+  <li>Question #25: HasMale on std::vector&lt;Person*&gt;</li>
+  <li>Question #26: HasFemale on std::vector&lt;Person*&gt;</li>
+  <li>Question #27: HasId on std::vector&lt;Person*&gt;</li>
+  <li>Question #28: GetMaxId on std::vector&lt;Person*&gt;</li>
+  <li>Question #29: GetAllTrue on <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppBool.htm">bool</a></b>&gt;</li>
+  <li>Question #30: Get maximum value from <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *,<b><a href="CppInt.htm">int</a></b>&gt;</li>
+  <li>Question #31: Find an ID in a <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person*&gt;</li>
+  <li>Question #32: Sum all persons' money from a <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person*&gt;</li>
+  <li>See also: <a href="CppGetLongestStringLength.htm">Get the length of the longest string</a></li>
+  <li>Post your feedback</li>
+  <li>References</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #0: <a href="CppTriple.htm">Triple</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><a href="CppFor_each.htm">std::for_each</a></li>
+  <li><a href="CppMultiplies.htm">std::multiplies</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppTriple.htm">Triple</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]<a href="CppOperatorMultiplyAssign.htm">*=</a>3;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer0.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #1: <a href="CppAddTwo.htm">AddTwo</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBack_inserter.htm">std::back_inserter</a></li>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><a href="CppPlus.htm">std::plus</a></li>
+  <li><a href="CppTransform.htm">std::transform</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppAddTwo.htm">AddTwo</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v_new(v); <a href="CppComment.htm">//</a>Copy original vector<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v_new[i]<a href="CppOperatorPlusAssign.htm">+=</a>2;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v_new;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer1.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #2: <a href="CppMultiply.htm">Multiply</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><a href="CppMultiplies.htm">std::multiplies</a></li>
+  <li><a href="CppTransform.htm">std::transform</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppMultiply.htm">Multiply</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]<a href="CppOperatorMultiplyAssign.htm">*=</a>x;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer2.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #3: <a href="CppAdd.htm">Add</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBack_inserter.htm">std::back_inserter</a></li>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><a href="CppPlus.htm">std::plus</a></li>
+  <li><a href="CppTransform.htm">std::transform</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppAdd.htm">Add</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v_new(v); <a href="CppComment.htm">//</a>Copy original vector<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v_new[i]<a href="CppOperatorPlusAssign.htm">+=</a>x;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v_new;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer3.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #4: Widget::DoIt on Widget</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppFor_each.htm">std::for_each</a></li>
+  <li><a href="CppMem_fun.htm">std::mem_fun_ref</a> (or <a href="CppMem_fn.htm">boost::mem_fn</a>)</li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Widget<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoIt() <b><a href="CppConst.htm">const</a></b> { /* <b><a href="CppDo.htm">do</a></b> it */ }<br/>
+};<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> DoIt(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Widget&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i].DoIt();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer4.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #5: Widget::DoItOften on Widget</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a> (or <a href="CppBind.htm">boost::bind</a>)</li>
+  <li><a href="CppFor_each.htm">std::for_each</a></li>
+  <li><a href="CppMem_fun.htm">std::mem_fun_ref</a> (or <a href="CppMem_fn.htm">boost::mem_fn</a>)</li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Widget<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n) <b><a href="CppConst.htm">const</a></b> { /* <b><a href="CppDo.htm">do</a></b> it n times */ }<br/>
+};<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Widget&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i].DoItOften(n);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer5.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #6: Widget::DoIt on Widget*</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppFor_each.htm">std::for_each</a></li>
+  <li><a href="CppMem_fun.htm">std::mem_fun</a> (or <a href="CppMem_fn.htm">boost::mem_fn</a>)</li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Widget<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoIt() <b><a href="CppConst.htm">const</a></b> { /* <b><a href="CppDo.htm">do</a></b> it */ }<br/>
+};<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> DoIt(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Widget*&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]-&gt;DoIt();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer6.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #7: Widget::DoItOften on Widget*</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a> (or <a href="CppBind.htm">boost::bind</a>)</li>
+  <li><a href="CppFor_each.htm">std::for_each</a></li>
+  <li><a href="CppMem_fun.htm">std::mem_fun</a> (or <a href="CppMem_fn.htm">boost::mem_fn</a>)</li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Widget<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n) <b><a href="CppConst.htm">const</a></b> { /* <b><a href="CppDo.htm">do</a></b> it n times */ }<br/>
+};<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Widget*&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]-&gt;DoItOften(n);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer7.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #8: <a href="CppGetSum.htm">GetSum</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppAccumulate.htm">std::accumulate</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppGetSum.htm">GetSum</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum = 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>v[i];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer8.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #9: <a href="CppProduct.htm">Product</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppAccumulate.htm">std::accumulate</a></li>
+  <li><a href="CppMultiplies.htm">std::multiplies</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppProduct.htm">Product</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> product = 1;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;product<a href="CppOperatorMultiplyAssign.htm">*=</a>v[i];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> product;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer9.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #10: Widget::DoIt on boost::shared_ptr&lt;Widget&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppFor_each.htm">std::for_each</a></li>
+  <li><a href="CppMem_fn.htm">boost::mem_fn</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;boost/shared_ptr.hpp&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Widget<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoIt() <b><a href="CppConst.htm">const</a></b> { <a href="CppOperatorDivide.htm">/</a>* <b><a href="CppDo.htm">do</a></b> it *<a href="CppOperatorDivide.htm">/</a> }<br/>
+};<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> DoIt(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Widget&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i<a href="CppOperatorAssign.htm">=</a>0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]-&gt;DoIt();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer10.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #11: <a href="CppReplaceZeroByOne.htm">ReplaceZeroByOne</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppReplace.htm">std::replace</a> (or <a href="CppReplace_if.htm">std::replace_if</a> with <a href="CppBind2nd.htm">std::bind2nd</a>)</li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppReplaceZeroByOne.htm">ReplaceZeroByOne</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(v[i]<a href="CppOperatorEqual.htm">==</a>0) v[i]=1;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer11.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #12: <a href="CppReplaceNegativeByZero.htm">ReplaceNegativeByZero</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><a href="CppLess.htm">std::less</a></li>
+  <li><a href="CppReplace_if.htm">std::replace_if</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppReplaceNegativeByZero.htm">ReplaceNegativeByZero</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(v[i]&lt;0) v[i]=0;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer12.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #13: <a href="CppMakeAbs.htm">MakeAbs</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppTransform.htm">std::transform</a></li>
+  <li>your own <a href="CppUnary_function.htm">std::unary_function</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppMakeAbs.htm">MakeAbs</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i] <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(v[i]);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer13.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #14: <a href="CppMakeSquare.htm">MakeSquare</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppTransform.htm">std::transform</a></li>
+  <li>your own <a href="CppUnary_function.htm">std::unary_function</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppMakeSquare.htm">MakeSquare</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]<a href="CppOperatorMultiplyAssign.htm">*=</a>v[i];<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer14.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #15: <a href="CppCoutVector.htm">CoutVector</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppCopy.htm">std::copy</a></li>
+  <li><a href="CppOstream_iterator.htm">std::ostream_iterator</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppCoutVector.htm">CoutVector</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer15.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #16: <a href="CppReciprocal.htm">Reciprocal</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind1st.htm">std::bind1st</a></li>
+  <li><a href="CppDivides.htm">std::divides</a></li>
+  <li><a href="CppTransform.htm">std::transform</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppReciprocal.htm">Reciprocal</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]=1.0/v[i];<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer16.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #17: <a href="CppHalve.htm">Halve</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><a href="CppDivides.htm">std::divides</a></li>
+  <li><a href="CppTransform.htm">std::transform</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppHalve.htm">Halve</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]<a href="CppOperatorDivideAssign.htm">/=</a>2.0;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer17.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #18: <a href="CppSumPositives.htm">SumPositives</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppGreater.htm">std::greater</a></li>
+  <li>A conditional <a href="CppAccumulate.htm">std::accumulate</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppSumPositives.htm">SumPositives</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">size_t</a> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sum = 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]&gt;0) sum<a href="CppOperatorPlusAssign.htm">+=</a>v[i];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer18.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #19: <a href="CppProductNonZeroPositives.htm">ProductNonZeroPositives</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><a href="CppGreater.htm">std::greater</a></li>
+  <li><a href="CppMultiplies.htm">std::multiplies</a></li>
+  <li>A conditional <a href="CppAccumulate.htm">std::accumulate</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppProductNonZeroPositives.htm">ProductNonZeroPositives</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">size_t</a> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> product = 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]&gt;0) product<a href="CppOperatorMultiplyAssign.htm">*=</a>v[i];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> product;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer19.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #20: <a href="CppCountNonZeroPositives.htm">CountNonZeroPositives</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+  <li><a href="CppCount_if.htm">std::count_if</a></li>
+  <li><a href="CppGreater.htm">std::greater</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppCountNonZeroPositives.htm">CountNonZeroPositives</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sum = 0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">size_t</a> sz = v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">size_t</a> i = 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]&gt;0) sum<a href="CppOperatorPlusAssign.htm">+=</a>v[i];<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer20.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #21: <a href="CppCopyFirst.htm">CopyFirst</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>/<a href="CppCopyFirst.htm">CopyFirst</a> copies the first <a href="CppPair.htm">std::pair</a> elements from a <a href="CppVector.htm">std::vector</a> of <a href="CppPair.htm">std::pair</a>s<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCopyFirst.htm">CopyFirst</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt; <a href="CppCopyFirst.htm">CopyFirst</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;T,U&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt; w;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(v[i].first);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer21.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #22: <a href="CppCopySecond.htm">CopySecond</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>/<a href="CppCopySecond.htm">CopySecond</a> copies the second <a href="CppPair.htm">std::pair</a> elements from a <a href="CppVector.htm">std::vector</a> of <a href="CppPair.htm">std::pair</a>s<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCopySecond.htm">CopySecond</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;U&gt; <a href="CppCopySecond.htm">CopySecond</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;T,U&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;U&gt; w;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(v[i].second);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer22.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #23: <a href="CppSumFirst.htm">SumFirst</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+  <li><a href="CppPlus.htm">std::plus</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppSumFirst.htm">SumFirst</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>v[i].first;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer23.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #24: <a href="CppSumSecond.htm">SumSecond</a></h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+  <li><a href="CppPlus.htm">std::plus</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppSumSecond.htm">SumSecond</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>v[i].second;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer24.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #25: HasMale on std::vector&lt;Person*&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> is_male) : m_is_male(is_male) {}<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsMale() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_is_male; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_is_male;<br/>
+};<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> HasMale(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]-&gt;IsMale()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer25.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #26: HasFemale on std::vector&lt;Person*&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+  <li><a href="CppNot.htm">std::not</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> is_male) : m_is_male(is_male) {}<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsMale() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_is_male; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_is_male;<br/>
+};<br/>
+<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> HasFemale(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!v[i]-&gt;IsMale()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer26.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #27: HasId on std::vector&lt;Person*&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(id) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetId() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_id;<br/>
+};<br/>
+<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> HasId(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]-&gt;GetId() <a href="CppOperatorEqual.htm">==</a> id) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer27.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #28: GetMaxId on std::vector&lt;Person*&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(id) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetId() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_id;<br/>
+};<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> Person * GetMaxId(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> max_id <a href="CppOperatorAssign.htm">=</a> v[0]-&gt;GetId();<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> index_max_id <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id <a href="CppOperatorAssign.htm">=</a> v[i]-&gt;GetId();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (id &gt; max_id)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_id <a href="CppOperatorAssign.htm">=</a> id;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index_max_id <a href="CppOperatorAssign.htm">=</a> i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v[index_max_id];<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer28.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #29: GetAllTrue on <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppBool.htm">bool</a></b>&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/foreach.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>/Returns <b><a href="CppTrue.htm">true</a></b> <b><a href="CppIf.htm">if</a></b> all <b><a href="CppBool.htm">bool</a></b>s are <b><a href="CppTrue.htm">true</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> GetAllTrue(<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppBool.htm">bool</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppBool.htm">bool</a></b>&gt; Pair;<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> Pair&amp; p,v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (p.second <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer29.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #30: Get maximum value from <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *,<b><a href="CppInt.htm">int</a></b>&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppLimitsH.htm">limits</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/foreach.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person { };<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> Person * GetPersonWithMaxIdStl(<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *,<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> max_id <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::min();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Person * ptr <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *,<b><a href="CppInt.htm">int</a></b>&gt; Pair;<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> Pair&amp; p,v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (p.second &gt; max_id)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_id <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ptr <a href="CppOperatorAssign.htm">=</a> p.first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ptr);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> ptr;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer30.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #31: Find an ID in a <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person*&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Id<br/>
+{<br/>
+&nbsp;&nbsp;Id(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(id) { }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id; }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_id;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(<b><a href="CppNew.htm">new</a></b> Id(id)) {}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Id * GetId() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id.get(); }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;Id&gt; m_id;<br/>
+};<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> IsIdTaken(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person*&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]-&gt;GetId()-&gt;Get() <a href="CppOperatorEqual.htm">==</a> id) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer31.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #32: Sum all persons' money from a <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person*&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppAccumulate.htm">std::accumulate</a></li>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> money) : m_money(money) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetMoney() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_money; }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_money;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> SumMoney(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person*&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>v[i]-&gt;GetMoney();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul><li><a href="CppExerciseNoForLoopsAnswer32.htm">View the answer of this exercise</a></li></ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Post your feedback</h2>
+<p>&nbsp;</p>
+<p>Feel free to post your feedback about this exercise at <a href="http://www.programmersheaven.com/article/104501-C%2b%2b+exercise%3a+no+for-loops/info.aspx">Programmer's Heaven</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The <a href="Cpp.htm">C++</a> Programming Language (3rd edition). ISBN: 0-201-88954-4. Chapter 18.12.1 : 'Prefer algorithms over loops'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a> and <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. <a href="Cpp.htm">C++</a> coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 84: 'Prefer algorithm calls to handwritten loops.'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

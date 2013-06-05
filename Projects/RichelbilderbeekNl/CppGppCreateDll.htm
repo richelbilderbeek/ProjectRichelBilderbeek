@@ -1,0 +1,334 @@
+ 
+<title>G++ Create a DLL</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ G++ Create a DLL</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ G++ Richel Bilderbeek Create a DLL creating starting making make start write GPP GCC</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>19</o:Revision>
+  <o:TotalTime>210</o:TotalTime>
+  <o:Created>2009-06-01T11:01:00Z</o:Created>
+  <o:LastSaved>2009-06-01T11:33:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>427</o:Words>
+  <o:Characters>2438</o:Characters>
+  <o:Category>C++ G++ Richel Bilderbeek Create a DLL</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>20</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2994</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:514808592;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2045030308 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+ 
+@list l1
+	{mso-list-id:1025863566;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-892567530 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:*;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	mso-hansi-font-family:"Courier New";}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>
+using G++) <a href="CppGppCreateDll.htm">Create a DLL</a></h1>
+
+<p>&nbsp;</p>
+
+<p>Before being able to   <a href="CppGppCallDll.htm">call a
+DLL</a>, one has to <a href="CppGppCreateDll.htm">create a DLL</a> first.</p>
+
+<p>&nbsp;</p>
+
+<p>To
+create a <a href="CppGppDll.htm">DLL</a> using G++, do the following steps:</p>
+
+  <li>
+    Create
+a DLL entry point with a WinMain</p>
+
+  <li>
+    Create
+a unit with the functions you want to put in a DLL</p>
+
+  <li>
+    Build
+the DLL</p>
+
+<p>&nbsp;</p>
+
+<h2>UnitEntryPoint.cpp</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#include &lt;windows.h&gt;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>int WINAPI DllEntryPoint(HINSTANCE
+hinst, unsigned long reason, void* lpReserved)</p>
+
+<p>{</p>
+
+<p>
+ return 1;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>int WINAPI WinMain(      </p>
+
+<p> 
+ HINSTANCE hInstance,</p>
+
+<p> 
+ HINSTANCE hPrevInstance,</p>
+
+<p> 
+ LPSTR lpCmdLine,</p>
+
+<p> 
+ int nCmdShow)</p>
+
+<p>{  
+</p>
+
+<p>
+ return 0;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo4;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGppCreateDllEntryPointCpp.txt">View this code in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>UnitFunctions.h</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#ifndef UnitFunctionsH</p>
+
+<p>#define UnitFunctionsH</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#ifdef __cplusplus</p>
+
+<p>extern &quot;C&quot;</p>
+
+<p>{</p>
+
+<p>#endif</p>
+
+<p>&nbsp;</p>
+
+<p>__declspec (dllexport) const int GetAnswerOfLife();</p>
+
+<p>&nbsp;</p>
+
+<p>#ifdef __cplusplus</p>
+
+<p>}</p>
+
+<p>#endif</p>
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#endif</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo4;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGppCreateDllUnitFunctionsH.txt">View this code in plain text</a></p>
+
+<p>&nbsp;</p>
+
+<p>The
+function put in the DLL is called GetAnswerOfLife and will return the value of
+42. Note the <a href="CppIfdef.htm">#ifdef</a>'s before and after the function.
+These are obligatory!</p>
+
+<p>&nbsp;</p>
+
+<p>Now
+the function GetAnswerOfLife must be defined in UnitFunctions.cpp. Upon viewing
+it, the code looks like below</p>
+
+<p>&nbsp;</p>
+
+<h2>UnitFunctions.cpp</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#include &quot;UnitFunctions.h&quot;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>const int GetAnswerOfLife()</p>
+
+<p>{</p>
+
+<p>
+ return 42;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo4;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGppCreateDllUnitFunctionsCpp.txt">View this code in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>Building the DLL</h2>
+
+<p>&nbsp;</p>
+
+<p>Use the following G++ commands:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>g++ -c
+UnitFunctions.cpp</p>
+
+<p>g++ -c
+UnitEntryPoint.cpp</p>
+
+<p>g++ -o
+Functions.dll UnitEntryPoint.o UnitFunctions.o</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>This
+should yield your first DLL!</p>
+
+<p>&nbsp;</p>
+
+<p>Perhaps
+you now want to <a href="CppGppCallDll.htm">go to the calling a DLL page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppGppCreateDll.zip">Or download all source code of this page at once</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

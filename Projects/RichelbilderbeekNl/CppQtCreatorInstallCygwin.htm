@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>How to install Qt Creator?</title>
+  <meta name="description" content="C++ How to install Qt Creator?"/>
+  <meta name="keywords" content="C++ How to install Qt Creator Cygwin"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicCygwin.png" alt="Cygwin"/> 
+  <a href="CppQtCreatorInstallCygwin.htm">How to install Qt Creator under Cygwin?</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppQtFaq.htm">Qt FAQ</a> about <a href="CppQtCreatorInstall.htm">how to install Qt Creator</a>
+under Cygwin.</p>
+<p>&nbsp;</p>
+<p>According to [2] this is not possible. All approaches described below fail.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Failed approach 1:</h2>
+<p>&nbsp;</p>
+<p><a href="CppQtCreator.htm">Qt Creator</a> is installed following the steps described by [1].</p>
+<p>The following alternative strategies fail:</p>
+<ul>
+  <li>Trying to do './configure' and 'make' using Qt-everywhere-opensource-src-4.7.0 (a newer version as used in [1])</li>
+  <li>Trying to follow the steps of [1] using Qt-everywhere-opensource-src-4.7.0 (a newer version as used in [1])</li>
+  <li>After 'make sub-tools-bootstrap sub-moc sub-rcc sub-uic sub-corelib sub-gui' type 'make' (results in the error <a href="CppCompileErrorUnicodeQt4H197Error.htm">UnicodeQt4.h:197: error: call of overloaded 'toLower(UChar32&amp;)' is ambiguous</a>)</li>
+</ul>
+<p>&nbsp;</p>
+<p>In the folder ~/Projects/Tools/<a href="ToolTestBinaryNewickVector.htm">ToolTestBinaryNewickVector</a>, I entered the command:</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+qmake-qt3<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>resulting in:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QMAKESPEC has not been set, so configuration cannot be deduced.<br/>
+Error processing project file: /home/richel/Projects/Tools/ToolTestBinaryNewickVector/<br/>
+ToolTestBinaryNewickVector.pro<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The following command did not do anything either:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+set QMAKESPEC<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Failed approach 2: Use the Linux Qt SDK under Cygwin</h2>
+<p>&nbsp;</p>
+<p>From the Qt homepage, download the Qt SDK for Linux/X11 32-bit.</p>
+<p>&nbsp;</p>
+<p>In the folder where the Qt installer is located, type:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+chmod u+x qt-sdk-linux-x86-opensource-2010.05.bin<br/>
+./qt-sdk-linux-x86-opensource-2010.05.bin<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Result:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+cannot execute binary file<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Failed approach 3: Use the Windows Qt SDK under Cygwin</h2>
+<p>&nbsp;</p>
+<p>From the Qt homepage, download the Qt SDK for windows.</p>
+<p>&nbsp;</p>
+<p>Then, from the terminal
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+run qt-sdk-win-opensource-2010.05.exe<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The Qt Creator setup starts, then showing an <a href="CppMiscErrorNsisError.png">NSIS error</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://qt.nokia.com">Qt homepage</a></li>
+  <li><a href="http://wiki.lyx.org/LyX/LyXOnCygwin">LyX wiki about how to install LyX and Qt under Cygwin</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://wiki.lyx.org/LyX/LyXOnCygwin">LyX wiki about how to install LyX and Qt under Cygwin</a></li>
+  <li>From http://developer.qt.nokia.com/faq/answer/do_you_support_using_qt_in_the_cygwin_shell_on_windows:<br/>
+      <!-- start of code -->
+      <table border = "1"><tr><td><code>
+      Question:<br/>
+      <br/>
+      Do you support using Qt in the Cygwin shell on Windows?<br/>
+      Answer:<br/>
+      <br/>
+      We don't support the Cygwin shell with Qt, mainly because Cygwin uses<br/>
+      different directory separators than the Windows ones, therefore our apps are<br/>
+      not likely to work correctly. You should use the cmd shell instead.<br/>
+      </code></td></tr></table>
+      <!-- end of the code -->
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Wt example 3: broadcasting</title>
+  <meta name="description" content="C++ Wt example 3: broadcasting"/>
+  <meta name="keywords" content="C++ Wt example 3: broadcasting code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtExample3.htm">Wt example 3: broadcasting</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppWtExample3.htm">Wt example 3: broadcasting</a> is an <a href="CppArticle.htm">article</a> about 
+a simple <a href="CppWt.htm">Wt</a> <a href="CppWtExample.htm">example</a> in which is shown how multiple clients can respond to the same
+data source and be notified when needed.</p>
+<p>&nbsp;</p>
+<p>The code shown is from the Wt git repository from 'examples/feature/broadcast/Broadcast.C'. Underneath the code it
+its working is explained.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppWtExample3.zip">Download the Qt Creator project 'CppWtExample3' (zip)</a></li>
+  <li><a href="CppWtExample3.png">View the class architecture of this example (png)</a></li>
+  <li><a href="CppWtExample3.dia">View the class architecture of this example (dia)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>This <a href="CppWtExample.htm">example</a> gives a complete view of all bookkeeping necessary.
+<a href="CppWtExample4.htm">Wt example 4: broadcasting</a> shows how to use two <a href="CppClass.htm">classes</a>
+to do this bookkeeping for you, resulting in shorter code.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+ * Copyright (C) 2010 Emweb bvba, Kessel-Lo, Belgium.<br/>
+ *<br/>
+ * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.htm">WText</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WServer&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/thread.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * This example illustrates how <b><a href="CppUsing.htm">using</a></b> WServer::post() you may notify<br/>
+ * one or more sessions of shared data changes.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * Simple <a href="CppInterface.htm">interface</a> to uniquely identify a client<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> Client {<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * A (singleton) server <b><a href="CppClass.htm">class</a></b> which would protect and manage a shared<br/>
+ * resource. In our example we take a simple counter as data.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> Server {<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;Server()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: counter_(0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop_(<b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;thread_ <a href="CppOperatorAssign.htm">=</a> <a href="CppThread.htm">boost::thread</a>(<a href="CppBind.htm">boost::bind</a>(&amp;Server::run, <b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;~Server()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;stop_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;thread_.join();<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> connect(Client *client, <b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppFunction.htm">function</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt;&amp; <a href="CppFunction.htm">function</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex::<a href="CppScope.htm">scope</a>d_lock lock(mutex_);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;connections_.push_back<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Connection(<a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>()-&gt;sessionId(), client, <a href="CppFunction.htm">function</a>));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> disconnect(Client *client)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex::<a href="CppScope.htm">scope</a>d_lock lock(mutex_);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; connections_.size(); <a href="CppOperatorIncrement.htm">++</a>i) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (connections_[i].client <a href="CppOperatorEqual.htm">==</a> client) {<br/>
+&nbsp;&nbsp;connections_.erase(connections_.begin() <a href="CppOperatorPlus.htm">+</a> i);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> getCount() <b><a href="CppConst.htm">const</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex::<a href="CppScope.htm">scope</a>d_lock lock(mutex_);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> counter_;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Connection {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Connection(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; id, Client *c,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppFunction.htm">function</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt;&amp; f)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: sessionId(id),<br/>
+&nbsp;&nbsp;client(c),<br/>
+&nbsp;&nbsp;<a href="CppFunction.htm">function</a>(f)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ }<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> sessionId;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Client *client;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppFunction.htm">function</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt; <a href="CppFunction.htm">function</a>;<br/>
+&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoost.htm">boost</a>::mutex mutex_;<br/>
+&nbsp;&nbsp;<a href="CppThread.htm">boost::thread</a> thread_;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> counter_;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> stop_;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Connection&gt; connections_;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> run();<br/>
+};<br/>
+<br/>
+Server server;<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * A <a href="CppWidget.htm">widget</a> which displays the server data, keeping itself up-to-date<br/>
+ * <b><a href="CppUsing.htm">using</a></b> server push.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> Client<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWText.htm">Wt::WText</a>, <b><a href="CppPublic.htm">public</a></b> Client<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;Client<a href="CppWidget.htm">Widget</a>(<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWText.htm">Wt::WText</a>(parent)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;server.connect(<b><a href="CppThis.htm">this</a></b>, <a href="CppBind.htm">boost::bind</a>(&amp;Client<a href="CppWidget.htm">Widget</a>::updateData, <b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>()-&gt;enableUpdates(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;updateData();<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Client<a href="CppWidget.htm">Widget</a>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;server.disconnect(<b><a href="CppThis.htm">this</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>()-&gt;enableUpdates(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> updateData() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setText(<a href="CppWString.htm">Wt::WString</a>("count: {1}").arg(server.getCount()));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>()-&gt;triggerUpdate();<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Server::run()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * This method simulates changes to the data that happen in a background<br/>
+&nbsp;&nbsp; * thread.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (;;) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<b><a href="CppThis.htm">this</a></b>_thread::sleep(<a href="CppBoost.htm">boost</a>::posix_<a href="CppTime.htm">time</a>::seconds(1));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stop_)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex::<a href="CppScope.htm">scope</a>d_lock lock(mutex_);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>counter_;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> This is where we notify all connected clients. <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; connections_.size(); <a href="CppOperatorIncrement.htm">++</a>i) {<br/>
+&nbsp;&nbsp;Connection&amp; c <a href="CppOperatorAssign.htm">=</a> connections_[i];<br/>
+&nbsp;&nbsp;<a href="CppWServer.htm">Wt::WServer</a>::<a href="CppInstance.htm">instance</a>()-&gt;post(c.sessionId, c.<a href="CppFunction.htm">function</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a> *app <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWApplication.htm">Wt::WApplication</a>(env);<br/>
+&nbsp;&nbsp;app-&gt;setCssTheme("");<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Client<a href="CppWidget.htm">Widget</a>(app-&gt;root());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> app;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.htm">Application</a>);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppWtExample3.zip">Download the Qt Creator project 'CppWtExample3' (zip)</a></li>
+  <li><a href="CppWtExample3.png">View the class architecture of this example (png)</a></li>
+  <li><a href="CppWtExample3.dia">View the class architecture of this example (dia)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>This example has the following players:</p>
+<ul>
+  <li>Client: a client <a href="CppClass.htm">class</a></li>
+  <li>Server: a server <a href="CppClass.htm">class</a>, where Clients can connect and disconnect to</li>
+  <li>ClientWidget: <a href="CppClass.htm">class</a> to display a Client</li>
+  <li>a global Server</li>
+</ul>
+<p>&nbsp;</p>
+<p>In general, the program does the following:</p>
+<ul>
+  <li>The main action is in Server::Run: every second it posts to the Clients that are connect to it</li>
+  <li>The Clients connect to the Server and let the Server work on them</li>
+</ul>
+<p>&nbsp;</p>
+<p>First, the Server will be discussed in detail, as it is at the heart of the program. Then the ClientWidgets
+interplay with it is checked in more detail.</p>
+<p>&nbsp;</p>
+<p>Server has the following <a href="CppMemberFunction.htm">member functions</a>, which I explain in detail:</p>
+<ul>
+  <li>
+    <a href="CppConstructor.htm">constructor</a>: set the data member 'counter_' to zero, set the data member 'stop_' to false and create a <a href="CppThread.htm">boost::thread</a>, 'thread_', that calls Server::run
+  </li>
+  <li>
+    <a href="CppDestructor.htm">destructor</a>: set the data member 'stop_' to true and stop the <a href="CppThread.htm">boost::thread</a> 'thread_'
+  </li>
+  <li>
+    Server::run: contains the action: it consists of an infinite loop, that starts with doing nothing for a second. Then Server 
+    checks if it should terminate this loop, by checking 'stop_'. The only 'real data' 'counter_' is incremented.
+    Then, in a locked scope, all connected clients are notified.
+    The most important line is the call of Wt::WServer::post: all clients (identified by their session ID's are post a function that these
+    clients submitted themselves upon connecting
+  </li>
+  <li>
+    Server::connect: this method is called by the Clients: a client connecting to Server denotes that it wants to have the supplied
+    <a href="CppFunction.htm">boost::function</a> called. In this example, the ClientWidgets want to have their ClientWidget::updateData
+    method called: a Client simply wants to be updated when needed!
+  </li>
+  <li>
+    Server::disconnect: this method is called by a Client when it is destroyed. This method takes that Client of the list of 
+    Clients being notified
+  </li>
+  <li>
+    Server::getCount: this method is called by a Client and let it obtain the only 'real data': the value of the Server its counter. This method
+    is called when a Client is updated
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>ClientWidget has the following <a href="CppMemberFunction.htm">member functions</a>:</p>
+<ul>
+  <li>
+    <a href="CppConstructor.htm">constructor</a>: in it, ClientWidget connects to Server and gives it the ClientWidget::updateData function
+    to call. Or: it lets itself be notified by letting the Server call ClientWidget::updateData. Additionaly, Wt::WApplication::enableUpdates
+    is set to true and ClientWidget its first update is called
+  </li>
+  <li>
+    <a href="CppDestructor.htm">destructor</a>: the ClientWidget notifies the Server that it does not want to be notified any longer (as it
+    will not exist after destruction anymore. Additionaly, Wt::WApplication::enableUpdates
+    is set to false
+  </li>
+  <li>
+    ClientWidget::updateData: the main method of ClientWidget: it requests the Server for its only data, by calling Server::getCounter,
+    sets its text to this value and calls Wt::WApplication::triggerUpdate
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>The above being the main story, there is the following to be noted:</p>
+<ul>
+  <li>
+    Every method in Server that writes to it, is locked by a boost::mutex. This ensures that only one thread is writing to
+    the same data at the same time
+  </li>
+  <li>
+    Every ClientWidget sets Wt::WApplication::enableUpdates to true upon construction, calls Wt::WApplication::triggerUpdate
+    in its most action-packed method and sets Wt::WApplication::enableUpdates to false upon destruction
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

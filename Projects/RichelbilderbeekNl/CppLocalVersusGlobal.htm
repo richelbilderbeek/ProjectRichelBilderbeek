@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>LocalVersusGlobal</title>
+  <meta name="description" content="C++ LocalVersusGlobal"/>
+  <meta name="keywords" content="C++ LocalVersusGlobal local versus member variable versus global speed benchmark code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLocalVersusGlobal.htm">LocalVersusGlobal</a></h1>
+<p>&nbsp;</p>
+<p>A simple <a href="CppBenchmark.htm">benchmark</a> that tests the speed of <a href="CppLocal.htm">local</a>
+versus <a href="CppMemberVariable.htm">member variables</a> versus <a href="CppGlobal.htm">global</a> <a href="CppVariable.htm">variables</a>.</p>
+<p>&nbsp;</p>
+<p>The following tests are performed:</p>
+<ul>
+  <li>A complex calculation on only <a href="CppLocal.htm">local</a> <a href="CppVariable.htm">variables</a></li>
+  <li>A complex calculation on only <a href="CppMemberVariable.htm">member variables</a></li>
+  <li>A complex calculation on only <a href="CppMemberVariable.htm">member variables</a>, that are first copied to <a href="CppLocal.htm">local</a> <a href="CppVariable.htm">variables</a>. In the end of the calculation, the <a href="CppLocal.htm">local</a> <a href="CppVariable.htm">variables</a> are written to the <a href="CppMemberVariable.htm">member variables</a> they originated from</li>
+  <li>A complex calculation on only <a href="CppGlobal.htm">global</a> <a href="CppVariable.htm">variables</a></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppLocalVersusGlobal_1_2.zip">Download the Qt Creator project 'CppLocalVersusGlobal' (version 1.2)(zip)</a></li>
+  <li><a href="CppLocalVersusGlobalExe_1_0.zip">Download the Windows executable of 'CppLocalVersusGlobal' (version 1.0)(zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Avoid using <a href="CppGlobal.htm">global</a> data [1-4].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppLocalVersusGlobal.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+QMAKE_CXXFLAGS += <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>Benchmark to compare the speed of local versus global variables<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppLocalVersusGlobal.htm<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> g_a <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_b <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_c <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_d <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_e <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_f <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_g <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_h <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_i <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_j <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_k <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_l <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_m <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_n <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_o <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_p <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_q <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_r <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_s <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_t <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_u <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_v <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_w <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_x <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_y <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_z <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> g_count <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> TestGlobals()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> t;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_a=0; g_a<a href="CppOperatorNotEqual.htm">!=</a>32; <a href="CppOperatorPlus.htm">+</a>+g_a)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_b=0; g_b<a href="CppOperatorNotEqual.htm">!=</a>g_a; <a href="CppOperatorPlus.htm">+</a>+g_b)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_c=0; g_c<a href="CppOperatorNotEqual.htm">!=</a>g_b; <a href="CppOperatorPlus.htm">+</a>+g_c)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_d=0; g_d<a href="CppOperatorNotEqual.htm">!=</a>g_c; <a href="CppOperatorPlus.htm">+</a>+g_d)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_e=0; g_e<a href="CppOperatorNotEqual.htm">!=</a>g_d; <a href="CppOperatorPlus.htm">+</a>+g_e)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_f=0; g_f<a href="CppOperatorNotEqual.htm">!=</a>g_e; <a href="CppOperatorPlus.htm">+</a>+g_f)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_g=0; g_g<a href="CppOperatorNotEqual.htm">!=</a>g_f; <a href="CppOperatorPlus.htm">+</a>+g_g)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_h=0; g_h<a href="CppOperatorNotEqual.htm">!=</a>g_g; <a href="CppOperatorPlus.htm">+</a>+g_h)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_i=0; g_i<a href="CppOperatorNotEqual.htm">!=</a>g_h; <a href="CppOperatorPlus.htm">+</a>+g_i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_j=0; g_j<a href="CppOperatorNotEqual.htm">!=</a>g_i; <a href="CppOperatorPlus.htm">+</a>+g_j)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_k=0; g_k<a href="CppOperatorNotEqual.htm">!=</a>g_j; <a href="CppOperatorPlus.htm">+</a>+g_k)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_l=0; g_l<a href="CppOperatorNotEqual.htm">!=</a>g_k; <a href="CppOperatorPlus.htm">+</a>+g_l)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_m=0; g_m<a href="CppOperatorNotEqual.htm">!=</a>g_l; <a href="CppOperatorPlus.htm">+</a>+g_m)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_n=0; g_n<a href="CppOperatorNotEqual.htm">!=</a>g_m; <a href="CppOperatorPlus.htm">+</a>+g_n)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_o=0; g_o<a href="CppOperatorNotEqual.htm">!=</a>g_n; <a href="CppOperatorPlus.htm">+</a>+g_o)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_p=0; g_p<a href="CppOperatorNotEqual.htm">!=</a>g_o; <a href="CppOperatorPlus.htm">+</a>+g_p)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_q=0; g_q<a href="CppOperatorNotEqual.htm">!=</a>g_p; <a href="CppOperatorPlus.htm">+</a>+g_q)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_r=0; g_r<a href="CppOperatorNotEqual.htm">!=</a>g_q; <a href="CppOperatorPlus.htm">+</a>+g_r)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_s=0; g_s<a href="CppOperatorNotEqual.htm">!=</a>g_r; <a href="CppOperatorPlus.htm">+</a>+g_s)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_t=0; g_t<a href="CppOperatorNotEqual.htm">!=</a>g_s; <a href="CppOperatorPlus.htm">+</a>+g_t)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_u=0; g_u<a href="CppOperatorNotEqual.htm">!=</a>g_t; <a href="CppOperatorPlus.htm">+</a>+g_u)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_v=0; g_v<a href="CppOperatorNotEqual.htm">!=</a>g_u; <a href="CppOperatorPlus.htm">+</a>+g_v)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_w=0; g_w<a href="CppOperatorNotEqual.htm">!=</a>g_v; <a href="CppOperatorPlus.htm">+</a>+g_w)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_x=0; g_x<a href="CppOperatorNotEqual.htm">!=</a>g_w; <a href="CppOperatorPlus.htm">+</a>+g_x)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_y=0; g_y<a href="CppOperatorNotEqual.htm">!=</a>g_x; <a href="CppOperatorPlus.htm">+</a>+g_y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (g_z=0; g_z<a href="CppOperatorNotEqual.htm">!=</a>g_y; <a href="CppOperatorPlus.htm">+</a>+g_z)<br/>
+&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+g_count;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> t.elapsed();<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> g_count <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppTime.htm">time</a>;<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MembersOnly<br/>
+{<br/>
+&nbsp;&nbsp;MembersOnly() : m_count(0) {}<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> Test()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_a=0; m_a<a href="CppOperatorNotEqual.htm">!=</a>32; <a href="CppOperatorPlus.htm">+</a>+m_a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_b=0; m_b<a href="CppOperatorNotEqual.htm">!=</a>m_a; <a href="CppOperatorPlus.htm">+</a>+m_b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_c=0; m_c<a href="CppOperatorNotEqual.htm">!=</a>m_b; <a href="CppOperatorPlus.htm">+</a>+m_c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_d=0; m_d<a href="CppOperatorNotEqual.htm">!=</a>m_c; <a href="CppOperatorPlus.htm">+</a>+m_d)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_e=0; m_e<a href="CppOperatorNotEqual.htm">!=</a>m_d; <a href="CppOperatorPlus.htm">+</a>+m_e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_f=0; m_f<a href="CppOperatorNotEqual.htm">!=</a>m_e; <a href="CppOperatorPlus.htm">+</a>+m_f)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_g=0; m_g<a href="CppOperatorNotEqual.htm">!=</a>m_f; <a href="CppOperatorPlus.htm">+</a>+m_g)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_h=0; m_h<a href="CppOperatorNotEqual.htm">!=</a>m_g; <a href="CppOperatorPlus.htm">+</a>+m_h)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_i=0; m_i<a href="CppOperatorNotEqual.htm">!=</a>m_h; <a href="CppOperatorPlus.htm">+</a>+m_i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_j=0; m_j<a href="CppOperatorNotEqual.htm">!=</a>m_i; <a href="CppOperatorPlus.htm">+</a>+m_j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_k=0; m_k<a href="CppOperatorNotEqual.htm">!=</a>m_j; <a href="CppOperatorPlus.htm">+</a>+m_k)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_l=0; m_l<a href="CppOperatorNotEqual.htm">!=</a>m_k; <a href="CppOperatorPlus.htm">+</a>+m_l)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_m=0; m_m<a href="CppOperatorNotEqual.htm">!=</a>m_l; <a href="CppOperatorPlus.htm">+</a>+m_m)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_n=0; m_n<a href="CppOperatorNotEqual.htm">!=</a>m_m; <a href="CppOperatorPlus.htm">+</a>+m_n)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_o=0; m_o<a href="CppOperatorNotEqual.htm">!=</a>m_n; <a href="CppOperatorPlus.htm">+</a>+m_o)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_p=0; m_p<a href="CppOperatorNotEqual.htm">!=</a>m_o; <a href="CppOperatorPlus.htm">+</a>+m_p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_q=0; m_q<a href="CppOperatorNotEqual.htm">!=</a>m_p; <a href="CppOperatorPlus.htm">+</a>+m_q)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_r=0; m_r<a href="CppOperatorNotEqual.htm">!=</a>m_q; <a href="CppOperatorPlus.htm">+</a>+m_r)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_s=0; m_s<a href="CppOperatorNotEqual.htm">!=</a>m_r; <a href="CppOperatorPlus.htm">+</a>+m_s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_t=0; m_t<a href="CppOperatorNotEqual.htm">!=</a>m_s; <a href="CppOperatorPlus.htm">+</a>+m_t)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_u=0; m_u<a href="CppOperatorNotEqual.htm">!=</a>m_t; <a href="CppOperatorPlus.htm">+</a>+m_u)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_v=0; m_v<a href="CppOperatorNotEqual.htm">!=</a>m_u; <a href="CppOperatorPlus.htm">+</a>+m_v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_w=0; m_w<a href="CppOperatorNotEqual.htm">!=</a>m_v; <a href="CppOperatorPlus.htm">+</a>+m_w)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_x=0; m_x<a href="CppOperatorNotEqual.htm">!=</a>m_w; <a href="CppOperatorPlus.htm">+</a>+m_x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_y=0; m_y<a href="CppOperatorNotEqual.htm">!=</a>m_x; <a href="CppOperatorPlus.htm">+</a>+m_y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (m_z=0; m_z<a href="CppOperatorNotEqual.htm">!=</a>m_y; <a href="CppOperatorPlus.htm">+</a>+m_z)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_count;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> t.elapsed();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_count <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppTime.htm">time</a>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_a;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_b;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_c;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_d;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_e;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_f;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_g;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_h;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_i;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_j;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_k;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_l;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_m;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_n;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_o;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_p;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_q;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_r;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_s;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_t;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_u;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_v;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_w;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_y;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_z;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_count;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MembersToLocal<br/>
+{<br/>
+&nbsp;&nbsp;MembersToLocal() : m_count(0) {}<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> Test()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> member_count <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> m_a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> m_b;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> c <a href="CppOperatorAssign.htm">=</a> m_c;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> d <a href="CppOperatorAssign.htm">=</a> m_d;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> e <a href="CppOperatorAssign.htm">=</a> m_e;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> f <a href="CppOperatorAssign.htm">=</a> m_f;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> m_g;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> m_h;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> m_i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> j <a href="CppOperatorAssign.htm">=</a> m_j;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> k <a href="CppOperatorAssign.htm">=</a> m_k;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> l <a href="CppOperatorAssign.htm">=</a> m_l;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m <a href="CppOperatorAssign.htm">=</a> m_m;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> m_n;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> o <a href="CppOperatorAssign.htm">=</a> m_o;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> p <a href="CppOperatorAssign.htm">=</a> m_p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> q <a href="CppOperatorAssign.htm">=</a> m_q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> m_r;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> s <a href="CppOperatorAssign.htm">=</a> m_s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> t <a href="CppOperatorAssign.htm">=</a> m_t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> u <a href="CppOperatorAssign.htm">=</a> m_u;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> v <a href="CppOperatorAssign.htm">=</a> m_v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> m_w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> m_x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> m_y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> z <a href="CppOperatorAssign.htm">=</a> m_z;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> <a href="CppTime.htm">time</a>r;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> a=0; a<a href="CppOperatorNotEqual.htm">!=</a>32; <a href="CppOperatorPlus.htm">+</a>+a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> b=0; b<a href="CppOperatorNotEqual.htm">!=</a>a; <a href="CppOperatorPlus.htm">+</a>+b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> c=0; c<a href="CppOperatorNotEqual.htm">!=</a>b; <a href="CppOperatorPlus.htm">+</a>+c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> d=0; d<a href="CppOperatorNotEqual.htm">!=</a>c; <a href="CppOperatorPlus.htm">+</a>+d)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> e=0; e<a href="CppOperatorNotEqual.htm">!=</a>d; <a href="CppOperatorPlus.htm">+</a>+e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> f=0; f<a href="CppOperatorNotEqual.htm">!=</a>e; <a href="CppOperatorPlus.htm">+</a>+f)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> g=0; g<a href="CppOperatorNotEqual.htm">!=</a>f; <a href="CppOperatorPlus.htm">+</a>+g)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> h=0; h<a href="CppOperatorNotEqual.htm">!=</a>g; <a href="CppOperatorPlus.htm">+</a>+h)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>i; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> k=0; k<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorPlus.htm">+</a>+k)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> l=0; l<a href="CppOperatorNotEqual.htm">!=</a>k; <a href="CppOperatorPlus.htm">+</a>+l)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> m=0; m<a href="CppOperatorNotEqual.htm">!=</a>l; <a href="CppOperatorPlus.htm">+</a>+m)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> n=0; n<a href="CppOperatorNotEqual.htm">!=</a>m; <a href="CppOperatorPlus.htm">+</a>+n)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> o=0; o<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+o)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> p=0; p<a href="CppOperatorNotEqual.htm">!=</a>o; <a href="CppOperatorPlus.htm">+</a>+p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> q=0; q<a href="CppOperatorNotEqual.htm">!=</a>p; <a href="CppOperatorPlus.htm">+</a>+q)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> r=0; r<a href="CppOperatorNotEqual.htm">!=</a>q; <a href="CppOperatorPlus.htm">+</a>+r)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> s=0; s<a href="CppOperatorNotEqual.htm">!=</a>r; <a href="CppOperatorPlus.htm">+</a>+s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> t=0; t<a href="CppOperatorNotEqual.htm">!=</a>s; <a href="CppOperatorPlus.htm">+</a>+t)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> u=0; u<a href="CppOperatorNotEqual.htm">!=</a>t; <a href="CppOperatorPlus.htm">+</a>+u)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> v=0; v<a href="CppOperatorNotEqual.htm">!=</a>u; <a href="CppOperatorPlus.htm">+</a>+v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> w=0; w<a href="CppOperatorNotEqual.htm">!=</a>v; <a href="CppOperatorPlus.htm">+</a>+w)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>x; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> z=0; z<a href="CppOperatorNotEqual.htm">!=</a>y; <a href="CppOperatorPlus.htm">+</a>+z)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+member_count;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_a <a href="CppOperatorAssign.htm">=</a> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_b <a href="CppOperatorAssign.htm">=</a> b;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_c <a href="CppOperatorAssign.htm">=</a> c;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_d <a href="CppOperatorAssign.htm">=</a> d;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_e <a href="CppOperatorAssign.htm">=</a> e;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_f <a href="CppOperatorAssign.htm">=</a> f;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_g <a href="CppOperatorAssign.htm">=</a> g;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_h <a href="CppOperatorAssign.htm">=</a> h;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_i <a href="CppOperatorAssign.htm">=</a> i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_j <a href="CppOperatorAssign.htm">=</a> j;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_k <a href="CppOperatorAssign.htm">=</a> k;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_l <a href="CppOperatorAssign.htm">=</a> l;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_m <a href="CppOperatorAssign.htm">=</a> m;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_n <a href="CppOperatorAssign.htm">=</a> n;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_o <a href="CppOperatorAssign.htm">=</a> o;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_p <a href="CppOperatorAssign.htm">=</a> p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_q <a href="CppOperatorAssign.htm">=</a> q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_r <a href="CppOperatorAssign.htm">=</a> r;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_s <a href="CppOperatorAssign.htm">=</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_t <a href="CppOperatorAssign.htm">=</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_u <a href="CppOperatorAssign.htm">=</a> u;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_v <a href="CppOperatorAssign.htm">=</a> v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_w <a href="CppOperatorAssign.htm">=</a> w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_x <a href="CppOperatorAssign.htm">=</a> x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_y <a href="CppOperatorAssign.htm">=</a> y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_z <a href="CppOperatorAssign.htm">=</a> z;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_count <a href="CppOperatorAssign.htm">=</a> member_count;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>r.elapsed();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_count <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppTime.htm">time</a>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_a;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_b;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_c;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_d;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_e;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_f;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_g;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_h;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_i;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_j;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_k;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_l;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_m;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_n;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_o;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_p;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_q;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_r;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_s;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_t;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_u;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_v;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_w;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_y;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_z;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_count;<br/>
+};<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> TestLocals()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> local_count <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> t;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> a=0; a<a href="CppOperatorNotEqual.htm">!=</a>32; <a href="CppOperatorPlus.htm">+</a>+a)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> b=0; b<a href="CppOperatorNotEqual.htm">!=</a>a; <a href="CppOperatorPlus.htm">+</a>+b)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> c=0; c<a href="CppOperatorNotEqual.htm">!=</a>b; <a href="CppOperatorPlus.htm">+</a>+c)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> d=0; d<a href="CppOperatorNotEqual.htm">!=</a>c; <a href="CppOperatorPlus.htm">+</a>+d)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> e=0; e<a href="CppOperatorNotEqual.htm">!=</a>d; <a href="CppOperatorPlus.htm">+</a>+e)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> f=0; f<a href="CppOperatorNotEqual.htm">!=</a>e; <a href="CppOperatorPlus.htm">+</a>+f)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> g=0; g<a href="CppOperatorNotEqual.htm">!=</a>f; <a href="CppOperatorPlus.htm">+</a>+g)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> h=0; h<a href="CppOperatorNotEqual.htm">!=</a>g; <a href="CppOperatorPlus.htm">+</a>+h)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>h; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>i; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> k=0; k<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorPlus.htm">+</a>+k)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> l=0; l<a href="CppOperatorNotEqual.htm">!=</a>k; <a href="CppOperatorPlus.htm">+</a>+l)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> m=0; m<a href="CppOperatorNotEqual.htm">!=</a>l; <a href="CppOperatorPlus.htm">+</a>+m)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> n=0; n<a href="CppOperatorNotEqual.htm">!=</a>m; <a href="CppOperatorPlus.htm">+</a>+n)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> o=0; o<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+o)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> p=0; p<a href="CppOperatorNotEqual.htm">!=</a>o; <a href="CppOperatorPlus.htm">+</a>+p)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> q=0; q<a href="CppOperatorNotEqual.htm">!=</a>p; <a href="CppOperatorPlus.htm">+</a>+q)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> r=0; r<a href="CppOperatorNotEqual.htm">!=</a>q; <a href="CppOperatorPlus.htm">+</a>+r)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> s=0; s<a href="CppOperatorNotEqual.htm">!=</a>r; <a href="CppOperatorPlus.htm">+</a>+s)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> t=0; t<a href="CppOperatorNotEqual.htm">!=</a>s; <a href="CppOperatorPlus.htm">+</a>+t)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> u=0; u<a href="CppOperatorNotEqual.htm">!=</a>t; <a href="CppOperatorPlus.htm">+</a>+u)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> v=0; v<a href="CppOperatorNotEqual.htm">!=</a>u; <a href="CppOperatorPlus.htm">+</a>+v)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> w=0; w<a href="CppOperatorNotEqual.htm">!=</a>v; <a href="CppOperatorPlus.htm">+</a>+w)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>w; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>x; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> z=0; z<a href="CppOperatorNotEqual.htm">!=</a>y; <a href="CppOperatorPlus.htm">+</a>+z)<br/>
+&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+local_count;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> t.elapsed();<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> local_count <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppTime.htm">time</a>;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> t_global <a href="CppOperatorAssign.htm">=</a> TestGlobals();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> t_local&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> TestLocals();<br/>
+&nbsp;&nbsp;MembersOnly m1;<br/>
+&nbsp;&nbsp;MembersToLocal m2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> t_m1 <a href="CppOperatorAssign.htm">=</a> m1.Test();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> t_m2 <a href="CppOperatorAssign.htm">=</a> m2.Test();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Globals: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t_global <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Members only: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t_m1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Members with local variables: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t_m2 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Locals : " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t_local&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds.\n";<br/>
+<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Results</h2>
+<p>&nbsp;</p>
+<p>On a laptop (built in around 2011) with <a href="CppLubuntu.htm">Lubuntu</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+906192<br/>
+906192<br/>
+906192<br/>
+906192<br/>
+Globals: 7.84 seconds.<br/>
+Members only: 5.9 seconds.<br/>
+Members with local variables: 5.78 seconds.<br/>
+Locals : 5.8 seconds.<br/>
+</code></td></tr></table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm"> References</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. Modern C++ Design. 2001. ISBN: 0201704315. Item 10: 'Minimize global and shared data'.</li>
+  <li><a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. Modern C++ Design. 2001. ISBN: 0201704315. Item 18: 'Declare variables as locally as possible'.</li>
+  <li>Stephen C. Dewhurst. C++ Gotchas. 2003. ISBN: 0-321-12518-5. Gotcha #3: 'Avoid global variables'.</li>
+  <li><a href="http://www.parashift.com/c++-faq/global-vars.html">C++ FAQ Lite</a>: 'The names of global variables should start with //' and 'Instead of using a global variable, you should seriously consider if there are ways to limit the variable's visibility and/or lifetime'.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

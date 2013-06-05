@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>compile error: _algo.c: Cannot modify a const object</title>
+  <meta name="description" content="C++ compile error _algo.c cannot modify a const object"/>
+  <meta name="keywords" content="C++ compile error _algo.c algo c cannot modify a const object"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCompileError_algoCcannotModifyAconstObject.htm">_algo.c: Cannot modify a const object</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCompileError.htm">Compile error</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full error message</h2>
+<p>&nbsp;</p>
+<!-- Start code-->
+<table border = "1"><tr><td><code>
+[C++ Error] _algo.c(151): E2024 Cannot modify a const object
+</code></td></tr></table>
+<!-- End of code -->
+<p>&nbsp;</p>
+<p>The <a href="CppCompiler.htm">compiler</a> takes you to the following line in _algo.c:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> search_n.  Search <b><a href="CppFor.htm">for</a></b> __count consecutive copies of __val.<br/>
+&nbsp;<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> _ForwardIter, <b><a href="CppClass.htm">class</a></b> _Integer, <b><a href="CppClass.htm">class</a></b> _Tp&gt;<br/>
+_ForwardIter search_n(_ForwardIter __first, _ForwardIter __last,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Integer __count, <b><a href="CppConst.htm">const</a></b> _Tp&amp; __val) {<br/>
+&nbsp;&nbsp;_STLP_DEBUG_CHECK(__check_range(__first, __last))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (__count <a href="CppOperatorLessEqual.htm">&lt;=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __first;<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;__first <a href="CppOperatorAssign.htm">=</a> find(__first, __last, __val);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (__first <a href="CppOperatorNotEqual.htm">!=</a> __last) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Integer __n <a href="CppOperatorAssign.htm">=</a> __count <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ForwardIter __i <a href="CppOperatorAssign.htm">=</a> __first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>__i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (__i <a href="CppOperatorNotEqual.htm">!=</a> __last &amp;&amp; __n <a href="CppOperatorNotEqual.htm">!=</a> 0 &amp;&amp; *__i <a href="CppOperatorEqual.htm">==</a> __val) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>__i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>__n; <a href="CppComment.htm">//</a> <strong>&lt;---THIS LINE</strong><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (__n <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__first <a href="CppOperatorAssign.htm">=</a> find(__i, __last, __val);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __last;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppBuilder.htm">C++ Builder</a> 6.0</p>
+<p><a href="CppCompiler.htm">Compiler</a>: Borland BCC32.EXE version 6.0.10.157</p>
+<p>Project type: Console Application</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats<br/>
+&nbsp;&nbsp;<a href="CppStd.htm">std</a>::search_n( s.begin(),s.end(),n,'*');<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution/workaround</h2>
+<p>&nbsp;</p>
+<p>Remove the <a href="CppConst.htm">const</a> of the <a href="CppInt.htm">int</a> for the number of repeats, by <a href="CppStatic_cast.htm">static_cast</a>ing it in the <a href="CppFunction.htm">function</a> call.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats<br/>
+&nbsp;&nbsp;<a href="CppStd.htm">std</a>::search_n( s.begin(),s.end(),<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(n),'*'); <a href="CppComment.htm">//</a>n must be copied to <b><a href="CppInt.htm">int</a></b> type<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that a <a href="CppConst_cast.htm">const_cast</a> does not work. Personally, I would find this more appropriate, but I do not understand why this keeps giving the same error.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>In-depth cause and better solution for advanced programmers</h2>
+<p>&nbsp;</p>
+<p>The actual problem is in _algo.c. I have made all relevant information <strong>strong</strong>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> search_n.  Search <b><a href="CppFor.htm">for</a></b> __count consecutive copies of __val.<br/>
+&nbsp;<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> _ForwardIter, <b><a href="CppClass.htm">class</a></b> <strong>_Integer</strong>, <b><a href="CppClass.htm">class</a></b> _Tp&gt;<br/>
+_ForwardIter search_n(_ForwardIter __first, _ForwardIter __last,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>_Integer</strong> __count, <b><a href="CppConst.htm">const</a></b> _Tp&amp; __val) {<br/>
+&nbsp;&nbsp;_STLP_DEBUG_CHECK(__check_range(__first, __last))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (__count <a href="CppOperatorLessEqual.htm">&lt;=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __first;<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;__first <a href="CppOperatorAssign.htm">=</a> find(__first, __last, __val);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (__first <a href="CppOperatorNotEqual.htm">!=</a> __last) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>_Integer</strong> __n <a href="CppOperatorAssign.htm">=</a> __count <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ForwardIter __i <a href="CppOperatorAssign.htm">=</a> __first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>__i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (__i <a href="CppOperatorNotEqual.htm">!=</a> __last &amp;&amp; __n <a href="CppOperatorNotEqual.htm">!=</a> 0 &amp;&amp; *__i <a href="CppOperatorEqual.htm">==</a> __val) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>__i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>__n;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (__n <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__first <a href="CppOperatorAssign.htm">=</a> find(__i, __last, __val);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __last;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Because _Integer is a <a href="CppTemplate.htm">template</a> type, the <a href="CppConst.htm">constness</a> of the __count argument is also taken into account. The <a href="CppLocal.htm">local</a> _Integer __n, however, must not be <a href="CppConst.htm">const</a>.</p>
+<p>&nbsp;</p>
+<p>A better solution would be to make __n of non-<a href="CppConst.htm">const</a> __integer type, so the user can write <a href="CppConstCorrect.htm">const-correct</a> code.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

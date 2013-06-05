@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Shark example 2: 'friendly' neural net getting ready to tackle the XOR problem</title>
+  <meta name="description" content="C++ Shark example 2: 'friendly' neural net getting ready to tackle the XOR problem"/>
+  <meta name="keywords" content="C++ Shark example 2: 'friendly' neural net getting ready to tackle the XOR problem"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSharkExample2.htm">Example 2: 'friendly' neural net getting ready to tackle the XOR problem</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSharkExample2.htm">Shark example 2: 'friendly' neural net getting ready to tackle the XOR problem</a> is a <a href="CppShark.htm">Shark</a> example to let a <a href="CppNeuralNetwork.htm">neural network</a> train to solve the XOR problem.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppSharkExample2.zip">Download the Qt Creator project 'CppSharkExample2' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: <a href="CppGui.htm">GUI</a> application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li> -->
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+  <li><a href="CppShark.htm">Shark</a>: version 2.3.2</li>
+<!--  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li> -->
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-08-15T23:08:25<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core<br/>
+QT       -= gui<br/>
+TARGET = CppSharkExample2<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+LIBS += -L/usr/local/lib -lshark<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Array/Array.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ReClaM/FFNet.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ReClaM/createConnectionMatrix.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>/NeuralNet is a derived <b><a href="CppClass.htm">class</a></b> of FFNet<br/>
+<a href="CppComment.htm">//</a>/to gain access to some <b><a href="CppProtected.htm">protected</a></b> methods of FFNet<br/>
+<b><a href="CppStruct.htm">struct</a></b> NeuralNet : <b><a href="CppPublic.htm">public</a></b> FFNet<br/>
+{<br/>
+&nbsp;&nbsp;NeuralNet(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_inputs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_outputs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; connection_matrix)<br/>
+&nbsp;&nbsp;: FFNet( n_inputs,n_outputs,connection_matrix) {}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Activate(<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;in)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;activate(in);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> GetNumberOfNeurons()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;numberOfNeurons;<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+NeuralNet CreateNet(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_inputs,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_hidden,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_outputs,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> init_weight_min,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> init_weight_max)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create neural net connection matrix<br/>
+&nbsp;&nbsp;Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; connection_matrix;<br/>
+&nbsp;&nbsp;createConnectionMatrix(connection_matrix,n_inputs, n_hidden, n_outputs);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the feed-forward neural network<br/>
+&nbsp;&nbsp;NeuralNet n(n_inputs, n_outputs, connection_matrix);<br/>
+&nbsp;&nbsp;n.initWeights(init_weight_min,init_weight_max);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> ShowXor(NeuralNet&amp; n)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Show how the neural net responds to input:\n";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> output_neuron_index <a href="CppOperatorAssign.htm">=</a> n.GetNumberOfNeurons() <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; inputs(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.Activate(inputs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> n.outputValue(output_neuron_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "): " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> output<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " (and should get to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (v[0]<a href="CppOperatorNotEqual.htm">!=</a>v[1] ? "1.0" : "0.0") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;")'\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; inputs(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.Activate(inputs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> n.outputValue(output_neuron_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "): " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> output<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " (and should get to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (v[0]<a href="CppOperatorNotEqual.htm">!=</a>v[1] ? "1.0" : "0.0") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;")'\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; inputs(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.Activate(inputs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> n.outputValue(output_neuron_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "): " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> output<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " (and should get to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (v[0]<a href="CppOperatorNotEqual.htm">!=</a>v[1] ? "1.0" : "0.0") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;")'\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; inputs(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.Activate(inputs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> n.outputValue(output_neuron_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "): " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> output<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " (and should get to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (v[0]<a href="CppOperatorNotEqual.htm">!=</a>v[1] ? "1.0" : "0.0") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;")'\n";<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> Rate_xor_success(NeuralNet&amp; n)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> rating <a href="CppOperatorAssign.htm">=</a> 4.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> output_neuron_index <a href="CppOperatorAssign.htm">=</a> n.GetNumberOfNeurons() <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; inputs(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.Activate(inputs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> n.outputValue(output_neuron_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rating <a href="CppOperatorMinusAssign.htm">-=</a> <a href="CppFabs.htm">std::fabs</a>(0.0 <a href="CppOperatorMinus.htm">-</a> output);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; inputs(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.Activate(inputs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> n.outputValue(output_neuron_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rating <a href="CppOperatorMinusAssign.htm">-=</a> <a href="CppFabs.htm">std::fabs</a>(1.0 <a href="CppOperatorMinus.htm">-</a> output);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; inputs(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.Activate(inputs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> n.outputValue(output_neuron_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rating <a href="CppOperatorMinusAssign.htm">-=</a> <a href="CppFabs.htm">std::fabs</a>(1.0 <a href="CppOperatorMinus.htm">-</a> output);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; inputs(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n.Activate(inputs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> n.outputValue(output_neuron_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rating <a href="CppOperatorMinusAssign.htm">-=</a> <a href="CppFabs.htm">std::fabs</a>(0.0 <a href="CppOperatorMinus.htm">-</a> output);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> rating;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;NeuralNet net <a href="CppOperatorAssign.htm">=</a> CreateNet(2,2,1,-0.1,0.1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> success <a href="CppOperatorAssign.htm">=</a> Rate_xor_success(net);<br/>
+&nbsp;&nbsp;ShowXor(net);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Success [0.0 (worst),4.0(perfect)]: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> success <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Screen output</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Show how the neural net responds to input:<br/>
+(0,0): 0.531861 (and should get to 0.0)'<br/>
+(1,0): 0.518577 (and should get to 1.0)'<br/>
+(0,1): 0.543986 (and should get to 1.0)'<br/>
+(1,1): 0.530743 (and should get to 0.0)'<br/>
+Success [0.0 (worst),4.0(perfect)]: 1.99996<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

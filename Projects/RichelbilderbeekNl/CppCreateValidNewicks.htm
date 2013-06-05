@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CreateValidNewicks</title>
+  <meta name="description" content="C++ CreateValidNewicks"/>
+  <meta name="keywords" content="C++ CreateValidNewicks Create get good well well-formed Valid Newicks code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCreateValidNewicks.htm">CreateValidNewicks</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCreateValidNewicks.htm">CreateValidNewicks</a> is a <a href="CppNewick.htm">Newick</a> <a href="CppCodeSnippets.htm">code snippet</a> to create valid <a href="CppNewick.htm">Newick</a>, for testing purposes.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>/<a href="CppCreateValidNewicks.htm">CreateValidNewicks</a> creates <a href="CppString.htm">std::string</a>s<br/>
+<a href="CppComment.htm">//</a>/that can be converted to a <a href="CppNewick.htm">Newick</a><br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppCreateValidNewicks.htm">CreateValidNewicks</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppCreateValidNewicks.htm">CreateValidNewicks</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("(1)");<br/>
+&nbsp;&nbsp;v.push_back("(1,2)");<br/>
+&nbsp;&nbsp;v.push_back("(1,2,3)");<br/>
+&nbsp;&nbsp;v.push_back("(1,(2,3))");<br/>
+&nbsp;&nbsp;v.push_back("(11,(22,33))");<br/>
+&nbsp;&nbsp;v.push_back("((22,33),33)");<br/>
+&nbsp;&nbsp;v.push_back("((1,2),(3,4))");<br/>
+&nbsp;&nbsp;v.push_back("(((1,2),(3,4)),5)");<br/>
+&nbsp;&nbsp;v.push_back("(1,((2,3),(4,5)))");<br/>
+&nbsp;&nbsp;v.push_back("((1,22),(333,4444))");<br/>
+&nbsp;&nbsp;v.push_back("((1,2),(3,4),(5,6))");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

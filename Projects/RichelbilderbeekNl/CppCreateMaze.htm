@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CreateMaze</title>
+  <meta name="description" content="C++ CreateMaze"/>
+  <meta name="keywords" content="C++ CreateMaze create maze creation generate generation"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCreateMaze.htm">CreateMaze</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppMaze.htm">Maze</a> <a href="CppCodeSnippets.htm">code snippet</a> to create a square maze. The <a href="Tools.htm">tool</a> <a href="ToolMazeCreator.htm">Maze Creator</a> demonstrates <a href="CppCreateMaze.htm">CreateMaze</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppCreateMaze.htm">CreateMaze</a> is an improved version of <a href="CppCreateMazeSlowly.htm">CreateMazeSlowly</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="ToolMazeCreator.png">View a screenshot of 'Maze Creator', showing a generated maze</a>.</li>
+  <li><a href="ToolMazeCreator.htm">Go to the page of 'Maze Creator'</a>.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Project and source code</h2>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 <a href="CppGui.htm">GUI</a> Application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>  -->
+  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>Creates a maze<br/>
+<a href="CppComment.htm">//</a> 0 : path<br/>
+<a href="CppComment.htm">//</a> 1 : wall<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCreateMaze.htm">CreateMaze</a>.htm<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppCreateMaze.htm">CreateMaze</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume correct size dimensions<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( sz &gt; 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> sz <a href="CppOperatorModulus.htm">%</a> 4 <a href="CppOperatorEqual.htm">==</a> 3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Size must be 3 <a href="CppOperatorPlus.htm">+</a> (n * 4) <b><a href="CppFor.htm">for</a></b> n &gt; 0");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start with a wall-only maze<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; maze(sz, <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(sz,1));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Prepare maze, remove paths<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> XXXXXXX    1111111<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> X X X X    1212121<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> XXXXXXX    1111111<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> X XOX X <a href="CppOperatorMinus.htm">-</a>&gt; 1210121<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> XXXXXXX    1111111<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> X X X X    1212121<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> XXXXXXX    1111111<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw open spaces<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=1; y&lt;sz; y<a href="CppOperatorPlusAssign.htm">+=</a>2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=1; x&lt;sz; x<a href="CppOperatorPlusAssign.htm">+=</a>2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maze[y][x] <a href="CppOperatorAssign.htm">=</a> 2; <a href="CppComment.htm">//</a>2: unexplored<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mid <a href="CppOperatorAssign.htm">=</a> sz/2;<br/>
+<br/>
+&nbsp;&nbsp;maze[mid][mid] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; v;<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(mid,mid));<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (!v.empty())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set a random explorer square at the back<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(v.back(),v[ <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size())]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check possible adjacent squares<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> v.back().first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> v.back().second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; next;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &gt; 0 <a href="CppOperatorPlus.htm">+</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> maze[y][x-2] <a href="CppOperatorEqual.htm">==</a> 2) next.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(x-2,y));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y &gt; 0 <a href="CppOperatorPlus.htm">+</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> maze[y-2][x] <a href="CppOperatorEqual.htm">==</a> 2) next.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(x,y-2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; sz <a href="CppOperatorMinus.htm">-</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> maze[y][x+2] <a href="CppOperatorEqual.htm">==</a> 2) next.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(x+2,y));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y &lt; sz <a href="CppOperatorMinus.htm">-</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> maze[y+2][x] <a href="CppOperatorEqual.htm">==</a> 2) next.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(x,y+2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Dead end?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (next.empty())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.pop_back();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Select a random next adjacent square<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nextIndex <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(next.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nextX <a href="CppOperatorAssign.htm">=</a> next[nextIndex].first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nextY <a href="CppOperatorAssign.htm">=</a> next[nextIndex].second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Clear next square<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maze[nextY][nextX] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Clear path towards next square<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maze[(y <a href="CppOperatorPlus.htm">+</a> nextY)/2][(x <a href="CppOperatorPlus.htm">+</a> nextX)/2] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> next square to stack<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(nextX,nextY));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> maze;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

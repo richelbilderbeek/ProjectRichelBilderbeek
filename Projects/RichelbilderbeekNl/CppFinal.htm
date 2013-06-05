@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>final</title>
+  <meta name="description" content="C++ final"/>
+  <meta name="keywords" content="C++ C++0x C++11 final keyword code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicCpp11.png" alt="C++11"/> <a href="CppFinal.htm">final</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppFinal.htm">final</a> is a <a href="Cpp11.htm">C++11</a> <a href="CppKeyword.htm">keyword</a> to indicate that
+a <a href="CppVirtual.htm">virtual</a> <a href="CppMemberFunction.htm">member function</a>
+cannot be overriden.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Animal<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Animal() {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Cow : <b><a href="CppPublic.htm">public</a></b> Animal<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> <b><a href="CppFinal.htm">final</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "moo\n"; }<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "walk\n"; }<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> NonCow : <b><a href="CppPublic.htm">public</a></b> Cow<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "MOO\n"; } <a href="CppComment.htm">//</a>WILL NOT COMPILE<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "non walk\n"; }<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Cow cow;<br/>
+&nbsp;&nbsp;cow.MakeSound();<br/>
+&nbsp;&nbsp;cow.Walk();<br/>
+<br/>
+&nbsp;&nbsp;NonCow noncow;<br/>
+&nbsp;&nbsp;noncow.MakeSound();<br/>
+&nbsp;&nbsp;noncow.Walk();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full project info</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppFinal.zip">Download the Qt Creator project 'CppFinal' (zip)</a></li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppFinalExe.zip">Download the Windows executable of 'CppFinal' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppFinal.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppFinal.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Animal<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Animal() {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Cow : <b><a href="CppPublic.htm">public</a></b> Animal<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> <b><a href="CppFinal.htm">final</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "moo\n"; }<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "walk\n"; }<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> NonCow : <b><a href="CppPublic.htm">public</a></b> Cow<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "MOO\n"; } <a href="CppComment.htm">//</a>WILL NOT COMPILE<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "non walk\n"; }<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Cow cow;<br/>
+&nbsp;&nbsp;cow.MakeSound();<br/>
+&nbsp;&nbsp;cow.Walk();<br/>
+<br/>
+&nbsp;&nbsp;NonCow noncow;<br/>
+&nbsp;&nbsp;noncow.MakeSound();<br/>
+&nbsp;&nbsp;noncow.Walk();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>crosscompiletowindows.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="crosscompiletowindows.sh" border = "1"><tr><td><code>
+#!/bin/sh<br/>
+#From http://richelbilderbeek.nl/CppQtCrosscompileToWindowsExample15.htm<br/>
+<br/>
+echo "Cross compiling to Windows"<br/>
+<br/>
+echo "1/2: Creating Windows makefile"<br/>
+i686-pc-mingw32-qmake CppFinal.pro<br/>
+<br/>
+echo "2/2: making makefile"<br/>
+<br/>
+make<br/>
+<br/>
+echo "Done"<br/>
+<br/>
+cd release<br/>
+<br/>
+wine CppFinal.exe<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

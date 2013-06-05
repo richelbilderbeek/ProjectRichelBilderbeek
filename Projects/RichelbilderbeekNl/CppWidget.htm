@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Widget</title>
+  <meta name="description" content="C++ Widget"/>
+  <meta name="keywords" content="C++ Widget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWidget.htm">Widget</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppWidget.htm">widget</a>/control is a user interface element, like a button or checkbox.</p>
+<p>&nbsp;</p>
+<p><a href="CppWidget.htm">Widget</a> is a GUI independent <a href="CppWidget.htm">widget</a> <a href="CppClass.htm">class</a>
+and servers as a <a href="CppBaseClass.htm">base class</a> for others (incomplete list):</p>
+<ul>
+  <li><a href="CppQtDialWidget.htm">QtDialWidget</a></li>
+  <li><a href="CppQtLedWidget.htm">QtLedWidget</a></li>
+  <li><a href="CppQtShapeWidget.htm">QtShapeWidget</a></li>
+  <li><a href="CppDialWidget.htm">DialWidget</a></li>
+  <li><a href="CppLedWidget.htm">LedWidget</a></li>
+  <li><a href="CppShapeWidget.htm">ShapeWidget</a></li>
+  <li><a href="CppWtDialWidget.htm">WtDialWidget</a></li>
+  <li><a href="CppWtLedWidget.htm">WtLedWidget</a></li>
+  <li><a href="CppWtShapeWidget.htm">WtShapeWidget</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Similar <a href="CppWidget.htm">widget</a> <a href="CppClass.htm">classes</a> are 
+<a href="CppQWidget.htm">QWidget</a> and <a href="CppWWidget.htm">Wt::WWidget</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>widget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppWidget.htm">Widget</a>, GUI independent <a href="CppWidget.htm">widget</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWidget.htm">CppWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> WIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> WIDGET_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppRectangle.htm">rectangle</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a>GUI indepedent <a href="CppWidget.htm">widget</a> <b><a href="CppClass.htm">class</a></b>, modeled after the <a href="CppQt.htm">Qt</a> and <a href="CppWt.htm">Wt</a> architure<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Rect&amp; GetGeometry() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_geometry; }<br/>
+&nbsp;&nbsp;Rect&amp; GetGeometry() { <b><a href="CppReturn.htm">return</a></b> m_geometry; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/SetGeometry resizes the <a href="CppWidget.htm">Widget</a> and emits an OnResize <a href="CppSignal.htm">signal</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetGeometry(<b><a href="CppConst.htm">const</a></b> Rect&amp; geometry);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a change in size<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_geometry_changed;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppWidget.htm">Widget</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">Widget</a>*);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;Rect m_geometry;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WIDGET_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>widget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppWidget.htm">Widget</a>, GUI independent <a href="CppWidget.htm">widget</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWidget.htm">CppWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2011-07-03: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-08-07: <a href="CppVersion.htm">version</a> 1.1: added <a href="CppSignal.htm">signal</a> that is <a href="CppEmit.htm">emitted</a> when geometry changes");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWidget.htm">Widget</a>::SetGeometry(<b><a href="CppConst.htm">const</a></b> Rect&amp; geometry)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (geometry <a href="CppOperatorNotEqual.htm">!=</a> m_geometry)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_geometry <a href="CppOperatorAssign.htm">=</a> geometry;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_geometry_changed();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

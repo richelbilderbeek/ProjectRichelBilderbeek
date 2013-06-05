@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Meritous</title>
+  <meta name="description" content="C++ game Meritous"/>
+  <meta name="keywords" content="C++ game Meritous open source freeware GPL walkthrough strategy guid faq solution tips tip"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Games.htm">Go back to Richel Bilderbeek's games page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a> <a href="Games.htm">game</a>) <a href="GameMeritous.htm">Meritous</a></h1>
+<p>&nbsp;</p>
+<p><a href="GameMeritous.htm">Meritous</a> is one of my favorite open-source <a href="Games.htm">games</a>. It is programmed in C using the <a href="CppSdl.htm">SDL</a>. Because the game is open-source, I could obtain much information from the code.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Strategy guide</h2>
+<p>&nbsp;</p>
+<p>There are three skills:</p>
+<ol>
+  <li>Shield: the size of you shield</li>
+  <li>Circuit charge rate: the speed of which your psi circuit charges</li>
+  <li>Circuit recharge rate: the speed of which your psi circuit recharges after a psi shot</li> 
+</ol>
+<p>&nbsp;</p>
+<p>The three skills can be upgraded for an increasing price, dependent on current skill level and mode. For this formula and prices, see below. Increasing shield level is more expensive then a circuit (re)charge upgrade. Circuit charge and circuit recharge upgrade cost as much. The maximum skill level is 24. The Agate knife takes all your skill levels to 24.</p>
+<p>&nbsp;</p>
+<ol>
+  <li>The maze is generated at random, so there is no need to post a map</li>
+  <li>You do not need waste time to pick up crystals: a crystal generator gathers all crystals in the maze in one room</li>
+  <li>When you have enough crystals to upgrade one of your stats (Reflect shield, circuit charge, cicuit refill), these words are highlighted</li>
+  <li>A good tactic is to fight monsters until one of your skills is highlighted. Then find a teleporter to the main starting room. Use the crystal generator there and buy your upgrade</li>
+  <li>Collect all the non-essential artifacts first. When you encounter a compass, the dark-grey arrow points to a non-essenstial artifact. When there is no grey arrow, you have found all non-essential artifacts</li>
+  <li>When you finish a boos room, save your progress before opening the chests. In one chest, there will be an artifact. In the others, there might be a shield/charge/refill improvement. Wait with collecting these until you cannot make these upgrades by gathering crystals anymore. In other words: a level one shield upgrade costs only 50 crystals, a level 10 upgrade about one million, so let those upgrades ripen</li>
+  <li>Each time you kill a boss, all monsters get tougher. Kill the bosses after exploring all rooms</li>
+  <li>Clear all rooms to obtain the Agate knife. Kill the three bosses last, so that at the third boss, you will obtain it. You do not need to kill all creatures in the dungeon</li>
+  <li>You do not need to kill all creatures in the dungeon</li>
+  <li>There is no cheat-mode (it is commented out of the source code)</li>
+</ol>
+<p>&nbsp;</p>
+
+<table border="1"><tr><td><code>
+shield price = ((100 - 50*m) * s) + ((5*2^s) * (5 - 2*m))<br/>
+s = current shield level<br/>
+m = mode = 0 for wuss mode, 1 for normal mode<br/>
+</code></td></tr></table>
+<p>&nbsp;</p>
+<table border="1">
+  <tr>
+    <td><p><b>Shield level</b></p></td>
+    <td><p><b>Wuss mode</b></p></td>
+    <td><p><b>Normal mode mode</b></p></td>
+  </tr>
+  <tr>
+    <td><p><b>0</b></p></td>
+    <td><p>15</p></td>
+    <td><p>25</p></td>
+  </tr>
+  <tr>
+    <td><p><b>1</b></p></td>
+    <td><p>80</p></td>
+    <td><p>150</p></td>
+  </tr>
+  <tr>
+    <td><p><b>2</b></p></td>
+    <td><p>160</p></td>
+    <td><p>300</p></td>
+  </tr>
+  <tr>
+    <td><p><b>3</b></p></td>
+    <td><p>270</p></td>
+    <td><p>500</p></td>
+  </tr>
+  <tr>
+    <td><p><b>4</b></p></td>
+    <td><p>440</p></td>
+    <td><p>800</p></td>
+  </tr>
+  <tr>
+    <td><p><b>5</b></p></td>
+    <td><p>730</p></td>
+    <td><p>1,300</p></td>
+  </tr>
+  <tr>
+    <td><p><b>6</b></p></td>
+    <td><p>1,260</p></td>
+    <td><p>2,200</p></td>
+  </tr>
+  <tr>
+    <td><p><b>7</b></p></td>
+    <td><p>2,270</p></td>
+    <td><p>3,900</p></td>
+  </tr>
+  <tr>
+    <td><p><b>8</b></p></td>
+    <td><p>4,240</p></td>
+    <td><p>7,200</p></td>
+  </tr>
+  <tr>
+    <td><p><b>9</b></p></td>
+    <td><p>8,130</p></td>
+    <td><p>13,700</p></td>
+  </tr>
+  <tr>
+    <td><p><b>10</b></p></td>
+    <td><p>15,860</p></td>
+    <td><p>26,600</p></td>
+  </tr>
+  <tr>
+    <td><p><b>11</b></p></td>
+    <td><p>31,270</p></td>
+    <td><p>52,300</p></td>
+  </tr>
+  <tr>
+    <td><p><b>12</b></p></td>
+    <td><p>62,040</p></td>
+    <td><p>103,600</p></td>
+  </tr>
+  <tr>
+    <td><p><b>13</b></p></td>
+    <td><p>123,530</p></td>
+    <td><p>206,100</p></td>
+  </tr>
+  <tr>
+    <td><p><b>14</b></p></td>
+    <td><p>246,460</p></td>
+    <td><p>411,000</p></td>
+  </tr>
+  <tr>
+    <td><p><b>15</b></p></td>
+    <td><p>492,270</p></td>
+    <td><p>820,700</p></td>
+  </tr>
+  <tr>
+    <td><p><b>16</b></p></td>
+    <td><p>983,840</p></td>
+    <td><p>1,640,000</p></td>
+  </tr>
+  <tr>
+    <td><p><b>17</b></p></td>
+    <td><p>1,966,930</p></td>
+    <td><p>3,278,500</p></td>
+  </tr>
+  <tr>
+    <td><p><b>18</b></p></td>
+    <td><p>3,933,060</p></td>
+    <td><p>6,555,400</p></td>
+  </tr>
+  <tr>
+    <td><p><b>19</b></p></td>
+    <td><p>7,865,270</p></td>
+    <td><p>13,109,100</p></td>
+  </tr>
+  <tr>
+    <td><p><b>20</b></p></td>
+    <td><p>15,729,640</p></td>
+    <td><p>26,216,400</p></td>
+  </tr>
+  <tr>
+    <td><p><b>21</b></p></td>
+    <td><p>31,458,330</p></td>
+    <td><p>52,430,900</p></td>
+  </tr>
+  <tr>
+    <td><p><b>22</b></p></td>
+    <td><p>62,915,660</p></td>
+    <td><p>104,859,800</p></td>
+  </tr>
+  <tr>
+    <td><p><b>23</b></p></td>
+    <td><p>125,830,270</p></td>
+    <td><p>209,717,500</p></td>
+  </tr>
+  <tr>
+    <td><p><b>24</b></p></td>
+    <td><p>419,432,800</p></td>
+    <td><p>251,659,440</p></td>
+  </tr>
+</table> 
+<p>&nbsp;</p>
+<table border="1"><tr><td><code>
+circuit (re)charge price = ((100 - 50*m) * c) + ((5*(2^c)) * (5 - (2*m)))<br/>
+c = current circuit (re)charge level<br/>
+m = mode = 0 for wuss mode, 1 for normal mode<br/>
+</code></td></tr></table>
+<p>&nbsp;</p>
+<table border="1">
+  <tr>
+    <td><p><b>Circuit (re)charge level</b></p></td>
+    <td><p><b>Wuss mode</b></p></td>
+    <td><p><b>Normal mode mode</b></p></td>
+  </tr>
+  <tr>
+    <td><p><b>0</b></p></td>
+    <td><p>10</p></td>
+    <td><p>20</p></td>
+  </tr>
+  <tr>
+    <td><p><b>1</b></p></td>
+    <td><p>60</p></td>
+    <td><p>120</p></td>
+  </tr>
+  <tr>
+    <td><p><b>2</b></p></td>
+    <td><p>120</p></td>
+    <td><p>240</p></td>
+  </tr>
+  <tr>
+    <td><p><b>3</b></p></td>
+    <td><p>200</p></td>
+    <td><p>400</p></td>
+  </tr>
+  <tr>
+    <td><p><b>4</b></p></td>
+    <td><p>320</p></td>
+    <td><p>640</p></td>
+  </tr>
+  <tr>
+    <td><p><b>5</b></p></td>
+    <td><p>520</p></td>
+    <td><p>1,040</p></td>
+  </tr>
+  <tr>
+    <td><p><b>6</b></p></td>
+    <td><p>880</p></td>
+    <td><p>1,760</p></td>
+  </tr>
+  <tr>
+    <td><p><b>7</b></p></td>
+    <td><p>1,560</p></td>
+    <td><p>3,120</p></td>
+  </tr>
+  <tr>
+    <td><p><b>8</b></p></td>
+    <td><p>2,880</p></td>
+    <td><p>5,760</p></td>
+  </tr>
+  <tr>
+    <td><p><b>9</b></p></td>
+    <td><p>5,480</p></td>
+    <td><p>10,960</p></td>
+  </tr>
+  <tr>
+    <td><p><b>10</b></p></td>
+    <td><p>10,640</p></td>
+    <td><p>21,280</p></td>
+  </tr>
+  <tr>
+    <td><p><b>11</b></p></td>
+    <td><p>20,920</p></td>
+    <td><p>41,840</p></td>
+  </tr>
+  <tr>
+    <td><p><b>12</b></p></td>
+    <td><p>41,440</p></td>
+    <td><p>82,880</p></td>
+  </tr>
+  <tr>
+    <td><p><b>13</b></p></td>
+    <td><p>82,440</p></td>
+    <td><p>164,880</p></td>
+  </tr>
+  <tr>
+    <td><p><b>14</b></p></td>
+    <td><p>164,400</p></td>
+    <td><p>328,800</p></td>
+  </tr>
+  <tr>
+    <td><p><b>15</b></p></td>
+    <td><p>328,280</p></td>
+    <td><p>656,560</p></td>
+  </tr>
+  <tr>
+    <td><p><b>16</b></p></td>
+    <td><p>656,000</p></td>
+    <td><p>1,312,000</p></td>
+  </tr>
+  <tr>
+    <td><p><b>17</b></p></td>
+    <td><p>1,311,400</p></td>
+    <td><p>2,622,800</p></td>
+  </tr>
+  <tr>
+    <td><p><b>18</b></p></td>
+    <td><p>2,622,160</p></td>
+    <td><p>5,244,320</p></td>
+  </tr>
+  <tr>
+    <td><p><b>19</b></p></td>
+    <td><p>5,243,640</p></td>
+    <td><p>10,487,280</p></td>
+  </tr>
+  <tr>
+    <td><p><b>20</b></p></td>
+    <td><p>10,486,560</p></td>
+    <td><p>20,973,120</p></td>
+  </tr>
+  <tr>
+    <td><p><b>21</b></p></td>
+    <td><p>20,972,360</p></td>
+    <td><p>41,944,720</p></td>
+  </tr>
+  <tr>
+    <td><p><b>22</b></p></td>
+    <td><p>41,943,920</p></td>
+    <td><p>83,887,840</p></td>
+  </tr>
+  <tr>
+    <td><p><b>23</b></p></td>
+    <td><p>83,887,000</p></td>
+    <td><p>167,774,000</p></td>
+  </tr>
+  <tr>
+    <td><p><b>24</b></p></td>
+    <td><p>335,546,240</p></td>
+    <td><p>167,773,120</p></td>
+  </tr>
+</table> 
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.asceai.net/meritous">Meritous homepage</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Games.htm">Go back to Richel Bilderbeek's games page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Neural network</title>
+  <meta name="description" content="C++ Neural network"/>
+  <meta name="keywords" content="C++ Neural network code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppNeuralNetwork.htm">Neural network</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppNeuralNetwork.htm">neural network</a> is a connected collection of neurons (that is, a <a href="CppClass.htm">class</a> that simulates a biological neuron) that can be trained for certain purposes.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Freely downloadable C++ neural networks</h2>
+<p>&nbsp;</p>
+<p>From my favorite (top) to my least favorite. This list is incomplete and will remain incomplete.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppShark.htm">Shark</a>: my personal favorite machine learning network, because it suits my needs</li>
+  <li><a href="CppFlood.htm">Flood</a>: the neural network implementation I used when using <a href="CppBuilder.htm">C++ Builder</a> 6.0. Downsides are <a href="CppConst.htm">const</a>-incorrectness, the use of <a href="CppStl.htm">STL</a> <a href="CppFunction.htm">functions</a> without '<a href="CppStd.htm">std::</a>' in front of it (a simple replace command fixes this, though), the use of handcrafted classes (for example Flood::Vector, instead of <a href="CppVector.htm">std::vector</a>), dirty C-style <a href="CppCast.htm">casts</a> and few documentation. Don't mind me nitpicking: because I use it with much pleasure, I know this one best!</li>
+  <li><a href="CppFann.htm">FANN</a>: programmed in C, I found it too hard to use for my own needs.</li>
+  <li><a href="http://www.bedaux.net/nnet">http://www.bedaux.net/nnet</a>: takes <a href="CppBool.htm">boolians</a> as input and produces <a href="CppBool.htm">boolians</a> as output.</li>
+  <li><a href="http://www.codeproject.com/cpp/MLP.asp">http://www.codeproject.com/cpp/MLP.asp</a>: good code if you like the way Visual C++ handles its GUI</li>
+  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=10202&amp;package_id=10051&amp;release_id=10643">http://sourceforge.net/project/showfiles.php?group_id=10202&amp;package_id=10051&amp;release_id=10643</a>: Average implementation relying heavily on plain <a href="CppPointer.htm">pointers</a></li>
+  <li><a href="http://members.tripod.com/~zerkpage/backprop.txt">http://members.tripod.com/~zerkpage/backprop.txt</a> fair code which is easy to read, but uses many <a href="CppGlobal.htm">global</a> <a href="CppPointer.htm">pointers</a></li>
+  <li><a href="http://sourceforge.net/projects/nn-utility">http://sourceforge.net/projects/nn-utility</a>: acceptable source code, except for use of <a href="CppPointer.htm">pointers</a>-to-<a href="CppPointer.htm">pointers</a>-to-<a href="CppPointer.htm">pointers</a>, <a href="CppClass.htm">class</a> names in UPPERCASE</li>
+  <li><a href="http://www.paraschopra.com/sourcecode/index.php">http://www.paraschopra.com/sourcecode/index.php</a>: example how NOT to program: use of <a href="CppMacro.htm">macro</a>'s, explicit write of <a href="CppVoid.htm">void</a> as a <a href="CppFunction.htm">function</a> <a href="CppArgument.htm">argument</a>, inconsistent indentation, etc...</li>
+</ul>
+<p>&nbsp;</p>
+<p>Untested:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>Annie (http://annie.sourceforge.net)</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Proposed <a href="CppNeuralNetwork.htm">neural network</a> architecture</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Neuron&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> NeuralNetwork<br/>
+{<br/>
+&nbsp;&nbsp;NeuralNetwork(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nInputs&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nHidden&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nOutputs <a href="CppOperatorAssign.htm">=</a> 0); <br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If the propagation of a neuron does not change its state,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>NeuralNet::Propagate is a <b><a href="CppConst.htm">const</a></b> method<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note: <b><a href="CppThis.htm">this</a></b> constness must be determined by <b><a href="CppTemplate.htm">template</a></b>s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Propagate(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; inputs);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Propagate(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; inputs) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>When a desired input is known, let <b><a href="CppThis.htm">this</a></b> backpropagate<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> BackPropagate(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; desiredOutputs)<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The NeuralNetwork is implemented as a <a href="CppBoost.htm">boost</a>::graph of Neurons<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::graph&lt;Neuron&gt; m_n;<br/>
+};<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>Neuron is an abstract base <b><a href="CppClass.htm">class</a></b><br/>
+<b><a href="CppStruct.htm">struct</a></b> Neuron<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note: <b><a href="CppThis.htm">this</a></b> constness must be determined by <b><a href="CppTemplate.htm">template</a></b>s<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> Propagate(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> input) <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> Propagate(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> input) <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Neural_network">WikiPedia page on neural networks</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

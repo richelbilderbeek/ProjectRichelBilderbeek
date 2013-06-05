@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GaborFilter</title>
+  <meta name="description" content="C++ tool GaborFilter"/>
+  <meta name="keywords" content="C++ tool GaborFilter Gabor filter freeware gpl free open source open-source"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a> <a href="Tools.htm">tool</a>) <a href="ToolGaborFilter.htm">GaborFilter</a></h1>
+<p>&nbsp;</p>
+<p><a href="ToolGaborFilter.htm">GaborFilter</a> is a <a href="Tools.htm">tool</a> to perform Gabor filtering on bitmap images.</p>
+<p>&nbsp;</p>
+<p>I learned about Gabor filters while working on <a href="ProjectBochum.htm">my Bochum Project</a>.</p>
+<p>&nbsp;</p>
+<p>Initially, <a href="ToolGaborFilter.htm">GaborFilter</a> was programmed in <a href="Cpp.htm">C++</a> using the 
+<a href="CppBuilder.htm">C++ Builder</a> 6.0 <a href="CppIde.htm">IDE</a>. In 2012 it was ported to
+<a href="CppQtCreator.htm">Qt Creator</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Downloads</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="ToolGaborFilterExample.png">View an example image of 'GaborFilter' (png)</a></li>
+  <li><a href="ToolGaborFilter_2_0.png">View a screenshot of 'GaborFilter' (png)(version 2.0)</a></li>
+  <li><a href="ToolGaborFilter_1_0.png">View a screenshot of 'GaborFilter' (png)(version 1.0)</a></li>
+  <li><a href="ToolGaborFilterExe.zip">Download the 'GaborFilter' Windows executable (zip)(version 1.0)</a></li>
+  <li><a href="ToolGaborFilterSource_2_0.zip">Download the 'GaborFilter' Qt Creator source code (zip)(version 1.0)</a></li>
+  <li><a href="ToolGaborFilterSource.zip">Download the 'GaborFilter' C++ Builder source code (zip)(version 1.0)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The Gabor filter</h2>
+<p>&nbsp;</p>
+<p>A Gabor filter can have any number of dimension. Below the formula (and a bit of derivation) for the one-dimensional and two-dimensional Gabor filters are described.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The one-dimensional Gabor filter formula</h2>
+<p>&nbsp;</p>
+<p>The function of a one-dimensional Gabor filter is:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+f_Gabor(x) = cos(frequency*x) * exp(-(x*x)/(sigma*sigma))<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>In the range [-5,5] a nice combination of values is frequency = 4.0 and sigma = 2.0:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+f_Gabor = cos(4.0*x) * exp(-(x*x)/(2.0*2.0))
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The one-dimensional Gabor filter formula consists out of three parts:</p>
+<ol>
+  <li>the cosine part</li>
+  <li>the Gaussian function part</li>
+  <li>a constant</li>
+</ol>
+<p>&nbsp;</p>
+<p>These three parts are described in detail below.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>1. the cosine part</h3>
+<p>&nbsp;</p>
+<p>The cosine part of a Gabor function is dependent on distance and frequency</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>2. the Gaussian function part</h3>
+<p>&nbsp;</p>
+<p><a href="http://en.wikipedia.org/wiki/Gaussian_function">the Gaussian function</a> part of a Gabor function is dependent on distance and sigma.</p>
+<p>&nbsp;</p>
+<p><a href="http://en.wikipedia.org/wiki/Gaussian_function">A Gaussian function</a> has the form</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+F_Gauss(x) <br/>
+&nbsp;&nbsp;= a * exp(-((x-b)*(x-b))/(2*c*c))<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="http://en.wikipedia.org/wiki/Gaussian_function">The Gaussian function</a> used in the one-dimensional Gabor filter has</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+a = 1<br/>
+b = 0 <br/>
+c = sigma <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>which results in</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+f_Gabor_part2<br/>
+&nbsp;&nbsp;= 1.0 * exp(-((x-0.0) * (x-0.0))/(2.0 * sigma * sigma))<br/>
+&nbsp;&nbsp;= exp(-(x * x)/(2.0 * sigma * sigma))<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>3. a constant</h3>
+<p>&nbsp;</p>
+<p>The third term of a Gabor function is a constant that might be used to make the <a href="http://en.wikipedia.org/wiki/Gaussian_integral">Gaussian integral</a> (that is, the surface underneath <a href="http://en.wikipedia.org/wiki/Gaussian_function">the Gaussian function</a>) equal to 1.0.</p>
+<p>&nbsp;</p>
+<p>I have set this term to one, because in my case, the <a href="http://en.wikipedia.org/wiki/Gaussian_integral">Gaussian integral</a> does not matter, due to <a href="CppRescale.htm">rescaling</a>.</p>
+<p>&nbsp;</p>
+<p>Continue reading to find out how to make the <a href="http://en.wikipedia.org/wiki/Gaussian_integral">Gaussian integral</a> (that is, the surface underneath <a href="http://en.wikipedia.org/wiki/Gaussian_function">the Gaussian function</a>) equal to 1.0:</p>
+<p>&nbsp;</p>
+<p>A <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a> has the form</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+f_Gauss(x)<br/>
+&nbsp;&nbsp;= a * exp(-((x-b)*(x-b))/(2*c*c))<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>and has the <a href="http://en.wikipedia.org/wiki/Integral_of_a_Gaussian_function">Gaussian integral</a> of</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+F_Gauss(x) = a * c * sqrt(pi)
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Because in the Gabor filter</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+a = 1<br/>
+b = 0 <br/>
+c = sigma<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>the integral becomes</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+F_Gabor_part2(x) <br/>
+&nbsp;&nbsp;= 1 * sigma * sqrt(pi)<br/>
+&nbsp;&nbsp;= sigma * sqrt(pi)<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>This integral denotes the surface underneath a one-dimensional <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a>. To make the surface underneath the one-dimensional <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a> 1.0, one needs multiply the <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a> by the reciprocal of the integral.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The two-dimensional Gabor filter formula</h2>
+<p>&nbsp;</p>
+<p>The function of a two-dimensional Gabor filter is:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+f_Gabor(x)<br/>
+&nbsp;&nbsp;= cos(frequency*x)<br/>
+&nbsp;&nbsp;* exp(-(x*x)/(sigma*sigma))<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>In the range [-5,5] a nice combination of values is frequency = 4.0 and sigma = 1.5:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+F_Gabor<br/>
+&nbsp;&nbsp;= cos(4*x) * exp(-(x*x)/(1.5*1.5)) * (1 / (1.5 * sqrt(3.14159265)))<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The two-dimensional Gabor filter formula consists out of three parts:</p>
+<ol>
+  <li>the cosine part</li>
+  <li>the Gaussian function part</li>
+  <li>a constant</li>
+</ol>
+<p>&nbsp;</p>
+<p>These three parts are described in detail below.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>1. the cosine part</h3>
+<p>&nbsp;</p>
+<p>The cosine part of the two-dimensional Gabor filter formula is dependent on distance and frequency.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>2. the Gaussian function part</h3>
+<p>&nbsp;</p>
+<p>The Gaussian function part of the two-dimensional Gabor filter formula is dependent on distance and sigma.</p>
+<p>&nbsp;</p>
+<p><a href="http://en.wikipedia.org/wiki/Gaussian_function">A Gaussian function</a> has the form</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+F_Gauss(x,y)<br/>
+&nbsp;&nbsp;= a * exp(- <br/>
+&nbsp;&nbsp;( ( (x-mid_x)*(x-mid_x))/(2*sigma_x * sigma_x) ) <br/>
+&nbsp;&nbsp;+ ( (y-mid_y)*(y-mid_y))/(2*sigma_y * sigma_y) ) )<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="http://en.wikipedia.org/wiki/Gaussian_function">The Gaussian function</a> used in the two-dimensional Gabor filter has</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+a = 1<br/>
+sigma_x = sigma_y = sigma <br/>
+mid_x = midy = 0<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>which results in</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+F_Gabor_part2(x,y) <br/>
+&nbsp;&nbsp;= exp(- <br/>
+&nbsp;&nbsp;( ( (x*x)/(2 * sigma * sigma) ) <br/>
+&nbsp;&nbsp;+ ( (y*y)/(2 * sigma * sigma) ) )<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>3. a constant</h3>
+<p>&nbsp;</p>
+<p>The third term is a constant that might make the two-dimensional <a href="http://en.wikipedia.org/wiki/Gaussian_integral">Gaussian integral</a> (that is, the volume underneath the <a href="http://en.wikipedia.org/wiki/Gaussian_function">the Gaussian function</a>) equal to 1.0.</p>
+<p>&nbsp;</p>
+<p>I have set this term to one, because in my case, the <a href="http://en.wikipedia.org/wiki/Gaussian_integral">Gaussian integral</a> does not matter, due to <a href="CppRescale.htm">rescaling</a>.</p>
+<p>&nbsp;</p>
+<p>Furthermore, there is no formula (known to me) that allows the calculate the two-dimensional <a href="http://en.wikipedia.org/wiki/Gaussian_integral">Gaussian integral</a>. Therefore, only by approximation this value's constant can be found.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Calculating sigma</h2>
+<p>&nbsp;</p>
+<p>For the one-dimensional and two-dimensional Gabor filters I calculate a value of sigma for the filter's size. Sigma determines how fast the <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a> starts approaching zero.</p>
+<p>&nbsp;</p>
+<p>If a filter has a size of s pixels, it would be inefficient to have the <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a> already approaching zero at s/2. It would be strange that at the edges of a filter, the <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a> still have high values.</p>
+<p>&nbsp;</p>
+<p>In this part, I calculate sigma from the filter's size, that the <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a> yields a value of 1/510 at the edges. I choose the value of 1/510, because in viewing a filter as a bitmap (with grey values from [0,255], these values will appear as black/zero due to rounding off.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The one-dimensional Gabor filter formula</h2>
+<p>&nbsp;</p>
+<p>The <a href="http://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a> part (part 2, as described above) of a Gabor filter, has the following formula:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+f_Gabor_part2(x) = exp(-(x * x)/(2.0 * sigma * sigma))<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Assume a filter size and halve it to obtain s (s is like a radius), then</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+x = s<br/>
+f_Gabor_part2(x = s) <br/>
+&nbsp;&nbsp;= exp(-(s * s)/(2.0 * sigma * sigma))<br/>
+&nbsp;&nbsp;= 1/510<br/>
+<br/>
+exp(-(s * s)/(2.0 * sigma * sigma)) = 1/510<br/>
+-(s * s)/(2.0 * sigma * sigma) = ln(1/510)<br/>
+-(s * s)/ln(1/510) = 2.0 * sigma * sigma<br/>
+-(s * s)/(2.0*ln(1/510)) = sigma * sigma<br/>
+sigma = sqrt(-(s * s) / (2.0*ln(1/510)))<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Which, by approximation is:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+sigma = sqrt(-(s * s) / -12.46882145143674291132554261896)<br/>
+sigma = sqrt( (s * s) /  12.46882145143674291132554261896)<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Gabor_filter">Wikipedia page about Gabor filters</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppLicence.htm">Licence</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+  GaborFilter, performs Gabor filter operations on images<br/>
+  Copyright (C) 2010  Richel Bilderbeek<br/>
+ <br/>
+  This program is free software: you can redistribute it and/or modify<br/>
+  it under the terms of the GNU General Public License as published by<br/>
+  the Free Software Foundation, either version 3 of the License, or<br/>
+  (at your option) any later version.<br/>
+ <br/>
+  This program is distributed in the hope that it will be useful,<br/>
+  but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
+  GNU General Public License for more details.<br/>
+ <br/>
+  You should have received a copy of the GNU General Public License<br/>
+  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

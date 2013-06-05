@@ -1,0 +1,250 @@
+ 
+<title>Double buffering</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Double buffering</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Double buffering buffer two buffers prevent flicker</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>13</o:Revision>
+  <o:TotalTime>145</o:TotalTime>
+  <o:Created>2008-06-19T15:16:00Z</o:Created>
+  <o:LastSaved>2008-06-22T12:09:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>507</o:Words>
+  <o:Characters>2891</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Double buffering</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>24</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3550</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppDoubleBuffering.htm">Double buffering</a></h1>
+
+<p>&nbsp;</p>
+
+<p>Technique
+to prevent flicker when working with <a href="CppGraphics.htm">graphics</a> (it
+has nothing to do with the <a href="CppDataType.htm">data type</a> <a
+href="CppDouble.htm">double</a>).</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>The
+idea of double buffering is to first paint all screen graphics to an invisible
+buffer, then drawing this buffer to screen.</p>
+
+<p>&nbsp;</p>
+
+<p>Drawing
+to screen directly is called single buffering
+and causes flicker. Single buffering and <a
+href="CppDoubleBuffering.htm">double buffering</a> can be compared using the
+program <a href="CppDemoBuffering.htm">DemoBuffering</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>To clean
+a buffer, often the background is drawn on the buffer first.</p>
+
+<p>&nbsp;</p>
+
+<p>In
+C++ Builder, this looks somewhat like the code below (but see the program <a
+href="CppDemoBuffering.htm">DemoBuffering</a> for a complete program):</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;vcl.h&gt;</p>
+
+<p>#pragma hdrstop</p>
+
+<p>&nbsp;</p>
+
+<p>#include
+&quot;UnitFormDoubleBuffering.h&quot;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#pragma package(smart_init)</p>
+
+<p>#pragma resource &quot;*.dfm&quot;</p>
+
+<p>TForm1 *Form1;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> __fastcall </b>  TForm1::TForm1(TComponent*
+Owner)</p>
+
+<p>       : TForm(Owner)</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppThis.htm">this</a></b>-&gt;OnResize(0);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  <b>
+__fastcall</b> TForm1::Timer1Timer(TObject
+*Sender)</p>
+
+<p>{</p>
+
+<p>
+ //Clean the buffer by drawing the background on the buffer</p>
+
+<p>
+ ImageBuffer-&gt;Canvas-&gt;Draw(0,0,ImageBackground-&gt;Picture-&gt;Graphic);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Draw the sprites on the buffer</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+nSprites = 100;</p>
+
+<p>
+ for (int i=0; i!=nSprites; ++i)</p>
+
+<p>
+ {</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+x = <a href="CppRand.htm">std::rand</a>() % (ClientWidth    - ImageSprite-&gt;Width );</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+y = <a href="CppRand.htm">std::rand</a>() % (ClientHeight -
+ImageSprite-&gt;Height);</p>
+
+<p> 
+ ImageBuffer-&gt;Canvas-&gt;Draw(x,y,ImageSprite-&gt;Picture-&gt;Graphic);</p>
+
+<p>
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Finally, copy the buffer to the Form</p>
+
+<p>
+ <b><a href="CppThis.htm">this</a></b>-&gt;Canvas-&gt;Draw(0,0,ImageBuffer-&gt;Picture-&gt;Graphic);</p>
+
+<p>&nbsp;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  <b>
+__fastcall</b> TForm1::FormResize(TObject *Sender)</p>
+
+<p>{</p>
+
+<p>
+ //Assume all Images are invisible</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(ImageBuffer-&gt;Visible       == <b><a href="CppFalse.htm">false</a></b>);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(ImageBackground-&gt;Visible == <b><a
+href="CppFalse.htm">false</a></b>);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(ImageSprite-&gt;Visible       == <b><a href="CppFalse.htm">false</a></b>);</p>
+
+<p>
+ //Set the Buffer and Background to the right size</p>
+
+<p>
+ ImageBuffer-&gt;Picture-&gt;Bitmap-&gt;Width    = ClientWidth;</p>
+
+<p>
+ ImageBuffer-&gt;Picture-&gt;Bitmap-&gt;Height = ClientHeight;</p>
+
+<p>
+ ImageBackground-&gt;Picture-&gt;Bitmap-&gt;Width    = ClientWidth;</p>
+
+<p>
+ ImageBackground-&gt;Picture-&gt;Bitmap-&gt;Height = ClientHeight;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

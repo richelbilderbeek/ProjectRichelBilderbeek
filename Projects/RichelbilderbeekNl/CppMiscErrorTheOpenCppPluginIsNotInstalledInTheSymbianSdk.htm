@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Misc error: the Open C/C++ plugin is not installed in the Symbian SDK</title>
+  <meta name="description" content="C++ Misc error: the Open C/C++ plugin is not installed in the Symbian SDK"/>
+  <meta name="keywords" content="C++ Misc error: the Open C/C++ plugin is not installed in the Symbian SDK code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) 
+  <a href="CppMiscErrorTheOpenCppPluginIsNotInstalledInTheSymbianSdk.htm">Misc error: the Open C/C++ plugin is not installed in the Symbian SDK</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppMiscError.htm">Misc error</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Error</h2>
+<p>&nbsp;</p>
+<p>This <a href="CppMiscError.htm">misc error</a> can be found in <a href="CppQtCreator.htm">Qt Creator</a> in
+the 'Projects' mode, under the Build settings.</p> 
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppMiscErrorTheOpenCppPluginIsNotInstalledInTheSymbianSdk.png">View a screenshot of this error</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Error: The "Open C/C++ plugin" is not installed in the Symbian SDK or the Symbian SDK path is misconfigured for Qt version 4.7.1<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicMobile.png" alt="Mobile"/> <a href="CppMobileApplication.htm">Mobile application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicSymbian.png" alt="Symbian"/> <a href="CppSymbian.htm">Symbian</a></li>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.10 (maverick)</li>
+  <li><img src="PicWine.png" alt="Wine"/> <a href="CppWine.htm">Wine</a> 1.3.4</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Process</h2>
+<p>&nbsp;</p>
+<p>Installing <a href="CppOpenCpp.htm">Open C/C++</a> under <a href="CppWine.htm">Wine</a> results in the 
+<a href="CppInstallErrorOpenCpp.htm">install error: Open C/C++: No destination folder or no features to be selected</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>Unknown, except buying a computer with native <a href="CppWindows.htm">Windows</a>?</p>
+<p>&nbsp;</p>
+<p>Perhaps [1] is a solution, but I have not gotten this to work yet...</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li>
+    Email from Simeon Kuran:<br/>
+    &nbsp;<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    I think I just stumbled over the solution for your problem regarding Qt<br/>
+    Creator and s60 SDK (on a non-Windows OS of course :)<br/>
+    <br/>
+    Your error msg (as described on your homepage) was:<br/>
+    Error: The "Open C/C++ plugin" is not installed in the Symbian SDK or the<br/>
+    Symbian SDK path is misconfigured for Qt version 4.7.1<br/>
+    <br/>
+    I have had the same message, by choosing the wrong gnupoc folder in the Qt<br/>
+    Creator settings. First I chose ~/qt4-s60/epoc32, which leads to the above<br/>
+    error msg. Qt Creator wants ~/qt4-s60 without epoc32! (it then searches for<br/>
+    cpp plugin by searching for &lt;gnupoc-dir&gt;/epoc32/include/stdapis/string.h)<br/>
+    <br/>
+    (After figuring this out, I also had to copy the following files to make the s60<br/>
+    sdk usable with qt-creator:<br/>
+    <br/>
+    cp qt/lib/*.dso&nbsp;&nbsp;&lt;gnupoc-dir&gt;/epoc32/release/armv5/lib/<br/>
+    cp qt/lib/*.lib&nbsp;&nbsp;&nbsp;&nbsp;&lt;gnupoc-dir&gt;/epoc32/release/armv5/lib/<br/>
+    cp qt/bin/elf2e32_qtwrapper&nbsp;&nbsp;&lt;gnupoc-dir&gt;/epoc32/bin<br/>
+    cp gcce-toolchain/bin/elftran &lt;gnupoc-dir&gt;/epoc32/tools )<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+    &nbsp;<br/>
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

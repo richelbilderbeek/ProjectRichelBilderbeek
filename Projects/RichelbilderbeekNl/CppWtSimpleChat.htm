@@ -1,0 +1,920 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>WtSimpleChat</title>
+  <meta name="description" content="C++ WtSimpleChat"/>
+  <meta name="keywords" content="C++ WtSimpleChat code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtSimpleChat.htm">WtSimpleChat</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppWtSimpleChat.htm">WtSimpleChat</a> is an official <a href="CppWt.htm">Wt</a> example
+developed by Emweb.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppWtSimpleChat.png">View a screenshot of 'WtSimpleChat' (png)</a></li>
+  <li><a href="CppWtSimpleChatNotWorking.png">View a screenshot of 'WtSimpleChat' when it is not working (png)</a></li>
+  <li><a href="CppWtSimpleChat.zip">Download the 'WtSimpleChat' source code (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>If you cannot get it too work, the problem and its solution is shown below.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicWeb.png" alt="Web"/> <a href="CppWebApplication.htm">Web application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.10 (maverick)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.42</li>
+  <li>?<img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.1.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppWtSimpleChat.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2011-04-10T11:16:42<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+LIBS += -lwt -lwthttp -lboost_program_options<br/>
+QMAKE_CXXFLAGS += -DNDEBUG<br/>
+TARGET = CppWtSimpleChat<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += simpleChat.cpp \<br/>
+&nbsp;&nbsp;SimpleChatWidget.cpp \<br/>
+&nbsp;&nbsp;SimpleChatServer.cpp<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SimpleChatWidget.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SimpleChatServer.h<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>SimpleChatServer.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+ * Copyright (C) 2008 Emweb bvba, Heverlee, Belgium.<br/>
+ *<br/>
+ * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "SimpleChatServer.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+<br/>
+<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a>;<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> WString ChatEvent::formattedHTML(<b><a href="CppConst.htm">const</a></b> WString&amp; user) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (type_) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Login:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "&lt;span <b><a href="CppClass.htm">class</a></b>='chat-info'&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> user_ <a href="CppOperatorPlus.htm">+</a> " joined the conversation.&lt;/span&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Logout:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "&lt;span <b><a href="CppClass.htm">class</a></b>='chat-info'&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ((user <a href="CppOperatorEqual.htm">==</a> user_) ? "You" : user_)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " logged out.&lt;/span&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Message:{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;WString result;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;result <a href="CppOperatorAssign.htm">=</a> WString("&lt;span <b><a href="CppClass.htm">class</a></b>='")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ((user <a href="CppOperatorEqual.htm">==</a> user_) ? "chat-self" : "chat-user")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "'&gt;" <a href="CppOperatorPlus.htm">+</a> user_ <a href="CppOperatorPlus.htm">+</a> ":&lt;/span&gt;";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (message_.toUTF8().find(user.toUTF8()) <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result <a href="CppOperatorPlus.htm">+</a> "&lt;span <b><a href="CppClass.htm">class</a></b>='chat-highlight'&gt;" <a href="CppOperatorPlus.htm">+</a> message_ <a href="CppOperatorPlus.htm">+</a> "&lt;/span&gt;";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result <a href="CppOperatorPlus.htm">+</a> message_;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "";<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<br/>
+SimpleChatServer::SimpleChatServer()<br/>
+&nbsp;&nbsp;: chatEvent_(<b><a href="CppThis.htm">this</a></b>)<br/>
+{ }<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> SimpleChatServer::login(<b><a href="CppConst.htm">const</a></b> WString&amp; user)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex::<a href="CppScope.htm">scope</a>d_lock lock(mutex_);<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (users_.find(user) <a href="CppOperatorEqual.htm">==</a> users_.end()) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;users_.insert(user);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;chatEvent_.<b><a href="CppEmit.htm">emit</a></b>(ChatEvent(ChatEvent::Login, user));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;} <b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatServer::logout(<b><a href="CppConst.htm">const</a></b> WString&amp; user)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex::<a href="CppScope.htm">scope</a>d_lock lock(mutex_);<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;UserSet::iterator i <a href="CppOperatorAssign.htm">=</a> users_.find(user);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorNotEqual.htm">!=</a> users_.end()) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;users_.erase(i);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;chatEvent_.<b><a href="CppEmit.htm">emit</a></b>(ChatEvent(ChatEvent::Logout, user));<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+WString SimpleChatServer::suggestGuest()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex::<a href="CppScope.htm">scope</a>d_lock lock(mutex_);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 1;; <a href="CppOperatorIncrement.htm">++</a>i) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "guest " <a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;WString ss <a href="CppOperatorAssign.htm">=</a> s;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (users_.find(ss) <a href="CppOperatorEqual.htm">==</a> users_.end())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> ss;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatServer::sendMessage(<b><a href="CppConst.htm">const</a></b> WString&amp; user, <b><a href="CppConst.htm">const</a></b> WString&amp; message)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex::<a href="CppScope.htm">scope</a>d_lock lock(mutex_);<br/>
+<br/>
+&nbsp;&nbsp;chatEvent_.<b><a href="CppEmit.htm">emit</a></b>(ChatEvent(user, message));<br/>
+}<br/>
+<br/>
+SimpleChatServer::UserSet SimpleChatServer::users()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> users_;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>SimpleChatServer.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> This may look like C code, but it's really <a href="CppOperatorMinus.htm">-</a>*<a href="CppOperatorMinus.htm">-$</a> <a href="Cpp.htm">C++</a> <a href="CppOperatorMinus.htm">-</a>*-<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * Copyright (C) 2008 Emweb bvba, Heverlee, Belgium.<br/>
+ *<br/>
+ * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppIfndef.htm">#ifndef</a> SIMPLECHATSERVER_H_<br/>
+<a href="CppDefine.htm">#define</a> SIMPLECHATSERVER_H_<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WObject&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/W<a href="CppSignal.htm">Signal</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WString&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/thread.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">/*</a>*<br/>
+ * @addtogroup chatexample<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">/*</a>@{<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a>! \brief Encapsulate a chat event.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> ChatEvent<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Enumeration <b><a href="CppFor.htm">for</a></b> the event type.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> Type { Login, Logout, Message };<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Get the event type.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;Type type() <b><a href="CppConst.htm">const</a></b> { <a href="CppReturnType.htm">return type</a>_; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Get the user who caused the event.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; user() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> user_; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Get the message of the event.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; message() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> message_; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Get the message formatted as HTML, rendered <b><a href="CppFor.htm">for</a></b> the given user.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a> formattedHTML(<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; user) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;Type type_;<br/>
+&nbsp;&nbsp;<a href="CppWString.htm">Wt::WString</a> user_;<br/>
+&nbsp;&nbsp;<a href="CppWString.htm">Wt::WString</a> message_;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * Both user and html will be formatted as html<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;ChatEvent(<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; user, <b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; message)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: type_(Message), user_(user), message_(message)<br/>
+&nbsp;&nbsp;{ }<br/>
+<br/>
+&nbsp;&nbsp;ChatEvent(Type type, <b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; user)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: type_(type), user_(user)<br/>
+&nbsp;&nbsp;{ }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> SimpleChatServer;<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">/*</a>! \brief A simple chat server<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> SimpleChatServer : <b><a href="CppPublic.htm">public</a></b> <a href="CppWt.htm">Wt</a>::WObject<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Create a <b><a href="CppNew.htm">new</a></b> chat server.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;SimpleChatServer();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Try to login with given user name.<br/>
+&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp; * Returns <b><a href="CppFalse.htm">false</a></b> <b><a href="CppIf.htm">if</a></b> the login was not successfull.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> login(<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; user);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Logout from the server.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> logout(<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; user);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Get a suggestion <b><a href="CppFor.htm">for</a></b> a guest user name.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<a href="CppWString.htm">Wt::WString</a> suggestGuest();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Send a message on behalve of a user.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> sendMessage(<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; user, <b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; message);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief <a href="CppOperatorModulus.htm">%</a><a href="CppSignal.htm">Signal</a> that will convey chat events.<br/>
+&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp; * Every client should connect to <b><a href="CppThis.htm">this</a></b> <a href="CppSignal.htm">signal</a>, and process events.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<a href="CppWtSignal.htm">Wt::Signal</a>&lt;ChatEvent&gt;&amp; chatEvent() { <b><a href="CppReturn.htm">return</a></b> chatEvent_; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Typedef <b><a href="CppFor.htm">for</a></b> a collection of user names.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppSet.htm">std::set</a>&lt;<a href="CppWString.htm">Wt::WString</a>&gt; UserSet;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Get the users currently logged in.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;UserSet users();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWtSignal.htm">Wt::Signal</a>&lt;ChatEvent&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; chatEvent_;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::mutex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mutex_;<br/>
+<br/>
+&nbsp;&nbsp;UserSet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; users_;<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">/*</a>@}<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SIMPLECHATSERVER_H_<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>SimpleChatWidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+ * Copyright (C) 2008 Emweb bvba, Heverlee, Belgium.<br/>
+ *<br/>
+ * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "SimpleChatWidget.h"<br/>
+<a href="CppInclude.htm">#include</a> "SimpleChatServer.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/W<a href="CppApplication.htm">Application</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WEnvironment&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWHBoxLayout.htm">WHBoxLayout</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWVBoxLayout.htm">WVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.htm">WLineEdit</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WText&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WTextArea&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WCheckBox&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a>;<br/>
+<br/>
+SimpleChatWidget::SimpleChatWidget(SimpleChatServer&amp; server,<br/>
+				&nbsp;&nbsp; <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppWContainerWidget.htm">WContainerWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;server_(server),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;app_(W<a href="CppApplication.htm">Application</a>::<a href="CppInstance.htm">instance</a>()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messageReceived_("sounds/message_received.mp3")<br/>
+{<br/>
+&nbsp;&nbsp;user_ <a href="CppOperatorAssign.htm">=</a> server_.suggestGuest();<br/>
+&nbsp;&nbsp;letLogin();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppThis.htm">this</a></b> widget supports server-side updates its processChatEvent()<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> method is connected to a slot that is triggered from outside <b><a href="CppThis.htm">this</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> session's event loop (usually because another user enters text).<br/>
+&nbsp;&nbsp;app_-&gt;enableUpdates();<br/>
+}<br/>
+<br/>
+SimpleChatWidget::~SimpleChatWidget()<br/>
+{<br/>
+&nbsp;&nbsp;logout();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatWidget::letLogin()<br/>
+{<br/>
+&nbsp;&nbsp;clear();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWVBoxLayout.htm">WVBoxLayout</a> *vLayout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWVBoxLayout.htm">WVBoxLayout</a>();<br/>
+&nbsp;&nbsp;setLayout(vLayout, AlignLeft | AlignTop);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWHBoxLayout.htm">WHBoxLayout</a> *hLayout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWHBoxLayout.htm">WHBoxLayout</a>();<br/>
+&nbsp;&nbsp;vLayout-&gt;addLayout(hLayout);<br/>
+<br/>
+&nbsp;&nbsp;hLayout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">WLabel</a>("User name:"), 0, AlignMiddle);<br/>
+&nbsp;&nbsp;hLayout-&gt;addWidget(userNameEdit_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">WLineEdit</a>(user_), 0, AlignMiddle);<br/>
+&nbsp;&nbsp;userNameEdit_-&gt;setFocus();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">WPushButton</a> *b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">WPushButton</a>("Login");<br/>
+&nbsp;&nbsp;hLayout-&gt;addWidget(b, 0, AlignMiddle);<br/>
+&nbsp;&nbsp;hLayout-&gt;addStretch(1);<br/>
+<br/>
+&nbsp;&nbsp;b-&gt;clicked().connect(<a href="CppSLOT.htm">SLOT</a>(<b><a href="CppThis.htm">this</a></b>, SimpleChatWidget::login));<br/>
+&nbsp;&nbsp;userNameEdit_-&gt;enterPressed().connect(<a href="CppSLOT.htm">SLOT</a>(<b><a href="CppThis.htm">this</a></b>, SimpleChatWidget::login));<br/>
+<br/>
+&nbsp;&nbsp;vLayout-&gt;addWidget(statusMsg_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WText());<br/>
+&nbsp;&nbsp;statusMsg_-&gt;setTextFormat(PlainText);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatWidget::login()<br/>
+{<br/>
+&nbsp;&nbsp;WString name <a href="CppOperatorAssign.htm">=</a> WWebWidget::escapeText(userNameEdit_-&gt;text());<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!startChat(name))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;statusMsg_-&gt;setText("Sorry, name '" <a href="CppOperatorPlus.htm">+</a> name <a href="CppOperatorPlus.htm">+</a> "' is already taken.");<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatWidget::logout()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (eventConnection_.connected()) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;eventConnection_.disconnect(); <a href="CppComment.htm">//</a> <b><a href="CppDo.htm">do</a></b> not listen <b><a href="CppFor.htm">for</a></b> more events<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;server_.logout(user_);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;letLogin();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> SimpleChatWidget::startChat(<b><a href="CppConst.htm">const</a></b> WString&amp; user)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (server_.login(user)) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;eventConnection_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> server_.chatEvent().connect(<a href="CppSLOT.htm">SLOT</a>(<b><a href="CppThis.htm">this</a></b>,<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SimpleChatWidget::processChatEvent));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;user_ <a href="CppOperatorAssign.htm">=</a> user;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;clear();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * Create a vertical layout, which will hold 3 rows,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * organized like <b><a href="CppThis.htm">this</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * <a href="CppWVBoxLayout.htm">WVBoxLayout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * ------------------------------------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * | nested <a href="CppWHBoxLayout.htm">WHBoxLayout</a> (vertical stretch=1)&nbsp;&nbsp;|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * |&nbsp;&nbsp;messages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| userslist |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * |&nbsp;&nbsp; (horizontal stretch=1)&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * ------------------------------------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * | message edit area&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * ------------------------------------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * | <a href="CppWHBoxLayout.htm">WHBoxLayout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * | send | logout |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stretch <a href="CppOperatorAssign.htm">=</a> 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * ------------------------------------------<a href="CppOperatorDecrement.htm">--</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWVBoxLayout.htm">WVBoxLayout</a> *vLayout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWVBoxLayout.htm">WVBoxLayout</a>();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Create a horizontal layout <b><a href="CppFor.htm">for</a></b> the messages | userslist.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWHBoxLayout.htm">WHBoxLayout</a> *hLayout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWHBoxLayout.htm">WHBoxLayout</a>();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> widget to horizontal layout with stretch <a href="CppOperatorAssign.htm">=</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hLayout-&gt;addWidget(messages_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">WContainerWidget</a>(), 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messages_-&gt;setStyleClass("chat-msgs");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Display scroll bars <b><a href="CppIf.htm">if</a></b> contents overflows<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messages_-&gt;setOverflow(<a href="CppWContainerWidget.htm">WContainerWidget</a>::OverflowAuto);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> another widget to hirozontal layout with stretch <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hLayout-&gt;addWidget(userList_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">WContainerWidget</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;userList_-&gt;setStyleClass("chat-users");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;userList_-&gt;setOverflow(<a href="CppWContainerWidget.htm">WContainerWidget</a>::OverflowAuto);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hLayout-&gt;setResizable(0, <b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> nested layout to vertical layout with stretch <a href="CppOperatorAssign.htm">=</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;vLayout-&gt;addLayout(hLayout, 1);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> widget to vertical layout with stretch <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;vLayout-&gt;addWidget(messageEdit_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WTextArea());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messageEdit_-&gt;setStyleClass("chat-noedit");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messageEdit_-&gt;setRows(2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messageEdit_-&gt;setFocus();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Create a horizontal layout <b><a href="CppFor.htm">for</a></b> the buttons.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hLayout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWHBoxLayout.htm">WHBoxLayout</a>();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> button to horizontal layout with stretch <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hLayout-&gt;addWidget(sendButton_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">WPushButton</a>("Send"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.htm">WPushButton</a> *b;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> button to horizontal layout with stretch <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hLayout-&gt;addWidget(b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">WPushButton</a>("Logout"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> stretching spacer to horizontal layout<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hLayout-&gt;addStretch(1);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> nested layout to vertical layout with stretch <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;vLayout-&gt;addLayout(hLayout);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setLayout(vLayout);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * Connect event handlers:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> click on button<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> enter in text area<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * We will clear the input field <b><a href="CppUsing.htm">using</a></b> a small custom client-side<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * JavaScript invocation.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Create a JavaScript 'slot' (JSlot). The JavaScript slot always takes<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> 2 arguments: the originator of the event (in our <b><a href="CppCase.htm">case</a></b> the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> button or text area), and the JavaScript event object.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;clearInput_.setJavaScript<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("<a href="CppFunction.htm">function</a>(o, e) {"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "" <a href="CppOperatorPlus.htm">+</a> messageEdit_-&gt;jsRef() <a href="CppOperatorPlus.htm">+</a> ".value='';"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "}");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Bind the <a href="Cpp.htm">C++</a> and JavaScript event handlers.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sendButton_-&gt;clicked().connect(<a href="CppSLOT.htm">SLOT</a>(<b><a href="CppThis.htm">this</a></b>, SimpleChatWidget::send));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messageEdit_-&gt;enterPressed().connect(<a href="CppSLOT.htm">SLOT</a>(<b><a href="CppThis.htm">this</a></b>, SimpleChatWidget::send));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sendButton_-&gt;clicked().connect(clearInput_);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messageEdit_-&gt;enterPressed().connect(clearInput_);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Prevent the enter from generating a <b><a href="CppNew.htm">new</a></b> line, which is its<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppDefault.htm">default</a></b> <a href="CppFunction.htm">function</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;messageEdit_-&gt;enterPressed().setPreventDefault(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b-&gt;clicked().connect(<a href="CppSLOT.htm">SLOT</a>(<b><a href="CppThis.htm">this</a></b>, SimpleChatWidget::logout));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;WText *msg <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WText<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("&lt;div&gt;&lt;span <b><a href="CppClass.htm">class</a></b>='chat-info'&gt;You are joining the conversation as "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a> user_ <a href="CppOperatorPlus.htm">+</a> "&lt;/span&gt;&lt;/div&gt;", messages_);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;msg-&gt;setStyleClass("chat-msg");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;updateUsers();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;} <b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatWidget::send()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!messageEdit_-&gt;text().empty()) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;server_.sendMessage(user_, messageEdit_-&gt;text());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!W<a href="CppApplication.htm">Application</a>::<a href="CppInstance.htm">instance</a>()-&gt;environment().ajax())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messageEdit_-&gt;setText(WString::Empty);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;messageEdit_-&gt;setFocus();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatWidget::updateUsers()<br/>
+{<br/>
+&nbsp;&nbsp;userList_-&gt;clear();<br/>
+<br/>
+&nbsp;&nbsp;SimpleChatServer::UserSet users <a href="CppOperatorAssign.htm">=</a> server_.users();<br/>
+<br/>
+&nbsp;&nbsp;UserMap oldUsers <a href="CppOperatorAssign.htm">=</a> users_;<br/>
+&nbsp;&nbsp;users_.clear();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (SimpleChatServer::UserSet::iterator i <a href="CppOperatorAssign.htm">=</a> users.begin();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i <a href="CppOperatorNotEqual.htm">!=</a> users.end(); <a href="CppOperatorIncrement.htm">++</a>i) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;WCheckBox *w <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WCheckBox(*i, userList_);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;setInline(<b><a href="CppFalse.htm">false</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;UserMap::const_iterator j <a href="CppOperatorAssign.htm">=</a> oldUsers.find(*i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (j <a href="CppOperatorNotEqual.htm">!=</a> oldUsers.end())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;setChecked(j-&gt;second);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;setChecked(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;users_[*i] <a href="CppOperatorAssign.htm">=</a> w-&gt;isChecked();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;changed().connect(<a href="CppSLOT.htm">SLOT</a>(<b><a href="CppThis.htm">this</a></b>, SimpleChatWidget::updateUser));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (*i <a href="CppOperatorEqual.htm">==</a> user_)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;setStyleClass("chat-self");<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatWidget::updateUser()<br/>
+{<br/>
+&nbsp;&nbsp;WCheckBox *b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;WCheckBox *&gt;(sender());<br/>
+&nbsp;&nbsp;users_[b-&gt;text()] <a href="CppOperatorAssign.htm">=</a> b-&gt;isChecked();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> SimpleChatWidget::processChatEvent(<b><a href="CppConst.htm">const</a></b> ChatEvent&amp; event)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * This is where the "server-push" happens. This method is called<br/>
+&nbsp;&nbsp; * when a <b><a href="CppNew.htm">new</a></b> event or message needs to be notified to the user. In<br/>
+&nbsp;&nbsp; * general, it is called from another session.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * First, take the lock to safely manipulate the UI outside of the<br/>
+&nbsp;&nbsp; * normal event loop, by having exclusive access to the session.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;W<a href="CppApplication.htm">Application</a>::UpdateLock lock <a href="CppOperatorAssign.htm">=</a> app_-&gt;getUpdateLock();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * Format and append the line to the conversation.<br/>
+&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp; * This is also the step where the automatic XSS filtering will kick in:<br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppIf.htm">if</a></b> another user tried to pass on some JavaScript, it is filtered away.<br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppIf.htm">if</a></b> another user did not provide valid XHTML, the text is automatically<br/>
+&nbsp;&nbsp; *&nbsp;&nbsp; interpreted as PlainText<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> needPush <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * If it is not a normal message, also update the user list.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event.type() <a href="CppOperatorNotEqual.htm">!=</a> ChatEvent::Message) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;needPush <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;updateUsers();<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> display <a href="CppOperatorAssign.htm">=</a> event.type() <a href="CppOperatorNotEqual.htm">!=</a> ChatEvent::Message<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> (users_.find(event.user()) <a href="CppOperatorNotEqual.htm">!=</a> users_.end() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> users_[event.user()]);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (display) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;needPush <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;WText *w <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WText(event.formattedHTML(user_), messages_);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;setInline(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;setStyleClass("chat-msg");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * Leave not more than 100 messages in the back-log<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (messages_-&gt;count() &gt; 100)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> messages_-&gt;children()[0];<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * Little javascript trick to <a href="CppMake.htm">make</a> sure we scroll along with <b><a href="CppNew.htm">new</a></b> content<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;app_-&gt;<b><a href="CppDo.htm">do</a></b>JavaScript(messages_-&gt;jsRef() <a href="CppOperatorPlus.htm">+</a> ".scrollTop <a href="CppOperatorPlusAssign.htm">+=</a> "<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a> messages_-&gt;jsRef() <a href="CppOperatorPlus.htm">+</a> ".scrollHeight;");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a> If <b><a href="CppThis.htm">this</a></b> message be<b><a href="CppLong.htm">long</a></b>s to another user, play a received sound <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event.user() <a href="CppOperatorNotEqual.htm">!=</a> user_)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messageReceived_.play();<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (needPush)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;app_-&gt;triggerUpdate();<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>SimpleChatWidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> This may look like C code, but it's really <a href="CppOperatorMinus.htm">-</a>*<a href="CppOperatorMinus.htm">-$</a> <a href="Cpp.htm">C++</a> <a href="CppOperatorMinus.htm">-</a>*-<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * Copyright (C) 2008 Emweb bvba, Heverlee, Belgium.<br/>
+ *<br/>
+ * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> SIMPLECHATWIDGET_H_<br/>
+<a href="CppDefine.htm">#define</a> SIMPLECHATWIDGET_H_<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WJavaScript&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WSound&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> W<a href="CppApplication.htm">Application</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppWPushButton.htm">WPushButton</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> WText;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppWLineEdit.htm">WLineEdit</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> WTextArea;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> SimpleChatServer;<br/>
+<b><a href="CppClass.htm">class</a></b> ChatEvent;<br/>
+<br/>
+<a href="CppComment.htm">/*</a>*<br/>
+ * \defgroup chatexample Chat example<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">/*</a>@{<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a>! \brief A self-contained chat widget.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> SimpleChatWidget : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Create a chat widget that will connect to the given server.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;SimpleChatWidget(SimpleChatServer&amp; server, <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Delete a chat widget.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;~SimpleChatWidget();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Show a simple login screen.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> letLogin();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Start a chat <b><a href="CppFor.htm">for</a></b> the given user.<br/>
+&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp; * Returns <b><a href="CppFalse.htm">false</a></b> <b><a href="CppIf.htm">if</a></b> the user could not login.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> startChat(<b><a href="CppConst.htm">const</a></b> <a href="CppWString.htm">Wt::WString</a>&amp; user);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppMap.htm">std::map</a>&lt;<a href="CppWString.htm">Wt::WString</a>, <b><a href="CppBool.htm">bool</a></b>&gt; UserMap;<br/>
+&nbsp;&nbsp;UserMap users_;<br/>
+<br/>
+&nbsp;&nbsp;SimpleChatServer&amp;&nbsp;&nbsp;&nbsp;&nbsp; server_;<br/>
+&nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a>&nbsp;&nbsp;&nbsp;&nbsp; *app_;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppJSlot.htm">Wt::JSlot</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clearInput_;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWString.htm">Wt::WString</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; user_;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*userNameEdit_;<br/>
+&nbsp;&nbsp;<a href="CppWText.htm">Wt::WText</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*statusMsg_;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> *messages_;<br/>
+&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> *messageEditArea_;<br/>
+&nbsp;&nbsp;<a href="CppWTextArea.htm">Wt::WTextArea</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*messageEdit_;<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*sendButton_;<br/>
+&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> *userList_;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppSignals.htm">boost::signals</a>::connection eventConnection_;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWSound.htm">Wt::WSound</a> messageReceived_;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> login();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> logout();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> send();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> updateUsers();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> updateUser();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a> called from another session <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> processChatEvent(<b><a href="CppConst.htm">const</a></b> ChatEvent&amp; event);<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">/*</a>@}<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SIMPLECHATWIDGET<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>simpleChat.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+ * Copyright (C) 2008 Emweb bvba, Heverlee, Belgium.<br/>
+ *<br/>
+ * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/W<a href="CppApplication.htm">Application</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WText&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "SimpleChatServer.h"<br/>
+<a href="CppInclude.htm">#include</a> "SimpleChatWidget.h"<br/>
+<br/>
+<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a>;<br/>
+<br/>
+<a href="CppComment.htm">/*</a>*<br/>
+ * @addtogroup chatexample<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">/*</a>@{<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a>! \brief The single chat server <a href="CppInstance.htm">instance</a>.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+SimpleChatServer theServer;<br/>
+<br/>
+<a href="CppComment.htm">/*</a>! \brief A chat demo <a href="CppApplication.htm">application</a>.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> Chat<a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> W<a href="CppApplication.htm">Application</a><br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief Create a <b><a href="CppNew.htm">new</a></b> <a href="CppInstance.htm">instance</a>.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;Chat<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> WEnvironment&amp; env);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a>! \brief <a href="CppAdd.htm">Add</a> another chat client.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> addChatWidget();<br/>
+};<br/>
+<br/>
+Chat<a href="CppApplication.htm">Application</a>::Chat<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> WEnvironment&amp; env)<br/>
+&nbsp;&nbsp;: W<a href="CppApplication.htm">Application</a>(env)<br/>
+{<br/>
+&nbsp;&nbsp;setTitle("<a href="CppWt.htm">Wt</a> Chat");<br/>
+&nbsp;&nbsp;useStyleSheet("simplechat.css");<br/>
+&nbsp;&nbsp;messageResourceBundle().use("simplechat");<br/>
+<br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> WText(WString::tr("introduction")));<br/>
+<br/>
+&nbsp;&nbsp;SimpleChatWidget *chatWidget <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> SimpleChatWidget(theServer, root());<br/>
+&nbsp;&nbsp;chatWidget-&gt;setStyleClass("chat");<br/>
+<br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> WText(WString::tr("details")));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">WPushButton</a> *b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">WPushButton</a>("I'm schizophrenic ...", root());<br/>
+&nbsp;&nbsp;b-&gt;clicked().connect(<a href="CppSLOT.htm">SLOT</a>(b, <a href="CppWPushButton.htm">WPushButton</a>::hide));<br/>
+&nbsp;&nbsp;b-&gt;clicked().connect(<a href="CppSLOT.htm">SLOT</a>(<b><a href="CppThis.htm">this</a></b>, Chat<a href="CppApplication.htm">Application</a>::addChatWidget));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Chat<a href="CppApplication.htm">Application</a>::addChatWidget()<br/>
+{<br/>
+&nbsp;&nbsp;SimpleChatWidget *chatWidget2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> SimpleChatWidget(theServer, root());<br/>
+&nbsp;&nbsp;chatWidget2-&gt;setStyleClass("chat");<br/>
+}<br/>
+<br/>
+W<a href="CppApplication.htm">Application</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> WEnvironment&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> Chat<a href="CppApplication.htm">Application</a>(env);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.htm">Application</a>);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a>@}<a href="CppComment.htm">*/</a><br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Additional preparations</h2>
+<p>&nbsp;</p>
+<p>Added the following arguments to the <a href="CppQtCreatorRunSettings.png">Run Settings</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+--docroot . --http-address 0.0.0.0 --http-port 8080<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Output from the wthttpd server when it is not working</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Starting /home/richel/qtsdk-2010.04/bin/Projects/Website/CppWtSimpleChat-build-desktop/CppWtSimpleChat...<br/>
+[2011-Apr-12 10:36:51.581110] 8824 - [notice] "Wt: initializing built-in httpd"<br/>
+[2011-Apr-12 10:36:51.581231] 8824 - [notice] "Reading Wt config file: /etc/wt/wt_config.xml (location = '/home/richel/qtsdk-2010.04/bin/Projects/Website/CppWtSimpleChat-build-desktop/CppWtSimpleChat')"<br/>
+[2011-Apr-12 10:36:51.581789] 8824 - [notice] "Started server: http://0.0.0.0:8080"<br/>
+[2011-Apr-12 10:36:55.029443] 8824 [/ gQop6M7Wgwi35eUo] [notice] "Session created (#sessions = 1)"<br/>
+Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34 Safari/534.24<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:55.030755] "GET / HTTP/1.1" 200 1836<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:55.103744] "GET /?wtd=gQop6M7Wgwi35eUo&amp;request=script&amp;rand=431931263 HTTP/1.1" 200 30085<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:55.138307] "GET /resources//themes/default/wt.css HTTP/1.1" 404 85<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:55.138488] "GET /resources/swfobject.js HTTP/1.1" 404 85<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:55.311107] "GET /favicon.ico HTTP/1.1" 404 85<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Pressing F5 (Refresh) once, to check for runtime errors, adds the following</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[2011-Apr-12 10:36:58.735773] 8824 [/ fmn6vnZeV8Ih3vIh] [notice] "Session created (#sessions = 2)"<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:58.736617] "GET / HTTP/1.1" 200 1836<br/>
+Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34 Safari/534.24<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:58.790913] "GET /?wtd=fmn6vnZeV8Ih3vIh&amp;request=script&amp;rand=854652532 HTTP/1.1" 200 30092<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:58.930977] "GET /resources//themes/default/wt.css HTTP/1.1" 404 85<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:58.936669] "GET /simplechat.css HTTP/1.1" 304 0<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:58.984089] "GET /favicon.ico HTTP/1.1" 404 85<br/>
+127.0.0.1 - - [2011-Apr-12 10:36:58.984100] "GET /resources/swfobject.js HTTP/1.1" 404 85<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution when it is not working</h2>
+<p>&nbsp;</p>
+<p>Thanks to Koen Deforche and Wim Dumon for pointing me out the problem: the wthttpd server output with '404' denotes
+'not found'. Put these files in place and it works! Or do not choose to do a 'Shadow Build'.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

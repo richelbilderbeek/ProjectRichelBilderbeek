@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>WtAutoRun</title>
+  <meta name="description" content="C++ WtAutoRun"/>
+  <meta name="keywords" content="C++ WtAutoRun Wt auto run without with default parameters"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtAutoRun.htm">WtAutoRun</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppWtAutoRun.htm">WtAutoRun</a> is a bare-bone <a href="CppWt.htm">Wt</a> program that
+starts the application without the need of a user giving command-line parameters. It is a
+fine starting point for a <a href="CppWt.htm">Wt</a> application.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppWtAutoRun.zip">Download the 'WtAutoRun' source code (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The <a href="CppClass.htm">class</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a> embodies
+this functionality as a stand-alone <a href="CppClass.htm">class</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicWeb.png" alt="Web"/> <a href="CppWebApplication.htm">Web application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.10 (maverick)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 </li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.42</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.1.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppWtAutoRun.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2011-01-14T19:09:57<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+LIBS += -lwt -lwthttp -lboost_program_options<br/>
+QMAKE_CXXFLAGS += -DNDEBUG<br/>
+TARGET = CppWtAutoRun<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/program_options.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<b><a href="CppQtSignals.htm">signals</a></b>2.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WApplication&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WEnvironment&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintDevice.htm">WPaintDevice</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPainter.htm">WPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a>Widget : <b><a href="CppPublic.htm">public</a></b> <a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>Widget()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;resize(32,32);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>32; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>32; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>::WPen(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>::WColor(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((x+0) * 8) <a href="CppOperatorModulus.htm">%</a> 256,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((y+0) * 8) <a href="CppOperatorModulus.htm">%</a> 256,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((x+y) * 8) <a href="CppOperatorModulus.htm">%</a> 256)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw a line of one pixel <b><a href="CppLong.htm">long</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(x,y,x+1,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>draw<a href="CppPointer.htm">Point</a> yiels too white results<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>painter.draw<a href="CppPointer.htm">Point</a>(x,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>Dialog()<br/>
+&nbsp;&nbsp;: m_widget(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a>Widget)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_widget);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>Widget * <b><a href="CppConst.htm">const</a></b> m_widget;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a>Application : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>Application(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a>Dialog)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("Thinking <a href="CppWt.htm">Wt</a> 2: creating a&nbsp;&nbsp;widget");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(m_dialog);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>Dialog * <b><a href="CppConst.htm">const</a></b> m_dialog;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWApplication.htm">Wt::WApplication</a> *createApplication(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a>Application(env);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;/<a href="CppOperatorDivide.htm">/</a> Declare the supported options.<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::program_options::options_description d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Allowed options <b><a href="CppFor.htm">for</a></b> Cpp<a href="CppWt.htm">Wt</a>AutoRun");<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> docroot;<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_<a href="CppAddress.htm">address</a>;<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_port;<br/>
+&nbsp;&nbsp;d.add_options()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("help",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"produce <b><a href="CppThis.htm">this</a></b> help message")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("docroot",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoost.htm">boost</a>::program_options::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;docroot)-&gt;default_value("."),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the docroot")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("http-<a href="CppAddress.htm">address</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoost.htm">boost</a>::program_options::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;http_<a href="CppAddress.htm">address</a>)-&gt;default_value("0.0.0.0"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the server's http <a href="CppAddress.htm">address</a>")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("http-port",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoost.htm">boost</a>::program_options::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;http_port)-&gt;default_value("8080"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the server's http port")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::program_options::variables_map m;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::program_options::store(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::program_options::parse_command_line(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, d), m);<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::program_options::notify(m);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("help"))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the options_description<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the arguments in <a href="CppString.htm">std::string</a> format<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v(7);<br/>
+&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> <a href="CppArgc.htm">argv</a>[0];<br/>
+&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>docroot";<br/>
+&nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> docroot;<br/>
+&nbsp;&nbsp;v[3] <a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>http-<a href="CppAddress.htm">address</a>";<br/>
+&nbsp;&nbsp;v[4] <a href="CppOperatorAssign.htm">=</a> http_<a href="CppAddress.htm">address</a>;<br/>
+&nbsp;&nbsp;v[5] <a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>http-port";<br/>
+&nbsp;&nbsp;v[6] <a href="CppOperatorAssign.htm">=</a> http_port;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> the arguments to <b><a href="CppChar.htm">char</a></b>* format<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>*&gt; w(7);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>7; <a href="CppOperatorPlus.htm">+</a>+i) w[i] <a href="CppOperatorAssign.htm">=</a> &amp;v[i][0];<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Give <a href="CppWt.htm">Wt</a> the modified parameters<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(w.size(), &amp;w[0], &amp;createApplication);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

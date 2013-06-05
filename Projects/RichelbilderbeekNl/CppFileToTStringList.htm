@@ -1,0 +1,106 @@
+ 
+<title>FileToTStringList</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ VCL Code Snippet</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>Richel Bilderbeek C++ VCL Code Snippet FileToTStringList File to TStringList StringList</o:Keywords>
+  <o:LastAuthor>Richel</o:LastAuthor>
+  <o:Revision>10</o:Revision>
+  <o:TotalTime>115</o:TotalTime>
+  <o:Created>2007-07-16T20:04:00Z</o:Created>
+  <o:LastSaved>2007-07-29T15:12:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>92</o:Words>
+  <o:Characters>530</o:Characters>
+  <o:Lines>4</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>650</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+
+ 
+
+ 
+
+<p> Back to <a
+href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p> Back to <a
+href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<h1> FileToTStringList</h1>
+
+<p>  &nbsp;</p>
+
+<p> Use
+TStringList's method LoadFromFile.</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+ 
+
+<p> TStringList * const myStringList = new
+TStringList;</p>
+
+<p> myStringList-&gt;LoadFromFile(&quot;fileName&quot;);</p>
+
+<p> delete myStringList;</p>
+
+</div>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p> Using
+std::auto_ptr:</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+ 
+
+<p> #include &lt;memory&gt;</p>
+
+<p>  &nbsp;</p>
+
+<p> std::auto_ptr&lt;TStringList&gt;
+myStringList(new TStringList);</p>
+
+<p> myStringList-&gt;LoadFromFile(&quot;fileName&quot;);</p>
+
+<p> //delete takes place automatically</p>
+
+</div>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p>  &nbsp;</p>
+
+<p> Back to <a
+href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p> Back to <a
+href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>  &nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>'Hello Wt' using Qt Creator under Raspian</title>
+  <meta name="description" content="C++ 'Hello Wt' using Qt Creator under Raspian"/>
+  <meta name="keywords" content="C++ 'Hello Wt' using Qt Creator under Raspian RPi pi code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloWtQtCreatorRpi.htm">'Hello Wt' using Qt Creator under Raspian</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppHelloWt.htm">Hello Wt</a> application using <a href="CppQtCreator.htm">Qt Creator</a> 
+under <a href="CppRpi.htm">Raspian</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppHelloWtQtCreatorRaspbian.zip">Download the Qt Creator project 'CppHelloWtQtCreatorRaspbian' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicWeb.png" alt="Web"/> <a href="CppWebApplication.htm">Web application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicRaspbian.png" alt="Raspbian"/> <a href="CppRaspbian.htm">Raspbian</a></li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.6.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a></li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a></li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a></li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloWtQtCreatorRaspbian.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppHelloWtQtCreatorRaspbian.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+LIBS += -L/usr/lib <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a><br/>
+QMAKE_CXXFLAGS += -DNDEBUG<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+ * Copyright (C) 2008 Emweb bvba, Heverlee, Belgium.<br/>
+ *<br/>
+ * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.htm">WLineEdit</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.htm">WText</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppVersion.htm">version</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a>;<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * A simple hello world <a href="CppApplication.htm">application</a> <b><a href="CppClass.htm">class</a></b> which demonstrates how to react<br/>
+ * to events, read input, and give feed-back.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppClass.htm">class</a></b> Hello<a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">WApplication</a><br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;Hello<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWLineEdit.htm">WLineEdit</a> *nameEdit_;<br/>
+&nbsp;&nbsp;<a href="CppWText.htm">WText</a> *greeting_;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> greet();<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ * The env argument contains information <a href="CppAbout.htm">about</a> the <b><a href="CppNew.htm">new</a></b> session, and<br/>
+ * the initial request. It must be passed to the <a href="CppWApplication.htm">WApplication</a><br/>
+ * <a href="CppConstructor.htm">constructor</a> so it is typically also an argument <b><a href="CppFor.htm">for</a></b> your custom<br/>
+ * <a href="CppApplication.htm">application</a> <a href="CppConstructor.htm">constructor</a>.<br/>
+<a href="CppComment.htm">*/</a><br/>
+Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;: <a href="CppWApplication.htm">WApplication</a>(env)<br/>
+{<br/>
+&nbsp;&nbsp;setTitle("<a href="CppHelloWorld.htm">Hello world</a>");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> <a href="CppApplication.htm">application</a> title<br/>
+<br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">WText</a>("Your name, please ? "));&nbsp;&nbsp;<a href="CppComment.htm">//</a> show some text<br/>
+&nbsp;&nbsp;nameEdit_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">WLineEdit</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> allow text input<br/>
+&nbsp;&nbsp;nameEdit_-&gt;setFocus();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> give focus<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">WPushButton</a> *b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">WPushButton</a>("Greet me.", root()); <a href="CppComment.htm">//</a> create a button<br/>
+&nbsp;&nbsp;b-&gt;setMargin(5, Left);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> add 5 pixels margin<br/>
+<br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">WBreak</a>());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> insert a line <b><a href="CppBreak.htm">break</a></b><br/>
+<br/>
+&nbsp;&nbsp;greeting_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">WText</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> empty text<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp; * Connect <b><a href="CppQtSignals.htm">signals</a></b> with <b><a href="CppSlots.htm">slots</a></b><br/>
+&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> simple <a href="CppWt.htm">Wt</a>-way<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;b-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;Hello<a href="CppApplication.htm">Application</a>::greet);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppUsing.htm">using</a></b> an arbitrary <a href="CppFunction.htm">function</a> object (binding values with <a href="CppBind.htm">boost::bind</a>())<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;nameEdit_-&gt;enterPressed().connect<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppBind.htm">boost::bind</a>(&amp;Hello<a href="CppApplication.htm">Application</a>::greet, <b><a href="CppThis.htm">this</a></b>));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Hello<a href="CppApplication.htm">Application</a>::greet()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp; * Update the text, <b><a href="CppUsing.htm">using</a></b> text input into the nameEdit_ field.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;greeting_-&gt;setText("Hello there, " <a href="CppOperatorPlus.htm">+</a> nameEdit_-&gt;text());<br/>
+}<br/>
+<br/>
+<a href="CppWApplication.htm">WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp; * You could read information from the environment to decide whether<br/>
+&nbsp;&nbsp; * the user has permission to start a <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.htm">application</a><br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> Hello<a href="CppApplication.htm">Application</a>(env);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp; * Your <a href="CppMain.htm">main</a> method may set up some shared resources, but should then<br/>
+&nbsp;&nbsp; * start the server <a href="CppApplication.htm">application</a> (FastCGI or httpd) that starts listening<br/>
+&nbsp;&nbsp; * <b><a href="CppFor.htm">for</a></b> requests, and handles all of the <a href="CppApplication.htm">application</a> life cycles.<br/>
+&nbsp;&nbsp; *<br/>
+&nbsp;&nbsp; * The last argument to WRun specifies the <a href="CppFunction.htm">function</a> that will instantiate<br/>
+&nbsp;&nbsp; * <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.htm">application</a> objects. That <a href="CppFunction.htm">function</a> is executed when a <b><a href="CppNew.htm">new</a></b> user surfs<br/>
+&nbsp;&nbsp; * to the <a href="CppWt.htm">Wt</a> <a href="CppApplication.htm">application</a>, and after the <a href="CppLibrary.htm">library</a> has negotiated browser<br/>
+&nbsp;&nbsp; * support. The <a href="CppFunction.htm">function</a> should <b><a href="CppReturn.htm">return</a></b> a newly instantiated <a href="CppApplication.htm">application</a><br/>
+&nbsp;&nbsp; * object.<br/>
+&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.htm">Application</a>);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>start.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="start.sh" border = "1"><tr><td><code>
+qmake<br/>
+make<br/>
+rm Makefile<br/>
+rm main.o<br/>
+./CppHelloWtQtCreatorRaspbian --docroot . --http-address 0.0.0.0 --http-port 8080<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppWtDeployLocal.htm">Deploying the Wt application locally</a></h2>
+<p>&nbsp;</p>
+Call the start.sh script:</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+./start
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>In the end you will see something like shown below. Your web server is running now.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[2010-Nov-19 16:41:38.365920] 6360 - [notice] "Wt: initializing built-in httpd"<br/>
+[2010-Nov-19 16:41:38.366043] 6360 - [notice] "Reading Wt config file: /etc/wt/wt_config.xml (location = '/home/richel/qtsdk-2010.04/bin/Projects/Website/CppHelloWtQtCreatorUbuntu-build-desktop/CppHelloWtQtCreatorUbuntu')"<br/>
+[2010-Nov-19 16:41:38.366592] 6360 - [notice] "Started server: http://0.0.0.0:8080"<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Now, start your web browser and go to the following address:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+http://127.0.0.1:8080/<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>You will see the 'Hello Wt' dynamic website. You just 
+<a href="CppWtDeployLocal.htm">deployed your Wt application locally</a>. This is just fine for debugging.
+If the application is ready to be put on the web, 
+<a href="CppWtDeployGlobal.htm">deploy the Wt application globally</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

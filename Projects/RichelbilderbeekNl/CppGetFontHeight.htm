@@ -1,0 +1,108 @@
+ 
+<title>GetFontHeight</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ GetFontHeight</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek GetFontHeight Get Font Height VCL C++ Builder CLX</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>10</o:Revision>
+  <o:TotalTime>131</o:TotalTime>
+  <o:Created>2008-04-28T08:24:00Z</o:Created>
+  <o:LastSaved>2008-04-28T08:45:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>170</o:Words>
+  <o:Characters>972</o:Characters>
+  <o:Category>C++ Richel Bilderbeek GetFontHeight</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>8</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>1193</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+GetFontHeight</h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppFunction.htm">Function</a> to get the height of a Font in pixels.</p>
+
+<p>The
+<a href="CppMemberFunction.htm">member function</a> Font::Size and <a href="CppAbs.htm">std::abs</a>
+on Font::Height don't work perfectly.</p>
+
+<p>Use
+Canvas::TextHeight on a random string instead.</p>
+
+<p>* <a
+href="CppGetFontHeight.txt">View the code of 'GetFontHeight' in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppGetFontHeight.htm</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  <b><a href="CppInt.htm">int</a></b>
+GetFontHeight(<b><a href="CppConst.htm">const</a></b> TImage * <b><a
+href="CppConst.htm">const</a></b> image)</p>
+
+<p>{</p>
+
+<p>
+ <a href="CppComment.htm">//</a> <a href="CppConst_cast.htm">const_cast</a>
+necessary as the <a href="CppVcl.htm">VCL</a> is not <a
+href="CppConstCorrect.htm">const-correct</a>. Grumble, grumble...</p>
+
+<p>
+ <b><a href="CppReturn.htm">return</a></b> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;TImage*&gt;(image)-&gt;Canvas-&gt;TextHeight(&quot;x&quot;);</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

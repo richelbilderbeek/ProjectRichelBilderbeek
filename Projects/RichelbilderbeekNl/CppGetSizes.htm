@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetSizes</title>
+  <meta name="description" content="C++ GetSizes"/>
+  <meta name="keywords" content="C++ GetSizes"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetSizes.htm">GetSizes</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetSizes.htm">GetSizes</a> is a <a href="CppMatrix.htm">matrix</a> <a href="CppCodeSnippets.htm">code snippet</a> 
+to obtain all <a href="CppVector.htm">std::vector</a> sizes in a (one-dimensional) <a href="CppVector.htm">std::vector</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGetSizes.zip">Download the Qt Creator project 'CppGetSizes' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> <a href="CppGetSizes.htm">GetSizes</a> using a <a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetSizes.htm">GetSizes</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppSize_t.htm">std::size_t</a>&gt; <a href="CppGetSizes.htm">GetSizes</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppSize_t.htm">std::size_t</a>&gt; w;<br/>
+&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(v.begin(),v.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(w),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; x) { <b><a href="CppReturn.htm">return</a></b> x.size(); }<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/> <a href="CppGetSizes.htm">GetSizes</a> using a <a href="CppFor.htm">for</a>-loop</h2>
+<p>&nbsp;</p>
+<p>Prefer <a href="CppAlgorithm.htm">algorithms</a> over loops [1][2]</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppSize_t.htm">std::size_t</a>&gt; <a href="CppGetSizes.htm">GetSizes</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppSize_t.htm">std::size_t</a>&gt; w;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(v[i].size());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4. Chapter 18.12.1: 'Prefer algorithms over loops'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a> and <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 84: 'Prefer algorithm calls to handwritten loops'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

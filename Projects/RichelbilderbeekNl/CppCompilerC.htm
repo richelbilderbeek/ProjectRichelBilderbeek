@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>How to use Qt Creator to compile C code?</title>
+  <meta name="description" content="C++ How to use Qt Creator to compile C code?"/>
+  <meta name="keywords" content="C++ How to use Qt Creator to compile C code? code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppCompilerC.htm">How to use Qt Creator to compile C code?</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCompilerC.htm">How to use Qt Creator to compile C code?</a> is a <a href="CppQtFaq.htm">Qt FAQ</a>
+how to use <a href="CppQtCreator.htm">Qt Creator</a> to <a href="CppCompile.htm">compile</a> C code.</p>
+<p>&nbsp;</p>
+<p>Add the following lines to your <a href="CppQtProjectFile.htm">Qt project file</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QMAKE_CXX = gcc<br/>
+QMAKE_CXXFLAGS = -x c<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full example</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppCompilerC.zip">Download the Qt Creator project 'CppCompilerC' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppCompilerC.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= core gui<br/>
+<br/>
+#Compile with Gnu C compiler<br/>
+QMAKE_CXX = gcc<br/>
+QMAKE_CXXFLAGS = -x c<br/>
+<br/>
+TARGET = CppCompilerC<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">///</a>C code that is invalid <a href="Cpp.htm">C++</a> code<br/>
+<b><a href="CppStruct.htm">struct</a></b> <b><a href="CppTemplate.htm">template</a></b><br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> <b><a href="CppNew.htm">new</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <b><a href="CppTemplate.htm">template</a></b>* <b><a href="CppClass.htm">class</a></b>;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <b><a href="CppTemplate.htm">template</a></b> t;<br/>
+&nbsp;&nbsp;t.<b><a href="CppNew.htm">new</a></b> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;t.<b><a href="CppClass.htm">class</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

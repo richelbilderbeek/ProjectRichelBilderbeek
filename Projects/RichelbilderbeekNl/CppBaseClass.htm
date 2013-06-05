@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Base class</title>
+  <meta name="description" content="C++ Base class"/>
+  <meta name="keywords" content="C++ Base class code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBaseClass.htm">Base class</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppBaseClass.htm">base class</a> is a type of <a href="CppClass.htm">class</a> 
+that is used to <a href="CppInheritance.htm">inherit</a>
+member variables and <a href="CppMemberFunction.htm">member functions</a> from.</p>
+<p>Or: a <a href="CppBaseClass.htm">base class</a> is the entity that all 
+<a href="CppDerivedClass.htm">derived classes</a> share.</p>
+<p>&nbsp;</p>
+<p>The code below shows how an Animal is used as a <a href="CppBaseClass.htm">base
+class</a> and Cat and Dog are <a href="CppDerivedClass.htm">derived classes</a>
+(of Animal).</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Animal <a href="CppComment.htm">//</a>Animal is a (non-abstract) base <b><a href="CppClass.htm">class</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> MakeSound() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>All base <b><a href="CppClass.htm">classes</a></b> must have a <b><a href="CppVirtual.htm">virtual</a></b> <a href="CppDestructor.htm">destructor</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> (<a href="CppHerbSutter.htm">Herb Sutter</a> &amp; <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>, 2004)<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Animal() {}<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>A cat is a-kind-of animal.<br/>
+<a href="CppComment.htm">//</a>Cat will not be used as a base <b><a href="CppClass.htm">class</a></b>,<br/>
+<a href="CppComment.htm">//</a>therefore it has no <b><a href="CppVirtual.htm">virtual</a></b> <a href="CppDestructor.htm">destructor</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> Cat : <b><a href="CppPublic.htm">public</a></b> Animal <br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Meow" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; }<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>A dog is a-kind-of animal.<br/>
+<a href="CppComment.htm">//</a>Dog will not be used as a base <b><a href="CppClass.htm">class</a></b>,<br/>
+<a href="CppComment.htm">//</a>therefore it has no <b><a href="CppVirtual.htm">virtual</a></b> <a href="CppDestructor.htm">destructor</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> Dog : <b><a href="CppPublic.htm">public</a></b> Animal<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Bark" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; }<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>A special type of <a href="CppBaseClass.htm">base class</a> is the <a
+href="CppAbstractBaseClass.htm">abstract base class</a>.</p>
+<p>&nbsp;</p>
+<p>All
+<a href="CppBaseClass.htm">base classes</a> must have a (<a href="CppPublic.htm">public</a>)
+<a href="CppVirtual.htm">virtual</a> <a href="CppDestructor.htm">destructor</a>.
+A non-<a href="CppBaseClass.htm">base class</a> must have a (non-<a
+href="CppPublic.htm">public</a>) non-<a href="CppVirtual.htm">virtual</a> <a
+href="CppDestructor.htm">destructor</a> [1].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

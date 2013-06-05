@@ -1,0 +1,810 @@
+ 
+<title>Sine class</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Sine class</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Sine class std::sin sin look up table lut</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>9</o:Revision>
+  <o:TotalTime>411</o:TotalTime>
+  <o:Created>2009-04-27T11:05:00Z</o:Created>
+  <o:LastSaved>2009-04-27T11:15:00Z</o:LastSaved>
+  <o:Pages>5</o:Pages>
+  <o:Words>1257</o:Words>
+  <o:Characters>7166</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Sine class</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>59</o:Lines>
+  <o:Paragraphs>14</o:Paragraphs>
+  <o:CharactersWithSpaces>8800</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+h2
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-style:italic;}
+ 
+ 
+ 
+ 
+a:link, span.MsoHyperlink
+	{mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+ 
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:640575257;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-396876238 1911735584 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:*;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	mso-hansi-font-family:"Courier New";
+	color:windowtext;}
+@list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:1334643116;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1873735030 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+	{mso-level-start-at:0;
+	mso-level-text:"\[%1\]";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.5in;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:1722287224;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1880303724 1997149884 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+@list l3
+	{mso-list-id:2132506133;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1623284018 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:*;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	mso-hansi-font-family:"Courier New";}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1><a name="_Toc194730639"> (</a><a href="Cpp.htm"><span style='mso-bookmark:
+_Toc194730639'> C++  <span style='mso-bookmark:_Toc194730639'></a><span
+style='mso-bookmark:_Toc194730639'> )   <span style='mso-bookmark:_Toc194730639'>  <a href="CppSine.htm"> Sine</a></h1>
+
+<p>&nbsp;</p>
+
+<p>Class to calculate the value of a sine (the standard
+<a href="CppFunction.htm">function</a> <a href="CppSin.htm">std::sin</a>) by
+using a look-up table. You can view all code below or download the source code.  </p>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l3 level1 lfo5;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSine.zip">Download the 'Sine' source code, including C++ Builder 6.0
+project (zip)</a>.</p>
+
+<p>&nbsp;</p>
+
+<h1>UnitSineMain.cpp</h1>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>/*</p>
+
+<p>  Sine, a class that uses a look-up table to
+calculate a sine</p>
+
+<p>  Copyright (C) 2009    Richel Bilderbeek</p>
+
+<p>&nbsp;</p>
+
+<p>  This program is free software: you can
+redistribute it and/or modify</p>
+
+<p>  it under the terms of the GNU General Public
+License as published by</p>
+
+<p>  the Free Software Foundation, either version
+3 of the License, or</p>
+
+<p>  (at your option) any later version.</p>
+
+<p>&nbsp;</p>
+
+<p>  This program is distributed in the hope that
+it will be useful,</p>
+
+<p>  but WITHOUT ANY WARRANTY; without even the
+implied warranty of</p>
+
+<p>  MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.    See the</p>
+
+<p>  GNU General Public License for more details.</p>
+
+<p>&nbsp;</p>
+
+<p>  You should have received a copy of the GNU
+General Public License</p>
+
+<p>  along with this program.    If not, see
+&lt;http://www.gnu.org/licenses/&gt;.</p>
+
+<p>*/</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>// From
+http://www.richelbilderbeek.nl</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#pragma
+hdrstop</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#include
+&lt;cassert&gt;</p>
+
+<p>#include
+&lt;limits&gt;</p>
+
+<p>#include
+&lt;iostream&gt;</p>
+
+<p>#include
+&lt;cmath&gt;</p>
+
+<p>#include
+&quot;UnitSine.h&quot;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//From
+htpp://www.richelbilderbeek.nl/CppGetRandomUniform.htm</p>
+
+<p>const double
+GetRandomUniform()</p>
+
+<p>{</p>
+
+<p>  return
+static_cast&lt;double&gt;(std::rand())/static_cast&lt;double&gt;(RAND_MAX);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//Range from
+[ - 3.0 * M_PI , 3.0 * M_PI ]</p>
+
+<p>const double
+GetRandomNumber()</p>
+
+<p>{</p>
+
+<p>  return (-3.0 * M_PI) + (GetRandomUniform() *
+6.0 * M_PI);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>int main()</p>
+
+<p>{</p>
+
+<p>  Sine s;</p>
+
+<p>  //Check special values</p>
+
+<p>  s( 0.0 * M_PI);</p>
+
+<p>  s( 0.5 * M_PI);</p>
+
+<p>  s( 1.0 * M_PI);</p>
+
+<p>  s( 1.5 * M_PI);</p>
+
+<p>  s( 2.0 * M_PI);</p>
+
+<p>  s(-0.0 * M_PI);</p>
+
+<p>  s(-0.5 * M_PI);</p>
+
+<p>  s(-1.0 * M_PI);</p>
+
+<p>  s(-1.5 * M_PI);</p>
+
+<p>  s(-2.0 * M_PI);</p>
+
+<p>  for (int i=0; i!=1000000; ++i)</p>
+
+<p>  {</p>
+
+<p>    if (i % 100000 == 0) std::cout &lt;&lt;
+&quot;.&quot;;</p>
+
+<p>    const double x = GetRandomNumber();</p>
+
+<p>    const double y = s(x);</p>
+
+<p>    const double yToo = std::sin(x);</p>
+
+<p>    const double error = std::fabs(y - yToo);</p>
+
+<p>    assert( error &lt; s.GetMaxError());</p>
+
+<p>  }</p>
+
+<p>  std::cout &lt;&lt; &quot;Sine tested as
+safe&quot; &lt;&lt; std::endl;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<h1>UnitSine.h</h1>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>/*</p>
+
+<p>   Sine, a class that uses a
+look-up table to calculate a sine</p>
+
+<p>   Copyright (C) 2009    Richel Bilderbeek</p>
+
+<p>&nbsp;</p>
+
+<p>   This program is free software:
+you can redistribute it and/or modify</p>
+
+<p>   it under the terms of the GNU
+General Public License as published by</p>
+
+<p>   the Free Software Foundation,
+either version 3 of the License, or</p>
+
+<p>   (at your option) any later
+version.</p>
+
+<p>&nbsp;</p>
+
+<p>   This program is distributed in
+the hope that it will be useful,</p>
+
+<p>   but WITHOUT ANY WARRANTY;
+without even the implied warranty of</p>
+
+<p>   MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.    See the</p>
+
+<p>   GNU General Public License for
+more details.</p>
+
+<p>&nbsp;</p>
+
+<p>   You should have received a copy
+of the GNU General Public License</p>
+
+<p>   along with this program.    If not, see
+&lt;http://www.gnu.org/licenses/&gt;.</p>
+
+<p>*/</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>// From http://www.richelbilderbeek.nl</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#ifndef UnitSineH</p>
+
+<p>#define UnitSineH</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#include &lt;vector&gt;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>struct Sine</p>
+
+<p>{</p>
+
+<p>   Sine(const int size = 1000,
+const double notInitializedValue = 123.0);</p>
+
+<p>   double operator()(const double
+x);</p>
+
+<p>   const double GetMaxError()
+const;</p>
+
+<p>&nbsp;</p>
+
+<p>   private:</p>
+
+<p>   std::vector&lt;double&gt; mLut;
+//Look-up table</p>
+
+<p>   const double
+mNotInitializedValue;</p>
+
+<p>   const double Transform(const
+double f) const;</p>
+
+<p>   const int CalculateIndex(const
+double f) const;</p>
+
+<p>&nbsp;</p>
+
+<p>};</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#endif</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<h1>UnitSine.cpp</h1>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>/*</p>
+
+<p>   Sine, a class that uses a
+look-up table to calculate a sine</p>
+
+<p>   Copyright (C) 2009    Richel Bilderbeek</p>
+
+<p>&nbsp;</p>
+
+<p>   This program is free software:
+you can redistribute it and/or modify</p>
+
+<p>   it under the terms of the GNU
+General Public License as published by</p>
+
+<p>   the Free Software Foundation,
+either version 3 of the License, or</p>
+
+<p>   (at your option) any later
+version.</p>
+
+<p>&nbsp;</p>
+
+<p>   This program is distributed in
+the hope that it will be useful,</p>
+
+<p>     but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
+
+<p>   MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.    See the</p>
+
+<p>   GNU General Public License for
+more details.</p>
+
+<p>&nbsp;</p>
+
+<p>   You should have received a copy
+of the GNU General Public License</p>
+
+<p>   along with this program.    If not, see
+&lt;http://www.gnu.org/licenses/&gt;.</p>
+
+<p>*/</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>// From http://www.richelbilderbeek.nl</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#pragma hdrstop</p>
+
+<p>&nbsp;</p>
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>#include &lt;cmath&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>#include &quot;UnitSine.h&quot;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>Sine::Sine(const int size, const double notInitializedValue)</p>
+
+<p>   : mLut(size,notInitializedValue),</p>
+
+<p>   
+ mNotInitializedValue(notInitializedValue)</p>
+
+<p>{</p>
+
+<p>   //Calculate the value of
+mLut[1]</p>
+
+<p>   //for the GetErrorMax method</p>
+
+<p>   this-&gt;operator()( (M_PI *
+0.5) / static_cast&lt;double&gt;(mLut.size()));</p>
+
+<p>   assert(mLut[1] !=
+mNotInitializedValue);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>double Sine::operator()(const double x)</p>
+
+<p>{</p>
+
+<p>   const double di = 2.0 * M_PI;</p>
+
+<p>   //preY e [ -di, di &gt;</p>
+
+<p>   const double preY =
+std::fmod(x,di);</p>
+
+<p>   //y e [ 0.0 , di &gt;</p>
+
+<p>   const double y = (preY &lt; 0.0
+? preY + di : preY);</p>
+
+<p>   assert( y &gt;= 0.0 );</p>
+
+<p>   assert( y &lt;    di  
+ );</p>
+
+<p>   //f = fractional part e [ 0.0,
+4.0 &gt;</p>
+
+<p>   const double f = 4.0 * (y /
+di);</p>
+
+<p>   assert( f &gt;= 0.0 );</p>
+
+<p>   assert( f    &lt; 4.0 );</p>
+
+<p>   const bool addMinus = ( f &lt;
+2.0 ? false : true);</p>
+
+<p>   const int index =
+CalculateIndex(f);</p>
+
+<p>   assert(index &gt;= 0);</p>
+
+<p>&nbsp;</p>
+
+<p>   if (index ==
+static_cast&lt;int&gt;(mLut.size()) )</p>
+
+<p>     return ( addMinus == true ?
+-1.0 : 1.0);</p>
+
+<p>   assert(index    &lt; static_cast&lt;int&gt;(mLut.size()) );</p>
+
+<p>   //Check if already calculated</p>
+
+<p>   if (mLut[index] ==
+mNotInitializedValue)</p>
+
+<p>   {</p>
+
+<p>     mLut[index] = std::sin(
+std::fmod(y,M_PI) );</p>
+
+<p>     assert(mLut[index] &gt;=
+0.0);</p>
+
+<p>     assert(mLut[index] &lt;=
+1.0);</p>
+
+<p>   }</p>
+
+<p>   if (addMinus == true)</p>
+
+<p>   {</p>
+
+<p>&nbsp;</p>
+
+<p>     return -mLut[index];</p>
+
+<p>   }</p>
+
+<p>   else</p>
+
+<p>   {</p>
+
+<p>     return mLut[index];</p>
+
+<p>   }</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>const double Sine::GetMaxError() const</p>
+
+<p>{</p>
+
+<p>   //The maximal error is twice
+the distance between</p>
+
+<p>   //mLut[0] and mLut[1], because
+the sine is steepest there</p>
+
+<p>   //Because mLut[0] == 0.0, it is
+twice the value of mLut[1]</p>
+
+<p>   assert(mLut[1] !=
+mNotInitializedValue);</p>
+
+<p>   return mLut[1] * 2.0;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>const int Sine::CalculateIndex(const double f) const</p>
+
+<p>{</p>
+
+<p>   const int size = mLut.size();</p>
+
+<p>   assert( f &gt;= 0.0 );</p>
+
+<p>   assert( f    &lt; 4.0 );</p>
+
+<p>   const double fTransformed =
+Transform(f);</p>
+
+<p>   assert(fTransformed &gt;= 0.0);</p>
+
+<p>   assert(fTransformed &lt;= 1.0);</p>
+
+<p>   const int index =
+static_cast&lt;int&gt;(fTransformed * static_cast&lt;double&gt;(size));</p>
+
+<p>   assert(index &gt;= 0);</p>
+
+<p>   assert(index &lt;= size); //
+index == size is handled by caller (i.e. operator() )</p>
+
+<p>   return index;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>const double Sine::Transform(const double f) const</p>
+
+<p>{</p>
+
+<p>   assert( f &gt;= 0.0 );</p>
+
+<p>   assert( f    &lt; 4.0 );</p>
+
+<p>   if (f &lt; 1.0) return f;</p>
+
+<p>   if (f &lt; 2.0) return 1.0 - (f
+- 1.0);</p>
+
+<p>   return Transform(f - 2.0);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>&nbsp;</p>
+
+<p>#pragma package(smart_init)</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Internal links</h2>
+
+  <li>     <a href="CppSin.htm">std::sin</a></p>
+
+  <li>     Sine approximation by using a parabola</p>
+
+<p>&nbsp;</p>
+
+<h2>External links</h2>
+
+  <li>     None</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm">References</a></h2>
+
+<p>  [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    None  </p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+</div>
+
+</body>
+
+</html>

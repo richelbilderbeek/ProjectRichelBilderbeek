@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SDL example 4: moving a square in a 2D OpenGL environment</title>
+  <meta name="description" content="C++ SDL example 4: moving a square in a 2D OpenGL environment"/>
+  <meta name="keywords" content="C++ SDL example 4: moving a square in a 2D OpenGL environment code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSdlExample4.htm">SDL example 4: moving a square in a 2D OpenGL environment</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppSdl.htm">SDL</a> example shows a sprite moving a over a background, like <a href="CppSdlExample4.png">this screenshot (png)</a>.</p>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a></p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 Console Application</p>
+<p><a href="CppQtCreatorSelectRequiredModules.png">Selected required modules</a>: QtCore</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p>Additional <a href="CppLibrary.htm">libraries</a>: <a href="CppSdl.htm">SDL</a>, <a href="CppOpenGl.htm">OpenGL</a>, <a href="CppBoost.htm">Boost</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-17T14:57:33<br/>
+#<br/>
+#-------------------------------------------------<br/>
+<br/>
+QT       += core<br/>
+<br/>
+QT       -= gui<br/>
+<br/>
+TARGET = CppSdlExample4<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+<br/>
+TEMPLATE = app<br/>
+<br/>
+LIBS += -L/usr/local/lib -lSDL<br/>
+LIBS += -L/usr/local/lib -lGL<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/timer.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;SDL/SDL.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;SDL/SDL_opengl.h&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> screen_width <a href="CppOperatorAssign.htm">=</a> 320;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> screen_height <a href="CppOperatorAssign.htm">=</a> 200;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Initialization<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( SDL_Init( SDL_INIT_VIDEO) &lt; 0 )<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Assume SDL initialization does not fail");<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Perform SDL_Quit at program exit<br/>
+&nbsp;&nbsp;<a href="CppAtexit.htm">std::atexit</a>(SDL_Quit);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> bits_per_pixel <a href="CppOperatorAssign.htm">=</a> 32;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( !SDL_SetVideoMode( screen_width, screen_height, bits_per_pixel, SDL_OPENGL ))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Assume SDL video mode setting does not fail");<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Initialize OpenGL<br/>
+&nbsp;&nbsp;glClearColor( 0, 0, 0, 0 );<br/>
+&nbsp;&nbsp;glMatrixMode( GL_PROJECTION );<br/>
+&nbsp;&nbsp;glLoadIdentity();<br/>
+&nbsp;&nbsp;glOrtho( 0, screen_width, screen_height, 0, -1, 1 );<br/>
+&nbsp;&nbsp;glMatrixMode( GL_MODELVIEW );<br/>
+&nbsp;&nbsp;glDisable(GL_DEPTH_TEST); <a href="CppComment.htm">//</a>In 2D there is no need for a depth test<br/>
+&nbsp;&nbsp;glLoadIdentity();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( glGetError() <a href="CppOperatorNotEqual.htm">!=</a> GL_NO_ERROR )<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Assume OpenGL initialization does not fail");<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set up sprite<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sprite_width <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sprite_height <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_x <a href="CppOperatorAssign.htm">=</a> (screen_width  <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (sprite_width  <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_y <a href="CppOperatorAssign.htm">=</a> (screen_height <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (sprite_height <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_dx <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_dy <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> frames_per_second <a href="CppOperatorAssign.htm">=</a> 60;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> ticks_per_second <a href="CppOperatorAssign.htm">=</a> 1000 <a href="CppOperatorDivide.htm">/</a> frames_per_second;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use timer to keep frame rate constant<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> timer;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Handle events<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SDL_Event event;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SDL_PollEvent( &amp;event );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( event.type <a href="CppOperatorEqual.htm">==</a> SDL_QUIT ) <b><a href="CppBreak.htm">break</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Move the square<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sprite_x<a href="CppOperatorPlusAssign.htm">+=</a>sprite_dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sprite_y<a href="CppOperatorPlusAssign.htm">+=</a>sprite_dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Make the square bounce<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sprite_x &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> sprite_x <a href="CppOperatorPlus.htm">+</a> sprite_width  &gt; screen_width  ) sprite_dx <a href="CppOperatorAssign.htm">=</a> -sprite_dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sprite_y &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> sprite_y <a href="CppOperatorPlus.htm">+</a> sprite_height &gt; screen_height ) sprite_dy <a href="CppOperatorAssign.htm">=</a> -sprite_dy;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Clear the screen<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glClear( GL_COLOR_BUFFER_BIT );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start showing the sprite<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glTranslatef( sprite_x, sprite_y, 0 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start drawing square<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glBegin( GL_QUADS );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glColor4f( 1.0, 1.0, 1.0, 1.0 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glVertex3f( 0,         0,          0 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glVertex3f( sprite_width, 0,          0 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glVertex3f( sprite_width, sprite_height, 0 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glVertex3f( 0,         sprite_height, 0 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glEnd();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Reset<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;glLoadIdentity();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Update screen<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SDL_GL_SwapBuffers();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Keep frame rate constant<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> ticks_elapsed <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(timer.elapsed() * 1000.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (timer.elapsed() &lt; ticks_per_second)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDL_Delay( ticks_per_second <a href="CppOperatorMinus.htm">-</a> ticks_elapsed );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>operator&lt;&lt;</title>
+  <meta name="description" content="C++ operator&lt;&lt;"/>
+  <meta name="keywords" content="C++ operator&lt;&lt; stream out"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a> (pronounced as 'stream out operator') is an <a href="CppOperator.htm">operator</a> to sending data to a <a href="CppStream.htm">stream</a>. Use <a href="CppOperatorStreamIn.htm">operator&gt;&gt;</a> to read data from a <a href="CppStream.htm">stream</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example: <a href="CppHelloWorld.htm">the Hello World program</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello World" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppOverload.htm">Overloading</a> <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></h2>
+<p>&nbsp;</p>
+<p>Prefer <a href="CppOverload.htm">overloading</a> <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a> with a free <a href="CppFunction.htm">function</a> [1]. To be able to access the <a href="CppPrivate.htm">private</a> member variables, make this <a href="CppFunction.htm">function</a> a <a href="CppFriend.htm">friend</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> value) : mValue(value) {}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mValue;<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamOut.htm">&lt;&lt;</a>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> MyClass&amp; myClass);<br/>
+};<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamOut.htm">&lt;&lt;</a>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> MyClass&amp; myClass)<br/>
+{<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "MyClass.value: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myClass.mValue;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> MyClass myClass(13);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myClass <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN: 0-201-61562-2.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+

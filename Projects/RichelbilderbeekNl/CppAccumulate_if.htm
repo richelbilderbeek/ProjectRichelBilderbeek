@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>accumulate_if</title>
+  <meta name="description" content="C++ accumulate_if"/>
+  <meta name="keywords" content="C++ accumulate_if accumulate if std::accumulate_if"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppAccumulate_if.htm">accumulate_if</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppAlgorithm.htm">Algorithm</a> similar to <a href="CppAccumulate.htm">std::accumulate</a>, except that <a href="CppAccumulate_if.htm">accumulate_if</a> also needs a <a href="CppPredicate.htm">predicate</a> <a href="CppArgument.htm">argument</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppAccumulate_if.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b><br/>
+&nbsp;&nbsp;&lt;<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> InputIterator,<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> ElementType,<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> Predicate<br/>
+&nbsp;&nbsp;&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> ElementType <a href="CppAccumulate_if.htm">accumulate_if</a>(<br/>
+&nbsp;&nbsp;InputIterator first,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> InputIterator last,<br/>
+&nbsp;&nbsp;ElementType init,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Predicate predicate)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (; first <a href="CppOperatorNotEqual.htm">!=</a> last; <a href="CppOperatorIncrement.htm">++</a>first)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (predicate(*first)) init <a href="CppOperatorPlusAssign.htm">+=</a> *first;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> init;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppAccumulate_if.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b><br/>
+&nbsp;&nbsp;&lt;<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> InputIterator,<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> ElementType,<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> BinaryOperation,<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> Predicate<br/>
+&nbsp;&nbsp;&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> ElementType <a href="CppAccumulate_if.htm">std::accumulate_if</a>(<br/>
+&nbsp;&nbsp;InputIterator first,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> InputIterator last,<br/>
+&nbsp;&nbsp;ElementType init,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> BinaryOperation binary_op,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Predicate predicate)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (; first <a href="CppOperatorNotEqual.htm">!=</a> last; <a href="CppOperatorIncrement.htm">++</a>first)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (predicate(*first)) init = binary_op(init, *first);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> init;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,89 @@
+X:1
+T:Come Home Darling
+C:Richel Bilderbeek
+L:1/4
+Q:1/4=240
+M:4/4
+K:C
+V:V1 clef=treble
+V:V2 clef=bass
+%
+%
+% Intro 1-8
+%
+[V:V1] C4        | B,4       | A,4       | z4 | D4        | C4        | G,4       | z4 | 
+[V:V2] C,,G,,C,z | D,,A,,D,z | E,,B,,E,z | z4 | C,,G,,C,z | D,,A,,D,z | E,,B,,E,z | z4 | 
+%      C         |  D        | E         | E  | C         |  D        | E         | E  | 
+%
+% Verse 1, 9-12
+%
+[V:V1] B2   c2   | c2   d2    | B2 c2     | e2   d2   | 
+w:     Come home | dar- ling, | I  will   | hold you  |
+[V:V2] F,,C,F,C, | G,,D,G,D,  | A,,E,A,E, | G,,D,G,D, |
+%      F         |  G         | A         | G         | 
+%
+% Verse 1, 13-16
+%
+[V:V1] B2   c2   | c2   d2    | B2 c2     | g2   d2   | z4        |
+w:     Come home | dar- ling, | I  will   | kiss you  |           |
+[V:V2] F,,C,F,C, | G,,D,G,D,  | A,,E,A,E, | G,,D,G,D, | G,,D,G,D, |
+%      F         |  G         | A         | G         | G         |
+%
+% Verse 2, 17-20
+%
+[V:V1] e2     c2   | d2   B2    | c2  A2    | d2       B2   | 
+w:     You're the  | one  I've  | al- ways  | searched for  |
+[V:V2] A,,E,A,E,   | G,,D,G,D,  | F,,C,F,C, | G,,D,G,D,     |
+%      A           |  G         | F         | G             | 
+%
+% Verse 2, 21-24
+%
+[V:V1] e2  c2    | d2    B2   | c2    A2  | e4        | z4        |
+w:     I   will  | love  you  | night and | day.      |           |
+[V:V2] A,,E,A,E, | G,,D,G,D,  | F,,C,F,C, | A,,E,A,E, | A,,E,A,E, |
+%      A         |  G         | F         | A         | A         |
+%
+% Verse 3, 25-28
+%
+[V:V1] c      c     c    c    | d4         | c      c  c    c    | d4        |
+w:     Idon't be- lieve in    | God,       | ButI'm in love with | you       |
+[V:V2] F,,C,F,C,              | F,,C,F,C,  | G,,D,G,D,           | G,,D,G,D, | 
+%      F                      | F          | G                   | G flat    |
+%
+% Verse 4, 29-32
+%
+[V:V1] c  c  c  c   | d4        | c     c    c      c   | B4        |
+w:     So if he ex- | ists,     | Ihope he's watch- ing | you       |
+[V:V2] F,,C,F,C,    | F,,C,F,C, | G,,D,G,D,             | G,,D,G,D, | 
+%      F            | F         | G                     | G flat    |
+%
+% Verse 3, 33-36
+%
+[V:V1] c       c   c   c  | d4         | c   c  c   c   | d4        |
+w:     'cosyou are far a- | way,       | far o- ver the | sea       |
+[V:V2] F,,C,F,C,          | F,,C,F,C,  | G,,D,G,D,      | G,,D,G,D, | 
+%      F                  | F          | G              | G flat    |
+%
+% Verse 4, 37-40
+%
+[V:V1] c   c  c   c  | d4        | c   c   c     c    | B4        |
+w:     but in all my | dreams,   | you are still with | me        |
+[V:V2] F,,C,F,C,     | F,,C,F,C, | G,,D,G,D,          | G,,D,G,D, | 
+%      F             | F         | G                  | G flat    |
+%
+%
+% Repeat of verse 1, 41-44
+%
+[V:V1] B2   c2   | c2   d2    | B2 c2     | e2   d2   | 
+w:     Come home | dar- ling, | I  will   | hold you  |
+[V:V2] F,,C,F,C, | G,,D,G,D,  | A,,E,A,E, | G,,D,G,D, |
+%      F         |  G         | A         | G         | 
+%
+% Repeat of verse 1, 45-58
+%
+[V:V1] B2   c2   | c2   d2    | B2 c2     | g2   d2   | z4        |
+w:     Come home | dar- ling, | I  will   | kiss you  |           |
+[V:V2] F,,C,F,C, | G,,D,G,D,  | A,,E,A,E, | G,,D,G,D, | G,,D,G,D, |
+%      F         |  G         | A         | G         | G         |
+%
+

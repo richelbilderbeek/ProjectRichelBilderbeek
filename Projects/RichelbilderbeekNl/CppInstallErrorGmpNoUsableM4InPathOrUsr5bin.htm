@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GMP install error: No usable m4 in $PATH or /usr/5bin</title>
+  <meta name="description" content="C++ GMP install error: No usable m4 in $PATH or /usr/5bin"/>
+  <meta name="keywords" content="C++ GMP install error: No usable m4 in $PATH or /usr/5bin"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppInstallErrorGmpNoUsableM4InPathOrUsr5bin.htm">GMP install error: No usable m4 in $PATH or /usr/5bin</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppInstallError.htm">Install error</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Error description</h2>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p>&nbsp;</p>
+<p>Downloaded the <a href="CppGmp.htm">GMP</a> source code, version 5.0.1. Extracted the files. Started 'configure':</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+richel@richel1-desktop:~/Downloads/gmp-5.0.1$ ./configure <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+checking build system type... corei-pc-linux-gnu<br/>
+checking host system type... corei-pc-linux-gnu<br/>
+checking for a BSD-compatible install... /usr/bin/install -c<br/>
+checking whether build environment is sane... yes<br/>
+checking for a thread-safe mkdir -p... /bin/mkdir -p<br/>
+checking for gawk... gawk<br/>
+checking whether make sets $(MAKE)... yes<br/>
+checking whether to enable maintainer-specific portions of Makefiles... no<br/>
+checking ABI=64<br/>
+checking compiler gcc -O2 -pedantic -m64 ... no<br/>
+checking ABI=32<br/>
+checking compiler gcc -m32 -O2 -pedantic -fomit-frame-pointer ... yes<br/>
+checking compiler gcc -m32 -O2 -pedantic -fomit-frame-pointer has sizeof(long)==4... yes<br/>
+checking compiler gcc -m32 -O2 -pedantic -fomit-frame-pointer  -mtune=core2... yes<br/>
+checking compiler gcc -m32 -O2 -pedantic -fomit-frame-pointer -mtune=core2  -march=core2... yes<br/>
+checking for gcc... gcc<br/>
+checking whether the C compiler works... yes<br/>
+checking for C compiler default output file name... a.out<br/>
+checking for suffix of executables... <br/>
+checking whether we are cross compiling... no<br/>
+checking for suffix of object files... o<br/>
+checking whether we are using the GNU C compiler... yes<br/>
+checking whether gcc accepts -g... yes<br/>
+checking for gcc option to accept ISO C89... none needed<br/>
+checking for gcc option to accept ISO C99... -std=gnu99<br/>
+checking for gcc -std=gnu99 option to accept ISO Standard C... (cached) -std=gnu99<br/>
+checking how to run the C preprocessor... gcc -std=gnu99 -E<br/>
+checking build system compiler gcc -std=gnu99... yes<br/>
+checking for build system preprocessor... gcc -std=gnu99 -E<br/>
+checking for build system executable suffix... <br/>
+checking whether build system compiler is ANSI... yes<br/>
+checking for build system compiler math library... -lm<br/>
+checking for grep that handles long lines and -e... /bin/grep<br/>
+checking for egrep... /bin/grep -E<br/>
+checking if the assembler knows about MMX instructions... yes<br/>
+checking if the assembler knows about SSE2 instructions... yes<br/>
+using ABI="32"<br/>
+      CC="gcc -std=gnu99"<br/>
+      CFLAGS="-m32 -O2 -pedantic -fomit-frame-pointer -mtune=core2 -march=core2"<br/>
+      CPPFLAGS=""<br/>
+      MPN_PATH=" x86/p6/sse2 x86/p6/p3mmx x86/p6/mmx x86/p6 x86 generic"<br/>
+checking for function prototypes... yes<br/>
+checking for ANSI C header files... yes<br/>
+checking for sys/types.h... yes<br/>
+checking for sys/stat.h... yes<br/>
+checking for stdlib.h... yes<br/>
+checking for string.h... yes<br/>
+checking for memory.h... yes<br/>
+checking for strings.h... yes<br/>
+checking for inttypes.h... yes<br/>
+checking for stdint.h... yes<br/>
+checking for unistd.h... yes<br/>
+checking for string.h... (cached) yes<br/>
+checking whether assembler supports --noexecstack option... yes<br/>
+checking for ar... ar<br/>
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B<br/>
+checking the name lister (/usr/bin/nm -B) interface... BSD nm<br/>
+checking for a sed that does not truncate output... /bin/sed<br/>
+checking for fgrep... /bin/grep -F<br/>
+checking for ld used by gcc -std=gnu99... /usr/bin/ld<br/>
+checking if the linker (/usr/bin/ld) is GNU ld... yes<br/>
+checking whether ln -s works... yes<br/>
+checking the maximum length of command line arguments... 1572864<br/>
+checking whether the shell understands some XSI constructs... yes<br/>
+checking whether the shell understands "+="... yes<br/>
+checking for /usr/bin/ld option to reload object files... -r<br/>
+checking for objdump... objdump<br/>
+checking how to recognize dependent libraries... pass_all<br/>
+checking for ar... (cached) ar<br/>
+checking for strip... strip<br/>
+checking for ranlib... ranlib<br/>
+checking command to parse /usr/bin/nm -B output from gcc -std=gnu99 object... ok<br/>
+checking for dlfcn.h... yes<br/>
+checking for g++... g++<br/>
+checking whether we are using the GNU C++ compiler... yes<br/>
+checking whether g++ accepts -g... yes<br/>
+checking how to run the C++ preprocessor... g++ -E<br/>
+checking for g77... no<br/>
+checking for xlf... no<br/>
+checking for f77... no<br/>
+checking for frt... no<br/>
+checking for pgf77... no<br/>
+checking for cf77... no<br/>
+checking for fort77... no<br/>
+checking for fl32... no<br/>
+checking for af77... no<br/>
+checking for xlf90... no<br/>
+checking for f90... no<br/>
+checking for pgf90... no<br/>
+checking for pghpf... no<br/>
+checking for epcf90... no<br/>
+checking for gfortran... gfortran<br/>
+checking whether we are using the GNU Fortran 77 compiler... yes<br/>
+checking whether gfortran accepts -g... yes<br/>
+checking for objdir... .libs<br/>
+checking if gcc -std=gnu99 supports -fno-rtti -fno-exceptions... no<br/>
+checking for gcc -std=gnu99 option to produce PIC... -fPIC -DPIC<br/>
+checking if gcc -std=gnu99 PIC flag -fPIC -DPIC works... yes<br/>
+checking if gcc -std=gnu99 static flag -static works... yes<br/>
+checking if gcc -std=gnu99 supports -c -o file.o... yes<br/>
+checking if gcc -std=gnu99 supports -c -o file.o... (cached) yes<br/>
+checking whether the gcc -std=gnu99 linker (/usr/bin/ld) supports shared libraries... yes<br/>
+checking whether -lc should be explicitly linked in... no<br/>
+checking dynamic linker characteristics... GNU/Linux ld.so<br/>
+checking how to hardcode library paths into programs... immediate<br/>
+checking whether stripping libraries is possible... yes<br/>
+checking if libtool supports shared libraries... yes<br/>
+checking whether to build shared libraries... yes<br/>
+checking whether to build static libraries... yes<br/>
+checking for ld used by g++... /usr/bin/ld<br/>
+checking if the linker (/usr/bin/ld) is GNU ld... yes<br/>
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes<br/>
+checking for g++ option to produce PIC... -fPIC -DPIC<br/>
+checking if g++ PIC flag -fPIC -DPIC works... yes<br/>
+checking if g++ static flag -static works... yes<br/>
+checking if g++ supports -c -o file.o... yes<br/>
+checking if g++ supports -c -o file.o... (cached) yes<br/>
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes<br/>
+checking dynamic linker characteristics... GNU/Linux ld.so<br/>
+checking how to hardcode library paths into programs... immediate<br/>
+checking if libtool supports shared libraries... yes<br/>
+checking whether to build shared libraries... yes<br/>
+checking whether to build static libraries... yes<br/>
+checking for gfortran option to produce PIC... -fPIC<br/>
+checking if gfortran PIC flag -fPIC works... yes<br/>
+checking if gfortran static flag -static works... yes<br/>
+checking if gfortran supports -c -o file.o... yes<br/>
+checking if gfortran supports -c -o file.o... (cached) yes<br/>
+checking whether the gfortran linker (/usr/bin/ld) supports shared libraries... yes<br/>
+checking dynamic linker characteristics... GNU/Linux ld.so<br/>
+checking how to hardcode library paths into programs... immediate<br/>
+checking for ANSI C header files... (cached) yes<br/>
+checking whether time.h and sys/time.h may both be included... yes<br/>
+checking fcntl.h usability... yes<br/>
+checking fcntl.h presence... yes<br/>
+checking for fcntl.h... yes<br/>
+checking float.h usability... yes<br/>
+checking float.h presence... yes<br/>
+checking for float.h... yes<br/>
+checking invent.h usability... no<br/>
+checking invent.h presence... no<br/>
+checking for invent.h... no<br/>
+checking langinfo.h usability... yes<br/>
+checking langinfo.h presence... yes<br/>
+checking for langinfo.h... yes<br/>
+checking locale.h usability... yes<br/>
+checking locale.h presence... yes<br/>
+checking for locale.h... yes<br/>
+checking nl_types.h usability... yes<br/>
+checking nl_types.h presence... yes<br/>
+checking for nl_types.h... yes<br/>
+checking sys/attributes.h usability... no<br/>
+checking sys/attributes.h presence... no<br/>
+checking for sys/attributes.h... no<br/>
+checking sys/iograph.h usability... no<br/>
+checking sys/iograph.h presence... no<br/>
+checking for sys/iograph.h... no<br/>
+checking sys/mman.h usability... yes<br/>
+checking sys/mman.h presence... yes<br/>
+checking for sys/mman.h... yes<br/>
+checking sys/param.h usability... yes<br/>
+checking sys/param.h presence... yes<br/>
+checking for sys/param.h... yes<br/>
+checking sys/processor.h usability... no<br/>
+checking sys/processor.h presence... no<br/>
+checking for sys/processor.h... no<br/>
+checking sys/pstat.h usability... no<br/>
+checking sys/pstat.h presence... no<br/>
+checking for sys/pstat.h... no<br/>
+checking sys/sysinfo.h usability... yes<br/>
+checking sys/sysinfo.h presence... yes<br/>
+checking for sys/sysinfo.h... yes<br/>
+checking sys/syssgi.h usability... no<br/>
+checking sys/syssgi.h presence... no<br/>
+checking for sys/syssgi.h... no<br/>
+checking sys/systemcfg.h usability... no<br/>
+checking sys/systemcfg.h presence... no<br/>
+checking for sys/systemcfg.h... no<br/>
+checking sys/time.h usability... yes<br/>
+checking sys/time.h presence... yes<br/>
+checking for sys/time.h... yes<br/>
+checking sys/times.h usability... yes<br/>
+checking sys/times.h presence... yes<br/>
+checking for sys/times.h... yes<br/>
+checking for sys/resource.h... yes<br/>
+checking for sys/sysctl.h... yes<br/>
+checking for machine/hal_sysinfo.h... no<br/>
+checking whether fgetc is declared... yes<br/>
+checking whether fscanf is declared... yes<br/>
+checking whether optarg is declared... yes<br/>
+checking whether ungetc is declared... yes<br/>
+checking whether vfprintf is declared... yes<br/>
+checking whether sys_errlist is declared... yes<br/>
+checking whether sys_nerr is declared... yes<br/>
+checking return type of signal handlers... void<br/>
+checking for intmax_t... yes<br/>
+checking for long double... yes<br/>
+checking for long long... yes<br/>
+checking for ptrdiff_t... yes<br/>
+checking for quad_t... yes<br/>
+checking for uint_least32_t... yes<br/>
+checking for intptr_t... yes<br/>
+checking for preprocessor stringizing operator... yes<br/>
+checking for working volatile... yes<br/>
+checking for C/C++ restrict keyword... __restrict<br/>
+checking whether &lt;stdarg.h&gt; exists and works... yes<br/>
+checking whether gcc __attribute__ ((const)) works... yes<br/>
+checking whether gcc __attribute__ ((malloc)) works... yes<br/>
+checking whether gcc __attribute__ ((mode (XX))) works... yes<br/>
+checking whether gcc __attribute__ ((noreturn)) works... yes<br/>
+checking for inline... inline<br/>
+checking for cos in -lm... yes<br/>
+checking for working alloca.h... yes<br/>
+checking for alloca (via gmp-impl.h)... yes<br/>
+checking how to allocate temporary memory... alloca<br/>
+checking whether byte ordering is bigendian... no<br/>
+checking format of `double' floating point... IEEE little endian<br/>
+checking for alarm... yes<br/>
+checking for attr_get... no<br/>
+checking for clock... yes<br/>
+checking for clock_gettime... no<br/>
+checking for cputime... no<br/>
+checking for getpagesize... yes<br/>
+checking for getrusage... yes<br/>
+checking for gettimeofday... yes<br/>
+checking for getsysinfo... no<br/>
+checking for localeconv... yes<br/>
+checking for memset... yes<br/>
+checking for mmap... yes<br/>
+checking for mprotect... yes<br/>
+checking for nl_langinfo... yes<br/>
+checking for obstack_vprintf... yes<br/>
+checking for popen... yes<br/>
+checking for processor_info... no<br/>
+checking for pstat_getprocessor... no<br/>
+checking for raise... yes<br/>
+checking for read_real_time... no<br/>
+checking for sigaction... yes<br/>
+checking for sigaltstack... yes<br/>
+checking for sigstack... yes<br/>
+checking for syssgi... no<br/>
+checking for strchr... yes<br/>
+checking for strerror... yes<br/>
+checking for strnlen... yes<br/>
+checking for strtol... yes<br/>
+checking for strtoul... yes<br/>
+checking for sysconf... yes<br/>
+checking for sysctl... yes<br/>
+checking for sysctlbyname... no<br/>
+checking for times... yes<br/>
+checking for vsnprintf... yes<br/>
+checking whether vsnprintf works... yes<br/>
+checking whether sscanf needs writable input... no<br/>
+checking for struct pst_processor.psp_iticksperclktick... no<br/>
+checking for suitable m4... configure: error: No usable m4 in $PATH or /usr/5bin (see config.log for reasons).<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<p>M4 is not installed.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>Start the Ubuntu software Center and install 'M4' (see <a href="CppM4.png">this screenshot</a>).</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.gmplib.org">GMP homepage</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

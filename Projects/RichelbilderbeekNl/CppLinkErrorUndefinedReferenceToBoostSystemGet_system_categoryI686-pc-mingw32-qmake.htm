@@ -1,0 +1,736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>link error: cannot find -lboost_filesystem</title>
+  <meta name="description" content="C++ link error: cannot find -lboost_filesystem"/>
+  <meta name="keywords" content="C++ link error: cannot find -lboost_filesystem"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLinkErrorUndefinedReferenceToBoostSystemGet_system_categoryI686-pc-mingw32-qmake.htm">undefined reference to 'boost::system::get_system_category()' (using i686-pc-mingw32-qmake)</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppLinkError.htm">Link error</a> (<a href="CppBei.htm">BEI</a> 7) I encountered while busy solving  
+<a href="CppQtCrosscompileToWindowsExample15.htm">How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 15</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppLinkErrorUndefinedReferenceToBoostSystemGet_system_categoryI686-pc-mingw32-qmake.zip">Download the Qt Creator project 'CppLinkErrorUndefinedReferenceToBoostSystemGet_system_categoryI686-pc-mingw32-qmake' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>System specifics</h2>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: console application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code: main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::path my_folder<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppFilesystem.htm">boost::filesystem</a>::system_complete(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">boost::filesystem</a>::path(folder));<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::is_directory(my_folder)) <b><a href="CppReturn.htm">return</a></b> v;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::directory_iterator j;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( <a href="CppFilesystem.htm">boost::filesystem</a>::directory_iterator i(my_folder);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorNotEqual.htm">!=</a> j;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppFilesystem.htm">boost::filesystem</a>::is_regular_file( i-&gt;status() ) )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> i-&gt;path().filename();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> full_filename <a href="CppOperatorAssign.htm">=</a> folder <a href="CppOperatorPlus.htm">+</a> "/" <a href="CppOperatorPlus.htm">+</a> filename;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.htm">GetPath</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::path(filename).parent_path().string();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<a href="CppGetPath.htm">GetPath</a>(<a href="CppArgc.htm">argv</a>[0]));<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of files: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Process</h2>
+<p>&nbsp;</p>
+<p>Just follow the approach by [1]:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+wget http://download.savannah.nongnu.org/releases/mingw-cross-env/mingw-cross-env-2.15.tar.gz<br/>
+tar -xzvf mingw-cross-env-2.15.tar.gz<br/>
+make<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;binutils<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; binutils<br/>
+[download] gcc-gmp<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; gcc-gmp<br/>
+[download] gcc-mpc<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; gcc-mpc<br/>
+[download] gcc-mpfr<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; gcc-mpfr<br/>
+[download] gcc<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;gcc<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; gcc<br/>
+[download] libiconv<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;libiconv<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; libiconv<br/>
+[download] gettext<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;gettext<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; gettext<br/>
+[download] pcre<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;pcre<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; pcre<br/>
+[download] zlib<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;zlib<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; zlib<br/>
+[download] glib<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;glib<br/>
+<br/>
+Failed to build package glib!<br/>
+------------------------------------------------------------<br/>
+(cd '/home/richel/mingw-cross-env-2.15/tmp-glib/glib-2.25.7' &amp;&amp; patch -p1 -u) &lt; ./src/glib-5-fix-stray-commas.patch<br/>
+patching file gio/gioenums.h<br/>
+cd '/home/richel/mingw-cross-env-2.15/tmp-glib/glib-2.25.7' &amp;&amp; aclocal<br/>
+bash: aclocal: command not found<br/>
+make[1]: *** [build-only-glib] Error 127<br/>
+make[1]: Leaving directory `/home/richel/mingw-cross-env-2.15'<br/>
+real	0m2.364s<br/>
+user	0m2.108s<br/>
+sys	0m0.212s<br/>
+------------------------------------------------------------<br/>
+[log]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/home/richel/mingw-cross-env-2.15/log/glib<br/>
+<br/>
+make: *** [/home/richel/mingw-cross-env-2.15/usr/installed/glib] Error 1<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Tried to obtain 'aclocal' from an Ubuntu terminal:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+sudo apt-get install aclocal<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[sudo] password for richel: <br/>
+Reading package lists... Done<br/>
+Building dependency tree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+Reading state information... Done<br/>
+E: Couldn't find package aclocal<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>This approach fails due to the absence of aclocal.</p>
+<p>&nbsp;</p>
+<p>But I would be happy if I could use Boost and the STL, so I try to make Qt:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+make qt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[download] libodbc++<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;libodbc++<br/>
+<br/>
+Failed to build package libodbc++!<br/>
+------------------------------------------------------------<br/>
+patching file src/datastream.h<br/>
+patching file include/odbc++/resultset.h<br/>
+cd '/home/richel/mingw-cross-env-2.15/tmp-libodbc++/libodbc++-0.2.5' &amp;&amp; autoconf<br/>
+bash: autoconf: command not found<br/>
+make[1]: *** [build-only-libodbc++] Error 127<br/>
+make[1]: Leaving directory `/home/richel/mingw-cross-env-2.15'<br/>
+real	0m0.289s<br/>
+user	0m0.236s<br/>
+sys	0m0.044s<br/>
+------------------------------------------------------------<br/>
+[log]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/home/richel/mingw-cross-env-2.15/log/libodbc++<br/>
+<br/>
+make: *** [/home/richel/mingw-cross-env-2.15/usr/installed/libodbc++] Error 1<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Installing autoconf:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+sudo apt-get install autoconf<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Well, just install all programs as stated in the prerequisites:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+sudo aptitude install -R autoconf automake bash bison bzip2 cmake flex g++ make sed libtool openssl libssl-dev patch perl pkg-config scons unzip wget<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Try to make qt again:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+make qt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;libodbc++<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; libodbc++<br/>
+[download] libgpg_error<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;libgpg_error<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; libgpg_error<br/>
+[download] libgcrypt<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;libgcrypt<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; libgcrypt<br/>
+[download] openssl<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;openssl<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; openssl<br/>
+[download] postgresql<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;postgresql<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; postgresql<br/>
+[download] freetds<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;freetds<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; freetds<br/>
+[download] libpng<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;libpng<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; libpng<br/>
+[download] jpeg<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;jpeg<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; jpeg<br/>
+[download] libmng<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;libmng<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; libmng<br/>
+[download] tiff<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;tiff<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; tiff<br/>
+[download] giflib<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;giflib<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; giflib<br/>
+[download] sqlite<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;sqlite<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; sqlite<br/>
+[download] qt<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;qt<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; qt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>I also want to use Boost:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+make boost<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[download] bzip2<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;bzip2<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; bzip2<br/>
+[download] expat<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;expat<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; expat<br/>
+[download] boost<br/>
+[build]&nbsp;&nbsp;&nbsp;&nbsp;boost<br/>
+[done]&nbsp;&nbsp;&nbsp;&nbsp; boost<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>According to [1], I had to 'Edit your .bashrc script in order to change $PATH', so I typed:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+sudo gedit /etc/bash.bashrc</br>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>I added this at the second line of '/etc/bash.bashrc':</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+export PATH=/home/richel/mingw-cross-env-2.15/usr/bin:$PATH</br>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>After navigating to the folder ('cd /home/richel/qtsdk-2010.04/bin/Projects/Website/CppQtCrosscompileToWindowsExample15')
+I tried it out:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+i686-pc-mingw32-qmake CppQtCrosscompileToWindowsExample15.pro<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>No screen output...</p>
+<p>&nbsp;</p>
+<p>Now running make:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+make<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+make -f Makefile.Release<br/>
+make[1]: Entering directory `/home/richel/qtsdk-2010.04/bin/Projects/Website/CppQtCrosscompileToWindowsExample15'<br/>
+i686-pc-mingw32-g++ -c -pipe -O2 -frtti -fexceptions -mthreads -Wall -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/include/QtCore' -I'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/include' -I'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/include/ActiveQt' -I'release' -I'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/unsupported/win32-g++-cross' -o release/main.o main.cpp<br/>
+i686-pc-mingw32-g++ -enable-stdcall-fixup -Wl,-enable-auto-import -Wl,-enable-runtime-pseudo-reloc -Wl,-s -Wl,-subsystem,console -mthreads -Wl -o release/CppQtCrosscompileToWindowsExample15.exe release/main.o&nbsp;&nbsp;-L'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/lib' -L/usr/local/lib -lboost_filesystem -lQtCore -lkernel32 -luser32 -lshell32 -luuid -lole32 -ladvapi32 -lws2_32 -lz <br/>
+/home/richel/mingw-cross-env-2.15/usr/lib/gcc/i686-pc-mingw32/4.5.0/../../../../i686-pc-mingw32/bin/ld: cannot find -lboost_filesystem<br/>
+collect2: ld returned 1 exit status<br/>
+make[1]: *** [release/CppQtCrosscompileToWindowsExample15.exe] Error 1<br/>
+make[1]: Leaving directory `/home/richel/qtsdk-2010.04/bin/Projects/Website/CppQtCrosscompileToWindowsExample15'<br/>
+make: *** [release] Error 2<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>I changed the Qt Creator project file (called CppQtCrosscompileToWindowsExample15.pro):</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-09-25T09:43:28<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+LIBS += -L/usr/lib -lboost_filesystem<br/>
+TARGET = CppQtCrosscompileToWindowsExample15<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+make -f Makefile.Release<br/>
+make[1]: Entering directory `/home/richel/qtsdk-2010.04/bin/Projects/Website/CppQtCrosscompileToWindowsExample15'<br/>
+i686-pc-mingw32-g++ -enable-stdcall-fixup -Wl,-enable-auto-import -Wl,-enable-runtime-pseudo-reloc -Wl,-s -Wl,-subsystem,console -mthreads -Wl -o release/CppQtCrosscompileToWindowsExample15.exe release/main.o&nbsp;&nbsp;-L'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/lib' -L/usr/lib -lboost_filesystem -lQtCore -lkernel32 -luser32 -lshell32 -luuid -lole32 -ladvapi32 -lws2_32 -lz <br/>
+release/main.o:main.cpp:(.text+0x84f): <a href="CppLinkErrorUndefinedReferenceToBoostSystemGet_system_categoryI686-pc-mingw32-qmake.htm">undefined reference to 'boost::system::get_system_category()'</a>'<br/>
+release/main.o:main.cpp:(.text+0x859): undefined reference to `boost::system::get_generic_category()'<br/>
+release/main.o:main.cpp:(.text+0x863): undefined reference to `boost::system::get_generic_category()'<br/>
+release/main.o:main.cpp:(.text+0x86d): undefined reference to `boost::system::get_generic_category()'<br/>
+release/main.o:main.cpp:(.text+0x877): undefined reference to `boost::system::get_system_category()'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost6detail17sp_counted_impl_pINS_10filesystem6detail11dir_itr_impINS2_10basic_pathISsNS2_11path_traitsEEEEEE7disposeEv[boost::detail::sp_counted_impl_p&lt;boost::filesystem::detail::dir_itr_imp&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt; &gt;::dispose()]+0x4a): undefined reference to `boost::filesystem::detail::dir_itr_close(void*&amp;)'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost14checked_deleteINS_10filesystem6detail11dir_itr_impINS1_10basic_pathISsNS1_11path_traitsEEEEEEEvPT_[void boost::checked_delete&lt;boost::filesystem::detail::dir_itr_imp&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt; &gt;(boost::filesystem::detail::dir_itr_imp&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;*)]+0x47): undefined reference to `boost::filesystem::detail::dir_itr_close(void*&amp;)'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem12is_directoryINS0_10basic_pathISsNS0_11path_traitsEEEEENS_9enable_ifINS0_13is_basic_pathIT_EEbE4typeERKS7_[boost::enable_if&lt;boost::filesystem::is_basic_path&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;, bool&gt;::type boost::filesystem::is_directory&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;(boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; const&amp;)]+0x5b): undefined reference to `boost::system::get_system_category()'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem12is_directoryINS0_10basic_pathISsNS0_11path_traitsEEEEENS_9enable_ifINS0_13is_basic_pathIT_EEbE4typeERKS7_[boost::enable_if&lt;boost::filesystem::is_basic_path&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;, bool&gt;::type boost::filesystem::is_directory&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;(boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; const&amp;)]+0xb9): undefined reference to `boost::filesystem::detail::status_api(std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, boost::system::error_code&amp;)'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem6statusINS0_10basic_pathISsNS0_11path_traitsEEEEENS_9enable_ifINS0_13is_basic_pathIT_EENS0_11file_statusEE4typeERKS7_[boost::enable_if&lt;boost::filesystem::is_basic_path&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;, boost::filesystem::file_status&gt;::type boost::filesystem::status&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;(boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; const&amp;)]+0x5b): undefined reference to `boost::system::get_system_category()'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem6statusINS0_10basic_pathISsNS0_11path_traitsEEEEENS_9enable_ifINS0_13is_basic_pathIT_EENS0_11file_statusEE4typeERKS7_[boost::enable_if&lt;boost::filesystem::is_basic_path&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;, boost::filesystem::file_status&gt;::type boost::filesystem::status&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;(boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; const&amp;)]+0xb9): undefined reference to `boost::filesystem::detail::status_api(std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, boost::system::error_code&amp;)'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem15system_completeINS0_10basic_pathISsNS0_11path_traitsEEEEENS_9enable_ifINS0_13is_basic_pathIT_EES7_E4typeERKS7_[boost::enable_if&lt;boost::filesystem::is_basic_path&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;, boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;::type boost::filesystem::system_complete&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;(boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; const&amp;)]+0xc1): undefined reference to `boost::filesystem::detail::get_full_path_name_api(std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;)'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem24basic_directory_iteratorINS0_10basic_pathISsNS0_11path_traitsEEEE9incrementEv[boost::filesystem::basic_directory_iterator&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;::increment()]+0x7e): undefined reference to `boost::system::get_system_category()'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem24basic_directory_iteratorINS0_10basic_pathISsNS0_11path_traitsEEEE9incrementEv[boost::filesystem::basic_directory_iterator&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;::increment()]+0xb5): undefined reference to `boost::filesystem::detail::dir_itr_increment(void*&amp;, std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;, boost::filesystem::file_status&amp;, boost::filesystem::file_status&amp;)'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem24basic_directory_iteratorINS0_10basic_pathISsNS0_11path_traitsEEEE6m_initERKS4_[boost::filesystem::basic_directory_iterator&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;::m_init(boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; const&amp;)]+0xd4): undefined reference to `boost::filesystem::detail::dir_itr_first(void*&amp;, std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;, boost::filesystem::file_status&amp;, boost::filesystem::file_status&amp;)'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem24basic_directory_iteratorINS0_10basic_pathISsNS0_11path_traitsEEEE6m_initERKS4_[boost::filesystem::basic_directory_iterator&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;::m_init(boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; const&amp;)]+0x24e): undefined reference to `boost::system::get_system_category()'<br/>
+release/main.o:main.cpp:(.text$_ZN5boost10filesystem24basic_directory_iteratorINS0_10basic_pathISsNS0_11path_traitsEEEE6m_initERKS4_[boost::filesystem::basic_directory_iterator&lt;boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; &gt;::m_init(boost::filesystem::basic_path&lt;std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::filesystem::path_traits&gt; const&amp;)]+0x311): undefined reference to `boost::filesystem::detail::not_found_error()'<br/>
+collect2: ld returned 1 exit status<br/>
+make[1]: *** [release/CppQtCrosscompileToWindowsExample15.exe] Error 1<br/>
+make[1]: Leaving directory `/home/richel/qtsdk-2010.04/bin/Projects/Website/CppQtCrosscompileToWindowsExample15'<br/>
+make: *** [release] Error 2<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>I decided to take a look at the makefile:
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+less Makefile.Release<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#############################################################################<br/>
+# Makefile for building: CppQtCrosscompileToWindowsExample15<br/>
+# Generated by qmake (2.01a) (Qt 4.7.0) on: Sun Sep 26 18:55:17 2010<br/>
+# Project:&nbsp;&nbsp;CppQtCrosscompileToWindowsExample15.pro<br/>
+# Template: app<br/>
+#############################################################################<br/>
+<br/>
+####### Compiler, tools and options<br/>
+<br/>
+CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= i686-pc-mingw32-gcc<br/>
+CXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = i686-pc-mingw32-g++<br/>
+DEFINES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = -DUNICODE -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_THREAD_SUPPORT<br/>
+CFLAGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= -pipe -O2 -Wall $(DEFINES)<br/>
+CXXFLAGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= -pipe -O2 -frtti -fexceptions -mthreads -Wall $(DEFINES)<br/>
+INCPATH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = -I'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/include/QtCore' -I'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/include' -I'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/include/ActiveQt' -I'release' -I'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/unsupported/win32-g++-cross'<br/>
+LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i686-pc-mingw32-g++<br/>
+LFLAGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-enable-stdcall-fixup -Wl,-enable-auto-import -Wl,-enable-runtime-pseudo-reloc -Wl,-s -Wl,-subsystem,console -mthreads -Wl<br/>
+LIBS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-L'/home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/lib' -L/usr/lib -L/usr/local/lib -lboost_filesystem -lQtCore -lkernel32 -luser32 -lshell32 -luuid -lole32 -ladvapi32 -lws2_32 -lz <br/>
+QMAKE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = /home/richel/mingw-cross-env-2.15/usr/bin/i686-pc-mingw32-qmake<br/>
+IDC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = idc<br/>
+IDL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = midl<br/>
+ZIP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = zip -r -9<br/>
+DEF_FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <br/>
+RES_FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <br/>
+COPY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= cp<br/>
+COPY_FILE&nbsp;&nbsp;&nbsp;&nbsp; = $(COPY)<br/>
+COPY_DIR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= cp -r<br/>
+DEL_FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= rm -f<br/>
+DEL_DIR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = rmdir<br/>
+MOVE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= mv<br/>
+CHK_DIR_EXISTS= test -d<br/>
+MKDIR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = mkdir -p<br/>
+INSTALL_FILE&nbsp;&nbsp;&nbsp;&nbsp;= $(COPY_FILE)<br/>
+INSTALL_PROGRAM = $(COPY_FILE)<br/>
+INSTALL_DIR&nbsp;&nbsp;&nbsp;&nbsp; = $(COPY_DIR)<br/>
+<br/>
+####### Output directory<br/>
+<br/>
+OBJECTS_DIR&nbsp;&nbsp; = release/<br/>
+<br/>
+####### Files<br/>
+<br/>
+SOURCES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = main.cpp <br/>
+OBJECTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = release/main.o<br/>
+DIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <br/>
+QMAKE_TARGET&nbsp;&nbsp;= CppQtCrosscompileToWindowsExample15<br/>
+DESTDIR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= release/ #avoid trailing-slash linebreak<br/>
+TARGET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = CppQtCrosscompileToWindowsExample15.exe<br/>
+DESTDIR_TARGET = release/CppQtCrosscompileToWindowsExample15.exe<br/>
+<br/>
+####### Implicit rules<br/>
+<br/>
+.SUFFIXES: .cpp .cc .cxx .C .c<br/>
+<br/>
+.cpp.o:<br/>
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $&lt;<br/>
+<br/>
+.cc.o:<br/>
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $&lt;<br/>
+<br/>
+.cxx.o:<br/>
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $&lt;<br/>
+<br/>
+.C.o:<br/>
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $&lt;<br/>
+<br/>
+.c.o:<br/>
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $&lt;<br/>
+<br/>
+####### Build rules<br/>
+<br/>
+first: all<br/>
+all: Makefile.Release&nbsp;&nbsp;$(DESTDIR_TARGET)<br/>
+<br/>
+$(DESTDIR_TARGET):&nbsp;&nbsp;$(OBJECTS) <br/>
+	$(LINK) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)&nbsp;&nbsp;$(LIBS)<br/>
+<br/>
+<br/>
+qmake:&nbsp;&nbsp;FORCE<br/>
+	@$(QMAKE) -o Makefile.Release CppQtCrosscompileToWindowsExample15.pro<br/>
+<br/>
+dist:<br/>
+	$(ZIP) CppQtCrosscompileToWindowsExample15.zip $(SOURCES) $(DIST) CppQtCrosscompileToWindowsExample15.pro /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/qconfig.pri /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/qt_functions.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/qt_config.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/exclusive_builds.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/default_pre.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/win32/default_pre.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/release.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/debug_and_release.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/default_post.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/win32/default_post.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/build_pass.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/win32/console.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/win32/stl.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/win32/rtti.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/win32/exceptions.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/warn_on.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/qt.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/win32/thread.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/moc.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/resources.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/uic.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/yacc.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/lex.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/mkspecs/features/include_source_dir.prf /home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/lib/QtCore.prl&nbsp;&nbsp;HEADERS RESOURCES IMAGES SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES <br/>
+<br/>
+clean: compiler_clean <br/>
+	-$(DEL_FILE) release/main.o<br/>
+<br/>
+distclean: clean<br/>
+	-$(DEL_FILE) $(DESTDIR_TARGET)<br/>
+	-$(DEL_FILE) Makefile.Release<br/>
+<br/>
+check: first<br/>
+<br/>
+mocclean: compiler_moc_header_clean compiler_moc_source_clean<br/>
+<br/>
+mocables: compiler_moc_header_make_all compiler_moc_source_make_all<br/>
+<br/>
+compiler_moc_header_make_all:<br/>
+compiler_moc_header_clean:<br/>
+compiler_rcc_make_all:<br/>
+compiler_rcc_clean:<br/>
+compiler_image_collection_make_all: qmake_image_collection.cpp<br/>
+compiler_image_collection_clean:<br/>
+	-$(DEL_FILE) qmake_image_collection.cpp<br/>
+compiler_moc_source_make_all:<br/>
+compiler_moc_source_clean:<br/>
+compiler_uic_make_all:<br/>
+compiler_uic_clean:<br/>
+compiler_yacc_decl_make_all:<br/>
+compiler_yacc_decl_clean:<br/>
+compiler_yacc_impl_make_all:<br/>
+compiler_yacc_impl_clean:<br/>
+compiler_lex_make_all:<br/>
+compiler_lex_clean:<br/>
+compiler_clean: <br/>
+<br/>
+<br/>
+<br/>
+####### Compile<br/>
+<br/>
+release/main.o: main.cpp <br/>
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/main.o main.cpp<br/>
+<br/>
+####### Install<br/>
+<br/>
+install:&nbsp;&nbsp; FORCE<br/>
+<br/>
+uninstall:&nbsp;&nbsp; FORCE<br/>
+<br/>
+FORCE:<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>I think this denotes that the cross-compiler cannot find Boost (evn though it is present in the /usr/lib 
+and home/richel/mingw-cross-env-2.15/usr/i686-pc-mingw32/lib folders) and the program
+compiler (under Ubuntu) using Qt Creator.</p>
+</p>
+<p>&nbsp;</p>
+<p>I tried the approach described by [2], but this resulted in the same problem :-(.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>[1] http://mingw-cross-env.nongnu.org/#tutorial</h>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Tutorial<br/>
+Step 1: Download and Unpack<br/>
+<br/>
+First, you should ensure that your system meets mingw-cross-env's requirements. You probably need to install some stuff.<br/>
+<br/>
+When everything is fine, download the latest release:<br/>
+<br/>
+wget http://download.savannah.nongnu.org/releases/mingw-cross-env/mingw-cross-env-2.15.tar.gz<br/>
+<br/>
+and unpack the tarball:<br/>
+<br/>
+tar -xzvf mingw-cross-env-2.15.tar.gz<br/>
+<br/>
+If you don't mind installing it in your home directory, just skip the following step and go straight to step 3.<br/>
+Step 2: System-wide Installation (optional)<br/>
+<br/>
+Now you should save any previous installation of the mingw-cross-env. Assuming you've installed it under /opt/mingw (any other directory will do as well), you should execute the following commands:<br/>
+<br/>
+su<br/>
+mv /opt/mingw /opt/mingw.old<br/>
+exit<br/>
+<br/>
+Then you need to transfer the entire directory to its definitive location. We will assume again you use /opt/mingw, but feel free to use any other directory if you like.<br/>
+<br/>
+su<br/>
+mv mingw-cross-env-2.15 /opt/mingw<br/>
+exit<br/>
+<br/>
+We're almost done. Just change to your newly created directory and get going:<br/>
+<br/>
+cd /opt/mingw<br/>
+<br/>
+Step 3: Build mingw-cross-env<br/>
+<br/>
+Enter the directory where you've unpacked the mingw-cross-env. Now it depends on what you actually want ? or need.<br/>
+<br/>
+If you choose to enter:<br/>
+<br/>
+make<br/>
+<br/>
+you're in for a long wait, because it compiles a lot of packages. On the other hand it doesn't require any intervention, so you're free to do whatever you like ? like watch a movie or go for a night on the town. When it's done you'll find that you've installed a very capable Win32 cross compiler onto your system.<br/>
+<br/>
+If you only need the most basic tools you can also use:<br/>
+<br/>
+make gcc<br/>
+<br/>
+and add any additional packages you need later on. You can also supply a host of packages on the command line, e.g.:<br/>
+<br/>
+make gtk lua libidn<br/>
+<br/>
+You'll always end up with a consistent cross compiling environment.<br/>
+<br/>
+After you're done it just needs a little post-installation.<br/>
+Step 4: Environment Variables<br/>
+<br/>
+Edit your .bashrc script in order to change $PATH:<br/>
+<br/>
+export PATH=/where mingw-cross-env is installed/usr/bin:$PATH<br/>
+<br/>
+Note that any compiler related environment variables (like $CC, $LDFLAGS, etc.) may spoil your compiling pleasure, so be sure to delete or disable those.<br/>
+<br/>
+Congratulations! You're ready to cross compile anything you like.<br/>
+Step 5a: Cross compile your Project (Autotools)<br/>
+<br/>
+If you use the Autotools, all you have to do is:<br/>
+<br/>
+./configure --host=i686-pc-mingw32<br/>
+make<br/>
+<br/>
+Don't worry about a warning like this:<br/>
+<br/>
+configure: WARNING: If you wanted to set the --build type, don't use --host.<br/>
+If a cross compiler is detected then cross compile mode will be used.<br/>
+<br/>
+Everything will be just fine.<br/>
+Step 5b: Cross compile your Project (Qt)<br/>
+<br/>
+If you have a Qt application, all you have to do is:<br/>
+<br/>
+i686-pc-mingw32-qmake<br/>
+make<br/>
+<br/>
+If you are using Qt plugins such as database drivers or graphics plugins, you should also have a look at the Qt documentation about static plugins.<br/>
+Step 5c: Cross compile your Project (Makefile)<br/>
+<br/>
+If you have a handwritten Makefile, you probably will have to make a few adjustments to it:<br/>
+<br/>
+CC=$(CROSS)gcc<br/>
+LD=$(CROSS)ld<br/>
+AR=$(CROSS)ar<br/>
+<br/>
+You may have to add a few others, depending on your project.<br/>
+<br/>
+Then, all you have to do is:<br/>
+<br/>
+make CROSS=i686-pc-mingw32-<br/>
+<br/>
+That's it!<br/>
+Step 5d: Cross compile your Project (OSG)<br/>
+<br/>
+Using static OpenSceneGraph libraries requires a few changes to your source. The graphics subsystem and all plugins required by your application must be referenced explicitly. Use a code block like the following:<br/>
+<br/>
+#ifdef OSG_LIBRARY_STATIC<br/>
+USE_GRAPHICSWINDOW()<br/>
+USE_OSGPLUGIN(&lt;plugin1&gt;)<br/>
+USE_OSGPLUGIN(&lt;plugin2&gt;)<br/>
+...<br/>
+#endif<br/>
+<br/>
+Look at examples/osgstaticviewer/osgstaticviewer.cpp in the OpenSceneGraph source distribution for an example. This example can be compiled with the following command:<br/>
+<br/>
+i686-pc-mingw32-g++ \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;-o osgstaticviewer.exe examples/osgstaticviewer/osgstaticviewer.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`i686-pc-mingw32-pkg-config --cflags openscenegraph-osgViewer openscenegraph-osgPlugins` \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;`i686-pc-mingw32-pkg-config --libs openscenegraph-osgViewer openscenegraph-osgPlugins`<br/>
+<br/>
+The i686-pc-mingw32-pkg-config command from mingw-cross-env will automatically add -DOSG_LIBRARY_STATIC to your compiler flags. <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>[2] http://mingw-cross-env.nongnu.org</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Step 5c: Cross compile your Project (Makefile)<br/>
+<br/>
+If you have a handwritten Makefile, you probably will have to make a few adjustments to it:<br/>
+<br/>
+CC=$(CROSS)gcc<br/>
+LD=$(CROSS)ld<br/>
+AR=$(CROSS)ar<br/>
+<br/>
+You may have to add a few others, depending on your project.<br/>
+<br/>
+Then, all you have to do is:<br/>
+<br/>
+make CROSS=i686-pc-mingw32-<br/>
+<br/>
+That's it! <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>WtDialWidget</title>
+  <meta name="description" content="C++ WtDialWidget"/>
+  <meta name="keywords" content="C++ WtDialWidget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtDialWidget.htm">WtDialWidget</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppWtDialWidget.htm">WtDialWidget</a> is a <a href="CppWt.htm">Wt</a> 
+<a href="CppWidget.htm">widget</a> <a href="CppClass.htm">class</a> to display an <a href="CppDialWidget.htm">DialWidget</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppWtDialWidget.htm">WtDialWidget</a> is used in the <a href="Tools.htm">tool</a> 
+<a href="ToolTestDial.htm">TestDial</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtdialwidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppWtDialWidget.htm">WtDialWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppDial.htm">Dial</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWtDialWidget.htm">CppWtDialWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> WTDIALWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> WTDIALWIDGET_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintDevice.htm">WPaintDevice</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> { <b><a href="CppStruct.htm">struct</a></b> <a href="CppWMouseEvent.htm">WMouseEvent</a>Event; }<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppDial.htm">Dial</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppDialWidget.htm">DialWidget</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppWt.htm">Wt</a> display <a href="CppWidget.htm">widget</a> of a <a href="CppDial.htm">Dial</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWtDialWidget.htm">WtDialWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 255);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppDialWidget.htm">DialWidget</a> * Get<a href="CppWidget.htm">Widget</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppDialWidget.htm">DialWidget</a> * Get<a href="CppWidget.htm">Widget</a>() { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a <a href="CppDial.htm">Dial</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> DrawDial(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">dial</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a <a href="CppDial.htm">Dial</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> DrawDial(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppDialWidget.htm">DialWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppDialWidget.htm">DialWidget</a>&gt; m_<a href="CppWidget.htm">widget</a>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRepaint();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/OnResize is called when the geometry of the <a href="CppWidget.htm">widget</a> is changed<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnResize();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppWt.htm">Wt</a> resize: hide it from sight<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WT<a href="CppLed.htm">LED</a>WIDGET_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtdialwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppWtDialWidget.htm">WtDialWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppDial.htm">Dial</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWtDialWidget.htm">CppWtDialWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WBrush&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEvent.htm">WEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPainter.htm">WPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WPen&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppDialWidget.htm">dialwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtDialWidget.htm">wtdialwidget</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWtDialWidget.htm">WtDialWidget</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;: m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppDialWidget.htm">DialWidget</a>(intensity,red,green,blue))<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetDial()-&gt;m_signal_color_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetDial()-&gt;m_signal_position_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_geometry_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtDialWidget.htm">WtDialWidget</a>::OnResize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWtDialWidget.htm">WtDialWidget</a>::OnClicked);<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,32,32));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::DrawDial(<br/>
+&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">dial</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position <a href="CppOperatorAssign.htm">=</a> <a href="CppDial.htm">dial</a>-&gt;GetPosition();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw knob<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPen.htm">Wt::WPen</a> pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppWColor.htm">Wt::WColor</a>(0,0,0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(pen);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;painter.setBrush(<a href="CppWColor.htm">Wt::WColor</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppDial.htm">dial</a>-&gt;GetRed(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppDial.htm">dial</a>-&gt;GetGreen(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppDial.htm">dial</a>-&gt;GetBlue()));<br/>
+<br/>
+&nbsp;&nbsp;painter.drawEllipse(left+1,top+1,width-2,height-2);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw <a href="CppPointer.htm">pointer</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midx <a href="CppOperatorAssign.htm">=</a> width <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midy <a href="CppOperatorAssign.htm">=</a> height <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppMin.htm">std::min</a>( midx, midy ));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> position * 2.0 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppPointer.htm">pointer</a>X<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;( <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(midx) <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * ray) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppPointer.htm">pointer</a>Y<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;( <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(midy) <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * ray) );<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPen.htm">Wt::WPen</a> pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(pen);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;painter.drawLine(left+midx,top+midy,left+<a href="CppPointer.htm">pointer</a>X,top+<a href="CppPointer.htm">pointer</a>Y);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::DrawDial(<br/>
+&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppDialWidget.htm">DialWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
+{<br/>
+&nbsp;&nbsp;DrawDial(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetX(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetY(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetDial());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtDialWidget.htm">WtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "3.1";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtDialWidget.htm">WtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2011-04-10: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-04-11: <a href="CppVersion.htm">version</a> 1.1: fixed #<a href="CppIncludeGuard.htm">include guard</a>, fixed initial date, made <b><a href="CppDefault.htm">default</a></b> <a href="CppDial.htm">dial</a> white");<br/>
+&nbsp;&nbsp;v.push_back("2011-07-03: <a href="CppVersion.htm">version</a> 2.0: moved <a href="CppDial.htm">Dial</a> its user <a href="CppInterface.htm">interface</a> logic to <b><a href="CppNew.htm">new</a></b> <b><a href="CppClass.htm">class</a></b> <a href="CppDialWidget.htm">DialWidget</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-08-07: <a href="CppVersion.htm">Version</a> 3.0: conformized architure <b><a href="CppFor.htm">for</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-08-31: <a href="CppVersion.htm">Version</a> 3.1: allow changing the <a href="CppDial.htm">dial</a> its color");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e)<br/>
+{<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click(e.<a href="CppWidget.htm">widget</a>().x,e.<a href="CppWidget.htm">widget</a>().y);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::OnResize()<br/>
+{<br/>
+&nbsp;&nbsp;resize(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;DrawDial(painter,m_<a href="CppWidget.htm">widget</a>.get());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a>::resize(width,height);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

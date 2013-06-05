@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>NDS example 1</title>
+  <meta name="description" content="C++ NDS example 1"/>
+  <meta name="keywords" content="C++ NDS Nintendo DS Dual Screen example 1 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicNds.png" alt="NDS"/> <a href="CppNdsExample1.htm">NDS example 1</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppNds.htm">NDS</a> example 1: 2D pixel art, respond to keys.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Downloads</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppNdsExample1.png">View a 'CppNdsExample1' screenshot (png)</a></li>
+  <li><a href="CppNdsExample1.zip">Download the Qt Creator project 'CppNdsExample1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><img src="PicNds.png" alt="NDS"/> <a href="CppNds.htm">NDS</a></li>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.04 LTS Lucid Lynx</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicCl.png" alt="Command line"/> command line</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 </li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> Console application</li>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGui.htm">GUI</a> application</li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicLibnds.png" alt="libnds"/> <a href="CppLibnds.htm">libnds</a>: version 1.4.7</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-10-07T22:25:11<br/>
+#<br/>
+#-------------------------------------------------<br/>
+INCLUDEPATH += /opt/devkitpro/libnds-1.4.7/include<br/>
+INCLUDEPATH += /opt/devkitpro/libnds-src-1.4.7/include/nds<br/>
+<br/>
+INCLUDEPATH += /opt/devkitpro/devkitARM/arm-eabi/include<br/>
+LIBS += -L/opt/devkitpro/libnds-1.4.7/lib -lnds9<br/>
+LIBS += -L/opt/devkitpro/devkitARM/arm-eabi/lib -lstdc++<br/>
+DEFINES += ARM9<br/>
+TARGET = CppNdsExample1<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG -= qt<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+QMAKE_CC = /opt/devkitpro/devkitARM/bin/arm-eabi-g++<br/>
+QMAKE_CXX = /opt/devkitpro/devkitARM/bin/arm-eabi-g++<br/>
+QMAKE_LINK = /opt/devkitpro/devkitARM/bin/arm-eabi-g++<br/>
+QMAKE_LFLAGS = -T/opt/devkitpro/devkitARM/arm-eabi/lib/ds_arm9.ld<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;nds.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Initialization<br/>
+&nbsp;&nbsp;consoleDemoInit();<br/>
+&nbsp;&nbsp;videoSetMode(MODE_FB0);<br/>
+&nbsp;&nbsp;vramSetBankA(VRAM_A_LCD);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " CppNdsExample1\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " From\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " http://www.richelbilderbeek.nl\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp; <a href="CppOperatorDivide.htm">/</a>CppNdsExample1.htm\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " Press A and B keys <b><a href="CppFor.htm">for</a></b> effect\n";<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The maximum x coordinat<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 256;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The maximum y coordinat<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 192;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The maximum R/G/B color value<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_color <a href="CppOperatorAssign.htm">=</a> 32;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Counter <b><a href="CppFor.htm">for</a></b> the scroll effect<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> z <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Respond to keys<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;scanKeys();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> held <a href="CppOperatorAssign.htm">=</a> keysHeld();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!held) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (held &amp; KEY_A) <a href="CppOperatorIncrement.htm">++</a>z;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (held &amp; KEY_B) { <a href="CppOperatorDecrement.htm">--</a>z; <b><a href="CppIf.htm">if</a></b> (z&lt;0) z<a href="CppOperatorPlusAssign.htm">+=</a>max_color; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VRAM_A[(y*maxx)+x]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> RGB15(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x+z&nbsp;&nbsp;) <a href="CppOperatorModulus.htm">%</a> max_color,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(y+z&nbsp;&nbsp;) <a href="CppOperatorModulus.htm">%</a> max_color,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x+y+z) <a href="CppOperatorModulus.htm">%</a> max_color);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppMakefile.htm">Makefile</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#---------------------------------------------------------------------------------<br/>
+.SUFFIXES:<br/>
+#---------------------------------------------------------------------------------<br/>
+<br/>
+ifeq ($(strip $(DEVKITARM)),)<br/>
+$(error "Please set DEVKITARM in your environment. export DEVKITARM=&lt;path to&gt;devkitARM")<br/>
+endif<br/>
+<br/>
+include $(DEVKITARM)/ds_rules<br/>
+<br/>
+#---------------------------------------------------------------------------------<br/>
+# TARGET is the name of the output<br/>
+# BUILD is the directory where object files &amp; intermediate files will be placed<br/>
+# SOURCES is a list of directories containing source code<br/>
+# INCLUDES is a list of directories containing extra header files<br/>
+#---------------------------------------------------------------------------------<br/>
+TARGET		:=	$(shell basename $(CURDIR))<br/>
+BUILD		:=	build<br/>
+SOURCES		:=	gfx source data&nbsp;&nbsp;<br/>
+INCLUDES	:=	include build /opt/devkitpro/libnds-1.4.7/include<br/>
+<br/>
+#---------------------------------------------------------------------------------<br/>
+# options for code generation<br/>
+#---------------------------------------------------------------------------------<br/>
+ARCH	:=	-mthumb -mthumb-interwork<br/>
+<br/>
+CFLAGS	:=	-g -Wall -O2\<br/>
+ 			-march=armv5te -mtune=arm946e-s -fomit-frame-pointer\<br/>
+			-ffast-math \<br/>
+			$(ARCH)<br/>
+<br/>
+CFLAGS	+=	$(INCLUDE) -DARM9<br/>
+CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions<br/>
+<br/>
+ASFLAGS	:=	-g $(ARCH)<br/>
+LDFLAGS	=	-specs=ds_arm9.specs -g $(ARCH) -mno-fpu -Wl,-Map,$(notdir $*.map)<br/>
+<br/>
+#---------------------------------------------------------------------------------<br/>
+# any extra libraries we wish to link with the project<br/>
+#---------------------------------------------------------------------------------<br/>
+LIBS	:= -lnds9<br/>
+ <br/>
+ <br/>
+#---------------------------------------------------------------------------------<br/>
+# list of directories containing libraries, this must be the top level containing<br/>
+# include and lib<br/>
+#---------------------------------------------------------------------------------<br/>
+LIBDIRS	:=	$(LIBNDS)<br/>
+ <br/>
+#---------------------------------------------------------------------------------<br/>
+# no real need to edit anything past this point unless you need to add additional<br/>
+# rules for different file extensions<br/>
+#---------------------------------------------------------------------------------<br/>
+ifneq ($(BUILD),$(notdir $(CURDIR)))<br/>
+#---------------------------------------------------------------------------------<br/>
+ <br/>
+export OUTPUT	:=	$(CURDIR)/$(TARGET)<br/>
+ <br/>
+export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir))<br/>
+export DEPSDIR	:=	$(CURDIR)/$(BUILD)<br/>
+<br/>
+CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))<br/>
+CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))<br/>
+SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))<br/>
+BINFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.bin)))<br/>
+ <br/>
+#---------------------------------------------------------------------------------<br/>
+# use CXX for linking C++ projects, CC for standard C<br/>
+#---------------------------------------------------------------------------------<br/>
+ifeq ($(strip $(CPPFILES)),)<br/>
+#---------------------------------------------------------------------------------<br/>
+	export LD	:=	$(CC)<br/>
+#---------------------------------------------------------------------------------<br/>
+else<br/>
+#---------------------------------------------------------------------------------<br/>
+	export LD	:=	$(CXX)<br/>
+#---------------------------------------------------------------------------------<br/>
+endif<br/>
+#---------------------------------------------------------------------------------<br/>
+<br/>
+export OFILES	:=	$(BINFILES:.bin=.o) \<br/>
+					$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)<br/>
+ <br/>
+export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \<br/>
+					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \<br/>
+					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \<br/>
+					-I$(CURDIR)/$(BUILD)<br/>
+ <br/>
+export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)<br/>
+ <br/>
+.PHONY: $(BUILD) clean<br/>
+ <br/>
+#---------------------------------------------------------------------------------<br/>
+$(BUILD):<br/>
+	@[ -d $@ ] || mkdir -p $@<br/>
+	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile<br/>
+ <br/>
+#---------------------------------------------------------------------------------<br/>
+clean:<br/>
+	@echo clean ...<br/>
+	@rm -fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).ds.gba <br/>
+ <br/>
+ <br/>
+#---------------------------------------------------------------------------------<br/>
+else<br/>
+ <br/>
+DEPENDS	:=	$(OFILES:.o=.d)<br/>
+ <br/>
+#---------------------------------------------------------------------------------<br/>
+# main targets<br/>
+#---------------------------------------------------------------------------------<br/>
+$(OUTPUT).nds	: 	$(OUTPUT).elf<br/>
+$(OUTPUT).elf	:	$(OFILES)<br/>
+ <br/>
+#---------------------------------------------------------------------------------<br/>
+%.o	:	%.bin<br/>
+#---------------------------------------------------------------------------------<br/>
+	@echo $(notdir $&lt;)<br/>
+	$(bin2o)<br/>
+ <br/>
+ <br/>
+-include $(DEPENDS)<br/>
+ <br/>
+#---------------------------------------------------------------------------------------<br/>
+endif<br/>
+#---------------------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppMake.htm">Make</a></h2>
+<p>&nbsp;</p>
+<p>This project is made from command line, using the <a href="CppMakefile.htm">makefile</a> shown above.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

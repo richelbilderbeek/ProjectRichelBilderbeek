@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetTime</title>
+  <meta name="description" content="C++ GetTime"/>
+  <meta name="keywords" content="C++ GetTime code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetTime.htm">GetTime</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetTime.htm">GetTime</a> is a <a href="CppTime.htm">time</a> <a href="CppCodeSnippets.htm">code snippet</a> to obtain now's time.</p>
+<p>&nbsp;</p>
+<p><a href="CppGetTime.htm">GetTime</a> can depend on two different <a href="CppLibrary.htm">libraries</a>:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a> version of <a href="CppGetTime.htm">GetTime</a></li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a> version of <a href="CppGetTime.htm">GetTime</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a> version of <a href="CppGetTime.htm">GetTime</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGetTime.zip">Download the Qt Creator project 'GetTime' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Operating system: <img src="PicUbuntu.png" alt="Ubuntu"/> <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: <img src="PicConsole.png" alt="Console"/> Console application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.40, especially <a href="CppDate_Time.htm">Boost.Date_Time</a></li>
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/date_time/posix_time/posix_time.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetTime.htm">GetTime</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetTime.htm">GetTime</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the local time<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::posix_time::ptime now<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::posix_time::second_clock::local_time();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Convert the time to <a href="CppStringstream.htm">std::stringstream</a><br/>
+&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> now.time_of_day();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Return the <a href="CppString.htm">std::string</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppGetTime.htm">GetTime</a>();<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+12:50:44<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a> version of <a href="CppGetTime.htm">GetTime</a></h2>
+<p>&nbsp;</p>
+<p>Operating system: <img src="PicUbuntu.png" alt="Ubuntu"/> <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: <img src="PicConsole.png" alt="Console"/> Console application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+<!--  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.40, especially <a href="CppDate_Time.htm">Boost.Date_Time</a></li> -->
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCtimeH.htm">ctime</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>/<a href="CppTimeToStr.htm">TimeToStr</a> converts <a href="CppTime_t.htm">std::time_t</a> to <a href="CppString.htm">std::string</a>.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppTimeToStr.htm">TimeToStr</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppTimeToStr.htm">TimeToStr</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppTime_t.htm">std::time_t</a>&amp; time)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppCtime.htm">std::ctime</a>( &amp;time);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetTime.htm">GetTime</a>.htm<br/>
+<a href="CppTime_t.htm">std::time_t</a> <a href="CppGetTime.htm">GetTime</a>T()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppTime.htm">std::time</a>(0);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetTime.htm">GetTime</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetTime.htm">GetTime</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppTimeToStr.htm">TimeToStr</a>(<a href="CppGetTime.htm">GetTime</a>T());<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTime_t.htm">std::time_t</a> t <a href="CppOperatorAssign.htm">=</a> <a href="CppGetTime.htm">GetTime</a>T();<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Program started at " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetTime.htm">GetTime</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("./Pause 5");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTime_t.htm">std::time_t</a> u <a href="CppOperatorAssign.htm">=</a> <a href="CppGetTime.htm">GetTime</a>T();<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Program ended at " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetTime.htm">GetTime</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_secs <a href="CppOperatorAssign.htm">=</a> <a href="CppDifftime.htm">std::difftime</a>(u,t);<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of seconds passed: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n_secs <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Program started at Fri Oct&nbsp;&nbsp;1 20:48:47 2010<br/>
+Program ended at Fri Oct&nbsp;&nbsp;1 20:48:52 2010<br/>
+Number of seconds passed: 5<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

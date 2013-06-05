@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QtGaborFilterWidget</title>
+  <meta name="description" content="C++ QtGaborFilterWidget"/>
+  <meta name="keywords" content="C++ QtGaborFilterWidget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtGaborFilterWidget.htm">QtGaborFilterWidget</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQtGaborFilterWidget-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicCygwin.png" alt="Cygwin"/> <a href="CppCygwin.htm">Cygwin</a> 1.7.7</li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
+  <li><img src="PicWine.png" alt="Wine"/> <a href="CppWine.htm">Wine</a> 1.4.1</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicCppBuilder.png" alt="C++ Builder"/> <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li>Borland <a href="CppBcc32Exe.htm">BCC32.EXE</a> version 6.0.10.157</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBigInt.png" alt="BigInt"/> <a href="CppBigInt.htm">BigInteger</a>: version 2010.04.30</li>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+  <li><img src="PicVcl.png" alt="VCL"/> <a href="CppVcl.htm">VCL</a>: supplied with <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtgaborfilterwidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtgaborfilterwidget.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the GaborFilter <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTGABORFILTERWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> QTGABORFILTERWIDGET_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppGaborFilter.htm">gaborfilter</a>.h"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>Needed by MOC<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppGaborFilter.htm">gaborfilter</a><a href="CppWidget.htm">widget</a>.h"&nbsp;&nbsp; <a href="CppComment.htm">//</a>Needed by MOC<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GaborFilter<a href="CppWidget.htm">Widget</a> * Get<a href="CppWidget.htm">Widget</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+&nbsp;&nbsp;GaborFilter<a href="CppWidget.htm">Widget</a> * Get<a href="CppWidget.htm">Widget</a>() { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a GaborFilter from a GaborFilter<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> DrawGaborFilter(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GaborFilter * <b><a href="CppConst.htm">const</a></b> gabor_filter);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a GaborFilter from a GaborFilter<a href="CppWidget.htm">Widget</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> DrawGaborFilter(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GaborFilter<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;GaborFilter<a href="CppWidget.htm">Widget</a>&gt; m_<a href="CppWidget.htm">widget</a>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/OnResize is called when the <a href="CppGeometry.htm">geometry</a> of the GaborFilter<a href="CppWidget.htm">Widget</a> is changed<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnResize();<br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTGABORFILTERWIDGET_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtgaborfilterwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtgaborfilterwidget.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the GaborFilter <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="CppGaborFilter.htm">gaborfilter</a><a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppGaborFilter.htm">gaborfilter</a>.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> GaborFilter<a href="CppWidget.htm">Widget</a>(intensity,red,green,blue))<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetGaborFilter()-&gt;m_signal_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::repaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::OnResize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetGaborFilter()-&gt;SetAngle(<a href="CppM_PI.htm">M_PI</a> * 2.0 <a href="CppOperatorDivide.htm">/</a> 16.0);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetGaborFilter()-&gt;SetFrequency(16.0);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetGaborFilter()-&gt;SetSigma(<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetGaborFilter()-&gt;SuggestSigma(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;2.0,2.0));<br/>
+<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::DrawGaborFilter(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GaborFilter * <b><a href="CppConst.htm">const</a></b> <a href="CppGaborFilter.htm">gaborfilter</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> image(width,height,<a href="CppQImage.htm">QImage</a>::Format::Format_RGB32);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(left <a href="CppOperatorPlus.htm">+</a> width ) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(top&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> height) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max <a href="CppOperatorAssign.htm">=</a> <a href="CppGaborFilter.htm">gaborfilter</a>-&gt;GetMax();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Transform the pixels coordinat system to [-1,1] <b><a href="CppFor.htm">for</a></b> both x and y<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xco <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x) <a href="CppOperatorMinus.htm">-</a> midx)/midx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yco <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y) <a href="CppOperatorMinus.htm">-</a> midy)/midy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> greyness <a href="CppOperatorAssign.htm">=</a> <a href="CppGaborFilter.htm">gaborfilter</a>-&gt;Gabor<a href="CppFunction.htm">Function</a>(xco,yco);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> grey_int <a href="CppOperatorAssign.htm">=</a> 128.0 <a href="CppOperatorPlus.htm">+</a> ((greyness <a href="CppOperatorDivide.htm">/</a> max) * 126.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> grey_in_range <a href="CppOperatorAssign.htm">=</a> (grey_int &lt; 0 ? 0 : (grey_int &gt; 255 ? 255 : grey_int));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> grey <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(grey_in_range);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image.setPixel(<a href="CppQPoint.htm">QPoint</a>(x,y),qRgb(grey,grey,grey));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;painter.drawPixmap(left,top,width,height,<a href="CppQPixmap.htm">QPixmap</a>::fromImage(image));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::DrawGaborFilter(<br/>
+&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GaborFilter<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
+{<br/>
+&nbsp;&nbsp;DrawGaborFilter(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetX(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetY(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGaborFilter());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2012-07-07: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a>OnResize is cal<a href="CppGaborFilter.htm">gaborfilter</a> when the <a href="CppGeometry.htm">geometry</a> of the GaborFilter<a href="CppWidget.htm">Widget</a> is changed<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::OnResize()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetGeometry().GetX(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetGeometry().GetY(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetGeometry().GetWidth(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetGeometry().GetHeight());<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> p(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;DrawGaborFilter(p,m_<a href="CppWidget.htm">widget</a>.get());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>GaborFilter<a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppGeometry.htm">geometry</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;SetGeometry(Rect(r.x(),r.y(),r.width(),r.height()));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

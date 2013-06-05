@@ -1,0 +1,431 @@
+ 
+<title>std::for_each</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ std::for_each</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek std::for_each for_each algorithm</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>23</o:Revision>
+  <o:TotalTime>200</o:TotalTime>
+  <o:Created>2009-04-29T07:22:00Z</o:Created>
+  <o:LastSaved>2009-12-30T14:39:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>541</o:Words>
+  <o:Characters>3086</o:Characters>
+  <o:Category>C++ Richel Bilderbeek std::for_each</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>25</o:Lines>
+  <o:Paragraphs>6</o:Paragraphs>
+  <o:CharactersWithSpaces>3789</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:1941837107;
+	mso-list-type:hybrid;
+	mso-list-template-ids:74638006 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+ @list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(  <a href="Cpp.htm">C++</a> ) <a
+href="CppFor_each.htm">std::for_each</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a href="CppAlgorithm.htm">Algorithm</a> to perform a non-modifying <a
+href="CppFunction.htm">function</a> on the elements of a sequence (on a <a
+href="CppVector.htm">std::vector</a>, for example). Use <a
+href="CppTransform.htm">std::transform</a> to perform modifying <a
+href="CppFunction.htm">functions</a> on the elements of a sequence.</p>
+
+<p>&nbsp;</p>
+
+<p>Prefer <a href="CppAlgorithm.htm">algorithms</a> over hand-written loops
+<span style='mso-field-code:"REF _Ref249866509 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340039003800360036003500300039000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref249866511 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340039003800360036003500310031000000</w:data>
+</xml><![endif]--> <span style='mso-field-code:"REF _Ref249866533 \\r \\h"'>[2]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340039003800360036003500330033000000</w:data>
+</xml><![endif]--> . View   <a
+href="CppExerciseNoForLoops.htm"> Exercise
+#9: No for-loops</a> to learn how to remove hand-written loops  .</p>
+
+<p>&nbsp;</p>
+
+<p><b> Note </b> : <a href="CppFor_each.htm">std::for_each</a> is
+supposed to be non-modifying (<span style='mso-field-code:"REF _Ref249866509 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340039003800360036003500300039000000</w:data>
+</xml><![endif]--> ), but I use it for modifying my sequences anyway).</p>
+
+<p>&nbsp;</p>
+
+<p>There are two kinds of examples below. The first uses <a
+href="CppFor_each.htm">std::for_each</a> combined with simple <a
+href="CppFunction.htm">functions</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>The second piece of code shows the use of <a href="CppFunctor.htm">functors</a>
+for more advanced functionality. It is advised to use the latter [3], but I
+will show the first as an example. There are also <a href="CppStl.htm">STL</a> <a
+href="CppFunctor.htm">functors</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>Example: Use of plain <a
+href="CppFunction.htm">functions</a></h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include &lt;iostream&gt;</p>
+
+<p>#include &lt;vector&gt;</p>
+
+<p>#include &lt;algorith&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>void SetToOne(int&amp; i)</p>
+
+<p>{</p>
+
+<p> 
+ i = 1;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+<p>void MultiplyByTwo(int&amp; i)</p>
+
+<p>{</p>
+
+<p> 
+ i*=2;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+<p>void SetToRandom(int&amp; i)</p>
+
+<p>{</p>
+
+<p> 
+ i = std::rand()%10;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+<p>void CoutVector(const
+std::vector&lt;int&gt;&amp; myVector)</p>
+
+<p>{</p>
+
+<p> 
+ const int size = myVector.size();</p>
+
+<p> 
+ for (int i=0; i!=size; ++i)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ std::cout &lt;&lt; i &lt;&lt; &quot; : &quot; &lt;&lt; myVector[i]
+&lt;&lt; std::endl;</p>
+
+<p> 
+ }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+<p>int main()</p>
+
+<p>{</p>
+
+<p> 
+ const int size = 5;</p>
+
+<p> 
+ std::vector&lt;int&gt; myVector(size);</p>
+
+<p> 
+ std::for_each(myVector.begin(),myVector.end(), SetToOne);</p>
+
+<p> 
+ CoutVector(myVector);</p>
+
+<p> 
+ std::for_each(myVector.begin(),myVector.end(), MultiplyByTwo);</p>
+
+<p> 
+ CoutVector(myVector);</p>
+
+<p> 
+ std::for_each(myVector.begin(),myVector.end(), SetToRandom);</p>
+
+<p> 
+ CoutVector(myVector);</p>
+
+<p> 
+ std::for_each(myVector.begin(),myVector.end(), MultiplyByTwo);</p>
+
+<p> 
+ CoutVector(myVector);</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Example: Use of non-<a
+href="CppStl.htm">STL</a> <a href="CppFunctor.htm">functors</a></h2>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include &lt;iostream&gt;</p>
+
+<p>#include &lt;vector&gt;</p>
+
+<p>#include &lt;algorith&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>struct MyInitializer</p>
+
+<p>{</p>
+
+<p> 
+ MyInitializer()</p>
+
+<p> 
+ : index(0) {}</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ template&lt;class T&gt;</p>
+
+<p> 
+ void operator () (T &amp; a)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ a = index;</p>
+
+<p>   
+ ++index;</p>
+
+<p> 
+ }</p>
+
+<p> 
+ private:</p>
+
+<p> 
+ int index;</p>
+
+<p>&nbsp;</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p>struct MyIndexCout</p>
+
+<p>{</p>
+
+<p> 
+ MyIndexCout() : index(0) {}</p>
+
+<p> 
+ template&lt;class T&gt;</p>
+
+<p> 
+ void operator () (const T &amp; a)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ std::cout &lt;&lt; index &lt;&lt; &quot; : &quot; &lt;&lt; a &lt;&lt;
+std::endl;</p>
+
+<p>   
+ ++index;</p>
+
+<p> 
+ }</p>
+
+<p> 
+ private:</p>
+
+<p> 
+ int index;</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p>struct MySquarer</p>
+
+<p>{</p>
+
+<p> 
+ template&lt;class T&gt; void operator () (T &amp; a)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ a*=a;</p>
+
+<p> 
+ }</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p>int main()</p>
+
+<p>{</p>
+
+<p> 
+ const int size = 10;</p>
+
+<p> 
+ std::vector&lt;int&gt; myVector(size);</p>
+
+<p> 
+ std::for_each(myVector.begin(), myVector.end(), MyInitializer());</p>
+
+<p> 
+ std::for_each(myVector.begin(), myVector.end(), MyIndexCout());</p>
+
+<p> 
+ std::cout &lt;&lt; &quot;-----------&quot; &lt;&lt; std::endl;</p>
+
+<p> 
+ std::for_each(myVector.begin(), myVector.end(), MySquarer());</p>
+
+<p> 
+ std::for_each(myVector.begin(), myVector.end(), MyIndexCout());</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm">   References   <span
+style='mso-bookmark:_Toc194762542'> <span style='mso-bookmark:_Toc198191050'></a><![if !supportNestedAnchors]><a
+name="_Toc198191050"></a> </h2>
+
+<p><a name="_Ref249866509">  [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Bjarne Stroustrup. The C++ Programming Language (3rd
+edition). ISBN: 0-201-88954-4. Chapter 18.12.1 : 'Prefer algorithms over loops'</a> </p>
+
+<p><a name="_Ref249866511">  [1] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Herb Sutter and Andrei Alexandrescu. C++ coding
+standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6.
+Chapter 84: 'Prefer algorithm calls to handwritten loops.'</a> </p>
+
+<p><a name="_Ref249866533">  [2] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Herb Sutter and Andrei Alexandrescu. C++ coding
+standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6.
+Chapter 88: 'Prefer function objects over functions as algorithm and comparer
+arguments.'</a> </p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

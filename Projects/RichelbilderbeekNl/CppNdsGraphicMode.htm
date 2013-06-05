@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>NDS graphic modes</title>
+  <meta name="description" content="C++ NDS graphic modes"/>
+  <meta name="keywords" content="C++ NDS graphic modes code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppNdsGraphicModes.htm">NDS graphic modes</a></h1>
+<p>&nbsp;</p>
+<p>The <a href="CppNds.htm">NDS</a> has seven <a href="CppNdsGraphicModes.htm">NDS graphic modes</a> [1]:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>0: all backgrounds in text mode</li>
+  <li>1: background 3 in rotation mode</li>
+  <li>2: background 2 and 3 in rotation mode</li>
+  <li>3: background 3 in extended rotation mode</li>
+  <li>4: background 2 in rotation mode, background 3 in extended rotation mode</li>
+  <li>5: background 2 and 3 in extended rotation mode</li>
+  <li>6: background 1 in large bitmap background mode</li>
+</ul>
+<p>&nbsp;</p>
+<p>Note that background 0 is always in text mode.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://libnds.devkitpro.org">libnds documentation, under the enum VideoMode</a><br/>
+    &nbsp;<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    Main 2D engine<br/>
+    ______________________________<br/>
+    |Mode | BG0 | BG1 | BG2 |BG3 |&nbsp;&nbsp; T = Text<br/>
+    |&nbsp;&nbsp;0&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T |&nbsp;&nbsp; R = Rotation<br/>
+    |&nbsp;&nbsp;1&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;R |&nbsp;&nbsp; E = Extended Rotation<br/>
+    |&nbsp;&nbsp;2&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;R&nbsp;&nbsp;|&nbsp;&nbsp;R |&nbsp;&nbsp; L = Large Bitmap background<br/>
+    |&nbsp;&nbsp;3&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;E |<br/>
+    |&nbsp;&nbsp;4&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;R&nbsp;&nbsp;|&nbsp;&nbsp;E |<br/>
+    |&nbsp;&nbsp;5&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;E&nbsp;&nbsp;|&nbsp;&nbsp;E |<br/>
+    |&nbsp;&nbsp;6&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;L&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+    -----------------------------<br/>
+    <br/>
+    Sub 2D engine<br/>
+    ______________________________<br/>
+    |Mode | BG0 | BG1 | BG2 |BG3 |<br/>
+    |&nbsp;&nbsp;0&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T |<br/>
+    |&nbsp;&nbsp;1&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;R |<br/>
+    |&nbsp;&nbsp;2&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;R&nbsp;&nbsp;|&nbsp;&nbsp;R |<br/>
+    |&nbsp;&nbsp;3&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;E |<br/>
+    |&nbsp;&nbsp;4&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;R&nbsp;&nbsp;|&nbsp;&nbsp;E |<br/>
+    |&nbsp;&nbsp;5&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;T&nbsp;&nbsp;|&nbsp;&nbsp;E&nbsp;&nbsp;|&nbsp;&nbsp;E |<br/>
+    -----------------------------<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+    &nbsp;<br/>
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

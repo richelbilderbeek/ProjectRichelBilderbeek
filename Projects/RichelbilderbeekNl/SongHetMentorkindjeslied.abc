@@ -1,0 +1,49 @@
+X:1
+T:Het Mentorkindjeslied
+C:Richel Bilderbeek
+%Lyrics written by Richel Bilderbeek
+%On the 14th September 2002
+%From http://www.richelbilderbeek.nl/SongHetMentorkindjeslied.htm
+L:1/4
+Q:1/4=240
+M:4/4
+K:C
+V:V1 clef=treble
+V:V2 clef=bass
+%
+%
+%
+[V:V1] c2   c2   | c2  d2    | e4         | d4        |
+w:     Gro- te   | ge- le    | kaas-      | maan,     |
+[V:V2] C,,G,,C,z | F,,C,F,z  | D,,A,,D,z  | G,,D,G,z  |
+%
+%
+%
+[V:V1] c2    e2     | d2  d2    | c4         | z4        |
+w:     stra- lend   | in de     | lucht,     |           |
+[V:V2] E,,B,,E,z    | A,,E,A,z  | D,,A,,D,z  | G,,D,G,z  |
+%
+%
+%
+[V:V1] c   c   c2  | c2   d2   | e4         | d4        |
+w:     Ik  zie u   | te- der   | neer-      | gaan,     |
+[V:V2] C,,G,,C,z   | F,,C,F,z  | D,,A,,D,z  | G,,D,G,z  |
+%
+%
+%
+[V:V1] c   c    d2  | d2  d2    | c4         | z4        |
+w:     in  tra- ge  | vo- gel-  | vlucht.    |           |
+[V:V2] E,,B,,E,z    | A,,E,A,z  | D,,A,,D,z  | G,,D,G,z  |
+%
+%
+%
+[V:V1] d4          | z4        | c4         | z4        | 
+w:     Kaas-       |           | maan,      |           | 
+[V:V2] C,,G,,C,z   | F,,C,F,z  | D,,A,,D,z  | G,,D,G,z  |
+%
+%
+%
+[V:V1] d4           | z4        | c4         | z4        |
+w:     neer-        |           | gaan.      |           |
+[V:V2] E,,B,,E,z    | A,,E,A,z  | D,,A,,D,z  | G,,D,G,z  |
+%

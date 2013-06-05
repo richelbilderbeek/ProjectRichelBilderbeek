@@ -1,0 +1,360 @@
+ 
+<title>DoHistogramEqualization</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ DoHistogramEqualization</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek DoHistogramEqualization HistogramEqualization Do Histogram Equalization TImage Image VCL equalisation Builder</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>32</o:Revision>
+  <o:TotalTime>178</o:TotalTime>
+  <o:Created>2008-07-11T17:35:00Z</o:Created>
+  <o:LastSaved>2009-12-31T12:39:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>1072</o:Words>
+  <o:Characters>6114</o:Characters>
+  <o:Category>C++ Richel Bilderbeek DoHistogramEqualization</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>50</o:Lines>
+  <o:Paragraphs>12</o:Paragraphs>
+  <o:CharactersWithSpaces>7508</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+  
+@list l1
+	{mso-list-id:1922177586;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1090057454 1630453670 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppDoHistogramEqualization.htm">DoHistogramEqualization</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppVclGraphics.htm">Graphics</a> <a
+href="CppVclCodeSnippets.htm"> code
+snippet</a> to perform a histogram equalization on a <a href="CppVcl.htm">VCL</a>
+<a href="CppTImage.htm">TImage</a>.</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppDoHistogramEqualization.htm">DoHistogramEqualization</a> is similar to   <a
+href="CppDoHistogramEqualization.htm"><span style='mso-field-code:"HYPERLINK \0022CppEnhanceContrast\.htm\0022"'>EnhanceContrast</a>,
+except that <a href="CppEnhanceContrast.htm">EnhanceContrast</a> is 'milder':
+it tries to minimally change the average greyness (using <a
+href="CppGetAverageGreyness.htm">GetAverageGreyness</a> to first measure it).  </p>
+
+<p>&nbsp;</p>
+
+<p>I have also programmed a tool that uses   <a
+href="CppDoHistogramEqualization.htm">DoHistogramEqualization</a>, called <a href="CppHistogramEqualizationer.htm">HistogramEqualizationer</a>.</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppDoHistogramEqualization.htm">DoHistogramEqualization</a> works on both
+grey and color images.</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppDoHistogramEqualization.htm">DoHistogramEqualization</a> assumes you
+have defined the functions <a href="CppGetImageHistogram.htm">GetImageHistogram</a>
+and <a href="CppGetCumulativeHistogram.htm">GetCumulativeHistogram</a>.</p>
+
+<p>&nbsp;</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <a href="CppDoHistogramEqualization.PNG">View an example of a
+composition image demonstrating DoHistogramEqualization</a>: first, on the
+original (top) image, a   <a
+href="CppConvertToGrey.htm">ConvertToGrey</a> was performed, resulting in the
+middle image. On this result, <a href="CppDoHistogramEqualization.htm">DoHistogramEqualization</a>
+was performed on, resulting in the bottom image.</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <a
+href="CppEnhanceContrast.PNG">View an example of a composition image
+demonstrating EnhanceContrast and DoHistogramEqualization</a>: first, on the
+original (top-left) image, a <a href="CppDoFilterOperation.htm">DoFilterOperation</a>
+was performed, resulting in the bottom-left image. On this result, both a <a
+href="CppDoHistogramEqualization.htm">DoHistogramEqualization</a> (top-right)
+and <a href="CppEnhanceContrast.htm">EnhanceContrast</a> (bottom-right) were
+performed on.</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <a href="CppDoHistogramEqualization.txt">View the code of
+'DoHistogramEqualization' in plain text</a></p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <a href="CppHistogramEqualizationer.htm">Go to the page of
+'HistogramEqualizationer'</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppDoHistogramEqualization.htm</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  DoHistogramEqualization(<b><a
+href="CppConst.htm">const</a></b>   <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b>
+source, <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b>
+target)</p>
+
+<p>{</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(source!=0 &amp;&amp; &quot;Source
+image is NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(target!=0 &amp;&amp; &quot;Target
+image is NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(source-&gt;Picture-&gt;Bitmap!=0
+&amp;&amp; &quot;Source bitmap is NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(target-&gt;Picture-&gt;Bitmap!=0
+&amp;&amp; &quot;Target bitmap is NULL&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(source-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit &amp;&amp; &quot;Source bitmap must be 24 bit&quot;);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(target-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit &amp;&amp; &quot;Target bitmap must be 24 bit&quot;);</p>
+
+<p> 
+ <a href="CppComment.htm">//</a>Get the width and height from the source</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+width    =
+source-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+height = source-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p> 
+ <a href="CppComment.htm">//</a>Set the target's width and height</p>
+
+<p> 
+ target-&gt;Picture-&gt;Bitmap-&gt;Width  
+ = width;</p>
+
+<p> 
+ target-&gt;Picture-&gt;Bitmap-&gt;Height = height;</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+surface = width * height;</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+nGreyValues = 256; //There are 256 different pixel intensities</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; histogram = <a href="CppGetImageHistogram.htm">GetImageHistogram</a>(source);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(nGreyValues==static_cast&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(histogram.size()));</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; cumulativeHistogram = <a
+href="CppGetCumulativeHistogram.htm">GetCumulativeHistogram</a>(histogram);</p>
+
+<p> 
+ <a href="CppAssert.htm">assert</a>(nGreyValues==static_cast&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(cumulativeHistogram.size()));</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <a href="CppComment.htm">//</a>Works, but anybody knows how to use
+std::for_each or std::transform for this?</p>
+
+<p> 
+ <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+rescaledHistogram(nGreyValues,0);</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+i=0; i!=nGreyValues; ++i)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ //'surface + 1' to prevent that rescaledGreyValue == 256</p>
+
+<p>   
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+rescaledGreyValue</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(</p>
+
+<p>           <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(nGreyValues)</p>
+
+<p>         * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(cumulativeHistogram[i])</p>
+
+<p>         / <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(surface + 1) );</p>
+
+<p>   
+ <a href="CppAssert.htm">assert</a>(rescaledGreyValue &gt;= 0);</p>
+
+<p>   
+ <a href="CppAssert.htm">assert</a>(rescaledGreyValue &lt; 256);</p>
+
+<p>   
+ rescaledHistogram[i] = rescaledGreyValue;</p>
+
+<p> 
+ }</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+y=0; y!=height; ++y)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> * lineSource</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> *&gt;(</p>
+
+<p>         source-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>   
+ <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+* lineTarget</p>
+
+<p>       = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+*&gt;(</p>
+
+<p>         target-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>   
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+x=0; x!=width; ++x)</p>
+
+<p>   
+ {</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> greyOriginal</p>
+
+<p>         = (lineSource[x*3+0] + lineSource[x*3+1] +
+lineSource[x*3+2]) / 3;</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(greyOriginal &gt;=     0);</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(greyOriginal    &lt; 256);</p>
+
+<p>       <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> greyNew = rescaledHistogram[greyOriginal];</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(greyNew &gt;= 0);</p>
+
+<p>       <a href="CppAssert.htm">assert</a>(greyNew    &lt; 256);</p>
+
+<p>       lineTarget[x*3+0]=greyNew; //Blue</p>
+
+<p>       lineTarget[x*3+1]=greyNew; //Green</p>
+
+<p>       lineTarget[x*3+2]=greyNew; //Red</p>
+
+<p>   
+ }</p>
+
+<p> 
+ }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

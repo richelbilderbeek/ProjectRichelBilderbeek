@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Rainbow</title>
+  <meta name="description" content="C++ Rainbow"/>
+  <meta name="keywords" content="C++ Rainbow code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppRainbow.htm">Rainbow</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppRainbow.htm">Rainbow</a> is a <a href="CppGraphics.htm">graphics</a> <a href="CppClass.htm">class</a> to create a rainbow.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppRainbow.png">View a picture of the gradient created by the Rainbow function (upper row)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>rainbow.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppRainbow.htm">Rainbow</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> a <a href="CppRainbow.htm">rainbow</a> color gradient<br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> RAINBOW_H<br/>
+<a href="CppDefine.htm">#define</a> RAINBOW_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppRainbow.htm">Rainbow</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the RGB values from a relative position<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> GetRgb(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; r,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; g,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; b);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RAINBOW_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>rainbow.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppRainbow.htm">Rainbow</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> a <a href="CppRainbow.htm">rainbow</a> color gradient<br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppRainbow.htm">rainbow</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRainbow.htm">Rainbow</a>::GetRgb(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; r,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; g,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; b)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f_r <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(x &lt; 0.5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppCos.htm">std::cos</a>(x * 1.5 * <a href="CppM_PI.htm">M_PI</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppOperatorMinus.htm">-</a><a href="CppSin.htm">std::sin</a>(x * 1.5 * <a href="CppM_PI.htm">M_PI</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f_g <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0.0, <a href="CppSin.htm">std::sin</a>( x * 1.5 * <a href="CppM_PI.htm">M_PI</a> ) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f_b <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0.0, <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>( x * 1.5 * <a href="CppM_PI.htm">M_PI</a> ) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(f_r, <a href="CppMax.htm">std::max</a>(f_g,f_b));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(max<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+<br/>
+&nbsp;&nbsp;r <a href="CppOperatorAssign.htm">=</a> f_r <a href="CppOperatorDivide.htm">/</a> max;<br/>
+&nbsp;&nbsp;g <a href="CppOperatorAssign.htm">=</a> f_g <a href="CppOperatorDivide.htm">/</a> max;<br/>
+&nbsp;&nbsp;b <a href="CppOperatorAssign.htm">=</a> f_b <a href="CppOperatorDivide.htm">/</a> max;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRainbow.htm">Rainbow</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRainbow.htm">Rainbow</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-08-31: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

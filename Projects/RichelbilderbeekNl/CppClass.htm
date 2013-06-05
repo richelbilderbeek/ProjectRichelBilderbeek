@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>class</title>
+  <meta name="description" content="C++ class"/>
+  <meta name="keywords" content="C++ class code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppClass.htm">class</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppClass.htm">class</a> is a <a href="CppKeyword.htm">keyword</a> to start a <a href="CppClass.htm">class</a> 
+<a href="CppDeclaration.htm">declaration</a>. A <a href="CppClass.htm">class</a> is a user-defined 
+<a href="CppDataType.htm">data type</a> with multiple elements and access levels. A <a href="CppClass.htm">class</a> 
+has <a href="CppDataMember.htm">data members</a>, <a href="CppMemberFunction.htm">member functions</a> and 
+<a href="CppFreeFunction.htm">free functions</a>.</p>
+<p>&nbsp;</p>
+<p>The <a href="CppClass.htm">class</a> <a href="CppKeyword.htm">keyword</a> also be used to create 
+a <a href="CppTemplateFunction.htm">template function</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> 
+  Example <a href="CppClass.htm">class</a>
+</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppClass.htm">class</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>: <b><a href="CppInt.htm">int</a></b> mValue;<br/>
+};<br/>
+ <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;MyClass m;<br/>
+&nbsp;&nbsp;m.mValue <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Don't forget the semicolon at the end of the class definition!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> 
+  <a href="CppClass.htm">Class</a> elements
+</h2>
+<p>&nbsp;</p>
+<p>A <a href="CppClass.htm">class</a> can have many types of <a href="CppMember.htm">members</a>:</p>
+<ul>
+  <li><a href="CppMemberFunction.htm">member functions</a> or member <a href="CppFunction.htm">functions</a>, of which the <a href="CppBigFour.htm">Big Four</a> are especially important</li>
+  <li><a href="CppDataMember.htm">data members</a> or member <a href="CppVariable.htm">variables</a></li>
+  <li>member constants</li>
+  <li>member types</li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppPublic.htm">public</a></b> by <b><a href="CppDefault.htm">default</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) { m_x <a href="CppOperatorAssign.htm">=</a> x; } <a href="CppComment.htm">//</a>A <a href="CppMemberFunction.htm">member function</a><br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>A <a href="CppDataMember.htm">data member</a><br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>All <a href="CppClass.htm">classes</a> have a four special methods called the 
+<a href="CppBigFour.htm">Big Four</a>: <a href="CppDefaultConstructor.htm">default constructor</a>, 
+<a href="CppDestructor.htm">destructor</a>, <a href="CppCopyConstructor.htm">copy constructor</a> 
+and <a href="CppCopyAssignmentOperator.htm">copy assignment operator</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> NoClass {}; <a href="CppComment.htm">//</a>Do all <b><a href="CppClass.htm">classes</a></b> really have a <a href="CppConstructor.htm">constructor</a>, <a href="CppDestructor.htm">destructor</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>copy <a href="CppConstructor.htm">constructor</a> and copy-assignment <b><a href="CppOperator.htm">operator</a></b>?<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>This class called NoClass is silently converted by your <a href="CppCompiler.htm">compiler</a> to the 
+following (from [1]):</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> NoClass<br/>
+{<br/>
+&nbsp;&nbsp;NoClass()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Default <a href="CppConstructor.htm">constructor</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>something<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;NoClass(<b><a href="CppConst.htm">const</a></b> NoClass&amp; rhs)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>copy <a href="CppConstructor.htm">constructor</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>something<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;~NoClass()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>Default <a href="CppDestructor.htm">destructor</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>something<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;NoClass&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> NoClass&amp; rhs) <a href="CppComment.htm">//</a>copy-assignment <b><a href="CppOperator.htm">operator</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>something<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Know what functions C++ silently writes and calls [1].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> 
+  Class access levels
+</h2>
+<p>&nbsp;</p>
+<p>A class has three different access levels: <b><a href="CppPublic.htm">public</a></b>,
+<b><a href="CppPrivate.htm">private</a></b> and <b><a href="CppProtected.htm">protected</a></b>.
+A class' default for functions and variables is <b><a href="CppPrivate.htm">private</a></b>.
+This is the only (!) difference with a <b><a href="CppStruct.htm">struct</a></b>,
+which has <b><a href="CppPublic.htm">public</a></b> as its default access level.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppPublic.htm">public</a></b> by <b><a href="CppDefault.htm">default</a></b>, so the keyword <b><a href="CppPublic.htm">public</a></b> below is redundant<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>&nbsp;&nbsp; : <b><a href="CppInt.htm">int</a></b> m_<b><a href="CppPublic.htm">public</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>: <b><a href="CppInt.htm">int</a></b> m_<b><a href="CppProtected.htm">protected</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>: : <b><a href="CppInt.htm">int</a></b> m_<b><a href="CppPrivate.htm">private</a></b>;<br/>
+};<br/>
+ <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;MyClass m;<br/>
+&nbsp;&nbsp;m.m_<b><a href="CppPublic.htm">public</a></b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>OK, <b><a href="CppThis.htm">this</a></b> member variable is <b><a href="CppPublic.htm">public</a></b><br/>
+&nbsp;&nbsp;m.m_<b><a href="CppProtected.htm">protected</a></b> <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Not allowed, <b><a href="CppThis.htm">this</a></b> member variable is <b><a href="CppProtected.htm">protected</a></b><br/>
+&nbsp;&nbsp;m.m_<b><a href="CppPrivate.htm">private</a></b>&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Not allowed, <b><a href="CppThis.htm">this</a></b> member variable is <b><a href="CppPrivate.htm">private</a></b><br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/>
+  <a href="CppClass.htm">Class</a> types
+</h2>
+<p>&nbsp;</p>
+<p>Examples of class types are:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppAbstractBaseClass.htm">Abstract base class</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppBaseClass.htm">Base class</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppDerivedClass.htm">Derived class</a></li>
+  <li><img src="PicSpacer.png" alt=" "/><img src="PicCpp11.png" alt="C++11"/> <a href="CppEnumClass.htm">Enum class</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppFunctor.htm">Functor</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppTemplateClass.htm">Template class</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppWinnebagoClass.htm">Winnebago class</a>: a do-it-all <a href="CppClass.htm">class</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/>
+  <a href="CppClassDesign.htm">Class design</a>
+</h2>
+<p>&nbsp;</p>
+<p>See <a href="CppClassDesign.htm">class design</a> for some guidelines on <a
+href="CppClassDesign.htm">class design</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppDesignPattern.htm">Design patterns</a> are standarized <a
+href="CppClassDesign.htm">class designs</a> to achieve a certain goal, often
+involving multiple classes.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/>
+  Example classes
+</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppAbout.htm">About</a></li>
+  <li><a href="CppAsciiArter.htm">AsciiArter</a></li>
+  <li><a href="CppBinaryNewickVector.htm">BinaryNewickVector</a></li>
+  <li><a href="CppConnectThree.htm">ConnectThree</a></li>
+  <li><a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a></li>
+  <li><a href="CppCopy_if.htm">Copy_if</a></li>
+  <li><a href="CppCounter.htm">Counter</a></li>
+  <li><a href="CppDial.htm">Dial</a></li>
+  <li><a href="CppDial.htm">Dial</a>  <li><a href="CppWidget.htm">Widget</a></li>
+  <li><a href="CppEncranger.htm">Encranger</a></li>
+  <li><a href="CppFuzzy_equal_to.htm">Fuzzy_equal_to</a></li>
+  <li><a href="CppHtmlPage.htm">HtmlPage</a></li>
+  <li><a href="CppIpAddress.htm">IpAddress</a></li>
+  <li><a href="CppLed.htm">Led</a></li>
+  <li><a href="CppLoopReader.htm">LoopReader</a></li>
+  <li><a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a></li>
+  <li><a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a></li>
+  <li><a href="CppMultiVector.htm">MultiVector</a></li>
+  <li><a href="CppMysteryMachine.htm">MysteryMachine</a></li>
+  <li><a href="CppNewick.htm">Newick</a></li>
+  <li><a href="CppNewickVector.htm">NewickVector</a></li>
+  <li><a href="CppOpenQuestion.htm">OpenQuestion</a></li>
+  <li><a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a></li>
+  <li><a href="CppPrimeExpert.htm">PrimeExpert</a></li>
+  <li><a href="CppProFile.htm">ProFile</a></li>
+  <li><a href="CppQtAboutDialog.htm">QtAboutDialog</a></li>
+  <li><a href="CppQtConnectThreeWidget.htm">QtConnectThreeWidget</a></li>
+  <li><a href="CppQtDialWidget.htm">QtDialWidget</a></li>
+  <li><a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a></li>
+  <li><a href="CppQtLedWidget.htm">QtLedWidget</a></li>
+  <li><a href="CppQtMultipleChoiceQuestionDialog.htm">QtMultipleChoiceQuestionDialog</a></li>
+  <li><a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a></li>
+  <li><a href="CppQtShapeWidget.htm">QtShapeWidget</a></li>
+  <li><a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a></li>
+  <li><a href="CppQuestion.htm">Question</a></li>
+  <li><a href="CppQuestionDialog.htm">QuestionDialog</a></li>
+  <li><a href="CppRandomCode.htm">RandomCode</a></li>
+  <li><a href="CppRectangle.htm">Rectangle</a></li>
+  <li><a href="CppShape.htm">Shape</a></li>
+  <li><a href="CppShapeWidget.htm">ShapeWidget</a></li>
+  <li><a href="CppSortedBinaryNewickVector.htm">SortedBinaryNewickVector</a></li>
+  <li><a href="CppStopwatch.htm">Stopwatch</a></li>
+  <li><a href="CppTicTacToe.htm">TicTacToe</a></li>
+  <li><a href="CppToggleButton.htm">ToggleButton</a></li>
+  <li><a href="CppTrace.htm">Trace</a></li>
+  <li><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a></li>
+  <li><a href="CppWidget.htm">Widget</a></li>
+  <li><a href="CppWtAboutDialog.htm">WtAboutDialog</a></li>
+  <li><a href="CppWtAutoConfig.htm">WtAutoConfig</a></li>
+  <li><a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a></li>
+  <li><a href="CppWtDialWidget.htm">WtDialWidget</a></li>
+  <li><a href="CppWtGroupWidget.htm">WtGroupWidget</a></li>
+  <li><a href="CppWtLedDisplayWidget.htm">WtLedDisplayWidget</a></li>
+  <li><a href="CppWtLedWidget.htm">WtLedWidget</a></li>
+  <li><a href="CppWtMultipleChoiceQuestionDialog.htm">WtMultipleChoiceQuestionDialog</a></li>
+  <li><a href="CppWtOpenQuestionDialog.htm">WtOpenQuestionDialog</a></li>
+  <li><a href="CppWtSafeTimer.htm">WtSafeTimer</a></li>
+  <li><a href="CppWtSelectFileDialog.htm">WtSelectFileDialog</a></li>
+  <li><a href="CppWtShapeWidget.htm">WtShapeWidget</a></li>
+  <li><a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a></li>
+  <li><a href="CppWtToggleButtonWidget.htm">WtToggleButtonWidget</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 5: 'Know what functions C++ silently writes and calls'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,197 @@
+ 
+<title>Answer of exercise #9: No for-loops #16</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Answer of exercise #9: No for-loops #16</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Answer of exercise #9: No for-loops #16</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>383</o:TotalTime>
+  <o:Created>2010-02-04T12:05:00Z</o:Created>
+  <o:LastSaved>2010-02-04T12:30:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>274</o:Words>
+  <o:Characters>1566</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Answer of exercise #9: No for-loops #16</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>13</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>1923</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:525942557;
+	mso-list-type:hybrid;
+	mso-list-template-ids:312382852 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppExerciseNoForLoopsAnswer16.htm">Answer of exercise #9: No for-loops
+#16</a></h1>
+
+<p>&nbsp;</p>
+
+<p>This
+is the answer of <a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Question #16: Reciprocal</h2>
+
+<p>&nbsp;</p>
+
+<p>Replace
+the <a href="CppFor.htm">for</a>-loop. You will need:</p>
+
+  <li>     <a href="CppBind1st.htm">std::bind1st</a></p>
+
+  <li>     <a href="CppDivides.htm">std::divides</a></p>
+
+  <li>     <a href="CppTransform.htm">std::transform</a></p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>    <a href="CppReciprocal.htm">Reciprocal</a>  (<a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;&amp; v)</p>
+
+<p>{</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b>
+<b><a href="CppInt.htm">int</a></b> sz = v.size();</p>
+
+<p>   <b><a href="CppFor.htm">for</a></b>
+(<b><a href="CppInt.htm">int</a></b> i=0; i!=sz; ++i)</p>
+
+<p>   {</p>
+
+<p>       v[i]=1.0/v[i];</p>
+
+<p>   }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>Answer  </h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppReciprocal.htm</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>    <a href="CppReciprocal.htm">Reciprocal</a>  (<a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;&amp; v)</p>
+
+<p>{</p>
+
+<p>   <a href="CppTransform.htm">std::transform</a>(v.begin(),v.end(),v.begin(),</p>
+
+<p>     <a href="CppBind1st.htm">std::bind1st</a>(<a
+href="CppDivides.htm">std::divides</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(),1.0));    </p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

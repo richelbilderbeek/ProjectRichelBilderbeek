@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>operator&gt;&gt;</title>
+  <meta name="description" content="C++ operator&gt;&gt;"/>
+  <meta name="keywords" content="C++ operator&gt;&gt; stream in operator &gt;&gt; code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppOperatorStreamIn.htm">operator&gt;&gt;</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppOperatorStreamIn.htm">operator&gt;&gt;</a> (pronounced 'Stream in <a href="CppOperator.htm">operator</a>') is an <a href="CppOperator.htm">operator</a> for sending data from a <a href="CppStream.htm">stream</a> to something. For doing the other way around, use <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppOverload.htm">Overloading</a> <a href="CppOperatorStreamIn.htm">operator&gt;&gt;</a></h2>
+<p>&nbsp;</p>
+<p>Prefer <a href="CppOverload.htm">overloading</a> <a href="CppOperatorStreamIn.htm">operator&gt;&gt;</a> with a free <a href="CppFunction.htm">function</a> [1]. To be able to access the <a href="CppPrivate.htm">private</a> member variables, make this <a href="CppFunction.htm">function</a> a <a href="CppFriend.htm">friend</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> value) : mValue(value) {}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mValue;<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppIstream.htm">std::istream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(<a href="CppIstream.htm">std::istream</a>&amp; is, MyClass&amp; myClass);<br/>
+};<br/>
+&nbsp;<br/>
+<a href="CppIstream.htm">std::istream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(<a href="CppIstream.htm">std::istream</a>&amp; is, MyClass&amp; myClass);<br/>
+{<br/>
+&nbsp;&nbsp;is <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> myClass.mValue;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> is;<br/>
+}<br/>
+&nbsp;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;MyClass myClass(13);<br/>
+&nbsp;&nbsp;<a href="CppCin.htm">std::cin</a> <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> myClass;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Another example</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppOperatorStreamIn.zip">Download the Qt Creator project 'CppOperatorStreamIn' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_name;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_birth_year;<br/>
+};<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> Person&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.m_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ' ' <a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> either a space, tab or newline<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.m_birth_year;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<br/>
+<a href="CppIstream.htm">std::istream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(<a href="CppIstream.htm">std::istream</a>&amp; is, Person&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;is<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> p.m_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> p.m_birth_year;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> is;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a Person and save it to file<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Person p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.m_name <a href="CppOperatorAssign.htm">=</a> "Bilderbikkel";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.m_birth_year <a href="CppOperatorAssign.htm">=</a> 1980;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a Person and save it to file<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f("tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Person p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.m_name <a href="CppOperatorEqual.htm">==</a> "Bilderbikkel");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.m_birth_year <a href="CppOperatorEqual.htm">==</a> 1980);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN: 0-201-61562-2.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

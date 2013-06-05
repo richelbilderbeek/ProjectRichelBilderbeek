@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>IsPrime</title>
+  <meta name="description" content="C++ IsPrime"/>
+  <meta name="keywords" content="C++ IsPrime is prime function test tester code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppIsPrime.htm">IsPrime</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppIsPrime.htm">IsPrime</a> is a <a href="CppMath.htm">math</a> 
+<a href="CppCodeSnippets.htm">code snippet</a> to determine whether a number is prime.</p>
+<p>&nbsp;</p>
+<p>If you need to call <a href="CppIsPrime.htm">IsPrime</a> often, you might consider using the 
+<a href="CppPrimeExpert.htm">PrimeExpert</a> <a href="CppClass.htm">class</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppIsPrime.htm<br/>
+<b><a href="CppBool.htm">bool</a></b> IsPrime(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max<br/>
+&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSqrt.htm">std::sqrt</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorPlus.htm">+</a> 1;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=2; i<a href="CppOperatorNotEqual.htm">!=</a>max; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorModulus.htm">%</a> i <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppIsPrime.htm">IsPrime</a> test</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppIsPrime.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 1)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 2)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 3)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 4)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 5)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 6)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 7)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 8)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime( 9)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(10)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(11)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(12)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(13)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(14)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(15)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(16)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(17)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(18)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(19)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(20)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(21)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(22)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(23)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(24)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsPrime(25)<a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

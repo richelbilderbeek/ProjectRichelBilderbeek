@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Abstract base class</title>
+  <meta name="description" content="C++ Abstract base class"/>
+  <meta name="keywords" content="C++ Abstract base class code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppAbstractBaseClass.htm">Abstract base class</a></h1>
+<p>&nbsp;</p>
+<p>An <a href="CppAbstractBaseClass.htm">abstract base class</a> is a type of 
+<a href="CppBaseClass.htm">base class</a> that can not be 
+<a href="CppInstance.htm">instanciated</a> itself, only its 
+<a href="CppDerivedClass.htm">derivatived classes</a> can.</p>
+<p>&nbsp;</p>
+<p><a href="CppAbstractBaseClass.htm">Abstract base class</a> is abbreviated as ABC.</p>
+<p>&nbsp;</p>
+<p>An <a href="CppAbstractBaseClass.htm">ABC</a> can be recognized by a 
+<a href="CppMemberFunction.htm">member function</a> starting with the <a href="CppKeyword.htm">keyword</a>
+<a href="CppVirtual.htm">virtual</a> and ending with <b><span style='color:
+blue'>=0; </b>. And because all <a href="CppBaseClass.htm">base classes</a>
+must have a <a href="CppVirtual.htm">virtual</a> <a href="CppDestructor.htm">destructor</a>,
+an <a href="CppAbstractBaseClass.htm">ABC</a> must also have one.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> ABC<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~ABC() {} <a href="CppComment.htm">//</a>Empty <b><a href="CppVirtual.htm">virtual</a></b> <a href="CppDestructor.htm">destructor</a><br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> whatMakesMeAbstract() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Many <a href="CppDesignPattern.htm">Design Patterns</a> rely on an <a
+href="CppAbstractBaseClass.htm">ABC</a>, for example the <a href="CppStrategyDesignPattern.htm">Strategy</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

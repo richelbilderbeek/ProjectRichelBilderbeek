@@ -1,0 +1,133 @@
+ 
+<title>std::generate</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ std::generate</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek std::generate std generate</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>6</o:Revision>
+  <o:TotalTime>126</o:TotalTime>
+  <o:Created>2008-04-10T16:53:00Z</o:Created>
+  <o:LastSaved>2008-04-10T16:56:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>45</o:Words>
+  <o:Characters>258</o:Characters>
+  <o:Category>C++ Richel Bilderbeek std::generate</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>2</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>316</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+std::generate</h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppAlgorithm.htm">Algorithm</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppAlgorithmH.htm">algorith</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppIostreamH.htm">iostream</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppIteratorH.htm">iterator</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+size = 20;</p>
+
+<p>
+ <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+v(size);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Generate the random numbers</p>
+
+<p>
+ <a href="CppGenerate.htm">std::generate</a>(v.begin(), v.end(), <a
+href="CppRand.htm">std::rand</a>);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Output on screen</p>
+
+<p>
+ <a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(), <a
+href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>,
+&quot;\n&quot;));</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

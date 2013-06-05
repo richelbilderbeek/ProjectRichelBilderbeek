@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CreateSloppyMaze</title>
+  <meta name="description" content="C++ CreateSloppyMaze"/>
+  <meta name="keywords" content="C++ CreateSloppyMaze create sloppy maze STL Qt Builder code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCreateSloppyMaze.htm">CreateSloppyMaze</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCreateSloppyMaze.htm">CreateSloppyMaze</a> is a <a href="CppMaze.htm">maze</a> <a href="CppCodeSnippets.htm">code snippet</a> that creates a maze that is as 'sloppy' as requested: a 'perfect' maze has no circular paths in it. The sloppier the maze the more circular paths will be in. The problem with a perfect maze, is that it takes much time to add to last extra walls to make it perfect. For a perfect maze, use the algorithm <a href="CppCreateMaze.htm">CreateMaze</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Project and source code</h2>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 <a href="CppGui.htm">GUI</a> Application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>  -->
+  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCreateSloppyMaze.htm">CreateSloppyMaze</a>.htm<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppCreateSloppyMaze.htm">CreateSloppyMaze</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fractionPerfect)<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppCreateSloppyMaze.htm">CreateSloppyMaze</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fractionPerfect)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Size must be odd<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( size <a href="CppOperatorModulus.htm">%</a> 2 <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( fractionPerfect <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> fractionPerfect <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; maze(size, <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(size,0));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw outer walls<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maze[0]     [i     ] <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maze[size-1][i     ] <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maze[i]     [0     ] <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maze[i]     [size-1] <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw pillars<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=2; y<a href="CppOperatorNotEqual.htm">!=</a>size-1; y<a href="CppOperatorPlusAssign.htm">+=</a>2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=2; x<a href="CppOperatorNotEqual.htm">!=</a>size-1; x<a href="CppOperatorPlusAssign.htm">+=</a>2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maze[y][x] <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check around pillars<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nWallsTo<a href="CppAdd.htm">Add</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(fractionPerfect<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(((size <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1) * ((size <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1)));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nWallsTo<a href="CppAdd.htm">Add</a> <a href="CppOperatorLessEqual.htm">&lt;=</a>(((size <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1) * ((size <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1)));<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i &lt; nWallsTo<a href="CppAdd.htm">Add</a>; ) <a href="CppComment.htm">//</a>'&lt;' as there might be 2 walls added<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=2; y<a href="CppOperatorNotEqual.htm">!=</a>size-1; y<a href="CppOperatorPlusAssign.htm">+=</a>2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=2; x<a href="CppOperatorNotEqual.htm">!=</a>size-1; x<a href="CppOperatorPlusAssign.htm">+=</a>2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nWalls<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (maze[y-1][x] <a href="CppOperatorEqual.htm">==</a> 0 ? 0 : 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (maze[y+1][x] <a href="CppOperatorEqual.htm">==</a> 0 ? 0 : 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (maze[y][x+1] <a href="CppOperatorEqual.htm">==</a> 0 ? 0 : 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (maze[y][x-1] <a href="CppOperatorEqual.htm">==</a> 0 ? 0 : 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( nWalls <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: maze[y-1][x] <a href="CppOperatorAssign.htm">=</a> 1; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: maze[y+1][x] <a href="CppOperatorAssign.htm">=</a> 1; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: maze[y][x+1] <a href="CppOperatorAssign.htm">=</a> 1; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: maze[y][x-1] <a href="CppOperatorAssign.htm">=</a> 1; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (nWalls <a href="CppOperatorEqual.htm">==</a> 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 6)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <a href="CppSwap.htm">std::swap</a>(maze[y-1][x], maze[y+1][x]); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: <a href="CppSwap.htm">std::swap</a>(maze[y-1][x], maze[y][x+1]); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: <a href="CppSwap.htm">std::swap</a>(maze[y-1][x], maze[y][x-1]); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: <a href="CppSwap.htm">std::swap</a>(maze[y+1][x], maze[y][x+1]); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 4: <a href="CppSwap.htm">std::swap</a>(maze[y+1][x], maze[y][x-1]); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 5: <a href="CppSwap.htm">std::swap</a>(maze[y][x+1], maze[y][x-1]); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> maze;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,211 @@
+ 
+<title>ConvertToGrey</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ ConvertToGrey</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek ConvertToGrey Convert VCL color TImage Image To Grey gray</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>131</o:TotalTime>
+  <o:Created>2008-07-11T17:26:00Z</o:Created>
+  <o:LastSaved>2008-07-11T20:02:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>499</o:Words>
+  <o:Characters>2849</o:Characters>
+  <o:Category>C++ Richel Bilderbeek </o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>23</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3498</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppConvertToGrey.htm">ConvertToGrey</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppGraphics.htm">Graphics</a> <a
+href="CppCodeSnippets.htm"> code
+snippet</a> to convert a color <a href="CppVcl.htm">VCL</a> <a
+href="CppTImage.htm">TImage</a> to a grey <a href="CppTImage.htm">TImage</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>In <a href="CppConvertToGrey.PNG">the 'ConvertToGrey'
+example image</a> you see an original color image, this image <a
+href="CppConvertToGrey.htm">converted to grey</a> and the result of <a
+href="CppDoHistogramEqualization.htm">a histogram equalization</a> on the grey
+image.</p>
+
+<p>&nbsp;</p>
+
+<p>* <a href="CppConvertToGrey.PNG">View an
+example of an image converted to grey</a></p>
+
+<p>* <a
+href="CppConvertToGrey.txt">View the code of 'ConvertToGrey' in plain text</a></p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppConvertToGrey.htm</p>
+
+<p><b> <a href="CppVoid.htm">void</a> </b>  ConvertToGrey(<b><a
+href="CppConst.htm">const</a></b>   <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b>
+source, <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b>
+target)</p>
+
+<p>{</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(source!=0 &amp;&amp; &quot;Source
+image is NULL&quot;);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(target!=0 &amp;&amp; &quot;Target
+image is NULL&quot;);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(source-&gt;Picture-&gt;Bitmap!=0
+&amp;&amp; &quot;Source bitmap is NULL&quot;);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(target-&gt;Picture-&gt;Bitmap!=0
+&amp;&amp; &quot;Target bitmap is NULL&quot;);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(source-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit &amp;&amp; &quot;Source bitmap must be 24 bit&quot;);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(target-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit &amp;&amp; &quot;Target bitmap must be 24 bit&quot;);</p>
+
+<p>
+ <a href="CppComment.htm">//</a>Get the width and height from the source</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+width    =
+source-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
+height = source-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>
+ <a href="CppComment.htm">//</a>Set the target's width and height</p>
+
+<p>
+ target-&gt;Picture-&gt;Bitmap-&gt;Width  
+ = width;</p>
+
+<p>
+ target-&gt;Picture-&gt;Bitmap-&gt;Height = height;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+y=0; y!=height; ++y)</p>
+
+<p>
+ {</p>
+
+<p> 
+ <b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> * lineSource</p>
+
+<p>     = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> *&gt;(</p>
+
+<p>       source-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p> 
+ <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+* lineTarget</p>
+
+<p>     = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>
+*&gt;(</p>
+
+<p>       target-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p> 
+ <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
+x=0; x!=width; ++x)</p>
+
+<p> 
+ {</p>
+
+<p>     <b><a href="CppConst.htm">const</a></b> int grey</p>
+
+<p>       = (lineSource[x*3+0] + lineSource[x*3+1] +
+lineSource[x*3+2]) / 3;</p>
+
+<p>&nbsp;</p>
+
+<p>     lineTarget[x*3+0]=grey; //Blue</p>
+
+<p>     lineTarget[x*3+1]=grey; //Green</p>
+
+<p>     lineTarget[x*3+2]=grey; //Red</p>
+
+<p> 
+ }</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

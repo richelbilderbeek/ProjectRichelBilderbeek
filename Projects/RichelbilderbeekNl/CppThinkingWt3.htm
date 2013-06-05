@@ -1,0 +1,549 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Thinking Wt 3: creating a TicTacToe game</title>
+  <meta name="description" content="C++ Thinking Wt 3: creating a TicTacToe game"/>
+  <meta name="keywords" content="C++ Thinking Wt 3: creating a TicTacToe game"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicWt.png" alt="Wt"/> <a href="CppThinkingWt3.htm">Thinking Wt 3: creating a TicTacToe game</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> shows the way to create a TicTacToe game when using the
+<a href="CppWt.htm">Wt</a> <a href="CppLibrary.htm">library</a>. The previous <a href="CppArticle.htm">article</a>,
+<a href="CppThinkingWt2.htm">Thinking Wt 2: creating a TicTacToe widget</a>, serves as a starting point.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Downloads</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppThinkingWt3_architecture.png">View a screenshot of the architecture of the application developed in this article (png)</a></li>
+  <li><a href="CppThinkingWt3_0.png">View a screenshot of application developed in step 0 of this article (png)</a></li>
+  <li><a href="CppThinkingWt3_1.png">View a screenshot of application developed in step 1 of this article (png)</a></li>
+  <li><a href="CppThinkingWt3_2.png">View a screenshot of application developed in step 2 of this article (png)</a></li>
+  <li><a href="CppThinkingWt3_3.png">View a screenshot of application developed in step 3 of this article (png)</a></li>
+  <li><a href="CppThinkingWt3_4.png">View a screenshot of application developed in step 4 of this article (png)</a></li>
+  <li><a href="CppThinkingWt3_0.zip">Download the Qt Creator source code of 'CppThinkingWt3_0' (zip)</a></li>
+  <li><a href="CppThinkingWt3_1.zip">Download the Qt Creator source code of 'CppThinkingWt3_1' (zip)</a></li>
+  <li><a href="CppThinkingWt3_2.zip">Download the Qt Creator source code of 'CppThinkingWt3_2' (zip)</a></li>
+  <li><a href="CppThinkingWt3_3.zip">Download the Qt Creator source code of 'CppThinkingWt3_3' (zip)</a></li>
+  <li><a href="CppThinkingWt3_4.zip">Download the Qt Creator source code of 'CppThinkingWt3_4' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Overview</h2>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> elaborates on 
+<a href="CppThinkingWt2.htm">Thinking Wt 2: creating a TicTacToe widget</a> in which a TicTacToe widget was created.
+First the desired architecture is described, then the WtApplication is modified to handle multiple dialogs. Next,
+these dialogs are implemented.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Architecture</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppThinkingWt3_architecture.png">View a screenshot of the architecture of the application developed in this article (png)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The architecture, from biggest to smallest, consists of:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    <a href="CppMain.htm">main</a> creates a single class called WtApplication
+  </li>
+  <li>
+    WtApplication (a <a href="CppDerivedClass.htm">derived class</a> of <a href="CppWApplication.htm">Wt::WApplication</a>) 
+    manages three dialogs, called WtTicTacToeAboutDialog, WtTicTacToeGameDialog and WtTicTacToeMenuDialog
+  </li>
+  <li>
+    These three dialogs (all <a href="CppDerivedClass.htm">derived class</a> of 
+    <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>) consist of multiple widgets.
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Step 0: Starting point</h2>
+<p>&nbsp;</p>
+<p>The code below is the finishing point of the previous <a href="CppArticle.htm">article</a>,
+<a href="CppThinkingWt2.htm">Thinking Wt 2: creating a TicTacToe widget</a>. For this <a href="CppArticle.htm">article</a>,
+it serves as a starting point.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<b><a href="CppQtSignals.htm">signals</a></b>2.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WApplication&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WBrush&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WEnvironment&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WEvent&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintDevice.htm">WPaintDevice</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPainter.htm">WPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WPen&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "tictactoe.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Widget : <b><a href="CppPublic.htm">public</a></b> <a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Widget()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Without resize, there is nothing to paint on<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;resize(GetWidth(),GetHeight());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Widget::OnClicked);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<b><a href="CppQtSignals.htm">signals</a></b>2::<a href="CppSignal.htm">signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_<a href="CppSignal.htm">signal</a>_has_winner;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<b><a href="CppQtSignals.htm">signals</a></b>2::<a href="CppSignal.htm">signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_<a href="CppSignal.htm">signal</a>_state_changed;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetState() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_tictactoe.GetWinner();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Restart()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tictactoe <a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> GetWidth();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> GetHeight();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set black pen<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>::WPen pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setCapStyle(<a href="CppWt.htm">Wt</a>::RoundCap);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppWt.htm">Wt</a>::WColor(255,255,255));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(pen);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setBrush(<a href="CppWt.htm">Wt</a>::WBrush(<a href="CppWt.htm">Wt</a>::WColor(255,255,255)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawRect(0.0,0.0,GetWidth(),GetHeight());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set thick white pen<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppWt.htm">Wt</a>::WColor(0,0,0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> line_width <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(width,height) <a href="CppOperatorDivide.htm">/</a> 15;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(line_width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(pen);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Vertical lines<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((1*width)/3)+4,&nbsp;&nbsp;&nbsp;&nbsp; 0+(line_width/2),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((1*width)/3)-4,height-(line_width/2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((2*width)/3)-4,&nbsp;&nbsp;&nbsp;&nbsp; 0+(line_width/2),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((2*width)/3)+8,height-(line_width/2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Horizontal lines<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0+(line_width/2),((1*height)/3)+4,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width-(line_width/2),((1*height)/3)-4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0+(line_width/2),((2*height)/3)-4,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width-(line_width/2),((2*height)/3)+8);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> row=0; row<a href="CppOperatorNotEqual.htm">!=</a>3; <a href="CppOperatorPlus.htm">+</a>+row)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> ((row <a href="CppOperatorPlus.htm">+</a> 0) * (width <a href="CppOperatorDivide.htm">/</a> 3)) <a href="CppOperatorPlus.htm">+</a> (line_width/1) <a href="CppOperatorPlus.htm">+</a> 4;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2 <a href="CppOperatorAssign.htm">=</a> ((row <a href="CppOperatorPlus.htm">+</a> 1) * (width <a href="CppOperatorDivide.htm">/</a> 3)) <a href="CppOperatorMinus.htm">-</a> (line_width/1) <a href="CppOperatorMinus.htm">-</a> 4;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> col=0; col<a href="CppOperatorNotEqual.htm">!=</a>3; <a href="CppOperatorPlus.htm">+</a>+col)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> ((col <a href="CppOperatorPlus.htm">+</a> 0) * (height <a href="CppOperatorDivide.htm">/</a> 3)) <a href="CppOperatorPlus.htm">+</a> (line_width/1) <a href="CppOperatorPlus.htm">+</a> 4;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2 <a href="CppOperatorAssign.htm">=</a> ((col <a href="CppOperatorPlus.htm">+</a> 1) * (height <a href="CppOperatorDivide.htm">/</a> 3)) <a href="CppOperatorMinus.htm">-</a> (line_width/1) <a href="CppOperatorMinus.htm">-</a> 4;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> state <a href="CppOperatorAssign.htm">=</a> m_tictactoe.GetSquare(row,col);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (state <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>player1 <a href="CppOperatorAssign.htm">=</a> cross<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(x1,y1,x2,y2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(x1,y2,x2,y1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (state <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>player1 <a href="CppOperatorAssign.htm">=</a> circle<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.drawEllipse(x1,y1,x2-x1,y2-y1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> m_tictactoe;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetWidth() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> 300.0; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHeight() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> 300.0; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_tictactoe.GetWinner() <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 3 * e.widget().x <a href="CppOperatorDivide.htm">/</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> x &gt; 2) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 3 * e.widget().y <a href="CppOperatorDivide.htm">/</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetHeight();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> y &gt; 2) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_tictactoe.CanDoMove(x,y))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_tictactoe.DoMove(x,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that the state has changed<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppSignal.htm">signal</a>_state_changed();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_tictactoe.GetWinner() <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that there is a winner<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppSignal.htm">signal</a>_has_winner();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog()<br/>
+&nbsp;&nbsp;: m_button(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tictactoe(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Widget)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_tictactoe);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button-&gt;setText("Restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tictactoe-&gt;m_<a href="CppSignal.htm">signal</a>_state_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog::OnStateChanged,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button-&gt;clicked().connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog::OnRestart);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button;<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Widget * <b><a href="CppConst.htm">const</a></b> m_tictactoe;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnRestart()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tictactoe-&gt;Restart();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnStateChanged()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_tictactoe-&gt;GetState())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player1:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button-&gt;setText("Player 1 has won. Click to restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player2:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button-&gt;setText("Player 2 has won. Click to restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::draw:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button-&gt;setText("Draw. Click to restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button-&gt;setText("Restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a>Application : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>Application(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("Thinking <a href="CppWt.htm">Wt</a> 3: creating a <a href="CppTicTacToe.htm">TicTacToe</a> game");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(m_dialog);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog * <b><a href="CppConst.htm">const</a></b> m_dialog;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWApplication.htm">Wt::WApplication</a> *createApplication(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a>Application(env);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;createApplication);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Step 1: Implementing WtTicTacToeApplication</h2>
+<p>&nbsp;</p>
+<p>The purpose of a <a href="CppWApplication.htm">Wt::WApplication</a> is to manage dialogs. In this example,
+there are three dialogs: the menu screen, the tic-tac-toe game and an about screen. At the 
+<a href="CppConstructor.htm">construction</a> of WtTicTacToeApplication, the menu screen dialog must be shown.
+All three dialogs have signals for the application to respond to:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Application : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Application(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("Thinking <a href="CppWt.htm">Wt</a> 3: creating a <a href="CppTicTacToe.htm">TicTacToe</a> game");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ShowMenu();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowAbout()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>AboutDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>AboutDialog;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d-&gt;m_<a href="CppSignal.htm">signal</a>_close.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Application::ShowMenu,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;clear();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(d);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowMenu()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d-&gt;m_<a href="CppSignal.htm">signal</a>_about.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Application::ShowAbout,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d-&gt;m_<a href="CppSignal.htm">signal</a>_start.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Application::Start,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;clear();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(d);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Start()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d-&gt;m_<a href="CppSignal.htm">signal</a>_close.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Application::ShowMenu,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;clear();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(d);<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The application keeps only one dialog active at a time. When it creates one of the three dialogs,
+their signals are set to the right slots in the application. The dialogs need not to be 
+<a href="CppDelete.htm">deleted</a>, because the addWidget <a href="CppMemberFunction.htm">member function</a> takes over
+this responsibility.</p>
+<p>&nbsp;</p>
+<p>The dialogs are expected to have at least one signal:</p>
+<ul>
+  <li>WtTicTacToeAbout: m_signal_close, which must take the application back to the menu</li>
+  <li>WtTicTacToeGame: m_signal_close, which must take the application back to the menu</li>
+  <li>WtTicTacToeMenu: m_signal_about and m_signal_start, to indicate that another dialog must be shown</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Step 2: Implementing WtTicTacToeMenuDialog</h2>
+<p>&nbsp;</p>
+<p>The main purpose of WtTicTacToeMenu is to emit signals to indicate that another dialog must be shown. There
+is one signal for each dialog needed: m_signal_about for the about screen and m_signal_start for starting the game.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog()<br/>
+&nbsp;&nbsp;: m_button_about(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_start(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">Wt::WText</a>("<a href="CppTicTacToe.htm">TicTacToe</a>"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button_start);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button_about);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_about-&gt;setText("About");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_start-&gt;setText("Start");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_about-&gt;clicked().connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::OnAbout);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_start-&gt;clicked().connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::OnStart);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<b><a href="CppQtSignals.htm">signals</a></b>2::<a href="CppSignal.htm">signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_<a href="CppSignal.htm">signal</a>_about;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<b><a href="CppQtSignals.htm">signals</a></b>2::<a href="CppSignal.htm">signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_<a href="CppSignal.htm">signal</a>_start;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_about;<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_start;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnAbout()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that the about dialog must be opened<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppSignal.htm">signal</a>_about();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnStart()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that the game must be started<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppSignal.htm">signal</a>_start();<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that most work is in connecting the buttons to the signals.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Step 3: Implementing WtTicTacToeGameDialog</h2>
+<p>&nbsp;</p>
+<p>The WtTicTacToeGameDialog remains nearly the same as already developed in the previous 
+<a href="CppArticle.htm">article</a> (<a href="CppThinkingWt2.htm">Thinking Wt 2: creating a TicTacToe widget</a>),
+except that it now needs a 'Close' button and a signal that it can emit on closing.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog()<br/>
+&nbsp;&nbsp;: m_button_close(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tictactoe(<b><a href="CppNew.htm">new</a></b> <a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_tictactoe);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button_restart);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button_close);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_close-&gt;setText("Close");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tictactoe-&gt;m_<a href="CppSignal.htm">signal</a>_state_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::OnStateChanged,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_close-&gt;clicked().connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::OnClose);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;clicked().connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::OnRestart);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<b><a href="CppQtSignals.htm">signals</a></b>2::<a href="CppSignal.htm">signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_<a href="CppSignal.htm">signal</a>_close;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_close;<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_restart;<br/>
+&nbsp;&nbsp;<a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a> * <b><a href="CppConst.htm">const</a></b> m_tictactoe;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClose()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that <b><a href="CppThis.htm">this</a></b> dialog closes<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppSignal.htm">signal</a>_close();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnRestart()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tictactoe-&gt;Restart();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnStateChanged()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_tictactoe-&gt;GetState())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player1:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Player 1 has won. Click to restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player2:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Player 2 has won. Click to restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::draw:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Draw. Click to restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Restart");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Step 4: Implementing WtTicTacToeAboutDialog</h2>
+<p>&nbsp;</p>
+<p>The WtTicTacToeAboutDialog purpose is to display text and a 'Close' button and emit m_signal_close.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>AboutDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>AboutDialog()<br/>
+&nbsp;&nbsp;: m_button_close(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWText.htm">Wt::WText</a>Area * text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">Wt::WText</a>Area;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setText(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"CppThinking<a href="CppWt.htm">Wt</a>3 (C) 2010 Richel Bilderbeek\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"From http://www.richelbilderbeek.nl/CppThinking<a href="CppWt.htm">Wt</a>3.htm"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setMinimumSize(600,<a href="CppWt.htm">Wt</a>::WLength::Auto);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button_close);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_close-&gt;setText("Close");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_close-&gt;clicked().connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>AboutDialog::OnClose);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<b><a href="CppQtSignals.htm">signals</a></b>2::<a href="CppSignal.htm">signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_<a href="CppSignal.htm">signal</a>_close;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_close;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClose()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that <b><a href="CppThis.htm">this</a></b> dialog closes<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppSignal.htm">signal</a>_close();<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Conclusion</h2>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> elaborates on 
+<a href="CppThinkingWt2.htm">Thinking Wt 2: creating a TicTacToe widget</a> and shows how to 
+modify the WtApplication to handle multiple dialogs.</p>
+<p>&nbsp;</p>
+<p>This <a href="CppArticle.htm">article</a> is followed up by 
+<a href="CppThinkingWt4.htm">Thinking Wt 4: polishing a TicTacToe game</a>, in which
+the game is made to look nicer.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

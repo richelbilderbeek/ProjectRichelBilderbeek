@@ -1,0 +1,663 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>library</title>
+  <meta name="description" content="C++ library"/>
+  <meta name="keywords" content="C++ library"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLibrary.htm">Library</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppLibrary.htm">library</a> is a collection of <a href="CppFunction.htm">functions</a> and <a href="CppClass.htm">classes</a>.</p>
+<p>&nbsp;</p>
+<p>The <a href="Cpp.htm">C++</a> standard <a href="CppLibrary.htm">library</a> is called the <a href="CppStl.htm">Standard Template Library</a>. The playground of the next version of the <a href="CppStl.htm">STL</a> is <a href="CppBoost.htm">the Boost library collection.</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppLibrary.htm">libraries</a> can be catagorized by their way of using them in a project:</p>
+<ul>
+  <li><a href="CppHeaderFile.htm">Header</a>-only <a href="CppLibrary.htm">libraries</a>: just <a href="CppInclude.htm">#include</a> the <a href="CppHeaderFile.htm">header files</a> to use it</li>
+  <li><a href="CppImplementationFile.htm">Implementation file (.cpp)</a> must be added to the project, next to an <a href="CppInclude.htm">#include</a> of the <a href="CppHeaderFile.htm">header files</a> to use</li>
+</ul>
+<p>&nbsp;</p>
+<p>The <a href="CppStl.htm">STL</a> is <a href="CppHeaderFile.htm">header</a>-only. Most <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">libraries</a> are <a href="CppHeaderFile.htm">header</a>-only.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Overview of <a href="Cpp.htm">C++</a> <a href="CppLibrary.htm">libraries</a> (incomplete)</h2>
+<p>&nbsp;</p>
+<p>In practice, these are the <a href="CppLibrary.htm">libraries</a> I use or have used,
+on the platforms indicated by the <a href="CppPictograms.htm">pictograms</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ol>
+  <li>
+    <img src="PicBlack.png" alt="N/A"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    Annie: <a href="CppNeuralNet.htm">neural networks</a>
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBigInt.png" alt="BigInt"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppBigInt.htm">BigInt</a>: near-infinite size integer
+  </li>
+  <li>
+    <img src="PicBlack.png" alt="N/A"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppBlitzpp.htm">Blitz++</a>: scientify computation
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/> 
+    <a href="CppBoost.htm">Boost</a>: many <a href="CppLibrary.htm">libraries</a>, next <a href="CppStl.htm">STL</a>
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppAccumulators.htm">Boost.Accumulators</a>: incremental calculation, statistical accumulators [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppAlgorithm.htm">Boost.Algorithm</a>: algorithms [4]
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppAny.htm">Boost.Any</a>: Safe, generic container for single values of different value types [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppArray.htm">Boost.Array</a>: STL compliant container wrapper for arrays of constant size [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppAsio.htm">Boost.Asio</a>: Portable networking [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppAssign.htm">Boost.Assign</a>: Filling containers [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppAtomic.htm">Boost.Atomic</a>: C++11-style atomic<> [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppBimap.htm">Boost.Bimap</a>: Bidirectional maps [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppBind.htm">Boost.Bind</a>: binders
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppCallTraits.htm">Boost.Call Traits</a>: Defines types for passing parameters [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppChrono.htm">Boost.Chrono</a>: time utilities [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppCircularBuffer.htm">Boost.Circular Buffer</a>: Circular/ring/cyclic buffer [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppCompatibility.htm">Boost.Compatibility</a>: Help for non-conforming standard libraries [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppCompressedPair.htm">Boost.Compressed Pair</a>: Empty member optimization [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppConceptCheck.htm">Boost.ConceptCheck</a>: Tools for generic programming [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppContainer.htm">Boost.Container</a>: Standard library containers and extensions [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppContext.htm">Boost.Context</a>: Context switching library [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppConversion.htm">Boost.Conversion</a>: Polymorphic and lexical casts [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppCoroutine.htm">Boost.Coroutine</a>: Coroutine library [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppCrc.htm">Boost.CRC</a>: Cyclic Redundancy Code [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppDate_Time.htm">Boost.Date_Time</a>: date and time [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppDynamic_bitset.htm">Boost.Dynamic_bitset</a>: dynamic_bitset [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppEnable_if.htm">Boost.Enable_if</a>: Selective inclusion of function template overloads [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppException.htm">Boost.Exception</a>: The Boost Exception library [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/> 
+    <a href="CppFilesystem.htm">Boost.Filesystem</a>: The Boost Filesystem Library [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFlyweight.htm">Boost.Flyweight</a>: Flyweight Design Pattern [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppForeach.htm">Boost.Foreach</a>: BOOST_FOREACH [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFormat.htm">Boost.Format</a>: text formatting [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFunction.htm">Boost.Function</a>: callbacks [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFunctionTypes.htm">Boost.FunctionTypes</a>: function to member types [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFunctional.htm">Boost.Functional</a>: function object wrappers [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFunctionalFactory.htm">Boost.Functional/Factory</a>: dynamic and static object creation [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFunctionalForward.htm">Boost.Functional/Forward</a>: allow generic function objects to accept arbitrary arguments [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFunctionalHash.htm">Boost.Functional/Hash</a>: A TR1 hash function object [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFunctionalOverloadedFunction.htm">Boost.Functional/Overloaded Function</a>: Overload different functions into a single function object [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppFusion.htm">Boost.Fusion</a>: Library for working with tuples, including various containers, algorithms, etc. [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppGeometry.htm">Boost.Geometry</a>: Geometry Library [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppGil.htm">Boost.GIL</a>: Generic Image Library [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppGraph.htm">Boost.Graph</a>: Graph [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppHeap.htm">Boost.Heap</a>: Priority queue data structures [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppIcl.htm">Boost.ICL</a>: Interval Container Library [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppIdentityType.htm">Boost.Identity Type</a>: Wrap types within round parenthesis so they can always be passed as macro parameters [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppInPlaceFactory.htm">Boost.In Place Factory, Typed In Place Factory</a>: Generic in-place construction of contained objects with a variadic argument-list [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppInteger.htm">Boost.Integer</a>: Access standard integer types without placing any names in namespace std [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppInterprocess.htm">Boost.Interprocess</a>: Shared memory, memory mapped files, process-shared mutexes, condition variables, containers and allocators [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppInterval.htm">Boost.Interval</a>: Extends the usual arithmetic functions to mathematical intervals [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppIntrusive.htm">Boost.Intrusive</a>: Intrusive containers and algorithms [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppIoStateSavers.htm">Boost.IO State Savers</a>: I/O library [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppIostreams.htm">Boost.Iostreams</a>: Framework for defining streams [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppIterator.htm">Boost.Iterator</a>: Iterator [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppLambda.htm">Boost.Lambda</a>: Lambda functions
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppLexicalCast.htm">Boost.Lexical Cast</a>: text conversions [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppLocalFunction.htm">Boost.Local Function</a>: Program functions locally, within other functions, directly within the scope where they are needed [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppLocale.htm">Boost.Locale</a>: Provide localization and Unicode handling tools for C++ [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppLockfree.htm">Boost.Lockfree</a>: Lockfree data structures [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMath.htm">Boost.Math</a>: Math [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMathCommonFactor.htm">Boost.Math Common Factor</a>: Greatest common divisor and least common multiple [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMathOctonion.htm">Math Octonion</a>: Octonions [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMathQuaternion.htm">Boost.Math Quaternion</a>: Quaternions [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMathSpecialFunctions.htm">Boost.Math/Special Functions</a>: Mathematical special functions [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMathStatisticalDistributions.htm">Boost.Math/Statistical Distributions</a>: Statisticals
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMemberFunction.htm">Boost.Member Function</a>: Generalized binders for function/object/pointers and member functions [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMetaStateMachine.htm">Boost.Meta State Machine</a>: A very high-performance library for expressive UML2 finite state machines [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMinMax.htm">Boost.Min-Max</a>: Standard library extensions for simultaneous min/max and min/max element computations [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMove.htm">Boost.Move</a>: Portable move semantics for C++03 and C++11 compilers [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMpi.htm">Boost.MPI</a>: Message Passing Interface library, for use in distributed-memory parallel application programming [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMpl.htm">Boost.MPL</a>: Compile-time Metaprogramming Library
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMultiArray.htm">Boost.Multi-Array</a>: N-dimensional array [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMultiIndex.htm">Boost.Multi-Index</a>: container maintaining one or more indices with different sorting and access semantics [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppMultiprecision.htm">Boost.Multiprecision</a>: Extended precision arithmetic types for floating point, integer andrational arithmetic [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppNumericConversion.htm">Boost.Numeric Conversion</a>: Optimized Policy-based Numeric Conversions [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppOdeint.htm">Boost.Odeint</a>: Solving ordinary differential equations [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppOperators.htm">Boost.Operators</a>: Templates ease arithmetic classes and iterators [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppOptional.htm">Boost.Optional</a>: Discriminated-union wrapper for optional values [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppParameter.htm">Boost.Parameter</a>: Boost.Parameter Library - Write functions that accept arguments by name [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppPhoenix.htm">Boost.Phoenix</a>: Define small unnamed function objects at the actual call site, and more [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppPointerContainer.htm">Boost.Pointer Container</a>: Containers for storing heap-allocated polymorphic objects [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppPolygon.htm">Boost.Polygon</a>: Booleans/clipping, resizing/offsetting and more for planar polygons with integral coordinates [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppPool.htm">Boost.Pool</a>: Memory pool management [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppPreprocessor.htm">Boost.Preprocessor</a>: Preprocessor metaprogramming tools including repetition and recursion [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/> 
+    <a href="CppProgram_options.htm">Boost.Program_options</a>: parse program options
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppPropertyMap.htm">Boost.Property Map</a>: Concepts defining interfaces which map key objects to value objects [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppProperty_tree.htm">Boost.PropertyTree</a>: saving data to <a href="CppXml.htm">XML</a> file, parsing <a href="CppXml.htm">XML</a> files
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppProto.htm">Boost.Proto</a>: Expression template library and compiler construction toolkit [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppPython.htm">Boost.Python</a>: interfacing Python and C++ [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppRandom.htm">Boost.Random</a>: A complete system for random number generation [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppRange.htm">Boost.Range</a>: generic algorithms that builds on top of the new iterator concepts [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppRatio.htm">Boost.Ratio</a>: Compile time rational arithmetic [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppRational.htm">Boost.Rational</a>: A rational number class [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppRef.htm">Boost.Ref</a>: A utility library for passing references to generic functions [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/> 
+    <a href="CppRegex.htm">Boost.Regex</a>: Regular expression library [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppResultOf.htm">Boost.Result Of</a>: Determines the type of a function call expression [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppScopeExit.htm">Boost.Scope Exit</a>: Execute arbitrary code at scope exit [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppSerialization.htm">Boost.Serialization</a>: Serialization for persistence and marshalling [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppSignals.htm">Boost.Signals</a>: Managed signals & slots callback implementation [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppSignals2.htm">Boost.Signals2</a>: Managed signals & slots callback implementation (thread-safe version 2) [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/> 
+    <a href="CppSmart_ptr.htm">Boost.Smart_ptr</a>: <a href="CppSmartPointer.htm">smart pointers</a>
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppSpirit.htm">Boost.Spirit</a>: LL parser framework represents parsers directly as EBNF grammars in inlined C++ [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppStatechart.htm">Boost.Statechart</a>: <a href="CppFiniteStateMachine.htm">finite state machines</a>
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppStaticAssert.htm">Boost.Static Assert</a>: Static assertions (compile time assertions) [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppStringAlgo.htm">Boost.String Algo</a>: String algorithms library [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppSwap.htm">Boost.Swap</a>: Enhanced generic swap function [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppSystem.htm">Boost.System</a>: Operating system support [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppTest.htm">Boost.Test</a>: Support for simple program testing, full unit testing, and for program execution monitoring [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppThread.htm">Boost.Thread</a>: Portable C++ multi-threading [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppTimer.htm">Boost.Timer</a>: Event timer, progress timer, and progress display classes [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppTokenizer.htm">Boost.Tokenizer</a>: Break of a string or other character sequence into a series of tokens [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppTr1.htm">Boost.TR1</a>: TR1 library
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppTribool.htm">Boost.Tribool</a>: 3-state boolean type library [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppTuple.htm">Boost.Tuple</a>: Tuple
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppTypeTraits.htm">Boost.Type Traits</a>: Templates for fundamental properties of types [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppTypeof.htm">Boost.Typeof</a>: Typeof operator emulation [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppUblas.htm">Boost.uBLAS</a>: Matrices [4]
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppUnits.htm">Boost.Units</a>: Zero-overhead dimensional analysis and unit/quantity manipulation and conversion [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppUnordered.htm">Boost.Unordered</a>: Unordered associative containers [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppUtility.htm">Boost.Utility</a>: noncopyable, checked_delete(), checked_array_delete(), next(), prior() function templates, plus base-from-member idiom [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppUuid.htm">Boost.Uuid</a>: A universally unique identifier [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppValueInitialized.htm">Boost.Value Initialized</a>: Wrapper for uniform-syntax value initialization [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppVariant.htm">Boost.Variant</a>: Safe, generic, stack-based discriminated union container [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppWave.htm">Boost.Wave</a>: C++ implementation of the mandated C99/C++ preprocessor functionality [4]
+  </li>
+  <li>
+    <img src="PicTransparent.png" alt="TODO"/><img src="PicBoost.png" alt="Boost"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppXpressive.htm">Boost.Xpressive</a>: Regular expressions allowing context-free grammars [4]
+  </li>
+  <li>
+    <img src="PicYellow.png" alt="?OKAY"/><img src="PicCln.png" alt="CLN"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppCln.htm">CLN</a>: (near-) infinite-precision numbers
+  </li>
+  <li>
+    <img src="PicYellow.png" alt="?OKAY"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppClx.htm">CLX</a>: <a href="CppGui.htm">GUI</a>
+  </li>
+  <li>
+    <img src="PicBlack.png" alt="N/A"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppEo.htm">Eo</a>: <a href="CppGeneticAlgorithm.htm">genetic algorithms</a>
+  </li>
+  <li>
+    <img src="PicYellow.png" alt="?OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppFann.htm">FANN</a>: <a href="CppNeuralNet.htm">neural networks</a>
+  </li>
+  <li>
+    <img src="PicYellow.png" alt="?OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppFlood.htm">Flood</a>: <a href="CppNeuralNet.htm">neural networks</a>
+  </li>
+  <li>
+    <img src="PicYellow.png" alt="?OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppGalib.htm">GAlib</a>: <a href="CppGeneticAlgorithm.htm">genetic algorithms</a>
+  </li>
+  <li>
+    <img src="PicBlack.png" alt="N/A"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppGmp.htm">GMP</a>: multi-precision numbers
+  </li>
+  <li>
+    <img src="PicYellow.png" alt="?OKAY"/><img src="PicLibnds.png" alt="libnds"/><img src="PicNds.png" alt="NDS"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppLibnds.htm">libnds</a>: working with <a href="CppNds.htm">NDS</a>
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppMathGl.htm">MathGL</a>: visualizing data
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppNag.htm">NAG</a>: algorithms
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppOpenCv.htm">OpenCV</a>: computer vision
+  </li>
+  <li>
+    <img src="PicYellow.png" alt="?OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppOpenGl.htm">OpenGL</a>: 2D and 3D graphics
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppPoppler.htm">Poppler</a>: render PDFs
+  </li>
+  <li>
+    <img src="PicBlack.png" alt="N/A"/><img src="PicQuantLib.png" alt="QuantLib"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    QuantLib: quantitative finance
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicQt.png" alt="Qt"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppQt.htm">QT</a>: <a href="CppGui.htm">GUI</a>
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppQwt.htm">Qwt</a>: visualizing data in 2D charts/plots
+  </li>
+  <li>
+    <img src="PicBlack.png" alt="N/A"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppQwtPlot3d.htm">QwtPlot3D</a>: visualizing data in 3D charts/plots
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppSdl.htm">SDL</a>: multimedia
+  </li>
+  <li>
+    <img src="PicYellow.png" alt="?OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppShark.htm">Shark</a>: machine learning
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicStl.png" alt="STL"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWindows.png" alt="Windows"/> 
+    <a href="CppStl.htm">STL</a>: general purposes
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppStk.htm">STK</a>: audio
+  </li>
+  <li><img src="PicYellow.png" alt="?OKAY"/><img src="PicVcl.png" alt="VCL"/><img src="PicWindows.png" alt="Windows"/><img src="PicSpacer.png" alt=" "/><img src="PicSpacer.png" alt=" "/> 
+    <a href="CppVcl.htm">VCL</a>: <a href="CppGui.htm">GUI</a>
+  </li>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicWt.png" alt="Wt"/><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicSpacer.png" alt=" "/>
+    <a href="CppWt.htm">Wt</a>: dynamic websites
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>Familiarize yourself with the <a href="CppStl.htm">STL</a> and <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">libraries</a> [1][2]. Prefer using 
+<a href="CppLibrary.htm">libraries</a> over hand-crafted code [3].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 53: Familiarize yourself with the standard library, including TR1</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 54: Familiarize yourself with Boost</li>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Chapter 5.9.1: 'Use library facilities rather than your own code when you can'</li>
+  <li><a href="http://www.boost.org/doc/libs/">Boost documentation</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

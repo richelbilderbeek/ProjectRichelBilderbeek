@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>WindowViewer</title>
+  <meta name="description" content="C++ WindowViewer"/>
+  <meta name="keywords" content="C++ WindowViewer tool code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a> <a href="Tools.htm">tool</a>) <a href="ToolWindowViewer.htm">WindowViewer</a></h1>
+<p>&nbsp;</p>
+<p><a href="ToolWindowViewer.htm">WindowViewer</a> is a failed attempt to capture all windows as bitmaps.</p>
+<p>&nbsp;</p>
+<p><a href="ToolWindowViewer.htm">WindowViewer</a> was released on the 6th of Fubruary of 2010 and programmed in <a href="Cpp.htm">C++</a> using the <a href="CppIde.htm">IDE</a> <a href="CppBuilder.htm">C++ Builder</a> 6.0. It uses the <a href="CppStl.htm">STL</a>, <a href="CppBoost.htm">Boost</a> and <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">libraries</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="ToolWindowViewerScreenshot.PNG">View a screenshot of 'WindowViewer'</a></li>
+  <li><a href="ToolWindowViewerExe.zip">Download the 'WindowViewer' Windows executable (version 1.0)(zip)</a></li>
+  <li><a href="ToolWindowViewerSource.zip">Download the 'WindowViewer' source code (version 1.0)(zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Why did it fail?</h2>
+<p>&nbsp;</p>
+<p>I attempted to use <a href="ToolWindowViewer.htm">WindowViewer</a> to view all the hidden windows the Windows Task Manager makes you aware of. <a href="ToolWindowViewer.htm">WindowViewer</a> does not show those: at the location of where this hidden window is, it obtains the bitmap of what is visible there.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Core code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a><a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;TFormImage&gt; &gt; m_v<br/>
+<a href="CppComment.htm">//</a>TFormImage has one member, a <a href="CppTImage.htm">TImage</a> called Image<br/>
+&nbsp;<br/>
+HWND handle <a href="CppOperatorAssign.htm">=</a> GetWindow(GetForegroundWindow(),GW_HWNDFIRST);<br/>
+<b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;<br/>
+<b><a href="CppWhile.htm">while</a></b>(handle)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> 256;<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> buffer[sz];<br/>
+&nbsp;&nbsp;GetWindowText(handle,buffer,sz);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text(buffer);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (text.empty())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;handle <a href="CppOperatorAssign.htm">=</a> GetNextWindow(handle,GW_HWNDNEXT);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (index <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;TFormImage&gt; i(<b><a href="CppNew.htm">new</a></b> TFormImage(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i-&gt;Image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a> pf32bit;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i-&gt;Caption <a href="CppOperatorAssign.htm">=</a> "";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_v.push_back(i);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;RECT rect;<br/>
+&nbsp;&nbsp;GetWindowRect(handle,&amp;rect);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width  <a href="CppOperatorAssign.htm">=</a> rect.right  <a href="CppOperatorMinus.htm">-</a> rect.left;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> rect.bottom <a href="CppOperatorMinus.htm">-</a> rect.top;<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;Graphics::TBitmap * b <a href="CppOperatorAssign.htm">=</a> m_v[index]-&gt;Image-&gt;Picture-&gt;Bitmap;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a> (b-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf32bit);<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;HDC dc <a href="CppOperatorAssign.htm">=</a> GetDC(handle);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!dc)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;handle <a href="CppOperatorAssign.htm">=</a> GetNextWindow(handle,GW_HWNDNEXT);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;m_v[index]-&gt;ClientWidth <a href="CppOperatorAssign.htm">=</a> width;<br/>
+&nbsp;&nbsp;m_v[index]-&gt;ClientHeight <a href="CppOperatorAssign.htm">=</a> height;<br/>
+&nbsp;&nbsp;b-&gt;Width  <a href="CppOperatorAssign.htm">=</a> width;<br/>
+&nbsp;&nbsp;b-&gt;Height <a href="CppOperatorAssign.htm">=</a> height;<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;BitBlt(b-&gt;Canvas-&gt;Handle, 0, 0, b-&gt;Width, b-&gt;Height, dc, 0, 0, SRCCOPY);<br/>
+&nbsp;&nbsp;b-&gt;Modified <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;ReleaseDC(handle,dc);<br/>
+&nbsp;&nbsp;handle <a href="CppOperatorAssign.htm">=</a> GetNextWindow(handle,GW_HWNDNEXT);<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>index;<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppLicence.htm">Licence</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Window Viewer, tool to view all windows<br/>
+Copyright (C) 2010  Richel Bilderbeek<br/>
+ <br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+ <br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+

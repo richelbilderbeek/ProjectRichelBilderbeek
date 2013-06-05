@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>array/std::array/boost::array</title>
+  <meta name="description" content="C++ array/std::array/boost::array"/>
+  <meta name="keywords" content="C++ array/std::array/boost::array code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppArray.htm">array/std::array/boost::array</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppArray.htm">array/std::array/boost::array</a> is one of these topics:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/> A plain array</li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCppTr1.png" alt="TR1"/> std::tr1::array</li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Bost"/> boost::array</li>
+  <li><img src="PicCpp11.png" alt="C++11"/><img src="PicSpacer.png" alt=" "/> std::array</li>
+</ul>
+<p>&nbsp;</p>
+<p>See <a href="CppArrayExample1.htm">array/std::array/boost::array example 1: comparison</a> for a comparison.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/> A plain array</h2>
+<p>&nbsp;</p>
+<p>An <a href="CppArray.htm">array</a> is a collection of elements that can be accessed by 
+the <a href="CppOperatorIndex.htm">index operator</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> myArray[10]; <a href="CppOperatorDivide.htm">/</a>/Create an array that stores ten <a href="CppInt.htm">integer</a>s<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Prefer a <a href="CppVector.htm">std::vector</a> (or perhaps std::array) over an <a href="CppArray.htm">array</a> by default [1-4]. Consider not using 
+<a href="CppArray.htm">arrays</a> in the <a href="CppInterface.htm">interface</a> of a <a href="CppClass.htm">class</a>.</p>
+<p>&nbsp;</p>
+<p>The first element of an <a href="CppArray.htm">array</a> is at index zero.</p>
+<p>&nbsp;</p>
+<p>There are two kinds of <a href="CppArray.htm">arrays</a>:</p>
+<ol>
+  <li><a href="CppArrayStatic.htm">Static arrays</a>: size known at compile-time, for example 'int v[10]'</li> 
+  <li><a href="CppArrayDynamic.htm">Dynamically allocated arrays</a>: size gets determined at run-time, for example 'int * v')</li>
+</ol>
+<p>&nbsp;</p>
+<p>Take care not to write beyond the bounds of an array [5].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Bost"/> boost::array</h2>
+<p>&nbsp;</p>
+<p>See <a href="CppArrayExample1.htm">array/std::array/boost::array example 1: comparison</a> for a comparison.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp11.png" alt="C++11"/><img src="PicSpacer.png" alt=" "/> std::array</h2>
+<p>&nbsp;</p>
+<p>See <a href="CppArrayExample1.htm">array/std::array/boost::array example 1: comparison</a> for a comparison.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!-- [1] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4 Chapter 5.8.4 'Use vector and valarray rather than built-in (C-style) arrays'</li>
+  <li><!-- [2] --><a href="CppHerbSutter.htm">Herb Sutter</a> and <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>  . C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 76: 'Use vector by default. Otherwise choose an appropriate container'</li>
+  <li><!-- [3] --><a href="CppMarshallCline.htm">Marshall Cline</a>, <a href="CppGregLomow.htm">Greg Lomow</a> and <a href="CppMikeGirou.htm">Mike Girou</a>. C++ FAQs. ISBN: 0-201-3098301, FAQ 28.02: 'Are arrays good or evil?' (Answer: 'Arrays are evil'</li>
+  <li><!-- [4] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4 Chapter C.14.11 'Prefer vector over array'</li>
+  <li><!-- [5] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4 5.8.2: 'Take care not to write beyond the bounds of an array'</li>
+  <li><!-- [6] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 97: 'Arrays shall not be used in interfaces. Instead, the Array class should be used.'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>boost::numeric::ublas::matrix example 3: inverse of a 2x2 matrix</title>
+  <meta name="description" content="C++ boost::numeric::ublas::matrix example 3: inverse of a 2x2 matrix"/>
+  <meta name="keywords" content="C++ boost::numeric::ublas::matrix example 3: inverse of a 2x2 matrix code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppUblasMatrixExample3.htm">boost::numeric::ublas::matrix example 3: inverse of a 2x2 matrix</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppUblasMatrixExample3.htm">boost::numeric::ublas::matrix example 3: inverse of a 2x2 matrix</a> is a 
+<a href="CppUblas.htm">Boost.uBLAS</a> <a href="CppLibrary.htm">library</a> example.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppUblasMatrixExample3.zip">Download the Qt Creator project 'CppUblasMatrixExample3' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppUblasMatrixExample3.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppUblasMatrixExample3.pro" border = "1"><tr><td><code>
+TEMPLATE = app
+<br/>
+CONFIG += console
+<br/>
+CONFIG -= qt
+<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp
+<br/>
+
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/matrix.hpp&gt;
+<br/>
+
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Inverse(
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; m)
+<br/>
+{
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.size2() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Can only calculate the inverse of square matrices");
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m.size2() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Only <b><a href="CppFor.htm">for</a></b> 2x2 matrices");
+<br/>
+&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n(2,2);
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> a <a href="CppOperatorAssign.htm">=</a> m(0,0);
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b <a href="CppOperatorAssign.htm">=</a> m(0,1);
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> c <a href="CppOperatorAssign.htm">=</a> m(1,0);
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d <a href="CppOperatorAssign.htm">=</a> m(1,1);
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>((a * d) <a href="CppOperatorMinus.htm">-</a> (b * c) <a href="CppOperatorNotEqual.htm">!=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Determinant must be nonzero");
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> determinant <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> ((a * d) <a href="CppOperatorMinus.htm">-</a> (b * c));
+<br/>
+&nbsp;&nbsp;n(0,0) <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;d * determinant;
+<br/>
+&nbsp;&nbsp;n(0,1) <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>b * determinant;
+<br/>
+&nbsp;&nbsp;n(1,0) <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>c * determinant;
+<br/>
+&nbsp;&nbsp;n(1,1) <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;a * determinant;
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n;
+<br/>
+}
+<br/>
+
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; CreateMatrix()
+<br/>
+{
+<br/>
+&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m(2,2); <a href="CppComment.htm">//</a>y-x-ordered
+<br/>
+&nbsp;&nbsp;m(0,0) <a href="CppOperatorAssign.htm">=</a> 4.0;
+<br/>
+&nbsp;&nbsp;m(0,1) <a href="CppOperatorAssign.htm">=</a> 7.0;
+<br/>
+&nbsp;&nbsp;m(1,0) <a href="CppOperatorAssign.htm">=</a> 2.0;
+<br/>
+&nbsp;&nbsp;m(1,1) <a href="CppOperatorAssign.htm">=</a> 6.0;
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;
+<br/>
+}
+<br/>
+
+<br/>
+<b><a href="CppBool.htm">bool</a></b> Is<a href="CppAbout.htm">About</a>Equal(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y) { <b><a href="CppReturn.htm">return</a></b> <a href="CppAbs.htm">std::abs</a>(x-y) &lt; 0.00001; }
+<br/>
+
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()
+<br/>
+{
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create an example matrix
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> CreateMatrix();
+<br/>
+
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(m(0,0),4.0)); <a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(m(0,1),7.0));
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(m(1,0),2.0)); <a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(m(1,1),6.0));
+<br/>
+
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain the inverse of the example matrix
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> Inverse(m);
+<br/>
+
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(n(0,0), 0.6)); <a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(n(0,1),-0.7));
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(n(1,0),-0.2)); <a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(n(1,1), 0.4));
+<br/>
+
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check that the product of a matrix and its inverse yields an identity matrix
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; p <a href="CppOperatorAssign.htm">=</a> <a href="CppUblas.htm">boost::numeric::ublas</a>::prod(m,n);
+<br/>
+
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(p(0,0),1.0)); <a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(p(0,1),0.0));
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(p(1,0),0.0)); <a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(p(1,1),1.0));
+<br/>
+}
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

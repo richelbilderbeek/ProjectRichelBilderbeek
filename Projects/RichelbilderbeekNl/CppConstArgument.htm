@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>const argument</title>
+  <meta name="description" content="C++ const argument"/>
+  <meta name="keywords" content="C++ const argument code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppConstArgument.htm">const argument</a></h1>
+<p>&nbsp;</p>
+<p>The value of an <a href="CppArgument.htm">argument</a> that is <a href="CppDeclaration.htm">declared</a> 
+<a href="CppConst.htm">const</a> cannot be changed.</p>
+<p>&nbsp;</p>
+<p><a href="CppExerciseTheManyTypesOfConst.htm">Exercise 5: the many types of const</a> is an 
+<a href="CppExercise.htm">exercise</a> about the many types of <a href="CppConst.htm">const</a>.</p>
+<p>&nbsp;</p>
+<p>In <a href="CppFunctionDesign.htm">function design</a>, consider making read-only arguments 
+<a href="CppConst.htm">const</a> (but note [8] advising against this).</p>
+<p>&nbsp;</p>
+<p>Be suspicious of non-const reference arguments; if you want the <a href="CppFunction.htm">function</a> or
+<a href="CppMemberFunction.htm">member function</a> to modify its arguments, use <a href="CppPointer.htm">pointers</a> 
+and value <a href="CppReturn.htm">return</a> instead [1]. Use <a href="CppConst.htm">const</a> reference arguments 
+when you need to minimize copying of arguments [2].</p>
+<p>&nbsp;</p>
+<p>Use <a href="CppConst.htm">const</a> whenever possible [1-7].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppConstArgument.htm">const arguments</a> in a <a href="CppDeclaration.htm">declaration</a></h2> 
+<p>&nbsp;</p>
+<p>A <a href="CppFunction.htm">function</a> (or <a href="CppMemberFunction.htm">member function</a>) 
+<a href="CppDeclaration.htm">declaration</a> is the first impression of its body, as it summarizes the 
+effect of the <a href="CppVariable.htm">variables</a> involved or produced.</p>
+<p>&nbsp;</p>
+If, for example, you want to calculate the area of a circle (the output) from its ray (the input), you expect the
+ray not te be modified in the body of the function:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppDouble.htm">double</a></b> CalculateCircleArea(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that '<b><a href="CppDouble.htm">double</a></b> CalculateAreaCircle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; ray)'
+would be correct as well. The guideline is: for easy-to-copy <a href="CppDataType.htm">data types</a>, pass by value.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppVoid.htm">void</a></b> Swap(<b><a href="CppInt.htm">int</a></b>&amp; a, <b><a href="CppInt.htm">int</a></b>&amp; b);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>When
+swapping two values by reference, there will no number be calculated in the
+process (therefore its a void function. But both variables will/can be changed
+in the process, therefore the reference operator '&amp;'.</p>
+<p>&nbsp;</p>
+<p>Many newbies do not use const and referencing, yielding code like:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> CalculateSquare(<b><a href="CppInt.htm">int</a></b> value); <a href="CppOperatorDivide.htm">/</a>/Incorrect!<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Newbies are easily spotted from their function prototypes. In this function the value
+of 'value' is copied, squared and returned. Why make a copy? The only reason
+you WANT a copy is when e.g. using a function that uses referencing or when you
+temporarily want to modify a copy of a variable:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppVoid.htm">void</a></b> PerformMagic(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> s;<br/>
+&nbsp;&nbsp;t[0] <a href="CppOperatorAssign.htm">=</a> "X";<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>In this case, you just use:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppVoid.htm">void</a></b> PerformMagic(<a href="CppString.htm">std::string</a> s)<br/>
+{<br/>
+&nbsp;&nbsp;s[0] <a href="CppOperatorAssign.htm">=</a> "X";<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppPointer.htm">Pointers</a></h2>
+<p>&nbsp;</p>
+<p>When using pointers, const can be used twice for every argument.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> MyStruct { <b><a href="CppInt.htm">int</a></b> mX; };<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Transmogrify1(<b><a href="CppConst.htm">const</a></b> MyStruct * p)<br/>
+{<br/>
+&nbsp;&nbsp;/<a href="CppOperatorDivide.htm">/</a> p-&gt;mX <a href="CppOperatorAssign.htm">=</a> 12; <a href="CppOperatorDivide.htm">/</a>/Error: cannot modify where p <a href="CppPointer.htm">point</a>s to<br/>
+&nbsp;&nbsp;p <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppOperatorDivide.htm">/</a><a href="CppOperatorDivide.htm">/</a> Okay, won't <b><a href="CppDo.htm">do</a></b> harm to p<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Transmogrify2(MyStruct * <b><a href="CppConst.htm">const</a></b> p)<br/>
+{<br/>
+&nbsp;&nbsp;p-&gt;mX <a href="CppOperatorAssign.htm">=</a> 12; <a href="CppOperatorDivide.htm">/</a><a href="CppOperatorDivide.htm">/</a> Okay, can modify where p <a href="CppPointer.htm">point</a>s to<br/>
+&nbsp;&nbsp;/<a href="CppOperatorDivide.htm">/</a> p <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppOperatorDivide.htm">/</a><a href="CppOperatorDivide.htm">/</a> Error: cannot modify <a href="CppPointer.htm">pointer</a><br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Transmogrify3(<b><a href="CppConst.htm">const</a></b> MyStruct * <b><a href="CppConst.htm">const</a></b> p)<br/>
+{<br/>
+&nbsp;&nbsp;/<a href="CppOperatorDivide.htm">/</a> p-&gt;mX <a href="CppOperatorAssign.htm">=</a> 12; <a href="CppOperatorDivide.htm">/</a><a href="CppOperatorDivide.htm">/</a> Error: cannot modify where p <a href="CppPointer.htm">point</a>s to<br/>
+&nbsp;&nbsp;/<a href="CppOperatorDivide.htm">/</a> p <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppOperatorDivide.htm">/</a><a href="CppOperatorDivide.htm">/</a> Error: cannot modify <a href="CppPointer.htm">pointer</a><br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>To indicate that MyStruct is only read from, use Transmogrify1 and Transmogrify3.</p>
+<p>&nbsp;</p>
+<p>Use <a href="CppConst.htm">const</a> whenever possible [1-7].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Paragraph 7.9.3: 'Use const extensively and consistently'</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 3: 'Use const whenever possible'</li>
+  <li><a href="CppJarrodHollingworth.htm">Jarrod Hollingworth</a>,<a href="CppBobSwart.htm">Bob Swart</a>, <a href="CppMarkCashman.htm">Mark Cashman</a>, <a href="CppPaulGustavson.htm">Paul Gustavson</a>. Sams C++ Builder 6 Developer's Guide. ISBN: 0-672-32480-6. Chapter 3: 'Understand and use const in your code'</li>
+  <li><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN: 0-672-32224-2. Hour 8, chapter 'Const member functions': 'Use const whenever possible'</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 2: 'Prefer consts, enums and inlines to #defines'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 15: 'Use const proactively'</li>
+  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 9.1.6: 'Every object in a system should be const-correct'</li>
+  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

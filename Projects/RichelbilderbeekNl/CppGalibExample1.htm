@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GAlib example 1: binary triplets evolution</title>
+  <meta name="description" content="C++ Galib example 1: binary triplets evolution"/>
+  <meta name="keywords" content="C++ Galib example 1: binary triplets evolution Qt Creator"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGalibExample1.htm">GAlib example 1: binary triplets evolution</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppGalib.htm">GAlib</a> example shows how to use genetic algorithms for a binary string genome to evolve to triplets of zeroes and ones.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGalibExample1.zip">Download the Qt Project of 'GAlibExample1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 Console Application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li> -->
+  <li><a href="CppGalib.htm">Galib</a>: version 2.4.7-3, from Ubuntu Software centre ('libga-dev')</li>
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+<!--  <li><a href="CppQtSvg.htm">QtSvg</a></li> -->
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-23T11:53:46<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core<br/>
+QT       -= gui<br/>
+TARGET = CppGalibExample1<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+LIBS += -L/usr/local/lib -lga<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ga/GASimpleGA.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ga/GA2DBinStrGenome.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>Goal genome consist of triplets of zeroes and ones:<br/>
+<a href="CppComment.htm">//</a>000 111 000 111 etc.<br/>
+<b><a href="CppFloat.htm">float</a></b> triplet_objective(GAGenome&amp; g)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GA2DBinaryStringGenome * <b><a href="CppConst.htm">const</a></b> genome<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;GA2DBinaryStringGenome*&gt;(&g);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(genome <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume a binary string genome <b><a href="CppFor.htm">for</a></b> triplet objective");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> genome-&gt;width();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> genome-&gt;height();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFloat.htm">float</a></b> score=0.0;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; y<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; x<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> goal <a href="CppOperatorAssign.htm">=</a> (x <a href="CppOperatorDivide.htm">/</a> 3) <a href="CppOperatorModulus.htm">%</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(genome-&gt;gene(x,y) <a href="CppOperatorEqual.htm">==</a> goal) score<a href="CppOperatorPlusAssign.htm">+=</a>1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> score;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create first genome<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> genome_length <a href="CppOperatorAssign.htm">=</a> 42;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> ploidy <a href="CppOperatorAssign.htm">=</a> 2; <a href="CppComment.htm">//</a>Diploid<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GA2DBinaryStringGenome first_genome(genome_length, ploidy, triplet_objective);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set up the genetic <a href="CppAlgorithm.htm">algorithm</a><br/>
+&nbsp;&nbsp;GASimpleGA g(first_genome);<br/>
+&nbsp;&nbsp;g.populationSize(100);<br/>
+&nbsp;&nbsp;g.nGenerations(1000);<br/>
+&nbsp;&nbsp;g.pMutation(0.001);<br/>
+&nbsp;&nbsp;g.pCrossover(0.5);<br/>
+&nbsp;&nbsp;g.evolve();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check the best genome<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> GAGenome&amp; best_genome <a href="CppOperatorAssign.htm">=</a> g.statistics().bestIndividual();<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Best genome found:\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> best_genome<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

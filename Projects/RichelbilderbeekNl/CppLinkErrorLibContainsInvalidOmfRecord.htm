@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Link error: [...]\NAME.LIB contains invalid OMF record, type 0x21 (possibly COFF)</title>
+  <meta name="description" content="C++ Link error: [...]\NAME.LIB contains invalid OMF record, type 0x21 (possibly COFF)"/>
+  <meta name="keywords" content="C++ Link error: [...]\NAME.LIB contains invalid OMF record, type 0x21 (possibly COFF) code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLinkErrorLibContainsInvalidOmfRecord.htm">[...]\NAME.LIB contains invalid OMF record, type 0x21 (possibly COFF)</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppLinkError.htm">Link error</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppBuilder.htm"> C++ Builder</a> 6.0</p>
+<p>Project type: <a href="CppVcl.htm">VCL</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full error message</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+[Linker Error] [...]\NAME.LIB contains invalid OMF record, type 0x21 (possibly COFF)<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<p>The library is of the wrong type. Use coff2omf.exe, located in
+the CBuilder/bin folder, to convert it to the correct type.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>The following MS-DOS commands converts a COFF library called MyLib.lib to the OMF library file MyNewLib.lib, after
+making a backup file called MyBackupLib.lib:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+copy MyLib.lib MyBackupLib.lib<br/>
+coff2omf MyLib.lib MyNewLib.lib<br/>
+copy MyNewLib.lib MyLib.lib<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

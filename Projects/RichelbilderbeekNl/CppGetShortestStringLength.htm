@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetShortestStringLength</title>
+  <meta name="description" content="C++ GetShortestStringLength"/>
+  <meta name="keywords" content="C++ GetShortestStringLength get shortest string length code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> is a <a href="CppString.htm">std::string</a> and <a href="CppContainer.htm">container</a>
+<a href="CppCodeSnippets.htm">code snippet</a> to obtain the length/size of the shortest/largest 
+<a href="CppString.htm">std::string</a> in a <a href="CppContainer.htm">container</a>.</p>
+<p>&nbsp;</p>
+<p>There are multiple versions of <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>:</p>
+<p>&nbsp;</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using <a href="Cpp98.htm">C++98</a> and a <a href="CppFor.htm">for</a>-loop</li>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using <a href="Cpp98.htm">C++98</a> and a <a href="CppGlobal.htm">global</a> <a href="CppFunctor.htm">functor</a></li>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using boost::bind and boost::lambda</li>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a></li>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using <a href="Cpp98.htm">C++98</a> and a <a href="CppFor.htm">for</a>-loop</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> shortest <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::max();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;shortest <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v[i].size()),shortest);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> shortest;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using <a href="Cpp98.htm">C++98</a> and a <a href="CppGlobal.htm">global</a> <a href="CppFunctor.htm">functor</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> StringLengthCompare(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.size() &lt; rhs.size();<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::const_iterator i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppMin_element.htm">std::min_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringLengthCompare<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>v.end()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i-&gt;size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using boost::bind and boost::lambda</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::const_iterator i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppMin_element.htm">std::min_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppString.htm">std::string</a>::size,<a href="CppLambda.htm">boost::lambda</a>::_1) &lt; <a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppString.htm">std::string</a>::size,<a href="CppLambda.htm">boost::lambda</a>::_2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>v.end()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i-&gt;size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Foreach(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> shortest <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::max();<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;shortest <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s.size()),shortest);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> shortest;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp11.png" alt="C++11"/> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a> using <a href="Cpp11.htm">C++11</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::const_iterator i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppMin_element.htm">std::min_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; rhs)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.size() &lt; rhs.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>v.end()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i-&gt;size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Testing code</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGetShortestStringLength.zip">Download the Qt Creator project 'CppGetShortestStringLength' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppGetShortestStringLength.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp11(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::const_iterator i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppMin_element.htm">std::min_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; rhs)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.size() &lt; rhs.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>v.end()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i-&gt;size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98ForLoop(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> shortest <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::max();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;shortest <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v[i].size()),shortest);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> shortest;<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> IF_I_ONLY_KNEW_HOW_TO_GET_THIS_WORKING_7737346578649782927896<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98Functor(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::const_iterator i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppMin_element.htm">std::min_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMem_fun.htm">std::mem_fun_ref</a>(&amp;<a href="CppString.htm">std::string</a>::size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>v.end()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i-&gt;size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> StringLengthCompare(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.size() &lt; rhs.size();<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98CustomFunctor(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::const_iterator i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppMin_element.htm">std::min_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringLengthCompare<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>v.end()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i-&gt;size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Foreach(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> shortest <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::max();<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;shortest <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s.size()),shortest);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> shortest;<br/>
+<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Bind(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::const_iterator i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppMin_element.htm">std::min_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppString.htm">std::string</a>::size,<a href="CppLambda.htm">boost::lambda</a>::_1) &lt; <a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppString.htm">std::string</a>::size,<a href="CppLambda.htm">boost::lambda</a>::_2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>v.end()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i-&gt;size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> { "12","123","123456","12345678","123456789" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> expected <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp11(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Bind(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Foreach(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98CustomFunctor(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98ForLoop(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> { "1","23","456","78","123456789","01","23","456","78","9" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp11(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Bind(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Foreach(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98CustomFunctor(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98ForLoop(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> { "x" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp11(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Bind(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Foreach(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98CustomFunctor(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98ForLoop(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> { };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp11(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Bind(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a><a href="CppBoost.htm">Boost</a>Foreach(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98CustomFunctor(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetShortestStringLength.htm">GetShortestStringLength</a>Cpp98ForLoop(v) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

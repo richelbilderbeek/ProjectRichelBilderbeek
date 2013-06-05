@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Answer of exercise #9: No for-loops #28</title>
+  <meta name="description" content="C++ Answer of exercise #9: No for-loops #28"/>
+  <meta name="keywords" content="C++ Answer of exercise #9: No for-loops #28 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseNoForLoopsAnswer28.htm">Answer of exercise #9: No for-loops #28</a></h1>
+<p>&nbsp;</p>
+<p>This is the answer of <a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppExerciseNoForLoopsAnswer28.zip">Download the Qt Creator project 'CppExerciseNoForLoopsAnswer28' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Question #28: GetMaxId on std::vector&lt;Person*&gt;</h2>
+<p>&nbsp;</p>
+<p>Replace the <b><a href="CppFor.htm">for</a></b>-loop. You will need:</p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(id) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetId() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_id;<br/>
+};<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> Person * GetMaxId(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> max_id <a href="CppOperatorAssign.htm">=</a> v[0]-&gt;GetId();<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> index_max_id <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id <a href="CppOperatorAssign.htm">=</a> v[i]-&gt;GetId();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (id &gt; max_id)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_id <a href="CppOperatorAssign.htm">=</a> id;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index_max_id <a href="CppOperatorAssign.htm">=</a> i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v[index_max_id];<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code --><p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> Answer using <a href="Cpp98.htm">C++98</a> and <a href="CppBoost.htm">Boost</a>.Bind</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(id) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetId() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_id;<br/>
+};<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> Person * GetMaxId(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *(<a href="CppMax_element.htm">std::max_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;Person::GetId,_2) &gt; <a href="CppBind.htm">boost::bind</a>(&amp;Person::GetId,_1)));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> Answer using the <a href="Cpp11.htm">C++11</a> its <a href="CppStl.htm">STL</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id) : m_id(id) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetId() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_id; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_id;<br/>
+};<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> Person * GetMaxId(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *(<a href="CppMax_element.htm">std::max_element</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> Person* <b><a href="CppConst.htm">const</a></b> lhs,<b><a href="CppConst.htm">const</a></b> Person* <b><a href="CppConst.htm">const</a></b> rhs)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppReturn.htm">return</a></b> rhs-&gt;GetId() &gt; lhs-&gt;GetId(); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

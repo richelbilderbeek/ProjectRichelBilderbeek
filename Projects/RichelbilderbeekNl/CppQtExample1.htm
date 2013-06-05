@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt example 1: moving a sprite over a background in 2D</title>
+  <meta name="description" content="C++ Qt example 1: moving a sprite over a background in 2D"/>
+  <meta name="keywords" content="C++ Qt example 1: moving a sprite over a background in 2D code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtExample1.htm">Qt example 1: moving a sprite over a background in 2D</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppQt.htm">Qt</a> example shows an image moving over a background image, like <a href="CppQtExample1.png">this screenshot (png)</a>.</p>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a></p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 GUI Application</p>
+<p><a href="CppQtCreatorSelectRequiredModules.png">Selected required modules</a>: QtCore, QtGui</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p> 
+<ul>
+  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-19T14:59:00<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core gui<br/>
+TARGET = QtExample1<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/shared_ptr.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;QtGui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQBitmap.htm">QBitmap</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPathItem.htm">QGraphicsPathItem</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Background : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a><br/>
+{<br/>
+&nbsp;&nbsp;Background(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> m(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(m);<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> TransparentSprite : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a><br/>
+{<br/>
+&nbsp;&nbsp;TransparentSprite(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQColor.htm">QColor</a>&amp; transparency_color <a href="CppOperatorAssign.htm">=</a> <a href="CppQColor.htm">QColor</a>(0,255,0)) <a href="CppComment.htm">//</a>Lime green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: dx(1), dy(1), maxx(320), maxy(200)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> pixmap(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQBitmap.htm">QBitmap</a> mask <a href="CppOperatorAssign.htm">=</a> pixmap.createMaskFromColor(transparency_color);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pixmap.setMask(mask);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(pixmap);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> new_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;x();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> new_y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;y();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;new_x<a href="CppOperatorPlusAssign.htm">+=</a>dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;new_y<a href="CppOperatorPlusAssign.htm">+=</a>dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_x&lt;0 <a href="CppOperatorLogicalOr.htm">||</a> new_x&gt;maxx) dx<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_y&lt;0 <a href="CppOperatorLogicalOr.htm">||</a> new_y&gt;maxy) dy<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setX(new_x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setY(new_y);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setRect(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maxx <a href="CppOperatorAssign.htm">=</a> width &nbsp;<a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().width();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maxy <a href="CppOperatorAssign.htm">=</a> height <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().height();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> dx;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> dy;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> maxx;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> maxy;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> s;<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsView.htm">QGraphicsView</a> v(&amp;s);<br/>
+<br/>
+&nbsp;&nbsp;Background background("Background.bmp");<br/>
+&nbsp;&nbsp;s.addItem(&amp;background);<br/>
+<br/>
+&nbsp;&nbsp;TransparentSprite sprite("Butterfly.bmp");<br/>
+&nbsp;&nbsp;sprite.setRect(background.pixmap().width(),background.pixmap().height());<br/>
+<br/>
+&nbsp;&nbsp;s.addItem(&amp;sprite);<br/>
+<br/>
+&nbsp;&nbsp;v.show();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQTimer.htm">QTimer</a>&gt; timer(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(&amp;s));<br/>
+&nbsp;&nbsp;timer-&gt;connect(timer.get(), <a href="CppSIGNAL.htm">SIGNAL</a>(timeout()), &amp;s, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;timer-&gt;start(10);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

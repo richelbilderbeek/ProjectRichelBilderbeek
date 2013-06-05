@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Gnuplot interface</title>
+  <meta name="description" content="C++ Gnuplot interface"/>
+  <meta name="keywords" content="C++ Gnuplot interface class"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGnuplotInterface.htm">GnuplotInterface</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGnuplotInterface.htm">GnuplotInterface</a> is a <a href="CppClass.htm">class</a> that enables the user to easily plot values in Gnuplot. It handles both the connection to Gnuplot and performs the window management as well. It creates a text-file in which the location of the Gnuplot executable can be entered (without recompiling the program).</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+I only got this interface to work under MacOS<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The one function that this class is built around is the popen function. This is a non-standard function to open a pipe. If this function is unknown under your programming environment, try either std::popen, std::_popen, std::__popen, popen, _popen or __popen.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGnuplotInterface.png">View a screenshot of a graph created with Gnuplot interface</a>. Thanks to Roger Wehage for submitting this image and allowing me to use it.</li>
+  <li><a href="CppGnuplotInterfaceSource.zip">Download the 'Gnuplot Interface' source code (zip)</a>.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Known <a href="CppCompileError.htm">compile errors</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppCompileError_popenIsNotAmemberOfStd.htm">_popen is not a member of std</a></li>
+  <li><a href="CppCompileErrorCLK_TCKwasNotDeclaredInThisScope.htm">CLK_TCK was not declared in this scope</a></li>
+  <li><a href="CppCompileErrorDuplicateSymbol.htm">Duplicate symbol Gnuplot::SetLineStyles()</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppLicence.htm">Licence</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+  Gnuplot Interface, a C++ class interface with Gnuplot.<br/>
+  Copyright (C) 2005  Richel Bilderbeek<br/>
+<br/>
+  This program is free software: you can redistribute it and/or modify<br/>
+  it under the terms of the GNU General Public License as published by<br/>
+  the Free Software Foundation, either version 3 of the License, or<br/>
+  (at your option) any later version.<br/>
+<br/>
+  This program is distributed in the hope that it will be useful,<br/>
+  but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
+  GNU General Public License for more details.<br/>
+<br/>
+  You should have received a copy of the GNU General Public License<br/>
+  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

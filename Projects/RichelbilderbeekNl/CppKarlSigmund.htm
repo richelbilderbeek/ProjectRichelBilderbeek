@@ -1,0 +1,361 @@
+ 
+<title>KarlSigmund</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet KarlSigmund</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>Richel Bilderbeek C++ Code Snippet KarlSigmund Karl Sigmund Games Life</o:Keywords>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>25</o:Revision>
+  <o:TotalTime>109</o:TotalTime>
+  <o:Created>2007-02-21T18:09:00Z</o:Created>
+  <o:LastSaved>2010-01-16T13:15:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>501</o:Words>
+  <o:Characters>2857</o:Characters>
+  <o:Lines>23</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3508</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppKarlSigmund.htm">Karl Sigmund</a></h1>
+
+<p>&nbsp;</p>
+
+<p>Among
+others author of the book 'Games of Life' (1994, Oxford UP, reprinted in
+Penguin).</p>
+
+<p>&nbsp;</p>
+
+<h2> Page 75:
+The paper-rock-scissors dice</h2>
+
+<p>&nbsp;</p>
+
+<p>At
+this page Sigmund shows three different dice with six values on them. Dice A
+would beat dice B on average, B would beat C, and, paradoxically, C would beat
+A! Therefore, there is no best dice of the three. The C++ code is below to
+check this.</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppKarlSigmund.txt">View the code in plain text here</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p> &nbsp;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;</p>
+
+<p> &nbsp;</p>
+
+<p><b><span lang=NL
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'><a
+href="CppConst.htm">const</a> </b><span lang=NL style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'> <a
+href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+GetDice0()</p>
+
+<p>{</p>
+
+<p>    <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; v;</p>
+
+<p>    v.reserve(6);</p>
+
+<p>    v.push_back(5);</p>
+
+<p>    v.push_back(7);</p>
+
+<p>    v.push_back(8);</p>
+
+<p>    v.push_back(9);</p>
+
+<p>    v.push_back(10);</p>
+
+<p>    v.push_back(18);</p>
+
+<p>    <b><a href="CppReturn.htm">return</a></b> v;</p>
+
+<p>}</p>
+
+<p> &nbsp;</p>
+
+<p><b><span lang=NL
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'><a
+href="CppConst.htm">const</a> </b><span lang=NL style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'> <a
+href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+GetDice1()</p>
+
+<p>{</p>
+
+<p>    <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; v;</p>
+
+<p>    v.reserve(6);</p>
+
+<p>    v.push_back(2);</p>
+
+<p>    v.push_back(3);</p>
+
+<p>    v.push_back(4);</p>
+
+<p>    v.push_back(15);</p>
+
+<p>    v.push_back(16);</p>
+
+<p>    v.push_back(17);</p>
+
+<p>    <b><a href="CppReturn.htm">return</a></b> v;</p>
+
+<p>}</p>
+
+<p> &nbsp;</p>
+
+<p><b><span lang=NL
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'><a
+href="CppConst.htm">const</a> </b><span lang=NL style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'> <a
+href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+GetDice2()</p>
+
+<p>{</p>
+
+<p>    <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; v;</p>
+
+<p>    v.reserve(6);</p>
+
+<p>    v.push_back(1);</p>
+
+<p>    v.push_back(6);</p>
+
+<p>    v.push_back(11);</p>
+
+<p>    v.push_back(12);</p>
+
+<p>    v.push_back(13);</p>
+
+<p>    v.push_back(14);</p>
+
+<p>    <b><a href="CppReturn.htm">return</a></b> v;</p>
+
+<p>}</p>
+
+<p> &nbsp;</p>
+
+<p><b><span lang=NL
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'><a
+href="CppConst.htm">const</a> </b><span lang=NL style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'> <a
+href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; &gt; GetDices()</p>
+
+<p>{</p>
+
+<p>    <a href="CppVector.htm">std::vector</a>&lt;<a
+href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+&gt; v;</p>
+
+<p>    v.push_back(GetDice0());</p>
+
+<p>    v.push_back(GetDice1());</p>
+
+<p>    v.push_back(GetDice2());</p>
+
+<p>    <b><a href="CppReturn.htm">return</a></b> v;</p>
+
+<p>}</p>
+
+<p> &nbsp;</p>
+
+<p><a
+href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppKarlSigmund.htm</p>
+
+<p><b><span lang=NL
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'><a
+href="CppInt.htm">int</a> </b><span lang=NL style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Courier New"'> <a
+href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>    <b><a href="CppConst.htm">const</a></b> <a
+href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; &gt; dices = GetDices();</p>
+
+<p>    <a href="CppVector.htm">std::vector</a>&lt;<a
+href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+&gt; wins(3, <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(3,0));</p>
+
+<p>    <b><a href="CppFor.htm">for</a></b> (<b><a
+href="CppInt.htm">int</a></b> i=0; i &lt; 1000000; ++i)</p>
+
+<p>    {</p>
+
+<p>      //Choose two dices</p>
+
+<p>      <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> dice1 = <a href="CppRand.htm">std::rand</a>() %
+3;</p>
+
+<p>      <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> dice2 = <a href="CppRand.htm">std::rand</a>() %
+3;</p>
+
+<p>      //If dices are the same, try again</p>
+
+<p>      <b><a href="CppIf.htm">if</a></b>
+(dice1==dice2) continue;</p>
+
+<p>      //Which side is thrown?</p>
+
+<p>      <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> index1 = <a href="CppRand.htm">std::rand</a>() %
+6;</p>
+
+<p>      <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> index2 = <a href="CppRand.htm">std::rand</a>() %
+6;</p>
+
+<p>      //What is on these sides?</p>
+
+<p>      <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> throw1 = dices[dice1][index1];</p>
+
+<p>      <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> throw2 = dices[dice2][index2];</p>
+
+<p>      //A draw is not counted</p>
+
+<p>      <b><a href="CppIf.htm">if</a></b> (throw1
+&gt; throw2)</p>
+
+<p>        ++(wins[dice1][dice2]);</p>
+
+<p>      <b><a href="CppElse.htm">else</a></b> <b><a
+href="CppIf.htm">if</a></b> (throw1 &lt; throw2)</p>
+
+<p>        ++(wins[dice2][dice1]);</p>
+
+<p>    }</p>
+
+<p>    <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> pWin01 = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[0][1])</p>
+
+<p>      / <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[0][1] + wins[1][0]);</p>
+
+<p>    <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> pWin02 = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[0][2])</p>
+
+<p>      / <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[0][2] + wins[2][0]);</p>
+
+<p>    <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> pWin10 = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[1][0])</p>
+
+<p>      / <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[1][0] + wins[0][1]);</p>
+
+<p>    <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> pWin12 = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[1][2])</p>
+
+<p>      / <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[1][2] + wins[2][1]);</p>
+
+<p>    <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> pWin20 = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[2][0])</p>
+
+<p>      / <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[2][0] + wins[0][2]);</p>
+
+<p>    <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> pWin21 = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[2][1])</p>
+
+<p>      / <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(wins[2][1] + wins[1][2]);</p>
+
+<p>    <a href="CppCout.htm">std::cout</a> &lt;&lt;
+&quot;pWin 0-1: &quot; &lt;&lt; pWin01 &lt;&lt; '\n';</p>
+
+<p>    <a href="CppCout.htm">std::cout</a> &lt;&lt;
+&quot;pWin 0-2: &quot; &lt;&lt; pWin02 &lt;&lt; '\n';</p>
+
+<p>    <a href="CppCout.htm">std::cout</a> &lt;&lt;
+&quot;pWin 1-0: &quot; &lt;&lt; pWin10 &lt;&lt; '\n';</p>
+
+<p>    <a href="CppCout.htm">std::cout</a> &lt;&lt;
+&quot;pWin 1-2: &quot; &lt;&lt; pWin12 &lt;&lt; '\n';</p>
+
+<p>    <a href="CppCout.htm">std::cout</a> &lt;&lt;
+&quot;pWin 2-0: &quot; &lt;&lt; pWin20 &lt;&lt; '\n';</p>
+
+<p>    <a href="CppCout.htm">std::cout</a> &lt;&lt;
+&quot;pWin 2-1: &quot; &lt;&lt; pWin21 &lt;&lt; '\n';</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

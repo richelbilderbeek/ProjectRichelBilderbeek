@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt example 23: grab a widget as an image</title>
+  <meta name="description" content="C++ Qt example 23: grab a widget as an image"/>
+  <meta name="keywords" content="C++ Qt example 23: grab a widget as an image QImage QPixmap code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) 
+  <img src="PicQt.png" alt="Qt"/><img src="PicUbuntu.png" alt="Ubuntu"/>
+  <a href="CppQtExample23.htm">Qt example 23: grab a widget as an image</a>
+</h1>
+<p>&nbsp;</p>
+<p>This <a href="CppQtExample.htm">Qt example</a> shows a way to grab a widget as an image.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppQtExample23.zip">Download the 'CppQtExample23' source code (zip)</a></li>
+  <li><a href="CppQtExample23.png">View a screenshot of 'CppQtExample23' (png)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+  <li><img src="PicMobile.png" alt="Mobile"/> <a href="CppMobileApplication.htm">Mobile application</a></li>
+  <li><img src="PicWeb.png" alt="Web"/> <a href="CppWebApplication.htm">Web application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicAndroid.png" alt="Android"/> <a href="CppAndroid.htm">Android</a></li>
+  <li><img src="PicCygwin.png" alt="Cygwin"/> <a href="CppCygwin.htm">Cygwin</a> 1.7.7</li>
+  <li><img src="PicMaemo.png" alt="Maemo"/> <a href="CppMaemo.htm">Maemo</a></li>
+  <li><img src="PicNds.png" alt="NDS"/> <a href="CppNds.htm">NDS</a></li>
+  <li><img src="PicSymbian.png" alt="Symbian"/> <a href="CppSymbian.htm">Symbian</a></li>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.10 (maverick)</li>
+  <li><img src="PicVirtualBox.png" alt="VirtualBox"/> <a href="CppVirtualBox.htm">VirtualBox</a> 3.2.8_OSEr64453</li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
+  <li><img src="PicWine.png" alt="Wine"/> <a href="CppWine.htm">Wine</a> 1.2.2</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicCl.png" alt="Command line"/> command line</li>
+  <li><img src="PicCppBuilder.png" alt="C++ Builder"/> <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBigInt.png" alt="BigInt"/> <a href="CppBigInt.htm">BigInteger</a>: version 2010.04.30</li>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.42</li>
+  <li><img src="PicCln.png" alt="CLN"/> <a href="CppCln.htm">CLN</a>: version 1.3.1</li>
+  <li><img src="PicLibnds.png" alt="libnds"/> <a href="CppLibnds.htm">libnds</a>: version 1.4.7</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.1.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQtExample23.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2011-02-08T15:49:59<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+TARGET = CppQtExample23<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grabmedialog.cpp<br/>
+HEADERS&nbsp;&nbsp;+= grabmedialog.h<br/>
+FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= grabmedialog.ui<br/>
+CONFIG += mobility<br/>
+MOBILITY = <br/>
+symbian {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TARGET.UID3 = 0xe7eb3159<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# TARGET.CAPABILITY += <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TARGET.EPOCSTACKSIZE = 0x14000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TARGET.EPOCHEAPSIZE = 0x020000 0x800000<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>grabmedialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "grabmedialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_grabmedialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+GrabMeDialog::GrabMeDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::GrabMeDialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+GrabMeDialog::~GrabMeDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> GrabMeDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> GrabMeDialog::on_button_grab_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;label_image-&gt;setPixmap(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a>::grabWindow(<b><a href="CppThis.htm">this</a></b>-&gt;winId()));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Other way:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQImage.htm">QImage</a> copy <a href="CppOperatorAssign.htm">=</a> <a href="CppQPixmap.htm">QPixmap</a>::grabWindow(<b><a href="CppThis.htm">this</a></b>-&gt;winId()).toImage();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>copy.save("temp.png");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>ui-&gt;label_image-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>("temp.png"));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>grabmedialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> GRABMEDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> GRABMEDIALOG_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> GrabMeDialog;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppClass.htm">class</a></b> GrabMeDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> GrabMeDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~GrabMeDialog();<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::GrabMeDialog *ui;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_grab_clicked();<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> GRABMEDIALOG_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "grabmedialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;GrabMeDialog w;<br/>
+<a href="CppPreIf.htm">#if</a> defined(Q_WS_S60)<br/>
+&nbsp;&nbsp;w.showMaximized();<br/>
+<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;w.show();<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

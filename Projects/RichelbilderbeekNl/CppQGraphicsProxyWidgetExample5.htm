@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QGraphicsProxyWidget example 5</title>
+  <meta name="description" content="C++ QGraphicsProxyWidget example 5"/>
+  <meta name="keywords" content="C++ QGraphicsProxyWidget moveable move drag example 5 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicQt.png" alt="Qt"/> 
+  <a href="CppQGraphicsProxyWidgetExample5.htm">QGraphicsProxyWidget example 5</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppQGraphicsProxyWidgetExample5.htm">QGraphicsProxyWidget example 5</a> is a <a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a>
+example.</p>
+<p>&nbsp;</p>
+<p>The final goal is to be able to move the MyItem, even when MyItem has a focusable QLineEdit.
+This example is the first step in reaching this goal. This is accomplished
+by letting the original QWidget emit a signal on a mouse press. The QGraphicsView looks up the QGraphicsProxyWidget corresponding to the MyItem
+and let it follow the mouse cursor. Note that the QLineEdit is disabled: when enabling it, after the first time focus is given to a
+QLineEdit, it never releases it. Yet...</p>
+<p>&nbsp;</p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppQGraphicsProxyWidgetExample5.png">View a screenshot of 'CppQGraphicsProxyWidgetExample5' (png)</a></li>
+  <li><img src="PicWine.png" alt="Wine"/> <a href="CppQGraphicsProxyWidgetExample5Wine.png">View a screenshot of 'CppQGraphicsProxyWidgetExample5' (png)</a></li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQGraphicsProxyWidgetExample5.zip">Download the Qt Creator project 'CppQGraphicsProxyWidgetExample5' (zip)</a></li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppQGraphicsProxyWidgetExample5Exe.zip">Download the Windows executable of 'CppQGraphicsProxyWidgetExample5' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.3 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQGraphicsProxyWidgetExample5.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += gui<br/>
+QMAKE_CXXFLAGS += <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a> -std=<a href="Cpp11.htm">c++11</a><br/>
+TARGET = CppQGraphicsProxy<a href="CppWidget.htm">Widget</a>Example5<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLineEdit.htm">QLineEdit</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;MyItem(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0, <a href="CppQt.htm">Qt</a>::WindowFlags f <a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent,f),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_edit(<b><a href="CppNew.htm">new</a></b> <a href="CppQLineEdit.htm">QLineEdit</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_label(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<b><a href="CppThis.htm">this</a></b>))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<b><a href="CppThis.htm">this</a></b>-&gt;layout());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> * <b><a href="CppConst.htm">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setLayout(layout);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;layout-&gt;addWidget(m_label);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;layout-&gt;addWidget(m_edit);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_edit-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppQLineEdit.htm">QLineEdit</a> * <b><a href="CppConst.htm">const</a></b> m_edit;<br/>
+&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> * <b><a href="CppConst.htm">const</a></b> m_label;<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (MyItem*)&gt; m_signal_mouse_press;<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * event)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_mouse_press(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>::mousePressEvent(event);<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyView : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+{<br/>
+&nbsp;&nbsp;MyView(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsView.htm">QGraphicsView</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_drag_item(<b><a href="CppNullptr.htm">nullptr</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setScene(m_scene);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the <a href="CppQLineEdit.htm">QLineEdit</a> <a href="CppInstance.htm">instances</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a> *&gt; proxies;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyItem * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> MyItem;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setGeometry(0,0,100,22);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;m_label-&gt;setText(<a href="CppQString.htm">QString</a>("#") <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>::number(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;m_edit-&gt;setText(<a href="CppQString.htm">QString</a>("Text ") <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>::number(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;m_signal_mouse_press.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;MyView::OnMousePress,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,_1)); <a href="CppComment.htm">//</a>_1 because the <a href="CppSignal.htm">signal</a> contains an argument<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the <a href="CppQWidget.htm">QWidget</a> and obtain its proxy<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a> * <b><a href="CppConst.htm">const</a></b> proxy <a href="CppOperatorAssign.htm">=</a> m_scene-&gt;addWidget(item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxies.push_back(proxy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_m[item] <a href="CppOperatorAssign.htm">=</a> proxy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 200.0; <a href="CppComment.htm">//</a>pixels<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * <a href="CppM_PI.htm">M_PI</a> * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(0.0 <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * ray));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(0.0 <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * ray));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a> * <b><a href="CppConst.htm">const</a></b> proxy <a href="CppOperatorAssign.htm">=</a> proxies[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setRotation(angle * 360.0 <a href="CppOperatorDivide.htm">/</a> (2.0 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setPos(x,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setFlag(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable,<b><a href="CppTrue.htm">true</a></b>); <a href="CppComment.htm">//</a>No need to set <b><a href="CppThis.htm">this</a></b> flag<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>My own added method<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnMousePress(MyItem * item)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_drag_item <a href="CppOperatorAssign.htm">=</a> item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;m_edit-&gt;setText("Gotcha!");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *event)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_drag_item)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> the position clicked to the <a href="CppQGraphicsView.htm">QGraphicsView</a> coordinat<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPointF.htm">QPointF</a> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mapToScene(event-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_m[m_drag_item]-&gt;setPos(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseReleaseEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_drag_item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
+&nbsp;&nbsp;MyItem * m_drag_item;<br/>
+&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;MyItem *,<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a> *&gt; m_m;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the <a href="CppApplication.htm">application</a><br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> app(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;MyView view;<br/>
+&nbsp;&nbsp;view.setGeometry(0,0,800,600);<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;view.move( screen.center() <a href="CppOperatorMinus.htm">-</a> view.rect().center() );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;view.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> app.exec();<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

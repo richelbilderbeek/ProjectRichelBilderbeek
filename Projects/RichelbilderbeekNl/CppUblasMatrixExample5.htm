@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>boost::numeric::ublas::matrix example 5: unchop</title>
+  <meta name="description" content="C++ boost::numeric::ublas::matrix example 5: unchop"/>
+  <meta name="keywords" content="C++ boost::numeric::ublas::matrix example 5: unchop code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppUblasMatrixExample5.htm">boost::numeric::ublas::matrix example 5: unchop</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppUblasMatrixExample5.htm">boost::numeric::ublas::matrix example 5: unchop</a> is a 
+<a href="CppUblas.htm">Boost.uBLAS</a> <a href="CppLibrary.htm">library</a> example.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppUblasMatrixExample5.zip">Download the Qt Creator project 'CppUblasMatrixExample5' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+  <li><img src="PicRaspbian.png" alt="Raspbian"/> <a href="CppRaspbian.htm">Raspbian</a></li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppUblasMatrixExample5.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppUblasMatrixExample5.pro" border = "1"><tr><td><code>
+TEMPLATE = app
+<br/>
+CONFIG += console
+<br/>
+CONFIG -= qt
+<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp0x.htm">c++11</a>
+<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp
+<br/>
+
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32
+<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__
+<br/>
+<a href="CppEndif.htm">#endif</a>
+<br/>
+
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppClimitsH.htm">climits</a>&gt;
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;
+<br/>
+
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/assignment.hpp&gt;
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/detail/matrix_assign.hpp&gt;
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/matrix.hpp&gt;
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/matrix_proxy.hpp&gt;
+<br/>
+
+<br/>
+<a href="CppComment.htm">///</a>Chop <a href="CppReturn.htm">returns</a> a <a href="CppVector.htm">std::vector</a> of sub-matrices
+<br/>
+<a href="CppComment.htm">//</a>[ A at [0]&nbsp;&nbsp; B at [1] ]
+<br/>
+<a href="CppComment.htm">//</a>[ C at [2]&nbsp;&nbsp; D at [4] ]
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; Chop(
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; m)
+<br/>
+{
+<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblas.htm">boost::numeric::ublas</a>::range;
+<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>;
+<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>_range;
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; v;
+<br/>
+&nbsp;&nbsp;v.reserve(4);
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midy <a href="CppOperatorAssign.htm">=</a> m.size1() <a href="CppOperatorDivide.htm">/</a> 2;
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midx <a href="CppOperatorAssign.htm">=</a> m.size2() <a href="CppOperatorDivide.htm">/</a> 2;
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix_range&lt;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; top_left(&nbsp;&nbsp;&nbsp;&nbsp;m,range(0&nbsp;&nbsp; ,midy&nbsp;&nbsp;&nbsp;&nbsp; ),range(0&nbsp;&nbsp; ,midx&nbsp;&nbsp;&nbsp;&nbsp; ));
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix_range&lt;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; bottom_left( m,range(midy,m.size1()),range(0&nbsp;&nbsp; ,midx&nbsp;&nbsp;&nbsp;&nbsp; ));
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix_range&lt;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; top_right(&nbsp;&nbsp; m,range(0&nbsp;&nbsp; ,midy&nbsp;&nbsp;&nbsp;&nbsp; ),range(midx,m.size2()));
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix_range&lt;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; bottom_right(m,range(midy,m.size1()),range(midx,m.size2()));
+<br/>
+&nbsp;&nbsp;v.push_back(matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(top_left));
+<br/>
+&nbsp;&nbsp;v.push_back(matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(top_right));
+<br/>
+&nbsp;&nbsp;v.push_back(matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(bottom_left));
+<br/>
+&nbsp;&nbsp;v.push_back(matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(bottom_right));
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;
+<br/>
+}
+<br/>
+
+<br/>
+<a href="CppComment.htm">///</a>Unchop merges the 4 <a href="CppVector.htm">std::vector</a> of sub-matrices produced by Chop
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Unchop(
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v)
+<br/>
+{
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Chop <a href="CppReturn.htm">returns</a> a <a href="CppVector.htm">std::vector</a> of sub-matrices
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>[ A at [0]&nbsp;&nbsp; B at [1] ]
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>[ C at [2]&nbsp;&nbsp; D at [4] ]
+<br/>
+
+<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblas.htm">boost::numeric::ublas</a>::range;
+<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>;
+<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>_range;
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4);
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0].size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v[1].size1());
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2].size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v[3].size1());
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0].size2() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v[2].size2());
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1].size2() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v[3].size2());
+<br/>
+&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m(v[0].size1() <a href="CppOperatorPlus.htm">+</a> v[2].size1(),v[0].size2() <a href="CppOperatorPlus.htm">+</a> v[1].size2());
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> quadrant=0; quadrant<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+quadrant)
+<br/>
+&nbsp;&nbsp;{
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; w <a href="CppOperatorAssign.htm">=</a> v[quadrant];
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_rows <a href="CppOperatorAssign.htm">=</a> v[quadrant].size1();
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_cols <a href="CppOperatorAssign.htm">=</a> v[quadrant].size2();
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> offset_x <a href="CppOperatorAssign.htm">=</a> quadrant <a href="CppOperatorModulus.htm">%</a> 2 ? v[0].size2() : 0;
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> offset_y <a href="CppOperatorAssign.htm">=</a> quadrant <a href="CppOperatorDivide.htm">/</a> 2 ? v[0].size1() : 0;
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> row=0; row<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+row)
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> col=0; col<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+col)
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(offset_y <a href="CppOperatorPlus.htm">+</a> row, offset_x <a href="CppOperatorPlus.htm">+</a> col) <a href="CppOperatorAssign.htm">=</a> w(row,col);
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}
+<br/>
+&nbsp;&nbsp;}
+<br/>
+
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0].size1() <a href="CppOperatorPlus.htm">+</a> v[2].size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.size1());
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1].size1() <a href="CppOperatorPlus.htm">+</a> v[3].size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.size1());
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0].size2() <a href="CppOperatorPlus.htm">+</a> v[1].size2() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.size2());
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2].size2() <a href="CppOperatorPlus.htm">+</a> v[3].size2() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.size2());
+<br/>
+
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;
+<br/>
+}
+<br/>
+
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; CreateRandomMatrix(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_rows, <b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_cols)
+<br/>
+{
+<br/>
+&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m(n_rows,n_cols);
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> row=0; row<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+row)
+<br/>
+&nbsp;&nbsp;{
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> col=0; col<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+col)
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(row,col) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}
+<br/>
+&nbsp;&nbsp;}
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;
+<br/>
+}
+<br/>
+
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()
+<br/>
+{
+<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblas.htm">boost::numeric::ublas</a>::detail::equals;
+<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>;
+<br/>
+
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check 0x0 to and including 9x9 matrices
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> n_rows <a href="CppOperatorAssign.htm">=</a> 0; n_rows<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorPlus.htm">+</a>+n_rows)
+<br/>
+&nbsp;&nbsp;{
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> n_cols <a href="CppOperatorAssign.htm">=</a> 0; n_cols<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorPlus.htm">+</a>+n_cols)
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Epsilon is more or less the smallest round-off error
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> epsilon <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::epsilon();
+<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a random matrix
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> CreateRandomMatrix(n_rows,n_cols);
+<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume it is found identical to itself
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(equals(m,m,epsilon,epsilon));
+<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Chop and unchop the input matrix
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> matrix&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> Unchop(Chop(m));
+<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume input matrix and result are identical
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(equals(m,n,epsilon,epsilon));
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}
+<br/>
+&nbsp;&nbsp;}
+<br/>
+}
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

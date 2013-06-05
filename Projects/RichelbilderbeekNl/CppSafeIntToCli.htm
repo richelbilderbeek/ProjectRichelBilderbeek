@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SafeIntToCli</title>
+  <meta name="description" content="C++ SafeIntToCli"/>
+  <meta name="keywords" content="C++ SafeIntToCli CLN safe int to cln::cl_I cl_I convert code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSafeIntToCli.htm">SafeIntToCli</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSafeIntToCli.htm">SafeIntToCli</a> is a <a href="CppCl_I.htm">cln::cl_I</a> <a href="CppConvert.htm">conversion</a> <a href="CppCodeSnippets.htm">code snippets</a> to <a href="CppConvert.htm">convert</a> an <a href="CppInt.htm">integer</a> to a <a href="CppCl_I.htm">cln::cl_I</a> safely.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;cln/cln.h&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>/<a href="CppSafeIntToCli.htm">SafeIntToCli</a> converts an <b><a href="CppInt.htm">int</a></b> to <a href="CppCl_I.htm">cln::cl_I</a> safely.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppSafeIntToCli.htm">SafeIntToCli</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> <a href="CppSafeIntToCli.htm">SafeIntToCli</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>A <a href="CppCl_I.htm">cln::cl_I</a> can handle <a href="CppInt.htm">integer</a> values to 2^29 in its <a href="CppConstructor.htm">constructor</a><br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i &lt; 536870912)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppCl_I.htm">cln::cl_I</a>(i);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppCl_I.htm">cln::cl_I</a>(s.c_str());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/bounds.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>/<a href="CppGetMaxInt.htm">GetMaxInt</a> <b><a href="CppReturn.htm">return</a></b>s the highest possible value of a <b><a href="CppInt.htm">int</a></b>.<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppGetMaxInt.htm">GetMaxInt</a>.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetMaxInt.htm">GetMaxInt</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::numeric::bounds&lt;<b><a href="CppInt.htm">int</a></b>&gt;::highest();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> i(<a href="CppGetMaxInt.htm">GetMaxInt</a>()); <a href="CppComment.htm">//</a>Will not work properly<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> j <a href="CppOperatorAssign.htm">=</a> <a href="CppSafeIntToCli.htm">SafeIntToCli</a>(<a href="CppGetMaxInt.htm">GetMaxInt</a>());<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "i (wrong): " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "j: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> j <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+i (wrong): -1<br/>
+j: 2147483647<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

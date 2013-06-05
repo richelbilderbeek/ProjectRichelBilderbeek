@@ -1,0 +1,188 @@
+ 
+<title>SameXandY</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet Functor SameXandY</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek Functors Functor SameXandY</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>130</o:TotalTime>
+  <o:Created>2007-12-22T17:17:00Z</o:Created>
+  <o:LastSaved>2007-12-22T17:18:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>190</o:Words>
+  <o:Characters>1084</o:Characters>
+  <o:Category>C++ Code Snippet Richel Bilderbeek Functor SameXandY</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>9</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1331</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="CppCodeSnippets.htm">Go back to Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>SameXandY</h1>
+
+<p>&nbsp;</p>
+
+<p>A functor
+that sees if a certain class has equal X and Y values.</p>
+
+<p>* <a
+href="CppFunctorSameXandY.txt">View the code of 'SameXandY' in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>#include &lt;functional&gt;</p>
+
+<p>#include &lt;vector&gt;</p>
+
+<p>#include &lt;algorithm&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> struct </b>  Player</p>
+
+<p>{</p>
+
+<p>
+ Player(<b>const int</b> anyX, <b>const int</b> anyY) : x(anyX), y(anyY)
+{}</p>
+
+<p>
+ <b>int</b> x,y;</p>
+
+<p>
+ //And more...</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl</p>
+
+<p><b> template </b>  &lt;<b>class</b> T&gt;</p>
+
+<p><b> struct </b>  SameXandY : <b>public</b>
+std::unary_function&lt;T,<b>bool</b>&gt;</p>
+
+<p>{</p>
+
+<p>
+ <b>explicit</b> SameXandY(<b>const</b> T&amp; position) : mPosition(position)
+{}</p>
+
+<p>
+ <b>bool</b> <b>operator</b>()(<b>const</b> T&amp; position) <b>const</b></p>
+
+<p>
+ {</p>
+
+<p> 
+ <b>return</b> position.x == mPosition.x &amp;&amp; position.y ==
+mPosition.y;</p>
+
+<p>
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b>private</b>:</p>
+
+<p>
+ <b>const</b> T mPosition;</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><b> int </b>  main()</p>
+
+<p>{</p>
+
+<p>
+ std::vector&lt;Player&gt; v;</p>
+
+<p>
+ <b>for</b> (<b>int</b> i=0; i!=10; ++i) v.push_back(Player(i,i));</p>
+
+<p>&nbsp;</p>
+
+<p>   
+ assert( std::find_if(v.begin(), v.end(),
+SameXandY&lt;Player&gt;(Player(3,5))) == v.end());</p>
+
+<p>
+ assert( std::find_if(v.begin(), v.end(),
+SameXandY&lt;Player&gt;(Player(5,5))) != v.end());</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCodeSnippets.htm">Go back to Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

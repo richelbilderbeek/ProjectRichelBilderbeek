@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt example 8: simple 2D SIR simulation</title>
+  <meta name="description" content="C++ Qt example 8: simple 2D SIR simulation"/>
+  <meta name="keywords" content="C++ Qt example 8: simple 2D SIR simulation"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtExample8.htm">Qt example 8: simple 2D SIR simulation</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppQt.htm">Qt</a> example shows how implement a simple 2D SIR simulation, like <a href="CppQtExample8.png">this screenshot (png)</a>.</p>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a></p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 GUI Application</p>
+<p><a href="CppQtCreatorSelectRequiredModules.png">Selected required modules</a>: QtCore, QtGui</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-19T14:59:00<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core gui<br/>
+TARGET = QtExample8<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/shared_ptr.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/static_assert.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/timer.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;QtGui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQBitmap.htm">QBitmap</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<br/>
+<a href="CppBOOST_STATIC_ASSERT.htm">BOOST_STATIC_ASSERT</a>(<b><a href="CppSizeof.htm">sizeof</a></b>(qreal)<a href="CppOperatorEqual.htm">==</a><b><a href="CppSizeof.htm">sizeof</a></b>(<b><a href="CppDouble.htm">double</a></b>)<br/>
+&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume use of <b><a href="CppDouble.htm">double</a></b> is equivalent of qreal");<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetAngle.htm">GetAngle</a>.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>In which quadrant are we?<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dX &gt; 0.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dY &gt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quadrant IV<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>(dX <a href="CppOperatorDivide.htm">/</a> dY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(angle &gt; 0.5 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> angle &lt; 1.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dY &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorLessEqual.htm">&lt;=</a> 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quadrant I<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> (0.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>(dX <a href="CppOperatorDivide.htm">/</a> dY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(angle &gt; 0.0 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> angle &lt; 0.5 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorEqual.htm">==</a> 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On Y-axis, right side<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &gt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorEqual.htm">==</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 0.5 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dX &lt; 0.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dY &gt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quadrant III<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>(dX <a href="CppOperatorDivide.htm">/</a> dY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(angle &gt; 1.0 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> angle &lt; 1.5 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dY &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quadrant II<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> (2.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>(dX <a href="CppOperatorDivide.htm">/</a> dY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(angle &gt; 1.5 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> angle &lt; 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorEqual.htm">==</a> 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On X-axis<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX &lt; 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorEqual.htm">==</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 1.5 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dY &gt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On Y-axis, right side of origin<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX<a href="CppOperatorEqual.htm">==</a>0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &gt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 1.0 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dY &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On Y-axis, left side of origin<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX<a href="CppOperatorEqual.htm">==</a>0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY &lt; 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 0.0 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>dX <a href="CppOperatorEqual.htm">==</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorEqual.htm">==</a> 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>On origin<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dX<a href="CppOperatorEqual.htm">==</a>0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> dY <a href="CppOperatorEqual.htm">==</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 0.0 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angleCollision,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; angle1,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; speed1,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; angle2,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; speed2)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 1 (assumes both players have equal mass!)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> A <a href="CppOperatorAssign.htm">=</a> speed1;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 2 (assumes both players have equal mass!)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> E <a href="CppOperatorAssign.htm">=</a> speed2;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The angles between the two globes<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> c <a href="CppOperatorAssign.htm">=</a> angleCollision;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The angle between c and the impulse direction of player 1<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> a <a href="CppOperatorAssign.htm">=</a> c <a href="CppOperatorMinus.htm">-</a> angle1;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The angle between c and the impulse direction of player 2<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b <a href="CppOperatorAssign.htm">=</a> c <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> angle2;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Seperate the impulses to their impulses paralel and othoganal the angle of collision<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 1 parallel to the collision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> B <a href="CppOperatorAssign.htm">=</a> A * <a href="CppCos.htm">std::cos</a>(a);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 1 orthogonal to the collision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> C <a href="CppOperatorAssign.htm">=</a> A * <a href="CppSin.htm">std::sin</a>(a);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 2 parallel to the collision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> F <a href="CppOperatorAssign.htm">=</a> E * <a href="CppCos.htm">std::cos</a>(b);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The length of the impulse of player 2 orthogonal to the collision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> G <a href="CppOperatorAssign.htm">=</a> E * <a href="CppSin.htm">std::sin</a>(b);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Seperate the impulses in X and Y directions<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> BdX <a href="CppOperatorAssign.htm">=</a> B * <a href="CppSin.htm">std::sin</a>(c <a href="CppOperatorPlus.htm">+</a> (0.0 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> BdY <a href="CppOperatorAssign.htm">=</a> B * <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c <a href="CppOperatorPlus.htm">+</a> (0.0 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> CdX <a href="CppOperatorAssign.htm">=</a> C * <a href="CppSin.htm">std::sin</a>(c <a href="CppOperatorPlus.htm">+</a> (1.5 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> CdY <a href="CppOperatorAssign.htm">=</a> C * <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c <a href="CppOperatorPlus.htm">+</a> (1.5 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> FdX <a href="CppOperatorAssign.htm">=</a> F * <a href="CppSin.htm">std::sin</a>(c <a href="CppOperatorPlus.htm">+</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> FdY <a href="CppOperatorAssign.htm">=</a> F * <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c <a href="CppOperatorPlus.htm">+</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GdX <a href="CppOperatorAssign.htm">=</a> G * <a href="CppSin.htm">std::sin</a>(c <a href="CppOperatorPlus.htm">+</a> (0.5 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GdY <a href="CppOperatorAssign.htm">=</a> G * <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c <a href="CppOperatorPlus.htm">+</a> (0.5 * <a href="CppM_PI.htm">M_PI</a>));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulses<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulse of player 1 in the X direction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> DdX <a href="CppOperatorAssign.htm">=</a> CdX <a href="CppOperatorPlus.htm">+</a> FdX;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulse of player 1 in the Y direction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> DdY <a href="CppOperatorAssign.htm">=</a> CdY <a href="CppOperatorPlus.htm">+</a> FdY;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulse of player 2 in the X direction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> HdX <a href="CppOperatorAssign.htm">=</a> BdX <a href="CppOperatorPlus.htm">+</a> GdX;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The resulting impulse of player 2 in the Y direction<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> HdY <a href="CppOperatorAssign.htm">=</a> BdY <a href="CppOperatorPlus.htm">+</a> GdY;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write the final results<br/>
+&nbsp;&nbsp;angle1 <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>(DdX, DdY);<br/>
+&nbsp;&nbsp;angle2 <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>(HdX, HdY);<br/>
+&nbsp;&nbsp;speed1 <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( (DdX * DdX) <a href="CppOperatorPlus.htm">+</a> (DdY * DdY) ); <a href="CppComment.htm">//</a>Pythagoras<br/>
+&nbsp;&nbsp;speed2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( (HdX * HdX) <a href="CppOperatorPlus.htm">+</a> (HdY * HdY) ); <a href="CppComment.htm">//</a>Pythagoras<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> ChangingBackground : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a><br/>
+{<br/>
+&nbsp;&nbsp;ChangingBackground(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: z(0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> m(width,height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(m);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().toImage();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> i.width();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> i.height();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0;y<a href="CppOperatorNotEqual.htm">!=</a>height;<a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0;x<a href="CppOperatorNotEqual.htm">!=</a>width;<a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> grayness <a href="CppOperatorAssign.htm">=</a> (x <a href="CppOperatorPlus.htm">+</a> y <a href="CppOperatorPlus.htm">+</a> z) <a href="CppOperatorModulus.htm">%</a> 256;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a> pos(x,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQColor.htm">QColor</a> c(grayness,grayness,grayness);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.setPixel(pos,c.rgb());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(<b><a href="CppThis.htm">this</a></b>-&gt;pixmap().fromImage(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>z;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> z;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> SirSprite : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> State { susceptible, infected, resistant };<br/>
+&nbsp;&nbsp;SirSprite(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height, <b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> is_infected <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: angle(<a href="CppGetRandomUniform.htm">GetRandomUniform</a>() * 2.0 * <a href="CppM_PI.htm">M_PI</a>), <a href="CppComment.htm">//</a>Random direction<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;speed(5.0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state(is_infected ? infected : susceptible),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxx(0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxy(0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> i(width,height,<a href="CppQImage.htm">QImage</a>::Format_ARGB32);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(<b><a href="CppThis.htm">this</a></b>-&gt;pixmap().fromImage(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setState(is_infected ? infected : susceptible);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b> phase)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (phase <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Bounce against others<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QList&lt;QGraphicsItem*&gt; others <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;collidingItems();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_others <a href="CppOperatorAssign.htm">=</a> others.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_others; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SirSprite * <b><a href="CppConst.htm">const</a></b> other <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;SirSprite*&gt;(others[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!other) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (other <a href="CppOperatorEqual.htm">==</a> <b><a href="CppThis.htm">this</a></b>) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Ensure checking is only <b><a href="CppDo.htm">do</a></b>ne once per colliding pair<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;zValue() &lt; other-&gt;zValue()) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Relative between players 1 and 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx_between <a href="CppOperatorAssign.htm">=</a> other-&gt;x() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;x();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy_between <a href="CppOperatorAssign.htm">=</a> other-&gt;y() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;y();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle_between <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>(dx_between,dy_between);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For <b><a href="CppThis.htm">this</a></b> player<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <b><a href="CppThis.htm">this</a></b>_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppCos.htm">std::cos</a>(<b><a href="CppThis.htm">this</a></b>-&gt;angle) * <b><a href="CppThis.htm">this</a></b>-&gt;speed;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <b><a href="CppThis.htm">this</a></b>_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppSin.htm">std::sin</a>(<b><a href="CppThis.htm">this</a></b>-&gt;angle) * <b><a href="CppThis.htm">this</a></b>-&gt;speed;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> <b><a href="CppThis.htm">this</a></b>_angle <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>( <b><a href="CppThis.htm">this</a></b>_dx, <b><a href="CppThis.htm">this</a></b>_dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> <b><a href="CppThis.htm">this</a></b>_speed <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>((<b><a href="CppThis.htm">this</a></b>_dy * <b><a href="CppThis.htm">this</a></b>_dy) <a href="CppOperatorPlus.htm">+</a> (<b><a href="CppThis.htm">this</a></b>_dx * <b><a href="CppThis.htm">this</a></b>_dx));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For other player<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> other_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppCos.htm">std::cos</a>(other-&gt;angle) * other-&gt;speed;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> other_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppSin.htm">std::sin</a>(other-&gt;angle) * other-&gt;speed;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> other_angle <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>( other_dx, other_dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> other_speed <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>((other_dy * other_dy) <a href="CppOperatorPlus.htm">+</a> (other_dx * other_dx));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;angle_between,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>_angle,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>_speed,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other_angle,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other_speed);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;angle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>_angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;speed <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>_speed;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other-&gt;angle <a href="CppOperatorAssign.htm">=</a> other_angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other-&gt;speed <a href="CppOperatorAssign.htm">=</a> other_speed;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let them move once<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setX(x() <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * speed));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setY(y() <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * speed));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other-&gt;setX(other-&gt;x() <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(other-&gt;angle) * other-&gt;speed));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other-&gt;setY(other-&gt;y() <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(other-&gt;angle) * other-&gt;speed));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Infection?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;state  <a href="CppOperatorEqual.htm">==</a> infected <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> other-&gt;state <a href="CppOperatorEqual.htm">==</a> susceptible)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other-&gt;setState(infected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (other-&gt;state <a href="CppOperatorEqual.htm">==</a> infected <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <b><a href="CppThis.htm">this</a></b>-&gt;state  <a href="CppOperatorEqual.htm">==</a> susceptible)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setState(infected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Bounce against the edges<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (phase <a href="CppOperatorEqual.htm">==</a> 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setX(x() <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * speed));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setY(y() <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * speed));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x() &lt;  0.0) { setX(x()+1); angle <a href="CppOperatorAssign.htm">=</a> (0.0*<a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> ((0.0*<a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> angle); <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y() &lt;  0.0) { setY(y()+1); angle <a href="CppOperatorAssign.htm">=</a> (0.5*<a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> ((0.5*<a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> angle); <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x() &gt; maxx) { setX(x()-1); angle <a href="CppOperatorAssign.htm">=</a> (1.0*<a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> ((1.0*<a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> angle); <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y() &gt; maxy) { setY(y()-1); angle <a href="CppOperatorAssign.htm">=</a> (1.5*<a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> ((1.5*<a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorMinus.htm">-</a> angle); <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Resistance?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (state <a href="CppOperatorEqual.htm">==</a> infected <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> timer.elapsed() &gt; 5.0) setState(resistant);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setRect(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maxx <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width  <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().width() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maxy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().height());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppQColor.htm">QColor</a> getStateColor() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (state)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> susceptible: <b><a href="CppReturn.htm">return</a></b> <a href="CppQColor.htm">QColor</a>(0,0,255);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> infected   : <b><a href="CppReturn.htm">return</a></b> <a href="CppQColor.htm">QColor</a>(255,0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> resistant  : <b><a href="CppReturn.htm">return</a></b> <a href="CppQColor.htm">QColor</a>(0,255,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQColor.htm">QColor</a>(0,0,0);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setStateColor()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width  <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().width();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().height();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> i(width,height,<a href="CppQImage.htm">QImage</a>::Format_ARGB32);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQColor.htm">QColor</a> transparency_color <a href="CppOperatorAssign.htm">=</a> <a href="CppQColor.htm">QColor</a>(0,0,0,255);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQColor.htm">QColor</a> state_color <a href="CppOperatorAssign.htm">=</a> getStateColor();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width ) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(midx,midy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0;y<a href="CppOperatorNotEqual.htm">!=</a>height;<a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y_real <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> y_real;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy2 <a href="CppOperatorAssign.htm">=</a> dy * dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0;x<a href="CppOperatorNotEqual.htm">!=</a>width;<a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_real <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorMinus.htm">-</a> x_real;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx2 <a href="CppOperatorAssign.htm">=</a> dx * dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dist <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>(dx2 <a href="CppOperatorPlus.htm">+</a> dy2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dist &lt; ray)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.setPixel(x,y,state_color.rgb());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.setPixel(x,y,transparency_color.rgb());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(<b><a href="CppThis.htm">this</a></b>-&gt;pixmap().fromImage(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> transparancy<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> pixmap <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQBitmap.htm">QBitmap</a> mask <a href="CppOperatorAssign.htm">=</a> pixmap.createMaskFromColor(transparency_color);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pixmap.setMask(mask);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(pixmap);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setState(<b><a href="CppConst.htm">const</a></b> State any_state)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;state <a href="CppOperatorAssign.htm">=</a> any_state;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setStateColor();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;timer.restart();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> angle;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> speed;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;State state;<br/>
+&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> timer;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> maxx;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> maxy;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> s;<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsView.htm">QGraphicsView</a> v(&amp;s);<br/>
+<br/>
+&nbsp;&nbsp;ChangingBackground background(512,512);<br/>
+&nbsp;&nbsp;s.addItem(&amp;background);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;SirSprite&gt; &gt; sprites;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> multiple sprites<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_sprites <a href="CppOperatorAssign.htm">=</a> 20;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> background.pixmap().width() <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> background.pixmap().height() <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(midx,midy) * 0.8;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d_angle <a href="CppOperatorAssign.htm">=</a> 2.0 * <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_sprites);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_sprites; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;SirSprite&gt; sprite(<b><a href="CppNew.htm">new</a></b> SirSprite(32,32, i <a href="CppOperatorEqual.htm">==</a> 0 ? <b><a href="CppTrue.htm">true</a></b> : <b><a href="CppFalse.htm">false</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * ray) <a href="CppOperatorMinus.htm">-</a> (sprite-&gt;pixmap().width() <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * ray) <a href="CppOperatorMinus.htm">-</a> (sprite-&gt;pixmap().height() <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprite-&gt;setX(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprite-&gt;setY(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprite-&gt;setRect(background.pixmap().width(),background.pixmap().height());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.addItem(sprite.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprites.push_back(sprite);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;angle<a href="CppOperatorPlusAssign.htm">+=</a>d_angle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;v.show();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQTimer.htm">QTimer</a>&gt; timer(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(&amp;s));<br/>
+&nbsp;&nbsp;timer-&gt;connect(timer.get(), <a href="CppSIGNAL.htm">SIGNAL</a>(timeout()), &amp;s, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;timer-&gt;start(100);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="http://en.wikipedia.org/wiki/Epidemic_model#The_SIR_Model">Wikipedia page about the SIR model</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

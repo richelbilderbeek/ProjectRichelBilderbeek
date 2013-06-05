@@ -1,0 +1,790 @@
+ 
+<title>RgbGradient</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet RgbGradient</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek RgbGradient Get Color Red Green Blue Gradient</o:Keywords>
+  <o:LastAuthor>Richel</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>142</o:TotalTime>
+  <o:Created>2007-07-28T15:29:00Z</o:Created>
+  <o:LastSaved>2007-07-30T10:29:00Z</o:LastSaved>
+  <o:Pages>5</o:Pages>
+  <o:Words>1353</o:Words>
+  <o:Characters>7713</o:Characters>
+  <o:Lines>64</o:Lines>
+  <o:Paragraphs>15</o:Paragraphs>
+  <o:CharactersWithSpaces>9472</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p>Back
+to <a href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>Back
+to <a href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>RgbGradient</h1>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>For
+a value from 0.0 to 1.0, return three <b>unsigned char</b>s that when aligned
+show more or less a rainbow-like gradient (but for the real rainbow gradient
+see the <a href="CppRainbow.htm">Rainbow</a> function), like the second row of
+the picture <a href="CppRainbow.PNG">here</a>. The full CLX code to obtain that
+picture is shown below the function, for those interested.</p>
+
+<p>&nbsp;</p>
+
+<p>Code
+in plain text can be found <a href="CppRgbGradient.txt">here</a>.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>#include &lt;cmath&gt;</p>
+
+<p>#include &lt;algorithm&gt;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppRgbGradient.htm</p>
+
+<p><b> void </b>  RgbGradient(</p>
+
+<p>
+ <b>const double</b> x,</p>
+
+<p>
+ <b>unsigned char</b>&amp; r,</p>
+
+<p>
+ <b>unsigned char</b>&amp; g,</p>
+
+<p>
+ <b>unsigned char</b>&amp; b)</p>
+
+<p>{</p>
+
+<p>
+ r = GetRed(x);</p>
+
+<p>
+ g = GetGreen(x);</p>
+
+<p>
+ b = GetBlue(x);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppRgbGradient.htm</p>
+
+<p><b> unsigned char </b>  GetRed(<b>const double</b>
+x)</p>
+
+<p>{</p>
+
+<p>
+ assert( x &gt;= 0.0 &amp;&amp; x &lt; 1.0);</p>
+
+<p>
+ <b>const double</b> f = std::max(0.0,</p>
+
+<p> 
+ (x &lt; 0.5</p>
+
+<p> 
+ ?    std::cos(x * 1.5 * M_PI)</p>
+
+<p> 
+ : -std::sin(x * 1.5 * M_PI)</p>
+
+<p> 
+ ) );</p>
+
+<p>
+ assert( f &gt;= 0.0);</p>
+
+<p>
+ assert( f &lt;= 1.0);</p>
+
+<p>
+ <b>const double</b> y = 255.0 * f;</p>
+
+<p>
+ assert( <b>static_cast</b>&lt;<b>int</b>&gt;(y) &lt; 256 );</p>
+
+<p>
+ <b>return static_cast</b>&lt;<b>unsigned char</b>&gt;(y);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppRgbGradient.htm</p>
+
+<p><b> unsigned char </b>  GetGreen(<b>const double</b>
+x)</p>
+
+<p>{</p>
+
+<p>
+ assert( x &gt;= 0.0 &amp;&amp; x &lt; 1.0);</p>
+
+<p>&nbsp;</p>
+
+<p>     <b>const
+double</b> f = std::max(0.0, std::sin( x * 1.5 * M_PI ) );</p>
+
+<p>
+ assert( f &gt;= 0.0);</p>
+
+<p>
+ assert( f &lt;= 1.0);</p>
+
+<p>
+ <b>const double</b> y = 255.0 * f;</p>
+
+<p>
+ assert( <b>static_cast</b>&lt;<b>int</b>&gt;(y) &lt; 256 );</p>
+
+<p>
+ return <b>static_cast</b>&lt;<b>unsigned char</b>&gt;(y);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppRgbGradient.htm</p>
+
+<p><b> unsigned char </b>  GetBlue(<b>const double</b>
+x)</p>
+
+<p>{</p>
+
+<p>
+ assert( x &gt;= 0.0 &amp;&amp; x &lt; 1.0);</p>
+
+<p>&nbsp;</p>
+
+<p>     <b>const
+double</b> f = std::max(0.0, -std::cos( x * 1.5 * M_PI ) );</p>
+
+<p>&nbsp;</p>
+
+<p>
+ assert( f &gt;= 0.0);</p>
+
+<p>
+ assert( f &lt;= 1.0);</p>
+
+<p>
+ <b>const double</b> y = 255.0 * f;</p>
+
+<p>
+ assert( <b>static_cast</b>&lt;<b>int</b>&gt;(y) &lt; 256 );</p>
+
+<p>
+ return <b>static_cast</b>&lt;<b>unsigned cha</b>r&gt;(y);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Full CLX code</h2>
+
+<p>&nbsp;</p>
+
+<p>All
+you need to do at design-time is add a TImage and load a 24-bit or 32-bit
+bitmap in it.</p>
+
+<p>&nbsp;</p>
+
+<p>It
+uses the <a href="CppSetPixel.htm">SetPixel</a> function, which I also shown for
+a VCL application. Just changing <a href="CppSetPixel.htm">SetPixel</a> to its
+VCL brother will get this code working under VCL.</p>
+
+<p>&nbsp;</p>
+
+<h3>Unit1.h</h3>
+
+ 
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppRgbGradient.htm</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#ifndef UnitRainbowH</p>
+
+<p>#define UnitRainbowH</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#include &lt;Classes.hpp&gt;</p>
+
+<p>#include &lt;QControls.hpp&gt;</p>
+
+<p>#include &lt;QStdCtrls.hpp&gt;</p>
+
+<p>#include &lt;QForms.hpp&gt;</p>
+
+<p>#include &lt;QExtCtrls.hpp&gt;</p>
+
+<p>#include &lt;QGraphics.hpp&gt;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> class </b>  TForm1 : <b>public</b> TForm</p>
+
+<p>{</p>
+
+<p>__<b>published</b>:<span
+style='mso-tab-count:1'>   // IDE-managed Components</p>
+
+<p>       TImage *Image1;</p>
+
+<p>       <b>void __fastcall </b>FormResize(TObject *Sender);</p>
+
+<p>       <b>void __fastcall</b> FormShow(TObject *Sender);</p>
+
+<p><b> private </b> :<span style='mso-tab-count:1'>   //
+User declarations</p>
+
+<p><b> public </b> :<span style='mso-tab-count:2'>        //
+User declarations</p>
+
+<p>       __<b>fastcall</b> TForm1(TComponent* Owner);</p>
+
+<p>};</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> extern </b>  PACKAGE TForm1 *Form1;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> unsigned char </b>  GetRed(<b>const double</b>
+x);</p>
+
+<p><b> unsigned char </b>  GetGreen(<b>const double</b>
+x);</p>
+
+<p><b> unsigned char </b>  GetBlue(<b>const double</b>
+x);</p>
+
+<p><b> void </b>  Rainbow(</p>
+
+<p>
+ <b>const double</b> x,</p>
+
+<p>
+ unsigned char&amp; r,</p>
+
+<p>
+ <b>unsigned char</b>&amp; g,</p>
+
+<p>   <b>unsigned char</b>&amp;
+b);</p>
+
+<p>TColor Rainbow(<b>const double</b>
+x);</p>
+
+<p>void RgbGradient(</p>
+
+<p>
+ <b>const double</b> x,</p>
+
+<p>
+ <b>unsigned char</b>&amp; r,</p>
+
+<p>
+ <b>unsigned char</b>&amp; g,</p>
+
+<p>
+ <b>unsigned char</b>&amp; b);</p>
+
+<p>TColor RgbGradient(<b>const double</b>
+x);</p>
+
+<p><b> void </b>  SetPixel(TImage * <b>const</b>
+image, <b>const int</b> x, <b>const int</b> y, <b>const</b> TColor&amp; color);</p>
+
+<p>&nbsp;</p>
+
+<p>#endif</p>
+
+</div>
+
+<h3>Unit1.cpp</h3>
+
+ 
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppRgbGradient.htm</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#include &lt;clx.h&gt;</p>
+
+<p>#pragma hdrstop</p>
+
+<p>#include &quot;UnitRainbow.h&quot;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#pragma package(smart_init)</p>
+
+<p>#pragma resource &quot;*.xfm&quot;</p>
+
+<p>TForm1 *Form1;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#include &lt;algorithm&gt;</p>
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>#include &lt;cmath&gt;</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> __fastcall </b>  TForm1::TForm1(TComponent* Owner)</p>
+
+<p>         : TForm(Owner)</p>
+
+<p>{</p>
+
+<p> 
+ Image1-&gt;Picture-&gt;Bitmap-&gt;Height = 5;</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> void __fastcall </b>  TForm1::FormShow(TObject *Sender)</p>
+
+<p>{</p>
+
+<p> 
+ Resize();</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> void __fastcall </b>  TForm1::FormResize(TObject
+*Sender)</p>
+
+<p>{</p>
+
+<p> 
+ <b>const int</b> width = ClientWidth;</p>
+
+<p> 
+ Image1-&gt;Picture-&gt;Bitmap-&gt;Width = width;</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b>for</b> (<b>int</b> i=0; i!=width; ++i)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ <b>const double</b> f = <b>static_cast</b>&lt;<b>double</b>&gt;(i) / <b>static_cast</b>&lt;<b>double</b>&gt;(width);</p>
+
+<p>   
+ SetPixel(Image1,i,0,Rainbow(f));</p>
+
+<p>   
+ SetPixel(Image1,i,1,RgbGradient(f));</p>
+
+<p>   
+ SetPixel(Image1,i,2,<b>static_cast</b>&lt;TColor&gt;(RGB( GetRed(f), 0 ,
+0 ) ) );</p>
+
+<p>   
+ SetPixel(Image1,i,3,<b>static_cast</b>&lt;TColor&gt;(RGB( 0, GetGreen(f)
+, 0 ) ) );</p>
+
+<p>   
+ SetPixel(Image1,i,4,<b>static_cast</b>&lt;TColor&gt;(RGB( 0, 0 ,
+GetBlue(f) ) ) );</p>
+
+<p> 
+ }</p>
+
+<p> 
+ Canvas-&gt;StretchDraw(<b>this</b>-&gt;GetClientRect(),
+Image1-&gt;Picture-&gt;Graphic);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> void </b>  Rainbow(</p>
+
+<p> 
+ <b>const double</b> x,</p>
+
+<p> 
+ <b>unsigned char</b>&amp; r,</p>
+
+<p> 
+ <b>unsigned char</b>&amp; g,</p>
+
+<p> 
+ <b>unsigned char</b>&amp; b)</p>
+
+<p>&nbsp;</p>
+
+<p>{</p>
+
+<p> 
+ <b>const int</b> r0 = GetRed(x);</p>
+
+<p> 
+ <b>const int</b> g0 = GetGreen(x);</p>
+
+<p> 
+ <b>const int</b> b0 = GetBlue(x);</p>
+
+<p> 
+ <b>const int</b> max = std::max(r0, std::max(g0,b0));</p>
+
+<p> 
+ assert(max!=0);</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ r = 255.0 * <b>static_cast</b>&lt;<b>double</b>&gt;(r0) / <b>static_cast</b>&lt;<b>double</b>&gt;(max);</p>
+
+<p> 
+ g = 255.0 * <b>static_cast</b>&lt;<b>double</b>&gt;(g0) / <b>static_cast</b>&lt;<b>double</b>&gt;(max);</p>
+
+<p> 
+ b = 255.0 * <b>static_cast</b>&lt;<b>double</b>&gt;(b0) / <b>static_cast</b>&lt;<b>double</b>&gt;(max);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>TColor Rainbow(<b>const double</b>
+x)</p>
+
+<p>{</p>
+
+<p> 
+ <b>unsigned char</b> r = 0;</p>
+
+<p> 
+ <b>unsigned char</b> g = 0;</p>
+
+<p> 
+ <b>unsigned char</b> b = 0;</p>
+
+<p> 
+ Rainbow(x,r,g,b);</p>
+
+<p> 
+ <b>return static_cast</b>&lt;<b>TColor</b>&gt;(RGB(r,g,b));</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> void </b>  RgbGradient(</p>
+
+<p> 
+ <b>const double</b> x,</p>
+
+<p> 
+ <b>unsigned char</b>&amp; r,</p>
+
+<p> 
+ <b>unsigned char</b>&amp; g,</p>
+
+<p> 
+ <b>unsigned char</b>&amp; b)</p>
+
+<p>{</p>
+
+<p> 
+ r = GetRed(x);</p>
+
+<p> 
+ g = GetGreen(x);</p>
+
+<p> 
+ b = GetBlue(x);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>TColor RgbGradient(<b>const double</b>
+x)</p>
+
+<p>{</p>
+
+<p> 
+ <b>unsigned char</b> r = 0;</p>
+
+<p> 
+ <b>unsigned char</b> g = 0;</p>
+
+<p> 
+ <b>unsigned char</b> b = 0;</p>
+
+<p> 
+ RgbGradient(x,r,g,b);</p>
+
+<p> 
+ <b>return static_cast</b>&lt;TColor&gt;(RGB(r,g,b));</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> unsigned char </b>  GetRed(<b>const double</b>
+x)</p>
+
+<p>{</p>
+
+<p> 
+ assert( x &gt;= 0.0 &amp;&amp; x &lt; 1.0);</p>
+
+<p> 
+ <b>const double</b> f = std::max(0.0,</p>
+
+<p>   
+ (x &lt; 0.5</p>
+
+<p>   
+ ?    std::cos(x * 1.5 * M_PI)</p>
+
+<p>   
+ : -std::sin(x * 1.5 * M_PI)</p>
+
+<p>       ) );</p>
+
+<p> 
+ assert( f &gt;= 0.0);</p>
+
+<p> 
+ assert( f &lt;= 1.0);</p>
+
+<p> 
+ <b>const double</b> y = 255.0 * f;</p>
+
+<p> 
+ assert( <b>static_cast</b>&lt;<b>int</b>&gt;(y) &lt; 256 );</p>
+
+<p> 
+ <b>return static_cast</b>&lt;<b>unsigned char</b>&gt;(y);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> unsigned char </b>  GetGreen(<b>const double</b>
+x)</p>
+
+<p>{</p>
+
+<p> 
+ assert( x &gt;= 0.0 &amp;&amp; x &lt; 1.0);</p>
+
+<p>&nbsp;</p>
+
+<p class=MsoBodyText style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 1.0pt 1.0pt 1.0pt'>     <b>const double</b> f = std::max(0.0,
+std::sin( x * 1.5 * M_PI ) );</p>
+
+<p> 
+ assert( f &gt;= 0.0);</p>
+
+<p> 
+ assert( f &lt;= 1.0);</p>
+
+<p> 
+ <b>const double</b> y = 255.0 * f;</p>
+
+<p> 
+ assert( <b>static_cast</b>&lt;<b>int</b>&gt;(y) &lt; 256 );</p>
+
+<p> 
+ <b>return static_cast</b>&lt;<b>unsigned char</b>&gt;(y);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> unsigned char </b>  GetBlue(<b>const double</b>
+x)</p>
+
+<p>{</p>
+
+<p> 
+ assert( x &gt;= 0.0 &amp;&amp; x &lt; 1.0);</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ <b>const double</b> f = std::max(0.0, -std::cos( x * 1.5 * M_PI ) );</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ assert( f &gt;= 0.0);</p>
+
+<p> 
+ assert( f &lt;= 1.0);</p>
+
+<p> 
+ <b>const double</b> y = 255.0 * f;</p>
+
+<p> 
+ assert( <b>static_cast</b>&lt;<b>int</b>&gt;(y) &lt; 256 );</p>
+
+<p> 
+ return <b>static_cast</b>&lt;<b>unsigned char</b>&gt;(y);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p><b> void </b>  SetPixel(</p>
+
+<p> 
+ TImage * const image,</p>
+
+<p> 
+ <b>const int</b> x,</p>
+
+<p> 
+ <b>const int</b> y,</p>
+
+<p> 
+ <b>const</b> TColor&amp; color)</p>
+
+<p>{</p>
+
+<p> 
+ assert(image!=0 &amp;&amp; &quot;Image is NULL&quot;);</p>
+
+<p> 
+ assert(image-&gt;Picture-&gt;Bitmap!=0 &amp;&amp; &quot;Bitmap is
+NULL&quot;);</p>
+
+<p> 
+ assert(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf32bit
+&amp;&amp; &quot;Bitmap must be 32 bit&quot;);</p>
+
+<p> 
+ assert( x &gt;= 0 &amp;&amp; &quot;x coordinat is below zero&quot;);</p>
+
+<p> 
+ assert( y &gt;= 0 &amp;&amp; &quot;y coordinat is below zero&quot;);</p>
+
+<p class=MsoBodyText style='border:none;mso-border-alt:solid windowtext .5pt;
+padding:0in;mso-padding-alt:1.0pt 1.0pt 1.0pt 1.0pt'>     assert( x &lt;
+image-&gt;Picture-&gt;Bitmap-&gt;Width  
+ &amp;&amp; &quot;x coordinat is beyond image width&quot;);</p>
+
+<p> 
+ assert( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height &amp;&amp;
+&quot;y coordinat is beyond image height&quot;);</p>
+
+<p>&nbsp;</p>
+
+<p>     <b>static_cast</b>&lt;<b>unsigned
+char</b>*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y])[x*4+2] =
+GetRValue(color);</p>
+
+<p> 
+ <b>static_cast</b>&lt;<b>unsigned char</b>*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y])[x*4+1]
+= GetGValue(color);</p>
+
+<p> 
+ <b>static_cast</b>&lt;<b>unsigned char</b>*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y])[x*4+0]
+= GetBValue(color);</p>
+
+<p>}</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>Back
+to <a href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>Back
+to <a href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

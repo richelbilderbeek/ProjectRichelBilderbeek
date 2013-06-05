@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Replace_range</title>
+  <meta name="description" content="C++ Replace_range"/>
+  <meta name="keywords" content="C++ Replace_range"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppReplace_range.htm">Replace_range</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppReplace.htm">Replace</a> <a href="CppCodeSnippets.htm">code snippet</a> that <a href="CppReplace.htm">replaces</a> a range by another range.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppReplace_range.htm">Replace_range</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; oldvalue,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; newvalue)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> oldvalue.size() &amp;&amp; "oldvalue must have less elements than v");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<b><a href="CppConst.htm">const</a></b>_iterator from = v.begin();<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<b><a href="CppConst.htm">const</a></b>_iterator to = from + oldvalue.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<b><a href="CppConst.htm">const</a></b>_iterator end = v.end();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(to &lt; v.end());<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (; to <a href="CppOperatorNotEqual.htm">!=</a> end; <a href="CppOperatorIncrement.htm">++</a>from, <a href="CppOperatorIncrement.htm">++</a>to)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppStd.htm">std</a>::equal(from,to,oldvalue.begin()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(newvalue.begin(),newvalue.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(w));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from <a href="CppOperatorPlusAssign.htm">+=</a> oldvalue.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to <a href="CppOperatorPlusAssign.htm">+=</a> oldvalue.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(*from);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(from,end,<a href="CppBack_inserter.htm">std::back_inserter</a>(w));<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReplace_range.htm">Replace_range</a> test</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(1);<br/>
+&nbsp;&nbsp;v.push_back(2);<br/>
+&nbsp;&nbsp;v.push_back(3);<br/>
+&nbsp;&nbsp;v.push_back(4);<br/>
+&nbsp;&nbsp;v.push_back(5);<br/>
+&nbsp;&nbsp;v.push_back(6);<br/>
+&nbsp;&nbsp;v.push_back(7);<br/>
+&nbsp;&nbsp;v.push_back(8);<br/>
+&nbsp;&nbsp;v.push_back(9);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; from;<br/>
+&nbsp;&nbsp;from.push_back(2);<br/>
+&nbsp;&nbsp;from.push_back(3);<br/>
+&nbsp;&nbsp;from.push_back(4);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; to;<br/>
+&nbsp;&nbsp;to.push_back(1);<br/>
+&nbsp;&nbsp;to.push_back(2);<br/>
+&nbsp;&nbsp;to.push_back(3);<br/>
+&nbsp;&nbsp;to.push_back(4);<br/>
+&nbsp;&nbsp;to.push_back(5);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write v to screen<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCoutContainer.htm">CoutContainer</a>.htm<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i = 0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v = <a href="CppReplace_range.htm">Replace_range</a>(v,from,to);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write v to screen<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCoutContainer.htm">CoutContainer</a>.htm<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

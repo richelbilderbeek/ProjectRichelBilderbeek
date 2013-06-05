@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QtMysteryMachineWidget</title>
+  <meta name="description" content="C++ QtMysteryMachineWidget"/>
+  <meta name="keywords" content="C++ QtMysteryMachineWidget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtMysteryMachineWidget.htm">QtMysteryMachineWidget</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppQtMysteryMachineWidget.htm">QtMysteryMachineWidget</a> is a <a href="CppQt.htm">Qt</a> 
+<a href="CppClass.htm">class</a> to display an <a href="CppMysteryMachineWidget.htm">CppMysteryMachineWidget</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtmysterymachinewidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppMysteryMachine.htm">MysteryMachine</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtMysteryMachineWidget.htm">CppQtMysteryMachineWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTMYSTERYMACHINEWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> QTMYSTERYMACHINEWIDGET_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppDialWidget.htm">dialwidget</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppLed.htm">led</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppLedWidget.htm">ledwidget</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMysteryMachine.htm">mysterymachine</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMysteryMachineWidget.htm">mysterymachinewidget</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppToggleButton.htm">togglebutton</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppToggleButtonWidget.htm">togglebuttonwidget</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> displays a <a href="CppMysteryMachine.htm">MysteryMachine</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> is created by its width and height<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a> to the <a href="CppMysteryMachine.htm">MysteryMachine</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> * Get<a href="CppWidget.htm">Widget</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a> to the <a href="CppMysteryMachine.htm">MysteryMachine</a><br/>
+&nbsp;&nbsp;<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> * Get<a href="CppWidget.htm">Widget</a>() { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.htm">Signal</a> that is <a href="CppEmit.htm">emitted</a> when a <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> is toggled<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_changed;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> its <a href="CppVersion.htm">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> its <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to mouse clicks<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.htm">Paint</a> the <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Resize the <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppMysteryMachine.htm">MysteryMachine</a><br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>&gt; m_<a href="CppWidget.htm">widget</a>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Repaint the <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRepaint();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to mouse click<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTMYSTERYMACHINEWIDGET_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtmysterymachinewidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppMysteryMachine.htm">MysteryMachine</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtMysteryMachineWidget.htm">CppQtMysteryMachineWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppDialWidget.htm">dialwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppLed.htm">led</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppLedWidget.htm">ledwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppToggleButton.htm">togglebutton</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppToggleButtonWidget.htm">togglebuttonwidget</a>.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMysteryMachine.htm">mysterymachine</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMysteryMachineWidget.htm">mysterymachinewidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtDialWidget.htm">qtdialwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtLedWidget.htm">qtledwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="CppMysteryMachineWidget.htm">mysterymachinewidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtToggleButtonWidget.htm">qttogglebuttonwidget</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Rect(0,0,200,400)))<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;GetDialBack()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;GetDialFront()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;m_signal_toggled.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_geometry_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;resize(200,400);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Rect(0,0,width,height)))<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;GetDialBack()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;GetDialFront()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;m_signal_toggled.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_geometry_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;resize(width,height);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::DoRepaint()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2011-07-04: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-09-15: <a href="CppVersion.htm">version</a> 2.0: made <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> same as <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+{<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click(e-&gt;x(),e-&gt;y());<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_signal_changed();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppQtDialWidget.htm">QtDialWidget</a>::DrawDial(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;GetDialBack());<br/>
+&nbsp;&nbsp;<a href="CppQtDialWidget.htm">QtDialWidget</a>::DrawDial(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;GetDialFront());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>Back1());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>Back2());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>Back3());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>Front1());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>Front2());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>Front3());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>TopBack());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>TopFront());<br/>
+&nbsp;&nbsp;<a href="CppQtLedWidget.htm">QtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppLed.htm">Led</a>TopMiddle());<br/>
+&nbsp;&nbsp;<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::Draw<a href="CppToggleButton.htm">ToggleButton</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,width(),height()));<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

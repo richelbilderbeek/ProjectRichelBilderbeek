@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>compile warning: unused parameter 'seq'</title>
+  <meta name="description" content="C++ compile warning: unused parameter 'seq'"/>
+  <meta name="keywords" content="C++ compile warning: unused parameter 'seq'"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCompileWarningUnusedParameterSeq.htm">unused parameter 'seq'</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppCompileError.htm">Compile warning</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full warning message</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/container/vector/detail/vector_n_chooser.hpp:14: In file included from ../../../boost_1_42_0/boost/fusion/container/vector/detail/vector_n_chooser.hpp:14,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/container/vector/vector.hpp:11: from ../../../boost_1_42_0/boost/fusion/container/vector/vector.hpp:11,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/tuple/tuple.hpp:11: from ../../../boost_1_42_0/boost/fusion/tuple/tuple.hpp:11,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/tuple.hpp:10: from ../../../boost_1_42_0/boost/fusion/tuple.hpp:10,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/include/tuple.hpp:10: from ../../../boost_1_42_0/boost/fusion/include/tuple.hpp:10,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/tr1/tuple.hpp:58: from ../../../boost_1_42_0/boost/tr1/tuple.hpp:58,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/math/special_functions/detail/igamma_inverse.hpp:13: from ../../../boost_1_42_0/boost/math/special_functions/detail/igamma_inverse.hpp:13,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/math/special_functions/gamma.hpp:1528: from ../../../boost_1_42_0/boost/math/special_functions/gamma.hpp:1528,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/math/special_functions/beta.hpp:15: from ../../../boost_1_42_0/boost/math/special_functions/beta.hpp:15,<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/math/distributions/students_t.hpp:14: from ../../../boost_1_42_0/boost/math/distributions/students_t.hpp:14,<br/>
+/MyFolder/MyProject/main.cpp:1: from main.cpp:1:<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/container/vector/vector.hpp:62:   instantiated from 'boost::fusion::vector&lt;T0, T1, T2, T3, T4, T5, T6, T7, T8, T9&gt;::vector(const Sequence&amp;) [with Sequence = boost::fusion::tuple&lt;boost::fusion::void_, boost::fusion::void_, boost::fusion::void_, boost::fusion::void_, boost::fusion::void_, boost::fusion::void_, boost::fusion::void_, boost::fusion::void_, boost::fusion::void_, boost::fusion::void_&gt;, T0 = boost::fusion::void_, T1 = boost::fusion::void_, T2 = boost::fusion::void_, T3 = boost::fusion::void_, T4 = boost::fusion::void_, T5 = boost::fusion::void_, T6 = boost::fusion::void_, T7 = boost::fusion::void_, T8 = boost::fusion::void_, T9 = boost::fusion::void_]'<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/tuple/make_tuple.hpp:22:   instantiated from here<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/tuple/make_tuple.hpp:22:   instantiated from here<br/>
+/MyFolder/MyProject/../../../boost_1_42_0/boost/fusion/container/vector/vector10.hpp:55: warning: unused parameter 'seq'<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;boost/math/distributions/students_t.hpp&gt;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Which takes you to the following line in 'boost/fusion/container/vector/vector10.hpp':</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+/*=============================================================================<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Copyright (c) 2001-2006 Joel de Guzman<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Distributed under the <a href="CppBoost.htm">Boost</a> Software License, Version 1.0. (See accompanying <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file LICENSE_1_0.txt or copy at http://www.<a href="CppBoost.htm">boost</a>.org/LICENSE_1_0.txt)<br/>
+==============================================================================*/<br/>
+#<b><a href="CppIf.htm">if</a></b> !defined(FUSION_VECTOR10_05042005_0257)<br/>
+<a href="CppDefine.htm">#define</a> FUSION_VECTOR10_05042005_0257<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/support/sequence_base.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/support/detail/access.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/iterator/next.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/iterator/deref.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/sequence/<b><a href="CppInt.htm">int</a></b>rinsic/begin.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/at_impl.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/value_at_impl.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/begin_impl.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/end_impl.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/<b><a href="CppVoid.htm">void</a></b>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/<b><a href="CppInt.htm">int</a></b>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/<b><a href="CppBool.htm">bool</a></b>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/at.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/vector/vector10.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/type_traits/is_convertible.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/utility/enable_<b><a href="CppIf.htm">if</a></b>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/dec.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/iteration/iterate.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/<b><a href="CppEnum.htm">enum</a></b>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/<b><a href="CppEnum.htm">enum</a></b>_sh<b><a href="CppIf.htm">if</a></b>ted.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/<b><a href="CppEnum.htm">enum</a></b>_params.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/<b><a href="CppEnum.htm">enum</a></b>_binary_params.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/repeat_from_to.hpp&gt;<br/>
+<br/>
+
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppBoost.htm">boost</a> { <b><a href="CppNamespace.htm">namespace</a></b> fusion<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> vector_tag;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> fusion_sequence_tag;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> ran<b><a href="CppDo.htm">do</a></b>m_access_traversal_tag;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> Dummy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppVoid.htm">void</a></b>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> vector0 : sequence_base&lt;vector0&lt;Dummy&gt; &gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> mpl::vector0&lt;&gt; types;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> vector_tag fusion_tag;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> fusion_sequence_tag tag; <a href="CppComment.htm">//</a> <b><a href="CppThis.htm">this</a></b> gets picked up by MPL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> mpl::<b><a href="CppFalse.htm">false</a></b>_ is_view;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> ran<b><a href="CppDo.htm">do</a></b>m_access_traversal_tag category;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> mpl::<b><a href="CppInt.htm">int</a></b>_&lt;0&gt; size;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector0() {}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppTypename.htm">typename</a></b> Sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector0(Sequence <b><a href="CppConst.htm">const</a></b>&amp; seq) <a href="CppComment.htm">//</a>This line<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+<a href="CppComment.htm">//</a> expand vector1 to vector10<br/>
+<a href="CppDefine.htm">#define</a> BOOST_PP_FILENAME_1 &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/vector_n.hpp&gt;<br/>
+<a href="CppDefine.htm">#define</a> BOOST_PP_ITERATION_LIMITS (1, 10)<br/>
+<a href="CppInclude.htm">#include</a> BOOST_PP_ITERATE()<br/>
+<br/>
+}}<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 1.3.1</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 Console Application</p>
+<p><a href="CppQtCreatorSelectRequiredModules.png">Selected required modules</a>: QtCore</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppBoost.htm">Boost</a> version: 1.42.0</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>The compiler is right: seq is an unused variable. I changed the code to</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+/*=============================================================================<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Copyright (c) 2001-2006 Joel de Guzman<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Distributed under the <a href="CppBoost.htm">Boost</a> Software License, Version 1.0. (See accompanying <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file LICENSE_1_0.txt or copy at http://www.<a href="CppBoost.htm">boost</a>.org/LICENSE_1_0.txt)<br/>
+==============================================================================*/<br/>
+#<b><a href="CppIf.htm">if</a></b> !defined(FUSION_VECTOR10_05042005_0257)<br/>
+<a href="CppDefine.htm">#define</a> FUSION_VECTOR10_05042005_0257<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/support/sequence_base.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/support/detail/access.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/iterator/next.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/iterator/deref.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/sequence/<b><a href="CppInt.htm">int</a></b>rinsic/begin.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/at_impl.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/value_at_impl.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/begin_impl.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/end_impl.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/<b><a href="CppVoid.htm">void</a></b>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/<b><a href="CppInt.htm">int</a></b>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/<b><a href="CppBool.htm">bool</a></b>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/at.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/mpl/vector/vector10.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/type_traits/is_convertible.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/utility/enable_<b><a href="CppIf.htm">if</a></b>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/dec.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/iteration/iterate.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/<b><a href="CppEnum.htm">enum</a></b>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/<b><a href="CppEnum.htm">enum</a></b>_sh<b><a href="CppIf.htm">if</a></b>ted.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/<b><a href="CppEnum.htm">enum</a></b>_params.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/<b><a href="CppEnum.htm">enum</a></b>_binary_params.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/preprocessor/repetition/repeat_from_to.hpp&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppBoost.htm">boost</a> { <b><a href="CppNamespace.htm">namespace</a></b> fusion<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> vector_tag;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> fusion_sequence_tag;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> ran<b><a href="CppDo.htm">do</a></b>m_access_traversal_tag;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> Dummy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppVoid.htm">void</a></b>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> vector0 : sequence_base&lt;vector0&lt;Dummy&gt; &gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> mpl::vector0&lt;&gt; types;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> vector_tag fusion_tag;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> fusion_sequence_tag tag; <a href="CppComment.htm">//</a> <b><a href="CppThis.htm">this</a></b> gets picked up by MPL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> mpl::<b><a href="CppFalse.htm">false</a></b>_ is_view;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> ran<b><a href="CppDo.htm">do</a></b>m_access_traversal_tag category;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> mpl::<b><a href="CppInt.htm">int</a></b>_&lt;0&gt; size;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector0() {}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppTypename.htm">typename</a></b> Sequence&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector0(Sequence <b><a href="CppConst.htm">const</a></b>&amp;) <a href="CppComment.htm">//</a>This line<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+<a href="CppComment.htm">//</a> expand vector1 to vector10<br/>
+<a href="CppDefine.htm">#define</a> BOOST_PP_FILENAME_1 &lt;<a href="CppBoost.htm">boost</a>/fusion/container/vector/detail/vector_n.hpp&gt;<br/>
+<a href="CppDefine.htm">#define</a> BOOST_PP_ITERATION_LIMITS (1, 10)<br/>
+<a href="CppInclude.htm">#include</a> BOOST_PP_ITERATE()<br/>
+<br/>
+}}<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

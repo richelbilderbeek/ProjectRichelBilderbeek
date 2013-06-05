@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>operator==</title>
+  <meta name="description" content="C++ operator=="/>
+  <meta name="keywords" content="C++ operator== equal equals logical operator"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppOperatorEqual.htm">operator==</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppOperatorEqual.htm">operator==</a> is the <a href="CppOperator.htm">operator</a> to determine if two <a href="CppInstance.htm">instances</a> are the same.</p>
+<p>&nbsp;</p>
+<p>The following code uses <a href="CppOperatorEqual.htm">operator==</a> to determine that one plus two is equal to three:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (1 <a href="CppOperatorPlus.htm">+</a> 2 <a href="CppOperatorEqual.htm">==</a> 3) <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "One plus two is equal to three" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="CppOperatorEqual.htm">operator==</a> is encapsulated by the <a href="CppFunctor.htm">functor</a> <a href="CppEqual_to.htm">std::equal_to</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Overloading <a href="CppOperatorEqual.htm">operator==</a> for a user-defined type</h2>
+<p>&nbsp;</p>
+<p>Prefer making <a href="CppOperatorEqual.htm">operator==</a> a free function [1,2].</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppOperatorEqual.zip">Download the Qt Creator project 'CppOperatorEqual' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>Can even define both!<br/>
+<a href="CppDefine.htm">#define</a> DEFINE_OPERATOR_EQUAL_AS_MEMBER_FUNCTION<br/>
+<a href="CppDefine.htm">#define</a> DEFINE_OPERATOR_EQUAL_AS_FREE_FUNCTION<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Test<br/>
+{<br/>
+&nbsp;&nbsp;Test(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) : m_x(x), m_y(y) {}<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetX() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_x; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetY() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_y; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> DEFINE_OPERATOR_EQUAL_AS_MEMBER_FUNCTION<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Test rhs)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetX() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetY() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetY();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_y;<br/>
+};<br/>
+<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> DEFINE_OPERATOR_EQUAL_AS_FREE_FUNCTION<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Test&amp; lhs, <b><a href="CppConst.htm">const</a></b> Test rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.GetX() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetX() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> lhs.GetY() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetY();<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Test&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(Test(0,0));<br/>
+&nbsp;&nbsp;v.push_back(Test(1,1));<br/>
+&nbsp;&nbsp;v.push_back(Test(2,2));<br/>
+&nbsp;&nbsp;v.push_back(Test(0,0));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v[3]); <a href="CppComment.htm">//</a>Both ways work<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCount.htm">std::count</a>(v.begin(),v.end(),Test(0,0)) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2); <a href="CppComment.htm">//</a>Both ways work<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Paragraph 9.1.2, page 596: 'The conclusion is that operator== should always be a free function, regardless of what other functions are involved'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

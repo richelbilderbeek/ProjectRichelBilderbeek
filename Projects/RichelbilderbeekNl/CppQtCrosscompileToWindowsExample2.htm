@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Qt Creator FAQ: How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 2: Hello Qt</title>
+  <meta name="description" content="C++ Qt Creator FAQ: How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 2: Hello Qt"/>
+  <meta name="keywords" content="C++ Qt Creator FAQ: How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 2: Hello Qt GUI application"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtCrosscompileToWindowsExample2.htm">How to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 2: Hello Qt</a></h1>
+<p>&nbsp;</p>
+<p><img src="PicTransparent.png" alt="TODO"/><img src="PicQt.png" alt="Qt"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicTo.png" alt="to"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicWindows.png" alt="Windows"/></p>
+<p>&nbsp;</p>
+<p>This is example 2, and a solution of unknown viability in answering the <a href="CppQtFaq.htm">Qt FAQ</a> 
+<a href="CppQtCrosscompileToWindows.htm">How to cross-compile a Qt Creator project from Ubuntu to a windows executable?</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Downloads</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppQtCrosscompileToWindowsExample2.zip">Download the Qt Creator project 'CppQtCrosscompileToWindowsExample2' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Project information</h2>
+<p>&nbsp;</p>
+<p>Project is a standard <a href="CppHelloQt.htm">Hello Qt</a> program
+<p>Exceptions:</p>
+<ul>
+  <li>Project Option -> Build Settings -> Shadow build unchecked</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Process</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+i586-mingw32msvc-g++ -o MyWin.exe dialog.cpp main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+In file included from dialog.cpp:1:<br/>
+dialog.h:4:19: error: QDialog: No such file or directory<br/>
+In file included from dialog.cpp:2:<br/>
+ui_dialog.h:13:27: error: QtCore/QVariant: No such file or directory<br/>
+ui_dialog.h:14:25: error: QtGui/QAction: No such file or directory<br/>
+ui_dialog.h:15:30: error: QtGui/QApplication: No such file or directory<br/>
+ui_dialog.h:16:30: error: QtGui/QButtonGroup: No such file or directory<br/>
+ui_dialog.h:17:25: error: QtGui/QDialog: No such file or directory<br/>
+ui_dialog.h:18:29: error: QtGui/QHeaderView: No such file or directory<br/>
+ui_dialog.h:19:24: error: QtGui/QLabel: No such file or directory<br/>
+ui_dialog.h:20:29: error: QtGui/QVBoxLayout: No such file or directory<br/>
+In file included from dialog.cpp:1:<br/>
+dialog.h:11: error: expected class-name before '{' token<br/>
+dialog.h:12: error: ISO C++ forbids declaration of 'Q_OBJECT' with no type<br/>
+dialog.h:14: error: expected ';' before 'public'<br/>
+dialog.h:19: error: 'QEvent' has not been declared<br/>
+In file included from dialog.cpp:2:<br/>
+ui_dialog.h:24: error: expected constructor, destructor, or type conversion before 'class'<br/>
+main.cpp:1:30: error: QtGui/QApplication: No such file or directory<br/>
+In file included from main.cpp:2:<br/>
+dialog.h:4:19: error: QDialog: No such file or directory<br/>
+In file included from main.cpp:2:<br/>
+dialog.h:11: error: expected class-name before '{' token<br/>
+dialog.h:12: error: ISO C++ forbids declaration of 'Q_OBJECT' with no type<br/>
+dialog.h:14: error: expected ';' before 'public'<br/>
+dialog.h:19: error: 'QEvent' has not been declared<br/>
+main.cpp: In function 'int main(int, char**)':<br/>
+main.cpp:6: error: 'QApplication' was not declared in this scope<br/>
+main.cpp:6: error: expected ';' before 'a'<br/>
+dialog.h:16: error: 'Dialog::~Dialog()' is private<br/>
+main.cpp:7: error: within this context<br/>
+main.cpp:8: error: 'class Dialog' has no member named 'show'<br/>
+main.cpp:10: error: 'a' was not declared in this scope<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>So, add the libs in making :</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+i586-mingw32msvc-g++ -I/usr/share/qt4/mkspecs/linux-g++ -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -o MyWin.exe dialog.cpp main.cpp -L/usr/lib -lQtGui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>Resulting in:</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+/usr/lib/gcc/i586-mingw32msvc/4.4.2/../../../../i586-mingw32msvc/bin/ld: cannot find -lQtGui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>This error indicates -I think- that MinGW needs a Windows libary version of QtGui. So I perform a Windows Find
+for 'libqt*.*'.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,76 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>inheritance</title>
+  <meta name="description" content="C++ inheritance"/>
+  <meta name="keywords" content="C++ inheritance code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppInheritance.htm">inheritance</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppInheritance.htm">Inheritance</a> is a technique to re-use <a href="CppMemberFunction.htm">member functions</a> of a <a href="CppClass.htm">class</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> BaseClass <a href="CppComment.htm">//</a>A base <b><a href="CppClass.htm">class</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> SayHello();<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> DerivedClass : <b><a href="CppPublic.htm">public</a></b> BaseClass <a href="CppComment.htm">//</a>A derived <b><a href="CppClass.htm">class</a></b>, <b><a href="CppPublic.htm">public</a></b> inheritance<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>DerivedClass inherits SayHello method<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayBye();<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>There are three modes of <a href="CppInheritance.htm">inheritance</a>:</p>
+<ol>
+  <li><a href="CppPublicInheritance.htm">public inheritance</a>, an 'is-a-kind-of' relationship, the most commonly used mode of <a href="CppInheritance.htm">inheritance</a></li>
+  <li><a href="CppProtectedInheritance.htm">protected inheritance</a>, an obscure type of relationship</li>
+  <li><a href="CppPrivateInheritance.htm">private inheritance</a>, an 'is-implemented-in-terms-of' relationship [1]</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Inheritance_(computer_science)">Wikipedia's page about inheritance</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition).ISBN:0-321-33487-6. Item 39: 'Use private inheritance judiciously'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

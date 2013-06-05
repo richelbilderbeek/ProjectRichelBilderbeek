@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Flood::MultilayerPerceptron</title>
+  <meta name="description" content="C++ Flood::MultilayerPerceptron"/>
+  <meta name="keywords" content="C++ Flood::MultilayerPerceptron Flood MultilayerPerceptron Multilayer Multi layer Multi-layer Perceptron code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppFloodMultilayerPerceptron.htm">Flood::MultilayerPerceptron</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppFloodMultilayerPerceptron.htm">Flood::MultilayerPerceptron</a> is a <a href="CppFlood.htm">Flood</a> <a href="CppDataType.htm">data type</a> for a multilayer perceptron.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppFloodMultilayerPerceptron.htm">Flood::MultilayerPerceptron</a> bug</h2>
+<p>&nbsp;</p>
+<p>Note: this bug is known to the author of <a href="CppFlood.htm">Flood</a> and he kindly delivered the following patch: <a href="CppFloodMultilayerPerceptron.patch">download the patch of this bug</a>.</p>
+<p>&nbsp;</p>
+<p>Some simple getters seem to give errors. The error depends on the index of the hidden layer where I request the weights from. See the code below.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppFloodBug1.zip">Download the Qt Creator project 'CppFloodBug1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: <a href="CppGui.htm">GUI</a> application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li> -->
+  <li><a href="CppFlood.htm">Flood</a>: version 3</li>
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+<!--  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li> -->
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-08-15T20:28:01<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core<br/>
+QT       -= gui<br/>
+TARGET = CppFloodBug1<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+SOURCES += ../../Flood/MultilayerPerceptron/MultilayerPerceptron.cpp<br/>
+SOURCES += ../../Flood/Perceptron/Perceptron.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppDefine.htm">#define</a> _DEBUG<br/>
+<a href="CppInclude.htm">#include</a> "../../Flood/MultilayerPerceptron/MultilayerPerceptron.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFloodMultilayerPerceptron.htm">Flood::MultilayerPerceptron</a> t(3,3,3);<br/>
+&nbsp;&nbsp;t.get_hidden_layer_synaptic_weights(1);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output depends. Sometimes the program gives an access violation. Sometimes I get:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Flood Error: Matrix Template.<br/>
+Constructor Matrix(int, int).<br/>
+Number of rows must be greater than zero.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

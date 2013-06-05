@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ConvertVector</title>
+  <meta name="description" content="C++ ConvertVector"/>
+  <meta name="keywords" content="C++ ConvertVector convert converts vector std::vector code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppConvertVector.htm">ConvertVector</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppConvert.htm">Convert</a> <a href="CppCodeSnippets.htm">code snippet</a> to <a href="CppConvert.htm">convert</a> <a href="CppVector.htm">std::vector</a>&lt;X&gt; to <a href="CppVector.htm">std::vector</a>&lt;Y&gt; using <a href="CppLexical_cast.htm">boost::lexical_cast</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;boost/lexical_cast.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppConvertVector.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Source, <b><a href="CppClass.htm">class</a></b> Target&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Target&gt; <a href="CppConvertVector.htm">ConvertVector</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Source&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">size_t</a> sz = v.size();<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Target&gt; v_new(sz);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppSize_t.htm">size_t</a> i=0; i!=sz; ++i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v_new[i] = <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;Target&gt;(v[i]);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v_new;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Versions that do not work</h2>
+<p>&nbsp;</p>
+<p>At the moment, I do not have time to get the better pieces of code to compile. Feel free to contact me if you can.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#include &lt;algorithm&gt;<br/>
+#include &lt;vector&gt;<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+<br/>
+//From http://www.richelbilderbeek.nl/CppConvertVector.htm<br/>
+template &lt;class Source, class Target&gt;<br/>
+const std::vector&lt;Target&gt; ConvertVector(<br/>
+&nbsp;&nbsp;const std::vector&lt;Source&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;std::transform(v.begin(),v.end(),std::back_inserter(v_new),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::ptr_fun&lt;Source,Target&gt;(boost::lexical_cast&lt;Target&gt;()));<br/>
+&nbsp;&nbsp;return v_new;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#include &lt;algorithm&gt;<br/>
+#include &lt;vector&gt;<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+<br/>
+//From http://www.richelbilderbeek.nl/CppConvertVector.htm<br/>
+template &lt;class Source, class Target&gt;<br/>
+const std::vector&lt;Target&gt; ConvertVector(<br/>
+&nbsp;&nbsp;const std::vector&lt;Source&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;std::vector&lt;Target&gt; v_new(v.size());<br/>
+&nbsp;&nbsp;const std::vector&lt;Source&gt;::const_iterator source_end = v.end();<br/>
+&nbsp;&nbsp;std::vector&lt;Source&gt;::const_iterator source_in = v.begin();<br/>
+&nbsp;&nbsp;std::vector&lt;Target&gt;::const_iterator target_out = v_new.begin();<br/>
+&nbsp;&nbsp;for( ; source_in!=source_end; ++source_in, ++target_out)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;*target_out = boost::lexical_cast&lt;Target&gt;(*source_in);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;return v_new;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

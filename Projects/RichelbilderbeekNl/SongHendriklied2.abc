@@ -1,0 +1,32 @@
+X:1
+T:Hendriklied 2
+C:Richel Bilderbeek
+L:1/4
+Q:1/4=160
+M:4/4
+K:E
+V:V1 clef=treble
+V:V2 clef=bass
+%
+% A: A,, A, A, A,,
+% C
+% E  : G# B E 
+% G
+%
+%[V:V1] z2 A   c/2  e/2 | [Ace]2 A   c/2 e/2  | [GBe]2 G   B/2   e/2  |
+%w:        Hen-drik de  | Cock,  dat was een  | man,   die smorg-gens |
+%[V:V2] z4              | A,, A, A, A,,       | E,  E  E  E,          |
+%                      | A                   | E                     |
+[V:V1] [Ace]  c [GBe] B      | [Ace]  c   z2 |
+w:     Vroeg  om kwart over  | ze-    ven    |
+[V:V2] A,, A, E, E           | A,, A, A, A,, |
+%      A      E              | A             |
+%
+%
+%
+[V:V1] z2 [FBe] B/2     e/2 | [GBe] G    B   E   | e2     B2     |
+w:     op-    stond om  | Bij-  bel- les te  | ge-    ven    |
+[V:V2] z2 B,, B,     | E,,   E,   E,  E,, | E,, E, E, E,, | 
+%      B                | E                  |               |
+
+

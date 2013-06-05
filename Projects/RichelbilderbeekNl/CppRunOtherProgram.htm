@@ -1,0 +1,159 @@
+ 
+<title>RunOtherProgram</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek Run execute other pogram and read use output</o:Keywords>
+  <o:LastAuthor>Richel</o:LastAuthor>
+  <o:Revision>7</o:Revision>
+  <o:TotalTime>115</o:TotalTime>
+  <o:Created>2007-07-27T16:02:00Z</o:Created>
+  <o:LastSaved>2007-07-30T10:29:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>195</o:Words>
+  <o:Characters>1114</o:Characters>
+  <o:Lines>9</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1368</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p>Back
+to <a href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>Back
+to <a href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>RunOtherProgram</h1>
+
+<p>&nbsp;</p>
+
+<p>If you
+want your program to run another program and use that program's output. The
+code below executes the MS-DOS command 'dir' (similar to Linux 'ls') and puts
+the output of this command in a std::vector. Then it displays the output on
+screen.</p>
+
+<p>&nbsp;</p>
+
+<p>Assumes
+you have already declared the <a href="CppFileExists.htm">FileExists</a> and <a
+href="CppFileToVector.htm">FileToVector</a> functions.</p>
+
+<p>&nbsp;</p>
+
+<p>Code
+in plain text can be found <a href="CppRunOtherProgram.txt">here</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include &lt;cstdlib&gt;</p>
+
+<p>#include &lt;vector&gt;</p>
+
+<p>#include &lt;fstream&gt;</p>
+
+<p>#include &lt;string&gt;</p>
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>#include &lt;iostream&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><b> int </b>  main()</p>
+
+<p>{</p>
+
+<p> 
+ //From http://www.richelbilderbeek.nl/CppRunOtherProgram.htm</p>
+
+<p> 
+ //Silenty executes 'dir' and writes the output to the file
+&quot;temp.txt&quot;</p>
+
+<p> 
+ std::system(&quot;dir &gt; temp.txt&quot;);</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ //Read &quot;temp.txt&quot; in a std::vector&lt;std::string&gt;</p>
+
+<p> 
+ <b>const</b> std::vector&lt;std::string&gt;
+file(FileToVector(&quot;temp.txt&quot;));</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ //Display the file</p>
+
+<p> 
+ <b>typedef</b> std::vector&lt;std::string&gt;::const_iterator Iterator;</p>
+
+<p> 
+ <b>for</b> (Iterator i = file.begin(); i!=file.end(); ++i)</p>
+
+<p> 
+ {</p>
+
+<p>   
+ std::cout &lt;&lt; *i &lt;&lt; std::endl;</p>
+
+<p> 
+ }</p>
+
+<p>&nbsp;</p>
+
+<p> 
+ //Wait for key press</p>
+
+<p> 
+ std::cin.get();</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>Back
+to <a href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>Back
+to <a href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

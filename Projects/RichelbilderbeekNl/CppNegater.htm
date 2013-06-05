@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Negater</title>
+  <meta name="description" content="C++ Negater"/>
+  <meta name="keywords" content="C++ Negater code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppNegater.htm">Negater</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppNegater.htm">negater</a> is a type of <a href="CppFunctor.htm">functor</a> 
+that allows to express the opposite of a <a href="CppPredicate.htm">predicate</a> [1].</p>
+<p>&nbsp;</p>
+<p><a href="CppNegater.htm">Negaters</a> are useful when using <a href="CppAlgorithm.htm">algorithms</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicBoost.png" alt="Boost"/> Example (using <a href="CppBoost.htm">Boost</a>.Bind)</h2>
+<p>&nbsp;</p>
+<p>The example below demonstrates how to a find a not-male (that is, a female) using the
+<a href="CppNot1.htm">std::not1</a> <a href="CppNegater.htm">negater</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Person<br/>
+{<br/>
+&nbsp;&nbsp;Person(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> is_male) : m_is_male(is_male) {}<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsMale() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_is_male; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_is_male;<br/>
+};<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> HasFemale(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Person *&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFind_if.htm">std::find_if</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNot1.htm">std::not1</a>(<a href="CppMem_fn.htm">boost::mem_fn</a>(&amp;Person::IsMale))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorNotEqual.htm">!=</a> v.end();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4. Chapter 18.4.4: 'A negater allows us to express the opposite of a predicate'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

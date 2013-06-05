@@ -1,0 +1,452 @@
+ 
+<title>VCL Graphics</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>VCL Graphics</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ VCL Code Graphics Richel Bilderbeek graphic graphics C++ Builder Turbo C++ Borland Developer Studio VCL CLX</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>18</o:Revision>
+  <o:TotalTime>527</o:TotalTime>
+  <o:Created>2009-04-28T08:29:00Z</o:Created>
+  <o:LastSaved>2010-02-05T17:21:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>832</o:Words>
+  <o:Characters>4745</o:Characters>
+  <o:Category>C++ VCL Code Graphics Richel Bilderbeek</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>39</o:Lines>
+  <o:Paragraphs>9</o:Paragraphs>
+  <o:CharactersWithSpaces>5827</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+h2
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Courier New";
+	mso-ansi-language:NL;
+	mso-bidi-font-style:italic;}
+ 
+ 
+ 
+ 
+a:link, span.MsoHyperlink
+	{mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+ 
+ 
+p.Richel2, li.Richel2, div.Richel2
+	{mso-style-name:Richel2;
+	mso-style-update:auto;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:16.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Rockwell Extra Bold";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+
+	mso-ansi-language:NL;}
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:794446827;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1391387748 -551378706 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.5in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1><a name="_Toc194730639"> (</a><a
+href="Cpp.htm"><span style='mso-bookmark:_Toc194730639'> C++  <span
+style='mso-bookmark:_Toc194730639'></a><span style='mso-bookmark:_Toc194730639'>    <a href="CppVcl.htm"><span style='mso-bookmark:_Toc194730639'> VCL  <span style='mso-bookmark:_Toc194730639'></a><span
+style='mso-bookmark:_Toc194730639'> )    <a
+href="CppVclGraphics.htm">Graphics</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a href="CppVclCodeSnippets.htm"> VCL code snippets</a> for
+working with graphics using the <a href="CppStl.htm">STL</a> and <a
+href="CppVcl.htm">VCL</a> library.</p>
+
+<p>&nbsp;</p>
+
+<p>For <a href="CppStl.htm">STL</a> and <a
+href="CppBoost.htm">Boost</a> graphics code snippets, <a href="CppGraphics.htm">go
+to the STL and Boost graphics code snippet page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>For conversions between <a href="CppVcl.htm">VCL</a>
+<a href="CppDataType.htm">data types</a> and <a href="CppStl.htm">STL</a>/<a
+href="CppBoost.htm">Boost</a> <a href="CppDataType.htm">data types</a>, see the
+<a href="CppVcl.htm"><span style='mso-bidi-font-family:"Courier New";
+color:windowtext;text-decoration:none;text-underline:none'><span
+style='mso-field-code:"HYPERLINK \0022CppVclConvert\.htm\0022"'><u><span
+style='color:blue'>VCL convert code snippets </u></a>.</p>
+
+<p>&nbsp;</p>
+
+<p>  0. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAddColoredNoise.htm">Add colored noise, AddColoredNoise</a></p>
+
+<p>  1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAddColoredNoise.htm">AddColoredNoise, add colored noise</a></p>
+
+<p>  2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppAsciiArt.htm">ASCII art, see the ASCII art page</a></p>
+
+<p>  3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppBleach.htm">Bleach</a></p>
+
+<p>  4. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetAverageGreyness.htm">Calculate the average greyness of a TImage,
+GetAverageGreyness</a></p>
+
+<p>  5. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppColorToRgb.htm">ColorToRgb, convert TColor to RGB values</a></p>
+
+<p>  6. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppConvertToGrey.htm">Convert a color VCL TImage to a grey TImage,
+ConvertToGrey</a></p>
+
+<p>  7. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRgbToColor.htm">Convert RGB values to TColor</a></p>
+
+<p>  8. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppColorToRgb.htm">Convert TColor to RGB values</a></p>
+
+<p>  9. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppConvertToGrey.htm">ConvertToGrey, convert a color VCL TImage to a grey
+TImage</a></p>
+
+<p>  10. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppTFormCustomShape.htm">Custom TForm shape</a></p>
+
+<p>  11. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDarken.htm">Darken</a></p>
+
+<p>  12. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDoHistogramEqualization.htm">DoHistogramEqualization, perform a
+histogram equalization</a></p>
+
+<p>  13. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDoubleBuffering.htm">Double buffering</a></p>
+
+<p>  14. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawGlobe.htm">Draw a globe</a></p>
+
+<p>  15. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawGlobeMinus.htm">Draw a globe with a minus on it</a></p>
+
+<p>  16. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawGlobePlus.htm">Draw a globe with a plus on it</a></p>
+
+<p>  17. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawLymphocyte.htm">Draw a lymphocyte</a></p>
+
+<p>  18. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawTextCentered.htm">Draw text centered on image</a></p>
+
+<p>  19. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawGlobe.htm">DrawGlobe, draw a globe</a></p>
+
+<p>  20. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawGlobeMinus.htm">DrawGlobeMinus, draw a globe with a minus on it</a></p>
+
+<p>  21. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawGlobePlus.htm">DrawGlobePlus, draw a globe with a plus on it</a></p>
+
+<p>  22. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawLymphocyte.htm">DrawLymphocyte, draw a lymphocyte</a></p>
+
+<p>  23. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDrawTextCentered.htm">DrawTextCentered, draw text centered on image</a></p>
+
+<p>  24. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppEnhanceContrast.htm">Enhance the contrast of a grey image,
+EnhanceContrast</a></p>
+
+<p>  25. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppEnhanceContrast.htm">EnhanceContrast, enhances the contrast of a grey
+image</a></p>
+
+<p>  26. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRemoveColor.htm">Erase a color</a></p>
+
+<p>  27. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetFontHeight.htm">Get a Font's height</a></p>
+
+<p>  28. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetImageHistogram.htm">Get a histogram of color values of an image,
+GetImageHistogram</a></p>
+
+<p>  29. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetPixel.htm">Get a pixel's color</a></p>
+
+<p>  30. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetGreyness.htm">Get a pixel's greyness</a></p>
+
+<p>  31. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRainbow.htm">Get a rainbow-like color gradient</a></p>
+
+<p>  32. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppTFormInTForm.htm">Get a TForm in a TForm</a></p>
+
+<p>  33. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRgbGradient.htm">Get an RGB gradient</a></p>
+
+<p>  34. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetGreyness.htm">Get some pixels' greynesses</a></p>
+
+<p>  35. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetAverageGreyness.htm">GetAverageGreyness, calculates the average
+greyness of a TImage</a></p>
+
+<p>  36. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetFontHeight.htm">GetFontHeight, get a Font's height</a></p>
+
+<p>  37. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetGreyness.htm">GetGreyness, get a pixel's greyness</a></p>
+
+<p>  38. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetGreyness.htm">GetGreyness, get some pixels' greynesses</a></p>
+
+<p>  39. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetImageHistogram.htm">GetImageHistogram, get a histogram of an
+image's grey intensities</a></p>
+
+<p>  40. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetImageHistogram.htm">GetImageHistogram, get a histogram of color
+values of an image</a></p>
+
+<p>  41. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetPixel.htm">GetPixel, get a pixel's color</a></p>
+
+<p>  42. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppDoHistogramEqualization.htm">Histogram equalization,
+DoHistogramEqualization</a></p>
+
+<p>  43. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetImageHistogram.htm">Histogram of an image's grey intensities,
+GetImageHistogram</a></p>
+
+<p>  44. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppMakeScreenshot.htm">Make a screenshot and store it as a bitmap,
+MakeScreenshot</a></p>
+
+<p>  45. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppMakeScreenshot.htm">MakeScreenshot, make a screenshot and store it as
+a bitmap</a></p>
+
+<p>  46. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppPaint.htm">Paint TImage fast</a></p>
+
+<p>  47. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppPaint.htm">Paint, paint TImage fast</a></p>
+
+<p>  48. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppPixelate.htm">Pixelate</a></p>
+
+<p>  49. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRainbow.htm">Rainbow, get a rainbow-like color gradient</a></p>
+
+<p>  50. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRemoveColor.htm">Remove a color</a></p>
+
+<p>  51. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRemoveColor.htm">RemoveColor, erase a color</a></p>
+
+<p>  52. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRemoveColor.htm">RemoveColor, remove a color</a></p>
+
+<p>  53. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRgbGradient.htm">RgbGradient, get an RGB gradient</a></p>
+
+<p>  54. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRgbToColor.htm">RgbToColor, convert RGB values to TColor</a></p>
+
+<p>  55. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRotate.htm">Rotate an image</a></p>
+
+<p>  56. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRotate.htm">Rotate, rotate an image</a></p>
+
+<p>  57. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSetPixel.htm">Set a pixel's color</a></p>
+
+<p>  58. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSetGreyness.htm">Set a pixel's greyness</a></p>
+
+<p>  59. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSetGreyness.htm">Set some pixels' greynesses</a></p>
+
+<p>  60. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSetGreyness.htm">SetGreyness, set a pixel's greyness</a></p>
+
+<p>  61. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSetGreyness.htm">SetGreyness, set some pixels' greynesses</a></p>
+
+<p>  62. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSetPixel.htm">SetPixel, set a pixel's color</a></p>
+
+<p>  63. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSurfacePlotterTImage.htm">SurfacePlot for TImage</a></p>
+
+<p>  64. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppSurfacePlotterTImage.htm">SurfacePlotterTImage, surfacePlot for TImage</a></p>
+
+<p>  65. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppTFormCustomShape.htm">TForm, custom shape</a></p>
+
+<p>  66. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppTFormInTForm.htm">TForm, get a TForm in a TForm</a></p>
+
+<p>  67. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppThresholdFilter.htm">Threshold Filter</a></p>
+
+<p>  68. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppTImage.htm">TImage, see the TImage page</a></p>
+
+<p>  69. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppTFormCustomShape.htm">Use a custom TForm shape</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+</div>
+
+</body>
+
+</html>

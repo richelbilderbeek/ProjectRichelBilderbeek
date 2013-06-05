@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::copy</title>
+  <meta name="description" content="C++ std::copy"/>
+  <meta name="keywords" content="C++ std::copy copy"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCopy.htm">std::copy</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppStl.htm">STL</a> <a href="CppAlgorithm.htm">algorithm</a> to copy <a href="CppContainer.htm">container</a> elements.</p>
+<p>&nbsp;</p>
+<p><a href="CppCopy.htm">std::copy</a> assumes that the memory data is copied to is valid. For example, 
+if you copy a <a href="CppVector.htm">std::vector</a> of size 10 to another <a href="CppVector.htm">std::vector</a>, 
+the latter must have a size of 10 at least. But if the size is unknown, use an <a href="CppInserter.htm">inserter</a> 
+like <a href="CppBack_inserter.htm">std::back_inserter</a>.</p>
+<p>&nbsp;</p>
+<p>Related algorithms are:</p>
+<ul>
+  <li><a href="CppCopy_backward.htm">std::copy_backward</a>: copy values to the back of a <a href="CppContainer.htm">container</a></li>
+  <li><a href="CppCopy_if.htm">std::copy_if</a>: for performing a conditional copy</li>
+  <li><a href="CppTransform.htm">std::transform</a>: for copy and modify</li>
+</ul>
+<p>&nbsp;</p>
+<p>Prefer <a href="CppAlgorithm.htm">algorithm</a> calls over hand-written loops [1][2].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example without using an <a href="CppInserter.htm">inserter</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size = 10;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate a <a href="CppMap.htm">std::map</a><br/>
+&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; myMap;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i) myMap[i] = i*i;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate a <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; myVector;<br/>
+&nbsp;&nbsp;myVector.resize(size);<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy the <a href="CppMap.htm">std::map</a> to the <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(myMap.begin(),myMap.end(),myVector.begin());<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(myVector.size()<a href="CppOperatorEqual.htm">==</a>size);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myVector[i].first<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myVector[i].second<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example with using an <a href="CppInserter.htm">inserter</a></h2>
+<p>&nbsp;</p>
+<p>Copies a <a href="CppMap.htm">std::map</a> to a <a href="CppVector.htm">std::vector</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size = 10;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate a <a href="CppMap.htm">std::map</a><br/>
+&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; myMap;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i) myMap[i] = i*i;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate a <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; myVector;<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy the <a href="CppMap.htm">std::map</a> to the <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(myMap.begin(),myMap.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(myVector));<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myVector[i].first<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myVector[i].second<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example: <a href="CppAppend.htm">Append</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a><br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAppend.htm">Append</a>(Container&amp; toWhat, <b><a href="CppConst.htm">const</a></b> Container&amp; whatToAppend)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(whatToAppend.begin(),whatToAppend.end(),<a href="CppBack_inserter.htm">std::back_inserter</a> (toWhat));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example: <a href="CppCoutVector.htm">CoutVector</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppOstreamH.htm">ostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppCoutVector.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppCoutVector.htm">CoutVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;T&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example: <a href="CppCoutContainer.htm">CoutContainer</a></h2>
+<p>&nbsp;</p>
+<!-- start of code of CoutContainer -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppOstreamH.htm">ostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCoutContainer.htm">CoutContainer</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Container&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppCoutContainer.htm">CoutContainer</a>(<b><a href="CppConst.htm">const</a></b> Container&amp; c)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(c.begin(),c.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppTypename.htm">typename</a></b> Container::value_type&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code of CoutContainer-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.sgi.com/tech/stl/copy.html">SGI's page about std::copy</a></li>
+  <li><a href="http://www.cplusplus.com/reference/algorithm/copy">Cplusplus.com page about std::copy</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4. Chapter 18.12.1: 'Prefer algorithms to loops.</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective STL. ISBN: 0-201-74962-9. Item 43: 'Prefer algorithm calls over hand-written loops'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+

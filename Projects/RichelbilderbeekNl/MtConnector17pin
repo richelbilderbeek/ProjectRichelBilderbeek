@@ -1,0 +1,34 @@
+#17 pin connector
+#From http://www.richelbilderbeek.nl/MtConnector16pin
+#Wieland 8213S/253524753W
+#
+#Dimensions: w x h = 87.8 mm x 12.0 mm = 345669 mils x 47244 mils
+#X-coordinat first pin from side: 3.1 mm
+#X-coordinat last pin from side: 84.7 mm
+#Y-coordinat pins from top: 9 mm
+#Heart-heart distance extreme pins: 81.6 mm
+#Number of pins: 17
+Element["" "" "" "" 345669 47244 0 0 0 100 ""]
+(
+	Pin[12205 35433 9402 1200 10002 8181 "" "1" "edge2"]
+	Pin[32283 35433 9402 1200 10002 8181 "" "2" "edge2"]
+	Pin[52362 35433 9402 1200 10002 8181 "" "3" "edge2"]
+	Pin[72441 35433 9402 1200 10002 8181 "" "4" "edge2"]
+	Pin[92520 35433 9402 1200 10002 8181 "" "5" "edge2"]
+	Pin[112598 35433 9402 1200 10002 8181 "" "6" "edge2"]
+	Pin[132677 35433 9402 1200 10002 8181 "" "7" "edge2"]
+	Pin[152756 35433 9402 1200 10002 8181 "" "8" "edge2"]
+	Pin[172835 35433 9402 1200 10002 8181 "" "9" "edge2"]
+	Pin[192913 35433 9402 1200 10002 8181 "" "10" "edge2"]
+	Pin[212992 35433 9402 1200 10002 8181 "" "11" "edge2"]
+	Pin[233071 35433 9402 1200 10002 8181 "" "12" "edge2"]
+	Pin[253150 35433 9402 1200 10002 8181 "" "13" "edge2"]
+	Pin[273228 35433 9402 1200 10002 8181 "" "14" "edge2"]
+	Pin[293307 35433 9402 1200 10002 8181 "" "15" "edge2"]
+	Pin[313386 35433 9402 1200 10002 8181 "" "16" "edge2"]
+	Pin[333465 35433 9402 1200 10002 8181 "" "17" "edge2"]
+	ElementLine [0 0 345669 0 600]
+	ElementLine [345669 0 345669 47244 600]
+	ElementLine [345669 47244 0 47244 600]
+	ElementLine [0 47244 0 0 600]
+	)

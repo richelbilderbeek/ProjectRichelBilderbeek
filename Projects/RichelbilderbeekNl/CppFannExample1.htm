@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>FANN example 1: basics</title>
+  <meta name="description" content="C++ FANN example 1: basics"/>
+  <meta name="keywords" content="C++ FANN example 1: basics"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppFannExample1.htm">FANN example 1: basics</a></h1>
+<p>&nbsp;</p>
+<p>This example demonstrates a basic <a href="CppFann.htm">FANN</a> program.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppFannExample1.zip">Download the Qt Creator project 'CppFannExample1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: <a href="CppGui.htm">GUI</a> application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li> -->
+  <li><a href="CppFann.htm">FANN</a>: version 1.2.0-1</li>
+<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-08-12T16:17:45<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core<br/>
+QT       -= gui<br/>
+LIBS += -L/usr/local/lib -lfann<br/>
+TARGET = CppFannExample1<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;floatfann.h&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create layer sizes { 2,2,1 }<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>&gt; layer_sizes(2,2);<br/>
+&nbsp;&nbsp;layer_sizes.push_back(1); <a href="CppComment.htm">//</a>One output neuron<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the neural network from it<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> learning_rate <a href="CppOperatorAssign.htm">=</a> 0.05;<br/>
+&nbsp;&nbsp;fann * <b><a href="CppConst.htm">const</a></b> n <a href="CppOperatorAssign.htm">=</a> fann_create_shortcut_array(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;learning_rate,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;layer_sizes.size(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;layer_sizes[0]);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the inputs<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;fann_type&gt; inputs(2);<br/>
+&nbsp;&nbsp;inputs[0] <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;inputs[1] <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Calculate the neural net output<br/>
+&nbsp;&nbsp;fann_type * <b><a href="CppConst.htm">const</a></b> outputs <a href="CppOperatorAssign.htm">=</a> fann_run(n, &amp;inputs[0]);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>'The' output is just the one output neuron added at top<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output <a href="CppOperatorAssign.htm">=</a> outputs[0];<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Output: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> output <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Destroy the network<br/>
+&nbsp;&nbsp;fann_destroy(ann);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+

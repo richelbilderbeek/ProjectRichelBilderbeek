@@ -1,0 +1,181 @@
+ 
+<title>GetSum (on matrix)</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ GetSum</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek GetSum get sum of matrix 2D 2-d std::vector vector</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>421</o:TotalTime>
+  <o:Created>2010-02-19T11:29:00Z</o:Created>
+  <o:LastSaved>2010-02-19T11:43:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>228</o:Words>
+  <o:Characters>1305</o:Characters>
+  <o:Category>C++ Richel Bilderbeek GetSum</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>10</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1602</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppGetSumMatrix.htm">GetSum (on matrix)</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a href="CppMatrix.htm">Matrix</a> <a
+href="CppCodeSnippets.htm">code snippet</a> to sum all values in a two-dimensional
+<a href="CppMatrix.htm">matrix</a>. To sum all values in a one-dimensional <a
+href="CppContainer.htm">container</a>, <a href="CppGetSum.htm">go to the GetSum
+(on container) page</a>.</p>
+
+<p>&nbsp;</p>
+
+   * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppGetSumMatrix.htm"> View
+'GetSum' (on matrix) in plain text</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From <a
+href="http://www.richelbilderbeek.nl/CppGetSum.htm">http://www.richelbilderbeek.nl/CppGetSum.htm</a></p>
+
+<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;<b><a href="CppClass.htm">class</a></b> T&gt;</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  T::value_type <a href="CppGetSum.htm">GetSum</a>(<b><a
+href="CppConst.htm">const</a></b> T&amp; v)</p>
+
+<p>{</p>
+
+<p>   <b><a href="CppReturn.htm">return</a></b>
+<a href="CppAccumulate.htm">std::accumulate</a>(v.begin(), v.end(), <b><a
+href="CppStatic_cast.htm">static_cast</a></b>&lt;T::value_type&gt;(0.0));</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+<p><a href="CppComment.htm">//</a>From
+http://www.richelbilderbeek.nl/CppGetSumMatrix.htm</p>
+
+<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;<b><a href="CppClass.htm">class</a></b> T&gt;</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  T <a href="CppGetSumMatrix.htm">GetSum</a>(<b><a href="CppConst.htm">const</a></b>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt;
+&gt;&amp; v)</p>
+
+<p>{</p>
+
+<p>   T sum = <b><a
+href="CppStatic_cast.htm">static_cast</a></b>&lt;T&gt;(0.0);</p>
+
+<p>   typedef <a href="CppVector.htm">std::vector</a>&lt;<a
+href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;::<a
+href="CppConst_iterator.htm">const_iterator</a> Iterator;</p>
+
+<p>   <b><a href="CppConst.htm">const</a></b>
+Iterator j = v.end();</p>
+
+<p>   <b><a href="CppFor.htm">for</a></b>
+(Iterator i = v.begin(); i!=j; ++i)</p>
+
+<p>   {</p>
+
+<p>     sum+=GetSum(*i);</p>
+
+<p>   }</p>
+
+<p>   <b><a href="CppReturn.htm">return</a></b>
+sum;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><a href="CppReferences.htm"> <span style='mso-bookmark:_Toc249866380'><span
+style='mso-bookmark:_Toc249939873'>  References     <span
+style='mso-bookmark:_Toc194762542'> <span style='mso-bookmark:_Toc249939873'> <span
+style='mso-bookmark:_Toc249866380'> <span style='mso-bookmark:_Toc198191050'></a><![if !supportNestedAnchors]><a
+name="_Toc249939873"></a><a name="_Toc249866380"></a><a name="_Toc198191050"></a> </h2>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in;mso-list:l1 level1 lfo6;
+tab-stops:list .5in'>  [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ...  </p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>make error: FAILED mifconvwrapper  for arm.v5.udeb.gcce4_4_1: BITMAP</title>
+  <meta name="description" content="C++ make error: FAILED mifconvwrapper  for arm.v5.udeb.gcce4_4_1: BITMAP"/>
+  <meta name="keywords" content="C++ make error: FAILED mifconvwrapper  for arm.v5.udeb.gcce4_4_1: BITMAP code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppMakeErrorRecipeMifconvwrapperFailedWithExitCode1.htm">make error: FAILED mifconvwrapper  for arm.v5.udeb.gcce4_4_1: BITMAP</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppMakeError.htm">Make error</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppMakeErrorRecipeMifconvwrapperFailedWithExitCode1.zip">Download the Qt Creator project 'CppMakeErrorRecipeMifconvwrapperFailedWithExitCode1' with this error</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full error message</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Running build steps for project CppQtCreatorSymbian3NokiaN8Logging...<br/>
+Configuration unchanged, skipping qmake step.<br/>
+Starting: "C:\QtSDK\Symbian\SDKs\Symbian3Qt472\epoc32\tools\make.exe" debug-gcce -w<br/>
+C:\QtSDK\Symbian\SDKs\Symbian3Qt472\epoc32\tools\make.exe: Entering directory `C:/QtSDK/Projects/Website/CppQtCreatorSymbian3NokiaN8Logging'<br/>
+sbs -c arm.v5.udeb.gcce4_4_1<br/>
+&nbsp;&nbsp; error: 'C:/QtSDK/Symbian/SDKs/Symbian3Qt472/epoc32/tools/svgtbinencode.exe -v 3 C:/QtSDK/Symbian/SDKs/Symbian3Qt472/epoc32/build/cppqtcreatorsymbian3nokian8logging/c_bbb7c71f463b309f/CppQtCreatorSymbian3NokiaN8Logging.svg' failed<br/>
+&nbsp;&nbsp; <br/>
+<br/>
+sbs : warnings: 0<br/>
+sbs : errors: 1<br/>
+<br/>
+built 'arm.v5.udeb.gcce4_4_1'<br/>
+<br/>
+Run time 17 seconds<br/>
+<br/>
+sbs: build log in C:\QtSDK\Symbian\SDKs\Symbian3Qt472\epoc32\build\Makefile.2011-03-23-10-48-26.27-3748.log<br/>
+<br/>
+ FAILED mifconvwrapper&nbsp;&nbsp;for arm.v5.udeb.gcce4_4_1: BITMAP<br/>
+C:\QtSDK\Symbian\SDKs\Symbian3Qt472\epoc32\tools\make.exe: Leaving directory `C:/QtSDK/Projects/Website/CppQtCreatorSymbian3NokiaN8Logging'<br/>
+C:\QtSDK\Symbian\SDKs\Symbian3Qt472\epoc32\tools\make.exe: *** [debug-gcce] Error 1<br/>
+The process "C:\QtSDK\Symbian\SDKs\Symbian3Qt472\epoc32\tools\make.exe" exited with code 2.<br/>
+Error while building project CppQtCreatorSymbian3NokiaN8Logging (target: Symbian Device)<br/>
+When executing build step 'Make'<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>History</h2>
+<p>&nbsp;</p>
+<p>I created a default-created Mobile application on a native Windows XP computer for deployment on a Nokia N8 
+smartphone. Keeping all settings to their default, this error occurs.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>Unknown. After reading [1] and [2] I tried to turn JIT off, but it was already off...</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicMobile.png" alt="Mobile"/> <a href="CppMobileApplication.htm">Mobile application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicSymbian.png" alt="Symbian"/> <a href="CppSymbian.htm">Symbian</a>: deploying, Nokia N8</li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP: compiling</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQtCreatorSymbian3NokiaN8Logging.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+# Add files and directories to ship with the application <br/>
+# by adapting the examples below.<br/>
+# file1.source = myfile<br/>
+# dir1.source = mydir<br/>
+DEPLOYMENTFOLDERS = # file1 dir1<br/>
+<br/>
+symbian:TARGET.UID3 = 0xEDA1D0B3<br/>
+<br/>
+# Allow network access on Symbian<br/>
+symbian:TARGET.CAPABILITY += NetworkServices<br/>
+<br/>
+# If your application uses the Qt Mobility libraries, uncomment<br/>
+# the following lines and add the respective components to the <br/>
+# MOBILITY variable. <br/>
+# CONFIG += mobility<br/>
+# MOBILITY +=<br/>
+<br/>
+SOURCES += main.cpp mainwindow.cpp<br/>
+HEADERS += mainwindow.h<br/>
+FORMS += mainwindow.ui<br/>
+<br/>
+# Please do not modify the following two lines. Required for deployment.<br/>
+include(deployment.pri)<br/>
+qtcAddDeployment()<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "mainwindow.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> app(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MainWindow <a href="CppMain.htm">main</a>Window;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>Window.setOrientation(MainWindow::ScreenOrientationAuto);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>Window.showExpanded();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> app.exec();<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>mainwindow.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> checksum 0xa193 version 0x30001<br/>
+<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;This file was generated by the Mobile <a href="CppQt.htm">Qt</a> <a href="CppApplication.htm">Application</a> wizard of <a href="CppQtCreator.htm">Qt Creator</a>.<br/>
+&nbsp;&nbsp;MainWindow is a convenience <b><a href="CppClass.htm">class</a></b> containing mobile device specific code<br/>
+&nbsp;&nbsp;such as screen orientation handling.<br/>
+&nbsp;&nbsp;It is recommended not to modify <b><a href="CppThis.htm">this</a></b> file, since newer versions of <a href="CppQtCreator.htm">Qt Creator</a><br/>
+&nbsp;&nbsp;may offer an updated version of it.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "mainwindow.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_mainwindow.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Core/<a href="CppQCoreApplication.htm">QCoreApplication</a>&gt;<br/>
+<br/>
+MainWindow::MainWindow(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQMainWindow.htm">QMainWindow</a>(parent), ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::MainWindow)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+}<br/>
+<br/>
+MainWindow::~MainWindow()<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> MainWindow::setOrientation(ScreenOrientation orientation)<br/>
+{<br/>
+<a href="CppPreIf.htm">#if</a> defined(Q_OS_SYMBIAN)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> If the version of <a href="CppQt.htm">Qt</a> on the device is &lt; 4.7.2, that attribute won't work<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (orientation <a href="CppOperatorNotEqual.htm">!=</a> ScreenOrientationAuto) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a>List v <a href="CppOperatorAssign.htm">=</a> <a href="CppQString.htm">QString</a>::fromAscii(qVersion()).split(QLatin1Char('.'));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.count() <a href="CppOperatorEqual.htm">==</a> 3 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (v.at(0).toInt() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 16 | v.at(1).toInt() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 8 | v.at(2).toInt()) &lt; 0x040702) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qWarning("Screen orientation locking only supported with <a href="CppQt.htm">Qt</a> 4.7.2 and above");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> Q_OS_SYMBIAN<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::WidgetAttribute attribute;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (orientation) {<br/>
+<a href="CppPreIf.htm">#if</a> QT_VERSION &lt; 0x040702<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppQt.htm">Qt</a> &lt; 4.7.2 does not yet have the <a href="CppQt.htm">Qt</a>::WA_*Orientation attributes<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ScreenOrientationLockPortrait:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attribute <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>::WidgetAttribute&gt;(128);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ScreenOrientationLockLandscape:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attribute <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>::WidgetAttribute&gt;(129);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ScreenOrientationAuto:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attribute <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>::WidgetAttribute&gt;(130);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+<a href="CppPreElse.htm">#else</a> <a href="CppComment.htm">//</a> QT_VERSION &lt; 0x040702<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ScreenOrientationLockPortrait:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attribute <a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::WA_LockPortraitOrientation;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ScreenOrientationLockLandscape:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attribute <a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::WA_LockLandscapeOrientation;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ScreenOrientationAuto:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attribute <a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::WA_AutoOrientation;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QT_VERSION &lt; 0x040702<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setAttribute(attribute, <b><a href="CppTrue.htm">true</a></b>);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> MainWindow::showExpanded()<br/>
+{<br/>
+<a href="CppIfdef.htm">#ifdef</a> Q_OS_SYMBIAN<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;showFullScreen();<br/>
+#elif defined(Q_WS_MAEMO_5) <a href="CppOperatorLogicalOr.htm">||</a> defined(Q_WS_MAEMO_6)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;showMaximized();<br/>
+<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;show();<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>mainwindow.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> checksum 0x9a77 version 0x30001<br/>
+<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;This file was generated by the Mobile <a href="CppQt.htm">Qt</a> <a href="CppApplication.htm">Application</a> wizard of <a href="CppQtCreator.htm">Qt Creator</a>.<br/>
+&nbsp;&nbsp;MainWindow is a convenience <b><a href="CppClass.htm">class</a></b> containing mobile device specific code<br/>
+&nbsp;&nbsp;such as screen orientation handling.<br/>
+&nbsp;&nbsp;It is recommended not to modify <b><a href="CppThis.htm">this</a></b> file, since newer versions of <a href="CppQtCreator.htm">Qt Creator</a><br/>
+&nbsp;&nbsp;may offer an updated version of it.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> MAINWINDOW_H<br/>
+<a href="CppDefine.htm">#define</a> MAINWINDOW_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQMainWindow.htm">QMainWindow</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> MainWindow;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> MainWindow : <b><a href="CppPublic.htm">public</a></b> <a href="CppQMainWindow.htm">QMainWindow</a><br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> ScreenOrientation {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScreenOrientationLockPortrait,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScreenOrientationLockLandscape,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScreenOrientationAuto<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> MainWindow(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~MainWindow();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setOrientation(ScreenOrientation orientation);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> showExpanded();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::MainWindow *ui;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MAINWINDOW_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li>From <a href="http://discussion.forum.nokia.com/forum/showthread.php?218377-SBSv2-mifconv-problem-in-Symbian-3-sdk">forum.nokia.com thread SBSv2 mifconv problem in Symbian^3 sdk - 2011-01-29 19:06</a>,
+    post from <a href="http://discussion.forum.nokia.com/forum/member.php?135857-wizard_hu_">wizard_hu_</a>:<br/>&nbsp;<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    Aha, the good old svgtbinencode, http://wiki.forum.nokia.com/index.ph...dition_FP1_SDK, apparently still valid.<br/>
+    You can try checking if Just In Time debugging is enabled, and disabling it. The setting is in the emulator (Tools/Preferences - in the menu bar on the top). Rationale: many of the command line tools in the SDK are actual Symbian executables (they are using the libraries from epoc32\release\winc\urel, winc is the Windows command-line target), and they are using the same settings as the emulator.<br/>
+    Compression is a good thing, especially since you have ~80 .svg files, so the /X switch should be the last attempt I think.<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+    <br/>
+  </li>
+  <li>From <a href="http://wiki.forum.nokia.com/index.php/KIS000497_-_The_build_process_fails_at_.mif_file_creation_in_the_S60_3rd_Edition_FP1_SDK">wiki.forum.nokia.com</a>:<br/>&nbsp;<br/>
+    <!-- start of code -->
+    <table border = "1"><tr><td><code>
+    Make sure that the "just-in-time debugging" feature is disabled when the resource files are about to be built. Alternatively, if for some reason it is desired to keep the feature enabled, it is possible to avoid calling the SVGTBINENCODE.EXE tool by using the /X option flag in the command line of MIFCONV.EXE.<br/>
+    </code></td></tr></table>
+    <!-- end of the code -->
+  </li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

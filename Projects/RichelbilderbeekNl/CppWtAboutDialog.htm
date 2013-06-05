@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>WtAboutDialog</title>
+  <meta name="description" content="C++ WtAboutDialog"/>
+  <meta name="keywords" content="C++ WtAboutDialog code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtAboutDialog.htm">WtAboutDialog</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppWtAboutDialog.htm">WtAboutDialog</a> is a <a href="CppClass.htm">class</a> for
+a <a href="CppWt.htm">Wt</a> dialog displaying the <a href="CppAbout.htm">About</a> <a href="CppClass.htm">class</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppWtAboutDialog.htm">WtAboutDialog</a> is used in nearly all my web applications.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtaboutdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppWtAboutDialog.htm">WtAboutDialog</a>, <a href="CppWt.htm">Wt</a> dialog <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppAbout.htm">About</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> WTABOUTDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> WTABOUTDIALOG_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> display_close_button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_close;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetWtVersion.htm">GetWtVersion</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_close;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClose();<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTABOUTDIALOG_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtaboutdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppWtAboutDialog.htm">WtAboutDialog</a>, <a href="CppWt.htm">Wt</a> dialog <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppAbout.htm">About</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WAnchor&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WConfig.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWTextArea.htm">WTextArea</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWtAboutDialog.htm">WtAboutDialog</a>::<a href="CppWtAboutDialog.htm">WtAboutDialog</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a>&amp; about_original,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> display_close_button)<br/>
+&nbsp;&nbsp;: m_button_close(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> about_original;<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWt.htm">Wt</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppGetWtVersion.htm">GetWtVersion</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAboutDialog.htm">WtAboutDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> Get<a href="CppVersion.htm">Version</a>());<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> min_width <a href="CppOperatorAssign.htm">=</a> 800;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the general <a href="CppAbout.htm">about</a> text<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAbout.htm">about</a>.GetFileTitle()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(", <a href="CppVersion.htm">version</a> ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppAbout.htm">about</a>.Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str(),<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("Copyright (C) ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppAbout.htm">about</a>.GetYears()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppAbout.htm">about</a>.GetAuthor();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str(),<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("Programmed at ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppAbout.htm">about</a>.GetProgrammedAt();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str(),<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("by ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppAbout.htm">about</a>.GetAuthor();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str(),<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAbout.htm">about</a>.GetFileTitle()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" can be downloaded from:");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str(),<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWAnchor.htm">Wt::WAnchor</a>(<a href="CppAbout.htm">about</a>.GetUrl(),<a href="CppAbout.htm">about</a>.GetUrl(),<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("Licenced under GPL 3.0");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str(),<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the libraries used text<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWTextArea.htm">Wt::WTextArea</a> * text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWTextArea.htm">Wt::WTextArea</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppAbout.htm">about</a>.Create<a href="CppLibrary.htm">Libraries</a>UsedText();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t,v) {&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>t; s<a href="CppOperatorPlusAssign.htm">+=</a>"\n"; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setText(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setMinimumSize(min_width,100);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setReadOnly(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(text);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWTextArea.htm">Wt::WTextArea</a> * text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWTextArea.htm">Wt::WTextArea</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppAbout.htm">about</a>.Create<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t,v) {&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>t; s<a href="CppOperatorPlusAssign.htm">+=</a>"\n"; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setText(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setMinimumSize(min_width,100);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setReadOnly(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(text);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the licence text<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWTextArea.htm">Wt::WTextArea</a> * text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWTextArea.htm">Wt::WTextArea</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppAbout.htm">about</a>.CreateLicenceText();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t,v) {&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>t; s<a href="CppOperatorPlusAssign.htm">+=</a>"\n"; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setText(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setMinimumSize(min_width,100);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setReadOnly(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(text);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("Source code built at ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(__DATE__)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(__TIME__);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str(),<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Release <a href="CppVersion.htm">version</a>",<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="CppDebug.htm">Debug</a> <a href="CppVersion.htm">version</a>",<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (display_close_button)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;add<a href="CppWidget.htm">Widget</a>(m_button_close);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_close-&gt;setText("Close");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_close-&gt;clicked().connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a>::OnClose);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.6";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtAboutDialog.htm">WtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-01-07: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-04-10: <a href="CppVersion.htm">version</a> 1.1: displays <a href="CppVersion.htm">version</a> numbers of <a href="CppWt.htm">Wt</a> and <a href="CppWtAboutDialog.htm">WtAboutDialog</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-04-15: <a href="CppVersion.htm">version</a> 1.2: made displayal of Close button optional");<br/>
+&nbsp;&nbsp;v.push_back("2011-05-24: <a href="CppVersion.htm">version</a> 1.3: made all text areas read-only");<br/>
+&nbsp;&nbsp;v.push_back("2011-05-30: <a href="CppVersion.htm">version</a> 1.4: should build date and <a href="CppTime.htm">time</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-06-26: <a href="CppVersion.htm">version</a> 1.5: added newline <b><a href="CppFor.htm">for</a></b> displaying build date and <a href="CppTime.htm">time</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-09-08: <a href="CppVersion.htm">version</a> 1.6: display of release or <a href="CppDebug.htm">debug</a> build");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppGetWtVersion.htm">GetWtVersion</a> <a href="CppReturn.htm">returns</a> the <a href="CppVersion.htm">version</a> of the currently installed <a href="CppWt.htm">Wt</a> <a href="CppLibrary.htm">library</a><br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetWtVersion.htm">GetWtVersion</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>::<a href="CppGetWtVersion.htm">GetWtVersion</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WT_VERSION_STR;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>::OnClose()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that <b><a href="CppThis.htm">this</a></b> dialog closes<br/>
+&nbsp;&nbsp;m_signal_close();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

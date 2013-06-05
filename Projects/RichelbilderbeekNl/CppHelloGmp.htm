@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Hello GMP</title>
+  <meta name="description" content="C++ Hello GMP"/>
+  <meta name="keywords" content="C++ Hello GMP code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloGmp.htm">Hello GMP</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppHelloGmp.htm">Hello GMP</a> is an extension of <a href="CppHelloWorld.htm">Hello World</a>.
+Like <a href="CppHelloWorld.htm">Hello World</a>, <a href="CppHelloGmp.htm">Hello GMP</a> is a simple console
+application. <a href="CppHelloGmp.htm">Hello GMP</a>, however, also requires the <a href="CppGmp.htm">GMP</a> 
+<a href="CppLibrary.htm">library</a> and to <a href="CppLink.htm">link</a> against it.</p>
+<p>&nbsp;</p>
+<p>Here are some detailed examples of <a href="CppHelloGmp.htm">Hello GMP</a>,
+depending on <a href="CppIde.htm">IDE</a> and operating system:</p>
+<ul>
+  <li>
+    <img src="PicGreen.png" alt="OKAY"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicUbuntu.png" alt="Ubuntu"/>
+    <a href="CppHelloGmpQtCreatorUbuntu.htm">'Hello GMP' using Qt Creator under Ubuntu</a>
+  </li>
+  <li>
+    <img src="PicRed.png" alt="FAIL"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicWindows.png" alt="Windows"/>
+    <a href="CppHelloGmpQtCreatorWindows.htm">'Hello GMP' using Qt Creator under Windows</a></li>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppHelloGmp.zip">Download the Qt Creator project 'Hello GMP' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloGmp.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= core gui<br/>
+TARGET = CppHelloGmp<br/>
+QMAKE_CXXFLAGS += <a href="CppWextra.htm">-Wextra</a> -Weffc++ <a href="CppWerror.htm">-Werror</a><br/>
+unix:LIBS+= -L/usr/lib -lgmp<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;gmpxx.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppMpz_tToStr.htm">Mpz_tToStr</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppMpz_tToStr.htm">Mpz_tToStr</a>(<b><a href="CppConst.htm">const</a></b> mpz_t&amp; i)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppChar.htm">char</a></b> buffer[256];<br/>
+&nbsp;&nbsp;mpz_get_str(buffer,10,i);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppString.htm">std::string</a>(buffer);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;mpz_t i;<br/>
+&nbsp;&nbsp;mpz_init_set_str(i,"123456789012345678901234567890",10);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Perform i <a href="CppOperatorAssign.htm">=</a> i * i<br/>
+&nbsp;&nbsp;mpz_mul(i,i,i);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello <a href="CppGmp.htm">GMP</a>,\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppMpz_tToStr.htm">Mpz_tToStr</a>(i) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppTime.htm">time</a>s.\n";<br/>
+<br/>
+&nbsp;&nbsp;mpz_clear(i);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

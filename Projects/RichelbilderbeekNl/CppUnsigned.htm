@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>unsigned</title>
+  <meta name="description" content="C++ unsigned"/>
+  <meta name="keywords" content="C++ unsigned keyword code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppUnsigned.htm">unsigned</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppUnsigned.htm">unsigned</a> is a <a href="CppKeyword.htm">keyword</a> that modifies a 
+<a href="CppDataType.htm">data type</a> to hold only positive values.</p>
+<p>&nbsp;</p>
+<p>Avoid using <a href="CppUnsigned.htm">unsigned</a> in a <a href="CppClass.htm">class</a> 
+<a href="CppInterface.htm">interface</a>; use <a href="CppInt.htm">int</a> instead [1].
+Consider avoiding <a href="CppUnsigned.htm">unsigned</a> [2] or <a href="CppUnsigned.htm">unsigned</a> arithmetic [3]
+as using an <a href="CppUnsigned.htm">unsigned</a> instead of an <a href="CppInt.htm">int</a> to gain one more 
+<a href="CppBit.htm">bit</a> to represent positive integers is almost never a good idea [4]. If you do use
+<a href="CppUnsigned.htm">unsigned</a>, always check your ranges [6] (note that [6] is in favor of 
+using <a href="CppUnsigned.htm">unsigned</a>).
+View <a href="CppSigned.htm">signed</a> to <a href="CppUnsigned.htm">unsigned</a> 
+and <a href="CppUnsigned.htm">unsigned</a> to <a href="CppSigned.htm">signed</a> <a href="CppConvert.htm">conversions</a> 
+with suspicion [5,7].</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 123; <a href="CppComment.htm">//</a>x can only contain positive <a href="CppInt.htm">integer</a>s<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!-- [1] --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 9.2.2: 'Avoid using unsigned in the interface; use int instead'</li>
+  <li><!-- [2] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 163: 'Unsigned arithmetic shall not be used.'</li>
+  <li><!-- [3] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 4.10 'Advice', item 18: 'Avoid unsigned arithmetic'</li>
+  <li><!-- [4] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 4.4 'Integer types': 'Using an unsigned instead of an int to gain one more bit to represent positive integers is almost never a good idea. Attempts to ensure that some values are positive by declaring variables unsigned will typically be defeated by implicit conversion rules'</li>
+  <li><!-- [5] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 4.10 'Advice', item 19: 'View signed to unsigned and unsigned to signed conversions with suspicion'</li>
+  <li><!-- [6] --><a href="http://www.parashift.com/c++-faq/numeric-literal-suffixes.html">C++ FAQ Lite</a>. [29.12] What's the point of the L, U and f suffixes on numeric literals?</a>: 'It's probably a good idea to use unsigned integers for variables that are always >= 0. [...] at least if you are careful to check your ranges'</li>
+  <li><!-- [7] --><a href="http://www.parashift.com/c++-faq/numeric-literal-suffixes.html">C++ FAQ Lite</a>. [29.12] What's the point of the L, U and f suffixes on numeric literals?</a>: 'If you end up using unsigned variables, it is generally a good idea to force your numeric literals to also be unsigned'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

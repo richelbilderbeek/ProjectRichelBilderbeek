@@ -1,0 +1,167 @@
+ 
+<title>Assert in a C++ Builder Console Application</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Assert</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek Assert C++ Builder Console Application</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>126</o:TotalTime>
+  <o:Created>2008-05-10T10:27:00Z</o:Created>
+  <o:LastSaved>2008-05-10T10:37:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>45</o:Words>
+  <o:Characters>258</o:Characters>
+  <o:Category>C++ Richel Bilderbeek Assert</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>2</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>316</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppBuilderAssert.htm">Assert in a C++ Builder Console Application</a></h1>
+
+<p>&nbsp;</p>
+
+<p>The standard <a href="CppAssert.htm">assert</a>
+does not work nice in <a href="CppBuilder.htm">C++ Builder</a> when working on
+a console application. Instead, one can use the code below, which does wait for
+a key press.</p>
+
+<p>* <a
+href="CppBuilderAssert.txt">View the code of 'Assert' in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>#ifndef BilderbikkelConsoleAssertH</p>
+
+<p>#define BilderbikkelConsoleAssertH</p>
+
+<p>//---------------------------------------------------------------------------</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppBuilderAssert.htm</p>
+
+<p>#ifdef NDEBUG</p>
+
+<p>
+ #define Assert(x) ((void)0)</p>
+
+<p>#else</p>
+
+<p>
+ #include &lt;iostream&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ #define Assert(x)                      
+ \</p>
+
+<p>
+ if (! (x))                             
+ \</p>
+
+<p>
+ {                                      
+ \</p>
+
+<p> 
+ std::cout                            
+ \</p>
+
+<p>     &lt;&lt; &quot;ERROR!! Assertion &quot;                \</p>
+
+<p>     &lt;&lt;    std::string
+(#x)                 \</p>
+
+<p>     &lt;&lt;    &quot;
+failed\n on line &quot;             \</p>
+
+<p>     &lt;&lt;  
+ (__LINE__)                       \</p>
+
+<p>     &lt;&lt;    &quot; in
+the function &quot;              \</p>
+
+<p>     &lt;&lt;  
+ (__FUNC__)                       \</p>
+
+<p>     &lt;&lt;    &quot;\n in
+file &quot;                    \</p>
+
+<p>     &lt;&lt;  
+ __FILE__                         \</p>
+
+<p>     &lt;&lt; std::endl;                        \</p>
+
+<p>     std::string tempString;              \</p>
+
+<p>     std::getline(std::cin,tempString); \</p>
+
+<p>
+ }</p>
+
+<p>#endif</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>#endif</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

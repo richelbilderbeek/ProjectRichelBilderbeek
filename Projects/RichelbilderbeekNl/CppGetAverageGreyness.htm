@@ -1,0 +1,205 @@
+ 
+<title>GetAverageGreyness</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ GetAverageGreyness</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek GetAverageGreyness VCL Get Average Greyness grey TImage Builder Turbo</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>9</o:Revision>
+  <o:TotalTime>128</o:TotalTime>
+  <o:Created>2008-07-18T16:56:00Z</o:Created>
+  <o:LastSaved>2008-07-18T17:03:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>291</o:Words>
+  <o:Characters>1660</o:Characters>
+  <o:Category>C++ Richel Bilderbeek GetAverageGreyness</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>13</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>2038</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppGetAverageGreyness.htm">GetAverageGreyness</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppGraphics.htm">Graphics</a> <a
+href="CppCodeSnippets.htm"> code
+snippet</a> to calculate the average grey value of a <a href="CppVcl.htm">VCL</a>
+<a href="CppTImage.htm">TImage</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>* <a href="CppGetAverageGreyness.txt">View the
+code of 'GetAverageGreyness' in plain text</a>.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a
+href="CppInclude.htm">#include</a> &lt;vcl.h&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppGetAverageGreyness.htm</p>
+
+<p><b> <a
+href="CppConst.htm">const</a> </b>  <b><a
+href="CppDouble.htm">double</a></b> <a href="CppGetAverageGreyness.htm">GetAverageGreyness</a>(<b><a
+href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a
+href="CppConst.htm">const</a></b> image)</p>
+
+<p>{</p>
+
+<p>  <a href="CppAssert.htm">assert</a>(image!=0
+&amp;&amp; &quot;image must not be NULL&quot;);</p>
+
+<p>  <a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap!=0
+&amp;&amp; &quot;image bitmap must not be NULL&quot;);</p>
+
+<p>  <a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat
+== pf24bit &amp;&amp; &quot;image bitmap must be 24 bit&quot;);</p>
+
+<p>&nbsp;</p>
+
+<p>  //Get the width and height from the source</p>
+
+<p>  <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> width    =
+image-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
+
+<p>  <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> height = image-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
+
+<p>  <b><a href="CppDouble.htm">double</a></b>
+sum = 0.0;</p>
+
+<p>&nbsp;</p>
+
+<p>  <b><a href="CppFor.htm">for</a></b> (<b><a
+href="CppInt.htm">int</a></b> y=0; y!=height; ++y)</p>
+
+<p>  {</p>
+
+<p>    <a href="CppAssert.htm">assert</a>(y &gt;=
+0);</p>
+
+<p>    <a href="CppAssert.htm">assert</a>(y &lt;
+image-&gt;Picture-&gt;Bitmap-&gt;Height);</p>
+
+<p>    <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *
+line</p>
+
+<p>      = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b>
+<b><a href="CppChar.htm">char</a></b> *&gt;(</p>
+
+<p>      
+ image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
+
+<p>    <b><a href="CppFor.htm">for</a></b> (<b><a
+href="CppInt.htm">int</a></b> x=0; x!=width; ++x)</p>
+
+<p>    {</p>
+
+<p>      <a href="CppAssert.htm">assert</a>(x
+&gt;= 0);</p>
+
+<p>      <a href="CppAssert.htm">assert</a>(x
+&lt; image-&gt;Picture-&gt;Bitmap-&gt;Width);</p>
+
+<p>      <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> grey</p>
+
+<p>        = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
+href="CppDouble.htm">double</a></b>&gt;(line[x*3+0] + line[x*3+1] +
+line[x*3+2])</p>
+
+<p>        / 3.0;</p>
+
+<p>      sum += grey;</p>
+
+<p>    }</p>
+
+<p>  }</p>
+
+<p>  <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppInt.htm">int</a></b> surface = width * height;</p>
+
+<p>  <a href="CppAssert.htm">assert</a>(surface&gt;0);</p>
+
+<p>  <b><a href="CppConst.htm">const</a></b> <b><a
+href="CppDouble.htm">double</a></b> average = sum / <b><a
+href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(surface);</p>
+
+<p>  <a href="CppAssert.htm">assert</a>(average
+&gt;=      0.0);</p>
+
+<p>  <a href="CppAssert.htm">assert</a>(average    &lt;  
+ 256.0);</p>
+
+<p>  <b><a href="CppReturn.htm">return</a></b>
+average;</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

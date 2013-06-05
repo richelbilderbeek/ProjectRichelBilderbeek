@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetCurrentFolder</title>
+  <meta name="description" content="C++ GetCurrentFolder"/>
+  <meta name="keywords" content="C++ STL File I/O GetCurrentFolder get current folder directory name code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetCurrentFolder.htm">GetCurrentFolder</a> is a <a href="CppFileIo.htm">file I/O</a> <a href="CppCodeSnippets.htm">code snippets</a> to obtain the name of the folder your application runs in.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGetCurrentFolder.zip">Download the Qt Creator project 'GetCurrentFolder' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppGetCurrentFolder.htm">GetCurrentFolder</a> using the <a href="CppStl.htm">STL</a> only</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.htm">GetPath</a>.htm<br/>
+<a href="CppComment.htm">//</a>Returns the path, without a trailing backslash '\'<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> USE_WINDOWS<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> endOfPathIndex <a href="CppOperatorAssign.htm">=</a> fileName.rfind("/",fileName.size());<br/>
+&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> endOfPathIndex <a href="CppOperatorAssign.htm">=</a> fileName.rfind("\\",fileName.size());<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(endOfPathIndex &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(fileName.size()));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> fileName.substr(0,endOfPathIndex);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetPath.htm">GetPath</a>(s);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<a href="CppArgc.htm">argv</a>[0])  <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+/home/richel/qtsdk-2010.04/bin/Projects/Website/CppGetCurrentFolder-build-desktop<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppGetCurrentFolder.htm">GetCurrentFolder</a> using <a href="CppFilesystem.htm">Boost.Filesystem</a></h2>
+<p>&nbsp;</p>
+<p>This version is more elegant and portable.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.htm">GetPath</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::path(filename).parent_path().string();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetPath.htm">GetPath</a>(s);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppArgc.htm">argc</a>; <a href="CppComment.htm">//</a>To stop compiler warning about unused argument <a href="CppArgc.htm">argc</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetPath.htm">GetPath</a>("/any_path/any_file.cpp")<a href="CppOperatorEqual.htm">==</a>"/any_path"); <a href="CppComment.htm">//</a>non-Windows<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<a href="CppArgc.htm">argv</a>[0])  <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+/home/richel/qtsdk-2010.04/bin/Projects/Website/CppGetCurrentFolder-build-desktop<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

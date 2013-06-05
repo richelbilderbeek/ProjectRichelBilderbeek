@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetLineLineIntersections</title>
+  <meta name="description" content="C++ GetLineLineIntersections"/>
+  <meta name="keywords" content="C++ GetLineLineIntersections Boost Geometry get line line intersection point code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a> is a <a href="CppCodeSnippets.htm">code snippet</a> 
+to calculate the zero or one intersecion points of two lines.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/linestring.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Obtain the zero or one intersections between two finite lines<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt;<br/>
+&gt;<br/>
+<a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt;<br/>
+&nbsp;&nbsp;&gt; line1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt;<br/>
+&nbsp;&nbsp;&gt; line2)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt; <a href="CppPointer.htm">Point</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<a href="CppPointer.htm">Point</a>&gt; Line;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPointer.htm">Point</a>&gt; <a href="CppPointer.htm">point</a>s;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::intersection(line1,line2,<a href="CppPointer.htm">point</a>s);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>s.empty() <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppPointer.htm">point</a>s.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppPointer.htm">point</a>s;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Testing code</h2>
+<p>&nbsp;</p>
+<p>See <a href="CppGeometryExample2.htm">Boost.Geometry example 2: Calculate the intersection of two lines</a> for the testing code.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

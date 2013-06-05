@@ -1,0 +1,141 @@
+ 
+<title>RandomShuffle</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet RandomShuffle</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Code Snippet Richel Bilderbeek RandomShuffle random_shuffle random shuffle std::random_shuffle</o:Keywords>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>130</o:TotalTime>
+  <o:Created>2007-08-13T08:33:00Z</o:Created>
+  <o:LastSaved>2007-08-13T08:47:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>53</o:Words>
+  <o:Characters>307</o:Characters>
+  <o:Lines>2</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>377</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p>Back
+to <a href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>Back
+to <a href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>RandomShuffle</h1>
+
+<p>&nbsp;</p>
+
+<p>The
+algorithm to shuffle a std::vector to a random order is already present in the
+STL. It is called std::random_shuffle and can be found in the header file <b>algorithm</b>.</p>
+
+<p>&nbsp;</p>
+
+<p>Code
+in plain text can be found <a href="CppRandomShuffle.txt">here</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>#include &lt;iostream&gt;</p>
+
+<p>#include &lt;algorithm&gt;</p>
+
+<p>#include &lt;vector&gt;</p>
+
+<p>#include &lt;ostream&gt;</p>
+
+<p>#include &lt;iterator&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppRandomShuffle.htm</p>
+
+<p>int main()</p>
+
+<p>{</p>
+
+<p>
+ //Create a std::vector</p>
+
+<p>
+ std::vector&lt;int&gt;(v);</p>
+
+<p>
+ //Fill it with 10 values</p>
+
+<p>
+ for (int i=0; i!=10; ++i) v.push_back(i);</p>
+
+<p>
+ //Show it on screen</p>
+
+<p>
+ std::cout &lt;&lt; &quot;Before shuffling: &quot; &lt;&lt; std::endl;</p>
+
+<p>
+ std::copy(v.begin(),v.end(),std::ostream_iterator&lt;int&gt;(std::cout,&quot;\n&quot;));</p>
+
+<p>
+ //Shuffle it</p>
+
+<p>
+ std::random_shuffle(v.begin(),v.end());</p>
+
+<p>
+ //Show it on screen</p>
+
+<p>
+ std::cout &lt;&lt; &quot;After shuffling: &quot; &lt;&lt; std::endl;</p>
+
+<p>
+ std::copy(v.begin(),v.end(),std::ostream_iterator&lt;int&gt;(std::cout,&quot;\n&quot;));</p>
+
+<p>
+ //Wait for a key</p>
+
+<p>
+ std::cin.get();</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>Back
+to <a href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
+
+<p>Back
+to <a href="index.htm">Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,300 @@
+ 
+<title>std::find_if</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ std::find_if</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek std::find_if std find_if</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>9</o:Revision>
+  <o:TotalTime>138</o:TotalTime>
+  <o:Created>2009-05-22T07:34:00Z</o:Created>
+  <o:LastSaved>2009-05-22T07:41:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>194</o:Words>
+  <o:Characters>1109</o:Characters>
+  <o:Category>C++ Richel Bilderbeek std::find_if</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>9</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1361</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+h4
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:14.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:NL;}
+ 
+ 
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-alt:solid windowtext .5pt;
+	padding:0in;
+	mso-padding-alt:1.0pt 1.0pt 1.0pt 1.0pt;
+	font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:NL;}
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:-132;
+	mso-list-type:simple;
+	mso-list-template-ids:-82136658;}
+@list l0:level1
+	{mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:-131;
+	mso-list-type:simple;
+	mso-list-template-ids:1018451598;}
+@list l1:level1
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	margin-left:1.0in;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:-130;
+	mso-list-type:simple;
+	mso-list-template-ids:-92524140;}
+@list l2:level1
+	{mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:-129;
+	mso-list-type:simple;
+	mso-list-template-ids:-622676320;}
+@list l4
+	{mso-list-id:-128;
+	mso-list-type:simple;
+	mso-list-template-ids:1692193024;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l5
+	{mso-list-id:-127;
+	mso-list-type:simple;
+	mso-list-template-ids:1010351112;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	margin-left:1.0in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:-126;
+	mso-list-type:simple;
+	mso-list-template-ids:1849452754;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l7
+	{mso-list-id:-125;
+	mso-list-type:simple;
+	mso-list-template-ids:-2133689968;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l8
+	{mso-list-id:-120;
+	mso-list-type:simple;
+	mso-list-template-ids:844383518;}
+@list l8:level1
+	{mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;}
+@list l9
+	{mso-list-id:-119;
+	mso-list-type:simple;
+	mso-list-template-ids:860632606;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppFind_if.htm">std::find_if</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppStl.htm">STL</a> <a href="CppAlgorithm.htm">algorithm</a> for
+searching an elements in a <a href="CppContainer.htm">container</a>, satisfying
+a certain <a href="CppPredicate.htm">predicate</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppIteratorH.htm">iterator</a>&gt;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>
+ <b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;::<a href="CppConst_iterator.htm">const_iterator</a>
+Iterator;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
+v;</p>
+
+<p>
+ v.push_back(-2);</p>
+
+<p>
+ v.push_back(-1);</p>
+
+<p>
+ v.push_back( 0);</p>
+
+<p>
+ v.push_back( 1);</p>
+
+<p>
+ v.push_back( 2);</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Find the first element in v that has an integer value bigger then zero</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> Iterator result</p>
+
+<p>
+ = <a href="CppFind_if.htm">std::find_if</a>(v.begin(), v.end(),</p>
+
+<p> 
+ <a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppGreater.htm">std::greater</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;(), 0));</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(result == v.end() &amp;&amp; &quot;A
+result is found&quot;);</p>
+
+<p>
+ <a href="CppAssert.htm">assert</a>(*result &gt; 0 &amp;&amp; &quot;The
+result found is valid&quot;);</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>array/std::array/boost::array example 2: try to break something</title>
+  <meta name="description" content="C++ array/std::array/boost::array example 2: try to break something"/>
+  <meta name="keywords" content="C++ array/std::array/boost::array example 2: try to break something compare array std::array boost boost::array boost C++11 C++0x code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppArrayExample2.htm">array/std::array/boost::array example 2: try to break something</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppArrayExample2.htm">array/std::array/boost::array example 2: try to break something</a> is a test to break something with
+<a href="CppArray.htm">array, std::array and boost::array</a>: I tried to get a boost::shared_ptr to get to null. I never succeeded
+(which is a good thing).</p>
+<p>&nbsp;</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppArrayExample2.zip">Download the Qt Creator project 'CppArrayExample2' (zip)</a></li>
+  <li><img src="PicWindows.png" alt="Windows"/><a href="CppArrayExample2Exe.zip">Download the Windows executable of 'CppArrayExample2' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppArrayExample2.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppArrayExample2.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;array&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/array.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyClass { <b><a href="CppInt.htm">int</a></b> m_x; };<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; &gt; GetVectorInitializerList()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; &gt; GetVectorPushback()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; &gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v.push_back(p);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v.push_back(q);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v.push_back(r);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; GetConstVectorInitializerList()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; GetConstVectorPushback()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v.push_back(p);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v.push_back(q);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v.push_back(r);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; GetConstVectorInitializerListBad()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; GetConstVectorPushbackBad()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v.push_back(p);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v.push_back(q);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v.push_back(r);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; GetCpp11ArrayInitializerList()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; GetCpp11ArrayPushback()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> p;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> q;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> r;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; GetConstCpp11ArrayInitializerList()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; GetConstCpp11ArrayPushback()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> p;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> q;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> r;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; GetConstCpp11ArrayInitializerListBad()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; GetConstCpp11ArrayPushbackBad()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> p;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> q;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> r;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; Get<a href="CppBoost.htm">Boost</a>ArrayInitializerList()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; Get<a href="CppBoost.htm">Boost</a>ArrayPushback()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> p;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> q;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> r;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerList()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; GetConst<a href="CppBoost.htm">Boost</a>ArrayPushback()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> p;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> q;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> r;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerListBad()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; GetConst<a href="CppBoost.htm">Boost</a>ArrayPushbackBad()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; p(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> p;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; q(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> q;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; r(<b><a href="CppNew.htm">new</a></b> MyClass);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> r;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> GetConstVectorInitializerListBad();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorInitializerListBad().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorInitializerListBad().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorInitializerListBad()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorInitializerListBad()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConstVectorInitializerListBad().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConstVectorInitializerListBad().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> GetConstVectorPushbackBad();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorPushbackBad().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorPushbackBad().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorPushbackBad()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorPushbackBad()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConstVectorPushbackBad().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConstVectorPushbackBad().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> GetVectorPushback();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetVectorInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetVectorInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetVectorInitializerList()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetVectorInitializerList()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; a(GetVectorPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; b(GetVectorPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; c(GetVectorPushback().at(2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetVectorPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetVectorPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; r(GetVectorPushback().at(2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a); <a href="CppAssert.htm">assert</a>(b); <a href="CppAssert.htm">assert</a>(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q); <a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> GetVectorInitializerList();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetVectorInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetVectorInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetVectorInitializerList()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetVectorInitializerList()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; a(GetVectorInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; b(GetVectorInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; c(GetVectorInitializerList().at(2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetVectorInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetVectorInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; r(GetVectorInitializerList().at(2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a); <a href="CppAssert.htm">assert</a>(b); <a href="CppAssert.htm">assert</a>(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q); <a href="CppAssert.htm">assert</a>(r);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> GetConstVectorInitializerList();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorInitializerList()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorInitializerList()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConstVectorInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConstVectorInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> GetConstVectorPushback();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorPushback()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstVectorPushback()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConstVectorPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConstVectorPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppStd.htm">std</a>::array<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetConstCpp11ArrayInitializerListBad();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstCpp11ArrayInitializerListBad()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstCpp11ArrayInitializerListBad()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConstCpp11ArrayInitializerListBad().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConstCpp11ArrayInitializerListBad().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetConstCpp11ArrayPushbackBad();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstCpp11ArrayPushbackBad()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstCpp11ArrayPushbackBad()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConstCpp11ArrayPushbackBad().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConstCpp11ArrayPushbackBad().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetCpp11ArrayInitializerList();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetCpp11ArrayInitializerList()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetCpp11ArrayInitializerList()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; a(GetCpp11ArrayInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; b(GetCpp11ArrayInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetCpp11ArrayInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetCpp11ArrayInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a); <a href="CppAssert.htm">assert</a>(b); <a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetCpp11ArrayPushback();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetCpp11ArrayPushback()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetCpp11ArrayPushback()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; a(GetCpp11ArrayPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; b(GetCpp11ArrayPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetCpp11ArrayPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetCpp11ArrayPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a); <a href="CppAssert.htm">assert</a>(b); <a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetConstCpp11ArrayInitializerList();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstCpp11ArrayInitializerList()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstCpp11ArrayInitializerList()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConstCpp11ArrayInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConstCpp11ArrayInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetConstCpp11ArrayPushback();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstCpp11ArrayPushback()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConstCpp11ArrayPushback()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConstCpp11ArrayPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConstCpp11ArrayPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppBoost.htm">boost</a>::array<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerListBad();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerListBad()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerListBad()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerListBad().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerListBad().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetConst<a href="CppBoost.htm">Boost</a>ArrayPushbackBad();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConst<a href="CppBoost.htm">Boost</a>ArrayPushbackBad()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConst<a href="CppBoost.htm">Boost</a>ArrayPushbackBad()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConst<a href="CppBoost.htm">Boost</a>ArrayPushbackBad().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConst<a href="CppBoost.htm">Boost</a>ArrayPushbackBad().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> Get<a href="CppBoost.htm">Boost</a>ArrayInitializerList();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppBoost.htm">Boost</a>ArrayInitializerList()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppBoost.htm">Boost</a>ArrayInitializerList()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; a(Get<a href="CppBoost.htm">Boost</a>ArrayInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; b(Get<a href="CppBoost.htm">Boost</a>ArrayInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(Get<a href="CppBoost.htm">Boost</a>ArrayInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(Get<a href="CppBoost.htm">Boost</a>ArrayInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a); <a href="CppAssert.htm">assert</a>(b); <a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> Get<a href="CppBoost.htm">Boost</a>ArrayPushback();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppBoost.htm">Boost</a>ArrayPushback()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppBoost.htm">Boost</a>ArrayPushback()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; a(Get<a href="CppBoost.htm">Boost</a>ArrayPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; b(Get<a href="CppBoost.htm">Boost</a>ArrayPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(Get<a href="CppBoost.htm">Boost</a>ArrayPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(Get<a href="CppBoost.htm">Boost</a>ArrayPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a); <a href="CppAssert.htm">assert</a>(b); <a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerList();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerList()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerList()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerList().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConst<a href="CppBoost.htm">Boost</a>ArrayInitializerList().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::array&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,3&gt; v <a href="CppOperatorAssign.htm">=</a> GetConst<a href="CppBoost.htm">Boost</a>ArrayPushback();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConst<a href="CppBoost.htm">Boost</a>ArrayPushback()[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConst<a href="CppBoost.htm">Boost</a>ArrayPushback()[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; p(GetConst<a href="CppBoost.htm">Boost</a>ArrayPushback().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; q(GetConst<a href="CppBoost.htm">Boost</a>ArrayPushback().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p); <a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"DONE" <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Show that <a href="CppAssert.htm">assert</a> was on");<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>crosscompiletowindows.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="crosscompiletowindows.sh" border = "1"><tr><td><code>
+#!/bin/sh<br/>
+#From http://richelbilderbeek.nl/CppQtCrosscompileToWindowsExample15.htm<br/>
+<br/>
+echo "Cross compiling to Windows"<br/>
+<br/>
+echo "1/2: Creating Windows makefile"<br/>
+i686-pc-mingw32-qmake CppArrayExample2.pro<br/>
+<br/>
+echo "2/2: making makefile"<br/>
+<br/>
+make<br/>
+<br/>
+echo "Done"<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

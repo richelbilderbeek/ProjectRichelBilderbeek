@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>How to obtain the client's IP address?</title>
+  <meta name="description" content="C++ How to obtain the client's IP address?"/>
+  <meta name="keywords" content="C++ How to obtain the client's IP address Wt code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicWt.png" alt="Wt"/> <a href="CppWtGetIpAddress.htm">How to obtain the client's IP address?</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppWtFaq.htm">Wt FAQ</a> on how to obtain the client's (that is: any person that browser your
+Wt website from any place in the world) IP address.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppWtGetIpAddress.png">View a screenshot of 'CppWtGetIpAddress' (png)</a></li>
+  <li><a href="CppWtGetIpAddress.zip">Download the source code of 'CppWtGetIpAddress' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicWeb.png" alt="Web"/> <a href="CppWebApplication.htm">Web application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 11.04 (natty)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.1.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppWtGetIpAddress.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2011-05-15T20:17:39<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+LIBS += -lwt -lwthttp -lboost_program_options<br/>
+INCLUDEPATH += ../../<a href="CppClass.htm">Classes</a>/Cpp<a href="CppWtAutoConfig.htm">WtAutoConfig</a><br/>
+TARGET = CppWtGetIpAddress<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/Cpp<a href="CppWtAutoConfig.htm">WtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.cpp<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/Cpp<a href="CppWtAutoConfig.htm">WtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetIpAddress.htm">GetIpAddress</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> env.client<a href="CppAddress.htm">Address</a>();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> WtDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;WtDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Client IP <a href="CppAddress.htm">address</a>: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ip_address,<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("Cpp<a href="CppWt.htm">Wt</a><a href="CppGetIpAddress.htm">GetIpAddress</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;enableUpdates();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ip_address <a href="CppOperatorAssign.htm">=</a> env.client<a href="CppAddress.htm">Address</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> WtDialog(ip_address));<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWApplication.htm">Wt::WApplication</a> * create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(env);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.Run();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

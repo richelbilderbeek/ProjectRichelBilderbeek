@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Answer of exercise #0: a correct Divide function</title>
+  <meta name="description" content="C++ Answer of exercise #0: a correct Divide function"/>
+  <meta name="keywords" content="C++ Answer of exercise #0: a correct Divide function code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseDivideAnswer.htm">Answer of exercise #0: a correct Divide function</a></h1>
+<p>&nbsp;</p>
+<p>This is the answer of <a href="CppExerciseDivide.htm">exercise #0: a correct Divide function</a>.</p>
+<p>&nbsp;</p>
+<p>The lowest mark would go to the following code:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="Answer of exercise #0: a correct Divide function do not do this" border = "1"><tr><td><code>
+<b><a href="CppDouble.htm">double</a></b> Divide(<b><a href="CppDouble.htm">double</a></b> numerator, <b><a href="CppDouble.htm">double</a></b> denominator)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> numerator <a href="CppOperatorDivide.htm">/</a> denominator;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>There are three reasons why this <a href="CppFunction.htm">function</a> could be improved:</p>
+<p>1) the <a href="CppFunction.htm">function</a> is not <a href="CppConstCorrect.htm">const-correct</a> [1-4]</p>
+<p>2) the <a href="CppFunction.htm">function</a> does not document its internal assumptions using <a href="CppAssert.htm">assert</a> [5-9]</p>
+<p>3) the <a href="CppFunction.htm">function</a> is not exception-safe</p>
+<p>&nbsp;</p>
+<p>This <a href="CppFunction.htm">function</a> assumes that the denominator is unequal to zero.</p>
+<p>&nbsp;</p>
+<p>It does not impact speed in the release version if improvements (1) and (2) are satisfied.</p>
+<p>The function below, satisfies the following improvements:</p>
+<p>1) the <a href="CppFunction.htm">function</a> is <a href="CppConstCorrect.htm">const-correct</a> [1-4]</p>
+<p>2) the <a href="CppFunction.htm">function</a> does document its internal assumptions using <a href="CppAssert.htm">assert</a> [5-9]</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="Answer of exercise #0: a correct Divide function okay" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> Divide(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> numerator, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> denominator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(denominator <a href="CppOperatorNotEqual.htm">!=</a> 0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> numerator <a href="CppOperatorDivide.htm">/</a> denominator;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="CppScottMeyers.htm">Scott Meyers</a> argues that in release code, one should 
+still <a href="CppThrow.htm">throw</a> an <a href="CppException.htm">exception</a> [?]. This makes the 
+Divide <a href="CppFunction.htm">function</a> as below:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="Answer of exercise #0: a correct Divide function best" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
+ <br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> Divide(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> numerator, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> denominator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(denominator <a href="CppOperatorNotEqual.htm">!=</a> 0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (denominator <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Cannot divide by 0.0");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> numerator <a href="CppOperatorDivide.htm">/</a> denominator;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4 7.9.3: 'Use const extensively and consistently'</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition).ISBN: 0-321-33487-6. Item 3: 'Use const whenever possible'</li>
+  <li><a href="CppJarrodHollingworth.htm">Jarrod Hollingworth</a>, <a href="CppBobSwart.htm">Bob Swart</a>, <a href="CppMarkCashman.htm">Mark Cashman</a>, <a href="CppPaulGustavson.htm">Paul Gustavson</a>. Sams C++ Builder 6 Developer's Guide. ISBN:0-672-32480-6. Chapter 3: 'Understand and use const in your code'</li>
+  <li><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN: 0-672-32224-2. Hour 8, chapter 'Const member functions': 'Use const whenever possible.'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 68: 'Assert liberally to document internal assumptions and invariants'.</li>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Advice 24.5.18: 'Explicitly express preconditions, postconditions, and other assertions as assertions'.</li>
+  <li>Steve McConnell. Code Complete (2nd edition). 2004. ISBN: -735619670. Chapter 8.2 'Assertions', paragraph 'Guidelines for using asserts': 'Use assertions to document and verify preconditions and postconditions'.</li>
+  <li>Steve McConnell. Code Complete (2nd edition). 2004. ISBN: -735619670. Chapter 8.2 'Assertions', paragraph 'Guidelines for using asserts': 'Use assertions for conditions that should never occur'.</li>
+  <li>Jesse Liberty. Sams teach yourself C++ in 24 hours. ISBN: 0-672-32224-2. Hour 24, chapter 'assert()': 'Use assert freely'.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+
+
+
+
+
+
+
+

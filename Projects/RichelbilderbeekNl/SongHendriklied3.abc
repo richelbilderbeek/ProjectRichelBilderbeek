@@ -1,0 +1,119 @@
+X:1
+T:Hendriklied 3
+C:Richel Bilderbeek
+%Lyrics written by Richel Bilderbeek
+%On the 3rd May 2002
+%From http://www.richelbilderbeek.nl/SongHendriklied3.htm
+L:1/4
+Q:1/4=180
+M:4/4
+K:C
+V:V1 clef=treble
+V:V2 clef=bass
+%
+% Am: [A,,C,E,]
+% B: [^F,,B,,^E,]
+% C: [G,,C,E,]
+% Dm: [A,,D,F,]
+% Dm7: [F,,A,,C,]
+% D: [^F,,A,,D,]
+% E: [^G,,B,,E,]
+% F: [A,,C,F,]
+% G: [G,,B,,D,]
+%
+% Intro 1/2
+%
+[V:V1]  z2 [ce]2   | z2 [Bd]2   | z2 [Ac] [Ac]       | z4 |
+w:         ~       |    ~       | ~                 |    |
+[V:V2]  [A,,C,E,]4 | [A,,C,F,]4 | [G,,B,,D,]4        | z4 |
+%       Am         | F          | G                  |    |
+%
+%
+% Intro 2/2
+%
+[V:V1]  z2 [ce]2   | z2 [Bd]2   | z2 [Gc] [Gc]       | z4 |
+w:         ~       |    ~       |        ~          |    |
+[V:V2]  [A,,C,E,]4 | [A,,C,F,]4 | [G,,B,,D,]4        | z4 |
+%       Am         | F          | G                  |    |
+%
+% Verse 1 1/7
+%
+[V:V1] z G2 F     | z E3       | z G2 F     | z2 D2       |
+w:       Ja Hen-  | drik       | O Hen-     | drik        |
+[V:V2] [A,,C,E,]4 | [A,,C,F,]4 | [G,,C,E,]4 | [G,,B,,D,]4 | 
+%      Am         | F          | C          | G           | 
+%
+% Verse 1 2/7
+%
+[V:V1]  z2 e   d     | c2    B2   | c4        | z2 f e     | d2 e2  | c4         |
+w:      Was ik       | hier maar  | lid       | Nu voel    | ik mij | shit       |
+[V:V2]  [^G,,B,,E,]4 | z4        | [A,,C,F,]4 | [G,,C,E,]4 | z4     | [G,,C,E,]4 |
+%       E            | z4         | Dm        | F          |        | C          | 
+%
+% Verse 1 3/7
+%
+[V:V1]  z2 A  B    | c2    d2 | e2 f e       | z4 | z2 G B     | d2 c2  | A4         |
+w:         Ik doe  | nu nooit | la-ha-chen   |    | Nie- mand  | die ik | ken        |
+[V:V2]  [A,,C,E,]4 | z4       | [^G,,B,,E,]4 | z4 | [G,,B,,D,]4 | z4    | [G,,C,E,]4 |
+%       Am         |          | E            |    | G           |       | C          | 
+%
+% Verse 1 4/7
+%
+[V:V1]  z2 A  B    | c2  d2 | f2  e2     | d2 c2  | d2 c2       | B2  A2  | G2 F2       | E4  |
+w:         En ik   | ga  nu | el-ke      | a-vond | Huil-end    | sla-ha- | ha-ha-      | pen |
+[V:V2]  [A,,C,E,]4 | z4     | [A,,C,F,]4 | z4     | [G,,C,E,]4  | z4      | [G,,B,,D,]4 | z4  |
+%       Am         |        | F          |        | C           |         | G           |     |
+%
+% Verse 1 6/7
+%
+[V:V1]  F G/2 A/2 B/2 c/2 d/2 e/2  | e4           | z d  c2  | B4          | d4            | z c   B2  | A4          |
+w:                                 | Tot          |   op een | dag         | mama          |   bij mij | kwam        |
+[V:V2]  z4                         | [^G,,B,,E,]4 | z4       | [G,,B,,D,]4 | [^F,,A,,D,]4  | z4        | [F,,A,,C,]4 |
+%                                  | E            |          | G           | D             |           | Dm7         |
+%
+%
+% Verse 1 7/7
+%
+[V:V1] d4         | c2   B2  | A4          | B2 A2         |G2  ^F2  | E4          |
+w:     wordt      | eens ge- | lukkig      | Ga toch       |erg-ens  | bij         |
+[V:V2] [G,,C,E,]4 | z4       | [G,,B,,D,]4 | [^F,,B,,^E,]4 | z4      | [F,,A,,C,]4 |
+%       C         |          | G           | B             | z4      | Dm7         |
+%
+%
+%
+% Verse 2 1/7
+%
+[V:V1] z4 |F G/2 A/2 B/2 c/2 d/2 e/2 | z G2 F     | z E3       | z G2 F     | z2 D2       |
+w:        |                          |   Ja Hen-  | drik       | O Hen-     | drik        |
+[V:V2] z4 |z4                        | [A,,C,E,]4 | [A,,C,F,]4 | [G,,C,E,]4 | [G,,B,,D,]4 | 
+%         |                          | Am         | F          | C          | G           | 
+%
+% Verse 2 2/7
+%
+[V:V1] z2 e      d  | c2    B2   | c4         | z2 f    e  | d2 e2  | c4         |
+w:        kvoel  me | niet meer  | shit       |    Want ik | ben nu | lid        |
+[V:V2] [^G,,B,,E,]4 | z4         | [A,,C,F,]4 | [G,,C,E,]4 | z4     | [G,,C,E,]4 |
+%      E            | z4         | Dm         | F          |        | C          | 
+%
+% Verse 2 3/7
+%
+[V:V1] z2 A  B    | c2 d2       | e2 f  e      | z4 | z2 G   B    | d2   c2   | A4         |
+w:        Ik doe  | nu heelveel | la-ha-chen   |    |    Met wel  | dui- zend | vrienden   |
+[V:V2] [A,,C,E,]4 | z4          | [^G,,B,,E,]4 | z4 | [G,,B,,D,]4 | z4        | [G,,C,E,]4 |
+%      Am         |             | E            |    | G           |           | C          | 
+%
+% Verse 2 4/7
+%
+[V:V1] z2 A  B    | c2  d2 | f2  e2     | d2 c2  | d2 c2                 | B2  A2  | G2 F2       | E4  |
+w:        En ik   | ga  nu | el-ke      | a-vond | Zatalseen slagschip | sla-ha- | ha-ha-      | pen |
+[V:V2] [A,,C,E,]4 | z4     | [A,,C,F,]4 | z4     | [G,,C,E,]4            | z4      | [G,,B,,D,]4 | z4  |
+%      Am         |        | F          |        | C                     |         | G           |     |
+%
+% Refrain
+%
+[V:V1] z G2 F     | z E3       | z G2 F     | z2 D2       |
+w:       Ja Hen-  | drik       | O Hen-     | drik        |
+[V:V2] [A,,C,E,]4 | [A,,C,F,]4 | [G,,C,E,]4 | [G,,B,,D,]4 | 
+%      Am         | F          | C          | G           | 
+%
+

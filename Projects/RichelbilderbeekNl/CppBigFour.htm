@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Big Four</title>
+  <meta name="description" content="C++ Big Four"/>
+  <meta name="keywords" content="C++ Big Four special class method methods member members code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBigFour.htm">Big Four</a></h1>
+<p>&nbsp;</p>
+<p>The <a href="CppBigFour.htm">Big Four</a> are the following four special <a href="CppClass.htm">class</a> <a href="CppMemberFunction.htm">member functions</a> [1]:</p>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppDefaultConstructor.htm">Default constructor</a></li>
+  <li><a href="CppCopyConstructor.htm">Copy constructor</a></li>
+  <li><a href="CppCopyAssignmentOperator.htm">Copy assignment operator</a></li>
+  <li><a href="CppDestructor.htm">Destructor</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>/<a href="CppGossip.htm">Gossip</a> is a <b><a href="CppClass.htm">class</a></b> that tells you what is happening to it<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppGossip.htm">Gossip</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppGossip.htm">Gossip</a>() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppDefaultConstructor.htm">Default constructor</a>\n"; }<br/>
+&nbsp;&nbsp;<a href="CppGossip.htm">Gossip</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&amp;) { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppCopyConstructor.htm">Copy constructor</a>\n"; }<br/>
+&nbsp;&nbsp;~<a href="CppGossip.htm">Gossip</a>() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppDestructor.htm">Destructor</a>\n"; }<br/>
+&nbsp;&nbsp;<a href="CppGossip.htm">Gossip</a>&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&amp;) { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppCopyAssignmentOperator.htm">Copy assignment operator</a>\n"; }<br/>
+<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGossip.htm">Gossip</a> g; <a href="CppComment.htm">//</a><a href="CppDefaultConstructor.htm">Default constructor</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a> h(g); <a href="CppComment.htm">//</a><a href="CppCopyConstructor.htm">Copy constructor</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;g <a href="CppOperatorAssign.htm">=</a> h; <a href="CppComment.htm">//</a><a href="CppCopyAssignmentOperator.htm">Copy assignment operator</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDestructor.htm">Destructor</a> of g and h<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppDefaultConstructor.htm">Default constructor</a><br/>
+<a href="CppCopyConstructor.htm">Copy constructor</a><br/>
+<a href="CppCopyAssignmentOperator.htm">Copy assignment operator</a><br/>
+<a href="CppDestructor.htm">Destructor</a><br/>
+<a href="CppDestructor.htm">Destructor</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Introduction 'Class Design and Inheritance'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
+

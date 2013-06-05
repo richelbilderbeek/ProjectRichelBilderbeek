@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetRandomNormal</title>
+  <meta name="description" content="C++ GetRandomNormal"/>
+  <meta name="keywords" content="C++ GetRandomNormal Boost get random number from a normal distribution code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetRandomNormal.htm">GetRandomNormal</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetRandomNormal.htm">GetRandomNormal</a> is a <a href="CppRandomNumber.htm">random number</a> 
+<a href="CppCodeSnippets.htm">code snippet</a> to draw a <a href="CppRandom.htm">random</a> value from a 
+<a href="CppNormalDistribution.htm">normal distribution</a>.</p>
+<p>&nbsp;</p>
+<p><a
+href="CppGetRandomNormal.htm">GetRandomNormal</a> uses the <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a>
+<a href="CppRandom.htm">Boost.Random</a>.</p>
+<p>&nbsp;</p>
+<ul>
+    <li><a href="CppGetRandomNormal.txt">View the code of 'GetRandomNormal' in plain text</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/random/normal_distribution.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/random/lagged_fibonacci.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetRandomNormal.htm<br/>
+<b><a href="CppDouble.htm">double</a></b> GetRandomNormal(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean <a href="CppOperatorAssign.htm">=</a> 0.0, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sigma <a href="CppOperatorAssign.htm">=</a> 1.0)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::normal_distribution&lt;<b><a href="CppDouble.htm">double</a></b>&gt; norm_dist(mean, sigma);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoost.htm">boost</a>::lagged_fibonacci19937 engine;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> value <a href="CppOperatorAssign.htm">=</a> norm_dist.<b><a href="CppOperator.htm">operator</a></b> () &lt;<a href="CppBoost.htm">boost</a>::lagged_fibonacci19937&gt;((engine));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> value;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>MysteryMachineWidget</title>
+  <meta name="description" content="C++ MysteryMachineWidget"/>
+  <meta name="keywords" content="C++ MysteryMachineWidget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> is a <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> <a href="CppWidget.htm">widget</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>mysterymachinewidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>, GUI independent <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppMysteryMachineWidget.htm">CppMysteryMachineWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> MYSTERYMACHINEWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> MYSTERYMACHINEWIDGET_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTuple.htm">tuple</a>/<a href="CppTuple.htm">tuple</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppRectangle.htm">rectangle</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppDialWidget.htm">DialWidget</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppLedWidget.htm">LedWidget</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> handles the GUI independent<br/>
+<a href="CppComment.htm">///</a>user <a href="CppInterface.htm">interface</a> of the display of a <a href="CppMysteryMachine.htm">MysteryMachine</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<b><a href="CppConst.htm">const</a></b> Rect&amp; geometry<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Rect(0,0,200,400));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the user clicking on the <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a> * GetMachine() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_machine.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.htm">signal</a> that is <a href="CppEmit.htm">emitted</a> when <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> changes state<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_<a href="CppMysteryMachine.htm">mysterymachine</a>_changed;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>() {}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>*);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppMysteryMachine.htm">MysteryMachine</a>&gt; m_machine;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This method is called when <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a> changes state<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> On<a href="CppMysteryMachine.htm">MysteryMachine</a>Changed();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a change in geometry<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnResize();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MYSTERYMACHINEWIDGET_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>mysterymachinewidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>, GUI independent <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppMysteryMachineWidget.htm">CppMysteryMachineWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppDialWidget.htm">dialwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppLed.htm">led</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppLedWidget.htm">ledwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMysteryMachine.htm">mysterymachine</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMysteryMachineWidget.htm">mysterymachinewidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppRectangle.htm">rectangle</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppToggleButton.htm">togglebutton</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppToggleButtonWidget.htm">togglebuttonwidget</a>.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Rect&amp; geometry)<br/>
+&nbsp;&nbsp;: m_machine(<b><a href="CppNew.htm">new</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>)<br/>
+<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_signal_geometry_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::OnResize,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;SetGeometry(geometry);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a>Respond to the user clicking on the <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_machine-&gt;GetDialBack()-&gt;IsClicked(x,y))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_machine-&gt;GetDialBack()-&gt;Click(x,y);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_machine-&gt;GetDialFront()-&gt;IsClicked(x,y))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_machine-&gt;GetDialFront()-&gt;Click(x,y);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_machine-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;GetGeometry().IsIn(x,y))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_machine-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;Click(x,y);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2011-07-03: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-08-20: <a href="CppVersion.htm">Version</a> 1.1: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::On<a href="CppMysteryMachine.htm">MysteryMachine</a>Changed()<br/>
+<a href="CppComment.htm">//</a>{<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;m_signal_<a href="CppMysteryMachine.htm">mysterymachine</a>_changed();<br/>
+<a href="CppComment.htm">//</a>}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>::OnResize()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(GetGeometry().GetWidth());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> h <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(GetGeometry().GetHeight());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> s <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(w/4.0,h/8.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> w8 <a href="CppOperatorAssign.htm">=</a> w <a href="CppOperatorDivide.htm">/</a> 8.0;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;m_machine-&gt;GetDialBack()-&gt;SetGeometry(Rect((w8 * 1.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),0,s,s));<br/>
+&nbsp;&nbsp;m_machine-&gt;GetDialFront()-&gt;SetGeometry(Rect((w8 * 7.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),h-s,s,s));<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;SetGeometry(Rect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(w8 * 4.0) <a href="CppOperatorPlus.htm">+</a> (s * 0.5),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(h * 0.5) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s,s));<br/>
+<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>Back1()-&gt;SetGeometry(Rect((w8 * 3.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),0,s,s));<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>Back2()-&gt;SetGeometry(Rect((w8 * 5.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),0,s,s));<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>Back3()-&gt;SetGeometry(Rect((w8 * 7.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),0,s,s));<br/>
+<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>Front1()-&gt;SetGeometry(Rect((w8 * 1.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),h-s,s,s));<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>Front2()-&gt;SetGeometry(Rect((w8 * 3.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),h-s,s,s));<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>Front3()-&gt;SetGeometry(Rect((w8 * 5.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),h-s,s,s));<br/>
+<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>TopFront()-&gt;SetGeometry(Rect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(w8 * 5.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(((h <a href="CppOperatorMinus.htm">-</a> (s * 0.5)) <a href="CppOperatorPlus.htm">+</a> (h * 0.5)) * 0.5) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s,s));<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>TopMiddle()-&gt;SetGeometry(Rect((w8 * 4.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(h * 0.5) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s,s));<br/>
+&nbsp;&nbsp;m_machine-&gt;Get<a href="CppLed.htm">Led</a>TopBack()-&gt;SetGeometry(Rect((w8 * 3.0) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(((s * 0.5) <a href="CppOperatorPlus.htm">+</a> (h * 0.5)) * 0.5) <a href="CppOperatorMinus.htm">-</a> (s * 0.5),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s,s));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_signal_<a href="CppMysteryMachine.htm">mysterymachine</a>_changed();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
+{<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;geometry&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppWidget.htm">widget</a>.GetGeometry()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/geometry&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;machine&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *<a href="CppWidget.htm">widget</a>.m_machine<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/machine&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/<a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Boost.Random example 2: storing and retrieving a normal distribution's state</title>
+  <meta name="description" content="C++ Boost.Random example 2: storing and retrieving a normal distribution's state"/>
+  <meta name="keywords" content="C++ Boost.Random example 2: storing and retrieving a normal distribution's state code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppRandomExample2.htm">Boost.Random example 2: storing and retrieving a normal distribution's state</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppRandomExample2.htm">Boost.Random example 2: storing and retrieving a normal distribution's state</a> is a
+<a href="CppRandom.htm">Boost.Random</a> example.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppRandomExample2.zip">Download the Qt Creator project 'CppRandomExample2' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/random/normal_distribution.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/random/lagged_fibonacci.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppRandomExample2.htm<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyRandomNormal<br/>
+{<br/>
+&nbsp;&nbsp;MyRandomNormal()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f("engine.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_engine;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f("norm_dist.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_norm_dist;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;MyRandomNormal(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stddev)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_norm_dist(mean,stddev)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;~MyRandomNormal()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("engine.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_engine;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("norm_dist.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_norm_dist;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> Get()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_norm_dist.<b><a href="CppOperator.htm">operator</a></b> ()&lt;<a href="CppBoost.htm">boost</a>::lagged_fibonacci19937&gt;((m_engine));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::lagged_fibonacci19937 m_engine;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::normal_distribution&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_norm_dist;<br/>
+};<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean <a href="CppOperatorAssign.htm">=</a> 1.1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stddev <a href="CppOperatorAssign.htm">=</a> 2.2;<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MyRandomNormal x(mean,stddev);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MyRandomNormal x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.m_norm_dist.mean() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> mean);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.m_norm_dist.sigma() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> stddev);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

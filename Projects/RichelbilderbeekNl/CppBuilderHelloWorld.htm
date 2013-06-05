@@ -1,0 +1,191 @@
+ 
+<title>Builder Hello World</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Builder Hello World</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>Richel Bilderbeek C++ Builder Hello World VCL CLX</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>22</o:Revision>
+  <o:TotalTime>140</o:TotalTime>
+  <o:Created>2008-06-28T10:38:00Z</o:Created>
+  <o:LastSaved>2008-07-06T14:11:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>199</o:Words>
+  <o:Characters>1137</o:Characters>
+  <o:Category>Richel Bilderbeek C++ Builder Hello World</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>9</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1396</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:2086874993;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-2078407368 -451224498 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-tab-stop:.55in;
+	mso-level-number-position:left;
+	margin-left:.55in;
+	text-indent:-.55in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a
+href="CppBuilder.htm">C++ Builder</a>) <a href="CppBuilderHelloWorld.htm">Hello
+World console program in C++ Builder</a></h1>
+
+<p>&nbsp;</p>
+
+<p>To
+create a 'Hello World' program in C++ Builder, you can <a
+href="http://youtube.com/watch?v=gBvtEG67NWw">watch my YouTube movie</a> or
+follow the steps below:</p>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.55in;text-indent:-.55in;mso-list:l0 level1 lfo2;
+tab-stops:list .55in'>  0. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Click
+'File | Close All'</p>
+
+<p class=MsoNormal style='margin-left:.55in;text-indent:-.55in;mso-list:l0 level1 lfo2;
+tab-stops:list .55in'>  1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Click
+'File | New | Other', now you can choose what to create</p>
+
+<p class=MsoNormal style='margin-left:.55in;text-indent:-.55in;mso-list:l0 level1 lfo2;
+tab-stops:list .55in'>  2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Choose
+the 'Console Wizard' by double-clicking it</p>
+
+<p class=MsoNormal style='margin-left:.55in;text-indent:-.55in;mso-list:l0 level1 lfo2;
+tab-stops:list .55in'>  3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    In
+the 'Console Wizard', do the following:</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l0 level2 lfo2;
+tab-stops:list 1.0in'>  a. &nbsp;     set 'Source type' to C++</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l0 level2 lfo2;
+tab-stops:list 1.0in'>  b. &nbsp;     uncheck 'Use VCL'</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l0 level2 lfo2;
+tab-stops:list 1.0in'>  c. &nbsp;     uncheck 'Use CLX'</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l0 level2 lfo2;
+tab-stops:list 1.0in'>  d. &nbsp;     uncheck 'Multi-threaded'</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in;mso-list:l0 level2 lfo2;
+tab-stops:list 1.0in'>  e. &nbsp;     check 'Console Application'</p>
+
+<p class=MsoNormal style='margin-left:.55in;text-indent:-.55in;mso-list:l0 level1 lfo2;
+tab-stops:list .55in'>  4. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Now
+your console application project is set up. Change the code to the following <a
+href="CppHelloWorld.htm">standard C++ Hello World code</a>:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppIostreamH.htm">iostream</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>
+ <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a>
+&quot;Hello world&quot; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a
+href="CppEndl.htm">std::endl</a>;</p>
+
+<p>
+ <a href="CppCin.htm">std::cin</a>.get();</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.55in;text-indent:-.55in;mso-list:l0 level1 lfo2;
+tab-stops:list .55in'>  5. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Press
+F9 to run your application</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2>External links</h2>
+
+<p>* <a
+href="http://youtube.com/watch?v=gBvtEG67NWw">Watch YouTube movie 'How to
+create a VCL Hello World program in C++ Builder'</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

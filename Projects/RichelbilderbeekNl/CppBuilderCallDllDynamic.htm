@@ -1,0 +1,425 @@
+ 
+<title>Builder Call a DLL dynamically</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Builder Call a DLL</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Builder Richel Bilderbeek Call a DLL calling using use</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>21</o:Revision>
+  <o:TotalTime>222</o:TotalTime>
+  <o:Created>2009-06-01T08:31:00Z</o:Created>
+  <o:LastSaved>2009-06-01T09:47:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>763</o:Words>
+  <o:Characters>4353</o:Characters>
+  <o:Category>C++ Builder Richel Bilderbeek Call a DLL</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>36</o:Lines>
+  <o:Paragraphs>8</o:Paragraphs>
+  <o:CharactersWithSpaces>5345</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:161549081;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-522540454 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a
+href="CppBuilder.htm">C++ Builder</a>) <a href="CppBuilderCallDll.htm"><span
+style='mso-field-code:"HYPERLINK \0022CppBuilderCallDllDynamic\.htm\0022"'>Call
+a dynamically loaded DLL</a></h1>
+
+<p>&nbsp;</p>
+
+<p>One of the two ways to <a href="CppBuilderCallDll.htm">call a
+DLL</a>, the other way is to call a
+statically loaded DLL.</p>
+
+<p>&nbsp;</p>
+
+<p>In
+the two equivalent examples below, the function GetAnswerOfLife is called from
+the file ProjectDll.DLL and its answer (which should be 42) is checked.</p>
+
+<p>&nbsp;</p>
+
+<h2>Example #0: Using a struct</h2>
+
+<p>&nbsp;</p>
+
+<p>My favorite and more exception safe solution.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;windows.h&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppStruct.htm">struct</a> </b>  DllHandle</p>
+
+<p>{</p>
+
+<p>
+ DllHandle(<b><a href="CppConst.htm">const</a></b> <b><a
+href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b>
+filename)</p>
+
+<p> 
+ : h(LoadLibrary(filename)) {}</p>
+
+<p>
+ ~DllHandle() { if (h) FreeLibrary(h); }</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> HINSTANCE
+Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b>
+h; }</p>
+
+<p>&nbsp;</p>
+
+<p>
+ <b><a href="CppPrivate.htm">private</a></b>:</p>
+
+<p>
+ HINSTANCE h;</p>
+
+<p>};</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>
+ //Obtain a handle to the DLL</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> DllHandle
+h(&quot;ProjectDll.DLL&quot;);</p>
+
+<p>
+  <b> <a href="CppIf.htm">if</a> </b>  (!h.Get())</p>
+
+<p>
+ {</p>
+
+<p> 
+ MessageBox(0,&quot;Could not load
+DLL&quot;,&quot;UnitCallDll&quot;,MB_OK);</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> 1;</p>
+
+<p>
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Obtain a handle to the GetAnswerOfLife function</p>
+
+<p>
+ <b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppConst.htm">const</a></b>
+<b><a href="CppInt.htm">int</a></b> (*GetAnswerOfLifeFunction)();</p>
+
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> GetAnswerOfLifeFunction
+AnswerOfLife</p>
+
+<p> 
+ = <b><a href="CppReinterpret_cast.htm">reinterpret_cast</a></b>&lt;GetAnswerOfLifeFunction&gt;(</p>
+
+<p>     GetProcAddress(h.Get(),&quot;_GetAnswerOfLife&quot;));
+</p>
+
+<p>&nbsp;</p>
+
+<p>
+  <b> <a href="CppIf.htm">if</a> </b>  (!AnswerOfLife) //No handle
+obtained</p>
+
+<p>
+ {</p>
+
+<p> 
+ MessageBox(0,&quot;Loading AnswerOfLife
+failed&quot;,&quot;UnitCallDll&quot;,MB_OK);</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> 1;</p>
+
+<p>
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>
+  <b> <a href="CppIf.htm">if</a> </b>  (AnswerOfLife() != 42)</p>
+
+<p>
+ {</p>
+
+<p> 
+ MessageBox(0,&quot;Function AnswerOfLife
+failed&quot;,&quot;UnitCallDll&quot;,MB_OK);</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> 1;</p>
+
+<p>
+ }</p>
+
+<p>
+ <b><a href="CppElse.htm">else</a> </b></p>
+
+<p>
+ {</p>
+
+<p> 
+ MessageBox(0,&quot;Function AnswerOfLife
+successful!&quot;,&quot;UnitCallDll&quot;,MB_OK);</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>When
+you look at the GetProcAddress function,
+you'll note that <a href="CppBuilder.htm">C++ Builder</a> add a leading
+underscore in the function name.</p>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppBuilderCallDllDynamic0.txt">View this code in plain text</a>.</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppBuilderCallDllDynamic.zip">Download the project with this example
+(zip)</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>Example #1: Without using a struct</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
+
+padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'> <a href="CppInclude.htm">#include</a>
+&lt;windows.h&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
+
+<p>{</p>
+
+<p>
+ //Obtain a handle to the DLL</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> HINSTANCE
+dllHandle = LoadLibrary(&quot;ProjectDll.DLL&quot;);</p>
+
+<p>     <b><a
+href="CppIf.htm">if</a></b> (!dllHandle)</p>
+
+<p>
+ {</p>
+
+<p> 
+ MessageBox(0,&quot;Could not load
+DLL&quot;,&quot;UnitCallDll&quot;,MB_OK);</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> 1;</p>
+
+<p>
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>
+ //Obtain a handle to the GetAnswerOfLife function</p>
+
+<p>
+ <b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppConst.htm">const</a></b>
+<b><a href="CppInt.htm">int</a></b> (*GetAnswerOfLifeFunction)();</p>
+
+<p>
+ <b><a href="CppConst.htm">const</a></b> GetAnswerOfLifeFunction
+AnswerOfLife</p>
+
+<p> 
+ = <b><a href="CppReinterpret_cast.htm">reinterpret_cast</a></b>&lt;GetAnswerOfLifeFunction&gt;(</p>
+
+<p>     GetProcAddress(dllHandle,&quot;_GetAnswerOfLife&quot;));</p>
+
+<p>&nbsp;</p>
+
+<p>
+  <b> <a href="CppIf.htm">if</a> </b>  (!AnswerOfLife) //No handle
+obtained</p>
+
+<p>
+ {</p>
+
+<p> 
+ MessageBox(0,&quot;Loading AnswerOfLife
+failed&quot;,&quot;UnitCallDll&quot;,MB_OK);</p>
+
+<p> 
+ FreeLibrary(dllHandle);</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> 1;</p>
+
+<p>
+ }</p>
+
+<p>&nbsp;</p>
+
+<p>
+  <b> <a href="CppIf.htm">if</a> </b>  (AnswerOfLife() != 42)</p>
+
+
+<p>
+ {</p>
+
+<p> 
+ MessageBox(0,&quot;Function AnswerOfLife
+failed&quot;,&quot;UnitCallDll&quot;,MB_OK);</p>
+
+<p> 
+ FreeLibrary(dllHandle);</p>
+
+<p> 
+ <b><a href="CppReturn.htm">return</a></b> 1;</p>
+
+<p>
+ }</p>
+
+<p>
+ <b><a href="CppElse.htm">else</a> </b></p>
+
+<p>
+ {</p>
+
+<p> 
+ MessageBox(0,&quot;Function AnswerOfLife
+successful!&quot;,&quot;UnitCallDll&quot;,MB_OK);</p>
+
+<p> 
+ FreeLibrary(dllHandle);</p>
+
+<p>
+ }</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>When
+you look at the GetProcAddress function,
+you'll note that <a href="CppBuilder.htm">C++ Builder</a> add a leading
+underscore in the function name.</p>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppBuilderCallDllDynamic1.txt">View this code in plain text</a>.</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppBuilderCallDllDynamic.zip">Download the project with this example
+(zip)</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

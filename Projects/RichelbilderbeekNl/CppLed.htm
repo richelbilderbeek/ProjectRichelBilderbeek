@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Led</title>
+  <meta name="description" content="C++ Led"/>
+  <meta name="keywords" content="C++ Led code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLed.htm">Led</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppLed.htm">Led</a> is a <a href="CppClass.htm">class</a> for an LED light.</p>
+<p>&nbsp;</p>
+<p><a href="CppLed.htm">Led</a> is used in the <a href="Tools.htm">tool</a> <a href="ToolTestLed.htm">TestLed</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>led.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppLed.htm">Led</a>, <a href="CppLed.htm">LED</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppLed.htm">CppLed</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppLed.htm">LED</a>_H<br/>
+<a href="CppDefine.htm">#define</a> <a href="CppLed.htm">LED</a>_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppLed.htm">Led</a> manages an <a href="CppLed.htm">LED</a> lamp<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppLed.htm">Led</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppNoncopyable.htm">boost::noncopyable</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppLed.htm">Led</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_color_changed;<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_intensity_changed;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppLed.htm">Led</a> its color<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetColor(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppLed.htm">Led</a> its blueness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue()&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_blue;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppLed.htm">Led</a> its greenness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_green; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppLed.htm">Led</a> its intensity, from 0.0 to 1.0<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetIntensity() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_intensity; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppLed.htm">Led</a> its redness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed()&nbsp;&nbsp; <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_red;&nbsp;&nbsp; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppLed.htm">Led</a> its blueness<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetBlue(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppLed.htm">Led</a> its greenness<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetGreen(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppLed.htm">Led</a> its intensity, from 0.0 to 1.0<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetIntensity(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppLed.htm">Led</a> its redness<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetRed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppLed.htm">Led</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppLed.htm">Led</a>() {}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppLed.htm">Led</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppLed.htm">Led</a>*);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/m_intensity has range [0.0,1.0]<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_intensity;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppLed.htm">Led</a> its redness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_red;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppLed.htm">Led</a> its greenness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_green;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppLed.htm">Led</a> its blueness<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_blue;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppLed.htm">Led</a>&amp; <a href="CppLed.htm">led</a>);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppLed.htm">Led</a>&amp; <a href="CppLed.htm">led</a>);<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> <a href="CppLed.htm">LED</a>_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>led.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppLed.htm">Led</a>, <a href="CppLed.htm">LED</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppLed.htm">CppLed</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppLed.htm">led</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppLed.htm">Led</a>::<a href="CppLed.htm">Led</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;: m_intensity(intensity),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_red(red),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_green(green),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_blue(blue)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(intensity <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An <a href="CppLed.htm">LED</a> intensity must be a positive value");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(intensity <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An <a href="CppLed.htm">LED</a> intensity must be equal or lower than 1.0 (that is, 100%)");<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppLed.htm">Led</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppLed.htm">Led</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-04-10: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-08-17: <a href="CppVersion.htm">Version</a> 1.1: <b><a href="CppEmit.htm">emit</a></b> a <a href="CppSignal.htm">signal</a> when the color is changed");<br/>
+&nbsp;&nbsp;v.push_back("2011-08-20: <a href="CppVersion.htm">Version</a> 1.2: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppLed.htm">Led</a>::SetColor(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+{<br/>
+&nbsp;&nbsp;SetRed(red);<br/>
+&nbsp;&nbsp;SetGreen(green);<br/>
+&nbsp;&nbsp;SetBlue(blue);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppLed.htm">Led</a>::SetBlue(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_blue <a href="CppOperatorNotEqual.htm">!=</a> blue)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_blue <a href="CppOperatorAssign.htm">=</a> blue;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_color_changed();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppLed.htm">Led</a>::SetGreen(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_green <a href="CppOperatorNotEqual.htm">!=</a> green)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_green <a href="CppOperatorAssign.htm">=</a> green;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_color_changed();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppLed.htm">Led</a>::SetIntensity(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(intensity <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An <a href="CppLed.htm">LED</a> intensity must be a positive value");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(intensity <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An <a href="CppLed.htm">LED</a> intensity must be equal or lower than 1.0 (that is, 100%)");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (intensity <a href="CppOperatorNotEqual.htm">!=</a> m_intensity)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_intensity <a href="CppOperatorAssign.htm">=</a> intensity;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppEmit.htm">Emit</a> <a href="CppSignal.htm">signal</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_intensity_changed();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppLed.htm">Led</a>::SetRed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_red <a href="CppOperatorNotEqual.htm">!=</a> red)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_red <a href="CppOperatorAssign.htm">=</a> red;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_color_changed();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppLed.htm">Led</a>&amp; <a href="CppLed.htm">led</a>)<br/>
+{<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppLed.htm">Led</a>&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;blue&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppLed.htm">led</a>.m_blue)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/blue&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;green&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppLed.htm">led</a>.m_green)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/green&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;intensity&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppLed.htm">led</a>.m_intensity<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/intensity&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;red&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppLed.htm">led</a>.m_red)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/red&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/<a href="CppLed.htm">Led</a>&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

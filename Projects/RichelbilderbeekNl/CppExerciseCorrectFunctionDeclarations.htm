@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>exercise #2: correct function declarations</title>
+  <meta name="description" content="C++ exercise #2: correct function declarations"/>
+  <meta name="keywords" content="C++ Exercise #2 correct function declarations declaration"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseCorrectFunctionDeclarations.htm">Exercise #2: correct function declarations</a></h1>
+<p>&nbsp;</p>
+<p>Difficulty: 2/10</p>
+<p>Date added: 16th of June 2008</p>
+<p>&nbsp;</p>
+<p>In this <a href="CppExercise.htm">exercise</a>, you must argue why all the ten <a href="CppFunctionDeclaration.htm">function declarations</a> below are strange and how these can be improved. Assume all correct <a href="CppHeaderFile.htm">header files</a> are <a href="CppInclude.htm">#included</a> and all user-defined <a href="CppDataType.htm">data types</a> are defined.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> 0) Get the number of rows in a database<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> GetRows(<b><a href="CppConst.htm">const</a></b> Database d);<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 1) Declare the <a href="CppMain.htm">main</a> function<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppMain.htm">main</a>();<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 2) Set a value in a y-x-ordered 2D-vector<br/>
+<b><a href="CppVoid.htm">void</a></b> Set(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> value);<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 3) Get the sum of a <a href="CppVector.htm">std::vector</a><br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Sum(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v);<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 4) Swap two values<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Swap(<b><a href="CppInt.htm">int</a></b>&amp; a, <b><a href="CppInt.htm">int</a></b>&amp; b);<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 5) Put the text 'Hello' on screen and <b><a href="CppReturn.htm">return</a></b> an error code<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> SayHello(); <a href="CppComment.htm">//</a>Return an <b><a href="CppInt.htm">int</a></b>eger error code<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 6) Set a value in an x-y-ordered 2D-vector<br/>
+<b><a href="CppVoid.htm">void</a></b> Set(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; j, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; value);<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 7) Calculate the mean and standard deviation of a <a href="CppVector.htm">std::vector</a><br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> MeanAndStdDev(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v, <b><a href="CppDouble.htm">double</a></b>&amp; mean);<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 8) Display a Widget on screen <b><a href="CppUsing.htm">using</a></b> <a href="CppCout.htm">std::cout</a><br/>
+<b><a href="CppVoid.htm">void</a></b> CoutWidget(<b><a href="CppConst.htm">const</a></b> Widget&amp; w);<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a> 9) Assign a color to a certain square on a Rubiks' cube<br/>
+<b><a href="CppVoid.htm">void</a></b> SetSquare(<b><a href="CppConst.htm">const</a></b> Square&amp; s, <b><a href="CppConst.htm">const</a></b> Color&amp; c, RubiksCube&amp; c);<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p><a href="CppExerciseCorrectFunctionDeclarationsAnswer.htm">View the answer of this exercise</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Post your feedback</h2>
+<p>&nbsp;</p>
+<p>Feel free to <a href="http://www.programmersheaven.com/article/104784-C%2b%2b+exercise%3a+correct+function+declarations/info.aspx">post your feedback about this exercise at Programmer's Heaven</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

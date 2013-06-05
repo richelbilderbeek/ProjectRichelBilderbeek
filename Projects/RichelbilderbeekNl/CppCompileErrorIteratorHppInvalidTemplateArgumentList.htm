@@ -1,0 +1,190 @@
+ 
+<title>iterator.hpp: Invalid template argument list</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ iterator.hpp: Invalid template argument list</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek [C++ Error] iterator.hpp(62): E2401 Invalid template argument list compile error C++ Builder VCL boost</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>10</o:Revision>
+  <o:TotalTime>130</o:TotalTime>
+  <o:Created>2008-07-05T10:28:00Z</o:Created>
+  <o:LastSaved>2010-02-11T11:08:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>203</o:Words>
+  <o:Characters>1162</o:Characters>
+  <o:Category>C++ Richel Bilderbeek iterator.hpp: Invalid template argument list</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>9</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1427</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppCompileErrorIteratorHppInvalidTemplateArgumentList.htm">iterator.hpp:
+Invalid template argument list</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a
+href="CppCompileError.htm">Compile error</a>.</p>
+
+<p>&nbsp;</p>
+
+<h2>Full error message</h2>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>[C++ Error] iterator.hpp(62): E2401
+Invalid template argument list</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Cause</h2>
+
+<p>&nbsp;</p>
+
+<p>IDE:
+<a
+href="CppBuilder.htm">C++
+Builder</a> 6.0</p>
+
+<p><a
+href="CppCompiler.htm">Compiler</a>:
+Borland BCC32.EXE version 6.0.10.157</p>
+
+<p>Boost
+version: 1.35.0.</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include &lt;boost/foreach.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Which
+takes you to the following line in 'include/boost/range/iterator.hpp':</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>       typedef BOOST_RANGE_DEDUCED_TYPENAME</p>
+
+<p>           mpl::eval_if_c&lt; is_const&lt;C&gt;::value,</p>
+
+<p>                           range_const_iterator&lt; typename
+remove_const&lt;C&gt;::type &gt;, //<b>This line</b></p>
+
+<p>                               range_mutable_iterator&lt;C&gt;
+&gt;::type type;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<h2>Solution</h2>
+
+<p>&nbsp;</p>
+
+<p>This
+compiler is not supported by Boost. Change to another compiler.</p>
+
+<p>&nbsp;</p>
+
+<h2>Note</h2>
+
+<p>&nbsp;</p>
+
+<p>This
+does not work:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#define BOOST_MSVC 1310</p>
+
+<p>#include &lt;boost/foreach.hpp&gt;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

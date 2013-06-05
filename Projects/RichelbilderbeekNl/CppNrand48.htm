@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>::nrand48</title>
+  <meta name="description" content="C++ ::nrand48"/>
+  <meta name="keywords" content="C++ ::nrand48 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicVirtualBox.png" alt="VirtualBox"/><img src="PicWindows.png" alt="Windows"/>
+  <a href="CppNrand48.htm">::nrand48</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppNrand48.htm">::nrand48</a> is a <a href="CppFunction.htm">function</a> in the 
+<a href="CppGlobal.htm">global</a> <a href="CppNamespace.htm">namespace</a> supplied with some 
+<a href="CppStl.htm">STL</a>'s to draw a positive (that is: non-negative) 
+<a href="CppRandom.htm">random number</a> uniformly distributed between 0 and 2^31.</p>
+<p>&nbsp;</p>
+<p><a href="CppNrand48.htm">::nrand48</a> needs to have a buffer supplied. <a href="CppNrand48.htm">Nrand48</a>
+is identical to <a href="CppNrand48.htm">::nrand48</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStd.htm">std</a>int.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppNrand48.htm">Nrand48</a>.htm<br/>
+<b><a href="CppLong.htm">long</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppNrand48.htm">Nrand48</a>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b> xsubi[3])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Factor in congruential formula<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppLongLongInt.htm">long long int</a></b> a <a href="CppOperatorAssign.htm">=</a> 0x5deece66dull;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a>itive constant in congruential formula<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b> c <a href="CppOperatorAssign.htm">=</a> 0xb;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> uint64_t x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;uint64_t&gt;(xsubi[2]) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;uint32_t&gt;(xsubi[1]) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 16<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| xsubi[0];<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> uint64_t y <a href="CppOperatorAssign.htm">=</a> x * a <a href="CppOperatorPlus.htm">+</a> c;<br/>
+<br/>
+&nbsp;&nbsp;xsubi[0] <a href="CppOperatorAssign.htm">=</a> y &amp; 0xffff;<br/>
+&nbsp;&nbsp;xsubi[1] <a href="CppOperatorAssign.htm">=</a> (y <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 16) &amp; 0xffff;<br/>
+&nbsp;&nbsp;xsubi[2] <a href="CppOperatorAssign.htm">=</a> (y <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 32) &amp; 0xffff;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppSizeof.htm">sizeof</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorEqual.htm">==</a> 2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> xsubi[2] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 15 | xsubi[1] <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 1;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> xsubi[2] <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 1;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b> buffer1[3] <a href="CppOperatorAssign.htm">=</a> {0,0,0};<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b> buffer2[3] <a href="CppOperatorAssign.htm">=</a> {0,0,0};<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppLong.htm">long</a></b> <b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> <a href="CppNrand48.htm">::nrand48</a>(buffer1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppLong.htm">long</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> <a href="CppNrand48.htm">Nrand48</a>(buffer2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a<a href="CppOperatorEqual.htm">==</a>b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(buffer1[0]<a href="CppOperatorEqual.htm">==</a>buffer2[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(buffer1[1]<a href="CppOperatorEqual.htm">==</a>buffer2[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(buffer1[2]<a href="CppOperatorEqual.htm">==</a>buffer2[2]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> a <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> buffer1[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> buffer1[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> buffer1[2] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+0		0		11	0	0	<br/>
+2116118		2116118		59066	37933	64	<br/>
+89401895	89401895	22845	21582	2728	<br/>
+379337186	379337186	52484	29636	11576	<br/>
+782977366	782977366	58047	37548	23894	<br/>
+196130996	196130996	9566	29032	5985	<br/>
+198207689	198207689	23825	53650	6048	<br/>
+1046291021	1046291021	58952	17562	31930	<br/>
+1131187612	1131187612	48307	6968	34521	<br/>
+975888346	975888346	10818	49077	29781	<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts about source code above</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppNrand48.zip">Download the Qt Creator project 'CppNrand48' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+  <li><img src="PicMobile.png" alt="Mobile"/> <a href="CppMobileApplication.htm">Mobile application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.10 (maverick)</li>
+  <li><img src="PicVirtualBox.png" alt="VirtualBox"/> <a href="CppVirtualBox.htm">VirtualBox</a> 3.2.8_OSEr64453</li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

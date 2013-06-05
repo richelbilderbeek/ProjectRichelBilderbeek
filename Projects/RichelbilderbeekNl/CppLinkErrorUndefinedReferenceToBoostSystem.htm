@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>C++ link error: Undefined reference to 'boost::system::get_system_category()'</title>
+  <meta name="description" content="C++ link error: Undefined reference to 'boost::system::get_system_category()'"/>
+  <meta name="keywords" content="C++ link error: Undefined reference to 'boost::system::get_system_category()' boost::system::get_system_category() 'boost::system boost system"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLinkErrorUndefinedReferenceToBoostSystem.htm">undefined reference to 'boost::system::get_system_category()'</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppLinkError.htm">Link error</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Full error message</h2>
+<p>&nbsp;</p>
+<!-- Start code-->
+<table border = "1"><tr><td><code>
+/MyFolder/main.o:: In function '__static_initialization_and_destruction_0':<br/>
+/usr/include/boost/system/error_code.hpp:205: error: undefined reference to 'boost::system::get_system_category()'<br/>
+/usr/include/boost/system/error_code.hpp:206: error: undefined reference to 'boost::system::get_generic_category()'<br/>
+/usr/include/boost/system/error_code.hpp:211: error: undefined reference to 'boost::system::get_generic_category()'<br/>
+/usr/include/boost/system/error_code.hpp:212: error: undefined reference to 'boost::system::get_generic_category()'<br/>
+/usr/include/boost/system/error_code.hpp:213: error: undefined reference to 'boost::system::get_system_category()'<br/>
+/MyFolder/main.o:: In function 'boost::asio::error::get_system_category()':<br/>
+/usr/include/boost/asio/error.hpp:218: error: undefined reference to 'boost::system::get_system_category()'<br/>
+:: error: collect2: ld returned 1 exit status<br/>
+</code></td></tr></table>
+<!-- End of code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Cause</h2>
+<p>&nbsp;</p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 1.2.0</p>
+<p><a href="CppQtCreatorNewProject_2_5_2.png">Project type</a>: Qt4 Console Application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used: 
+<ul>
+  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>
+</ul>
+<p>&nbsp;</p>
+<p>The following source code was used:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/asio.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAsio.htm">boost::asio</a>::io_service io_service;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+
+<p>&nbsp;</p>
+<p>The following <a href="CppQtProjectFile.htm">project file</a> was used:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-21T19:37:18<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core<br/>
+QT       -= gui<br/>
+TARGET = MyTarget<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>You need to <a href="CppLink.htm">link</a> against the <a href="CppAsio.htm">Asio</a> <a href="CppLibrary.htm">library</a>. Add the following line to your <a href="CppQtProjectFile.htm">project file</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+LIBS += -L/usr/local/lib -lboost_system<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

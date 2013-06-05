@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GetSumProperDivisors</title>
+  <meta name="description" content="C++ GetSumProperDivisors"/>
+  <meta name="keywords" content="C++ GetSumProperDivisors math get sum proper divisors code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGetSumProperDivisors.htm">GetSumProperDivisors</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGetSumProperDivisors.htm">GetSumProperDivisors</a> is a <a href="CppMath.htm">math</a> <a href="CppCodeSnippets.htm">code snippet</a> to determine if a number is perfect.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>/<a href="CppGetSumProperDivisors.htm">GetSumProperDivisors</a> <b><a href="CppReturn.htm">return</a></b>s the sum of all proper divisors of x<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppGetSumProperDivisors.htm">GetSumProperDivisors</a>.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppGetSumProperDivisors.htm">GetSumProperDivisors</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &gt; 0);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> j <a href="CppOperatorAssign.htm">=</a> (x <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorPlus.htm">+</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Is i a proper divisor of x?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorModulus.htm">%</a> i <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>/<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a> determines <b><a href="CppIf.htm">if</a></b> x is a perfect number<br/>
+<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>.htm<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (<a href="CppGetSumProperDivisors.htm">GetSumProperDivisors</a>(x) <a href="CppOperatorEqual.htm">==</a> x);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 1));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 2));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 3));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 4));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 5));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 6));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 7));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 8));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>( 9));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(10));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(11));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(12));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(13));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(14));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(15));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(16));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(17));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(18));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(19));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(20));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(21));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(22));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(23));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(24));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(25));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(26));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(27));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(28));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(29));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(30));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(31));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(32));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(33));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(34));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(35));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsPerfectNumber.htm">IsPerfectNumber</a>(36));<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

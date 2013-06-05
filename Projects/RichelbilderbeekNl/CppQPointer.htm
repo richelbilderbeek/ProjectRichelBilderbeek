@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QPointer</title>
+  <meta name="description" content="C++ QPointer"/>
+  <meta name="keywords" content="C++ QPointer Qt pointer class code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQPointer.htm">QPointer</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppQPointer.htm">QPointer</a> is a <a href="CppQt.htm">Qt</a> 
+<a href="CppClass.htm">class</a> to hold a <a href="CppPointer.htm">pointer</a>. Such a
+<a href="CppClass.htm">class</a> is called a <a href="CppSmartPointer.htm">smart pointer</a>,
+yet -in my humble opinion- <a href="CppQPointer.htm">QPointer</a> behaves unexpectedly.</p>
+<p>&nbsp;</p>
+<p>Prefer to use <a href="CppSmartPointer.htm">smart pointers</a> 
+over normal pointers [1].</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPointer.htm">QPointer</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppQPointer.htm">QPointer</a> can only hold <b><a href="CppClass.htm">classes</a></b> derived from <a href="CppQObject.htm">QObject</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> Test : <b><a href="CppPublic.htm">public</a></b> <a href="CppQObject.htm">QObject</a><br/>
+{<br/>
+&nbsp;&nbsp;Test(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) : m_x(x) { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "~Test\n"; }<br/>
+&nbsp;&nbsp;~Test()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "~Test\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_x;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPointer.htm">QPointer</a>&lt;Test&gt; p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p.data());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.isNull());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPointer.htm">QPointer</a>&lt;Test&gt; p(<b><a href="CppNew.htm">new</a></b> Test(42));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.data());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p.isNull());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p-&gt;m_x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "~Test will be called after <b><a href="CppThis.htm">this</a></b>\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "~Test should have been called before <b><a href="CppThis.htm">this</a></b>\n";<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+~Test<br/>
+42<br/>
+~Test will be called after this<br/>
+~Test should have been called before this<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Expected screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+42<br/>
+~Test will be called after this<br/>
+~Test<br/>
+~Test should have been called before this<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 13: 'Ensure resources are owned by objects. Use explicit RAII and smart pointers.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

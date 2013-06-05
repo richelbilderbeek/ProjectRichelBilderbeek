@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Wt::WButtonGroup</title>
+  <meta name="description" content="C++ Wt::WButtonGroup"/>
+  <meta name="keywords" content="C++ Wt::WButtonGroup code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWButtonGroup.htm">Wt::WButtonGroup</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppWButtonGroup.htm">Wt::WButtonGroup</a> is a <a href="CppWt.htm">Wt</a>
+<a href="CppClass.htm">class</a> to display a button group.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppWButtonGroup.png">View a screenshot of 'CppWButtonGroup' (png)</a></li>
+  <li><a href="CppWButtonGroup.zip">Download the Qt Creator project 'CppWButtonGroup' source code (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicWeb.png" alt="Web"/> <a href="CppWebApplication.htm">Web application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="CppUbuntu.htm">Ubuntu</a> 10.10 (maverick)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.4.5</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.42</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.4.5</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.1.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppWButtonGroup.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2011-04-10T11:16:42<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+LIBS += \<br/>
+&nbsp;&nbsp;-lwt \<br/>
+&nbsp;&nbsp;-lwthttp \<br/>
+&nbsp;&nbsp;-lboost_program_options<br/>
+QMAKE_CXXFLAGS += -DNDEBUG<br/>
+TARGET = CppWRadioGroup<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += wtmain.cpp \<br/>
+&nbsp;&nbsp;wtdialog.cpp<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;wtdialog.h<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+Cpp<a href="CppWButtonGroup.htm">WButtonGroup</a>, <a href="CppWButtonGroup.htm">Wt::WButtonGroup</a> demonstration<br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppWButtonGroup.htm">WButtonGroup</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.htm">WGroupBox</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWRadioButton.htm">WRadioButton</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWButtonGroup.htm">WButtonGroup</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "wtdialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+WtDialog::WtDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
+&nbsp;&nbsp;ShowMain();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> WtDialog::OnButtonGroupChanged()<br/>
+{<br/>
+&nbsp;&nbsp;m_label-&gt;setText(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"You selected "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_group-&gt;selectedButton()-&gt;text());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> WtDialog::ShowMain()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clear();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Title<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.htm">Wt::WLabel</a> * <b><a href="CppConst.htm">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="CppWButtonGroup.htm">WButtonGroup</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;title-&gt;setStyleClass("title");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(title);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>ButtonGroup<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWGroupBox.htm">Wt::WGroupBox</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">container</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>("Which option?",<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_group <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWButtonGroup.htm">Wt::WButtonGroup</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWRadioButton.htm">Wt::WRadioButton</a> * <b><a href="CppConst.htm">const</a></b> button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWRadioButton.htm">Wt::WRadioButton</a>("A", <a href="CppContainer.htm">container</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<a href="CppContainer.htm">container</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_group-&gt;addButton(button,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWRadioButton.htm">Wt::WRadioButton</a> * <b><a href="CppConst.htm">const</a></b> button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWRadioButton.htm">Wt::WRadioButton</a>("B", <a href="CppContainer.htm">container</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<a href="CppContainer.htm">container</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_group-&gt;addButton(button,1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWRadioButton.htm">Wt::WRadioButton</a> * <b><a href="CppConst.htm">const</a></b> button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWRadioButton.htm">Wt::WRadioButton</a>("C", <a href="CppContainer.htm">container</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<a href="CppContainer.htm">container</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_group-&gt;addButton(button,2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_group-&gt;setCheckedButton(m_group-&gt;button(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_group-&gt;checkedChanged().connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;WtDialog::OnButtonGroupChanged);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_label <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_label);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+Cpp<a href="CppWButtonGroup.htm">WButtonGroup</a>, <a href="CppWButtonGroup.htm">Wt::WButtonGroup</a> demonstration<br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppWButtonGroup.htm">WButtonGroup</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> WTDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> WTDIALOG_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWButtonGroup.htm">WButtonGroup</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWLabel.htm">WLabel</a>;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> WtDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;WtDialog();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWLabel.htm">Wt::WLabel</a> * m_label;<br/>
+&nbsp;&nbsp;<a href="CppWButtonGroup.htm">Wt::WButtonGroup</a> * m_group;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnButtonGroupChanged();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowMain();<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTDIALOG_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+Cpp<a href="CppWButtonGroup.htm">WButtonGroup</a>, <a href="CppWButtonGroup.htm">Wt::WButtonGroup</a> demonstration<br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppWButtonGroup.htm">WButtonGroup</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppProgram_options.htm">boost/program_options.hpp</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/W<a href="CppApplication.htm">Application</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.htm">WText</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "wtdialog.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>::<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;: W<a href="CppApplication.htm">Application</a>(env)<br/>
+{<br/>
+&nbsp;&nbsp;setTitle("<a href="CppWButtonGroup.htm">WButtonGroup</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> WtDialog);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(env);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Declare the supported options.<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Allowed options <b><a href="CppFor.htm">for</a></b> <a href="CppWButtonGroup.htm">WButtonGroup</a>");<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> docroot;<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_<a href="CppAddress.htm">address</a>;<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_port;<br/>
+&nbsp;&nbsp;d.add_options()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("help",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"produce <b><a href="CppThis.htm">this</a></b> help message")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("docroot",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;docroot)-&gt;default_value("."),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the docroot")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("http-<a href="CppAddress.htm">address</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;http_<a href="CppAddress.htm">address</a>)-&gt;default_value("0.0.0.0"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the server's http <a href="CppAddress.htm">address</a>")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("http-port",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;http_port)-&gt;default_value("8080"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the server's http port")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::variables_map m;<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::store(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::parse_command_line(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, d), m);<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::notify(m);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("help"))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the options_description<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the arguments in <a href="CppString.htm">std::string</a> format<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v(7);<br/>
+&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> <a href="CppArgc.htm">argv</a>[0];<br/>
+&nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>docroot";<br/>
+&nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> docroot;<br/>
+&nbsp;&nbsp;v[3] <a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>http-<a href="CppAddress.htm">address</a>";<br/>
+&nbsp;&nbsp;v[4] <a href="CppOperatorAssign.htm">=</a> http_<a href="CppAddress.htm">address</a>;<br/>
+&nbsp;&nbsp;v[5] <a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>http-port";<br/>
+&nbsp;&nbsp;v[6] <a href="CppOperatorAssign.htm">=</a> http_port;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> the arguments to <b><a href="CppChar.htm">char</a></b>* format<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>*&gt; w(7);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>7; <a href="CppOperatorIncrement.htm">++</a>i) w[i] <a href="CppOperatorAssign.htm">=</a> &amp;v[i][0];<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Give <a href="CppWt.htm">Wt</a> the modified parameters<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(w.size(), &amp;w[0], &amp;create<a href="CppApplication.htm">Application</a>);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

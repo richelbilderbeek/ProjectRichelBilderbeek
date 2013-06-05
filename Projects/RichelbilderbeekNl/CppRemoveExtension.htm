@@ -1,0 +1,141 @@
+ 
+<title>RemoveExtension</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ Code Snippet RemoveExtension</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>Richel Bilderbeek C++ Code Snippet RemoveExtension remove extension filename file name string std::string</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>9</o:Revision>
+  <o:TotalTime>114</o:TotalTime>
+  <o:Created>2007-07-16T18:52:00Z</o:Created>
+  <o:LastSaved>2009-08-24T08:21:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>118</o:Words>
+  <o:Characters>674</o:Characters>
+  <o:Category>Richel Bilderbeek C++ Code Snippet RemoveExtension</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>5</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>827</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* List Definitions */
+@list l0
+	{mso-list-id:1890456345;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1743235048 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+ 
+ 
+-->
+</style>
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+<a href="CppRemoveExtension.htm">RemoveExtension</a></h1>
+
+<p>&nbsp;</p>
+
+<p><a href="CppString.htm">std::string</a> <a
+href="CppCodeSnippets.htm">code snippet</a> to r  emove a filename's extension.</p>
+
+<p>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a
+href="CppRemoveExtension.txt">View the code of 'RemoveEntension' in plain text</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p>#include &lt;string&gt;</p>
+
+<p>#include &lt;cassert&gt;</p>
+
+<p>&nbsp;</p>
+
+<p>//From
+http://www.richelbilderbeek.nl/CppRemoveExtension.htm</p>
+
+<p>const std::string
+RemoveExtension(const std::string&amp; filename)</p>
+
+<p>{</p>
+
+<p>
+ const int dot_index = filename.rfind(&quot;.&quot;,filename.size());</p>
+
+<p>
+ assert(dot_index != -1 &amp;&amp; &quot;No dot found in filename&quot;);</p>
+
+<p>
+ return filename.substr(0,dot_index);</p>
+
+<p>}</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm"> Go back to
+Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm"> Go back to
+Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

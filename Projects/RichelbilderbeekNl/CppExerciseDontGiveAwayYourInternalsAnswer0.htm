@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Answer #0 of exercise #3: Don't give away your internals</title>
+  <meta name="description" content="C++ Answer #0 of exercise #3: Don't give away your internals"/>
+  <meta name="keywords" content="C++ Answer #0 of exercise #3: Don't give away your internals code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseDontGiveAwayYourInternalsAnswer0.htm">Answer of exercise #3: Don't give away your internals, #0</a></h1>
+<p>&nbsp;</p>
+<p>This is part #0 of the answer of <a href="CppExerciseDontGiveAwayYourInternals.htm">exercise #3: Don't give away your internals</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Part #0: checking your <a href="CppMemberFunctionDesign.htm">member function design</a></h2>
+<p>&nbsp;</p>
+<p>Let's start by defining a test suite. Note that the <a href="CppDefinition.htm">definitions</a> are not needed, 
+the <a href="CppCompiler.htm">compiler</a> will give the warnings and errors needed already.</p>
+<p>&nbsp;</p>
+
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> Animal<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mX; <a href="CppComment.htm">//</a>It does not matter what mX is...<br/>
+};<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> Zoo<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The GetAnimals method to be<br/>
+ <br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Animal&gt; mAnimals;<br/>
+};<br/>
+ <br/>
+ <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Zoo zoo;<br/>
+&nbsp;&nbsp;zoo.GetAnimals[0].mX <a href="CppOperatorAssign.htm">=</a> 123; <a href="CppComment.htm">//</a>Must not <a href="CppCompile.htm">compile</a>!<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>For the GetAnimals <a href="CppMemberFunction.htm">member function</a>, there are many possibilities:</p>
+<ul>
+  <li>The <a href="CppMemberFunction.htm">member function</a> can be a <a href="CppConstMemberFunction.htm">const member function</a> yes or no</li>
+  <li>The <a href="CppReturnType.htm">return type</a> can be a <a href="CppConstReturnType.htm">const return type</a> yes or no</li>
+  <li>The <a href="CppReturnType.htm">return type</a> can also be std::vector&lt;Animal&gt; or std::vector&lt;const Animals&gt;</li>
+  <li>The animals can be given by using a <a href="CppReference.htm">reference</a> or a copy</li>
+</ul>
+<p>&nbsp;</p>
+<p>These sixteen possible <a href="CppMemberFunction.htm">member functions</a> are:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppVector.htm">std::vector</a>&lt;Animal&gt; GetAnimals() ;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Animal&gt; GetAnimals() ;<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt; GetAnimals() ;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt; GetAnimals() ;<br/>
+<a href="CppVector.htm">std::vector</a>&lt;Animal&gt;&amp; GetAnimals() ;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Animal&gt;&amp; GetAnimals() ;<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt;&amp; GetAnimals() ;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt;&amp; GetAnimals() ;<br/>
+<a href="CppVector.htm">std::vector</a>&lt;Animal&gt; GetAnimals() <b><a href="CppConst.htm">const</a></b>;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Animal&gt; GetAnimals() <b><a href="CppConst.htm">const</a></b>;<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt; GetAnimals() <b><a href="CppConst.htm">const</a></b>;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt; GetAnimals() <b><a href="CppConst.htm">const</a></b>;<br/>
+<a href="CppVector.htm">std::vector</a>&lt;Animal&gt;&amp; GetAnimals() <b><a href="CppConst.htm">const</a></b>;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Animal&gt;&amp; GetAnimals() <b><a href="CppConst.htm">const</a></b>;<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt;&amp; GetAnimals() <b><a href="CppConst.htm">const</a></b>;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt;&amp; GetAnimals() <b><a href="CppConst.htm">const</a></b>;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The first halve to be taken off the list of possiblities are those that <a href="CppReturn.htm">return</a> a
+copy of the <a href="CppVector.htm">std::vector</a> of Animals. We don't need a copy of all those animals (imagine
+that a Zoo has millions of animals!). We do need to do is get a safe read-only
+reference to the animals (Note: perhaps later we will get back to this!).</p>
+<p>&nbsp;</p>
+<p>The
+second halve to be taken off the list of possiblities are the non-<a
+href="CppConstMethod.htm">const-methods</a>. We intend to only read from the
+Animals, so it should not change our Zoo. It should also be possible to read
+the Animals from a const Zoo.</p>
+<p>&nbsp;</p>
+<p>This leaves only four options left, which I'll give numbers from now on:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppVector.htm">std::vector</a>&lt; Animal&gt;&amp; GetAnimals0() <b><a href="CppConst.htm">const</a></b>;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt; Animal&gt;&amp; GetAnimals1() <b><a href="CppConst.htm">const</a></b>;<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt;&amp; GetAnimals2() <b><a href="CppConst.htm">const</a></b>;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt;&amp; GetAnimals3() <b><a href="CppConst.htm">const</a></b>;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Now the real tests start, even before <a href="CppDefinition.htm">defining</a> the GetAnimal <a href="CppMemberFunction.htm">member functions</a>.</p>
+<p>&nbsp;</p>
+<p>The following line must not <a href="CppCompile.htm">compile</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+zoo.GetAnimalsX()[0].mX <a href="CppOperatorAssign.htm">=</a> 123;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Three out of four correctly refrain from <a href="CppCompile.htm">compiling</a>, 
+where GetAnimals0 just performs the unwanted modification. GetAnimals0 is marked
+as a potential source for bugs, and taken off our list.</p>
+<p>&nbsp;</p>
+<p>With three <a href="CppMemberFunction.htm">member functions</a> left in the race, it's time to <a href="CppDefinition.htm">define</a> them:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt; Animal&gt;&amp; GetAnimals1() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mAnimals; }<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt;&amp; GetAnimals2() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mAnimals; } <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> Animal&gt;&amp; GetAnimals3() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mAnimals; } <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>It appears that GetAnimals2 and GetAnimals3 do not <a href="CppCompile.htm">compile</a>. This is correct: we
+indeed give away a <a href="CppReference.htm">reference</a> to a 
+<a href="CppVector.htm">std::vector</a>&lt;Animal&gt; instead of to a
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppConst.htm">const</a> Animal&gt;. If we want to return a 
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppConst.htm">const</a>
+Animal&gt; then we need to make a copy of all those animals. Let's refrain from
+this (for now) and call GetAnimals1 the winner.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> Zoo<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Animal&gt;&amp; GetAnimals() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mAnimals; } <a href="CppComment.htm">//</a>Brilliant!<br/>
+ <br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Animal&gt; mAnimals;<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Go to the answer of the follow-up question: <a href="CppExerciseDontGiveAwayYourInternalsAnswer1.htm"> Answer of exercise #3: Don't give away your internals, #1</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Epilogue</h2>
+<p>&nbsp;</p>
+<p>The exercise is called 'Don't give away your internals' (after [1]). 
+One of the points of this item was the question:
+'What do you want to do with this information?'. If you want to use <a href="CppCout.htm">std::cout</a>
+on the implementation of Zoo (that is, the <a href="CppVector.htm">std::vector</a> of Animal), why not
+enable to use <a href="CppCout.htm">std::cout</a> on Zoo itself? Think if you perhaps do not need the
+GetAnimals (or similar, as in your code) method after all.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Item 28: 'Don't give away your internals'</li>
+</ol>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

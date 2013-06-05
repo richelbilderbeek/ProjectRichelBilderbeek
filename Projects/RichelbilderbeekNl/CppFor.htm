@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>for</title>
+  <meta name="description" content="C++ for"/>
+  <meta name="keywords" content="C++ for code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppFor.htm">for</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppFor.htm">for</a> is a <a href="CppKeyword.htm">keyword</a> to start a for-loop.</p>
+<p>&nbsp;</p>
+<p>Prefer <a href="CppAlgorithm.htm">algorithms</a> over loops [1][2]. See 
+<a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a> to learn how to do so.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppFor.htm">For</a> loop syntax</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppFor.htm">for</a></b> ( <a href="CppComment.htm">/*</a> initialization <a href="CppComment.htm">*/</a> ; <a href="CppComment.htm">/*</a> <b><a href="CppBreak.htm">break</a></b>ing condition <a href="CppComment.htm">*/</a> ; <a href="CppComment.htm">/*</a> after-loop operation <a href="CppComment.htm">*/</a> )<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> The code block that will be repeated <b><a href="CppWhile.htm">while</a></b> the <b><a href="CppBreak.htm">break</a></b>ing condition is <b><a href="CppTrue.htm">true</a></b><br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppFor.htm">For</a>-loop example</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i=0; <a href="CppComment.htm">//</a>Create an in-loop <a href="CppInt.htm">integer</a> variable called i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppComment.htm">//</a>Enter loop <b><a href="CppWhile.htm">while</a></b> i<a href="CppOperatorNotEqual.htm">!=</a>5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i) <a href="CppComment.htm">//</a>After looping, increment i<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": Hello!\n";<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The code above generates the following screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+0: Hello!<br/>
+1: Hello!<br/>
+2: Hello!<br/>
+3: Hello!<br/>
+4: Hello!<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><img src="PicCpp11.png" alt="C++11"/> Range-based <a href="CppFor.htm">for</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppFor.zip">Download the Qt Creator project 'CppFor' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="Cpp11.htm">C++11</a> supports a range-based <a href="CppFor.htm">for</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v <a href="CppOperatorAssign.htm">=</a> { 1,2,3,4,5,6,7,8,9 };<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>&amp; i: v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i<a href="CppOperatorMultiplyAssign.htm">*=</a>i;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that the example initializes the <a href="CppVector.htm">std::vector</a> with an
+<a href="CppInitializerList.htm">initializer list</a>.</p>
+<p>&nbsp;</p>
+<p>Technical note: the code shown did not <a href="CppCompile.htm">compile</a> using the 
+<a href="CppGpp.htm">G++</a> 4.4.5 <a href="CppCompiler.htm">compiler</a>,
+which is supplied with the <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 <a href="CppIde.htm">IDE</a>,
+but is expected to <a href="CppCompile.htm">compile</a> in <a href="CppGpp.htm">G++</a> 4.6 [3].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 18.12.1 : 'Prefer algorithms over loops'</li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 84: 'Prefer algorithm calls to handwritten loops'</li>
+  <li><a href="http://gcc.gnu.org/projects/cxx0x.html">GCC page about C++0x support</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

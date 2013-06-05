@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>qmake</title>
+  <meta name="description" content="C++ Qt qmake"/>
+  <meta name="keywords" content="C++ qmake Qt Creator IDE"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQmake.htm">qmake</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppQmake.htm">qmake</a> helps to create makefiles for <a href="CppQt.htm">Qt Creator projects</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example</h2>
+<p>&nbsp;</p>
+<p>The example below shows how to build different versions (that is: debug and release) versions of a single version. 
+Note: the code layout does matter.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-08-19T15:10:48<br/>
+#<br/>
+#-------------------------------------------------<br/>
+# THIS WORK CORRECTLY ONLY UNDER UBUNTU!<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+CONFIG(debug, debug|release) {<br/>
+&nbsp;&nbsp;TARGET = MyProjectDebug<br/>
+&nbsp;&nbsp;message(Building debug version)<br/>
+<br/>
+} else {<br/>
+&nbsp;&nbsp;TARGET = MyProjectRelease<br/>
+&nbsp;&nbsp;DEFINES += NDEBUG<br/>
+&nbsp;&nbsp;message(Building release version)<br/>
+}<br/>
+LIBS += -L/usr/local/lib -lboost_regex<br/>
+LIBS += -L/usr/local/lib -lcln<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;newicks.cpp<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;newicks.h<br/>
+FORMS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dialogabout.ui<br/>
+RESOURCES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;resources.qrc<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>I know it sounds stupid, but under Windows, when you want to build a release version, you must explictly add:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+CONFIG&nbsp;&nbsp; += debug<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQmakeVariable.htm">qmake variables</a></h2>
+<p>&nbsp;</p>
+<p>For an overview of all <a href="CppQmakeVariable.htm">qmake variables</a>, go to the
+page about <a href="CppQmakeVariable.htm">qmake variables</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQmakeArgument.htm">qmake arguments</a></h2>
+<p>&nbsp;</p>
+<p>To view where to put <a href="CppQmakeArgument.htm">qmake arguments</a>, go to the
+page about <a href="CppQmakeArgument.htm">qmake arguments</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQmakeMkspec.htm">qmake mkspecs</a></h2>
+<p>&nbsp;</p>
+<p>For an overview of all <a href="CppQmakeMkspec.htm">qmake mkspecs</a>, go to the
+page about <a href="CppQmakeMkspec.htm">qmake mkspecs</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQmake.htm">qmake</a> source code</h2>
+<p>&nbsp;</p>
+<p>The <a href="CppQmake.htm">qmake</a> source code can be downloaded from the Qt gitorous repository,
+in the folder '/qmake'.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Qmake">Wikipedia's page about qmake</a></li>
+  <li><a href="http://doc.trolltech.com/4.2/qmake-variable-reference.html">Trolltech qmake variable reference</a></li>
+  <li><a href="http://qt.gitorious.org/qt/qt/trees/4.7/qmake">Qmake source code</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>The Rampal Etienne Project</title>
+  <meta name="description" content="The Rampal Etienne Project"/>
+  <meta name="keywords" content="The Rampal Etienne C++ Project Richel Bilderbeek"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Projects.htm">Go back to Richel Bilderbeek's projects</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Projects.htm">Project</a>) <a href="ProjectRampalEtienne.htm">The Rampal Etienne Project</a></h1>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Introduction</h2>
+<p>&nbsp;</p>
+<p><a href="ProjectRampalEtienne.htm">The Rampal Etienne Project</a> is about calculating the probability of a phylogeny. The algorithm to do so is described in [1].</p>
+<p>&nbsp;</p>
+<p>There already was a program that performs the same algorithm, programmed by Mr X. In <a href="ProjectRampalEtienne.htm">The Rampal Etienne Project</a> I have improved the program to, relative to Mr X:</p>
+<ul>
+  <li>Solve ninety times higher complexities</li>
+  <li>Solve a phylogeny faster</li>
+  <li>Solve a more complex phylogeny exponentially faster</li>
+  <li>Use only the memory needed</li>
+  <li>Use memory more efficient</li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="ProjectRampalEtienne.htm">The Rampal Etienne Project</a> has been developed by (sorted alphabetically on first name):</p>
+<ul>
+  <li><p><a href="http://www.rug.nl/biologie/onderzoek/onderzoekgroepen/cocon/people/etienne/index">Rampal Etienne</a>: researcher</p></li>
+  <li><p><a href="http://www.richelbilderbeek.nl/">Richel Bilderbeek</a>: programming</p></li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="ProjectRampalEtienne.htm">The Rampal Etienne Project</a> was developed from May to about October 2009.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Table of contents</h2>
+<p>&nbsp;</p>
+<ul>
+  <li>Procedure</li>
+  <li>Measurements</li>
+  <li>Same results</li>
+  <li>Solve higher complexities</li>
+  <li>Speed comparison</li>
+  <li>Memory use</li>
+  <li>Large values</li>
+  <li>Results</li>
+  <li>Downloads</li>
+  <li>References</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Procedure</h2>
+<p>&nbsp;</p>
+<p>The project started with the published C code of Mr X. The results of this program were assumed to be correct and used as a control during the entire project. Rampal Etienne supplied Richel Bilderbeek with expert knowledge.</p>
+<p>&nbsp;</p>
+<p>Richel Bilderbeek started to convert the code to standard-conform C++ code using the <a href="CppStl.htm">STL</a>, <a href="CppBoost.htm">Boost</a> and <a href="CppVcl.htm">VCL</a> libraries using the <a href="CppBuilder.htm">C++ Builder 6.0</a> and <a href="CppQt.htm">Qt Creator</a> IDE's. Each version of the program by Richel Bilderbeek is tested to yield the same results as the program of Mr X. Using the <a href="CppShiny.htm">Shiny C++ profiler</a> the code speed-critical sections have been improved. Measurements were performed in a handcrafted analysis tool and Excel and <a href="CppVcl.htm">VCL's</a> TChart component were used for plotting.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Measurements</h2>
+<p>&nbsp;</p>
+<p>All measurements have been performed on two different computers. Comparisons in speed, however, were performed on the same computer. By default a theta of 10.0 was used.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Same results</h2>
+<p>&nbsp;</p>
+<p>For 162 different complexities (from 24 to 866052) the results between four kinds of simulations have been compared. The probabilities found do not differ much. Differences are attributed to differences in precision in the results: Mr X uses single precision floating point values, where Richel Bilderbeek uses double-precision.</p>
+<p>&nbsp;</p>
+<p>The four simulation types are:</p>
+<ul>
+  <li>MrXExecutable: MrX's Windows executable</li>
+  <li>MrXLinux: MrX's Linux executable</li> 
+  <li>Storage&lt;SortedNewick&gt;: Bilderbeek's Windows executable</li>
+  <li>Storage&lt;SortedNewick&gt; Linux: Bilderbeek's Linux executable</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="ProjectRampalResultsCompare.xls">View the comparisons between the four simulations (XLS)</a>.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solve higher complexities</h2>
+<p>&nbsp;</p>
+<p>The maximum complexity of the program by Mr X was exactly one million, because this is hard-coded.</p>
+<p>&nbsp;</p>
+<p>The maximum complexity of the program by Richel Bilderbeek is theoretically infinite. In practice, the program is limited by the computer's memory. The maximum complexity solved is 97,656,250 (in a memory use measurement).</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="ProjectRampalMemoryUse.xls">Maximal complexity for Richel Bilderbeek's version (XLS)</a>.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Speed comparison</h2>
+<p>&nbsp;</p>
+<p>It takes more time to calculate the probability of more complex phylogenies.</p>
+<p>&nbsp;</p>
+<p>The relationship between complexity and execution time should be contant-time, logarithmic or linear, but not be exponential.</p>
+<p>&nbsp;</p>
+<p>The relationship found (which is dependent on the computer used) between complexity and execution time is:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+T = 1.0543*C - 4.5147<br/>
+</code></td></tr></table>
+<!-- end of code -->
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+T = LOG10(time(sec))<br/>
+C = LOG10(complexity)<br/>
+</code></td></tr></table>
+<!-- end of code -->
+<p>&nbsp;</p>
+<ul>
+  <li><a href="ProjectRampalSpeedBefore.PNG">Execution speed for different complexities for Mr X's version (PNG)</a>.</li>
+  <li><a href="ProjectRampalSpeedBefore.xls">Execution speed for different complexities for Mr X's version (XLS)</a>.</li>
+  <li><a href="ProjectRampalSpeedAfter.PNG">Execution speed for different complexities for Richel Bilderbeek's version (PNG)</a>.</li>
+  <li><a href="ProjectRampalSpeedAfter.xls">Execution speed for different complexities for Richel Bilderbeek's version (XLS)</a>.</li>
+  <li><a href="ProjectRampalSpeedCompare.PNG">Comparison of execution speed for different complexities (PNG)</a>.</li>
+  <li><a href="ProjectRampalSpeedCompare.xls">Comparison of execution speed for different complexities (XLS)</a>.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Memory use</h2>
+<p>&nbsp;</p>
+<p>The memory used of the program by Mr X equals two hundred million byte, independent of the complexity of the phylogeny, because it is hard-coded to be so. The amount of memory used is about 200,000,000 byte.</p>
+<p>&nbsp;</p>
+<p>The memory used of the program by Richel Bilderbeek depends on the complexity of the phylogeny. The program is limited on the amount of memory that can be adressed. The maximum amount of memory used is 792,237,104 byte.</p>
+<p>&nbsp;</p>
+<p>The memory used to store a single phylogeny in memory also differs. Mr X has hard-coded a phylogeny to consist of 200 characters, independent of the actual phylogeny its size (note: the program of Mr X cannot handle complexities larger than this size). In the program by Richel Bilderbeek this memory use depends on the size of the phylogeny. In theory, the version of Richel Bilderbeek can handle infite-size phylogenies.</p>
+<p>&nbsp;</p>
+<p>The relationship found (which is independent on the computer used) between complexity and memory use is:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+M = 1.0387*C + 0.6278
+</code></td></tr></table>
+<!-- end of code -->
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+M = LOG10(memory use(byte))<br/>
+C = LOG10(complexity)<br/>
+</code></td></tr></table>
+<!-- end of code -->
+<p>&nbsp;</p>
+<ul>
+  <li><a href="ProjectRampalMemoryUse.PNG">Memory use for different complexities for Richel Bilderbeek's version (PNG)</a>.</li>
+  <li><a href="ProjectRampalMemoryUse.xls">Memory use for different complexities for Richel Bilderbeek's version (XLS)</a>.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Large values</h2>
+<p>&nbsp;</p>
+<p>The program of Richel Bilderbeek was tested for large values. It was confirmed that the values in phylogenies do not matter, where the total complexity does.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="ProjectRampalLargeValues.xls">View the results for large values in Richel Bilderbeek's version (XLS)</a>.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Results</h2>
+<p>&nbsp;</p>
+<ul>
+  <li>The maximal complexity of phylogenies that can be solved is at least 97 times higher in the version by Richel Bilderbeek</li>
+  <li>The speed in the version by Mr X increases exponentially for increasing complexity</li>
+  <li>The speed in the version by Richel Bilderbeek increases linearly for increasing complexity</li>
+  <li>The memory used in the version of Mr X is always the same and about two-hundred-million bytes</li>
+  <li>The memory used by the version of Richel Bilderbeek is dependent on the phylogeny its complexity</li>
+  <li>The maximum amount of memory adressed is about four times higher in the version of Richel Bilderbeek</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Downloads</h2>
+<p>&nbsp;</p>
+<p>The source code will not be downloadable yet.</p>
+<p>&nbsp;</p>
+<ul>
+<li><a href="ProjectRampal1.PNG">View a screenshot of 'The Rampal Etienne Project' #1 (PNG)</a>.</li>
+<li><a href="ProjectRampal2.PNG">View a screenshot of 'The Rampal Etienne Project' #2 (PNG)</a>.</li>
+<li><a href="ProjectRampalAllResults.xls">Download all simulation results (XLS)</a>.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>References</h2>
+<p>&nbsp;</p>
+<p>[1] I will not give the reference yet.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Projects.htm">Go back to Richel Bilderbeek's projects</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,71 @@
+X:1
+T:Het N**kmenslied
+C:Richel Bilderbeek
+L:1/4
+Q:1/4=168
+M:4/4
+K:E
+V:V1 clef=treble
+V:V2 clef=bass
+% Key = E -> 4x #
+% C -> C#
+% D -> D#
+% E -> E
+% F -> F#
+% G -> G#
+% A -> A
+% B -> B
+% A      C# E  A
+% A9     C# E  G (A)
+% B      D# F# B
+% C#m    xC E  G#
+% E      E  G# B
+% E9     D  F# G# (E)
+% F#m    C# F# A 
+% F#m7   C# E  A (F#)
+% G      xD xG B
+% G#     xC D# G#
+% G#sus4 C# D# G#
+%
+% Intro
+%
+% Intro 1-4
+[V:V1] CEGE      | F,CEA,   | DFBF     | EGBG      | 
+[V:V2] C,,G,,C,z | F,,C,F,z | B,,F,B,z | E,,B,,E,z | 
+%      C#m       | F#m7     | B        | E         | 
+% Intro 5-8
+[V:V1] CDGD     | CEAE     | DFBF     | CDGD     | CDGD     |
+[V:V2] G,,D,G,z | A,,E,A,z | B,,F,B,z | G,,D,G,z | G,,D,G,z |
+%      G#sus4   | A        | B        | G#sus4   | G#sus4   |
+%
+%
+% First verse
+%
+% First verse 1-4
+[V:V1] CEGE | CEGE    | FceA     | DFBF     | EGBG      | 
+w: In de  | ver te    | spreekt een | stem | die ik her |
+[V:V2] z4 | C,,G,,C,z | F,,C,F,z | B,,F,B,z | E,,B,,E,z | 
+%         | C#m       | F#m7     | B        | E         | 
+% First verse 5-8
+[V:V1] CDGD     | CEAE     | DFBF     | CDGD     | CDGD     |
+w:          ken | van het  | n**ken   |          |          |
+[V:V2] G,,D,G,z | A,,E,A,z | B,,F,B,z | G,,D,G,z | G,,D,G,z |
+%      G#sus4   | A        | B        | G#sus4   | G#sus4   |
+% First verse 9-12
+[V:V1] CFAF      | DFBF     | DFGF      | CDGD      | 
+[V:V2] F,,C,F,z  | B,,F,B,z | E,,B,,E,z | G,,D,G,z  | 
+%      F#m       | B        | E9        | G#sus4    | 
+% First verse 13-16
+[V:V1] CEGE     | DFBF     | CDGD     | CDGD     ||
+[V:V2] A,,E,A,z | B,,F,B,z | G,,D,G,z | G,,D,G,z ||
+%      A9       | B        | G#sus4   | G#sus4   ||
+%
+% Old intro
+%
+% [V:V1] z4      | z4        | z4      | z4      | 
+% [V:V2] C,E,G,z | F,,C,E,A, | D,F,B,z | E,G,B,z | 
+%      C#m     | F#m7      | B       | E       | 
+% [V:V1] z4      | z4      | z4      | z4      | z4       ||
+% [V:V2] C,D,G,z | C,E,A,z | D,F,B,z | C,D,G,z | C,D,G,z  ||
+%      G#sus4  | A       | B       | G#sus4  | G#sus4  ||
+

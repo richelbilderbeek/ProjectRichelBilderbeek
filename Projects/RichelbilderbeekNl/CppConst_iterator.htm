@@ -1,0 +1,142 @@
+ 
+<title>const_iterator</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>C++ const_iterator</o:Subject>
+  <o:Author>Richel Bilderbeek</o:Author>
+  <o:Keywords>C++ Richel Bilderbeek const_iterator const iterator</o:Keywords>
+  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
+  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>131</o:TotalTime>
+  <o:Created>2008-04-08T19:17:00Z</o:Created>
+  <o:LastSaved>2008-04-08T19:26:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>45</o:Words>
+  <o:Characters>258</o:Characters>
+  <o:Category>C++ Richel Bilderbeek const_iterator</o:Category>
+  <o:Manager>Richel Bilderbeek</o:Manager>
+  <o:Company>Richel Bilderbeek</o:Company>
+  <o:Lines>2</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>316</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+ 
+</head>
+
+ 
+
+ 
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h1>(<a href="Cpp.htm">C++</a>)
+const_iterator</h1>
+
+<p>&nbsp;</p>
+
+<p>Common
+<a href="CppTypedef.htm">typedef</a> in <a href="CppContainer.htm">containers</a>
+for an <a href="CppIterator.htm">iterator</a>-type that can only read the
+element it is located at.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppInclude.htm">#include</a>
+&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt; v(10,0);</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  <a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;::<a href="CppConst_iterator.htm">const_iterator</a>
+i = v.begin();</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>Closer
+inspection (of <a href="CppVectorH.htm">vector.h</a> for example) yields the
+following typedefs:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppTypedef.htm">typedef</a> </b>  _TYPENAME __value_alloc_type::const_pointer
+<a href="CppConst_iterator.htm">const_iterator</a>;</p>
+
+<p>&nbsp;</p>
+
+<p><b> <a href="CppTypedef.htm">typedef</a> </b>  <b><a href="CppConst.htm">const</a></b>
+T* const_pointer;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>This
+concludes that the following two <a href="CppDataType.htm">data types</a> are
+equivalent:</p>
+
+<p>&nbsp;</p>
+
+ 
+
+<p>&nbsp;</p>
+
+<p><a href="CppVector.htm">std::vector</a>&lt;<b><a
+href="CppInt.htm">int</a></b>&gt;::<a href="CppConst_iterator.htm">const_iterator</a>
+DataTypeOne;</p>
+
+<p><b> <a href="CppConst.htm">const</a> </b>  <b><a href="CppInt.htm">int</a></b>
+* DataTypeOne;</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+
+<p><a
+href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

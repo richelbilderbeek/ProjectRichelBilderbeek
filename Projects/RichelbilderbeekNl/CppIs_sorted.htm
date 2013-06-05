@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::is_sorted</title>
+  <meta name="description" content="C++ std::is_sorted"/>
+  <meta name="keywords" content="C++ std::is_sorted std is_sorted is sorted code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicCpp11.png" alt="C++11"/>
+  <a href="CppIs_sorted.htm">std::is_sorted</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppIs_sorted.htm">std::is_sorted</a> is a <a href="Cpp11.htm">C++11</a> <a href="CppStl.htm">STL</a>
+<a href="CppAlgorithm.htm">algorithm</a> to <a href="CppCheck.htm">check</a> if a <a href="CppContainer.htm">container</a>
+is sorted.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppIsSorted.htm">IsSorted</a> checks <b><a href="CppIf.htm">if</a></b> a <a href="CppContainer.htm">container</a> is sorted.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsSorted.htm">IsSorted</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsSorted.htm">IsSorted</a>Stl11(<b><a href="CppConst.htm">const</a></b> T&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppIs_sorted.htm">std::is_sorted</a>(v.begin(),v.end());<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(3);<br/>
+&nbsp;&nbsp;v.push_back(2);<br/>
+&nbsp;&nbsp;v.push_back(5);<br/>
+&nbsp;&nbsp;v.push_back(1);<br/>
+&nbsp;&nbsp;v.push_back(0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIs_sorted.htm">std::is_sorted</a>(v.begin(),v.end()));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(v.begin(),v.end());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIs_sorted.htm">std::is_sorted</a>(v.begin(),v.end()));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>std::is_sorted test</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppIs_sorted.zip">Download the Qt Creator project 'CppIs_sorted' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppIs_sorted.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppIsSorted.htm">IsSorted</a> checks <b><a href="CppIf.htm">if</a></b> a <a href="CppContainer.htm">container</a> is sorted.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsSorted.htm">IsSorted</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsSorted.htm">IsSorted</a>Stl98(<b><a href="CppConst.htm">const</a></b> T&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAdjacent_find.htm">std::adjacent_find</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGreater.htm">std::greater</a>&lt;<b><a href="CppTypename.htm">typename</a></b> T::value_type&gt;()) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppIsSorted.htm">IsSorted</a> checks <b><a href="CppIf.htm">if</a></b> a <a href="CppVector.htm">std::vector</a> is sorted.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsSorted.htm">IsSorted</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsSorted.htm">IsSorted</a>Stl98VectorOnly(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAdjacent_find.htm">std::adjacent_find</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGreater.htm">std::greater</a>&lt;T&gt;()) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppIsSorted.htm">IsSorted</a> checks <b><a href="CppIf.htm">if</a></b> a <a href="CppContainer.htm">container</a> is sorted.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsSorted.htm">IsSorted</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsSorted.htm">IsSorted</a>Stl11(<b><a href="CppConst.htm">const</a></b> T&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppIs_sorted.htm">std::is_sorted</a>(v.begin(),v.end());<br/>
+}<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(3);<br/>
+&nbsp;&nbsp;v.push_back(2);<br/>
+&nbsp;&nbsp;v.push_back(5);<br/>
+&nbsp;&nbsp;v.push_back(1);<br/>
+&nbsp;&nbsp;v.push_back(0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsSorted.htm">IsSorted</a>Stl98(v));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsSorted.htm">IsSorted</a>Stl11(v));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(v.begin(),v.end());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsSorted.htm">IsSorted</a>Stl98(v));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsSorted.htm">IsSorted</a>Stl11(v));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

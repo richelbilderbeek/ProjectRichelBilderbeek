@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>RemoveDuplicates</title>
+  <meta name="description" content="C++ RemoveDuplicates"/>
+  <meta name="keywords" content="C++ RemoveDuplicates remove duplicates duplicate value in container code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppRemoveDuplicates.htm">RemoveDuplicates</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppRemoveDuplicates.htm">RemoveDuplicates</a> is a <a href="CppVector.htm">std::vector</a> <a href="CppCodeSnippets.htm">code snippet</a> to remove duplicates from a <a href="CppVector.htm">std::vector</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://learningcppisfun.blogspot.com/2008/04/remove-duplicates-from-vector.html<br/>
+<a href="CppComment.htm">//</a>Assumes order of elements is not important<br/>
+<a href="CppComment.htm">//</a>Sorts order of container<br/>
+<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; vec)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(vec.begin(), vec.end());<br/>
+&nbsp;&nbsp;vec.erase(<a href="CppUnique.htm">std::unique</a>(vec.begin(), vec.end()), vec.end());<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Use of <a href="CppRemoveDuplicates.htm">RemoveDuplicates</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>Assumes order of elements is not important<br/>
+<a href="CppComment.htm">//</a>Sorts order of container<br/>
+<a href="CppComment.htm">//</a>http://learningcppisfun.blogspot.com/2008/04/remove-duplicates-from-vector.html<br/>
+<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; vec)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(vec.begin(), vec.end());<br/>
+&nbsp;&nbsp;vec.erase(<a href="CppUnique.htm">std::unique</a>(vec.begin(), vec.end()), vec.end());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppCreateVector.htm">CreateVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(sz,0);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i] <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> max;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppCreateVector.htm">CreateVector</a>(20,4);<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>(v);<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+3 2 1 3 1 3 2 0 1 1 2 3 2 3 3 2 0 2 0 0<br/> 
+0 1 2 3<br/> 
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppRemoveDuplicates.htm">RemoveDuplicates</a> <a href="CppBenchmark.htm">benchmark</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/timer.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppStruct.htm">struct</a></b> Function<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppVoid.htm">void</a></b> (*FunctionPointer)(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp;);<br/>
+&nbsp;&nbsp;Function(FunctionPointer anyFunction, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: function(anyFunction), name(s), sumTime(0.0) {}<br/>
+&nbsp;&nbsp;FunctionPointer function;<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> name;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sumTime;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppExercise<a href="CppAddOne.htm">AddOne</a>Answer.htm<br/>
+<b><a href="CppStruct.htm">struct</a></b> SpeedMeasurer : <a href="CppUnary_function.htm">std::unary_function</a> &lt;<b><a href="CppVoid.htm">void</a></b>,Function&gt;<br/>
+{<br/>
+&nbsp;&nbsp;SpeedMeasurer(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v) : mV(v) {}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(Function&amp; function)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;function.function(mV); <a href="CppComment.htm">//</a>Per<b><a href="CppFor.htm">for</a></b>m the function<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> time <a href="CppOperatorAssign.htm">=</a> t.elapsed();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;function.sumTime <a href="CppOperatorPlusAssign.htm">+=</a> time;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(time <a href="CppOperatorGreaterEqual.htm">&gt;=</a> t.elapsed_min() * 10<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Measurement must be above 10x minimal timer interval!");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; mV;<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>.htm<br/>
+<a href="CppComment.htm">//</a>Assumes order of elements is not important<br/>
+<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>0(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;T&gt; s;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i&lt;v.size(); <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.count(v[i])<a href="CppOperatorNotEqual.htm">!=</a>0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(v.back(),v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.pop_back();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.insert(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>.htm<br/>
+<a href="CppComment.htm">//</a>Assumes order of elements is not important<br/>
+<a href="CppComment.htm">//</a>Sorts order of container<br/>
+<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>1(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(v.begin(), v.end());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppDistance.htm">std::distance</a>(v.begin(),<a href="CppUnique.htm">std::unique</a>(v.begin(), v.end()));<br/>
+&nbsp;&nbsp;v.resize(sz);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://learningcppisfun.blogspot.com/2008/04/remove-duplicates-from-vector.html<br/>
+<a href="CppComment.htm">//</a>Assumes order of elements is not important<br/>
+<a href="CppComment.htm">//</a>Sorts order of container<br/>
+<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>2(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; vec)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(vec.begin(), vec.end());<br/>
+&nbsp;&nbsp;vec.erase(<a href="CppUnique.htm">std::unique</a>(vec.begin(), vec.end()), vec.end());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppCreateVector.htm">CreateVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(sz,0);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i] <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> max;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppVector.htm">std::vector</a>&lt;Function&gt; GetFunctions()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Function&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(Function(<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>0,"<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>0"));<br/>
+&nbsp;&nbsp;v.push_back(Function(<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>1,"<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>1"));<br/>
+&nbsp;&nbsp;v.push_back(Function(<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>2,"<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>2"));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp;  <b><a href="CppOperatorLess.htm">operator&lt;</a></b>&lt;(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Function&amp; function)<br/>
+{<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> function.sumTime <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> function.name;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppBool.htm">bool</a></b> LowestSumTime(<b><a href="CppConst.htm">const</a></b>  Function&amp; lhs, <b><a href="CppConst.htm">const</a></b>  Function&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (lhs.sumTime &lt; rhs.sumTime);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTimer.htm">boost::timer</a> t;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> vector_sz <a href="CppOperatorAssign.htm">=</a> 1000000;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_times <a href="CppOperatorAssign.htm">=</a> 100;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_rand <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(vector_sz) <a href="CppOperatorDivide.htm">/</a> 10;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Function&gt; functions <a href="CppOperatorAssign.htm">=</a> GetFunctions();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_tests <a href="CppOperatorAssign.htm">=</a> functions.size();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> time=0; time<a href="CppOperatorNotEqual.htm">!=</a>n_times; <a href="CppOperatorIncrement.htm">++</a>time)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> time <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorDivide.htm">/</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n_times <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRandom_shuffle.htm">std::random_shuffle</a>(functions.begin(), functions.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> test=0; test<a href="CppOperatorNotEqual.htm">!=</a>n_tests; <a href="CppOperatorIncrement.htm">++</a>test)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppCreateVector.htm">CreateVector</a>(vector_sz, max_rand);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SpeedMeasurer s(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.<b><a href="CppOperator.htm">operator</a></b> ()(functions[test]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Done.\n";<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Size <a href="CppVector.htm">std::vector</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> vector_sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Repeats: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n_times <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Timer minimal interval: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t.elapsed_min() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(functions.begin(),functions.end(),LowestSumTime);<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(functions.begin(),functions.end(), <a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;Function&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Total running time: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t.elapsed() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds.\n";<br/>
+&nbsp;&nbsp;<a href="CppCin.htm">std::cin</a>.get();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+0 / 100<br/>
+1 / 100<br/>
+[Intermediate values]<br/>
+98 / 100<br/>
+99 / 100<br/>
+Done.<br/>
+Size std::vector: 1000000<br/>
+Repeats: 100<br/>
+Timer minimal interval: 1e-06<br/>
+39.45	<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>2<br/>
+39.47	<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>1<br/>
+59.24	<a href="CppRemoveDuplicates.htm">RemoveDuplicates</a>0<br/>
+Total running time: 147.24 seconds.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
