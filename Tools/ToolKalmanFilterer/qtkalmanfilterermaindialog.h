@@ -92,6 +92,7 @@ private slots:
   ///Test this class
   static void Test();
   #endif
+  void on_button_save_graph_clicked();
 };
 
 #endif // QTKALMANFILTERERMAINDIALOG_H

@@ -19,6 +19,7 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QMessageBox>
+#include <QPainter>
 #include <QVBoxLayout>
 
 #include "qwt_plot.h"
@@ -492,3 +493,17 @@ void QtKalmanFiltererMainDialog::Test()
   }
 }
 #endif
+
+void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
+{
+  QPixmap pixmap;
+
+  //Draw the image to painter to pixmap
+  QPainter painter;
+  painter.begin(&pixmap);
+  ui->scroll_area_graph->render(&painter);
+  painter.end();
+
+  pixmap.save("tmp.png");
+
+}
