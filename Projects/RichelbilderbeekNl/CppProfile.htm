@@ -1,14 +1,393 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>Redirection page</title>
-  <meta http-equiv="REFRESH" content="0;url=CppProfiler.htm"/>
+  <title>ProFile</title>
+  <meta name="description" content="C++ ProFile"/>
+  <meta name="keywords" content="C++ ProFile code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
+<!-- End of head, start of body -->
 <body>
-<p>Redirection...</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppProFile.htm">ProFile</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppProFile.htm">ProFile</a> is a <a href="CppQtProjectFile.htm">Qt project file (.pro)</a>
+<a href="CppClass.htm">class</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppProFile.htm">ProFile</a> is tested by the <a href="Tools.htm">tool</a> 
+<a href="ToolTestProFile.htm">TestProFile</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>profile.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppProFile.htm">ProFile</a>, <a href="CppQtCreator.htm">Qt Creator</a> project file <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppProFile.htm">CppProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> PROFILE_H<br/>
+<a href="CppDefine.htm">#define</a> PROFILE_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppProFile.htm">ProFile</a> enables to read from .pro files<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppProFile.htm">ProFile</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<br/>
+&nbsp;&nbsp;<a href="CppProFile.htm">ProFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetBuildDir() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetBuildDirFull() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetCommonRoot() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetCommonRootDepth() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetConfig() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_config; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetCurDir() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetCurDirFull() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the filenames of all <a href="CppHeaderFile.htm">header file</a>s (in HEADERS)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetHeaders() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_headers; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the full filenames of all <a href="CppHeaderFile.htm">header file</a>s (in HEADERS)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHeadersFull() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get all the <a href="CppLibrary.htm">library</a> options (in LIBS)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetLibs() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_libs; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.htm">GetPath</a>.htm<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Returns the path, without a trailing backslash '/'<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; Get<a href="CppProFile.htm">ProFile</a>name() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_pro_filename; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; Get<a href="CppQt.htm">Qt</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_qt; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the filenames of all source files (in SOURCES)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetSources() <b><a href="CppConst.htm">const</a></b>&nbsp;&nbsp;{ <b><a href="CppReturn.htm">return</a></b> m_sources; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the full filenames of all source files (in SOURCES)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetSourcesFull() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTarget() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetTemplate() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<b><a href="CppTemplate.htm">template</a></b>; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_config;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_headers;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_libs;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_qt;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_target;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_<b><a href="CppTemplate.htm">template</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_sources;<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_pro_filename;<br/>
+<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppProFile.htm">ProFile</a>&amp; p);<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PROFILE_H<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>profile.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppProFile.htm">ProFile</a>, <a href="CppQtCreator.htm">Qt Creator</a> project file <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppProFile.htm">CppProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppProFile.htm">profile</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppProFile.htm">ProFile</a>::<a href="CppProFile.htm">ProFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+&nbsp;&nbsp;: m_pro_filename(filename)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> file(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; * p <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> has_prefix_minus <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (!file.eof())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Read: '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\t<a href="CppState.htm">State</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> has_prefix_minus <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "CONFIG"&nbsp;&nbsp; ) { p <a href="CppOperatorAssign.htm">=</a> &amp;m_config; <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "HEADERS"&nbsp;&nbsp;) { p <a href="CppOperatorAssign.htm">=</a> &amp;m_headers; <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "LIBS"&nbsp;&nbsp;&nbsp;&nbsp; )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p <a href="CppOperatorAssign.htm">=</a> &amp;m_libs; <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "QT"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) { p <a href="CppOperatorAssign.htm">=</a> &amp;m_qt; <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "TARGET"&nbsp;&nbsp; ) { p <a href="CppOperatorAssign.htm">=</a> &amp;m_target; <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "TEMPLATE" ) { p <a href="CppOperatorAssign.htm">=</a> &amp;m_<b><a href="CppTemplate.htm">template</a></b>; <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "SOURCES"&nbsp;&nbsp;) { p <a href="CppOperatorAssign.htm">=</a> &amp;m_sources; <b><a href="CppContinue.htm">continue</a></b>; }<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Determine prefix<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorPlusAssign.htm">+=</a>" <a href="CppOperatorLogicalOr.htm">||</a> s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorMinusAssign.htm">-=</a>" <a href="CppOperatorLogicalOr.htm">||</a> s[0] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '=' <a href="CppOperatorLogicalOr.htm">||</a> s[0] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '\\')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s[0] <a href="CppOperatorNotEqual.htm">!=</a> '\\') has_prefix_minus <a href="CppOperatorAssign.htm">=</a> (s[0] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '-');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;push_back(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(has_prefix_minus ? <a href="CppString.htm">std::string</a>("-") : <a href="CppString.htm">std::string</a>()) <a href="CppOperatorPlus.htm">+</a> s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppProFile.htm">ProFile</a>::GetBuildDir() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetCurDir() <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("-build-desktop");<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppProFile.htm">ProFile</a>::GetBuildDirFull() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetCurDirFull() <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("-build-desktop");<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a>GetCommonRoot <a href="CppReturn.htm">returns</a> the common root of all <a href="CppProFile.htm">ProFile</a>'s file.<br/>
+<a href="CppComment.htm">///</a>For example:<br/>
+/<a href="CppComment.htm">//</a> ../../<a href="CppClass.htm">Classes</a>/<a href="CppProFile.htm">CppProFile</a>/<a href="CppProFile.htm">profile</a>.cpp<br/>
+/<a href="CppComment.htm">//</a> ../../<a href="Tools.htm">Tools</a>/<a href="Tools.htm">Tool</a>Zip<a href="CppQt.htm">Qt</a>Project/zipqtproject.cpp<br/>
+<a href="CppComment.htm">///</a>results in<br/>
+/<a href="CppComment.htm">//</a> <a href="CppOperatorDivide.htm">/</a>home/richel/qtsdk-2010.04/bin/<a href="Projects.htm">Projects</a><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppProFile.htm">ProFile</a>::GetCommonRoot() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_depth <a href="CppOperatorAssign.htm">=</a> GetCommonRootDepth();<br/>
+&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> max_depth <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Eat away folders from path<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> path <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetCurDirFull();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>max_depth; )<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> path <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c <a href="CppOperatorAssign.htm">=</a> path[path.size()-1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;path.resize(path.size() <a href="CppOperatorMinus.htm">-</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (c <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '/') <a href="CppOperatorPlus.htm">+</a>+i;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> path;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a>GetCommonRootDepth <a href="CppReturn.htm">returns</a> the number of folders<br/>
+<a href="CppComment.htm">///</a>there needs to traveled up to get to the common root folder.<br/>
+<a href="CppComment.htm">///</a>For example:<br/>
+/<a href="CppComment.htm">//</a> ../../<a href="CppClass.htm">Classes</a>/<a href="CppProFile.htm">CppProFile</a>/<a href="CppProFile.htm">profile</a>.cpp<br/>
+/<a href="CppComment.htm">//</a> ../../<a href="Tools.htm">Tools</a>/<a href="Tools.htm">Tool</a>Zip<a href="CppQt.htm">Qt</a>Project/zipqtproject.cpp<br/>
+<a href="CppComment.htm">///</a>results in 2<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppProFile.htm">ProFile</a>::GetCommonRootDepth() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAppend.htm">Append</a> <a href="CppHeaderFile.htm">header file</a> filenames to v<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(m_headers.begin(),m_headers.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAppend.htm">Append</a> source file filenames to v<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(m_sources.begin(),m_sources.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>More?<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> max_depth <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> depth <a href="CppOperatorAssign.htm">=</a> <a href="CppCount.htm">std::count</a>(s.begin(),s.end(),'.') <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (depth &gt; max_depth) max_depth <a href="CppOperatorAssign.htm">=</a> depth;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> max_depth;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppProFile.htm">ProFile</a>::GetCurDir() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> full_path <a href="CppOperatorAssign.htm">=</a> <a href="CppGetPath.htm">GetPath</a>(m_pro_filename);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> full_path.rfind('/');<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorEqual.htm">==</a><a href="CppString.htm">std::string</a>::npos) <b><a href="CppReturn.htm">return</a></b> full_path;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> path<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> full_path.substr(i+1,full_path.size()-(i+1));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> path;<br/>
+<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppProFile.htm">ProFile</a>::GetCurDirFull() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetPath.htm">GetPath</a>(m_pro_filename);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppProFile.htm">ProFile</a>::GetHeadersFull() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> path <a href="CppOperatorAssign.htm">=</a> <a href="CppGetPath.htm">GetPath</a>(Get<a href="CppProFile.htm">ProFile</a>name());<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GetHeaders();<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[path](<a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> path <a href="CppOperatorPlus.htm">+</a> "/" <a href="CppOperatorPlus.htm">+</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppProFile.htm">ProFile</a>::<a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; f)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> f.rfind("/",f.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(f.size()));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.substr(0,i);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppProFile.htm">ProFile</a>::GetSourcesFull() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> path <a href="CppOperatorAssign.htm">=</a> <a href="CppGetPath.htm">GetPath</a>(Get<a href="CppProFile.htm">ProFile</a>name());<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GetSources();<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[path](<a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> path <a href="CppOperatorPlus.htm">+</a> "/" <a href="CppOperatorPlus.htm">+</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppProFile.htm">ProFile</a>::GetTarget() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_target.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_target[0];<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppProFile.htm">ProFile</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppProFile.htm">ProFile</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2010-12-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-01-06: <a href="CppVersion.htm">version</a> 1.1: added GetCommonRoot and GetLibs methods, added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>");<br/>
+&nbsp;&nbsp;v.push_back("2011-09-11: <a href="CppVersion.htm">version</a> 1.2: fixed <a href="CppBug.htm">bug</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppProFile.htm">ProFile</a>&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "* CONFIG flags: \n";<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;s, p.GetConfig())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "* HEADERS: \n";<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;s, p.GetHeaders())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "* LIBS flags: \n";<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;s, p.GetLibs())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "* QT flags: \n";<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;s, p.Get<a href="CppQt.htm">Qt</a>())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "* TARGET: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.GetTarget() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "* TEMPLATE: \n";<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;s, p.GetTemplate())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "* SOURCES: \n";<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;s, p.GetSources())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Project filename: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.Get<a href="CppProFile.htm">ProFile</a>name() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Common root: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.GetCommonRoot();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
 <p>&nbsp;</p>
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
 </html>
