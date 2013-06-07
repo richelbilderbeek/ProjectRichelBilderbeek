@@ -28,7 +28,7 @@ const About KalmanFiltererMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "KalmanFilterer",
     "tool to work with Kalman filters",
-    "the 28th of May 2013",
+    "the 7th of June 2013",
     "2013",
     "http://www.richelbilderbeek.nl/ToolKalmanFilterer.htm",
     GetVersion(),
@@ -50,7 +50,7 @@ const About KalmanFiltererMenuDialog::GetAbout()
 
 const std::string KalmanFiltererMenuDialog::GetVersion()
 {
-  return "1.6";
+  return "1.7";
 }
 
 const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
@@ -63,5 +63,6 @@ const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
   v.push_back("2013-05-06: version 1.4: prepared architecture for expansion");
   v.push_back("2013-05-16: version 1.5: use of model/view architecture, preparations for adding fixed-lag-smoother Kalman filter");
   v.push_back("2013-05-28: version 1.6: added loading (from DokuWiki) and saving (to DokuWiki and HTML) of parameters");
+  v.push_back("2013-05-28: version 1.7: added possibility to save graphs to file");
   return v;
 }

@@ -19,6 +19,7 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QMessageBox>
+#include <QFileDialog>
 #include <QPainter>
 #include <QVBoxLayout>
 
@@ -496,14 +497,22 @@ void QtKalmanFiltererMainDialog::Test()
 
 void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
 {
-  QPixmap pixmap;
+  const QString filename
+    = QFileDialog::getSaveFileName(
+      0,
+      "Please select a filename to saev the graphs to",
+      QString(),
+      "*.png"
+    );
+  if (filename.isEmpty()) return;
 
-  //Draw the image to painter to pixmap
-  QPainter painter;
-  painter.begin(&pixmap);
-  ui->scroll_area_graph->render(&painter);
-  painter.end();
+  QImage image(
+    ui->scroll_area_graph_contents->contentsRect().size(),
+    QImage::Format_ARGB32);    // Create the image with the exact size
+  image.fill(Qt::transparent); // Start all pixels transparent
+  QPainter painter(&image);
+  ui->scroll_area_graph_contents->render(&painter);
 
-  pixmap.save("tmp.png");
-
+  image.save(filename);
+  assert(QFile::exists(filename));
 }
