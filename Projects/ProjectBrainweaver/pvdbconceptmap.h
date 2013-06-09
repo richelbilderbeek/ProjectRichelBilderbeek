@@ -26,6 +26,12 @@ struct ConceptMapFactory;
 
 struct ConceptMap : public boost::noncopyable
 {
+  //Add an Edge, assumes that the nodes it points to are in the concept map
+  void AddEdge(const boost::shared_ptr<pvdb::Edge> edge);
+
+  //Add a node, always works
+  void AddNode(const boost::shared_ptr<pvdb::Node> node);
+
   ///Test if this ConceptMap can be constructed successfully
   static bool CanConstruct(
     const std::vector<boost::shared_ptr<pvdb::Node> >& nodes,
@@ -52,10 +58,11 @@ struct ConceptMap : public boost::noncopyable
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality
   static bool HasSameContent(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs);
-  //static bool HasSameContent(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs);
-  //static bool HasSameContent(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs);
-  //static bool HasSameContent(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs);
-  //static bool HasSameContent(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs);
+
+  #ifndef NDEBUG
+  ///Check if there are no nulls in the edges and nodes
+  bool IsValid() const;
+  #endif
 
   ///Convert a ConceptMap from an XML std::string
   static const std::string ToXml(const boost::shared_ptr<const pvdb::ConceptMap>& c);
@@ -73,8 +80,10 @@ private:
     const std::string& question,
     const std::vector<boost::shared_ptr<pvdb::Node> >& nodes);
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test();
+  #endif
 
   ///Block constructor, except for the friend ConceptMapFactory
   ConceptMap(const std::string& question);
@@ -94,19 +103,6 @@ private:
 };
 
 bool IsEqual(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs);
-
-/*
-bool operator==(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs) = delete;
-bool operator==(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs) = delete;
-bool operator==(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<const pvdb::ConceptMap>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::ConceptMap>& lhs, const boost::shared_ptr<pvdb::ConceptMap>& rhs) = delete;
-bool operator!=(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs) = delete;
-*/
 
 } //~namespace pvdb
 

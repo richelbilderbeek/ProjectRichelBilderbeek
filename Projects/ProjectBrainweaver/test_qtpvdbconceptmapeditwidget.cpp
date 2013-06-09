@@ -36,6 +36,9 @@ void QtPvdbConceptMapEditWidget::Test()
     const auto v = pvdb::ConceptMapFactory::GetAllTests();
     for (const boost::shared_ptr<pvdb::ConceptMap> concept_map: v)
     {
+      assert(concept_map);
+      assert(concept_map->IsValid());
+
       boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
       assert(widget);
       QtPvdbConceptMapWidget::Test(widget);

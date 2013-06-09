@@ -13,7 +13,11 @@
 #include "qtpvdbedgeitem.h"
 #include "qtpvdbexamplesitem.h"
 #include "pvdbhelper.h"
+#include "pvdbedge.h"
+#include "pvdbconceptfactory.h"
+#include "pvdbedgefactory.h"
 #include "pvdbconceptmap.h"
+#include "pvdbnodefactory.h"
 #include "pvdbconceptmapfactory.h"
 #include "qtpvdbcenternodeitem.h"
 #include "qtpvdbnodeitem.h"
@@ -75,7 +79,9 @@ void QtPvdbConceptMapDisplayWidget::AddEdge(
   qtedge->m_signal_request_scene_update.connect(
     boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
   assert(this->scene());
+
   this->scene()->addItem(qtedge);
+  this->GetConceptMap()->AddEdge(edge);
 
   assert(qtedge->pos().x() == edge->GetX());
   assert(qtedge->pos().y() == edge->GetY());
@@ -100,10 +106,11 @@ QtPvdbNodeItem * QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<
     boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
 
   this->scene()->addItem(qtnode);
+  this->GetConceptMap()->AddNode(node);
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
-
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
   return qtnode;
 }
 
@@ -142,6 +149,32 @@ std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapDisplayWidget::CreateNew
   return p;
 }
 #endif
+
+void QtPvdbConceptMapDisplayWidget::DoRandomStuff()
+{
+  #ifndef NDEBUG
+  assert(this->GetConceptMap());
+  const int n_edges_before = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
+  const int n_nodes_before = boost::numeric_cast<int>(GetConceptMap()->GetNodes().size());
+  #endif
+  assert(!"Do something here");
+  const auto node_from = pvdb::NodeFactory::GetTests().at(0);
+  const auto node_to   = pvdb::NodeFactory::GetTests().at(1);
+  this->AddNode(node_from);
+  this->AddNode(node_to  );
+  const auto edge_concept = pvdb::ConceptFactory::GetTests().at(0);
+  const double node_x = 12.34; //Just some coordinat
+  const double node_y = 45.67; //Just some coordinat
+  const boost::shared_ptr<pvdb::Edge> edge = pvdb::EdgeFactory::Create(
+    edge_concept,node_x,node_y,node_from,true,node_to,true);
+  this->AddEdge(edge);
+  #ifndef NDEBUG
+  const int n_edges_after = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
+  const int n_nodes_after = boost::numeric_cast<int>(GetConceptMap()->GetNodes().size());
+  assert(n_edges_after > n_edges_before);
+  assert(n_nodes_after > n_nodes_before);
+  #endif
+}
 
 void QtPvdbConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {

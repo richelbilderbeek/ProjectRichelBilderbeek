@@ -31,6 +31,7 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::Create(
 {
   boost::shared_ptr<pvdb::ConceptMap> p(new ConceptMap(nodes,edges));
   assert(p);
+  CHECK ISVALID
   return p;
 }
 
@@ -40,6 +41,7 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::CreateFromClu
 {
   boost::shared_ptr<pvdb::ConceptMap> p(new ConceptMap(question,cluster));
   assert(p);
+  CHECK ISVALID
   return p;
 }
 
@@ -188,8 +190,30 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
   }
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::ConceptMap>& p) { return !p; } ) == 0); //FIX 2012-01-02
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::ConceptMap>& p) { return p; } ));
+  #ifndef NDEBUG
+  for (const auto concept_map: v)
+  {
+    assert(concept_map);
+    for (const auto node: concept_map->GetNodes())
+    {
+      assert(node);
+    }
+    for (const auto edge: concept_map->GetEdges())
+    {
+      assert(edge);
+      assert(edge->GetTo());
+      assert(edge->GetFrom());
+      assert(std::count(
+        concept_map->GetNodes().begin(),
+        concept_map->GetNodes().end(),
+        edge->GetTo()) == 1);
+      assert(std::count(
+        concept_map->GetNodes().begin(),
+        concept_map->GetNodes().end(),
+        edge->GetFrom()) == 1);
+    }
+  }
+  #endif
   return v;
 }
 
@@ -715,8 +739,30 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     v.at(17)=concept_map;
   }
 
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::ConceptMap>& p) { return p; } ) == boost::numeric_cast<int>(v.size()));
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::ConceptMap>& p) { return p; } ));
+  #ifndef NDEBUG
+  for (const auto concept_map: v)
+  {
+    assert(concept_map);
+    for (const auto node: concept_map->GetNodes())
+    {
+      assert(node);
+    }
+    for (const auto edge: concept_map->GetEdges())
+    {
+      assert(edge);
+      assert(edge->GetTo());
+      assert(edge->GetFrom());
+      assert(std::count(
+        concept_map->GetNodes().begin(),
+        concept_map->GetNodes().end(),
+        edge->GetTo()) == 1);
+      assert(std::count(
+        concept_map->GetNodes().begin(),
+        concept_map->GetNodes().end(),
+        edge->GetFrom()) == 1);
+    }
+  }
+  #endif
   return v;
 }
 
@@ -1086,8 +1132,30 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
   }
 
   assert(v.size() == 12);
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::ConceptMap>& p) { return p; } ) == boost::numeric_cast<int>(v.size()));
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::ConceptMap>& p) { return p; } ));
+  #ifndef NDEBUG
+  for (const auto concept_map: v)
+  {
+    assert(concept_map);
+    for (const auto node: concept_map->GetNodes())
+    {
+      assert(node);
+    }
+    for (const auto edge: concept_map->GetEdges())
+    {
+      assert(edge);
+      assert(edge->GetTo());
+      assert(edge->GetFrom());
+      assert(std::count(
+        concept_map->GetNodes().begin(),
+        concept_map->GetNodes().end(),
+        edge->GetTo()) == 1);
+      assert(std::count(
+        concept_map->GetNodes().begin(),
+        concept_map->GetNodes().end(),
+        edge->GetFrom()) == 1);
+    }
+  }
+  #endif
   return v;
 }
 
@@ -1230,8 +1298,30 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     v[5] = concept_map;
   }
 
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::ConceptMap>& p) { return p; } ));
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::ConceptMap>& p) { return !p; } ) == 0);
+  #ifndef NDEBUG
+  for (const auto concept_map: v)
+  {
+    assert(concept_map);
+    for (const auto node: concept_map->GetNodes())
+    {
+      assert(node);
+    }
+    for (const auto edge: concept_map->GetEdges())
+    {
+      assert(edge);
+      assert(edge->GetTo());
+      assert(edge->GetFrom());
+      assert(std::count(
+        concept_map->GetNodes().begin(),
+        concept_map->GetNodes().end(),
+        edge->GetTo()) == 1);
+      assert(std::count(
+        concept_map->GetNodes().begin(),
+        concept_map->GetNodes().end(),
+        edge->GetFrom()) == 1);
+    }
+  }
+  #endif
   return v;
 }
 

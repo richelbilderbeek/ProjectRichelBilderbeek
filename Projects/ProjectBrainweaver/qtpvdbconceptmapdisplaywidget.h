@@ -28,8 +28,6 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
     const boost::shared_ptr<pvdb::ConceptMap> concept_map,
     QWidget* parent = 0);
   ~QtPvdbConceptMapDisplayWidget() {}
-  //QtPvdbConceptMapDisplayWidget(const QtPvdbConceptMapDisplayWidget& other) = delete;
-  //QtPvdbConceptMapDisplayWidget& operator=(const QtPvdbConceptMapDisplayWidget& other) = delete;
 
   #ifndef NDEBUG
   ///Creates a new derived class
@@ -38,7 +36,7 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
   #endif
 
   ///Do something random
-  void DoRandomStuff() {}
+  void DoRandomStuff();
 
   ///Initialize the widget with a concept map
   ///Note that ReadFromConceptMap changes the copy of the map entered, by changing some GUI
@@ -70,14 +68,5 @@ private:
   ///Test this class
   static void Test() {}
 };
-
-bool operator==(const boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<QtPvdbConceptMapDisplayWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<QtPvdbConceptMapDisplayWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<QtPvdbConceptMapDisplayWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<QtPvdbConceptMapDisplayWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapDisplayWidget>& rhs) = delete;
 
 #endif // QTPVDBCONCEPTMAPDISPLAYWIDGET_H

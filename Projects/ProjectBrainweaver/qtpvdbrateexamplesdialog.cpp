@@ -137,13 +137,14 @@ void QtPvdbRateExamplesDialog::Test()
       {
         const auto b = QtPvdbRateExamplesDialog(pvdb::ConceptFactory::GetTests()[j]).GetRatedExamples();
         assert(b);
+        assert(a != b);
         if (i == j)
         {
-          assert(a == b);
+          assert(IsEqual(*a,*b));
         }
         else
         {
-          assert(a != b);
+          assert(!IsEqual(*a,*b));
         }
       }
     }

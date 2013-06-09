@@ -116,11 +116,19 @@ void QtPvdbRateConceptMapDialog::Test()
     for (int i=0; i!=sz; ++i)
     {
       const boost::shared_ptr<pvdb::File> file = v[i];
-      const boost::shared_ptr<pvdb::ConceptMap> old_concept_map
-        = pvdb::ConceptMapFactory::DeepCopy(file->GetConceptMap());
+      assert(file);
+      //assert(file->GetConceptMap());
       QtPvdbRateConceptMapDialog d(file);
-      assert(pvdb::ConceptMap::HasSameContent(
-        *old_concept_map,*d.GetWidget()->GetConceptMap()));
+      assert(d.GetWidget());
+      assert(( file->GetConceptMap() &&  d.GetWidget()->GetConceptMap())
+          || (!file->GetConceptMap() && !d.GetWidget()->GetConceptMap()));
+      assert(
+           !file->GetConceptMap()
+        || pvdb::ConceptMap::HasSameContent(
+             *file->GetConceptMap(),
+             *d.GetWidget()->GetConceptMap()
+           )
+        );
     }
   }
   TRACE("QtPvdbRateConceptMapDialog::Test finished successfully");

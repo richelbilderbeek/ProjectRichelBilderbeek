@@ -57,13 +57,6 @@ const boost::shared_ptr<pvdb::File> pvdb::FileFactory::DeepCopy(const boost::sha
       file->GetStudentName(),
       file->GetVersion()));
   assert(p);
-  #ifndef NDEBUG
-  if (file != p)
-  {
-    TRACE(pvdb::File::ToXml(*file));
-    TRACE(pvdb::File::ToXml(*p));
-  }
-  #endif
   assert(file != p && "It must be a DEEP copy");
   assert(IsEqual(*file,*p) && "It must be a deep COPY");
   return p;

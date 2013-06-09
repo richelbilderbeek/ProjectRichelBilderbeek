@@ -100,6 +100,23 @@ pvdb::ConceptMap::ConceptMap(
     && "Assume the ConceptMap has as much nodes as the cluster has concepts + one focal question");
 }
 
+void pvdb::ConceptMap::AddEdge(const boost::shared_ptr<pvdb::Edge> edge)
+{
+  assert(edge);
+  assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 1
+    && "First enter the node this edge originates from");
+  assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
+    && "First enter the node this edge targets to");
+  m_edges.push_back(edge);
+}
+
+void pvdb::ConceptMap::AddNode(const boost::shared_ptr<pvdb::Node> node)
+{
+  assert(node);
+  m_nodes.push_back(node);
+}
+
+
 bool pvdb::ConceptMap::CanConstruct(
   const std::vector<boost::shared_ptr<pvdb::Node> >& nodes,
   const std::vector<boost::shared_ptr<pvdb::Edge> >& edges)
@@ -429,6 +446,55 @@ bool pvdb::ConceptMap::HasSameContent(
   }
   return true;
 }
+
+#ifndef NDEBUG
+bool pvdb::ConceptMap::IsValid() const
+{
+  for (const auto node: m_nodes)
+  {
+    if (!node)
+    {
+      TRACE("Node is nullptr");
+      return false;
+    }
+  }
+  for (const auto edge: m_edges)
+  {
+    if (!edge)
+    {
+      TRACE("Edge is nullptr");
+      return false;
+    }
+    if (!edge->GetTo())
+    {
+      TRACE("edge->GetTo() is nullptr");
+      return false;
+    }
+    if (!edge->GetFrom())
+    {
+      TRACE("edge->GetFrom() is nullptr");
+      return false;
+    }
+    if (std::count(
+      m_nodes.begin(),
+      m_nodes.end(),
+      edge->GetTo()) != 1)
+    {
+      TRACE("edge->GetTo() points to node not in the concept map");
+      return false;
+    }
+    if(std::count(
+      m_nodes.begin(),
+      m_nodes.end(),
+      edge->GetFrom()) != 1)
+    {
+      TRACE("edge->GetFrom() points to node not in the concept map");
+      return false;
+    }
+  }
+  return true;
+}
+#endif
 
 const std::string pvdb::ConceptMap::ToXml(const boost::shared_ptr<const pvdb::ConceptMap>& map)
 {

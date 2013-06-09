@@ -128,9 +128,11 @@ QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvd
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   this->scene()->addItem(qtnode);
+  this->GetConceptMap()->AddNode(node);
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
 
   return qtnode;
 }

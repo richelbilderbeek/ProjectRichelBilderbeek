@@ -51,7 +51,7 @@ public:
 
   ///Obtain the concept map
   const boost::shared_ptr<const pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
-  //    boost::shared_ptr<      pvdb::ConceptMap> GetConceptMap()       { return m_concept_map; }
+        boost::shared_ptr<      pvdb::ConceptMap> GetConceptMap()       { return m_concept_map; }
 
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const;

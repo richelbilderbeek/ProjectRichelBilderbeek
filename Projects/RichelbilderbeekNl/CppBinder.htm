@@ -1,267 +1,135 @@
- 
-<title>Binder</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Binder</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek Binder STL</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>16</o:Revision>
-  <o:TotalTime>141</o:TotalTime>
-  <o:Created>2008-05-04T17:18:00Z</o:Created>
-  <o:LastSaved>2009-12-30T09:59:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>439</o:Words>
-  <o:Characters>2505</o:Characters>
-  <o:Category>C++ Richel Bilderbeek Binder</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>20</o:Lines>
-  <o:Paragraphs>5</o:Paragraphs>
-  <o:CharactersWithSpaces>3076</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-<style>
-<!--
-  
- 
- 
- 
- 
- 
- /* List Definitions */
-@list l0
-	{mso-list-id:963775553;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1529468478 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
- 
-@list l1
-	{mso-list-id:1782996291;
-	mso-list-type:hybrid;
-	mso-list-template-ids:798655508 -923387128 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
-@list l1:level1
-	{mso-level-start-at:0;
-	mso-level-text:"\[%1\]";
-	mso-level-tab-stop:.35in;
-	mso-level-number-position:left;
-	margin-left:.35in;
-	text-indent:-.35in;}
-@list l1:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
- 
--->
-</style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Binder</title>
+  <meta name="description" content="C++ Binder"/>
+  <meta name="keywords" content="C++ Binder code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
- 
- 
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h1>(<a href="Cpp.htm">C++</a>)
-<a href="CppBinder.htm">Binder</a></h1>
 <p>&nbsp;</p>
-<p>A <a
-href="CppBinder.htm">binder</a> is a type of <a href="CppAdapter.htm">adapter</a>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBinder.htm">Binder</a></h1>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>A <a href="CppBinder.htm">binder</a> is a type of <a href="CppAdapter.htm">adapter</a>
 that allows a two-argument function object to be used as a single-argument
-function by binding one argument to a value <span style='mso-field-code:"REF _Ref249863698 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340039003800360033003600390038000000</w:data>
-</xml><![endif]--> . <a href="CppBinder.htm">Binders</a> are useful when
+function by binding one argument to a value [1]. <a href="CppBinder.htm">Binders</a> are useful when
 using <a href="CppAlgorithm.htm">algorithms</a>.</p>
-
 <p>&nbsp;</p>
-
-<p>There
-are two <a href="CppStl.htm">STL</a> <a href="CppBinder.htm">binders</a>:</p>
-
-  <li>     <a href="CppBind1st.htm">std::bind1st</a></p>
-
-  <li>
-    <a href="CppBind2nd.htm">std::bind2nd</a></p>
+<p>There are two <a href="CppStl.htm">STL</a> <a href="CppBinder.htm">binders</a>:</p>
+<ul>
+  <li><a href="CppBind1st.htm">std::bind1st</a></li>
+  <li><a href="CppBind2nd.htm">std::bind2nd</a></li>
+</ul>
+<p>&nbsp;</p>
 <p>There is one <a href="CppBoost.htm">Boost</a> <a href="CppBinder.htm">binder</a>:</p>
-  <li>     <a
-href="CppBind.htm">boost::bind</a></p>
+<ul>
+  <li><a href="CppBind.htm">boost::bind</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>Using <a href="CppBind.htm">boost::bind</a> results in easier to read and shorter code.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Replacing a <a href="CppFor.htm">for</a>
-loop by algorithms using   <a
-href="CppBind2nd.htm">std::bind2nd</a> and <a href="CppBind.htm">boost::bind</a>  </h2>
-
 <p>&nbsp;</p>
-
- 
-
 <p>&nbsp;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
 <p>&nbsp;</p>
-
-<p><b> <a href="CppStruct.htm">struct</a> </b>  Widget</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppVoid.htm">void</a></b>
-DoItOften(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-n) <b><a href="CppConst.htm">const</a></b> { /* do it n times */ }</p>
-
-<p>};</p>
-
+<h2>Replacing a <a href="CppFor.htm">for</a> loop by an <a href="CppAlgorithm.htm">algorithm</a> using <a href="CppBind2nd.htm">std::bind2nd</a> and <a href="CppBind.htm">boost::bind</a></h2>
 <p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  DoItOften(<b><a href="CppConst.htm">const</a></b> <a
-href="CppVector.htm">std::vector</a>&lt;Widget&gt;&amp; v, <b><a
-href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppConst.htm">const</a></b>
-<b><a href="CppInt.htm">int</a></b> sz = v.size();</p>
-
-<p>   <b><a href="CppFor.htm">for</a></b>
-(<b><a href="CppInt.htm">int</a></b> i=0; i!=sz; ++i)</p>
-
-<p>   {</p>
-
-<p>     v[i].DoItOften(n);</p>
-
-<p>   }</p>
-
-<p>}</p>
-
+<!-- start of code -->
+<table summary="filewUmrvJ.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n) <b><a href="CppConst.htm">const</a></b> { <a href="CppOperatorDivide.htm">/</a>* <b><a href="CppDo.htm">do</a></b> it n <a href="CppTime.htm">time</a>s <a href="CppComment.htm">*/</a> }<br/>
+};<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppWidget.htm">Widget</a>&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i].DoItOften(n);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="fileM6xEGn.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n) <b><a href="CppConst.htm">const</a></b> { <a href="CppOperatorDivide.htm">/</a>* <b><a href="CppDo.htm">do</a></b> it n <a href="CppTime.htm">time</a>s <a href="CppComment.htm">*/</a> }<br/>
+};<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppWidget.htm">Widget</a>&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppMem_fun.htm">std::mem_fun_ref</a>(&amp;<a href="CppWidget.htm">Widget</a>::DoItOften),n)<br/>
+&nbsp;&nbsp;);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
+<!-- start of code -->
+<table summary="fileOPPXUF.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n) <b><a href="CppConst.htm">const</a></b> { <a href="CppOperatorDivide.htm">/</a>* <b><a href="CppDo.htm">do</a></b> it n <a href="CppTime.htm">time</a>s <a href="CppComment.htm">*/</a> }<br/>
+};<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> DoItOften(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppWidget.htm">Widget</a>&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppWidget.htm">Widget</a>::DoItOften, _1, n)<br/>
+&nbsp;&nbsp;);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
- 
-
 <p>&nbsp;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;</p>
-
 <p>&nbsp;</p>
-
-<p><b> <a href="CppStruct.htm">struct</a> </b>  Widget</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppVoid.htm">void</a></b>
-DoItOften(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-n) <b><a href="CppConst.htm">const</a></b> { /* do it n times */ }</p>
-
-<p>};</p>
-
 <p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  DoItOften(<b><a href="CppConst.htm">const</a></b> <a
-href="CppVector.htm">std::vector</a>&lt;Widget&gt;&amp; v, <b><a
-href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)</p>
-
-<p>{</p>
-
-<p>   <a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),</p>
-
-<p>     <a href="CppBind2nd.htm">std::bind2nd</a>(<a
-href="CppMem_fun_ref.htm">std::mem_fun_ref</a>(&amp;Widget::DoItOften),n));</p>
-
-<p>}</p>
-
 <p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;boost/bind.hpp&gt;</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppStruct.htm">struct</a> </b>  Widget</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppVoid.htm">void</a></b>
-DoItOften(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-n) <b><a href="CppConst.htm">const</a></b> { /* do it n times */ }</p>
-
-<p>};</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  DoItOften(<b><a href="CppConst.htm">const</a></b> <a
-href="CppVector.htm">std::vector</a>&lt;Widget&gt;&amp; v, <b><a
-href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)</p>
-
-<p>{</p>
-
-<p>   <a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),</p>
-
-<p>     <a href="CppBind.htm">boost::bind</a>(&amp;Widget::DoItOften,
-_1, n));</p>
-
-<p>}</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
 <h2><a href="CppReferences.htm">References</a></h2>
-
-<p><a name="_Ref249863698">  [0] &nbsp;
-</a><a href="CppBjarneStroustrup.htm"><span
-style='mso-bookmark:_Ref249863698'> Bjarne Stroustrup  <span style='mso-bookmark:_Ref249863698'></a><span
-style='mso-bookmark:_Ref249863698'> . The C++ Programming Language (3rd edition). ISBN:
-0-201-88954-4. Chapter 18.4.4: 'A binder allows a two-argument function object
-to be used as a single-argument function by binding one argument to a value.'</p>
-
 <p>&nbsp;</p>
-
+<ol>
+  <li>
+    <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN:
+    0-201-88954-4. Chapter 18.4.4: 'A binder allows a two-argument function object
+    to be used as a single-argument function by binding one argument to a value.'
+  </li>
+</ol>
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
 <p>&nbsp;</p>
-
-</div>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
-
 </html>
+
+
+

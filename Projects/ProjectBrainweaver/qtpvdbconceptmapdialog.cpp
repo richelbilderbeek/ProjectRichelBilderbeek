@@ -157,9 +157,19 @@ QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::s
 void QtPvdbConceptMapDialog::DoRandomStuff()
 {
   //Do random stuff
+  #ifndef NDEBUG
+  assert(m_file);
+  assert(m_file->GetConceptMap());
+  const int n_edges_before = boost::numeric_cast<int>(m_file->GetConceptMap()->GetEdges().size());
+  const int n_nodes_before = boost::numeric_cast<int>(m_file->GetConceptMap()->GetNodes().size());
+  #endif
   this->GetWidget()->DoRandomStuff();
-  assert(!m_file->GetConceptMap()->GetEdges().empty());
-  assert( m_file->GetConceptMap()->GetNodes().size() > 1);
+  #ifndef NDEBUG
+  const int n_edges_after = boost::numeric_cast<int>(m_file->GetConceptMap()->GetEdges().size());
+  const int n_nodes_after = boost::numeric_cast<int>(m_file->GetConceptMap()->GetNodes().size());
+  assert(n_edges_after > n_edges_before);
+  assert(n_nodes_after > n_nodes_before);
+  #endif
 }
 
 const QtPvdbConceptMapWidget * QtPvdbConceptMapDialog::GetWidget() const

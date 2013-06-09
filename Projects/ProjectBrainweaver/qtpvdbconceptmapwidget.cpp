@@ -93,6 +93,7 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
   }
 
   assert(GetConceptMap() == concept_map);
+  assert(concept_map->IsValid());
 }
 
 

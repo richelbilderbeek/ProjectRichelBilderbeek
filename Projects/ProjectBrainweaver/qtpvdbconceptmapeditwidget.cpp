@@ -66,6 +66,23 @@ QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   assert(scene());
   scene()->addItem(m_tools); //Give m_tools a parent
   assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");
+  assert(concept_map->IsValid());
+  for (auto node: concept_map->GetNodes())
+  {
+    if (!node)
+    {
+      TRACE("BREAK");
+    }
+    assert(node);
+    this->AddNode(node);
+  }
+  for (auto edge: concept_map->GetEdges())
+  {
+    assert(edge);
+    this->AddEdge(edge);
+  }
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
 }
 
 QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget()
@@ -107,7 +124,10 @@ void QtPvdbConceptMapEditWidget::AddEdge(
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   this->scene()->addItem(qtedge);
+  this->GetConceptMap()->AddEdge(edge);
 
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
   assert(qtedge->pos().x() == edge->GetX());
   assert(qtedge->pos().y() == edge->GetY());
 }
@@ -188,12 +208,22 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
 
 
   this->scene()->addItem(qtedge);
+  this->GetConceptMap()->AddEdge(edge);
+
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
 
   this->scene()->update();
 }
 
 QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvdb::Node>& node)
 {
+  if (!node)
+  {
+    TRACE("BREAK");
+  }
+  assert(node);
+  assert(node->GetConcept());
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(node->GetConcept()));
   QtPvdbNodeItem * const qtnode = new QtPvdbNodeItem(node,qtconcept);
 
@@ -215,9 +245,14 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   this->scene()->addItem(qtnode);
+  this->GetConceptMap()->AddNode(node);
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
+  //Cannot check this: during construction the concept map has multiple nodes, that can only be
+  //added one by one
+  //assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  //  && "GUI and non-GUI concept map must match");
 
   return qtnode;
 }
@@ -261,6 +296,8 @@ void QtPvdbConceptMapEditWidget::CleanMe()
         this));
     this->scene()->addItem(m_tools);
   }
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
 }
 
 #ifndef NDEBUG
@@ -286,6 +323,8 @@ void QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const edge)
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
   assert(n_items_after + 1 == n_items_before);
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
   #endif
 }
 
@@ -320,6 +359,8 @@ void QtPvdbConceptMapEditWidget::DeleteLeftovers()
     }
     if (done) break;
   }
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
 }
 
 void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const node)
@@ -333,6 +374,8 @@ void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const node)
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
   assert(n_items_after + 1 == n_items_before);
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
   #endif
 }
 
@@ -351,6 +394,9 @@ void QtPvdbConceptMapEditWidget::DoRandomStuff()
 
   assert(qtnode1->GetNode() != qtnode2->GetNode());
   this->AddEdge(qtnode1,qtnode2);
+
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
 }
 
 void QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
@@ -419,6 +465,9 @@ void QtPvdbConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
   QtPvdbNodeItem * const qtnode = AddNode(node); //AddNode creates, connects and adds the node to scene
   assert(qtnode);
   qtnode->setPos(mapToScene(event->pos()));
+
+  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
 }
 
 void QtPvdbConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
