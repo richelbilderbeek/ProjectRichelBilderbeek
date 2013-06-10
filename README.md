@@ -25,7 +25,7 @@ Libraries used that are also in this repository are:
 * [Matt McCutchen's BigInteger (version 2010.04.30)](https://mattmccutchen.net/bigint)
 
 These libraries are added to allow easy crosscompilation to Windows using the often-supplied 'crosscompile.sh' scripts. 
-For crosscompiling from Lubuntu to Windows I use [https://github.com/mxe/mxe](MXE).
+For crosscompiling from Lubuntu to Windows I use [MXE](https://github.com/mxe/mxe).
 
 
 External links
