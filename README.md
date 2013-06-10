@@ -24,7 +24,9 @@ Libraries used that are also in this repository are:
 * [Warp's function parser (versions 4.4.3 and 4.5.1)](http://warp.povusers.org/FunctionParser)
 * [Matt McCutchen's BigInteger (version 2010.04.30)](https://mattmccutchen.net/bigint)
 
-These libraries are added to allow easy crosscompilation to Windows using the often-supplied 'crosscompile.sh' scripts.
+These libraries are added to allow easy crosscompilation to Windows using the often-supplied 'crosscompile.sh' scripts. 
+For crosscompiling from Lubuntu to Windows I use [https://github.com/mxe/mxe](MXE).
+
 
 External links
 --------------
