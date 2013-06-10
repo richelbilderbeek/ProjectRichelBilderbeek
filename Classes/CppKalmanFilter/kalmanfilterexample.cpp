@@ -8,16 +8,19 @@
 #include "kalmanfilterexample.h"
 
 #include <cassert>
+#include <memory>
 #include <boost/lexical_cast.hpp>
 #include "matrix.h"
 #include "trace.h"
 
 KalmanFilterExample::KalmanFilterExample(
+  const std::string& description,
   const std::vector<std::string>& inputs,
   const boost::shared_ptr<const StandardKalmanFilterParameters>& kalman_filter_parameters,
   const std::vector<std::string>& state_names,
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters>& white_noise_system_parameters)
-  : m_inputs(inputs),
+  : m_description(description),
+    m_inputs(inputs),
     m_kalman_filter_parameters(kalman_filter_parameters),
     m_state_names(state_names),
     m_white_noise_system_parameters(white_noise_system_parameters)
@@ -34,35 +37,58 @@ const std::vector<boost::shared_ptr<KalmanFilterExample> > KalmanFilterExample::
   std::vector<boost::shared_ptr<KalmanFilterExample> > v;
   for (int i=1; ; ++i)
   {
-    const boost::shared_ptr<KalmanFilterExample> p = CreateExample(i);
+    std::unique_ptr<KalmanFilterExample> p(CreateExample(i));
     if (!p) return v;
-    v.push_back(p);
+    const boost::shared_ptr<KalmanFilterExample> q(p.release());
+    assert(q);
+    assert(q.use_count() == 1);
+    assert(!p);
+    v.push_back(q);
   }
-
+  assert(!"Cannot get here: must return in for loop above");
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample(const int i)
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample(const int i)
 {
-  boost::shared_ptr<KalmanFilterExample> p;
+  std::unique_ptr<KalmanFilterExample> p;
   switch (i)
   {
     case  0: break;
-    case  1: p = CreateExample1(); break;
-    case  2: p = CreateExample2(); break;
-    case  3: p = CreateExample3(); break;
-    case  4: p = CreateExample4(); break;
-    case  5: p = CreateExample5(); break;
-    case  6: p = CreateExample6(); break;
-    case  7: p = CreateExample7(); break;
-    case  8: p = CreateExample8(); break;
-    case  9: p = CreateExample9(); break;
-    case 10: p = CreateExample10(); break;
+    case  1:
+      p = CreateExample1();
+      break;
+    case  2:
+      p = CreateExample2();
+      break;
+    case  3:
+      p = CreateExample3();
+      break;
+    case  4:
+      p = CreateExample4();
+      break;
+    case  5:
+      p = CreateExample5(); break;
+    case  6:
+      p = CreateExample6(); break;
+    case  7:
+      p = CreateExample7(); break;
+    case  8:
+      p = CreateExample8(); break;
+    case  9:
+      p = CreateExample9();
+      break;
+    case 10:
+      p = CreateExample10();
+      assert(p);
+      break;
     default: break;
   }
+  //When p is nullptr, this indicates that there are no more examples
+
   return p;
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
 {
   
   //Use examples and variables as http://greg.czerniak.info/guides/kalman1
@@ -117,8 +143,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "Voltage",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -130,7 +157,7 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1
   return example;
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
 {
   //Use example from Simon, D. Kalman Filtering. Embedded Systems Programming. June 2001
   const int n = 2;
@@ -213,8 +240,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetControl(),white_noise_system_parameters->GetControl()));
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetStateTransition(),white_noise_system_parameters->GetStateTransition()));
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "Accelerating car (two states)",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -225,7 +253,7 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2
   return example;
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
 {
   //Use examples and variables as http://greg.czerniak.info/guides/kalman1
   //Context: cannonball lauched from a cannon
@@ -352,8 +380,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "Cannonball",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -364,7 +393,7 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3
   return example;
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
 {
   //Use spring system: a mass is lying on a frictionless surface and is connected to two horizontal springs
   const int n = 2; //Size of vectors and matrices
@@ -472,8 +501,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "Spring",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -484,7 +514,7 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4
   return example;
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5()
 {
   //Context: airhockey puck with a constant speed
   const boost::numeric::ublas::matrix<double> control
@@ -540,8 +570,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "Airhockey puck",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -553,7 +584,7 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5
 }
 
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
 {
   //System under inspection
   const int n = 6; //Size of all vectors and matrices
@@ -690,8 +721,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "6",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -703,7 +735,7 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6
 }
 
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7()
 {
   //System under inspection
   const int n = 6; //Size of all vectors and matrices
@@ -832,8 +864,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "7",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -844,7 +877,7 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7
   return example;
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample8()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample8()
 {
   //Another accelerating car
   const int n = 3;
@@ -952,8 +985,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample8
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetControl(),white_noise_system_parameters->GetControl()));
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetStateTransition(),white_noise_system_parameters->GetStateTransition()));
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "Accelerating car (3 states)",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -964,14 +998,14 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample8
   return example;
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample9()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample9()
 {
   const int n = 2;
   const double x = 2.0 / boost::numeric_cast<double>(2 << 4);
   assert(x > 0.0);
 
   const boost::numeric::ublas::matrix<double> control
-    = Matrix::CreateMatrix(n,n, { 1.0,0.0,0.0,0.0 } );
+    = Matrix::CreateMatrix(n,n, { x,0.0,0.0,0.0 } );
 
   //Just a guess
   const boost::numeric::ublas::matrix<double> initial_covariance_estimate
@@ -1043,8 +1077,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample9
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetControl(),white_noise_system_parameters->GetControl()));
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetStateTransition(),white_noise_system_parameters->GetStateTransition()));
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "Second order low-pass filter",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -1055,26 +1090,33 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample9
   return example;
 }
 
-const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample10()
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample10()
 {
   //System under inspection with LSQ
   const int n = 8; //Size of all vectors and matrices
-  const double a = 0.001;
-  const double b = 0.01;
-  const double c = 0.1;
-  const double d = 2.0 / std::pow(2.0,4.0);
+
+  const double pxv = 2.3230447219468875E-6;
+  const double pxa = 0.0002043072189142625;
+  const double pxi = 0.11015678581090188;
+  const double pxi_prev = -0.0662404026536986;
+  const double pyv = -2.3115486099678506E-6;
+  const double pya = -0.00030203734833222917;
+  const double pyi = -0.05269666456255229;
+
+  const double d = 1.0 / std::pow(2.0,4.0);
 
   const boost::numeric::ublas::matrix<double> control
     = boost::numeric::ublas::trans(Matrix::CreateMatrix(n,n,
-      {
-         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+      { //Seen as normal
+     //input,   -,   -,   -,   -,   -, in1, in2
+         1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, //xv
+         1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, //xa
+         1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, //xi
+ pxv+pxa+pxi, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, //yv
+ pxv+pxa+pxi, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, //ya
+ pxv+pxa+pxi, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, //yi
+         0.0, 0.0, 0.0, 0.0, 0.0, 0.0,   d, 0.0, //alpha_hidden
+         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  //alpha-active
       }
     )
   );
@@ -1108,7 +1150,7 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1
       "0.0",
       "0.0",
       "0.0",
-      "1000*(t<1)",
+      "(2^40)*(t<1)",
       "0.0"
     };
 
@@ -1137,10 +1179,12 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1
         0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
       }
     );
+  assert(observation(2,2) == 1.0);
+  assert(observation(5,5) == 1.0);
 
   const boost::numeric::ublas::matrix<double> estimated_process_noise_covariance
     = Matrix::CreateMatrix(n,n,std::vector<double>(n*n,0.0));
@@ -1156,14 +1200,15 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1
   const boost::numeric::ublas::matrix<double> state_transition
     = boost::numeric::ublas::trans(Matrix::CreateMatrix(n,n,
       { //Seen as normal
-         1.0,  0.0, 0.0, 0.0    , 0.0    , 0.0    , 0.0    , 1.0    ,
-         0.0,  0.0, 0.0, 0.0    , 0.0    , 0.0    , 0.0    , 0.0    ,
-         0.0, -1.0, 0.0, 0.0    , 0.0    , 0.0    , 0.0    , 0.0    ,
-           a,    b,   c, 1.0 - a, 1.0 - b, 1.0 - c, 0.0    , 0.0    ,
-           a,    b,   c,     - a, 1.0 - b, 1.0 - c, 0.0    , 0.0    ,
-           a,    b,   c,     - a,     - b, 1.0 - c, 0.0    , 0.0    ,
-         0.0,  0.0, 0.0, 0.0    , 0.0    , 0.0    , 1.0 - d, 0.0    ,
-         0.0,  0.0, 0.0, 0.0    , 0.0    , 0.0    ,       d, 1.0 - d
+       // xv,  xa ,    xi   ,    yv    ,    ya    ,    yi    ,   in1  ,   in2
+         0.0,  0.0,      0.0, 0.0      , 0.0      , 0.0      , 0.0    , 1.0/**/, //xv
+        -1.0,  0.0,      0.0, 0.0      , 0.0      , 0.0      , 0.0    , 0.0    , //xa
+        -1.0, -1.0,      0.0, 0.0      , 0.0      , 0.0      , 0.0    , 0.0    , //xi
+    -pxa-pxi, -pxi, pxi_prev, 1.0 + pyv, 1.0 + pya, 1.0 + pyi, 0.0    , 0.0    , //yv
+    -pxa-pxi, -pxi, pxi_prev,       pyv, 1.0 + pya, 1.0 + pyi, 0.0    , 0.0    , //ya
+    -pxa-pxi, -pxi, pxi_prev,       pyv,       pya, 1.0 + pyi, 0.0    , 0.0    , //yi
+         0.0,  0.0,      0.0, 0.0      , 0.0      , 0.0      , 1.0 - d, 0.0    , //alpha_hidden
+         0.0,  0.0,      0.0, 0.0      , 0.0      , 0.0      ,       d, 1.0 - d  //alpha_active
       }
     ));
 
@@ -1193,8 +1238,9 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
 
-  const boost::shared_ptr<KalmanFilterExample> example(
+  std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
+      "10",
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -1202,5 +1248,8 @@ const boost::shared_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1
     )
   );
   assert(example);
+  assert(example->GetKalmanFilterParameters()->GetObservation().size1() == 8);
+  assert(example->GetKalmanFilterParameters()->GetObservation().size2() == 8);
+  assert(example->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
   return example;
 }

@@ -131,10 +131,6 @@ bool QtUblasMatrixDoubleModel::insertColumns(int col, int count, const QModelInd
 
   const int new_size = m_data.size2() + count;
 
-  #ifdef USE_NAIVE_APPROACH_785768676876547
-  //The drawback of this naive approach is that new cells are uninitialized
-  m_data.resize(m_data.size1(),new_size);
-  #else
   boost::numeric::ublas::matrix<double> new_data = boost::numeric::ublas::zero_matrix<double>(m_data.size1(),new_size);
   const int n_rows = boost::numeric_cast<int>(m_data.size1());
   const int n_cols = boost::numeric_cast<int>(m_data.size2());
@@ -150,7 +146,6 @@ bool QtUblasMatrixDoubleModel::insertColumns(int col, int count, const QModelInd
     }
   }
   m_data = new_data;
-  #endif
 
   m_header_horizontal_text.resize(new_size,"");
 
@@ -173,10 +168,6 @@ bool QtUblasMatrixDoubleModel::insertRows(int row, int count, const QModelIndex 
 
   const int new_size = m_data.size1() + count;
 
-  #ifdef USE_NAIVE_APPROACH_785768676876547
-  //The drawback of this naive approach is that new cells are uninitialized
-  m_data.resize(new_size,m_data.size2());
-  #else
   boost::numeric::ublas::matrix<double> new_data = boost::numeric::ublas::zero_matrix<double>(new_size,m_data.size2());
   const int n_rows = boost::numeric_cast<int>(m_data.size1());
   const int n_cols = boost::numeric_cast<int>(m_data.size2());
@@ -192,7 +183,6 @@ bool QtUblasMatrixDoubleModel::insertRows(int row, int count, const QModelIndex 
     }
   }
   m_data = new_data;
-  #endif
 
   m_header_vertical_text.resize(new_size);
 
@@ -410,8 +400,9 @@ void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<do
     assert(m_data.size2() == data.size2());
 
     m_data = data;
+
     const QModelIndex top_left = this->index(0,0);
-    const QModelIndex bottom_right = this->index(rowCount(), columnCount());
+    const QModelIndex bottom_right = this->index(m_data.size1() - 1, m_data.size2() - 1);
     emit dataChanged(top_left,bottom_right);
   }
 
