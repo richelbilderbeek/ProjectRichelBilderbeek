@@ -4,7 +4,7 @@
 echo "Cross compiling to Windows"
 
 echo "1/2: Creating Windows makefile"
-i686-pc-mingw32-qmake ToolCodeToHtml.pro
+i686-pc-mingw32-qmake ToolCodeToHtmlDesktop.pro
 
 echo "2/2: making makefile"
 

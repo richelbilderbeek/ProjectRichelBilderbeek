@@ -31,7 +31,7 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::Create(
 {
   boost::shared_ptr<pvdb::ConceptMap> p(new ConceptMap(nodes,edges));
   assert(p);
-  CHECK ISVALID
+  assert(p->IsValid());
   return p;
 }
 
@@ -41,7 +41,7 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::CreateFromClu
 {
   boost::shared_ptr<pvdb::ConceptMap> p(new ConceptMap(question,cluster));
   assert(p);
-  CHECK ISVALID
+  assert(p->IsValid());
   return p;
 }
 
@@ -56,6 +56,7 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::Create(
   assert(nodes.at(0));
   const boost::shared_ptr<pvdb::ConceptMap> p = Create(nodes);
   assert(p);
+  assert(p->IsValid());
   return p;
 }
 
@@ -64,6 +65,7 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::DeepCopy(
   const boost::shared_ptr<const pvdb::ConceptMap>& map)
 {
   if (!map) return boost::shared_ptr<pvdb::ConceptMap>();
+  assert(map->IsValid() && "Must be a valid original");
 
   //Deep-copy the nodes
   const std::vector<boost::shared_ptr<const pvdb::Node> > nodes = map->GetNodes();
@@ -109,11 +111,9 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::DeepCopy(
 
   const boost::shared_ptr<pvdb::ConceptMap> p = Create(new_nodes,new_edges);
   assert(p);
-  if (!IsEqual(*p,*map))
-  {
-    TRACE("BREAK");
-  }
-  assert(IsEqual(*p,*map));
+  assert(p!=map && "Must be a DEEP copy");
+  assert(IsEqual(*p,*map) && "Must be a deep COPY");
+  assert(p->IsValid() && "Must be a valid copy");
   return p;
 }
 #endif
@@ -170,6 +170,8 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::FromXml(const
   }
 
   const boost::shared_ptr<pvdb::ConceptMap> concept_map(new ConceptMap(nodes,edges));
+  assert(concept_map);
+  assert(concept_map->IsValid());
   return concept_map;
 }
 
@@ -194,6 +196,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
   for (const auto concept_map: v)
   {
     assert(concept_map);
+    assert(concept_map->IsValid());
     for (const auto node: concept_map->GetNodes())
     {
       assert(node);

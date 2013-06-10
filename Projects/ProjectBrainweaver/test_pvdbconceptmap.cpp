@@ -489,8 +489,6 @@ void pvdb::ConceptMap::Test()
     boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::Create("...");
     concept_map->AddNode(node);
     assert(concept_map->IsValid());
-    concept_map->AddNode(boost::shared_ptr<pvdb::Node>()); //Should fail
-    concept_map->AddEdge(boost::shared_ptr<pvdb::Edge>()); //Should fail
   }
   //Add nodes and edges
   {
