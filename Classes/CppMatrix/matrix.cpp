@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/matrix_proxy.hpp>
+#include <boost/numeric/ublas/blas.hpp> //boost::numeric::ublas::equals
 
 #include "trace.h"
 
@@ -119,13 +120,14 @@ const boost::numeric::ublas::vector<double> Matrix::CreateVector(const std::vect
 
 const std::string Matrix::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> Matrix::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
+  v.push_back("2013-06-11: version 1.1: fixed bugs in MatricesAreEqual and MatricesAreAboutEqual");
   return v;
 }
 
@@ -288,10 +290,23 @@ bool Matrix::MatricesAreAboutEqual(
   const boost::numeric::ublas::matrix<double>& a,
   const boost::numeric::ublas::matrix<double>& b)
 {
-  //
   if (a.size1() != b.size1()) return false;
   if (a.size2() != b.size2()) return false;
-  return std::equal(a.begin1(),a.end1(),b.begin1(),&Matrix::IsAboutEqual);
+  //return std::equal(a.begin1(),a.end1(),b.begin1(),&Matrix::IsAboutEqual); //DON'T USE STD::EQUAL!
+
+  assert(a.size1() == b.size1());
+  assert(a.size2() == b.size2());
+
+  const std::size_t n_rows = a.size1();
+  const std::size_t n_cols = a.size2();
+  for (std::size_t row = 0; row != n_rows; ++row)
+  {
+    for (std::size_t col = 0; col != n_cols; ++col)
+    {
+      if (!IsAboutEqual(a(row,col),b(row,col))) return false;
+    }
+  }
+  return true;
 }
 
 bool Matrix::MatricesAreEqual(
@@ -300,7 +315,21 @@ bool Matrix::MatricesAreEqual(
 {
   if ( a.size1() != b.size1()
     || a.size2() != b.size2()) return false;
-  return std::equal(a.begin1(),a.end1(),b.begin1());
+  //const bool is_equal = std::equal(a.begin1(),a.end1(),b.begin1()); //DON'T USE STD::EQUAL!
+
+  assert(a.size1() == b.size1());
+  assert(a.size2() == b.size2());
+
+  const std::size_t n_rows = a.size1();
+  const std::size_t n_cols = a.size2();
+  for (std::size_t row = 0; row != n_rows; ++row)
+  {
+    for (std::size_t col = 0; col != n_cols; ++col)
+    {
+      if (a(row,col) != b(row,col)) return false;
+    }
+  }
+  return true;
 }
 
 bool Matrix::MatrixIsAboutEqual(
@@ -737,7 +766,7 @@ void Matrix::Test()
     assert(i(2,3) > 0.0 - epsilon && i(2,3) < 0.0 + epsilon);
     assert(i(3,3) > 1.0 - epsilon && i(3,3) < 1.0 + epsilon);
   }
-  //Test Inverse on bigger matrices
+  //TRACE("Test Inverse on bigger matrices");
   for (std::size_t sz = 5; sz!=20; ++sz)
   {
     const matrix<double> m = Matrix::CreateRandomMatrix(sz,sz);
@@ -754,6 +783,37 @@ void Matrix::Test()
           || (x != y && i(y,x) > 0.0 - epsilon && i(y,x) < 0.0 + epsilon)
         );
       }
+    }
+  }
+  //TRACE("Test MatricesAreEqual");
+  {
+    {
+      const auto a = boost::numeric::ublas::zero_matrix<double>(2,3);
+      const auto b = boost::numeric::ublas::zero_matrix<double>(3,2);
+      const auto c = boost::numeric::ublas::zero_matrix<double>(2,2);
+      const auto d = boost::numeric::ublas::zero_matrix<double>(3,3);
+      assert( MatricesAreEqual(a,a));
+      assert( MatricesAreEqual(b,b));
+      assert( MatricesAreEqual(c,c));
+      assert( MatricesAreEqual(d,d));
+      assert(!MatricesAreEqual(a,b));
+      assert(!MatricesAreEqual(a,c));
+      assert(!MatricesAreEqual(a,d));
+      assert(!MatricesAreEqual(b,c));
+      assert(!MatricesAreEqual(b,d));
+      assert(!MatricesAreEqual(c,d));
+    }
+    {
+      const auto a = CreateMatrix(2,2, { 1.0,0.0,0.0,1.0 } );
+      auto b = a;
+      assert(MatricesAreEqual(a,b));
+      assert(MatricesAreAboutEqual(a,b));
+      b(1,1) = 0.0;
+      assert(!MatricesAreEqual(a,b));
+      assert(!MatricesAreAboutEqual(a,b));
+      b(1,1) = 1.0;
+      assert(MatricesAreEqual(a,b));
+      assert(MatricesAreAboutEqual(a,b));
     }
   }
   TRACE("Finished Matrix::Test()")

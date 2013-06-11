@@ -248,7 +248,8 @@ bool QtUblasMatrixDoubleModel::setData(const QModelIndex &index, const QVariant 
   const int col = index.column();
   assert(row < boost::numeric_cast<int>(m_data.size1()));
   assert(col < boost::numeric_cast<int>(m_data.size2()));
-  m_data(row,col) = value.toDouble();
+  const QString s = value.toString();
+  m_data(row,col) = s.toDouble();
   ///This line below is needed to let multiple views synchronize
   emit dataChanged(index,index);
 
@@ -401,13 +402,29 @@ void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<do
 
     m_data = data;
 
+    assert(Matrix::MatricesAreEqual(m_data,data));
+
     const QModelIndex top_left = this->index(0,0);
     const QModelIndex bottom_right = this->index(m_data.size1() - 1, m_data.size2() - 1);
     emit dataChanged(top_left,bottom_right);
+  }
+
+  //Check MatricesAreEqual
+  assert(m_data.size1() == data.size1());
+  assert(m_data.size2() == data.size2());
+  const std::size_t n_rows = m_data.size1();
+  const std::size_t n_cols = m_data.size2();
+  for (std::size_t row = 0; row != n_rows; ++row)
+  {
+    for (std::size_t col = 0; col != n_cols; ++col)
+    {
+      assert(m_data(row,col) == data(row,col));
+    }
   }
 
   assert(this->columnCount() == boost::numeric_cast<int>(this->m_data.size2()));
   assert(this->columnCount() == boost::numeric_cast<int>(m_header_horizontal_text.size()));
   assert(this->rowCount() == boost::numeric_cast<int>(this->m_data.size1()));
   assert(this->rowCount() == boost::numeric_cast<int>(m_header_vertical_text.size()));
+  assert(Matrix::MatricesAreEqual(m_data,data));
 }

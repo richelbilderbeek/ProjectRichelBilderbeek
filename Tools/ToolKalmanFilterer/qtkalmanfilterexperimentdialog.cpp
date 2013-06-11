@@ -288,23 +288,21 @@ void QtKalmanFilterExperimentDialog::on_button_save_clicked()
 void QtKalmanFilterExperimentDialog::SetExample(const KalmanFilterExample * const example_raw)
 {
   assert(example_raw);
-  if (example_raw->GetDescription() == "10")
+  if (example_raw->GetDescription() == std::string("10"))
   {
     assert(example_raw->GetKalmanFilterParameters());
     assert(example_raw->GetKalmanFilterParameters()->GetObservation().size1() == 8);
     assert(example_raw->GetKalmanFilterParameters()->GetObservation().size2() == 8);
     assert(example_raw->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
-    assert(1==2);
   }
   const boost::shared_ptr<const KalmanFilterExample> example(example_raw);
   assert(example);
-  if (example->GetDescription() == "10")
+  if (example->GetDescription() == std::string("10"))
   {
     assert(example->GetKalmanFilterParameters());
     assert(example->GetKalmanFilterParameters()->GetObservation().size1() == 8);
     assert(example->GetKalmanFilterParameters()->GetObservation().size2() == 8);
     assert(example->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
-    assert(1==2);
   }
   assert(m_model);
   m_model->SetExample(example);
@@ -355,7 +353,7 @@ void QtKalmanFilterExperimentDialog::Test()
     const boost::shared_ptr<QtKalmanFilterExperimentDialog> d(
       new QtKalmanFilterExperimentDialog(model)
     );
-    TRACE("Test DokuWiki conversion for discrete Kalman filter with empty parameters")
+    //TRACE("Test DokuWiki conversion for discrete Kalman filter with empty parameters")
     {
       d->SetTimesteps(2);
       d->SetKalmanFilterType(KalmanFilterType::standard);
@@ -365,7 +363,7 @@ void QtKalmanFilterExperimentDialog::Test()
       model->FromDokuWiki(s);
       assert(s == model->ToDokuWiki());
     }
-    TRACE("Test DokuWiki conversion for steady state Kalman filter with empty parameters");
+    //TRACE("Test DokuWiki conversion for steady state Kalman filter with empty parameters");
     {
       d->SetTimesteps(2);
       d->SetKalmanFilterType(KalmanFilterType::steady_state);
@@ -375,15 +373,15 @@ void QtKalmanFilterExperimentDialog::Test()
       model->FromDokuWiki(s);
       assert(s == model->ToDokuWiki());
     }
-    TRACE("Test read/write of examples");
+    //TRACE("Test read/write of examples");
     const std::vector<boost::shared_ptr<KalmanFilterExample> > examples
       = KalmanFilterExample::CreateExamples();
     int cnt = 1;
     BOOST_FOREACH(const boost::shared_ptr<KalmanFilterExample>& example, examples)
     {
+      assert(model);
       assert(example);
       model->SetExample(example);
-      TRACE("Saving to file");
       d->SaveToDokuWiki(boost::lexical_cast<std::string>(cnt) + std::string(".txt"));
       ++cnt;
       const std::string s = model->ToDokuWiki();
@@ -394,7 +392,6 @@ void QtKalmanFilterExperimentDialog::Test()
 
 
     }
-    //Write all examples to file, and load these
     TRACE("Finished QtKalmanFilterExperimentDialog::Test()")
   }
 }

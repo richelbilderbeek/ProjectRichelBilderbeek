@@ -55,8 +55,6 @@ void QtKalmanFilterExamplesDialog::ClickButton(const int i)
   assert(i >= 0);
   assert(i < boost::numeric_cast<int>(v.size()));
   assert(v[i]);
-  TRACE(i);
-  TRACE(v[i]->text().toStdString());
   v[i]->click();
 }
 
