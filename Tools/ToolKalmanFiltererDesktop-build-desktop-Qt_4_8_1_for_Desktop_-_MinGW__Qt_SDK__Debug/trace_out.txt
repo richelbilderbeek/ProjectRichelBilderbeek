@@ -1,7 +1,0 @@
-TRACE '"Starting Matrix::Test()"' line 451 in file '../../Classes/CppMatrix/matrix.cpp': 'Starting Matrix::Test()'
-TRACE '"Finished Matrix::Test()"' line 759 in file '../../Classes/CppMatrix/matrix.cpp': 'Finished Matrix::Test()'
-TRACE '"Starting QtKalmanFiltererMenuDialog::Test()"' line 101 in file '../ToolKalmanFilterer/qtkalmanfilterermenudialog.cpp': 'Starting QtKalmanFiltererMenuDialog::Test()'
-TRACE '"Starting QtKalmanFilterExperimentDialog::Test()"' line 352 in file '../ToolKalmanFilterer/qtkalmanfilterexperimentdialog.cpp': 'Starting QtKalmanFilterExperimentDialog::Test()'
-TRACE '"Test DokuWiki conversion for discrete Kalman filter with empty parameters"' line 358 in file '../ToolKalmanFilterer/qtkalmanfilterexperimentdialog.cpp': 'Test DokuWiki conversion for discrete Kalman filter with empty parameters'
-TRACE '"Test DokuWiki conversion for steady state Kalman filter with empty parameters"' line 368 in file '../ToolKalmanFilterer/qtkalmanfilterexperimentdialog.cpp': 'Test DokuWiki conversion for steady state Kalman filter with empty parameters'
-TRACE '"Test read/write of examples"' line 378 in file '../ToolKalmanFilterer/qtkalmanfilterexperimentdialog.cpp': 'Test read/write of examples'
