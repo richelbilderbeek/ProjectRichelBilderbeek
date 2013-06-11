@@ -831,37 +831,13 @@ void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const Kal
   assert(dynamic_cast<ObservationModel*>(
     this->Find(KalmanFilterExperimentParameterType::observation)));
 
-  if (example->GetDescription() == std::string("10"))
-  {
-    assert(example->GetKalmanFilterParameters()->GetObservation().size1() == 8);
-    assert(example->GetKalmanFilterParameters()->GetObservation().size2() == 8);
-    assert(example->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
-  }
-
   dynamic_cast<ObservationModel*>(
     this->Find(KalmanFilterExperimentParameterType::observation)
   )->SetRawData(example->GetKalmanFilterParameters()->GetObservation());
 
-
-  {
-
-    assert(Matrix::MatricesAreEqual(dynamic_cast<ObservationModel*>(
-        this->Find(KalmanFilterExperimentParameterType::observation))->GetRawData(),
-      example->GetKalmanFilterParameters()->GetObservation()));
-  }
-
-  if (example->GetDescription() == std::string("10"))
-  {
-    const boost::numeric::ublas::matrix<double>& m = dynamic_cast<ObservationModel*>(
-      this->Find(KalmanFilterExperimentParameterType::observation)
-      )->GetRawData();
-    assert(m.size1() == 8);
-    assert(m.size2() == 8);
-    assert(m(5,5) == 1.0);
-    assert(example->GetKalmanFilterParameters()->GetObservation().size1() == 8);
-    assert(example->GetKalmanFilterParameters()->GetObservation().size2() == 8);
-    assert(example->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
-  }
+  assert(Matrix::MatricesAreEqual(dynamic_cast<ObservationModel*>(
+      this->Find(KalmanFilterExperimentParameterType::observation))->GetRawData(),
+    example->GetKalmanFilterParameters()->GetObservation()));
 
   dynamic_cast<StateTransitionModel*>(
     this->Find(KalmanFilterExperimentParameterType::state_transition)
@@ -887,8 +863,6 @@ void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const Kal
   dynamic_cast<RealProcessNoiseModel*>(
     this->Find(KalmanFilterExperimentParameterType::real_process_noise)
   )->SetRawData(example->GetWhiteNoiseSystemParameters()->GetProcessNoise());
-
-
 
   assert(
     Matrix::MatricesAreEqual(

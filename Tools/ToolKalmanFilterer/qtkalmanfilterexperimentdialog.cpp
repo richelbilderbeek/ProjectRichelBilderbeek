@@ -288,22 +288,8 @@ void QtKalmanFilterExperimentDialog::on_button_save_clicked()
 void QtKalmanFilterExperimentDialog::SetExample(const KalmanFilterExample * const example_raw)
 {
   assert(example_raw);
-  if (example_raw->GetDescription() == std::string("10"))
-  {
-    assert(example_raw->GetKalmanFilterParameters());
-    assert(example_raw->GetKalmanFilterParameters()->GetObservation().size1() == 8);
-    assert(example_raw->GetKalmanFilterParameters()->GetObservation().size2() == 8);
-    assert(example_raw->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
-  }
   const boost::shared_ptr<const KalmanFilterExample> example(example_raw);
   assert(example);
-  if (example->GetDescription() == std::string("10"))
-  {
-    assert(example->GetKalmanFilterParameters());
-    assert(example->GetKalmanFilterParameters()->GetObservation().size1() == 8);
-    assert(example->GetKalmanFilterParameters()->GetObservation().size2() == 8);
-    assert(example->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
-  }
   assert(m_model);
   m_model->SetExample(example);
   #ifndef NDEBUG
