@@ -64,7 +64,6 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   assert(ui->scroll_area_parameters_layout->layout());
 
 
-  //ui->scroll_area_parameters_layout->layout()->addWidget(new QLabel("Experiment parameters"));
   ui->scroll_area_parameters_layout->layout()->addWidget(m_experiment_dialog);
 
   {

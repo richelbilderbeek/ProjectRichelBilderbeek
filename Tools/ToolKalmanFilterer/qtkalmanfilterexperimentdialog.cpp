@@ -113,8 +113,8 @@ QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
 
   //Connect clicking on the example buttons to setting (and showing) these
   QObject::connect(
-    m_examples_dialog,SIGNAL(signal_example(boost::shared_ptr<KalmanFilterExample>)),
-    this,SLOT(SetExample(boost::shared_ptr<KalmanFilterExample>)));
+    m_examples_dialog,SIGNAL(signal_example(KalmanFilterExample*const)),
+    this,SLOT(SetExample(KalmanFilterExample*const)));
 
   //Make the white noise system parameters follow the possible tab changes in parameters
   QObject::connect(
@@ -285,11 +285,45 @@ void QtKalmanFilterExperimentDialog::on_button_save_clicked()
   }
 }
 
-void QtKalmanFilterExperimentDialog::SetExample(const boost::shared_ptr<KalmanFilterExample> example)
+void QtKalmanFilterExperimentDialog::SetExample(const KalmanFilterExample * const example_raw)
 {
+  assert(example_raw);
+  if (example_raw->GetDescription() == "10")
+  {
+    assert(example_raw->GetKalmanFilterParameters());
+    assert(example_raw->GetKalmanFilterParameters()->GetObservation().size1() == 8);
+    assert(example_raw->GetKalmanFilterParameters()->GetObservation().size2() == 8);
+    assert(example_raw->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
+    assert(1==2);
+  }
+  const boost::shared_ptr<const KalmanFilterExample> example(example_raw);
   assert(example);
+  if (example->GetDescription() == "10")
+  {
+    assert(example->GetKalmanFilterParameters());
+    assert(example->GetKalmanFilterParameters()->GetObservation().size1() == 8);
+    assert(example->GetKalmanFilterParameters()->GetObservation().size2() == 8);
+    assert(example->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
+    assert(1==2);
+  }
   assert(m_model);
   m_model->SetExample(example);
+  #ifndef NDEBUG
+  const boost::shared_ptr<KalmanFilterExperiment> experiment = m_model->CreateExperiment();
+  assert(experiment);
+  assert(experiment->GetKalmanFilter());
+  assert(experiment->GetStateNames() == example->GetStateNames());
+  assert(experiment->GetKalmanFilter()->GetParameters()->GetType() == example->GetKalmanFilterParameters()->GetType());
+  if (const boost::shared_ptr<const StandardKalmanFilterParameters> p_experiment = boost::dynamic_pointer_cast<const StandardKalmanFilterParameters>(experiment->GetKalmanFilter()->GetParameters()))
+  {
+    assert(p_experiment);
+    const boost::shared_ptr<const StandardKalmanFilterParameters> p_example
+      = boost::dynamic_pointer_cast<const StandardKalmanFilterParameters>(example->GetKalmanFilterParameters());
+    assert(p_example);
+    assert(Matrix::MatricesAreEqual( p_experiment->GetControl(), p_example->GetControl() ) );
+    assert(StandardKalmanFilterParameters::IsAboutEqual(*p_experiment,*p_example));
+  }
+  #endif
 }
 
 void QtKalmanFilterExperimentDialog::SetKalmanFilterType(const KalmanFilterType new_type)
@@ -321,7 +355,7 @@ void QtKalmanFilterExperimentDialog::Test()
     const boost::shared_ptr<QtKalmanFilterExperimentDialog> d(
       new QtKalmanFilterExperimentDialog(model)
     );
-    //Test DokuWiki conversion for discrete Kalman filter with empty parameters
+    TRACE("Test DokuWiki conversion for discrete Kalman filter with empty parameters")
     {
       d->SetTimesteps(2);
       d->SetKalmanFilterType(KalmanFilterType::standard);
@@ -331,7 +365,7 @@ void QtKalmanFilterExperimentDialog::Test()
       model->FromDokuWiki(s);
       assert(s == model->ToDokuWiki());
     }
-    //Test DokuWiki conversion for steady state Kalman filter with empty parameters
+    TRACE("Test DokuWiki conversion for steady state Kalman filter with empty parameters");
     {
       d->SetTimesteps(2);
       d->SetKalmanFilterType(KalmanFilterType::steady_state);
@@ -341,17 +375,24 @@ void QtKalmanFilterExperimentDialog::Test()
       model->FromDokuWiki(s);
       assert(s == model->ToDokuWiki());
     }
-    //Test read/write of examples
+    TRACE("Test read/write of examples");
     const std::vector<boost::shared_ptr<KalmanFilterExample> > examples
       = KalmanFilterExample::CreateExamples();
+    int cnt = 1;
     BOOST_FOREACH(const boost::shared_ptr<KalmanFilterExample>& example, examples)
     {
+      assert(example);
       model->SetExample(example);
+      TRACE("Saving to file");
+      d->SaveToDokuWiki(boost::lexical_cast<std::string>(cnt) + std::string(".txt"));
+      ++cnt;
       const std::string s = model->ToDokuWiki();
       model->SetNumberOfTimesteps(999999999);
       assert(s != model->ToDokuWiki());
       model->FromDokuWiki(s);
       assert(s == model->ToDokuWiki());
+
+
     }
     //Write all examples to file, and load these
     TRACE("Finished QtKalmanFilterExperimentDialog::Test()")

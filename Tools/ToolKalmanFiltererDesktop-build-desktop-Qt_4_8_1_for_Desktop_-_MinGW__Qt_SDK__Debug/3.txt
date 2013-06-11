@@ -1,0 +1,84 @@
+  * Kalman filter type: discrete
+  * Lag estimated: 0
+  * Lag real: 0
+  * Number of timesteps: 2
+  * White noise system type: standard
+ 
+^ Control ^^^^^ 
+^ x | 0 | 0 | 0 | 0 | 
+^ Vx | 0 | 0 | 0 | 0 | 
+^ y | 0 | 0 | 0 | 0 | 
+^ Vy | 0 | 0 | 0 | 0 | 
+ 
+^ Estimated measurement error covariance ^^^^^ 
+^ x | 0.20000000000000001 | 0 | 0 | 0 | 
+^ Vx | 0 | 0.20000000000000001 | 0 | 0 | 
+^ y | 0 | 0 | 0.20000000000000001 | 0 | 
+^ Vy | 0 | 0 | 0 | 0.20000000000000001 | 
+ 
+^ Estimated optimal Kalman gain ^^^^^ 
+^ x | 0 | 0 | 0 | 0 | 
+^ Vx | 0 | 0 | 0 | 0 | 
+^ y | 0 | 0 | 0 | 0 | 
+^ Vy | 0 | 0 | 0 | 0 | 
+ 
+^ Estimated process noise covariance ^^^^^ 
+^ x | 0 | 0 | 0 | 0 | 
+^ Vx | 0 | 0 | 0 | 0 | 
+^ y | 0 | 0 | 0 | 0 | 
+^ Vy | 0 | 0 | 0 | 0 | 
+ 
+^ Initial covariance estimate ^^^^^ 
+^ x | 1 | 0 | 0 | 0 | 
+^ Vx | 0 | 0 | 0 | 0 | 
+^ y | 0 | 0 | 0 | 0 | 
+^ Vy | 0 | 0 | 0 | 0 | 
+ 
+^ Initial state estimate ^^ 
+^ x | 0 | 
+^ Vx | 70.710678118654755 | 
+^ y | 500 | 
+^ Vy | 70.710678118654741 | 
+ 
+^ Real initial state ^^ 
+^ x | 0 | 
+^ Vx | 70.710678118654755 | 
+^ y | 0 | 
+^ Vy | 70.710678118654741 | 
+ 
+^ Real measurement noise ^^ 
+^ x | 30 | 
+^ Vx | 30 | 
+^ y | 30 | 
+^ Vy | 30 | 
+ 
+^ Real process noise ^^ 
+^ x | 0 | 
+^ Vx | 0 | 
+^ y | 0 | 
+^ Vy | 0 | 
+ 
+^ Input ^^ 
+^ x | 0 | 
+^ Vx | 0 | 
+^ y | -0.04905000000000001 | 
+^ Vy | -0.98100000000000009 | 
+ 
+^ Observation ^^^^^ 
+^ x | 1 | 0 | 0 | 0 | 
+^ Vx | 0 | 0 | 0 | 0 | 
+^ y | 0 | 0 | 0 | 0 | 
+^ Vy | 0 | 0 | 0 | 0 | 
+ 
+^ State names ^^ 
+^ x | x | 
+^ Vx | Vx | 
+^ y | y | 
+^ Vy | Vy | 
+ 
+^ State transition ^^^^^ 
+^ x | 1 | 0 | 0 | 0 | 
+^ Vx | 0 | 0 | 0 | 0 | 
+^ y | 0 | 0 | 0 | 0 | 
+^ Vy | 0 | 0 | 0 | 0 | 
+ 

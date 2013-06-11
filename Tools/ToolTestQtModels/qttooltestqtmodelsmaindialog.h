@@ -45,6 +45,8 @@ private slots:
   void on_button_data_clicked();
   void on_button_headers_clicked();
 
+  void on_button_identity_matrix_clicked();
+
 private:
   Ui::QtToolTestQtModelsMainDialog *ui;
 

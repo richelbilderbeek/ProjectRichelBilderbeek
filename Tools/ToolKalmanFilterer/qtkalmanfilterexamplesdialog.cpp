@@ -9,6 +9,7 @@
 
 #include <cassert>
 #include <cstdlib>
+#include <memory>
 
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/ublas/functional.hpp>
@@ -20,6 +21,7 @@
 #include "kalmanfilterexample.h"
 #include "matrix.h"
 #include "qtkalmanfilterermaindialog.h"
+#include "standardkalmanfilterparameters.h"
 #include "qtmatrix.h"
 #include "trace.h"
 #include "ui_qtkalmanfilterexamplesdialog.h"
@@ -53,65 +55,105 @@ void QtKalmanFilterExamplesDialog::ClickButton(const int i)
   assert(i >= 0);
   assert(i < boost::numeric_cast<int>(v.size()));
   assert(v[i]);
+  TRACE(i);
+  TRACE(v[i]->text().toStdString());
   v[i]->click();
 }
 
 void QtKalmanFilterExamplesDialog::on_button_1_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(1);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(1);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_2_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(2);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(2);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_3_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(3);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(3);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_4_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(4);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(4);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_5_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(5);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(5);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_6_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(6);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(6);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_7_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(7);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(7);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_8_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(8);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(8);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_9_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(9);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(9);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_10_clicked()
 {
-  const boost::shared_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(10);
-  emit signal_example(example);
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(10);
+  assert(example);
+  assert(example->GetKalmanFilterParameters());
+  assert(example->GetKalmanFilterParameters()->GetObservation().size1() == 8);
+  assert(example->GetKalmanFilterParameters()->GetObservation().size2() == 8);
+  assert(example->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  assert(p->GetKalmanFilterParameters());
+  assert(p->GetKalmanFilterParameters()->GetObservation().size1() == 8);
+  assert(p->GetKalmanFilterParameters()->GetObservation().size2() == 8);
+  assert(p->GetKalmanFilterParameters()->GetObservation()(5,5) == 1.0);
+  emit signal_example(p);
 }

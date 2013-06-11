@@ -1,0 +1,58 @@
+  * Kalman filter type: discrete
+  * Lag estimated: 0
+  * Lag real: 0
+  * Number of timesteps: 2
+  * White noise system type: standard
+ 
+^ Control ^^^ 
+^ 1 | 1 | 0 | 
+^ 2 | 0 | 0 | 
+ 
+^ Estimated measurement error covariance ^^^ 
+^ 1 | 1.0000000000000001e-005 | 1.0000000000000001e-005 | 
+^ 2 | 1.0000000000000001e-005 | 1.0000000000000001e-005 | 
+ 
+^ Estimated optimal Kalman gain ^^^ 
+^ 1 | 0 | 0 | 
+^ 2 | 0 | 0 | 
+ 
+^ Estimated process noise covariance ^^^ 
+^ 1 | 1.0000000000000001e-005 | 1.0000000000000001e-005 | 
+^ 2 | 1.0000000000000001e-005 | 1.0000000000000001e-005 | 
+ 
+^ Initial covariance estimate ^^^ 
+^ 1 | 1 | 0 | 
+^ 2 | 0 | 1 | 
+ 
+^ Initial state estimate ^^ 
+^ 1 | 0 | 
+^ 2 | 0 | 
+ 
+^ Real initial state ^^ 
+^ 1 | 0 | 
+^ 2 | 0 | 
+ 
+^ Real measurement noise ^^ 
+^ 1 | 1.0000000000000001e-005 | 
+^ 2 | 1.0000000000000001e-005 | 
+ 
+^ Real process noise ^^ 
+^ 1 | 1.0000000000000001e-005 | 
+^ 2 | 1.0000000000000001e-005 | 
+ 
+^ Input ^^ 
+^ 1 | (t<1)*(2^23) | 
+^ 2 | 0.0 | 
+ 
+^ Observation ^^^ 
+^ 1 | 1 | 0 | 
+^ 2 | 0 | 0 | 
+ 
+^ State names ^^ 
+^ 1 | 1 | 
+^ 2 | 2 | 
+ 
+^ State transition ^^^ 
+^ 1 | 0.9375 | 0 | 
+^ 2 | 0.0625 | 0.9375 | 
+ 

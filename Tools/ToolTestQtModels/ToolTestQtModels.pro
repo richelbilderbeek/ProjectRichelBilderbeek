@@ -1,4 +1,4 @@
-QT       += core gui
+  QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
@@ -44,6 +44,7 @@ SOURCES+= \
     ../../Classes/CppMatrix/matrix.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
+    ../../Classes/CppQtModel/modelfunctionparser.cpp \
     ../../Classes/CppQtModel/qtstdvectorfunctionmodel.cpp \
     ../../Classes/CppQtModel/qtstdvectorstringmodel.cpp \
     ../../Classes/CppQtModel/qtublasmatrixdoublemodel.cpp \
@@ -58,6 +59,7 @@ HEADERS += \
     ../../Classes/CppMatrix/matrix.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
+    ../../Classes/CppQtModel/modelfunctionparser.h \
     ../../Classes/CppQtModel/qtstdvectorfunctionmodel.h \
     ../../Classes/CppQtModel/qtstdvectorstringmodel.h \
     ../../Classes/CppQtModel/qtublasmatrixdoublemodel.h \

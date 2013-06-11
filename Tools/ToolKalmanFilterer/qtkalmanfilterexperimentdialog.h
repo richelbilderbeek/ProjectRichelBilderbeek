@@ -25,6 +25,7 @@
 #include "qtkalmanfilterdialog.h"
 #include "qtwhitenoisesystemparametersdialog.h"
 #include "qtkalmanfilterexperimentmodel.h"
+#include "kalmanfilterexample.h"
 
 namespace Ui {
   class QtKalmanFilterExperimentDialog;
@@ -71,7 +72,8 @@ private:
 
 private slots:
 
-  void SetExample(const boost::shared_ptr<KalmanFilterExample> example);
+  // Don't put a boost::shared_ptr in a signal [1]
+  void SetExample(const KalmanFilterExample * const example);
 
   ///Called when the user changes to a different type of Kalman filter
   void SetKalmanFilterType(const KalmanFilterType new_type);
@@ -86,5 +88,25 @@ private slots:
   void on_button_add_state_clicked();
   void on_button_remove_state_clicked();
 };
+
+// [1] Don't put a boost::shared_ptr in a signal as it will be
+//     reinterpret_cast-ed by the MOC:
+//
+// void QtKalmanFilterExperimentDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+// {
+//     if (_c == QMetaObject::InvokeMetaMethod) {
+//         Q_ASSERT(staticMetaObject.cast(_o));
+//         QtKalmanFilterExperimentDialog *_t = static_cast<QtKalmanFilterExperimentDialog *>(_o);
+//         switch (_id) {
+//         case 0: _t->SetExample((*reinterpret_cast< const boost::shared_ptr<KalmanFilterExample>(*)>(_a[1]))); break;
+//         //...
+//         default: ;
+//         }
+//     }
+// }
+//
+// Additionally, #include the KalmanFilterExample header file in the dialog its header file:
+// I have the hypothesis that
+//
 
 #endif // QTKALMANFILTEREXPERIMENTDIALOG_H

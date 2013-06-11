@@ -33,7 +33,9 @@ public:
   void ClickButton(const int n);
 
 signals:
-  void signal_example(const boost::shared_ptr<KalmanFilterExample> example);
+  //Never emit a boost::shared_ptr [1]
+  void signal_example(const KalmanFilterExample * const example);
+  //void signal_example(const boost::shared_ptr<KalmanFilterExample> example);
 
 private:
   Ui::QtKalmanFilterExamplesDialog *ui;
@@ -50,5 +52,23 @@ private slots:
   void on_button_9_clicked();
   void on_button_10_clicked();
 };
+
+
+// [1] Don't put a boost::shared_ptr in a signal as it will be
+//     reinterpret_cast-ed by the MOC:
+//
+// void QtKalmanFilterExperimentDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+// {
+//     if (_c == QMetaObject::InvokeMetaMethod) {
+//         Q_ASSERT(staticMetaObject.cast(_o));
+//         QtKalmanFilterExperimentDialog *_t = static_cast<QtKalmanFilterExperimentDialog *>(_o);
+//         switch (_id) {
+//         case 0: _t->SetExample((*reinterpret_cast< const boost::shared_ptr<KalmanFilterExample>(*)>(_a[1]))); break;
+//         //...
+//         default: ;
+//         }
+//     }
+// }
+
 
 #endif // QTKALMANFILTERERPARAMETERSDIALOG

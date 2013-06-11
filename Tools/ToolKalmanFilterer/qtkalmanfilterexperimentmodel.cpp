@@ -282,6 +282,9 @@ const boost::shared_ptr<StandardKalmanFilterParameters> QtKalmanFilterExperiment
       this->Find(KalmanFilterExperimentParameterType::initial_state_estimate)
     )->GetRawData();
 
+  assert(this->Find(KalmanFilterExperimentParameterType::observation));
+  assert(dynamic_cast<const ObservationModel*>(this->Find(KalmanFilterExperimentParameterType::observation)));
+
   const auto observation =
     dynamic_cast<const ObservationModel*>(
       this->Find(KalmanFilterExperimentParameterType::observation)

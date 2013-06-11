@@ -224,3 +224,30 @@ void QtToolTestQtModelsMainDialog::on_button_headers_clicked()
     break;
   }
 }
+
+void QtToolTestQtModelsMainDialog::on_button_identity_matrix_clicked()
+{
+  const int index = ui->box_type->currentIndex();
+  switch (index)
+  {
+    case 0:
+    break;
+    case 1:
+    break;
+    case 2:
+    {
+      typedef QtUblasMatrixDoubleModel Model;
+      Model * const model
+        = dynamic_cast<Model *>(ui->table->model())
+        ? dynamic_cast<Model *>(ui->table->model())
+        : new Model;
+      const int sz = 2 + (std::rand() >> 4) % 3;
+      boost::numeric::ublas::matrix<double> m = boost::numeric::ublas::identity_matrix<double>(sz);
+      model->SetRawData(m);
+      ui->table->setModel(model);
+    }
+    break;
+    case 3:
+    break;
+  }
+}
