@@ -1,0 +1,56 @@
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):
+*.[oa]
+*~
+~*
+*.pro.user
+*.pro.user.*
+Libraries/boost_1_53_0
+Libraries/Hashcat
+Libraries/fparser4.3/
+Libraries/mxe
+Libraries/polymorphable-master
+Libraries/shiny
+Libraries/vpiano-0.9
+Libraries/john-1.7.9
+Libraries/wt
+/Test/*
+COPY*
+*/build*
+Projects/RichelbilderbeekNl/*.wmv
+Projects/RichelbilderbeekNl/*.rar
+Projects/RichelbilderbeekNl/*.zip
+Projects/RichelbilderbeekNl/*.ogg
+Projects/RichelbilderbeekNl/*.mp3
+Projects/RichelbilderbeekNl/*.exe
+Projects/RichelbilderbeekNl/*.wav
+Projects/RichelbilderbeekNl/*.ppt
+Projects/RichelbilderbeekNl/*.doc
+Projects/RichelbilderbeekNl/*.jpg
+Projects/RichelbilderbeekNl/*.JPG
+Projects/RichelbilderbeekNl/*.PNG
+Projects/RichelbilderbeekNl/*.pdf
+Projects/RichelbilderbeekNl/*.lyx
+Projects/RichelbilderbeekNl/*.odt
+Projects/RichelbilderbeekNl/*.sh
+Projects/RichelbilderbeekNl/*.xls
+Projects/RichelbilderbeekNl/*.txt
+Projects/RichelbilderbeekNl/*.css
+Projects/RichelbilderbeekNl/*.7z
+Projects/RichelbilderbeekNl/*.py
+Projects/RichelbilderbeekNl/*.url
+Projects/RichelbilderbeekNl/*.gif
+Projects/RichelbilderbeekNl/*.ogv
+Projects/RichelbilderbeekNl/*.wt
+Projects/RichelbilderbeekNl/*.ps
+Projects/RichelbilderbeekNl/*.mid
+Projects/RichelbilderbeekNl/*.docx
+Projects/RichelbilderbeekNl/*_old.htm
+Projects/RichelbilderbeekNl/*Source*.zip
+Projects/RichelbilderbeekNl/*Source*.htm
+Projects/RichelbilderbeekNl/googleb5227bbf47f081ef.html
+Projects/RichelbilderbeekNl/_vti_inf.html
+Projects/RichelbilderbeekNl/sitemap.xml.gz
+
