@@ -15,27 +15,26 @@
 
 #include <QKeyEvent>
 
-#include "qtpvdbitemhighlighter.h"
-#include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
+#include "pvdbconcept.h"
+#include "pvdbconceptmapfactory.h"
 #include "pvdbconceptmap.h"
-#include "qtpvdbcenternodeitem.h"
 #include "pvdbedgefactory.h"
 #include "pvdbedge.h"
-#include "qtpvdbbrushfactory.h"
-#include "pvdbconceptmapfactory.h"
 #include "pvdbhelper.h"
-#include "pvdbnode.h"
 #include "pvdbnodefactory.h"
+#include "pvdbnode.h"
 #include "qtarrowitem.h"
+#include "qtpvdbbrushfactory.h"
+#include "qtpvdbcenternodeitem.h"
 #include "qtpvdbconcepteditdialog.h"
 #include "qtpvdbconceptitem.h"
 #include "qtpvdbedgeitem.h"
-#include "qtpvdbcenternodeitem.h"
-#include "qtpvdbnodeitem.h"
 #include "qtpvdbexamplesitem.h"
-#include "qtpvdbtoolsitem.h"
+#include "qtpvdbitemhighlighter.h"
 #include "qtpvdbnewarrow.h"
+#include "qtpvdbnodeitem.h"
+#include "qtpvdbtoolsitem.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
 
@@ -64,6 +63,28 @@ const std::vector<T> Sort(const std::vector<T>& v)
   std::sort(w.begin(),w.end());
   return w;
 }
+
+template <>
+const std::vector<QtPvdbNodeItem*> Sort(const std::vector<QtPvdbNodeItem*>& v)
+{
+  typedef std::vector<QtPvdbNodeItem*>::iterator Iterator;
+  std::vector<QtPvdbNodeItem*> w(v);
+  std::sort(w.begin(),w.end());
+  const Iterator i = std::find_if(w.begin(),w.end(),
+    [](const QtPvdbNodeItem* const node)
+    {
+      return dynamic_cast<const QtPvdbCenterNodeItem*>(node);
+    }
+  );
+  if (i != w.end())
+  {
+    std::swap(*i,*w.begin());
+    assert(dynamic_cast<const QtPvdbCenterNodeItem*>(*w.begin()));
+  }
+  return w;
+}
+
+
 
 QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
   const boost::shared_ptr<pvdb::ConceptMap> concept_map,
@@ -405,6 +426,7 @@ void QtPvdbConceptMapWidget::RepositionItems()
   }
 
   //Put the nodes around the focal question in their improved position
+  //If there is no focal node, the non-focal nodes are put around an empty spot
   while (1)
   {
     bool done = true;
@@ -414,6 +436,8 @@ void QtPvdbConceptMapWidget::RepositionItems()
     if (!IsCenterNode(qtnodes[0]))
     {
       TRACE("BREAK");
+      TRACE(std::count_if(qtnodes.begin(),qtnodes.end(),
+        [this](const QtPvdbNodeItem* const item) { return IsCenterNode(item); } ));
     }
     assert(IsCenterNode(qtnodes[0]));
     const std::vector<QtPvdbEdgeItem* > qtedges = Collect<QtPvdbEdgeItem>(scene());
