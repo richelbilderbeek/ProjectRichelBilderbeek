@@ -45,7 +45,7 @@ struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
   ///  assert(m == n);
   ///instead, use
   ///  assert(HasSameContent(m,n));
-  //void ReadFromConceptMap(const boost::shared_ptr<const pvdb::ConceptMap>& map);
+  //void ReadFromConceptMap(const boost::shared_ptr<const pvdb::ConceptMap> map);
 
   ///NEW 2013-01-13
   boost::signals2::signal<void(QtPvdbConceptMapItem*)> m_signal_conceptmapitem_requests_edit;
@@ -70,13 +70,13 @@ private:
   QtPvdbToolsItem * m_tools;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  void AddEdge(const boost::shared_ptr<pvdb::Edge>& edge);
+  void AddEdge(const boost::shared_ptr<pvdb::Edge> edge);
 
   ///Add a new edge
   void AddEdge(QtPvdbNodeItem * const from, QtPvdbNodeItem* const to);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node>& node);
+  QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node> node);
 
   ///Remove all Qt and non-Qt items
   void CleanMe();

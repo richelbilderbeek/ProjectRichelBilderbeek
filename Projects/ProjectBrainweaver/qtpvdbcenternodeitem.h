@@ -23,10 +23,10 @@ struct QtPvdbCenterNodeItem : public QtPvdbNodeItem
   ///focal node needs to be rated)
   ///concept_item is the display Strategy
   explicit QtPvdbCenterNodeItem(
-    const boost::shared_ptr<pvdb::Node>& node);
+    const boost::shared_ptr<pvdb::Node> node);
 
   private:
-  static const boost::shared_ptr<QtPvdbConceptItem> CreateConceptItem(const boost::shared_ptr<pvdb::Node>& node);
+  static const boost::shared_ptr<QtPvdbConceptItem> CreateConceptItem(const boost::shared_ptr<pvdb::Node> node);
 };
 
 #endif // QTPVDBCENTERNODEITEM_H

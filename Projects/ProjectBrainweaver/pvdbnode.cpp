@@ -107,7 +107,7 @@ void pvdb::Node::Test()
   {
     const std::vector<boost::shared_ptr<pvdb::Node> > v = pvdb::Node::GetTests();
     std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<pvdb::Node>& node)
+      [](const boost::shared_ptr<pvdb::Node> node)
       {
         //Test copy constructor
         assert(node);

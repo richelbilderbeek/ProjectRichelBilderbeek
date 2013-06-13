@@ -56,17 +56,6 @@ public:
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const;
 
-  ///Initialize the widget with a concept map
-  ///map cannot be const, as the user might want to edit it
-  ///Note that ReadFromConceptMap changes the copy of the map entered, by changing some GUI
-  ///elements (coordinats of the nodes, for example). Therefore, the following test will fail:
-  ///  conceptmapwidget->ReadFromConceptMap(m);
-  ///  const pvdb::ConceptMapPtr n = w->WriteToConceptMap();
-  ///  assert(m == n);
-  ///instead, use
-  ///  assert(HasSameContent(m,n));
-  //void ReadFromConceptMap(const boost::shared_ptr<pvdb::ConceptMap>& map);
-
   ///Shuffle the concepts (used in debugging)
   void Shuffle();
 
@@ -90,11 +79,17 @@ protected:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
-  virtual void AddEdge(const boost::shared_ptr<pvdb::Edge>& edge) = 0;
+  virtual void AddEdge(const boost::shared_ptr<pvdb::Edge> edge) = 0;
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtPvdbNodeConcept added to the scene
-  virtual QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node>& node) = 0;
+  virtual QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node> node) = 0;
+
+  ///Initialize the widget with the loaded concept map
+  ///BuildQtConceptMap changes the concept map entered, by changing some GUI
+  ///elements (coordinats of the nodes, for example).
+  ///Instead of using IsEqual use HasSameContent
+  void BuildQtConceptMap();
 
   ///Remove all Qt and non-Qt items and add new ones
   virtual void CleanMe() = 0;
@@ -130,7 +125,7 @@ protected:
   #ifndef NDEBUG
   ///Test the internals of this class:
   ///Does the current content really reflect the map
-  void TestMe(const boost::shared_ptr<const pvdb::ConceptMap>& map) const;
+  void TestMe(const boost::shared_ptr<const pvdb::ConceptMap> map) const;
   #endif
 
 signals:

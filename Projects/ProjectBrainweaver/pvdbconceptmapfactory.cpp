@@ -62,7 +62,7 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::Create(
 
 #ifndef NDEBUG
 const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::DeepCopy(
-  const boost::shared_ptr<const pvdb::ConceptMap>& map)
+  const boost::shared_ptr<const pvdb::ConceptMap> map)
 {
   if (!map) return boost::shared_ptr<pvdb::ConceptMap>();
   assert(map->IsValid() && "Must be a valid original");

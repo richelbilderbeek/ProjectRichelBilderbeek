@@ -65,24 +65,24 @@ QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   #endif
   assert(scene());
   scene()->addItem(m_tools); //Give m_tools a parent
+
+  BuildQtConceptMap();
+
+  #ifndef NDEBUG
   assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");
   assert(concept_map->IsValid());
-  for (auto node: concept_map->GetNodes())
+  const auto nodes = concept_map->GetNodes();
+  const auto items = Collect<QtPvdbNodeItem>(this->scene());
+  const std::size_t n_items = items.size();
+  const std::size_t n_nodes = nodes.size();
+  if (n_items != n_nodes)
   {
-    if (!node)
-    {
-      TRACE("BREAK");
-    }
-    assert(node);
-    this->AddNode(node);
+    TRACE(concept_map->GetNodes().size());
+    TRACE(n_items);
+    TRACE(n_nodes);
   }
-  for (auto edge: concept_map->GetEdges())
-  {
-    assert(edge);
-    this->AddEdge(edge);
-  }
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
-    && "GUI and non-GUI concept map must match");
+  assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
+  #endif
 }
 
 QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget()
@@ -94,7 +94,7 @@ QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget()
 }
 
 void QtPvdbConceptMapEditWidget::AddEdge(
-  const boost::shared_ptr<pvdb::Edge>& edge)
+  const boost::shared_ptr<pvdb::Edge> edge)
 {
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
@@ -216,7 +216,7 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
   this->scene()->update();
 }
 
-QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvdb::Node>& node)
+QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvdb::Node> node)
 {
   if (!node)
   {
@@ -225,6 +225,7 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
   assert(node);
   assert(node->GetConcept());
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(node->GetConcept()));
+  assert(node);
   QtPvdbNodeItem * const qtnode = new QtPvdbNodeItem(node,qtconcept);
 
   assert(qtnode->pos().x() == node->GetX());
@@ -245,7 +246,12 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   this->scene()->addItem(qtnode);
-  this->GetConceptMap()->AddNode(node);
+
+  assert(std::count(
+    GetConceptMap()->GetNodes().begin(),
+    GetConceptMap()->GetNodes().end(),
+    node) == 1 && "Assume Node is already in the concept map");
+  //this->GetConceptMap()->AddNode(node);
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
@@ -296,8 +302,6 @@ void QtPvdbConceptMapEditWidget::CleanMe()
         this));
     this->scene()->addItem(m_tools);
   }
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
-    && "GUI and non-GUI concept map must match");
 }
 
 #ifndef NDEBUG

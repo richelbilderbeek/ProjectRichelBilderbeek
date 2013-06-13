@@ -26,7 +26,7 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
 {
 
   QtPvdbEdgeItem(
-    const boost::shared_ptr<pvdb::Edge>& edge,
+    const boost::shared_ptr<pvdb::Edge> edge,
     const boost::shared_ptr<QtPvdbConceptItem> concept_item,
     QtPvdbNodeItem* const from,
     QtPvdbNodeItem* const to);

@@ -59,7 +59,7 @@ QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
 }
 
 void QtPvdbConceptMapRateWidget::AddEdge(
-  const boost::shared_ptr<pvdb::Edge>& edge)
+  const boost::shared_ptr<pvdb::Edge> edge)
 {
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
@@ -100,7 +100,7 @@ void QtPvdbConceptMapRateWidget::AddEdge(
   assert(qtedge->pos().y() == edge->GetY());
 }
 
-QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvdb::Node>& node)
+QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvdb::Node> node)
 {
   const boost::shared_ptr<QtPvdbRateConceptItem> qtconcept(new QtPvdbRateConceptItem(node->GetConcept()));
   assert(qtconcept);
@@ -128,7 +128,12 @@ QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvd
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   this->scene()->addItem(qtnode);
-  this->GetConceptMap()->AddNode(node);
+
+  assert(std::count(
+    GetConceptMap()->GetNodes().begin(),
+    GetConceptMap()->GetNodes().end(),
+    node) == 1 && "Assume Node is already in the concept map");
+  //this->GetConceptMap()->AddNode(node);
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());

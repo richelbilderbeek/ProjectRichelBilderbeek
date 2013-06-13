@@ -65,7 +65,7 @@ struct ConceptMap : public boost::noncopyable
   #endif
 
   ///Convert a ConceptMap from an XML std::string
-  static const std::string ToXml(const boost::shared_ptr<const pvdb::ConceptMap>& c);
+  static const std::string ToXml(const boost::shared_ptr<const pvdb::ConceptMap> c);
 
 private:
 

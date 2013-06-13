@@ -37,7 +37,7 @@ struct ConceptMapFactory
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
   static const boost::shared_ptr<pvdb::ConceptMap> DeepCopy(
-    const boost::shared_ptr<const pvdb::ConceptMap>& map);
+    const boost::shared_ptr<const pvdb::ConceptMap> map);
   #endif
 
   ///Obtain a ConceptMap from an XML std::string

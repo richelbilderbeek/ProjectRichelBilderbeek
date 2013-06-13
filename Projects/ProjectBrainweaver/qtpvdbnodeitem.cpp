@@ -22,13 +22,18 @@
 #include "trace.h"
 
 QtPvdbNodeItem::QtPvdbNodeItem(
-  const boost::shared_ptr<pvdb::Node>& node,
+  const boost::shared_ptr<pvdb::Node> node,
   const boost::shared_ptr<QtPvdbConceptItem> concept_item)
   : m_concept_item(concept_item),
     m_contour_pen(concept_item->GetContourPen()),
     m_focus_pen(concept_item->GetFocusPen()),
     m_node(node)
 {
+  if (!node)
+  {
+    TRACE("BREAK");
+  }
+  assert(node);
   assert(m_concept_item);
   assert(m_node);
   assert(m_concept_item->GetConcept().get() == m_node->GetConcept().get());

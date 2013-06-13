@@ -103,6 +103,106 @@ QtPvdbConceptMapWidget::~QtPvdbConceptMapWidget()
   m_examples = nullptr;
 }
 
+void QtPvdbConceptMapWidget::BuildQtConceptMap()
+{
+
+  CleanMe();
+  assert(m_concept_map);
+  assert(m_concept_map->IsValid());
+  assert(this->scene());
+
+  //This std::vector keeps the QtNodes in the same order as the nodes in the concept map
+  //You cannot rely on Collect<QtPvdbNodeConcept*>(scene), as this shuffles the order
+  std::vector<QtPvdbNodeItem*> qtnodes;
+
+  //The initial count of the items
+  const int init_count = scene()->items().count();
+  assert(Collect<QtPvdbNodeItem>(scene()).empty());
+
+  //Add the nodes to the scene
+  {
+    //Add the main question as the first node
+    const boost::shared_ptr<pvdb::Node> node = m_concept_map->GetNodes()[0];
+    QtPvdbNodeItem* const qtnode = new QtPvdbCenterNodeItem(node);
+    //Let the center node respond to mouse clicks
+    qtnode->m_signal_request_scene_update.connect(
+      boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
+    qtnode->m_signal_item_has_updated.connect(
+      boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+    //Add the center node to scene
+    this->scene()->addItem(qtnode);
+    qtnodes.push_back(qtnode);
+    assert(Collect<QtPvdbNodeItem>(scene()).size() == 1);
+    assert(scene()->items().count() == init_count + 1);
+    assert(scene()->items().count() == init_count + static_cast<int>(qtnodes.size()));
+
+    //Add the regular nodes to the scene
+    const std::vector<boost::shared_ptr<pvdb::Node> > nodes = m_concept_map->GetNodes();
+    const std::size_t n_nodes = nodes.size();
+    assert(n_nodes >= 1);
+    for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip center node
+    {
+      assert(Collect<QtPvdbNodeItem>(scene()).size() == i && "Node not yet added to scene");
+      assert(i < nodes.size());
+      boost::shared_ptr<pvdb::Node> node = nodes[i];
+      assert(node);
+      QtPvdbNodeItem * const qtnode = AddNode(node);
+      qtnodes.push_back(qtnode);
+      assert(Collect<QtPvdbNodeItem>(scene()).size() == i + 1 && "Node is added to scene");
+    }
+    TRACE(n_nodes);
+  }
+  #ifndef NDEBUG
+  {
+    //Check the number of
+    const auto qtnodes = Collect<QtPvdbNodeItem>(scene());
+    const auto n_qtnodes = qtnodes.size();
+    const auto nodes = m_concept_map->GetNodes();
+    const auto n_nodes = nodes.size();
+    if (n_qtnodes != n_nodes)
+    {
+      TRACE(n_qtnodes);
+      TRACE(n_nodes);
+      TRACE("BREAK");
+    }
+    assert(n_qtnodes == n_nodes
+      && "There must as much nodes in the scene as there were in the concept map");
+  }
+  #endif
+  //Add the Concepts on the Edges
+  {
+    const std::vector<boost::shared_ptr<pvdb::Edge> >& edges = m_concept_map->GetEdges();
+    std::for_each(edges.begin(),edges.end(),
+      [this,qtnodes](const boost::shared_ptr<pvdb::Edge> edge)
+      {
+        this->AddEdge(edge);
+      }
+    );
+  }
+  assert(scene()->items().count()
+    == init_count +static_cast<int>(m_concept_map->GetNodes().size() + m_concept_map->GetEdges().size())
+    && "There must be as much NodeConcepts and EdgeConcepts in the scene as the number of edges and nodes in the concept map");
+
+  //Put the nodes around the focal question in an initial position
+  if (MustReposition(AddConst(m_concept_map->GetNodes()))) RepositionItems();
+
+  #ifndef NDEBUG
+  assert(m_concept_map->IsValid());
+  const auto nodes = m_concept_map->GetNodes();
+  const auto items = Collect<QtPvdbNodeItem>(this->scene());
+  const std::size_t n_items = items.size();
+  const std::size_t n_nodes = nodes.size();
+  if (n_items != n_nodes)
+  {
+    TRACE(m_concept_map->GetNodes().size());
+    TRACE(n_items);
+    TRACE(n_nodes);
+  }
+  assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
+  TestMe(m_concept_map);
+  #endif
+}
+
 const std::vector<QtPvdbEdgeItem*> QtPvdbConceptMapWidget::FindEdges(
   const QtPvdbNodeItem* const from) const
 {
@@ -252,79 +352,6 @@ void QtPvdbConceptMapWidget::OnRequestSceneUpdate()
 
 }
 
-#ifdef PERHAPS_THIS_IS_NEEDED_AFTER_ALL_QUESTIONMARK
-void QtPvdbConceptMapWidget::ReadFromConceptMap(const boost::shared_ptr<pvdb::ConceptMap>& map)
-{
-
-  CleanMe();
-  assert(map);
-  assert(this->scene());
-  assert(!map->GetNodes().empty());
-
-  //This std::vector keeps the QtNodes in the same order as the nodes in the concept map
-  //You cannot rely on Collect<QtPvdbNodeConcept*>(scene), as this shuffles the order
-  std::vector<QtPvdbNodeItem*> qtnodes;
-
-  //The initial count of the items
-  const int init_count = scene()->items().count();
-
-  //Add the nodes to the scene
-  {
-    //Add the main question as the first node
-    const boost::shared_ptr<pvdb::Node> node = map->GetNodes()[0];
-    QtPvdbNodeItem* const qtnode = new QtPvdbCenterNodeItem(node);
-    //Let the center node respond to mouse clicks
-    qtnode->m_signal_request_scene_update.connect(
-      boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
-    qtnode->m_signal_item_has_updated.connect(
-      boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
-    //Add the center node to scene
-    this->scene()->addItem(qtnode);
-    qtnodes.push_back(qtnode);
-    assert(scene()->items().count() == init_count + 1);
-    assert(scene()->items().count() == init_count + static_cast<int>(qtnodes.size()));
-
-    //Add the regular nodes to the scene
-    const std::vector<boost::shared_ptr<pvdb::Node> >& nodes = map->GetNodes();
-    std::for_each(nodes.begin() + 1, //+1 to skip center node
-      nodes.end(),
-      [this,&qtnodes,init_count](const boost::shared_ptr<pvdb::Node>& node)
-      {
-        QtPvdbNodeItem * const qtnode = AddNode(node);
-        qtnodes.push_back(qtnode);
-        assert(scene()->items().count() == init_count + static_cast<int>(qtnodes.size()));
-      }
-    );
-
-  }
-  assert(scene()->items().count() == init_count + static_cast<int>(map->GetNodes().size())
-    && "There must as much nodes in the scene as there were in the concept map");
-
-  //Add the Concepts on the Edges
-  {
-    const std::vector<boost::shared_ptr<pvdb::Edge> >& edges = map->GetEdges();
-    std::for_each(edges.begin(),edges.end(),
-      [this,qtnodes](const boost::shared_ptr<pvdb::Edge>& edge)
-      {
-        this->AddEdge(edge,qtnodes);
-      }
-    );
-  }
-  assert(scene()->items().count()
-    == init_count +static_cast<int>(map->GetNodes().size() + map->GetEdges().size())
-    && "There must be as much NodeConcepts and EdgeConcepts in the scene as the number of edges and nodes in the concept map");
-
-  //Put the nodes around the focal question in an initial position
-  if (MustReposition(AddConst(map->GetNodes()))) RepositionItems();
-
-  //qtnodes[0]->setFocus();
-
-  #ifndef NDEBUG
-  assert(map);
-  TestMe(map);
-  #endif
-}
-#endif
 
 void QtPvdbConceptMapWidget::RepositionItems()
 {
@@ -384,6 +411,10 @@ void QtPvdbConceptMapWidget::RepositionItems()
     const std::vector<QtPvdbNodeItem *> qtnodes = Sort(Collect<QtPvdbNodeItem>(scene()));
     assert(!qtnodes.empty());
     assert(qtnodes[0]);
+    if (!IsCenterNode(qtnodes[0]))
+    {
+      TRACE("BREAK");
+    }
     assert(IsCenterNode(qtnodes[0]));
     const std::vector<QtPvdbEdgeItem* > qtedges = Collect<QtPvdbEdgeItem>(scene());
     const QtPvdbNodeItem * const center_node
@@ -472,7 +503,7 @@ const std::vector<QtPvdbNodeItem*> QtPvdbConceptMapWidget::Sort(const std::vecto
 #endif
 
 #ifndef NDEBUG
-void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptMap>& map) const
+void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptMap> map) const
 {
   {
     std::set<const pvdb::Node*> w;
