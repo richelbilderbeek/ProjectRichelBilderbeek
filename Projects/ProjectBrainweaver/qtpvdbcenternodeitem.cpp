@@ -13,7 +13,7 @@
 #include "qtpvdbdisplayconceptitem.h"
 
 QtPvdbCenterNodeItem::QtPvdbCenterNodeItem(
-  const boost::shared_ptr<pvdb::Node>& node)
+  const boost::shared_ptr<pvdb::Node> node)
   : QtPvdbNodeItem(node,CreateConceptItem(node))
 {
   assert(node);
@@ -23,7 +23,7 @@ QtPvdbCenterNodeItem::QtPvdbCenterNodeItem(
 }
 
 const boost::shared_ptr<QtPvdbConceptItem> QtPvdbCenterNodeItem::CreateConceptItem(
-  const boost::shared_ptr<pvdb::Node>& node)
+  const boost::shared_ptr<pvdb::Node> node)
 {
   assert(node);
   const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbDisplayConceptItem(node->GetConcept()));

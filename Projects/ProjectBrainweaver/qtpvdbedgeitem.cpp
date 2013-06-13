@@ -22,7 +22,7 @@
 #include "trace.h"
 
 QtPvdbEdgeItem::QtPvdbEdgeItem(
-    const boost::shared_ptr<pvdb::Edge>& edge,
+    const boost::shared_ptr<pvdb::Edge> edge,
     const boost::shared_ptr<QtPvdbConceptItem> concept_item,
     QtPvdbNodeItem* const from,
     QtPvdbNodeItem* const to)

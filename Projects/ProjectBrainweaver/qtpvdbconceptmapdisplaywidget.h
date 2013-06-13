@@ -46,15 +46,15 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
   ///  assert(m == n);
   ///instead, use
   ///  assert(HasSameContent(m,n));
-  //void ReadFromConceptMap(const boost::shared_ptr<const pvdb::ConceptMap>& map);
+  //void ReadFromConceptMap(const boost::shared_ptr<const pvdb::ConceptMap> map);
 
 private:
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as it has a Concept on it that the user might want to edit
-  void AddEdge(const boost::shared_ptr<pvdb::Edge>& edge);
+  void AddEdge(const boost::shared_ptr<pvdb::Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node>& node);
+  QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node> node);
 
   void CleanMe();
 

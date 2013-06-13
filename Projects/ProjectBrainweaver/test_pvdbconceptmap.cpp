@@ -58,7 +58,7 @@ void pvdb::ConceptMap::Test()
   {
     const std::vector<boost::shared_ptr<const pvdb::ConceptMap> > v = AddConst(pvdb::ConceptMapFactory::GetAllTests());
     std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<const pvdb::ConceptMap>& m)
+      [](const boost::shared_ptr<const pvdb::ConceptMap> m)
       {
         //Test copy constructor
         const boost::shared_ptr<pvdb::ConceptMap> c(pvdb::ConceptMapFactory::DeepCopy(m));

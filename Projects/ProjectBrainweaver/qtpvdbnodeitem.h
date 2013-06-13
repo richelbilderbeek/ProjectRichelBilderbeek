@@ -23,7 +23,7 @@ struct QtPvdbNodeItem : public QtPvdbConceptMapItem
   ///Node cannot be const as it contains a Concept that the user might want to edit
   ///concept_item contains the Stategy to display (and respond to the concept)
   explicit QtPvdbNodeItem(
-    const boost::shared_ptr<pvdb::Node>& node,
+    const boost::shared_ptr<pvdb::Node> node,
     const boost::shared_ptr<QtPvdbConceptItem> concept_item);
 
   virtual QRectF boundingRect() const;
