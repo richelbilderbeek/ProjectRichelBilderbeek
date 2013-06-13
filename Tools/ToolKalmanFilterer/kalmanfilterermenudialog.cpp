@@ -28,7 +28,7 @@ const About KalmanFiltererMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "KalmanFilterer",
     "tool to work with Kalman filters",
-    "the 7th of June 2013",
+    "the 13th of June 2013",
     "2013",
     "http://www.richelbilderbeek.nl/ToolKalmanFilterer.htm",
     GetVersion(),
@@ -50,7 +50,7 @@ const About KalmanFiltererMenuDialog::GetAbout()
 
 const std::string KalmanFiltererMenuDialog::GetVersion()
 {
-  return "1.7";
+  return "1.8";
 }
 
 const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
@@ -64,11 +64,13 @@ const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
   v.push_back("2013-05-16: version 1.5: use of model/view architecture, preparations for adding fixed-lag-smoother Kalman filter");
   v.push_back("2013-05-28: version 1.6: added loading (from DokuWiki) and saving (to DokuWiki and HTML) of parameters");
   v.push_back("2013-05-28: version 1.7: added possibility to save graphs to file");
+  v.push_back("2013-06-13: version 1.8: fixed bug in parameter tables, allow to view data as a table");
   //Future ideas:
   //- Add an explanation to the examples, e.g. in the form of an HTML page. This can be done
   //  by adding the DokuWiki's <html></html> tags, with an HTML comment inside to find the explanation:
   //  <html><!-- <explanation> --></html>
   //  This example is about a flying cannonball
   //  <html><!-- </explanation> --></html>
+  //- Add copying of table to spreadsheet program
   return v;
 }

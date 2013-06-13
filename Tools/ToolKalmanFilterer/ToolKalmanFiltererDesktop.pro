@@ -135,12 +135,6 @@ HEADERS += \
     ../../Classes/CppQtModel/qtublasmatrixdoublemodel.h \
     ../../Classes/CppQtModel/qtublasvectordoublemodel.h \
     ../../Classes/CppTrace/trace.h \
-    ../../Libraries/fparser4.4.3/extrasrc/fpaux.hh \
-    ../../Libraries/fparser4.4.3/extrasrc/fptypes.hh \
-    ../../Libraries/fparser4.4.3/fpconfig.hh \
-    ../../Libraries/fparser4.5.1/extrasrc/fpaux.hh \
-    ../../Libraries/fparser4.5.1/extrasrc/fptypes.hh \
-    ../../Libraries/fparser4.5.1/fpconfig.hh \
     kalmanfilterermenudialog.h \
     qtfixedlagsmootherkalmanfiltercalculationdialog.h \
     qtkalmanfiltercalculationdialog.h \
@@ -181,10 +175,6 @@ OTHER_FILES += \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt \
     ../../Classes/CppQtMatrix/Licence.txt \
     ../../Classes/CppTrace/Licence.txt \
-    ../../Libraries/fparser4.4.3/extrasrc/fp_identifier_parser.inc \
-    ../../Libraries/fparser4.4.3/extrasrc/fp_opcode_add.inc \
-    ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc \
-    ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc \
     crosscompiletowindows.sh \
     Licence.txt \
     zip.sh

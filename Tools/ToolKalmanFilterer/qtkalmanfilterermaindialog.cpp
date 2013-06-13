@@ -202,6 +202,28 @@ void QtKalmanFiltererMainDialog::keyPressEvent(QKeyEvent * event)
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
+{
+  const QString filename
+    = QFileDialog::getSaveFileName(
+      0,
+      "Please select a filename to saev the graphs to",
+      QString(),
+      "*.png"
+    );
+  if (filename.isEmpty()) return;
+
+  QImage image(
+    ui->scroll_area_graph_contents->contentsRect().size(),
+    QImage::Format_ARGB32);    // Create the image with the exact size
+  image.fill(Qt::transparent); // Start all pixels transparent
+  QPainter painter(&image);
+  ui->scroll_area_graph_contents->render(&painter);
+
+  image.save(filename);
+  assert(QFile::exists(filename));
+}
+
 void QtKalmanFiltererMainDialog::on_button_start_clicked()
 {
   //Remove previous dialogs
@@ -209,8 +231,10 @@ void QtKalmanFiltererMainDialog::on_button_start_clicked()
   m_calculations.resize(0);
   delete ui->scroll_area_calculation_contents->layout();
   delete ui->scroll_area_graph_contents->layout();
+  delete ui->scroll_area_table_contents->layout();
   assert(!ui->scroll_area_calculation_contents->layout());
   assert(!ui->scroll_area_graph_contents->layout());
+  assert(!ui->scroll_area_table_contents->layout());
 
   //Do the sim
   assert(m_experiment_dialog);
@@ -218,19 +242,86 @@ void QtKalmanFiltererMainDialog::on_button_start_clicked()
 
   assert(experiment);
   assert(experiment->IsValid());
-  //Display data as algorithm
+  //Display data as calculation
   if (ui->box_show_calculation->isChecked())
   {
-    ShowCalculationExperiment(experiment);
+    ShowCalculation(experiment);
   }
   //Display data as graph
   if (ui->box_show_graphs->isChecked())
   {
-    Plot(experiment);
+    ShowGraph(experiment);
+  }
+  //Display data as table
+  if (ui->box_show_table->isChecked())
+  {
+    ShowTable(experiment);
   }
 }
 
-void QtKalmanFiltererMainDialog::Plot(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+
+void QtKalmanFiltererMainDialog::SetShowCalculation(const bool do_show)
+{
+  ui->box_show_calculation->setChecked(do_show);
+}
+
+void QtKalmanFiltererMainDialog::SetShowGraph(const bool do_show)
+{
+  ui->box_show_graphs->setChecked(do_show);
+}
+
+void QtKalmanFiltererMainDialog::SetShowTable(const bool do_show)
+{
+  ui->box_show_table->setChecked(do_show);
+}
+
+void QtKalmanFiltererMainDialog::ShowCalculation(
+  const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+{
+  assert(experiment);
+  assert(m_calculations.empty());
+  //Make fresh calculation section
+  assert(!ui->scroll_area_calculation_contents->layout());
+  ui->scroll_area_calculation_contents->setLayout(new QVBoxLayout);
+  assert(ui->scroll_area_calculation_contents->layout());
+
+  //n_timesteps may differ from n_timesteps_desired, because in the actual simulation
+  //the innovation variance may become degenerate
+  const int n_timesteps = boost::numeric_cast<int>(experiment->GetCalculationElements().size()); //Number of rows
+
+  for (int i=0; i!=n_timesteps; ++i)
+  {
+
+    boost::shared_ptr<QtKalmanFilterCalculationDialog> calculation_dialog
+      = CreateKalmanFilterCalculationDialog(experiment->GetKalmanFilter()->GetType());
+
+    assert(calculation_dialog);
+    assert(calculation_dialog->GetType() == experiment->GetKalmanFilter()->GetType());
+    assert(i < boost::numeric_cast<int>(experiment->GetCalculationElements().size()));
+    assert(experiment->GetCalculationElements()[i]->IsComplete());
+
+    std::string style_sheet = calculation_dialog->styleSheet().toStdString()
+      + std::string("QDialog { background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 ");
+    switch (i % 6)
+    {
+      case 0: style_sheet+= "#f00, stop: 1 #000); }"; break;
+      case 1: style_sheet+= "#ff0, stop: 1 #000); }"; break;
+      case 2: style_sheet+= "#0f0, stop: 1 #000); }"; break;
+      case 3: style_sheet+= "#0ff, stop: 1 #000); }"; break;
+      case 4: style_sheet+= "#f0f, stop: 1 #000); }"; break;
+      case 5: style_sheet+= "#fff, stop: 1 #000); }"; break;
+    }
+
+    calculation_dialog->setStyleSheet(style_sheet.c_str());
+    calculation_dialog->SetTime(i);
+    calculation_dialog->ShowCalculation(i,experiment);
+    m_calculations.push_back(calculation_dialog);
+    assert(ui->scroll_area_calculation_contents->layout());
+    ui->scroll_area_calculation_contents->layout()->addWidget(calculation_dialog.get());
+  }
+}
+
+void QtKalmanFiltererMainDialog::ShowGraph(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
   assert(experiment->IsValid());
@@ -388,59 +479,87 @@ void QtKalmanFiltererMainDialog::Plot(const boost::shared_ptr<const KalmanFilter
   }
 }
 
-void QtKalmanFiltererMainDialog::SetShowCalculations(const bool do_show)
-{
-  ui->box_show_calculation->setChecked(do_show);
-}
-
-void QtKalmanFiltererMainDialog::SetShowGraphs(const bool do_show)
-{
-  ui->box_show_graphs->setChecked(do_show);
-}
-
-void QtKalmanFiltererMainDialog::ShowCalculationExperiment(
-  const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+void QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
-  assert(m_calculations.empty());
-  //Make fresh calculation section
-  assert(!ui->scroll_area_calculation_contents->layout());
-  ui->scroll_area_calculation_contents->setLayout(new QVBoxLayout);
-  assert(ui->scroll_area_calculation_contents->layout());
+  assert(experiment->IsValid());
+  //Make fresh graph section
+  assert(!ui->scroll_area_table_contents->layout());
+  ui->scroll_area_table_contents->setLayout(new QVBoxLayout);
+  assert(ui->scroll_area_table_contents->layout());
 
-  //n_timesteps may differ from n_timesteps_desired, because in the actual simulation
+  //Create the table widget
+  const int state_size = boost::numeric_cast<int>(experiment->GetStateNames().size());
+  const int n_cols = state_size * 4; //Display 4 values per state: real, measured, predicted and input
+
+  //n_timesteps may differ from n_timesteps_desired, because in the actual experiment
   //the innovation variance may become degenerate
-  const int n_timesteps = boost::numeric_cast<int>(experiment->GetCalculationElements().size()); //Number of rows
+  //! Do not use GetInputs() its size: this size is always set to the maximum
+  //  duration of the experiment
+  const int n_timesteps = boost::numeric_cast<int>(experiment->GetRealStates().size());
+  const int n_rows = n_timesteps;
 
-  for (int i=0; i!=n_timesteps; ++i)
+  QTableWidget * const table = new QTableWidget;
+  table->setColumnCount(n_cols);
+  table->setRowCount(n_rows);
+  table->setAlternatingRowColors(true);
+  //table->setSelectionMode(QAbstractItemView::MultiSelection);
+  //table->setSelectionBehavior(QAbstractItemView::SelectItems);
+  assert(ui->scroll_area_table_contents->layout());
+  ui->scroll_area_table_contents->layout()->addWidget(table);
+
+  assert(n_timesteps == boost::numeric_cast<int>(experiment->GetRealStates().size()));
+  assert(n_timesteps == boost::numeric_cast<int>(experiment->GetPredictedStates().size()));
+  assert(n_timesteps == boost::numeric_cast<int>(experiment->GetMeasuredStates().size()));
+
+  //Layout the data for putting in table
+  const std::vector<std::vector<double> > vs = CreateData(
+    experiment->GetRealStates(),
+    experiment->GetMeasuredStates(),
+    experiment->GetPredictedStates(),
+    experiment->GetInputs());
+  //assert(!vs.empty()); //vs can be empty
+
+  //Leave if there is no data to put in table
+  if (vs.empty()) return;
+
+  //Put state descriptions in horizontal header
+  for (int col=0; col!=n_cols; ++col)
   {
-
-    boost::shared_ptr<QtKalmanFilterCalculationDialog> calculation_dialog
-      = CreateKalmanFilterCalculationDialog(experiment->GetKalmanFilter()->GetType());
-
-    assert(calculation_dialog);
-    assert(calculation_dialog->GetType() == experiment->GetKalmanFilter()->GetType());
-    assert(i < boost::numeric_cast<int>(experiment->GetCalculationElements().size()));
-    assert(experiment->GetCalculationElements()[i]->IsComplete());
-
-    std::string style_sheet = calculation_dialog->styleSheet().toStdString()
-      + std::string("QDialog { background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 ");
-    switch (i % 6)
+    QTableWidgetItem * const item = new QTableWidgetItem;
+    const int state_index = col / 4;
+    assert(state_index < boost::numeric_cast<int>(experiment->GetStateNames().size()));
+    const std::string text_state = experiment->GetStateNames()[state_index];
+    std::string text_extra;
+    switch (col % 4)
     {
-      case 0: style_sheet+= "#f00, stop: 1 #000); }"; break;
-      case 1: style_sheet+= "#ff0, stop: 1 #000); }"; break;
-      case 2: style_sheet+= "#0f0, stop: 1 #000); }"; break;
-      case 3: style_sheet+= "#0ff, stop: 1 #000); }"; break;
-      case 4: style_sheet+= "#f0f, stop: 1 #000); }"; break;
-      case 5: style_sheet+= "#fff, stop: 1 #000); }"; break;
+      case 0: text_extra = "_real"; break;
+      case 1: text_extra = "_measured"; break;
+      case 2: text_extra = "_predicted"; break;
+      case 3: text_extra = "_input"; break;
     }
-
-    calculation_dialog->setStyleSheet(style_sheet.c_str());
-    calculation_dialog->SetTime(i);
-    calculation_dialog->ShowCalculation(i,experiment);
-    m_calculations.push_back(calculation_dialog);
-    assert(ui->scroll_area_calculation_contents->layout());
-    ui->scroll_area_calculation_contents->layout()->addWidget(calculation_dialog.get());
+    const std::string text = text_state + text_extra;
+    item->setText(text.c_str());
+    table->setHorizontalHeaderItem(col,item);
+  }
+  //Put time series in vertical header
+  for (int row=0; row!=n_timesteps; ++row)
+  {
+    QTableWidgetItem * const item = new QTableWidgetItem;
+    item->setText(QString::number(row));
+    table->setVerticalHeaderItem(row,item);
+  }
+  for (int col=0; col!=n_cols; ++col)
+  {
+    assert(col < boost::numeric_cast<int>(vs.size()));
+    const std::vector<double>& v = vs[col];
+    assert(n_timesteps == boost::numeric_cast<int>(v.size()));
+    for (int row=0; row!=n_timesteps; ++row)
+    {
+      QTableWidgetItem * const item = new QTableWidgetItem;
+      item->setText(QString::number(v[row]));
+      table->setItem(row,col,item);
+    }
   }
 }
 
@@ -459,8 +578,9 @@ void QtKalmanFiltererMainDialog::Test()
       const boost::shared_ptr<QtKalmanFiltererMainDialog> d
         = QtKalmanFiltererMainDialog::Create();
       assert(d);
-      d->SetShowCalculations(true);
-      d->SetShowGraphs(true);
+      d->SetShowCalculation(true);
+      d->SetShowGraph(true);
+      d->SetShowTable(true);
       d->on_button_start_clicked();
     }
     //1) Click on example x and write these to a DokuWiki file
@@ -494,24 +614,4 @@ void QtKalmanFiltererMainDialog::Test()
 }
 #endif
 
-void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
-{
-  const QString filename
-    = QFileDialog::getSaveFileName(
-      0,
-      "Please select a filename to saev the graphs to",
-      QString(),
-      "*.png"
-    );
-  if (filename.isEmpty()) return;
 
-  QImage image(
-    ui->scroll_area_graph_contents->contentsRect().size(),
-    QImage::Format_ARGB32);    // Create the image with the exact size
-  image.fill(Qt::transparent); // Start all pixels transparent
-  QPainter painter(&image);
-  ui->scroll_area_graph_contents->render(&painter);
-
-  image.save(filename);
-  assert(QFile::exists(filename));
-}

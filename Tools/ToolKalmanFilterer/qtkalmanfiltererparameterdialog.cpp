@@ -52,8 +52,8 @@ QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
   ui->label->setText(parameter_name.c_str());
   this->setToolTip(parameter_description.c_str());
 
-  QObject::connect(model,SIGNAL(layoutChanged()),ui->table,SLOT(resizeColumnsToContents()));
-  QObject::connect(model,SIGNAL(layoutChanged()),ui->table,SLOT(resizeRowsToContents()));
+  ui->table->setAlternatingRowColors(true);
+  ui->table->setWordWrap(false);
 }
 
 QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()

@@ -40,10 +40,13 @@ public:
   ~QtKalmanFiltererMainDialog();
 
   ///Set the checkbox to show the calculation
-  void SetShowCalculations(const bool do_show);
+  void SetShowCalculation(const bool do_show);
 
   ///Set the checkbox to show the graphs
-  void SetShowGraphs(const bool do_show);
+  void SetShowGraph(const bool do_show);
+
+  ///Set the checkbox to show the table
+  void SetShowTable(const bool do_show);
 
   ///Create a QtKalmanFiltererMainDialog
   static boost::shared_ptr<QtKalmanFiltererMainDialog> Create();
@@ -56,21 +59,17 @@ private:
 
   QtKalmanFilterExperimentDialog * const m_experiment_dialog;
 
+  ///Contains the calculations, these must be stored because deleting
+  ///the layout that contains these does not work properly
+  std::vector<boost::shared_ptr<QtKalmanFilterCalculationDialog> > m_calculations;
+
   ///The model
   const boost::shared_ptr<QtKalmanFilterExperimentModel> m_model;
-
-  ///Plot an experiment
-  void Plot(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
 
   ///Contains the plots, these must be stored because deleting
   ///the layout that contains these does not work properly
   std::vector<boost::shared_ptr<QwtPlot> > m_plots;
 
-  ///Contains the calculations, these must be stored because deleting
-  ///the layout that contains these does not work properly
-  std::vector<boost::shared_ptr<QtKalmanFilterCalculationDialog> > m_calculations;
-
-private slots:
 
   static const std::vector<std::vector<double> > CreateData(
     const std::vector<boost::numeric::ublas::vector<double> >& a,
@@ -82,16 +81,22 @@ private slots:
   const boost::shared_ptr<QtKalmanFilterCalculationDialog> CreateKalmanFilterCalculationDialog(
     const KalmanFilterType type) const;
 
-  void on_button_start_clicked();
+  ///Show the results of an experiment in a calculation
+  void ShowCalculation(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
 
-  ///Show the calculation of a StandardKalmanFilterExperiment
-  void ShowCalculationExperiment(
-    const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
+  ///Show the results of an experiment in a graph
+  void ShowGraph(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
+
+  ///Show the results of an experiment in a table
+  void ShowTable(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
 
   #ifndef NDEBUG
   ///Test this class
   static void Test();
   #endif
+
+private slots:
+  void on_button_start_clicked();
   void on_button_save_graph_clicked();
 };
 
