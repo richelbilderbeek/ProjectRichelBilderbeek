@@ -34,12 +34,14 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
     m_to(to)
 {
   //m_edge must be initialized before m_arrow
-  m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
-  assert(m_arrow);
   assert(m_concept_item);
   assert(m_edge);
   assert(m_from);
   assert(m_to);
+  assert(from != to);
+  assert(m_from != m_to);
+  m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
+  assert(m_arrow);
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 
