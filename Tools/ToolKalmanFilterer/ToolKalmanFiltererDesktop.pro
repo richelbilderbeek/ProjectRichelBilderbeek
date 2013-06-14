@@ -85,7 +85,8 @@ SOURCES += \
     qtwhitenoisesystemparametersdialog.cpp \
     ../../Classes/CppQtModel/modelfunctionparser.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltertypes.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp
+    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp \
+    qtcopyalltablewidget.cpp
 
 
 HEADERS += \
@@ -151,7 +152,8 @@ HEADERS += \
     qtwhitenoisesystemparametersdialog.h \
     ../../Classes/CppQtModel/modelfunctionparser.h \
     ../../Classes/CppKalmanFilter/kalmanfiltertypes.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h
+    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h \
+    qtcopyalltablewidget.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
