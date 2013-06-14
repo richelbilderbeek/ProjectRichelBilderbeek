@@ -100,8 +100,9 @@ void QtPvdbConceptMapEditWidget::AddEdge(
   assert(qtconcept);
   QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
-  QtPvdbNodeItem * const to   = FindQtNode(edge->GetFrom());
+  QtPvdbNodeItem * const to   = FindQtNode(edge->GetTo());
   assert(to);
+  assert(from != to);
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
     edge,
     qtconcept,
@@ -137,6 +138,7 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
   assert(qt_from);
   assert(qt_to);
   assert(qt_from != qt_to);
+  assert(qt_from->GetNode() != qt_to->GetNode());
   assert(!dynamic_cast<const QtPvdbToolsItem*>(qt_to  ) && "Cannot select a ToolsItem");
   assert(!dynamic_cast<const QtPvdbToolsItem*>(qt_from) && "Cannot select a ToolsItem");
   //Does this edge already exists? If yes, modify it
@@ -154,6 +156,8 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
     {
       QtPvdbEdgeItem * const qtedge = *iter;
       assert(qtedge);
+      assert(qtedge->GetEdge()->GetFrom() != qtedge->GetEdge()->GetTo());
+      assert(qtedge->GetArrow()->GetFromItem() != qtedge->GetArrow()->GetToItem());
       if (qtedge->GetArrow()->GetToItem()   == qt_to && !qtedge->GetArrow()->HasHead()) { qtedge->SetHasHeadArrow(true); }
       if (qtedge->GetArrow()->GetFromItem() == qt_to && !qtedge->GetArrow()->HasTail()) { qtedge->SetHasTailArrow(true); }
       this->scene()->update();
@@ -347,6 +351,9 @@ void QtPvdbConceptMapEditWidget::DeleteLeftovers()
         assert(i >= 0 && i < static_cast<int>(qtedge.size()));
         //An edge can be deleted if its 'to' or 'from' is absent
         QtPvdbEdgeItem * const edge = qtedge[i];
+        assert(edge->GetFrom());
+        assert(edge->GetTo());
+        assert(edge->GetFrom() != edge->GetTo());
         const std::vector<QtPvdbNodeItem*> qtnodes = Collect<QtPvdbNodeItem>(scene());
         if (std::count_if(qtnodes.begin(),qtnodes.end(),
           [edge](const QtPvdbNodeItem * node)
