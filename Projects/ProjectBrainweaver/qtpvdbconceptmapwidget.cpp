@@ -136,8 +136,6 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   //You cannot rely on Collect<QtPvdbNodeConcept*>(scene), as this shuffles the order
   std::vector<QtPvdbNodeItem*> qtnodes;
 
-  //The initial count of the items
-  const int init_count = scene()->items().count();
   assert(Collect<QtPvdbNodeItem>(scene()).empty());
 
   //Add the nodes to the scene
@@ -154,8 +152,6 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
     this->scene()->addItem(qtnode);
     qtnodes.push_back(qtnode);
     assert(Collect<QtPvdbNodeItem>(scene()).size() == 1);
-    assert(scene()->items().count() == init_count + 1);
-    assert(scene()->items().count() == init_count + static_cast<int>(qtnodes.size()));
 
     //Add the regular nodes to the scene
     const std::vector<boost::shared_ptr<pvdb::Node> > nodes = m_concept_map->GetNodes();
@@ -192,17 +188,29 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   #endif
   //Add the Concepts on the Edges
   {
-    const std::vector<boost::shared_ptr<pvdb::Edge> >& edges = m_concept_map->GetEdges();
+    const std::vector<boost::shared_ptr<pvdb::Edge> > edges = m_concept_map->GetEdges();
     std::for_each(edges.begin(),edges.end(),
       [this,qtnodes](const boost::shared_ptr<pvdb::Edge> edge)
       {
+        assert(edge->GetFrom());
+        assert(edge->GetTo());
+        assert(edge->GetFrom() != edge->GetTo());
         this->AddEdge(edge);
       }
     );
   }
-  assert(scene()->items().count()
-    == init_count +static_cast<int>(m_concept_map->GetNodes().size() + m_concept_map->GetEdges().size())
-    && "There must be as much NodeConcepts and EdgeConcepts in the scene as the number of edges and nodes in the concept map");
+
+  #ifndef NDEBUG
+  {
+    //Check the number of edges
+    const auto qtedges = Collect<QtPvdbEdgeItem>(scene());
+    const auto n_qtedges = qtedges.size();
+    const auto edges = m_concept_map->GetEdges();
+    const auto n_edges = edges.size();
+    assert(n_qtedges == n_edges
+      && "There must as much edges in the scene as there were in the concept map");
+  }
+  #endif
 
   //Put the nodes around the focal question in an initial position
   if (MustReposition(AddConst(m_concept_map->GetNodes()))) RepositionItems();

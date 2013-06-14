@@ -65,8 +65,9 @@ void QtPvdbConceptMapRateWidget::AddEdge(
   assert(qtconcept);
   QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
-  QtPvdbNodeItem * const to   = FindQtNode(edge->GetFrom());
+  QtPvdbNodeItem * const to   = FindQtNode(edge->GetTo());
   assert(to);
+  assert(from != to);
 
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
     edge,

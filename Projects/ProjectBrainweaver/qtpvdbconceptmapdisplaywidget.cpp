@@ -62,8 +62,9 @@ void QtPvdbConceptMapDisplayWidget::AddEdge(
   assert(concept);
   QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
-  QtPvdbNodeItem * const to   = FindQtNode(edge->GetFrom());
+  QtPvdbNodeItem * const to   = FindQtNode(edge->GetTo());
   assert(to);
+  assert(from != to);
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
     edge,
     concept,
@@ -165,6 +166,7 @@ void QtPvdbConceptMapDisplayWidget::DoRandomStuff()
   assert(!"Do something here");
   const auto node_from = pvdb::NodeFactory::GetTests().at(0);
   const auto node_to   = pvdb::NodeFactory::GetTests().at(1);
+  assert(node_from != node_to);
   this->AddNode(node_from);
   this->AddNode(node_to  );
   const auto edge_concept = pvdb::ConceptFactory::GetTests().at(0);
