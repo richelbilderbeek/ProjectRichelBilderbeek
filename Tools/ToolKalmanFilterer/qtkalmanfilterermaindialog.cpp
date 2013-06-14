@@ -32,6 +32,7 @@
 #include "kalmanfilterexperiment.h"
 #include "kalmanfilterexample.h"
 #include "kalmanfilterparameters.h"
+#include "qtcopyalltablewidget.h"T
 #include "kalmanfilter.h"
 #include "matrix.h"
 #include "qtfixedlagsmootherkalmanfiltercalculationdialog.h"
@@ -207,7 +208,7 @@ void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
   const QString filename
     = QFileDialog::getSaveFileName(
       0,
-      "Please select a filename to saev the graphs to",
+      "Please select a filename to save the graphs to",
       QString(),
       "*.png"
     );
@@ -499,7 +500,8 @@ void QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr<const KalmanF
   const int n_timesteps = boost::numeric_cast<int>(experiment->GetRealStates().size());
   const int n_rows = n_timesteps;
 
-  QTableWidget * const table = new QTableWidget;
+  QtCopyAllTableWidget * const table = new QtCopyAllTableWidget;
+
   table->setColumnCount(n_cols);
   table->setRowCount(n_rows);
   table->setAlternatingRowColors(true);
