@@ -66,7 +66,8 @@
 
 QtPvdbMenuDialog::QtPvdbMenuDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtPvdbMenuDialog)
+    ui(new Ui::QtPvdbMenuDialog),
+    m_show_child_dialogs_modal(true)
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -91,19 +92,19 @@ void QtPvdbMenuDialog::keyPressEvent(QKeyEvent* e)
 void QtPvdbMenuDialog::on_button_assessor_clicked()
 {
   QtPvdbAssessorMenuDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_rate_concept_clicked()
 {
-  //Obtain a random file
-  const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::File::GetTests();
-  const boost::shared_ptr<pvdb::File> file = v[ std::rand() % v.size() ];
+  //Obtain an empty file
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   //Set HeteromorphousTestConceptMap[15]
   {
     const boost::shared_ptr<pvdb::ConceptMap> concept_map
       = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
     assert(concept_map);
+    assert(!file->GetConceptMap() && "Can only set a concept map once");
     file->SetConceptMap(concept_map);
   }
   //Obtain a random sub-concept-map
@@ -118,13 +119,12 @@ void QtPvdbMenuDialog::on_button_rate_concept_clicked()
 
 void QtPvdbMenuDialog::on_button_rate_concept_map_clicked()
 {
-  const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::File::GetTests();
-  const boost::shared_ptr<pvdb::File> file = v[ std::rand() % v.size() ];
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   const boost::shared_ptr<pvdb::ConceptMap> concept_map
     = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
   file->SetConceptMap(concept_map);
   QtPvdbRateConceptMapDialog d(file);
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_rate_examples_clicked()
@@ -139,7 +139,7 @@ void QtPvdbMenuDialog::on_button_rating_clicked()
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
   assert(file);
   QtPvdbRatingDialog d(file);
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_student_clicked()
@@ -155,7 +155,7 @@ void QtPvdbMenuDialog::on_button_student_clicked()
       const boost::shared_ptr<pvdb::File> file(pvdb::File::Load(filename));
       assert(file);
       QtPvdbStudentMenuDialog d(file);
-      this->ShowChild(&d);
+      if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
     }
     catch (...)
     {
@@ -167,12 +167,12 @@ void QtPvdbMenuDialog::on_button_student_clicked()
 
 void QtPvdbMenuDialog::on_button_test_cluster_clicked()
 {
-  const std::vector<boost::shared_ptr<pvdb::File> > files = pvdb::File::GetTests();
-  boost::shared_ptr<pvdb::File>  file = files[ std::rand() % files.size() ];
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   {
     const std::string question = "qtvdbmenudialog.cpp 79?";
     boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(question));
     assert(concept_map);
+    assert(!file->GetConceptMap() && "Can only set concept map once");
     file->SetConceptMap(concept_map);
     //file->SetQuestion("Wat zal ik als test focusvraag schrijven?");
     assert(file->GetQuestion() == question);
@@ -181,36 +181,43 @@ void QtPvdbMenuDialog::on_button_test_cluster_clicked()
     && "If the file has no cluster, the cluster dialog creates it");
   QtPvdbClusterDialog d(file);
   assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_overview_clicked()
 {
-
   const QString old_title = this->windowTitle();
   this->setWindowTitle("Loading, please wait...");
   QtPvdbOverviewDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_about_clicked()
 {
   const auto d = QtPvdbAboutDialog::Get();
-  this->hide();
-  d->exec();
-  this->show();
+  if (m_show_child_dialogs_modal)
+  {
+    this->hide();
+    d->exec();
+    this->show();
+  }
+  else
+  {
+    d->close();
+  }
 }
 
 void QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
 {
-  const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::File::GetTests();
-  const boost::shared_ptr<pvdb::File> file = v[ std::rand() % v.size() ];
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   const boost::shared_ptr<pvdb::ConceptMap> concept_map
     = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
+  assert(concept_map);
+  assert(!file->GetConceptMap() && "Can only set a concept map once");
   file->SetConceptMap(concept_map);
   QtPvdbConceptMapDialog d(file);
   assert(file);
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_test_conceptedit_clicked()
@@ -223,20 +230,20 @@ void QtPvdbMenuDialog::on_button_test_conceptedit_clicked()
   }
   assert(concept);
   QtPvdbConceptEditDialog d(concept);
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_view_files_clicked()
 {
   QtPvdbViewFilesDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked()
 {
   QtPvdbViewTestsDialog d;
   TRACE("BEFORE ERROR");
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   TRACE("AFTER ERROR");
 }
 
@@ -255,6 +262,52 @@ void QtPvdbMenuDialog::Test()
   TRACE("Started QtPvdbMenuDialog::Test");
   {
     QtPvdbOverviewDialog d; //Creates all screens, does all tests
+  }
+  //Press all buttons
+  {
+    QtPvdbMenuDialog d;
+    d.m_show_child_dialogs_modal = false;
+    Ui::QtPvdbMenuDialog * const ui = d.ui;
+    const std::vector<QPushButton*> buttons
+      =
+      {
+        ui->button_about,
+        ui->button_assessor,
+        ui->button_concept,
+        ui->button_create_test_files,
+        ui->button_modify_stylesheet,
+        ui->button_overview,
+        ui->button_print_concept_map,
+        ui->button_print_rating,
+        ui->button_rate_concept,
+        ui->button_rate_concept_auto,
+        ui->button_rate_concept_map,
+        ui->button_rate_examples,
+        ui->button_rating,
+        ui->button_student,
+        ui->button_test_arrowitems,
+        ui->button_test_cluster,
+        ui->button_test_conceptedit,
+        ui->button_test_conceptmap,
+        ui->button_test_create_sub_concept_map,
+        ui->button_test_edge_item,
+        ui->button_test_node_item,
+        ui->button_test_qtconceptmapdisplaywidget,
+        ui->button_test_qtconceptmapeditwidget,
+        ui->button_test_qtconceptmapratewidget,
+        ui->button_test_qtroundededitrectitem,
+        ui->button_test_qtroundedtextrectitem,
+        ui->button_view_files,
+        ui->button_view_test_concept_maps
+      };
+    const std::size_t n_buttons = buttons.size();
+    for (std::size_t i = 0; i!=n_buttons; ++i)
+    {
+      QPushButton * const button = buttons[i];
+      assert(button);
+      if (button->isEnabled()) button->click();
+    }
+
   }
   //THE MULTI DIALOG TESTS HERE
   //MULTI DIALOG TEST #1
@@ -410,47 +463,47 @@ void QtPvdbMenuDialog::Test()
 void QtPvdbMenuDialog::on_button_concept_clicked()
 {
   QtPvdbTestConceptItemDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_test_node_item_clicked()
 {
   QtPvdbTestNodeItemDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 
 void QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked()
 {
   QtTestQtRoundedTextRectItemMenuDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked()
 {
   QtTestQtRoundedEditRectItemMenuDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_test_edge_item_clicked()
 {
   #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestEdgeItemDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   #endif
 }
 
 void QtPvdbMenuDialog::on_button_test_arrowitems_clicked()
 {
   QtTestQtArrowItemsMenuDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked()
 {
   #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestConceptMapEditWidgetDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   #endif
 }
 
@@ -458,7 +511,7 @@ void QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked()
 {
   #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestConceptMapRateWidgetDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   #endif
 }
 
@@ -498,7 +551,7 @@ void QtPvdbMenuDialog::on_button_create_test_files_clicked()
 void QtPvdbMenuDialog::on_button_modify_stylesheet_clicked()
 {
   ToolStyleSheetSetterMainDialog d(qApp->styleSheet().toStdString());
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   qApp->setStyleSheet(d.GetStyleSheet().c_str());
 }
 
@@ -506,7 +559,7 @@ void QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked()
 {
   #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestConceptMapDisplayWidgetDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   #endif
 }
 
@@ -518,8 +571,7 @@ void QtPvdbMenuDialog::on_button_print_concept_map_clicked()
   const boost::shared_ptr<pvdb::File> file = pvdb::File::Load(filename);
   assert(file);
   QtPvdbPrintConceptMapDialog d(file);
-  this->ShowChild(&d);
-
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_print_rating_clicked()
@@ -530,7 +582,7 @@ void QtPvdbMenuDialog::on_button_print_rating_clicked()
   const boost::shared_ptr<pvdb::File> file = pvdb::File::Load(filename);
   assert(file);
   QtPvdbPrintRatingDialog d(file);
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
@@ -575,6 +627,6 @@ void QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked()
 {
   #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestCreateSubConceptMapDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   #endif
 }
