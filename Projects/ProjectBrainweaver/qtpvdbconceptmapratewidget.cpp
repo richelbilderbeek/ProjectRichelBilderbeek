@@ -54,8 +54,10 @@ QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
   : QtPvdbConceptMapWidget(concept_map,parent)
 {
   #ifndef NDEBUG
-  assert(concept_map && "Only an existing concept map can be rated");
   Test();
+
+  assert(concept_map && "Only an existing concept map can be rated");
+  BuildQtConceptMap();
   #endif
 }
 
@@ -144,7 +146,9 @@ QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvd
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
+
+  //Cannot test this: during construction not all nodes are put in
+  //assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
 
   return qtnode;
 }

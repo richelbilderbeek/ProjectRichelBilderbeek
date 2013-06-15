@@ -51,6 +51,7 @@ QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
   Test();
   assert( (concept_map || !concept_map)
     && "Also an empty concept map can be displayed");
+  BuildQtConceptMap();
   #endif
 }
 
@@ -121,7 +122,10 @@ QtPvdbNodeItem * QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
+
+  //Cannot test this: during construction, the nodes will be put in one-by-one
+  //assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
+
   return qtnode;
 }
 
