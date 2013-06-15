@@ -128,42 +128,53 @@ void QtPvdbRateConceptDialog::Test()
     {
   #endif
   {
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map
-      = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
-    assert(concept_map);
-    const boost::shared_ptr<pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
-    assert(concept);
-    const boost::shared_ptr<pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
-    assert(old_concept);
-    assert(concept != old_concept);
-    assert(IsEqual(*concept,*old_concept));
-    QtPvdbRateConceptDialog d(concept_map);
-    assert(concept->GetRatingComplexity() == d.ui->box_complexity->currentIndex());
-    assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
-    assert(concept->GetRatingSpecificity() == d.ui->box_specificity->currentIndex());
-    //Change a box
-    d.ui->box_complexity->setCurrentIndex( (d.ui->box_complexity->currentIndex() + 1) % 3);
-    //But do not click OK
-    assert(IsEqual(*concept,*old_concept) && "Without clicking OK, QtPvdbRateConceptDialog must not change the concept");
+    const std::vector<boost::shared_ptr<pvdb::ConceptMap> > concept_maps
+      = pvdb::ConceptMapFactory::GetAllTests();
+    const std::size_t n_concept_maps = concept_maps.size();
+    for (std::size_t i=0; i!=n_concept_maps; ++i)
+    {
+      const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[i];
+      assert(concept_map);
+      const boost::shared_ptr<pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
+      assert(concept);
+      const boost::shared_ptr<pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
+      assert(old_concept);
+      assert(concept != old_concept);
+      assert(IsEqual(*concept,*old_concept));
+      QtPvdbRateConceptDialog d(concept_map);
+      assert(concept->GetRatingComplexity() == d.ui->box_complexity->currentIndex());
+      assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
+      assert(concept->GetRatingSpecificity() == d.ui->box_specificity->currentIndex());
+      //Change a box
+      d.ui->box_complexity->setCurrentIndex( (d.ui->box_complexity->currentIndex() + 1) % 3);
+      //But do not click OK
+      assert(IsEqual(*concept,*old_concept) && "Without clicking OK, QtPvdbRateConceptDialog must not change the concept");
+    }
   }
   {
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map
-      = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
-    assert(concept_map);
-    const boost::shared_ptr<pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
-    assert(concept);
-    const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
-    assert(old_concept);
-    assert(concept != old_concept);
-    assert(IsEqual(*concept,*old_concept));
-    QtPvdbRateConceptDialog d(concept_map);
-    assert(concept->GetRatingComplexity()   == d.ui->box_complexity->currentIndex());
-    assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
-    assert(concept->GetRatingSpecificity()  == d.ui->box_specificity->currentIndex());
-    //Change a box
-    d.ui->box_complexity->setCurrentIndex( (d.ui->box_complexity->currentIndex() + 1) % 3);
-    d.ui->button_ok->click();
-    assert(!IsEqual(*concept,*old_concept) && "QtPvdbRateConceptDialog must change the concept when clicked OK");
+    const std::vector<boost::shared_ptr<pvdb::ConceptMap> > concept_maps
+      = pvdb::ConceptMapFactory::GetAllTests();
+    const std::size_t n_concept_maps = concept_maps.size();
+    for (std::size_t i=0; i!=n_concept_maps; ++i)
+    {
+      const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[i];
+      assert(concept_map);
+      const boost::shared_ptr<pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
+      assert(concept);
+      const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
+
+      assert(old_concept);
+      assert(concept != old_concept);
+      assert(IsEqual(*concept,*old_concept));
+      QtPvdbRateConceptDialog d(concept_map);
+      assert(concept->GetRatingComplexity()   == d.ui->box_complexity->currentIndex());
+      assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
+      assert(concept->GetRatingSpecificity()  == d.ui->box_specificity->currentIndex());
+      //Change a box
+      d.ui->box_complexity->setCurrentIndex( (d.ui->box_complexity->currentIndex() + 1) % 3);
+      d.ui->button_ok->click();
+      assert(!IsEqual(*concept,*old_concept) && "QtPvdbRateConceptDialog must change the concept when clicked OK");
+    }
   }
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }

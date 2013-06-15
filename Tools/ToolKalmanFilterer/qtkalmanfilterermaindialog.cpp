@@ -32,7 +32,7 @@
 #include "kalmanfilterexperiment.h"
 #include "kalmanfilterexample.h"
 #include "kalmanfilterparameters.h"
-#include "qtcopyalltablewidget.h"T
+#include "qtcopyalltablewidget.h"
 #include "kalmanfilter.h"
 #include "matrix.h"
 #include "qtfixedlagsmootherkalmanfiltercalculationdialog.h"

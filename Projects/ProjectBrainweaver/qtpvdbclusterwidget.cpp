@@ -48,11 +48,15 @@ struct QtPvdbTreeWidgetItem : public QTreeWidgetItem
   const int m_rating_specifity;
 };
 
-QtPvdbClusterWidget::QtPvdbClusterWidget(QWidget* parent)
-  : QTreeWidget(parent)
+QtPvdbClusterWidget::QtPvdbClusterWidget(
+  boost::shared_ptr<pvdb::Cluster> cluster,
+  QWidget* parent)
+  : QTreeWidget(parent),
+    m_cluster(cluster)
 {
   #ifndef NDEBUG
   Test();
+  assert(m_cluster && "Must have a cluster to work on");
   #endif
 
   //Hide the header
@@ -66,6 +70,8 @@ QtPvdbClusterWidget::QtPvdbClusterWidget(QWidget* parent)
 
   //Let the drag and drop be animated
   this->setAnimated(true);
+
+  this->BuildCluster();
 
   QObject::connect(
     this,
@@ -199,6 +205,12 @@ void QtPvdbClusterWidget::dropEvent(QDropEvent *event)
   }
 }
 
+const boost::shared_ptr<pvdb::Cluster> QtPvdbClusterWidget::GetCluster()
+{
+  WriteToCluster();
+  return m_cluster;
+}
+
 int QtPvdbClusterWidget::GetDepth(const QTreeWidgetItem * const item) const
 {
   assert(item);
@@ -219,15 +231,17 @@ void QtPvdbClusterWidget::keyPressEvent(QKeyEvent *event)
   QTreeWidget::keyPressEvent(event);
 }
 
-void QtPvdbClusterWidget::ReadFromCluster(const boost::shared_ptr<pvdb::Cluster>& cluster)
+void QtPvdbClusterWidget::BuildCluster()
 {
+  assert(m_cluster);
   assert(this->isHeaderHidden());
   assert(this->alternatingRowColors());
   assert(this->dragDropMode() == QAbstractItemView::InternalMove);
   assert(this->isAnimated());
 
   this->clear();
-  const std::vector<boost::shared_ptr<pvdb::Concept> >& v = cluster->Get();
+  assert(m_cluster);
+  const std::vector<boost::shared_ptr<pvdb::Concept> >& v = m_cluster->Get();
   std::for_each(v.begin(),v.end(),
     [this](const boost::shared_ptr<const pvdb::Concept>& concept)
     {
@@ -305,18 +319,22 @@ void QtPvdbClusterWidget::Test()
       [](const boost::shared_ptr<pvdb::Cluster>& c)
       {
         assert(c);
-        QtPvdbClusterWidget w;
-        w.ReadFromCluster(c);
+        QtPvdbClusterWidget w(c);
         assert(w.topLevelItemCount() == static_cast<int>(c->Get().size()));
-        const boost::shared_ptr<pvdb::Cluster> d = w.WriteToCluster();
+        const boost::shared_ptr<pvdb::Cluster> d = pvdb::ClusterFactory::DeepCopy(w.GetCluster());
+        assert(c != d);
         assert(IsEqual(*c,*d));
         QtPvdbTreeWidgetItem * const item = new QtPvdbTreeWidgetItem(
           pvdb::Competency::misc,0,1,2);
         item->setText(0,QString("An extra line"));
         w.addTopLevelItem(item);
         assert(w.topLevelItemCount() == static_cast<int>(c->Get().size()) + 1);
-        const boost::shared_ptr<pvdb::Cluster> e = w.WriteToCluster();
-        assert(!IsEqual(*c,*e));
+        const boost::shared_ptr<pvdb::Cluster> e = w.GetCluster();
+        assert(c == e);
+        assert(c != d);
+        assert(!IsEqual(*c,*d));
+        assert( IsEqual(*c,*e));
+        assert(!IsEqual(*d,*e));
       }
     );
   }
@@ -328,7 +346,7 @@ void QtPvdbClusterWidget::Test()
   #endif
 }
 
-const boost::shared_ptr<pvdb::Cluster> QtPvdbClusterWidget::WriteToCluster() const
+void QtPvdbClusterWidget::WriteToCluster()
 {
   std::vector<boost::shared_ptr<pvdb::Concept> > concepts;
   const int n_top = this->topLevelItemCount();
@@ -370,11 +388,8 @@ const boost::shared_ptr<pvdb::Cluster> QtPvdbClusterWidget::WriteToCluster() con
     assert(concepts.back());
   }
 
-  boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::Create(concepts);
-  assert(cluster);
-  assert(n_top == static_cast<int>(cluster->Get().size())
+  m_cluster->SetConcepts(concepts);
+  assert(m_cluster);
+  assert(n_top == static_cast<int>(m_cluster->Get().size())
     && "As much top-level items in a QtClusterWidget as Concepts in a Cluster");
-
-
-  return cluster;
 }

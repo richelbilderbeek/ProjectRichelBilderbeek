@@ -27,7 +27,9 @@ class QtPvdbClusterWidget : public QTreeWidget
   Q_OBJECT
 
 public:
-  explicit QtPvdbClusterWidget(QWidget* parent = 0);
+  explicit QtPvdbClusterWidget(
+    boost::shared_ptr<pvdb::Cluster> cluster,
+    QWidget* parent = 0);
 
   ///Add a top-level item
   void Add(const std::string& text);
@@ -35,11 +37,8 @@ public:
   ///Do something random
   void DoRandomStuff();
 
-  ///Initialize the widget with a cluster
-  void ReadFromCluster(const boost::shared_ptr<pvdb::Cluster>& cluster);
-
-  ///Write the widget its data to a cluster
-  const boost::shared_ptr<pvdb::Cluster> WriteToCluster() const;
+  ///Get the cluster (after reading from the dialog)
+  const boost::shared_ptr<pvdb::Cluster> GetCluster();
 
 protected:
   void dropEvent(QDropEvent *event);
@@ -53,11 +52,20 @@ private slots:
   void addTopLevelItem(QTreeWidgetItem *item) { QTreeWidget::addTopLevelItem(item); }
 
 private:
+  ///The cluster
+  const boost::shared_ptr<pvdb::Cluster> m_cluster;
+
+  ///Build the widget from the cluster
+  void BuildCluster();
+
   ///Find out the depth of an item
   int GetDepth(const QTreeWidgetItem * const item) const;
 
   ///Test this class
   static void Test();
+
+  ///Write the widget its data to the cluster
+  void WriteToCluster();
 };
 
 #endif // QTPVDBCLUSTERWIDGET_H

@@ -123,54 +123,12 @@ bool IsEqual(const pvdb::Cluster& lhs, const pvdb::Cluster& rhs)
   return true;
 }
 
-/*
-bool operator==(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs)
+void Cluster::SetConcepts(const std::vector<boost::shared_ptr<pvdb::Concept> >& concepts)
 {
-  assert(lhs); assert(rhs);
-  return IsEqual(*lhs,*rhs);
+  m_v = concepts;
+  assert(std::count_if(m_v.begin(),m_v.end(),
+    [](boost::shared_ptr<pvdb::Concept> concept) { return !concept; } )
+    == 0);
 }
-
-bool operator==(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs)
-{
-  assert(lhs); assert(rhs);
-  return boost::shared_ptr<const pvdb::Cluster>(lhs) == boost::shared_ptr<const pvdb::Cluster>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs)
-{
-  assert(lhs); assert(rhs);
-  return boost::shared_ptr<const pvdb::Cluster>(lhs) == boost::shared_ptr<const pvdb::Cluster>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs)
-{
-  assert(lhs); assert(rhs);
-  return boost::shared_ptr<const pvdb::Cluster>(lhs) == boost::shared_ptr<const pvdb::Cluster>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs)
-{
-  assert(lhs); assert(rhs);
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs)
-{
-  assert(lhs); assert(rhs);
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs)
-{
-  assert(lhs); assert(rhs);
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs)
-{
-  assert(lhs); assert(rhs);
-  return !(lhs == rhs);
-}
-*/
 
 } //~namespace pvdb

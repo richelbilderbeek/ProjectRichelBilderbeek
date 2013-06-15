@@ -20,6 +20,8 @@
 namespace Ui { class QtPvdbClusterDialog; }
 
 ///The Dialog in which the user clusters concepts and examples
+///If the file supplied has no cluster, this dialog creates a cluster
+///because the widget needs something to work on
 class QtPvdbClusterDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -62,7 +64,15 @@ private:
   ///Does the dialog want to go back to the student menu?
   bool m_back_to_menu;
 
-  boost::shared_ptr<pvdb::File> m_file;
+  ///The file
+  const boost::shared_ptr<pvdb::File> m_file;
+
+  ///The cluster widget
+  QtPvdbClusterWidget * const m_widget;
+
+  ///Add a Cluster to the file if it is not yet present,
+  ///Create a QtPvdbClusterWidget from the file its cluster
+  static QtPvdbClusterWidget * BuildWidget(const boost::shared_ptr<pvdb::File> file);
 
   //Start saving procedure, with request of filename
   void Save();

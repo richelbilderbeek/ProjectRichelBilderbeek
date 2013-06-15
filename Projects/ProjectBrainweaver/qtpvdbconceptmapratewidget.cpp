@@ -54,6 +54,7 @@ QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
   : QtPvdbConceptMapWidget(concept_map,parent)
 {
   #ifndef NDEBUG
+  assert(concept_map && "Only an existing concept map can be rated");
   Test();
   #endif
 }
@@ -96,6 +97,11 @@ void QtPvdbConceptMapRateWidget::AddEdge(
 
   //Add the EdgeConcepts to the scene
   this->scene()->addItem(qtedge);
+
+  assert(std::count(
+    this->GetConceptMap()->GetEdges().begin(),
+    this->GetConceptMap()->GetEdges().end(),
+    edge) == 1 && "Assume edge is already in the concept map");
 
   assert(qtedge->pos().x() == edge->GetX());
   assert(qtedge->pos().y() == edge->GetY());

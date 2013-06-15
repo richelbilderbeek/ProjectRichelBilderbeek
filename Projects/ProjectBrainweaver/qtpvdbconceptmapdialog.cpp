@@ -78,7 +78,7 @@ QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
 
   this->layout()->addWidget(m_widget);
 
-  assert(Collect<QtPvdbNodeItem>(m_widget->scene()).empty());
+  assert(!Collect<QtPvdbNodeItem>(m_widget->scene()).empty());
 
   //Center the dialog
   {
