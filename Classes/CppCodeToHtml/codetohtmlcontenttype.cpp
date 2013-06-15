@@ -50,6 +50,7 @@ const std::string ContentTypeToStr(const ContentType t)
     case ContentType::code_snippet: return "code_snippet";
     case ContentType::cpp: return "cpp";
     case ContentType::pro: return "pro";
+    case ContentType::py: return "py";
     case ContentType::sh: return "sh";
     case ContentType::txt: return "txt";
     case ContentType::other: return "other";
@@ -65,6 +66,7 @@ const std::vector<ContentType> GetAllContentTypes()
     ContentType::code_snippet,
     ContentType::cpp,
     ContentType::pro,
+    ContentType::py,
     ContentType::sh,
     ContentType::txt,
     ContentType::other
@@ -76,6 +78,7 @@ ContentType StrToContentType(const std::string& s)
   if (s == "code_snippet") return ContentType::code_snippet;
   if (s == "cpp") return ContentType::cpp;
   if (s == "pro") return ContentType::pro;
+  if (s == "py") return ContentType::py;
   if (s == "sh") return ContentType::sh;
   if (s == "txt") return ContentType::txt;
   if (s == "other") return ContentType::other;
