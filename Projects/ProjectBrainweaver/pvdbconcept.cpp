@@ -105,7 +105,6 @@ void pvdb::Concept::SetExamples(const boost::shared_ptr<pvdb::Examples>& example
 {
   if (examples != m_examples)
   {
-    TRACE_FUNC();
     m_examples = examples;
     //m_signal_examples_changed(this); //CAUSE OF MAJOR BUG 2013-01-09
   }

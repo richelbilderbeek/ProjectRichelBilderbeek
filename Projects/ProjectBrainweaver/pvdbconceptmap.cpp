@@ -60,17 +60,11 @@ pvdb::ConceptMap::ConceptMap(
       #ifndef NDEBUG
       const auto from_iter = std::find(nodes.begin(),nodes.end(),edge->GetFrom());
       const auto to_iter = std::find(nodes.begin(),nodes.end(),edge->GetTo());
-      if (from_iter == nodes.end())
-      {
-        TRACE("BREAK");
-      }
       assert(from_iter != nodes.end());
       assert(to_iter != nodes.end());
       #endif
       std::cout << i << ": " << pvdb::Edge::ToXml(edge,const_nodes) << '\n';
     }
-
-    TRACE("BREAK");
   }
   assert(ConceptMap::CanConstruct(nodes,edges));
   assert(this->GetQuestion() == nodes[0]->GetConcept()->GetName());
@@ -437,7 +431,6 @@ bool pvdb::ConceptMap::HasSameContent(
           << std::get<0>(w[i]) << "," << std::get<1>(w[i]) << "," << std::get<2>(w[i])
           << ")";
 
-        TRACE(s.str());
       }
       #endif
       #endif
