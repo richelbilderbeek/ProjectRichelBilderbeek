@@ -89,6 +89,10 @@ ContentType Content::DeduceContentType(const std::string& filename)
   {
     return ContentType::txt;
   }
+  else if (boost::regex_match(filename,boost::regex(".*\\.(py)\\z")))
+  {
+    return ContentType::py;
+  }
   return ContentType::other;
 }
 
@@ -141,6 +145,7 @@ const std::vector<std::string> Content::ToHtml() const
 
     }
     break;
+    case ContentType::py:
     case ContentType::sh:
     case ContentType::txt:
     {

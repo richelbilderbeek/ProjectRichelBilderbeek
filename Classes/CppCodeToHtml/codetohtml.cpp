@@ -347,6 +347,7 @@ const std::vector<std::string> GetFilesInFolder(const std::string& folder)
       v.push_back(full_filename);
     }
   }
+  TRACE(v.size());
   return v;
 }
 
@@ -383,6 +384,7 @@ const std::vector<std::string> FilterFiles(const std::vector<std::string>& files
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
     [](const std::string& file)
     {
+      TRACE(file);
       const std::string ext = boost::filesystem::extension(file);
       return
            ext == ".c"
@@ -390,10 +392,11 @@ const std::vector<std::string> FilterFiles(const std::vector<std::string>& files
         || ext == ".h"
         || ext == ".hpp"
         || ext == ".pro"
+        || ext == ".py"
         || ext == ".sh";
     }
   );
-
+  TRACE(v.size());
   return v;
 }
 
@@ -410,6 +413,7 @@ const std::vector<std::string> SortFiles(std::vector<std::string> files)
       static const std::string sh(".sh");
       static const std::string h(".h");
       static const std::string cpp(".cpp");
+      static const std::string py(".py");
       if (lhs_ext == pro)
       {
         //.pro files first
@@ -422,23 +426,44 @@ const std::vector<std::string> SortFiles(std::vector<std::string> files)
           return lhs_base < rhs_base;
         }
       }
+      //Headers then
       if (lhs_ext == h && rhs_ext == cpp && lhs_base == rhs_base)
       {
         return true;
       }
+      //Pro before unit files
       if ( (lhs_ext == h || lhs_ext == cpp) && rhs_ext == pro)
       {
         return false;
       }
+      //Unit files before script files
       if ( (lhs_ext == h || lhs_ext == cpp) && rhs_ext == sh)
       {
         return true;
       }
-
+      //Sort unit files alphabeticaly
       if ( (lhs_ext == h || lhs_ext == cpp) && (rhs_ext == h || rhs_ext == cpp) )
       {
         return lhs_base < rhs_base;
       }
+
+      //.py one-but-last
+      if (lhs_ext == py)
+      {
+        if (rhs_ext == sh)
+        {
+          return true;
+        }
+        if (rhs_ext != py)
+        {
+          return false;
+        }
+        if (rhs_ext == py)
+        {
+          return lhs_base < rhs_base;
+        }
+      }
+
 
       //.sh last
       if (lhs_ext == sh)

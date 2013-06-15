@@ -30,10 +30,11 @@ namespace c2h {
 ///text: .txt file
 ///cpp: .h or .hpp or .c or .cpp file
 ///pro: .pro file
+///py: python file
 ///sh: .sh file
 ///code_snippet: file without an extension
 ///other: file with other extension
-enum class ContentType { code_snippet, cpp, pro, sh, txt, other };
+enum class ContentType { code_snippet, cpp, pro, py, sh, txt, other };
 
 bool CanStrToContentType(const std::string& s);
 const std::string ContentTypeToStr(const ContentType t);
