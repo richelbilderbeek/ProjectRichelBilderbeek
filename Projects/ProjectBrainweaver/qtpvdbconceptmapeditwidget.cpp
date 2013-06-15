@@ -181,10 +181,6 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
   assert(from);
   const boost::shared_ptr<pvdb::Node> to = qt_to->GetNode();
   assert(to);
-  if (from == to)
-  {
-    TRACE("BREAK");
-  }
   assert(from != to);
   const boost::shared_ptr<pvdb::Edge> edge(
     pvdb::EdgeFactory::Create(
@@ -253,13 +249,6 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
 
   this->scene()->addItem(qtnode);
 
-  if (std::count(
-    GetConceptMap()->GetNodes().begin(),
-    GetConceptMap()->GetNodes().end(),
-    node) != 1)
-  {
-    TRACE("BREAK");
-  }
   assert(std::count(
     GetConceptMap()->GetNodes().begin(),
     GetConceptMap()->GetNodes().end(),

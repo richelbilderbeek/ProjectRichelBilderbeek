@@ -29,10 +29,6 @@ QtPvdbNodeItem::QtPvdbNodeItem(
     m_focus_pen(concept_item->GetFocusPen()),
     m_node(node)
 {
-  if (!node)
-  {
-    TRACE("BREAK");
-  }
   assert(node);
   assert(m_concept_item);
   assert(m_node);

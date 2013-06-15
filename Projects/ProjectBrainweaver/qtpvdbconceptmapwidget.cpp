@@ -178,12 +178,6 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
     const auto n_qtnodes = qtnodes.size();
     const auto nodes = m_concept_map->GetNodes();
     const auto n_nodes = nodes.size();
-    if (n_qtnodes != n_nodes)
-    {
-      TRACE(n_qtnodes);
-      TRACE(n_nodes);
-      TRACE("BREAK");
-    }
     assert(n_qtnodes == n_nodes
       && "There must as much nodes in the scene as there were in the concept map");
   }
@@ -443,12 +437,6 @@ void QtPvdbConceptMapWidget::RepositionItems()
     const std::vector<QtPvdbNodeItem *> qtnodes = Sort(Collect<QtPvdbNodeItem>(scene()));
     assert(!qtnodes.empty());
     assert(qtnodes[0]);
-    if (!IsCenterNode(qtnodes[0]))
-    {
-      TRACE("BREAK");
-      TRACE(std::count_if(qtnodes.begin(),qtnodes.end(),
-        [this](const QtPvdbNodeItem* const item) { return IsCenterNode(item); } ));
-    }
     assert(IsCenterNode(qtnodes[0]));
     const std::vector<QtPvdbEdgeItem* > qtedges = Collect<QtPvdbEdgeItem>(scene());
     const QtPvdbNodeItem * const center_node
@@ -627,10 +615,6 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapWidget::GetConceptMap(
   std::vector<boost::shared_ptr<pvdb::Node> > nodes;
 
   assert(scene());
-  if (Collect<QtPvdbNodeItem>(scene()).empty())
-  {
-    TRACE("BREAK");
-  }
   assert(!Collect<QtPvdbNodeItem>(scene()).empty());
   const std::vector<QtPvdbNodeItem*> qtnodes = Sort(Collect<QtPvdbNodeItem>(scene()));
   assert(!qtnodes.empty());

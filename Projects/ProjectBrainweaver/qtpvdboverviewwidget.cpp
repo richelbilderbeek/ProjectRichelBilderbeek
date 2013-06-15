@@ -148,7 +148,6 @@ const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
   }
   {
     #ifdef REALLY_DEMONSTRATE_INFINITE_RECURSION_7236834589746034
-    TRACE_FUNC();
     QtHideAndShowDialog*(new QtPvdbOverviewDialog);
     assert(p);
     v.push_back(p);

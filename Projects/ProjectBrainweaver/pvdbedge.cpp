@@ -144,10 +144,6 @@ const std::string pvdb::Edge::ToXml(
 
   const auto from_iter = std::find(nodes.begin(),nodes.end(),edge->GetFrom());
   const auto to_iter = std::find(nodes.begin(),nodes.end(),edge->GetTo());
-  if (from_iter == nodes.end())
-  {
-    TRACE("BREAK");
-  }
   assert(from_iter != nodes.end());
   assert(to_iter != nodes.end());
   const int from_index = std::distance(nodes.begin(),from_iter);

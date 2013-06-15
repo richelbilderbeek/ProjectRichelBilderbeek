@@ -242,9 +242,7 @@ void QtPvdbMenuDialog::on_button_view_files_clicked()
 void QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked()
 {
   QtPvdbViewTestsDialog d;
-  TRACE("BEFORE ERROR");
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-  TRACE("AFTER ERROR");
 }
 
 void QtPvdbMenuDialog::Test()

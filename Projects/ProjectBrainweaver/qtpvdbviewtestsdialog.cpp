@@ -83,7 +83,6 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent) :
       }
     }
   }
-  TRACE_FUNC();
 }
 
 QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog()

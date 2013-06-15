@@ -52,7 +52,6 @@ QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
   assert( (concept_map || !concept_map)
     && "Also an empty concept map can be displayed");
   #endif
-  TRACE_FUNC();
 }
 
 
@@ -97,7 +96,6 @@ void QtPvdbConceptMapDisplayWidget::AddEdge(
 
 QtPvdbNodeItem * QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<pvdb::Node> node)
 {
-  TRACE_FUNC();
   assert(node);
   assert(node->GetConcept());
   const boost::shared_ptr<QtPvdbConceptItem> qtconcept(new QtPvdbDisplayConceptItem(node->GetConcept()));
@@ -129,7 +127,6 @@ QtPvdbNodeItem * QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<
 
 void QtPvdbConceptMapDisplayWidget::CleanMe()
 {
-  TRACE_FUNC();
   //Prepare clearing the scene
   assert(m_examples);
   this->m_examples = nullptr;
@@ -147,13 +144,11 @@ void QtPvdbConceptMapDisplayWidget::CleanMe()
     m_examples->setVisible(false);
     this->scene()->addItem(m_examples);
   }
-  TRACE_FUNC();
 }
 
 #ifndef NDEBUG
 std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapDisplayWidget::CreateNewDerived() const
 {
-  TRACE_FUNC();
   const boost::shared_ptr<pvdb::ConceptMap> concept_map
     = pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
@@ -192,7 +187,6 @@ void QtPvdbConceptMapDisplayWidget::DoRandomStuff()
 
 void QtPvdbConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
-  TRACE_FUNC();
   assert(m_examples);
   assert(item);
   assert(dynamic_cast<const QtPvdbConceptMapItem*>(item));

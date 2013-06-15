@@ -403,15 +403,6 @@ void pvdb::File::Test()
     assert(firstfile->GetQuestion() == question);
     const boost::shared_ptr<pvdb::File> second_file(File::Load(tmp_filename));
     assert(second_file);
-    #ifndef NDEBUG
-    if (second_file->GetQuestion() != firstfile->GetQuestion())
-    {
-      firstfile->Save("a.cmp");
-      second_file->Save("b.cmp");
-      TRACE(firstfile->GetQuestion());
-      TRACE(second_file->GetQuestion());
-    }
-    #endif
     assert(second_file->GetQuestion() == firstfile->GetQuestion());
     assert(IsEqual(*firstfile,*second_file));
     //Modify f, to test operator!=
