@@ -54,7 +54,6 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent) :
       const int sz = boost::numeric_cast<int>(v.size());
       for (int i=0; i!=sz; ++i)
       {
-        TRACE(i);
         mylayout->addWidget(new QLabel((std::string("[")+boost::lexical_cast<std::string>(i)+std::string("]")).c_str()));
         //widget->setMinimumHeight(minheight);
         const auto concept_map = v[i];
@@ -71,7 +70,6 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent) :
       const int sz = boost::numeric_cast<int>(v.size());
       for (int i=0; i!=sz; ++i)
       {
-        TRACE(i);
         mylayout->addWidget(new QLabel((std::string("[")+boost::lexical_cast<std::string>(i)+std::string("]")).c_str()));
         const auto concept_map = v[i];
         assert(concept_map);
