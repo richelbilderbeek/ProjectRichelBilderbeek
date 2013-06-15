@@ -85,22 +85,21 @@ QtPvdbOverviewWidget::QtPvdbOverviewWidget(QWidget* parent)
 
 const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
 {
-  TRACE_FUNC();
   std::vector<QtHideAndShowDialog* > v;
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbAssessorMenuDialog);
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
-    QtHideAndShowDialog* p(new QtPvdbClusterDialog(pvdb::FileFactory::GetTests().at(3)));
+    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::GetTests().at(3));
+    assert(file);
+    assert(file->GetCluster());
+    QtHideAndShowDialog* p(new QtPvdbClusterDialog(file));
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbConceptEditDialog(pvdb::ConceptFactory::GetTests().at(4)));
     assert(p);
     v.push_back(p);
@@ -111,19 +110,16 @@ const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbCreateAssessmentCompleteDialog);
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbCreateAssessmentMenuDialog);
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbMenuDialog);
     assert(p);
     v.push_back(p);
@@ -136,19 +132,16 @@ const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbRateConceptMapDialog(pvdb::FileFactory::GetTests().at(2)));
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbRateExamplesDialog(pvdb::ConceptFactory::GetTests().at(4)));
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbRatingDialog(pvdb::FileFactory::GetTests().at(4)));
     assert(p);
     v.push_back(p);
@@ -162,50 +155,42 @@ const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
     #endif
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbStudentMenuDialog(pvdb::FileFactory::GetTests().at(2)));
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbStudentStartCompleteDialog(pvdb::FileFactory::GetTests().at(2)));
     assert(p);
     v.push_back(p);
   }
   #ifdef PVDB_ALSO_SHOW_TEST_DIALOGS
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbTestConceptItemDialog);
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbTestNodeItemDialog);
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbTestEdgeItemDialog);
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbTestConceptMapEditWidgetDialog);
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbTestConceptMapRateWidgetDialog);
     assert(p);
     v.push_back(p);
   }
   {
-    TRACE_FUNC();
     QtHideAndShowDialog* p(new QtPvdbViewTestsDialog);
     assert(p);
     v.push_back(p);

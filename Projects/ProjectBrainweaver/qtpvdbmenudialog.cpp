@@ -177,7 +177,10 @@ void QtPvdbMenuDialog::on_button_test_cluster_clicked()
     //file->SetQuestion("Wat zal ik als test focusvraag schrijven?");
     assert(file->GetQuestion() == question);
   }
+  assert((file->GetCluster() || !file->GetCluster())
+    && "If the file has no cluster, the cluster dialog creates it");
   QtPvdbClusterDialog d(file);
+  assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
   this->ShowChild(&d);
 }
 
@@ -306,7 +309,10 @@ void QtPvdbMenuDialog::Test()
       assert(file->GetStudentName() == name);
       assert(file->GetConceptMap()->GetNodes().size() > 1);
       assert(!file->GetConceptMap()->GetEdges().empty());
+      assert((file->GetCluster() || !file->GetCluster())
+        && "If the file has no cluster, the cluster dialog creates it");
       QtPvdbClusterDialog d(file);
+        assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
       assert(!d.GetWidget()->isEnabled()
         && "Cluster widget should be disabled for a file with a filled in ConceptMap");
     }
@@ -346,7 +352,10 @@ void QtPvdbMenuDialog::Test()
       boost::shared_ptr<pvdb::File> file(pvdb::File::Load(filename));
       assert(file->GetQuestion() == question);
       assert(file->GetStudentName() == name);
+      assert((file->GetCluster() || !file->GetCluster())
+        && "If the file has no cluster, the cluster dialog creates it");
       QtPvdbClusterDialog d(file);
+      assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
       assert(file->GetQuestion() == question);
       assert(file->GetStudentName() == name);
       assert(file->GetCluster()->Empty());
@@ -367,7 +376,7 @@ void QtPvdbMenuDialog::Test()
       QtPvdbConceptMapDialog d(file);
       assert(file->GetQuestion() == question);
       assert(file->GetStudentName() == name);
-      assert(file->GetConceptMap()->GetNodes().size() > 1);
+      assert(file->GetConceptMap()->GetNodes().size() == 1);
       assert(file->GetConceptMap()->GetEdges().empty());
       d.DoRandomStuff();
       assert(file->GetConceptMap()->GetNodes().size() > 1);
@@ -381,7 +390,10 @@ void QtPvdbMenuDialog::Test()
       assert(file->GetStudentName() == name);
       assert(file->GetConceptMap()->GetNodes().size() > 1);
       assert(!file->GetConceptMap()->GetEdges().empty());
+      assert((file->GetCluster() || !file->GetCluster())
+        && "If the file has no cluster, the cluster dialog creates it");
       QtPvdbClusterDialog d(file);
+      assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
       assert(!d.GetWidget()->isEnabled()
         && "Cluster widget should be disabled for a file with a filled in ConceptMap");
     }

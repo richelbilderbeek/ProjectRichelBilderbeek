@@ -48,7 +48,10 @@ void QtPvdbStudentStartCompleteDialog::keyPressEvent(QKeyEvent* e)
 void QtPvdbStudentStartCompleteDialog::on_button_start_associate_clicked()
 {
   assert(m_file);
+  assert((m_file->GetCluster() || !m_file->GetCluster())
+    && "If the file has no cluster, the cluster dialog creates it");
   QtPvdbClusterDialog d(m_file);
+  assert(m_file->GetCluster() && "the cluster dialog used an existing or created a cluster");
   this->ShowChild(&d);
   if (d.GoBackToMenu())
   {

@@ -117,7 +117,13 @@ void QtPvdbRateConceptMapDialog::Test()
     {
       const boost::shared_ptr<pvdb::File> file = v[i];
       assert(file);
-      //assert(file->GetConceptMap());
+      assert( (file->GetConceptMap() || !file->GetConceptMap() )
+        && "A file may or may not have an initialized concept map");
+      if (!file->GetConceptMap())
+      {
+        //Cannot rate a null concept map
+        continue;
+      }
       QtPvdbRateConceptMapDialog d(file);
       assert(d.GetWidget());
       assert(( file->GetConceptMap() &&  d.GetWidget()->GetConceptMap())

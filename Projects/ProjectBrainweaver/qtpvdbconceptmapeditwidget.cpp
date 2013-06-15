@@ -66,6 +66,7 @@ QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   assert(scene());
   scene()->addItem(m_tools); //Give m_tools a parent
 
+  assert(concept_map  && "Only an existing concept map can be edited");
   BuildQtConceptMap();
 
   #ifndef NDEBUG
@@ -125,7 +126,12 @@ void QtPvdbConceptMapEditWidget::AddEdge(
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   this->scene()->addItem(qtedge);
-  this->GetConceptMap()->AddEdge(edge);
+
+  assert(std::count(
+    this->GetConceptMap()->GetEdges().begin(),
+    this->GetConceptMap()->GetEdges().end(),
+    edge) == 1 && "Assume edge is already in the concept map");
+  //this->GetConceptMap()->AddEdge(edge);
 
   assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
@@ -222,10 +228,6 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
 
 QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvdb::Node> node)
 {
-  if (!node)
-  {
-    TRACE("BREAK");
-  }
   assert(node);
   assert(node->GetConcept());
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(node->GetConcept()));
@@ -251,6 +253,13 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
 
   this->scene()->addItem(qtnode);
 
+  if (std::count(
+    GetConceptMap()->GetNodes().begin(),
+    GetConceptMap()->GetNodes().end(),
+    node) != 1)
+  {
+    TRACE("BREAK");
+  }
   assert(std::count(
     GetConceptMap()->GetNodes().begin(),
     GetConceptMap()->GetNodes().end(),
@@ -397,10 +406,12 @@ void QtPvdbConceptMapEditWidget::DoRandomStuff()
 
   const boost::shared_ptr<pvdb::Concept> concept1(pvdb::ConceptFactory::Create("...", { {} } ) );
   const boost::shared_ptr<pvdb::Node> node1(pvdb::NodeFactory::Create(concept1));
+  this->GetConceptMap()->AddNode(node1);
   QtPvdbNodeItem * const qtnode1 = AddNode(node1);
 
   const boost::shared_ptr<pvdb::Concept> concept2(pvdb::ConceptFactory::Create("...", { {} } ) );
   const boost::shared_ptr<pvdb::Node> node2(pvdb::NodeFactory::Create(concept2));
+  this->GetConceptMap()->AddNode(node2);
   QtPvdbNodeItem * const qtnode2 = AddNode(node2);
 
   assert(qtnode1->GetNode() != qtnode2->GetNode());

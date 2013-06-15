@@ -93,6 +93,8 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
     m_examples(new QtPvdbExamplesItem),
     m_concept_map(concept_map)
 {
+  assert( (concept_map || !concept_map)
+    && "Also empty concept maps must be displayed");
 
   //Cannot test this ABC here, its derived classes will test themselves
 
@@ -114,7 +116,8 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
   }
 
   assert(GetConceptMap() == concept_map);
-  assert(concept_map->IsValid());
+  assert( (!concept_map || concept_map->IsValid())
+    && "Expect no or a valid concept map");
 }
 
 
@@ -167,7 +170,6 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
       qtnodes.push_back(qtnode);
       assert(Collect<QtPvdbNodeItem>(scene()).size() == i + 1 && "Node is added to scene");
     }
-    TRACE(n_nodes);
   }
   #ifndef NDEBUG
   {

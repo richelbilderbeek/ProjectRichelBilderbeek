@@ -36,6 +36,9 @@ struct Cluster
   const std::vector<boost::shared_ptr<const pvdb::Concept> > Get() const;
   const std::vector<boost::shared_ptr<pvdb::Concept> >& Get() { return m_v; }
 
+  ///Set the concepts
+  void SetConcepts(const std::vector<boost::shared_ptr<pvdb::Concept> >& concepts);
+
   ///Convert a Cluster from an XML std::string
   static const std::string ToXml(const boost::shared_ptr<const pvdb::Cluster>& c);
 

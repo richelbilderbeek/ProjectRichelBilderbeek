@@ -14,17 +14,14 @@ mkdir Projects/Classes/CppQtModel
 mkdir Projects/Classes/CppQtMatrix
 mkdir Projects/Libraries/qwt-6.0.1
 mkdir Projects/Libraries/boost_1_53_0
-mkdir Projects/Libraries/fparser4.4.3
 mkdir Projects/Libraries/fparser4.5.1
 mkdir Projects/Classes/CppKalmanFilter
 mkdir Projects/Libraries/qwt-6.0.1/src
 mkdir Projects/Classes/CppQtAboutDialog
 mkdir Projects/Tools/ToolKalmanFilterer
-mkdir Projects/Libraries/bigint-2010.04.30
 mkdir Projects/Libraries/boost_1_53_0/libs
 mkdir Projects/Libraries/qwt-6.0.1/include
 mkdir Projects/Classes/CppQtHideAndShowDialog
-mkdir Projects/Libraries/fparser4.4.3/extrasrc
 mkdir Projects/Libraries/fparser4.5.1/extrasrc
 mkdir Projects/Libraries/boost_1_53_0/libs/regex
 mkdir Projects/Libraries/boost_1_53_0/libs/system
@@ -55,7 +52,6 @@ cp ../../Classes/CppQtMatrix/qtmatrix.cpp Projects/Classes/CppQtMatrix/qtmatrix.
 cp ../../Libraries/fparser4.5.1/fparser.cc Projects/Libraries/fparser4.5.1/fparser.cc
 cp ../../Libraries/fparser4.5.1/fparser.hh Projects/Libraries/fparser4.5.1/fparser.hh
 cp ../../Libraries/qwt-6.0.1/include/qwt.h Projects/Libraries/qwt-6.0.1/include/qwt.h
-cp ../../Libraries/fparser4.4.3/fpconfig.hh Projects/Libraries/fparser4.4.3/fpconfig.hh
 cp ../../Libraries/fparser4.5.1/fpconfig.hh Projects/Libraries/fparser4.5.1/fpconfig.hh
 cp ../../Libraries/qwt-6.0.1/src/qwt_dial.h Projects/Libraries/qwt-6.0.1/src/qwt_dial.h
 cp ../../Libraries/qwt-6.0.1/src/qwt_knob.h Projects/Libraries/qwt-6.0.1/src/qwt_knob.h
@@ -123,7 +119,6 @@ cp ../../Libraries/qwt-6.0.1/src/qwt_scale_map.h Projects/Libraries/qwt-6.0.1/sr
 cp ../../Classes/CppKalmanFilter/kalmanfilter.cpp Projects/Classes/CppKalmanFilter/kalmanfilter.cpp
 cp ../../Classes/CppQtAboutDialog/qtaboutdialog.h Projects/Classes/CppQtAboutDialog/qtaboutdialog.h
 cp ../../Classes/CppQtModel/modelfunctionparser.h Projects/Classes/CppQtModel/modelfunctionparser.h
-cp ../../Libraries/fparser4.4.3/extrasrc/fpaux.hh Projects/Libraries/fparser4.4.3/extrasrc/fpaux.hh
 cp ../../Libraries/fparser4.5.1/extrasrc/fpaux.hh Projects/Libraries/fparser4.5.1/extrasrc/fpaux.hh
 cp ../../Libraries/fparser4.5.1/fparser_gmpint.hh Projects/Libraries/fparser4.5.1/fparser_gmpint.hh
 cp ../../Libraries/qwt-6.0.1/include/qwt_compat.h Projects/Libraries/qwt-6.0.1/include/qwt_compat.h
@@ -142,8 +137,6 @@ cp ../../Libraries/qwt-6.0.1/src/qwt_point_3d.cpp Projects/Libraries/qwt-6.0.1/s
 cp ../../Libraries/qwt-6.0.1/src/qwt_scale_draw.h Projects/Libraries/qwt-6.0.1/src/qwt_scale_draw.h
 cp ../../Libraries/qwt-6.0.1/src/qwt_text_label.h Projects/Libraries/qwt-6.0.1/src/qwt_text_label.h
 cp ../../Classes/CppQtAboutDialog/qtaboutdialog.ui Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui
-cp ../../Libraries/bigint-2010.04.30/BigInteger.cc Projects/Libraries/bigint-2010.04.30/BigInteger.cc
-cp ../../Libraries/bigint-2010.04.30/BigInteger.hh Projects/Libraries/bigint-2010.04.30/BigInteger.hh
 cp ../../Libraries/qwt-6.0.1/include/qwt_clipper.h Projects/Libraries/qwt-6.0.1/include/qwt_clipper.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_compass.h Projects/Libraries/qwt-6.0.1/include/qwt_compass.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_counter.h Projects/Libraries/qwt-6.0.1/include/qwt_counter.h
@@ -173,9 +166,6 @@ cp ../../Classes/CppKalmanFilter/whitenoisesystem.h Projects/Classes/CppKalmanFi
 cp ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp Projects/Classes/CppQtAboutDialog/qtaboutdialog.cpp
 cp ../../Classes/CppQtHideAndShowDialog/Licence.txt Projects/Classes/CppQtHideAndShowDialog/Licence.txt
 cp ../../Classes/CppQtModel/modelfunctionparser.cpp Projects/Classes/CppQtModel/modelfunctionparser.cpp
-cp ../../Libraries/bigint-2010.04.30/BigUnsigned.cc Projects/Libraries/bigint-2010.04.30/BigUnsigned.cc
-cp ../../Libraries/bigint-2010.04.30/BigUnsigned.hh Projects/Libraries/bigint-2010.04.30/BigUnsigned.hh
-cp ../../Libraries/fparser4.4.3/extrasrc/fptypes.hh Projects/Libraries/fparser4.4.3/extrasrc/fptypes.hh
 cp ../../Libraries/fparser4.5.1/extrasrc/fptypes.hh Projects/Libraries/fparser4.5.1/extrasrc/fptypes.hh
 cp ../../Libraries/qwt-6.0.1/include/qwt_interval.h Projects/Libraries/qwt-6.0.1/include/qwt_interval.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_point_3d.h Projects/Libraries/qwt-6.0.1/include/qwt_point_3d.h
@@ -266,9 +256,6 @@ cp ../../Libraries/qwt-6.0.1/src/qwt_plot_seriesitem.h Projects/Libraries/qwt-6.
 cp ../../Libraries/qwt-6.0.1/src/qwt_sampling_thread.h Projects/Libraries/qwt-6.0.1/src/qwt_sampling_thread.h
 cp ../../Classes/CppKalmanFilter/standardkalmanfilter.h Projects/Classes/CppKalmanFilter/standardkalmanfilter.h
 cp ../../Classes/CppKalmanFilter/whitenoisesystemtype.h Projects/Classes/CppKalmanFilter/whitenoisesystemtype.h
-cp ../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc Projects/Libraries/bigint-2010.04.30/BigIntegerUtils.cc
-cp ../../Libraries/bigint-2010.04.30/BigIntegerUtils.hh Projects/Libraries/bigint-2010.04.30/BigIntegerUtils.hh
-cp ../../Libraries/bigint-2010.04.30/NumberlikeArray.hh Projects/Libraries/bigint-2010.04.30/NumberlikeArray.hh
 cp ../../Libraries/qwt-6.0.1/include/qwt_analog_clock.h Projects/Libraries/qwt-6.0.1/include/qwt_analog_clock.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_arrow_button.h Projects/Libraries/qwt-6.0.1/include/qwt_arrow_button.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_compass_rose.h Projects/Libraries/qwt-6.0.1/include/qwt_compass_rose.h
@@ -304,13 +291,13 @@ cp ../../Libraries/qwt-6.0.1/src/qwt_plot_seriesitem.cpp Projects/Libraries/qwt-
 cp ../../Libraries/qwt-6.0.1/src/qwt_plot_spectrocurve.h Projects/Libraries/qwt-6.0.1/src/qwt_plot_spectrocurve.h
 cp ../../Libraries/qwt-6.0.1/src/qwt_sampling_thread.cpp Projects/Libraries/qwt-6.0.1/src/qwt_sampling_thread.cpp
 cp ../../Tools/ToolKalmanFilterer/ToolKalmanFilterer.qrc Projects/Tools/ToolKalmanFilterer/ToolKalmanFilterer.qrc
+cp ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.h Projects/Tools/ToolKalmanFilterer/qtcopyalltablewidget.h
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfilterdialog.h Projects/Tools/ToolKalmanFilterer/qtkalmanfilterdialog.h
 cp ../../Classes/CppKalmanFilter/kalmanfilterexperiment.h Projects/Classes/CppKalmanFilter/kalmanfilterexperiment.h
 cp ../../Classes/CppKalmanFilter/kalmanfilterparameters.h Projects/Classes/CppKalmanFilter/kalmanfilterparameters.h
 cp ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.h Projects/Classes/CppKalmanFilter/laggedwhitenoisesystem.h
 cp ../../Classes/CppKalmanFilter/standardkalmanfilter.cpp Projects/Classes/CppKalmanFilter/standardkalmanfilter.cpp
 cp ../../Classes/CppKalmanFilter/whitenoisesystemtype.cpp Projects/Classes/CppKalmanFilter/whitenoisesystemtype.cpp
-cp ../../Libraries/bigint-2010.04.30/BigIntegerLibrary.hh Projects/Libraries/bigint-2010.04.30/BigIntegerLibrary.hh
 cp ../../Libraries/boost_1_53_0/libs/regex/src/cregex.cpp Projects/Libraries/boost_1_53_0/libs/regex/src/cregex.cpp
 cp ../../Libraries/qwt-6.0.1/include/qwt_abstract_scale.h Projects/Libraries/qwt-6.0.1/include/qwt_abstract_scale.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_dyngrid_layout.h Projects/Libraries/qwt-6.0.1/include/qwt_dyngrid_layout.h
@@ -329,9 +316,6 @@ cp ../../Classes/CppKalmanFilter/kalmanfilterparameter.cpp Projects/Classes/CppK
 cp ../../Classes/CppKalmanFilter/steadystatekalmanfilter.h Projects/Classes/CppKalmanFilter/steadystatekalmanfilter.h
 cp ../../Classes/CppKalmanFilter/whitenoisesystemfactory.h Projects/Classes/CppKalmanFilter/whitenoisesystemfactory.h
 cp ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp Projects/Classes/CppKalmanFilter/whitenoisesystemtypes.cpp
-cp ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc Projects/Libraries/bigint-2010.04.30/BigUnsignedInABase.cc
-cp ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.hh Projects/Libraries/bigint-2010.04.30/BigUnsignedInABase.hh
-cp ../../Libraries/fparser4.4.3/extrasrc/fp_opcode_add.inc Projects/Libraries/fparser4.4.3/extrasrc/fp_opcode_add.inc
 cp ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc Projects/Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc
 cp ../../Libraries/qwt-6.0.1/include/qwt_abstract_slider.h Projects/Libraries/qwt-6.0.1/include/qwt_abstract_slider.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_interval_symbol.h Projects/Libraries/qwt-6.0.1/include/qwt_interval_symbol.h
@@ -341,6 +325,7 @@ cp ../../Libraries/qwt-6.0.1/include/qwt_sampling_thread.h Projects/Libraries/qw
 cp ../../Libraries/qwt-6.0.1/src/qwt_abstract_scale_draw.h Projects/Libraries/qwt-6.0.1/src/qwt_abstract_scale_draw.h
 cp ../../Libraries/qwt-6.0.1/src/qwt_plot_spectrocurve.cpp Projects/Libraries/qwt-6.0.1/src/qwt_plot_spectrocurve.cpp
 cp ../../Tools/ToolKalmanFilterer/crosscompiletowindows.sh Projects/Tools/ToolKalmanFilterer/crosscompiletowindows.sh
+cp ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.cpp Projects/Tools/ToolKalmanFilterer/qtcopyalltablewidget.cpp
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfilterdialog.cpp Projects/Tools/ToolKalmanFilterer/qtkalmanfilterdialog.cpp
 cp ../../Classes/CppKalmanFilter/kalmanfilterexperiment.cpp Projects/Classes/CppKalmanFilter/kalmanfilterexperiment.cpp
 cp ../../Classes/CppKalmanFilter/kalmanfilterparameters.cpp Projects/Classes/CppKalmanFilter/kalmanfilterparameters.cpp
@@ -356,8 +341,6 @@ cp ../../Classes/CppKalmanFilter/kalmanfilterparametertype.h Projects/Classes/Cp
 cp ../../Classes/CppKalmanFilter/steadystatekalmanfilter.cpp Projects/Classes/CppKalmanFilter/steadystatekalmanfilter.cpp
 cp ../../Classes/CppKalmanFilter/whitenoisesystemfactory.cpp Projects/Classes/CppKalmanFilter/whitenoisesystemfactory.cpp
 cp ../../Classes/CppKalmanFilter/whitenoisesystemparameter.h Projects/Classes/CppKalmanFilter/whitenoisesystemparameter.h
-cp ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc Projects/Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc
-cp ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.hh Projects/Libraries/bigint-2010.04.30/BigIntegerAlgorithms.hh
 cp ../../Libraries/boost_1_53_0/libs/filesystem/src/path.cpp Projects/Libraries/boost_1_53_0/libs/filesystem/src/path.cpp
 cp ../../Libraries/boost_1_53_0/libs/regex/src/instances.cpp Projects/Libraries/boost_1_53_0/libs/regex/src/instances.cpp
 cp ../../Libraries/boost_1_53_0/libs/regex/src/internals.hpp Projects/Libraries/boost_1_53_0/libs/regex/src/internals.hpp
@@ -402,7 +385,6 @@ cp ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.h Projects/Class
 cp ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.h Projects/Classes/CppKalmanFilter/steadystatekalmanfilterfactory.h
 cp ../../Libraries/boost_1_53_0/libs/regex/src/c_regex_traits.cpp Projects/Libraries/boost_1_53_0/libs/regex/src/c_regex_traits.cpp
 cp ../../Libraries/boost_1_53_0/libs/regex/src/wide_posix_api.cpp Projects/Libraries/boost_1_53_0/libs/regex/src/wide_posix_api.cpp
-cp ../../Libraries/fparser4.4.3/extrasrc/fp_identifier_parser.inc Projects/Libraries/fparser4.4.3/extrasrc/fp_identifier_parser.inc
 cp ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc Projects/Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfilterexamplesdialog.ui Projects/Tools/ToolKalmanFilterer/qtkalmanfilterexamplesdialog.ui
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfilterexperimentmodel.h Projects/Tools/ToolKalmanFilterer/qtkalmanfilterexperimentmodel.h
@@ -500,17 +482,14 @@ rm Projects/Libraries/boost_1_53_0/libs/date_time/*.*
 rm Projects/Libraries/boost_1_53_0/libs/system/*.*
 rm Projects/Libraries/boost_1_53_0/libs/regex/*.*
 rm Projects/Libraries/fparser4.5.1/extrasrc/*.*
-rm Projects/Libraries/fparser4.4.3/extrasrc/*.*
 rm Projects/Classes/CppQtHideAndShowDialog/*.*
 rm Projects/Libraries/qwt-6.0.1/include/*.*
 rm Projects/Libraries/boost_1_53_0/libs/*.*
-rm Projects/Libraries/bigint-2010.04.30/*.*
 rm Projects/Tools/ToolKalmanFilterer/*.*
 rm Projects/Classes/CppQtAboutDialog/*.*
 rm Projects/Libraries/qwt-6.0.1/src/*.*
 rm Projects/Classes/CppKalmanFilter/*.*
 rm Projects/Libraries/fparser4.5.1/*.*
-rm Projects/Libraries/fparser4.4.3/*.*
 rm Projects/Libraries/boost_1_53_0/*.*
 rm Projects/Libraries/qwt-6.0.1/*.*
 rm Projects/Classes/CppQtMatrix/*.*
@@ -532,17 +511,14 @@ rmdir Projects/Libraries/boost_1_53_0/libs/date_time
 rmdir Projects/Libraries/boost_1_53_0/libs/system
 rmdir Projects/Libraries/boost_1_53_0/libs/regex
 rmdir Projects/Libraries/fparser4.5.1/extrasrc
-rmdir Projects/Libraries/fparser4.4.3/extrasrc
 rmdir Projects/Classes/CppQtHideAndShowDialog
 rmdir Projects/Libraries/qwt-6.0.1/include
 rmdir Projects/Libraries/boost_1_53_0/libs
-rmdir Projects/Libraries/bigint-2010.04.30
 rmdir Projects/Tools/ToolKalmanFilterer
 rmdir Projects/Classes/CppQtAboutDialog
 rmdir Projects/Libraries/qwt-6.0.1/src
 rmdir Projects/Classes/CppKalmanFilter
 rmdir Projects/Libraries/fparser4.5.1
-rmdir Projects/Libraries/fparser4.4.3
 rmdir Projects/Libraries/boost_1_53_0
 rmdir Projects/Libraries/qwt-6.0.1
 rmdir Projects/Classes/CppQtMatrix

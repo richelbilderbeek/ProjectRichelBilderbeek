@@ -49,6 +49,8 @@ QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
 {
   #ifndef NDEBUG
   Test();
+  assert( (concept_map || !concept_map)
+    && "Also an empty concept map can be displayed");
   #endif
   TRACE_FUNC();
 }
@@ -82,7 +84,12 @@ void QtPvdbConceptMapDisplayWidget::AddEdge(
   assert(this->scene());
 
   this->scene()->addItem(qtedge);
-  this->GetConceptMap()->AddEdge(edge);
+
+  assert(std::count(
+    this->GetConceptMap()->GetEdges().begin(),
+    this->GetConceptMap()->GetEdges().end(),
+    edge) == 1 && "Assume edge is already in the concept map");
+  //this->GetConceptMap()->AddEdge(edge);
 
   assert(qtedge->pos().x() == edge->GetX());
   assert(qtedge->pos().y() == edge->GetY());
