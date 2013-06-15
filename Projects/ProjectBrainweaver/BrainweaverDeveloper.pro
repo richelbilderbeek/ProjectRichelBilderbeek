@@ -296,7 +296,8 @@ OTHER_FILES += \
     ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.png \
     ../../Tools/ToolTestQtRoundedEditRectItem/Licence.txt \
     ../../Tools/ToolTestQtRoundedTextRectItem/Licence.txt \
-    zipexes.sh
+    zipexes.sh \
+    BrainweaverTest.py
 
 RESOURCES += \
     Brainweaver.qrc \
