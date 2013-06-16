@@ -473,7 +473,12 @@ void QtPvdbConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
   const boost::shared_ptr<pvdb::Concept> concept(
     pvdb::ConceptFactory::Create("..."));
   const boost::shared_ptr<pvdb::Node> node(pvdb::NodeFactory::Create(concept));
+  assert(node);
+  assert(GetConceptMap());
+  GetConceptMap()->AddNode(node);
+
   QtPvdbNodeItem * const qtnode = AddNode(node); //AddNode creates, connects and adds the node to scene
+
   assert(qtnode);
   qtnode->setPos(mapToScene(event->pos()));
 
