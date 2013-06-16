@@ -15,7 +15,7 @@
 #include <QKeyEvent>
 #include <QScrollBar>
 
-#if QT_VERSION_CHECK(5,0,0)
+#if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrinter>
 #else
