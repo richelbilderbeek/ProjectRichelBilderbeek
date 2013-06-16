@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtPvdbRateConceptAutoDialog</class>
- <widget class="QDialog" name="QtPvdbRateConceptAutoDialog">
+ <class>QtPvdbRateConceptTallyDialog</class>
+ <widget class="QDialog" name="QtPvdbRateConceptTallyDialog">
   <property name="geometry">
    <rect>
     <x>0</x>

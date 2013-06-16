@@ -4,13 +4,13 @@
 echo "Cross compiling to Windows: assessor version"
 
 echo "1/2: Creating Windows makefile"
-i686-pc-mingw32-qmake BrainweaverAssessor.pro
+i686-pc-mingw32-qmake BrainweaverDeveloper.pro
 
 echo "2/2: making makefile"
 
 make
 
-cp release/BrainweaverAssessor.exe .
+cp release/BrainweaverDeveloper.exe .
 
 echo "Done cross compiling, starting Windows executable for developer using Wine"
 

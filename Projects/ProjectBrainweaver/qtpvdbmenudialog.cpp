@@ -23,7 +23,7 @@
 #include "pvdbconcept.h"
 #include "pvdbconceptmapfactory.h"
 #include "pvdbconceptmap.h"
-#include "qtpvdbrateconceptautodialog.h"
+#include "qtpvdbrateconcepttallydialog.h"
 #include "pvdbexamples.h"
 #include "qtpvdbtestcreatesubconceptmapdialog.h"
 #include "pvdbfilefactory.h"
@@ -614,8 +614,8 @@ void QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
     const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[ sub_index ];
     if (concept_map->GetNodes()[0]->GetConcept()->GetExamples()->Get().empty()) continue;
     //Create and show the dialog
-    boost::shared_ptr<QtPvdbRateConceptAutoDialog> d(
-      new QtPvdbRateConceptAutoDialog(concept_map));
+    boost::shared_ptr<QtPvdbRateConceptTallyDialog> d(
+      new QtPvdbRateConceptTallyDialog(concept_map));
     this->ShowChild(d.get());
     break;
   }

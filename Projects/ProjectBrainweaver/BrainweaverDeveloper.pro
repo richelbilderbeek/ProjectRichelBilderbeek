@@ -119,6 +119,8 @@ SOURCES += \
     test_qtpvdbconceptmapeditwidget.cpp \
     test_qtpvdbconceptmapratewidget.cpp \
     test_qtpvdbconceptmapwidget.cpp \
+    pvdbrating.cpp \
+    qtpvdbtestcreatesubconceptmapdialog.cpp \
     ../../Tools/ToolStyleSheetSetter/toolstylesheetsettermaindialog.cpp \
     ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.cpp \
     ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.cpp \
@@ -131,9 +133,7 @@ SOURCES += \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.cpp \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.cpp \
     ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.cpp \
-    qtpvdbrateconceptautodialog.cpp \
-    pvdbrating.cpp \
-    qtpvdbtestcreatesubconceptmapdialog.cpp
+    qtpvdbrateconcepttallydialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -218,6 +218,8 @@ HEADERS  += \
     qtpvdbtoolsitem.h \
     qtpvdbviewfilesdialog.h \
     qtpvdbviewtestsdialog.h \
+    pvdbrating.h \
+    qtpvdbtestcreatesubconceptmapdialog.h \
     ../../Tools/ToolStyleSheetSetter/toolstylesheetsettermaindialog.h \
     ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.h \
     ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.h \
@@ -230,9 +232,7 @@ HEADERS  += \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.h \
     ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.h \
-    qtpvdbrateconceptautodialog.h \
-    pvdbrating.h \
-    qtpvdbtestcreatesubconceptmapdialog.h
+    qtpvdbrateconcepttallydialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -261,6 +261,7 @@ FORMS    += \
     qtpvdbtestnodeitemdialog.ui \
     qtpvdbviewfilesdialog.ui \
     qtpvdbviewtestsdialog.ui \
+    qtpvdbtestcreatesubconceptmapdialog.ui \
     ../../Tools/ToolStyleSheetSetter/toolstylesheetsettermaindialog.ui \
     ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.ui \
     ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.ui \
@@ -268,8 +269,7 @@ FORMS    += \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmenudialog.ui \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmaindialog.ui \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.ui \
-    qtpvdbrateconceptautodialog.ui \
-    qtpvdbtestcreatesubconceptmapdialog.ui
+    qtpvdbrateconcepttallydialog.ui
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \

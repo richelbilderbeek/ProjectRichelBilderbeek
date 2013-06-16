@@ -5,7 +5,7 @@
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
-#include "qtpvdbrateconceptautodialog.h"
+#include "qtpvdbrateconcepttallydialog.h"
 
 #include <cassert>
 #include <numeric>
@@ -20,13 +20,13 @@
 #include "pvdbexample.h"
 #include "pvdbedge.h"
 #include "pvdbexamples.h"
-#include "ui_qtpvdbrateconceptautodialog.h"
+#include "ui_qtpvdbrateconcepttallydialog.h"
 
-QtPvdbRateConceptAutoDialog::QtPvdbRateConceptAutoDialog(
+QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   const boost::shared_ptr</* const */ pvdb::ConceptMap> sub_concept_map,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtPvdbRateConceptAutoDialog),
+    ui(new Ui::QtPvdbRateConceptTallyDialog),
     m_map(sub_concept_map)
 {
   ui->setupUi(this);
@@ -157,17 +157,35 @@ QtPvdbRateConceptAutoDialog::QtPvdbRateConceptAutoDialog(
   }
 }
 
-QtPvdbRateConceptAutoDialog::~QtPvdbRateConceptAutoDialog()
+QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog()
 {
   delete ui;
 }
 
-void QtPvdbRateConceptAutoDialog::keyPressEvent(QKeyEvent * event)
+int QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
+{
+  assert(!"Not yet implemented");
+  return 0;
+}
+
+int QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
+{
+  assert(!"Not yet implemented");
+  return 0;
+}
+
+int QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
+{
+  assert(!"Not yet implemented");
+  return 0;
+}
+
+void QtPvdbRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbRateConceptAutoDialog::resizeEvent(QResizeEvent *)
+void QtPvdbRateConceptTallyDialog::resizeEvent(QResizeEvent *)
 {
   const int small_col_width = 24;
   ui->table->setColumnWidth(0, small_col_width);
@@ -177,7 +195,7 @@ void QtPvdbRateConceptAutoDialog::resizeEvent(QResizeEvent *)
   ui->table->setColumnWidth(3,ui->table->width() - (3 * small_col_width) - (3 * extra_space));
 }
 
-void QtPvdbRateConceptAutoDialog::on_button_ok_clicked()
+void QtPvdbRateConceptTallyDialog::on_button_ok_clicked()
 {
   close();
 }

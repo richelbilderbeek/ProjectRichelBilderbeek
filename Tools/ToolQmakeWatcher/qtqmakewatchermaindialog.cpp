@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
 #include <boost/foreach.hpp>
@@ -95,9 +96,19 @@ void QtQmakeWatcherMainDialog::OnQmake()
   }
   //Execute commands
   {
-    std::system("cp Makefile oldmake");
-    std::system("qmake tmp.pro");
-    std::system("diff Makefile oldmake > tmp.txt");
+    const bool has_error = std::system("cp Makefile oldmake");
+    assert(!has_error);
+    if (has_error) throw std::runtime_error("'cp Makefile oldmake' failed");
+  }
+  {
+    const bool has_error = std::system("qmake tmp.pro");
+    assert(!has_error);
+    if (has_error) throw std::runtime_error("'qmake tmp.pro' failed");
+  }
+  {
+    const bool has_error = std::system("diff Makefile oldmake > tmp.txt");
+    assert(!has_error);
+    if (has_error) throw std::runtime_error("'diff Makefile oldmake > tmp.txt' failed");
   }
   //Display Makefile
   {
