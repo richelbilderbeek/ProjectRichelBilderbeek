@@ -13,14 +13,11 @@
 #include <QGraphicsScene>
 #include <QPainter>
 
-QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent, QGraphicsScene *scene)
+QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   : QGraphicsRectItem(parent), //New since Qt5
-//: QGraphicsRectItem(parent,scene),
    m_contour_pen(QPen(QColor(0,0,0))),
    m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine))
 {
-  assert(!scene);
-  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable

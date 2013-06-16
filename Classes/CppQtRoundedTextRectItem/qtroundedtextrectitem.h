@@ -23,8 +23,7 @@ struct QtRoundedTextRectItem : public QtRoundedRectItem
     const std::string& text = "...",
     const Padding& padding = Padding(),
     const QFont& font = QFont("monospace",9),
-    QGraphicsItem* parent = 0,
-    QGraphicsScene* scene = 0);
+    QGraphicsItem* parent = 0);
 
   virtual ~QtRoundedTextRectItem() {}
 

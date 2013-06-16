@@ -25,9 +25,8 @@ QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
     const std::string& text,
     const bool head,
     const QGraphicsItem *const to,
-    QGraphicsItem *parent,
-    QGraphicsScene *scene)
-  : QtRoundedTextRectItem(text,QtRoundedTextRectItem::Padding(),QFont("monospace",9),parent,scene),
+    QGraphicsItem *parent)
+  : QtRoundedTextRectItem(text,QtRoundedTextRectItem::Padding(),QFont("monospace",9),parent),
     m_arrow(new QtQuadBezierArrowItem(from,tail,this,head,to))
 {
   assert(from);

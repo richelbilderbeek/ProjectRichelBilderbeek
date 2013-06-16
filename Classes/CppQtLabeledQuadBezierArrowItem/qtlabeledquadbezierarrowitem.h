@@ -19,8 +19,7 @@ struct QtLabeledQuadBezierArrowItem : public QtRoundedTextRectItem
     const std::string& text,
     const bool head,
     const QGraphicsItem *const to,
-    QGraphicsItem *parent = 0,
-    QGraphicsScene *scene = 0);
+    QGraphicsItem *parent = 0);
 
   const boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const { return m_arrow; }
   const boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       { return m_arrow; }

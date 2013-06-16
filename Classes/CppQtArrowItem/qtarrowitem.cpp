@@ -47,18 +47,14 @@ QtArrowItem::QtArrowItem(
   const double x2,
   const double y2,
   const bool head,
-  QGraphicsItem* parent,
-  QGraphicsScene* scene)
+  QGraphicsItem* parent)
   : QGraphicsLineItem(x1,y1,x2,y2,parent),       //New since Qt5
-//: QGraphicsLineItem(x1,y1,x2,y2,parent,scene), //Deprecated in Qt5
     m_arrow_head_clicking_distance(20.0),
     m_focus_pen(QPen(Qt::DashLine)),
     m_head(head),
     m_pen(QPen(QColor(0,0,0))),
     m_tail(tail)
 {
-  assert(!scene);
-  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable

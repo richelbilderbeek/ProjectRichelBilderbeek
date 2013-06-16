@@ -298,6 +298,7 @@ void QtPvdbClusterWidget::RemoveEmptyItem(QTreeWidgetItem* item,int col)
   }
 }
 
+#ifndef NDEBUG
 void QtPvdbClusterWidget::Test()
 {
   {
@@ -345,6 +346,7 @@ void QtPvdbClusterWidget::Test()
   t.detach();
   #endif
 }
+#endif
 
 void QtPvdbClusterWidget::WriteToCluster()
 {
