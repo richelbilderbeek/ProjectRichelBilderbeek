@@ -30,11 +30,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 
-#include <boost/geometry.hpp>
 #include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/geometry.hpp>
 
 #include <QCursor>
+#include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
@@ -190,7 +191,8 @@ QtQuadBezierArrowItem::QtQuadBezierArrowItem(
   const bool head,
   const QGraphicsItem* const to,
   QGraphicsItem* parent, QGraphicsScene* scene)
-  : QGraphicsItem(parent,scene),
+  : QGraphicsItem(parent),       //New since Qt5
+//: QGraphicsItem(parent,scene), //Deprecated since Qt5
     m_focus_pen(QPen(Qt::DashLine)),
     m_from(from),
     m_head(head),
@@ -201,6 +203,8 @@ QtQuadBezierArrowItem::QtQuadBezierArrowItem(
 {
   assert(from); assert(to); assert(mid);
   assert(from != to); assert(from != mid); assert(mid != to);
+  assert(!scene);
+  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsSelectable);

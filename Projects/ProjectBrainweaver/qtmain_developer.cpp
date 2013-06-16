@@ -9,7 +9,13 @@
 #include <thread>
 #endif
 
+#include <QtGlobal>
+#if QT_VERSION_CHECK(5,0,0)
+#include <QtWidgets/QApplication>
+#else
 #include <QtGui/QApplication>
+#endif
+
 #include <QIcon>
 #include <QVBoxLayout>
 
