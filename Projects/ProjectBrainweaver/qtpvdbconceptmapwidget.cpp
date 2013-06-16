@@ -296,8 +296,11 @@ const QtPvdbNodeItem * QtPvdbConceptMapWidget::GetCenterNode() const
 
 QtPvdbNodeItem* QtPvdbConceptMapWidget::GetItemBelowCursor(const QPointF& pos) const
 {
-
+  #if QT_VERSION_CHECK(5,0,0)
+  const QList<QGraphicsItem*> v = this->scene()->items(pos.x(),pos.y(),2.0,2.0,Qt::IntersectsItemShape,Qt::AscendingOrder);
+  #else
   const QList<QGraphicsItem*> v = this->scene()->items(pos.x(),pos.y(),2.0,2.0);
+  #endif
   std::vector<QtPvdbNodeItem*> qtnodes;
   std::for_each(v.begin(),v.end(),
     [&qtnodes](QGraphicsItem* const item)

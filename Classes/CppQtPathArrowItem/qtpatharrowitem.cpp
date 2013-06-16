@@ -29,8 +29,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <cmath>
-#include <QGraphicsSceneMouseEvent>
 #include <QCursor>
+#include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
 
@@ -44,7 +45,8 @@ QtPathArrowItem::QtPathArrowItem(
   const QPointF& head_pos,
   QGraphicsItem *parent,
   QGraphicsScene *scene)
-  : QGraphicsItem(parent,scene),
+  : QGraphicsItem(parent),       //New since Qt5
+//: QGraphicsItem(parent,scene), //Deprecated since Qt5
     m_focus_pen(QPen(Qt::DashLine)),
     m_head(head),
     m_head_pos(head_pos),
@@ -55,6 +57,7 @@ QtPathArrowItem::QtPathArrowItem(
 {
   assert(m_mid_pos.size() >= 1
     && "There must be at least one midpos");
+  scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
