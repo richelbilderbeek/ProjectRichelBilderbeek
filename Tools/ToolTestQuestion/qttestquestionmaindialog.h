@@ -44,6 +44,9 @@ protected:
   void changeEvent(QEvent *e);
   void keyPressEvent(QKeyEvent* event);
 
+private slots:
+  void on_edit_question_textChanged(const QString &arg1);
+
 private:
   Ui::QtTestQuestionMainDialog *ui;
   boost::scoped_ptr<TestQuestionMainDialog> m_dialog;

@@ -1,5 +1,5 @@
-#ifndef QTPVDBRATECONCEPTAUTODIALOG_H
-#define QTPVDBRATECONCEPTAUTODIALOG_H
+#ifndef QTPVDBRATECONCEPTTALLYDIALOG_H
+#define QTPVDBRATECONCEPTTALLYDIALOG_H
 
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
@@ -11,20 +11,20 @@
 #include "pvdbfwd.h"
 
 namespace Ui {
-  class QtPvdbRateConceptAutoDialog;
+  class QtPvdbRateConceptTallyDialog;
 }
 
-class QtPvdbRateConceptAutoDialog : public QtHideAndShowDialog
+class QtPvdbRateConceptTallyDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
   ///Sub concept map is modified by this dialog
-  explicit QtPvdbRateConceptAutoDialog(
+  explicit QtPvdbRateConceptTallyDialog(
     const boost::shared_ptr</* const */ pvdb::ConceptMap> sub_concept_map,
     QWidget *parent = 0);
 
-  ~QtPvdbRateConceptAutoDialog();
+  ~QtPvdbRateConceptTallyDialog();
   
   ///Obtain the suggested complexity, calculated from this dialog
   int GetSuggestedComplexity() const;
@@ -42,8 +42,8 @@ private slots:
   void on_button_ok_clicked();
 
 private:
-  Ui::QtPvdbRateConceptAutoDialog *ui;
+  Ui::QtPvdbRateConceptTallyDialog *ui;
   const boost::shared_ptr</* const */ pvdb::ConceptMap> m_map;
 };
 
-#endif // QTPVDBRATECONCEPTAUTODIALOG_H
+#endif // QTPVDBRATECONCEPTTALLYDIALOG_H

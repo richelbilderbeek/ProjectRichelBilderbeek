@@ -8,8 +8,6 @@ CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
 
-
-
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppAsciiArter \
@@ -522,7 +520,8 @@ SOURCES += \
     ../../Classes/CppStateObserver/integersymmetricalphafilter.cpp \
     ../../Classes/CppStateObserver/integerstateobserver.cpp \
     ../../Classes/CppStateObserver/integeralphafilter.cpp \
-    ../../Tools/ToolStateObserver/slsqfilter.cpp
+    ../../Tools/ToolStateObserver/slsqfilter.cpp \
+    ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -904,7 +903,8 @@ HEADERS += \
     ../../Classes/CppStateObserver/integersymmetricalphafilter.h \
     ../../Classes/CppStateObserver/integerstateobserver.h \
     ../../Classes/CppStateObserver/integeralphafilter.h \
-    ../../Tools/ToolStateObserver/slsqfilter.h
+    ../../Tools/ToolStateObserver/slsqfilter.h \
+    ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.h
 
 
 RESOURCES += \

@@ -134,3 +134,8 @@ void QtTestQuestionMainDialog::OnSubmit()
     + boost::lexical_cast<std::string>(n_submitted)).c_str());
 }
 
+
+void QtTestQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
+{
+  QtQuestionDialog
+}

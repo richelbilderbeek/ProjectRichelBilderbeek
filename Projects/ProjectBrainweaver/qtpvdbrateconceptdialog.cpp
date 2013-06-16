@@ -17,21 +17,20 @@
 #include <QFileDialog>
 #include <QKeyEvent>
 
-#include "qtpvdbconceptmapratewidget.h"
-#include "pvdbfile.h"
-#include "pvdbedge.h"
-#include "pvdbnode.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmap.h"
-#include "pvdbconceptmapfactory.h"
 #include "pvdbconceptfactory.h"
-#include "pvdbexamples.h"
-#include "pvdbrating.h"
-#include "pvdbnodefactory.h"
-#include "trace.h"
-#include "pvdbexamplesfactory.h"
-#include "qtpvdbrateconceptautodialog.h"
+#include "pvdbconcept.h"
+#include "pvdbconceptmapfactory.h"
 #include "pvdbconceptmap.h"
+#include "pvdbedge.h"
+#include "pvdbexamplesfactory.h"
+#include "pvdbexamples.h"
+#include "pvdbfile.h"
+#include "pvdbnodefactory.h"
+#include "pvdbnode.h"
+#include "pvdbrating.h"
+#include "qtpvdbconceptmapratewidget.h"
+#include "qtpvdbrateconcepttallydialog.h"
+#include "trace.h"
 #include "ui_qtpvdbrateconceptdialog.h"
 
 QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
@@ -186,6 +185,6 @@ void QtPvdbRateConceptDialog::Test()
 
 void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
 {
-  QtPvdbRateConceptAutoDialog d(m_sub_concept_map);
+  QtPvdbRateConceptTallyDialog d(m_sub_concept_map);
   this->ShowChild(&d);
 }

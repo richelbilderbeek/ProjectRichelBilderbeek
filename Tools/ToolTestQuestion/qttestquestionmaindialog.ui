@@ -23,27 +23,23 @@
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
+     <widget class="QWidget" name="contents_here">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>480</width>
-        <height>564</height>
+        <height>558</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QVBoxLayout" name="my_layout"/>
-       </item>
-      </layout>
+      <layout class="QVBoxLayout" name="verticalLayout_3"/>
      </widget>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_score">
+    <widget class="QLineEdit" name="edit_question">
      <property name="text">
-      <string>Score: ...</string>
+      <string>-,This is multiple choice question,yes,no</string>
      </property>
     </widget>
    </item>
