@@ -203,7 +203,8 @@ QtQuadBezierArrowItem::QtQuadBezierArrowItem(
 {
   assert(from); assert(to); assert(mid);
   assert(from != to); assert(from != mid); assert(mid != to);
-  scene->addItem(this);
+  assert(!scene);
+  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsSelectable);

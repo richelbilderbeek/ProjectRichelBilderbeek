@@ -57,7 +57,8 @@ QtArrowItem::QtArrowItem(
     m_pen(QPen(QColor(0,0,0))),
     m_tail(tail)
 {
-  scene->addItem(this);
+  assert(!scene);
+  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable

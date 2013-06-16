@@ -57,7 +57,8 @@ QtPathArrowItem::QtPathArrowItem(
 {
   assert(m_mid_pos.size() >= 1
     && "There must be at least one midpos");
-  scene->addItem(this);
+  assert(!scene);
+  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable

@@ -19,7 +19,8 @@ QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent, QGraphicsScene *scen
    m_contour_pen(QPen(QColor(0,0,0))),
    m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine))
 {
-  scene->addItem(this);
+  assert(!scene);
+  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
