@@ -190,9 +190,8 @@ QtQuadBezierArrowItem::QtQuadBezierArrowItem(
   const QGraphicsItem* const mid,
   const bool head,
   const QGraphicsItem* const to,
-  QGraphicsItem* parent, QGraphicsScene* scene)
+  QGraphicsItem* parent)
   : QGraphicsItem(parent),       //New since Qt5
-//: QGraphicsItem(parent,scene), //Deprecated since Qt5
     m_focus_pen(QPen(Qt::DashLine)),
     m_from(from),
     m_head(head),
@@ -203,8 +202,6 @@ QtQuadBezierArrowItem::QtQuadBezierArrowItem(
 {
   assert(from); assert(to); assert(mid);
   assert(from != to); assert(from != mid); assert(mid != to);
-  assert(!scene);
-  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsSelectable);

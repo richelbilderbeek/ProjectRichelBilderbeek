@@ -38,8 +38,7 @@ struct QtPathArrowItem : public QGraphicsItem
     const std::vector<QPointF>& mid_pos,
     const bool head,
     const QPointF& head_pos,
-    QGraphicsItem *parent = 0,
-    QGraphicsScene *scene = 0);
+    QGraphicsItem *parent = 0);
 
   virtual ~QtPathArrowItem() {}
 

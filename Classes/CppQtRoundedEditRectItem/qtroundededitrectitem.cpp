@@ -25,9 +25,8 @@ QtRoundedEditRectItem::QtRoundedEditRectItem(
   const std::vector<std::string>& text,
   const Padding& padding,
   const QFont& font,
-  QGraphicsItem* parent,
-  QGraphicsScene* scene)
-  : QtRoundedRectItem(parent,scene),
+  QGraphicsItem* parent)
+  : QtRoundedRectItem(parent),
     m_font(font),
     m_padding(padding),
     m_text( {""} ) //Empty std::string, as m_text must be set by SetText

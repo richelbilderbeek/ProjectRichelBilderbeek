@@ -20,14 +20,12 @@
 #include "trace.h"
 
 QtPvdbExamplesItem::QtPvdbExamplesItem(
-  QGraphicsItem* parent,
-  QGraphicsScene* scene)
+  QGraphicsItem* parent)
   : QtRoundedEditRectItem(
       { "..." },
       QtRoundedEditRectItem::Padding(),
       QFont("monospace",9),
-      parent,
-      scene
+      parent
     ),
     m_item(nullptr)
 {

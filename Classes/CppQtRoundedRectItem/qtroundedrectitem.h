@@ -8,7 +8,7 @@
 ///Rounded rectangle item
 struct QtRoundedRectItem : public QGraphicsRectItem
 {
-  QtRoundedRectItem(QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+  QtRoundedRectItem(QGraphicsItem *parent = 0);
 
   virtual ~QtRoundedRectItem() {}
 

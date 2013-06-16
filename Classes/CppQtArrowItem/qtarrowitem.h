@@ -40,8 +40,7 @@ struct QtArrowItem : public QGraphicsLineItem
     const double x2,
     const double y2,
     const bool head,
-    QGraphicsItem* parent = 0,
-    QGraphicsScene* scene = 0);
+    QGraphicsItem* parent = 0);
 
   ///Obtain the version of this class
   static const std::string GetVersion();

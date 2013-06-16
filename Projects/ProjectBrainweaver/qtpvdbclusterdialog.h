@@ -77,8 +77,10 @@ private:
   //Start saving procedure, with request of filename
   void Save();
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test();
+  #endif
 };
 
 #endif // QTPVDBCLUSTERDIALOG_H

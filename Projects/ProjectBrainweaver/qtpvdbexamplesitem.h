@@ -19,9 +19,7 @@
 
 struct QtPvdbExamplesItem : public QtRoundedEditRectItem
 {
-  QtPvdbExamplesItem(
-    QGraphicsItem* parent = 0,
-    QGraphicsScene* scene = 0);
+  QtPvdbExamplesItem(QGraphicsItem* parent = 0);
 
   ///Set the concept this item displays the examples of.
   ///If the concept is nullptr, this item hides

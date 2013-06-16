@@ -38,7 +38,7 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
     const QGraphicsItem* const mid,
     const bool head,
     const QGraphicsItem* const to,
-    QGraphicsItem* parent = 0, QGraphicsScene* scene = 0);
+    QGraphicsItem* parent = 0);
 
   virtual ~QtQuadBezierArrowItem() {}
 

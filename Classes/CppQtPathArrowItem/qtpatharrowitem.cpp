@@ -43,10 +43,8 @@ QtPathArrowItem::QtPathArrowItem(
   const std::vector<QPointF>& mid_pos,
   const bool head,
   const QPointF& head_pos,
-  QGraphicsItem *parent,
-  QGraphicsScene *scene)
+  QGraphicsItem *parent)
   : QGraphicsItem(parent),       //New since Qt5
-//: QGraphicsItem(parent,scene), //Deprecated since Qt5
     m_focus_pen(QPen(Qt::DashLine)),
     m_head(head),
     m_head_pos(head_pos),
@@ -57,8 +55,6 @@ QtPathArrowItem::QtPathArrowItem(
 {
   assert(m_mid_pos.size() >= 1
     && "There must be at least one midpos");
-  assert(!scene);
-  //scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable

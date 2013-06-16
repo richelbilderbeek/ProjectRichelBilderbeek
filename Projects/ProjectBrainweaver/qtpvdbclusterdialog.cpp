@@ -257,6 +257,7 @@ void QtPvdbClusterDialog::on_button_next_clicked()
   }
 }
 
+#ifndef NDEBUG
 void QtPvdbClusterDialog::Test()
 {
   {
@@ -381,6 +382,7 @@ void QtPvdbClusterDialog::Test()
   t.detach();
   #endif
 }
+#endif
 
 void QtPvdbClusterDialog::on_edit_textChanged(const QString &arg1)
 {
