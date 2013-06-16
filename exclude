@@ -8,6 +8,7 @@
 *.pro.user
 *.pro.autosave
 *.pro.user.*
+Libraries/.directory
 Libraries/bigint-2010.04.30
 Libraries/boost_1_53_0
 Libraries/fparser4.4.3
