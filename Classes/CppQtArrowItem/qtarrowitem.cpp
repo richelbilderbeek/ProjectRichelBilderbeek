@@ -29,10 +29,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <cmath>
+
 #include <QCursor>
+#include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
+
 #include "trace.h"
 
 const double QtArrowItem::m_click_easy_width = 10.0;
@@ -46,14 +49,15 @@ QtArrowItem::QtArrowItem(
   const bool head,
   QGraphicsItem* parent,
   QGraphicsScene* scene)
-  : QGraphicsLineItem(x1,y1,x2,y2,parent,scene),
+  : QGraphicsLineItem(x1,y1,x2,y2,parent),       //New since Qt5
+//: QGraphicsLineItem(x1,y1,x2,y2,parent,scene), //Deprecated in Qt5
     m_arrow_head_clicking_distance(20.0),
     m_focus_pen(QPen(Qt::DashLine)),
     m_head(head),
     m_pen(QPen(QColor(0,0,0))),
     m_tail(tail)
 {
-
+  scene->addItem(this);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable

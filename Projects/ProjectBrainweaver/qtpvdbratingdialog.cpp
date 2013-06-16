@@ -15,8 +15,14 @@
 #include <QFileDialog>
 #include <QDesktopWidget>
 #include <QPainter>
-#include <QPrinter>
+
+#if QT_VERSION_CHECK(5,0,0)
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
+#else
 #include <QPrintDialog>
+#include <QPrinter>
+#endif
 
 #include "pvdbconceptmap.h"
 #include "qtpvdbconceptmapwidget.h"
