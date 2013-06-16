@@ -16,8 +16,14 @@
 #include <QLayout>
 #include <QLabel>
 #include <QMessageBox>
+
+#if QT_VERSION_CHECK(5,0,0)
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
+#else
 #include <QPrintDialog>
 #include <QPrinter>
+#endif
 
 #include "pvdbcluster.h"
 #include "pvdbconcept.h"

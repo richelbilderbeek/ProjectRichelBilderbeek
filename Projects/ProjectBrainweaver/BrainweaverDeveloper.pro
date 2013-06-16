@@ -1,4 +1,5 @@
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TEMPLATE = app
 
 
@@ -10,8 +11,6 @@ unix {
   #The crosscompiler does not support threads yet, as of 2013-05-02
   #DEFINES += COMPILER_SUPPORTS_THREADS_20130507
 }
-
-#LIBS += -lboost_date_time #Do not use Boost.date_time as crosscompiler cannot find it
 
 INCLUDEPATH += \
   ../../Classes/CppAbout \

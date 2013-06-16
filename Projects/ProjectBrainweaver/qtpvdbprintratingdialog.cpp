@@ -13,9 +13,15 @@
 #include <boost/lexical_cast.hpp>
 
 #include <QKeyEvent>
-#include <QPrinter>
-#include <QPrintDialog>
 #include <QScrollBar>
+
+#if QT_VERSION_CHECK(5,0,0)
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
+#else
+#include <QPrintDialog>
+#include <QPrinter>
+#endif
 
 #include "pvdbfile.h"
 #include "pvdbconcept.h"
