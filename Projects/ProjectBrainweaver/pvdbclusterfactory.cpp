@@ -65,8 +65,7 @@ const boost::shared_ptr<pvdb::Cluster> pvdb::ClusterFactory::GetTest(const std::
       return concept;
     }
   );
-  assert(std::count_if(concepts.begin(),concepts.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
-  //assert(std::all_of(concepts.begin(),concepts.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return p; } )); //BUG 2012-01-02
+  assert(std::count_if(concepts.begin(),concepts.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return !p; } ) == 0);
   boost::shared_ptr<pvdb::Cluster> cluster(new Cluster(concepts));
   assert(cluster);
   return cluster;

@@ -38,7 +38,7 @@ pvdb::Concept::Concept(
   #ifndef NDEBUG
   Test();
   assert(m_examples);
-  assert(m_rating_complexity   >= -1); //BUG 2013-02-03
+  assert(m_rating_complexity   >= -1);
   assert(m_rating_complexity   <=  2);
   assert(m_rating_concreteness >= -1);
   assert(m_rating_concreteness <=  2);

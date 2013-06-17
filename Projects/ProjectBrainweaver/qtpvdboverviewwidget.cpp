@@ -23,7 +23,10 @@
 #include "qtpvdbviewtestsdialog.h"
 #include "pvdbconceptmapfactory.h"
 #include "qtpvdbconcepteditdialog.h"
+#include "qtpvdbrateconcepttallydialog.h"
 //#include "pvdbmenudialog.h"
+#include "qtpvdbprintconceptmapdialog.h"
+#include "qtpvdbprintratingdialog.h"
 #include "qtpvdbtestedgeitemdialog.h"
 #include "qtpvdbtestnodeitemdialog.h"
 #include "qtpvdbtestconceptmapeditwidgetdialog.h"
@@ -125,9 +128,30 @@ const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests().at(15);
+    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
+    assert(file);
+    QtHideAndShowDialog* p(new QtPvdbPrintConceptMapDialog(file));
+    assert(p);
+    v.push_back(p);
+  }
+  {
+    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
+    assert(file);
+    QtHideAndShowDialog* p(new QtPvdbPrintConceptMapDialog(file));
+    assert(p);
+    v.push_back(p);
+  }
+  {
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
     assert(concept_map);
     QtHideAndShowDialog* p(new QtPvdbRateConceptDialog(concept_map));
+    assert(p);
+    v.push_back(p);
+  }
+  {
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    assert(concept_map);
+    QtHideAndShowDialog* p(new QtPvdbRateConceptTallyDialog(concept_map));
     assert(p);
     v.push_back(p);
   }
