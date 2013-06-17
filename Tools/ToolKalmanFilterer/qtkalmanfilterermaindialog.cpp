@@ -593,7 +593,7 @@ void QtKalmanFiltererMainDialog::Test()
       assert(d);
       assert(d->m_experiment_dialog);
       const std::string filename = "TempQtKalmanFiltererMainDialogTest.txt";
-      const int n_examples = 10;
+      const int n_examples = 6;
       for (int x = 0; x!= n_examples; ++x)
       {
         //1) Click on example x and write these to a DokuWiki file

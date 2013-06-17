@@ -53,10 +53,6 @@ struct KalmanFilterExample
   static std::unique_ptr<KalmanFilterExample> CreateExample4();
   static std::unique_ptr<KalmanFilterExample> CreateExample5();
   static std::unique_ptr<KalmanFilterExample> CreateExample6();
-  static std::unique_ptr<KalmanFilterExample> CreateExample7();
-  static std::unique_ptr<KalmanFilterExample> CreateExample8();
-  static std::unique_ptr<KalmanFilterExample> CreateExample9();
-  static std::unique_ptr<KalmanFilterExample> CreateExample10();
 };
 
 #endif // KALMANFILTEREXAMPLE_H

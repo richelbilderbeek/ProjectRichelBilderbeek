@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>212</width>
-    <height>302</height>
+    <width>209</width>
+    <height>186</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,35 +56,7 @@
    <item>
     <widget class="QPushButton" name="button_6">
      <property name="text">
-      <string>Example &amp;6: System under investigation</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_7">
-     <property name="text">
-      <string>Example &amp;7: System under investigation</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_8">
-     <property name="text">
-      <string>Example &amp;8: Accelerating car (3 states)</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_9">
-     <property name="text">
-      <string>Example &amp;9: LSQ</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_10">
-     <property name="text">
-      <string>Example 1&amp;0: SUI with LSQ</string>
+      <string>Example &amp;6: Accelerating car (3 states)</string>
      </property>
     </widget>
    </item>
