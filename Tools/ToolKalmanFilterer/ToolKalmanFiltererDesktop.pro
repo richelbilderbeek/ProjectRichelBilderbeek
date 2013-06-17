@@ -1,6 +1,6 @@
 win32 {
   #Add the line below when cross-compiling
-  CONFIG += static
+  #CONFIG += static
 }
 
 QT       += core gui

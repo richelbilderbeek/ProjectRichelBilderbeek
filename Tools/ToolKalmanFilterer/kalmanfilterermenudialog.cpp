@@ -18,10 +18,6 @@
 #include "fixedlagsmootherkalmanfilter.h"
 #include "standardwhitenoisesystemparameters.h"
 
-KalmanFiltererMenuDialog::KalmanFiltererMenuDialog()
-{
-}
-
 const About KalmanFiltererMenuDialog::GetAbout()
 {
   About a(
@@ -50,7 +46,7 @@ const About KalmanFiltererMenuDialog::GetAbout()
 
 const std::string KalmanFiltererMenuDialog::GetVersion()
 {
-  return "1.9";
+  return "1.10";
 }
 
 const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
@@ -66,12 +62,12 @@ const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
   v.push_back("2013-05-28: version 1.7: added possibility to save graphs to file");
   v.push_back("2013-06-13: version 1.8: fixed bug in parameter tables, allow to view data as a table");
   v.push_back("2013-06-14: version 1.9: allow to copy data from table");
+  v.push_back("2013-06-17: version 1.10: removed useless examples");
   //Future ideas:
   //- Add an explanation to the examples, e.g. in the form of an HTML page. This can be done
   //  by adding the DokuWiki's <html></html> tags, with an HTML comment inside to find the explanation:
   //  <html><!-- <explanation> --></html>
   //  This example is about a flying cannonball
   //  <html><!-- </explanation> --></html>
-  //- Add copying of table to spreadsheet program
   return v;
 }
