@@ -9,6 +9,8 @@
 *.pro.autosave
 *.autosave
 *.pro.user.*
+*__Debug
+*__Release
 /.directory
 Libraries/.directory
 Libraries/bigint-2010.04.30/

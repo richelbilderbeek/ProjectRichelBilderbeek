@@ -43,7 +43,7 @@ const About StateObserverMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "StateObserver",
     "tool to examine state observers",
-    "the 4th of June 2013",
+    "the 17th of June 2013",
     "2013",
     "http://www.richelbilderbeek.nl/ToolStateObserver.htm",
     GetVersion(),
@@ -62,7 +62,7 @@ const About StateObserverMenuDialog::GetAbout()
 
 const std::string StateObserverMenuDialog::GetVersion()
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> StateObserverMenuDialog::GetVersionHistory()
@@ -70,5 +70,6 @@ const std::vector<std::string> StateObserverMenuDialog::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");
   v.push_back("2013-06-04: version 1.1: added more state observers, allow plotting of subset of state observers");
+  v.push_back("2013-06-17: version 1.1: improved menu screen");
   return v;
 }
