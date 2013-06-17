@@ -120,8 +120,8 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
       this->SetIndicatorPen(  QPen(  QColor(  0,255,  0),1)); //Thin pen
     }
   }
-  this->update();
-  this->m_signal_item_has_updated(this);
-  this->m_signal_request_scene_update();
+  //this->update(); //BUG
+  //this->m_signal_item_has_updated(this); //BUG: THIS IS NEEDED, BUT HANGS THE DISPLAY OF TESTS
+  this->m_signal_request_scene_update(); //BUG
 
 }
