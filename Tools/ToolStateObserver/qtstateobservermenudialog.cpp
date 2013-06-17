@@ -28,6 +28,8 @@ QtStateObserverMenuDialog::~QtStateObserverMenuDialog()
 void QtStateObserverMenuDialog::on_button_start_clicked()
 {
   QtStateObserverMainDialog d;
+  d.setStyleSheet(this->styleSheet());
+  d.setWindowIcon(this->windowIcon());
   this->ShowChild(&d);
 }
 
@@ -37,6 +39,7 @@ void QtStateObserverMenuDialog::on_button_about_clicked()
   About a = StateObserverMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
+  d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
   d.exec();
   this->show();
