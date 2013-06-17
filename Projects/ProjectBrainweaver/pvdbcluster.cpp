@@ -27,8 +27,7 @@ pvdb::Cluster::Cluster(const std::vector<boost::shared_ptr<pvdb::Concept> >& v)
 {
   #ifndef NDEBUG
   Test();
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return p; } )); //BUG 2012-01-02
+  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return !p; } ) == 0);
   #endif
 }
 
