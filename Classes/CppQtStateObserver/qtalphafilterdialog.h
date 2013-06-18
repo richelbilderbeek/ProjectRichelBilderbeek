@@ -25,7 +25,6 @@ public:
 
   ///Create an alpha filter with the current parameters
   boost::shared_ptr<AlphaFilter> Create() const;
-
   
 private:
   Ui::QtAlphaFilterDialog *ui;
