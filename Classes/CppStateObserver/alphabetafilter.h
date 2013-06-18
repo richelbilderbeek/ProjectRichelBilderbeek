@@ -4,7 +4,10 @@
 #include <string>
 #include <vector>
 
-struct AlphaBetaFilter
+#include "floatingpointstateobserver.h"
+
+///An alpha beta filter
+struct AlphaBetaFilter : public FloatingPointStateObserver
 {
   AlphaBetaFilter(
     const double alpha = 0.1 ,
@@ -12,7 +15,11 @@ struct AlphaBetaFilter
     const double dt    = 1.0
   );
 
-  double Estimate(const double measurement);
+  ///Get the current state estimate
+  double GetEstimate() const { return m_output; }
+
+  ///Supply a measurement, which will update the state estimate
+  void Update(const double measurement);
 
   ///Obtain the version of this class
   static const std::string GetVersion();

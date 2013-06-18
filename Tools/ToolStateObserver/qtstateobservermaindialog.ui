@@ -118,7 +118,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>LSQ filter</string>
+      <string>Alpha filter (integer)</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -166,7 +166,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>SLSQ filter</string>
+      <string>Symmetric alpha filter (integer)</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -214,7 +214,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>Multi integer state observer</string>
+      <string>Multi alpha filter (integer)</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
