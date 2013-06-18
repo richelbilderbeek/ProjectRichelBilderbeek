@@ -31,8 +31,8 @@ private slots:
   const boost::shared_ptr<AlphaFilter> CreateAlphaFilter() const;
   const boost::shared_ptr<AlphaBetaFilter> CreateAlphaBetaFilter() const;
   const boost::shared_ptr<AlphaBetaGammaFilter> CreateAlphaBetaGammaFilter() const;
-  const boost::shared_ptr<LsqFilter> CreateLsqFilter() const;
-  const boost::shared_ptr<SlsqFilter> CreateSlsqFilter() const;
+  const boost::shared_ptr<IntegerAlphaFilter> CreateLsqFilter() const;
+  const boost::shared_ptr<IntegerSymmetricalAlphaFilter> CreateSlsqFilter() const;
   const boost::shared_ptr<MultiAlphaFilter> CreateMultiAlphaFilter() const;
   const boost::shared_ptr<MultiIntegerStateObserver> CreateMiso() const;
   double CreateDt() const { return 1.0; }

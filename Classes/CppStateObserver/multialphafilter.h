@@ -4,15 +4,20 @@
 #include <vector>
 #include <boost/shared_ptr.hpp>
 #include "alphafilter.h"
+#include "floatingpointstateobserver.h"
 
-struct MultiAlphaFilter
+struct MultiAlphaFilter : public FloatingPointStateObserver
 {
   MultiAlphaFilter(
     const std::vector<double> alphas,
     const double dt = 1.0
   );
 
-  double Estimate(const double measurement);
+  ///Get the current state estimate
+  double GetEstimate() const;
+
+  ///Supply a measurement, which will update the state estimate
+  void Update(const double measurement);
 
   ///Obtain the version of this class
   static const std::string GetVersion();

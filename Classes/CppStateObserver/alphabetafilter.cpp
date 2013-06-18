@@ -26,24 +26,24 @@ AlphaBetaFilter::AlphaBetaFilter(
 }
 
 
-double AlphaBetaFilter::Estimate(const double measurement)
+void AlphaBetaFilter::Update(const double measurement)
 {
   const double output_predicted = m_output + ( m_slope * m_dt );
   const double prediction_error = measurement - output_predicted;
   const double output_corrected = output_predicted + (m_alpha * prediction_error);
   m_output = output_corrected;
   m_slope += (m_beta * prediction_error / m_dt);
-  return m_output;
 }
 
 const std::string AlphaBetaFilter::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> AlphaBetaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");
+  v.push_back("2013-06-18: version 1.1: derive from FloatingPointStateObserver");
   return v;
 }

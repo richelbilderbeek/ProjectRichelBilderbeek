@@ -4,22 +4,24 @@
 #include <string>
 #include <vector>
 
+#include "floatingpointstateobserver.h"
+
 ///An alpha filter as described on [1]
 ///An alpha filter is equivalant to a low-pass filter (also called high-cut filter, or treble cut filter) [2]
 /// [1] http://en.wikipedia.org/wiki/Alpha_beta_filter#The_alpha_filter
 /// [2] http://en.wikipedia.org/wiki/Low-pass_filter
-struct AlphaFilter
+struct AlphaFilter : public FloatingPointStateObserver
 {
   AlphaFilter(
-    const double alpha = 0.1 ,
+    const double alpha = 0.1,
     const double dt    = 1.0
   );
 
-  ///Make a new estimation based on a new measurement
-  double Estimate(const double measurement);
+  ///Get the current state estimate
+  double GetEstimate() const { return m_output; }
 
-  ///Return the current estimation of the state observed
-  double GetCurrentEstimate() const { return m_output; }
+  ///Supply a measurement, which will update the state estimate
+  void Update(const double measurement);
 
   ///Obtain the version of this class
   static const std::string GetVersion();

@@ -30,24 +30,24 @@ AlphaBetaGammaFilter::AlphaBetaGammaFilter(
 }
 
 
-double AlphaBetaGammaFilter::Estimate(const double measurement)
+void AlphaBetaGammaFilter::Update(const double measurement)
 {
   const double output_predicted = m_position + ( m_velocity * m_dt );
   const double prediction_error = measurement - output_predicted;
   m_position = output_predicted + (m_alpha * prediction_error);
   m_velocity += (m_beta * prediction_error / m_dt);
   m_acceleration += (m_gamma * 2.0 * prediction_error / (m_dt * m_dt) );
-  return m_position;
 }
 
 const std::string AlphaBetaGammaFilter::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> AlphaBetaGammaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");
+  v.push_back("2013-06-18: version 1.1: derive from FloatingPointStateObserver");
   return v;
 }

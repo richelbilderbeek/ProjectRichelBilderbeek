@@ -22,12 +22,10 @@
 #include "alphafilter.h"
 #include "integeralphafilter.h"
 #include "integersymmetricalphafilter.h"
-#include "lsqfilter.h"
 #include "multialphafilter.h"
 #include "multiintegerstateobserver.h"
 #include "noisefunctionparser.h"
 #include "slidingmodeobserver.h"
-#include "slsqfilter.h"
 #include "ui_qtstateobservermaindialog.h"
 
 QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
@@ -196,18 +194,18 @@ const boost::shared_ptr<AlphaBetaGammaFilter> QtStateObserverMainDialog::CreateA
   return filter;
 }
 
-const boost::shared_ptr<LsqFilter> QtStateObserverMainDialog::CreateLsqFilter() const
+const boost::shared_ptr<IntegerAlphaFilter> QtStateObserverMainDialog::CreateLsqFilter() const
 {
   const int shift_lsq = ui->box_lsq_shift->value();
-  const boost::shared_ptr<LsqFilter> filter(new LsqFilter(shift_lsq));
+  const boost::shared_ptr<IntegerAlphaFilter> filter(new IntegerAlphaFilter(shift_lsq));
   assert(filter);
   return filter;
 }
 
-const boost::shared_ptr<SlsqFilter> QtStateObserverMainDialog::CreateSlsqFilter() const
+const boost::shared_ptr<IntegerSymmetricalAlphaFilter> QtStateObserverMainDialog::CreateSlsqFilter() const
 {
   const int shift_slsq = ui->box_slsq_shift->value();
-  const boost::shared_ptr<SlsqFilter> filter(new SlsqFilter(shift_slsq));
+  const boost::shared_ptr<IntegerSymmetricalAlphaFilter> filter(new IntegerSymmetricalAlphaFilter(shift_slsq));
   assert(filter);
   return filter;
 }
@@ -287,14 +285,23 @@ void QtStateObserverMainDialog::Run()
     const auto filter_miso = CreateMiso();
     for (int t=0; t!=timesteps; ++t)
     {
-      const double measurement             = noise_function.Evaluate(static_cast<double>(t));
-      const double output_alpha            = filter_alpha->Estimate(measurement);
-      const double output_alpha_beta       = filter_alpha_beta->Estimate(measurement);
-      const double output_alpha_beta_gamma = filter_alpha_beta_gamma->Estimate(measurement);
-      const double output_lsq              = filter_lsq->Estimate(measurement);
-      const double output_slsq             = filter_slsq->Estimate(measurement);
-      const double output_ma               = filter_ma->Estimate(measurement);
-      const double output_miso             = filter_miso->Estimate(measurement);
+      const double measurement = noise_function.Evaluate(static_cast<double>(t));
+
+      filter_alpha->Update(measurement);
+      filter_alpha_beta->Update(measurement);
+      filter_alpha_beta_gamma->Update(measurement);
+      filter_lsq->Update(measurement);
+      filter_slsq->Update(measurement);
+      filter_ma->Update(measurement);
+      filter_miso->Update(measurement);
+
+      const double output_alpha            = filter_alpha->GetEstimate();
+      const double output_alpha_beta       = filter_alpha_beta->GetEstimate();
+      const double output_alpha_beta_gamma = filter_alpha_beta_gamma->GetEstimate();
+      const double output_lsq              = filter_lsq->GetEstimate();
+      const double output_slsq             = filter_slsq->GetEstimate();
+      const double output_ma               = filter_ma->GetEstimate();
+      const double output_miso             = filter_miso->GetEstimate();
       inputs.push_back(measurement);
       outputs_alpha.push_back(output_alpha);
       outputs_alpha_beta.push_back(output_alpha_beta);
