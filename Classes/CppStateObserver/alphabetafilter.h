@@ -6,6 +6,7 @@
 
 #include "floatingpointstateobserver.h"
 
+///An alpha beta filter
 struct AlphaBetaFilter : public FloatingPointStateObserver
 {
   AlphaBetaFilter(
