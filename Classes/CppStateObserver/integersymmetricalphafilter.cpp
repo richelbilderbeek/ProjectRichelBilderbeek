@@ -20,21 +20,21 @@ IntegerSymmetricalAlphaFilter::IntegerSymmetricalAlphaFilter(
   assert(m_alpha <= 63 && "An int64_t can maximally be shifted 63 bits to the right");
 }
 
-int64_t IntegerSymmetricalAlphaFilter::Estimate(const int64_t measurement)
+void IntegerSymmetricalAlphaFilter::Update(const int64_t measurement)
 {
   const int64_t delta = ((measurement  - m_value_active) >> m_alpha);
   m_value_active += delta + (delta == 0 && measurement - m_value_active > 0 ? 1 : 0);
-  return m_value_active;
 }
 
 const std::string IntegerSymmetricalAlphaFilter::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> IntegerSymmetricalAlphaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-06-04: version 1.0: initial version");
+  v.push_back("2013-06-18: version 1.1: refactoring of IntegerStateObserver");
   return v;
 }

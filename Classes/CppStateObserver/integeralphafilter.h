@@ -11,7 +11,11 @@ struct IntegerAlphaFilter : public IntegerStateObserver
     const int alpha,
     const int64_t value_active = 0);
 
-  int64_t Estimate(const int64_t measurement);
+  ///Get the current state estimate
+  int64_t GetEstimate() const { return m_value_active; }
+
+  ///Supply a measurement, which will update the state estimate
+  void Update(const int64_t measurement);
 
   ///Obtain the version of this class
   static const std::string GetVersion();

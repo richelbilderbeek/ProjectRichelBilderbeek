@@ -32,27 +32,32 @@ const std::vector<boost::shared_ptr<AlphaFilter> > MultiAlphaFilter::CreateFilte
   return v;
 }
 
-double MultiAlphaFilter::Estimate(double measurement)
+double MultiAlphaFilter::GetEstimate() const
+{
+  return m_filters.back()->GetEstimate();
+}
+
+void MultiAlphaFilter::Update(double measurement)
 {
   const std::size_t sz = m_filters.size();
   for (std::size_t i = 0; i!=sz; ++i)
   {
     assert(i < m_filters.size() );
     assert(m_filters[i]);
-    measurement = m_filters[i]->Estimate(measurement); //One's output is the next one's output
+    m_filters[i]->Update(measurement); //One's output is the next one's output
+    measurement = m_filters[i]->GetEstimate();
   }
-
-  return measurement;
 }
 
 const std::string MultiAlphaFilter::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> MultiAlphaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");
+  v.push_back("2013-06-18: version 1.1: derive from FloatingPointStateObserver");
   return v;
 }

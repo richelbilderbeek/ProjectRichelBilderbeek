@@ -23,23 +23,21 @@ AlphaFilter::AlphaFilter(
 }
 
 
-double AlphaFilter::Estimate(const double measurement)
+void AlphaFilter::Update(const double measurement)
 {
   const double difference = measurement - m_output;
-
   m_output += m_alpha * difference;
-
-  return m_output;
 }
 
 const std::string AlphaFilter::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> AlphaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");
+  v.push_back("2013-06-18: version 1.1: derive from FloatingPointStateObserver");
   return v;
 }

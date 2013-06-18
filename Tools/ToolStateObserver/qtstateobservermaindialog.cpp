@@ -287,14 +287,23 @@ void QtStateObserverMainDialog::Run()
     const auto filter_miso = CreateMiso();
     for (int t=0; t!=timesteps; ++t)
     {
-      const double measurement             = noise_function.Evaluate(static_cast<double>(t));
-      const double output_alpha            = filter_alpha->Estimate(measurement);
-      const double output_alpha_beta       = filter_alpha_beta->Estimate(measurement);
-      const double output_alpha_beta_gamma = filter_alpha_beta_gamma->Estimate(measurement);
+      const double measurement = noise_function.Evaluate(static_cast<double>(t));
+
+      filter_alpha->Update(measurement);
+      filter_alpha_beta->Update(measurement);
+      filter_alpha_beta_gamma->Update(measurement);
+      //filter_lsq->Update(measurement);
+      //filter_slsq->Update(measurement);
+      filter_ma->Update(measurement);
+      filter_miso->Update(measurement);
+
+      const double output_alpha            = filter_alpha->GetEstimate();
+      const double output_alpha_beta       = filter_alpha_beta->GetEstimate();
+      const double output_alpha_beta_gamma = filter_alpha_beta_gamma->GetEstimate();
       const double output_lsq              = filter_lsq->Estimate(measurement);
       const double output_slsq             = filter_slsq->Estimate(measurement);
-      const double output_ma               = filter_ma->Estimate(measurement);
-      const double output_miso             = filter_miso->Estimate(measurement);
+      const double output_ma               = filter_ma->GetEstimate();
+      const double output_miso             = filter_miso->GetEstimate();
       inputs.push_back(measurement);
       outputs_alpha.push_back(output_alpha);
       outputs_alpha_beta.push_back(output_alpha_beta);
