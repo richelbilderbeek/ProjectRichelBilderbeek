@@ -4,6 +4,7 @@
 struct AlphaFilter;
 struct AlphaBetaFilter;
 struct AlphaBetaGammaFilter;
+struct FloatingPointStateObserver;
 struct IntegerStateObserver;
 struct IntegerAlphaFilter;
 struct IntegerSmartAlphaFilter;
