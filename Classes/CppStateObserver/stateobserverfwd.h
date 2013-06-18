@@ -8,6 +8,7 @@ struct FloatingPointStateObserver;
 struct IntegerStateObserver;
 struct IntegerAlphaFilter;
 struct IntegerSmartAlphaFilter;
+struct IntegerSymmetricalAlphaFilter;
 struct MultiIntegerStateObserver;
 struct MultiAlphaFilter;
 
