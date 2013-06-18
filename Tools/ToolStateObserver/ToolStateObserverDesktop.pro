@@ -33,7 +33,8 @@ SOURCES += \
     slidingmodeobserver.cpp \
     slsqfilter.cpp \
     stateobservermenudialog.cpp \
-    ../../Classes/CppStateObserver/floatingpointstateobserver.cpp
+    ../../Classes/CppStateObserver/floatingpointstateobserver.cpp \
+    ../../Classes/CppQtStateObserver/qtalphafilterdialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -55,12 +56,14 @@ HEADERS  += \
     qtstateobservermenudialog.h \
     slsqfilter.h \
     stateobservermenudialog.h \
-    ../../Classes/CppStateObserver/floatingpointstateobserver.h
+    ../../Classes/CppStateObserver/floatingpointstateobserver.h \
+    ../../Classes/CppQtStateObserver/qtalphafilterdialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     qtstateobservermaindialog.ui \
-    qtstateobservermenudialog.ui
+    qtstateobservermenudialog.ui \
+    ../../Classes/CppQtStateObserver/qtalphafilterdialog.ui
 
 RESOURCES += \
     ToolStateObserver.qrc
