@@ -112,7 +112,7 @@ DialogBlockyRect::DialogBlockyRect(<a href="CppQWidget.htm">QWidget</a> *parent)
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect and start the timer<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_timer.get(),<a href="CppSIGNAL.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTimer()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_timer.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTimer()));<br/>
 &nbsp;&nbsp;m_timer-&gt;start(1000);<br/>
 }<br/>
 <br/>
@@ -252,7 +252,7 @@ DialogBlockySquare::DialogBlockySquare(<a href="CppQWidget.htm">QWidget</a> *par
 &nbsp;&nbsp;ui-&gt;graphicsView-&gt;setScene(m_scene.get());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a timer to change the graphicsview<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_timer.get(),<a href="CppSIGNAL.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTimer()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_timer.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTimer()));<br/>
 &nbsp;&nbsp;m_timer-&gt;start(1000);<br/>
 &nbsp;&nbsp;onTimer();<br/>
 }<br/>
@@ -381,7 +381,7 @@ DialogSmooth::DialogSmooth(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a 5x5 image<br/>
 &nbsp;&nbsp;ui-&gt;label-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(5,5));<br/>
-&nbsp;&nbsp;QObject::connect(m_timer.get(),<a href="CppSIGNAL.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTimer()));<br/>
+&nbsp;&nbsp;QObject::connect(m_timer.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTimer()));<br/>
 &nbsp;&nbsp;onTimer();<br/>
 &nbsp;&nbsp;m_timer-&gt;start(1000);<br/>
 }<br/>

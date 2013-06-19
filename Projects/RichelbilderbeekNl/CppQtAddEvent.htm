@@ -133,7 +133,7 @@ Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QObject::connect(<b><a href="CppThis.htm">this</a></b>,<a href="CppSIGNAL.htm">SIGNAL</a>(accepted()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(MyEvent()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QObject::connect(<b><a href="CppThis.htm">this</a></b>,<a href="CppSignalMacro.htm">SIGNAL</a>(accepted()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(MyEvent()));<br/>
 }<br/>
 <br/>
 Dialog::~Dialog()<br/>

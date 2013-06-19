@@ -166,7 +166,7 @@ Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Make a timer tick ever 1000 ms<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_timer.get(),<a href="CppSIGNAL.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTimer()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_timer.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTimer()));<br/>
 &nbsp;&nbsp;m_timer-&gt;start(1000);<br/>
 }<br/>
 <br/>

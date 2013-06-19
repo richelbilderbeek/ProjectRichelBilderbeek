@@ -129,9 +129,9 @@ Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle("CppQtClickableLabel");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>A <a href="CppQLabel.htm">QLabel</a> does not emit a clicked signal<br/>
-&nbsp;&nbsp;QObject::connect(ui-&gt;label_text,<a href="CppSIGNAL.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onClick()));<br/>
+&nbsp;&nbsp;QObject::connect(ui-&gt;label_text,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onClick()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>But a <a href="CppQPushButton.htm">QPushButton</a> does!<br/>
-&nbsp;&nbsp;QObject::connect(ui-&gt;button,<a href="CppSIGNAL.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onClick()));<br/>
+&nbsp;&nbsp;QObject::connect(ui-&gt;button,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onClick()));<br/>
 }<br/>
 <br/>
 Dialog::~Dialog()<br/>

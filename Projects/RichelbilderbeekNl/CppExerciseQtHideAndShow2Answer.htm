@@ -135,7 +135,7 @@ FirstDialog::~FirstDialog()<br/>
 {<br/>
 &nbsp;&nbsp;SecondDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;d,<a href="CppSIGNAL.htm">SIGNAL</a>(close_me()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close_child()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;d,<a href="CppSignalMacro.htm">SIGNAL</a>(close_me()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close_child()));<br/>
 &nbsp;&nbsp;m_show_child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (m_show_child)<br/>
 &nbsp;&nbsp;{<br/>
@@ -262,7 +262,7 @@ SecondDialog::~SecondDialog()<br/>
 {<br/>
 &nbsp;&nbsp;ThirdDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;d,<a href="CppSIGNAL.htm">SIGNAL</a>(close_me()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close_child()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;d,<a href="CppSignalMacro.htm">SIGNAL</a>(close_me()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close_child()));<br/>
 &nbsp;&nbsp;m_show_child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (m_show_child)<br/>
 &nbsp;&nbsp;{<br/>

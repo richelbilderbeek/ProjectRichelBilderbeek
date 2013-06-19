@@ -431,7 +431,7 @@ SOURCES += main.cpp<br/>
 &nbsp;&nbsp;v.show();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQTimer.htm">QTimer</a>&gt; timer(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(&amp;s));<br/>
-&nbsp;&nbsp;timer-&gt;connect(timer.get(), <a href="CppSIGNAL.htm">SIGNAL</a>(timeout()), &amp;s, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;timer-&gt;connect(timer.get(), <a href="CppSignalMacro.htm">SIGNAL</a>(timeout()), &amp;s, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
 &nbsp;&nbsp;timer-&gt;start(50);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>

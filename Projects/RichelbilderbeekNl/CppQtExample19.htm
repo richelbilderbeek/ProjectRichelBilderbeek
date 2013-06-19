@@ -188,10 +188,10 @@ DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;ui-&gt;graphicsView-&gt;setScene(m_scene);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect and start a timer<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_timer,<a href="CppSIGNAL.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTick()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;check_<b><a href="CppAuto.htm">auto</a></b>_rotate,<a href="CppSIGNAL.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onCheck()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_left,<a href="CppSIGNAL.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onButtonLeft()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_right,<a href="CppSIGNAL.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onButtonRight()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_timer,<a href="CppSignalMacro.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTick()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;check_<b><a href="CppAuto.htm">auto</a></b>_rotate,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onCheck()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_left,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onButtonLeft()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_right,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onButtonRight()));<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Start the timer<br/>

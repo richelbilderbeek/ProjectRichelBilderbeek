@@ -65,7 +65,7 @@ like <a href="CppQtMovingLine.png">this screenshot</a>.</p>
 &nbsp;&nbsp;v.show();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> timer <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(&amp;s);<br/>
-&nbsp;&nbsp;timer-&gt;connect(timer, <a href="CppSIGNAL.htm">SIGNAL</a>(timeout()), &amp;s, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;timer-&gt;connect(timer, <a href="CppSignalMacro.htm">SIGNAL</a>(timeout()), &amp;s, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
 &nbsp;&nbsp;timer-&gt;start(100);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>

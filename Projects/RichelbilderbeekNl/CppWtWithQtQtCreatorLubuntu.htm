@@ -395,7 +395,7 @@ Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.
 &nbsp;&nbsp;qtSender_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Object(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;qtReceiver_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Object(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(qtSender_, <a href="CppSIGNAL.htm">SIGNAL</a>(greet(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a>&amp;)),<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(qtSender_, <a href="CppSignalMacro.htm">SIGNAL</a>(greet(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a>&amp;)),<br/>
 		&nbsp;&nbsp; qtReceiver_, <a href="CppSLOT.htm">SLOT</a>(<b><a href="CppDo.htm">do</a></b>Greet(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a>&amp;)));<br/>
 }<br/>
 <br/>
@@ -524,7 +524,7 @@ Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.
 DispatchObject::DispatchObject(DispatchThread *thread)<br/>
 &nbsp;&nbsp;: thread_(thread)<br/>
 {<br/>
-&nbsp;&nbsp;connect(<b><a href="CppThis.htm">this</a></b>, <a href="CppSIGNAL.htm">SIGNAL</a>(<b><a href="CppDo.htm">do</a></b>Event()), <b><a href="CppThis.htm">this</a></b>, <a href="CppSLOT.htm">SLOT</a>(onEvent()));<br/>
+&nbsp;&nbsp;connect(<b><a href="CppThis.htm">this</a></b>, <a href="CppSignalMacro.htm">SIGNAL</a>(<b><a href="CppDo.htm">do</a></b>Event()), <b><a href="CppThis.htm">this</a></b>, <a href="CppSLOT.htm">SLOT</a>(onEvent()));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> DispatchObject::propagateEvent()<br/>

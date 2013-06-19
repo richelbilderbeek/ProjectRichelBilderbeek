@@ -165,7 +165,7 @@ HEADERS += \<br/>
 &nbsp;&nbsp;<a href="CppQCoreApplication.htm">QCoreApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppEmit.htm">Emit</a>ter e;<br/>
 &nbsp;&nbsp;Receiver r;<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;e,<a href="CppSIGNAL.htm">SIGNAL</a>(signal_<b><a href="CppEmit.htm">emit</a></b>()),&amp;r,<a href="CppSLOT.htm">SLOT</a>(OnReceive()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;e,<a href="CppSignalMacro.htm">SIGNAL</a>(signal_<b><a href="CppEmit.htm">emit</a></b>()),&amp;r,<a href="CppSLOT.htm">SLOT</a>(OnReceive()));<br/>
 &nbsp;&nbsp;e.Do<a href="CppEmit.htm">Emit</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>

@@ -159,14 +159,14 @@ FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= qt<a href="CppMain.htm">main</a>window.ui<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>DOES NOT WORK???<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QAction * <b><a href="CppConst.htm">const</a></b> a <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QAction(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;a-&gt;setShortcut(<a href="CppQt.htm">Qt</a>::CTRL <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>::Key_N);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(a,<a href="CppSIGNAL.htm">SIGNAL</a>(triggered()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnNew()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(a,<a href="CppSignalMacro.htm">SIGNAL</a>(triggered()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnNew()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;menuBar()-&gt;addAction("New",a,<a href="CppSLOT.htm">SLOT</a>(trigger()));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>DOES NOT WORK???<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QAction * <b><a href="CppConst.htm">const</a></b> a <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QAction(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;a-&gt;setShortcut(QKeySequence(<a href="CppQt.htm">Qt</a>::CTRL <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>::Key_Q));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(a,<a href="CppSIGNAL.htm">SIGNAL</a>(triggered()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(a,<a href="CppSignalMacro.htm">SIGNAL</a>(triggered()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;menuBar()-&gt;addAction("Quit",a,<a href="CppSLOT.htm">SLOT</a>(trigger()));<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

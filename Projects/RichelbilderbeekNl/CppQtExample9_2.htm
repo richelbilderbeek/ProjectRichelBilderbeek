@@ -245,7 +245,7 @@ PongMainDialog::PongMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<b
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppTime.htm">time</a>r to call 'advance' on all sprites'<br/>
 &nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(scene));<br/>
-&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;connect(<a href="CppTime.htm">time</a>r, <a href="CppSIGNAL.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()), scene, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;connect(<a href="CppTime.htm">time</a>r, <a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()), scene, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
 &nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;start(20);<br/>
 <br/>
 }<br/>
