@@ -1771,7 +1771,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "QTimer","<a href=\"CppQ$Ti$mer.htm\">Q$Ti$mer</a>" },
     { "Random","Rand$om" },
     { "Rotate","<a href=\"C$ppR$otate.htm\">R$otate</a>" },
-    { "SIGNAL","<a href=\"C$ppS$IGNAL.htm\">S$IGNAL</a>" },
+    { "SIGNAL","<a href=\"C$ppS$ignalM$acro.htm\">S$IGNAL</a>" },
     { "Signal","<a href=\"C$ppS$ignal.htm\">S$ignal</a>" },
     { "TColor","TC$olor" },
     { "Thread","<a href=\"C$ppT$hread.htm\">T$hread</a>" },
