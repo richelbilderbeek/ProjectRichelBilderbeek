@@ -192,7 +192,7 @@ SOURCES += main.cpp<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a timer to call 'advance' on all sprites'<br/>
 &nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQTimer.htm">QTimer</a>&gt; timer(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(scene.get()));<br/>
-&nbsp;&nbsp;timer-&gt;connect(timer.get(), <a href="CppSIGNAL.htm">SIGNAL</a>(timeout()), scene.get(), <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;timer-&gt;connect(timer.get(), <a href="CppSignalMacro.htm">SIGNAL</a>(timeout()), scene.get(), <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
 &nbsp;&nbsp;timer-&gt;start(20);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Show the graphicsscene with its sprites<br/>

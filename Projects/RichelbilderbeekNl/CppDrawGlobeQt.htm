@@ -92,9 +92,9 @@ Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;dial_r,<a href="CppSIGNAL.htm">SIGNAL</a>(valueChanged(<b><a href="CppInt.htm">int</a></b>)),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;dial_g,<a href="CppSIGNAL.htm">SIGNAL</a>(valueChanged(<b><a href="CppInt.htm">int</a></b>)),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;dial_b,<a href="CppSIGNAL.htm">SIGNAL</a>(valueChanged(<b><a href="CppInt.htm">int</a></b>)),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;dial_r,<a href="CppSignalMacro.htm">SIGNAL</a>(valueChanged(<b><a href="CppInt.htm">int</a></b>)),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;dial_g,<a href="CppSignalMacro.htm">SIGNAL</a>(valueChanged(<b><a href="CppInt.htm">int</a></b>)),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;dial_b,<a href="CppSignalMacro.htm">SIGNAL</a>(valueChanged(<b><a href="CppInt.htm">int</a></b>)),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>

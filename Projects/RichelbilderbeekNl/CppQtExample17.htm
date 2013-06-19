@@ -187,9 +187,9 @@ TrafficLightDialog::TrafficLightDialog(<a href="CppQWidget.htm">QWidget</a> *par
 &nbsp;&nbsp;layout-&gt;addWidget(m_orange.get());<br/>
 &nbsp;&nbsp;layout-&gt;addWidget(m_green.get());<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;m_red-&gt;connect(m_red.get(),<a href="CppSIGNAL.htm">SIGNAL</a>(onClick()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onRedClicked()));<br/>
-&nbsp;&nbsp;m_red-&gt;connect(m_orange.get(),<a href="CppSIGNAL.htm">SIGNAL</a>(onClick()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onOrangeClicked()));<br/>
-&nbsp;&nbsp;m_red-&gt;connect(m_green.get(),<a href="CppSIGNAL.htm">SIGNAL</a>(onClick()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onGreenClicked()));<br/>
+&nbsp;&nbsp;m_red-&gt;connect(m_red.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(onClick()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onRedClicked()));<br/>
+&nbsp;&nbsp;m_red-&gt;connect(m_orange.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(onClick()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onOrangeClicked()));<br/>
+&nbsp;&nbsp;m_red-&gt;connect(m_green.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(onClick()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onGreenClicked()));<br/>
 &nbsp;&nbsp;<br/>
 }<br/>
 <br/>

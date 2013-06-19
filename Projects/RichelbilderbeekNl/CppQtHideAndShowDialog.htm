@@ -227,7 +227,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dialog);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(dialog,<a href="CppSIGNAL.htm">SIGNAL</a>(close_me()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close_child()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(dialog,<a href="CppSignalMacro.htm">SIGNAL</a>(close_me()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close_child()));<br/>
 &nbsp;&nbsp;m_show_child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (m_show_child)<br/>
 &nbsp;&nbsp;{<br/>
@@ -240,7 +240,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dialog);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(dialog,<a href="CppSIGNAL.htm">SIGNAL</a>(close_me()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close_child()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(dialog,<a href="CppSignalMacro.htm">SIGNAL</a>(close_me()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close_child()));<br/>
 &nbsp;&nbsp;m_show_child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (m_show_child)<br/>
 &nbsp;&nbsp;{<br/>

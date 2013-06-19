@@ -212,7 +212,7 @@ MyItem::MyItem(<a href="CppQWidget.htm">QWidget</a> *parent, <a href="CppQt.htm"
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setLayout(layout);<br/>
 &nbsp;&nbsp;layout-&gt;addWidget(m_label);<br/>
 &nbsp;&nbsp;layout-&gt;addWidget(m_edit);<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_edit,<a href="CppSIGNAL.htm">SIGNAL</a>(<b><a href="CppReturn.htm">return</a></b>Pressed()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(LoseFocus()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_edit,<a href="CppSignalMacro.htm">SIGNAL</a>(<b><a href="CppReturn.htm">return</a></b>Pressed()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(LoseFocus()));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> MyItem::LoseFocus()<br/>

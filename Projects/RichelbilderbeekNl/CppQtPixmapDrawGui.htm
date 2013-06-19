@@ -223,8 +223,8 @@
     {<br/>
     &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
     &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists("256x256.png") <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Please put a file called 256x256.png in the executable its folder");<br/>
-    &nbsp;&nbsp;QObject::connect(ui-&gt;pushButton,<a href="CppSIGNAL.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnClick()));<br/>
-    &nbsp;&nbsp;QObject::connect(&amp;m_timer,<a href="CppSIGNAL.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnTick()));<br/>
+    &nbsp;&nbsp;QObject::connect(ui-&gt;pushButton,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnClick()));<br/>
+    &nbsp;&nbsp;QObject::connect(&amp;m_timer,<a href="CppSignalMacro.htm">SIGNAL</a>(timeout()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnTick()));<br/>
     &nbsp;&nbsp;OnTick();<br/>
     &nbsp;&nbsp;m_timer.start(10);<br/>
     }<br/>

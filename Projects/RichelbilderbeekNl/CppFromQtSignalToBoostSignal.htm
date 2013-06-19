@@ -160,7 +160,7 @@ Due to this, next step is to seperate the <a href="CppClass.htm">class</a> in a 
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create receiver<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Receiver r;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect emitter's <a href="CppSignal.htm">signal</a> to receiver<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;e,<a href="CppSIGNAL.htm">SIGNAL</a>(<a href="CppSignal.htm">signal</a>_emit()),&amp;r,<a href="CppSLOT.htm">SLOT</a>(OnReceive()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;e,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppSignal.htm">signal</a>_emit()),&amp;r,<a href="CppSLOT.htm">SLOT</a>(OnReceive()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let emitter <b><a href="CppEmit.htm">emit</a></b> its <a href="CppSignal.htm">signal</a><br/>
 &nbsp;&nbsp;e.Do<a href="CppEmit.htm">Emit</a>();<br/>
 }<br/>
@@ -194,7 +194,7 @@ Due to this, next step is to seperate the <a href="CppClass.htm">class</a> in a 
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create receiver<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Receiver r;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect emitter's <a href="CppSignal.htm">signal</a> to receiver<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;e,<a href="CppSIGNAL.htm">SIGNAL</a>(<a href="CppSignal.htm">signal</a>_emit()),&amp;r,<a href="CppSLOT.htm">SLOT</a>(OnReceive()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(&amp;e,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppSignal.htm">signal</a>_emit()),&amp;r,<a href="CppSLOT.htm">SLOT</a>(OnReceive()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let emitter <b><a href="CppEmit.htm">emit</a></b> its <a href="CppSignal.htm">signal</a><br/>
 &nbsp;&nbsp;e.Do<a href="CppEmit.htm">Emit</a>();<br/>
 }<br/>

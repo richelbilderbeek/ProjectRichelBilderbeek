@@ -125,7 +125,7 @@ Accelerometer::Accelerometer(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;setLayout(grid);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;myThread <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> aThread(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;connect(myThread, <a href="CppSIGNAL.htm">SIGNAL</a>(deviceOrientation(<a href="CppQString.htm">QString</a>, <a href="CppQString.htm">QString</a>, <a href="CppQString.htm">QString</a>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;connect(myThread, <a href="CppSignalMacro.htm">SIGNAL</a>(deviceOrientation(<a href="CppQString.htm">QString</a>, <a href="CppQString.htm">QString</a>, <a href="CppQString.htm">QString</a>)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>, <a href="CppSLOT.htm">SLOT</a>(showData(<a href="CppQString.htm">QString</a>, <a href="CppQString.htm">QString</a>, <a href="CppQString.htm">QString</a>)));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;myThread-&gt;start(QThread::NormalPriority);<br/>
 }<br/>
@@ -209,7 +209,7 @@ aThread::aThread(<a href="CppQObject.htm">QObject</a> *parent)<br/>
 <b><a href="CppVoid.htm">void</a></b> aThread::run()<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> timer;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;connect(&amp;timer, <a href="CppSIGNAL.htm">SIGNAL</a>(timeout()), <b><a href="CppThis.htm">this</a></b>, <a href="CppSLOT.htm">SLOT</a>(updateCoords()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;connect(&amp;timer, <a href="CppSignalMacro.htm">SIGNAL</a>(timeout()), <b><a href="CppThis.htm">this</a></b>, <a href="CppSLOT.htm">SLOT</a>(updateCoords()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;timer.start(20); <a href="CppComment.htm">//</a> 50 Hz update rate<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;exec();<br/>
 }<br/>
