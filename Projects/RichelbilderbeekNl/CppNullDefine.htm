@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>null</title>
-  <meta name="description" content="C++ null"/>
-  <meta name="keywords" content="C++ null"/>
+  <title>NULL</title>
+  <meta name="description" content="C++ NULL"/>
+  <meta name="keywords" content="C++ NULL"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,15 +18,17 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppNull.htm">null</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppNULL.htm">NULL</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppNull.htm">null</a> denotes a <a href="CppPointer.htm">pointer</a> pointing nowhere. </p> 
+<p><a href="CppNULL.htm">NULL</a> is a <a href="CppDefine.htm">#defined</a> constant for a <a href="CppPointer.htm">pointer</a> pointing nowhere. 
+Prefer using a zero or <a href="CppNullptr.htm">nullptr</a> [1].</p> 
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * p <a href="CppOperatorAssign.htm">=</a> <a href="CppNull.htm">0</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * p <a href="CppOperatorAssign.htm">=</a> <a href="CppNULL.htm">NULL</a>; <a href="CppComment.htm">//</a>Not preferred<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * q <a href="CppOperatorAssign.htm">=</a> &nbsp;&nbsp;&nbsp;0; <a href="CppComment.htm">//</a>Preferred<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -102,6 +104,16 @@ Test * CreateNull<a href="CppPointer.htm">Pointer</a>() { <b><a href="CppReturn.
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!-- [1] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 175: 'A pointer shall not be compared to NULL or be assigned NULL; use plain 0 instead.'</li>
+</ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
