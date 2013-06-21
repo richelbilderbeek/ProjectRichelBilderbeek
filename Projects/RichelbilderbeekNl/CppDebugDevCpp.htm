@@ -1,217 +1,59 @@
- 
-<title>How must I use the Dev C++ debugger?</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>How must I use the Dev C++ debugger?</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ FAQ Richel Bilderbeek How must I use the Dev C++ debugger?</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>7</o:Revision>
-  <o:TotalTime>145</o:TotalTime>
-  <o:Created>2010-01-09T10:38:00Z</o:Created>
-  <o:LastSaved>2010-01-09T10:43:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>152</o:Words>
-  <o:Characters>867</o:Characters>
-  <o:Category>C++ FAQ Richel Bilderbeek How must I use the Dev C++ debugger?</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>7</o:Lines>
-  <o:Paragraphs>1</o:Paragraphs>
-  <o:CharactersWithSpaces>1064</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-<style>
-<!--
-  
- 
- 
- 
- 
- 
- 
- /* List Definitions */
-@list l0
-	{mso-list-id:186528273;
-	mso-list-type:hybrid;
-	mso-list-template-ids:876913416 1330571460 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;
-	mso-fareast-font-family:"Times New Roman";
-	mso-bidi-font-family:"Courier New";}
-@list l1
-	{mso-list-id:326322010;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1562466676 -2120826470 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l1:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;
-	mso-fareast-font-family:"Times New Roman";
-	mso-bidi-font-family:"Courier New";}
-@list l2
-	{mso-list-id:659887675;
-	mso-list-type:hybrid;
-	mso-list-template-ids:18220354 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:*;
-	mso-level-tab-stop:.25in;
-	mso-level-number-position:left;
-	margin-left:.25in;
-	text-indent:-.25in;
-	mso-hansi-font-family:"Courier New";}
-@list l3
-	{mso-list-id:1681160471;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1388230162 -618369848 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
-@list l3:level1
-	{mso-level-start-at:0;
-	mso-level-text:"\[%1\]";
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.5in;}
-@list l4
-	{mso-list-id:1803380029;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1100761372 -923387128 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
-@list l4:level1
-	{mso-level-start-at:0;
-	mso-level-text:"\[%1\]";
-	mso-level-tab-stop:.35in;
-	mso-level-number-position:left;
-	margin-left:.35in;
-	text-indent:-.35in;}
-@list l5
-	{mso-list-id:1861891850;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1879057294 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l5:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:*;
-	mso-level-tab-stop:.25in;
-	mso-level-number-position:left;
-	margin-left:.25in;
-	text-indent:-.25in;
-	mso-hansi-font-family:"Courier New";}
-@list l6
-	{mso-list-id:1964725092;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-128924344 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l6:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:*;
-	mso-level-tab-stop:.25in;
-	mso-level-number-position:left;
-	margin-left:.25in;
-	text-indent:-.25in;
-	mso-hansi-font-family:"Courier New";}
- 
--->
-</style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>How must I use the Dev C++ debugger?</title>
+  <meta name="description" content="C++ How must I use the Dev C++ debugger?"/>
+  <meta name="keywords" content="C++ How must I use the Dev C++ debugger?"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
-
- 
-
- 
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<h1>(<a
-href="Cpp.htm">C++</a>) <a href="CppBooks.htm"><span lang=NL style='mso-bidi-font-family:
-Arial;color:windowtext;mso-ansi-language:NL;text-decoration:none;text-underline:
-none'><span style='mso-field-code:"HYPERLINK \0022CppDebugDevCpp\.htm\0022"'><u><span
-style='color:blue'>How must I use the Dev C++ debugger? </u></a></h1>
-
 <p>&nbsp;</p>
-
-<p>A   <a
-href="CppFaq.htm">C++ FAQ</a>.</p>
-
 <p>&nbsp;</p>
-
-<p>Set a breakpoint somewhere in your code, by clicking in the gutter left
-of the code.</p>
-
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDebugDevCpp.htm">How must I use the Dev C++ debugger?</a></h1>
 <p>&nbsp;</p>
-
+<p>A <a href="CppFaq.htm">C++ FAQ</a>.</p>
+<p>&nbsp;</p>
+<p>Set a breakpoint somewhere in your code, by clicking in the gutter left of the code.</p>
+<p>&nbsp;</p>
 <p>Do 'F8 (Debug)'. The program will ask to recompile, click 'Yes'.</p>
-
 <p>&nbsp;</p>
-
-<p>If the program keeps asking to recompile, without starting the program,
-do 'Tools | Compiler options'. In this screen do the following:</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l6 level1 lfo6;
-tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    Check 'Add the following commands when calling
-compiler'</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l6 level1 lfo6;
-tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    Add '-g' to the edit box below</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l6 level1 lfo6;
-tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    Check 'Add these commands to the linker command-line'</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l6 level1 lfo6;
-tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    Add '-g' to the edit box below</p>
-
+<p>If the program keeps asking to recompile, without starting the program, do 'Tools | Compiler options'. In this screen do the following:</p>
 <p>&nbsp;</p>
-
+<ul>
+  <li>Check 'Add the following commands when calling compiler'</li>
+  <li>Add '-g' to the edit box below</li>
+  <li>Check 'Add these commands to the linker command-line'</li>
+  <li>Add '-g' to the edit box below</li>
+</ul>
+<p>&nbsp;</p>
 <p>Doing 'F8 (Debug)' again should do the trick.</p>
-
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>External links</h2>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l5 level1 lfo7;
-tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://www.youtube.com/watch?v=kHFpzxMFB3E">YouTube
-video showing this</a></p>
-
 <p>&nbsp;</p>
-
+<ul>
+  <li><a href="http://www.youtube.com/watch?v=kHFpzxMFB3E">YouTube video showing this</a></li>
+</ul>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
 <p>&nbsp;</p>
-
-</div>
-
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>

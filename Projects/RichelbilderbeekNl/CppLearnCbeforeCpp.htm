@@ -1,147 +1,63 @@
- 
-<title>FAQ: Should I learn C before I learn C++?</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ FAQ: Should I learn C before I learn C++?</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek FAQ: Should I learn C before I learn C++ learning</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>6</o:Revision>
-  <o:TotalTime>124</o:TotalTime>
-  <o:Created>2008-03-31T16:52:00Z</o:Created>
-  <o:LastSaved>2008-03-31T16:56:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>54</o:Words>
-  <o:Characters>263</o:Characters>
-  <o:Category>C++ Richel Bilderbeek FAQ: Should I learn C before I learn C++</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>10</o:Lines>
-  <o:Paragraphs>8</o:Paragraphs>
-  <o:CharactersWithSpaces>383</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Should I learn C before learning C++?</title>
+  <meta name="description" content="C++ Should I learn C before learning C++?"/>
+  <meta name="keywords" content="C++ Should I learn C before learning C++?"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
-
- 
-
- 
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<h1>(<a href="Cpp.htm">C++</a>
-<a href="CppFaq.htm">FAQ</a>) Should I learn C before learning C++?</h1>
-
 <p>&nbsp;</p>
-
-<p>Both
-Bjarne Stroustrup and C++ FAQ LITE believe it is easier to directly start
-learning C++.</p>
-
 <p>&nbsp;</p>
-
-<p>Reasons
-are:</p>
-
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLearnCbeforeCpp.htm">Should I learn C before learning C++?</a></h1>
 <p>&nbsp;</p>
-
-<p>*
-C++ is safer [1], e.g. it has increased type safety, which makes the use of</p>
-
-<p>  Hungarian notation unnesessary.</p>
-
-<p>*
-C++ is more expressive [1]. This is due to that C++ enables Object Oriented
-Programming.</p>
-
-<p>*
-C++ reduces need to focus on low-level techniques as there are better libraries
-[1]</p>
-
-<p>  (the STL). For example, using a std::vector
-saves you a lot of time managing and</p>
-
-<p>  writing functions for arrays.</p>
-
-<p>* C
-uses malloc instead of new, the latter being safer [3].</p>
-
-<p>* C
-uses printf instead of cout, the latter being safer [3].</p>
-
-<p>* C
-unnecessary uses type-dependent switch statements, where C++ can solve these</p>
-
-<p>  using polymorphism [3].</p>
-
-<p>*
-C++ has error-code exception handling, as it supports the keywords try and
-catch [3].</p>
-
-<p>*
-C++ makes #define macros unnecessary, using template or inline functions [3].</p>
-
-<p>*
-C++ can overload functions with the same name, if the compiler can distinguish
-them</p>
-
-<p>  from the functions' arguments.</p>
-
+<p>Both Bjarne Stroustrup and C++ FAQ LITE believe it is easier to directly start learning C++.</p>
 <p>&nbsp;</p>
-
-<p>After
-having learned the common subset of C and C++, it is easier to find out</p>
-
-<p>the
-trickier parts of C [1,2]. See <a href="CppKeyword.htm">C++ keywords</a> for a
-list of C++ keywords.</p>
-
+<p>Reasons are:</p>
 <p>&nbsp;</p>
-
-<h2>References</h2>
-
-<p>*
-1) Bjarne Stroustrup. The C++ Programming Language (3rd edition).</p>
-
-<p>     ISBN: 0-201-88954-4, chapter 1.2
-'Learning C++'</p>
-
-<p>*
-2) http://new-brunswick.net/workshop/c++/faq/how-to-learn-cpp.html, topic
-[28.2]</p>
-
-<p>*
-3) http://www.research.att.com/~bs/bs_faq.html#prerequisite</p>
-
+<ul>
+  <li>C++ is safer [1], e.g. it has increased type safety, which makes the use of Hungarian notation unnesessary</li>
+  <li>C++ is more expressive [1]. This is due to that C++ enables Object Oriented Programming</li>
+  <li>C++ reduces need to focus on low-level techniques as there are better libraries [1] (the STL). For example, using a std::vector saves you a lot of time managing and writing functions for arrays</li>
+  <li>C uses malloc instead of new, the latter being safer [3]</li>
+  <li>C uses printf instead of cout, the latter being safer [3]</li>
+  <li>C unnecessary uses type-dependent switch statements, where C++ can solve these using polymorphism [3]</li>
+  <li>C++ has error-code exception handling, as it supports the keywords try and catch [3]</li>
+  <li>C++ makes #define macros unnecessary, using template or inline functions [3]</li>
+  <li>C++ can overload functions with the same name, if the compiler can distinguish them from the function its arguments</li>
+</ul>
 <p>&nbsp;</p>
-
+<p>After having learned the common subset of C and C++, it is easier to find out the
+trickier parts of C [1,2]. See <a href="CppKeyword.htm">C++ keywords</a> for a list of C++ keywords.</p>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
 <p>&nbsp;</p>
-
-</div>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li>Bjarne Stroustrup. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4, chapter 1.2: 'Learning C++'</li>
+  <li>http://new-brunswick.net/workshop/c++/faq/how-to-learn-cpp.html, topic [28.2]</li>
+  <li>http://www.research.att.com/~bs/bs_faq.html#prerequisite</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>
