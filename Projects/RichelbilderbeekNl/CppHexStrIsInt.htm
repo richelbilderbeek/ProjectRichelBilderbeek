@@ -1,4 +1,4 @@
- 
+
 <title>HexStrIsInt</title>
 <!--[if gte mso 9]><xml>
  <o:DocumentProperties>
@@ -21,51 +21,45 @@
 </xml><![endif]-->
  
 
- 
-
- 
-
-<p> Back to <a
-href="index.htm">Richel Bilderbeek's homepage</a>.</p>
-
-<p> Back to <a
-href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
-
-<p>  &nbsp;</p>
-
-<p>  &nbsp;</p>
-
-<p>  &nbsp;</p>
-
-<h1>HexStrIsInt</h1>
-
-<p>  &nbsp;</p>
-
-<p> Check if a hexadecimal
-std::string can be converted to an integer.</p>
-
-<p>  &nbsp;</p>
-
-<p> There are
-two options:</p>
-
-<p> * Option #1
-accepts a shorter range, but can also accept negatives</p>
-
-<p> * Option #2
-accepts a much larger range, but cannot accept negatives</p>
-
-<p>  &nbsp;</p>
-
-<p> Code in
-plain text can be found <a href="CppHexStrIsInt1.txt">here (#1)</a> and <a
-href="CppHexStrIsInt2.txt">here (#2)</a>.</p>
-
-<p>  &nbsp;</p>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>HexStrIsInt</title>
+  <meta name="description" content="C++ HexStrIsInt"/>
+  <meta name="keywords" content="C++ HexStrIsInt"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHexStrIsInt.htm">HexStrIsInt</a></h1>
+<p>&nbsp;</p>
+<p> Check if a hexadecimal std::string can be converted to an integer.</p>
+<p>&nbsp;</p>
+<p> There are two options:</p>
+<ul>
+  <li>Option #1: accepts a shorter range, but can also accept negatives</li>
+  <li>Option #2: accepts a much larger range, but cannot accept negatives</li>
+</ul>
+<p>&nbsp;</p>
+<p> Code in plain text can be found <a href="CppHexStrIsInt1.txt">here (#1)</a> and <a href="CppHexStrIsInt2.txt">here (#2)</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h3>Option #1</h3>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
  
 
@@ -73,7 +67,7 @@ href="CppHexStrIsInt2.txt">here (#2)</a>.</p>
 
 <p> #include &lt;cassert&gt;</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
 <p> //From http://www.richelbilderbeek.nl/CppHexStrIsInt.htm</p>
 
@@ -114,7 +108,7 @@ true</b>;</p>
 
 <p> }</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
 <p><b> int </b>  main()</p>
 
@@ -152,7 +146,7 @@ range</p>
 <p>   
  assert(IsHexInt(&quot;G&quot;,temp) == false);</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
 <p>   
  assert(IsHexInt(&quot;--80000000&quot;,temp) == <b>false</b>);</p>
@@ -169,21 +163,17 @@ detect ill-formed numbers</p>
 
 </div>
 
-<p>  &nbsp;</p>
-
-<p> Note that
-the std::string cannot have a value higher then <b>80000000</b>.</p>
-
-<p>  &nbsp;</p>
-
+<p>&nbsp;</p>
+<p>Note that the std::string cannot have a value higher then <b>80000000</b>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h3>Option #2</h3>
-
-<p>  &nbsp;</p>
-
-<p> Suggested by
-<a href="http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069">AsmGuru62</a>:</p>
-
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
+<p>Suggested by <a href="http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069">AsmGuru62</a>:</p>
+<p>&nbsp;</p>
 
  
 
@@ -191,7 +181,7 @@ the std::string cannot have a value higher then <b>80000000</b>.</p>
 
 <p> #include &lt;cassert&gt;</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
 <p> //From http://www.richelbilderbeek.nl/CppHexStrIsInt.htm</p>
 
@@ -210,7 +200,7 @@ must_be_hex)</p>
 <p>     <b>char</b>
 copy_of_param[64];</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
 <p>     <b>return</b>(</p>
 
@@ -225,7 +215,7 @@ copy_of_param[64];</p>
 
 <p> }</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
 <p><b> int </b>  main()</p>
 
@@ -261,17 +251,17 @@ negatives</p>
 
 </div>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
 <p> As option #1
 also has defects in detecting negatives, you might want to change the <b>IsAllHex</b>
 to the one below:</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
  
 
@@ -293,7 +283,7 @@ hexadecimal characters</p>
 <p>     char
 copy_of_param[64];</p>
 
-<p>  &nbsp;</p>
+<p>&nbsp;</p>
 
 <p>   
  return(</p>
@@ -311,22 +301,14 @@ copy_of_param[64];</p>
 
 </div>
 
-<p>  &nbsp;</p>
-
-<p>  &nbsp;</p>
-
-<p>  &nbsp;</p>
-
-<p> Back to <a
-href="CppCodeSnippets.htm">Richel Bilderbeek's Code Snippets</a>.</p>
-
-<p> Back to <a
-href="index.htm">Richel Bilderbeek's homepage</a>.</p>
-
-<p>  &nbsp;</p>
-
-</div>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>

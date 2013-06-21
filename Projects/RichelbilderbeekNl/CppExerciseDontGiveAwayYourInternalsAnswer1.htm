@@ -23,70 +23,42 @@
   <o:Version>9.3821</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
-<style>
-<!--
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- /* List Definitions */
-@list l0
-	{mso-list-id:1457676245;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2023291324 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
-  
--->
-</style>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Answer of exercise #3: Don't give away your internals, #1</title>
+  <meta name="description" content="C++ Answer of exercise #3: Don't give away your internals, #1"/>
+  <meta name="keywords" content="C++ Answer of exercise #3: Don't give away your internals, #1"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
-
- 
-
- 
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<h1>(<a href="Cpp.htm">C++</a>)
-<a href="CppExerciseDontGiveAwayYourInternalsAnswer1.htm"> Answer of exercise #3: Don't give
-away your internals, #1</a></h1>
-
 <p>&nbsp;</p>
-
-<p>This
-is part #1 of the answer of   <a
-href="CppExerciseDontGiveAwayYourInternals.htm"> exercise #3: Don't give away your internals</a> and the follow-up of   <a href="CppExerciseDontGiveAwayYourInternalsAnswer0.htm"> Answer of exercise #3: Don't give
-away your internals, #0</a>.</p>
-
 <p>&nbsp;</p>
-
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseDontGiveAwayYourInternalsAnswer1.htm">Answer of exercise #3: Don't give away your internals, #1</a></h1>
+<p>&nbsp;</p>
+<p>This is part #1 of the answer of <a href="CppExerciseDontGiveAwayYourInternals.htm">exercise #3: Don't give away your internals</a> and the follow-up of
+<a href="CppExerciseDontGiveAwayYourInternalsAnswer0.htm"> Answer of exercise #3: Don't give away your internals, #0</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>Part #1: checking you checking</h2>
-
 <p>&nbsp;</p>
-
-<p>Let's
-again start by defining a similar test suite.</p>
-
+<p>Let's again start by defining a similar test suite.</p>
 <p>&nbsp;</p>
 
  
-
-<p>&nbsp;</p>
-
 <p><a href="CppInclude.htm">#include</a>
 &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
 
@@ -242,8 +214,7 @@ following line must not compile:</p>
 
 <p>&nbsp;</p>
 
-<p>The
-first Four versions of GetAnimals will compile against our goal! The
+<p>The first Four versions of GetAnimals will compile against our goal! The
 boost::shared_ptr must hold a const Animal, because <a
 href="CppConstIsNotDeep.htm">const is not deep</a>.</p>
 
@@ -305,8 +276,7 @@ boost::shared_ptr&lt;const Animal&gt; &gt;&amp; GetAnimals7() const</p>
 
 <p>&nbsp;</p>
 
-<p>Blimey,
-none of these compiles! This is because a Zoo holds non-const Animals inside
+<p>Blimey, none of these compile! This is because a Zoo holds non-const Animals inside
 its <a href="CppShared_ptr.htm">boost::shared_ptr</a>s. Because of this it is
 impossible to return a reference of const Animals back! How can we solve this?</p>
 
@@ -396,16 +366,9 @@ boost::shared_ptr&lt;const Animal&gt; &gt; GetAnimals7() const</p>
 
 <p>&nbsp;</p>
 
-<p>Does
-this makes you head spin? It might, but it's for a good cause: to not give away
-our internals.</p>
-
+<p>Does this makes you head spin? It might, but it's for a good cause: to not give away our internals.</p>
 <p>&nbsp;</p>
-
-<p>After
-this change, all four GetAnimals methods correctly refrain from compiling in
-this test:</p>
-
+<p>After this change, all four GetAnimals methods correctly refrain from compiling in this test:</p>
 <p>&nbsp;</p>
 
  
@@ -539,58 +502,38 @@ GetAnimals7() const</p>
 </div>
 
 <p>&nbsp;</p>
-
-<p>I
-hope you enjoyed this exercise.</p>
-
-<h2>Epilogue</h2>
-
+<p>I hope you enjoyed this exercise.</p>
 <p>&nbsp;</p>
-
-<p>The
-exercise is called 'Don't give away your internals' (after <span
-style='mso-field-code:"REF _Ref204681867 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300034003600380031003800360037000000</w:data>
-</xml><![endif]--> ). On of the points of this item was the question:
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Epilogue</h2>
+<p>&nbsp;</p>
+<p>The exercise is called 'Don't give away your internals' (after [1]). 
+One of the points of this item was the question:
 'What do you want to do with this information?'. If you want to use std::cout
 on the implementation of Zoo (that is, the std::vector of Animal), why not
 enable to use std::cout on Zoo itself? Think if you perhaps do not need the
 GetAnimals (or similar, as in your code) method after all.</p>
-
 <p>&nbsp;</p>
-
-<h2><a href="CppReferences.htm"><span
-style='mso-bookmark:_Toc194762542'>  Reference</a></h2>
-
 <p>&nbsp;</p>
-
-<p></a><a name="_Ref204681867">   [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</a><a href="CppHerbSutter.htm"><span
-style='mso-bookmark:_Ref204681867'><span style='mso-bookmark:_Ref202766402'> Herb Sutter   <span
-style='mso-bookmark:_Ref204681867'><span style='mso-bookmark:_Ref202766402'></a><span
-style='mso-bookmark:_Ref204681867'><span style='mso-bookmark:_Ref202766402'> , <a
-href="CppAndreiAlexandrescu.htm"><span style='mso-bookmark:_Ref204681867'>  Andrei Alexandrescu   <span style='mso-bookmark:
-_Ref204681867'><span style='mso-bookmark:_Ref202766402'></a><span
-style='mso-bookmark:_Ref204681867'><span style='mso-bookmark:_Ref202766402'> . C++ coding standards: 101
-rules, guidelines, and best practices. ISBN: 0-32-111358-6.    <span
-style='mso-bookmark:_Ref204681867'> Item 28: 'Don't give away your internals'</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
+<h2><a href="CppReferences.htm">Reference</a></h2>
 <p>&nbsp;</p>
-
-</div>
-
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Item 28: 'Don't give away your internals'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>

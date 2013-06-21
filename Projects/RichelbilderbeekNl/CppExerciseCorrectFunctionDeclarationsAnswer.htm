@@ -1,5 +1,3 @@
- 
-<title>Answer of exercise #2: correct function declarations</title>
 <!--[if gte mso 9]><xml>
  <o:DocumentProperties>
   <o:Subject>C++ Answer of exercise #2: correct function declarations</o:Subject>
@@ -7,73 +5,38 @@
   <o:Keywords>C++ Richel Bilderbeek Answer of exercise #2: correct function declarations good correct functions</o:Keywords>
   <o:Description>From http://www.richelbilderbeek.nl</o:Description>
   <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>15</o:Revision>
-  <o:TotalTime>346</o:TotalTime>
-  <o:Created>2008-08-02T11:30:00Z</o:Created>
-  <o:LastSaved>2010-02-06T10:58:00Z</o:LastSaved>
-  <o:Pages>5</o:Pages>
-  <o:Words>1487</o:Words>
-  <o:Characters>8477</o:Characters>
-  <o:Category>C++ Richel Bilderbeek Answer of exercise #2: correct function declarations</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>70</o:Lines>
-  <o:Paragraphs>16</o:Paragraphs>
-  <o:CharactersWithSpaces>10410</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
-<style>
-<!--
-  
- 
- 
- 
- 
- 
-   
--->
-</style>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Answer of exercise #2: correct function declarations</title>
+  <meta name="description" content="C++ Answer of exercise #2: correct function declarations"/>
+  <meta name="keywords" content="C++ Answer of exercise #2: correct function declarations"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
-
- 
-
- 
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<h1>(<a href="Cpp.htm">C++</a>)
-<a href="CppExerciseAddOneAnswer.htm"><span style='mso-bidi-font-family:"Courier New";
-color:windowtext;text-decoration:none;text-underline:none'><span
-style='mso-field-code:"HYPERLINK \0022CppExerciseCorrectFunctionDeclarationsAnswer\.htm\0022"'><u><span
-style='color:blue'>Answer of exercise #2: correct function declarations </u></a></h1>
-
 <p>&nbsp;</p>
-
-<p>This
-is the answer of <a href="CppExerciseAddOne.htm"><span style='mso-field-code:
-"HYPERLINK \0022CppExerciseCorrectFunctionDeclarations\.htm\0022"'>Exercise #2:
-correct function declarations</a>.</p>
-
 <p>&nbsp;</p>
-
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseCorrectFunctionDeclarationsAnswer.htm">Answer of exercise #2: correct function declarations</a></h1>
+<p>&nbsp;</p>
+<p>This is the answer of <a href="CppExerciseCorrectFunctionDeclarations.htm"'>Exercise #2: correct function declarations</a>.</p>
+<p>&nbsp;</p>
 <h2>0) Get the number of rows in a database</h2>
-
 <p>&nbsp;</p>
 
- 
-
- 
 
 <p><b> <a href="CppConst.htm">const</a> </b>  <b><a href="CppInt.htm">int</a></b>
 GetRows(<b><a href="CppConst.htm">const</a></b> Database d); //Incorrect!</p>
@@ -82,14 +45,9 @@ GetRows(<b><a href="CppConst.htm">const</a></b> Database d); //Incorrect!</p>
 
 </div>
 
-<p>&nbsp;</p>
 
-<p>This
-function probably only read from a Database (due to the <a
-href="CppConstArgument.htm">const argument</a>). But instead of reading from
-the original database, a (probably expensive) copy of the database is passed
-into the function. This makes the answer:</p>
-
+<p>This function probably only read from a Database (due to the <a href="CppConstArgument.htm">const argument</a>). But instead of reading from
+the original database, a (probably expensive) copy of the database is passed into the function. This makes the answer:</p>
 <p>&nbsp;</p>
 
  
@@ -103,10 +61,13 @@ GetRows(<b><a href="CppConst.htm">const</a></b> Database&amp; d);</p>
 
 </div>
 
+
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>1) Declare the main function</h2>
-
 <p>&nbsp;</p>
 
  
@@ -120,23 +81,10 @@ GetRows(<b><a href="CppConst.htm">const</a></b> Database&amp; d);</p>
 
 </div>
 
-<p>&nbsp;</p>
-
-<p><a href="CppMain.htm">main</a> has return type
-<a href="CppInt.htm">int</a> <span style='mso-field-code:"REF _Ref205447536 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300035003400340037003500330036000000</w:data>
-</xml><![endif]--> <span style='mso-field-code:"REF _Ref205447538 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300035003400340037003500330038000000</w:data>
-</xml><![endif]--> <span style='mso-field-code:"REF _Ref205447539 \\r \\h"'>[2]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300035003400340037003500330039000000</w:data>
-</xml><![endif]--> <span style='mso-field-code:"REF _Ref205447540 \\r \\h"'>[3]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300035003400340037003500340030000000</w:data>
-</xml><![endif]--> <span style='mso-field-code:"REF _Ref205447541 \\r \\h"'>[4]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300035003400340037003500340031000000</w:data>
-</xml><![endif]--> .</p>
 
 <p>&nbsp;</p>
-
+<p><a href="CppMain.htm">main</a> has return type <a href="CppInt.htm">int</a> [1-5].</p>
+<p>&nbsp;</p>
  
 
  
@@ -148,11 +96,12 @@ GetRows(<b><a href="CppConst.htm">const</a></b> Database&amp; d);</p>
 </div>
 
 <p>&nbsp;</p>
-
-<h2>2) Set a value in a y-x-ordered 2D-vector</h2>
-
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>2) Set a value in a y-x-ordered 2D-vector</h2>
+<p>&nbsp;</p>
  
 
  
@@ -170,15 +119,15 @@ value);</p>
 
 </div>
 
-<p>&nbsp;</p>
 
+<p>&nbsp;</p>
 <p>Humans
 tend to think 'x-y-ordered' instead of 'y-x-ordered', probably because x is
 before y in the alphabet. It is therefore 'funny' to let a function's arguments
 be y-x-ordered. Even if the two-dimensional std::vector is y-x-ordered, it is
 more natural/human to first pass an x, then a y.</p>
+<p>&nbsp;</p>
 
-<p></p>
 
  
 
@@ -196,12 +145,13 @@ value);</p>
 </div>
 
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>3) Get the sum of a std::vector</h2>
-
 <p>&nbsp;</p>
 
- 
 
  
 
@@ -213,15 +163,12 @@ v); //Incorrect!</p>
 
 </div>
 
-<p>&nbsp;</p>
 
-<p>Even
-worse then item #0: calculating the sum of a std::vector implies only reading
+<p>&nbsp;</p>
+<p>Even worse then item #0: calculating the sum of a std::vector implies only reading
 from it (thus, a const argument is required) without wanting to make a possibly
 expensive copy (thus, the std::vector must be given by reference).</p>
-
 <p>&nbsp;</p>
-
  
 
  
@@ -235,9 +182,11 @@ href="CppInt.htm">int</a></b>&gt;&amp; v);</p>
 </div>
 
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>4) Swap two values</h2>
-
 <p>&nbsp;</p>
 
  
@@ -253,13 +202,10 @@ b); //Incorrect</p>
 </div>
 
 <p>&nbsp;</p>
-
-<p>What
-would the returned int be? An error code? The difference between a and b? Or
+<p>What would the returned int be? An error code? The difference between a and b? Or
 the sum of a and b? How brilliant and important this returned int is, it
 confuses people. Make Swap return nothing. After calling Swap, you can still
 return error codes, calculate the difference and sum of a and b.</p>
-
 <p>&nbsp;</p>
 
  
@@ -273,13 +219,14 @@ a, <b><a href="CppInt.htm">int</a></b>&amp; b);</p>
 
 </div>
 
-<p></p>
-
-<h2>5) Put the text 'Hello' on screen and return an error code</h2>
 
 <p>&nbsp;</p>
-
- 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>5) Put the text 'Hello' on screen and return an error code</h2>
+<p>&nbsp;</p>
 
  
 
@@ -293,33 +240,20 @@ SayHello(); //Return an integer error code</p>
 </div>
 
 <p>&nbsp;</p>
-
-<p>First,
-how can std::cout on the word 'hello' ever fail? It appears this function will
+<p>First, how can std::cout on the word 'hello' ever fail? It appears this function will
 always return a no-error code (often zero).</p>
-
 <p>&nbsp;</p>
-
-<p>Except
-for that, why return an error code, when you can also throw an error type (that
-is, an <a href="CppException.htm">exception</a>)? The purpose of <a
-href="CppException.htm">exceptions</a> are to replace error codes, because
+<p>Except for that, why return an error code, when you can also throw an error type (that
+is, an <a href="CppException.htm">exception</a>)? The purpose of <a href="CppException.htm">exceptions</a> 
+are to replace error codes, because
 these are less ambiguent then error code (for example, zero is not always the
 no-error code).</p>
-
 <p>&nbsp;</p>
-
-<p>Finally,
-if std::cout fails, it will throw an <a href="CppException.htm">exception</a>
+<p>Finally, if std::cout fails, it will throw an <a href="CppException.htm">exception</a>
 in the first place! The purpose of SayHello is (next to, std::cout the word hello)
 not to catch this exception and convert it to an error code.</p>
-
 <p>&nbsp;</p>
-
-<p>Let
-SayHello say hello and let the caller of SayHello catch the (improbable)
-exceptions.</p>
-
+<p>Let SayHello say hello and let the caller of SayHello catch the (improbable) exceptions.</p>
 <p>&nbsp;</p>
 
  
@@ -333,14 +267,13 @@ exceptions.</p>
 </div>
 
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>6) Set a value in an x-y-ordered 2D-vector</h2>
-
 <p>&nbsp;</p>
 
- 
-
-<p>&nbsp;</p>
 
 <p>//Set a value in an x-y-ordered
 2D-vector</p>
@@ -359,23 +292,15 @@ value);</p>
 </div>
 
 <p>&nbsp;</p>
-
-<p>First
-(similar to #2), why name the arguments i and j, when writing x and y is more
+<p>First (similar to #2), why name the arguments i and j, when writing x and y is more
 natural/human? Sure, programmers might like to use i and j in their for-loops,
 but a coordinat in a std::vector suggests using x and y as parameter names.</p>
-
 <p>&nbsp;</p>
-
-<p>Secondly
-(although I personally feel it is more correct), one should not pass an int or
+<p>Secondly (although I personally feel it is more correct), one should not pass an int or
 double by reference. Build-in data types should be passed by value.</p>
-
 <p>&nbsp;</p>
 
- 
 
-<p>&nbsp;</p>
 
 <p>//Set a value in an x-y-ordered
 2D-vector</p>
@@ -391,10 +316,13 @@ value);</p>
 
 </div>
 
+
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>7) Calculate the mean and standard deviation of a std::vector</h2>
-
 <p>&nbsp;</p>
 
  
@@ -577,79 +505,39 @@ href="CppConst.htm">const</a></b> Position&amp; p, <b><a href="CppConst.htm">con
 
 </div>
 
-<p>&nbsp;</p>
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2><a href="CppReference.htm">References</a></h2>
-
 <p>&nbsp;</p>
-
-<p><a name="_Ref205447536">  [0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    C++.
-International Standard. ISO/IEC 14882. Second edition. Paragraph 3.6.1.2</a></p>
-
-<p><a name="_Ref205447538">  [1] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    From
-http://www.parashift.com/c++-faq-lite/newbie.html#faq-29.3 : main() must return
-int. Not void, not bool, not float. int. Just int, nothing but int, only int.
-Some compilers accept void main(), but that is non-standard and shouldn't be
-used. Instead use int main().</a></p>
-
-<p><a name="_Ref205447539">  [2] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</a><a href="CppHerbSutter.htm"><span style='mso-bookmark:
-_Ref205447539'> Herb
-Sutter  <span style='mso-bookmark:_Ref205447539'></a><span
-style='mso-bookmark:_Ref205447539'> . Exceptional C++. ISBN: 0-201-61562-2. Item 21: void main() is
-nonstandard and nonportable.</p>
-
-<p><a name="_Ref205447540">  [3] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    From
-</a><a href="CppBjarneStroustrup.htm"><span style='mso-bookmark:_Ref205447540'> Bjarne Stroustrup  <span
-style='mso-bookmark:_Ref205447540'></a><span style='mso-bookmark:_Ref205447540'> 's homepage
-(http://www.research.att.com/~bs/bs_faq2.html#void-main) :</p>
-
+<ol>
+  <li>C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 3.6.1.2</li>
+  <li>
+    http://www.parashift.com/c++-faq-lite/newbie.html#faq-29.3 : main() must return
+    int. Not void, not bool, not float. int. Just int, nothing but int, only int.
+    Some compilers accept void main(), but that is non-standard and shouldn't be
+    used. Instead use int main()
+  </li>
+  <li><a href="CppHerbSutter.htm">Herb Sutter. Exceptional C++. ISBN: 0-201-61562-2. Item 21: void main() is nonstandard and nonportable.</li>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>'s homepage (http://www.research.att.com/~bs/bs_faq2.html#void-main): 'The definition 'void main() { /* ... */ }' is not and never has been C++, nor has it even been C.'</li>
+  <li>
+    alt.comp.lang.learn.c-c++ FAQ: http://ma.rtij.nl/acllc-c++.FAQ.html#q3.4: 3.4 Why does everyone make so much fuss about &quot;void main()&quot;?. Because
+    the return type of the main() function must be int in both C and C++. Anything else is undefined. Bottom line - don't try to start a thread about this in
+    alt.comp.lang.learn.c-c++ as it has already been discussed many, many times and generates more flamage than any other topic.
+  </li>
+</ol>
 <p>&nbsp;</p>
-
-<p>The
-definition</p>
-
 <p>&nbsp;</p>
-
- 
-
-<p>void main() { /* ... */ }</p>
-
-</div>
-
 <p>&nbsp;</p>
-
-<p>is
-not and never has been C++, nor has it even been C.</p>
-
 <p>&nbsp;</p>
-
-<p><a name="_Ref205447541">  [4] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    From
-the alt.comp.lang.learn.c-c++ FAQ: http://ma.rtij.nl/acllc-c++.FAQ.html#q3.4:
-3.4 Why does everyone make so much fuss about &quot;void main()&quot;?. Because
-the return type of the main() function must be int in both C and C++. Anything
-else is undefined. Bottom line - don't try to start a thread about this in
-alt.comp.lang.learn.c-c++ as it has already been discussed many, many times and
-generates more flamage than any other topic.</a></p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
 <p>&nbsp;</p>
-
-</div>
-
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>
