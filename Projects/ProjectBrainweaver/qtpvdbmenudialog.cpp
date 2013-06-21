@@ -56,7 +56,7 @@
 #include "qtpvdbviewfilesdialog.h"
 #include "qtpvdbviewtestsdialog.h"
 #include "toolstylesheetsettermaindialog.h"
-
+#include "qtpvdbtestedgeitemdialog.h"
 
 #include "qttestqtarrowitemsmenudialog.h"
 #include "qttestqtroundededitrectitemmenudialog.h"
@@ -485,10 +485,8 @@ void QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked()
 
 void QtPvdbMenuDialog::on_button_test_edge_item_clicked()
 {
-  #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestEdgeItemDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-  #endif
 }
 
 void QtPvdbMenuDialog::on_button_test_arrowitems_clicked()

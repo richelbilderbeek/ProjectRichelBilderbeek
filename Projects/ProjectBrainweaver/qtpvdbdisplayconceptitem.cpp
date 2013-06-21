@@ -65,23 +65,31 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
   //Brush for the concept being rated
-  const int n_rated
-    = (GetConcept()->GetRatingComplexity()   != -1 ? 1 : 0)
-    + (GetConcept()->GetRatingConcreteness() != -1 ? 1 : 0)
-    + (GetConcept()->GetRatingSpecificity()  != -1 ? 1 : 0);
-  switch (n_rated)
   {
-    case 0:
-      this->setBrush(QtPvdbBrushFactory::CreateRedGradientBrush());
-      break;
-    case 1:
-    case 2:
-      this->setBrush(QtPvdbBrushFactory::CreateYellowGradientBrush());
-      break;
-    case 3:
-      this->setBrush(QtPvdbBrushFactory::CreateGreenGradientBrush());
-      break;
-    default: assert(!"Should not get here");
+    QBrush new_brush;
+    const int n_rated
+      = (GetConcept()->GetRatingComplexity()   != -1 ? 1 : 0)
+      + (GetConcept()->GetRatingConcreteness() != -1 ? 1 : 0)
+      + (GetConcept()->GetRatingSpecificity()  != -1 ? 1 : 0);
+    switch (n_rated)
+    {
+      case 0:
+        new_brush = QtPvdbBrushFactory::CreateRedGradientBrush();
+        break;
+      case 1:
+      case 2:
+        new_brush = QtPvdbBrushFactory::CreateYellowGradientBrush();
+        break;
+      case 3:
+        new_brush = QtPvdbBrushFactory::CreateGreenGradientBrush();
+        break;
+      default: assert(!"Should not get here");
+    }
+    //Prevent recursion?
+    if (this->brush() != new_brush)
+    {
+      this->setBrush(new_brush);
+    }
   }
   //Brush and pen for the examples being rated
   if (GetConcept()->GetExamples()->Get().empty())
@@ -121,7 +129,7 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
     }
   }
   //this->update(); //BUG
-  //this->m_signal_item_has_updated(this); //BUG: THIS IS NEEDED, BUT HANGS THE DISPLAY OF TESTS
+  this->m_signal_item_has_updated(this); //BUG: THIS IS NEEDED, BUT HANGS THE DISPLAY OF TESTS
   this->m_signal_request_scene_update(); //BUG
 
 }

@@ -106,7 +106,7 @@ void pvdb::Concept::SetExamples(const boost::shared_ptr<pvdb::Examples>& example
   if (examples != m_examples)
   {
     m_examples = examples;
-    //m_signal_examples_changed(this); //CAUSE OF MAJOR BUG 2013-01-09
+    m_signal_examples_changed(this);
   }
 }
 
@@ -117,7 +117,7 @@ void pvdb::Concept::SetName(const std::string& name)
   if (name != m_name)
   {
     m_name = name;
-    //m_signal_name_changed(this); //CAUSE OF MAJOR BUG 2013-01-09
+    m_signal_name_changed(this);
   }
 }
 
@@ -131,7 +131,7 @@ void pvdb::Concept::SetRatingComplexity(const int rating_complexity)
     m_rating_complexity = rating_complexity;
     assert(m_rating_complexity >= -1);
     assert(m_rating_complexity <=  2);
-    //m_signal_rating_complexity_changed(this); //CAUSE OF MAJOR BUG 2013-01-09
+    m_signal_rating_complexity_changed(this);
   }
 }
 
@@ -142,7 +142,7 @@ void pvdb::Concept::SetRatingConcreteness(const int rating_concreteness)
     m_rating_concreteness = rating_concreteness;
     assert(m_rating_concreteness >= -1);
     assert(m_rating_concreteness <=  2);
-    //m_signal_rating_concreteness_changed(this); //CAUSE OF MAJOR BUG 2013-01-09
+    m_signal_rating_concreteness_changed(this);
   }
 }
 
@@ -153,7 +153,7 @@ void pvdb::Concept::SetRatingSpecificity(const int rating_specificity)
     m_rating_specificity = rating_specificity;
     assert(m_rating_specificity >= -1);
     assert(m_rating_specificity <=  2);
-    //m_signal_rating_specificity_changed(this); //CAUSE OF MAJOR BUG 2013-01-09
+    m_signal_rating_specificity_changed(this);
   }
 }
 

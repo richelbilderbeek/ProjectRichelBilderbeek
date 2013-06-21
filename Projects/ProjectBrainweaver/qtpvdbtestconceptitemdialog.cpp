@@ -180,8 +180,8 @@ void QtPvdbTestConceptItemDialog::on_edit_name_textChanged(const QString &arg1)
 {
   TRACE(arg1.toStdString());
   this->GetChosenConcept()->SetName(arg1.toStdString());
-  ui->view->update();
-  this->ui->view->scene()->update();
+  //ui->view->update();
+  //this->ui->view->scene()->update();
 }
 
 void QtPvdbTestConceptItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)

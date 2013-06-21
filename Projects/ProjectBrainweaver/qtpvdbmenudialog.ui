@@ -130,7 +130,7 @@
       <item>
        <widget class="QPushButton" name="button_test_edge_item">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="text">
          <string>&amp;M. QtPvdbEdgeItem</string>

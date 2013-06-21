@@ -110,8 +110,11 @@ INCLUDEPATH += \
     ../../Classes/CppEncranger \
     ../../Classes/CppExercise \
     ../../Classes/CppFuzzy_equal_to \
+    ../../Classes/CppGaborFilter \
+    ../../Classes/CppGaborFilterWidget \
     ../../Classes/CppHtmlPage \
     ../../Classes/CppIpAddress \
+    ../../Classes/CppKalmanFilter \
     ../../Classes/CppLazy_init \
     ../../Classes/CppLed \
     ../../Classes/CppLedWidget \
@@ -143,6 +146,7 @@ INCLUDEPATH += \
     ../../Classes/CppShinyButton \
     ../../Classes/CppShinyButtonWidget \
     ../../Classes/CppSortedBinaryNewickVector \
+    ../../Classes/CppStateObserver \
     ../../Classes/CppStopwatch \
     ../../Classes/CppTicTacToe \
     ../../Classes/CppToggleButton \
@@ -500,7 +504,58 @@ SOURCES += \
     ../../Tools/ToolRegexTester/regextestermaindialog.cpp \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.cpp \
     ../../Tools/ToolRegexTester/regextesterboostmaindialog.cpp \
-    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.cpp
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtype.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparameter.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltertypes.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltertype.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterparametertype.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterparameter.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterfactory.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperiment.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterexample.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.cpp \
+    ../../Classes/CppGaborFilter/gaborfilter.cpp \
+    ../../Classes/CppGaborFilterWidget/gaborfilterwidget.cpp \
+    ../../Classes/CppStateObserver/multiintegerstateobserver.cpp \
+    ../../Classes/CppStateObserver/multialphafilter.cpp \
+    ../../Classes/CppStateObserver/integersymmetricalphafilter.cpp \
+    ../../Classes/CppStateObserver/integerstateobserver.cpp \
+    ../../Classes/CppStateObserver/integeralphafilter.cpp \
+    ../../Classes/CppStateObserver/floatingpointstateobserver.cpp \
+    ../../Classes/CppStateObserver/alphafilter.cpp \
+    ../../Classes/CppStateObserver/alphabetagammafilter.cpp \
+    ../../Classes/CppStateObserver/alphabetafilter.cpp \
+    ../../Tools/ToolStateObserver/stateobservermenudialog.cpp \
+    ../../Tools/ToolStateObserver/noisefunctionparser.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -804,7 +859,59 @@ HEADERS += \
     ../../Tools/ToolRegexTester/regextestermaindialog.h \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.h \
     ../../Tools/ToolRegexTester/regextesterboostmaindialog.h \
-    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.h
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtype.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparameter.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.h \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfilter.h \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltertypes.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltertype.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterparametertype.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterparameter.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterfactory.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperiment.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterexample.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/kalmanfilter.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h \
+    ../../Classes/CppGaborFilter/gaborfilter.h \
+    ../../Classes/CppGaborFilterWidget/gaborfilterwidget.h \
+    ../../Classes/CppStateObserver/stateobserverfwd.h \
+    ../../Classes/CppStateObserver/multiintegerstateobserver.h \
+    ../../Classes/CppStateObserver/multialphafilter.h \
+    ../../Classes/CppStateObserver/integersymmetricalphafilter.h \
+    ../../Classes/CppStateObserver/integerstateobserver.h \
+    ../../Classes/CppStateObserver/integeralphafilter.h \
+    ../../Classes/CppStateObserver/floatingpointstateobserver.h \
+    ../../Classes/CppStateObserver/alphafilter.h \
+    ../../Classes/CppStateObserver/alphabetagammafilter.h \
+    ../../Classes/CppStateObserver/alphabetafilter.h \
+    ../../Tools/ToolStateObserver/stateobservermenudialog.h \
+    ../../Tools/ToolStateObserver/noisefunctionparser.h
 
 RESOURCES += \
     ../../Games/GameConnectThree/GameConnectThree.qrc \
@@ -828,7 +935,8 @@ RESOURCES += \
     ../../Tools/ToolTestExercise/ToolTestExercise.qrc \
     ../../Tools/ToolHometrainer/ToolHometrainer.qrc \
     ../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc \
-    ../../Tools/ToolAsciiArter/ToolAsciiArter.qrc
+    ../../Tools/ToolAsciiArter/ToolAsciiArter.qrc \
+    ../../Tools/ToolStateObserver/ToolStateObserver.qrc
 
 OTHER_FILES += \
     ../../Classes/CppQrcFile/Licence.txt \
@@ -910,4 +1018,11 @@ OTHER_FILES += \
     ../../Classes/CppHtmlPage/Licence.txt \
     ../../Classes/CppMusic/Licence.txt \
     ../../Classes/CppMatrix/Licence.txt \
-    ../../Tools/ToolRegexTester/Licence.txt
+    ../../Tools/ToolRegexTester/Licence.txt \
+    ../../Classes/CppKalmanFilter/Licence.txt \
+    ../../Classes/CppGaborFilter/Licence.txt \
+    ../../Classes/CppGaborFilterWidget/Licence.txt \
+    ../../Classes/CppStateObserver/Licence.txt \
+    ../../Tools/ToolStateObserver/zip.sh \
+    ../../Tools/ToolStateObserver/ToolStateObserverWelcome.png \
+    ../../Tools/ToolStateObserver/Licence.txt
