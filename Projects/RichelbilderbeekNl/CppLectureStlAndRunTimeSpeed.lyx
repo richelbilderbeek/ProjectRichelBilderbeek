@@ -1,0 +1,1704 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a6paper
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation landscape
+\suppress_date false
+\use_refstyle 1
+\backgroundcolor #000000
+\fontcolor #ffffff
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+STL and run-time speed
+\end_layout
+
+\begin_layout Author
+(C) Richèl Bilderbeek 
+\begin_inset Graphics
+	filename /home/richel/Projects/Projects/RichelbilderbeekNl/CC-BY-NC-SA.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Overview
+\end_layout
+
+\begin_layout Itemize
+Introduction
+\end_layout
+
+\begin_layout Itemize
+Containers
+\end_layout
+
+\begin_layout Itemize
+Algorithms
+\end_layout
+
+\begin_layout Itemize
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Goal
+\end_layout
+
+\begin_layout Itemize
+Do some basic container use
+\end_layout
+
+\begin_layout Itemize
+Encounter some trade-offs in container choice
+\end_layout
+
+\begin_layout Itemize
+Use some algorithms
+\end_layout
+
+\begin_layout Itemize
+Obtain some ideas about chosing the right algorithm
+\end_layout
+
+\begin_layout Itemize
+The class extensions needed to put classes in containers or use these in
+ algorithms
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Containers
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Name some containers.
+ 
+\end_layout
+
+\begin_layout Itemize
+Distinguish between STL or non-STL, and standard or non-standard
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+STL sequence containers: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+std::string, std::vector, std::list, std::deque, std::stack
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+STL associative containers:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+std::set, std::map, std::multi_set, std::multi_map
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Standard non-STL containers:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+std::bitset, std::valarray, std::queue, std::priority_queue
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nonstandard non-STL containers (for C++98):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+std::tr1: slist, rope, hash_set, hash_map
+\end_layout
+
+\begin_layout Itemize
+Boost: array, circular_buffer, dynamic_bitset, graph, multi_array
+\end_layout
+
+\begin_layout Itemize
+More
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Which 'container' is native to the (C and) C++ language?
+\end_layout
+
+\begin_layout Itemize
+Which STL container uses this internally?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+Which 'container' is native to the (C and) C++ language?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+array
+\end_layout
+
+\begin_layout Itemize
+arrays are evil
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Marshall Cline, Greg Lomow and Mike Girou.
+ C++ FAQs.
+ ISBN: 0-201-3098301, FAQ 28.02: 'Are arrays good or evil?' (Answer: 'Arrays
+ are evil'
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Bjarne Stroustrup.
+ The C++ Programming Language (3rd edition).
+ Chapter C.14.11 'Prefer vector over array'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Which STL container uses this internally?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+std::vector
+\end_layout
+
+\begin_layout Itemize
+use std::vector by default
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Herb Sutter and Andrei Alexandrescu .
+ C++ coding standards: 101 rules, guidelines, and best practices.
+ Chapter 76: 'Use vector by default.
+ Otherwise choose an appropriate container'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Which fancy STL container is best at all of the following?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+random access reading and writing
+\end_layout
+
+\begin_layout Itemize
+looking up elements
+\end_layout
+
+\begin_layout Itemize
+random access insertion and removal
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+None: the characteristics are mutually exclusive
+\end_layout
+
+\begin_layout Itemize
+There will be trade-offs
+\end_layout
+
+\begin_layout Itemize
+Beware the illusion of container-independent code
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Meyers, Effective STL, item 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+How to sort Persons?
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Person
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::string name;
+\end_layout
+
+\begin_layout Plain Layout
+
+  double money;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int main()
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Sort Persons
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+Define the global operator
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+bool operator<(const Person& lhs, const Person& rhs);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Define a custom functor
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct SortOnMoney {
+\end_layout
+
+\begin_layout Plain Layout
+
+  bool operator<(const Person& lhs, const Person& rhs) const;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Person
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::string name;
+\end_layout
+
+\begin_layout Plain Layout
+
+  double money;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int main()
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Create some Persons
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::vector<Person> v /* */;
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Sort Persons on the amount of money they have
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::sort( /* */ );
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Describe the implemention of std::vector
+\end_layout
+
+\begin_layout Itemize
+What are the consequences of this?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer: std::vector
+\end_layout
+
+\begin_layout Itemize
+dynamically allocated array
+\end_layout
+
+\begin_layout Itemize
+contant-time access to elements
+\end_layout
+
+\begin_layout Itemize
+linear-time insertion-removal
+\end_layout
+
+\begin_layout Itemize
+linear-time searching
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise: std::vector
+\end_layout
+
+\begin_layout Itemize
+Create a class Gossip that prints when it is copied
+\end_layout
+
+\begin_layout Itemize
+Create an empty std::vector<Gossip>
+\end_layout
+
+\begin_layout Itemize
+Append 32 Gossips.
+ How many copies are made?
+\end_layout
+
+\begin_layout Itemize
+Insert a Gossip at the front.
+ How many copies are made?
+\end_layout
+
+\begin_layout Itemize
+Write a C-style function that works on an array of Gossips and swaps the
+ first and last element
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void SwapFirstAndLast(
+\end_layout
+
+\begin_layout Plain Layout
+
+  Gossip * const gossip_array, 
+\end_layout
+
+\begin_layout Plain Layout
+
+  const int size);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Call SwapFirstAndLast and check if it did what you expected
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Itemize
+Use std::vector<T>::push_back to append to std::vectors, as it is amortized
+ constant-time
+\end_layout
+
+\begin_layout Itemize
+Avoid inserting elements in the front or middle of a std::vector
+\end_layout
+
+\begin_layout Itemize
+std::vector can be used to communicate with C style functions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Describe the implemention of std::list
+\end_layout
+
+\begin_layout Itemize
+What are the consequences of this?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer: std::list
+\end_layout
+
+\begin_layout Itemize
+Next to the data itself, each element has two pointers: to the next and
+ previous element in a sequential list
+\end_layout
+
+\begin_layout Itemize
+constant-time insertion and removal
+\end_layout
+
+\begin_layout Itemize
+linear-time access to elements
+\end_layout
+
+\begin_layout Itemize
+linear-time searching
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise: std::list
+\end_layout
+
+\begin_layout Itemize
+Create a class Gossip that prints when it is copied
+\end_layout
+
+\begin_layout Itemize
+Create an empty std::list<Gossip>
+\end_layout
+
+\begin_layout Itemize
+Append 32 Gossips.
+ How many copies are made?
+\end_layout
+
+\begin_layout Itemize
+Insert a Gossip at the front.
+ How many copies are made?
+\end_layout
+
+\begin_layout Itemize
+Compare std::sort on a std::list and std::list<T>::sort.
+ Does one call the other?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Itemize
+When adding elements to a std::list, no additional copies need to be made
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Not at the end, middle, not beginning
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+A std::list is scattered through memory
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Calculating the number of elements is an O(n) calculation
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Describe the implemention of std::set
+\end_layout
+
+\begin_layout Itemize
+What are the consequences of this?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+Next to the data itself, each element has three pointers: to the parent,
+ left and right branch in a red-black tree
+\end_layout
+
+\begin_layout Itemize
+contents always sorted
+\end_layout
+
+\begin_layout Itemize
+logarithmic-time insertion and removal
+\end_layout
+
+\begin_layout Itemize
+logarithmic-time access to elements
+\end_layout
+
+\begin_layout Itemize
+logarithmic-time access searching
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise
+\end_layout
+
+\begin_layout Itemize
+Create a class Person that prints when it is copied and has at least two
+ member variables (why two?)
+\end_layout
+
+\begin_layout Itemize
+Create an empty std::set<Person>
+\end_layout
+
+\begin_layout Itemize
+Put in 4 different Persons.
+ How many copies are made?
+\end_layout
+
+\begin_layout Itemize
+Create a new unique person.
+ Use std::set<T>::count to check he/she is not present yet.
+ Insert the Person and check he/she is present
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Itemize
+A std::set keeps its elements ordered
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+need to define operator<
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Algorithms
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Algorithms question
+\end_layout
+
+\begin_layout Itemize
+What are algorithms?
+\end_layout
+
+\begin_layout Itemize
+Why use algorithms?
+\end_layout
+
+\begin_layout Section*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Algorithms answers
+\end_layout
+
+\begin_layout Itemize
+What are algorithms?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+named operations on multiple elements
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Why use algorithms?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+verbosity/readability
+\end_layout
+
+\begin_layout Itemize
+algorithms are written by experts
+\end_layout
+
+\begin_layout Itemize
+algorithms are standarized: common idiom
+\end_layout
+
+\begin_layout Itemize
+increase run-time speed: naive for-loops might result in higher Big-O
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Algorithm example
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+copy_if
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+template<typename In, typename Out, typename Pred> 
+\end_layout
+
+\begin_layout Plain Layout
+
+Out MysteryAlgorithm(In first, In last, Out res, Pred Pr) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (first != last)   
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (Pr(*first)) *res++ = *first;
+\end_layout
+
+\begin_layout Plain Layout
+
+    ++first;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  return res; 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Which sorting algorithms exists?
+\end_layout
+
+\begin_layout Itemize
+When to use which one?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+std::sort: when the whole range needs to be sorted
+\end_layout
+
+\begin_layout Itemize
+std::partial_sort: when you only need the top-x values in a sorted order
+\end_layout
+
+\begin_layout Itemize
+std::nth_element: when you only need the top-x values
+\end_layout
+
+\begin_layout Itemize
+With 'stable_' added: when the order of equivalent items needs to be preserved
+\end_layout
+
+\begin_layout Itemize
+If a container has a member function with the same name, always use that
+ one
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise 1/4
+\end_layout
+
+\begin_layout Itemize
+Create a big initialized randomly-shuffled std::vector<int>
+\end_layout
+
+\begin_layout Itemize
+Write the following functions that obtain the three lowest values:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GetMinThreeUsingPartial_sort
+\end_layout
+
+\begin_layout Itemize
+GetMinThreeUsingNth_element
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Check if the two functions return the same top three
+\end_layout
+
+\begin_layout Itemize
+Display the top three
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise 2/4
+\end_layout
+
+\begin_layout Itemize
+Create a big initialized randomly-shuffled std::vector<int>
+\end_layout
+
+\begin_layout Itemize
+Write the following functions that obtain the three highest values:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GetMaxThreeUsingPartial_sort
+\end_layout
+
+\begin_layout Itemize
+GetMaxThreeUsingNth_element
+\end_layout
+
+\begin_layout Itemize
+Hint: look up std::greater
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Check if the two functions return the same top three
+\end_layout
+
+\begin_layout Itemize
+Display the top three
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise 3/4
+\end_layout
+
+\begin_layout Itemize
+Create a Person class.
+ Every Person has two member variables:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a std::string called 'name' 
+\end_layout
+
+\begin_layout Itemize
+a double called 'money'
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Create a big initialized randomly-shuffled std::vector<Person>
+\end_layout
+
+\begin_layout Itemize
+Write the functions that obtain the three persons with the least money:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GetMinThreeUsingPartial_sort
+\end_layout
+
+\begin_layout Itemize
+GetMinThreeUsingNth_element
+\end_layout
+
+\begin_layout Itemize
+Bonus: re-use the existing ones
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Check if the two functions return the same top three
+\end_layout
+
+\begin_layout Itemize
+Display the top three
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise 4/4
+\end_layout
+
+\begin_layout Itemize
+Create a Person class.
+ Every Person has two member variables:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a std::string called 'name' 
+\end_layout
+
+\begin_layout Itemize
+a double called 'money'.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Create a big initialized randomly-shuffled std::vector<Person>
+\end_layout
+
+\begin_layout Itemize
+Write the functions that obtain the three persons with the most money:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+GetMaxThreeUsingPartial_sort
+\end_layout
+
+\begin_layout Itemize
+GetMaxThreeUsingNth_element
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Check if the two functions return the same top three
+\end_layout
+
+\begin_layout Itemize
+Display the top three
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Which searching algorithms exists?
+\end_layout
+
+\begin_layout Itemize
+When to use which one?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+std::find: find an element in an unsorted container
+\end_layout
+
+\begin_layout Itemize
+std::find_if: find the first element in an unsorted container for which
+ a predicate is true
+\end_layout
+
+\begin_layout Itemize
+std::search: find a sequence of elements
+\end_layout
+
+\begin_layout Itemize
+std::search_n: find an n-times-repeated sequence of elements
+\end_layout
+
+\begin_layout Itemize
+std::binary_search: find an element in an assumed-to-be-sorted container
+\end_layout
+
+\begin_layout Itemize
+std::adjacent _find: find two adjacent equal values 
+\end_layout
+
+\begin_layout Itemize
+std::lower_bound, std::upper_bound: find first/last value in a sorted container
+\end_layout
+
+\begin_layout Itemize
+std::min_element, std::max_element: find min or max element
+\end_layout
+
+\begin_layout Itemize
+If a container has a member function with the same name, always use that
+ one
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise: std::find
+\end_layout
+
+\begin_layout Itemize
+Create a Person class.
+ Every Person has two member variables:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a std::string called 'name' 
+\end_layout
+
+\begin_layout Itemize
+a double called 'money'
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Put some Persons in a std::vector, std::list and std::set
+\end_layout
+
+\begin_layout Itemize
+Create a new unique person with the name 'Mr X' and put him in each of these
+ containers
+\end_layout
+
+\begin_layout Itemize
+Shuffle these containers
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+impossible to do on a std::set
+\end_layout
+
+\end_inset
+
+ and try to retrieve the Person with name 'Mr X'
+\end_layout
+
+\begin_layout Itemize
+Create a new unique person with 123.45$ and put him/her in each of these
+ containers
+\end_layout
+
+\begin_layout Itemize
+Shuffle these containers and try to retrieve the Person with 123.45$
+\end_layout
+
+\begin_layout Itemize
+Find the person with the most money
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+Which algorithms is used to summarize a range?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+std::accumulate
+\end_layout
+
+\begin_layout Itemize
+(found in numeric.h)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise
+\end_layout
+
+\begin_layout Itemize
+Create a Person class.
+ Every Person has two member variables:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a std::string called 'name' 
+\end_layout
+
+\begin_layout Itemize
+a double called 'money'
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Put some random Persons in a container
+\end_layout
+
+\begin_layout Itemize
+Obtain the sum of their money
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Question
+\end_layout
+
+\begin_layout Itemize
+What is a predicate?
+\end_layout
+
+\begin_layout Itemize
+Which algorithms use a predicate?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer
+\end_layout
+
+\begin_layout Itemize
+A predicate is a functor returning true or false.
+ Identical input should yield the same results
+\end_layout
+
+\begin_layout Itemize
+Algorithms:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+std::partition
+\end_layout
+
+\begin_layout Itemize
+every std::[something]_if
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Exercise
+\end_layout
+
+\begin_layout Itemize
+Create a Person class.
+ Every Person has two member variables:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a std::string called 'name' 
+\end_layout
+
+\begin_layout Itemize
+a double called 'money'
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Put some random Persons in a container, of which some are poor (money <
+ 1000.0) and some are rich (money >= 1000.0)
+\end_layout
+
+\begin_layout Itemize
+Find a way to seperate poor and rich persons in a container
+\end_layout
+
+\begin_layout Itemize
+Display the poor persons
+\end_layout
+
+\begin_layout Itemize
+Display the rich persons
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Itemize
+Choose your containers with care
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Use std::vector by default
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Choose your algorithms with care
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Choose the simplest algorithm possible
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+EOF
+\end_layout
+
+\end_body
+\end_document

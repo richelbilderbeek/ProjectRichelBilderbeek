@@ -1,0 +1,1 @@
+convert SongHendrikLied3.ps -density 250 -trim SongHendrikLied3.png

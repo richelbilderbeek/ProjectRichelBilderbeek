@@ -1,0 +1,80 @@
+"Friday"
+Written by Richel Bilderbeek
+On the 7th of April 2011
+
+[VERSE1]
+.7 zip, extract in the morning 
+source's gotta be fresh, gotta new download
+gotta have my tools, gotta have mercurial
+Checkin' everything, the std::time is goin'
+Tickin' on and on, internal std::clock is rushin'
+Data going down through the bus wire
+Overclocked my card, my fan is my friend (my fan) 
+
+[PUSHPOP]
+Pushing in the front side 
+Popping in the back side
+Gotta make my mind up 
+Which container can I take? 
+
+[FRIDAY]
+It's "Friday", "Friday" 
+My computer std::clock states it's "Friday"
+Definition lookin' up for the term "weekend", "weekend" 
+"Friday", "Friday"
+Loadin' down on "Friday" 
+Definition must be looked up for "weekend", "weekend" 
+
+[POWER4]
+Programming, programming (Yeah) 
+Programming, programming (Yeah) 
+Fun to the power four
+Definition must be looked up for "weekend", "weekend"
+
+[VERSE2]
+7:45, we're going' to Assembler
+Profilin' so fast, I want std::time to fly
+MOV, MOV, think about MOV
+You know EAX 
+I got this, you got this 
+It's friend has private (access) rights, ay 
+I got this, you got this 
+Now you trace it
+
+[PUSHPOP]
+
+[FRIDAY]
+
+[POWER4]
+
+[PAST]
+"Yesterday" == "Thursday", "Thursday"
+"Today" == "Friday", "Friday" (Partyin')
+We-we are asserting 
+We so asserting
+We gonna have no bugs "Today"
+
+[FUTURE]
+"Today" + 1 == "Saturday"
+And "Sunday" comes after (prefix) ++
+I don't want a Week to have Week::end()
+
+[VERSE3]
+R-B, Richel Bilderbeek
+So pushing' in the front side (In the front side) 
+In the back side (In the back side) 
+I'm debuggin', tracin' (Yeah, yeah) 
+Fast lookup, switchin' terms 
+Wit' a profiler on my side (Woo!) 
+(C'mon) Passin' by is a call trace in front of me 
+Makes tick tock, tick tock, wanna see
+Check my std::time, it's "Friday", it's a "weekend"
+We are having fun, c'mon, c'mon, y'all 
+
+[FRIDAY]
+
+[POWER4]
+
+[FRIDAY]
+
+[POWER4]

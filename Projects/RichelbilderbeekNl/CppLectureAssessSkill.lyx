@@ -1,0 +1,3489 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a6paper
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation landscape
+\suppress_date false
+\use_refstyle 1
+\backgroundcolor #000000
+\fontcolor #ffffff
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+What is the level of my current skills in C++?
+\end_layout
+
+\begin_layout Author
+(C) Richèl Bilderbeek 
+\begin_inset Graphics
+	filename /home/richel/Projects/Projects/RichelbilderbeekNl/CC-BY-NC-SA.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Overview
+\end_layout
+
+\begin_layout Enumerate
+Introduction
+\end_layout
+
+\begin_layout Enumerate
+Domain #1
+\end_layout
+
+\begin_layout Enumerate
+Domain #2
+\end_layout
+
+\begin_layout Enumerate
+Domain #3
+\end_layout
+
+\begin_layout Enumerate
+Domain #4
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Quote
+Fools ignore complexity.
+ Pragmatists suffer it.
+ Some can avoid it.
+ Geniuses remove it 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Alan Perlis
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+What is the level of my current skills in C++?
+\end_layout
+
+\begin_layout Itemize
+Visit the subdomains of C++ to assess this
+\end_layout
+
+\begin_layout Itemize
+Question: Can you name some programming ideals?
+\end_layout
+
+\begin_layout Itemize
+Question: Can you name the subdomains of C++?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Programming Ideals
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Stroustrup.
+ Programming.
+ §1.6
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Correctness 
+\end_layout
+
+\begin_layout Itemize
+Reliability 
+\end_layout
+
+\begin_layout Itemize
+Affordable 
+\end_layout
+
+\begin_layout Itemize
+Maintainable
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C++
+\end_layout
+
+\begin_layout Standard
+View C++ as a federation of languages 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Scott Meyers.
+ Effective C++ (3rd edition).
+ Item 1: 'View C++ as a federation of languages' (also list from this reference)
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+C
+\end_layout
+
+\begin_layout Itemize
+Object-Oriented C++
+\end_layout
+
+\begin_layout Itemize
+Template C++
+\end_layout
+
+\begin_layout Itemize
+The STL
+\end_layout
+
+\begin_layout Standard
+Effective programming requires that you change strategy when you switch
+ from one sublanguage to another 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Scott Meyers.
+ Effective C++ (3rd edition).
+ Item 1: 'Effective programming requires that you change strategy when you
+ switch from one sublanguage to another'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Domain #1: C
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Domain #1: C
+\end_layout
+
+\begin_layout Itemize
+Working with built-in types
+\end_layout
+
+\begin_layout Itemize
+Function design
+\end_layout
+
+\begin_layout Itemize
+The best C is not always the best C++
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C: working with built-in types
+\end_layout
+
+\begin_layout Itemize
+Type choice
+\end_layout
+
+\begin_layout Itemize
+Choice of modifers: const, static, volatile
+\end_layout
+
+\begin_layout Itemize
+Consequences of this choice
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: working with built-in types
+\end_layout
+
+\begin_layout Standard
+What can be concluded from the following code?
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+unsigned int n_countries = 27;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: working with built-in types
+\end_layout
+
+\begin_layout Standard
+What can be concluded from the following code?
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+unsigned int n_countries = 27;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusions
+\end_layout
+
+\begin_layout Itemize
+n_countries is probably a number of countries
+\end_layout
+
+\begin_layout Itemize
+n_countries is always positive
+\end_layout
+
+\begin_layout Itemize
+n_countries will not be used in arithmetic 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Bjarne Stroustrup.
+ The C++ Programming Language(3rd edition).
+ Chapter 4.10 'Advice', item 18: 'Avoid unsigned arithmetic'
+\end_layout
+
+\end_inset
+
+ or will be checked for its range when doing arithmetic with it 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+C++ FAQ Lite [29.12] '[...] at least if you are careful to check your ranges'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+n_countries must be checked for implicit conversions 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Bjarne Stroustrup.
+ The C++ Programming Language (3rd edition).
+ Chapter 4.10 'Advice', item 19: 'View signed to unsigned and unsigned to
+ signed conversions with suspicion'
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+n_countries will have its value changed at least once
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: working with built-in types
+\end_layout
+
+\begin_layout Standard
+What can be concluded from the following code?
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const int n_countries = 27;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: working with built-in types
+\end_layout
+
+\begin_layout Standard
+What can be concluded from the following code?
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const int n_countries = 27;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusions
+\end_layout
+
+\begin_layout Itemize
+n_countries is probably a number of countries
+\end_layout
+
+\begin_layout Itemize
+n_countries is always positive
+\end_layout
+
+\begin_layout Itemize
+n_countries can be used inituitively in arithmetic
+\end_layout
+
+\begin_layout Itemize
+n_countries will never have its value changed
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C: function design
+\end_layout
+
+\begin_layout Itemize
+Return type choice
+\end_layout
+
+\begin_layout Itemize
+Argument type choice
+\end_layout
+
+\begin_layout Itemize
+Name choice
+\end_layout
+
+\begin_layout Itemize
+Error handling policy
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: function design
+\end_layout
+
+\begin_layout Standard
+Comment on the following.
+ Assume all code resides in C-only code.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int Sum(int * a, int * b);
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Are a and b pointers-to-ints or poiner-to-arrays?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int DisplayValue(const int value); /* returns an error code */
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Valid.
+ Why would displaying an int go wrong?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void Swap(T * const lhs_array, T * const rhs_array);
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Costly: the pointers are not swapped, but their contents is
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const double * Divide(const double numerator, const double numerator);
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Not the most intuitive interface, might cause memory leak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: function design
+\end_layout
+
+\begin_layout Standard
+Comment on the following.
+ Assume all code is found in C++ code.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const int GetRows(const Database d);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void Set(std::vector<std::vector<double> >& v, const int& y, const int&
+ x, 
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double& value);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const int Swap(int& a, int& b);
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int DisplayValue(const int value); //returns an error code
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const double MeanAndStdDev(const std::vector<double>& v, double& mean);
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void CoutWidget(const Widget& w);
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void SetSquare(const Square& s, const Color& c, RubiksCube& c);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: exercise
+\end_layout
+
+\begin_layout Standard
+Write a safe and correct Divide function, that divides two doubles.
+ 
+\end_layout
+
+\begin_layout Standard
+For example, if this function would be called with 3.0 as a numerator and
+ 4.0 as denominator, it should somehow produce 0.75.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: exercise answer #1
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Intuitive solution.
+ Function states clearly what it can and cannot do.
+ Strong guarantee
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const double Divide(
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double numerator, 
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double denominator)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  assert(denominator != 0.0);
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (denominator == 0.0) 
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    throw std::logic_error("Cannot divide by 0.0");
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  return numerator / denominator;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: exercise answer #2
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Function always returns easy to use type.
+ No possibility of memory leak.
+ Strong guarantee
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const std::vector<double> Divide(
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double numerator, 
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double denominator)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::vector<double> v;
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (denominator != 0.0) 
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    v.push_back(numerator / denominator);
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  return v;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: exercise answer #3
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Intuitive return type.
+ Possibility of memory leak.
+ Strong guarantee
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comment on this correct solution
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const double * Divide(
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double numerator, 
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double denominator)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  return denominator == 0.0 
+\end_layout
+
+\begin_layout Plain Layout
+
+    ? 0 //C++11: nullptr
+\end_layout
+
+\begin_layout Plain Layout
+
+    : new double(numerator / denominator);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: exercise answer #4
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Less intuitive return type.
+ No memory leak.
+ Strong guarantee
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comment on this correct solution
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+const boost::scoped_ptr<double> Divide(
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double numerator, 
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double denominator)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  boost::scoped_ptr<double> p;
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (denominator != 0.0) 
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    p.reset(new double(numerator / denominator));
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  return p;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: exercise answer #5
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Less intuitive interface.
+ Clear feedback from function.
+ No memory leak.
+ Nothrow guarantee
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comment on this correct solution
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void Divide(
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double numerator, 
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double denominator,
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::vector<double>& v)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  assert(v.empty());
+\end_layout
+
+\begin_layout Plain Layout
+
+  assert(v.capacity() >= 1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (denominator != 0.0) 
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    v.push_back(numerator / denominator);
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  return v;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+C example: bigger exercise
+\end_layout
+
+\begin_layout Standard
+Write a safe and correct quadratic equation function
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Remember, the number of solutions is dependent on the discriminant, 
+\begin_inset Formula $\sqrt{b^{2}-4ac}$
+\end_inset
+
+: if it is bigger than zero, there are two solutions, if it is equal to
+ zero there is one solution, if it is less than zero there are no solutions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Domain #2: Object-Oriented C++
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Domain #2: Object-Oriented C++
+\end_layout
+
+\begin_layout Itemize
+Member function design
+\end_layout
+
+\begin_layout Itemize
+Class design
+\end_layout
+
+\begin_layout Itemize
+Design Patterns
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++: Member function design
+\end_layout
+
+\begin_layout Itemize
+Function design
+\end_layout
+
+\begin_layout Itemize
+Choise of modifiers: const, static
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Member function design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+should probably be 'const bool IsFemale() const;'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Person
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  const bool IsFemale();
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Member function design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Should probably by 'const Data * GetData() const' or 'Data& GetData() const'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Database
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  Data * GetData() const;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  private:
+\end_layout
+
+\begin_layout Plain Layout
+
+  Data * m_data;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Member function design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Should probably be 'static const double Length(const double dx, const double
+ dy)'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Line
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  ///Calculate the length of a line using the Pythagorian equation: c =
+ sqrt( (a*a) + (b*b) )
+\end_layout
+
+\begin_layout Plain Layout
+
+  ///dx: horizontal length of line
+\end_layout
+
+\begin_layout Plain Layout
+
+  ///dy: vertical length of line
+\end_layout
+
+\begin_layout Plain Layout
+
+  const double Length(const double dx, const double dy) const;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++: Class design
+\end_layout
+
+\begin_layout Itemize
+Member function design
+\end_layout
+
+\begin_layout Itemize
+Member variable type choice
+\end_layout
+
+\begin_layout Itemize
+Choice of member variable modifiers: const, mutable, static, volatile
+\end_layout
+
+\begin_layout Itemize
+Interface design
+\end_layout
+
+\begin_layout Itemize
+The Big Four
+\end_layout
+
+\begin_layout Itemize
+Class hierarchy
+\end_layout
+
+\begin_layout Itemize
+Design Patterns
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Class design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Should probably be 'const bool m_is_female' as in general a person's gender
+ does not change 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Person
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  private:
+\end_layout
+
+\begin_layout Plain Layout
+
+  bool m_is_female;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Class design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+What happens in Init should probably happen in constructor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Database
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  void Init();
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Class design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+m_cnt should probably be mutable; no need to sacrifice constness of Data::Sum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Data {
+\end_layout
+
+\begin_layout Plain Layout
+
+  ///Expensive calculation
+\end_layout
+
+\begin_layout Plain Layout
+
+  const int Sum() {
+\end_layout
+
+\begin_layout Plain Layout
+
+    ++m_cnt;
+\end_layout
+
+\begin_layout Plain Layout
+
+    //...
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+  private:
+\end_layout
+
+\begin_layout Plain Layout
+
+  ///Monitor how often Sum is called
+\end_layout
+
+\begin_layout Plain Layout
+
+  int m_cnt; 
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Class design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Should probably be 'PrimeNumber(const int prime_number)'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+///PrimeNumber can only contain numbers that are prime
+\end_layout
+
+\begin_layout Plain Layout
+
+struct PrimeNumber
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  PrimeNumber();
+\end_layout
+
+\begin_layout Plain Layout
+
+  void SetValue(const int prime_number);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Class design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Lacks a correct copy constructor and assignment operator, or the disallowance
+ of these
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+template <class T>
+\end_layout
+
+\begin_layout Plain Layout
+
+struct SmartPointer
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  SmartPointer() : m_p(new T) {}
+\end_layout
+
+\begin_layout Plain Layout
+
+  ~SmartPointer() { delete m_p; }
+\end_layout
+
+\begin_layout Plain Layout
+
+  T * Get() { return m_p; }
+\end_layout
+
+\begin_layout Plain Layout
+
+  private:
+\end_layout
+
+\begin_layout Plain Layout
+
+  T * m_p;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Class design
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+A simulation is not a Parameters.
+ A simulation has parameters.
+ Simulation should not be derived from Paramaters, but have a Parameters
+ member
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Parameters
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  int m_x;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct Simulation : public Parameters
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  const int GetX() const { return m_x; }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Design Patterns
+\end_layout
+
+\begin_layout Standard
+A Design Pattern is 'a description of communicating objects and classes
+ that are customized to solve a general design problem in a particular context',
+ examples: 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides.
+ Design Patterns.
+ 1995.
+ ISBN: 0201633612.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Command: encapsulates a request as an object
+\end_layout
+
+\begin_layout Itemize
+Decorator: attach additional responsibilities to an object dynamically
+\end_layout
+
+\begin_layout Itemize
+Iterator: provide a way to access the elements of an aggregate object sequential
+ly
+\end_layout
+
+\begin_layout Itemize
+Observer: when one object changes state, all its dependents are notified
+ and updated
+\end_layout
+
+\begin_layout Itemize
+State: allow an object to alter its behavior
+\end_layout
+
+\begin_layout Itemize
+Strategy: defines a family of algorithms, encapsulates each one, and makes
+ them interchangeable
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Design Patterns
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Drawback: class explosion, use non-virtual interface
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Duck
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  virtual void Fly() = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  virtual void Quack() = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  //...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct FlyWithWingsNormalQuackDuck : public Duck {};
+\end_layout
+
+\begin_layout Plain Layout
+
+struct FlyRocketPoweredNormalQuackDuck : public Duck {};
+\end_layout
+
+\begin_layout Plain Layout
+
+struct FlyWithWingsSqeakDuck : public Duck {};
+\end_layout
+
+\begin_layout Plain Layout
+
+struct FlyRocketPoweredSqueakDuck : public Duck {};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Strategy Design Pattern 1/3
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct Duck 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  void Fly() { m_fly_behavior->Fly(); }
+\end_layout
+
+\begin_layout Plain Layout
+
+  void Quack() { m_quack_behavior->Quack(); }
+\end_layout
+
+\begin_layout Plain Layout
+
+  void SetFlyBehavior(
+\end_layout
+
+\begin_layout Plain Layout
+
+    const std::shared_ptr<const FlyBehavior> fb);
+\end_layout
+
+\begin_layout Plain Layout
+
+  void SetQuackBehavior(
+\end_layout
+
+\begin_layout Plain Layout
+
+    const std::shared_ptr<const QuackBehavior> qb);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  private:
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::shared_ptr<const FlyBehavior> m_fly_behavior;
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::shared_ptr<const QuackBehavior> m_quack_behavior;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Strategy Design Pattern 2/3
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct FlyBehavior 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  virtual ~FlyBehavior() {}
+\end_layout
+
+\begin_layout Plain Layout
+
+  virtual void Fly() = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct FlyWithWings : public FlyBehavior {
+\end_layout
+
+\begin_layout Plain Layout
+
+  void Fly() { /* */ }
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct FlyRocketPowered : public FlyBehavior {
+\end_layout
+
+\begin_layout Plain Layout
+
+  void Fly(){ /* */ }
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OO C++ example: Strategy Design Pattern 3/3
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct MallardDuck : public Duck {
+\end_layout
+
+\begin_layout Plain Layout
+
+  MallardDuck() 
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    //Set default behaviors
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct SuperDuck : public Duck {
+\end_layout
+
+\begin_layout Plain Layout
+
+  SuperDuck() 
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    //Set default behaviors
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Domain #3: Template C++
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Domain #3: Template C++
+\end_layout
+
+\begin_layout Itemize
+What is it?
+\end_layout
+
+\begin_layout Itemize
+Host class design
+\end_layout
+
+\begin_layout Itemize
+Policy design
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Template C++: what is it?
+\end_layout
+
+\begin_layout Itemize
+More than containers of T
+\end_layout
+
+\begin_layout Itemize
+Calculations and checks that run at compile-time
+\end_layout
+
+\begin_layout Itemize
+No cost in run-time speed!
+\end_layout
+
+\begin_layout Itemize
+Examples
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Compile-time assert
+\end_layout
+
+\begin_layout Itemize
+Compile-time calculations
+\end_layout
+
+\begin_layout Itemize
+Compile-time polymorphism
+\end_layout
+
+\begin_layout Itemize
+Unit checking
+\end_layout
+
+\begin_layout Itemize
+Lookup tables
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Template C++: Compile-time assert
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+template<bool> struct CompileTimeAssert;
+\end_layout
+
+\begin_layout Plain Layout
+
+template<> struct CompileTimeAssert<true> {};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int main() 
+\end_layout
+
+\begin_layout Plain Layout
+
+{   
+\end_layout
+
+\begin_layout Plain Layout
+
+  CompileTimeAssert< 1+1 == 2 >(); 
+\end_layout
+
+\begin_layout Plain Layout
+
+  CompileTimeAssert< 1+1 == 3 >(); //Will not compile
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Template C++: Compile-time calculation
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+template <unsigned int N> struct factorial {
+\end_layout
+
+\begin_layout Plain Layout
+
+  static unsigned const value 
+\end_layout
+
+\begin_layout Plain Layout
+
+  = N * factorial<N-1>::value;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+template <> struct factorial<0> {
+\end_layout
+
+\begin_layout Plain Layout
+
+  static unsigned const value = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int main() { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  CompileTimeAssert<(factorial<5>::value==120)>(); 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Template C++: Compile-time polymorphism
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+///A compile-time Strategy Design Pattern 
+\end_layout
+
+\begin_layout Plain Layout
+
+enum Policy { A, B };
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+template <Policy> struct Strategy 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  static void DoIt(); 
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+template<> void Strategy<A>::DoIt() 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Do it the A way
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+template<> void Strategy<B>::DoIt()
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Do it the B way
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int main() 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  const Strategy<A> x; x.DoIt();
+\end_layout
+
+\begin_layout Plain Layout
+
+  const Strategy<B> y; y.DoIt();
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Template C++: Unit checking
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int main() 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Create a length
+\end_layout
+
+\begin_layout Plain Layout
+
+  const boost::units::quantity<boost::units::si::length> m(
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.0 * boost::units::si::meter);
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Create another length
+\end_layout
+
+\begin_layout Plain Layout
+
+  const boost::units::quantity<boost::units::si::length> n(
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.0 * boost::units::si::milli * boost::units::si::meter);
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Create a force
+\end_layout
+
+\begin_layout Plain Layout
+
+  const boost::units::quantity<boost::units::si::force> f(
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.0 * boost::units::si::newton);
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Add the two lengths
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::cout << (m + n); //OKAY: can add meters to meters
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Try to add force to a length
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::cout << (m + f); //FAILS: cannot add newtons to meters 
+\end_layout
+
+\begin_layout Plain Layout
+
+}  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Domain #4: The STL
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Domain #4: The STL
+\end_layout
+
+\begin_layout Itemize
+Container choice
+\end_layout
+
+\begin_layout Itemize
+Iterators
+\end_layout
+
+\begin_layout Itemize
+Algorithm choice
+\end_layout
+
+\begin_layout Itemize
+Smart pointer choice
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Containers
+\end_layout
+
+\begin_layout Itemize
+How many do you know?
+\end_layout
+
+\begin_layout Itemize
+When to use which one?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Containers
+\end_layout
+
+\begin_layout Itemize
+std::string
+\end_layout
+
+\begin_layout Itemize
+std::vector
+\end_layout
+
+\begin_layout Itemize
+std::set
+\end_layout
+
+\begin_layout Itemize
+std::map
+\end_layout
+
+\begin_layout Itemize
+std::list
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Containers
+\end_layout
+
+\begin_layout Itemize
+std::string: text
+\end_layout
+
+\begin_layout Itemize
+std::vector: dynamic-sized array
+\end_layout
+
+\begin_layout Itemize
+std::set: sorts items, stores each instance once
+\end_layout
+
+\begin_layout Itemize
+std::map: lookup table
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Containers
+\end_layout
+
+\begin_layout Itemize
+Use std::string and std::vector by default
+\end_layout
+
+\begin_layout Itemize
+Both can communicate with C API's
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Iterators
+\end_layout
+
+\begin_layout Itemize
+Allows a uniform way to work with STL containers
+\end_layout
+
+\begin_layout Itemize
+Some iterators might be implemented as plain pointers
+\end_layout
+
+\begin_layout Itemize
+Examples: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+std::vector<int>::iterator
+\end_layout
+
+\begin_layout Itemize
+std::set<std::string>::iterator
+\end_layout
+
+\begin_layout Itemize
+std::back_inserter
+\end_layout
+
+\begin_layout Itemize
+std::ostream_iterator
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Iterators
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//v is a container of type T, e.g.
+ std::vector<int> or std::set<std::string>
+\end_layout
+
+\begin_layout Plain Layout
+
+const T::const_iterator j = v.end();
+\end_layout
+
+\begin_layout Plain Layout
+
+for (T::const_iterator i = v.begin(); i!=j; ++i) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::cout << (*i) << '
+\backslash
+n';
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Algorithms question
+\end_layout
+
+\begin_layout Itemize
+What are algorithms?
+\end_layout
+
+\begin_layout Itemize
+Why use algorithms?
+\end_layout
+
+\begin_layout Section*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Algorithms answers
+\end_layout
+
+\begin_layout Itemize
+What are algorithms?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+named operations on multiple elements
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Why use algorithms?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+verbosity/readability
+\end_layout
+
+\begin_layout Itemize
+increase run-time speed: naive for-loops might result in higher Big-O
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Algorithm example
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+template<typename In, typename Out, typename Pred> 
+\end_layout
+
+\begin_layout Plain Layout
+
+Out Copy_if(In first, In last, Out res, Pred Pr) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (first != last)   
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (Pr(*first)) *res++ = *first;
+\end_layout
+
+\begin_layout Plain Layout
+
+    ++first;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  return res; 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Algorithms
+\end_layout
+
+\begin_layout Itemize
+How many do you know?
+\end_layout
+
+\begin_layout Itemize
+When to use which one?
+\end_layout
+
+\begin_layout Itemize
+How to extend these?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Some algorithm names
+\end_layout
+
+\begin_layout Itemize
+(amongst) others: std::sort, std::random_shuffle, std::for_each, std::accumulate
+, std::transform
+\end_layout
+
+\begin_layout Itemize
+Some use predicates: std::copy_if (accidentally ommitted in C++98 standard),
+ std::count_if
+\end_layout
+
+\begin_layout Itemize
+Some expected sorted ranges: std::binary_search, std::merge
+\end_layout
+
+\begin_layout Section*
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Algorithm example
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Write all elements to std::cout
+\end_layout
+
+\begin_layout Plain Layout
+
+std::copy(
+\end_layout
+
+\begin_layout Plain Layout
+
+  v.begin(),
+\end_layout
+
+\begin_layout Plain Layout
+
+  v.end(),
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::ostream_iterator<std::string>(
+\end_layout
+
+\begin_layout Plain Layout
+
+    std::cout,"
+\backslash
+n"
+\end_layout
+
+\begin_layout Plain Layout
+
+  )
+\end_layout
+
+\begin_layout Plain Layout
+
+);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Extending algorithms
+\end_layout
+
+\begin_layout Itemize
+Algorithms can be extended by functors
+\end_layout
+
+\begin_layout Itemize
+Functor: class that has a defined function call operator
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Extending algorith example
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+struct GetStringLengther { 
+\end_layout
+
+\begin_layout Plain Layout
+
+ int operator()(const std::string& s) const { return static_cast<int>(s.size());
+ } 
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int main() 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::vector<std::string> v = /* */;
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Obtain the std::string lengths present
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::set<int> w;
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::transform(v.begin(),v.end(),
+\end_layout
+
+\begin_layout Plain Layout
+
+    std::inserter(w,w.begin()),GetStringLengther());
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The STL: Smart pointers
+\end_layout
+
+\begin_layout Itemize
+RAII idiom
+\end_layout
+
+\end_body
+\end_document

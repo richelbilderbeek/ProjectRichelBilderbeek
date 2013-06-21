@@ -1,0 +1,294 @@
+Have a non-directory at the top, so creating directory top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/Background.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/Cycle_100.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ExperimentFlow.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/Experiment_100.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/GroupDynamics_100.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/Groups.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/IPGG.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/Licence.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/Period_100_58.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtst.odp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtst.pro to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtst.qrc to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstAdjustments.docx to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstArchitectureMenuDialog.dia to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstArchitectureMenuDialog.dia~ to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstArchitectureMenuDialog.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstArchitectureServer.dia to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstArchitectureServer.dia~ to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstArchitectureServer.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstDrd_0_50.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstIdea.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogAssignPayoff.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogAssignPayoffParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogChat.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogChatParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogChooseAction.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogChooseAction2.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogChooseActionParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogFinished.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogFinishedParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogGroupAssign.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogGroupAssign2.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogGroupAssign2Parameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogGroupAssignParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogGroupReAssign.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogGroupReAssignParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogLoggedIn.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogLoggedInParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogNotLoggedIn.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogNotLoggedInParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogViewResultsGroup.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogViewResultsGroupParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogViewResultsVoting.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogViewResultsVotingParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogVoting.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogVoting2.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstParticipantDialogVotingParameters.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstSloccount.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstTestConcurrency.pro to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstTestConcurrency.pro.user to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstToDo.odt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstToDo.pdf to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstToDoCheckDance.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstToDoContribution.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstToDoPolicing.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ProjectGtstToDoReAssign.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/R.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/RichelbilderbeekNlBackground.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/TotalExperimentFlow.png to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administrator.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administrator.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administratordialog.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administratordialog.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administratordialogstate.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administratordialogstate.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administratordialogstateloggedin.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administratordialogstateloggedin.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administratordialogstatenotloggedin.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administratordialogstatenotloggedin.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administrators.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/administrators.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/all_groups.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/all_parameters.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/all_participantdialogstates.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/all_participantstates.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/all_serverstates.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/chatmessage.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/chatmessage.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/chatshapefactory.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/chatshapefactory.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/chooseactionoption.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/chooseactionoption.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/debugdialog.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/debugdialog.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/doxygen_config.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/drd.sh to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/forward_declarations.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/gmon.out to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/gprof.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/gprof_20110708_good.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/group.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/group.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groupassigner.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groupassigner.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groupfinished.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groupfinished.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/grouploggedin.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/grouploggedin.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groupnotloggedin.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groupnotloggedin.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groupparticipating.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groupparticipating.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groups.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/groups.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/gtst_start_and_auto_update.sh to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/helgrind.sh to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/helgrind.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/helgrind_20110805_0906.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/helgrind_test_concurrency.sh to top_dir
+Creating filelist for html
+Creating filelist for latex
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/logfile.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/logfile.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/main.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/main_test_concurrency.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/memcheck.sh to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/output.txt to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parameters.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parameters.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersassignpayoff.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersassignpayoff.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parameterschat.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parameterschat.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parameterschooseaction.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parameterschooseaction.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersfinished.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersfinished.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersgroupassign.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersgroupassign.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersgroupreassign.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersgroupreassign.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersquiz.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersquiz.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersviewresultsall.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersviewresultsgroup.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersviewresultsgroup.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersviewresultsvoting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersviewresultsvoting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersvoting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/parametersvoting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participant.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participant.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialog.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialog.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstate.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstate.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstateassignpayoff.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstateassignpayoff.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatechat.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatechat.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatechooseaction.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatechooseaction.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatefinished.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatefinished.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstategroupassign.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstategroupassign.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstategroupreassign.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstategroupreassign.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstateloggedin.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstateloggedin.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatenotloggedin.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatenotloggedin.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatequiz.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatequiz.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstates.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstates.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstateviewresultsgroup.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstateviewresultsgroup.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstateviewresultsvoting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstateviewresultsvoting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatevoting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantdialogstatevoting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstate.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstate.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstateassignpayoff.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstateassignpayoff.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatechat.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatechat.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatechooseaction.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatechooseaction.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatefinished.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatefinished.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstategroupassign.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstategroupassign.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstategroupreassign.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstategroupreassign.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstateloggedin.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstateloggedin.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatenotloggedin.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatenotloggedin.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatequiz.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatequiz.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstateviewresultsgroup.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstateviewresultsgroup.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstateviewresultsvoting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstateviewresultsvoting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatevoting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/participantstatevoting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/payoff.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/payoff.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/payoffs.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/payoffs.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/profile.sh to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/projectgtstmenudialog.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/projectgtstmenudialog.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/ptrcheck.sh to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/repeatassigner.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/repeatassigner.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/repeatassignerfixed.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/repeatassignerfixed.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/repeatassignerrandomgeometric.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/repeatassignerrandomgeometric.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/repeatassignerrandomuniform.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/repeatassignerrandomuniform.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/resources.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/resources.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/server.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/server.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstate.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstate.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstateassignpayoff.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstateassignpayoff.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatechat.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatechat.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatechooseaction.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatechooseaction.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatefinished.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatefinished.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstategroupassign.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstategroupassign.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstategroupreassign.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstategroupreassign.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatequiz.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatequiz.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstates.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstates.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstateviewresultsgroup.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstateviewresultsgroup.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstateviewresultsvoting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstateviewresultsvoting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatevoting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatevoting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatewaiting.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/serverstatewaiting.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/state.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/state.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/target.htm to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/test.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/test.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/testparameterparsing.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/testparameters.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/testparticipant.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/teststate.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/vote.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/vote.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/votingoption.cpp to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/votingoption.h to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/wt.css to top_dir
+Adding /home/richel/Projects/Projects/ProjectGtst/../ProjectGtst/zip.sh to top_dir
+Categorizing files.
+Finding a working MD5 command....
+Found a working MD5 command.
+Computing results.
+
+
+SLOC	Directory	SLOC-by-Language (Sorted)
+12344   top_dir         cpp=12124,sh=220
+104     html            perl=104
+0       latex           (none)
+
+
+Totals grouped by language (dominant language first):
+cpp:          12124 (97.40%)
+sh:             220 (1.77%)
+perl:           104 (0.84%)
+
+
+
+
+Total Physical Source Lines of Code (SLOC)                = 12,448
+Development Effort Estimate, Person-Years (Person-Months) = 2.82 (33.89)
+ (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))
+Schedule Estimate, Years (Months)                         = 0.79 (9.54)
+ (Basic COCOMO model, Months = 2.5 * (person-months**0.38))
+Estimated Average Number of Developers (Effort/Schedule)  = 3.55
+Total Estimated Cost to Develop                           = $ 381,501
+ (average salary = $56,286/year, overhead = 2.40).
+SLOCCount, Copyright (C) 2001-2004 David A. Wheeler
+SLOCCount is Open Source Software/Free Software, licensed under the GNU GPL.
+SLOCCount comes with ABSOLUTELY NO WARRANTY, and you are welcome to
+redistribute it under certain conditions as specified by the GNU GPL license;
+see the documentation for details.
+Please credit this data as "generated using David A. Wheeler's 'SLOCCount'."

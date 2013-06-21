@@ -1,0 +1,23 @@
+#include <string>
+
+//From http://www.richelbilderbeek.nl/CppStrToDouble.htm
+const double StrToDouble(const std::string& s)
+{
+  return std::atof(s.c_str());
+}
+
+
+
+
+
+
+
+
+#include <string>
+#include <boost/lexical_cast.hpp>
+
+//From http://www.richelbilderbeek.nl/CppStrToDouble.htm
+const double StrToDouble(const std::string& s)
+{
+  return boost::lexical_cast<double>(s);
+}

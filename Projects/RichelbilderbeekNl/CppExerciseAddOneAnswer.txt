@@ -1,0 +1,358 @@
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppExerciseAddOneAnswer.htm
+//---------------------------------------------------------------------------
+#include <cassert>
+#include <cmath>
+#include <iostream>
+#include <iterator>
+#include <vector>
+#include <algorithm>
+#include <functional>
+#include <boost/timer.hpp>
+#pragma hdrstop            //End of precompiled header, C++ Builder specific
+//---------------------------------------------------------------------------
+void AddForAssignment1st(std::vector<int>& v)
+{
+  const int size = v.size();
+  for (int i=0; i!=size; ++i) v[i]=1+v[i];
+}
+//---------------------------------------------------------------------------
+void AddForAssignment2nd(std::vector<int>& v)
+{
+  const int size = v.size();
+  for (int i=0; i!=size; ++i) v[i]=v[i]+1;
+}
+//---------------------------------------------------------------------------
+void AddForIncrease(std::vector<int>& v)
+{
+  const int size = v.size();
+  for (int i=0; i!=size; ++i) v[i]+=1;
+}
+//---------------------------------------------------------------------------
+void AddForPostIncrement(std::vector<int>& v)
+{
+  const int size = v.size();
+  for (int i=0; i!=size; ++i) v[i]++;
+}
+//---------------------------------------------------------------------------
+void AddForPreIncrement(std::vector<int>& v)
+{
+  const int size = v.size();
+  for (int i=0; i!=size; ++i) ++v[i];
+}
+//---------------------------------------------------------------------------
+void AddIteratorAssignment1st(std::vector<int>& v)
+{
+  const std::vector<int>::iterator j = v.end();
+  for (std::vector<int>::iterator i = v.begin(); i!=j; ++i) (*i) = 1 + (*i);
+}
+//---------------------------------------------------------------------------
+void AddIteratorAssignment2nd(std::vector<int>& v)
+{
+  const std::vector<int>::iterator j = v.end();
+  for (std::vector<int>::iterator i = v.begin(); i!=j; ++i) (*i) = (*i) + 1;
+}
+//---------------------------------------------------------------------------
+void AddIteratorIncrease(std::vector<int>& v)
+{
+  const std::vector<int>::iterator j = v.end();
+  for (std::vector<int>::iterator i = v.begin(); i!=j; ++i) (*i)+=1;
+}
+//---------------------------------------------------------------------------
+void AddIteratorPostIncrement(std::vector<int>& v)
+{
+  const std::vector<int>::iterator j = v.end();
+  for (std::vector<int>::iterator i = v.begin(); i!=j; ++i) (*i)++;
+}
+//---------------------------------------------------------------------------
+void AddIteratorPreIncrement(std::vector<int>& v)
+{
+  const std::vector<int>::iterator j = v.end();
+  for (std::vector<int>::iterator i = v.begin(); i!=j; ++i) ++(*i);
+}
+//---------------------------------------------------------------------------
+//non-inline functions
+void AddOneAssignment1st(int& x) { x=1+x; }
+void AddOneAssignment2nd(int& x) { x=x+1; }
+void AddOneIncrease(int& x) { x+=1; }
+void AddOnePostIncrement(int& x) { x++; }
+void AddOnePreIncrement(int& x) { ++x; }
+//---------------------------------------------------------------------------
+void AddAlgorithmNonInlineFunctionAssignment1st(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOneAssignment1st);
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmNonInlineFunctionAssignment2nd(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOneAssignment2nd);
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmNonInlineFunctionIncrease(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOneIncrease);
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmNonInlineFunctionPostIncrement(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOnePostIncrement);
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmNonInlineFunctionPreIncrement(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOnePreIncrement);
+}
+//---------------------------------------------------------------------------
+//inline functions
+inline void AddOneAssignmentInline1st(int& x) { x=1+x; }
+inline void AddOneAssignmentInline2nd(int& x) { x=x+1; }
+inline void AddOneIncreaseInline(int& x) { x+=1; }
+inline void AddOnePostIncrementInline(int& x) { x++; }
+inline void AddOnePreIncrementInline(int& x) { ++x; }
+//---------------------------------------------------------------------------
+void AddAlgorithmInlineFunctionAssignment1st(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOneAssignmentInline1st);
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmInlineFunctionAssignment2nd(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOneAssignmentInline2nd);
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmInlineFunctionIncrease(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOneIncreaseInline);
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmInlineFunctionPostIncrement(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOnePostIncrementInline);
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmInlineFunctionPreIncrement(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(),AddOnePreIncrementInline);
+}
+//---------------------------------------------------------------------------
+//Non-inline-operator() structs
+struct AddOnerNonInlineAssignment1st : public std::unary_function<int,void>
+  { void operator()(int& x) { x=1+x; } };
+struct AddOnerNonInlineAssignment2nd : public std::unary_function<int,void>
+  { void operator()(int& x) { x=x+1; } };
+struct AddOnerNonInlineIncrease : public std::unary_function<int,void>
+  { void operator()(int& x) { x+=1; } };
+struct AddOnerNonInlinePostIncrement : public std::unary_function<int,void>
+  { void operator()(int& x) { x++; } };
+struct AddOnerNonInlinePreIncrement : public std::unary_function<int,void>
+  { void operator()(int& x) { ++x; } };
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorNonInlineAssignment1st(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerNonInlineAssignment1st() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorNonInlineAssignment2nd(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerNonInlineAssignment2nd() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorNonInlineIncrease(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerNonInlineIncrease() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorNonInlinePostIncrement(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerNonInlinePostIncrement() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorNonInlinePreIncrement(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerNonInlinePreIncrement() );
+}
+//---------------------------------------------------------------------------
+//Inline-operator() structs
+struct AddOnerInlineAssignment1st : public std::unary_function<int,void>
+  { inline void operator()(int& x) { x=1+x; } };
+struct AddOnerInlineAssignment2nd : public std::unary_function<int,void>
+  { inline void operator()(int& x) { x=x+1; } };
+struct AddOnerInlineIncrease : public std::unary_function<int,void>
+  { inline void operator()(int& x) { x+=1; } };
+struct AddOnerInlinePostIncrement : public std::unary_function<int,void>
+  { inline void operator()(int& x) { x++; } };
+struct AddOnerInlinePreIncrement : public std::unary_function<int,void>
+  { inline void operator()(int& x) { ++x; } };
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorInlineAssignment1st(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerInlineAssignment1st() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorInlineAssignment2nd(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerInlineAssignment2nd() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorInlineIncrease(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerInlineIncrease() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorInlinePostIncrement(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerInlinePostIncrement() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmFunctorInlinePreIncrement(std::vector<int>& v)
+{
+  std::for_each(v.begin(),v.end(), AddOnerInlinePreIncrement() );
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmBind1st(std::vector<int>& v)
+{
+  std::transform(v.begin(),v.end(),v.begin(),
+    std::bind1st(std::plus<int>(),1));
+}
+//---------------------------------------------------------------------------
+void AddAlgorithmBind2nd(std::vector<int>& v)
+{
+  std::transform(v.begin(),v.end(),v.begin(),
+    std::bind2nd(std::plus<int>(),1));
+}
+//---------------------------------------------------------------------------
+//Too bad boost::tuple does not work on my compiler :-(
+//From http://www.richelbilderbeek.nl/CppExerciseAddOneAnswer.htm
+struct Function
+{
+  typedef void (*FunctionPointer)(std::vector<int>&);
+  Function(FunctionPointer anyFunction, const std::string& s)
+    : function(anyFunction), name(s), sumTime(0.0) {}
+  FunctionPointer function;
+  std::string name;
+  double sumTime;
+};
+//---------------------------------------------------------------------------
+std::ostream& operator<<(std::ostream& os, const Function& function)
+{
+  os << function.sumTime << '\t' << function.name;
+  return os;
+}
+//---------------------------------------------------------------------------
+bool LowestSumTime(const Function& lhs, const Function& rhs)
+{
+  return (lhs.sumTime < rhs.sumTime);
+}
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppExerciseAddOneAnswer.htm
+struct SpeedMeasurer : std::unary_function <void,Function>
+{
+  SpeedMeasurer(std::vector<int>& v) : mV(v) {}
+  void operator()(Function& function)
+  {
+    boost::timer t;
+    function.function(mV); //Perform the function
+    const double time = t.elapsed();
+    function.sumTime += time;
+    assert(time >= t.elapsed_min() * 10
+      && "Measurement must be above 10x minimal timer interval!");
+  }
+  std::vector<int>& mV;
+};
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppExerciseAddOneAnswer.htm
+std::vector<Function> GetFunctions()
+{
+  std::vector<Function> v;
+  //For loop
+  v.push_back(Function(AddForAssignment1st,"For-loop, assignment 1st"));
+  v.push_back(Function(AddForAssignment2nd,"For-loop, assignment 2nd"));
+  v.push_back(Function(AddForIncrease,"For-loop, increase"));
+  v.push_back(Function(AddForPostIncrement,"For-loop, post-increment"));
+  v.push_back(Function(AddForPreIncrement,"For-loop, pre-increment"));
+  //Iterator
+  v.push_back(Function(AddIteratorAssignment1st,"Iterator, assignment 1st"));
+  v.push_back(Function(AddIteratorAssignment2nd,"Iterator, assignment 2nd"));
+  v.push_back(Function(AddIteratorIncrease,"Iterator, increase"));
+  v.push_back(Function(AddIteratorPostIncrement,"Iterator, post-increment"));
+  v.push_back(Function(AddIteratorPreIncrement,"Iterator, pre-increment"));
+  //Algorithm to non-inline function
+  v.push_back(Function(AddAlgorithmNonInlineFunctionAssignment1st,
+    "Algorithm, non-inline function, assignment 1st"));
+  v.push_back(Function(AddAlgorithmNonInlineFunctionAssignment2nd,
+    "Algorithm, non-inline function, assignment 2nd"));
+  v.push_back(Function(AddAlgorithmNonInlineFunctionIncrease,
+    "Algorithm, non-inline function, increase"));
+  v.push_back(Function(AddAlgorithmNonInlineFunctionPostIncrement,
+    "Algorithm, non-inline function, post-increment"));
+  v.push_back(Function(AddAlgorithmNonInlineFunctionPreIncrement,
+    "Algorithm, non-inline function, pre-increment"));
+  //Algorithm to inline function
+  v.push_back(Function(AddAlgorithmInlineFunctionAssignment1st,
+    "Algorithm, inline function, assignment 1st"));
+  v.push_back(Function(AddAlgorithmInlineFunctionAssignment2nd,
+    "Algorithm, inline function, assignment 2nd"));
+  v.push_back(Function(AddAlgorithmInlineFunctionIncrease,
+    "Algorithm, inline function, increase"));
+  v.push_back(Function(AddAlgorithmInlineFunctionPostIncrement,
+    "Algorithm, inline function, post-increment"));
+  v.push_back(Function(AddAlgorithmInlineFunctionPreIncrement,
+    "Algorithm, inline function, pre-increment"));
+  //Algorithm using non-inline-operator() functor
+  v.push_back(Function(AddAlgorithmFunctorNonInlineAssignment1st,
+    "Algorithm, functor, non-inline, assignment 1st"));
+  v.push_back(Function(AddAlgorithmFunctorNonInlineAssignment2nd,
+    "Algorithm, functor, non-inline, assignment 2nd"));
+  v.push_back(Function(AddAlgorithmFunctorNonInlineIncrease,
+    "Algorithm, functor, non-inline, increase"));
+  v.push_back(Function(AddAlgorithmFunctorNonInlinePostIncrement,
+    "Algorithm, functor, non-inline, post-increment"));
+  v.push_back(Function(AddAlgorithmFunctorNonInlinePreIncrement,
+    "Algorithm, functor, non-inline, pre-increment"));
+  //Algorithm using inline-operator() functor
+  v.push_back(Function(AddAlgorithmFunctorInlineAssignment1st,
+    "Algorithm, functor, inline, assignment 1st"));
+  v.push_back(Function(AddAlgorithmFunctorInlineAssignment2nd,
+    "Algorithm, functor, inline, assignment 2nd"));
+  v.push_back(Function(AddAlgorithmFunctorInlineIncrease,
+    "Algorithm, functor, inline, increase"));
+  v.push_back(Function(AddAlgorithmFunctorInlinePostIncrement,
+    "Algorithm, functor, inline, post-increment"));
+  v.push_back(Function(AddAlgorithmFunctorInlinePreIncrement,
+    "Algorithm, functor, inline, pre-increment"));
+  //NEW
+  v.push_back(Function(AddAlgorithmBind1st,
+    "Algorithm, std::plus, std::bind1st"));
+  v.push_back(Function(AddAlgorithmBind2nd,
+    "Algorithm, std::plus, std::bind2nd"));
+  return v;
+}
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppExerciseAddOneAnswer.htm
+int main()
+{
+  boost::timer t;
+
+  const int size = 10000000;
+  const int nTimes = 100;
+  std::vector<Function> functions = GetFunctions();
+  std::vector<int> v(size,0);
+
+  for (int i=0; i!=nTimes; ++i)
+  {
+    std::cout << i << " / " << nTimes << '\n';
+    std::random_shuffle(functions.begin(), functions.end());
+    std::for_each(functions.begin(), functions.end(), SpeedMeasurer(v) );
+  }
+
+  std::cout << "Done.\n";
+  std::cout << "Size std::vector: " << size << std::endl;
+  std::cout << "Repeats: " << nTimes << std::endl;
+  std::cout << "Timer minimal interval: " << t.elapsed_min() << std::endl;
+  std::sort(functions.begin(),functions.end(),LowestSumTime);
+  std::copy(functions.begin(),functions.end(), std::ostream_iterator<Function>(std::cout,"\n"));
+  std::cout << "Total running time: " << t.elapsed() << " seconds." << std::endl;
+  std::cin.get();
+}
+//---------------------------------------------------------------------------
+ 
