@@ -1,0 +1,404 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a6paper
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation landscape
+\suppress_date false
+\use_refstyle 1
+\backgroundcolor #000000
+\fontcolor #ffffff
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Code Intent, or: can I clearly express myself in C++?
+\end_layout
+
+\begin_layout Author
+(C) Richèl Bilderbeek 
+\begin_inset Graphics
+	filename /home/richel/Projects/Projects/RichelbilderbeekNl/CC-BY-NC-SA.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Overview
+\end_layout
+
+\begin_layout Itemize
+Introduction
+\end_layout
+
+\begin_layout Itemize
+Example
+\end_layout
+
+\begin_layout Itemize
+Exercises
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Programming Ideals
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Stroustrup 2009, §1.6
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Correctness 
+\end_layout
+
+\begin_layout Itemize
+Reliability 
+\end_layout
+
+\begin_layout Itemize
+Affordable 
+\end_layout
+
+\begin_layout Itemize
+Maintainable
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Quote
+Programs must be written for people to read, and only incidentally for machines
+ to execute
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+H.
+ Abelson & G.J.
+ Sussman
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
+It's hard to overstate the value of simple design and clear code
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sutter & Alexandrescu 2005, §6
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Code has an intention 
+\end_layout
+
+\begin_layout Itemize
+Code should match the intention 
+\end_layout
+
+\begin_layout Itemize
+Your intention can be concluded from:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+what you put in 
+\end_layout
+
+\begin_layout Itemize
+what you omit 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Example 1
+\end_layout
+
+\begin_layout Standard
+What can be concluded from the following code?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+int x;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Example 1
+\end_layout
+
+\begin_layout Standard
+What can be concluded from the following code?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+int x;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusions
+\end_layout
+
+\begin_layout Itemize
+x is either really an x or a short-living simple-use variable or coder is
+ unaware of the literature
+\end_layout
+
+\begin_layout Itemize
+x can both be positive or negative
+\end_layout
+
+\begin_layout Itemize
+there is no value for x to initialize it with yet and coder is unaware of
+ the literature
+\end_layout
+
+\begin_layout Itemize
+x will have its value changed at least once
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Example 2
+\end_layout
+
+\begin_layout Standard
+What can be concluded from the following code?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+unsigned int x;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Example 2
+\end_layout
+
+\begin_layout Standard
+What can be concluded from the following code?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+unsigned int n_countries = 27;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Conclusions
+\end_layout
+
+\begin_layout Itemize
+n_countries is probably a number of countries
+\end_layout
+
+\begin_layout Itemize
+n_countries is always positive
+\end_layout
+
+\begin_layout Itemize
+coder is unaware of the literature or some complex code is coming
+\end_layout
+
+\begin_layout Itemize
+n_countries will have its value changed at least once
+\end_layout
+
+\end_body
+\end_document
