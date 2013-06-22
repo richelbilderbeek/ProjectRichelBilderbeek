@@ -31,14 +31,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include "pylosboard.h"
 #include "pyloscoordinat.h"
 #include "pyloscurrentmovestate.h"
 #include "pylosgame.h"
 #include "pylosmove.h"
 #include "pylosplayer.h"
-//---------------------------------------------------------------------------
+
 const About PylosMenuDialog::GetAbout()
 {
   About a(
@@ -57,12 +57,12 @@ const About PylosMenuDialog::GetAbout()
   a.AddLibrary("Pylos::Move version: " + Pylos::Move::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string PylosMenuDialog::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> PylosMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -70,4 +70,4 @@ const std::vector<std::string> PylosMenuDialog::GetVersionHistory()
   v.push_back("2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek");
   return v;
 }
-//---------------------------------------------------------------------------
+

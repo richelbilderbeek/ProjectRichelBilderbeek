@@ -20,12 +20,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef PYLOSMENUDIALOG_H
 #define PYLOSMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
 ///PylosMenuDialog contains the BeerWanter menu dialog
 struct PylosMenuDialog
 {
@@ -38,8 +38,8 @@ struct PylosMenuDialog
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 ///From http://www.richelbilderbeek.nl/CppIntToStr.htm
 const std::string IntToStr(const int x);
-//---------------------------------------------------------------------------
+
 #endif // PYLOSMENUDIALOG_H
