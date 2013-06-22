@@ -42,7 +42,7 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
 {
   ui->setupUi(this);
   #ifndef NDEBUG
-  //Test();
+  Test();
   #endif
   assert(ui->view->scene());
   assert(m_from);
@@ -137,15 +137,12 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   {
     const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();
     const std::size_t sz = boost::numeric_cast<int>(v.size());
-    TRACE(sz);
     for (std::size_t i=0; i!=sz; ++i)
     {
       assert(i < v.size());
       const pvdb::Competency competency = v[i];
       const std::string s = pvdb::CompetencyToDutchStr(competency);
       const QString qs = s.c_str();
-      TRACE(qs.toStdString());
-      TRACE(ui->box_competency->count());
       assert(ui);
       assert(ui->box_competency);
       assert(GetEdge());
@@ -154,7 +151,6 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
       assert(!GetEdge()->GetConcept()->GetExamples()->Get().empty()
         && "Otherwise 'ui->box_competency->addItem(qs)' will fail, due to on_box_competency_currentIndexChanged");
       ui->box_competency->addItem(qs); //2013-06-22: BUG: std::out_of_range' what():  vector::_M_range_check
-      TRACE_FUNC();
     }
   }
 
@@ -311,34 +307,57 @@ void QtPvdbTestEdgeItemDialog::Test()
     {
   #endif
   TRACE("QtPvdbTestEdgeItemDialog::Test started");
-  QtPvdbTestEdgeItemDialog d;
-  assert(d.m_edge);
-  assert(d.m_edge->GetConcept());
-  assert(d.m_edge_item);
-  assert(d.m_edge_item->GetEdge());
-
-  assert(d.m_edge.get() == d.m_edge_item->GetEdge().get());
-  assert(d.m_edge->GetConcept().get() == d.m_edge_item->GetEdge()->GetConcept().get());
+  boost::shared_ptr<QtPvdbTestEdgeItemDialog> d(new QtPvdbTestEdgeItemDialog);
+  assert(d);
+  assert(d->m_edge);
+  assert(d->m_edge->GetConcept());
+  assert(d->m_edge_item);
+  assert(d->m_edge_item->GetEdge());
+  assert(d->m_edge.get() == d->m_edge_item->GetEdge().get());
+  assert(d->m_edge->GetConcept().get() == d->m_edge_item->GetEdge()->GetConcept().get());
 
   //Test resizing due to longer text being set
   {
-    TRACE("TODO");
-    /*
-    const std::string s = d.m_edge->GetConcept()->GetName();
-    const double w = d.m_edge_item->GetConceptItem()->boundingRect().width();
-    d.m_edge->GetConcept()->SetName(s + "*");
-    assert(d.m_edge_item->GetConceptItem()->boundingRect().width() > w);
-    */
+    const std::string s = d->m_edge->GetConcept()->GetName();
+    const double w = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    d->m_edge->GetConcept()->SetName(s + "*");
+    assert(d->m_edge_item->GetConceptItem()->boundingRect().width() > w);
   }
   //Test resizing due to shorter text being set
   {
-    TRACE("TODO");
-    /*
-    d.m_edge->GetConcept()->SetName("1234567890");
-    const double w = d.m_edge_item->GetConceptItem()->boundingRect().width();
-    d.m_edge->GetConcept()->SetName("123456789");
-    assert(d.m_edge_item->GetConceptItem()->boundingRect().width() < w);
-    */
+    d->m_edge->GetConcept()->SetName("1234567890");
+    const double w = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    d->m_edge->GetConcept()->SetName("123456789");
+    assert(d->m_edge_item->GetConceptItem()->boundingRect().width() < w);
+  }
+  //Push all buttons
+  assert(d->ui);
+  assert(d->ui->box_edit);
+  const int n_edit_types = d->ui->box_edit->count();
+  assert(n_edit_types > 0);
+  for (int type=0; type!=n_edit_types; ++type)
+  {
+    //Set the way to obtain the pointer to the edge
+    d->ui->box_edit->setCurrentIndex(type);
+
+    //Change the arrow head
+    {
+      const int n = d->ui->box_arrow_head->count();
+      assert(n > 0);
+      for (int i=0; i!=n; ++i)
+      {
+        d->ui->box_arrow_head->setCurrentIndex(i);
+      }
+    }
+    //Change the arrow tail
+    {
+      const int n = d->ui->box_arrow_tail->count();
+      assert(n > 0);
+      for (int i=0; i!=n; ++i)
+      {
+        d->ui->box_arrow_tail->setCurrentIndex(i);
+      }
+    }
   }
   TRACE("QtPvdbTestEdgeItemDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
