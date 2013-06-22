@@ -7,8 +7,6 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpvdbtestconceptmapeditwidgetdialog.h"
 
-#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
-
 #include <cassert>
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -31,20 +29,26 @@
 #include "qtpvdbeditconceptitem.h"
 #include "qtpvdbnodeitem.h"
 #include "qtpvdbrateconceptitem.h"
+#include "qtpvdbconceptmapeditwidget.h"
 #include "trace.h"
 #include "ui_qtpvdbtestconceptmapeditwidgetdialog.h"
 
 QtPvdbTestConceptMapEditWidgetDialog::QtPvdbTestConceptMapEditWidgetDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtPvdbTestConceptMapEditWidgetDialog)
+  ui(new Ui::QtPvdbTestConceptMapEditWidgetDialog),
+  m_concept_map(
+    new QtPvdbConceptMapEditWidget(
+      pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+    )
+  )
+
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15));
-  assert(concept_map);
-  ui->concept_map->ReadFromConceptMap(concept_map);
+  assert(ui->widget->layout());
+  ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
 QtPvdbTestConceptMapEditWidgetDialog::~QtPvdbTestConceptMapEditWidgetDialog()
@@ -143,7 +147,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::Test()
 void QtPvdbTestConceptMapEditWidgetDialog::on_button_modify_clicked()
 {
 
-  const QList<QGraphicsItem *> v = ui->concept_map->GetScene()->items();
+  const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();
   std::for_each(v.begin(),v.end(),
     [](QGraphicsItem * const item)
     {
@@ -169,7 +173,5 @@ void QtPvdbTestConceptMapEditWidgetDialog::on_button_modify_clicked()
       }
     }
   );
-  ui->concept_map->GetScene()->update();
+  m_concept_map->GetScene()->update();
 }
-
-#endif

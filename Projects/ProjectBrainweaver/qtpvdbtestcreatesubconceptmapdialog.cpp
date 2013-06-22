@@ -1,11 +1,10 @@
 #include "qtpvdbtestcreatesubconceptmapdialog.h"
 
-#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
-
 #include <cassert>
 #include <boost/numeric/conversion/cast.hpp>
 #include "pvdbconceptmapfactory.h"
 #include "pvdbconceptmap.h"
+#include "qtpvdbconceptmapdisplaywidget.h"
 #include "ui_qtpvdbtestcreatesubconceptmapdialog.h"
 
 QtPvdbTestCreateSubConceptMapDialog::QtPvdbTestCreateSubConceptMapDialog(QWidget *parent) :
@@ -33,7 +32,10 @@ void QtPvdbTestCreateSubConceptMapDialog::OnConceptMapChanged()
   const std::vector<boost::shared_ptr<pvdb::ConceptMap> > v = pvdb::ConceptMapFactory::GetAllTests();
   assert(i < boost::numeric_cast<int>(v.size()));
   const boost::shared_ptr<pvdb::ConceptMap> concept_map = v[i];
-  ui->concept_map->ReadFromConceptMap(concept_map);
+
+  assert(ui->widget_concept_map->layout());
+  boost::shared_ptr<QtPvdbConceptMapDisplayWidget> qtconcept_map(new QtPvdbConceptMapDisplayWidget(concept_map));
+  ui->widget_concept_map->layout()->addWidget(qtconcept_map.get());
 
   const std::vector<boost::shared_ptr<pvdb::ConceptMap> > subs = concept_map->CreateSubs();
   const int n_subs = boost::numeric_cast<int>(subs.size());
@@ -52,8 +54,11 @@ void QtPvdbTestCreateSubConceptMapDialog::OnSubConceptMapChanged()
   const int j = ui->box_index_sub->value();
   assert(j < boost::numeric_cast<int>(subs.size()));
   const boost::shared_ptr<pvdb::ConceptMap> sub = subs[j];
-  ui->sub_concept_map->ReadFromConceptMap(sub);
+
+
+  assert(ui->widget_sub_concept_map->layout());
+  boost::shared_ptr<QtPvdbConceptMapDisplayWidget> qtconcept_map(new QtPvdbConceptMapDisplayWidget(sub));
+  ui->widget_sub_concept_map->layout()->addWidget(qtconcept_map.get());
+
 
 }
-
-#endif

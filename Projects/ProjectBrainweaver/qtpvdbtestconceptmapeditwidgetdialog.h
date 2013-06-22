@@ -6,8 +6,6 @@
 #undef __STRICT_ANSI__
 #endif
 
-#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
@@ -46,9 +44,10 @@ private:
 
   Ui::QtPvdbTestConceptMapEditWidgetDialog *ui;
 
+  ///The to-be-tested concept map
+  boost::shared_ptr<QtPvdbConceptMapEditWidget> m_concept_map;
+
   static void Test();
 };
-
-#endif
 
 #endif // QTPVDBTESTCONCEPTMAPEDITWIDGETDIALOG_H

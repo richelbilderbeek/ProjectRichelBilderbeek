@@ -7,8 +7,6 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpvdbtestconceptmapdisplaywidgetdialog.h"
 
-#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
-
 #include <cassert>
 #include <cstdlib>
 
@@ -17,36 +15,44 @@
 #endif
 
 #include <boost/lexical_cast.hpp>
+
 #include <QKeyEvent>
+
+#include "pvdbcompetency.h"
+#include "pvdbconcept.h"
+#include "pvdbconceptmapfactory.h"
+#include "pvdbconceptmap.h"
+#include "pvdbexample.h"
+#include "pvdbexample.h"
+#include "pvdbexamples.h"
+#include "pvdbexamples.h"
+#include "pvdbnodefactory.h"
+#include "pvdbnode.h"
+#include "qtpvdbbrushfactory.h"
+#include "qtpvdbconceptmapdisplaywidget.h"
+#include "qtpvdbdisplayconceptitem.h"
 #include "qtpvdbdisplayconceptitem.h"
 #include "qtpvdbeditconceptitem.h"
-#include "qtpvdbrateconceptitem.h"
-#include "pvdbnodefactory.h"
-#include "qtpvdbdisplayconceptitem.h"
-#include "pvdbexample.h"
-#include "pvdbcompetency.h"
-#include "pvdbexamples.h"
-#include "pvdbconceptmap.h"
-#include "qtpvdbbrushfactory.h"
 #include "qtpvdbnodeitem.h"
-#include "pvdbexamples.h"
-#include "pvdbexample.h"
-#include "ui_qtpvdbtestconceptmapdisplaywidgetdialog.h"
-#include "pvdbconcept.h"
-#include "pvdbnode.h"
-#include "pvdbconceptmapfactory.h"
+#include "qtpvdbrateconceptitem.h"
 #include "trace.h"
+#include "ui_qtpvdbtestconceptmapdisplaywidgetdialog.h"
 
 QtPvdbTestConceptMapDisplayWidgetDialog::QtPvdbTestConceptMapDisplayWidgetDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtPvdbTestConceptMapDisplayWidgetDialog)
+  ui(new Ui::QtPvdbTestConceptMapDisplayWidgetDialog),
+  m_concept_map(
+    new QtPvdbConceptMapDisplayWidget(
+      pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+    )
+  )
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15));
-  ui->concept_map->ReadFromConceptMap(concept_map);
+  assert(ui->widget->layout());
+  ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
 QtPvdbTestConceptMapDisplayWidgetDialog::~QtPvdbTestConceptMapDisplayWidgetDialog()
@@ -84,7 +90,7 @@ void QtPvdbTestConceptMapDisplayWidgetDialog::Test()
 
 void QtPvdbTestConceptMapDisplayWidgetDialog::on_button_test_modify_clicked()
 {
-  const QList<QGraphicsItem *> v = ui->concept_map->GetScene()->items();
+  const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();
   std::for_each(v.begin(),v.end(),
     [](QGraphicsItem * const item)
     {
@@ -116,7 +122,5 @@ void QtPvdbTestConceptMapDisplayWidgetDialog::on_button_test_modify_clicked()
       }
     }
   );
-  ui->concept_map->GetScene()->update();
+  m_concept_map->GetScene()->update();
 }
-
-#endif
