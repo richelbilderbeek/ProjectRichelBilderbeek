@@ -30,13 +30,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <QKeyEvent>
 
-#include "trace.h"
+//#include "trace.h"
 
 QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent)
   : QDialog(parent),
     m_show_child(false)
 {
-  TRACE_FUNC();
+
 }
 
 void QtHideAndShowDialog::close_child()
