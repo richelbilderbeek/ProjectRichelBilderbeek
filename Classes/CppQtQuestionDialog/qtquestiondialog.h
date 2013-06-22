@@ -38,6 +38,8 @@ struct QtQuestionDialog : public QDialog
 {
   explicit QtQuestionDialog(QWidget *parent = 0);
 
+  virtual ~QtQuestionDialog() {}
+
   QtQuestionDialog(
     const boost::shared_ptr<QuestionDialog>& dialog,
     QWidget *parent = 0);
@@ -56,7 +58,6 @@ struct QtQuestionDialog : public QDialog
   mutable boost::signals2::signal<void (bool)> m_signal_submitted;
 
   protected:
-  virtual ~QtQuestionDialog() {}
 
   boost::shared_ptr<QuestionDialog> m_dialog;
 };

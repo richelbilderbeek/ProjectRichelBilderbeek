@@ -47,41 +47,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 QtTestQuestionMainDialog::QtTestQuestionMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQuestionMainDialog),
-    m_dialog(new TestQuestionMainDialog)
+    m_dialog(CreateQtQuestionDialog("-,1+1=,2,1,3"))
+
 {
   ui->setupUi(this);
 
-  BOOST_FOREACH(boost::shared_ptr<QuestionDialog>& dialog,
-    m_dialog->GetQuestions())
-  {
-    //const QuestionDialog * const p = dialog.get();
-    if (dynamic_cast<OpenQuestionDialog*>(dialog.get()))
-    {
-      boost::shared_ptr<QtQuestionDialog> d(
-        new QtOpenQuestionDialog(dialog));
-      m_dialogs.push_back(d);
-      ui->my_layout->addWidget(d.get());
-    }
-    else if (dynamic_cast<MultipleChoiceQuestionDialog*>(dialog.get()))
-    {
-      boost::shared_ptr<QtQuestionDialog> d(
-        new QtMultipleChoiceQuestionDialog(dialog));
-      m_dialogs.push_back(d);
-      ui->my_layout->addWidget(d.get());
-    }
-    else
-    {
-      assert(!"Should not get here");
-    }
-  }
+  assert(ui->contents_here->layout());
+  delete  ui->contents_here->layout();
+  assert(!ui->contents_here->layout());
+  QGridLayout * const my_layout = new QGridLayout;
+  ui->contents_here->setLayout(my_layout);
+  assert(ui->contents_here->layout());
 
-  BOOST_FOREACH(const boost::shared_ptr<QtQuestionDialog>& d,m_dialogs)
-  {
-    d->m_signal_submitted.connect(
-      boost::bind(
-        &QtTestQuestionMainDialog::OnSubmit,this));
-  }
-  OnSubmit();
+  my_layout->addWidget(m_dialog.get());
 }
 
 QtTestQuestionMainDialog::~QtTestQuestionMainDialog()
@@ -101,41 +79,60 @@ void QtTestQuestionMainDialog::changeEvent(QEvent *e)
   }
 }
 
+boost::shared_ptr<QtQuestionDialog> QtTestQuestionMainDialog::CreateQtQuestionDialog(const std::string& s)
+{
+  boost::shared_ptr<QtQuestionDialog> p;
+
+
+  try
+  {
+    boost::shared_ptr<QuestionDialog> d(new OpenQuestionDialog(s));
+    if (d) p.reset(new QtQuestionDialog(d));
+    assert(p);
+    return p;
+  }
+  catch(std::exception&)
+  {
+    //No problem
+  }
+  try
+  {
+    boost::shared_ptr<QuestionDialog> d(new MultipleChoiceQuestionDialog(s));
+    if (d) p.reset(new QtQuestionDialog(d));
+    assert(p);
+    return p;
+  }
+  catch(std::exception&)
+  {
+    //No problem
+  }
+  return p;
+}
+
 
 void QtTestQuestionMainDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtTestQuestionMainDialog::OnSubmit()
-{
-  const int n = boost::numeric_cast<int>(m_dialogs.size());
-  int n_submitted = 0;
-  int n_correct = 0;
-  BOOST_FOREACH(const boost::shared_ptr<QtQuestionDialog>& d,m_dialogs)
-  {
-    if (d->GetDialog()->HasSubmitted())
-    {
-      ++n_submitted;
-      if (d->GetDialog()->IsAnswerCorrect())
-      {
-        ++n_correct;
-      }
-    }
-  }
-  ui->label_score->setText(
-    (std::string("Submitted: ")
-    + boost::lexical_cast<std::string>(n_submitted)
-    + std::string("/")
-    + boost::lexical_cast<std::string>(n)
-    + std::string(", Correct: ")
-    + boost::lexical_cast<std::string>(n_correct)
-    + std::string("/")
-    + boost::lexical_cast<std::string>(n_submitted)).c_str());
-}
-
-
 void QtTestQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
 {
-  QtQuestionDialog
+  const std::string s = arg1.toStdString();
+
+  if (ui->contents_here->layout())
+  {
+    delete ui->contents_here->layout();
+  }
+  assert(!ui->contents_here->layout());
+
+  m_dialog = CreateQtQuestionDialog(s);
+  if (m_dialog)
+  {
+    assert(m_dialog);
+    assert(!ui->contents_here->layout());
+    QGridLayout * const my_layout = new QGridLayout;
+    ui->contents_here->setLayout(my_layout);
+    assert(ui->contents_here->layout());
+    my_layout->addWidget(m_dialog.get());
+  }
 }
