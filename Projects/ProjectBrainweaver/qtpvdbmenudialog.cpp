@@ -304,6 +304,12 @@ void QtPvdbMenuDialog::Test()
       assert(i < buttons.size());
       QPushButton * const button = buttons[i];
       assert(button);
+
+      TRACE(button->text().toStdString());
+      if (button->text() == QString("&M. QtPvdbEdgeItem")
+      {
+        TRACE("BREAK");
+      }
       if (button->isEnabled()) button->click();
     }
 

@@ -131,8 +131,10 @@ INCLUDEPATH += \
     ../../Classes/CppNewickVector \
     ../../Classes/CppOpenQuestion \
     ../../Classes/CppOpenQuestionDialog \
+    ../../Classes/CppPylos \
     ../../Classes/CppQtCreatorProFile \
     ../../Classes/CppQrcFile \
+    ../../Classes/CppQtModel \
     ../../Classes/CppQuestion \
     ../../Classes/CppQuestionDialog \
     ../../Classes/CppRainbow \
@@ -177,6 +179,7 @@ INCLUDEPATH += \
     ../../Classes/CppWtTimedServerPusher \
     ../../Classes/CppWtToggleButtonWidget \
     ../../Games/GameConnectThree \
+    ../../Games/GamePylos \
     ../../Games/GameRubiksClock \
     ../../Games/GameTicTacToe \
     ../../Libraries/bigint-2010.04.30 \
@@ -185,9 +188,11 @@ INCLUDEPATH += \
     ../../Tools/ToolCodeToHtml \
     ../../Tools/ToolCreateQtProjectZipFile \
     ../../Tools/ToolHometrainer \
+    ../../Tools/ToolKalmanFilterer \
     ../../Tools/ToolRandomCode \
     ../../Tools/ToolRegexTester \
     ../../Tools/ToolSimMysteryMachine \
+    ../../Tools/ToolStateObserver \
     ../../Tools/ToolTestDial \
     ../../Tools/ToolTestEncranger \
     ../../Tools/ToolTestEntrance \
@@ -555,7 +560,18 @@ SOURCES += \
     ../../Classes/CppStateObserver/alphabetagammafilter.cpp \
     ../../Classes/CppStateObserver/alphabetafilter.cpp \
     ../../Tools/ToolStateObserver/stateobservermenudialog.cpp \
-    ../../Tools/ToolStateObserver/noisefunctionparser.cpp
+    ../../Tools/ToolStateObserver/noisefunctionparser.cpp \
+    ../../Games/GamePylos/pylosmenudialog.cpp \
+    ../../Classes/CppQtModel/modelfunctionparser.cpp \
+    ../../Classes/CppPylos/pyloswinner.cpp \
+    ../../Classes/CppPylos/pylospositionstate.cpp \
+    ../../Classes/CppPylos/pylosplayer.cpp \
+    ../../Classes/CppPylos/pylosmustremovestate.cpp \
+    ../../Classes/CppPylos/pylosmove.cpp \
+    ../../Classes/CppPylos/pylosgame.cpp \
+    ../../Classes/CppPylos/pyloscurrentmovestate.cpp \
+    ../../Classes/CppPylos/pyloscoordinat.cpp \
+    ../../Classes/CppPylos/pylosboard.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -911,7 +927,19 @@ HEADERS += \
     ../../Classes/CppStateObserver/alphabetagammafilter.h \
     ../../Classes/CppStateObserver/alphabetafilter.h \
     ../../Tools/ToolStateObserver/stateobservermenudialog.h \
-    ../../Tools/ToolStateObserver/noisefunctionparser.h
+    ../../Tools/ToolStateObserver/noisefunctionparser.h \
+    ../../Games/GamePylos/pylosmenudialog.h \
+    ../../Classes/CppQtModel/modelfunctionparser.h \
+    ../../Classes/CppPylos/pyloswinner.h \
+    ../../Classes/CppPylos/pylospositionstate.h \
+    ../../Classes/CppPylos/pylosplayer.h \
+    ../../Classes/CppPylos/pylosmustremovestate.h \
+    ../../Classes/CppPylos/pylosmove.h \
+    ../../Classes/CppPylos/pylosgame.h \
+    ../../Classes/CppPylos/pylosfwd.h \
+    ../../Classes/CppPylos/pyloscurrentmovestate.h \
+    ../../Classes/CppPylos/pyloscoordinat.h \
+    ../../Classes/CppPylos/pylosboard.h
 
 RESOURCES += \
     ../../Games/GameConnectThree/GameConnectThree.qrc \
@@ -936,7 +964,8 @@ RESOURCES += \
     ../../Tools/ToolHometrainer/ToolHometrainer.qrc \
     ../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc \
     ../../Tools/ToolAsciiArter/ToolAsciiArter.qrc \
-    ../../Tools/ToolStateObserver/ToolStateObserver.qrc
+    ../../Tools/ToolStateObserver/ToolStateObserver.qrc \
+    ../../Games/GamePylos/GamePylos.qrc
 
 OTHER_FILES += \
     ../../Classes/CppQrcFile/Licence.txt \
@@ -1025,4 +1054,24 @@ OTHER_FILES += \
     ../../Classes/CppStateObserver/Licence.txt \
     ../../Tools/ToolStateObserver/zip.sh \
     ../../Tools/ToolStateObserver/ToolStateObserverWelcome.png \
-    ../../Tools/ToolStateObserver/Licence.txt
+    ../../Tools/ToolStateObserver/Licence.txt \
+    ../../Games/GamePylos/zip.sh \
+    ../../Games/GamePylos/sprite_player2_select.png \
+    ../../Games/GamePylos/sprite_player2_remove.png \
+    ../../Games/GamePylos/sprite_player2.png \
+    ../../Games/GamePylos/sprite_player1_select.png \
+    ../../Games/GamePylos/sprite_player1_remove.png \
+    ../../Games/GamePylos/sprite_player1.png \
+    ../../Games/GamePylos/sprite_hole.png \
+    ../../Games/GamePylos/R.png \
+    ../../Games/GamePylos/PylosSquare.png \
+    ../../Games/GamePylos/PylosRemove2.png \
+    ../../Games/GamePylos/PylosRemove1.png \
+    ../../Games/GamePylos/PylosPlace.png \
+    ../../Games/GamePylos/PylosMove.png \
+    ../../Games/GamePylos/PylosLine.png \
+    ../../Games/GamePylos/PylosGoal2.png \
+    ../../Games/GamePylos/PylosGoal1.png \
+    ../../Games/GamePylos/Licence.txt \
+    ../../Classes/CppQtModel/Licence.txt \
+    ../../Classes/CppPylos/Licence.txt

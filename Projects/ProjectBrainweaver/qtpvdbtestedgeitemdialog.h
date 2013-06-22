@@ -54,6 +54,9 @@ private:
   const boost::shared_ptr<pvdb::Node> m_from;
   const boost::shared_ptr<pvdb::Node> m_to;
 
+  static const boost::shared_ptr<pvdb::Node> CreateFrom();
+  static const boost::shared_ptr<pvdb::Node> CreateTo();
+
   ///Get the Edge via the route chosen by box_edit
   const boost::shared_ptr<pvdb::Edge> GetEdge();
 

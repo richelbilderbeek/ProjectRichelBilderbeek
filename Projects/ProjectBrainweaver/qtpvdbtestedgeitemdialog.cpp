@@ -37,16 +37,22 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestEdgeItemDialog),
   m_edge_item(nullptr),
-  m_from(pvdb::NodeFactory::GetTests().at(2)),
-  m_to(  pvdb::NodeFactory::GetTests().at(3))
+  m_from(CreateFrom()),
+  m_to(CreateTo())
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
   assert(ui->view->scene());
+  assert(m_from);
+  assert(m_to);
+  {
+    const std::size_t index = 0;
+    assert(pvdb::EdgeFactory::GetTests(m_from,m_to).size());
+    m_edge = pvdb::EdgeFactory::GetTests(m_from,m_to)[index];
+  }
 
-  m_edge = pvdb::EdgeFactory::GetTests(m_from,m_to).at(0);
   //Edge is used in: m_edge
   //m_edge->GetConcept()->SetName("Edge with one example");
 
@@ -93,6 +99,7 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   //Concept is used in: m_edge::m_concept, QtPvdbDisplayConcept::m_edge::m_concept and QtPvdbConcept::m_concept
   assert(m_edge.get() == m_edge_item->GetEdge().get());
   assert(m_edge->GetConcept().get() == m_edge_item->GetEdge()->GetConcept().get());
+
   #ifndef NDEBUG
   {
     const int edge_use_count = m_edge.use_count();
@@ -117,21 +124,29 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
       ) == 1);
   }
 
+
   //Put nodes (not the edges) into place
   //The nodes must reposition themselves
   node1->setPos(-100.0,-100.0);
   m_edge_item->setPos(0.0,0.0);
   node2->setPos( 100.0, 100.0);
 
-
   {
     const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();
-    const int sz = boost::numeric_cast<int>(v.size());
-    for (int i=0; i!=sz; ++i)
+    const std::size_t sz = boost::numeric_cast<int>(v.size());
+    for (std::size_t i=0; i!=sz; ++i)
     {
-      ui->box_competency->addItem(pvdb::CompetencyToDutchStr(v[i]).c_str());
+      assert(i < v.size());
+      const pvdb::Competency competency = v[i];
+      const std::string s = pvdb::CompetencyToDutchStr(competency);
+  TRACE_FUNC();
+      const QString qs = s.c_str();
+  TRACE_FUNC();
+      ui->box_competency->addItem(qs);
+  TRACE_FUNC();
     }
   }
+  TRACE_FUNC();
 
   assert(this->GetEdge()->GetConcept()->GetExamples());
   assert(this->GetEdge()->GetConcept()->GetExamples()->Get().size() == 1);
@@ -146,11 +161,31 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   ui->box_arrow_head->setCurrentIndex(this->GetEdge()->HasHeadArrow());
   ui->box_arrow_tail->setCurrentIndex(this->GetEdge()->HasTailArrow());
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetEdge()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
+
+  TRACE_FUNC();
 }
 
 QtPvdbTestEdgeItemDialog::~QtPvdbTestEdgeItemDialog()
 {
   delete ui;
+}
+
+const boost::shared_ptr<pvdb::Node> QtPvdbTestEdgeItemDialog::CreateFrom()
+{
+  const std::size_t index = 2;
+  assert(index < pvdb::NodeFactory::GetTests().size());
+  const boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::GetTests()[index];
+  assert(node);
+  return node;
+}
+
+const boost::shared_ptr<pvdb::Node> QtPvdbTestEdgeItemDialog::CreateTo()
+{
+  const std::size_t index = 3;
+  assert(index < pvdb::NodeFactory::GetTests().size());
+  const boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::GetTests()[index];
+  assert(node);
+  return node;
 }
 
 const boost::shared_ptr<pvdb::Edge> QtPvdbTestEdgeItemDialog::GetEdge()
@@ -247,6 +282,11 @@ void QtPvdbTestEdgeItemDialog::Test()
   #endif
   TRACE("QtPvdbTestEdgeItemDialog::Test started");
   QtPvdbTestEdgeItemDialog d;
+  assert(d.m_edge);
+  assert(d.m_edge->GetConcept());
+  assert(d.m_edge_item);
+  assert(d.m_edge_item->GetEdge());
+
   assert(d.m_edge.get() == d.m_edge_item->GetEdge().get());
   assert(d.m_edge->GetConcept().get() == d.m_edge_item->GetEdge()->GetConcept().get());
 
