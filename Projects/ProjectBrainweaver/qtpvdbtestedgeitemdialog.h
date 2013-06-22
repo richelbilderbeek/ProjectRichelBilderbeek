@@ -49,8 +49,10 @@ private slots:
 private:
 
   Ui::QtPvdbTestEdgeItemDialog *ui;
-  const boost::shared_ptr<pvdb::Edge> m_edge;
+  boost::shared_ptr<pvdb::Edge> m_edge;
   QtPvdbEdgeItem* m_edge_item;
+  const boost::shared_ptr<pvdb::Node> m_from;
+  const boost::shared_ptr<pvdb::Node> m_to;
 
   ///Get the Edge via the route chosen by box_edit
   const boost::shared_ptr<pvdb::Edge> GetEdge();
