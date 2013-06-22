@@ -36,8 +36,9 @@
 QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestEdgeItemDialog),
-  m_edge(pvdb::EdgeFactory::GetTests().at(1)),
-  m_edge_item(nullptr)
+  m_edge_item(nullptr),
+  m_from(pvdb::NodeFactory::GetTests().at(2)),
+  m_to(  pvdb::NodeFactory::GetTests().at(3))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -45,27 +46,32 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   #endif
   assert(ui->view->scene());
 
+  m_edge = pvdb::EdgeFactory::GetTests(m_from,m_to).at(0);
   //Edge is used in: m_edge
-  m_edge->GetConcept()->SetName("Edge with one example");
-  //assert(m_edge.use_count() == 1);
-  //assert(m_edge->GetConcept().use_count() == 1);
+  //m_edge->GetConcept()->SetName("Edge with one example");
+
+  assert(m_edge);
+  #ifndef NDEBUG
+  {
+    const int edge_use_count = m_edge.use_count();
+    assert(edge_use_count == 1);
+  }
+  #endif
 
   //Create three nodes that the edges can connect to
   QtPvdbNodeItem * node1 = nullptr;
   {
-    boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::GetTests().at(0);
-    node->GetConcept()->SetName("1");
-    const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbDisplayConceptItem(node->GetConcept()));
-    node1 = new QtPvdbNodeItem(node,item);
+    //m_from->GetConcept()->SetName("1");
+    const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbDisplayConceptItem(m_from->GetConcept()));
+    node1 = new QtPvdbNodeItem(m_from,item);
     node1->m_signal_request_scene_update.connect(
       boost::bind(&QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate,this));
   }
   QtPvdbNodeItem * node2 = nullptr;
   {
-    boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::GetTests().at(0);
-    node->GetConcept()->SetName("2");
-    const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbEditConceptItem(node->GetConcept()));
-    node2 = new QtPvdbNodeItem(node,item);
+    //m_to->GetConcept()->SetName("2");
+    const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbEditConceptItem(m_to->GetConcept()));
+    node2 = new QtPvdbNodeItem(m_to,item);
     node2->m_signal_request_scene_update.connect(
       boost::bind(&QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate,this));
   }
@@ -87,7 +93,12 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   //Concept is used in: m_edge::m_concept, QtPvdbDisplayConcept::m_edge::m_concept and QtPvdbConcept::m_concept
   assert(m_edge.get() == m_edge_item->GetEdge().get());
   assert(m_edge->GetConcept().get() == m_edge_item->GetEdge()->GetConcept().get());
-  //assert(m_edge->GetConcept().use_count() == 2);
+  #ifndef NDEBUG
+  {
+    const int edge_use_count = m_edge.use_count();
+    assert(edge_use_count == 2);
+  }
+  #endif
 
   //Add items to the scene
   ui->view->scene()->addItem(node1);

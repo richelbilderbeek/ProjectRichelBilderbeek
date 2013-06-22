@@ -301,6 +301,7 @@ void QtPvdbMenuDialog::Test()
     const std::size_t n_buttons = buttons.size();
     for (std::size_t i = 0; i!=n_buttons; ++i)
     {
+      assert(i < buttons.size());
       QPushButton * const button = buttons[i];
       assert(button);
       if (button->isEnabled()) button->click();
