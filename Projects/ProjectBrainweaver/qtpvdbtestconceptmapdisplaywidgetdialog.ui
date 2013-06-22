@@ -25,7 +25,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="6">
+   <item row="0" column="1" rowspan="4">
     <widget class="QWidget" name="widget" native="true">
      <property name="enabled">
       <bool>true</bool>
@@ -54,17 +54,7 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QtPvdbConceptMapDisplayWidget" name="concept_map">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
+   <item row="1" column="0">
     <widget class="QLabel" name="label_concept_map_type">
      <property name="text">
       <string>DisplayConceptMap</string>
@@ -73,13 +63,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QtPvdbConceptMapDisplayWidget</class>
-   <extends>QGraphicsView</extends>
-   <header>qtpvdbconceptmapdisplaywidget.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="Brainweaver.qrc"/>
  </resources>

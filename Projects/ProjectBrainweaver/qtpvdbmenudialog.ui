@@ -140,7 +140,7 @@
       <item>
        <widget class="QPushButton" name="button_test_qtconceptmapdisplaywidget">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="text">
          <string>&amp;N. QtConceptMapDisplayWidget</string>

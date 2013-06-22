@@ -6,8 +6,6 @@
 #undef __STRICT_ANSI__
 #endif
 
-#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
-
 #include "qthideandshowdialog.h"
 
 namespace Ui {
@@ -32,8 +30,6 @@ private slots:
 private:
   Ui::QtPvdbTestCreateSubConceptMapDialog *ui;
 };
-
-#endif
 
 #endif // QTPVDBTESTCREATESUBCONCEPTMAPDIALOG_H
 

@@ -39,6 +39,10 @@
 #include "qtpvdbconcepteditdialog.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "qtpvdbcreateassessmentcompletedialog.h"
+#include "qtpvdbtestconceptmapdisplaywidgetdialog.h"
+#include "qtpvdbtestconceptmapeditwidgetdialog.h"
+#include "qtpvdbtestconceptmapratewidgetdialog.h"
+
 #include "qtpvdboverviewdialog.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"
@@ -500,18 +504,14 @@ void QtPvdbMenuDialog::on_button_test_arrowitems_clicked()
 
 void QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked()
 {
-  #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestConceptMapEditWidgetDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-  #endif
 }
 
 void QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked()
 {
-  #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestConceptMapRateWidgetDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-  #endif
 }
 
 void QtPvdbMenuDialog::on_button_create_test_files_clicked()
@@ -556,10 +556,8 @@ void QtPvdbMenuDialog::on_button_modify_stylesheet_clicked()
 
 void QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked()
 {
-  #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestConceptMapDisplayWidgetDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-  #endif
 }
 
 void QtPvdbMenuDialog::on_button_print_concept_map_clicked()
@@ -624,8 +622,6 @@ void QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
 
 void QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked()
 {
-  #ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
   QtPvdbTestCreateSubConceptMapDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-  #endif
 }

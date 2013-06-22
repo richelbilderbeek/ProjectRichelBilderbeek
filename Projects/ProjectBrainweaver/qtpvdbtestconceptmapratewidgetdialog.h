@@ -1,8 +1,6 @@
 #ifndef QTPVDBTESTCONCEPTMAPRATEWIDGETDIALOG_H
 #define QTPVDBTESTCONCEPTMAPRATEWIDGETDIALOG_H
 
-#ifdef SUPPORT_TEST_CONCEPT_MAP_DIALOGS_86543723642
-
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
@@ -46,8 +44,10 @@ private:
 
   Ui::QtPvdbTestConceptMapRateWidgetDialog *ui;
 
+  ///The to-be-tested concept map
+  boost::shared_ptr<QtPvdbConceptMapRateWidget> m_concept_map;
+
   static void Test();
 };
-#endif
 
 #endif // QTPVDBTESTCONCEPTMAPRATEWIDGETDIALOG_H

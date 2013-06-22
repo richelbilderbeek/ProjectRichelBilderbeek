@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>474</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,9 +29,9 @@
     </layout>
    </item>
    <item>
-    <widget class="QtPvdbConceptMapDisplayWidget" name="concept_map" native="true">
+    <widget class="QWidget" name="widget_concept_map" native="true">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -53,25 +53,10 @@
     </layout>
    </item>
    <item>
-    <widget class="QtPvdbConceptMapDisplayWidget" name="sub_concept_map" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
+    <widget class="QWidget" name="widget_sub_concept_map" native="true"/>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QtPvdbConceptMapDisplayWidget</class>
-   <extends>QWidget</extends>
-   <header>qtpvdbconceptmapdisplaywidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

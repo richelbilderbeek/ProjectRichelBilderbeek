@@ -14,7 +14,7 @@
    <string>Test ConceptMapEditWidget</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ProjectVanDenBogaart.qrc">
+   <iconset resource="Brainweaver.qrc">
     <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -25,7 +25,14 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="6">
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_conceptmap_type">
+     <property name="text">
+      <string>EditConceptMap</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="5">
     <widget class="QWidget" name="widget" native="true">
      <property name="enabled">
       <bool>true</bool>
@@ -54,34 +61,10 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QtPvdbConceptMapEditWidget" name="concept_map">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_conceptmap_type">
-     <property name="text">
-      <string>EditConceptMap</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QtPvdbConceptMapEditWidget</class>
-   <extends>QGraphicsView</extends>
-   <header>qtpvdbconceptmapeditwidget.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
-  <include location="ProjectVanDenBogaart.qrc"/>
+  <include location="Brainweaver.qrc"/>
  </resources>
  <connections/>
 </ui>
