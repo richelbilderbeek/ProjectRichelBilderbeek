@@ -269,6 +269,8 @@ void QtPvdbMenuDialog::Test()
     const std::vector<QPushButton*> buttons
       =
       {
+        ui->button_test_edge_item, //
+
         ui->button_about,
         ui->button_assessor,
         ui->button_concept,
@@ -288,7 +290,7 @@ void QtPvdbMenuDialog::Test()
         ui->button_test_conceptedit,
         ui->button_test_conceptmap,
         ui->button_test_create_sub_concept_map,
-        ui->button_test_edge_item,
+        //ui->button_test_edge_item,
         ui->button_test_node_item,
         ui->button_test_qtconceptmapdisplaywidget,
         ui->button_test_qtconceptmapeditwidget,
@@ -306,7 +308,7 @@ void QtPvdbMenuDialog::Test()
       assert(button);
 
       TRACE(button->text().toStdString());
-      if (button->text() == QString("&M. QtPvdbEdgeItem")
+      if (button->text() == QString("&M. QtPvdbEdgeItem"))
       {
         TRACE("BREAK");
       }
