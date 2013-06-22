@@ -42,19 +42,20 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
 {
   ui->setupUi(this);
   #ifndef NDEBUG
-  Test();
+  //Test();
   #endif
   assert(ui->view->scene());
   assert(m_from);
   assert(m_to);
   {
-    const std::size_t index = 0;
-    assert(pvdb::EdgeFactory::GetTests(m_from,m_to).size());
+    const std::size_t index = 4; //Must have examples
+    assert(index < pvdb::EdgeFactory::GetTests(m_from,m_to).size());
     m_edge = pvdb::EdgeFactory::GetTests(m_from,m_to)[index];
+    assert(m_edge->GetConcept());
+    assert(m_edge->GetConcept()->GetExamples());
+    assert(!m_edge->GetConcept()->GetExamples()->Get().empty()
+      && "Otherwise 'ui->box_competency->addItem(qs)' will fail, due to on_box_competency_currentIndexChanged");
   }
-
-  //Edge is used in: m_edge
-  //m_edge->GetConcept()->SetName("Edge with one example");
 
   assert(m_edge);
   #ifndef NDEBUG
@@ -90,6 +91,7 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
 
   //Create the edge
   {
+    assert(m_edge);
     boost::shared_ptr<QtPvdbEditConceptItem> concept(new QtPvdbEditConceptItem(m_edge->GetConcept()));
     m_edge_item = new QtPvdbEdgeItem(m_edge,concept,node1,node2);
   }
@@ -108,10 +110,12 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   #endif
 
   //Add items to the scene
+  assert(node1);
+  assert(node2);
+  assert(m_edge_item);
   ui->view->scene()->addItem(node1);
   ui->view->scene()->addItem(node2);
-  //ui->view->scene()->addItem(m_edge_item);
-  #ifdef TEMP_75767
+  ui->view->scene()->addItem(m_edge_item);
   assert(ui->view->scene()->items().size() == 3);
   {
     QList<QGraphicsItem *> v = ui->view->scene()->items();
@@ -123,7 +127,6 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
         }
       ) == 1);
   }
-  #endif
 
   //Put nodes (not the edges) into place
   //The nodes must reposition themselves
@@ -134,6 +137,7 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   {
     const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();
     const std::size_t sz = boost::numeric_cast<int>(v.size());
+    TRACE(sz);
     for (std::size_t i=0; i!=sz; ++i)
     {
       assert(i < v.size());
@@ -142,13 +146,20 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
       const QString qs = s.c_str();
       TRACE(qs.toStdString());
       TRACE(ui->box_competency->count());
-      ui->box_competency->addItem(qs);
+      assert(ui);
+      assert(ui->box_competency);
+      assert(GetEdge());
+      assert(GetEdge()->GetConcept());
+      assert(GetEdge()->GetConcept()->GetExamples());
+      assert(!GetEdge()->GetConcept()->GetExamples()->Get().empty()
+        && "Otherwise 'ui->box_competency->addItem(qs)' will fail, due to on_box_competency_currentIndexChanged");
+      ui->box_competency->addItem(qs); //2013-06-22: BUG: std::out_of_range' what():  vector::_M_range_check
       TRACE_FUNC();
     }
   }
 
   assert(this->GetEdge()->GetConcept()->GetExamples());
-  assert(this->GetEdge()->GetConcept()->GetExamples()->Get().size() == 1);
+  assert(!this->GetEdge()->GetConcept()->GetExamples()->Get().empty());
 
   ui->box_complexity->setCurrentIndex(this->GetEdge()->GetConcept()->GetRatingComplexity() + 1);
   ui->box_concreteness->setCurrentIndex(this->GetEdge()->GetConcept()->GetRatingConcreteness() + 1);
@@ -189,7 +200,9 @@ const boost::shared_ptr<pvdb::Edge> QtPvdbTestEdgeItemDialog::GetEdge()
 {
   switch(ui->box_edit->currentIndex())
   {
-    case 0: return m_edge;
+    case 0:
+      assert(m_edge);
+      return m_edge;
     case 1:
     {
       const auto v = ui->view->scene()->items();
@@ -219,11 +232,17 @@ void QtPvdbTestEdgeItemDialog::keyPressEvent(QKeyEvent *event)
 void QtPvdbTestEdgeItemDialog::on_box_competency_currentIndexChanged(int index)
 {
   const pvdb::Competency c = static_cast<pvdb::Competency>(index);
+  assert(GetEdge());
+  assert(GetEdge()->GetConcept());
+  assert(GetEdge()->GetConcept()->GetExamples());
+  assert(!GetEdge()->GetConcept()->GetExamples()->Get().empty());
   this->GetEdge()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
 void QtPvdbTestEdgeItemDialog::on_edit_name_textChanged(const QString &arg1)
 {
+  assert(GetEdge());
+  assert(GetEdge()->GetConcept());
   this->GetEdge()->GetConcept()->SetName(arg1.toStdString());
 }
 
@@ -232,36 +251,50 @@ void QtPvdbTestEdgeItemDialog::on_box_complexity_currentIndexChanged(const QStri
   const int rating_complexity = boost::lexical_cast<int>(arg1.toStdString());
   assert(rating_complexity >= -1);
   assert(rating_complexity <=  2);
+  assert(GetEdge());
+  assert(GetEdge()->GetConcept());
   this->GetEdge()->GetConcept()->SetRatingComplexity(rating_complexity);
 }
 
 void QtPvdbTestEdgeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
+  assert(GetEdge());
+  assert(GetEdge()->GetConcept());
   this->GetEdge()->GetConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
 void QtPvdbTestEdgeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
+  assert(GetEdge());
+  assert(GetEdge()->GetConcept());
   this->GetEdge()->GetConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
 void QtPvdbTestEdgeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
+  assert(GetEdge());
+  assert(GetEdge()->GetConcept());
+  assert(GetEdge()->GetConcept()->GetExamples());
   this->GetEdge()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
 
 void QtPvdbTestEdgeItemDialog::on_box_arrow_head_currentIndexChanged(int index)
 {
+  assert(GetEdge());
   this->GetEdge()->SetHeadArrow(index);
 }
 
 void QtPvdbTestEdgeItemDialog::on_box_arrow_tail_currentIndexChanged(int index)
 {
+  assert(GetEdge());
   this->GetEdge()->SetTailArrow(index);
 }
 
 void QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate()
 {
+  assert(ui);
+  assert(ui->view);
+  assert(ui->view->scene());
   ui->view->scene()->update();
 }
 
