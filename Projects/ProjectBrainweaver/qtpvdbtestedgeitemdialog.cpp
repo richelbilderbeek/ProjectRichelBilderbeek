@@ -110,8 +110,8 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   //Add items to the scene
   ui->view->scene()->addItem(node1);
   ui->view->scene()->addItem(node2);
-  ui->view->scene()->addItem(m_edge_item);
-
+  //ui->view->scene()->addItem(m_edge_item);
+  #ifdef TEMP_75767
   assert(ui->view->scene()->items().size() == 3);
   {
     QList<QGraphicsItem *> v = ui->view->scene()->items();
@@ -123,7 +123,7 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
         }
       ) == 1);
   }
-
+  #endif
 
   //Put nodes (not the edges) into place
   //The nodes must reposition themselves
@@ -139,14 +139,13 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
       assert(i < v.size());
       const pvdb::Competency competency = v[i];
       const std::string s = pvdb::CompetencyToDutchStr(competency);
-  TRACE_FUNC();
       const QString qs = s.c_str();
-  TRACE_FUNC();
+      TRACE(qs.toStdString());
+      TRACE(ui->box_competency->count());
       ui->box_competency->addItem(qs);
-  TRACE_FUNC();
+      TRACE_FUNC();
     }
   }
-  TRACE_FUNC();
 
   assert(this->GetEdge()->GetConcept()->GetExamples());
   assert(this->GetEdge()->GetConcept()->GetExamples()->Get().size() == 1);
@@ -161,8 +160,6 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   ui->box_arrow_head->setCurrentIndex(this->GetEdge()->HasHeadArrow());
   ui->box_arrow_tail->setCurrentIndex(this->GetEdge()->HasTailArrow());
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetEdge()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
-
-  TRACE_FUNC();
 }
 
 QtPvdbTestEdgeItemDialog::~QtPvdbTestEdgeItemDialog()

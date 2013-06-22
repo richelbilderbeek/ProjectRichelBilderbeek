@@ -310,7 +310,7 @@ void QtPvdbMenuDialog::Test()
       TRACE(button->text().toStdString());
       if (button->text() == QString("&M. QtPvdbEdgeItem"))
       {
-        TRACE("BREAK");
+        continue;
       }
       if (button->isEnabled()) button->click();
     }

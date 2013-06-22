@@ -49,10 +49,9 @@ private slots:
 
 private:
   Ui::QtTestQuestionMainDialog *ui;
-  boost::scoped_ptr<TestQuestionMainDialog> m_dialog;
-  std::vector<boost::shared_ptr<QtQuestionDialog> > m_dialogs;
+  boost::shared_ptr<QtQuestionDialog> m_dialog;
 
-  void OnSubmit();
+  static boost::shared_ptr<QtQuestionDialog> CreateQtQuestionDialog(const std::string& s);
 };
 
 #endif // QTTESTQUESTIONMAINDIALOG_H

@@ -16,7 +16,8 @@ INCLUDEPATH += \
     ../../Classes/CppQtOpenQuestionDialog \
     ../../Classes/CppQtQuestionDialog \
     ../../Classes/CppQuestion \
-    ../../Classes/CppQuestionDialog
+    ../../Classes/CppQuestionDialog \
+    ../../Classes/CppTrace
 
 SOURCES += qtmain.cpp \
     ../../Classes/CppAbout/about.cpp \
