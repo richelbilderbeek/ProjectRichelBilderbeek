@@ -208,12 +208,11 @@ void QtPvdbEdgeItem::OnEdgeChanged()
 {
   assert(m_arrow);
   assert(m_edge);
+  //m_edge is changed, so change m_arrow
+  m_arrow->SetHasHead(m_edge->HasHeadArrow());
+  m_arrow->SetHasTail(m_edge->HasTailArrow());
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
-  this->SetHasHeadArrow(m_edge->HasHeadArrow()); //FIX 2013-02-10
-  this->SetHasTailArrow(m_edge->HasTailArrow()); //FIX 2013-02-10
-  //m_arrow->SetHasHead(m_edge->HasHeadArrow()); //BUG 2013-02-10
-  //m_arrow->SetHasTail(m_edge->HasTailArrow()); //BUG 2013-02-10
   m_concept_item->SetText(m_edge->GetConcept()->GetName());
 }
 

@@ -76,12 +76,6 @@ QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   const auto items = Collect<QtPvdbNodeItem>(this->scene());
   const std::size_t n_items = items.size();
   const std::size_t n_nodes = nodes.size();
-  if (n_items != n_nodes)
-  {
-    TRACE(concept_map->GetNodes().size());
-    TRACE(n_items);
-    TRACE(n_nodes);
-  }
   assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
   #endif
 }

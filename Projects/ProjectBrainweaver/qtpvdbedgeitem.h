@@ -94,8 +94,21 @@ private:
   ///The node item the arrow targets
   QtPvdbNodeItem * const m_to;
 
-  //Called whenever the edge changes
+  ///Called whenever the edge changes
   void OnEdgeChanged();
+
+  #ifdef BELIEF_THIS_IS_A_BETTER_APPROACH_82768276582
+  ///Called whenever the head arrow of the edge changes
+  ///The bool indicates whether the arrow is set to shown
+  void OnEdgeHeadArrowChanged(const bool has_arrow);
+
+  ///Called whenever the head arrow of the edge changes
+  ///The bool indicates whether the arrow is set to shown
+  void OnEdgeTailArrowChanged(const bool has_arrow);
+
+  ///Called whenever the text of the edge changes
+  void OnEdgeTextChanged();
+  #endif
 
   ///Called whenever the arrow updates
   void OnItemHasUpdated();

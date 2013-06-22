@@ -65,7 +65,7 @@ void pvdb::Edge::SetHeadArrow(const bool has_head_arrow)
   if (m_head_arrow != has_head_arrow)
   {
     m_head_arrow = has_head_arrow;
-    //m_signal_changed(this); //2013-04-15 FIX?
+    m_signal_changed(this);
   }
 }
 
@@ -74,7 +74,7 @@ void pvdb::Edge::SetTailArrow(const bool has_tail_arrow)
   if (m_tail_arrow != has_tail_arrow)
   {
     m_tail_arrow = has_tail_arrow;
-    //m_signal_changed(this); //2013-04-15 FIX?
+    m_signal_changed(this);
   }
 }
 
@@ -185,47 +185,6 @@ bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs)
     && lhs.GetY()         == rhs.GetY()
     && lhs.HasHeadArrow() == rhs.HasHeadArrow()
     && lhs.HasTailArrow() == rhs.HasTailArrow();
-}
-
-bool operator==(const boost::shared_ptr<const pvdb::Edge>& lhs, const boost::shared_ptr<const pvdb::Edge>& rhs)
-{
-  assert(lhs); assert(rhs);
-  return IsEqual(*lhs,*rhs);
-}
-
-bool operator==(const boost::shared_ptr<const pvdb::Edge>& lhs, const boost::shared_ptr<pvdb::Edge>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Edge>(lhs) == boost::shared_ptr<const pvdb::Edge>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Edge>& lhs, const boost::shared_ptr<const pvdb::Edge>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Edge>(lhs) == boost::shared_ptr<const pvdb::Edge>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Edge>& lhs, const boost::shared_ptr<pvdb::Edge>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Edge>(lhs) == boost::shared_ptr<const pvdb::Edge>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Edge>& lhs, const boost::shared_ptr<const pvdb::Edge>& rhs)
-{
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Edge>& lhs, const boost::shared_ptr<pvdb::Edge>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Edge>(lhs) != boost::shared_ptr<const pvdb::Edge>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Edge>& lhs, const boost::shared_ptr<const pvdb::Edge>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Edge>(lhs) != boost::shared_ptr<const pvdb::Edge>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Edge>& lhs, const boost::shared_ptr<pvdb::Edge>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Edge>(lhs) != boost::shared_ptr<const pvdb::Edge>(rhs);
 }
 
 } //~namespace pvdb

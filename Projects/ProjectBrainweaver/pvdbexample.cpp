@@ -108,7 +108,6 @@ pvdb::Competency pvdb::Example::StrToCompetency(const std::string& s)
   if (s == "ti_knowledge") return pvdb::Competency::ti_knowledge;
   if (s == "prof_growth") return pvdb::Competency::prof_growth;
   if (s == "misc") return pvdb::Competency::misc;
-  TRACE(s);
   assert(!"Should not get here");
   throw std::logic_error("pvdb::Example::StrToCompetency: unknown string");
 }
