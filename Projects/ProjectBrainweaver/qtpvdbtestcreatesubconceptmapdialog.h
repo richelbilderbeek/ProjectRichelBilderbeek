@@ -6,6 +6,9 @@
 #undef __STRICT_ANSI__
 #endif
 
+#include <boost/shared_ptr.hpp>
+
+#include "pvdbfwd.h"
 #include "qthideandshowdialog.h"
 
 namespace Ui {
@@ -29,6 +32,13 @@ private slots:
 
 private:
   Ui::QtPvdbTestCreateSubConceptMapDialog *ui;
+
+  boost::shared_ptr<QtPvdbConceptMapWidget> m_concept_map;
+  boost::shared_ptr<QtPvdbConceptMapWidget> m_sub_concept_map;
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // QTPVDBTESTCREATESUBCONCEPTMAPDIALOG_H

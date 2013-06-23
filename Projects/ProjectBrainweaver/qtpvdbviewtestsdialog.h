@@ -48,6 +48,10 @@ private:
   #ifndef NDEBUG
   static void Test();
   #endif
+
+  static boost::shared_ptr<QtPvdbConceptMapWidget> CreateWidget(
+    const int type,
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map);
 };
 
 #endif // QTPVDBVIEWTESTSDIALOG_H

@@ -147,9 +147,9 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
     assert(this->brush() == new_main_brush);
     assert(this->GetIndicatorBrush() == new_indicator_brush);
     assert(this->GetIndicatorPen() == new_indicator_pen);
-    TRACE(std::rand()); //GOOD: Detects infinite recursion
-    //this->update(); //BUG
-    this->m_signal_item_has_updated(this); //BUG: THIS IS NEEDED, BUT HANGS THE DISPLAY OF TESTS
-    this->m_signal_request_scene_update(); //BUG
+    //TRACE(std::rand()); //GOOD: Detects infinite recursion
+    //this->update();
+    this->m_signal_item_has_updated(this); //Obligatory
+    this->m_signal_request_scene_update(); //Obligatory
   }
 }

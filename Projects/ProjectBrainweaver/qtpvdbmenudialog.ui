@@ -150,20 +150,26 @@
       <item>
        <widget class="QPushButton" name="button_test_qtconceptmapeditwidget">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="text">
          <string>&amp;O. QtConceptMapEditWidget</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="button_test_qtconceptmapratewidget">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="text">
          <string>&amp;P. QtConceptMapRateWidget</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -184,7 +190,7 @@
       <item>
        <widget class="QPushButton" name="button_test_create_sub_concept_map">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="text">
          <string>&amp;S. Create sub-concept map</string>
