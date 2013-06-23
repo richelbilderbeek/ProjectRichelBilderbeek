@@ -23,62 +23,96 @@
 QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbViewTestsDialog),
-  m_v(pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps())
+  m_c(pvdb::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
+  m_h(pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps()),
+  m_s(pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps())
 {
-  ui->setupUi(this);
 
-  assert(!ui->scrollAreaWidgetContents->layout());
-  QVBoxLayout * const mylayout = new QVBoxLayout(ui->scrollAreaWidgetContents);
+  ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
+
+  assert(!ui->contents->layout());
+  QVBoxLayout * const mylayout = new QVBoxLayout;
   assert(mylayout);
+  ui->contents->setLayout(mylayout);
+  assert(ui->contents->layout());
   //Add all concept maps
   {
+    QLabel * const label = new QLabel("Heteromorphous test concept maps",this);
+    assert(label);
+    mylayout->addWidget(label);
+  }
+  const int extra_height = 4;
+  {
+    const int sz = static_cast<int>(m_h.size());
+    for (int i=0; i!=sz; ++i)
     {
-      const int sz = static_cast<int>(m_v.size());
-      for (int i=0; i!=sz; ++i)
-      {
-        QLabel * const label = new QLabel((std::string("[")+boost::lexical_cast<std::string>(i)+std::string("]")).c_str());
-        assert(label);
-        mylayout->addWidget(label);
-        assert(m_v[i]);
-        const boost::shared_ptr<pvdb::ConceptMap> concept_map(m_v[i]);
-        assert(concept_map);
-        QtPvdbConceptMapDisplayWidget * const widget = new QtPvdbConceptMapDisplayWidget(concept_map);
-        assert(widget);
-        widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + 2); //NEW 2013-05-11
-        mylayout->addWidget(widget);
-      }
+      const std::string s = "[" + boost::lexical_cast<std::string>(i)+ "]";
+      QLabel * const label = new QLabel(s.c_str(),this);
+      assert(label);
+      mylayout->addWidget(label);
+      assert(i < static_cast<int>(m_h.size()));
+      assert(m_h[i]);
+      const boost::shared_ptr<pvdb::ConceptMap> concept_map(m_h[i]);
+      assert(concept_map);
+      const boost::shared_ptr<QtPvdbConceptMapDisplayWidget> widget(new QtPvdbConceptMapDisplayWidget(concept_map));
+      assert(widget);
+      assert(extra_height > 0);
+      widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
+      mylayout->addWidget(widget.get());
+      m_widgets.push_back(widget);
     }
+  }
+  {
+    QLabel * const label = new QLabel("Simple homomorphous test concept maps",this);
+    assert(label);
+    mylayout->addWidget(label);
+  }
+  {
+    const int sz = boost::numeric_cast<int>(m_s.size());
+    for (int i=0; i!=sz; ++i)
     {
-      mylayout->addWidget(new QLabel("Simple homomorphous test concept maps"));
-      const std::vector<boost::shared_ptr<pvdb::ConceptMap> > v = pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps();
-      const int sz = boost::numeric_cast<int>(v.size());
-      for (int i=0; i!=sz; ++i)
-      {
-        mylayout->addWidget(new QLabel((std::string("[")+boost::lexical_cast<std::string>(i)+std::string("]")).c_str()));
-        //widget->setMinimumHeight(minheight);
-        const auto concept_map = v[i];
-        assert(concept_map);
-        QtPvdbConceptMapWidget * const widget = new QtPvdbConceptMapDisplayWidget(concept_map);
-        assert(widget);
-        widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + 2); //NEW 2013-05-11
-        mylayout->addWidget(widget);
-      }
+      const std::string s = "[" + boost::lexical_cast<std::string>(i)+ "]";
+      QLabel * const label = new QLabel(s.c_str(),this);
+      assert(label);
+      mylayout->addWidget(label);
+      //widget->setMinimumHeight(minheight);
+      assert(i < static_cast<int>(m_s.size()));
+      assert(m_s[i]);
+      const boost::shared_ptr<pvdb::ConceptMap> concept_map = m_s[i];
+      assert(concept_map);
+      boost::shared_ptr<QtPvdbConceptMapDisplayWidget> widget(new QtPvdbConceptMapDisplayWidget(concept_map));
+      assert(widget);
+      widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
+      mylayout->addWidget(widget.get());
+      m_widgets.push_back(widget);
     }
+  }
+  {
+    QLabel * const label = new QLabel("Complex homomorphous test concept maps",this);
+    assert(label);
+    mylayout->addWidget(label);
+  }
+  {
+    const int sz = boost::numeric_cast<int>(m_c.size());
+    for (int i=0; i!=sz; ++i)
     {
-      mylayout->addWidget(new QLabel("Complex homomorphous test concept maps"));
-      const std::vector<boost::shared_ptr<pvdb::ConceptMap> > v = pvdb::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps();
-      const int sz = boost::numeric_cast<int>(v.size());
-      for (int i=0; i!=sz; ++i)
-      {
-        mylayout->addWidget(new QLabel((std::string("[")+boost::lexical_cast<std::string>(i)+std::string("]")).c_str()));
-        const auto concept_map = v[i];
-        assert(concept_map);
-        QtPvdbConceptMapWidget * const widget = new QtPvdbConceptMapDisplayWidget(concept_map);
-        assert(widget);
-        //widget->setMinimumHeight(minheight);
-        widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + 2); //NEW 2013-05-11
-        mylayout->addWidget(widget);
-      }
+      const std::string s = "[" + boost::lexical_cast<std::string>(i)+ "]";
+      QLabel * const label = new QLabel(s.c_str(),this);
+      assert(label);
+      mylayout->addWidget(label);
+      assert(i < static_cast<int>(m_c.size()));
+      assert(m_c[i]);
+      const boost::shared_ptr<pvdb::ConceptMap> concept_map = m_c[i];
+      assert(concept_map);
+      boost::shared_ptr<QtPvdbConceptMapDisplayWidget> widget(new QtPvdbConceptMapDisplayWidget(concept_map));
+      assert(widget);
+      //widget->setMinimumHeight(minheight);
+      widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
+      mylayout->addWidget(widget.get());
+      m_widgets.push_back(widget);
     }
   }
 }
@@ -91,5 +125,27 @@ QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog()
 void QtPvdbViewTestsDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key()  == Qt::Key_Escape) { close(); return; }
-  //QDialog::keyPressEvent(event);
 }
+
+#ifndef NDEBUG
+void QtPvdbViewTestsDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Started QtPvdbViewTestsDialog::Test");
+  QtPvdbViewTestsDialog d;
+  //d.show();
+  d.exec();
+  d.update();
+  d.resize(100,100);
+  d.show();
+  d.update();
+  d.resize(200,200);
+  d.show();
+  d.update();
+  TRACE("QtPvdbViewTestsDialog::Test finished successfully");
+}
+#endif

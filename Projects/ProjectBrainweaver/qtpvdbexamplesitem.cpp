@@ -59,26 +59,29 @@ void QtPvdbExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
 
 void QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* const item)
 {
-  if (m_item == item) return; //FIX? 2013-04-18
   if (m_item != item)
   {
     m_item = item;
-  }
-  if (m_item && !m_item->GetConcept()->GetExamples()->Get().empty())
-  {
-    m_item->m_signal_item_has_updated.connect(
-      boost::bind(
-        &QtPvdbExamplesItem::OnItemUpdated,this
-      )
-    );
-    this->SetExamples(item->GetConcept()->GetExamples());
-    this->setVisible(true);
+    if (m_item && !m_item->GetConcept()->GetExamples()->Get().empty())
+    {
+      m_item->m_signal_item_has_updated.connect(
+        boost::bind(
+          &QtPvdbExamplesItem::OnItemUpdated,this
+        )
+      );
+      this->SetExamples(item->GetConcept()->GetExamples());
+      this->setVisible(true);
+    }
+    m_signal_request_scene_update();
   }
   else
   {
-    this->setVisible(false);
+    if (this->isVisible())
+    {
+      this->setVisible(false);
+      m_signal_request_scene_update();
+    }
   }
-  m_signal_request_scene_update();
 }
 
 void QtPvdbExamplesItem::SetExamples(const boost::shared_ptr<const pvdb::Examples>& examples)

@@ -21,6 +21,9 @@ struct QtPvdbExamplesItem : public QtRoundedEditRectItem
 {
   QtPvdbExamplesItem(QGraphicsItem* parent = 0);
 
+  ///Check the buddy item
+  const QtPvdbConceptMapItem* GetBuddyItem() const { return m_item; }
+
   ///Set the concept this item displays the examples of.
   ///If the concept is nullptr, this item hides
   void SetBuddyItem(const QtPvdbConceptMapItem* const item);
