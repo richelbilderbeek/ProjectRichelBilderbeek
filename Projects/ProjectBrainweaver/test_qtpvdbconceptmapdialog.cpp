@@ -34,6 +34,7 @@
 #include "qtpvdbnodeitem.h"
 #include "trace.h"
 
+#ifndef NDEBUG
 void QtPvdbConceptMapDialog::Test()
 {
   {
@@ -298,4 +299,4 @@ void QtPvdbConceptMapDialog::Test()
   t.detach();
   #endif
 }
-
+#endif

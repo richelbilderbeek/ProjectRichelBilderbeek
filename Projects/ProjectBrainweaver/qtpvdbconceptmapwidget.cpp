@@ -492,6 +492,7 @@ void QtPvdbConceptMapWidget::SetExamplesItem(QtPvdbExamplesItem * const item)
   m_examples_item = item;
 }
 
+#ifndef NDEBUG
 void QtPvdbConceptMapWidget::Shuffle()
 {
   const std::vector<QtPvdbNodeItem*> nodes = Collect<QtPvdbNodeItem>(scene());
@@ -518,6 +519,7 @@ void QtPvdbConceptMapWidget::Shuffle()
   );
   scene()->update();
 }
+#endif
 
 #ifndef NDEBUG
 void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptMap> map) const

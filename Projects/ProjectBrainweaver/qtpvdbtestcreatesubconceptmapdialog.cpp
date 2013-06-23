@@ -78,6 +78,8 @@ void QtPvdbTestCreateSubConceptMapDialog::OnSubConceptMapChanged()
   ui->widget_sub_concept_map->layout()->addWidget(m_sub_concept_map.get());
 }
 
+
+#ifndef NDEBUG
 void QtPvdbTestCreateSubConceptMapDialog::Test()
 {
   {
@@ -98,3 +100,4 @@ void QtPvdbTestCreateSubConceptMapDialog::Test()
     }
   }
 }
+#endif
