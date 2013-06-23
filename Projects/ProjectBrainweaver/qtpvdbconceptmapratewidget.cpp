@@ -156,8 +156,8 @@ QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvd
 void QtPvdbConceptMapRateWidget::CleanMe()
 {
   //Prepare cleaning the scene
-  assert(m_examples);
-  this->m_examples = nullptr;
+  assert(GetExamplesItem());
+  SetExamplesItem(nullptr);
 
   //Clear the scene, invalidates all scene items copies
   assert(this->scene());
@@ -167,13 +167,14 @@ void QtPvdbConceptMapRateWidget::CleanMe()
 
   //Add the invisible examples item
   {
-    assert(!m_examples);
-    m_examples = new QtPvdbExamplesItem;
-    m_examples->m_signal_request_scene_update.connect(
+    assert(!GetExamplesItem());
+    QtPvdbExamplesItem * const item = new QtPvdbExamplesItem;
+    SetExamplesItem(item);
+    item->m_signal_request_scene_update.connect(
       boost::bind(
         &QtPvdbConceptMapRateWidget::OnRequestSceneUpdate,this));
-    m_examples->setVisible(false);
-    this->scene()->addItem(m_examples);
+    item->setVisible(false);
+    this->scene()->addItem(item);
   }
 
 }
@@ -262,7 +263,7 @@ void QtPvdbConceptMapRateWidget::DoRandomStuff()
 
 void QtPvdbConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
-  m_examples->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
+  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
   scene()->update();
 }
 

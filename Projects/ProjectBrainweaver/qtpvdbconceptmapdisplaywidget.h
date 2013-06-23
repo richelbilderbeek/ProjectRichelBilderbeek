@@ -38,16 +38,6 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
   ///Do something random
   void DoRandomStuff();
 
-  ///Initialize the widget with a concept map
-  ///Note that ReadFromConceptMap changes the copy of the map entered, by changing some GUI
-  ///elements (coordinats of the nodes, for example). Therefore, the following test will fail:
-  ///  conceptmapwidget->ReadFromConceptMap(m);
-  ///  const pvdb::ConceptMapPtr n = w->WriteToConceptMap();
-  ///  assert(m == n);
-  ///instead, use
-  ///  assert(HasSameContent(m,n));
-  //void ReadFromConceptMap(const boost::shared_ptr<const pvdb::ConceptMap> map);
-
 private:
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as it has a Concept on it that the user might want to edit

@@ -29,16 +29,6 @@ public:
     const boost::shared_ptr<pvdb::ConceptMap> concept_map,
     QWidget* parent = 0);
   virtual ~QtPvdbConceptMapWidget();
-  //QtPvdbConceptMapWidget& operator=(const QtPvdbConceptMapWidget& other) = delete;
-  //QtPvdbConceptMapWidget(const QtPvdbConceptMapWidget& other) = delete;
-
-  ///Clone the derived class
-  ///std::unique_ptr is used to:
-  /// - prevent memory leaks, when the result of Clone is unused
-  /// - being able to transfer ownership to shared_ptr<T>
-  /// - being able to transfer ownership to shared_ptr<const T>
-  ///TOO MUCH WORK, TOO LITTLE GAIN
-  //virtual std::unique_ptr<QtPvdbConceptMapWidget> Clone() const = 0;
 
   #ifndef NDEBUG
   ///Creates a new derived class
@@ -56,26 +46,19 @@ public:
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const;
 
+  #ifndef NDEBUG
   ///Shuffle the concepts (used in debugging)
   void Shuffle();
 
-  #ifndef NDEBUG
   ///Test this class with a derived class instance
   static void Test(const boost::shared_ptr<const QtPvdbConceptMapWidget>& widget);
   #endif
-
-  ///Write the widget its data to a cluster
-  //const boost::shared_ptr<pvdb::ConceptMap> WriteToConceptMap() const;
 
 public slots:
 
   virtual void keyPressEvent(QKeyEvent *event);
 
 protected:
-
-
-  ///The item showing the examples
-  QtPvdbExamplesItem * m_examples;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
@@ -108,6 +91,12 @@ protected:
   ///Obtain the center node
   const QtPvdbNodeItem * GetCenterNode() const;
 
+  ///Obtain the rectangle with text showing the examples
+  const QtPvdbExamplesItem * GetExamplesItem() const;
+
+  ///Obtain the rectangle with text showing the examples
+  QtPvdbExamplesItem * GetExamplesItem();
+
   ///Obtain the first QtPvdbNodeItem under the cursor
   ///Returns nullptr if none is present
   QtPvdbNodeItem* GetItemBelowCursor(const QPointF& pos) const;
@@ -121,6 +110,9 @@ protected:
 
   ///All items from a ConceptMap are put in at the center and need to be repositioned
   void RepositionItems();
+
+  ///Set the rectangle with text showing the examples
+  void SetExamplesItem(QtPvdbExamplesItem * const item);
 
   #ifndef NDEBUG
   ///Test the internals of this class:
@@ -138,6 +130,9 @@ private:
   ///The concept map to work on, the Model
   ///m_concept_map->GetNodes()[0] contains the focal node
   const boost::shared_ptr<pvdb::ConceptMap> m_concept_map;
+
+  ///The item showing the examples
+  QtPvdbExamplesItem * m_examples_item;
 
   ///Implemention of OnItemUpdateRequest
   virtual void OnItemRequestUpdateImpl(const QGraphicsItem* const item) = 0;

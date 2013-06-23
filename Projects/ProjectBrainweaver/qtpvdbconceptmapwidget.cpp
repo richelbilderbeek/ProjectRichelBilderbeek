@@ -90,8 +90,8 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
   const boost::shared_ptr<pvdb::ConceptMap> concept_map,
   QWidget* parent)
   : QtKeyboardFriendlyGraphicsView(parent),
-    m_examples(new QtPvdbExamplesItem),
-    m_concept_map(concept_map)
+    m_concept_map(concept_map),
+    m_examples_item(new QtPvdbExamplesItem)
 {
   assert( (concept_map || !concept_map)
     && "Also empty concept maps must be displayed");
@@ -99,7 +99,7 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
   //Cannot test this ABC here, its derived classes will test themselves
 
   this->setScene(new QGraphicsScene(this));
-  scene()->addItem(m_examples); //Add the examples so it has a parent
+  scene()->addItem(m_examples_item); //Add the examples so it has a parent
 
   assert(Collect<QtPvdbNodeItem>(scene()).empty());
 
@@ -124,7 +124,7 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
 QtPvdbConceptMapWidget::~QtPvdbConceptMapWidget()
 {
 
-  m_examples = nullptr;
+  m_examples_item = nullptr;
 }
 
 void QtPvdbConceptMapWidget::BuildQtConceptMap()
@@ -292,6 +292,20 @@ const QtPvdbNodeItem * QtPvdbConceptMapWidget::GetCenterNode() const
   assert(center_node);
   assert(IsCenterNode(center_node));
   return center_node;
+}
+
+const QtPvdbExamplesItem * QtPvdbConceptMapWidget::GetExamplesItem() const
+{
+  assert(m_examples_item || !m_examples_item);
+  return m_examples_item;
+}
+
+QtPvdbExamplesItem * QtPvdbConceptMapWidget::GetExamplesItem()
+{
+  //Calls the const version of GetExamplesItem
+  //To avoid duplication in const and non-const member functions [1]
+  return const_cast<QtPvdbExamplesItem*>(
+    const_cast<const QtPvdbConceptMapWidget*>(this)->GetExamplesItem());
 }
 
 QtPvdbNodeItem* QtPvdbConceptMapWidget::GetItemBelowCursor(const QPointF& pos) const
@@ -472,6 +486,12 @@ void QtPvdbConceptMapWidget::RepositionItems()
 
     if (done) break;
   }
+}
+
+void QtPvdbConceptMapWidget::SetExamplesItem(QtPvdbExamplesItem * const item)
+{
+  assert((item || !item) && "Can be both");
+  m_examples_item = item;
 }
 
 void QtPvdbConceptMapWidget::Shuffle()

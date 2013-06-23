@@ -82,6 +82,7 @@ QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   assert(this->layout());
   #endif
 
+  
   this->layout()->addWidget(m_widget);
 
   assert(!Collect<QtPvdbNodeItem>(m_widget->scene()).empty());
