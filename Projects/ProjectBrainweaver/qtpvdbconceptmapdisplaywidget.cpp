@@ -197,7 +197,10 @@ void QtPvdbConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraphicsItem*
   assert(GetExamplesItem());
   assert(item);
   assert(dynamic_cast<const QtPvdbConceptMapItem*>(item));
-  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
-  assert(this->scene());
-  scene()->update();
+  if (GetExamplesItem()->GetBuddyItem() != item)
+  {
+    GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
+    assert(this->scene());
+    scene()->update();
+  }
 }

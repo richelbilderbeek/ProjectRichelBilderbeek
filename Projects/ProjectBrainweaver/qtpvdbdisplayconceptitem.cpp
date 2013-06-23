@@ -64,9 +64,10 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
 {
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
+
   //Brush for the concept being rated
+  QBrush new_main_brush = this->brush();
   {
-    QBrush new_brush;
     const int n_rated
       = (GetConcept()->GetRatingComplexity()   != -1 ? 1 : 0)
       + (GetConcept()->GetRatingConcreteness() != -1 ? 1 : 0)
@@ -74,29 +75,26 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
     switch (n_rated)
     {
       case 0:
-        new_brush = QtPvdbBrushFactory::CreateRedGradientBrush();
+        new_main_brush = QtPvdbBrushFactory::CreateRedGradientBrush();
         break;
       case 1:
       case 2:
-        new_brush = QtPvdbBrushFactory::CreateYellowGradientBrush();
+        new_main_brush = QtPvdbBrushFactory::CreateYellowGradientBrush();
         break;
       case 3:
-        new_brush = QtPvdbBrushFactory::CreateGreenGradientBrush();
+        new_main_brush = QtPvdbBrushFactory::CreateGreenGradientBrush();
         break;
       default: assert(!"Should not get here");
     }
-    //Prevent recursion?
-    if (this->brush() != new_brush)
-    {
-      this->setBrush(new_brush);
-    }
   }
   //Brush and pen for the examples being rated
+  QBrush new_indicator_brush = this->GetIndicatorBrush();
+  QPen new_indicator_pen = this->GetIndicatorPen();
   if (GetConcept()->GetExamples()->Get().empty())
   {
     //No examples
-    this->SetIndicatorBrush(QBrush(QColor(0,0,0)));
-    this->SetIndicatorPen(QPen(QColor(0,0,0)));
+    new_indicator_brush = QBrush(QColor(0,0,0));
+    new_indicator_pen = QPen(QColor(0,0,0));
   }
   else
   {
@@ -113,23 +111,45 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
       );
     if (n_judged == 0)
     {
-      this->SetIndicatorBrush(QBrush(QColor(255,128,128)  )); //Red
-      this->SetIndicatorPen(  QPen(  QColor(255,  0,  0),3)); //Thick pen
+      new_indicator_brush = QBrush(QColor(255,128,128)); //Red
     }
     else if (n_judged < n_examples)
     {
-      this->SetIndicatorBrush(QBrush(QColor(255,196,128)  )); //Orange
-      this->SetIndicatorPen(  QPen(  QColor(255,196,  0),2)); //Less thick pen
+      new_indicator_brush = QBrush(QColor(255,196,128)); //Orange
     }
     else
     {
       assert(n_judged == n_examples);
-      this->SetIndicatorBrush(QBrush(QColor(128,255,128)  )); //Green
-      this->SetIndicatorPen(  QPen(  QColor(  0,255,  0),1)); //Thin pen
+      new_indicator_brush = QBrush(QColor(128,255,128)); //Green
+    }
+    if (n_judged == 0)
+    {
+      new_indicator_pen = QPen(QColor(255,0,0),3); //Thick pen
+    }
+    else if (n_judged < n_examples)
+    {
+      new_indicator_pen = QPen(QColor(255,196,0),2); //Less thick pen
+    }
+    else
+    {
+      assert(n_judged == n_examples);
+      new_indicator_pen = QPen(QColor(0,255,0),1); //Thin pen
     }
   }
-  //this->update(); //BUG
-  this->m_signal_item_has_updated(this); //BUG: THIS IS NEEDED, BUT HANGS THE DISPLAY OF TESTS
-  this->m_signal_request_scene_update(); //BUG
 
+  if (this->brush() != new_main_brush
+    || this->GetIndicatorBrush() != new_indicator_brush
+    || this->GetIndicatorPen() != new_indicator_pen)
+  {
+    this->setBrush(new_main_brush);
+    this->SetIndicatorBrush(new_indicator_brush);
+    this->SetIndicatorPen(new_indicator_pen);
+    assert(this->brush() == new_main_brush);
+    assert(this->GetIndicatorBrush() == new_indicator_brush);
+    assert(this->GetIndicatorPen() == new_indicator_pen);
+    TRACE(std::rand()); //GOOD: Detects infinite recursion
+    //this->update(); //BUG
+    this->m_signal_item_has_updated(this); //BUG: THIS IS NEEDED, BUT HANGS THE DISPLAY OF TESTS
+    this->m_signal_request_scene_update(); //BUG
+  }
 }

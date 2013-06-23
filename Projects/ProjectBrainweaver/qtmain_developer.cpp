@@ -108,7 +108,6 @@ int main(int argc, char *argv[])
 ///  - concept map dialog: allow examples from concepts to be dragged out and promoted to new conpepts
 ///- ?DONE: in assessor printing dialog: too long concepts/examples run off the page
 ///- BIG
-///- Remove relations for arrows to are connected to focal question
 
 ///BEFORE 2013-03-25:
 ///- In assessor final report screen, set the column widths to the correct width (depends on font)

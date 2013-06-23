@@ -32,7 +32,22 @@ protected:
   
 private:
   Ui::QtPvdbViewTestsDialog *ui;
-  const std::vector<boost::shared_ptr<pvdb::ConceptMap> > m_v;
+
+  /// ComplexHomomorphousTestConceptMaps
+  const std::vector<boost::shared_ptr<pvdb::ConceptMap> > m_c;
+
+  /// HeteromorphousTestConceptMaps
+  const std::vector<boost::shared_ptr<pvdb::ConceptMap> > m_h;
+
+  /// SimpleHomomorphousTestConceptMaps
+  const std::vector<boost::shared_ptr<pvdb::ConceptMap> > m_s;
+
+  /// Tha widgets
+  std::vector<boost::shared_ptr<QtPvdbConceptMapWidget> > m_widgets;
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // QTPVDBVIEWTESTSDIALOG_H

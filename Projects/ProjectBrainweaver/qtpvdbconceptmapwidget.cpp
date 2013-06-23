@@ -375,9 +375,7 @@ bool QtPvdbConceptMapWidget::MustReposition(const std::vector<boost::shared_ptr<
   ) == static_cast<int>(nodes.size());
 }
 void QtPvdbConceptMapWidget::OnItemRequestsUpdate(const QGraphicsItem* const item)
-
 {
-
   OnItemRequestUpdateImpl(item);
 }
 
@@ -521,32 +519,6 @@ void QtPvdbConceptMapWidget::Shuffle()
   scene()->update();
 }
 
-#ifdef BELIEF_THAT_INDEXLESS_EDGES_NEED_SORTING_672357462547263842756287
-const std::vector<QtPvdbNodeItem*> QtPvdbConceptMapWidget::Sort(const std::vector<QtPvdbNodeItem*>& v_original) const
-{
-
-  std::vector<QtPvdbNodeItem*> v(v_original);
-  assert(!v.empty()
-    && "There must be one center node in each scene");
-  assert(std::count_if(v.begin(),v.end(),
-    [this](const QtPvdbNodeItem* const qtnode)
-    {
-      return QtPvdbConceptMapWidget::IsCenterNode(qtnode);
-    }
-  ) == 1 && "There must be one unmovable node, which is the center node");
-  auto center_node_iter = std::find_if(v.begin(),v.end(),
-    [this](const QtPvdbNodeItem* const qtnode)
-    {
-      return QtPvdbConceptMapWidget::IsCenterNode(qtnode);
-    }
-  );
-  std::swap(*center_node_iter,v[0]);
-  assert(QtPvdbConceptMapWidget::IsCenterNode(v[0])
-    && "Focus question must be at index zero");
-  return v;
-}
-#endif
-
 #ifndef NDEBUG
 void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptMap> map) const
 {
@@ -580,23 +552,6 @@ void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptM
     std::copy(edge_concepts.begin(),edge_concepts.end(),std::inserter(v,v.begin()));
     assert(v.size() == (node_concepts.size() + edge_concepts.size()) && "All Qt nodes must be unique");
   }
-  #ifdef REALLY_USE_DELETELEFTOVERS_FOR_TESTING_784578634075630458630
-  //Sure, I miss this test, but otherwise DeleteLeftovers must be moved
-  //to this class, which I intend to keep as read-only as possible
-  {
-    const std::vector<QtPvdbNodeConcept *> node_concepts = Collect<QtPvdbNodeConcept>(scene());
-    const std::vector<QtPvdbEdgeConcept *> edge_concepts = Collect<QtPvdbEdgeConcept>(scene());
-    const std::vector<QtPvdbArrow *> arrows = Collect<QtPvdbArrow>(scene());
-
-    const int n_arrows = static_cast<int>(arrows.size());
-    const int n_edges  = static_cast<int>(edge_concepts.size());
-    const int n_nodes  = static_cast<int>(node_concepts.size());
-    DeleteLeftovers();
-    assert(n_arrows == static_cast<int>(arrows.size())        && "Assume no leftovers");
-    assert(n_edges  == static_cast<int>(edge_concepts.size()) && "Assume no leftovers");
-    assert(n_nodes  == static_cast<int>(node_concepts.size()) && "Assume no leftovers");
-  }
-  #endif
   {
     ///Note that the ConceptMap read out again differs from the original,
     ///because the Nodes are placed
@@ -627,69 +582,5 @@ void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptM
   assert(pvdb::ConceptMap::HasSameContent(*GetConceptMap(),*map)
     && "The concept map supplied must be homomorphous to the one created in the widget");
 
-}
-#endif
-
-#ifdef BELIEVE_THAT_GETCONCEPTMAP_DOES_NOT_SUFFICE
-const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapWidget::GetConceptMap() const
-{
-
-  //Get the Nodes
-  std::vector<boost::shared_ptr<pvdb::Node> > nodes;
-
-  assert(scene());
-  assert(!Collect<QtPvdbNodeItem>(scene()).empty());
-  const std::vector<QtPvdbNodeItem*> qtnodes = Sort(Collect<QtPvdbNodeItem>(scene()));
-  assert(!qtnodes.empty());
-  {
-    assert(IsCenterNode(qtnodes[0]) && "Now the first index must be the unmovable center node");
-    std::transform(qtnodes.begin(),qtnodes.end(),
-      std::back_inserter(nodes),
-      [](QtPvdbNodeItem* const qtnode)
-      {
-        assert(qtnode);
-        assert(qtnode->GetNode());
-        boost::shared_ptr<pvdb::Node> new_node = qtnode->GetNode();
-        assert(new_node);
-        assert(IsEqual(*qtnode->GetNode(),*new_node));
-        new_node->SetX( qtnode->x() );
-        new_node->SetY( qtnode->y() );
-        return new_node;
-      }
-    );
-    assert(nodes.size() == qtnodes.size());
-  }
-
-  //Get the Edges
-  std::vector<boost::shared_ptr<pvdb::Edge> > edges;
-  const std::vector<QtPvdbEdgeItem*> qtedges = Collect<QtPvdbEdgeItem>(scene());
-  std::for_each(qtedges.begin(),qtedges.end(),
-    [this,&edges,qtnodes](QtPvdbEdgeItem* const qtedge)
-    {
-      assert(qtedge);
-      const boost::shared_ptr<pvdb::Concept> concept = qtedge->GetConcept(); //FIX? 2012-12-31
-      const bool tail_arrow = qtedge->GetEdge()->HasTailArrow();
-      const bool head_arrow = qtedge->GetEdge()->HasHeadArrow();
-      const auto from_node = qtedge->GetEdge()->GetFrom();
-      assert(from_node);
-      const auto to_node   = qtedge->GetEdge()->GetTo();
-      assert(to_node);
-
-      boost::shared_ptr<pvdb::Edge> edge(
-        pvdb::EdgeFactory::Create(
-          concept,
-          qtedge->pos().x(),
-          qtedge->pos().y(),
-          from_node,
-          tail_arrow,
-          to_node,
-          head_arrow));
-      edges.push_back(edge);
-    }
-  );
-
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map(
-    pvdb::ConceptMapFactory::Create(nodes,edges));
-  return concept_map;
 }
 #endif

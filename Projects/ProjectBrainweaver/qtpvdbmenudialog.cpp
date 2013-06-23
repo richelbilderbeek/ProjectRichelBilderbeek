@@ -273,8 +273,10 @@ void QtPvdbMenuDialog::Test()
     const std::vector<QPushButton*> buttons
       =
       {
-        ui->button_test_edge_item, //
+        //Duplication of tests, the ones I am most interested in now
+        ui->button_view_test_concept_maps,
 
+        //Normal order of tests
         ui->button_about,
         ui->button_assessor,
         ui->button_concept,
@@ -294,7 +296,7 @@ void QtPvdbMenuDialog::Test()
         ui->button_test_conceptedit,
         ui->button_test_conceptmap,
         ui->button_test_create_sub_concept_map,
-        //ui->button_test_edge_item,
+        ui->button_test_edge_item,
         ui->button_test_node_item,
         ui->button_test_qtconceptmapdisplaywidget,
         ui->button_test_qtconceptmapeditwidget,
