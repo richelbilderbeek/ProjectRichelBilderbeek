@@ -262,8 +262,8 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
 void QtPvdbConceptMapEditWidget::CleanMe()
 {
   //Prepare cleaning the scene
-  assert(m_examples);
-  this->m_examples = nullptr;
+  assert(GetExamplesItem());
+  SetExamplesItem(nullptr);
   assert(m_tools);
   this->m_tools = nullptr;
   assert(m_highlighter);
@@ -279,13 +279,15 @@ void QtPvdbConceptMapEditWidget::CleanMe()
 
   //Add the invisible examples item
   {
-    assert(!m_examples);
-    m_examples = new QtPvdbExamplesItem;
-    m_examples->m_signal_request_scene_update.connect(
+    assert(!GetExamplesItem());
+    QtPvdbExamplesItem * const item = new QtPvdbExamplesItem;
+    assert(item);
+    SetExamplesItem(item);
+    item->m_signal_request_scene_update.connect(
       boost::bind(
         &QtPvdbConceptMapEditWidget::OnRequestSceneUpdate,this));
-    m_examples->setVisible(false);
-    this->scene()->addItem(m_examples);
+    item->setVisible(false);
+    this->scene()->addItem(item);
   }
 
   //Add the tools item
@@ -441,7 +443,7 @@ void QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
         if (!v.empty())
         {
           DeleteLeftovers();
-          m_examples->hide();
+          GetExamplesItem()->hide();
           this->OnItemRequestsUpdate(0);
         }
         this->scene()->update();
@@ -555,7 +557,7 @@ void QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtPvdbConceptMapIt
 void QtPvdbConceptMapEditWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   m_tools->SetBuddyItem(dynamic_cast<const QtPvdbNodeItem*>(item));
-  m_examples->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
+  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
   scene()->update();
 }
 
