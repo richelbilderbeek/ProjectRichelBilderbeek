@@ -43,8 +43,10 @@ class QtPvdbConceptMapDialog : public QtHideAndShowDialog
   ///Save to disk
   void Save(const std::string& filename) const;
 
+  #ifndef NDEBUG
   ///Shuffle to concepts (used for debugging)
   void Shuffle();
+  #endif
 
   private slots:
 
@@ -73,8 +75,10 @@ private:
   ///NEW 2013-01-07
   void OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item);
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test();
+  #endif
 };
 
 

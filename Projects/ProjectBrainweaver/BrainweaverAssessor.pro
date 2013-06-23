@@ -88,7 +88,8 @@ SOURCES += \
     qtpvdbtoolsitem.cpp \
     qtpvdbratedconceptwidget.cpp \
     qtpvdbdisplay.cpp \
-    pvdbrating.cpp
+    pvdbrating.cpp \
+    qtpvdbrateconcepttallydialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -157,7 +158,8 @@ HEADERS  += \
     qtpvdbtoolsitem.h \
     qtpvdbratedconceptwidget.h \
     qtpvdbdisplay.h \
-    pvdbrating.h
+    pvdbrating.h \
+    qtpvdbrateconcepttallydialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -171,7 +173,8 @@ FORMS    += \
     qtpvdbrateconceptmapdialog.ui \
     qtpvdbrateexamplesdialog.ui \
     qtpvdbratingdialog.ui \
-    qtpvdbratedconceptwidget.ui
+    qtpvdbratedconceptwidget.ui \
+    qtpvdbrateconcepttallydialog.ui
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \

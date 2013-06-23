@@ -167,6 +167,7 @@ boost::shared_ptr<QtPvdbConceptMapWidget> QtPvdbViewTestsDialog::CreateWidget(
     }
     default:
       assert(!"Should not get here");
+      throw std::logic_error("QtPvdbViewTestsDialog::CreateWidget: unimplemented type");
   }
 }
 

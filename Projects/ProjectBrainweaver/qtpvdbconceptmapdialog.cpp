@@ -288,8 +288,10 @@ void QtPvdbConceptMapDialog::Save(const std::string& filename) const
   m_file->Save(filename);
 }
 
+#ifndef NDEBUG
 void QtPvdbConceptMapDialog::Shuffle()
 {
   this->GetWidget()->Shuffle();
 }
+#endif
 

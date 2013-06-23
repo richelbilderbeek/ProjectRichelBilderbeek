@@ -294,6 +294,7 @@ void QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate()
   ui->view->scene()->update();
 }
 
+#ifndef NDEBUG
 void QtPvdbTestEdgeItemDialog::Test()
 {
   {
@@ -366,3 +367,4 @@ void QtPvdbTestEdgeItemDialog::Test()
   t.detach();
   #endif
 }
+#endif

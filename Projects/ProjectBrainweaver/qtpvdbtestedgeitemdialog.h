@@ -63,7 +63,9 @@ private:
   ///Called whenever an item requests a scene update
   void OnRequestSceneUpdate();
 
+  #ifndef NDEBUG
   static void Test();
+  #endif
 };
 
 #endif // QTPVDBTESTEDGEITEMDIALOG_H
