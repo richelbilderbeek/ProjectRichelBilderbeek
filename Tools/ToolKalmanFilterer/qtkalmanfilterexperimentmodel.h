@@ -55,6 +55,9 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///Not (yet?) implemented
   //void FromHtml(const std::string& s);
 
+  ///Get the number of timesteps
+  int GetNumberOfTimesteps() const { return m_number_of_timesteps; }
+
   ///Set an example parameter set
   void SetExample(const boost::shared_ptr<const KalmanFilterExample>& example);
 
