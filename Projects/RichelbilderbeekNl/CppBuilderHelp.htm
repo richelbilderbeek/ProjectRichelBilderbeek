@@ -1,5 +1,3 @@
-<!-- <o: FINDME -->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -118,25 +116,14 @@ you can easily add more stuff to your help file. I've described the way to make 
   </li>
 </ul>
 <p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//Example</p>
-
-<p><a href="CppDefine.htm">#define</a> IDH_INTRODUCTION 100</p>
-
-<p><a href="CppDefine.htm">#define</a> IDH_OVERVIEW       200</p>
-
-<p><a href="CppDefine.htm">#define</a> SUMMARY            300</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
-
+<!-- start of code -->
+<table summary="fileyMMaT8.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>Example<br/>
+<a href="CppDefine.htm">#define</a> IDH_INTRODUCTION 100<br/>
+<a href="CppDefine.htm">#define</a> IDH_OVERVIEW 200<br/>
+<a href="CppDefine.htm">#define</a> SUMMARY 300<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -186,21 +173,12 @@ you can easily add more stuff to your help file. I've described the way to make 
 <ul>
   <li>In   <a href="CppBuilder.htm"> C++ Builder</a> do 'Project', click the tab 'Options', go to right of Help File and click 'Browse' and select your help file</li>
   <li>To activate your help file, use the following code:</li>
-
-
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>Application-&gt;HelpSystem-&gt;ShowContextHelp(AnyIdValue,Application-&gt;HelpFile);</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+</ul>
+<!-- start of code -->
+<table summary="file5iFOc0.cpp" border = "1"><tr><td><code>
+<a href="CppApplication.htm">Application</a>-&gt;HelpSystem-&gt;ShowContextHelp(AnyIdValue,<a href="CppApplication.htm">Application</a>-&gt;HelpFile);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <ul>
   <li>
@@ -220,23 +198,14 @@ you can easily add more stuff to your help file. I've described the way to make 
 <p>&nbsp;</p>
 <p>The complete error message is:</p>
 <p>&nbsp;</p>
-
-
-<p>HC5011: Error: C:\Program
-Files\Borland\CBuilder6\Projects\Simulations\ThorVeen\7\ProjectThorVeenHelpRtf.rtf
-:</p>
-
-<p><span style='mso-tab-count:1'>      Cannot
-open the file &quot;{\rtf1\ansi\ansicpg1252\uc1
-\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose
-02020603050405020304}Times New Roman.&quot;</p>
-
+<!-- start of code -->
+<table summary="filei5iVF3.cpp" border = "1"><tr><td><code>
+HC5011: Error: C:\Program Files\Borland\CBuilder6\<a href="Projects.htm">Projects</a>\Simulations\ThorVeen\7\ProjectThorVeenHelpRtf.rtf :<br/>
+<br/>
+Cannot open the file "{\rtf1\ansi\ansicpg1252\uc1 \deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\f<b><a href="CppChar.htm">char</a></b>set0\fprq2{\*\panose 02020603050405020304}<a href="CppTime.htm">Time</a>s New Roman."<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
 <p>I solved it by changing the filename 'ProjectThorVeenHelpRtf.rtf' in Windows
 Explorer (by adding a '2' in the end, changing it to 'ProjectThorVeenHelpRtf2.rtf'). 
 Then it works! Strange though...</p>
@@ -253,50 +222,34 @@ Then it works! Strange though...</p>
 <p>&nbsp;</p>
 <p>When using VCL and C++ Personality in Borland Developer Studion 2006:</p>
 <p>&nbsp;</p>
-
-
-<p>This
-an undocumented bug in the Automated Help System. This came from the original
-Forms.pas and so the bug was inherited. See <a
-href="http://bdnqc.borland.com/wc/qcmain.aspx?d=10099">this page</a> for the
-Borland Report.</p>
-
+<!-- start of code -->
+<table summary="file13Njto.cpp" border = "1"><tr><td><code>
+This an undocumented <a href="CppBug.htm">bug</a> in the Automated Help System. 
+This came from the original Forms.pas and so the <a href="CppBug.htm">bug</a> was inherited. 
+See <a href="http://bdnqc.borland.com/wc/qcmain.aspx?d=10099">this page</a> for the Borland Report.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
 <p>Add to the main unit:</p>
 <p>&nbsp;</p>
-
- 
-
+<!-- start of code -->
+<table summary="fileAlmYPE.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;WinHelpViewer.hpp&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> <a href="CppLink.htm">link</a> WinHelpViewer<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p>#include &lt;WinHelpViewer.hpp&gt;</p>
-
-<p>#pragma link WinHelpViewer</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
 <p>Set the Help file at at either design time or at run time. To set the Help file at design time, do 'Project-&gt;Options'.</p>
 <p>&nbsp;</p>
 <p>To set the Help file at run time, use the line below:</p>
 <p>&nbsp;</p>
+<!-- start of code -->
+<table summary="fileLcizeN.cpp" border = "1"><tr><td><code>
+<a href="CppApplication.htm">Application</a>-&gt;HelpFile <a href="CppOperatorAssign.htm">=</a> "C:\\HelpFile.hlp";<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-
-
-<p>Application-&gt;HelpFile =
-&quot;C:\\HelpFile.hlp&quot;;</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
 <p>With this you only have to set the HelpContext or HelpKeyword on the Control/Forms property and your help will be activated.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
