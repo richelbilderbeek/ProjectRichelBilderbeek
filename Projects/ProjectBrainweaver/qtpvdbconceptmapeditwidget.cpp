@@ -105,6 +105,13 @@ void QtPvdbConceptMapEditWidget::AddEdge(
     to
   );
 
+  //Edges connected to the center node do not show their concepts
+  if (IsCenterNode(from) || IsCenterNode(to))
+  {
+    assert(qtconcept == qtedge->GetConceptItem());
+    qtconcept->setVisible(false);
+  }
+
   //General: inform an Observer that this item has changed
   qtedge->m_signal_item_has_updated.connect(
    boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
@@ -191,6 +198,13 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
   assert(qtconcept);
 
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(edge,qtconcept,qt_from,qt_to);
+
+  //Edges connected to the center node do not show their concepts
+  if (IsCenterNode(qt_from) || IsCenterNode(qt_to))
+  {
+    assert(qtconcept == qtedge->GetConceptItem());
+    qtconcept->setVisible(false);
+  }
 
   //General: inform an Observer that this item has changed
   qtedge->m_signal_item_has_updated.connect(
@@ -384,10 +398,10 @@ void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const node)
   #endif
 }
 
+#ifndef NDEBUG
 void QtPvdbConceptMapEditWidget::DoRandomStuff()
 {
   //this->mouseDoubleClickEvent(0); //CAUSES ACCESS VIOLATION
-
 
   const boost::shared_ptr<pvdb::Concept> concept1(pvdb::ConceptFactory::Create("...", { {} } ) );
   const boost::shared_ptr<pvdb::Node> node1(pvdb::NodeFactory::Create(concept1));
@@ -405,6 +419,7 @@ void QtPvdbConceptMapEditWidget::DoRandomStuff()
   assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
+#endif
 
 void QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
 {

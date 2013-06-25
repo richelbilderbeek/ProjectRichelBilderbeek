@@ -24,7 +24,8 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
   }
   TRACE("Started QtPvdbConceptMapWidget::Test");
   assert(widget);
-  #ifdef I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
+  //#define I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
+  #ifdef  I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
   //Test conversion between widget and concept map for simple homomorphous concept maps
   {
     const auto v = pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps();
@@ -33,14 +34,14 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
     {
       auto w = widget->CreateNewDerived();
       assert(w);
-      w->ReadFromConceptMap(v[i]);
+      //w->ReadFromConceptMap(v[i]);
       const boost::shared_ptr<pvdb::ConceptMap> n = w->GetConceptMap();
-      if (!pvdb::ConceptMap::HasSameContent(v[i],n))
+      if (!pvdb::ConceptMap::HasSameContent(*v[i],*n))
       {
         TRACE(i);
         TRACE("GetSimpleHomomorphousTestConceptMaps");
       }
-      assert(pvdb::ConceptMap::HasSameContent(v[i],n));
+      assert(pvdb::ConceptMap::HasSameContent(*v[i],*n));
     }
   }
   //Test conversion between widget and concept map for complex homomorphous concept maps
@@ -51,14 +52,14 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
     {
       auto w = widget->CreateNewDerived();
       assert(w);
-      w->ReadFromConceptMap(v[i]);
+      //w->ReadFromConceptMap(v[i]);
       const boost::shared_ptr<pvdb::ConceptMap> n = w->GetConceptMap();
-      if (!pvdb::ConceptMap::HasSameContent(v[i],n))
+      if (!pvdb::ConceptMap::HasSameContent(*v[i],*n))
       {
         TRACE(i);
         TRACE("GetComplexHomomorphousTestConceptMaps");
       }
-      assert(pvdb::ConceptMap::HasSameContent(v[i],n));
+      assert(pvdb::ConceptMap::HasSameContent(*v[i],*n));
     }
   }
   //Test conversion between widget and concept map for heteromorphous concept maps
@@ -68,14 +69,14 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
     for (int i=0; i!=sz; i++)
     {
       auto w = widget->CreateNewDerived();
-      w->ReadFromConceptMap(v[i]);
+      //w->ReadFromConceptMap(v[i]);
       const boost::shared_ptr<pvdb::ConceptMap> n = w->GetConceptMap();
-      if (!pvdb::ConceptMap::HasSameContent(v[i],n))
+      if (!pvdb::ConceptMap::HasSameContent(*v[i],*n))
       {
         TRACE(i);
         TRACE("GetHeteromorphousTestConceptMaps");
       }
-      assert(pvdb::ConceptMap::HasSameContent(v[i],n));
+      assert(pvdb::ConceptMap::HasSameContent(*v[i],*n));
     }
   }
   //Test conversion between widget and concept map for brute-force concept map
@@ -85,9 +86,9 @@ void QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMap
       [widget](const boost::shared_ptr<pvdb::ConceptMap>& m)
       {
         auto w = widget->CreateNewDerived();
-        w->ReadFromConceptMap(m);
+        //w->ReadFromConceptMap(m);
         const boost::shared_ptr<pvdb::ConceptMap> n = w->GetConceptMap();
-        assert(pvdb::ConceptMap::HasSameContent(m,n));
+        assert(pvdb::ConceptMap::HasSameContent(*m,*n));
       }
     );
   }

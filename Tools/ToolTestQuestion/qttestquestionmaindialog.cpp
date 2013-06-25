@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QKeyEvent>
+#include <QLabel>
 
 #include "qtaboutdialog.h"
 #include "qtopenquestiondialog.h"
@@ -83,7 +84,6 @@ boost::shared_ptr<QtQuestionDialog> QtTestQuestionMainDialog::CreateQtQuestionDi
 {
   boost::shared_ptr<QtQuestionDialog> p;
 
-
   try
   {
     boost::shared_ptr<QuestionDialog> d(new OpenQuestionDialog(s));
@@ -134,5 +134,7 @@ void QtTestQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
     ui->contents_here->setLayout(my_layout);
     assert(ui->contents_here->layout());
     my_layout->addWidget(m_dialog.get());
+    QLabel * const label = new QLabel("Created dialog!");
+    my_layout->addWidget(label);
   }
 }

@@ -33,10 +33,10 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
   std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const;
-  #endif
 
   ///Do something random
   void DoRandomStuff();
+  #endif
 
 private:
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
