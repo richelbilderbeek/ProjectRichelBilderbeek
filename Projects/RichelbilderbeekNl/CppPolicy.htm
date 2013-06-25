@@ -23,104 +23,47 @@
   <o:Version>9.3821</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
-<style>
-<!--
-  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- /* List Definitions */
-@list l0
-	{mso-list-id:1941837107;
-	mso-list-type:hybrid;
-	mso-list-template-ids:74638006 280771366 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
- @list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
- 
--->
-</style>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Policy</title>
+  <meta name="description" content="C++ Policy"/>
+  <meta name="keywords" content="C++ Policy"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
-
- 
-
- 
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<h1><a name="_Toc194762537"></a><a name="_Toc198191045"><span style='mso-bookmark:
-_Toc194762537'> (</a><a
-href="Cpp.htm"><span style='mso-bookmark:_Toc198191045'><span style='mso-bookmark:
-_Toc194762537'> C++   <span
-style='mso-bookmark:_Toc198191045'><span style='mso-bookmark:_Toc194762537'></a><span
-style='mso-bookmark:_Toc198191045'><span style='mso-bookmark:_Toc194762537'> )    <a
-href="CppPolicy.htm"><span style='mso-bookmark:_Toc194762537'> <span
-style='mso-bookmark:_Toc198191045'>  Policy</a></h1>
-
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppPolicy.htm">Policy</a></h1>
 <p>&nbsp;</p>
-
-<p>A <a href="CppPolicy.htm"> policy</a> is a <a
-href="CppClass.htm">class</a> behaviour set at compile-time.</p>
-
+<p>A <a href="CppPolicy.htm"> policy</a> is a <a href="CppClass.htm">class</a> behaviour set at compile-time.</p>
 <p>&nbsp;</p>
-
-<p>A <a href="CppPolicy.htm"> policy</a> consts of a <a
-href="CppHostClass.htm">host class</a> and <a href="CppPolicyClass.htm">policy
-classes</a>. The user of a <a href="CppPolicy.htm"> policy</a> chooses which <a href="CppPolicyClass.htm">policy
-class</a> is used, by template.</p>
-
+<p>A <a href="CppPolicy.htm"> policy</a> consts of a <a href="CppHostClass.htm">host class</a> and 
+<a href="CppPolicyClass.htm">policy classes</a>. The user of a <a href="CppPolicy.htm"> policy</a> chooses which 
+<a href="CppPolicyClass.htm">policy class</a> is used, by template.</p>
 <p>&nbsp;</p>
-
-<p>A <a href="CppPolicyClass.htm">policy class</a>
-is a <a href="CppBaseClass.htm">b ase
-class</a>. All <a href="CppBaseClass.htm"> base class</a> <a href="CppDestructor.htm">destructors</a> should be <a
+<p>A <a href="CppPolicyClass.htm">policy class</a> is a <a href="CppBaseClass.htm">base class</a>. 
+All <a href="CppBaseClass.htm"> base class</a> <a href="CppDestructor.htm">destructors</a> should be <a
 href="CppPublic.htm">public</a> and <a href="CppVirtual.htm">virtual</a>, or <a
-href="CppProtected.htm">protected</a> and non<a href="CppVirtual.htm">virtual</a>'
-<span style='mso-field-code:"REF _Ref202766402 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200300032003700360036003400300032000000</w:data>
-</xml><![endif]--> .   The <a href="CppDestructor.htm">destructor</a>
+href="CppProtected.htm">protected</a> and non<a href="CppVirtual.htm">virtual</a>' [1]. The <a href="CppDestructor.htm">destructor</a>
 of a <a href="CppPolicyClass.htm">policy class</a> should be <a
-href="CppProtected.htm">protected</a> and non<a href="CppVirtual.htm">virtual</a>
-<span style='mso-field-code:"REF _Ref253149206 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350033003100340039003200300036000000</w:data>
-</xml><![endif]--> .</p>
-
+href="CppProtected.htm">protected</a> and non<a href="CppVirtual.htm">virtual</a> [2].</p>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <h2>Example</h2>
 
 <p>&nbsp;</p>
@@ -197,9 +140,7 @@ href="CppPublic.htm">public</a></b> OutputPolicy</p>
  //  The <a href="CppDestructor.htm">destructor</a> of
 a <a href="CppPolicy.htm"> policy</a>
 class should be <a href="CppProtected.htm">protected</a> and non-<a
-href="CppVirtual.htm">virtual</a> <span style='mso-field-code:"REF _Ref253149206 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350033003100340039003200300036000000</w:data>
-</xml><![endif]--> .</p>
+href="CppVirtual.htm">virtual</a> [1].</p>
 
 <p>
  }  </p>
@@ -254,9 +195,7 @@ href="CppVirtual.htm">virtual</a> <span style='mso-field-code:"REF _Ref253149206
  //  The <a href="CppDestructor.htm">destructor</a> of
 a <a href="CppPolicy.htm"> policy</a>
 class should be <a href="CppProtected.htm">protected</a> and non-<a
-href="CppVirtual.htm">virtual</a> <span style='mso-field-code:"REF _Ref253149206 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350033003100340039003200300036000000</w:data>
-</xml><![endif]--> .</p>
+href="CppVirtual.htm">virtual</a> [2].</p>
 
 <p>
  }  </p>
@@ -289,60 +228,31 @@ href="CppVirtual.htm">virtual</a> <span style='mso-field-code:"REF _Ref253149206
 
 </div>
 
-<p>&nbsp;</p>
-
-<p>In
-this example, Tracer is the <a href="CppHostClass.htm">host class</a>, where OutputPolicyCout
-and OutputPolicyFile are <a href="CppPolicyClass.htm">policy classes</a>.</p>
 
 <p>&nbsp;</p>
-
-<p>Note
-that p1 and p2 have types as different as <a href="CppVector.htm">std::vectors</a>
+<p>In this example, Tracer is the <a href="CppHostClass.htm">host class</a>, where OutputPolicyCout and OutputPolicyFile are <a href="CppPolicyClass.htm">policy classes</a>.</p>
+<p>&nbsp;</p>
+<p>Note that p1 and p2 have types as different as <a href="CppVector.htm">std::vectors</a>
 with different elements.</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <h2><a href="CppReferences.htm">References</a></h2>
-
-  <li><a href="CppHerbSutter.htm">  Herb
-Sutter    , <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best
-practices. ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public
-and virtual, or protected and nonvirtual'.</p>
-
-<p><a name="_Ref253149206">  [1] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</a><a href="CppAndreiAlexandrescu.htm"><span
-style='mso-bookmark:_Ref253149206'> Andrei Alexandrescu  <span style='mso-bookmark:_Ref253149206'></a><span
-style='mso-bookmark:_Ref253149206'> . Modern C++ Design. 2001. ISBN: 0201704315.</p>
-
 <p>&nbsp;</p>
-
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'</li>
+  <li><a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. Modern C++ Design. 2001. ISBN: 0201704315.</li>
+</ol>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
 <p>&nbsp;</p>
-
-</div>
-
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>
