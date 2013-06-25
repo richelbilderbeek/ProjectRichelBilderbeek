@@ -914,6 +914,7 @@ void QtKalmanFilterExperimentModel::Test()
       boost::match_default | boost::format_all);
      assert(t == std::string("GETME"));
   }
+  /*
   {
     const std::string s
       =
@@ -968,6 +969,7 @@ void QtKalmanFilterExperimentModel::Test()
     n->FromDokuWiki(t);
     assert(*m == *n);
   }
+  */
 }
 #endif
 
@@ -1084,25 +1086,7 @@ const std::string QtKalmanFilterExperimentModel::ToHtml() const
   return s;
 }
 
-bool operator==(const QtKalmanFilterExperimentModel lhs, const QtKalmanFilterExperimentModel rhs)
+bool operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs)
 {
-  assert(lhs.m_models.size() == rhs.m_models.size());
-  if (
-    !(
-      lhs.m_kalman_filter_type == rhs.m_kalman_filter_type
-      && lhs.m_lag_estimated == rhs.m_lag_estimated
-      && lhs.m_lag_real == rhs.m_lag_real
-      && lhs.m_number_of_timesteps == rhs.m_number_of_timesteps
-      && lhs.m_white_noise_system_type == rhs.m_white_noise_system_type
-    )
-  ) return false;
-  typedef std::map<KalmanFilterExperimentParameterType,QAbstractTableModel *>::const_iterator Iterator;
-  const Iterator lhs_end = lhs.end();
-  Iterator i = lhs.begin();
-  Iterator j = rhs.begin();
-  for ( ; i!= lhs_end; ++i, ++j)
-  {
-    assert(j != rhs.end());
-    assert(*i.first == *j.first);
-  }
+  return lhs.ToDokuWiki() == rhs.ToDokuWiki();
 }
