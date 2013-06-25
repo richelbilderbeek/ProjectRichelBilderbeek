@@ -8,6 +8,7 @@
 #include "whitenoisesystemfactory.h"
 
 #include <cassert>
+#include "gapsfilledwhitenoisesystemfactory.h"
 #include "laggedwhitenoisesystemfactory.h"
 #include "standardwhitenoisesystemfactory.h"
 
@@ -17,6 +18,9 @@ const boost::shared_ptr<WhiteNoiseSystem> WhiteNoiseSystemFactory::Create(
   boost::shared_ptr<WhiteNoiseSystem> p;
   switch (parameters->GetType())
   {
+    case WhiteNoiseSystemType::gaps_filled:
+      p = GapsFilledWhiteNoiseSystemFactory::Create(parameters);
+      break;
     case WhiteNoiseSystemType::lagged:
       p = LaggedWhiteNoiseSystemFactory::Create(parameters);
       break;
