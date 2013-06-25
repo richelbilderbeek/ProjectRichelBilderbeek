@@ -40,6 +40,10 @@ signals:
 private:
   Ui::QtKalmanFilterExamplesDialog *ui;
 
+  #ifndef NDEBUG
+  static void Test();
+  #endif
+
 private slots:
   void on_button_1_clicked();
   void on_button_2_clicked();

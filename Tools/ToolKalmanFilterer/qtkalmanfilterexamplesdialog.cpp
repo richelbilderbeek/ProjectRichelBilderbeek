@@ -31,6 +31,9 @@ QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
     ui(new Ui::QtKalmanFilterExamplesDialog)
 {
   ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
@@ -107,3 +110,10 @@ void QtKalmanFilterExamplesDialog::on_button_6_clicked()
   assert(p);
   emit signal_example(p);
 }
+
+#ifndef NDEBUG
+void QtKalmanFilterExamplesDialog::Test()
+{
+
+}
+#endif

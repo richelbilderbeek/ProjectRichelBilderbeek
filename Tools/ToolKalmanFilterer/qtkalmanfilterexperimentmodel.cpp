@@ -199,7 +199,8 @@ const boost::shared_ptr<KalmanFilterExperiment> QtKalmanFilterExperimentModel::C
       input,
       kalman_filter,
       state_names,
-      white_noise_system)
+      white_noise_system,
+      m_context)
     );
 
   assert(experiment);
@@ -913,6 +914,60 @@ void QtKalmanFilterExperimentModel::Test()
       boost::match_default | boost::format_all);
      assert(t == std::string("GETME"));
   }
+  {
+    const std::string s
+      =
+      "* Kalman filter type: discrete\n"
+      "* Lag estimated: 0\n"
+      "* Lag real: 0\n"
+      "* Number of timesteps: 1500\n"
+      "* White noise system type: standard\n"
+      "\n"
+      "^ Control ^^\n"
+      "^ V | 0 |\n"
+      "\n"
+      "^ Estimated measurement error covariance ^^\n"
+      "^ V | 0.10000000000000001 |\n"
+      "\n"
+      "^ Estimated optimal Kalman gain ^^\n"
+      "^ V | 0 |\n"
+      "\n"
+      "^ Estimated process noise covariance ^^\n"
+      "^ V | 0.0001 |\n"
+      "\n"
+      "^ Initial covariance estimate ^^\n"
+      "^ V | 1 |\n"
+      "\n"
+      "^ Initial state estimate ^^\n"
+      "^ V | 3 |\n"
+      "\n"
+      "^ Real initial state ^^\n"
+      "^ V | 1.25 |\n"
+      "\n"
+      "^ Real measurement noise ^^\n"
+      "^ V | 0.10000000000000001 |\n"
+      "\n"
+      "^ Real process noise ^^\n"
+      "^ V | 1.0000000000000001e-005 |\n"
+      "\n"
+      "^ Input ^^\n"
+      "^ V | 0.0 |\n"
+      "\n"
+      "^ Observation ^^\n"
+      "^ V | 1 |\n"
+      "\n"
+      "^ State names ^^\n"
+      "^ V | V |\n"
+      "\n"
+      "^ State transition ^^\n"
+      "^ V | 1 |\n";
+    boost::shared_ptr<QtKalmanFilterExperimentModel> m(new QtKalmanFilterExperimentModel);
+    m->FromDokuWiki(s);
+    const std::string t = m->ToDokuWiki();
+    boost::shared_ptr<QtKalmanFilterExperimentModel> n(new QtKalmanFilterExperimentModel);
+    n->FromDokuWiki(t);
+    assert(*m == *n);
+  }
 }
 #endif
 
@@ -1027,4 +1082,27 @@ const std::string QtKalmanFilterExperimentModel::ToHtml() const
   s+="</body>";
   s+="</html>";
   return s;
+}
+
+bool operator==(const QtKalmanFilterExperimentModel lhs, const QtKalmanFilterExperimentModel rhs)
+{
+  assert(lhs.m_models.size() == rhs.m_models.size());
+  if (
+    !(
+      lhs.m_kalman_filter_type == rhs.m_kalman_filter_type
+      && lhs.m_lag_estimated == rhs.m_lag_estimated
+      && lhs.m_lag_real == rhs.m_lag_real
+      && lhs.m_number_of_timesteps == rhs.m_number_of_timesteps
+      && lhs.m_white_noise_system_type == rhs.m_white_noise_system_type
+    )
+  ) return false;
+  typedef std::map<KalmanFilterExperimentParameterType,QAbstractTableModel *>::const_iterator Iterator;
+  const Iterator lhs_end = lhs.end();
+  Iterator i = lhs.begin();
+  Iterator j = rhs.begin();
+  for ( ; i!= lhs_end; ++i, ++j)
+  {
+    assert(j != rhs.end());
+    assert(*i.first == *j.first);
+  }
 }

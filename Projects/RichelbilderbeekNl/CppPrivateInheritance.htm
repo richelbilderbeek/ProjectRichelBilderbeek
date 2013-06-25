@@ -23,88 +23,41 @@
   <o:Version>9.3821</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
-<style>
-<!--
-  
- 
- 
- 
- 
- 
- 
-@list l1
-	{mso-list-id:1636984362;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1356633326 -923387128 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
-@list l1:level1
-	{mso-level-start-at:0;
-	mso-level-text:"\[%1\]";
-	mso-level-tab-stop:.35in;
-	mso-level-number-position:left;
-	margin-left:.35in;
-	text-indent:-.35in;}
- 
--->
-</style>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Private inheritance</title>
+  <meta name="description" content="C++ Private inheritance"/>
+  <meta name="keywords" content="C++ Private inheritance code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
-
- 
-
- 
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppPrivateInheritance.htm">Private inheritance</a></h1>
 
 <p>&nbsp;</p>
 
+<p><a href="CppPrivateInheritance.htm">Private inheritance</a> is an uncommonly used (of three) modes of <a
+href="CppInheritance.htm">inheritance</a>. 
+<a href="CppPrivateInheritance.htm">Private inheritance</a> denotes a 'is-implemented-in-terms-of' relationship between <a href="CppDerivedClass.htm">derived class</a> 
+and <a href="CppBaseClass.htm">base class</a> [1]. <a href="CppPrivateInheritance.htm">Private inheritance</a> is usually inferior to 
+<a href="CppComposition.htm">composition</a> [1].</p>
 <p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<h1>(<a href="Cpp.htm">C++</a>)
-<a href="CppInheritance.htm"><span style='mso-field-code:"HYPERLINK \0022CppPrivateInheritance\.htm\0022"'>Private
-inheritance</a></h1>
-
-<p>&nbsp;</p>
-
-<p><a
-href="CppInheritance.htm"><span style='mso-field-code:"HYPERLINK \0022CppInheritance\.htm\0022"'><span
-style='mso-field-code:"HYPERLINK \0022CppPrivateInheritance\.htm\0022"'>Private
-inheritance</a> is an uncommonly used (of three) modes of <a
-href="CppInheritance.htm">inheritance</a>. <a href="CppInheritance.htm"><span
-style='color:windowtext;text-decoration:none;text-underline:none'>   <span style='mso-field-code:"HYPERLINK \0022CppInheritance\.htm\0022"'><span
-style='mso-field-code:"HYPERLINK \0022CppPrivateInheritance\.htm\0022"'><u><span
-style='color:blue'>Private inheritance </u></a>
-denotes a 'is-implemented-in-terms-of' relationship between <a
-href="CppDerivedClass.htm">derived class</a> and <a href="CppBaseClass.htm">base
-class</a> <span style='mso-field-code:"REF _Ref242936251 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340032003900330036003200350031000000</w:data>
-</xml><![endif]--> . <a href="CppInheritance.htm"><span style='mso-field-code:
-"HYPERLINK \0022CppInheritance\.htm\0022"'><span style='mso-field-code:"HYPERLINK \0022CppPrivateInheritance\.htm\0022"'>Private
-inheritance</a> is usually inferior to <a
-href="CppComposition.htm">composition</a> <span style='mso-field-code:"REF _Ref242936251 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340032003900330036003200350031000000</w:data>
-</xml><![endif]--> .</p>
-
-<p>&nbsp;</p>
-
-<p>There
-are no real-world examples for <a href="CppInheritance.htm"><span
-style='mso-field-code:"HYPERLINK \0022CppPrivateInheritance\.htm\0022"'>private
-inheritance <span style='color:windowtext;text-decoration:none;
-text-underline:none'>:</a> it means nothing during software design, only
-during software implementation <span style='mso-field-code:"REF _Ref242936251 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340032003900330036003200350031000000</w:data>
-</xml><![endif]--> . In the example below Widget is not a kind of Timer,
+<p>There are no real-world examples for <a href="CppPrivateInheritance.htm">Private inheritance</a>, 
+as it means nothing during software design, only
+during software implementation [1]. In the example below Widget is not a kind of Timer,
 but it uses some of the features of Timer.</p>
-
-<p>&nbsp;</p>
-
- 
-
 <p>&nbsp;</p>
 
 <p><b> <a href="CppStruct.htm">struct</a> </b>  Widget : <b><a
@@ -123,30 +76,23 @@ href="CppPrivateInheritance.htm">private inheritance</a></p>
 </div>
 
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2><a href="CppReferences.htm">References</a></h2>
-
-<p class=MsoNormal style='margin-left:.35in;text-indent:-.35in;mso-list:l0 level1 lfo3;
-tab-stops:list .35in'><a name="_Ref242936251">  [0] &nbsp;
-</a><a href="CppScottMeyers.htm"><span
-style='mso-bookmark:_Ref242936251'> Scott Meyers  <span style='mso-bookmark:_Ref242936251'></a><span
-style='mso-bookmark:_Ref242936251'> . Effective C++ (3rd edition).ISBN:0-321-33487-6. Item 39: 'Use
-private inheritance judiciously'.</p>
-
 <p>&nbsp;</p>
-
+<ol>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition).ISBN:0-321-33487-6. Item 39: 'Use private inheritance judiciously'</li>
+</ol>
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
 <p>&nbsp;</p>
-
-</div>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>

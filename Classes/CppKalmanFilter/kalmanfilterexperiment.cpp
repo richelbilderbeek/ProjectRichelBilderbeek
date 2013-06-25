@@ -20,9 +20,11 @@ KalmanFilterExperiment::KalmanFilterExperiment(
   const std::vector<std::string>& input_functions,
   const boost::shared_ptr<KalmanFilter> m_kalman_filter,
   const std::vector<std::string>& state_names,
-  const boost::shared_ptr<WhiteNoiseSystem>& m_white_noise_system
+  const boost::shared_ptr<WhiteNoiseSystem>& m_white_noise_system,
+  const std::string& context
   )
-  : m_inputs(KalmanFilterExperiment::ParseInput(input_functions,time)),
+  : m_context(context),
+    m_inputs(KalmanFilterExperiment::ParseInput(input_functions,time)),
     m_kalman_filter(m_kalman_filter),
     m_state_names(state_names),
     m_white_noise_system(m_white_noise_system)

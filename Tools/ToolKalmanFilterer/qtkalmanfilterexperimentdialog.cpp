@@ -152,6 +152,7 @@ void QtKalmanFilterExperimentDialog::LoadFromDokuWiki(const std::string& filenam
   this->m_model->FromDokuWiki(text);
   ui->box_n_timesteps->setValue(m_model->GetNumberOfTimesteps());
 
+
 }
 
 void QtKalmanFilterExperimentDialog::on_box_n_timesteps_valueChanged(int arg1)

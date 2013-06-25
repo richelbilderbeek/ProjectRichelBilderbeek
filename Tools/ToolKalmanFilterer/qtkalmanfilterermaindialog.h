@@ -81,6 +81,9 @@ private:
   const boost::shared_ptr<QtKalmanFilterCalculationDialog> CreateKalmanFilterCalculationDialog(
     const KalmanFilterType type) const;
 
+  ///Called when an experiment has new parameters loaded
+  void OnNewParameters();
+
   ///Show the results of an experiment in a calculation
   void ShowCalculation(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
 
