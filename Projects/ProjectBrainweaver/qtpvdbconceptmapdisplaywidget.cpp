@@ -165,13 +165,12 @@ std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapDisplayWidget::CreateNew
 }
 #endif
 
+#ifndef NDEBUG
 void QtPvdbConceptMapDisplayWidget::DoRandomStuff()
 {
-  #ifndef NDEBUG
   assert(this->GetConceptMap());
   const int n_edges_before = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
   const int n_nodes_before = boost::numeric_cast<int>(GetConceptMap()->GetNodes().size());
-  #endif
   assert(!"Do something here");
   const auto node_from = pvdb::NodeFactory::GetTests().at(0);
   const auto node_to   = pvdb::NodeFactory::GetTests().at(1);
@@ -184,13 +183,12 @@ void QtPvdbConceptMapDisplayWidget::DoRandomStuff()
   const boost::shared_ptr<pvdb::Edge> edge = pvdb::EdgeFactory::Create(
     edge_concept,node_x,node_y,node_from,true,node_to,true);
   this->AddEdge(edge);
-  #ifndef NDEBUG
   const int n_edges_after = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
   const int n_nodes_after = boost::numeric_cast<int>(GetConceptMap()->GetNodes().size());
   assert(n_edges_after > n_edges_before);
   assert(n_nodes_after > n_nodes_before);
-  #endif
 }
+#endif
 
 void QtPvdbConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {

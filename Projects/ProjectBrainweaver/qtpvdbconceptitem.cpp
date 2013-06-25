@@ -48,12 +48,16 @@ QtPvdbConceptItem::QtPvdbConceptItem(
   this->setAcceptHoverEvents(true);
 
   this->SetPadding(QtRoundedTextRectItem::Padding(1.0,6.0,1.0,2.0));
-  this->SetText(m_concept->GetName());
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
     boost::bind(&QtPvdbConceptItem::OnConceptNameChanged,this)); //Obligatory
 
+  //FIX? 2013-06-25
+  //this->SetText("DUMMY TEXT");
+  //assert(this->GetText() != m_concept->GetName()
+  //  && "The text must be set, to get a resize");
+  this->SetText(m_concept->GetName());
 }
 
 const boost::shared_ptr<const pvdb::Concept> QtPvdbConceptItem::GetConcept() const
@@ -71,12 +75,14 @@ void QtPvdbConceptItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 void QtPvdbConceptItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
   Base::mouseMoveEvent(event);
+  //this->m_signal_item_has_updated(); //2013-06-25
   m_signal_request_scene_update();
 }
 
 void QtPvdbConceptItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
   Base::mousePressEvent(event);
+  //this->m_signal_item_has_updated(); //2013-06-25
   m_signal_request_scene_update();
 }
 

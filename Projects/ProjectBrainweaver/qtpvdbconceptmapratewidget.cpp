@@ -254,11 +254,12 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
   return concept_map;
 }
 
+#ifndef NDEBUG
 void QtPvdbConceptMapRateWidget::DoRandomStuff()
 {
   assert(!"TODO");
 }
-
+#endif
 
 
 void QtPvdbConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)

@@ -230,7 +230,7 @@ void QtPvdbEdgeItem::OnRequestSceneUpdate()
 
 void QtPvdbEdgeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-  m_concept_item->SetText(this->GetConcept()->GetName()); //NEW 2013-01-08
+  m_concept_item->SetText(this->GetConcept()->GetName());
 
   assert(this->pos() == m_arrow->GetMidItem()->pos());
   painter->translate(-this->pos());
@@ -238,7 +238,6 @@ void QtPvdbEdgeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* op
   painter->translate(this->pos());
 
   assert(m_concept_item);
-
   if (this->hasFocus() || this->isSelected())
   {
     //Does the arrow or the concept have focus?
@@ -255,7 +254,11 @@ void QtPvdbEdgeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* op
   {
     m_concept_item->SetContourPen(m_contour_pen);
   }
-  m_concept_item->paint(painter,option,widget);
+  if (m_concept_item->isVisible())
+  {
+    //Edges connect to the center node do not display their concept item
+    m_concept_item->paint(painter,option,widget);
+  }
 }
 
 void QtPvdbEdgeItem::SetConcept(const boost::shared_ptr<pvdb::Concept> concept) //NEW 2013-01-07

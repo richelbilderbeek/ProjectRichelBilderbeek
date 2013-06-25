@@ -32,22 +32,12 @@ struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
   std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const;
-  #endif
 
   ///Do something random
   void DoRandomStuff();
+  #endif
 
-  ///Initialize the widget with a concept map
-  ///Note that ReadFromConceptMap changes the copy of the map entered, by changing some GUI
-  ///elements (coordinats of the nodes, for example). Therefore, the following test will fail:
-  ///  conceptmapwidget->ReadFromConceptMap(m);
-  ///  const pvdb::ConceptMapPtr n = w->WriteToConceptMap();
-  ///  assert(m == n);
-  ///instead, use
-  ///  assert(HasSameContent(m,n));
-  //void ReadFromConceptMap(const boost::shared_ptr<const pvdb::ConceptMap> map);
-
-  ///NEW 2013-01-13
+  ///Signal emitted when a concept map item requests to be edited
   boost::signals2::signal<void(QtPvdbConceptMapItem*)> m_signal_conceptmapitem_requests_edit;
 
 protected:

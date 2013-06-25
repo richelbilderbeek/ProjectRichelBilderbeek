@@ -92,7 +92,11 @@ QtPvdbNodeItem::QtPvdbNodeItem(
 
 QRectF QtPvdbNodeItem::boundingRect() const
 {
-  //return m_concept_item->boundingRect().adjusted(-1.0,-1.0,1.0,1.0); //2013-01-25: Added adjusted
+  //TRACE(m_concept_item->boundingRect().width());
+  //TRACE(QtPvdbConceptMapItem::boundingRect().width());
+  //assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+  //  && "Which one?");
+  //return m_concept_item->boundingRect(); //.adjusted(-1.0,-1.0,1.0,1.0); //2013-01-25: Added adjusted
   return QtPvdbConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item
 }
 

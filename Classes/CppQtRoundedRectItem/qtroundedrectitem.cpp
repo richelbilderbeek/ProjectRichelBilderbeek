@@ -41,8 +41,8 @@ const std::vector<std::string> QtRoundedRectItem::GetVersionHistory()
 
 void QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-  m_signal_request_scene_update();
   QGraphicsRectItem::mouseMoveEvent(event);
+  m_signal_request_scene_update();
 }
 
 void QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

@@ -34,10 +34,10 @@ public:
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
   virtual std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const = 0;
-  #endif
 
-  ///Do something random
+  ///Do something random, used in debugging
   virtual void DoRandomStuff() = 0;
+  #endif
 
   ///Obtain the concept map
   const boost::shared_ptr<const pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
@@ -136,11 +136,6 @@ private:
 
   ///Implemention of OnItemUpdateRequest
   virtual void OnItemRequestUpdateImpl(const QGraphicsItem* const item) = 0;
-
-  ///Put the central node at index zero
-  #ifdef BELIEF_THAT_INDEXLESS_EDGES_NEED_SORTING_672357462547263842756287
-  const std::vector<QtPvdbNodeItem* > Sort(const std::vector<QtPvdbNodeItem*>& v) const;
-  #endif
 
 public slots:
 
