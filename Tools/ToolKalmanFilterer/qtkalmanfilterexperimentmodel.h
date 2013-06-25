@@ -152,6 +152,6 @@ struct QtKalmanFilterExperimentModel : public QObject
   #endif
 };
 
-bool operator==(const QtKalmanFilterExperimentModel lhs, const QtKalmanFilterExperimentModel rhs);
+bool operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs);
 
 #endif // QTKALMANFILTEREXPERIMENTMODEL_H
