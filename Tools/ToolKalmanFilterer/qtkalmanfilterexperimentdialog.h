@@ -11,6 +11,7 @@
 #include <boost/shared_ptr.hpp>
 //#include <boost/numeric/ublas/matrix.hpp>
 //#include <boost/numeric/ublas/vector.hpp>
+#include <boost/signals2.hpp>
 
 #include <QDialog>
 #include <QTableWidget>
@@ -52,6 +53,8 @@ public:
 
   ///Save the current parameters to a file in DokuWiki format
   void SaveToDokuWiki(const std::string& filename) const;
+
+  boost::signals2::signal <void()> m_signal_new_parameters;
 
 private:
   Ui::QtKalmanFilterExperimentDialog *ui;

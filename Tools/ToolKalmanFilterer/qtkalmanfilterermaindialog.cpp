@@ -85,6 +85,9 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
 
   assert(m_model->CreateExperiment() && "Can get an empty experiment");
 
+  m_experiment_dialog->m_signal_new_parameters.connect(
+    boost::bind(&QtKalmanFiltererMainDialog::OnNewParameters,this));
+
 
   this->m_experiment_dialog->ClickExample(0);
 
@@ -201,6 +204,13 @@ const boost::shared_ptr<QtKalmanFilterCalculationDialog> QtKalmanFiltererMainDia
 void QtKalmanFiltererMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+}
+
+void QtKalmanFiltererMainDialog::OnNewParameters()
+{
+
+  ui->edit_context->setPlainText(m_model->CreateExperiment()->GetContext().c_str());
+  //ui->web_view_context->setHtml(m_model->GetContext().c_str());
 }
 
 void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()

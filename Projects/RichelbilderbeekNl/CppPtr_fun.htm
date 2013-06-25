@@ -23,73 +23,43 @@
   <o:Version>9.3821</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
-<style>
-<!--
-  
- 
- 
- 
- 
- 
- /* List Definitions */
-@list l0
-	{mso-list-id:51781181;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1475576866 -923387128 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-text:"\[%1\]";
-	mso-level-tab-stop:.35in;
-	mso-level-number-position:left;
-	margin-left:.35in;
-	text-indent:-.35in;}
- 
--->
-</style>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::ptr_fun</title>
+  <meta name="description" content="C++ std::ptr_fun"/>
+  <meta name="keywords" content="C++ std::ptr_fun std ptr_fun code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
-
- 
-
- 
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<h1>(<a href="Cpp.htm">C++</a>)
-<a href="CppPtr_fun.htm">std::ptr_fun</a></h1>
-
 <p>&nbsp;</p>
-
-<p>An <a
-href="CppAdapter.htm">adapter</a> to be able to use the <a
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppPtr_fun.htm">std::ptr_fun</a></h1>
+<p>&nbsp;</p>
+<p>An <a href="CppAdapter.htm">adapter</a> to be able to use the <a
 href="CppAlgorithm.htm">algorithm</a> <a href="CppFor_each.htm">for_each</a> on
 a <a href="CppFunction.htm">function</a> of T stored in a <a
 href="CppContainer.htm">container</a> as T, instead of using loops. Prefer <a
-href="CppAlgorithm.htm">algorithm</a> calls over hand-written loops <span
-style='mso-field-code:"REF _Ref250629410 \\r \\h"'>[0]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350030003600320039003400310030000000</w:data>
-</xml><![endif]--> <span style='mso-field-code:"REF _Ref250629411 \\r \\h"'>[1]<!--[if gte mso 9]><xml>
- <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350030003600320039003400310031000000</w:data>
-</xml><![endif]--> .</p>
-
+href="CppAlgorithm.htm">algorithm</a> calls over hand-written loops [1,2].</p>
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>Example</h2>
-
 <p>&nbsp;</p>
 
  
-
-<p>&nbsp;</p>
 
 <p><a href="CppInclude.htm">#include</a>
 &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
@@ -125,51 +95,24 @@ s.begin(),<a href="CppPtr_fun.htm">std::ptr_fun</a>(<a href="CppToupper.htm">std
 </div>
 
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <h2><a href="CppReferences.htm">References</a></h2>
-
-<p class=MsoNormal style='margin-left:.35in;text-indent:-.35in;mso-list:l0 level1 lfo2;
-tab-stops:list .35in'><a name="_Ref250629410">  [0] &nbsp;
-</a><a href="CppBjarneStroustrup.htm"><span
-style='mso-bookmark:_Ref250629410'> Bjarne Stroustrup  <span style='mso-bookmark:_Ref250629410'></a><span
-style='mso-bookmark:_Ref250629410'> . The C++ Programming Language (3rd edition). ISBN:
-0-201-88954-4. Chapter 18.12.1: 'Prefer algorithms to loops.</p>
-
-<p class=MsoNormal style='margin-left:.35in;text-indent:-.35in;mso-list:l0 level1 lfo2;
-tab-stops:list .35in'><a name="_Ref250629411">  [1] &nbsp;
-</a><a href="CppScottMeyers.htm"><span
-style='mso-bookmark:_Ref250629411'> Scott Meyers  <span style='mso-bookmark:_Ref250629411'></a><span
-style='mso-bookmark:_Ref250629411'> . Effective STL. ISBN:0-201-74962-9. Item 43: 'Prefer algorithm
-calls over hand-written loops'</p>
-
 <p>&nbsp;</p>
-
+<ol>
+  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). ISBN: 0-201-88954-4. Chapter 18.12.1: 'Prefer algorithms to loops'</li>
+  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective STL. ISBN:0-201-74962-9. Item 43: 'Prefer algorithm calls over hand-written loops'</li>
+</ol>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
 <p>&nbsp;</p>
-
-</div>
-
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>

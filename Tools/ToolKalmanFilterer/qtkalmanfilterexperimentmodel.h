@@ -87,6 +87,9 @@ struct QtKalmanFilterExperimentModel : public QObject
   void OnStateNamesChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
 
   private:
+  ///The HTML description of the context of this experiment
+  const std::string m_context;
+
   ///The Kalman filter type
   KalmanFilterType m_kalman_filter_type;
 
@@ -148,5 +151,7 @@ struct QtKalmanFilterExperimentModel : public QObject
   static void Test();
   #endif
 };
+
+bool operator==(const QtKalmanFilterExperimentModel lhs, const QtKalmanFilterExperimentModel rhs);
 
 #endif // QTKALMANFILTEREXPERIMENTMODEL_H

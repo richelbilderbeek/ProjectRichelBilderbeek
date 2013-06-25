@@ -24,12 +24,16 @@ struct KalmanFilterExperiment : public boost::noncopyable
     const std::vector<std::string>& input,
     const boost::shared_ptr<KalmanFilter> kalman_filter,
     const std::vector<std::string>& state_names,
-    const boost::shared_ptr<WhiteNoiseSystem>& white_noise_system
+    const boost::shared_ptr<WhiteNoiseSystem>& white_noise_system,
+    const std::string& context = ""
   );
 
   ///Obtain the calculation elements of each timestep
   const std::vector<boost::shared_ptr<KalmanFilterCalculationElements> >& GetCalculationElements() const
     { return m_calculation_elements; }
+
+  ///Obtain the HTML description of the context of this experiment
+  const std::string& GetContext() const { return m_context; }
 
   ///Obtain the predicted states
   const std::vector<boost::numeric::ublas::vector<double> > GetPredictedStates() const;
@@ -75,6 +79,9 @@ struct KalmanFilterExperiment : public boost::noncopyable
 
   ///The calculation elements of each timestep
   std::vector<boost::shared_ptr<KalmanFilterCalculationElements> > m_calculation_elements;
+
+  ///The HTML description of the context of this experiment
+  const std::string m_context;
 
   ///The inputs of each timestep
   const std::vector<boost::numeric::ublas::vector<double> > m_inputs;
