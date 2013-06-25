@@ -5,6 +5,7 @@
 
 enum class WhiteNoiseSystemType
 {
+  gaps_filled,
   lagged,
   standard,
   n_types

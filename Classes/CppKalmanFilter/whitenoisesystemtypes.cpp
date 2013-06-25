@@ -17,6 +17,8 @@ const boost::bimap<WhiteNoiseSystemType,std::string> WhiteNoiseSystemTypes::Crea
 
   boost::bimap<WhiteNoiseSystemType,std::string> m;
   m.insert(boost::bimap<WhiteNoiseSystemType,std::string>::value_type(
+    WhiteNoiseSystemType::gaps_filled,std::string("gaps_filled")));
+  m.insert(boost::bimap<WhiteNoiseSystemType,std::string>::value_type(
     WhiteNoiseSystemType::lagged,std::string("lagged")));
   m.insert(boost::bimap<WhiteNoiseSystemType,std::string>::value_type(
     WhiteNoiseSystemType::standard,std::string("standard")));
@@ -28,6 +30,7 @@ const std::vector<WhiteNoiseSystemType> WhiteNoiseSystemTypes::GetAllTypes()
   const std::vector<WhiteNoiseSystemType> v
   =
   {
+    WhiteNoiseSystemType::gaps_filled,
     WhiteNoiseSystemType::lagged,
     WhiteNoiseSystemType::standard
   };

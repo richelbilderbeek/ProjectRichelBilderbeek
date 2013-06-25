@@ -87,7 +87,10 @@ SOURCES += \
     ../../Classes/CppQtModel/modelfunctionparser.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltertypes.cpp \
     ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp \
-    qtcopyalltablewidget.cpp
+    qtcopyalltablewidget.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp
 
 
 HEADERS += \
@@ -154,7 +157,10 @@ HEADERS += \
     ../../Classes/CppQtModel/modelfunctionparser.h \
     ../../Classes/CppKalmanFilter/kalmanfiltertypes.h \
     ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h \
-    qtcopyalltablewidget.h
+    qtcopyalltablewidget.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -225,7 +231,7 @@ win32 {
   !static {
     message(Native Windows)
     #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++0x #-Werror
+    QMAKE_CXXFLAGS += -std=c++0x -Werror
   }
 
   static {
