@@ -506,14 +506,19 @@ const boost::shared_ptr<WhiteNoiseSystemParameters> QtKalmanFilterExperimentMode
   boost::shared_ptr<WhiteNoiseSystemParameters> parameters;
   switch (m_white_noise_system_type)
   {
-    case WhiteNoiseSystemType::standard:
+    case WhiteNoiseSystemType::gaps_filled:
     {
-      parameters = CreateStandardWhiteNoiseSystemParameters();
+      parameters = CreateGapsFilledWhiteNoiseSystemParameters();
     }
     break;
     case WhiteNoiseSystemType::lagged:
     {
       parameters = CreateLaggedWhiteNoiseSystemParameters();
+    }
+    break;
+    case WhiteNoiseSystemType::standard:
+    {
+      parameters = CreateStandardWhiteNoiseSystemParameters();
     }
     break;
     case WhiteNoiseSystemType::n_types:

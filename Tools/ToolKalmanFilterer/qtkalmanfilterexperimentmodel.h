@@ -120,6 +120,9 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///Create standard white noise system parameters
   const boost::shared_ptr<StandardWhiteNoiseSystemParameters> CreateStandardWhiteNoiseSystemParameters() const;
 
+  ///Create gaps-filled white noise system parameters
+  const boost::shared_ptr<WhiteNoiseSystemParameters> CreateGapsFilledWhiteNoiseSystemParameters() const;
+
   ///Create lagged white noise system parameters
   const boost::shared_ptr<WhiteNoiseSystemParameters> CreateLaggedWhiteNoiseSystemParameters() const;
 
