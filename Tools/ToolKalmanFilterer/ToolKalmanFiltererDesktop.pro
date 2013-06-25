@@ -3,7 +3,8 @@ win32 {
   #CONFIG += static
 }
 
-QT       += core gui
+QT += core gui
+QT += webkit
 TEMPLATE = app
 
 #

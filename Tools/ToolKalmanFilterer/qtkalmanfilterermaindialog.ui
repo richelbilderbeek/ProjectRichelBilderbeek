@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>621</width>
-    <height>154</height>
+    <width>714</width>
+    <height>279</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,8 +34,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>233</width>
-         <height>134</height>
+         <width>120</width>
+         <height>242</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -76,10 +76,50 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QTabWidget" name="tab_widget">
+     <widget class="QTabWidget" name="tab_main">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
+      <widget class="QWidget" name="layout_context">
+       <attribute name="title">
+        <string>Context</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tab_context">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="tab_web_view_context">
+           <attribute name="title">
+            <string>Rendered HTML (read-only)</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <item row="0" column="0">
+             <widget class="QWebView" name="web_view_context">
+              <property name="url">
+               <url>
+                <string>about:blank</string>
+               </url>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_plaintext_context">
+           <attribute name="title">
+            <string>Plaintext HTML</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <widget class="QPlainTextEdit" name="edit_context"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tab_calculation">
        <attribute name="title">
         <string>Calculation</string>
@@ -95,8 +135,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>337</width>
-             <height>90</height>
+             <width>578</width>
+             <height>215</height>
             </rect>
            </property>
           </widget>
@@ -119,8 +159,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>337</width>
-             <height>61</height>
+             <width>578</width>
+             <height>186</height>
             </rect>
            </property>
           </widget>
@@ -163,8 +203,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>337</width>
-             <height>90</height>
+             <width>578</width>
+             <height>215</height>
             </rect>
            </property>
           </widget>
@@ -178,6 +218,13 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
