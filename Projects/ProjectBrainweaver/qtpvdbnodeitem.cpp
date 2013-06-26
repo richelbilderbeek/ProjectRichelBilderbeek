@@ -48,6 +48,11 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   assert(this->pos().x() == m_node->GetX());
   assert(this->pos().y() == m_node->GetY());
 
+  this->setRect(m_concept_item->boundingRect());
+  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    && "Bounding rects must by synced");
+
+
   m_concept_item->m_signal_item_has_updated.connect(
     boost::bind(
       &QtPvdbNodeItem::OnItemHasUpdated,this));
@@ -94,8 +99,8 @@ QRectF QtPvdbNodeItem::boundingRect() const
 {
   //TRACE(m_concept_item->boundingRect().width());
   //TRACE(QtPvdbConceptMapItem::boundingRect().width());
-  //assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-  //  && "Which one?");
+  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    && "Bounding rects must by synced");
   //return m_concept_item->boundingRect(); //.adjusted(-1.0,-1.0,1.0,1.0); //2013-01-25: Added adjusted
   return QtPvdbConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item
 }
@@ -175,6 +180,9 @@ void QtPvdbNodeItem::keyPressEvent(QKeyEvent *event)
 
 void QtPvdbNodeItem::OnItemHasUpdated()
 {
+  this->setRect(m_concept_item->boundingRect());
+  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    && "Bounding rects must by synced");
   this->update();
   this->m_signal_item_has_updated(this);
 }
