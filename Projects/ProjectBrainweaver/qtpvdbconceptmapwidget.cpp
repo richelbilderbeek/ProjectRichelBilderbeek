@@ -374,6 +374,7 @@ bool QtPvdbConceptMapWidget::MustReposition(const std::vector<boost::shared_ptr<
     }
   ) == static_cast<int>(nodes.size());
 }
+
 void QtPvdbConceptMapWidget::OnItemRequestsUpdate(const QGraphicsItem* const item)
 {
   OnItemRequestUpdateImpl(item);
@@ -381,15 +382,7 @@ void QtPvdbConceptMapWidget::OnItemRequestsUpdate(const QGraphicsItem* const ite
 
 void QtPvdbConceptMapWidget::OnRequestSceneUpdate()
 {
-
-  if(!this->paintingActive())
-  {
-    return; //FIX 2013-05-11
-  }
-
-  assert(this->paintingActive());
   scene()->update();
-
 }
 
 
