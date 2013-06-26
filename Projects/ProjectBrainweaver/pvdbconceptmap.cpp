@@ -235,6 +235,57 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMap::Create
   return v;
 }
 
+void pvdb::ConceptMap::DeleteEdge(const boost::shared_ptr<pvdb::Edge> edge)
+{
+  #ifndef NDEBUG
+  assert(edge);
+  assert(std::count(m_edges.begin(),m_edges.end(),edge) == 1
+    && "Every edge is unique");
+  const std::size_t n_edges_before = m_edges.size();
+  #endif
+
+  //Copied from http://www.richelbilderbeek.nl/CppVector.htm
+  m_edges.erase(std::remove(m_edges.begin(),m_edges.end(),edge),m_edges.end());
+
+  #ifndef NDEBUG
+  const std::size_t n_edges_after = m_edges.size();
+  assert(n_edges_before - 1 == n_edges_after);
+  #endif
+}
+
+void pvdb::ConceptMap::DeleteNode(const boost::shared_ptr<pvdb::Node> node)
+{
+  #ifndef NDEBUG
+  assert(node);
+  assert(std::count(m_nodes.begin(),m_nodes.end(),node) == 1
+    && "Every node is unique");
+  const std::size_t n_nodes_before = m_nodes.size();
+  #endif
+
+  //Delete all edges going to this node
+  std::vector<boost::shared_ptr<pvdb::Edge> > to_be_deleted;
+  std::copy_if(m_edges.begin(),m_edges.end(),std::back_inserter(to_be_deleted),
+    [node](boost::shared_ptr<pvdb::Edge> edge)
+    {
+      return edge->GetFrom() == node || edge->GetTo() == node;
+    }
+  );
+  for (boost::shared_ptr<pvdb::Edge> edge: to_be_deleted)
+  {
+    DeleteEdge(edge);
+  }
+
+  //Delete the node itself
+  //Copied from http://www.richelbilderbeek.nl/CppVector.htm
+  m_nodes.erase(std::remove(m_nodes.begin(),m_nodes.end(),node),m_nodes.end());
+
+  #ifndef NDEBUG
+  const std::size_t n_nodes_after = m_nodes.size();
+  assert(n_nodes_before - 1 == n_nodes_after);
+  #endif
+}
+
+
 bool pvdb::ConceptMap::Empty() const
 {
   return m_nodes.empty() && m_edges.empty();

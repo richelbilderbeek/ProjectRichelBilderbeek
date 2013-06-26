@@ -41,6 +41,11 @@ struct ConceptMap : public boost::noncopyable
   ///Note that CreateSubs()[0] is the concept map around the focal question
   const std::vector<boost::shared_ptr<pvdb::ConceptMap> > CreateSubs() const;
 
+  ///Delete an edge
+  void DeleteEdge(const boost::shared_ptr<pvdb::Edge> edge);
+
+  ///Delete a node and all the edges connected to it
+  void DeleteNode(const boost::shared_ptr<pvdb::Node> node);
 
   ///Check if the ConceptMap is empty
   bool Empty() const;
