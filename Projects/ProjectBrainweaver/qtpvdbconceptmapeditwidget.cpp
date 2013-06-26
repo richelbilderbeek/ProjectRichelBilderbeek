@@ -327,14 +327,16 @@ std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapEditWidget::CreateNewDer
 }
 #endif
 
-void QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const edge)
+void QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const qtedge)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
   #endif
 
-  assert(scene()->items().contains(edge));
-  this->scene()->removeItem(edge);
+  assert(scene()->items().contains(qtedge));
+  this->scene()->removeItem(qtedge);
+  DeleteLeftovers();
+  GetConceptMap()->DeleteEdge(qtedge->GetEdge());
 
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
@@ -382,13 +384,15 @@ void QtPvdbConceptMapEditWidget::DeleteLeftovers()
     && "GUI and non-GUI concept map must match");
 }
 
-void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const node)
+void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const qtnode)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
   #endif
 
-  this->scene()->removeItem(node);
+  this->scene()->removeItem(qtnode);
+  DeleteLeftovers();
+  GetConceptMap()->DeleteNode(qtnode->GetNode());
 
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();

@@ -120,11 +120,6 @@ protected:
   void TestMe(const boost::shared_ptr<const pvdb::ConceptMap> map) const;
   #endif
 
-signals:
-
-  ///Supply the client with a hint how to use this widget
-  void GiveHint(const QString hint);
-
 private:
 
   ///The concept map to work on, the Model
