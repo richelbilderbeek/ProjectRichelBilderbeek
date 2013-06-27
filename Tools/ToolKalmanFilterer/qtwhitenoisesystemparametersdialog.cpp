@@ -16,20 +16,21 @@
 #include <QVBoxLayout>
 
 #include "laggedwhitenoisesystemfactory.h"
-#include "laggedwhitenoisesystemfactory.h"
+#include "kalmanfilterexperimentparameter.h"
 #include "laggedwhitenoisesystem.h"
+#include "laggedwhitenoisesystemfactory.h"
 #include "laggedwhitenoisesystemparameters.h"
 #include "matrix.h"
+#include "qtkalmanfiltererparameterdialog.h"
 #include "qtmatrix.h"
-#include "standardwhitenoisesystemfactory.h"
+#include "qtublasvectorintmodel.h"
 #include "standardwhitenoisesystem.h"
+#include "standardwhitenoisesystemfactory.h"
 #include "standardwhitenoisesystemparameters.h"
 #include "trace.h"
-#include "whitenoisesystemparametertype.h"
-#include "kalmanfilterexperimentparameter.h"
 #include "ui_qtwhitenoisesystemparametersdialog.h"
-#include "qtkalmanfiltererparameterdialog.h"
 #include "whitenoisesystemparameter.h"
+#include "whitenoisesystemparametertype.h"
 
 QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
@@ -39,7 +40,9 @@ QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
     m_model(model)
 {
   ui->setupUi(this);
-
+  #ifndef NDEBUG
+  Test();
+  #endif
   //Create the map
   {
     const std::vector<WhiteNoiseSystemParameterType> v = WhiteNoiseSystemParameter::GetAll();
@@ -49,6 +52,7 @@ QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
       assert(i < v.size());
 
       const WhiteNoiseSystemParameterType type = v[i];
+      assert(type != WhiteNoiseSystemParameterType::n_parameters);
       QtKalmanFiltererParameterDialog * const dialog
         = new QtKalmanFiltererParameterDialog(
           WhiteNoiseSystemParameter::ToName(type),
@@ -69,9 +73,21 @@ QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
       && "All parameters must be in");
   }
 
-  this->setFocusPolicy(Qt::NoFocus);
-  ui->box_white_noise_system_type->setCurrentIndex(0);
+  //Fill the combo box with the types of white noise systems
+  {
+    assert(ui->box_white_noise_system_type->count() == 0);
+    const int n = static_cast<int>(WhiteNoiseSystemType::n_types);
+    assert(n == 3);
+    ui->box_white_noise_system_type->addItem("Standard white noise system");
+    ui->box_white_noise_system_type->addItem("Lagged white noise system");
+    ui->box_white_noise_system_type->addItem("Gaps-filled white noise system");
+    assert(ui->box_white_noise_system_type->count() == n);
+  }
 
+  this->setFocusPolicy(Qt::NoFocus);
+
+  this->SetWhiteNoiseSystemType(m_model->CreateWhiteNoiseSystemParameters()->GetType());
+  assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
   assert(m_model->CreateWhiteNoiseSystem() && "Obtain an empty white noise system (all components have size zero)");
 }
 
@@ -82,15 +98,16 @@ QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog()
 
 QtKalmanFiltererParameterDialog * QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type)
 {
-    //Calls the const version of Find
-    //To avoid duplication in const and non-const member functions
-    // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines,
-    //   and best practices. 2005. ISBN: 0-32-111358-6. Chapter 94: 'Avoid casting away const', item 'Exceptions'
-    return const_cast<QtKalmanFiltererParameterDialog *>(const_cast<const QtWhiteNoiseSystemParametersDialog&>(*this).Find(type));
+  //Calls the const version of Find
+  //To avoid duplication in const and non-const member functions
+  // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines,
+  //   and best practices. 2005. ISBN: 0-32-111358-6. Chapter 94: 'Avoid casting away const', item 'Exceptions'
+  return const_cast<QtKalmanFiltererParameterDialog *>(const_cast<const QtWhiteNoiseSystemParametersDialog&>(*this).Find(type));
 }
 
 const QtKalmanFiltererParameterDialog * QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type) const
 {
+  assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
   assert(m_parameters.find(type) != m_parameters.end());
   const QtKalmanFiltererParameterDialog * const table = (*m_parameters.find(type)).second;
   assert(table);
@@ -109,6 +126,10 @@ WhiteNoiseSystemType QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType
   {
     case 0: return WhiteNoiseSystemType::standard;
     case 1: return WhiteNoiseSystemType::lagged;
+    case 2: return WhiteNoiseSystemType::gaps_filled;
+    case -1:
+      assert(!"QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType: box_white_noise_system_type must be initialized");
+      throw std::logic_error(__func__);
     default:
       assert(!"Unimplemented index of box_white_noise_system_type");
       throw std::logic_error(__func__);
@@ -119,30 +140,101 @@ void QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_currentI
 {
   //Notify the model
   m_model->SetWhiteNoiseSystemType(GetWhiteNoiseSystemType());
+  assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
 
   switch (GetWhiteNoiseSystemType())
   {
     case WhiteNoiseSystemType::gaps_filled:
       ui->box_lag->setVisible(false);
       ui->label_lag->setVisible(false);
-      this->Find(WhiteNoiseSystemParameterType::gap_frequencies)->setVisible(true);
+      assert(m_parameters.size() == WhiteNoiseSystemParameter::GetAll().size()
+        && "m_parameters must be initialized");
+      this->Find(WhiteNoiseSystemParameterType::measurement_frequency)->setVisible(true);
       break;
     case WhiteNoiseSystemType::lagged:
       ui->box_lag->setVisible(true);
       ui->label_lag->setVisible(true);
-      this->Find(WhiteNoiseSystemParameterType::gap_frequencies)->setVisible(false);
+      assert(m_parameters.size() == WhiteNoiseSystemParameter::GetAll().size()
+        && "m_parameters must be initialized");
+      this->Find(WhiteNoiseSystemParameterType::measurement_frequency)->setVisible(false);
       break;
     case WhiteNoiseSystemType::standard:
       ui->box_lag->setVisible(false);
       ui->label_lag->setVisible(false);
-      this->Find(WhiteNoiseSystemParameterType::gap_frequencies)->setVisible(false);
+      assert(m_parameters.size() == WhiteNoiseSystemParameter::GetAll().size()
+        && "m_parameters must be initialized");
+      this->Find(WhiteNoiseSystemParameterType::measurement_frequency)->setVisible(false);
       break;
     case WhiteNoiseSystemType::n_types:
       assert(!"Unimplemented WhiteNoiseSystemType");
   }
+
+  assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
 }
 
 void QtWhiteNoiseSystemParametersDialog::on_box_lag_valueChanged(int arg1)
 {
   m_model->SetLagReal(arg1);
+  assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
 }
+
+void QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const WhiteNoiseSystemType type)
+{
+  switch (type)
+  {
+    case WhiteNoiseSystemType::gaps_filled:
+      ui->box_white_noise_system_type->setCurrentIndex(2);
+      break;
+    case WhiteNoiseSystemType::lagged:
+      ui->box_white_noise_system_type->setCurrentIndex(1);
+      break;
+    case WhiteNoiseSystemType::standard:
+      ui->box_white_noise_system_type->setCurrentIndex(0);
+      break;
+    case WhiteNoiseSystemType::n_types:
+      assert(!"QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
+      throw std::logic_error("QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
+  }
+  assert(this->GetWhiteNoiseSystemType() == type);
+}
+
+
+#ifndef NDEBUG
+void QtWhiteNoiseSystemParametersDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtWhiteNoiseSystemParametersDialog::Test");
+  {
+    const boost::shared_ptr<QtKalmanFilterExperimentModel> model(new QtKalmanFilterExperimentModel);
+    assert(model);
+
+    QtWhiteNoiseSystemParametersDialog d(model);
+    d.ui->box_white_noise_system_type->setCurrentIndex(0);
+    assert(d.GetWhiteNoiseSystemType() == WhiteNoiseSystemType::standard);
+    assert(model->CreateWhiteNoiseSystemParameters()->GetType() == WhiteNoiseSystemType::standard);
+    assert(!d.Find(WhiteNoiseSystemParameterType::measurement_frequency)->isVisible());
+    assert(model->CreateWhiteNoiseSystemParameters());
+    assert(model->CreateWhiteNoiseSystem());
+
+    d.ui->box_white_noise_system_type->setCurrentIndex(1);
+    assert(d.GetWhiteNoiseSystemType() == WhiteNoiseSystemType::lagged);
+    assert(model->CreateWhiteNoiseSystemParameters()->GetType() == WhiteNoiseSystemType::lagged);
+    assert(!d.Find(WhiteNoiseSystemParameterType::measurement_frequency)->isVisible());
+    assert(model->CreateWhiteNoiseSystemParameters());
+    assert(model->CreateWhiteNoiseSystem());
+
+    d.ui->box_white_noise_system_type->setCurrentIndex(2);
+    //assert(d.Find(WhiteNoiseSystemParameterType::measurement_frequency)->isVisible());
+    assert(d.GetWhiteNoiseSystemType() == WhiteNoiseSystemType::gaps_filled);
+    assert(model->Find(KalmanFilterExperimentParameterType::measurement_frequency));
+    assert(model->CreateWhiteNoiseSystem());
+    assert(model->CreateWhiteNoiseSystemParameters());
+    assert(model->CreateWhiteNoiseSystemParameters()->GetType() == WhiteNoiseSystemType::gaps_filled);
+  }
+  TRACE("Finished QtWhiteNoiseSystemParametersDialog::Test successfully");
+}
+#endif

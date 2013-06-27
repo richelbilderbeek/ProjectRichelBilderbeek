@@ -1,6 +1,6 @@
 win32 {
   #Add the line below when cross-compiling
-  CONFIG += static
+  #CONFIG += static
 }
 
 QT += core gui
@@ -1651,14 +1651,18 @@ unix {
 win32 {
   !static {
     message(Native Windows)
+
+    #Allow the GCC 4.4.0 native Windows build to emit warnings without terminating
+    QMAKE_CXXFLAGS += -std=c++0x #-Werror
   }
 
   static {
     message(Crosscompiling from Lubuntu to Windows)
+
+    #Allow the crosscompiler to emit warnings without terminating
+    QMAKE_CXXFLAGS += -std=c++11 #-Werror
   }
 
-  #Allow the crosscompiler to emit warnings without terminating
-  QMAKE_CXXFLAGS += -std=c++11 #-Werror
 
   #Prevents error:
   #/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"

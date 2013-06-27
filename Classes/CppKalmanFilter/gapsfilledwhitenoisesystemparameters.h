@@ -15,7 +15,7 @@ struct GapsFilledWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
     const boost::numeric::ublas::matrix<double>& state_transition);
 
   ///The number of timesteps after which a real measurement is acquired
-  const boost::numeric::ublas::vector<int>& GetMeasumentFrequency() const { return m_measurement_frequency; }
+  const boost::numeric::ublas::vector<int>& GetMeasurementFrequency() const { return m_measurement_frequency; }
 
   ///Obtain the type as an enum
   WhiteNoiseSystemType GetType() const { return WhiteNoiseSystemType::gaps_filled; }
@@ -27,6 +27,10 @@ struct GapsFilledWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
 
   ///The gaps (in timesteps) is the number of measurements of which only one real measurement is acquired
   const boost::numeric::ublas::vector<int> m_measurement_frequency;
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // GAPSFILLEDWHITENOISESYSTEMPARAMETERS_H

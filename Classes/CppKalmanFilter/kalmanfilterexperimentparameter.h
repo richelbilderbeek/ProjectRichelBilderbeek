@@ -45,6 +45,9 @@ struct KalmanFilterExperimentParameter
   ///Is this parameter a matrix/vector of type std::string for a function?
   static bool IsFunction(const KalmanFilterExperimentParameterType type);
 
+  ///Is this parameter a matrix/vector of type integer?
+  static bool IsInt(const KalmanFilterExperimentParameterType type);
+
   ///Is this parameter a matrix/vector of type std::string?
   static bool IsString(const KalmanFilterExperimentParameterType type);
 
@@ -54,8 +57,10 @@ struct KalmanFilterExperimentParameter
   ///Is this parameter a vector?
   static bool IsVector(const KalmanFilterExperimentParameterType type);
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test();
+  #endif
 
   ///Obtain the full name of a type, e.g. 'Matrix to capture the physics of the system'
   static const std::string ToDescription(const KalmanFilterExperimentParameterType type);

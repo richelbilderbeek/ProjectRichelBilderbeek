@@ -32,11 +32,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include "matrix.h"
+#include "trace.h"
 
 QtUblasVectorIntModel::QtUblasVectorIntModel(QObject *parent)
-  : QAbstractTableModel(parent)
+  : QAbstractTableModel(parent),
+    m_range_default(0),
+    m_range_max(std::numeric_limits<int>::max()),
+    m_range_min(std::numeric_limits<int>::min())
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
 
+  assert(m_range_min < m_range_max);
+  assert(this->IsValid());
 }
 
 int QtUblasVectorIntModel::columnCount(const QModelIndex &) const
@@ -46,8 +55,12 @@ int QtUblasVectorIntModel::columnCount(const QModelIndex &) const
 
 QVariant QtUblasVectorIntModel::data(const QModelIndex &index, int role) const
 {
+  assert(this->IsValid());
+
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole && role != Qt::DisplayRole) return QVariant();
+
+
 
   assert(index.isValid());
 
@@ -59,17 +72,19 @@ QVariant QtUblasVectorIntModel::data(const QModelIndex &index, int role) const
   assert(row < this->rowCount());
   assert(row < boost::numeric_cast<int>(m_data.size()));
   assert(col == 0);
+  if (m_data(row) < m_range_min || m_data(row) >= m_range_max)
+  {
+    TRACE("BREAK");
+  }
+
+  assert(m_data(row) >= m_range_min && "One of the purposes of this class it to ensure this");
+  assert(m_data(row)  < m_range_max && "One of the purposes of this class it to ensure this");
   #endif
 
-  #ifdef RETURN_DOUBLE_723465978463059835
-  return m_data(row);
-  #else
   //Convert to string, otherwise the number digits behind the comma
   //will be set to 2, e.g. 0.01
   const std::string s = boost::lexical_cast<std::string>(m_data(row));
   return QString(s.c_str());
-  #endif
-
 }
 
 Qt::ItemFlags QtUblasVectorIntModel::flags(const QModelIndex &) const
@@ -84,13 +99,14 @@ Qt::ItemFlags QtUblasVectorIntModel::flags(const QModelIndex &) const
 
 const std::string QtUblasVectorIntModel::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> QtUblasVectorIntModel::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-06-27: version 1.0: initial version");
+  v.push_back("2013-06-27: version 1.1: added setting a range");
   return v;
 }
 
@@ -118,8 +134,37 @@ QVariant QtUblasVectorIntModel::headerData(int section, Qt::Orientation orientat
   }
 }
 
+#ifndef NDEBUG
+bool QtUblasVectorIntModel::IsValid() const
+{
+  if (m_range_min >= m_range_max)
+  {
+    TRACE("m_range_min bigger or equal than m_range_max");
+    return false;
+  }
+  const std::size_t sz = m_data.size();
+  for (std::size_t i=0; i!=sz; ++i)
+  {
+    const int x = m_data[i];
+    if (x < m_range_min)
+    {
+      TRACE("x below minimum value");
+      return false;
+    }
+    if (x >= m_range_max)
+    {
+      TRACE("x above maximum value");
+      return false;
+    }
+  }
+  return true;
+}
+#endif
+
 bool QtUblasVectorIntModel::insertRows(int row, int count, const QModelIndex &parent)
 {
+  assert(this->IsValid());
+
   //Must be called before the real operation
   this->beginInsertRows(parent,row,row+count-1);
 
@@ -128,14 +173,9 @@ bool QtUblasVectorIntModel::insertRows(int row, int count, const QModelIndex &pa
 
   const int new_size = m_data.size() + count;
 
-  #ifdef USE_NAIVE_APPROACH_785768676876547
-  //The drawback of this naive approach is that new cells are uninitialized
-  m_data.resize(new_size);
-  #else
-  boost::numeric::ublas::vector<int> new_data(new_size,0);
+  boost::numeric::ublas::vector<int> new_data(new_size,m_range_default);
   std::copy(m_data.begin(),m_data.end(),new_data.begin());
   m_data = new_data;
-  #endif
 
   m_header_vertical_text.resize(new_size);
 
@@ -144,12 +184,16 @@ bool QtUblasVectorIntModel::insertRows(int row, int count, const QModelIndex &pa
   //Must be called in the end
   this->endInsertRows();
 
+  assert(this->IsValid());
+
   //It worked!
   return true;
 }
 
 bool QtUblasVectorIntModel::removeRows(int row, int count, const QModelIndex &parent)
 {
+  assert(this->IsValid());
+
   //Must be called before the real operation
   this->beginRemoveRows(parent,row,row+count-1);
 
@@ -165,6 +209,8 @@ bool QtUblasVectorIntModel::removeRows(int row, int count, const QModelIndex &pa
   //Must be called in the end
   this->endRemoveRows();
 
+  assert(this->IsValid());
+
   //It worked!
   return true;
 }
@@ -178,6 +224,8 @@ int QtUblasVectorIntModel::rowCount(const QModelIndex &) const
 
 bool QtUblasVectorIntModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
 {
+  assert(this->IsValid());
+
   const int row = index.row();
 
   #ifndef NDEBUG
@@ -186,22 +234,41 @@ bool QtUblasVectorIntModel::setData(const QModelIndex &index, const QVariant &va
   assert(col == 0);
   #endif
 
-  bool can_convert_to_int = false;
-  m_data(row) = value.toInt(&can_convert_to_int);
-  if (!can_convert_to_int)
+
+  bool can_convert = false;
+  int new_value = value.toInt(&can_convert);
+  if (!can_convert)
   {
     //Might be a double, round it to the closest integer
-    m_data(row) = boost::numeric_cast<int>(value.toDouble() + 0.5);
+    new_value = boost::numeric_cast<int>(value.toFloat(&can_convert) + 0.5);
   }
-  ///This line below is needed to let multiple views synchronize
-  emit dataChanged(index,index);
+  assert(m_range_min < m_range_max);
+  if (can_convert && new_value >= m_range_min && new_value < m_range_max)
+  {
+    m_data(row) = new_value;
 
-  //Editing succeeded!
-  return true;
+    assert(this->IsValid());
+
+    ///This line below is needed to let multiple views synchronize
+    emit dataChanged(index,index);
+
+    assert(this->IsValid());
+
+    //Editing succeeded!
+    return true;
+  }
+  else
+  {
+    assert(this->IsValid());
+
+    return false;
+  }
 }
 
 bool QtUblasVectorIntModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
 {
+  assert(this->IsValid());
+
   if (orientation == Qt::Horizontal)
   {
     assert(section == 0);
@@ -209,6 +276,8 @@ bool QtUblasVectorIntModel::setHeaderData(int section, Qt::Orientation orientati
     m_header_horizontal_text = value.toString().toStdString();
     ///This line below is needed to let multiple views synchronize
     emit headerDataChanged(orientation,section,section);
+
+    assert(this->IsValid());
     //Editing succeeded!
     return true;
   }
@@ -220,6 +289,8 @@ bool QtUblasVectorIntModel::setHeaderData(int section, Qt::Orientation orientati
     m_header_vertical_text[section] = value.toString().toStdString();
     ///This line below is needed to let multiple views synchronize
     emit headerDataChanged(orientation,section,section);
+
+    assert(this->IsValid());
     //Editing succeeded!
     return true;
   }
@@ -228,10 +299,15 @@ bool QtUblasVectorIntModel::setHeaderData(int section, Qt::Orientation orientati
 void QtUblasVectorIntModel::SetHeaderData(
   const std::string& horizontal_header_text, const std::vector<std::string>& vertical_header_text)
 {
+  assert(this->IsValid());
+
   if (m_header_horizontal_text != horizontal_header_text)
   {
     assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
     m_header_horizontal_text = horizontal_header_text;
+
+    assert(this->IsValid());
+
     emit headerDataChanged(Qt::Horizontal,0,1);
   }
 
@@ -241,16 +317,24 @@ void QtUblasVectorIntModel::SetHeaderData(
     const int cur_size = this->rowCount();
     if (cur_size < new_size)
     {
+      assert(this->IsValid());
+
       //Insert some rows in the raw data
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
+
+      assert(this->IsValid());
 
       //If you forget this line, the view displays a different number of rows than m_data has
       emit layoutChanged();
     }
     else if (cur_size > new_size)
     {
+      assert(this->IsValid());
+
       //Remove some rows from the raw data
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
+
+      assert(this->IsValid());
 
       //If you forget this line, the view displays a different number of rows than m_data has
       emit layoutChanged();
@@ -259,6 +343,7 @@ void QtUblasVectorIntModel::SetHeaderData(
     assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size()));
 
     m_header_vertical_text = vertical_header_text;
+    assert(this->IsValid());
 
     emit headerDataChanged(Qt::Vertical,0,new_size);
   }
@@ -266,10 +351,49 @@ void QtUblasVectorIntModel::SetHeaderData(
   assert(this->rowCount() == boost::numeric_cast<int>(this->m_data.size()));
   assert(this->rowCount() == boost::numeric_cast<int>(m_header_vertical_text.size()));
   assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
+  assert(this->IsValid());
+}
+
+void QtUblasVectorIntModel::SetRange(const int from, const int to, const int default_value)
+{
+  assert(this->IsValid());
+  assert(from < to);
+  assert(default_value < to);
+  assert(default_value >= from);
+  this->m_range_min = from;
+  this->m_range_max = to;
+  this->m_range_default = default_value;
+  #ifndef NDEBUG
+  {
+    const std::size_t sz = m_data.size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      const int x = m_data[i];
+      assert(x >= m_range_min && x < m_range_max
+        && "Before changing the range, the data in QtUblasVectorIntModel must be"
+           " put in both the old and new range"); //Better a clear clumsy interface over a vague one
+    }
+  }
+  assert(this->IsValid());
+  #endif
 }
 
 void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>& data)
 {
+  //Check if all data is in range
+  #ifndef NDEBUG
+  assert(this->IsValid());
+  {
+    const std::size_t sz = data.size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      const int x = data[i];
+      assert(x >= m_range_min && x < m_range_max
+        && "Supplied data to QtUblasVectorIntModel must be in range");
+    }
+  }
+  #endif
+
   if (!Matrix::VectorsIntAreEqual(m_data,data))
   {
     const int new_size = boost::numeric_cast<int>(data.size());
@@ -296,9 +420,31 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
     m_data = data;
 
     emit dataChanged(QModelIndex(),QModelIndex());
+
+    assert(this->IsValid());
   }
 
   assert(this->rowCount() == boost::numeric_cast<int>(this->m_data.size()));
   assert(this->rowCount() == boost::numeric_cast<int>(m_header_vertical_text.size()));
   assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
+  assert(this->IsValid());
 }
+
+#ifndef NDEBUG
+void QtUblasVectorIntModel::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    QtUblasVectorIntModel d;
+    d.SetRawData( Matrix::CreateVector( { 1,2,3 } ) );
+    d.SetRange(1,4,1);
+    assert(d.data(d.index(0,0)).toInt() == 1);
+    d.setData(d.index(0,0),"0"); //Should not change the data
+    assert(d.data(d.index(0,0)).toInt() == 1);
+  }
+}
+#endif

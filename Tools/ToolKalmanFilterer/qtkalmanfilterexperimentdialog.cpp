@@ -39,6 +39,10 @@
 #include "standardwhitenoisesystemparameters.h"
 #include "trace.h"
 #include "ui_qtkalmanfilterexperimentdialog.h"
+#include "whitenoisesystemparameter.h"
+
+#include "ui_qtwhitenoisesystemparametersdialog.h"
+
 
 QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
@@ -335,8 +339,15 @@ void QtKalmanFilterExperimentDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting QtKalmanFilterExperimentDialog::Test()")
+  //TRACE("Test QtWhiteNoiseSystemParametersDialog");
   {
-    TRACE("Starting QtKalmanFilterExperimentDialog::Test()")
+    const boost::shared_ptr<QtKalmanFilterExperimentModel> model(
+      new QtKalmanFilterExperimentModel);
+    QtWhiteNoiseSystemParametersDialog d(model);
+  }
+  //TRACE("Test QtKalmanFilterExperimentModel");
+  {
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model(
       new QtKalmanFilterExperimentModel);
     const boost::shared_ptr<QtKalmanFilterExperimentDialog> d(
@@ -378,11 +389,20 @@ void QtKalmanFilterExperimentDialog::Test()
       assert(s != model->ToDokuWiki());
       model->FromDokuWiki(s);
       assert(s == model->ToDokuWiki());
-
-
     }
-    TRACE("Finished QtKalmanFilterExperimentDialog::Test()")
+    //TRACE("Test all white noise system types")
+    {
+      const int sz = d->m_noise_parameters_dialog->GetUi()->box_white_noise_system_type->count();
+      assert(sz > 0);
+      assert(sz == static_cast<int>(WhiteNoiseSystemType::n_types));
+      for (int i=0; i!=sz; ++i)
+      {
+        d->m_noise_parameters_dialog->GetUi()->box_white_noise_system_type->setCurrentIndex(i);
+        assert(model->CreateWhiteNoiseSystemParameters());
+      }
+    }
   }
+  TRACE("Finished QtKalmanFilterExperimentDialog::Test()")
 }
 #endif
 

@@ -33,6 +33,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 struct QtUblasVectorIntModel: public QAbstractTableModel
 {
+  ///Create a QtUblasVectorIntModel
+  ///with range
+  ///- from = std::numeric_limits<int>::min()
+  ///- to   = std::numeric_limits<int>::max()
   QtUblasVectorIntModel(QObject *parent = 0);
 
   ///Working with the raw data
@@ -44,6 +48,10 @@ struct QtUblasVectorIntModel: public QAbstractTableModel
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 
+  ///Set the range the values must remain in
+  ///The range includes from, excludes to
+  void SetRange(const int from, const int to, const int default_value);
+
   ///Working with the raw data
   void SetRawData(const boost::numeric::ublas::vector<int>& data);
 
@@ -53,6 +61,15 @@ struct QtUblasVectorIntModel: public QAbstractTableModel
   private:
   ///The raw data
   boost::numeric::ublas::vector<int> m_data;
+
+  ///The value set for default
+  int m_range_default;
+
+  ///The maximum value all values must have
+  int m_range_max;
+
+  ///The minimum value all values must have
+  int m_range_min;
 
   ///The horizontal header text (for the only one column)
   std::string m_header_horizontal_text;
@@ -75,6 +92,11 @@ struct QtUblasVectorIntModel: public QAbstractTableModel
   ///Redefined from ABC
   bool insertRows(int row, int count, const QModelIndex &parent);
 
+  ///Check if the class is in a valid state
+  #ifndef NDEBUG
+  bool IsValid() const;
+  #endif
+
   ///Redefined from ABC
   bool removeRows(int row, int count, const QModelIndex &parent);
 
@@ -86,6 +108,10 @@ struct QtUblasVectorIntModel: public QAbstractTableModel
 
   ///Redefined from ABC
   bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role);
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 
 };
 

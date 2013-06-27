@@ -821,8 +821,8 @@ void Matrix::Test()
   //TRACE("Test VectorsAreEqual (int)");
   {
     {
-      const auto a = boost::numeric::ublas::zero_vector<int>(2);
-      const auto b = boost::numeric::ublas::zero_vector<int>(3);
+      const auto a = boost::numeric::ublas::vector<int>(2,0);
+      const auto b = boost::numeric::ublas::vector<int>(3,0);
       assert( VectorsIntAreEqual(a,a));
       assert( VectorsIntAreEqual(b,b));
       assert(!VectorsIntAreEqual(a,b));
