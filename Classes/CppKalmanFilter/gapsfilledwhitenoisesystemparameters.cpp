@@ -12,8 +12,8 @@
 
 GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
-    const int gap,
     const boost::numeric::ublas::vector<double>& initial_state,
+    const boost::numeric::ublas::vector<int>& measurement_frequency,
     const boost::numeric::ublas::vector<double>& real_measurement_noise,
     const boost::numeric::ublas::vector<double>& real_process_noise,
     const boost::numeric::ublas::matrix<double>& state_transition)
@@ -24,7 +24,9 @@ GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemParameters(
       real_process_noise,
       state_transition
     ),
-    m_gap(gap)
+    m_measurement_frequency(measurement_frequency)
 {
-  assert(gap >= 1 && "At least 1 out of 1 measurements is given");
+  #ifndef NDEBUG
+  for (int x: measurement_frequency) { assert(x >= 1 && "At least one out of one measurements is a real measurement"); }
+  #endif
 }

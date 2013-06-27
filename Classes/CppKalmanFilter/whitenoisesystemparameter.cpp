@@ -18,6 +18,7 @@ const std::vector<WhiteNoiseSystemParameterType> WhiteNoiseSystemParameter::GetA
     =
     {
       WhiteNoiseSystemParameterType::control,
+      WhiteNoiseSystemParameterType::gap_frequencies,
       WhiteNoiseSystemParameterType::initial_state_real,
       WhiteNoiseSystemParameterType::real_measurement_noise,
       WhiteNoiseSystemParameterType::real_process_noise,
@@ -31,8 +32,20 @@ const std::vector<WhiteNoiseSystemParameterType> WhiteNoiseSystemParameter::GetA
 
 bool WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type)
 {
-  return type == WhiteNoiseSystemParameterType::control
-    ||   type == WhiteNoiseSystemParameterType::state_transition;
+  switch (type)
+  {
+    case WhiteNoiseSystemParameterType::control: return true;
+    case WhiteNoiseSystemParameterType::gap_frequencies: return false;
+    case WhiteNoiseSystemParameterType::initial_state_real: return false;
+    case WhiteNoiseSystemParameterType::real_measurement_noise: return false;
+    case WhiteNoiseSystemParameterType::real_process_noise: return false;
+    case WhiteNoiseSystemParameterType::state_transition: return true;
+    case WhiteNoiseSystemParameterType::n_parameters:
+      assert(!"n_parameters is not an implemented type of WhiteNoiseSystemParameterType");
+      throw std::logic_error(__func__);
+  }
+  assert(!"Unimplemented type of WhiteNoiseSystemParameterType");
+  throw std::logic_error(__func__);
 }
 
 bool WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type)
@@ -46,6 +59,8 @@ const std::string WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSyste
   {
     case WhiteNoiseSystemParameterType::control:
       return std::string("Matrix for converting input to state change");
+    case WhiteNoiseSystemParameterType::gap_frequencies:
+      return std::string("Vector containing after which number of timesteps a measurement is taken");
     case WhiteNoiseSystemParameterType::initial_state_real:
       return std::string("Vector with the real initial state");
     case WhiteNoiseSystemParameterType::real_measurement_noise:
@@ -68,6 +83,8 @@ const std::string WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParame
   {
     case WhiteNoiseSystemParameterType::control:
       return std::string("Control");
+    case WhiteNoiseSystemParameterType::gap_frequencies:
+      return std::string("Gap frequencies");
     case WhiteNoiseSystemParameterType::initial_state_real:
       return std::string("Real initial state");
     case WhiteNoiseSystemParameterType::real_measurement_noise:
@@ -90,12 +107,14 @@ const std::string WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemPara
   {
     case WhiteNoiseSystemParameterType::control:
       return std::string("B");
+    case WhiteNoiseSystemParameterType::gap_frequencies:
+      return std::string("g");
     case WhiteNoiseSystemParameterType::initial_state_real:
       return std::string("x");
     case WhiteNoiseSystemParameterType::real_measurement_noise:
-      return std::string("R");
+      return std::string("R"); //Shouldn't be 'r', as it is a vector?
     case WhiteNoiseSystemParameterType::real_process_noise:
-      return std::string("Q");
+      return std::string("Q"); //Shouldn't be 'q', as it is a vector?
     case WhiteNoiseSystemParameterType::state_transition:
       return std::string("A");
     case WhiteNoiseSystemParameterType::n_parameters:

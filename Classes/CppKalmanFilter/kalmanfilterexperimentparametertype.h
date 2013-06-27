@@ -16,6 +16,7 @@ enum class KalmanFilterExperimentParameterType
   initial_covariance_estimate,        //E K
   initial_state_estimate,             //E K
   initial_state_real,                 //E   W
+  measurement_frequency,              //E   W
   real_measurement_noise,             //E   W
   real_process_noise,                 //E   W
   input,                              //E

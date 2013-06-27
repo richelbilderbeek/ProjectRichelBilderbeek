@@ -20,6 +20,7 @@
 #include <QMessageBox>
 
 #include "fixedlagsmootherkalmanfilterparameters.h"
+#include "gapsfilledwhitenoisesystemparameters.h"
 #include "kalmanfilterexperimentparameter.h"
 #include "kalmanfilterfactory.h"
 #include "laggedwhitenoisesystemparameters.h"
@@ -423,6 +424,8 @@ QAbstractTableModel * QtKalmanFilterExperimentModel::CreateModel(const KalmanFil
       return new InitialStateEstimateModel;
     case KalmanFilterExperimentParameterType::initial_state_real:
       return new InitialStateRealModel;
+    case KalmanFilterExperimentParameterType::measurement_frequency:
+      return new MeasurementFrequencyModel;
     case KalmanFilterExperimentParameterType::real_measurement_noise:
       return new RealMeasurementNoiseModel;
     case KalmanFilterExperimentParameterType::real_process_noise:
@@ -441,6 +444,60 @@ QAbstractTableModel * QtKalmanFilterExperimentModel::CreateModel(const KalmanFil
   }
   assert(!"Should not get here");
   throw std::logic_error("QtKalmanFiltererParameterDialog::ToModel");
+}
+
+const boost::shared_ptr<WhiteNoiseSystemParameters> QtKalmanFilterExperimentModel::CreateGapsFilledWhiteNoiseSystemParameters() const
+{
+  const auto control =
+    dynamic_cast<const ControlModel*>(
+      this->Find(KalmanFilterExperimentParameterType::control)
+    )->GetRawData();
+
+  assert(this->Find(KalmanFilterExperimentParameterType::initial_state_real));
+  assert(dynamic_cast<const InitialStateRealModel*>(
+      this->Find(KalmanFilterExperimentParameterType::initial_state_real)));
+
+  const auto initial_state_real =
+    dynamic_cast<const InitialStateRealModel*>(
+      this->Find(KalmanFilterExperimentParameterType::initial_state_real)
+    )->GetRawData();
+
+  assert(this->Find(KalmanFilterExperimentParameterType::measurement_frequency));
+  assert(dynamic_cast<const MeasurementFrequencyModel*>(
+      this->Find(KalmanFilterExperimentParameterType::measurement_frequency)));
+  const auto measurement_frequency =
+    dynamic_cast<const MeasurementFrequencyModel*>(
+      this->Find(KalmanFilterExperimentParameterType::measurement_frequency)
+    )->GetRawData();
+
+  const auto real_measurement_noise =
+    dynamic_cast<const RealMeasurementNoiseModel*>(
+      this->Find(KalmanFilterExperimentParameterType::real_measurement_noise)
+    )->GetRawData();
+
+  const auto real_process_noise =
+    dynamic_cast<const RealProcessNoiseModel*>(
+      this->Find(KalmanFilterExperimentParameterType::real_process_noise)
+    )->GetRawData();
+
+  const auto state_transition =
+    dynamic_cast<const StateTransitionModel*>(
+      this->Find(KalmanFilterExperimentParameterType::state_transition)
+    )->GetRawData();
+
+  const boost::shared_ptr<WhiteNoiseSystemParameters> p(
+    new GapsFilledWhiteNoiseSystemParameters(
+      control,
+      initial_state_real,
+      measurement_frequency,
+      real_measurement_noise,
+      real_process_noise,
+      state_transition
+    )
+  );
+  assert(p);
+  assert(p->GetType() == WhiteNoiseSystemType::gaps_filled);
+  return p;
 }
 
 const boost::shared_ptr<StandardWhiteNoiseSystemParameters> QtKalmanFilterExperimentModel::CreateStandardWhiteNoiseSystemParameters() const

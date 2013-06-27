@@ -36,9 +36,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtstdvectorstringmodel.h"
 #include "qttooltestqtmodelsmaindialog.h"
 #include "qttooltestqtmodelsmenudialog.h"
+#include "qtublasvectorintmodel.h"
 #include "qtublasmatrixdoublemodel.h"
 #include "qtublasvectordoublemodel.h"
 #include "tooltestqtmodelsmenudialog.h"
+#include "trace.h"
 #include "ui_qttooltestqtmodelsmenudialog.h"
 
 QtToolTestQtModelsMenuDialog::QtToolTestQtModelsMenuDialog(QWidget *parent) :
@@ -46,6 +48,9 @@ QtToolTestQtModelsMenuDialog::QtToolTestQtModelsMenuDialog(QWidget *parent) :
     ui(new Ui::QtToolTestQtModelsMenuDialog)
 {
   ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 QtToolTestQtModelsMenuDialog::~QtToolTestQtModelsMenuDialog()
@@ -78,6 +83,7 @@ void QtToolTestQtModelsMenuDialog::on_button_about_clicked()
   a.AddLibrary("QtStdVectorStringModel version: " + QtStdVectorStringModel::GetVersion());
   a.AddLibrary("QtUblasMatrixDoubleModel version: " + QtUblasMatrixDoubleModel::GetVersion());
   a.AddLibrary("QtUblasVectorDoubleModel version: " + QtUblasVectorDoubleModel::GetVersion());
+  a.AddLibrary("QtUblasVectorIntModel version: " + QtUblasVectorIntModel::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
@@ -97,3 +103,18 @@ void QtToolTestQtModelsMenuDialog::on_button_start_clicked()
   ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void QtToolTestQtModelsMenuDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Start of QtToolTestQtModelsMenuDialog::Test");
+  {
+    QtToolTestQtModelsMainDialog d;
+  }
+  TRACE("Finished QtToolTestQtModelsMenuDialog::Test successfully");
+}
+#endif

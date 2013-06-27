@@ -3,6 +3,7 @@
 
 #include "qtublasmatrixdoublemodel.h"
 #include "qtublasvectordoublemodel.h"
+#include "qtublasvectorintmodel.h"
 #include "qtstdvectorfunctionmodel.h"
 #include "qtstdvectorstringmodel.h"
 
@@ -20,6 +21,9 @@ typedef QtUblasVectorDoubleModel InitialStateEstimateModel;
 typedef QtUblasVectorDoubleModel InitialStateRealModel;
 typedef QtUblasVectorDoubleModel RealMeasurementNoiseModel;
 typedef QtUblasVectorDoubleModel RealProcessNoiseModel;
+
+//struct QtStdVectorIntModel;
+typedef QtUblasVectorIntModel MeasurementFrequencyModel;
 
 //struct QtStdVectorFunctionModel;
 typedef QtStdVectorFunctionModel InputModel;

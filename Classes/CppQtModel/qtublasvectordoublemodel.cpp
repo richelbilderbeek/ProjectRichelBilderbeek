@@ -39,7 +39,6 @@ QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent)
 
 int QtUblasVectorDoubleModel::columnCount(const QModelIndex &) const
 {
-  //return 1;
   return rowCount() > 0 ? 1 : 0;
 }
 
@@ -266,7 +265,7 @@ void QtUblasVectorDoubleModel::SetHeaderData(
 
 void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<double>& data)
 {
-  if (!Matrix::VectorsAreEqual(m_data,data))
+  if (!Matrix::VectorsDoubleAreEqual(m_data,data))
   {
     const int new_size = boost::numeric_cast<int>(data.size());
     const int cur_size = this->rowCount();
