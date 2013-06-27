@@ -647,12 +647,15 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
   const boost::numeric::ublas::vector<double> real_process_noise
     = Matrix::CreateVector( { 0.01, 0.01, 0.01 } );
 
+  //x(t+1) = x(t) + dt*v(t) + 0.5*(dt^2)*a(t)
+  //v(t+1) =           v(t) +     (dt  )*a(t)
+  //a(t+1) =                             a(t)
   const boost::numeric::ublas::matrix<double> state_transition
     = boost::numeric::ublas::trans(Matrix::CreateMatrix(n,n,
       { //Shown as on paper
-        1.0,  dt, 0.0,
-        0.0, 1.0,  dt,
-        0.0, 0.0, 1.0
+        1.0,  dt, 0.5*dt*dt,
+        0.0, 1.0,        dt,
+        0.0, 0.0,       1.0
       } ));
 
   //A gas pedal only influences acceleration
