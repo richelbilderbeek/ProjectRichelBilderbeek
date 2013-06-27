@@ -52,7 +52,8 @@ SOURCES+= \
     qtmain.cpp \
     qttooltestqtmodelsmaindialog.cpp \
     qttooltestqtmodelsmenudialog.cpp \
-    tooltestqtmodelsmenudialog.cpp
+    tooltestqtmodelsmenudialog.cpp \
+    ../../Classes/CppQtModel/qtublasvectorintmodel.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -67,7 +68,8 @@ HEADERS += \
     ../../Classes/CppTrace/trace.h \
     qttooltestqtmodelsmaindialog.h \
     qttooltestqtmodelsmenudialog.h \
-    tooltestqtmodelsmenudialog.h
+    tooltestqtmodelsmenudialog.h \
+    ../../Classes/CppQtModel/qtublasvectorintmodel.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

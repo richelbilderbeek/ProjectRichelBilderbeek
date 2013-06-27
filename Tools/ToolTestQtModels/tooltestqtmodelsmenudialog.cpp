@@ -35,7 +35,7 @@ const About ToolTestQtModelsMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "TestQtModels",
     "tool to test the QtModel classes",
-    "the 15th of May 2013",
+    "the 27th of June 2013",
     "2013",
     "http://www.richelbilderbeek.nl/ToolTestQtModels.htm",
     GetVersion(),
@@ -46,12 +46,13 @@ const About ToolTestQtModelsMenuDialog::GetAbout()
 
 const std::string ToolTestQtModelsMenuDialog::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> ToolTestQtModelsMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-15: version 1.0: initial version");
+  v.push_back("2013-06-27: version 1.1: added QtUblasVectorIntModel");
   return v;
 }

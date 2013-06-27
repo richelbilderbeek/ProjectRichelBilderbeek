@@ -90,7 +90,8 @@ SOURCES += \
     qtcopyalltablewidget.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
+    ../../Classes/CppQtModel/qtublasvectorintmodel.cpp
 
 
 HEADERS += \
@@ -160,7 +161,8 @@ HEADERS += \
     qtcopyalltablewidget.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
+    ../../Classes/CppQtModel/qtublasvectorintmodel.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

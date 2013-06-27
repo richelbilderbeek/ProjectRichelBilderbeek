@@ -120,7 +120,7 @@ const boost::numeric::ublas::vector<double> Matrix::CreateVector(const std::vect
 
 const std::string Matrix::GetVersion()
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> Matrix::GetVersionHistory()
@@ -128,6 +128,8 @@ const std::vector<std::string> Matrix::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
   v.push_back("2013-06-11: version 1.1: fixed bugs in MatricesAreEqual and MatricesAreAboutEqual");
+  v.push_back("2013-06-27: version 1.2: added tests, renamed VectorsAreEqual to VectorsDoubleAreEqual and VectorsIntAreEqual");
+
   return v;
 }
 
@@ -816,6 +818,58 @@ void Matrix::Test()
       assert(MatricesAreAboutEqual(a,b));
     }
   }
+  //TRACE("Test VectorsAreEqual (int)");
+  {
+    {
+      const auto a = boost::numeric::ublas::zero_vector<int>(2);
+      const auto b = boost::numeric::ublas::zero_vector<int>(3);
+      assert( VectorsIntAreEqual(a,a));
+      assert( VectorsIntAreEqual(b,b));
+      assert(!VectorsIntAreEqual(a,b));
+      assert(!VectorsIntAreEqual(b,a));
+    }
+    {
+      const auto a = CreateVector( { 1,2,3 } );
+      auto b = a;
+      assert(VectorsIntAreEqual(a,a));
+      assert(VectorsIntAreEqual(a,b));
+      assert(VectorsIntAreEqual(b,a));
+      assert(VectorsIntAreEqual(b,b));
+      b(1) = 0;
+      assert( VectorsIntAreEqual(a,a));
+      assert(!VectorsIntAreEqual(a,b));
+      assert(!VectorsIntAreEqual(b,a));
+      assert( VectorsIntAreEqual(b,b));
+      b(1) = 2;
+      assert(VectorsIntAreEqual(a,a));
+      assert(VectorsIntAreEqual(a,b));
+      assert(VectorsIntAreEqual(b,a));
+      assert(VectorsIntAreEqual(b,b));
+    }
+  }
+  //TRACE("Test VectorsAreEqual (double)");
+  {
+    {
+      const auto a = boost::numeric::ublas::zero_vector<double>(2);
+      const auto b = boost::numeric::ublas::zero_vector<double>(3);
+      assert( VectorsDoubleAreEqual(a,a));
+      assert( VectorsDoubleAreEqual(b,b));
+      assert(!VectorsDoubleAreEqual(a,b));
+      assert(!VectorsDoubleAreEqual(b,a));
+    }
+    {
+      const auto a = CreateVector( { 1.1,2.2,3.3 } );
+      auto b = a;
+      assert(VectorsDoubleAreEqual(a,b));
+      assert(VectorsAreAboutEqual(a,b));
+      b(1) = 0.0;
+      assert(!VectorsDoubleAreEqual(a,b));
+      assert(!VectorsAreAboutEqual(a,b));
+      b(1) = 2.2;
+      assert(VectorsDoubleAreEqual(a,b));
+      assert(VectorsAreAboutEqual(a,b));
+    }
+  }
   TRACE("Finished Matrix::Test()")
 }
 #endif
@@ -871,14 +925,21 @@ bool Matrix::VectorsAreAboutEqual(
   const boost::numeric::ublas::vector<double>& a,
   const boost::numeric::ublas::vector<double>& b)
 {
-  //
   if (a.size() != b.size()) return false;
   return std::equal(a.begin(),a.end(),b.begin(),&Matrix::IsAboutEqual);
 }
 
-bool Matrix::VectorsAreEqual(
+bool Matrix::VectorsDoubleAreEqual(
   const boost::numeric::ublas::vector<double>& a,
   const boost::numeric::ublas::vector<double>& b)
+{
+  if (a.size() != b.size()) return false;
+  return std::equal(a.begin(),a.end(),b.begin());
+}
+
+bool Matrix::VectorsIntAreEqual(
+  const boost::numeric::ublas::vector<int>& a,
+  const boost::numeric::ublas::vector<int>& b)
 {
   if (a.size() != b.size()) return false;
   return std::equal(a.begin(),a.end(),b.begin());

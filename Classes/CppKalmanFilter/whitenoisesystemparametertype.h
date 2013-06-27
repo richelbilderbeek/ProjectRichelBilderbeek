@@ -4,6 +4,7 @@
 enum class WhiteNoiseSystemParameterType
 {
   control,
+  gap_frequencies,
   initial_state_real,
   real_measurement_noise,
   real_process_noise,

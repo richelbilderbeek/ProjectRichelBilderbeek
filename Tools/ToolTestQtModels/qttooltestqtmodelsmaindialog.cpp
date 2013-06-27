@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtublasmatrixdoublemodel.h"
 #include "qtublasvectordoublemodel.h"
+#include "qtublasvectorintmodel.h"
 #include "qtstdvectorfunctionmodel.h"
 #include "qtstdvectorstringmodel.h"
 #include "trace.h"
@@ -45,6 +46,9 @@ QtToolTestQtModelsMainDialog::QtToolTestQtModelsMainDialog(QWidget *parent) :
   ui(new Ui::QtToolTestQtModelsMainDialog)
 {
   ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 QtToolTestQtModelsMainDialog::~QtToolTestQtModelsMainDialog()
@@ -159,6 +163,27 @@ void QtToolTestQtModelsMainDialog::on_button_data_clicked()
       ui->table->setModel(model);
     }
     break;
+    case 4:
+    {
+      typedef QtUblasVectorIntModel Model;
+      Model * const model
+        = dynamic_cast<Model *>(ui->table->model())
+        ? dynamic_cast<Model *>(ui->table->model())
+        : new Model;
+      const int sz = (std::rand() >> 4) % 10;
+      boost::numeric::ublas::vector<int> v(sz);
+      for (int i=0; i!=sz; ++i)
+      {
+        const int x = std::rand();
+        v(i) = x;
+      }
+      model->SetRawData(v);
+      ui->table->setModel(model);
+    }
+    break;
+    default:
+      assert(!"QtToolTestQtModelsMainDialog::on_button_data_clicked: Unimplemented ui->box_type->currentIndex()");
+      throw std::logic_error("QtToolTestQtModelsMainDialog::on_button_data_clicked: Unimplemented ui->box_type->currentIndex()");
   }
 
 }
@@ -222,32 +247,61 @@ void QtToolTestQtModelsMainDialog::on_button_headers_clicked()
       ui->table->setModel(model);
     }
     break;
-  }
-}
-
-void QtToolTestQtModelsMainDialog::on_button_identity_matrix_clicked()
-{
-  const int index = ui->box_type->currentIndex();
-  switch (index)
-  {
-    case 0:
-    break;
-    case 1:
-    break;
-    case 2:
+    case 4:
     {
-      typedef QtUblasMatrixDoubleModel Model;
+      typedef QtUblasVectorIntModel Model;
       Model * const model
         = dynamic_cast<Model *>(ui->table->model())
         ? dynamic_cast<Model *>(ui->table->model())
         : new Model;
-      const int sz = 2 + (std::rand() >> 4) % 3;
-      boost::numeric::ublas::matrix<double> m = boost::numeric::ublas::identity_matrix<double>(sz);
-      model->SetRawData(m);
+      const std::string h = CreateRandomText();
+      const std::vector<std::string> v = CreateRandomTexts();
+      model->SetHeaderData(h,v);
       ui->table->setModel(model);
     }
     break;
-    case 3:
-    break;
+    default:
+      assert(!"QtToolTestQtModelsMainDialog::on_button_headers_clicked: Unimplemented ui->box_type->currentIndex()");
+      throw std::logic_error("QtToolTestQtModelsMainDialog::on_button_headers_clicked: Unimplemented ui->box_type->currentIndex()");
   }
 }
+
+#ifndef NDEBUG
+void QtToolTestQtModelsMainDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Start of QtToolTestQtModelsMainDialog::Test");
+  {
+    QtToolTestQtModelsMainDialog d;
+    const int n_types = d.ui->box_type->count();
+    for (int i=0; i!=n_types; ++i)
+    {
+      d.ui->box_type->setCurrentIndex(i);
+      const int n = 10;
+      for (int j=0; j!=n; ++j)
+      {
+        d.ui->button_data->click();
+      }
+      for (int j=0; j!=n; ++j)
+      {
+        d.ui->button_headers->click();
+      }
+      for (int j=0; j!=n; ++j)
+      {
+        d.ui->button_headers->click();
+        d.ui->button_data->click();
+      }
+      for (int j=0; j!=n; ++j)
+      {
+        d.ui->button_data->click();
+        d.ui->button_headers->click();
+      }
+    }
+  }
+  TRACE("Finished QtToolTestQtModelsMainDialog::Test successfully");
+}
+#endif

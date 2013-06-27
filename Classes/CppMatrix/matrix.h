@@ -166,9 +166,14 @@ struct Matrix
   ///This is only suitable to test for exact copies.
   ///Use VectorsAreAboutEqual to allow for a
   ///small difference between the vector elements.
-  static bool VectorsAreEqual(
+  static bool VectorsDoubleAreEqual(
     const boost::numeric::ublas::vector<double>& a,
     const boost::numeric::ublas::vector<double>& b);
+
+  ///Check if two vector are equal
+  static bool VectorsIntAreEqual(
+    const boost::numeric::ublas::vector<int>& a,
+    const boost::numeric::ublas::vector<int>& b);
 };
 
 #endif // MATRIX_H

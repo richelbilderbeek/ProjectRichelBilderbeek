@@ -122,13 +122,20 @@ void QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_currentI
 
   switch (GetWhiteNoiseSystemType())
   {
-    case WhiteNoiseSystemType::standard:
+    case WhiteNoiseSystemType::gaps_filled:
       ui->box_lag->setVisible(false);
       ui->label_lag->setVisible(false);
+      this->Find(WhiteNoiseSystemParameterType::gap_frequencies)->setVisible(true);
       break;
     case WhiteNoiseSystemType::lagged:
       ui->box_lag->setVisible(true);
       ui->label_lag->setVisible(true);
+      this->Find(WhiteNoiseSystemParameterType::gap_frequencies)->setVisible(false);
+      break;
+    case WhiteNoiseSystemType::standard:
+      ui->box_lag->setVisible(false);
+      ui->label_lag->setVisible(false);
+      this->Find(WhiteNoiseSystemParameterType::gap_frequencies)->setVisible(false);
       break;
     case WhiteNoiseSystemType::n_types:
       assert(!"Unimplemented WhiteNoiseSystemType");
