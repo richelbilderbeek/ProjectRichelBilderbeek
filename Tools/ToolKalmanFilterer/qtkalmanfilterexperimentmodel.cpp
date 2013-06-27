@@ -45,9 +45,10 @@ QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel()
 {
   #ifndef NDEBUG
   Test();
-  //Check for sizes
+  assert(IsValid());
+
   const int n_rows = Find(KalmanFilterExperimentParameterType::state_names)->rowCount();
-  const int n_cols = n_rows == 0 ? 0 : 1;
+  const int n_cols = n_rows == 0 ? 0 : n_rows;
   assert(Find(KalmanFilterExperimentParameterType::control)->columnCount() == n_rows);
   assert(Find(KalmanFilterExperimentParameterType::control)->rowCount() == n_rows);
   assert(Find(KalmanFilterExperimentParameterType::estimated_measurement_noise)->columnCount() == n_rows);
@@ -64,6 +65,8 @@ QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel()
   assert(Find(KalmanFilterExperimentParameterType::initial_state_real)->rowCount() == n_rows);
   assert(Find(KalmanFilterExperimentParameterType::input)->columnCount() == n_cols);
   assert(Find(KalmanFilterExperimentParameterType::input)->rowCount() == n_rows);
+  assert(Find(KalmanFilterExperimentParameterType::measurement_frequency)->rowCount() == n_rows);
+  assert(Find(KalmanFilterExperimentParameterType::measurement_frequency)->columnCount() == n_cols);
   assert(Find(KalmanFilterExperimentParameterType::observation)->columnCount() == n_rows);
   assert(Find(KalmanFilterExperimentParameterType::observation)->rowCount() == n_rows);
   assert(Find(KalmanFilterExperimentParameterType::real_measurement_noise)->columnCount() == n_cols);
@@ -425,7 +428,16 @@ QAbstractTableModel * QtKalmanFilterExperimentModel::CreateModel(const KalmanFil
     case KalmanFilterExperimentParameterType::initial_state_real:
       return new InitialStateRealModel;
     case KalmanFilterExperimentParameterType::measurement_frequency:
-      return new MeasurementFrequencyModel;
+    {
+      MeasurementFrequencyModel * const model = new MeasurementFrequencyModel;
+      assert(model);
+      //model->SetRawData( Matrix::CreateVector( { 1 } ) );
+      //assert(model->GetRawData().size() == 1);
+      //assert(model->GetRawData()(0) == 1);
+      //Measured frequencies go from 1 to infinity, where 1 is the default value
+      model->SetRange(1,std::numeric_limits<int>::max(),1);
+      return model;
+    }
     case KalmanFilterExperimentParameterType::real_measurement_noise:
       return new RealMeasurementNoiseModel;
     case KalmanFilterExperimentParameterType::real_process_noise:
@@ -469,6 +481,21 @@ const boost::shared_ptr<WhiteNoiseSystemParameters> QtKalmanFilterExperimentMode
     dynamic_cast<const MeasurementFrequencyModel*>(
       this->Find(KalmanFilterExperimentParameterType::measurement_frequency)
     )->GetRawData();
+
+  #ifndef NDEBUG
+  {
+    const std::size_t sz = measurement_frequency.size();
+    for (std::size_t i = 0; i!=sz; ++i)
+    {
+      if (measurement_frequency[i] < 1)
+      {
+        TRACE(measurement_frequency.size());
+        TRACE("BREAK");
+      }
+      assert(measurement_frequency[i] >= 1);
+    }
+  }
+  #endif
 
   const auto real_measurement_noise =
     dynamic_cast<const RealMeasurementNoiseModel*>(
@@ -638,6 +665,77 @@ void QtKalmanFilterExperimentModel::FromDokuWiki(const std::string& text)
   }
 }
 
+#ifndef NDEBUG
+bool QtKalmanFilterExperimentModel::IsValid() const
+{
+  if (m_lag_estimated < 0)
+  {
+    TRACE("Estimated lag smaller than zero");
+    return false;
+  }
+  if (m_lag_real < 0)
+  {
+    TRACE("Real lag smaller than zero");
+    return false;
+  }
+  if (m_number_of_timesteps < 0)
+  {
+    TRACE("Number of timesteps smaller than zero");
+    return false;
+  }
+  if (m_models.empty())
+  {
+    TRACE("No tables in m_models");
+    return false;
+  }
+  typedef std::map<KalmanFilterExperimentParameterType,QAbstractTableModel *>::const_iterator Iterator;
+  const Iterator j = m_models.end();
+  for (Iterator i = m_models.begin(); i!=j; ++i)
+  {
+
+    const std::pair<KalmanFilterExperimentParameterType,QAbstractTableModel *> p = *i;
+    const QAbstractTableModel * const table = p.second;
+    if (table == 0)
+    {
+      TRACE("Uninitialized QAbstractTableModel");
+      return false;
+    }
+    const KalmanFilterExperimentParameterType type = p.first;
+    if (type == KalmanFilterExperimentParameterType::n_parameters)
+    {
+      TRACE("Use of n_parameters");
+      return false;
+    }
+    const int n_rows_expected = Find(KalmanFilterExperimentParameterType::state_names)->rowCount();
+    const int n_cols_expected
+      = n_rows_expected == 0
+      ? 0
+      : (KalmanFilterExperimentParameter::IsMatrix(type) ? n_rows_expected : 1);
+
+    const int n_rows_found = Find(type)->rowCount();
+    const int n_cols_found = Find(type)->columnCount();
+
+    if (n_rows_expected != n_rows_found)
+    {
+      TRACE(n_rows_expected);
+      TRACE(n_rows_found);
+      TRACE("Number of rows unexpected");
+      return false;
+    }
+    if (n_cols_expected != n_cols_found)
+    {
+      TRACE(n_rows_expected);
+      TRACE(n_rows_found);
+      TRACE(n_cols_expected);
+      TRACE(n_cols_found);
+      TRACE("Number of columns unexpected");
+      return false;
+    }
+  }
+  return true;
+}
+#endif
+
 void QtKalmanFilterExperimentModel::OnStateNamesChanged(const QModelIndex &/*topLeft*/, const QModelIndex &/*bottomRight*/)
 {
   //Read
@@ -668,12 +766,17 @@ void QtKalmanFilterExperimentModel::OnStateNamesChanged(const QModelIndex &/*top
     {
       umd_model->SetHeaderData(state_names,state_names);
     }
-    else
+    else if (QtUblasVectorDoubleModel * const uvd_model = dynamic_cast<QtUblasVectorDoubleModel *>(abstract_model))
     {
-      QtUblasVectorDoubleModel * const uvd_model = dynamic_cast<QtUblasVectorDoubleModel *>(abstract_model);
-      assert(uvd_model);
       const std::string title = KalmanFilterExperimentParameter::ToSymbol(type);
       uvd_model->SetHeaderData(title,state_names);
+    }
+    else
+    {
+      QtUblasVectorIntModel * const uvi_model = dynamic_cast<QtUblasVectorIntModel *>(abstract_model);
+      assert(uvi_model);
+      const std::string title = KalmanFilterExperimentParameter::ToSymbol(type);
+      uvi_model->SetHeaderData(title,state_names);
     }
   }
 

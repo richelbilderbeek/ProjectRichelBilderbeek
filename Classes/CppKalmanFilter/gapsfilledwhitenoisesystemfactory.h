@@ -12,8 +12,8 @@ struct GapsFilledWhiteNoiseSystemFactory
   ///Create a GapsFilledWhiteNoiseSystem from the loose parameters
   static const boost::shared_ptr<GapsFilledWhiteNoiseSystem> Create(
     const boost::numeric::ublas::matrix<double>& control,
-    const int gap,
     const boost::numeric::ublas::vector<double>& initial_state,
+    const boost::numeric::ublas::vector<int>& measurement_frequency,
     const boost::numeric::ublas::vector<double>& real_measurement_noise,
     const boost::numeric::ublas::vector<double>& real_process_noise,
     const boost::numeric::ublas::matrix<double>& state_transition);

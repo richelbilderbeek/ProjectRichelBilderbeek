@@ -23,16 +23,6 @@
      <property name="currentIndex">
       <number>-1</number>
      </property>
-     <item>
-      <property name="text">
-       <string>Standard white noise system</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Lagged white noise system</string>
-      </property>
-     </item>
     </widget>
    </item>
    <item>

@@ -39,6 +39,20 @@ public:
     QWidget *parent = 0);
   ~QtWhiteNoiseSystemParametersDialog();
 
+  ///Read the lag (in timesteps) from the dialog
+  int GetLag() const;
+
+  #ifndef NDEBUG
+  ///Obtain the GUI
+  Ui::QtWhiteNoiseSystemParametersDialog * GetUi() { return ui; }
+  #endif
+
+  ///Obtain the white noise system type
+  WhiteNoiseSystemType GetWhiteNoiseSystemType() const;
+
+  ///Set the white noise system type
+  void SetWhiteNoiseSystemType(const WhiteNoiseSystemType type);
+
 private:
   Ui::QtWhiteNoiseSystemParametersDialog *ui;
 
@@ -54,15 +68,14 @@ private slots:
   QtKalmanFiltererParameterDialog * Find(const WhiteNoiseSystemParameterType type);
   const QtKalmanFiltererParameterDialog * Find(const WhiteNoiseSystemParameterType type) const;
 
-  ///Read the lag (in timesteps) from the dialog
-  int GetLag() const;
-
-  ///Obtain the white noise system type
-  WhiteNoiseSystemType GetWhiteNoiseSystemType() const;
 
   void on_box_white_noise_system_type_currentIndexChanged(int index);
 
   void on_box_lag_valueChanged(int arg1);
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // QTWHITENOISESYSTEMPARAMETERSDIALOG

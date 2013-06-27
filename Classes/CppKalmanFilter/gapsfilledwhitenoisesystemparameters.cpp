@@ -8,7 +8,9 @@
 #include "gapsfilledwhitenoisesystemparameters.h"
 
 #include <cassert>
+
 #include "standardwhitenoisesystemparameters.h"
+#include "trace.h"
 
 GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
@@ -27,6 +29,36 @@ GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemParameters(
     m_measurement_frequency(measurement_frequency)
 {
   #ifndef NDEBUG
-  for (int x: measurement_frequency) { assert(x >= 1 && "At least one out of one measurements is a real measurement"); }
+  Test();
+  assert(m_measurement_frequency.size() == initial_state.size());
+  //Check measuring frequecies
+  {
+    const auto v = m_measurement_frequency;
+    const std::size_t sz = v.size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      const int x = v[i];
+      if (x < 1)
+      {
+        TRACE(x);
+        TRACE("BREAK");
+      }
+      assert(x >= 1 && "At least one out of one measurements is a real measurement");
+    }
+  }
   #endif
 }
+
+#ifndef NDEBUG
+void GapsFilledWhiteNoiseSystemParameters::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+
+  }
+}
+#endif

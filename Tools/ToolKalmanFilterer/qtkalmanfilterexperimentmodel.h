@@ -132,6 +132,10 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///Create a model suiting a parameter
   static QAbstractTableModel * CreateModel(const KalmanFilterExperimentParameterType type);
 
+  #ifndef NDEBUG
+  bool IsValid() const;
+  #endif
+
   ///If the string holds a KalmanFilterType, set this class to hold the same value
   void ReadKalmanFilterType(const std::string& s);
 
