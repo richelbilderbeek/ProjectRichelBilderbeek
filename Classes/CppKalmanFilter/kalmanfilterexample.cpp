@@ -449,8 +449,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
   const boost::numeric::ublas::matrix<double> estimated_process_noise_covariance
     = Matrix::CreateMatrix(n,n,
       {
-        2.0, 2.0,
-        2.0, 2.0
+        1.0, 0.0,
+        0.0, 1.0
       }
     );
 
@@ -465,12 +465,12 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
   const std::vector<std::string> state_names = { "x", "v" };
 
   const boost::numeric::ublas::matrix<double> state_transition
-    = Matrix::CreateMatrix(n,n,
-      { //Beware: appears as transposition of real matrix
-        1.0       ,   dt,
-        -dt*k/mass, 0.99
+    = boost::numeric::ublas::trans(Matrix::CreateMatrix(n,n,
+      { //As on paper
+        1.0,   -dt*k/mass,
+        dt , 0.99
       }
-    );
+    ));
 
   const boost::shared_ptr<const StandardKalmanFilterParameters> kalman_filter_parameters(
     new StandardKalmanFilterParameters(

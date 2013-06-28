@@ -29,12 +29,10 @@
 #include "trace.h"
 #include "ui_qtkalmanfilterdialog.h"
 
-QtKalmanFilterDialog::QtKalmanFilterDialog(
-  const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
+QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
   : QDialog(parent),
-    ui(new Ui::QtKalmanFilterDialog),
-    m_model(model)
+    ui(new Ui::QtKalmanFilterDialog), m_model(model)
 {
   assert(m_model);
 
@@ -82,31 +80,6 @@ QtKalmanFilterDialog::~QtKalmanFilterDialog()
 {
   delete ui;
 }
-
-/*
-bool QtKalmanFilterDialog::AreAllParametersValid() const
-{
-  const auto j = m_parameters.end();
-  for (auto i = m_parameters.begin(); i!=j; ++i)
-  {
-    const KalmanFilterParameterType type = (*i).first;
-    //Is the type present in the current type of Kalman filter?
-    switch (this->GetKalmanFilterType())
-    {
-      case KalmanFilterType::standard:
-        if (!StandardKalmanFilterParameters::HasParameterType(type)) continue;
-        break;
-      case KalmanFilterType::steady_state:
-        if (!SteadyStateKalmanFilterParameters::HasParameterType(type)) continue;
-        break;
-      case KalmanFilterType::n_types:
-        assert(!"Unimplemented KalmanFilterType");
-        throw std::logic_error(__func__);
-    }
-  }
-  return true;
-}
-*/
 
 KalmanFilterType QtKalmanFilterDialog::GetKalmanFilterType() const
 {
