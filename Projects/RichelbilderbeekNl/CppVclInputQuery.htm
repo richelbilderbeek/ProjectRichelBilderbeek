@@ -23,94 +23,35 @@
   <o:Version>9.3821</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
-<style>
-<!--
- 
- 
-h2
-	{mso-style-update:auto;
-	mso-style-next:Normal;
-	margin-top:12.0pt;
-	margin-right:0in;
-	margin-bottom:3.0pt;
-	margin-left:0in;
-	text-align:justify;
-	mso-pagination:widow-orphan;
-	page-break-after:avoid;
-	mso-outline-level:2;
-	font-size:14.0pt;
-	font-family:"Courier New";
-	mso-ansi-language:NL;
-	mso-bidi-font-style:italic;}
- 
- 
- 
- 
-a:link, span.MsoHyperlink
-	{mso-ascii-font-family:"Courier New";
-	mso-hansi-font-family:"Courier New";
-	color:blue;
-	text-decoration:underline;
-	text-underline:single;}
- 
-@page Section1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;
-	mso-header-margin:.5in;
-	mso-footer-margin:.5in;
-	mso-paper-source:0;}
-div.Section1
-	{page:Section1;}
- /* List Definitions */
-@list l0
-	{mso-list-id:864249800;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1120049754 996939042 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
- 
- 
--->
-</style>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>VCL InputQuery</title>
+  <meta name="description" content="C++ VCL InputQuery"/>
+  <meta name="keywords" content="C++ VCL InputQuery"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
-
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppVcl.htm">VCL InputQuery</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppVclDialog.htm">VCL dialog</a> asking for a value.</p>
+<p>&nbsp;</p>
+<p>To use <a href="CppVclInputQuery.htm">InputQuery</a> , <a href="CppInclude.htm">#include</a> the <a href="CppHeaderFile.htm">header file</a> dialogs.hpp.</p>
+<p>&nbsp;</p>
  
 
- 
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<h1><a name="_Toc194730639"> (</a><a
-href="Cpp.htm"><span style='mso-bookmark:_Toc194730639'> C++  <span
-style='mso-bookmark:_Toc194730639'></a><span style='mso-bookmark:_Toc194730639'>    <a href="CppVcl.htm"><span style='mso-bookmark:_Toc194730639'> VCL  <span style='mso-bookmark:_Toc194730639'></a><span
-style='mso-bookmark:_Toc194730639'> )  <a name="_Toc194730649"></a> <a
-href="CppVclInputQuery.htm"><span style='mso-bookmark:_Toc194730649'> <span
-style='mso-bookmark:_Toc194730639'>  InputQuery</a></h1>
-
-<p>&nbsp;</p>
-
-<p>A <a
-href="CppVclDialog.htm">dialog</a> asking for a value.</p>
-
-<p>&nbsp;</p>
-
-<p>To
-use   <a href="CppVclInputQuery.htm">InputQuery</a> , <a href="CppInclude.htm">#include</a>
-the <a href="CppHeaderFile.htm">header file</a> <b>dialogs.hpp</b>.</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
 
 <p>String userInput = &quot;&quot;;</p>
 
@@ -136,46 +77,16 @@ ShowMessage(userInput);</p>
 </div>
 
 <p>&nbsp;</p>
-
-<p class=MsoToc1> If
-the user clicks Cancel or Close, the   <a
-href="CppVclInputQuery.htm">InputQuery</a> <a href="CppReturn.htm">returns</a> <a
-href="CppFalse.htm">false</a>, else it <a href="CppReturn.htm">returns</a> <a
-href="CppTrue.htm">true</a> and the input is given in userInput.</p>
-
+<p>If the user clicks Cancel or Close, the <a href="CppVclInputQuery.htm">InputQuery</a> <a href="CppReturn.htm">returns</a> 
+<a href="CppFalse.htm">false</a>, else it <a href="CppReturn.htm">returns</a> <a href="CppTrue.htm">true</a> and the input is given in userInput.</p>
 <p>&nbsp;</p>
-
-<h2>List of dialogs (incomplete)</h2>
-
-  <li>
-    <a
-href="CppVclShowMessage.htm">ShowMessage</a>: the <a href="CppVcl.htm">VCL</a>
-equivalent of <a href="CppCout.htm">std::cout</a></p>
-
-  <li>
-    <a
-href="CppVclMessageDlg.htm">MessageDlg</a>: A yes/no/cancel/etc. dialog box.</p>
-
-  <li>
-    <a
-href="CppVclInputBox.htm">InputBox</a>: Ask the user for a value</p>
-
-  <li>
-    <a
-href="CppVclInputQuery.htm">InputQuery</a>: Ask the user for a value</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<p><a
-href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-
-<p><a
-href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-
-</div>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
-
 </html>
