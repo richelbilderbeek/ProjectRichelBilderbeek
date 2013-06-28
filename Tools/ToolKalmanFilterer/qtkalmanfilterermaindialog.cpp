@@ -636,7 +636,7 @@ void QtKalmanFiltererMainDialog::Test()
 void QtKalmanFiltererMainDialog::on_tab_context_currentChanged(int index)
 {
   assert(index == ui->tab_context->currentIndex());
-  if (ui->tab_context->currentIndex() == 0)
+  if (index == 0)
   {
     //View rendered HTML, so render HTML
     const QString s = ui->edit_context->toPlainText();
