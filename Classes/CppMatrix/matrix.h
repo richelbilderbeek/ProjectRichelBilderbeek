@@ -53,6 +53,10 @@ struct Matrix
   ///used for easy initialization
   static const boost::numeric::ublas::vector<double> CreateVector(const std::vector<double>& v);
 
+  ///Create a uBLAS vector from a std::vector,
+  ///used for easy initialization
+  static const boost::numeric::ublas::vector<int> CreateVectorInt(const std::vector<int>& v);
+
   ///Obtain the version of this class
   static const std::string GetVersion();
 

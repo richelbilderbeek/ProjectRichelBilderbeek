@@ -118,6 +118,13 @@ const boost::numeric::ublas::vector<double> Matrix::CreateVector(const std::vect
   return w;
 }
 
+const boost::numeric::ublas::vector<int> Matrix::CreateVectorInt(const std::vector<int>& v)
+{
+  boost::numeric::ublas::vector<int> w(v.size());
+  std::copy(v.begin(),v.end(),w.begin());
+  return w;
+}
+
 const std::string Matrix::GetVersion()
 {
   return "1.2";

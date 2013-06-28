@@ -22,8 +22,8 @@ SteadyStateKalmanFilterParameters::SteadyStateKalmanFilterParameters(
 {
   #ifndef NDEBUG
   //Check for correct dimensionality
-  const auto sz = GetInitialStateEstimate().size();
-  assert(sz > 0);
+  const std::size_t sz = GetInitialStateEstimate().size();
+  //assert(sz >= 0); //Inevitable for std::size_t
   assert(GetEstimatedOptimalKalmanGain().size1() == sz);
   assert(GetEstimatedOptimalKalmanGain().size2() == sz);
   #endif
