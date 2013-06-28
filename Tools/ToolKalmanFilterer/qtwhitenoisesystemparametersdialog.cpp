@@ -76,12 +76,10 @@ QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
   //Fill the combo box with the types of white noise systems
   {
     assert(ui->box_white_noise_system_type->count() == 0);
-    const int n = static_cast<int>(WhiteNoiseSystemType::n_types);
-    assert(n == 3);
     ui->box_white_noise_system_type->addItem("Standard white noise system");
     ui->box_white_noise_system_type->addItem("Lagged white noise system");
     ui->box_white_noise_system_type->addItem("Gaps-filled white noise system");
-    assert(ui->box_white_noise_system_type->count() == n);
+    assert(ui->box_white_noise_system_type->count() == static_cast<int>(WhiteNoiseSystemType::n_types));
   }
 
   this->setFocusPolicy(Qt::NoFocus);
