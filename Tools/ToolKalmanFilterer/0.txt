@@ -1,0 +1,110 @@
+  * Kalman filter type: discrete
+  * Lag estimated: 0
+  * Lag real: 0
+  * Number of timesteps: 1500
+  * White noise system type: standard
+ 
+^ Control ^^^^^^^ 
+^ xv: sent to motor | 1 | 0 | 0 | 0 | 0 | 0 | 
+^ xa: xv' | 1 | 0 | 0 | 0 | 0 | 0 | 
+^ xi: xv'' | 1 | 0 | 0 | 0 | 0 | 0 | 
+^ yv: received from rotary encoder | 0.11036341607454001 | 0 | 0 | 0 | 0 | 0 | 
+^ ya: yv' | 0.11036341607454001 | 0 | 0 | 0 | 0 | 0 | 
+^ yi: yv'' | 0.11036341607454001 | 0 | 0 | 0 | 0 | 0 | 
+ 
+^ Estimated measurement error covariance ^^^^^^^ 
+^ xv: sent to motor | 0.001 | 0 | 0 | 0 | 0 | 0 | 
+^ xa: xv' | 0 | 0.001 | 0 | 0 | 0 | 0 | 
+^ xi: xv'' | 0 | 0 | 0.001 | 0 | 0 | 0 | 
+^ yv: received from rotary encoder | 0 | 0 | 0 | 0.001 | 0 | 0 | 
+^ ya: yv' | 0 | 0 | 0 | 0 | 0.001 | 0 | 
+^ yi: yv'' | 0 | 0 | 0 | 0 | 0 | 0.001 | 
+ 
+^ Estimated optimal Kalman gain ^^^^^^^ 
+^ xv: sent to motor | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ xa: xv' | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ xi: xv'' | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ yv: received from rotary encoder | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ ya: yv' | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ yi: yv'' | 0 | 0 | 0 | 0 | 0 | 0 | 
+ 
+^ Estimated process noise covariance ^^^^^^^ 
+^ xv: sent to motor | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ xa: xv' | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ xi: xv'' | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ yv: received from rotary encoder | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ ya: yv' | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ yi: yv'' | 0 | 0 | 0 | 0 | 0 | 0 | 
+ 
+^ Initial covariance estimate ^^^^^^^ 
+^ xv: sent to motor | 1 | 0 | 0 | 0 | 0 | 0 | 
+^ xa: xv' | 0 | 1 | 0 | 0 | 0 | 0 | 
+^ xi: xv'' | 0 | 0 | 1 | 0 | 0 | 0 | 
+^ yv: received from rotary encoder | 0 | 0 | 0 | 1 | 0 | 0 | 
+^ ya: yv' | 0 | 0 | 0 | 0 | 1 | 0 | 
+^ yi: yv'' | 0 | 0 | 0 | 0 | 0 | 1 | 
+ 
+^ Initial state estimate ^^ 
+^ xv: sent to motor | 0 | 
+^ xa: xv' | 0 | 
+^ xi: xv'' | 0 | 
+^ yv: received from rotary encoder | 0 | 
+^ ya: yv' | 0 | 
+^ yi: yv'' | 0 | 
+ 
+^ Real initial state ^^ 
+^ xv: sent to motor | 0 | 
+^ xa: xv' | 0 | 
+^ xi: xv'' | 0 | 
+^ yv: received from rotary encoder | 0 | 
+^ ya: yv' | 0 | 
+^ yi: yv'' | 0 | 
+ 
+^ Real measurement noise ^^ 
+^ xv: sent to motor | 0.001 | 
+^ xa: xv' | 0.001 | 
+^ xi: xv'' | 0.001 | 
+^ yv: received from rotary encoder | 0.001 | 
+^ ya: yv' | 0.001 | 
+^ yi: yv'' | 0.001 | 
+ 
+^ Real process noise ^^ 
+^ xv: sent to motor | 0.001 | 
+^ xa: xv' | 0.001 | 
+^ xi: xv'' | 0.001 | 
+^ yv: received from rotary encoder | 0.001 | 
+^ ya: yv' | 0.001 | 
+^ yi: yv'' | 0.001 | 
+ 
+^ Input ^^ 
+^ xv: sent to motor | (t*t*t) | 
+^ xa: xv' | 0.0 | 
+^ xi: xv'' | 0.0 | 
+^ yv: received from rotary encoder | 0.0 | 
+^ ya: yv' | 0.0 | 
+^ yi: yv'' | 0.0 | 
+ 
+^ Observation ^^^^^^^ 
+^ xv: sent to motor | 1 | 0 | 0 | 0 | 0 | 0 | 
+^ xa: xv' | 0 | 1 | 0 | 0 | 0 | 0 | 
+^ xi: xv'' | 0 | 0 | 1 | 0 | 0 | 0 | 
+^ yv: received from rotary encoder | 0 | 0 | 0 | 1 | 0 | 0 | 
+^ ya: yv' | 0 | 0 | 0 | 0 | 1 | 0 | 
+^ yi: yv'' | 0 | 0 | 0 | 0 | 0 | 1 | 
+ 
+^ State names ^^ 
+^ xv: sent to motor | xv: sent to motor | 
+^ xa: xv' | xa: xv' | 
+^ xi: xv'' | xi: xv'' | 
+^ yv: received from rotary encoder | yv: received from rotary encoder | 
+^ ya: yv' | ya: yv' | 
+^ yi: yv'' | yi: yv'' | 
+ 
+^ State transition ^^^^^^^ 
+^ xv: sent to motor | 0 | 0 | 0 | 0 | 0 | 0 | 
+^ xa: xv' | -1 | 0 | 0 | 0 | 0 | 0 | 
+^ xi: xv'' | -1 | -1 | 0 | 0 | 0 | 0 | 
+^ yv: received from rotary encoder | -0.11036109302981614 | -0.11015678581090188 | -0.066240402653698599 | 0.99999768845139003 | 0.99969796265166777 | 0.94730333543744771 | 
+^ ya: yv' | -0.11036109302981614 | -0.11015678581090188 | -0.066240402653698599 | -2.3115486099678506e-006 | 0.99969796265166777 | 0.94730333543744771 | 
+^ yi: yv'' | -0.11036109302981614 | -0.11015678581090188 | -0.066240402653698599 | -2.3115486099678506e-006 | -0.00030203734833222917 | 0.94730333543744771 | 
+ 

@@ -48,32 +48,28 @@ public:
   ///Click on an example
   void ClickExample(const int i);
 
+  ///Get dialog to set up a Kalman filter
+  const QtKalmanFilterDialog * GetFilterDialog() const { return m_filter_dialog; }
+
+  ///Obtain the dialog to set the white noise system parameters with
+  const QtWhiteNoiseSystemParametersDialog * GetNoiseParametersDialog() const { return m_noise_parameters_dialog; }
+        QtWhiteNoiseSystemParametersDialog * GetNoiseParametersDialog()       { return m_noise_parameters_dialog; }
+
+  ///Get the number of timesteps in the sim
+  int GetNumberOfTimesteps() const;
+
   ///Load parameters from a file in DokuWiki format
   void LoadFromDokuWiki(const std::string& filename);
 
   ///Save the current parameters to a file in DokuWiki format
   void SaveToDokuWiki(const std::string& filename) const;
 
+  ///Set the number of timesteps in the sim
+  void SetNumberOfTimesteps(const int timesteps);
+
   boost::signals2::signal <void()> m_signal_new_parameters;
 
-private:
-  Ui::QtKalmanFilterExperimentDialog *ui;
-
-  QtKalmanFilterExamplesDialog * const m_examples_dialog;
-  QtKalmanFilterDialog * const m_filter_dialog;
-
-  ///This model is intended to share with all other parameter classes
-  const boost::shared_ptr<QtKalmanFilterExperimentModel> m_model;
-
-  QtWhiteNoiseSystemParametersDialog * const m_noise_parameters_dialog;
-
-  ///The parameter type and its corresponding dialog, specific for an Experiment
-  std::map<KalmanFilterExperimentParameterType,QtKalmanFiltererParameterDialog *> m_parameters;
-
-  ///Set the number of timesteps in the sim
-  void SetTimesteps(const int timesteps);
-
-private slots:
+public slots:
 
   // Don't put a boost::shared_ptr in a signal [1]
   void SetExample(const KalmanFilterExample * const example);
@@ -81,10 +77,36 @@ private slots:
   ///Called when the user changes to a different type of Kalman filter
   void SetKalmanFilterType(const KalmanFilterType new_type);
 
+private:
+  Ui::QtKalmanFilterExperimentDialog *ui;
+
+  ///Dialog with buttons to load a preset example
+  QtKalmanFilterExamplesDialog * const m_examples_dialog;
+
+  ///The dialog to set up a Kalman filter
+  QtKalmanFilterDialog * const m_filter_dialog;
+
+  ///This model is intended to share with all other parameter classes
+  const boost::shared_ptr<QtKalmanFilterExperimentModel> m_model;
+
+  ///The dialog to set the white noise system parameters with
+  QtWhiteNoiseSystemParametersDialog * const m_noise_parameters_dialog;
+
+  ///The parameter type and its corresponding dialog, specific for an Experiment
+  std::map<KalmanFilterExperimentParameterType,QtKalmanFiltererParameterDialog *> m_parameters;
+
+  #ifndef NDEBUG
+  ///Check the internal state of this class
+  bool IsValid() const;
+  #endif
+
   #ifndef NDEBUG
   ///Test this class
   static void Test();
   #endif
+
+  private slots:
+
   void on_box_n_timesteps_valueChanged(int arg1);
   void on_button_save_clicked();
   void on_button_load_clicked();

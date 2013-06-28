@@ -9,4 +9,7 @@
         <file>PicRed.png</file>
         <file>PicTransparent.png</file>
     </qresource>
+    <qresource prefix="/files">
+        <file>0.txt</file>
+    </qresource>
 </RCC>

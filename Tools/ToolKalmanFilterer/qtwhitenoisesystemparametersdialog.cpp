@@ -196,6 +196,7 @@ void QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const WhiteNois
       throw std::logic_error("QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
   }
   assert(this->GetWhiteNoiseSystemType() == type);
+  assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == type);
 }
 
 

@@ -81,6 +81,7 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   }
 
 
+
   assert(this->m_experiment_dialog);
 
   assert(m_model->CreateExperiment() && "Can get an empty experiment");
@@ -237,6 +238,10 @@ void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
 
 void QtKalmanFiltererMainDialog::on_button_start_clicked()
 {
+  assert(this->m_model->CreateWhiteNoiseSystemParameters()->GetType()
+    == GetExperimentDialog()->GetNoiseParametersDialog()->GetWhiteNoiseSystemType());
+
+
   //Remove previous dialogs
   m_plots.resize(0);
   m_calculations.resize(0);

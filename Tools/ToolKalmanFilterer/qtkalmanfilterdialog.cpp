@@ -10,6 +10,8 @@
 #include <cassert>
 
 #include <boost/lexical_cast.hpp>
+#include <boost/signals2.hpp>
+#include <boost/lambda/lambda.hpp>
 
 #include <QTableWidgetItem>
 #include <QVBoxLayout>
@@ -20,6 +22,7 @@
 #include "standardkalmanfilterfactory.h"
 #include "steadystatekalmanfilter.h"
 #include "kalmanfilterparameter.h"
+#include "kalmanfiltertypes.h"
 #include "fixedlagsmootherkalmanfilter.h"
 #include "steadystatekalmanfilterfactory.h"
 #include "kalmanfilterexperimentparameter.h"
@@ -70,6 +73,9 @@ QtKalmanFilterDialog::QtKalmanFilterDialog(
   this->setFocusPolicy(Qt::NoFocus);
   this->on_box_filter_type_currentIndexChanged(0);
   //assert(this->GetKalmanFilter() && "Can get an empty Kalman filter, with all sizes equal to zero");
+
+  m_model->m_signal_kalman_filter_type_changed.connect(
+    boost::bind(&QtKalmanFilterDialog::SetKalmanFilterType,this,boost::lambda::_1));
 }
 
 QtKalmanFilterDialog::~QtKalmanFilterDialog()
@@ -109,7 +115,9 @@ KalmanFilterType QtKalmanFilterDialog::GetKalmanFilterType() const
     case 0: return KalmanFilterType::standard;
     case 1: return KalmanFilterType::steady_state;
     case 2: return KalmanFilterType::fixed_lag_smoother;
-    default: assert(!"Unimplemented ComboBox index");
+    default:
+      TRACE(ui->box_filter_type->currentIndex());
+      assert(!"Unimplemented ComboBox index");
       throw std::logic_error(__func__);
   }
 }
@@ -136,13 +144,28 @@ const std::vector<KalmanFilterParameterType> QtKalmanFilterDialog::GetParameterT
 
 void QtKalmanFilterDialog::SetKalmanFilterType(const KalmanFilterType new_type)
 {
-  switch (new_type)
+  if (this->GetKalmanFilterType() != new_type)
   {
-    case KalmanFilterType::standard: ui->box_filter_type->setCurrentIndex(0); break;
-    case KalmanFilterType::steady_state: ui->box_filter_type->setCurrentIndex(1); break;
-    case KalmanFilterType::fixed_lag_smoother: ui->box_filter_type->setCurrentIndex(2); break;
-    case KalmanFilterType::n_types:
-      assert(!"Unimplemented KalmanFilterType");
+
+    switch (new_type)
+    {
+      case KalmanFilterType::standard:
+        assert(ui->box_filter_type->count() > 0); //Otherwise index -1 will be set
+        ui->box_filter_type->setCurrentIndex(0);
+        break;
+      case KalmanFilterType::steady_state:
+        assert(ui->box_filter_type->count() > 1); //Otherwise index -1 will be set
+        ui->box_filter_type->setCurrentIndex(1);
+        break;
+      case KalmanFilterType::fixed_lag_smoother:
+        assert(ui->box_filter_type->count() > 2); //Otherwise index -1 will be set
+        ui->box_filter_type->setCurrentIndex(2);
+        break;
+      case KalmanFilterType::n_types:
+        assert(!"Unimplemented KalmanFilterType");
+        throw std::logic_error(__func__);
+    }
+    assert(this->GetKalmanFilterType() == new_type);
   }
   assert(this->GetKalmanFilterType() == new_type);
 }
@@ -154,7 +177,6 @@ void QtKalmanFilterDialog::on_button_calculate_optimal_kalman_gain_steady_state_
 
 void QtKalmanFilterDialog::on_box_filter_type_currentIndexChanged(int)
 {
-
   //Update the GUI
   switch (this->GetKalmanFilterType())
   {

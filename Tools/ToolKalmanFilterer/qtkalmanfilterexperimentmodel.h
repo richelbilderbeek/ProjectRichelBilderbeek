@@ -11,6 +11,7 @@
 
 #include <QAbstractTableModel>
 #include <QObject>
+#include <boost/signals2.hpp>
 #include "kalmanfilterexperimentparametertype.h"
 #include "kalmanfiltertype.h"
 #include "kalmanfilter.h"
@@ -82,9 +83,16 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///Convert the data to HTML
   const std::string ToHtml() const;
 
+  ///Emitted when the Kalman filter type changes
+  boost::signals2::signal<void(KalmanFilterType)> m_signal_kalman_filter_type_changed;
+
+  ///Emitted when the white noise system type changes
+  boost::signals2::signal<void(WhiteNoiseSystemType)> m_signal_white_noise_system_type_changed;
+
   private slots:
   ///If the state names are changed, let all other models have their headers updated
   void OnStateNamesChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
+
 
   private:
   ///The HTML description of the context of this experiment
@@ -104,6 +112,11 @@ struct QtKalmanFilterExperimentModel : public QObject
 
   ///The number of timesteps desired
   int m_number_of_timesteps;
+
+  ///The version number
+  ///0: version before this numbering existed
+  ///1: since 2013-06-28
+  int m_version;
 
   ///The white noise system type
   WhiteNoiseSystemType m_white_noise_system_type;

@@ -45,6 +45,8 @@ public:
   #ifndef NDEBUG
   ///Obtain the GUI
   Ui::QtWhiteNoiseSystemParametersDialog * GetUi() { return ui; }
+
+  bool IsValid() const;
   #endif
 
   ///Obtain the white noise system type

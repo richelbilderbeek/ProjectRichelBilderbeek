@@ -39,6 +39,9 @@ public:
     QWidget *parent = 0);
   ~QtKalmanFiltererMainDialog();
 
+  ///Get the dialog to set the experiment its parameters
+  const QtKalmanFilterExperimentDialog * GetExperimentDialog() const { return m_experiment_dialog; }
+
   ///Set the checkbox to show the calculation
   void SetShowCalculation(const bool do_show);
 
@@ -57,6 +60,7 @@ protected:
 private:
   Ui::QtKalmanFiltererMainDialog *ui;
 
+  ///The dialog to set the experiment its parameters
   QtKalmanFilterExperimentDialog * const m_experiment_dialog;
 
   ///Contains the calculations, these must be stored because deleting
