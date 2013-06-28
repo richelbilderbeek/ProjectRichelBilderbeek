@@ -12,6 +12,7 @@ enum class WhiteNoiseSystemType
 };
 
 bool operator==(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
+bool operator!=(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
 bool operator<(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
 
 

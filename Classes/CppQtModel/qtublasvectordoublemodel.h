@@ -44,11 +44,11 @@ struct QtUblasVectorDoubleModel: public QAbstractTableModel
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 
-  ///Working with the raw data
-  void SetRawData(const boost::numeric::ublas::vector<double>& data);
-
   ///Set the header text
   void SetHeaderData(const std::string& title, const std::vector<std::string>& header_text);
+
+  ///Working with the raw data
+  void SetRawData(const boost::numeric::ublas::vector<double>& data);
 
   private:
   ///The raw data
@@ -73,6 +73,9 @@ struct QtUblasVectorDoubleModel: public QAbstractTableModel
   QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
   ///Redefined from ABC
+  //bool insertColumns(int column, int count, const QModelIndex &parent) = delete;
+
+  ///Redefined from ABC
   bool insertRows(int row, int count, const QModelIndex &parent);
 
   ///Redefined from ABC
@@ -86,6 +89,11 @@ struct QtUblasVectorDoubleModel: public QAbstractTableModel
 
   ///Redefined from ABC
   bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role);
+
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test();
+  #endif
 
 };
 

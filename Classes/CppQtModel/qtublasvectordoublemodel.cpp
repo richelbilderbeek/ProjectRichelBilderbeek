@@ -30,11 +30,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 #include "matrix.h"
+#include "trace.h"
 
 QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent)
   : QAbstractTableModel(parent)
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 int QtUblasVectorDoubleModel::columnCount(const QModelIndex &) const
@@ -82,7 +85,7 @@ Qt::ItemFlags QtUblasVectorDoubleModel::flags(const QModelIndex &) const
 
 const std::string QtUblasVectorDoubleModel::GetVersion()
 {
-  return "1.3";
+  return "1.4";
 }
 
 const std::vector<std::string> QtUblasVectorDoubleModel::GetVersionHistory()
@@ -92,6 +95,7 @@ const std::vector<std::string> QtUblasVectorDoubleModel::GetVersionHistory()
   v.push_back("2013-05-21: version 1.1: added rows are initialized with zeroes");
   v.push_back("2013-05-23: version 1.2: allow an infine amount of digits behind the comma");
   v.push_back("2013-05-28: version 1.3: allow columnCount to be zero, if rowCount is zero");
+  v.push_back("2013-06-27: version 1.4: added self-test");
   return v;
 }
 
@@ -297,3 +301,27 @@ void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<do
   assert(this->rowCount() == boost::numeric_cast<int>(m_header_vertical_text.size()));
   assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
 }
+
+#ifndef NDEBUG
+void QtUblasVectorDoubleModel::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Started QtUblasVectorDoubleModel::Test");
+  {
+    QtUblasVectorDoubleModel model;
+    assert(model.rowCount()    == 0);
+    assert(model.columnCount() == 0);
+    model.insertRow(1);
+    assert(model.rowCount()    == 1);
+    assert(model.columnCount() == 1);
+    model.removeRow(1);
+    assert(model.rowCount()    == 0);
+    assert(model.columnCount() == 0);
+  }
+  TRACE("Finished QtUblasVectorDoubleModel::Test successfully");
+}
+#endif
