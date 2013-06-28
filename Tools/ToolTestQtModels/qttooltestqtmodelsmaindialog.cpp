@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QKeyEvent>
 
+#include "matrix.h"
 #include "qtublasmatrixdoublemodel.h"
 #include "qtublasvectordoublemodel.h"
 #include "qtublasvectorintmodel.h"
@@ -275,6 +276,18 @@ void QtToolTestQtModelsMainDialog::Test()
     is_tested = true;
   }
   TRACE("Start of QtToolTestQtModelsMainDialog::Test");
+  {
+    QtUblasVectorDoubleModel * const model = new QtUblasVectorDoubleModel;
+    assert(model);
+    model->SetRawData( Matrix::CreateVector( {                    } ) );
+    model->SetRawData( Matrix::CreateVector( { 1.1, 2.2, 3.3      } ) );
+    model->SetRawData( Matrix::CreateVector( {                    } ) );
+    model->SetRawData( Matrix::CreateVector( {      2.2, 3.3      } ) );
+    model->SetRawData( Matrix::CreateVector( {                    } ) );
+    model->SetRawData( Matrix::CreateVector( { 1.1, 2.2, 3.3, 4.4 } ) );
+    model->SetRawData( Matrix::CreateVector( {                    } ) );
+  }
+  //Test of dialog
   {
     QtToolTestQtModelsMainDialog d;
     const int n_types = d.ui->box_type->count();
