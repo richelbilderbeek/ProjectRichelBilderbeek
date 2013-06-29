@@ -44,6 +44,49 @@ void QtPvdbConceptMapEditWidget::Test()
       QtPvdbConceptMapWidget::Test(widget);
     }
   }
+  //Deletion of nodes
+  {
+    const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
+    for (std::size_t i = 0; i!=n_concept_maps; ++i)
+    {
+      const std::size_t n_nodes = pvdb::ConceptMapFactory::GetAllTests()[i]->GetNodes().size();
+      for (std::size_t j=0; j!=n_nodes; ++j)
+      {
+        boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+        assert(concept_map);
+        assert(concept_map->GetNodes().size() == n_nodes);
+        assert(j < concept_map->GetNodes().size());
+        boost::shared_ptr<This_t> widget(new This_t(concept_map));
+        assert(widget);
+        QtPvdbNodeItem* const qtnode = widget->GetQtNodes()[j];
+        assert(qtnode);
+        widget->DeleteNode(qtnode);
+        assert(widget->GetQtNodes().size() == n_nodes - 1
+          && "Node must really be gone");
+      }
+    }
+  }
+  //Deletion of edges
+  {
+    const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
+    for (std::size_t i = 0; i!=n_concept_maps; ++i)
+    {
+      const std::size_t n_edges = pvdb::ConceptMapFactory::GetAllTests()[i]->GetEdges().size();
+      for (std::size_t j=0; j!=n_edges; ++j)
+      {
+        boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+        assert(concept_map);
+        assert(concept_map->GetEdges().size() == n_edges);
+        assert(j < concept_map->GetEdges().size());
+        boost::shared_ptr<This_t> widget(new This_t(concept_map));
+        assert(widget);
+        QtPvdbEdgeItem* const qtedge = widget->GetQtEdges()[j];
+        widget->DeleteEdge(qtedge);
+        assert(widget->GetQtEdges().size() == n_edges - 1
+          && "Edge must really be gone");
+      }
+    }
+  }
   TRACE("QtPvdbConceptMapEditWidget::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }

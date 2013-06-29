@@ -274,7 +274,7 @@ void QtPvdbMenuDialog::Test()
       =
       {
         //Duplication of tests, the ones I am most interested in now
-        ui->button_test_create_sub_concept_map,
+        ui->button_test_qtconceptmapeditwidget,
 
         //Normal order of tests
         ui->button_about,

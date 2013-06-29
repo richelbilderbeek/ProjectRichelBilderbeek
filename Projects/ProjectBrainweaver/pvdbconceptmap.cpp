@@ -239,6 +239,8 @@ void pvdb::ConceptMap::DeleteEdge(const boost::shared_ptr<pvdb::Edge> edge)
 {
   #ifndef NDEBUG
   assert(edge);
+  assert(std::count(m_edges.begin(),m_edges.end(),edge) != 0
+    && "The edge must exist");
   assert(std::count(m_edges.begin(),m_edges.end(),edge) == 1
     && "Every edge is unique");
   const std::size_t n_edges_before = m_edges.size();

@@ -302,8 +302,10 @@ const QtPvdbExamplesItem * QtPvdbConceptMapWidget::GetExamplesItem() const
 
 QtPvdbExamplesItem * QtPvdbConceptMapWidget::GetExamplesItem()
 {
-  //Calls the const version of GetExamplesItem
+  //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
   return const_cast<QtPvdbExamplesItem*>(
     const_cast<const QtPvdbConceptMapWidget*>(this)->GetExamplesItem());
 }
@@ -331,6 +333,24 @@ QtPvdbNodeItem* QtPvdbConceptMapWidget::GetItemBelowCursor(const QPointF& pos) c
     return qtnodes[0];
   }
   return nullptr;
+}
+
+const std::vector<const QtPvdbEdgeItem *> QtPvdbConceptMapWidget::GetQtEdges() const
+{
+  const std::vector<const QtPvdbEdgeItem *> qtedges
+    = Collect<const QtPvdbEdgeItem>(this->scene());
+  assert(qtedges.size() == GetConceptMap()->GetNodes().size()
+      && "GUI and non-GUI must contain an equal amount of edges");
+  return qtedges;
+}
+
+const std::vector<const QtPvdbNodeItem *> QtPvdbConceptMapWidget::GetQtNodes() const
+{
+  const std::vector<const QtPvdbNodeItem *> qtnodes
+    = Collect<const QtPvdbNodeItem>(this->scene());
+  assert(qtnodes.size() == GetConceptMap()->GetNodes().size()
+      && "GUI and non-GUI must contain an equal amount of nodes");
+  return qtnodes;
 }
 
 QGraphicsScene* QtPvdbConceptMapWidget::GetScene() const

@@ -33,6 +33,12 @@ struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
   ///A simpler alternative to Clone (see above)
   std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const;
 
+  ///Delete an EdgeConcept
+  void DeleteEdge(QtPvdbEdgeItem * const edge);
+
+  ///Delete a Node
+  void DeleteNode(QtPvdbNodeItem * const node);
+
   ///Do something random
   void DoRandomStuff();
   #endif
@@ -71,15 +77,17 @@ private:
   ///Remove all Qt and non-Qt items
   void CleanMe();
 
-  ///Delete an EdgeConcept
-  void DeleteEdge(QtPvdbEdgeItem * const edge);
-
   ///After the selected arrows, EdgeConcepts and Nodes are deleted
   ///delete the unconnected leftovers that are left
-  void DeleteLeftovers();
+  //void DeleteLeftovers();
 
-  ///Delete a Node
-  void DeleteNode(QtPvdbNodeItem * const node);
+  ///Obtain the read-and-write Qt edge items
+  ///The read-only Qt edge items is already supplied by QtPvdbConceptMapWidget
+  const std::vector<QtPvdbEdgeItem *> GetQtEdges();
+
+  ///Obtain the read-and-write Qt node items
+  ///The read-only Qt node items is already supplied by QtPvdbConceptMapWidget
+  const std::vector<QtPvdbNodeItem *> GetQtNodes();
 
   ///Called when an item wants to be edited
   void OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem * const item);

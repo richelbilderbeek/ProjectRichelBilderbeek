@@ -43,6 +43,14 @@ public:
   const boost::shared_ptr<const pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
         boost::shared_ptr<      pvdb::ConceptMap> GetConceptMap()       { return m_concept_map; }
 
+  ///Obtain the read-only Qt edge items
+  ///Read-and-write Qt edge items are only supported for QtPvdbConceptMapEditWidget
+  const std::vector<const QtPvdbEdgeItem *> GetQtEdges() const;
+
+  ///Obtain the read-only Qt node items
+  ///Read-and-write Qt node items are only supported for QtPvdbConceptMapEditWidget
+  const std::vector<const QtPvdbNodeItem *> GetQtNodes() const;
+
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const;
 

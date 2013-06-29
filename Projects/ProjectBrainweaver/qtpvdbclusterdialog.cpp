@@ -153,8 +153,10 @@ const QtPvdbClusterWidget * QtPvdbClusterDialog::GetWidget() const
 
 QtPvdbClusterWidget * QtPvdbClusterDialog::GetWidget()
 {
-  //Calls the const version of operator[]
+  //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
   return const_cast<QtPvdbClusterWidget*>(
     const_cast<const QtPvdbClusterDialog*>(this)->GetWidget());
 }
