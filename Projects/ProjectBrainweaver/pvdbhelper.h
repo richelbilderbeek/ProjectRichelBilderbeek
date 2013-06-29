@@ -36,6 +36,20 @@ const std::vector<boost::shared_ptr<const T> > AddConst(
   return w;
 }
 
+///Help adding constness a bit
+template <class T>
+const std::vector<const T *> AddConst(
+  const std::vector<T *> v)
+{
+  const std::vector<const T *> w(v.begin(),v.end());
+  #ifndef NDEBUG
+  assert(v.size() == w.size());
+  const std::size_t sz = v.size();
+  for (std::size_t i=0; i!=sz; ++i) { assert(v[i] == w[i]); }
+  #endif
+  return w;
+}
+
 namespace pvdb {
 
 ///From http://www.richelbilderbeek.nl/CppFileToVector.htm

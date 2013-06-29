@@ -334,18 +334,23 @@ void QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const qtedge)
   #endif
 
   assert(scene()->items().contains(qtedge));
-  this->scene()->removeItem(qtedge);
-  DeleteLeftovers();
+  //Remove non-GUI edges
   GetConceptMap()->DeleteEdge(qtedge->GetEdge());
+  //Remove GUI edge
+  this->scene()->removeItem(qtedge);
+  //No left-overs when deleting an edge
+  //DeleteLeftovers();
 
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
   assert(n_items_after + 1 == n_items_before);
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
-    && "GUI and non-GUI concept map must match");
+  //Cannot do the check below: in DeleteNode multiple edges are deleted
+  //assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  //  && "GUI and non-GUI concept map must match");
   #endif
 }
 
+#ifdef BELIEF_THIS_IS_A_GOOD_MEMBER_FUNCTION_20130629_723648723687
 void QtPvdbConceptMapEditWidget::DeleteLeftovers()
 {
   //assert(m_edge_concepts.size() == m_arrows.size());
@@ -380,9 +385,12 @@ void QtPvdbConceptMapEditWidget::DeleteLeftovers()
     }
     if (done) break;
   }
+
+  assert(Collect<QtPvdbNodeItem>(this->scene()) == this->GetQtNodes());
   assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
+#endif
 
 void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const qtnode)
 {
@@ -390,13 +398,29 @@ void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const qtnode)
   const int n_items_before = this->scene()->items().count();
   #endif
 
+  //Delete the edges connected to this node
+  {
+    const std::vector<QtPvdbEdgeItem *> qtedges = this->GetQtEdges();
+    const std::size_t sz = qtedges.size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      QtPvdbEdgeItem * const qtedge = qtedges[i];
+      assert(qtedge);
+      if (qtedge->GetFrom() == qtnode || qtedge->GetTo() == qtnode)
+      {
+        DeleteEdge(qtedge);
+      }
+    }
+  }
+
+  //Remove node from GUI
   this->scene()->removeItem(qtnode);
-  DeleteLeftovers();
+  //Remove from non-GUI, which removes the left-overs
   GetConceptMap()->DeleteNode(qtnode->GetNode());
 
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
-  assert(n_items_after + 1 == n_items_before);
+  assert(n_items_before - n_items_after >= 1 && "At least one item is deleted: one node and x edges");
   assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
   #endif
@@ -424,6 +448,34 @@ void QtPvdbConceptMapEditWidget::DoRandomStuff()
     && "GUI and non-GUI concept map must match");
 }
 #endif
+
+
+
+
+const std::vector<QtPvdbEdgeItem *> QtPvdbConceptMapEditWidget::GetQtEdges()
+{
+  const std::vector<QtPvdbEdgeItem *> qtedges
+    = Collect<QtPvdbEdgeItem>(this->scene());
+  //Cannot do the check below: in DeleteNode multiple edges are deleted
+  //assert(qtedges.size() == GetConceptMap()->GetNodes().size()
+  //    && "GUI and non-GUI must contain an equal amount of edges");
+  return qtedges;
+}
+
+const std::vector<QtPvdbNodeItem *> QtPvdbConceptMapEditWidget::GetQtNodes()
+{
+  const std::vector<QtPvdbNodeItem *> qtnodes
+    = Collect<QtPvdbNodeItem>(this->scene());
+  if (qtnodes.size() != GetConceptMap()->GetNodes().size())
+  {
+    TRACE(qtnodes.size());
+    TRACE(GetConceptMap()->GetNodes().size());
+    TRACE("BREAK");
+  }
+  assert(qtnodes.size() == GetConceptMap()->GetNodes().size()
+      && "GUI and non-GUI must contain an equal amount of nodes");
+  return qtnodes;
+}
 
 void QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
 {
@@ -461,7 +513,7 @@ void QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
         );
         if (!v.empty())
         {
-          DeleteLeftovers();
+          //DeleteLeftovers(); //2013-06-29: Really needed?
           GetExamplesItem()->hide();
           this->OnItemRequestsUpdate(0);
         }
