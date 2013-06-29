@@ -1,17 +1,3 @@
- 
-<title>ConvertMatrix</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ ConvertMatrix</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek ConvertMatrix 2D container vector std::vector convert matrix</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
- </o:DocumentProperties>
-</xml><![endif]-->
-</head>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -38,83 +24,31 @@
 <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;X&gt; &gt; to 
 <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Y&gt; &gt; using <a href="CppStatic_cast.htm">static_cast</a>.</p>
 <p>&nbsp;</p>
-<ul>
-  <li><a href="CppConvertMatrix.txt">View the code of 'ConvertMatrix' in plain text</a></li>
-</ul>
-<p>&nbsp;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p>&nbsp;</p>
-
-<p><a href="CppComment.htm">//</a>From
-http://www.richelbilderbeek.nl/CppConvertMatrix.htm</p>
-
-<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;<b><a
-href="CppClass.htm">class</a></b> Source, <b><a href="CppClass.htm">class</a></b>
-Target&gt;</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;Target&gt; &gt; ConvertMatrix(</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;Source&gt; &gt;&amp; v)</p>
-
-<p>{</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-maxy = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt;(v.size());</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>(maxy&gt;0);</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-maxx = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt;(v[0].size());</p>
-
-<p>
- <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Target&gt;
-&gt; t(maxy, <a href="CppVector.htm">std::vector</a>&lt;Target&gt;(maxx));</p>
-
-<p>
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-y=0; y!=maxy; ++y)</p>
-
-<p>
- {</p>
-
-<p> 
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-x=0; x!=maxx; ++x)</p>
-
-<p> 
- {</p>
-
-<p>     t[y][x] = <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;Target&gt;(v[y][x]);</p>
-
-<p> 
- }</p>
-
-<p>
- }</p>
-
-<p>
- <b><a href="CppReturn.htm">return</a></b> t;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="fileNBhLRw.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppConvert.htm">Convert</a><a href="CppMatrix.htm">Matrix</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Source, <b><a href="CppClass.htm">class</a></b> Target&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Target&gt; &gt; <a href="CppConvert.htm">Convert</a><a href="CppMatrix.htm">Matrix</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Source&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxy&gt;0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v[0].size());<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Target&gt; &gt; t(maxy, <a href="CppVector.htm">std::vector</a>&lt;Target&gt;(maxx));<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t[y][x] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;Target&gt;(v[y][x]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> t;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
