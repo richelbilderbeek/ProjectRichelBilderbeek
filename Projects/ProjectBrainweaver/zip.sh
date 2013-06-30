@@ -238,6 +238,7 @@ cp ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.cpp Projects/Proje
 cp ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.h Projects/Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.h
 cp ../../Projects/ProjectBrainweaver/qtpvdbrateconceptmapdialog.ui Projects/Projects/ProjectBrainweaver/qtpvdbrateconceptmapdialog.ui
+cp ../../Projects/ProjectBrainweaver/qtpvdbrateconcepttallymodel.h Projects/Projects/ProjectBrainweaver/qtpvdbrateconcepttallymodel.h
 cp ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.h Projects/Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.h
 cp ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.h Projects/Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.h
 cp ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.h Projects/Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.h
@@ -256,6 +257,7 @@ cp ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.ui Projects/Too
 cp ../../Projects/ProjectBrainweaver/qtpvdbconceptmapdisplaywidget.h Projects/Projects/ProjectBrainweaver/qtpvdbconceptmapdisplaywidget.h
 cp ../../Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbrateconcepttallydialog.ui Projects/Projects/ProjectBrainweaver/qtpvdbrateconcepttallydialog.ui
+cp ../../Projects/ProjectBrainweaver/qtpvdbrateconcepttallymodel.cpp Projects/Projects/ProjectBrainweaver/qtpvdbrateconcepttallymodel.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.cpp
 cp ../../Projects/ProjectBrainweaver/test_qtpvdbconceptmapdialog.cpp Projects/Projects/ProjectBrainweaver/test_qtpvdbconceptmapdialog.cpp
 cp ../../Projects/ProjectBrainweaver/test_qtpvdbconceptmapwidget.cpp Projects/Projects/ProjectBrainweaver/test_qtpvdbconceptmapwidget.cpp

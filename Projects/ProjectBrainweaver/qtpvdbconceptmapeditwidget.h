@@ -32,6 +32,7 @@ struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
   std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const;
+  #endif
 
   ///Delete an EdgeConcept
   void DeleteEdge(QtPvdbEdgeItem * const edge);
@@ -39,6 +40,7 @@ struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
   ///Delete a Node
   void DeleteNode(QtPvdbNodeItem * const node);
 
+  #ifndef NDEBUG
   ///Do something random
   void DoRandomStuff();
   #endif

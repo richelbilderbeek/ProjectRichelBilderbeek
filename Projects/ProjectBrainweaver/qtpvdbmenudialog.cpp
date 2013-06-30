@@ -42,7 +42,6 @@
 #include "qtpvdbtestconceptmapdisplaywidgetdialog.h"
 #include "qtpvdbtestconceptmapeditwidgetdialog.h"
 #include "qtpvdbtestconceptmapratewidgetdialog.h"
-
 #include "qtpvdboverviewdialog.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"
@@ -249,6 +248,8 @@ void QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
+
+#ifndef NDEBUG
 void QtPvdbMenuDialog::Test()
 {
   {
@@ -466,6 +467,7 @@ void QtPvdbMenuDialog::Test()
   t.detach();
   #endif
 }
+#endif
 
 void QtPvdbMenuDialog::on_button_concept_clicked()
 {

@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/ublas/matrix.hpp>
 #include <QAbstractTableModel>
 
-struct QtUblasMatrixDoubleModel: public QAbstractTableModel
+struct QtUblasMatrixDoubleModel : public QAbstractTableModel
 {
   QtUblasMatrixDoubleModel(QObject *parent = 0);
 

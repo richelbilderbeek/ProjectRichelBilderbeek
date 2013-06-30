@@ -27,8 +27,10 @@ class QtPvdbConceptMapDialog : public QtHideAndShowDialog
 
   ~QtPvdbConceptMapDialog();
 
+  #ifndef NDEBUG
   ///Do random stuff, for example, add a node and an edge (used for debugging)
   void DoRandomStuff();
+  #endif
 
   ///Obtain the widget
   const QtPvdbConceptMapWidget * GetWidget() const;

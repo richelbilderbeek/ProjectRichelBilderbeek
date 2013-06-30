@@ -187,4 +187,7 @@ void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
 {
   QtPvdbRateConceptTallyDialog d(m_sub_concept_map);
   this->ShowChild(&d);
+  ui->box_complexity->setCurrentIndex(d.GetSuggestedComplexity());
+  ui->box_concreteness->setCurrentIndex(d.GetSuggestedConcreteness());
+  ui->box_specificity->setCurrentIndex(d.GetSuggestedSpecificity());
 }
