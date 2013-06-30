@@ -32,7 +32,7 @@ struct Rating
   static int SuggestConcreteness(const boost::shared_ptr<const pvdb::ConceptMap> m_sub_concept_map);
 
   ///Calculate a suggested specificity
-  static int SuggestSpecificity(const int n_example);
+  static int SuggestSpecificity(const int n_examples);
 
   ///Calculate a suggested specificity
   static int SuggestSpecificity(const boost::shared_ptr<const pvdb::ConceptMap> m_sub_concept_map);

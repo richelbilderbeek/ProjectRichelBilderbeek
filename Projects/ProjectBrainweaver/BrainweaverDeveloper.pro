@@ -133,7 +133,8 @@ SOURCES += \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.cpp \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.cpp \
     ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.cpp \
-    qtpvdbrateconcepttallydialog.cpp
+    qtpvdbrateconcepttallydialog.cpp \
+    qtpvdbrateconcepttallymodel.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -232,7 +233,8 @@ HEADERS  += \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.h \
     ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.h \
-    qtpvdbrateconcepttallydialog.h
+    qtpvdbrateconcepttallydialog.h \
+    qtpvdbrateconcepttallymodel.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

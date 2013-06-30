@@ -45,6 +45,7 @@ cp ../../Classes/CppTrace/Licence.txt Projects/Classes/CppTrace/Licence.txt
 cp ../../Classes/CppMatrix/Licence.txt Projects/Classes/CppMatrix/Licence.txt
 cp ../../Libraries/qwt-6.0.1/src/qwt.h Projects/Libraries/qwt-6.0.1/src/qwt.h
 cp ../../Classes/CppQtMatrix/qtmatrix.h Projects/Classes/CppQtMatrix/qtmatrix.h
+cp ../../Tools/ToolKalmanFilterer/0.txt Projects/Tools/ToolKalmanFilterer/0.txt
 cp ../../Tools/ToolKalmanFilterer/R.png Projects/Tools/ToolKalmanFilterer/R.png
 cp ../../Classes/CppQtMatrix/Licence.txt Projects/Classes/CppQtMatrix/Licence.txt
 cp ../../Tools/ToolKalmanFilterer/zip.sh Projects/Tools/ToolKalmanFilterer/zip.sh
@@ -166,6 +167,7 @@ cp ../../Classes/CppKalmanFilter/whitenoisesystem.h Projects/Classes/CppKalmanFi
 cp ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp Projects/Classes/CppQtAboutDialog/qtaboutdialog.cpp
 cp ../../Classes/CppQtHideAndShowDialog/Licence.txt Projects/Classes/CppQtHideAndShowDialog/Licence.txt
 cp ../../Classes/CppQtModel/modelfunctionparser.cpp Projects/Classes/CppQtModel/modelfunctionparser.cpp
+cp ../../Classes/CppQtModel/qtublasvectorintmodel.h Projects/Classes/CppQtModel/qtublasvectorintmodel.h
 cp ../../Libraries/fparser4.5.1/extrasrc/fptypes.hh Projects/Libraries/fparser4.5.1/extrasrc/fptypes.hh
 cp ../../Libraries/qwt-6.0.1/include/qwt_interval.h Projects/Libraries/qwt-6.0.1/include/qwt_interval.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_point_3d.h Projects/Libraries/qwt-6.0.1/include/qwt_point_3d.h
@@ -208,6 +210,7 @@ cp ../../Libraries/qwt-6.0.1/src/qwt_text_engine.cpp Projects/Libraries/qwt-6.0.
 cp ../../Tools/ToolKalmanFilterer/PicTransparent.png Projects/Tools/ToolKalmanFilterer/PicTransparent.png
 cp ../../Classes/CppKalmanFilter/kalmanfiltertype.cpp Projects/Classes/CppKalmanFilter/kalmanfiltertype.cpp
 cp ../../Classes/CppKalmanFilter/whitenoisesystem.cpp Projects/Classes/CppKalmanFilter/whitenoisesystem.cpp
+cp ../../Classes/CppQtModel/qtublasvectorintmodel.cpp Projects/Classes/CppQtModel/qtublasvectorintmodel.cpp
 cp ../../Libraries/qwt-6.0.1/include/qwt_plot_curve.h Projects/Libraries/qwt-6.0.1/include/qwt_plot_curve.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_scale_draw.h Projects/Libraries/qwt-6.0.1/include/qwt_scale_draw.h
 cp ../../Libraries/qwt-6.0.1/include/qwt_text_label.h Projects/Libraries/qwt-6.0.1/include/qwt_text_label.h
@@ -348,6 +351,7 @@ cp ../../Libraries/boost_1_53_0/libs/regex/src/posix_api.cpp Projects/Libraries/
 cp ../../Libraries/qwt-6.0.1/include/qwt_plot_spectrocurve.h Projects/Libraries/qwt-6.0.1/include/qwt_plot_spectrocurve.h
 cp ../../Libraries/qwt-6.0.1/src/qwt_abstract_scale_draw.cpp Projects/Libraries/qwt-6.0.1/src/qwt_abstract_scale_draw.cpp
 cp ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.h Projects/Tools/ToolKalmanFilterer/kalmanfilterermenudialog.h
+cp ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h Projects/Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h
 cp ../../Classes/CppKalmanFilter/standardwhitenoisesystem.cpp Projects/Classes/CppKalmanFilter/standardwhitenoisesystem.cpp
 cp ../../Classes/CppKalmanFilter/whitenoisesystemparameters.h Projects/Classes/CppKalmanFilter/whitenoisesystemparameters.h
 cp ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h Projects/Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
@@ -367,6 +371,7 @@ cp ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.cpp Projects/Tools/To
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfilterermaindialog.h Projects/Tools/ToolKalmanFilterer/qtkalmanfilterermaindialog.h
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfilterermenudialog.h Projects/Tools/ToolKalmanFilterer/qtkalmanfilterermenudialog.h
 cp ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h Projects/Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h
+cp ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp Projects/Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp
 cp ../../Classes/CppKalmanFilter/whitenoisesystemparameters.cpp Projects/Classes/CppKalmanFilter/whitenoisesystemparameters.cpp
 cp ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp Projects/Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 cp ../../Libraries/boost_1_53_0/libs/regex/src/static_mutex.cpp Projects/Libraries/boost_1_53_0/libs/regex/src/static_mutex.cpp
@@ -410,6 +415,7 @@ cp ../../Tools/ToolKalmanFilterer/qtkalmanfiltercalculationdialog.h Projects/Too
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfiltererparameterdialog.h Projects/Tools/ToolKalmanFilterer/qtkalmanfiltererparameterdialog.h
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfilterexperimentdialog.ui Projects/Tools/ToolKalmanFilterer/qtkalmanfilterexperimentdialog.ui
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfilterexperimentmodel.cpp Projects/Tools/ToolKalmanFilterer/qtkalmanfilterexperimentmodel.cpp
+cp ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h Projects/Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h
 cp ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp Projects/Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp
 cp ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.cpp Projects/Classes/CppKalmanFilter/kalmanfilterexperimentparameter.cpp
 cp ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.cpp Projects/Classes/CppKalmanFilter/standardwhitenoisesystemfactory.cpp
@@ -422,9 +428,11 @@ cp ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.h Projects/C
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfiltercalculationdialog.cpp Projects/Tools/ToolKalmanFilterer/qtkalmanfiltercalculationdialog.cpp
 cp ../../Tools/ToolKalmanFilterer/qtkalmanfiltererparameterdialog.cpp Projects/Tools/ToolKalmanFilterer/qtkalmanfiltererparameterdialog.cpp
 cp ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h Projects/Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h
+cp ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp Projects/Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp
 cp ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.h Projects/Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.h
 cp ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.cpp Projects/Classes/CppKalmanFilter/steadystatekalmanfilterparameters.cpp
 cp ../../Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.h Projects/Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.h
+cp ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h Projects/Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h
 cp ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.cpp Projects/Classes/CppKalmanFilter/standardwhitenoisesystemparameters.cpp
 cp ../../Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.ui Projects/Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.ui
 cp ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.cpp Projects/Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.cpp
@@ -432,6 +440,7 @@ cp ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.cpp Project
 cp ../../Libraries/boost_1_53_0/libs/regex/src/regex_traits_defaults.cpp Projects/Libraries/boost_1_53_0/libs/regex/src/regex_traits_defaults.cpp
 cp ../../Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.cpp Projects/Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.cpp
 cp ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h Projects/Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h
+cp ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp Projects/Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp
 cp ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h Projects/Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h
 cp ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.h Projects/Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.h
 cp ../../Libraries/boost_1_53_0/libs/filesystem/src/utf8_codecvt_facet.cpp Projects/Libraries/boost_1_53_0/libs/filesystem/src/utf8_codecvt_facet.cpp

@@ -20,6 +20,8 @@
 #include "pvdbexample.h"
 #include "pvdbedge.h"
 #include "pvdbexamples.h"
+#include "pvdbrating.h"
+#include "trace.h"
 #include "ui_qtpvdbrateconcepttallydialog.h"
 
 QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
@@ -66,7 +68,7 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
       QTableWidgetItem * const i = new QTableWidgetItem;
       if (col != 3)
       {
-        i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         switch (col)
         {
           case 0: i->setCheckState(example->GetIsComplex() ? Qt::Checked : Qt::Unchecked); break;
@@ -95,12 +97,28 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
     //Put X checkbox in the relation's name
     //Keep C and S columns empty
     {
-      //Put X checkbox in the relation's name
-      QTableWidgetItem * const i = new QTableWidgetItem;
-      i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-      i->setCheckState(edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked);
-      const int column = 0;
-      ui->table->setItem(current_row, column, i);
+      {
+        //Put X checkbox in the relation's name in column[0]
+        const int column = 0;
+        QTableWidgetItem * const i = new QTableWidgetItem;
+        i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+        i->setCheckState(edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked);
+        ui->table->setItem(current_row, column, i);
+      }
+      {
+        //Put uneditable nothing column[1]
+        const int column = 1;
+        QTableWidgetItem * const i = new QTableWidgetItem;
+        i->setFlags(Qt::ItemIsEnabled);
+        ui->table->setItem(current_row, column, i);
+      }
+      {
+        //Put uneditable nothing column[2]
+        const int column = 2;
+        QTableWidgetItem * const i = new QTableWidgetItem;
+        i->setFlags(Qt::ItemIsEnabled);
+        ui->table->setItem(current_row, column, i);
+      }
     }
     {
       //Put the relation's name in place
@@ -131,7 +149,7 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
         QTableWidgetItem * const i = new QTableWidgetItem;
         if (col != 3)
         {
-          i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+          i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
           switch (col)
           {
             case 0: i->setCheckState(example->GetIsComplex() ? Qt::Checked : Qt::Unchecked); break;
@@ -164,20 +182,23 @@ QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog()
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
 {
-  assert(!"Not yet implemented");
-  return 0;
+  //Rate as if all items are relevant
+  TRACE("TODO: GetSuggestedComplexity not yet completely implemented");
+  return pvdb::Rating::SuggestComplexity(m_map);
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
 {
-  assert(!"Not yet implemented");
-  return 0;
+  //Rate as if all items are relevant
+  TRACE("TODO: GetSuggestedConcreteness not yet completely implemented");
+  return pvdb::Rating::SuggestConcreteness(m_map);
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
 {
-  assert(!"Not yet implemented");
-  return 0;
+  //Rate as if all items are relevant
+  TRACE("TODO: GetSuggestedSpecificity not yet completely implemented");
+  return pvdb::Rating::SuggestSpecificity(m_map);
 }
 
 void QtPvdbRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)
