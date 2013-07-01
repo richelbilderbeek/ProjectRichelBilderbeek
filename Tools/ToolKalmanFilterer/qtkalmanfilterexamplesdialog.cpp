@@ -16,6 +16,7 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
+#include <QKeyEvent>
 #include <QVBoxLayout>
 
 #include "kalmanfilterexample.h"
@@ -55,6 +56,12 @@ void QtKalmanFilterExamplesDialog::ClickButton(const int i)
   assert(i < boost::numeric_cast<int>(v.size()));
   assert(v[i]);
   v[i]->click();
+}
+
+void QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event)
+{
+  if (event->key() == Qt::Key_Escape) return;
+  QDialog::keyPressEvent(event);
 }
 
 void QtKalmanFilterExamplesDialog::on_button_1_clicked()

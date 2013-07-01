@@ -11,6 +11,7 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <QKeyEvent>
 #include <QTableWidgetItem>
 
 #include "fixedlagsmootherkalmanfilter.h"
@@ -59,6 +60,12 @@ QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
 QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
 {
   delete ui;
+}
+
+void QtKalmanFiltererParameterDialog::keyPressEvent(QKeyEvent * event)
+{
+  if (event->key() == Qt::Key_Escape) return;
+  QDialog::keyPressEvent(event);
 }
 
 const std::string QtKalmanFiltererParameterDialog::ToHtml() const

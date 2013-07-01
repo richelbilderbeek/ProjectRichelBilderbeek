@@ -13,6 +13,7 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
+#include <QKeyEvent>
 #include <QVBoxLayout>
 
 #include "laggedwhitenoisesystemfactory.h"
@@ -132,6 +133,12 @@ WhiteNoiseSystemType QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType
       assert(!"Unimplemented index of box_white_noise_system_type");
       throw std::logic_error(__func__);
   }
+}
+
+void QtWhiteNoiseSystemParametersDialog::keyPressEvent(QKeyEvent * event)
+{
+  if (event->key() == Qt::Key_Escape) return;
+  QDialog::keyPressEvent(event);
 }
 
 void QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_currentIndexChanged(int)

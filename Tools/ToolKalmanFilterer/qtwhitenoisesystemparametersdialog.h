@@ -55,6 +55,9 @@ public:
   ///Set the white noise system type
   void SetWhiteNoiseSystemType(const WhiteNoiseSystemType type);
 
+protected:
+  void keyPressEvent(QKeyEvent * event);
+
 private:
   Ui::QtWhiteNoiseSystemParametersDialog *ui;
 

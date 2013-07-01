@@ -37,6 +37,9 @@ signals:
   void signal_example(const KalmanFilterExample * const example);
   //void signal_example(const boost::shared_ptr<KalmanFilterExample> example);
 
+protected:
+  void keyPressEvent(QKeyEvent * event);
+
 private:
   Ui::QtKalmanFilterExamplesDialog *ui;
 

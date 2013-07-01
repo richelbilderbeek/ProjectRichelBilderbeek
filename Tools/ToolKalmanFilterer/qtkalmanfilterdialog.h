@@ -50,6 +50,9 @@ public:
 signals:
   void signal_kalman_filter_type_changed(const KalmanFilterType new_type);
 
+protected:
+  void keyPressEvent(QKeyEvent * event);
+
 private:
   Ui::QtKalmanFilterDialog *ui;
 
