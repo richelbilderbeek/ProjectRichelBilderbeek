@@ -19,6 +19,8 @@ ModelFunctionParser::ModelFunctionParser(
   : m_parser(new FunctionParser)
 {
   assert(m_parser);
+  m_parser->AddConstant("pi",M_PI);
+  m_parser->AddConstant("tau",2.0*M_PI);
   m_parser->AddFunction("rand",MyRand,1);
   m_parser->Parse(my_function,variable_name);
 
