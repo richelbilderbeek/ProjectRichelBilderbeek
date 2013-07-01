@@ -29,6 +29,9 @@ SOURCES += \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
     ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.cpp \
@@ -41,6 +44,7 @@ SOURCES += \
     ../../Classes/CppKalmanFilter/kalmanfilterparameters.cpp \
     ../../Classes/CppKalmanFilter/kalmanfilterparametertype.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltertype.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltertypes.cpp \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.cpp \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.cpp \
@@ -61,15 +65,19 @@ SOURCES += \
     ../../Classes/CppKalmanFilter/whitenoisesystemparameters.cpp \
     ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.cpp \
     ../../Classes/CppKalmanFilter/whitenoisesystemtype.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp \
     ../../Classes/CppMatrix/matrix.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../../Classes/CppQtMatrix/qtmatrix.cpp \
+    ../../Classes/CppQtModel/modelfunctionparser.cpp \
     ../../Classes/CppQtModel/qtstdvectorfunctionmodel.cpp \
     ../../Classes/CppQtModel/qtstdvectorstringmodel.cpp \
     ../../Classes/CppQtModel/qtublasmatrixdoublemodel.cpp \
     ../../Classes/CppQtModel/qtublasvectordoublemodel.cpp \
+    ../../Classes/CppQtModel/qtublasvectorintmodel.cpp \
     kalmanfilterermenudialog.cpp \
+    qtcopyalltablewidget.cpp \
     qtfixedlagsmootherkalmanfiltercalculationdialog.cpp \
     qtkalmanfiltercalculationdialog.cpp \
     qtkalmanfilterdialog.cpp \
@@ -83,15 +91,7 @@ SOURCES += \
     qtmain.cpp \
     qtstandardkalmanfiltercalculationdialog.cpp \
     qtsteadystatekalmanfiltercalculationdialog.cpp \
-    qtwhitenoisesystemparametersdialog.cpp \
-    ../../Classes/CppQtModel/modelfunctionparser.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfiltertypes.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp \
-    qtcopyalltablewidget.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
-    ../../Classes/CppQtModel/qtublasvectorintmodel.cpp
+    qtwhitenoisesystemparametersdialog.cpp
 
 
 HEADERS += \
@@ -100,6 +100,9 @@ HEADERS += \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
     ../../Classes/CppKalmanFilter/kalmanfilter.h \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.h \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h \
@@ -112,6 +115,7 @@ HEADERS += \
     ../../Classes/CppKalmanFilter/kalmanfilterparameters.h \
     ../../Classes/CppKalmanFilter/kalmanfilterparametertype.h \
     ../../Classes/CppKalmanFilter/kalmanfiltertype.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltertypes.h \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.h \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.h \
@@ -132,16 +136,20 @@ HEADERS += \
     ../../Classes/CppKalmanFilter/whitenoisesystemparameters.h \
     ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.h \
     ../../Classes/CppKalmanFilter/whitenoisesystemtype.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h \
     ../../Classes/CppMatrix/matrix.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppQtMatrix/qtmatrix.h \
+    ../../Classes/CppQtModel/modelfunctionparser.h \
     ../../Classes/CppQtModel/qtstdvectorfunctionmodel.h \
     ../../Classes/CppQtModel/qtstdvectorstringmodel.h \
     ../../Classes/CppQtModel/qtublasmatrixdoublemodel.h \
     ../../Classes/CppQtModel/qtublasvectordoublemodel.h \
+    ../../Classes/CppQtModel/qtublasvectorintmodel.h \
     ../../Classes/CppTrace/trace.h \
     kalmanfilterermenudialog.h \
+    qtcopyalltablewidget.h \
     qtfixedlagsmootherkalmanfiltercalculationdialog.h \
     qtkalmanfiltercalculationdialog.h \
     qtkalmanfilterdialog.h \
@@ -154,15 +162,7 @@ HEADERS += \
     qtkalmanfilterexperimentmodel.h \
     qtstandardkalmanfiltercalculationdialog.h \
     qtsteadystatekalmanfiltercalculationdialog.h \
-    qtwhitenoisesystemparametersdialog.h \
-    ../../Classes/CppQtModel/modelfunctionparser.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltertypes.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h \
-    qtcopyalltablewidget.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
-    ../../Classes/CppQtModel/qtublasvectorintmodel.h
+    qtwhitenoisesystemparametersdialog.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -232,8 +232,8 @@ unix {
 win32 {
   !static {
     message(Native Windows)
-    #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++0x -Werror
+    #Allow native Windows to emit warnings without terminating
+    QMAKE_CXXFLAGS += -std=c++0x #-Werror
   }
 
   static {
