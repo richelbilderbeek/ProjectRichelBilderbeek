@@ -77,6 +77,9 @@ public slots:
   ///Called when the user changes to a different type of Kalman filter
   void SetKalmanFilterType(const KalmanFilterType new_type);
 
+protected:
+  void keyPressEvent(QKeyEvent * event);
+
 private:
   Ui::QtKalmanFilterExperimentDialog *ui;
 

@@ -177,6 +177,12 @@ bool QtKalmanFilterExperimentDialog::IsValid() const
 }
 #endif
 
+void QtKalmanFilterExperimentDialog::keyPressEvent(QKeyEvent * event)
+{
+  if (event->key() == Qt::Key_Escape) return;
+  QDialog::keyPressEvent(event);
+}
+
 
 void QtKalmanFilterExperimentDialog::LoadFromDokuWiki(const std::string& filename)
 {

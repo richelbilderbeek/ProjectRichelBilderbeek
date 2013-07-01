@@ -45,11 +45,11 @@ signals:
   ///Emitted when table changes from/to a valid to/from an invalid state
   void signal_state_changed();
 
+protected:
+  void keyPressEvent(QKeyEvent * event);
+
 private:
   Ui::QtKalmanFiltererParameterDialog *ui;
-
-private slots:
-
 };
 
 #endif // QTKALMANFILTERERPARAMETERDIALOG

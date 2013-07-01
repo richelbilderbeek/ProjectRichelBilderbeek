@@ -13,6 +13,7 @@
 #include <boost/signals2.hpp>
 #include <boost/lambda/lambda.hpp>
 
+#include <QKeyEvent>
 #include <QTableWidgetItem>
 #include <QVBoxLayout>
 
@@ -113,6 +114,12 @@ const std::vector<KalmanFilterParameterType> QtKalmanFilterDialog::GetParameterT
     };
   assert(v.size() == KalmanFilterParameter::GetAll().size());
   return v;
+}
+
+void QtKalmanFilterDialog::keyPressEvent(QKeyEvent * event)
+{
+  if (event->key() == Qt::Key_Escape) return;
+  QDialog::keyPressEvent(event);
 }
 
 
