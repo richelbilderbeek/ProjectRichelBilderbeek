@@ -32,10 +32,11 @@
 QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
   : QDialog(parent),
-    ui(new Ui::QtKalmanFilterDialog), m_model(model)
+    ui(new Ui::QtKalmanFilterDialog),
+    m_model(model)
 {
-  assert(m_model);
 
+  assert(m_model);
   ui->setupUi(this);
 
   //Create the map

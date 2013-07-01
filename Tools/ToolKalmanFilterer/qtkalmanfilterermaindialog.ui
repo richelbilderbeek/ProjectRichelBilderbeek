@@ -78,7 +78,7 @@
      </widget>
      <widget class="QTabWidget" name="tab_main">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="layout_context">
        <attribute name="title">
@@ -88,7 +88,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tab_context">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_web_view_context">
            <attribute name="title">
