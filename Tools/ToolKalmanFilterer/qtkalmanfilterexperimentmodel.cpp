@@ -1000,6 +1000,7 @@ const std::vector<std::string> QtKalmanFilterExperimentModel::SeperateString(
 
 void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const KalmanFilterExample>& example)
 {
+  this->m_context = example->GetContext();
 
   assert(example);
   dynamic_cast<StateNamesModel*>(
@@ -1061,6 +1062,8 @@ void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const Kal
     this->Find(KalmanFilterExperimentParameterType::state_transition)
   )->SetRawData(example->GetKalmanFilterParameters()->GetStateTransition());
 
+  assert(example);
+  assert(example->GetWhiteNoiseSystemParameters());
   this->SetWhiteNoiseSystemType(example->GetWhiteNoiseSystemParameters()->GetType());
 
   assert(

@@ -142,7 +142,7 @@ QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog()
 void QtKalmanFilterExperimentDialog::ClickExample(const int i)
 {
   this->m_examples_dialog->ClickButton(i);
-
+  m_signal_new_parameters();
   assert(IsValid());
 }
 
@@ -180,6 +180,19 @@ bool QtKalmanFilterExperimentDialog::IsValid() const
 void QtKalmanFilterExperimentDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
+
+  if (event->modifiers() == Qt::AltModifier)
+  {
+    const int index = event->key() - '0';
+    const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
+    if (index < max_index)
+    {
+      ClickExample(index);
+      m_signal_new_parameters();
+      return;
+    }
+  }
+
   QDialog::keyPressEvent(event);
 }
 

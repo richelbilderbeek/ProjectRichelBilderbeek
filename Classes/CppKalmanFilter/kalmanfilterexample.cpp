@@ -14,15 +14,17 @@
 #include "trace.h"
 
 KalmanFilterExample::KalmanFilterExample(
-  const std::string& description,
+  const std::string& title,
+  const std::string& context,
   const std::vector<std::string>& inputs,
   const boost::shared_ptr<const StandardKalmanFilterParameters>& kalman_filter_parameters,
   const std::vector<std::string>& state_names,
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters>& white_noise_system_parameters)
-  : m_description(description),
+  : m_context(context),
     m_inputs(inputs),
     m_kalman_filter_parameters(kalman_filter_parameters),
     m_state_names(state_names),
+    m_title(title),
     m_white_noise_system_parameters(white_noise_system_parameters)
 {
   assert(!m_state_names.empty());
@@ -53,29 +55,13 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample(const in
   std::unique_ptr<KalmanFilterExample> p;
   switch (i)
   {
-    case  0: break;
-    case  1:
-      p = CreateExample1();
-      break;
-    case  2:
-      p = CreateExample2();
-      break;
-    case  3:
-      p = CreateExample3();
-      break;
-    case  4:
-      p = CreateExample4();
-      break;
-    case  5:
-      p = CreateExample5(); break;
-    case  6:
-    case  7:
-    case  8:
-      p = CreateExample6(); break;
-    case  9:
-      break;
-    case 10:
-      break;
+    case  0: p = CreateExample0(); break;
+    case  1: p = CreateExample1(); break;
+    case  2: p = CreateExample2(); break;
+    case  3: p = CreateExample3(); break;
+    case  4: p = CreateExample4(); break;
+    case  5: p = CreateExample5(); break;
+    case  6: p = CreateExample6(); break;
     default: break;
   }
   //When p is nullptr, this indicates that there are no more examples
@@ -83,11 +69,158 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample(const in
   return p;
 }
 
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample0()
+{
+  const std::string title = "Exponential decay";
+  const std::string context
+    = "<h1>" + title + "</h1>"
+      "<p>&nbsp;</p>"
+      "<p>"
+      "  This is more of a mathematical example. It shows that"
+      "  a recurrence equation and its closed-form solution for exponential"
+      "  decay are equivalent"
+      "</p>"
+      "<p>"
+      "  The closed-form solution of exponential decay is:"
+      "</p>"
+      "<p>"
+      "  f(t) = e^(-gamma*t)"
+      "</p>"
+      "<p>"
+      "  Where t is the time step and gamma a constant, which is equal to -ln(0.1)/1000 = 0.0023025850929940454."
+      "  This value of gamma lets the exponential decay reach 10% after 1000 timesteps."
+      "</p>"
+      "<p>"
+      "  The recurrence equation of exponential decay is:"
+      "</p>"
+      "<p>"
+      "  f(t+1) = tau * f(t)"
+      "</p>"
+      "<p>"
+      "  Where t is the time step and tau a constant, which is equal to e^(ln(0.1)/1000) = 0.99770006382255327."
+      "  This value of tau lets the exponential decay reach 10% after 1000 timesteps."
+      "</p>"
+      "<p>"
+      "  The closed-form solution is plotted as the input, the recurrence equation as the state."
+      "  Because the control matrix contains a zero only, the input has no influence on the state."
+      "  For the cleanest look, all noise was set to a low value."
+      "</p>"
+      ;
+  const int n = 1;
+  const double e = 0.000000001;
+  const double gamma = -std::log(0.1)/1000.0;
+  const double tau = std::pow(M_E,std::log(0.1) / 1000.0);
+  const boost::numeric::ublas::matrix<double> control
+    = Matrix::CreateMatrix(n,n,
+    {
+      0.0
+    } );
+
+  //Just a guess
+  const boost::numeric::ublas::matrix<double> initial_covariance_estimate
+    = Matrix::CreateMatrix(n,n,
+      {
+        0.0,
+      } );
+
+  //Initial state estimate is correct on purpose
+  const boost::numeric::ublas::vector<double> initial_state_estimate
+    = Matrix::CreateVector( { 1.0 } );
+
+  //From 100%
+  const boost::numeric::ublas::vector<double> initial_state
+    = Matrix::CreateVector( { 1.0 } );
+
+  //Only (pessimistic) normal noise in GPS, speedometer and accelerometer
+  const boost::numeric::ublas::matrix<double> estimated_measurement_noise
+    = Matrix::CreateMatrix(n,n,
+    {
+      e
+    } );
+
+  //Observe all: GPS, speedometer, accelerometer
+  const boost::numeric::ublas::matrix<double> observation
+    = Matrix::CreateMatrix(n,n,
+    {
+      1.0
+    } );
+
+  const boost::numeric::ublas::matrix<double> estimated_process_noise_covariance
+    = Matrix::CreateMatrix(n,n, {
+      e
+    } );
+
+  const boost::numeric::ublas::vector<double> real_measurement_noise
+    = Matrix::CreateVector( { e } );
+
+  const boost::numeric::ublas::vector<double> real_process_noise
+    = Matrix::CreateVector( { e } );
+
+  //Reach a 10% value after 1000 timesteps
+  const boost::numeric::ublas::matrix<double> state_transition
+    = boost::numeric::ublas::trans(Matrix::CreateMatrix(n,n,
+      { //Shown as on paper
+        tau
+      } ));
+
+  const std::string input = std::string("exp(-") + boost::lexical_cast<std::string>(gamma) + "*t)";
+  const std::vector<std::string> inputs = { input };
+
+  const boost::shared_ptr<const StandardKalmanFilterParameters> kalman_filter_parameters(
+    new StandardKalmanFilterParameters(
+    control,
+    estimated_measurement_noise,
+    estimated_process_noise_covariance,
+    initial_covariance_estimate,
+    initial_state_estimate,
+    observation,
+    state_transition)
+  );
+
+  const std::vector<std::string> state_names = { "x" };
+
+  const boost::shared_ptr<const StandardWhiteNoiseSystemParameters> white_noise_system_parameters(
+    new StandardWhiteNoiseSystemParameters(
+    control,
+    initial_state,
+    real_measurement_noise,
+    real_process_noise,
+    state_transition)
+  );
+
+  assert(control.size1() > 0);
+  assert(control.size2() > 0);
+  assert(state_names.size() == inputs.size());
+  assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
+  assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
+  assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetControl(),white_noise_system_parameters->GetControl()));
+  assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetStateTransition(),white_noise_system_parameters->GetStateTransition()));
+
+  std::unique_ptr<KalmanFilterExample> example(
+    new KalmanFilterExample(
+      title,
+      context,
+      inputs,
+      kalman_filter_parameters,
+      state_names,
+      white_noise_system_parameters
+    )
+  );
+  assert(example);
+  return example;
+}
+
+
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
 {
-  
+  const std::string title = "Constant voltage";
+
   //Use examples and variables as http://greg.czerniak.info/guides/kalman1
   //Context: measuring a voltage
+  const std::string context
+    = "<h1>" + title + "</h1>\n"
+      "<p>This is an example from <a href=\"http://greg.czerniak.info/guides/kalman1\">Greg Czerniak's tutorial<p>\n";
+
   const boost::numeric::ublas::matrix<double> control
     = Matrix::CreateMatrix(1,1, { 0.0 } );
   const boost::numeric::ublas::matrix<double> estimated_measurement_noise
@@ -140,7 +273,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
 
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
-      "Voltage",
+      title,
+      context,
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -154,6 +288,9 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
 
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
 {
+  const std::string title = "Accelerating car (two states)";
+  const std::string context
+    = "<h1>" + title + "</h1>";
   //Use example from Simon, D. Kalman Filtering. Embedded Systems Programming. June 2001
   const int n = 2;
   const double acceleration = 1.0;
@@ -237,7 +374,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
 
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
-      "Accelerating car (two states)",
+      title,
+      context,
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -250,6 +388,10 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
 
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
 {
+  const std::string title = "Cannonball";
+  const std::string context
+    = "<h1>" + title + "</h1>";
+
   //Use examples and variables as http://greg.czerniak.info/guides/kalman1
   //Context: cannonball lauched from a cannon
   const int n = 4; //Size of all vectors and matrices
@@ -377,7 +519,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
 
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
-      "Cannonball",
+      title,
+      context,
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -390,6 +533,10 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
 
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
 {
+  const std::string title = "Spring";
+  const std::string context
+    = "<h1>" + title + "</h1>";
+
   //Use spring system: a mass is lying on a frictionless surface and is connected to two horizontal springs
   const int n = 2; //Size of vectors and matrices
   const double dt = 0.1; //Timestep
@@ -498,7 +645,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
 
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
-      "Spring",
+      title,
+      context,
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -511,6 +659,10 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
 
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5()
 {
+  const std::string title = "Airhockey puck";
+  const std::string context
+    = "<h1>" + title + "</h1>";
+
   //Context: airhockey puck with a constant speed
   const boost::numeric::ublas::matrix<double> control
     = Matrix::CreateMatrix(1,1, { 1.0 } );
@@ -567,7 +719,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5()
 
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
-      "Airhockey puck",
+      title,
+      context,
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -582,6 +735,10 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5()
 
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
 {
+  const std::string title = "Accelerating car (3 states)";
+  const std::string context
+    = "<h1>" + title + "</h1>";
+
   //Another accelerating car
   const int n = 3;
   const double force =  1000.0; //Newton
@@ -693,7 +850,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
 
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
-      "Accelerating car (3 states)",
+      title,
+      context,
       inputs,
       kalman_filter_parameters,
       state_names,
@@ -703,3 +861,4 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
   assert(example);
   return example;
 }
+
