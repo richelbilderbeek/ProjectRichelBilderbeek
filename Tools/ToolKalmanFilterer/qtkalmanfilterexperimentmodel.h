@@ -56,8 +56,14 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///Not (yet?) implemented
   //void FromHtml(const std::string& s);
 
+  ///Set the context
+  const std::string& GetContext() const { return m_context; }
+
   ///Get the number of timesteps
   int GetNumberOfTimesteps() const { return m_number_of_timesteps; }
+
+  ///Set the context
+  void SetContext(const std::string& context) { m_context = context; }
 
   ///Set an example parameter set
   void SetExample(const boost::shared_ptr<const KalmanFilterExample>& example);
@@ -93,10 +99,9 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///If the state names are changed, let all other models have their headers updated
   void OnStateNamesChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
 
-
   private:
   ///The HTML description of the context of this experiment
-  const std::string m_context;
+  std::string m_context;
 
   ///The Kalman filter type
   KalmanFilterType m_kalman_filter_type;

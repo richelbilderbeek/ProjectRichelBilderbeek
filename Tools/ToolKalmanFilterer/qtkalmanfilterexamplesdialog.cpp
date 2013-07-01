@@ -17,6 +17,7 @@
 #include <boost/numeric/ublas/vector.hpp>
 
 #include <QKeyEvent>
+#include <QPushButton>
 #include <QVBoxLayout>
 
 #include "kalmanfilterexample.h"
@@ -35,6 +36,21 @@ QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
   #ifndef NDEBUG
   Test();
   #endif
+  {
+    assert(this->layout());
+    this->layout()->setSpacing(1);
+    const std::size_t sz = KalmanFilterExample::CreateExamples().size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      assert(KalmanFilterExample::CreateExamples()[i]);
+      const std::string title = KalmanFilterExample::CreateExamples()[i]->GetTitle();
+      const std::string text = boost::lexical_cast<std::string>(i) + ". " + title;
+      QPushButton * const button = new QPushButton(text.c_str());
+      button->setFlat(true);
+      this->layout()->addWidget(button);
+      QObject::connect(button,SIGNAL(clicked()),this,SLOT(OnButtonClicked()));
+    }
+  }
 }
 
 QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
@@ -42,85 +58,57 @@ QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
   delete ui;
 }
 
-void QtKalmanFilterExamplesDialog::ClickButton(const int i)
+void QtKalmanFilterExamplesDialog::EmitExample(const int index)
 {
-  
-  std::vector<QPushButton * > v;
-  v.push_back(ui->button_1);
-  v.push_back(ui->button_2);
-  v.push_back(ui->button_3);
-  v.push_back(ui->button_4);
-  v.push_back(ui->button_5);
-  v.push_back(ui->button_6);
-  assert(i >= 0);
-  assert(i < boost::numeric_cast<int>(v.size()));
-  assert(v[i]);
-  v[i]->click();
+  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(index);
+  assert(example);
+  const KalmanFilterExample * const p = example.release();
+  assert(p);
+  emit signal_example(p);
+}
+
+void QtKalmanFilterExamplesDialog::OnButtonClicked()
+{
+  const QPushButton * const button = dynamic_cast<QPushButton*>(this->focusWidget());
+  if (!button) return;
+  assert(button);
+  const std::string text = button->text().toStdString();
+  assert(text.size() > 0);
+  const int index = boost::lexical_cast<int,char>(text[0]);
+  EmitExample(index);
+}
+
+
+void QtKalmanFilterExamplesDialog::ClickButton(const int button_index)
+{
+  EmitExample(button_index);
 }
 
 void QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
+  if (event->modifiers() == Qt::AltModifier)
+  {
+    const int index = event->key() - '0';
+    const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
+    TRACE(index);
+    if (index >= 0 && index < max_index) { EmitExample(index); return; }
+  }
   QDialog::keyPressEvent(event);
-}
-
-void QtKalmanFilterExamplesDialog::on_button_1_clicked()
-{
-  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(1);
-  assert(example);
-  const KalmanFilterExample * const p = example.release();
-  assert(p);
-  emit signal_example(p);
-}
-
-void QtKalmanFilterExamplesDialog::on_button_2_clicked()
-{
-  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(2);
-  assert(example);
-  const KalmanFilterExample * const p = example.release();
-  assert(p);
-  emit signal_example(p);
-}
-
-void QtKalmanFilterExamplesDialog::on_button_3_clicked()
-{
-  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(3);
-  assert(example);
-  const KalmanFilterExample * const p = example.release();
-  assert(p);
-  emit signal_example(p);
-}
-
-void QtKalmanFilterExamplesDialog::on_button_4_clicked()
-{
-  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(4);
-  assert(example);
-  const KalmanFilterExample * const p = example.release();
-  assert(p);
-  emit signal_example(p);
-}
-
-void QtKalmanFilterExamplesDialog::on_button_5_clicked()
-{
-  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(5);
-  assert(example);
-  const KalmanFilterExample * const p = example.release();
-  assert(p);
-  emit signal_example(p);
-}
-
-void QtKalmanFilterExamplesDialog::on_button_6_clicked()
-{
-  std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(6);
-  assert(example);
-  const KalmanFilterExample * const p = example.release();
-  assert(p);
-  emit signal_example(p);
 }
 
 #ifndef NDEBUG
 void QtKalmanFilterExamplesDialog::Test()
 {
-
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    QtKalmanFilterExamplesDialog d;
+    const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
+    for (int i=0; i!=max_index; ++i) { d.ClickButton(i); }
+  }
 }
 #endif

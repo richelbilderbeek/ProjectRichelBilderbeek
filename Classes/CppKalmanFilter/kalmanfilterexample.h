@@ -12,7 +12,8 @@
 struct KalmanFilterExample
 {
   KalmanFilterExample(
-    const std::string& description,
+    const std::string& title,
+    const std::string& context,
     const std::vector<std::string>& inputs,
     const boost::shared_ptr<const StandardKalmanFilterParameters>& kalman_filter_parameters,
     const std::vector<std::string>& state_names,
@@ -22,14 +23,12 @@ struct KalmanFilterExample
 
   static std::unique_ptr<KalmanFilterExample> CreateExample(const int i);
 
-  const std::string& GetDescription() const
-    { return m_description; }
-  const std::vector<std::string>& GetInputs() const
-    { return m_inputs; }
+  const std::string& GetContext() const { return m_context; }
+  const std::vector<std::string>& GetInputs() const { return m_inputs; }
   const boost::shared_ptr<const StandardKalmanFilterParameters>& GetKalmanFilterParameters() const
     { return m_kalman_filter_parameters; }
-  const std::vector<std::string>& GetStateNames() const
-    { return m_state_names; }
+  const std::vector<std::string>& GetStateNames() const { return m_state_names; }
+  const std::string& GetTitle() const { return m_title; }
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters>& GetWhiteNoiseSystemParameters() const
     { return  m_white_noise_system_parameters; }
 
@@ -41,12 +40,14 @@ struct KalmanFilterExample
   friend void boost::checked_delete<>(const KalmanFilterExample*);
   friend struct std::default_delete<KalmanFilterExample>;
 
-  const std::string m_description;
+  const std::string m_context;
   const std::vector<std::string> m_inputs;
   const boost::shared_ptr<const StandardKalmanFilterParameters> m_kalman_filter_parameters;
   const std::vector<std::string> m_state_names;
+  const std::string m_title;
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters> m_white_noise_system_parameters;
 
+  static std::unique_ptr<KalmanFilterExample> CreateExample0();
   static std::unique_ptr<KalmanFilterExample> CreateExample1();
   static std::unique_ptr<KalmanFilterExample> CreateExample2();
   static std::unique_ptr<KalmanFilterExample> CreateExample3();

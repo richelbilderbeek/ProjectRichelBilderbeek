@@ -207,13 +207,23 @@ const boost::shared_ptr<QtKalmanFilterCalculationDialog> QtKalmanFiltererMainDia
 void QtKalmanFiltererMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+
+  if (event->modifiers() == Qt::AltModifier)
+  {
+    const int index = event->key() - '0';
+    const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
+    if (index < max_index) { m_experiment_dialog->ClickExample(index); return; }
+  }
+
 }
 
 void QtKalmanFiltererMainDialog::OnNewParameters()
 {
-
-  ui->edit_context->setPlainText(m_model->CreateExperiment()->GetContext().c_str());
-  //ui->web_view_context->setHtml(m_model->GetContext().c_str());
+  assert(m_model);
+  assert(m_model->CreateExperiment());
+  const std::string context = m_model->CreateExperiment()->GetContext().c_str();
+  ui->edit_context->setPlainText(context.c_str());
+  ui->web_view_context->setHtml(context.c_str());
 }
 
 void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
