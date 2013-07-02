@@ -29,8 +29,8 @@ public:
   explicit QtKalmanFilterExamplesDialog(QWidget *parent = 0);
   ~QtKalmanFilterExamplesDialog();
 
-  ///Click one of the buttons
-  void ClickButton(const int n);
+  ///Click one of the examples
+  void EmitExample(const int n);
 
 signals:
   //Never emit a boost::shared_ptr [1]
@@ -43,14 +43,13 @@ protected:
 private:
   Ui::QtKalmanFilterExamplesDialog *ui;
 
-  void EmitExample(const int n);
 
   #ifndef NDEBUG
   static void Test();
   #endif
 
 private slots:
-  void OnButtonClicked();
+  void on_button_clicked();
 };
 
 

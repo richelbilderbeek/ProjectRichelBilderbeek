@@ -65,6 +65,10 @@ QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   assert(m_model);
   assert(m_noise_parameters_dialog);
   assert(this->layout());
+
+  //layout()->addWidget(new QLabel("Example settings"));
+  layout()->addWidget(m_examples_dialog);
+
   //Create the map
   {
     const std::vector<KalmanFilterExperimentParameterType> v =
@@ -110,8 +114,6 @@ QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   layout()->addWidget(m_filter_dialog);
   layout()->addWidget(new QLabel("White noise system parameters"));
   layout()->addWidget(m_noise_parameters_dialog);
-  layout()->addWidget(new QLabel("Example settings"));
-  layout()->addWidget(m_examples_dialog);
 
   assert(m_noise_parameters_dialog);
   assert(m_examples_dialog);
@@ -141,8 +143,7 @@ QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog()
 
 void QtKalmanFilterExperimentDialog::ClickExample(const int i)
 {
-  this->m_examples_dialog->ClickButton(i);
-  m_signal_new_parameters();
+  this->m_examples_dialog->EmitExample(i);
   assert(IsValid());
 }
 
@@ -180,19 +181,6 @@ bool QtKalmanFilterExperimentDialog::IsValid() const
 void QtKalmanFilterExperimentDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
-
-  if (event->modifiers() == Qt::AltModifier)
-  {
-    const int index = event->key() - '0';
-    const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
-    if (index < max_index)
-    {
-      ClickExample(index);
-      m_signal_new_parameters();
-      return;
-    }
-  }
-
   QDialog::keyPressEvent(event);
 }
 
