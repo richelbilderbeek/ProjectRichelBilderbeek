@@ -66,7 +66,7 @@ const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
   v.push_back("2013-06-14: version 1.9: allow to copy data from table");
   v.push_back("2013-06-17: version 1.10: removed useless examples");
   v.push_back("2013-06-27: version 1.11: added gaps-filled white noise system, added versioning to parameter files for backwards compatibility");
-  v.push_back("2013-07-01: version 1.12: added the constants pi and tau to function parser");
+  v.push_back("2013-07-01: version 1.12: added the constants pi and tau to function parser, context can be saved to file");
   //Future ideas:
   //- Add an explanation to the examples, e.g. in the form of an HTML page. This can be done
   //  by adding the DokuWiki's <html></html> tags, with an HTML comment inside to find the explanation:
