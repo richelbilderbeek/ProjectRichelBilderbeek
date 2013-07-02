@@ -35,13 +35,15 @@
 #include "whitenoisesystemfactory.h"
 #include "whitenoisesystemtypes.h"
 
+const int QtKalmanFilterExperimentModel::m_version_current = 2;
+
 QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel()
  : m_kalman_filter_type(KalmanFilterType::standard),
    m_lag_estimated(0),
    m_lag_real(0),
    m_models(CreateMap()),
    m_number_of_timesteps(0),
-   m_version(1),
+   m_version(m_version_current),
    m_white_noise_system_type(WhiteNoiseSystemType::standard)
 {
   #ifndef NDEBUG
@@ -485,21 +487,6 @@ const boost::shared_ptr<WhiteNoiseSystemParameters> QtKalmanFilterExperimentMode
       this->Find(KalmanFilterExperimentParameterType::measurement_frequency)
     )->GetRawData();
 
-  #ifndef NDEBUG
-  {
-    const std::size_t sz = measurement_frequency.size();
-    for (std::size_t i = 0; i!=sz; ++i)
-    {
-      if (measurement_frequency[i] < 1)
-      {
-        TRACE(measurement_frequency.size());
-        TRACE("BREAK");
-      }
-      assert(measurement_frequency[i] >= 1);
-    }
-  }
-  #endif
-
   const auto real_measurement_noise =
     dynamic_cast<const RealMeasurementNoiseModel*>(
       this->Find(KalmanFilterExperimentParameterType::real_measurement_noise)
@@ -647,7 +634,6 @@ void QtKalmanFilterExperimentModel::FromDokuWiki(const std::string& text)
 
     //Have to do manually as Boost.Regex its boost::regex_replace
     //does not link under GCC 4.4.0
-
     ReadKalmanFilterType(line_str);
     Read(line_str,"Lag estimated",m_lag_estimated);
     Read(line_str,"Lag real",m_lag_real);
@@ -655,6 +641,7 @@ void QtKalmanFilterExperimentModel::FromDokuWiki(const std::string& text)
     Read(line_str,"Version",m_version);
     ReadWhiteNoiseSystemType(line_str);
   }
+  ReadContext(lines);
 
   //Go through all m_models
   {
@@ -668,6 +655,7 @@ void QtKalmanFilterExperimentModel::FromDokuWiki(const std::string& text)
       assert(type != KalmanFilterExperimentParameterType::n_parameters);
       assert(model);
 
+      //version 0 did not support measurement_frequency
       if (m_version == 0 && type == KalmanFilterExperimentParameterType::measurement_frequency) continue;
 
       const std::string name = KalmanFilterExperimentParameter::ToName(type);
@@ -690,6 +678,12 @@ void QtKalmanFilterExperimentModel::FromDokuWiki(const std::string& text)
     model->SetRange(1,std::numeric_limits<int>::max(),1);
     model->SetRawData( Matrix::CreateVectorInt( std::vector<int>(n_rows,1) ) );
     m_version = 1;
+  }
+  if (m_version == 1)
+  {
+    //version 1 did not save/load a context from file
+    m_context = "";
+    m_version = 2;
 
     //Test if new version works OK
     #ifndef NDEBUG
@@ -701,6 +695,8 @@ void QtKalmanFilterExperimentModel::FromDokuWiki(const std::string& text)
     }
     #endif
   }
+
+  assert(m_version == m_version_current);
 
 }
 
@@ -725,6 +721,13 @@ bool QtKalmanFilterExperimentModel::IsValid() const
   if (m_models.empty())
   {
     TRACE("No tables in m_models");
+    return false;
+  }
+  if (m_version != m_version_current)
+  {
+    TRACE(m_version);
+    TRACE(m_version_current);
+    TRACE("Model not updated to latest version");
     return false;
   }
   typedef std::map<KalmanFilterExperimentParameterType,QAbstractTableModel *>::const_iterator Iterator;
@@ -819,6 +822,24 @@ void QtKalmanFilterExperimentModel::OnStateNamesChanged(const QModelIndex &/*top
     }
   }
 
+}
+
+void QtKalmanFilterExperimentModel::ReadContext(const std::vector<std::string>& v)
+{
+  const auto begin = std::find(v.begin(),v.end(),std::string("<html>"));
+  if (begin == v.end()) return;
+  auto end = std::find(v.begin(),v.end(),std::string("</html>"));
+  assert(end != v.end());
+  std::string new_context;
+
+  auto line = begin;
+
+  for(++line; line!=end; ++line) //Skip first HTML tag
+  {
+    new_context += (*line) + "\n";
+  }
+  m_context = new_context.substr(0,new_context.size() - 1); //Strip \n
+  //TRACE(m_context);
 }
 
 void QtKalmanFilterExperimentModel::ReadKalmanFilterType(const std::string& s)
@@ -1203,7 +1224,13 @@ void QtKalmanFilterExperimentModel::Test()
 
 const std::string QtKalmanFilterExperimentModel::ToDokuWiki() const
 {
-  assert(m_version == 1);
+  if (m_version != m_version_current)
+  {
+    TRACE(m_version);
+    TRACE(m_version_current);
+    TRACE("BREAK");
+  }
+  assert(m_version == m_version_current);
   std::stringstream s;
   s << "  * Kalman filter type: " << KalmanFilterTypes::ToStr(m_kalman_filter_type) << "\n"
     << "  * Lag estimated: " << boost::lexical_cast<std::string>(m_lag_estimated) << "\n"
@@ -1211,6 +1238,10 @@ const std::string QtKalmanFilterExperimentModel::ToDokuWiki() const
     << "  * Number of timesteps: " << boost::lexical_cast<std::string>(m_number_of_timesteps) << "\n"
     << "  * Version: " << boost::lexical_cast<std::string>(m_version) << "\n"
     << "  * White noise system type: " << WhiteNoiseSystemTypes::ToStr(m_white_noise_system_type) << "\n"
+    << " \n"
+    << "<html>\n"   //HTML opening tag must have its own line
+    << this->GetContext() << '\n'
+    << "</html>\n" //HTML closing tag must have its own line
     << " \n";
   //Go through all m_models
   {
@@ -1279,6 +1310,9 @@ const std::string QtKalmanFilterExperimentModel::ToHtml() const
   s+="  <li>White noise system type: " + WhiteNoiseSystemTypes::ToStr(m_white_noise_system_type) + "</li>";
   s+="</ul>";
   s+="<p>&nbsp</p>";
+  s+="<!-- <context> -->";
+  s+=m_context;
+  s+="<!-- </context> -->";
 
   //Go through all m_models
   {

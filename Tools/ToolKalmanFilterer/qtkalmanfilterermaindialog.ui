@@ -97,6 +97,12 @@
            <layout class="QGridLayout" name="gridLayout_6">
             <item row="0" column="0">
              <widget class="QWebView" name="web_view_context">
+              <property name="font">
+               <font>
+                <family>Courier</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
               <property name="url">
                <url>
                 <string>about:blank</string>
