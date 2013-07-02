@@ -737,40 +737,6 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7()
 {
   const std::string title = "Exponential decay";
-  const std::string context
-    = "<h1>" + title + "</h1>"
-      "<p>&nbsp;</p>"
-      "<p>"
-      "  This is more of a mathematical example. It shows that"
-      "  a recurrence equation and its closed-form solution for exponential"
-      "  decay are equivalent"
-      "</p>"
-      "<p>"
-      "  The closed-form solution of exponential decay is:"
-      "</p>"
-      "<p>"
-      "  f(t) = e^(-gamma*t)"
-      "</p>"
-      "<p>"
-      "  Where t is the time step and gamma a constant, which is equal to -ln(0.1)/1000 = 0.0023025850929940454."
-      "  This value of gamma lets the exponential decay reach 10% after 1000 timesteps."
-      "</p>"
-      "<p>"
-      "  The recurrence equation of exponential decay is:"
-      "</p>"
-      "<p>"
-      "  f(t+1) = tau * f(t)"
-      "</p>"
-      "<p>"
-      "  Where t is the time step and tau a constant, which is equal to e^(ln(0.1)/1000) = 0.99770006382255327."
-      "  This value of tau lets the exponential decay reach 10% after 1000 timesteps."
-      "</p>"
-      "<p>"
-      "  The closed-form solution is plotted as the input, the recurrence equation as the state."
-      "  Because the control matrix contains a zero only, the input has no influence on the state."
-      "  For the cleanest look, all noise was set to a low value."
-      "</p>"
-      ;
   const int n = 1;
   const double e = 0.000000001;
   const double gamma = -std::log(0.1)/1000.0;
@@ -860,6 +826,45 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7()
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetControl(),white_noise_system_parameters->GetControl()));
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetStateTransition(),white_noise_system_parameters->GetStateTransition()));
+
+  const std::string context
+    = "<h1>" + title + "</h1>"
+      "<p>&nbsp;</p>"
+      "<p>"
+      "  This is more of a mathematical example. It shows that"
+      "  a recurrence equation and its closed-form solution for exponential"
+      "  decay are equivalent"
+      "</p>"
+      "<p>"
+      "  The closed-form solution of exponential decay is:"
+      "</p>"
+      "<p>"
+      "  f(t) = e^(-gamma*t)"
+      "</p>"
+      "<p>"
+      "  Where t is the time step and gamma a constant, which is equal to -ln(0.1)/1000 = 0.0023025850929940454."
+      "  This value of gamma lets the exponential decay reach 10% after 1000 timesteps."
+      "</p>"
+      "<p>"
+      "  The recurrence equation of exponential decay is:"
+      "</p>"
+      "<p>"
+      "  f(t+1) = tau * f(t)"
+      "</p>"
+      "<p>"
+      "  Where t is the time step and tau a constant, which is equal to e^(ln(0.1)/1000) = 0.99770006382255327."
+      "  This value of tau lets the exponential decay reach 10% after 1000 timesteps."
+      "</p>"
+      "<p>"
+      "  The closed-form solution is plotted as the input, the recurrence equation as the state."
+      "  Because the control matrix contains a zero only, the input has no influence on the state."
+      "  For the cleanest look, all noise was set to a low value."
+      "</p>"
+      "<p>&nbsp;</p>"
+      "<ul>"
+      "  <li></li>"
+      "</ul>"
+      ;
 
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(

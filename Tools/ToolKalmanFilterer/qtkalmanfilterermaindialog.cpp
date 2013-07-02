@@ -10,6 +10,8 @@
 #include <cassert>
 #include <cstdlib>
 
+#include <boost/bind.hpp>
+#include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/ublas/functional.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
@@ -88,14 +90,13 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
 
   assert(m_model->CreateExperiment() && "Can get an empty experiment");
 
+  m_model->m_signal_context_changed.connect(
+    boost::bind(&QtKalmanFiltererMainDialog::OnNewContext,this,boost::lambda::_1));
   m_experiment_dialog->m_signal_new_parameters.connect(
     boost::bind(&QtKalmanFiltererMainDialog::OnNewParameters,this));
 
-
   this->m_experiment_dialog->ClickExample(0);
-
   this->ui->button_start->click();
-
 }
 
 QtKalmanFiltererMainDialog::~QtKalmanFiltererMainDialog()
@@ -650,9 +651,25 @@ void QtKalmanFiltererMainDialog::on_tab_context_currentChanged(int index)
   assert(index == ui->tab_context->currentIndex());
   if (index == 0)
   {
-    //View rendered HTML, so render HTML
+    //Render HTML when user really wants to see it
     const QString s = ui->edit_context->toPlainText();
     ui->web_view_context->setHtml(s);
   }
+}
+
+void QtKalmanFiltererMainDialog::OnNewContext(const std::string context)
+{
+  if (ui->edit_context->toPlainText().toStdString() != context)
+  {
+    ui->edit_context->setPlainText(context.c_str());
+    if (ui->tab_context->currentIndex() == 0)
+    {
+      //Only display HTML when visible
+      ui->web_view_context->setHtml(context.c_str());
+    }
+    assert(ui->edit_context->toPlainText().toStdString() == context);
+  }
+  assert(ui->edit_context->toPlainText().toStdString() == context);
 
 }
+

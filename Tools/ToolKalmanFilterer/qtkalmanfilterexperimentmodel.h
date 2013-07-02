@@ -63,7 +63,7 @@ struct QtKalmanFilterExperimentModel : public QObject
   int GetNumberOfTimesteps() const { return m_number_of_timesteps; }
 
   ///Set the context
-  void SetContext(const std::string& context) { m_context = context; }
+  void SetContext(const std::string& context);
 
   ///Set an example parameter set
   void SetExample(const boost::shared_ptr<const KalmanFilterExample>& example);
@@ -88,6 +88,9 @@ struct QtKalmanFilterExperimentModel : public QObject
 
   ///Convert the data to HTML
   const std::string ToHtml() const;
+
+  ///Emitted when the context changes
+  boost::signals2::signal<void(const std::string)> m_signal_context_changed;
 
   ///Emitted when the Kalman filter type changes
   boost::signals2::signal<void(KalmanFilterType)> m_signal_kalman_filter_type_changed;

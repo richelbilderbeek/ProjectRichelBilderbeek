@@ -1019,9 +1019,20 @@ const std::vector<std::string> QtKalmanFilterExperimentModel::SeperateString(
   return v;
 }
 
+void QtKalmanFilterExperimentModel::SetContext(const std::string& context)
+{
+  if (m_context != context)
+  {
+    m_context = context;
+    m_signal_context_changed(m_context);
+  }
+  assert(m_context == context);
+}
+
 void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const KalmanFilterExample>& example)
 {
-  this->m_context = example->GetContext();
+  this->SetContext(example->GetContext());
+  assert(this->GetContext() == example->GetContext());
 
   assert(example);
   dynamic_cast<StateNamesModel*>(
