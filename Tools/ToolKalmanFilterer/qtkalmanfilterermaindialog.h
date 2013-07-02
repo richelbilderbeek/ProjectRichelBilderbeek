@@ -21,6 +21,7 @@
 #include "kalmanfilterexperiment.h"
 #include "qthideandshowdialog.h"
 #include "qtkalmanfilterexperimentdialog.h"
+#include "qtkalmanfilterexperimentmodel.h"
 #include "qtstandardkalmanfiltercalculationdialog.h"
 #include "qtsteadystatekalmanfiltercalculationdialog.h"
 #include "qtwhitenoisesystemparametersdialog.h"

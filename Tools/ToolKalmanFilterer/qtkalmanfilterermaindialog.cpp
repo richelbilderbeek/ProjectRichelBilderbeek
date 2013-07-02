@@ -16,6 +16,7 @@
 #include <boost/numeric/ublas/functional.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+#include <boost/signals2.hpp>
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
@@ -34,6 +35,7 @@
 #include "kalmanfilter.h"
 #include "kalmanfilterexample.h"
 #include "kalmanfilterexperiment.h"
+#include "kalmanfilterexperimentparametertype.h"
 #include "kalmanfilterparameters.h"
 #include "matrix.h"
 #include "qtcopyalltablewidget.h"
