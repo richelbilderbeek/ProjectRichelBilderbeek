@@ -67,7 +67,18 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   assert(m_experiment_dialog);
   assert(m_model);
   assert(ui->scroll_area_parameters_layout->layout());
-
+  //TRACE(QWebSettings::globalSettings()->fontFamily(QWebSettings::FixedFont).toStdString());
+  QWebSettings::globalSettings()->setFontFamily(QWebSettings::FixedFont,"Courier New");
+  QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize,14);
+  QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,false);
+  ui->web_view_context->settings()->setFontFamily(QWebSettings::FixedFont,"Courier New");
+  ui->web_view_context->settings()->setFontSize(QWebSettings::DefaultFontSize,14);
+  ui->web_view_context->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,false);
+  ui->web_view_context->setStyleSheet(
+    "QWebView,QWidget,QLabel { "
+    "  font-size: 18px;"
+    "  font-family: \"Courier New\", \"Courier\", Courier, monospace;"
+    "} ");
 
   ui->scroll_area_parameters_layout->layout()->addWidget(m_experiment_dialog);
 
@@ -84,17 +95,14 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
     ui->splitter->setSizes( { 400, this->width() - 400 } );
   }
 
-
-
   assert(this->m_experiment_dialog);
-
   assert(m_model->CreateExperiment() && "Can get an empty experiment");
 
   m_model->m_signal_context_changed.connect(
     boost::bind(&QtKalmanFiltererMainDialog::OnNewContext,this,boost::lambda::_1));
-  m_experiment_dialog->m_signal_new_parameters.connect(
-    boost::bind(&QtKalmanFiltererMainDialog::OnNewParameters,this));
 
+  ui->box_show_calculation->setChecked(false);
+  ui->box_show_table->setChecked(false);
   this->m_experiment_dialog->ClickExample(0);
   this->ui->button_start->click();
 }
@@ -208,23 +216,6 @@ const boost::shared_ptr<QtKalmanFilterCalculationDialog> QtKalmanFiltererMainDia
 void QtKalmanFiltererMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
-
-  if (event->modifiers() == Qt::AltModifier)
-  {
-    const int index = event->key() - '0';
-    const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
-    if (index < max_index) { m_experiment_dialog->ClickExample(index); return; }
-  }
-
-}
-
-void QtKalmanFiltererMainDialog::OnNewParameters()
-{
-  assert(m_model);
-  assert(m_model->CreateExperiment());
-  const std::string context = m_model->CreateExperiment()->GetContext().c_str();
-  ui->edit_context->setPlainText(context.c_str());
-  ui->web_view_context->setHtml(context.c_str());
 }
 
 void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
@@ -672,4 +663,3 @@ void QtKalmanFiltererMainDialog::OnNewContext(const std::string context)
   assert(ui->edit_context->toPlainText().toStdString() == context);
 
 }
-

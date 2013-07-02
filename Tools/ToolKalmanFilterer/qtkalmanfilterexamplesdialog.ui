@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>209</width>
-    <height>73</height>
+    <width>227</width>
+    <height>60</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,31 @@
    <iconset resource="ToolKalmanFilterer.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout"/>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Examples</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QComboBox" name="box"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Load &amp;example</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

@@ -38,17 +38,13 @@ QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
   #endif
   {
     assert(this->layout());
-    this->layout()->setSpacing(1);
     const std::size_t sz = KalmanFilterExample::CreateExamples().size();
     for (std::size_t i=0; i!=sz; ++i)
     {
       assert(KalmanFilterExample::CreateExamples()[i]);
       const std::string title = KalmanFilterExample::CreateExamples()[i]->GetTitle();
       const std::string text = boost::lexical_cast<std::string>(i) + ". " + title;
-      QPushButton * const button = new QPushButton(text.c_str());
-      button->setFlat(true);
-      this->layout()->addWidget(button);
-      QObject::connect(button,SIGNAL(clicked()),this,SLOT(OnButtonClicked()));
+      ui->box->addItem(QString(text.c_str()));
     }
   }
 }
@@ -67,33 +63,9 @@ void QtKalmanFilterExamplesDialog::EmitExample(const int index)
   emit signal_example(p);
 }
 
-void QtKalmanFilterExamplesDialog::OnButtonClicked()
-{
-  const QPushButton * const button = dynamic_cast<QPushButton*>(this->focusWidget());
-  if (!button) return;
-  assert(button);
-  const std::string text = button->text().toStdString();
-  assert(text.size() > 0);
-  const int index = boost::lexical_cast<int,char>(text[0]);
-  EmitExample(index);
-}
-
-
-void QtKalmanFilterExamplesDialog::ClickButton(const int button_index)
-{
-  EmitExample(button_index);
-}
-
 void QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
-  if (event->modifiers() == Qt::AltModifier)
-  {
-    const int index = event->key() - '0';
-    const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
-    TRACE(index);
-    if (index >= 0 && index < max_index) { EmitExample(index); return; }
-  }
   QDialog::keyPressEvent(event);
 }
 
@@ -108,7 +80,13 @@ void QtKalmanFilterExamplesDialog::Test()
   {
     QtKalmanFilterExamplesDialog d;
     const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
-    for (int i=0; i!=max_index; ++i) { d.ClickButton(i); }
+    for (int i=0; i!=max_index; ++i) { d.EmitExample(i); }
   }
 }
 #endif
+
+void QtKalmanFilterExamplesDialog::on_button_clicked()
+{
+  const int index = ui->box->currentIndex();
+  EmitExample(index);
+}

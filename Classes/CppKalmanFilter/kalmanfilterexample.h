@@ -47,7 +47,7 @@ struct KalmanFilterExample
   const std::string m_title;
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters> m_white_noise_system_parameters;
 
-  static std::unique_ptr<KalmanFilterExample> CreateExample0() { return CreateExample1(); }
+  static std::unique_ptr<KalmanFilterExample> CreateExample0();
   static std::unique_ptr<KalmanFilterExample> CreateExample1();
   static std::unique_ptr<KalmanFilterExample> CreateExample2();
   static std::unique_ptr<KalmanFilterExample> CreateExample3();
@@ -55,6 +55,8 @@ struct KalmanFilterExample
   static std::unique_ptr<KalmanFilterExample> CreateExample5();
   static std::unique_ptr<KalmanFilterExample> CreateExample6();
   static std::unique_ptr<KalmanFilterExample> CreateExample7();
+
+  static const std::string DisplayAsUblasVector(const std::vector<std::string>& v);
 };
 
 #endif // KALMANFILTEREXAMPLE_H

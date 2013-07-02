@@ -11,7 +11,7 @@
 #include <boost/shared_ptr.hpp>
 //#include <boost/numeric/ublas/matrix.hpp>
 //#include <boost/numeric/ublas/vector.hpp>
-#include <boost/signals2.hpp>
+//#include <boost/signals2.hpp>
 
 #include <QDialog>
 #include <QTableWidget>
@@ -66,8 +66,6 @@ public:
 
   ///Set the number of timesteps in the sim
   void SetNumberOfTimesteps(const int timesteps);
-
-  boost::signals2::signal <void()> m_signal_new_parameters;
 
 public slots:
 
