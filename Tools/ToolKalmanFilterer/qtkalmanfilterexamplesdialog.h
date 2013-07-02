@@ -13,6 +13,7 @@
 
 //#include <boost/numeric/ublas/matrix.hpp>
 //#include <boost/numeric/ublas/vector.hpp>
+#include <boost/signals2.hpp>
 
 ///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
 #include "kalmanfilterexample.h"
@@ -30,11 +31,10 @@ public:
   ~QtKalmanFilterExamplesDialog();
 
   ///Click one of the examples
-  void EmitExample(const int n);
+  void EmitExample(const int n) const;
 
-signals:
-  //Never emit a boost::shared_ptr [1]
-  void signal_example(const KalmanFilterExample * const example);
+    //Never emit a boost::shared_ptr [1]
+  mutable boost::signals2::signal<void(const KalmanFilterExample * const example)> m_signal_example;
   //void signal_example(const boost::shared_ptr<KalmanFilterExample> example);
 
 protected:

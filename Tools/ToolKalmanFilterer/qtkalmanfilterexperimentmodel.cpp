@@ -1034,6 +1034,9 @@ void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const Kal
   this->SetContext(example->GetContext());
   assert(this->GetContext() == example->GetContext());
 
+  this->SetNumberOfTimesteps(example->GetNumberOfTimesteps());
+  assert(this->GetNumberOfTimesteps() == example->GetNumberOfTimesteps());
+
   assert(example);
   dynamic_cast<StateNamesModel*>(
     this->Find(KalmanFilterExperimentParameterType::state_names)
@@ -1143,7 +1146,12 @@ void QtKalmanFilterExperimentModel::SetLagReal(const int lag)
 
 void QtKalmanFilterExperimentModel::SetNumberOfTimesteps(const int n)
 {
-  m_number_of_timesteps = n;
+  assert(n >= 0);
+  if (m_number_of_timesteps != n)
+  {
+    m_number_of_timesteps = n;
+    m_signal_number_of_timesteps_changed(m_number_of_timesteps);
+  }
 }
 
 void QtKalmanFilterExperimentModel::SetWhiteNoiseSystemType(const WhiteNoiseSystemType type)

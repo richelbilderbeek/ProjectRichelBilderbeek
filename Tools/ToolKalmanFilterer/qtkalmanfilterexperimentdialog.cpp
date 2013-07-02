@@ -11,6 +11,8 @@
 #include <cstdlib>
 #include <fstream>
 
+#include <boost/bind.hpp>
+#include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/foreach.hpp>
 #include <boost/numeric/ublas/functional.hpp>
@@ -119,14 +121,19 @@ QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   assert(m_examples_dialog);
 
   //Connect clicking on the example buttons to setting (and showing) these
-  QObject::connect(
-    m_examples_dialog,SIGNAL(signal_example(KalmanFilterExample*const)),
-    this,SLOT(SetExample(KalmanFilterExample*const)));
+  m_examples_dialog->m_signal_example.connect(
+    boost::bind(&QtKalmanFilterExperimentDialog::SetExample,this,boost::lambda::_1));
+
+  //When the model changes its number of timesteps, also display this new number
+  m_model->m_signal_number_of_timesteps_changed.connect(
+    boost::bind(&QtKalmanFilterExperimentDialog::SetNumberOfTimesteps,this,boost::lambda::_1));
 
   //Make the white noise system parameters follow the possible tab changes in parameters
-  QObject::connect(
-    this->m_filter_dialog,SIGNAL(signal_kalman_filter_type_changed(KalmanFilterType)),
-    this,SLOT(SetKalmanFilterType(KalmanFilterType)));
+  this->GetFilterDialog()->m_signal_kalman_filter_type_changed.connect(
+    boost::bind(&QtKalmanFilterExperimentDialog::SetKalmanFilterType,this,boost::lambda::_1));
+  //QObject::connect(
+  //  this->m_filter_dialog,SIGNAL(signal_kalman_filter_type_changed(KalmanFilterType)),
+  //  this,SLOT(SetKalmanFilterType(KalmanFilterType)));
 
   ui->box_n_timesteps->setValue(5);
 
@@ -145,6 +152,12 @@ void QtKalmanFilterExperimentDialog::ClickExample(const int i)
 {
   this->m_examples_dialog->EmitExample(i);
   assert(IsValid());
+}
+
+const QtKalmanFilterExamplesDialog * QtKalmanFilterExperimentDialog::GetExamplesDialog() const
+{
+  assert(m_examples_dialog);
+  return m_examples_dialog;
 }
 
 int QtKalmanFilterExperimentDialog::GetNumberOfTimesteps() const

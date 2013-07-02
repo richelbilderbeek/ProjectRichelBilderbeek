@@ -47,8 +47,7 @@ public:
   ///Set the tab to the correct index
   void SetKalmanFilterType(const KalmanFilterType new_type);
 
-signals:
-  void signal_kalman_filter_type_changed(const KalmanFilterType new_type);
+  mutable boost::signals2::signal<void(const KalmanFilterType)> m_signal_kalman_filter_type_changed;
 
 protected:
   void keyPressEvent(QKeyEvent * event);
@@ -61,9 +60,6 @@ private:
 
   ///The parameter type and its corresponding dialog
   std::map<KalmanFilterParameterType,QtKalmanFiltererParameterDialog *> m_parameters;
-
-  ///Checks if all parameters are valid
-  //bool AreAllParametersValid() const;
 
   ///Obtain the all KalmanFilterParameterType values, ordered for humans
   const std::vector<KalmanFilterParameterType> GetParameterTypes() const;
