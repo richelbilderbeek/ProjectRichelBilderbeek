@@ -25,7 +25,8 @@ struct QtKalmanFilterExperimentModel : public QObject
   Q_OBJECT
 
   public:
-  QtKalmanFilterExperimentModel();
+
+  explicit QtKalmanFilterExperimentModel(QObject *parent = 0);
 
   ///Calculate the optimal estimated Kalman gain
   void CalculateOptimalEstimatedKalmanGain();

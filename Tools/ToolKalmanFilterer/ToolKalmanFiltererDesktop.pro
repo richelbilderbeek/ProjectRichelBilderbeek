@@ -234,6 +234,7 @@ win32 {
     message(Native Windows)
     #Allow native Windows to emit warnings without terminating
     QMAKE_CXXFLAGS += -std=c++0x #-Werror
+
   }
 
   static {

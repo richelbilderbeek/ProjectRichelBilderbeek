@@ -36,7 +36,7 @@ KalmanFilterExample::KalmanFilterExample(
   assert(m_state_names.size() == m_inputs.size());
   assert(m_state_names.size() == m_kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(m_state_names.size() == m_white_noise_system_parameters->GetInitialState().size());
-  assert(number_of_timesteps > 0);
+  assert(number_of_timesteps >= 0);
 
 }
 

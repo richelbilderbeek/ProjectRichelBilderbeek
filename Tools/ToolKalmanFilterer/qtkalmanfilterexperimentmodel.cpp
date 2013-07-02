@@ -17,28 +17,35 @@
 #include <string>
 #include <vector>
 #include <boost/algorithm/string/split.hpp>
+#include <QAbstractTableModel>
 #include <QMessageBox>
 
 #include "fixedlagsmootherkalmanfilterparameters.h"
 #include "gapsfilledwhitenoisesystemparameters.h"
 #include "kalmanfilterexperimentparameter.h"
 #include "kalmanfilterfactory.h"
-#include "laggedwhitenoisesystemparameters.h"
+#include "kalmanfilterparameters.h"
+#include "kalmanfilterparametertype.h"
 #include "kalmanfiltertypes.h"
+#include "laggedwhitenoisesystemparameters.h"
 #include "matrix.h"
 #include "qtkalmanfilterermodel.h"
 #include "standardkalmanfilterparameters.h"
-#include "whitenoisesystemtype.h"
+#include "standardkalmanfilterparameters.h"
 #include "standardwhitenoisesystemfactory.h"
 #include "standardwhitenoisesystemparameters.h"
 #include "trace.h"
 #include "whitenoisesystemfactory.h"
+#include "whitenoisesystemparameters.h"
+#include "whitenoisesystemtype.h"
 #include "whitenoisesystemtypes.h"
+
 
 const int QtKalmanFilterExperimentModel::m_version_current = 2;
 
-QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel()
- : m_kalman_filter_type(KalmanFilterType::standard),
+QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel(QObject *parent)
+ : QObject(parent),
+   m_kalman_filter_type(KalmanFilterType::standard),
    m_lag_estimated(0),
    m_lag_real(0),
    m_models(CreateMap()),
@@ -682,7 +689,7 @@ void QtKalmanFilterExperimentModel::FromDokuWiki(const std::string& text)
   if (m_version == 1)
   {
     //version 1 did not save/load a context from file
-    m_context = "";
+    this->SetContext("");
     m_version = 2;
 
     //Test if new version works OK
@@ -838,7 +845,8 @@ void QtKalmanFilterExperimentModel::ReadContext(const std::vector<std::string>& 
   {
     new_context += (*line) + "\n";
   }
-  m_context = new_context.substr(0,new_context.size() - 1); //Strip \n
+
+  this->SetContext(new_context.substr(0,new_context.size() - 1)); //Strip \n
   //TRACE(m_context);
 }
 
