@@ -10,6 +10,7 @@
 #include <cassert>
 #include <memory>
 #include <boost/lexical_cast.hpp>
+#include <boost/numeric/ublas/io.hpp>
 #include "matrix.h"
 #include "trace.h"
 
@@ -76,12 +77,6 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
 {
   const std::string title = "Constant voltage";
 
-  //Use examples and variables as http://greg.czerniak.info/guides/kalman1
-  //Context: measuring a voltage
-  const std::string context
-    = "<h1>" + title + "</h1>\n"
-      "<p>This is an example from <a href=\"http://greg.czerniak.info/guides/kalman1\">Greg Czerniak's tutorial<p>\n";
-
   const boost::numeric::ublas::matrix<double> control
     = Matrix::CreateMatrix(1,1, { 0.0 } );
   const boost::numeric::ublas::matrix<double> estimated_measurement_noise
@@ -131,6 +126,20 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
   assert(state_names.size() == inputs.size());
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
+
+  std::stringstream context_stream;
+  context_stream
+    << "<h1>" << title << "</h1>" << '\n'
+    << "<p>This is an example from <a href=\"http://greg.czerniak.info/guides/kalman1\">Greg Czerniak's tutorial</a></p>" << '\n'
+    << "<p>The context is the noisy measurement of a constant voltage.<p>" << '\n'
+    << "<ul>" << '\n'
+    << "  <li>State names: [1](" << state_names[0] << "): the voltage</li>" << '\n'
+    << "  <li>Initial state estimate: " << initial_state_estimate << ": set this value off on purpose, to see the Kalman filter converge</li>" << '\n'
+    << "  <li>Input: [1](" << inputs[0] << "): the state (that is, the voltage) will not be changed</li>" << '\n'
+    << "  <li>Control: " << control << ": any input (albeit none) will have no effect</li>" << '\n'
+    << "  <li>Estimated measurement noise: " << estimated_measurement_noise << ": just some value</li>" << '\n'
+    << "</ul>";
+  const std::string context = context_stream.str();
 
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
@@ -250,8 +259,10 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
 {
   const std::string title = "Cannonball";
-  const std::string context
-    = "<h1>" + title + "</h1>";
+  std::stringstream context_stream;
+  context_stream
+    << "<h1>" << title << "</h1>";
+  const std::string context = context_stream.str();
 
   //Use examples and variables as http://greg.czerniak.info/guides/kalman1
   //Context: cannonball lauched from a cannon

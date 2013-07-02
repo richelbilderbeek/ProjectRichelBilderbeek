@@ -121,7 +121,11 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///The version number
   ///0: version before this numbering existed
   ///1: since 2013-06-28
+  ///2: since 2013-07-02
   int m_version;
+
+  ///The current version number, the version of the output this class now produces
+  static const int m_version_current;
 
   ///The white noise system type
   WhiteNoiseSystemType m_white_noise_system_type;
@@ -153,6 +157,9 @@ struct QtKalmanFilterExperimentModel : public QObject
   #ifndef NDEBUG
   bool IsValid() const;
   #endif
+
+  ///If the text holds an HTML context, set this class to hold the same value
+  void ReadContext(const std::vector<std::string>& s);
 
   ///If the string holds a KalmanFilterType, set this class to hold the same value
   void ReadKalmanFilterType(const std::string& s);

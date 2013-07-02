@@ -499,6 +499,12 @@ void QtKalmanFilterExperimentDialog::Test()
       model->SetNumberOfTimesteps(999999999);
       assert(s != model->ToDokuWiki());
       model->FromDokuWiki(s);
+      if (s != model->ToDokuWiki())
+      {
+        TRACE(s);
+        TRACE(model->ToDokuWiki());
+        TRACE("BREAK");
+      }
       assert(s == model->ToDokuWiki());
     }
     //TRACE("Test all white noise system types")
