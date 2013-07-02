@@ -103,7 +103,10 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
 
   ui->box_show_calculation->setChecked(false);
   ui->box_show_table->setChecked(false);
-  this->m_experiment_dialog->ClickExample(0);
+
+  this->GetExperimentDialog()->GetExamplesDialog()->EmitExample(0);
+
+
   this->ui->button_start->click();
 }
 
@@ -242,6 +245,7 @@ void QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
 
 void QtKalmanFiltererMainDialog::on_button_start_clicked()
 {
+
   assert(this->m_model->CreateWhiteNoiseSystemParameters()->GetType()
     == GetExperimentDialog()->GetNoiseParametersDialog()->GetWhiteNoiseSystemType());
 
@@ -594,36 +598,42 @@ void QtKalmanFiltererMainDialog::Test()
   }
   {
     TRACE("Starting QtKalmanFiltererMainDialog::Test()")
-    //Create self
+    TRACE("QtKalmanFiltererMainDialog::Test: Create self")
     {
       const boost::shared_ptr<QtKalmanFiltererMainDialog> d
         = QtKalmanFiltererMainDialog::Create();
       assert(d);
+      assert(d->m_model);
+      d->m_model->SetNumberOfTimesteps(2); //Otherwise these tests take too long
       d->SetShowCalculation(true);
       d->SetShowGraph(true);
       d->SetShowTable(true);
       d->on_button_start_clicked();
     }
-    //1) Click on example x and write these to a DokuWiki file
-    //2) Click on example y and read the file from x
+    TRACE("QtKalmanFiltererMainDialog::Test: (1/2) Click on example x and write these to a DokuWiki file")
+    TRACE("QtKalmanFiltererMainDialog::Test: (2/2) Click on example y and read the file from x")
     {
       const boost::shared_ptr<QtKalmanFiltererMainDialog> d
         = QtKalmanFiltererMainDialog::Create();
       assert(d);
+      assert(d->m_model);
       assert(d->m_experiment_dialog);
+      d->m_model->SetNumberOfTimesteps(2); //Otherwise these tests take too long
       const std::string filename = "TempQtKalmanFiltererMainDialogTest.txt";
       const int n_examples = 6;
       for (int x = 0; x!= n_examples; ++x)
       {
         //1) Click on example x and write these to a DokuWiki file
         {
-          d->m_experiment_dialog->ClickExample(x);
+          d->m_experiment_dialog->GetExamplesDialog()->EmitExample(x);
+          d->m_model->SetNumberOfTimesteps(2); //Otherwise these tests take too long
           d->m_experiment_dialog->SaveToDokuWiki(filename);
         }
         for (int y = 0; y!= n_examples; ++y)
         {
           //2) Click on example y and read the file from x
-          d->m_experiment_dialog->ClickExample(y);
+          d->m_experiment_dialog->GetExamplesDialog()->EmitExample(y);
+          d->m_model->SetNumberOfTimesteps(2); //Otherwise these tests take too long
           d->m_experiment_dialog->LoadFromDokuWiki(filename);
         }
       }
@@ -634,8 +644,6 @@ void QtKalmanFiltererMainDialog::Test()
   }
 }
 #endif
-
-
 
 void QtKalmanFiltererMainDialog::on_tab_context_currentChanged(int index)
 {

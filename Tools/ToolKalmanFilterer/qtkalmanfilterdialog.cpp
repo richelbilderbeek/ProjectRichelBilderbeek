@@ -204,5 +204,5 @@ void QtKalmanFilterDialog::on_box_filter_type_currentIndexChanged(int)
   //Notify the model
   m_model->SetKalmanFilterType(this->GetKalmanFilterType());
 
-  emit signal_kalman_filter_type_changed( this->GetKalmanFilterType() );
+  m_signal_kalman_filter_type_changed(this->GetKalmanFilterType());
 }

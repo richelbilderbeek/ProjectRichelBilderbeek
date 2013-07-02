@@ -96,6 +96,9 @@ struct QtKalmanFilterExperimentModel : public QObject
   boost::signals2::signal<void(KalmanFilterType)> m_signal_kalman_filter_type_changed;
 
   ///Emitted when the white noise system type changes
+  boost::signals2::signal<void(int)> m_signal_number_of_timesteps_changed;
+
+  ///Emitted when the white noise system type changes
   boost::signals2::signal<void(WhiteNoiseSystemType)> m_signal_white_noise_system_type_changed;
 
   private slots:

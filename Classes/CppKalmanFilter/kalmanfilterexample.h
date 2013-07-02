@@ -16,6 +16,7 @@ struct KalmanFilterExample
     const std::string& context,
     const std::vector<std::string>& inputs,
     const boost::shared_ptr<const StandardKalmanFilterParameters>& kalman_filter_parameters,
+    const int number_of_timesteps,
     const std::vector<std::string>& state_names,
     const boost::shared_ptr<const StandardWhiteNoiseSystemParameters>& white_noise_system_parameters);
 
@@ -27,6 +28,7 @@ struct KalmanFilterExample
   const std::vector<std::string>& GetInputs() const { return m_inputs; }
   const boost::shared_ptr<const StandardKalmanFilterParameters>& GetKalmanFilterParameters() const
     { return m_kalman_filter_parameters; }
+  int GetNumberOfTimesteps() const { return m_number_of_timesteps; }
   const std::vector<std::string>& GetStateNames() const { return m_state_names; }
   const std::string& GetTitle() const { return m_title; }
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters>& GetWhiteNoiseSystemParameters() const
@@ -43,6 +45,7 @@ struct KalmanFilterExample
   const std::string m_context;
   const std::vector<std::string> m_inputs;
   const boost::shared_ptr<const StandardKalmanFilterParameters> m_kalman_filter_parameters;
+  const int m_number_of_timesteps;
   const std::vector<std::string> m_state_names;
   const std::string m_title;
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters> m_white_noise_system_parameters;
@@ -55,6 +58,7 @@ struct KalmanFilterExample
   static std::unique_ptr<KalmanFilterExample> CreateExample5();
   static std::unique_ptr<KalmanFilterExample> CreateExample6();
   static std::unique_ptr<KalmanFilterExample> CreateExample7();
+  static std::unique_ptr<KalmanFilterExample> CreateExample8();
 
   static const std::string DisplayAsUblasVector(const std::vector<std::string>& v);
 };

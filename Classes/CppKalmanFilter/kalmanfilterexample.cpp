@@ -21,11 +21,13 @@ KalmanFilterExample::KalmanFilterExample(
   const std::string& context,
   const std::vector<std::string>& inputs,
   const boost::shared_ptr<const StandardKalmanFilterParameters>& kalman_filter_parameters,
+  const int number_of_timesteps,
   const std::vector<std::string>& state_names,
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters>& white_noise_system_parameters)
   : m_context(context),
     m_inputs(inputs),
     m_kalman_filter_parameters(kalman_filter_parameters),
+    m_number_of_timesteps(number_of_timesteps),
     m_state_names(state_names),
     m_title(title),
     m_white_noise_system_parameters(white_noise_system_parameters)
@@ -34,6 +36,7 @@ KalmanFilterExample::KalmanFilterExample(
   assert(m_state_names.size() == m_inputs.size());
   assert(m_state_names.size() == m_kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(m_state_names.size() == m_white_noise_system_parameters->GetInitialState().size());
+  assert(number_of_timesteps > 0);
 
 }
 
@@ -66,6 +69,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample(const in
     case 5: p = CreateExample5(); break;
     case 6: p = CreateExample6(); break;
     case 7: p = CreateExample7(); break;
+    case 8: p = CreateExample8(); break;
     default: break;
   }
   //When p is nullptr, this indicates that there are no more examples
@@ -78,6 +82,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample(const in
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample0()
 {
   const std::string title = "Constant voltage";
+
+  const int number_of_timesteps = 1000;
 
   const boost::numeric::ublas::matrix<double> control
     = Matrix::CreateMatrix(1,1, { 0.0 } );
@@ -150,12 +156,14 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample0()
     << "</ul>";
   const std::string context = context_stream.str();
 
+
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
       title,
       context,
       inputs,
       kalman_filter_parameters,
+      number_of_timesteps,
       state_names,
       white_noise_system_parameters
     )
@@ -168,37 +176,31 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample0()
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
 {
   const std::string title = "Accelerating car (two states)";
-  const std::string context
-    = "<h1>" + title + "</h1>";
-  //Use example from Simon, D. Kalman Filtering. Embedded Systems Programming. June 2001
   const int n = 2;
   const double acceleration = 1.0;
   const double measurement_noise = 10.0; //Called 'measnoise'
   const double accelnoise = 0.2; //Called 'accelnoise'
   const double dt = 0.1; //Timestep
 
-  //A gas pedal only influences speed
+  const int number_of_timesteps = 1000;
+
   const boost::numeric::ublas::matrix<double> control
     = Matrix::CreateMatrix(n,n, { 0.0,0.0,0.0,dt } );
 
-  //Just a guess
   const boost::numeric::ublas::matrix<double> initial_covariance_estimate
     = Matrix::CreateMatrix(n,n, { 1.0,0.0,0.0,1.0 } );
 
-  //Initial state estimates are a bit off on purpose
   const boost::numeric::ublas::vector<double> initial_state_estimate
     = Matrix::CreateVector( { 10.0,1.0 } );
 
-  //From exact standstill
   const boost::numeric::ublas::vector<double> initial_state
     = Matrix::CreateVector( { 0.0,0.0 } );
 
-  //Only (pessimistic) normal noise in GPS, speedometer has enormous noise as if defect (yet cannot be 0.0)
   const boost::numeric::ublas::matrix<double> estimated_measurement_noise
     = Matrix::CreateMatrix(n,n, { 10.0 * measurement_noise,0.0,0.0,1000000.0 } );
 
   const boost::numeric::ublas::matrix<double> observation
-    = Matrix::CreateMatrix(n,n, { 1.0,0.0,0.0,0.0 } ); //Only use GPS, no speedometer
+    = Matrix::CreateMatrix(n,n, { 1.0,0.0,0.0,0.0 } );
 
   const boost::numeric::ublas::matrix<double> estimated_process_noise_covariance
     = Matrix::CreateMatrix(n,n, {
@@ -206,9 +208,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
       10.0 * accelnoise,
       10.0 * accelnoise,
       10.0 * accelnoise
-    } ); //Pessimistic estimate
+    } );
 
-  //Only normal noise in GPS, speedometer has enormous noise as if defect (yet cannot be 0.0)
   const boost::numeric::ublas::vector<double> real_measurement_noise
     = Matrix::CreateVector( { measurement_noise, 1000000.0 } );
 
@@ -218,7 +219,6 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
   const boost::numeric::ublas::matrix<double> state_transition
     = Matrix::CreateMatrix(n,n, { 1.0, 0.0, dt, 1.0 } );
 
-  //A gas pedal only influences speed
   const std::vector<std::string> inputs = { "0.0", boost::lexical_cast<std::string>(acceleration) };
 
   const boost::shared_ptr<const StandardKalmanFilterParameters> kalman_filter_parameters(
@@ -251,12 +251,34 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetControl(),white_noise_system_parameters->GetControl()));
   assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetStateTransition(),white_noise_system_parameters->GetStateTransition()));
 
+  std::stringstream context_stream;
+  context_stream
+    << "<h1>" << title << "</h1>" << '\n'
+    << "<p>This is an example from D. Simon's article 'Kalman Filtering', published in 'Embedded Systems Programming' (June 2001).</p>" << '\n'
+    << "<p>The context is an accelerating car with a GPS and a defect speedometer<p>" << '\n'
+    << "<ul>" << '\n'
+    << "  <li>State names: " << DisplayAsUblasVector(state_names) << ": position (e.g. meter) and velocity (e.g. meter per second)</li>" << '\n'
+    << "  <li>Initial state, real: " << initial_state << ": car starts from standstill</li>" << '\n'
+    << "  <li>Initial state, estimate: " << initial_state_estimate << ": set this value off on purpose, to see the Kalman filter converge</li>" << '\n'
+    << "  <li>Input: " << DisplayAsUblasVector(inputs) << ": a gas pedal is pushed to a certain acceleration value</li>" << '\n'
+    << "  <li>Control: " << control << ": a gas pedal has an influence on the velocity</li>" << '\n'
+    << "  <li>Observation: " << observation << ": only observe position, which can be observed directly with a GPS</li>" << '\n'
+    << "  <li>State transition: " << state_transition << ": the position is increased by a velocity, the velocity stays constant without input</li>" << '\n'
+    << "  <li>Measurement noise, real: " << real_measurement_noise << ": GPS works, speedometer does not</li>" << '\n'
+    << "  <li>Measurement noise, estimate: " << estimated_measurement_noise << ": just some pessimistic value</li>" << '\n'
+    << "  <li>Process noise, real: " << real_process_noise << ": noise caused by acceleration</li>" << '\n'
+    << "  <li>Process noise, estimated covariance: " << estimated_process_noise_covariance << ": a more pessimistic value</li>" << '\n'
+    << "  <li>Initial covariance estimate: " << initial_covariance_estimate << ": just a guess</li>" << '\n'
+    << "</ul>";
+  const std::string context = context_stream.str();
+
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
       title,
       context,
       inputs,
       kalman_filter_parameters,
+      number_of_timesteps,
       state_names,
       white_noise_system_parameters
     )
@@ -268,13 +290,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample1()
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
 {
   const std::string title = "Cannonball";
-  std::stringstream context_stream;
-  context_stream
-    << "<h1>" << title << "</h1>";
-  const std::string context = context_stream.str();
+  const int number_of_timesteps = 1000;
 
-  //Use examples and variables as http://greg.czerniak.info/guides/kalman1
-  //Context: cannonball lauched from a cannon
   const int n = 4; //Size of all vectors and matrices
   const double dt = 0.1; //Timestep
   const double g = 9.81; //Gravity
@@ -398,12 +415,34 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
   assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
   assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
 
+  std::stringstream context_stream;
+  context_stream
+    << "<h1>" << title << "</h1>" << '\n'
+    << "<p>This is an example from <a href=\"http://greg.czerniak.info/guides/kalman1\">Greg Czerniak's tutorial</a></p>" << '\n'
+    << "<p>The context is a cannonball lauched from a cannon.<p>" << '\n'
+    << "<ul>" << '\n'
+    << "  <li>State names: " << DisplayAsUblasVector(state_names) << ": horizontal position (m), horizontal velocity (m/s), vertical position (m), vertical velocity (m)</li>" << '\n'
+    << "  <li>Initial state, real: " << initial_state << ": the cannon shoots the ball from an angle of 45 degrees at an initial speed of 100 m/s</li>" << '\n'
+    << "  <li>Initial state, estimate: " << initial_state_estimate << ": set this value off on purpose, to see the Kalman filter converge</li>" << '\n'
+    << "  <li>Input: " << DisplayAsUblasVector(inputs) << ": gravity will change the vertical velocity by 9.81 m/(s^2)</li>" << '\n'
+    << "  <li>Control: " << control << ": gravity influences the vertical velocity only</li>" << '\n'
+    << "  <li>Observation: " << observation << ": all states are observed directly with a GPS and an internal speedometer</li>" << '\n'
+    << "  <li>State transition: " << state_transition << ": positions are increased by their velocities. Velocities remain constant without input</li>" << '\n'
+    << "  <li>Measurement noise, real: " << real_measurement_noise << ": just some low value</li>" << '\n'
+    << "  <li>Measurement noise, estimate: " << estimated_measurement_noise << ": just some low value</li>" << '\n'
+    << "  <li>Process noise, real: " << real_process_noise << ": just some low value</li>" << '\n'
+    << "  <li>Process noise, estimated covariance: " << estimated_process_noise_covariance << ": just some low value</li>" << '\n'
+    << "  <li>Initial covariance estimate: " << initial_covariance_estimate << ": just some low value</li>" << '\n'
+    << "</ul>";
+  const std::string context = context_stream.str();
+
   std::unique_ptr<KalmanFilterExample> example(
     new KalmanFilterExample(
       title,
       context,
       inputs,
       kalman_filter_parameters,
+      number_of_timesteps,
       state_names,
       white_noise_system_parameters
     )
@@ -423,6 +462,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
   const double dt = 0.1; //Timestep
   const double k = 1.0; //Spring constant
   const double mass = 1.0; //Mass
+
+  const int number_of_timesteps = 1000;
 
   //No input used, so control matrix can be zeroes only
   const boost::numeric::ublas::matrix<double> control
@@ -500,6 +541,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
       }
     ));
 
+
   const boost::shared_ptr<const StandardKalmanFilterParameters> kalman_filter_parameters(
     new StandardKalmanFilterParameters(
     control,
@@ -530,6 +572,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample3()
       context,
       inputs,
       kalman_filter_parameters,
+      number_of_timesteps,
       state_names,
       white_noise_system_parameters
     )
@@ -545,6 +588,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
     = "<h1>" + title + "</h1>";
 
   //Context: airhockey puck with a constant speed
+  const int number_of_timesteps = 1000;
+
   const boost::numeric::ublas::matrix<double> control
     = Matrix::CreateMatrix(1,1, { 1.0 } );
   const boost::numeric::ublas::matrix<double> estimated_measurement_noise
@@ -604,6 +649,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample4()
       context,
       inputs,
       kalman_filter_parameters,
+      number_of_timesteps,
       state_names,
       white_noise_system_parameters
     )
@@ -626,6 +672,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5()
   const double mass  = 10000.0; //kilogram
   const double dt = 0.1; //Timestep
   const double acc = dt * force / mass;
+
+  const int number_of_timesteps = 1000;
 
   //A gas pedal only influences acceleration
   const boost::numeric::ublas::matrix<double> control
@@ -735,6 +783,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample5()
       context,
       inputs,
       kalman_filter_parameters,
+      number_of_timesteps,
       state_names,
       white_noise_system_parameters
     )
@@ -754,6 +803,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
   const double gamma = -std::log(0.1)/1000.0;
   //Reach a 10% value after 1000 timesteps with the recurrence equation
   const double tau = std::pow(M_E,std::log(0.1) / 1000.0);
+
+  const int number_of_timesteps = 1000;
 
   //Just a variable name
   const std::vector<std::string> state_names = { "x" };
@@ -887,6 +938,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
       context,
       inputs,
       kalman_filter_parameters,
+      number_of_timesteps,
       state_names,
       white_noise_system_parameters
     )
@@ -897,7 +949,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
 
 std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7()
 {
-  const std::string title = "Harmonic oscillation";
+  const std::string title = "Harmonic oscillation (two states)";
   //Two states
   const int n = 2;
   //As small as possible
@@ -907,6 +959,8 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7()
   //Correct for floating point rounding errors that will increase the amplitude.
   //This value is found by experimenting
   const double correction = 0.998026148;
+
+  const int number_of_timesteps = 1000;
 
   //Name of the functions
   const std::vector<std::string> state_names = { "sin", "cos" };
@@ -1047,6 +1101,181 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7()
       context,
       inputs,
       kalman_filter_parameters,
+      number_of_timesteps,
+      state_names,
+      white_noise_system_parameters
+    )
+  );
+  assert(example);
+  return example;
+}
+
+std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample8()
+{
+  const std::string title = "Harmonic oscillation (three states)";
+  //Two states
+  const int n = 3;
+  //As small as possible
+  const double e = 0.00000000001;
+  //Period of 100 timesteps
+  const double angular_frequency = 2.0 * M_PI / 100.0;
+  //Correct for floating point rounding errors that will increase the amplitude.
+  //This value is found by experimenting
+  const double correction = 0.998026148;
+
+  const int number_of_timesteps = 1000;
+
+  //Name of the functions
+  const std::vector<std::string> state_names = { "x", "v", "a" };
+
+  //Input does not change state
+  const boost::numeric::ublas::matrix<double> control
+    = Matrix::CreateMatrix(n,n,std::vector<double>(n*n,0.0));
+
+  //As small as possible
+  const boost::numeric::ublas::matrix<double> initial_covariance_estimate
+    = Matrix::CreateMatrix(n,n, { e,0.0,0.0,0.0,e,0.0,0.0,0.0,e } );
+
+  //Correct
+  const boost::numeric::ublas::vector<double> initial_state
+    = Matrix::CreateVector( { 0.0, angular_frequency, -angular_frequency*angular_frequency } );
+
+  //Initial state estimate is correct on purpose
+  const boost::numeric::ublas::vector<double> initial_state_estimate = initial_state;
+
+  //As small as possible
+  const boost::numeric::ublas::matrix<double> estimated_measurement_noise
+    = Matrix::CreateMatrix(n,n, { e,0.0,0.0,0.0,e,0.0,0.0,0.0,e } );
+
+  //Observe directly
+  const boost::numeric::ublas::matrix<double> observation
+    = Matrix::CreateMatrix(n,n, { 1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0 } );
+
+  //As small as possible
+  const boost::numeric::ublas::matrix<double> estimated_process_noise_covariance
+    = Matrix::CreateMatrix(n,n, { e,0.0,0.0,0.0,e,0.0,0.0,0.0,e } );
+
+  //As small as possible
+  const boost::numeric::ublas::vector<double> real_measurement_noise
+    = Matrix::CreateVector( { e,e,e } );
+
+  //As small as possible
+  const boost::numeric::ublas::vector<double> real_process_noise
+    = Matrix::CreateVector( { e,e,e } );
+
+  //Reach a 10% value after 1000 timesteps with the recurrence equation
+  const boost::numeric::ublas::matrix<double> state_transition
+    = boost::numeric::ublas::trans(Matrix::CreateMatrix(n,n,
+      {
+                                  correction, angular_frequency,angular_frequency*angular_frequency,
+                          -angular_frequency,        correction,                  angular_frequency,
+        -angular_frequency*angular_frequency,               0.0,                                0.0
+      } ));
+
+  //Reach a 10% value after 1000 timesteps with the closed-form solution
+  const std::string input1
+    = std::string("sin(") + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
+  const std::string input2
+    = boost::lexical_cast<std::string>(angular_frequency)
+    + std::string("*cos(") + boost::lexical_cast<std::string>(angular_frequency)
+    + "*(t+1))";
+  const std::string input3
+    = std::string("-")
+    + boost::lexical_cast<std::string>(angular_frequency)
+    + std::string("*")
+    + boost::lexical_cast<std::string>(angular_frequency)
+    + std::string("*sin(") + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
+  const std::vector<std::string> inputs = { input1, input2, input3 };
+
+  const boost::shared_ptr<const StandardKalmanFilterParameters> kalman_filter_parameters(
+    new StandardKalmanFilterParameters(
+    control,
+    estimated_measurement_noise,
+    estimated_process_noise_covariance,
+    initial_covariance_estimate,
+    initial_state_estimate,
+    observation,
+    state_transition)
+  );
+
+  const boost::shared_ptr<const StandardWhiteNoiseSystemParameters> white_noise_system_parameters(
+    new StandardWhiteNoiseSystemParameters(
+    control,
+    initial_state,
+    real_measurement_noise,
+    real_process_noise,
+    state_transition)
+  );
+
+  assert(control.size1() > 0);
+  assert(control.size2() > 0);
+  assert(state_names.size() == inputs.size());
+  assert(state_names.size() == kalman_filter_parameters->GetInitialStateEstimate().size());
+  assert(state_names.size() == white_noise_system_parameters->GetInitialState().size());
+  assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetControl(),white_noise_system_parameters->GetControl()));
+  assert(Matrix::MatricesAreEqual(kalman_filter_parameters->GetStateTransition(),white_noise_system_parameters->GetStateTransition()));
+
+  std::stringstream context_stream;
+  context_stream
+    << "<h1>" << title << "</h1>" << '\n'
+    << "<p>&nbsp;</p>" << '\n'
+    << "<p>" << '\n'
+    << "  This is more of a mathematical example. It shows that" << '\n'
+    << "  a recurrence equation and its closed-form solution for a harmonic" << '\n'
+    << "  oscillation (three states) are equivalent" << '\n'
+    << "</p>" << '\n'
+    << "<p>" << '\n'
+    << "  The closed-form solution of a harmonic oscillation is:" << '\n'
+    << "</p>" << '\n'
+    << "<code>" << '\n'
+    << "x(t) = sin(angular_frequency*t)<br/>" << '\n'
+    << "v(t) = cos(angular_frequency*t)<br/>" << '\n'
+    << "</code>" << '\n'
+    << "<p>" << '\n'
+    << "  The period is set to 100 timesteps," << '\n'
+    << "  so the angular frequency equals 2*pi radian per period = 2 * pi / 100 = 0.0628." << '\n'
+    << "</p>" << '\n'
+    << "<p>" << '\n'
+    << "  The recurrence equation of a harmonic oscillation is" << '\n'
+    << "</p>" << '\n'
+    << "<code>" << '\n'
+    << "x(t+1) = c * x(t) + angular_frequency * v(t)<br/>" << '\n'
+    << "v(t+1) = c * v(t) - angular_frequency * x(t)<br/>" << '\n'
+    << "</code>" << '\n'
+    << "<p>" << '\n'
+    << "  Where c is a correction close to 1.0, to prevent the amplitude from increasing beyond 1" << '\n'
+    << "  (probably due to rounding errors)" << '\n'
+    << "</p>" << '\n'
+    << "<p>" << '\n'
+    << "  The closed-form solution is plotted as the input, the recurrence equation as the state." << '\n'
+    << "  Because the control matrix contains a zero only, the input has no influence on the state." << '\n'
+    << "  For the cleanest look, all noise was set to a low value." << '\n'
+    << "</p>" << '\n'
+    << "<p>&nbsp;</p>" << '\n'
+    << "<ul>" << '\n'
+    << "  <li>State names: " << DisplayAsUblasVector(state_names) << ": position (e.g. meters) and velocity (e.g. meters per second)</li>" << '\n'
+    << "  <li>Initial state, real: " << initial_state << ": a sine starts at 0.0, a cosine starts at 1.0</li>" << '\n'
+    << "  <li>Initial state, estimate: " << initial_state_estimate << ": set this value to the real value, there is no need to do estimation</li>" << '\n'
+    << "  <li>Input: " << DisplayAsUblasVector(inputs) << ": the closed-form solution of a harmonic oscillation. t must be increased by one timestep, because a Kalman Filter estimates after an update</li>" << '\n'
+    << "  <li>Control: " << control << ": input must have no effect in changing the state to do a valid comparison</li>" << '\n'
+    << "  <li>Observation: " << observation << ": the value is observed directly</li>" << '\n'
+    << "  <li>State transition: " << state_transition << ": the recurrence equation of a harmonic oscillation</li>" << '\n'
+    << "  <li>Measurement noise, real: " << real_measurement_noise << ": some very low value</li>" << '\n'
+    << "  <li>Measurement noise, estimate: " << estimated_measurement_noise << ": some very low value</li>" << '\n'
+    << "  <li>Process noise, real: " << real_process_noise << ": some very low value</li>" << '\n'
+    << "  <li>Process noise, estimated covariance: " << estimated_process_noise_covariance << ": some very low value</li>" << '\n'
+    << "  <li>Initial covariance estimate: " << initial_covariance_estimate << ": some very low value</li>" << '\n'
+    << "</ul>"
+    ;
+  const std::string context = context_stream.str();
+
+  std::unique_ptr<KalmanFilterExample> example(
+    new KalmanFilterExample(
+      title,
+      context,
+      inputs,
+      kalman_filter_parameters,
+      number_of_timesteps,
       state_names,
       white_noise_system_parameters
     )
@@ -1060,6 +1289,7 @@ const std::string KalmanFilterExample::DisplayAsUblasVector(const std::vector<st
   std::stringstream s;
   s << "[" << v.size() << "](";
   BOOST_FOREACH(const std::string& str, v) { s << str << ","; }
+  //Replace trailing comma with a closing bracket
   std::string str = s.str();
   str[str.size() - 1] = ')';
   return str;

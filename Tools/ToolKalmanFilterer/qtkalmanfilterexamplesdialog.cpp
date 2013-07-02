@@ -54,13 +54,13 @@ QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
   delete ui;
 }
 
-void QtKalmanFilterExamplesDialog::EmitExample(const int index)
+void QtKalmanFilterExamplesDialog::EmitExample(const int index) const
 {
   std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(index);
   assert(example);
   const KalmanFilterExample * const p = example.release();
   assert(p);
-  emit signal_example(p);
+  m_signal_example(p);
 }
 
 void QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event)

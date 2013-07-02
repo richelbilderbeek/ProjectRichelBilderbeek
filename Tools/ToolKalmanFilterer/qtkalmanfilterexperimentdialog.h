@@ -48,6 +48,9 @@ public:
   ///Click on an example
   void ClickExample(const int i);
 
+  ///Get the dialog on which an predefined example can be selected
+  const QtKalmanFilterExamplesDialog * GetExamplesDialog() const;
+
   ///Get dialog to set up a Kalman filter
   const QtKalmanFilterDialog * GetFilterDialog() const { return m_filter_dialog; }
 
