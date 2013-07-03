@@ -35,187 +35,82 @@
 <p><a href="CppGraphics.htm">Graphics</a> <a href="CppCodeSnippets.htm">code snippet</a> to draw a lymphocyte</p>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppDrawLymphocyte.PNG">View an example image of an image created by 'DrawLymphocyte'</a></li>
-  <li><a href="CppDrawLymphocyteVcl.txt">View the code of 'DrawLymphocyte' for VCL in plain text</a></li>
+  <li><a href="CppDrawLymphocyte.png">View an example image of an image created by 'DrawLymphocyte'</a></li>
 </ul>
 <p>&nbsp;</p>
- 
-
-<p>#include &lt;cassert&gt;     //For assert</p>
-
-<p>#include &lt;cmath&gt;       //For std::sqrt</p>
-
-<p>#include &lt;algorithm&gt; //For
-std::min</p>
-
-<p>&nbsp;</p>
-
-<p>//From
-http://www.richelbilderbeek.nl/CppDrawLymphocyte.htm</p>
-
-<p>void DrawLymphocyte(</p>
-
-<p>
- TImage * const image,</p>
-
-<p>
- const unsigned char rMax,</p>
-
-<p>
- const unsigned char gMax,</p>
-
-<p>
- const unsigned char bMax)</p>
-
-<p>{</p>
-
-<p>
- assert(image!=0);</p>
-
-<p>
- const int width    =
-image-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
-
-<p>
- const int height = image-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
-
-<p>
- const double midX = static_cast&lt;double&gt;(width ) / 2.0;</p>
-
-<p>
- const double midY = static_cast&lt;double&gt;(height) / 2.0;</p>
-
-<p>
- const double maxDist = std::min(midX,midY); //Distance to end</p>
-
-<p>
- const double edgeDist = maxDist * 0.7; //Distance to edge</p>
-
-<p>&nbsp;</p>
-
-<p>
- for (int y=0; y!=height; ++y)</p>
-
-<p>
- {</p>
-
-<p> 
- unsigned char * const line</p>
-
-<p>     = static_cast&lt;unsigned char
-*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
-
-<p> 
- const double yD = static_cast&lt;double&gt;(y);</p>
-
-<p> 
- for (int x=0; x!=width; ++x)</p>
-
-<p> 
- {</p>
-
-<p>     const double xD = static_cast&lt;double&gt;(x);</p>
-
-<p>     const double dist = std::sqrt( ((xD - midX) * (xD - midX)) +
-((yD - midY) * (yD - midY)) );</p>
-
-<p>     if (dist &lt;= edgeDist)</p>
-
-<p>  
-    {</p>
-
-<p>       const double relDist = dist / edgeDist;</p>
-
-<p>       const int r = (0.5 + (0.5 * relDist)) *
-static_cast&lt;double&gt;(rMax);</p>
-
-<p>       const int g = (0.5 + (0.5 * relDist)) *
-static_cast&lt;double&gt;(gMax);</p>
-
-<p>       const int b = (0.5 + (0.5 * relDist)) * static_cast&lt;double&gt;(bMax);</p>
-
-<p>       assert( r &gt;= 0);</p>
-
-<p>       assert( r &lt; 256);</p>
-
-<p>       assert( g &gt;= 0);</p>
-
-<p>       assert( g &lt; 256);</p>
-
-<p>       assert( b &gt;= 0);</p>
-
-<p>       assert( b &lt; 256);</p>
-
-<p>       line[x*3+2] = (r == 0 ? 1 : r); //Never use a zero for red</p>
-
-<p>       line[x*3+1] = (g == 0 ? 1 : g); //Never use a zero for
-green</p>
-
-<p>       line[x*3+0] = (b == 0 ? 1 : b); //Never use a zero for blue</p>
-
-<p>     }</p>
-
-<p>     else if (dist &lt;= maxDist)</p>
-
-<p>     {</p>
-
-<p>       const double relDist = (dist - edgeDist) / (maxDist -
-edgeDist);</p>
-
-<p>       const int r = (0.5 + (0.5 * (1.0 - relDist))) *
-static_cast&lt;double&gt;(rMax);</p>
-
-<p>       const int g = (0.5 + (0.5 * (1.0 - relDist))) *
-static_cast&lt;double&gt;(gMax);</p>
-
-<p>       const int b = (0.5 + (0.5 * (1.0 - relDist))) *
-static_cast&lt;double&gt;(bMax);</p>
-
-<p>       assert( r &gt;= 0);</p>
-
-<p>       assert( r &lt; 256);</p>
-
-<p>       assert( g &gt;= 0);</p>
-
-<p>       assert( g &lt; 256);</p>
-
-<p>       assert( b &gt;= 0);</p>
-
-<p>       assert( b &lt; 256);</p>
-
-<p>       line[x*3+2] = (r == 0 ? 1 : r); //Never use a zero for red</p>
-
-<p>       line[x*3+1] = (g == 0 ? 1 : g); //Never use a zero for
-green</p>
-
-<p>       line[x*3+0] = (b == 0 ? 1 : b); //Never use a zero for blue</p>
-
-<p>     }</p>
-
-<p>     else</p>
-
-<p>     {</p>
-
-<p>       line[x*3+2] = 0;</p>
-
-<p>       line[x*3+1] = 0;</p>
-
-<p>       line[x*3+0] = 0;</p>
-
-<p>     }</p>
-
-<p> 
- }</p>
-
-<p>
- }</p>
-
-<p>}</p>
-
-</div>
-
-
-
+<!-- start of code -->
+<table summary="fileCCTgg9.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;&nbsp;&nbsp; <a href="CppComment.htm">//</a>For <a href="CppAssert.htm">assert</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>For <a href="CppSqrt.htm">std::sqrt</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt; <a href="CppComment.htm">//</a>For <a href="CppMin.htm">std::min</a><br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppDrawLymphocyte.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> DrawLymphocyte(<br/>
+&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> rMax,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> gMax,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> bMax)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midX <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width ) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midY <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxDist <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(midX,midY); <a href="CppComment.htm">//</a>Distance to end<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> edgeDist <a href="CppOperatorAssign.htm">=</a> maxDist * 0.7; <a href="CppComment.htm">//</a>Distance to edge<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dist <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( ((xD <a href="CppOperatorMinus.htm">-</a> midX) * (xD <a href="CppOperatorMinus.htm">-</a> midX)) <a href="CppOperatorPlus.htm">+</a> ((yD <a href="CppOperatorMinus.htm">-</a> midY) * (yD <a href="CppOperatorMinus.htm">-</a> midY)) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dist <a href="CppOperatorLessEqual.htm">&lt;=</a> edgeDist)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> relDist <a href="CppOperatorAssign.htm">=</a> dist <a href="CppOperatorDivide.htm">/</a> edgeDist;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> (0.5 <a href="CppOperatorPlus.htm">+</a> (0.5 * relDist)) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(rMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> (0.5 <a href="CppOperatorPlus.htm">+</a> (0.5 * relDist)) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(gMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> (0.5 <a href="CppOperatorPlus.htm">+</a> (0.5 * relDist)) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(bMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> (r <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : r); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> (g <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : g); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+0] <a href="CppOperatorAssign.htm">=</a> (b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : b); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (dist <a href="CppOperatorLessEqual.htm">&lt;=</a> maxDist)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> relDist <a href="CppOperatorAssign.htm">=</a> (dist <a href="CppOperatorMinus.htm">-</a> edgeDist) <a href="CppOperatorDivide.htm">/</a> (maxDist <a href="CppOperatorMinus.htm">-</a> edgeDist);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> (0.5 <a href="CppOperatorPlus.htm">+</a> (0.5 * (1.0 <a href="CppOperatorMinus.htm">-</a> relDist))) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(rMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> (0.5 <a href="CppOperatorPlus.htm">+</a> (0.5 * (1.0 <a href="CppOperatorMinus.htm">-</a> relDist))) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(gMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> (0.5 <a href="CppOperatorPlus.htm">+</a> (0.5 * (1.0 <a href="CppOperatorMinus.htm">-</a> relDist))) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(bMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> (r <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : r); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> (g <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : g); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+0] <a href="CppOperatorAssign.htm">=</a> (b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : b); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+0] <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

@@ -1,18 +1,3 @@
- 
-<title>DoFilterOperation</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ DoFilterOperation</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek DoFilterOperation convolution convolute do filter operation</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
-</head>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -43,513 +28,170 @@ filter operation (also called a convolution) on an image. This image is a 2D <a 
 of <a href="CppDoFilterOperation.htm">DoFilterOperation</a>.</p>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppDoFilterOperation.PNG">View an example image of 'DoFilterOperation'</a></li>
+  <li><a href="CppDoFilterOperation.png">View an example image of 'DoFilterOperation'</a></li>
   <li><a href="CppDoFilterOperation.txt">View the code of 'DoFilterOperation' in plain text</a></li>
 </ul>
 <p>&nbsp;</p>
-
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>//Return a y-x-ordered 2D
-std::vector with the intensitief of grey</p>
-
-<p>//values from range [0,255]
-(0=black,255=white) after the filter operation</p>
-
-<p>//From
-http://www.richelbilderbeek.nl/CppDoFilterOperation.htm</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
-&gt; DoFilterOperation(</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
-&gt;&amp; source, //y-x-ordered</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;
-&gt;&amp; filter) //y-x-ordered</p>
-
-<p>{</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(!source.empty());</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(!filter.empty());</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-width = source[0].size();</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-height = source.size();</p>
-
-<p> 
- <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt; &gt; v(height, <a href="CppVector.htm">std::vector</a>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt;(width));</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-maxx = source[0].size();</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-maxy = source.size();</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-midX = filter[0].size() / 2;</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-midY = filter.size()      / 2;</p>
-
-<p>&nbsp;</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a
-href="CppDouble.htm">double</a></b>,<b> <a href="CppDouble.htm">double</a></b>&gt;
-filterRange = GetFilterRange(filter);</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(filterRange.first &lt;
-filterRange.second);</p>
-
-<p>&nbsp;</p>
-
-<p> 
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-y=0; y!=maxy; ++y)</p>
-
-<p> 
- {</p>
-
-<p>   
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-writeY = y;</p>
-
-<p>   
- <a href="CppAssert.htm">assert</a>(writeY &gt;= 0 &amp;&amp; writeY &lt;
-<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size())
-);</p>
-
-<p>   
- <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp;
-vLine = v[writeY];</p>
-
-<p>   
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-x=0; x!=maxx; ++x)</p>
-
-<p>   
- {</p>
-
-<p>       //The x and y values are the topleft coordinate of where</p>
-
-<p>       //    the filter will be
-applied to. This coordinat can be out of</p>
-
-<p>       //    the range, but at
-least one pixel of where the filter will be</p>
-
-<p>       //    applied to will be
-in range</p>
-
-<p>       //The pixel value is normalized to the area the</p>
-
-<p>       //    filter operation
-took place on</p>
-
-<p>       //The outcome of the filter operation is written to</p>
-
-<p>       //    (x + midX, y +
-midY), which HAS to be in range</p>
-
-<p>       <b><a href="CppConst.htm">const</a></b> <b><a
-href="CppDouble.htm">double</a></b> unscaledPixelValue =
-GetFilterOperationPixel(source,x-midX,y-midY,filter);</p>
-
-<p>       //Scale the unscaledPixelValue.</p>
-
-<p>       //The maximal value of unscaledPixelValue is the sum of all
-positive</p>
-
-<p>       //values in the filter * 255.</p>
-
-<p>       //The minimum value of unscaledPixelValue is the sum of all
-negative</p>
-
-<p>       //values in the filter * 255.</p>
-
-<p>       //The scaled pixel value must be obtained by transforming the
-unscaled</p>
-
-<p>       //range [min,max] to [0,256&gt;.</p>
-
-<p>       <b><a href="CppConst.htm">const</a></b> <b><a
-href="CppDouble.htm">double</a></b> relUnscaledRange</p>
-
-<p>         = (unscaledPixelValue - filterRange.first)</p>
-
-<p>         / (filterRange.second - filterRange.first);</p>
-
-<p>       <a href="CppAssert.htm">assert</a>(relUnscaledRange &gt;= 0.0
-&amp;&amp; relUnscaledRange &lt;= 1.0);</p>
-
-<p>       <b><a href="CppConst.htm">const</a></b> <b><a
-href="CppDouble.htm">double</a></b> scaledRange = relUnscaledRange * 255;</p>
-
-<p>       <a href="CppAssert.htm">assert</a>(scaledRange &gt;= 0.0
-&amp;&amp; scaledRange &lt; 256.0);</p>
-
-<p>       <b><a href="CppConst.htm">const</a></b> <b><a
-href="CppInt.htm">int</a></b> pixel = scaledRange;</p>
-
-<p>       <b><a href="CppConst.htm">const</a></b> <b><a
-href="CppInt.htm">int</a></b> writeX = x;</p>
-
-<p>       <a href="CppAssert.htm">assert</a>(writeX &gt;= 0 &amp;&amp;
-writeX &lt; width);</p>
-
-<p>       vLine[writeX] = pixel;</p>
-
-<p>  
-    }</p>
-
-<p> 
- }</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(source[0].size()==v[0].size());</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(source.size()==v.size());</p>
-
-<p> 
- <b><a href="CppReturn.htm">return</a></b> v;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//The sourceX and sourceY values are
-the topleft coordinate of where</p>
-
-<p>//  
- the filter will be applied to. This coordinat can be out of</p>
-
-<p>//  
- the range, but at least one pixel of where the filter will be</p>
-
-<p>//  
- applied to will be in range. If there are no pixels in range,</p>
-
-<p>//  
- an assertion will fail.</p>
-
-<p>//The pixel value is normalized to
-the area the</p>
-
-<p>//  
- filter operation took place on. Therefore, this area must be non-zero</p>
-
-<p>//The outcome of this filter
-operation will be written to</p>
-
-<p>//  
- (x + midX, y + midY), which HAS to be in range</p>
-
-<p>//From
-http://www.richelbilderbeek.nl/CppDoFilterOperation.htm</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  <b><a href="CppDouble.htm">double</a></b>
-GetFilterOperationPixel(</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;
-&gt;&amp; source, //y-x-ordered</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-sourceX,</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-sourceY,</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;
-&gt;&amp; filter) //y-x-ordered</p>
-
-<p>{</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(!source.empty());</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(!filter.empty());</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-sourceMaxY = source.size();</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-sourceMaxX = source[0].size();</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-filterMaxY = filter.size();</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-filterMaxX = filter[0].size();</p>
-
-<p>&nbsp;</p>
-
-<p> 
- <b><a href="CppDouble.htm">double</a></b> result = 0.0;</p>
-
-<p> 
- <b><a href="CppInt.htm">int</a></b> nPixels = 0;</p>
-
-<p> 
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-y=0; y!=filterMaxY; ++y)</p>
-
-<p> 
- {</p>
-
-<p>   
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-readY = sourceY + y;</p>
-
-<p>   
- <b><a href="CppIf.htm">if</a></b> ( readY &lt; 0 || readY &gt;=
-sourceMaxY) <b><a href="CppContinue.htm">continue</a></b>;</p>
-
-<p>   
- <a href="CppAssert.htm">assert</a>(y &gt;= 0);</p>
-
-<p>   
- <a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt;(filter.size()));</p>
-
-<p>   
- <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a
-href="CppDouble.htm">double</a></b>&gt;&amp; lineFilter = filter[y];</p>
-
-<p>   
- <a href="CppAssert.htm">assert</a>(readY &gt;= 0);</p>
-
-<p>   
- <a href="CppAssert.htm">assert</a>(readY &lt; <b><a
-href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(source.size()));</p>
-
-<p>   
- <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt;&amp; lineSource = source[readY];</p>
-
-<p>   
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-x=0; x!=filterMaxX; ++x)</p>
-
-<p>   
- {</p>
-
-<p>       <b><a href="CppConst.htm">const</a></b> <b><a
-href="CppInt.htm">int</a></b> readX = sourceX + x;</p>
-
-<p>       <b><a href="CppIf.htm">if</a></b> ( readX &lt; 0 || readX
-&gt;= sourceMaxX) <b><a href="CppContinue.htm">continue</a></b>;</p>
-
-<p>       <a href="CppAssert.htm">assert</a>(x &gt;= 0);</p>
-
-<p>       <a href="CppAssert.htm">assert</a>(x &lt; filterMaxX);</p>
-
-<p>       <a href="CppAssert.htm">assert</a>(readX &gt;= 0);</p>
-
-<p>       <a href="CppAssert.htm">assert</a>(readX &lt; sourceMaxX);</p>
-
-<p>       <b><a href="CppConst.htm">const</a></b> <b><a
-href="CppDouble.htm">double</a></b> deltaResult = <b><a
-href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(lineSource[readX])
-* lineFilter[x];</p>
-
-<p>       result += deltaResult;</p>
-
-<p>       ++nPixels;</p>
-
-<p>   
- }</p>
-
-<p> 
- }</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(nPixels!=0);</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>
-filteredValue = result / <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
-href="CppDouble.htm">double</a></b>&gt;(nPixels);</p>
-
-<p> 
- <b><a href="CppReturn.htm">return</a></b> filteredValue;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//Obtains the range a filter can
-have</p>
-
-<p>//Assumes the every element has a
-maximum value of 255</p>
-
-<p>//From
-http://www.richelbilderbeek.nl/CppDoFilterOperation.htm</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  std::pair&lt;<b><a
-href="CppDouble.htm">double</a></b>,<b> <a href="CppDouble.htm">double</a></b>&gt;
-GetFilterRange(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;
-&gt;&amp; filter)</p>
-
-<p>{</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>(!filter.empty());</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-maxx = filter[0].size();</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-maxy = filter.size();</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>(maxx + maxy &gt; 2 &amp;&amp;
-&quot;Filter size must be bigger then 1x1&quot;);</p>
-
-<p>
- <b><a href="CppDouble.htm">double</a></b> min = 0.0;</p>
-
-<p>
- <b><a href="CppDouble.htm">double</a></b> max = 0.0;</p>
-
-<p>
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-y=0; y!=maxy; ++y)</p>
-
-<p>
- {</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(y &gt;= 0);</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(y  
- &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;int&gt;(filter.size())
-);</p>
-
-<p>&nbsp;</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a
-href="CppDouble.htm">double</a></b>&gt;&amp; lineFilter = filter[y];</p>
-
-<p> 
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-x=0; x!=maxx; ++x)</p>
-
-<p> 
- {</p>
-
-<p>     <a href="CppAssert.htm">assert</a>(x &gt;= 0);</p>
-
-<p>     <a href="CppAssert.htm">assert</a>(x    &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt;(lineFilter.size()) );</p>
-
-<p>&nbsp;</p>
-
-<p>     <b><a href="CppConst.htm">const</a></b> <b><a
-href="CppDouble.htm">double</a></b> value = lineFilter[x];</p>
-
-<p>     <b><a href="CppIf.htm">if</a></b> (value &lt; 0.0) min
-+=value;</p>
-
-<p>     <b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b>
-(value &gt; 0.0) max +=value;</p>
-
-<p> 
- }</p>
-
-<p>
- }</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a
-href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;
-range</p>
-
-<p>
- = <a href="CppMake_pair.htm">std::make_pair</a>(min * 255.0, max *
-255.0);</p>
-
-<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
-
-padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'>   
- <b><a href="CppReturn.htm">return</a></b> range;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
-
+<!-- start of code -->
+<table summary="filee3PblW.cpp" border = "1"><tr><td><code>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>Return a y-x-ordered 2D <a href="CppVector.htm">std::vector</a> with the intensitief of grey<br/>
+<a href="CppComment.htm">//</a>values from range [0,255] (0=black,255=white) after the filter operation<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppDoFilterOperation.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; DoFilterOperation(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; source, <a href="CppComment.htm">//</a>y-x-ordered<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; filter) <a href="CppComment.htm">//</a>y-x-ordered<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!source.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!filter.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> source[0].size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> source.size();<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; v(height, <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(width));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> source[0].size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> source.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midX <a href="CppOperatorAssign.htm">=</a> filter[0].size() <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midY <a href="CppOperatorAssign.htm">=</a> filter.size()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>, <b><a href="CppDouble.htm">double</a></b>&gt; filterRange <a href="CppOperatorAssign.htm">=</a> GetFilterRange(filter);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(filterRange.first &lt; filterRange.second);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> writeY <a href="CppOperatorAssign.htm">=</a> y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(writeY <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> writeY &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; vLine <a href="CppOperatorAssign.htm">=</a> v[writeY];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The x and y values are the topleft coordinate of where<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;the filter will be applied to. This coordinat can be out of<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;the range, but at least one pixel of where the filter will be<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;applied to will be in range<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The pixel value is normalized to the area the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;filter operation took place on<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The outcome of the filter operation is written to<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;(x <a href="CppOperatorPlus.htm">+</a> midX, y <a href="CppOperatorPlus.htm">+</a> midY), which HAS to be in range<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> unscaledPixelValue <a href="CppOperatorAssign.htm">=</a> GetFilterOperationPixel(source,x-midX,y-midY,filter);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Scale the unscaledPixelValue.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The maximal value of unscaledPixelValue is the sum of all positive<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>values in the filter * 255.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The minimum value of unscaledPixelValue is the sum of all negative<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>values in the filter * 255.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The scaled pixel value must be obtained by transforming the unscaled<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>range [min,max] to [0,256&gt;.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> relUnscaledRange<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (unscaledPixelValue <a href="CppOperatorMinus.htm">-</a> filterRange.first)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> (filterRange.second <a href="CppOperatorMinus.htm">-</a> filterRange.first);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(relUnscaledRange <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> relUnscaledRange <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scaledRange <a href="CppOperatorAssign.htm">=</a> relUnscaledRange * 255;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(scaledRange <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> scaledRange &lt; 256.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pixel <a href="CppOperatorAssign.htm">=</a> scaledRange;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> writeX <a href="CppOperatorAssign.htm">=</a> x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(writeX <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> writeX &lt; width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vLine[writeX] <a href="CppOperatorAssign.htm">=</a> pixel;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source[0].size()<a href="CppOperatorEqual.htm">==</a>v[0].size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(source.size()<a href="CppOperatorEqual.htm">==</a>v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>The sourceX and sourceY values are the topleft coordinate of where<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;the filter will be applied to. This coordinat can be out of<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;the range, but at least one pixel of where the filter will be<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;applied to will be in range. If there are no pixels in range,<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;an <a href="CppAssert.htm">assert</a>ion will fail.<br/>
+<a href="CppComment.htm">//</a>The pixel value is normalized to the area the<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;filter operation took place on. Therefore, <b><a href="CppThis.htm">this</a></b> area must be non-zero<br/>
+<a href="CppComment.htm">//</a>The outcome of <b><a href="CppThis.htm">this</a></b> filter operation will be written to<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;(x <a href="CppOperatorPlus.htm">+</a> midX, y <a href="CppOperatorPlus.htm">+</a> midY), which HAS to be in range<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppDoFilterOperation.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GetFilterOperationPixel(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; source, <a href="CppComment.htm">//</a>y-x-ordered<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sourceX,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sourceY,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; filter) <a href="CppComment.htm">//</a>y-x-ordered<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!source.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!filter.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sourceMaxY <a href="CppOperatorAssign.htm">=</a> source.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sourceMaxX <a href="CppOperatorAssign.htm">=</a> source[0].size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> filterMaxY <a href="CppOperatorAssign.htm">=</a> filter.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> filterMaxX <a href="CppOperatorAssign.htm">=</a> filter[0].size();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> result <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> nPixels <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>filterMaxY; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> readY <a href="CppOperatorAssign.htm">=</a> sourceY <a href="CppOperatorPlus.htm">+</a> y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( readY &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> readY <a href="CppOperatorGreaterEqual.htm">&gt;=</a> sourceMaxY) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(filter.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; lineFilter <a href="CppOperatorAssign.htm">=</a> filter[y];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(readY <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(readY &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(source.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; lineSource <a href="CppOperatorAssign.htm">=</a> source[readY];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>filterMaxX; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> readX <a href="CppOperatorAssign.htm">=</a> sourceX <a href="CppOperatorPlus.htm">+</a> x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( readX &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> readX <a href="CppOperatorGreaterEqual.htm">&gt;=</a> sourceMaxX) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; filterMaxX);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(readX <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(readX &lt; sourceMaxX);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> deltaResult <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(lineSource[readX]) * lineFilter[x];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> deltaResult;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+nPixels;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nPixels<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> filteredValue <a href="CppOperatorAssign.htm">=</a> result <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nPixels);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filteredValue;<br/>
+}<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>Obtains the range a filter can have<br/>
+<a href="CppComment.htm">//</a>Assumes the every element has a maximum value of 255<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppDoFilterOperation.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>, <b><a href="CppDouble.htm">double</a></b>&gt; GetFilterRange(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; filter)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!filter.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> filter[0].size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> filter.size();<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxx <a href="CppOperatorPlus.htm">+</a> maxy &gt; 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Filter size must be bigger then 1x1");<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> min <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> max <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y&nbsp;&nbsp;&lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(filter.size()) );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; lineFilter <a href="CppOperatorAssign.htm">=</a> filter[y];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x&nbsp;&nbsp;&lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(lineFilter.size()) );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> value <a href="CppOperatorAssign.htm">=</a> lineFilter[x];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value &lt; 0.0) min <a href="CppOperatorPlus.htm">+</a>=value;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (value &gt; 0.0) max <a href="CppOperatorPlus.htm">+</a>=value;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; range<br/>
+&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppMake_pair.htm">std::make_pair</a>(min * 255.0, max * 255.0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> range;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

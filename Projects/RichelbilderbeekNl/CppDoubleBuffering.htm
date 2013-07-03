@@ -1,15 +1,3 @@
- 
-<title>Double buffering</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Double buffering</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek Double buffering buffer two buffers prevent flicker</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -43,151 +31,57 @@ program <a href="CppDemoBuffering.htm">DemoBuffering</a>.</p>
 <p>To clean a buffer, often the background is drawn on the buffer first.</p>
 <p>&nbsp;</p>
 <p>In C++ Builder, this looks somewhat like the code below (but see the program <a href="CppDemoBuffering.htm">DemoBuffering</a> for a complete program):</p>
- 
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;vcl.h&gt;</p>
-
-<p>#pragma hdrstop</p>
-
-<p>&nbsp;</p>
-
-<p>#include
-&quot;UnitFormDoubleBuffering.h&quot;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#pragma package(smart_init)</p>
-
-<p>#pragma resource &quot;*.dfm&quot;</p>
-
-<p>TForm1 *Form1;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p><b> __fastcall </b>  TForm1::TForm1(TComponent*
-Owner)</p>
-
-<p>       : TForm(Owner)</p>
-
-<p>{</p>
-
-<p>
- <b><a href="CppThis.htm">this</a></b>-&gt;OnResize(0);</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  <b>
-__fastcall</b> TForm1::Timer1Timer(TObject
-*Sender)</p>
-
-<p>{</p>
-
-<p>
- //Clean the buffer by drawing the background on the buffer</p>
-
-<p>
- ImageBuffer-&gt;Canvas-&gt;Draw(0,0,ImageBackground-&gt;Picture-&gt;Graphic);</p>
-
-<p>&nbsp;</p>
-
-<p>
- //Draw the sprites on the buffer</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-nSprites = 100;</p>
-
-<p>
- for (int i=0; i!=nSprites; ++i)</p>
-
-<p>
- {</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-x = <a href="CppRand.htm">std::rand</a>() % (ClientWidth    - ImageSprite-&gt;Width );</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-y = <a href="CppRand.htm">std::rand</a>() % (ClientHeight -
-ImageSprite-&gt;Height);</p>
-
-<p> 
- ImageBuffer-&gt;Canvas-&gt;Draw(x,y,ImageSprite-&gt;Picture-&gt;Graphic);</p>
-
-<p>
- }</p>
-
-<p>&nbsp;</p>
-
-<p>
- //Finally, copy the buffer to the Form</p>
-
-<p>
- <b><a href="CppThis.htm">this</a></b>-&gt;Canvas-&gt;Draw(0,0,ImageBuffer-&gt;Picture-&gt;Graphic);</p>
-
-<p>&nbsp;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  <b>
-__fastcall</b> TForm1::FormResize(TObject *Sender)</p>
-
-<p>{</p>
-
-<p>
- //Assume all Images are invisible</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>(ImageBuffer-&gt;Visible       == <b><a href="CppFalse.htm">false</a></b>);</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>(ImageBackground-&gt;Visible == <b><a
-href="CppFalse.htm">false</a></b>);</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>(ImageSprite-&gt;Visible       == <b><a href="CppFalse.htm">false</a></b>);</p>
-
-<p>
- //Set the Buffer and Background to the right size</p>
-
-<p>
- ImageBuffer-&gt;Picture-&gt;Bitmap-&gt;Width    = ClientWidth;</p>
-
-<p>
- ImageBuffer-&gt;Picture-&gt;Bitmap-&gt;Height = ClientHeight;</p>
-
-<p>
- ImageBackground-&gt;Picture-&gt;Bitmap-&gt;Width    = ClientWidth;</p>
-
-<p>
- ImageBackground-&gt;Picture-&gt;Bitmap-&gt;Height = ClientHeight;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
+ <p>&nbsp;</p>
+<!-- start of code -->
+<table summary="file8w4t3c.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+ <br/>
+<a href="CppInclude.htm">#include</a> "UnitForm<a href="CppDouble.htm">Double</a>Buffering.h"<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+TForm1 *Form1;<br/>
+<br/>
+__fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+&nbsp;&nbsp;: TForm(Owner)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;OnResize(0);<br/>
+}<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TForm1::<a href="CppTime.htm">Time</a>r1<a href="CppTime.htm">Time</a>r(TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Clean the buffer by drawing the background on the buffer<br/>
+&nbsp;&nbsp;ImageBuffer-&gt;Canvas-&gt;Draw(0,0,ImageBackground-&gt;Picture-&gt;Graphic);<br/>
+ <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the sprites on the buffer<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSprites <a href="CppOperatorAssign.htm">=</a> 100;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>nSprites; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (ClientWidth <a href="CppOperatorMinus.htm">-</a> ImageSprite-&gt;Width );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (ClientHeight <a href="CppOperatorMinus.htm">-</a> ImageSprite-&gt;Height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ImageBuffer-&gt;Canvas-&gt;Draw(x,y,ImageSprite-&gt;Picture-&gt;Graphic);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Finally, copy the buffer to the Form<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Canvas-&gt;Draw(0,0,ImageBuffer-&gt;Picture-&gt;Graphic);<br/>
+}<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TForm1::FormResize(TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume all Images are invisible<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!ImageBuffer-&gt;Visible);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!ImageBackground-&gt;Visible);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!ImageSprite-&gt;Visible);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the Buffer and Background to the right size<br/>
+&nbsp;&nbsp;ImageBuffer-&gt;Picture-&gt;Bitmap-&gt;Width <a href="CppOperatorAssign.htm">=</a> ClientWidth;<br/>
+&nbsp;&nbsp;ImageBuffer-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> ClientHeight;<br/>
+&nbsp;&nbsp;ImageBackground-&gt;Picture-&gt;Bitmap-&gt;Width <a href="CppOperatorAssign.htm">=</a> ClientWidth;<br/>
+&nbsp;&nbsp;ImageBackground-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> ClientHeight;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
