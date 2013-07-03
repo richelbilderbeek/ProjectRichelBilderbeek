@@ -14,6 +14,7 @@
 #include <QPen>
 
 #include "pvdbnode.h"
+#include "pvdbnodefactory.h"
 #include "qtpvdbbrushfactory.h"
 #include "qtpvdbeditconceptitem.h"
 #include "qtpvdbrateconceptitem.h"
@@ -243,3 +244,19 @@ void QtPvdbNodeItem::SetName(const std::string& name)
 {
   m_node->GetConcept()->SetName(name);
 }
+
+#ifndef NDEBUG
+void QtPvdbNodeItem::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  //Test SetX and SetY being in sync
+  {
+    boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::GetTests()
+    boost::shared_ptr<QtPvdbNodeItem> qtnode(new QtPvdbNodeItem(node,qtconcept_item);
+  }
+}
+#endif

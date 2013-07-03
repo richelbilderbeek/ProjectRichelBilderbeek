@@ -38,7 +38,9 @@
 #include "trace.h"
 #include "ui_qtpvdbclusterdialog.h"
 
-QtPvdbClusterDialog::QtPvdbClusterDialog(const boost::shared_ptr<pvdb::File> file, QWidget* parent)
+QtPvdbClusterDialog::QtPvdbClusterDialog(
+  const boost::shared_ptr<pvdb::File> file,
+  QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbClusterDialog),
     m_back_to_menu(false),
