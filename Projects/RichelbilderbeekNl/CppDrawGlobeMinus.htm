@@ -1,29 +1,3 @@
- 
-<title>DrawGlobeMinus</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Code Snippet DrawGlobeMinus</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Code Snippet Richel Bilderbeek DrawGlobeMinus draw globe vcl clx builder C++ Builder Turbo C++ Borland Developer Studio VCL CLX</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>8</o:Revision>
-  <o:TotalTime>122</o:TotalTime>
-  <o:Created>2007-10-21T11:51:00Z</o:Created>
-  <o:LastSaved>2008-06-28T10:24:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>179</o:Words>
-  <o:Characters>1023</o:Characters>
-  <o:Category>C++ Code Snippet Richel Bilderbeek DrawGlobeMinus</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>8</o:Lines>
-  <o:Paragraphs>2</o:Paragraphs>
-  <o:CharactersWithSpaces>1256</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -51,63 +25,27 @@ a globe with a minus on it.</p>
 <p>&nbsp;</p>
 <p>Assumes that you have already defined the <a href="CppDrawGlobe.htm">DrawGlobe</a> function.</p>
 <p>&nbsp;</p>
-<ul>
-  <li><a href="CppDrawGlobeMinus.txt">View the code of 'DrawGlobeMinus' in plain text</a></li>
-</ul>
-<p>&nbsp;</p>
- 
-
-<p>#include &lt;ExtCtrls.hpp&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>//From
-http://www.richelbilderbeek.nl/CppDrawGlobeMinus.htm</p>
-
-<p>void DrawGlobeMinus(TImage * const
-image,</p>
-
-<p>&nbsp;</p>
-
-<p>
- const unsigned char red,</p>
-
-<p>
- const unsigned char green,</p>
-
-<p>
- const unsigned char blue)</p>
-
-<p>{</p>
-
-<p>
- DrawGlobe(image,red,green,blue);</p>
-
-<p>
- const int height = image-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
-
-<p>
- const int width    =
-image-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
-
-<p>
- image-&gt;Canvas-&gt;Pen-&gt;Width = height / 10;</p>
-
-<p>
- image-&gt;Canvas-&gt;Pen-&gt;Color =
-static_cast&lt;TColor&gt;(RGB(red,green,blue));</p>
-
-<p>
- image-&gt;Canvas-&gt;MoveTo(1 * width / 4,height / 2);</p>
-
-<p>
- image-&gt;Canvas-&gt;LineTo(3 * width / 4,height / 2);</p>
-
-<p>}</p>
-
-</div>
-
-
+<!-- start of code -->
+<table summary="fileCgXy4n.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.htm">DrawGlobe</a>Minus.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppDrawGlobe.htm">DrawGlobe</a>Minus(<br/>
+&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppDrawGlobe.htm">DrawGlobe</a>(image,red,green,blue);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;image-&gt;Canvas-&gt;Pen-&gt;Width <a href="CppOperatorAssign.htm">=</a> height <a href="CppOperatorDivide.htm">/</a> 10;<br/>
+&nbsp;&nbsp;image-&gt;Canvas-&gt;Pen-&gt;Color <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;TColor&gt;(RGB(red,green,blue));<br/>
+&nbsp;&nbsp;image-&gt;Canvas-&gt;MoveTo(1 * width <a href="CppOperatorDivide.htm">/</a> 4,height <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+&nbsp;&nbsp;image-&gt;Canvas-&gt;LineTo(3 * width <a href="CppOperatorDivide.htm">/</a> 4,height <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

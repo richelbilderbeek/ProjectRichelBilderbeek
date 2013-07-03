@@ -1,21 +1,3 @@
- 
-<title>Duff's device</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Duff's device</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek Duff's device</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
-</head>
-
- 
-
- 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -40,62 +22,27 @@
 <p>&nbsp;</p>
 <p>An example of weird-looking-but-compilable code.</p>
 <p>&nbsp;</p>
-<ul>
-  <li><a href="CppDuffsDevice.txt">View the code of Duff's device in plain text</a></li>
-</ul>
-<p>&nbsp;</p>
-
- 
-
-<p>//Duff's device</p>
-
-<p>void Send(int * to, const int* from,
-const int count)</p>
-
-<p>{</p>
-
-<p>
- int n = (count+7) / 8;</p>
-
-<p>
- switch(count%8)</p>
-
-<p>
- {</p>
-
-<p> 
- case 0: do { *to++ = *from++;</p>
-
-<p> 
- case 7:        *to++ = *from++;</p>
-
-<p> 
- case 6:        *to++ = *from++;</p>
-
-<p> 
- case 5:        *to++ = *from++;</p>
-
-<p> 
- case 4:        *to++ = *from++;</p>
-
-<p> 
- case 3:        *to++ = *from++;</p>
-
-<p> 
- case 2:        *to++ = *from++;</p>
-
-<p> 
- case 1:        *to++ = *from++;</p>
-
-<p>           } while (--n&gt;0);</p>
-
-<p>
- }</p>
-
-<p>}</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="file0o2dVs.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>Duff's device<br/>
+<b><a href="CppVoid.htm">void</a></b> Send(<b><a href="CppInt.htm">int</a></b> * to, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>* from, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> count)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> (count+7) <a href="CppOperatorDivide.htm">/</a> 8;<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(count%8)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <b><a href="CppDo.htm">do</a></b> { *to+<a href="CppOperatorPlus.htm">+</a> <a href="CppOperatorAssign.htm">=</a> *from<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 7:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*to+<a href="CppOperatorPlus.htm">+</a> <a href="CppOperatorAssign.htm">=</a> *from<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*to+<a href="CppOperatorPlus.htm">+</a> <a href="CppOperatorAssign.htm">=</a> *from<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*to+<a href="CppOperatorPlus.htm">+</a> <a href="CppOperatorAssign.htm">=</a> *from<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*to+<a href="CppOperatorPlus.htm">+</a> <a href="CppOperatorAssign.htm">=</a> *from<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*to+<a href="CppOperatorPlus.htm">+</a> <a href="CppOperatorAssign.htm">=</a> *from<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*to+<a href="CppOperatorPlus.htm">+</a> <a href="CppOperatorAssign.htm">=</a> *from<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*to+<a href="CppOperatorPlus.htm">+</a> <a href="CppOperatorAssign.htm">=</a> *from<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <b><a href="CppWhile.htm">while</a></b> (<a href="CppOperatorDecrement.htm">--</a>n&gt;0);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>I leave it as an exercise to the reader to figure out what <a href="CppDuffsDevice.htm">Duff's device</a> does.</p>
 <p>&nbsp;</p>

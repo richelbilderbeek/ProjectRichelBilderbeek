@@ -50,22 +50,17 @@
 <p><a href="CppDelete.htm">delete</a> is a <a href="CppKeyword.htm">keyword</a> to release dynamically allocated memory (allocated 
 by the <a href="CppKeyword.htm">keyword</a> <a href="CppNew.htm">new</a>).</p>
 <p>&nbsp;</p>
-
-
-<p>MyClass * myClass <a
-href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> MyClass;</p>
-
-<p><a href="CppComment.htm">//</a>Do
-stuff on myClass</p>
-
-<p><b> <a href="CppDelete.htm">delete</a> </b>  myClass;</p>
-
+<!-- start of code -->
+<table summary="file2KqrLD.cpp" border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;MyClass * myClass <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> MyClass;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Do stuff on myClass<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> myClass;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
 <p>Prefer to use <a href="CppSmartPointer.htm">smart pointers</a> [1] . If you do so, you rarely ever need to use <a href="CppDelete.htm">delete</a>.</p>
 <p>&nbsp;</p>
 <p>Be aware that it is valid to <a href="CppDeletePointerToConst.htm">delete a pointer-to-const</a>.</p>
