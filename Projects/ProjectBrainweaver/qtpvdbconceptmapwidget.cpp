@@ -15,6 +15,7 @@
 
 #include <QKeyEvent>
 
+#include "fuzzy_equal_to.h"
 #include "pvdbconceptfactory.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptmapfactory.h"
@@ -209,7 +210,15 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   #endif
 
   //Put the nodes around the focal question in an initial position
-  if (MustReposition(AddConst(m_concept_map->GetNodes()))) RepositionItems();
+  if (MustReposition(AddConst(m_concept_map->GetNodes())))
+  {
+    TRACE("REPOSITIONING");
+    RepositionItems();
+  }
+  else
+  {
+    TRACE("NO REPOSITIONING");
+  }
 
   #ifndef NDEBUG
   assert(m_concept_map->IsValid());
@@ -385,7 +394,6 @@ void QtPvdbConceptMapWidget::keyPressEvent(QKeyEvent *event)
 
 bool QtPvdbConceptMapWidget::MustReposition(const std::vector<boost::shared_ptr<const pvdb::Node> >& nodes) const
 {
-
   //If all are at the origin, the nodes must be (re)positioned
   return std::count_if(nodes.begin(),nodes.end(),
     [](const boost::shared_ptr<const pvdb::Node>& node)
@@ -413,25 +421,25 @@ void QtPvdbConceptMapWidget::RepositionItems()
     //The ray of the upcoming circle of nodes, is the larger of
     //(1) half of the diagonal of the focal question (e.g. for short concepts)
     //(2) calculated from the circumference by adding the nodes' length
-    const std::vector<QtPvdbNodeItem *> node_concepts_unsorted = Collect<QtPvdbNodeItem>(scene());
-    const std::vector<QtPvdbNodeItem *> node_concepts = Sort(node_concepts_unsorted);
-    assert(!node_concepts.empty());
-    assert(node_concepts[0]);
-    const QtPvdbNodeItem * const center_node
-      = dynamic_cast<const QtPvdbNodeItem *>(node_concepts[0]);
-    assert(center_node);
-    assert(center_node->pos().x() > -0.5);
-    assert(center_node->pos().x() <  0.5);
-    assert(center_node->pos().y() > -0.5);
-    assert(center_node->pos().y() <  0.5);
+    const std::vector<QtPvdbNodeItem *> qtnode_concepts_unsorted = Collect<QtPvdbNodeItem>(scene());
+    const std::vector<QtPvdbNodeItem *> qtnode_concepts = Sort(qtnode_concepts_unsorted);
+    assert(!qtnode_concepts.empty());
+    assert(qtnode_concepts[0]);
+    const QtPvdbNodeItem * const qtcenter_node
+      = dynamic_cast<const QtPvdbNodeItem *>(qtnode_concepts[0]);
+    assert(qtcenter_node);
+    assert(qtcenter_node->pos().x() > -0.5);
+    assert(qtcenter_node->pos().x() <  0.5);
+    assert(qtcenter_node->pos().y() > -0.5);
+    assert(qtcenter_node->pos().y() <  0.5);
 
     const double r1
       = 0.5 * pvdb::GetDistance(
-        center_node->boundingRect().width(),
-        center_node->boundingRect().height());
+        qtcenter_node->boundingRect().width(),
+        qtcenter_node->boundingRect().height());
     const double r3 = 50.0;
     const double r = std::max(r1,r3);
-    const int n_nodes = node_concepts.size();
+    const int n_nodes = qtnode_concepts.size();
     for (int i = 1; i!=n_nodes; ++i) //+1 to skip center node
     {
       //Added +0 (instead of -1) to n_nodes, to prevent, in a setup with two concepts and
@@ -441,18 +449,30 @@ void QtPvdbConceptMapWidget::RepositionItems()
         / boost::numeric_cast<double>(n_nodes - 1);
       const double x =  std::cos(angle) * r;
       const double y = -std::sin(angle) * r;
-      node_concepts[i]->setPos(x,y);
+      QtPvdbNodeItem * const qtnode = qtnode_concepts[i];
+      qtnode->GetNode()->SetX(x);
+      qtnode->GetNode()->SetY(y);
+      //qtnode->setPos(x,y);
+
+      assert(fuzzy_equal_to()(qtnode->pos().x(),qtnode->GetNode()->GetX()));
+      assert(fuzzy_equal_to()(qtnode->pos().y(),qtnode->GetNode()->GetY()));
     }
   }
 
   {
     //Put the edge concepts in the middle of the nodes
-    const std::vector<QtPvdbEdgeItem *> edge_concepts = Collect<QtPvdbEdgeItem>(scene());
-    std::for_each(edge_concepts.begin(), edge_concepts.end(),
-      [](QtPvdbEdgeItem* const edge_concept)
+    const std::vector<QtPvdbEdgeItem *> qtedge_concepts = Collect<QtPvdbEdgeItem>(scene());
+    std::for_each(qtedge_concepts.begin(), qtedge_concepts.end(),
+      [](QtPvdbEdgeItem * const qtedge)
       {
-        const QPointF p((edge_concept->GetFrom()->pos() + edge_concept->GetTo()->pos()) / 2.0);
-        edge_concept->setPos(p);
+        const QPointF p((qtedge->GetFrom()->pos() + qtedge->GetTo()->pos()) / 2.0);
+        const double new_x = p.x();
+        const double new_y = p.y();
+        qtedge->GetEdge()->SetX(new_x);
+        qtedge->GetEdge()->SetY(new_y);
+        //qtedge->setPos(p);
+        assert(fuzzy_equal_to()(qtedge->pos().x(),qtedge->GetEdge()->GetX()));
+        assert(fuzzy_equal_to()(qtedge->pos().y(),qtedge->GetEdge()->GetY()));
       }
     );
   }
@@ -471,25 +491,37 @@ void QtPvdbConceptMapWidget::RepositionItems()
       = dynamic_cast<const QtPvdbNodeItem *>(qtnodes[0]);
     assert(center_node);
 
-    std::vector<QtRoundedTextRectItem*> items;
-    std::copy(qtnodes.begin(),qtnodes.end(),std::back_inserter(items));
-    assert(IsCenterNode(items[0]));
-    std::copy(qtedges.begin(),qtedges.end(),std::back_inserter(items));
+    std::vector<QtRoundedTextRectItem*> nodes_and_edges;
+    std::copy(qtnodes.begin(),qtnodes.end(),std::back_inserter(nodes_and_edges));
+    assert(IsCenterNode(nodes_and_edges[0]));
+    std::copy(qtedges.begin(),qtedges.end(),std::back_inserter(nodes_and_edges));
 
     //Move the nodes away from the center
     std::for_each(
-      items.begin() + 1, //+1 to skip the center node at [0]
-      items.end(),
-      [center_node,&done](QtRoundedTextRectItem* const node)
+      nodes_and_edges.begin() + 1, //+1 to skip the center node at [0]
+      nodes_and_edges.end(),
+      [center_node,&done](QtRoundedTextRectItem* const node_or_edge)
       {
         if (center_node->boundingRect().intersects(
-          node->boundingRect().translated(-node->pos())))
+          node_or_edge->boundingRect().translated(-node_or_edge->pos())))
         {
-          node->setPos(QPointF(
-            node->pos().x() < center_node->pos().x() ? node->pos().x()-1 : node->pos().x() + 1,
-            node->pos().y() < center_node->pos().y() ? node->pos().y()-1 : node->pos().y() + 1
-            )
-          );
+          const double cur_x = node_or_edge->pos().x();
+          const double cur_y = node_or_edge->pos().y();
+          const double new_x = cur_x + (node_or_edge->pos().x() < center_node->pos().x() ? -1.0 : 1.0);
+          const double new_y = cur_y + (node_or_edge->pos().y() < center_node->pos().y() ? -1.0 : 1.0);
+          if (QtPvdbNodeItem * const qtnode = dynamic_cast<QtPvdbNodeItem *>(node_or_edge))
+          {
+            qtnode->GetNode()->SetX(new_x);
+            qtnode->GetNode()->SetY(new_y);
+          }
+          else
+          {
+            QtPvdbEdgeItem * const qtedge = dynamic_cast<QtPvdbEdgeItem *>(node_or_edge);
+            assert(qtedge && "Every item is either a Qt node or Qt edge");
+            qtedge->GetEdge()->SetX(new_x);
+            qtedge->GetEdge()->SetY(new_y);
+            //node->setPos(QPointF(new_x,new_y));
+          }
           done = false;
         }
       }

@@ -83,6 +83,10 @@ private:
   ///The item
   void OnItemRequestsRateConcept();
   void OnItemRequestsRateExamples();
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // QTPVDBNODEITEM_H

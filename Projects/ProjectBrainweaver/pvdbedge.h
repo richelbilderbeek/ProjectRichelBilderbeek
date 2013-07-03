@@ -65,6 +65,12 @@ struct Edge : public boost::noncopyable
   ///Set the Node index this edge goes to
   void SetTo(const boost::shared_ptr<pvdb::Node> to);
 
+  ///Set the x coordinat of the concept at the center of the node
+  void SetX(const int x);
+
+  ///Set the y coordinat of the concept at the center of the node
+  void SetY(const int y);
+
   ///Convert an Edge from an XML std::string
   ///The container of nodes is needed to convert the 'to' and 'from'
   ///field to indices
@@ -83,7 +89,6 @@ struct Edge : public boost::noncopyable
 
   ///The Node index this edge originates from
   ///Cannot be an index, see [1] below
-  //int m_from;
   boost::shared_ptr<pvdb::Node> m_from;
 
   ///Is there an arrowhead at the 'to' node?
@@ -94,7 +99,6 @@ struct Edge : public boost::noncopyable
 
   ///The Node index this edge goes to
   ///Cannot be an index, see [1] below
-  //int m_to;
   boost::shared_ptr<pvdb::Node> m_to;
 
   ///The x-coordinat
@@ -128,19 +132,6 @@ struct Edge : public boost::noncopyable
 };
 
 bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs);
-
-/*
-bool operator==(const boost::shared_ptr<const pvdb::Edge>& lhs, const boost::shared_ptr<const pvdb::Edge>& rhs) = delete;
-bool operator==(const boost::shared_ptr<const pvdb::Edge>& lhs, const boost::shared_ptr<pvdb::Edge>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::Edge>& lhs, const boost::shared_ptr<const pvdb::Edge>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::Edge>& lhs, const boost::shared_ptr<pvdb::Edge>& rhs) = delete;
-bool operator==(const pvdb::Edge& lhs, const pvdb::Edge& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::Edge>& lhs, const boost::shared_ptr<const pvdb::Edge>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::Edge>& lhs, const boost::shared_ptr<pvdb::Edge>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::Edge>& lhs, const boost::shared_ptr<const pvdb::Edge>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::Edge>& lhs, const boost::shared_ptr<pvdb::Edge>& rhs) = delete;
-bool operator!=(const pvdb::Edge& lhs, const pvdb::Edge& rhs) = delete;
-*/
 
 } //~namespace pvdb
 
