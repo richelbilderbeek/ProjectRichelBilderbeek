@@ -40,6 +40,100 @@
 #include "whitenoisesystemtype.h"
 #include "whitenoisesystemtypes.h"
 
+const boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::numeric::ublas::matrix<std::string>& v)
+{
+  boost::numeric::ublas::matrix<double> w(v.size1(),v.size2());
+  const std::size_t n_rows = v.size1();
+  const std::size_t n_cols = v.size2();
+  for (std::size_t row=0; row!=n_rows; ++row)
+  {
+    for (std::size_t col=0; col!=n_cols; ++col)
+    {
+      #ifndef NDEBUG
+      assert(row < v.size1());
+      assert(col < v.size2());
+      assert(row < w.size1());
+      assert(col < w.size2());
+      try { boost::lexical_cast<double>(v(row,col)); }
+      catch (boost::bad_lexical_cast&) { assert(!"Should not get here"); }
+      #endif
+      w(row,col) = boost::lexical_cast<double>(v(row,col));
+    }
+  }
+  return w;
+}
+
+const boost::numeric::ublas::vector<int> ConvertToUblasVectorInt(const boost::numeric::ublas::matrix<std::string>& v)
+{
+  boost::numeric::ublas::vector<int> w(v.size1());
+  const std::size_t n_rows = v.size1();
+  assert(v.size2() == 1);
+  const std::size_t n_cols = 1;
+  for (std::size_t row=0; row!=n_rows; ++row)
+  {
+    for (std::size_t col=0; col!=n_cols; ++col)
+    {
+      #ifndef NDEBUG
+      assert(row < v.size1());
+      assert(col < v.size2());
+      assert(row < w.size());
+      assert(col < 1);
+      try { boost::lexical_cast<int>(v(row,col)); }
+      catch (boost::bad_lexical_cast&) { assert(!"Should not get here"); }
+      #endif
+      w(row) = boost::lexical_cast<int>(v(row,col));
+    }
+  }
+  return w;
+}
+
+const boost::numeric::ublas::vector<double> ConvertToUblasVectorDouble(const boost::numeric::ublas::matrix<std::string>& v)
+{
+  boost::numeric::ublas::vector<double> w(v.size1());
+  const std::size_t n_rows = v.size1();
+  assert(v.size2() == 1);
+  const std::size_t n_cols = 1;
+  for (std::size_t row=0; row!=n_rows; ++row)
+  {
+    for (std::size_t col=0; col!=n_cols; ++col)
+    {
+      #ifndef NDEBUG
+      assert(row < v.size1());
+      assert(col < v.size2());
+      assert(row < w.size());
+      assert(col < 1);
+      try { boost::lexical_cast<double>(v(row,col)); }
+      catch (boost::bad_lexical_cast&) { assert(!"Should not get here"); }
+      #endif
+      w(row) = boost::lexical_cast<double>(v(row,col));
+    }
+  }
+  return w;
+}
+
+const std::vector<std::string> ConvertToVectorString(const boost::numeric::ublas::matrix<std::string>& v)
+{
+  std::vector<std::string> w(v.size1());
+  const std::size_t n_rows = v.size1();
+  assert(v.size2() == 1);
+  const std::size_t n_cols = 1;
+  for (std::size_t row=0; row!=n_rows; ++row)
+  {
+    for (std::size_t col=0; col!=n_cols; ++col)
+    {
+      #ifndef NDEBUG
+      assert(row < v.size1());
+      assert(col < v.size2());
+      assert(row < w.size());
+      assert(col < 1);
+      #endif
+      w[row] = v(row,col);
+    }
+  }
+  return w;
+}
+
+
 
 const int QtKalmanFilterExperimentModel::m_version_current = 2;
 
@@ -866,7 +960,10 @@ void QtKalmanFilterExperimentModel::ReadKalmanFilterType(const std::string& s)
   }
 }
 
-void QtKalmanFilterExperimentModel::Read(const std::vector<std::string>& text,const std::string& name, QAbstractTableModel * const model)
+void QtKalmanFilterExperimentModel::Read(
+  const std::vector<std::string>& text,
+  const std::string& name,
+  QAbstractTableModel * const model)
 {
   assert(model);
   assert(!text.empty());
@@ -905,8 +1002,8 @@ void QtKalmanFilterExperimentModel::Read(const std::vector<std::string>& text,co
   if (n_rows == 0) return;
   assert(n_rows > 0);
 
-  #define BELIEF_RESIZING_MUST_BE_DONE_IN_A_SMART_WAY_456923650375862752372875245425
-  #ifdef BELIEF_RESIZING_MUST_BE_DONE_IN_A_SMART_WAY_456923650375862752372875245425
+  #define BELIEF_RESIZE_MUST_BE_DONE_HERE_785897597850978665798458907
+  #ifdef BELIEF_RESIZE_MUST_BE_DONE_HERE_785897597850978665798458907
   //Resize model
   //Rows
   if (model->rowCount() < n_rows)
@@ -937,10 +1034,10 @@ void QtKalmanFilterExperimentModel::Read(const std::vector<std::string>& text,co
     assert(model->columnCount() == n_cols);
   }
   assert(model->columnCount() == n_cols);
-
   #endif
 
-  //Fill model with data
+  //Read data as std::string
+  boost::numeric::ublas::matrix<std::string> v(n_rows,n_cols,"");
   for (int row = 0; row!=n_rows; ++row)
   {
     const int line = begin + 1 + row;
@@ -954,13 +1051,55 @@ void QtKalmanFilterExperimentModel::Read(const std::vector<std::string>& text,co
       assert(col_index < boost::lexical_cast<int>(cols.size()));
       assert(row < model->rowCount());
       assert(col < model->columnCount());
-      const QModelIndex index = model->index(row,col);
       //Need to strip whitespace
-      const std::string data_str = cols[col_index].c_str();
-      const QString data = boost::algorithm::trim_copy(data_str).c_str();
+      const std::string data_str = boost::algorithm::trim_copy(cols[col_index]).c_str();
+      v(row,col) = data_str;
+    }
+  }
+
+  #ifdef BELIEF_SET_DATA_PER_CELL_7826437863497863497586395786
+  //Fill model with data
+  for (int row = 0; row!=n_rows; ++row)
+  {
+    for (int col = 0; col!=n_cols; ++col)
+    {
+      const QString data = v(row,col).c_str();
+      QModelIndex index = model->index(row,col);
+      assert(index.isValid());
       model->setData(index,data);
     }
   }
+  #else
+  if (QtStdVectorStringModel * const svs_model = dynamic_cast<QtStdVectorStringModel *>(model))
+  {
+    const std::vector<std::string> w = ConvertToVectorString(v);
+    svs_model->SetRawData(w);
+  }
+  else if (QtStdVectorFunctionModel * const svf_model = dynamic_cast<QtStdVectorFunctionModel *>(model))
+  {
+    const std::vector<std::string> w = ConvertToVectorString(v);
+    svf_model->SetRawData(w);
+  }
+  else if (QtUblasMatrixDoubleModel * const umd_model = dynamic_cast<QtUblasMatrixDoubleModel *>(model))
+  {
+    const boost::numeric::ublas::matrix<double> w = ConvertToUblasMatrixDouble(v);
+    umd_model->SetRawData(w);
+  }
+  else if (QtUblasVectorDoubleModel * const uvd_model = dynamic_cast<QtUblasVectorDoubleModel *>(model))
+  {
+    const boost::numeric::ublas::vector<double> w = ConvertToUblasVectorDouble(v);
+    uvd_model->SetRawData(w);
+  }
+  else
+  {
+    QtUblasVectorIntModel * const uvi_model = dynamic_cast<QtUblasVectorIntModel *>(model);
+    assert(uvi_model);
+    const boost::numeric::ublas::vector<int> w = ConvertToUblasVectorInt(v);
+    uvi_model->SetRawData(w);
+  }
+  #endif
+
+
 }
 
 void QtKalmanFilterExperimentModel::Read(const std::string& line,const std::string& sub, int& value_to_change)

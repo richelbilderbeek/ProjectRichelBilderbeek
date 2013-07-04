@@ -324,6 +324,9 @@ void QtUblasVectorIntModel::SetHeaderData(
 
       assert(this->IsValid());
 
+      assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
+        && "So emit layoutChange can work on the newest layout");
+
       //If you forget this line, the view displays a different number of rows than m_data has
       emit layoutChanged();
     }
@@ -335,6 +338,9 @@ void QtUblasVectorIntModel::SetHeaderData(
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
 
       assert(this->IsValid());
+
+      assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
+        && "So emit layoutChange can work on the newest layout");
 
       //If you forget this line, the view displays a different number of rows than m_data has
       emit layoutChanged();
@@ -403,6 +409,9 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
       //Insert some rows in the raw data
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
 
+      assert(this->rowCount() == boost::numeric_cast<int>(data.size())
+        && "So emit layoutChange can work on the newest layout");
+
       //If you forget this line, the view displays a different number of rows than m_data has
       emit layoutChanged();
     }
@@ -410,6 +419,9 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
     {
       //Remove some rows from the raw data
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
+
+      assert(this->rowCount() == boost::numeric_cast<int>(data.size())
+        && "So emit layoutChange can work on the newest layout");
 
       //If you forget this line, the view displays a different number of rows than m_data has
       emit layoutChanged();
