@@ -163,15 +163,12 @@ const QtKalmanFilterExamplesDialog * QtKalmanFilterExperimentDialog::GetExamples
   return m_examples_dialog;
 }
 
-<<<<<<< HEAD
-=======
 QtKalmanFilterExamplesDialog * QtKalmanFilterExperimentDialog::GetExamplesDialog()
 {
   assert(m_examples_dialog);
   return m_examples_dialog;
 }
 
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
 int QtKalmanFilterExperimentDialog::GetNumberOfTimesteps() const
 {
   return ui->box_n_timesteps->value();
@@ -222,14 +219,8 @@ void QtKalmanFilterExperimentDialog::LoadFromDokuWiki(const std::string& filenam
     text += s + "\n";
   }
   this->m_model->FromDokuWiki(text);
-
   this->SetNumberOfTimesteps(m_model->GetNumberOfTimesteps());
-
-<<<<<<< HEAD
-=======
   this->GetExamplesDialog()->SetShowNoExample();
-
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
   assert(IsValid());
 }
 

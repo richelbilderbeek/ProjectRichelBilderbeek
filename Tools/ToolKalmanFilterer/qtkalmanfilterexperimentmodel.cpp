@@ -40,8 +40,6 @@
 #include "whitenoisesystemtype.h"
 #include "whitenoisesystemtypes.h"
 
-<<<<<<< HEAD
-=======
 const boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::numeric::ublas::matrix<std::string>& v)
 {
   boost::numeric::ublas::matrix<double> w(v.size1(),v.size2());
@@ -134,9 +132,6 @@ const std::vector<std::string> ConvertToVectorString(const boost::numeric::ublas
   }
   return w;
 }
-
-
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
 
 const int QtKalmanFilterExperimentModel::m_version_current = 2;
 
@@ -882,11 +877,7 @@ bool QtKalmanFilterExperimentModel::IsValid() const
 }
 #endif
 
-<<<<<<< HEAD
-void QtKalmanFilterExperimentModel::OnStateNamesChanged(const QModelIndex &/*topLeft*/, const QModelIndex &/*bottomRight*/)
-=======
 void QtKalmanFilterExperimentModel::OnStateNamesChanged()
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
 {
   //Read
   const std::vector<std::string> state_names =
@@ -1009,13 +1000,8 @@ void QtKalmanFilterExperimentModel::Read(
   if (n_rows == 0) return;
   assert(n_rows > 0);
 
-<<<<<<< HEAD
-  #define BELIEF_RESIZING_MUST_BE_DONE_IN_A_SMART_WAY_456923650375862752372875245425
-  #ifdef BELIEF_RESIZING_MUST_BE_DONE_IN_A_SMART_WAY_456923650375862752372875245425
-=======
   #define BELIEF_RESIZE_MUST_BE_DONE_HERE_785897597850978665798458907
   #ifdef BELIEF_RESIZE_MUST_BE_DONE_HERE_785897597850978665798458907
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
   //Resize model
   //Rows
   if (model->rowCount() < n_rows)
@@ -1037,16 +1023,6 @@ void QtKalmanFilterExperimentModel::Read(
   {
     const int n_to_add = n_cols - model->columnCount();
     model->insertColumns(0,n_to_add);
-<<<<<<< HEAD
-    if (model->columnCount() != n_cols)
-    {
-      TRACE(name);
-      TRACE(model->columnCount());
-      TRACE(n_cols);
-      TRACE("BREAK");
-    }
-=======
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
     assert(model->columnCount() == n_cols);
   }
   else if (model->columnCount() > n_cols)
@@ -1056,10 +1032,6 @@ void QtKalmanFilterExperimentModel::Read(
     assert(model->columnCount() == n_cols);
   }
   assert(model->columnCount() == n_cols);
-<<<<<<< HEAD
-
-=======
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
   #endif
 
   //Read data as std::string
@@ -1186,7 +1158,6 @@ const std::vector<std::string> QtKalmanFilterExperimentModel::SeperateString(
 }
 
 void QtKalmanFilterExperimentModel::SetContext(const std::string& context)
-<<<<<<< HEAD
 {
   if (m_context != context)
   {
@@ -1195,24 +1166,6 @@ void QtKalmanFilterExperimentModel::SetContext(const std::string& context)
   }
   assert(m_context == context);
 }
-
-void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const KalmanFilterExample>& example)
-{
-  this->SetContext(example->GetContext());
-  assert(this->GetContext() == example->GetContext());
-
-  this->SetNumberOfTimesteps(example->GetNumberOfTimesteps());
-  assert(this->GetNumberOfTimesteps() == example->GetNumberOfTimesteps());
-=======
-{
-  if (m_context != context)
-  {
-    m_context = context;
-    m_signal_context_changed(m_context);
-  }
-  assert(m_context == context);
-}
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
 
 void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const KalmanFilterExample>& example)
 {

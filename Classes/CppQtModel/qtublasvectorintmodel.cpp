@@ -317,46 +317,15 @@ void QtUblasVectorIntModel::SetHeaderData(
     const int cur_size = this->rowCount();
     if (cur_size < new_size)
     {
-      assert(this->IsValid());
-
-      //Insert some rows in the raw data
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
-
-      assert(this->IsValid());
-
-<<<<<<< HEAD
-=======
-      assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
-        && "So emit layoutChange can work on the newest layout");
-
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
-      //If you forget this line, the view displays a different number of rows than m_data has
-      emit layoutChanged();
     }
     else if (cur_size > new_size)
     {
-      assert(this->IsValid());
-
-      //Remove some rows from the raw data
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
-
-      assert(this->IsValid());
-
-<<<<<<< HEAD
-=======
-      assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
-        && "So emit layoutChange can work on the newest layout");
-
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
-      //If you forget this line, the view displays a different number of rows than m_data has
-      emit layoutChanged();
     }
-
-    assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size()));
-
     m_header_vertical_text = vertical_header_text;
-    assert(this->IsValid());
-
+    assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
+      && "So emit layoutChange can work on the newest layout");
     emit headerDataChanged(Qt::Vertical,0,new_size);
   }
 
@@ -412,38 +381,21 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
     const int cur_size = this->rowCount();
     if (cur_size < new_size)
     {
-      //Insert some rows in the raw data
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
-
-<<<<<<< HEAD
-=======
-      assert(this->rowCount() == boost::numeric_cast<int>(data.size())
-        && "So emit layoutChange can work on the newest layout");
-
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
-      //If you forget this line, the view displays a different number of rows than m_data has
-      emit layoutChanged();
     }
     else if (cur_size > new_size)
     {
-      //Remove some rows from the raw data
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
-
-<<<<<<< HEAD
-=======
-      assert(this->rowCount() == boost::numeric_cast<int>(data.size())
-        && "So emit layoutChange can work on the newest layout");
-
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
-      //If you forget this line, the view displays a different number of rows than m_data has
-      emit layoutChanged();
     }
 
     assert(this->rowCount() == static_cast<int>(data.size()));
 
     m_data = data;
 
+    assert(this->rowCount() == boost::numeric_cast<int>(data.size())
+      && "So emit layoutChange can work on the newest layout");
     emit dataChanged(QModelIndex(),QModelIndex());
+    emit layoutChanged();
 
     assert(this->IsValid());
   }

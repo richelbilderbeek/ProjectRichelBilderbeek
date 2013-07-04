@@ -50,12 +50,9 @@ protected:
 
 private:
   Ui::QtKalmanFiltererParameterDialog *ui;
-<<<<<<< HEAD
-=======
 
 private slots:
   void OnModelLayoutChanged();
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
 };
 
 #endif // QTKALMANFILTERERPARAMETERDIALOG

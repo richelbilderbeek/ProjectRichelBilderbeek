@@ -30,16 +30,6 @@ public:
   explicit QtKalmanFilterExamplesDialog(QWidget *parent = 0);
   ~QtKalmanFilterExamplesDialog();
 
-<<<<<<< HEAD
-  ///Click one of the examples
-  void EmitExample(const int n) const;
-
-    //Never emit a boost::shared_ptr [1]
-  mutable boost::signals2::signal<void(const KalmanFilterExample * const example)> m_signal_example;
-  //void signal_example(const boost::shared_ptr<KalmanFilterExample> example);
-=======
-
-
   ///Click one of the examples
   void EmitExample(const int n) const;
 
@@ -48,10 +38,6 @@ public:
 
   //Never emit a boost::shared_ptr [1]
   mutable boost::signals2::signal<void(const KalmanFilterExample * const example)> m_signal_example;
-
-protected:
-  void keyPressEvent(QKeyEvent * event);
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
 
 protected:
   void keyPressEvent(QKeyEvent * event);
@@ -66,10 +52,7 @@ private:
 
 private slots:
   void on_button_clicked();
-<<<<<<< HEAD
-=======
   void on_box_currentIndexChanged(int index);
->>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
 };
 
 
