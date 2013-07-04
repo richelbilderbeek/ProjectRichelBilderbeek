@@ -87,6 +87,17 @@ void QtKalmanFilterExamplesDialog::Test()
 
 void QtKalmanFilterExamplesDialog::on_button_clicked()
 {
+  assert(ui->box->currentIndex() != -1);
   const int index = ui->box->currentIndex();
   EmitExample(index);
+}
+
+void QtKalmanFilterExamplesDialog::on_box_currentIndexChanged(int index)
+{
+  ui->button->setEnabled(index != -1);
+}
+
+void QtKalmanFilterExamplesDialog::SetShowNoExample()
+{
+  ui->box->setCurrentIndex(-1);
 }

@@ -294,7 +294,10 @@ void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<do
 
     m_data = data;
 
-    emit dataChanged(QModelIndex(),QModelIndex());
+    //emit dataChanged(QModelIndex(),QModelIndex());
+    const QModelIndex top_left = this->index(0,0);
+    const QModelIndex bottom_right = this->index(m_data.size() - 1, 0);
+    emit dataChanged(top_left,bottom_right);
   }
 
   assert(this->rowCount() == boost::numeric_cast<int>(this->m_data.size()));

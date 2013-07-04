@@ -50,6 +50,7 @@ public:
 
   ///Get the dialog on which an predefined example can be selected
   const QtKalmanFilterExamplesDialog * GetExamplesDialog() const;
+        QtKalmanFilterExamplesDialog * GetExamplesDialog();
 
   ///Get dialog to set up a Kalman filter
   const QtKalmanFilterDialog * GetFilterDialog() const { return m_filter_dialog; }

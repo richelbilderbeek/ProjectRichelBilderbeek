@@ -30,12 +30,16 @@ public:
   explicit QtKalmanFilterExamplesDialog(QWidget *parent = 0);
   ~QtKalmanFilterExamplesDialog();
 
+
+
   ///Click one of the examples
   void EmitExample(const int n) const;
 
-    //Never emit a boost::shared_ptr [1]
+  ///Let the ComboBox display naught
+  void SetShowNoExample();
+
+  //Never emit a boost::shared_ptr [1]
   mutable boost::signals2::signal<void(const KalmanFilterExample * const example)> m_signal_example;
-  //void signal_example(const boost::shared_ptr<KalmanFilterExample> example);
 
 protected:
   void keyPressEvent(QKeyEvent * event);
@@ -50,6 +54,7 @@ private:
 
 private slots:
   void on_button_clicked();
+  void on_box_currentIndexChanged(int index);
 };
 
 

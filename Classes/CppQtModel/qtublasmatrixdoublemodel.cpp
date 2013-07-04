@@ -410,6 +410,7 @@ void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<do
   }
 
   //Check MatricesAreEqual
+  #ifndef NDEBUG
   assert(m_data.size1() == data.size1());
   assert(m_data.size2() == data.size2());
   const std::size_t n_rows = m_data.size1();
@@ -427,4 +428,5 @@ void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<do
   assert(this->rowCount() == boost::numeric_cast<int>(this->m_data.size1()));
   assert(this->rowCount() == boost::numeric_cast<int>(m_header_vertical_text.size()));
   assert(Matrix::MatricesAreEqual(m_data,data));
+  #endif
 }

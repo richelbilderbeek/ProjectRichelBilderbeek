@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>235</width>
-    <height>107</height>
+    <width>274</width>
+    <height>229</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,12 +34,21 @@
    <item row="1" column="0" colspan="2">
     <widget class="QTableView" name="table">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
      <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="cornerButtonEnabled">
       <bool>true</bool>
      </property>
     </widget>

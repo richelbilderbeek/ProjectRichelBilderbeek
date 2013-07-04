@@ -55,6 +55,11 @@ QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
 
   ui->table->setAlternatingRowColors(true);
   ui->table->setWordWrap(false);
+
+  //ui->table->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+  //ui->table->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+  QObject::connect(ui->table->model(),SIGNAL(layoutChanged()),
+    this,SLOT(OnModelLayoutChanged()));
 }
 
 QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
@@ -91,3 +96,18 @@ const std::string QtKalmanFiltererParameterDialog::ToHtml() const
   return s;
 }
 
+void QtKalmanFiltererParameterDialog::OnModelLayoutChanged()
+{
+  const int scrollbar_height = 16;
+  int height
+    = ui->table->horizontalHeader()->height()
+    + (2 * ui->table->frameWidth())
+    + scrollbar_height;
+  const int n_rows = ui->table->model()->rowCount();
+  for (int i=0; i!=n_rows; ++i)
+  {
+    height += ui->table->rowHeight(i);
+  }
+  ui->table->setMinimumHeight(height);
+  ui->table->setMaximumHeight(height);
+}

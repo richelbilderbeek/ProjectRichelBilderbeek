@@ -97,7 +97,7 @@ QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel(QObject *parent)
   {
     QAbstractTableModel * const m = Find(KalmanFilterExperimentParameterType::state_names);
     assert(m);
-    QObject::connect(m,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(OnStateNamesChanged(QModelIndex,QModelIndex)));
+    QObject::connect(m,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(OnStateNamesChanged()));
   }
 }
 
@@ -785,7 +785,7 @@ bool QtKalmanFilterExperimentModel::IsValid() const
 }
 #endif
 
-void QtKalmanFilterExperimentModel::OnStateNamesChanged(const QModelIndex &/*topLeft*/, const QModelIndex &/*bottomRight*/)
+void QtKalmanFilterExperimentModel::OnStateNamesChanged()
 {
   //Read
   const std::vector<std::string> state_names =
@@ -928,13 +928,6 @@ void QtKalmanFilterExperimentModel::Read(const std::vector<std::string>& text,co
   {
     const int n_to_add = n_cols - model->columnCount();
     model->insertColumns(0,n_to_add);
-    if (model->columnCount() != n_cols)
-    {
-      TRACE(name);
-      TRACE(model->columnCount());
-      TRACE(n_cols);
-      TRACE("BREAK");
-    }
     assert(model->columnCount() == n_cols);
   }
   else if (model->columnCount() > n_cols)
@@ -1039,16 +1032,17 @@ void QtKalmanFilterExperimentModel::SetContext(const std::string& context)
 
 void QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const KalmanFilterExample>& example)
 {
+  //Set the state names first, as it resizes the tables
+  assert(example);
+  dynamic_cast<StateNamesModel*>(
+    this->Find(KalmanFilterExperimentParameterType::state_names)
+  )->SetRawData(example->GetStateNames());
+
   this->SetContext(example->GetContext());
   assert(this->GetContext() == example->GetContext());
 
   this->SetNumberOfTimesteps(example->GetNumberOfTimesteps());
   assert(this->GetNumberOfTimesteps() == example->GetNumberOfTimesteps());
-
-  assert(example);
-  dynamic_cast<StateNamesModel*>(
-    this->Find(KalmanFilterExperimentParameterType::state_names)
-  )->SetRawData(example->GetStateNames());
 
 
   dynamic_cast<InputModel*>(
