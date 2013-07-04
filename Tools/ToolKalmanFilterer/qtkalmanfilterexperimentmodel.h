@@ -104,7 +104,7 @@ struct QtKalmanFilterExperimentModel : public QObject
 
   private slots:
   ///If the state names are changed, let all other models have their headers updated
-  void OnStateNamesChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
+  void OnStateNamesChanged();
 
   private:
   ///The HTML description of the context of this experiment

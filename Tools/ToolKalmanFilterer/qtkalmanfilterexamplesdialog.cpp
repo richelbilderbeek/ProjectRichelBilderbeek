@@ -82,11 +82,33 @@ void QtKalmanFilterExamplesDialog::Test()
     const int max_index = boost::numeric_cast<int>(KalmanFilterExample::CreateExamples().size());
     for (int i=0; i!=max_index; ++i) { d.EmitExample(i); }
   }
+<<<<<<< HEAD
+=======
 }
 #endif
 
 void QtKalmanFilterExamplesDialog::on_button_clicked()
 {
+  assert(ui->box->currentIndex() != -1);
   const int index = ui->box->currentIndex();
   EmitExample(index);
+}
+
+void QtKalmanFilterExamplesDialog::on_box_currentIndexChanged(int index)
+{
+  ui->button->setEnabled(index != -1);
+>>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
+}
+#endif
+
+<<<<<<< HEAD
+void QtKalmanFilterExamplesDialog::on_button_clicked()
+{
+  const int index = ui->box->currentIndex();
+  EmitExample(index);
+=======
+void QtKalmanFilterExamplesDialog::SetShowNoExample()
+{
+  ui->box->setCurrentIndex(-1);
+>>>>>>> 9fc86a71b911f1aeacc40235415b48a5ae0f0966
 }
