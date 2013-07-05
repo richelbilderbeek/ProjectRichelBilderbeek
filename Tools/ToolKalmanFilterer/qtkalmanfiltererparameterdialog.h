@@ -52,7 +52,7 @@ private:
   Ui::QtKalmanFiltererParameterDialog *ui;
 
 private slots:
-  void OnModelLayoutChanged();
+  void OnModelSizeChanged();
 };
 
 #endif // QTKALMANFILTERERPARAMETERDIALOG

@@ -199,16 +199,18 @@ void QtStdVectorFunctionModel::SetHeaderData(
 {
   if (m_header_horizontal_text != horizontal_header_text)
   {
+    emit layoutAboutToBeChanged();
     assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
     m_header_horizontal_text = horizontal_header_text;
+    emit layoutChanged();
     emit headerDataChanged(Qt::Horizontal,0,1);
   }
 
   if (m_header_vertical_text != vertical_header_text)
   {
+    emit layoutAboutToBeChanged();
     const int new_size = boost::numeric_cast<int>(vertical_header_text.size());
     const int cur_size = this->rowCount();
-    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -225,7 +227,7 @@ void QtStdVectorFunctionModel::SetHeaderData(
     assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
       && "So emit layoutChange can work on the newest layout");
 
-    if (has_layout_changed) emit layoutChanged();
+    emit layoutChanged();
     emit headerDataChanged(Qt::Vertical,0,new_size);
   }
 
@@ -263,9 +265,9 @@ void QtStdVectorFunctionModel::SetRawData(const std::vector<std::string>& data)
 {
   if (m_data != data)
   {
+    emit layoutAboutToBeChanged();
     const int new_size = boost::numeric_cast<int>(data.size());
     const int cur_size = this->rowCount();
-    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -281,8 +283,11 @@ void QtStdVectorFunctionModel::SetRawData(const std::vector<std::string>& data)
     assert(this->rowCount() == boost::numeric_cast<int>(data.size())
       && "So emit layoutChange can work on the newest layout");
 
-    if (has_layout_changed) emit layoutChanged();
-    emit dataChanged(QModelIndex(),QModelIndex());
+    emit layoutChanged();
+
+    const QModelIndex top_left = this->index(0,0);
+    const QModelIndex bottom_right = this->index(m_data.size() - 1, 1);
+    emit dataChanged(top_left,bottom_right);
 
   }
 

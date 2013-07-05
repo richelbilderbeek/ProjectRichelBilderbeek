@@ -59,7 +59,7 @@ QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
   //ui->table->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
   //ui->table->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
   QObject::connect(ui->table->model(),SIGNAL(layoutChanged()),
-    this,SLOT(OnModelLayoutChanged()));
+    this,SLOT(OnModelSizeChanged()));
 }
 
 QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
@@ -96,7 +96,7 @@ const std::string QtKalmanFiltererParameterDialog::ToHtml() const
   return s;
 }
 
-void QtKalmanFiltererParameterDialog::OnModelLayoutChanged()
+void QtKalmanFiltererParameterDialog::OnModelSizeChanged()
 {
   const int scrollbar_height = 16;
   int height

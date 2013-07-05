@@ -304,6 +304,7 @@ void QtUblasVectorIntModel::SetHeaderData(
 
   if (m_header_horizontal_text != horizontal_header_text)
   {
+    emit layoutAboutToBeChanged();
     assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
     m_header_horizontal_text = horizontal_header_text;
 
@@ -315,9 +316,9 @@ void QtUblasVectorIntModel::SetHeaderData(
 
   if (m_header_vertical_text != vertical_header_text)
   {
+    emit layoutAboutToBeChanged();
     const int new_size = boost::numeric_cast<int>(vertical_header_text.size());
     const int cur_size = this->rowCount();
-    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -326,13 +327,15 @@ void QtUblasVectorIntModel::SetHeaderData(
     {
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
     }
-
     //Set the data before emitting signals, as the response to that signal
     //will be dependent on that data
     m_header_vertical_text = vertical_header_text;
+
     assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
       && "So emit layoutChange can work on the newest layout");
-    if (has_layout_changed) emit layoutChanged();
+
+    emit layoutChanged();
+
     emit headerDataChanged(Qt::Vertical,0,new_size);
   }
 
@@ -386,7 +389,6 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
   {
     const int new_size = boost::numeric_cast<int>(data.size());
     const int cur_size = this->rowCount();
-    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -395,17 +397,19 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
     {
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
     }
-
-    assert(this->rowCount() == static_cast<int>(data.size()));
-
     //Set the data before emitting signals, as the response to that signal
     //will be dependent on that data
     m_data = data;
 
     assert(this->rowCount() == boost::numeric_cast<int>(data.size())
       && "So emit layoutChange can work on the newest layout");
-    emit dataChanged(QModelIndex(),QModelIndex());
-    if (has_layout_changed) emit layoutChanged();
+
+    emit layoutChanged();
+
+    const QModelIndex top_left = this->index(0,0);
+    const QModelIndex bottom_right = this->index(m_data.size() - 1, 1);
+    emit dataChanged(top_left,bottom_right);
+
 
     assert(this->IsValid());
   }

@@ -134,14 +134,9 @@ bool QtUblasVectorDoubleModel::insertRows(int row, int count, const QModelIndex 
 
   const int new_size = m_data.size() + count;
 
-  #ifdef USE_NAIVE_APPROACH_785768676876547
-  //The drawback of this naive approach is that new cells are uninitialized
-  m_data.resize(new_size);
-  #else
   boost::numeric::ublas::vector<double> new_data = boost::numeric::ublas::zero_vector<double>(new_size);
   std::copy(m_data.begin(),m_data.end(),new_data.begin());
   m_data = new_data;
-  #endif
 
   m_header_vertical_text.resize(new_size);
 
@@ -193,6 +188,7 @@ bool QtUblasVectorDoubleModel::setData(const QModelIndex &index, const QVariant 
   #endif
 
   m_data(row) = value.toDouble();
+
   ///This line below is needed to let multiple views synchronize
   emit dataChanged(index,index);
 
@@ -230,6 +226,7 @@ void QtUblasVectorDoubleModel::SetHeaderData(
 {
   if (m_header_horizontal_text != horizontal_header_text)
   {
+    emit layoutAboutToBeChanged();
     assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
     m_header_horizontal_text = horizontal_header_text;
     emit layoutChanged();
@@ -238,9 +235,9 @@ void QtUblasVectorDoubleModel::SetHeaderData(
 
   if (m_header_vertical_text != vertical_header_text)
   {
+    emit layoutAboutToBeChanged();
     const int new_size = boost::numeric_cast<int>(vertical_header_text.size());
     const int cur_size = this->rowCount();
-    const bool has_layout_changed = cur_size != new_size;
 
     if (cur_size < new_size)
     {
@@ -258,7 +255,7 @@ void QtUblasVectorDoubleModel::SetHeaderData(
     assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
       && "So emit layoutChange can work on the newest layout");
 
-    if (has_layout_changed) emit layoutChanged();
+    emit layoutChanged();
     emit headerDataChanged(Qt::Vertical,0,new_size);
   }
 
@@ -273,7 +270,6 @@ void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<do
   {
     const int new_size = boost::numeric_cast<int>(data.size());
     const int cur_size = this->rowCount();
-    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -282,9 +278,6 @@ void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<do
     {
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
     }
-
-    assert(this->rowCount() == static_cast<int>(data.size()));
-
     //Set the data before emitting signals, as the response to that signal
     //will be dependent on that data
     m_data = data;
@@ -293,12 +286,12 @@ void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<do
       && "So emit layoutChange can work on the newest layout");
 
     //If you forget this line, the view displays a different number of rows than m_data has
-    if (has_layout_changed) emit layoutChanged();
+    emit layoutChanged();
 
-    emit dataChanged(QModelIndex(),QModelIndex());
-    //const QModelIndex top_left = this->index(0,0);
-    //const QModelIndex bottom_right = this->index(m_data.size() - 1, 0);
-    //emit dataChanged(top_left,bottom_right);
+    //emit dataChanged(QModelIndex(),QModelIndex());
+    const QModelIndex top_left = this->index(0,0);
+    const QModelIndex bottom_right = this->index(m_data.size() - 1, 0);
+    emit dataChanged(top_left,bottom_right);
   }
 
   assert(this->rowCount() == boost::numeric_cast<int>(this->m_data.size()));
