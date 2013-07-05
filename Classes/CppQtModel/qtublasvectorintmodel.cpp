@@ -99,7 +99,7 @@ Qt::ItemFlags QtUblasVectorIntModel::flags(const QModelIndex &) const
 
 const std::string QtUblasVectorIntModel::GetVersion()
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> QtUblasVectorIntModel::GetVersionHistory()
@@ -107,6 +107,7 @@ const std::vector<std::string> QtUblasVectorIntModel::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2013-06-27: version 1.0: initial version");
   v.push_back("2013-06-27: version 1.1: added setting a range");
+  v.push_back("2013-07-05: version 1.2: signal layoutChanged emitted correctly");
   return v;
 }
 
@@ -308,6 +309,7 @@ void QtUblasVectorIntModel::SetHeaderData(
 
     assert(this->IsValid());
 
+    emit layoutChanged();
     emit headerDataChanged(Qt::Horizontal,0,1);
   }
 
@@ -315,6 +317,7 @@ void QtUblasVectorIntModel::SetHeaderData(
   {
     const int new_size = boost::numeric_cast<int>(vertical_header_text.size());
     const int cur_size = this->rowCount();
+    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -323,9 +326,13 @@ void QtUblasVectorIntModel::SetHeaderData(
     {
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
     }
+
+    //Set the data before emitting signals, as the response to that signal
+    //will be dependent on that data
     m_header_vertical_text = vertical_header_text;
     assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
       && "So emit layoutChange can work on the newest layout");
+    if (has_layout_changed) emit layoutChanged();
     emit headerDataChanged(Qt::Vertical,0,new_size);
   }
 
@@ -379,6 +386,7 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
   {
     const int new_size = boost::numeric_cast<int>(data.size());
     const int cur_size = this->rowCount();
+    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -390,12 +398,14 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
 
     assert(this->rowCount() == static_cast<int>(data.size()));
 
+    //Set the data before emitting signals, as the response to that signal
+    //will be dependent on that data
     m_data = data;
 
     assert(this->rowCount() == boost::numeric_cast<int>(data.size())
       && "So emit layoutChange can work on the newest layout");
     emit dataChanged(QModelIndex(),QModelIndex());
-    emit layoutChanged();
+    if (has_layout_changed) emit layoutChanged();
 
     assert(this->IsValid());
   }

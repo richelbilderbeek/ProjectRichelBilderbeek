@@ -79,7 +79,7 @@ Qt::ItemFlags QtUblasMatrixDoubleModel::flags(const QModelIndex &) const
 
 const std::string QtUblasMatrixDoubleModel::GetVersion()
 {
-  return "1.2";
+  return "1.3";
 }
 
 const std::vector<std::string> QtUblasMatrixDoubleModel::GetVersionHistory()
@@ -88,6 +88,7 @@ const std::vector<std::string> QtUblasMatrixDoubleModel::GetVersionHistory()
   v.push_back("2013-05-15: version 1.0: initial version");
   v.push_back("2013-05-21: version 1.1: added columns and rows are initialized with zeroes");
   v.push_back("2013-05-23: version 1.2: allow an infine amount of digits behind the comma");
+  v.push_back("2013-07-05: version 1.3: signal layoutChanged emitted correctly");
   return v;
 }
 
@@ -261,18 +262,18 @@ void QtUblasMatrixDoubleModel::SetHeaderData(
   const std::vector<std::string>& horizontal_header_text,
   const std::vector<std::string>& vertical_header_text)
 {
+
   if (m_header_horizontal_text != horizontal_header_text)
   {
     const int new_size = boost::numeric_cast<int>(horizontal_header_text.size());
     const int cur_size = this->columnCount();
+    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
-      //Insert some rows in the raw data
       this->insertColumns(cur_size,new_size - cur_size,QModelIndex());
     }
     else if (cur_size > new_size)
     {
-      //Remove some rows from the raw data
       this->removeColumns(cur_size,cur_size - new_size,QModelIndex());
     }
 
@@ -285,21 +286,20 @@ void QtUblasMatrixDoubleModel::SetHeaderData(
     emit headerDataChanged(Qt::Horizontal,0,new_size);
 
     //If you forget this line, the view displays a different number of rows than m_data has
-    emit layoutChanged();
+    if (has_layout_changed) emit layoutChanged();
   }
 
   if (m_header_vertical_text != vertical_header_text)
   {
     const int new_size = boost::numeric_cast<int>(vertical_header_text.size());
     const int cur_size = this->rowCount();
+    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
-      //Insert some rows in the raw data
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
     }
     else if (cur_size > new_size)
     {
-      //Remove some rows from the raw data
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
     }
 
@@ -309,11 +309,10 @@ void QtUblasMatrixDoubleModel::SetHeaderData(
 
     assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size()));
 
-    emit headerDataChanged(Qt::Vertical,0,new_size);
-
     //If you forget this line, the view displays a different number of rows than m_data has
-    emit layoutChanged();
+    if (has_layout_changed) emit layoutChanged();
 
+    emit headerDataChanged(Qt::Vertical,0,new_size);
   }
 
   assert(this->columnCount() == boost::numeric_cast<int>(this->m_data.size2()));
@@ -352,9 +351,9 @@ void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<do
   if (!Matrix::MatricesAreEqual(m_data,data))
   {
     //Check for row count
+    const int new_row_count = boost::numeric_cast<int>(data.size1());
+    const int cur_row_count = this->rowCount();
     {
-      const int new_row_count = boost::numeric_cast<int>(data.size1());
-      const int cur_row_count = this->rowCount();
       if (cur_row_count < new_row_count)
       {
         //Insert some rows in the raw data
@@ -367,9 +366,9 @@ void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<do
       }
     }
     //Check for column count
+    const int new_col_count = boost::numeric_cast<int>(data.size2());
+    const int cur_col_count = this->columnCount();
     {
-      const int new_col_count = boost::numeric_cast<int>(data.size2());
-      const int cur_col_count = this->columnCount();
       if (cur_col_count < new_col_count)
       {
         //Insert some rows in the raw data
@@ -382,6 +381,9 @@ void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<do
 
       }
     }
+
+    const bool has_layout_changed
+      = (cur_row_count != new_row_count) || (cur_col_count != new_col_count);
 
     assert(m_data.size1() == data.size1());
     assert(m_data.size2() == data.size2());
@@ -398,7 +400,7 @@ void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<do
       && "So emit layoutChange can work on the newest layout");
 
     //If you forget this line, the view displays a different number of rows than m_data has
-    emit layoutChanged();
+    if (has_layout_changed) emit layoutChanged();
 
     const QModelIndex top_left = this->index(0,0);
     const QModelIndex bottom_right = this->index(m_data.size1() - 1, m_data.size2() - 1);

@@ -85,7 +85,7 @@ Qt::ItemFlags QtUblasVectorDoubleModel::flags(const QModelIndex &) const
 
 const std::string QtUblasVectorDoubleModel::GetVersion()
 {
-  return "1.4";
+  return "1.5";
 }
 
 const std::vector<std::string> QtUblasVectorDoubleModel::GetVersionHistory()
@@ -96,6 +96,7 @@ const std::vector<std::string> QtUblasVectorDoubleModel::GetVersionHistory()
   v.push_back("2013-05-23: version 1.2: allow an infine amount of digits behind the comma");
   v.push_back("2013-05-28: version 1.3: allow columnCount to be zero, if rowCount is zero");
   v.push_back("2013-06-27: version 1.4: added self-test");
+  v.push_back("2013-07-05: version 1.5: signal layoutChanged emitted correctly");
   return v;
 }
 
@@ -231,6 +232,7 @@ void QtUblasVectorDoubleModel::SetHeaderData(
   {
     assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
     m_header_horizontal_text = horizontal_header_text;
+    emit layoutChanged();
     emit headerDataChanged(Qt::Horizontal,0,1);
   }
 
@@ -238,33 +240,25 @@ void QtUblasVectorDoubleModel::SetHeaderData(
   {
     const int new_size = boost::numeric_cast<int>(vertical_header_text.size());
     const int cur_size = this->rowCount();
+    const bool has_layout_changed = cur_size != new_size;
+
     if (cur_size < new_size)
     {
-      //Insert some rows in the raw data
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
-
-      assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
-        && "So emit layoutChange can work on the newest layout");
-
-      //If you forget this line, the view displays a different number of rows than m_data has
-      emit layoutChanged();
     }
     else if (cur_size > new_size)
     {
-      //Remove some rows from the raw data
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
-
-      assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
-        && "So emit layoutChange can work on the newest layout");
-
-      //If you forget this line, the view displays a different number of rows than m_data has
-      emit layoutChanged();
     }
 
-    assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size()));
-
+    //Set the data before emitting signals, as the response to that signal
+    //will be dependent on that data
     m_header_vertical_text = vertical_header_text;
 
+    assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
+      && "So emit layoutChange can work on the newest layout");
+
+    if (has_layout_changed) emit layoutChanged();
     emit headerDataChanged(Qt::Vertical,0,new_size);
   }
 
@@ -279,37 +273,32 @@ void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<do
   {
     const int new_size = boost::numeric_cast<int>(data.size());
     const int cur_size = this->rowCount();
+    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
-      //Insert some rows in the raw data
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
-
-      assert(this->rowCount() == boost::numeric_cast<int>(data.size())
-        && "So emit layoutChange can work on the newest layout");
-
-      //If you forget this line, the view displays a different number of rows than m_data has
-      emit layoutChanged();
     }
     else if (cur_size > new_size)
     {
-      //Remove some rows from the raw data
       this->removeRows(cur_size,cur_size - new_size,QModelIndex());
-
-      assert(this->rowCount() == boost::numeric_cast<int>(data.size())
-        && "So emit layoutChange can work on the newest layout");
-
-      //If you forget this line, the view displays a different number of rows than m_data has
-      emit layoutChanged();
     }
 
     assert(this->rowCount() == static_cast<int>(data.size()));
 
+    //Set the data before emitting signals, as the response to that signal
+    //will be dependent on that data
     m_data = data;
 
-    //emit dataChanged(QModelIndex(),QModelIndex());
-    const QModelIndex top_left = this->index(0,0);
-    const QModelIndex bottom_right = this->index(m_data.size() - 1, 0);
-    emit dataChanged(top_left,bottom_right);
+    assert(this->rowCount() == boost::numeric_cast<int>(data.size())
+      && "So emit layoutChange can work on the newest layout");
+
+    //If you forget this line, the view displays a different number of rows than m_data has
+    if (has_layout_changed) emit layoutChanged();
+
+    emit dataChanged(QModelIndex(),QModelIndex());
+    //const QModelIndex top_left = this->index(0,0);
+    //const QModelIndex bottom_right = this->index(m_data.size() - 1, 0);
+    //emit dataChanged(top_left,bottom_right);
   }
 
   assert(this->rowCount() == boost::numeric_cast<int>(this->m_data.size()));

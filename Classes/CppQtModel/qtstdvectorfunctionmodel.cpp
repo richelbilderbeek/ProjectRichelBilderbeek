@@ -80,7 +80,7 @@ Qt::ItemFlags QtStdVectorFunctionModel::flags(const QModelIndex &) const
 
 const std::string QtStdVectorFunctionModel::GetVersion()
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> QtStdVectorFunctionModel::GetVersionHistory()
@@ -88,6 +88,7 @@ const std::vector<std::string> QtStdVectorFunctionModel::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2013-05-15: version 1.0: initial version");
   v.push_back("2013-05-28: version 1.1: allow columnCount to be zero, if rowCount is zero");
+  v.push_back("2013-07-05: version 1.2: signal layoutChanged emitted correctly");
   return v;
 }
 
@@ -207,6 +208,7 @@ void QtStdVectorFunctionModel::SetHeaderData(
   {
     const int new_size = boost::numeric_cast<int>(vertical_header_text.size());
     const int cur_size = this->rowCount();
+    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -223,7 +225,7 @@ void QtStdVectorFunctionModel::SetHeaderData(
     assert(this->rowCount() == boost::numeric_cast<int>(vertical_header_text.size())
       && "So emit layoutChange can work on the newest layout");
 
-    emit layoutChanged();
+    if (has_layout_changed) emit layoutChanged();
     emit headerDataChanged(Qt::Vertical,0,new_size);
   }
 
@@ -263,6 +265,7 @@ void QtStdVectorFunctionModel::SetRawData(const std::vector<std::string>& data)
   {
     const int new_size = boost::numeric_cast<int>(data.size());
     const int cur_size = this->rowCount();
+    const bool has_layout_changed = cur_size != new_size;
     if (cur_size < new_size)
     {
       this->insertRows(cur_size,new_size - cur_size,QModelIndex());
@@ -278,7 +281,7 @@ void QtStdVectorFunctionModel::SetRawData(const std::vector<std::string>& data)
     assert(this->rowCount() == boost::numeric_cast<int>(data.size())
       && "So emit layoutChange can work on the newest layout");
 
-    emit layoutChanged();
+    if (has_layout_changed) emit layoutChanged();
     emit dataChanged(QModelIndex(),QModelIndex());
 
   }
