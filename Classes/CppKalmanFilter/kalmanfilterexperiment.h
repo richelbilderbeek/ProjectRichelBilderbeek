@@ -36,9 +36,11 @@ struct KalmanFilterExperiment : public boost::noncopyable
   const std::string& GetContext() const { return m_context; }
 
   ///Obtain the predicted states
+  ///The states are stored as a chronological collection (the std::vector) of states (the ublas::vector)
   const std::vector<boost::numeric::ublas::vector<double> > GetPredictedStates() const;
 
   ///Obtain the inputs of each timestep
+  ///The states are stored as a chronological collection (the std::vector) of inputs (the ublas::vector)
   const std::vector<boost::numeric::ublas::vector<double> >& GetInputs() const
     { return m_inputs; }
 
@@ -46,9 +48,11 @@ struct KalmanFilterExperiment : public boost::noncopyable
   const boost::shared_ptr<KalmanFilter>& GetKalmanFilter() const { return m_kalman_filter; }
 
   ///Obtain the measured states, that is, measured with noise
+  ///The states are stored as a chronological collection (the std::vector) of states (the ublas::vector)
   const std::vector<boost::numeric::ublas::vector<double> > GetMeasuredStates() const;
 
-  ///Obtain the real state, that is, the values that would be measured without noise
+  ///Obtain the real states, that is, the values that would be measured without noise
+  ///The states are stored as a chronological collection (the std::vector) of states (the ublas::vector)
   const std::vector<boost::numeric::ublas::vector<double> >& GetRealStates() const
     { return m_real_states; }
 

@@ -67,6 +67,16 @@
          </widget>
         </item>
         <item>
+         <widget class="QCheckBox" name="box_show_statistics">
+          <property name="text">
+           <string>Show statistics</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="box_show_table">
           <property name="text">
            <string>Show table</string>
@@ -85,7 +95,7 @@
       </property>
       <widget class="QWidget" name="layout_context">
        <attribute name="title">
-        <string>Context</string>
+        <string>&amp;1. Context</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
@@ -138,7 +148,7 @@
       </widget>
       <widget class="QWidget" name="tab_calculation">
        <attribute name="title">
-        <string>Calculation</string>
+        <string>&amp;2. Calculation</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
@@ -162,7 +172,7 @@
       </widget>
       <widget class="QWidget" name="tab_graph">
        <attribute name="title">
-        <string>Graphs</string>
+        <string>&amp;3. Graphs</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="1" column="0" colspan="3">
@@ -204,9 +214,33 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab_statistics">
+       <attribute name="title">
+        <string>&amp;4. Statistics</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="QScrollArea" name="scroll_area_statistics">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scroll_area_statistics_contents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>822</width>
+             <height>231</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tab_table">
        <attribute name="title">
-        <string>Table</string>
+        <string>&amp;5. Table</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">

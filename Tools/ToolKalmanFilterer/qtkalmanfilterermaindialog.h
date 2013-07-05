@@ -49,6 +49,9 @@ public:
   ///Set the checkbox to show the graphs
   void SetShowGraph(const bool do_show);
 
+  ///Set the checkbox to show the statistics
+  void SetShowStatistics(const bool do_show);
+
   ///Set the checkbox to show the table
   void SetShowTable(const bool do_show);
 
@@ -86,6 +89,9 @@ private:
   const boost::shared_ptr<QtKalmanFilterCalculationDialog> CreateKalmanFilterCalculationDialog(
     const KalmanFilterType type) const;
 
+  const std::vector<double> ExtractAverageSquaredError(
+    const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
+
   ///Called when a new context is set in m_model
   void OnNewContext(const std::string context);
 
@@ -94,6 +100,9 @@ private:
 
   ///Show the results of an experiment in a graph
   void ShowGraph(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
+
+  ///Show the results of an experiment its statistics
+  void ShowStatistics(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
 
   ///Show the results of an experiment in a table
   void ShowTable(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);

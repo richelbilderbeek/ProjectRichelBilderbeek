@@ -12,7 +12,7 @@ enum class KalmanFilterType
   //minimum_variance_smoother
   //modified_Bryson_Frazier_smoother
   //rauch_tung_striebel_smoother
-  standard, //Also called: 'steady state'
+  standard, //Also called: 'discrete'
   steady_state,
   //unscented,
   n_types //Must be last value, used in debugging

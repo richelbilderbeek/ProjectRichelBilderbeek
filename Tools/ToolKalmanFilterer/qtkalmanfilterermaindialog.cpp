@@ -104,12 +104,12 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
     boost::bind(&QtKalmanFiltererMainDialog::OnNewContext,this,boost::lambda::_1));
 
   ui->box_show_calculation->setChecked(false);
+  ui->box_show_statistics->setChecked(true);
   ui->box_show_table->setChecked(false);
 
-  this->GetExperimentDialog()->GetExamplesDialog()->EmitExample(0);
-
-
-  this->ui->button_start->click();
+  this->GetExperimentDialog()->GetExamplesDialog()->EmitExample(0); //Click the 'Voltage' example
+  ui->tab_main->setCurrentIndex(2); //Set to 'Graphs' tab
+  this->ui->button_start->click(); //Start the simulation
 }
 
 QtKalmanFiltererMainDialog::~QtKalmanFiltererMainDialog()
@@ -218,6 +218,45 @@ const boost::shared_ptr<QtKalmanFilterCalculationDialog> QtKalmanFiltererMainDia
   return p;
 }
 
+const std::vector<double> QtKalmanFiltererMainDialog::ExtractAverageSquaredError(
+  const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+{
+  const std::vector<boost::numeric::ublas::vector<double> > predictions = experiment->GetPredictedStates();
+  const std::vector<boost::numeric::ublas::vector<double> > real_states = experiment->GetRealStates();
+  assert(real_states.size() == predictions.size());
+  const std::size_t n_timesteps = real_states.size();
+  if (n_timesteps == 0) return std::vector<double>();
+  assert(real_states[0].size() == predictions[0].size());
+  const std::size_t n_states = real_states[0].size();
+  if (n_states == 0) return std::vector<double>();
+  std::vector<double> sum(n_states,0.0);
+  //Sum all squared errors
+  for (std::size_t timestep=0; timestep!=n_timesteps; ++timestep)
+  {
+    assert(timestep < predictions.size());
+    assert(timestep < real_states.size());
+    const boost::numeric::ublas::vector<double>& prediction = predictions[timestep];
+    const boost::numeric::ublas::vector<double>& real = real_states[timestep];
+    for (std::size_t state=0; state!=n_states; ++state)
+    {
+      assert(state < prediction.size());
+      assert(state < real.size());
+      assert(state < sum.size());
+      const double p = prediction[state];
+      const double r = real[state];
+      sum[state] += ((p-r)*(p-r));
+    }
+  }
+  //Obtain the average squared error
+  for (std::size_t state=0; state!=n_states; ++state)
+  {
+    assert(state < sum.size());
+    sum[state] /= static_cast<double>(n_timesteps);
+  }
+
+  return sum;
+}
+
 void QtKalmanFiltererMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
@@ -257,9 +296,11 @@ void QtKalmanFiltererMainDialog::on_button_start_clicked()
   m_calculations.resize(0);
   delete ui->scroll_area_calculation_contents->layout();
   delete ui->scroll_area_graph_contents->layout();
+  delete ui->scroll_area_statistics_contents->layout();
   delete ui->scroll_area_table_contents->layout();
   assert(!ui->scroll_area_calculation_contents->layout());
   assert(!ui->scroll_area_graph_contents->layout());
+  assert(!ui->scroll_area_statistics_contents->layout());
   assert(!ui->scroll_area_table_contents->layout());
 
   //Do the sim
@@ -268,21 +309,10 @@ void QtKalmanFiltererMainDialog::on_button_start_clicked()
 
   assert(experiment);
   assert(experiment->IsValid());
-  //Display data as calculation
-  if (ui->box_show_calculation->isChecked())
-  {
-    ShowCalculation(experiment);
-  }
-  //Display data as graph
-  if (ui->box_show_graphs->isChecked())
-  {
-    ShowGraph(experiment);
-  }
-  //Display data as table
-  if (ui->box_show_table->isChecked())
-  {
-    ShowTable(experiment);
-  }
+  if (ui->box_show_calculation->isChecked()) { ShowCalculation(experiment); }
+  if (ui->box_show_graphs->isChecked()) { ShowGraph(experiment); }
+  if (ui->box_show_statistics->isChecked()) { ShowStatistics(experiment); }
+  if (ui->box_show_table->isChecked()) { ShowTable(experiment); }
 }
 
 
@@ -294,6 +324,11 @@ void QtKalmanFiltererMainDialog::SetShowCalculation(const bool do_show)
 void QtKalmanFiltererMainDialog::SetShowGraph(const bool do_show)
 {
   ui->box_show_graphs->setChecked(do_show);
+}
+
+void QtKalmanFiltererMainDialog::SetShowStatistics(const bool do_show)
+{
+  ui->box_show_statistics->setChecked(do_show);
 }
 
 void QtKalmanFiltererMainDialog::SetShowTable(const bool do_show)
@@ -505,6 +540,67 @@ void QtKalmanFiltererMainDialog::ShowGraph(const boost::shared_ptr<const KalmanF
   }
 }
 
+void QtKalmanFiltererMainDialog::ShowStatistics(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+{
+  assert(experiment);
+  assert(experiment->IsValid());
+  //Make fresh graph section
+  assert(!ui->scroll_area_statistics_contents->layout());
+  ui->scroll_area_statistics_contents->setLayout(new QVBoxLayout);
+  assert(ui->scroll_area_statistics_contents->layout());
+
+  //Create the table widget
+  const int state_size = boost::numeric_cast<int>(experiment->GetStateNames().size());
+  const int n_rows = state_size;
+  const int n_cols = 1;
+
+  QtCopyAllTableWidget * const table = new QtCopyAllTableWidget;
+
+  table->setToolTip("Display the average squared error for every state: ((p-r)^2)/t");
+  table->setColumnCount(n_cols);
+  table->setRowCount(n_rows);
+  table->setAlternatingRowColors(true);
+  assert(ui->scroll_area_statistics_contents->layout());
+  ui->scroll_area_statistics_contents->layout()->addWidget(table);
+
+  //Layout the data for putting in table
+  const std::vector<double> vs = ExtractAverageSquaredError(experiment);
+  //assert(!vs.empty()); //vs can be empty
+
+  //Leave if there is no data to put in table
+  if (vs.empty()) return;
+
+  //Put descriptions in horizontal header
+  for (int col=0; col!=n_cols; ++col)
+  {
+    QTableWidgetItem * const item = new QTableWidgetItem;
+    const std::string text = col == 0 ? "State name" : "Average squared error";
+    item->setText(text.c_str());
+    table->setHorizontalHeaderItem(col,item);
+  }
+  //Put state names in vertical header
+  for (int row=0; row!=state_size; ++row)
+  {
+    assert(row < static_cast<int>(experiment->GetStateNames().size()));
+    const std::string name = experiment->GetStateNames()[row];
+    QTableWidgetItem * const item = new QTableWidgetItem;
+    item->setText(name.c_str());
+    table->setVerticalHeaderItem(row,item);
+  }
+  //Put the average squared error in place
+  for (int col=0; col!=n_cols; ++col)
+  {
+    assert(n_cols == 1);
+    for (int row=0; row!=state_size; ++row)
+    {
+      QTableWidgetItem * const item = new QTableWidgetItem;
+      item->setText(QString::number(vs[row]));
+      table->setItem(row,col,item);
+    }
+  }
+}
+
+
 void QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
@@ -530,8 +626,6 @@ void QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr<const KalmanF
   table->setColumnCount(n_cols);
   table->setRowCount(n_rows);
   table->setAlternatingRowColors(true);
-  //table->setSelectionMode(QAbstractItemView::MultiSelection);
-  //table->setSelectionBehavior(QAbstractItemView::SelectItems);
   assert(ui->scroll_area_table_contents->layout());
   ui->scroll_area_table_contents->layout()->addWidget(table);
 
@@ -609,6 +703,7 @@ void QtKalmanFiltererMainDialog::Test()
       d->m_model->SetNumberOfTimesteps(2); //Otherwise these tests take too long
       d->SetShowCalculation(true);
       d->SetShowGraph(true);
+      d->SetShowStatistics(true);
       d->SetShowTable(true);
       d->on_button_start_clicked();
     }
@@ -644,6 +739,7 @@ void QtKalmanFiltererMainDialog::Test()
     }
     TRACE("Finished QtKalmanFiltererMainDialog::Test()")
   }
+
 }
 #endif
 
