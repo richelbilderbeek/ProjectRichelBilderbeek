@@ -67,9 +67,10 @@ private:
   ///The dialog to set the experiment its parameters
   QtKalmanFilterExperimentDialog * const m_experiment_dialog;
 
-  ///Contains the calculations, these must be stored because deleting
+  ///Contains the widgets that must be deleted at a new run
+  ///these must be stored because deleting
   ///the layout that contains these does not work properly
-  std::vector<boost::shared_ptr<QtKalmanFilterCalculationDialog> > m_calculations;
+  std::vector<boost::shared_ptr<QWidget> > m_to_delete_at_new_run;
 
   ///The model
   const boost::shared_ptr<QtKalmanFilterExperimentModel> m_model;

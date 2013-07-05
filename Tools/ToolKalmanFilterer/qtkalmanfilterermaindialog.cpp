@@ -293,7 +293,7 @@ void QtKalmanFiltererMainDialog::on_button_start_clicked()
 
   //Remove previous dialogs
   m_plots.resize(0);
-  m_calculations.resize(0);
+  m_to_delete_at_new_run.resize(0);
   delete ui->scroll_area_calculation_contents->layout();
   delete ui->scroll_area_graph_contents->layout();
   delete ui->scroll_area_statistics_contents->layout();
@@ -340,7 +340,7 @@ void QtKalmanFiltererMainDialog::ShowCalculation(
   const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
-  assert(m_calculations.empty());
+  assert(m_to_delete_at_new_run.empty());
   //Make fresh calculation section
   assert(!ui->scroll_area_calculation_contents->layout());
   ui->scroll_area_calculation_contents->setLayout(new QVBoxLayout);
@@ -376,7 +376,7 @@ void QtKalmanFiltererMainDialog::ShowCalculation(
     calculation_dialog->setStyleSheet(style_sheet.c_str());
     calculation_dialog->SetTime(i);
     calculation_dialog->ShowCalculation(i,experiment);
-    m_calculations.push_back(calculation_dialog);
+    m_to_delete_at_new_run.push_back(calculation_dialog); //Store for delettion
     assert(ui->scroll_area_calculation_contents->layout());
     ui->scroll_area_calculation_contents->layout()->addWidget(calculation_dialog.get());
   }
@@ -556,6 +556,13 @@ void QtKalmanFiltererMainDialog::ShowStatistics(const boost::shared_ptr<const Ka
 
   QtCopyAllTableWidget * const table = new QtCopyAllTableWidget;
 
+  //Store for deletion
+  {
+    const boost::shared_ptr<QWidget> p(table);
+    assert(p);
+    m_to_delete_at_new_run.push_back(p);
+  }
+
   table->setToolTip("Display the average squared error for every state: ((p-r)^2)/t");
   table->setColumnCount(n_cols);
   table->setRowCount(n_rows);
@@ -622,6 +629,13 @@ void QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr<const KalmanF
   const int n_rows = n_timesteps;
 
   QtCopyAllTableWidget * const table = new QtCopyAllTableWidget;
+
+  //Store for deletion
+  {
+    const boost::shared_ptr<QWidget> p(table);
+    assert(p);
+    m_to_delete_at_new_run.push_back(p);
+  }
 
   table->setColumnCount(n_cols);
   table->setRowCount(n_rows);
