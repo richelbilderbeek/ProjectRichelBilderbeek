@@ -98,16 +98,42 @@ const std::string QtKalmanFiltererParameterDialog::ToHtml() const
 
 void QtKalmanFiltererParameterDialog::OnModelSizeChanged()
 {
-  const int scrollbar_height = 16;
-  int height
-    = ui->table->horizontalHeader()->height()
-    + (2 * ui->table->frameWidth())
-    + scrollbar_height;
-  const int n_rows = ui->table->model()->rowCount();
-  for (int i=0; i!=n_rows; ++i)
+  ui->table->resizeColumnsToContents();
+  ui->table->resizeRowsToContents();
+  ui->table->update();
+  ui->table->repaint();
+  //Set height
   {
-    height += ui->table->rowHeight(i);
+    const int scrollbar_height = 16;
+    int height
+      = ui->table->horizontalHeader()->height()
+      + (2 * ui->table->frameWidth())
+      + scrollbar_height;
+    const int n_rows = ui->table->model()->rowCount();
+    for (int i=0; i!=n_rows; ++i)
+    {
+      height += ui->table->rowHeight(i);
+    }
+    ui->table->setMinimumHeight(height);
+    ui->table->setMaximumHeight(height);
   }
-  ui->table->setMinimumHeight(height);
-  ui->table->setMaximumHeight(height);
+  #ifdef FOUND_OUT_HOW_THIS_WORKS_CORRECTLY_782346928497284639876487987698742362571101928364
+  //Set width
+  {
+    const int scrollbar_width = 100; //0; //16;
+    int width
+      = ui->table->verticalHeader()->geometry().width()
+      + (2 * ui->table->frameWidth())
+      + scrollbar_width;
+    const int n_cols = ui->table->model()->columnCount();
+    for (int i=0; i!=n_cols; ++i)
+    {
+      width += std::max(
+        ui->table->columnWidth(i),
+        ui->table->horizontalHeader()->sectionSize(i));
+    }
+    ui->table->setMinimumWidth(width);
+    ui->table->setMaximumWidth(width);
+  }
+  #endif
 }
