@@ -571,7 +571,10 @@ SOURCES += \
     ../../Classes/CppPylos/pylosgame.cpp \
     ../../Classes/CppPylos/pyloscurrentmovestate.cpp \
     ../../Classes/CppPylos/pyloscoordinat.cpp \
-    ../../Classes/CppPylos/pylosboard.cpp
+    ../../Classes/CppPylos/pylosboard.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -939,7 +942,10 @@ HEADERS += \
     ../../Classes/CppPylos/pylosfwd.h \
     ../../Classes/CppPylos/pyloscurrentmovestate.h \
     ../../Classes/CppPylos/pyloscoordinat.h \
-    ../../Classes/CppPylos/pylosboard.h
+    ../../Classes/CppPylos/pylosboard.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h
 
 RESOURCES += \
     ../../Games/GameConnectThree/GameConnectThree.qrc \

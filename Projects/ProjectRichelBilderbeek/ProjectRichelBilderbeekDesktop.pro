@@ -3,7 +3,7 @@ win32 {
   #CONFIG += static
 }
 
-QT += core gui
+QT += core gui webkit
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
@@ -521,7 +521,11 @@ SOURCES += \
     ../../Classes/CppStateObserver/integerstateobserver.cpp \
     ../../Classes/CppStateObserver/integeralphafilter.cpp \
     ../../Tools/ToolStateObserver/slsqfilter.cpp \
-    ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.cpp
+    ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.cpp \
+    ../../Classes/CppQtModel/qtublasvectorintmodel.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -904,7 +908,11 @@ HEADERS += \
     ../../Classes/CppStateObserver/integerstateobserver.h \
     ../../Classes/CppStateObserver/integeralphafilter.h \
     ../../Tools/ToolStateObserver/slsqfilter.h \
-    ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.h
+    ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.h \
+    ../../Classes/CppQtModel/qtublasvectorintmodel.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h
 
 
 RESOURCES += \
