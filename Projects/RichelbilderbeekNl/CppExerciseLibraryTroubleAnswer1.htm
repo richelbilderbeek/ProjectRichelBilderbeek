@@ -43,22 +43,14 @@
 <p>&nbsp;</p>
 <h2>Abandon const-correctness (0/10)</h2>
 <p>&nbsp;</p>
-
- 
-
-<p>const std::string s =
-&quot;abc***def&quot;;</p>
-
-<p><b><span lang=NL
-style='mso-bidi-font-family:"Courier New";color:red'>/* const */ </b>  int n = 3; //Number of
-repeats</p>
-
-<p>std::search_n( s.begin(),s.end(),n,'*');</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="filezT2cFQ.cpp" border = "1"><tr><td><code>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+<a href="CppComment.htm">/*</a> <b><a href="CppConst.htm">const</a></b> <a href="CppComment.htm">*/</a> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats<br/>
+<a href="CppSearch_n.htm">std::search_n</a>( s.begin(),s.end(),n,'*');<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
 <p>Using const is good [1-6], abondoning const-correctness is not.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -67,21 +59,14 @@ repeats</p>
 <p>&nbsp;</p>
 <h2>Use a C-style cast (1/10)</h2>
 <p>&nbsp;</p>
-
- 
-
-<p>const std::string s =
-&quot;abc***def&quot;;</p>
-
-<p>const int n = 3; //Number of repeats</p>
-
-<p>std::search_n( s.begin(),s.end(), <b><span
-style='color:red'>(int) </b> n,'*');</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="fileDMsABd.cpp" border = "1"><tr><td><code>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats<br/>
+<a href="CppSearch_n.htm">std::search_n</a>( s.begin(),s.end(), (<b><a href="CppInt.htm">int</a></b>) n,'*');<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
 <p>Don't use C-style casts, but use one of the four more-specific C++ casting keywords [7,8].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -90,21 +75,14 @@ style='color:red'>(int) </b> n,'*');</p>
 <p>&nbsp;</p>
 <h2>Use of reinterpret_cast (1/10)</h2>
 <p>&nbsp;</p>
-
- 
-
-<p>const std::string s =
-&quot;abc***def&quot;;</p>
-
-<p>const int n = 3; //Number of repeats</p>
-
-<p>std::search_n( s.begin(),s.end(),<b><span
-style='color:red'>reinterpret_cast&lt;int&gt;(n) </b>,'*');</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="file5RrvPz.cpp" border = "1"><tr><td><code>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats<br/>
+<a href="CppSearch_n.htm">std::search_n</a>( s.begin(),s.end(),<b><a href="CppReinterpret_cast.htm">reinterpret_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(n) ,'*');<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
 <p>The use of <a href="CppReinterpret_cast.htm">reinterpret_cast</a> is nonsense here, because int and const int are closely related. Also, it still will not compile, with the same compile error.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -113,21 +91,14 @@ style='color:red'>reinterpret_cast&lt;int&gt;(n) </b>,'*');</p>
 <p>&nbsp;</p>
 <h2>Use of dynamic_cast (1/10)</h2>
 <p>&nbsp;</p>
-
- 
-
-<p>const std::string s =
-&quot;abc***def&quot;;</p>
-
-<p>const int n = 3; //Number of repeats</p>
-
-<p>std::search_n( s.begin(),s.end(),<b><span
-style='color:red'>dynamic_cast&lt;int&gt;(n) </b>,'*');</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="fileHKzCOW.cpp" border = "1"><tr><td><code>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats<br/>
+<a href="CppSearch_n.htm">std::search_n</a>( s.begin(),s.end(),<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(n) ,'*');<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
 <p>The use of <a href="CppDynamic_cast.htm">dynamic_cast</a> is nonsense here, because
 int and const int are not members of the same class hierarchy. Also, it still
 will not compile, because a dynamic_cast cannot cast from 'const int' to 'int'.</p>
@@ -138,19 +109,13 @@ will not compile, because a dynamic_cast cannot cast from 'const int' to 'int'.<
 <p>&nbsp;</p>
 <h2>Use of const_cast (8/10)</h2>
 <p>&nbsp;</p>
-
- 
-
-<p>const std::string s =
-&quot;abc***def&quot;;</p>
-
-<p>const int n = 3; //Number of repeats</p>
-
-<p>std::search_n( s.begin(),s.end(),<b><span
-style='color:red'>const_cast&lt;int&gt;(n) </b>,'*');</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="file13nzXk.cpp" border = "1"><tr><td><code>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats<br/>
+<a href="CppSearch_n.htm">std::search_n</a>( s.begin(),s.end(),<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(n) ,'*');<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>The use of <a href="CppConst_cast.htm">const_cast</a> is my favorite solution. As
 it is the most correct solution, as all we want to do is to cast away the const.
@@ -163,18 +128,13 @@ But too bad, it does not compile!</p>
 <p>&nbsp;</p>
 <h2>Use of static_cast (10/10)</h2>
 <p>&nbsp;</p>
- 
-
-<p>const std::string s =
-&quot;abc***def&quot;;</p>
-
-<p>const int n = 3; //Number of repeats</p>
-
-<p>std::search_n( s.begin(),s.end(),<b><span
-style='color:red'>static_cast&lt;int&gt;(n) </b>,'*');</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="filehtmkVV.cpp" border = "1"><tr><td><code>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats<br/>
+<a href="CppSearch_n.htm">std::search_n</a>( s.begin(),s.end(),<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(n) ,'*');<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>I regret that the use of <a href="CppStatic_cast.htm">static_cast</a> is the best
 solution, as a const_cast is more clear. But const_cast does not compile, so
@@ -209,4 +169,3 @@ one is left to use static_cast.</p>
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
 </html>
-

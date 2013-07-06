@@ -1,14 +1,3 @@
-<title>Answer of exercise #8: Library trouble #0</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Answer of exercise #8: Library trouble #0</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek Answer of exercise #8: Library trouble #0</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -35,160 +24,69 @@
 <p>&nbsp;</p>
 <p>The compiler takes you to the following code:</p>
 <p>&nbsp;</p>
-
-
-<p>// search_n.    Search for __count consecutive copies of
-__val.</p>
-
+<!-- start of code -->
+<table summary="fileXT5SrW.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> search_n. Search <b><a href="CppFor.htm">for</a></b> __count consecutive copies of __val.<br/>
+ <br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> _ForwardIter, <b><a href="CppClass.htm">class</a></b> _<a href="CppInt.htm">Integer</a>, <b><a href="CppClass.htm">class</a></b> _Tp&gt;<br/>
+&nbsp;&nbsp;_ForwardIter search_n(_ForwardIter __first, _ForwardIter __last,<br/>
+&nbsp;&nbsp;_<a href="CppInt.htm">Integer</a> __count, <b><a href="CppConst.htm">const</a></b> _Tp&amp; __val) {<br/>
+&nbsp;&nbsp;_<a href="CppStl.htm">STL</a>P_DEBUG_CHECK(__check_range(__first, __last))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (__count <a href="CppOperatorLessEqual.htm">&lt;=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __first;<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;__first <a href="CppOperatorAssign.htm">=</a> find(__first, __last, __val);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (__first <a href="CppOperatorNotEqual.htm">!=</a> __last) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_<a href="CppInt.htm">Integer</a> __n <a href="CppOperatorAssign.htm">=</a> __count <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ForwardIter __i <a href="CppOperatorAssign.htm">=</a> __first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+__i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (__i <a href="CppOperatorNotEqual.htm">!=</a> __last <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __n <a href="CppOperatorNotEqual.htm">!=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> *__i <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> __val) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+__i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-__n; <a href="CppComment.htm">//</a> &lt;---<a href="CppOperatorMinus.htm">-</a> THIS LINE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (__n <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__first <a href="CppOperatorAssign.htm">=</a> find(__i, __last, __val);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __last;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p>template &lt;class _ForwardIter,
-class _Integer, class _Tp&gt;</p>
-
-<p>_ForwardIter search_n(_ForwardIter
-__first, _ForwardIter __last,</p>
-
-<p>                     _Integer __count, const _Tp&amp; __val) {</p>
-
-<p>
- _STLP_DEBUG_CHECK(__check_range(__first, __last))</p>
-
-<p>
- if (__count &lt;= 0)</p>
-
-<p> 
- return __first;</p>
-
-<p>
- else {</p>
-
-<p> 
- __first = find(__first, __last, __val);</p>
-
-<p> 
- while (__first != __last) {</p>
-
-<p>     _Integer __n = __count - 1;</p>
-
-<p>     _ForwardIter __i = __first;</p>
-
-<p>     ++__i;</p>
-
-<p>     while (__i != __last &amp;&amp; __n != 0 &amp;&amp; *__i ==
-__val) {</p>
-
-<p>       ++__i;</p>
-
-<p>       --__n;                         <b><span style='color:red'>// &lt;---- THIS
-LINE </b></p>
-
-<p>     }</p>
-
-<p>     if (__n == 0)</p>
-
-<p>       return __first;</p>
-
-<p>     else</p>
-
-<p>       __first = find(__i, __last, __val);</p>
-
-<p> 
- }</p>
-
-<p> 
- return __last;</p>
-
-<p>
- }</p>
-
-<p>}</p>
-
+<p>This must means that __n is also a const data type. This is true, as shown below:</p>
 <p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>This
-must means that __n is also a const data type. This is true, as shown below:</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>// search_n.    Search for __count consecutive copies of
-__val.</p>
-
-<p>&nbsp;</p>
-
-<p>template &lt;class _ForwardIter,
-class <b><span style='color:red'>_Integer </b>, class _Tp&gt;</p>
-
-<p>_ForwardIter search_n(_ForwardIter
-__first, _ForwardIter __last,</p>
-
-<p>                     <b><span style='color:red'>_Integer </b>
-__count, const _Tp&amp; __val) {</p>
-
-<p>
- _STLP_DEBUG_CHECK(__check_range(__first, __last))</p>
-
-<p>
- if (__count &lt;= 0)</p>
-
-<p> 
- return __first;</p>
-
-<p>
- else {</p>
-
-<p> 
- __first = find(__first, __last, __val);</p>
-
-<p> 
- while (__first != __last) {</p>
-
-<p>     <b><span style='color:red'>_Integer </b> __n = __count
-- 1;</p>
-
-<p>     _ForwardIter __i = __first;</p>
-
-<p>     ++__i;</p>
-
-<p>     while (__i != __last &amp;&amp; __n != 0 &amp;&amp; *__i ==
-__val) {</p>
-
-<p>       ++__i;</p>
-
-<p>       --__n;</p>
-
-<p>     }</p>
-
-<p>     if (__n == 0)</p>
-
-<p>       return __first;</p>
-
-<p>     else</p>
-
-<p>       __first = find(__i, __last, __val);</p>
-
-<p> 
- }</p>
-
-<p> 
- return __last;</p>
-
-<p>
- }</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="filexHQJFB.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a> search_n. Search <b><a href="CppFor.htm">for</a></b> __count consecutive copies of __val.<br/>
+ <br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> _ForwardIter, <b><a href="CppClass.htm">class</a></b> <a href="CppOperatorDivide.htm">/</a>*non-<b><a href="CppConst.htm">const</a></b><a href="CppComment.htm">*/</a> _<a href="CppInt.htm">Integer</a>, <b><a href="CppClass.htm">class</a></b> _Tp&gt;<br/>
+&nbsp;&nbsp;_ForwardIter search_n(_ForwardIter __first, _ForwardIter __last,<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*non-<b><a href="CppConst.htm">const</a></b><a href="CppComment.htm">*/</a> _<a href="CppInt.htm">Integer</a> __count, <b><a href="CppConst.htm">const</a></b> _Tp&amp; __val) {<br/>
+&nbsp;&nbsp;_<a href="CppStl.htm">STL</a>P_DEBUG_CHECK(__check_range(__first, __last))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (__count <a href="CppOperatorLessEqual.htm">&lt;=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __first;<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;__first <a href="CppOperatorAssign.htm">=</a> find(__first, __last, __val);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (__first <a href="CppOperatorNotEqual.htm">!=</a> __last) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*non-<b><a href="CppConst.htm">const</a></b><a href="CppComment.htm">*/</a> _<a href="CppInt.htm">Integer</a> __n <a href="CppOperatorAssign.htm">=</a> __count <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ForwardIter __i <a href="CppOperatorAssign.htm">=</a> __first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+__i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (__i <a href="CppOperatorNotEqual.htm">!=</a> __last <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __n <a href="CppOperatorNotEqual.htm">!=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> *__i <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> __val) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+__i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-__n; <a href="CppComment.htm">//</a> &lt;---<a href="CppOperatorMinus.htm">-</a> THIS LINE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (__n <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__first <a href="CppOperatorAssign.htm">=</a> find(__i, __last, __val);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> __last;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>So, due to the template use, __n will be of type const int, when we pass a __count
 of type const int! This conflict with the use of __n as a changing index. The
