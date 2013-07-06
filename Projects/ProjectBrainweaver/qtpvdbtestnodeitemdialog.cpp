@@ -106,9 +106,9 @@ QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
   assert(dynamic_cast<QtPvdbNodeItem*>(ui->view->scene()->items()[2]));
 
   //QtPvdbConceptItems are aware of their surroundings, but I put them into place manually
-  m_display_node->setPos(0.0,-40.0);
-  m_edit_node->setPos(   0.0,  0.0);
-  m_rate_node->setPos(   0.0, 40.0);
+  m_display_node->SetPos(0.0,-40.0);
+  m_edit_node->SetPos(   0.0,  0.0);
+  m_rate_node->SetPos(   0.0, 40.0);
 
   {
     const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();

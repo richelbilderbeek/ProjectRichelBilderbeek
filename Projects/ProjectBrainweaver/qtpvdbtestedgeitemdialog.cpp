@@ -130,9 +130,9 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
 
   //Put nodes (not the edges) into place
   //The nodes must reposition themselves
-  node1->setPos(-100.0,-100.0);
-  m_edge_item->setPos(0.0,0.0);
-  node2->setPos( 100.0, 100.0);
+  node1->SetPos(-100.0,-100.0);
+  m_edge_item->SetPos(0.0,0.0);
+  node2->SetPos( 100.0, 100.0);
 
   {
     const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();

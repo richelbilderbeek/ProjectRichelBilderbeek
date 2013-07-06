@@ -9,12 +9,17 @@
 
 #include <cassert>
 
+#include <boost/lambda/lambda.hpp>
+
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
 
 #include "pvdbconcept.h"
 #include "pvdbedge.h"
+#include "pvdbedgefactory.h"
+#include "pvdbnode.h"
+#include "pvdbnodefactory.h"
 #include "qtpvdbbrushfactory.h"
 #include "qtpvdbconceptitem.h"
 #include "qtpvdbnodeitem.h"
@@ -33,6 +38,9 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
     m_from(from),
     m_to(to)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   //m_edge must be initialized before m_arrow
   assert(m_concept_item);
   assert(m_edge);
@@ -49,7 +57,7 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
-  this->setPos(edge->GetX(),edge->GetY());
+  this->SetPos(edge->GetX(),edge->GetY());
 
   m_concept_item->SetMainBrush(QtPvdbBrushFactory::CreateBlueGradientBrush());
   m_concept_item->SetContourPen(QPen(QColor(255,255,255)));
@@ -59,9 +67,9 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
     boost::bind(
       &QtPvdbEdgeItem::OnItemHasUpdated,this));
 
-  m_edge->m_signal_changed.connect(
+  m_edge->m_signal_edge_changed.connect(
     boost::bind(
-      &QtPvdbEdgeItem::OnEdgeChanged,this));
+      &QtPvdbEdgeItem::OnEdgeChanged,this,boost::lambda::_1));
 
   m_concept_item->m_signal_item_has_updated.connect(
     boost::bind(
@@ -204,16 +212,19 @@ void QtPvdbEdgeItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
   QtPvdbConceptMapItem::mousePressEvent(event);
 }
 
-void QtPvdbEdgeItem::OnEdgeChanged()
+void QtPvdbEdgeItem::OnEdgeChanged(const pvdb::Edge * const edge)
 {
   assert(m_arrow);
   assert(m_edge);
+  assert(edge == m_edge.get());
   //m_edge is changed, so change m_arrow
-  m_arrow->SetHasHead(m_edge->HasHeadArrow());
-  m_arrow->SetHasTail(m_edge->HasTailArrow());
-  assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
-  assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
-  m_concept_item->SetText(m_edge->GetConcept()->GetName());
+  m_arrow->SetHasHead(edge->HasHeadArrow());
+  m_arrow->SetHasTail(edge->HasTailArrow());
+  assert( m_arrow->HasTail() == GetEdge()->HasTailArrow() );
+  assert( m_arrow->HasHead() == GetEdge()->HasHeadArrow() );
+  m_concept_item->SetText(edge->GetConcept()->GetName());
+  this->GetEdge()->SetX(edge->GetX());
+  this->GetEdge()->SetY(edge->GetY());
 }
 
 void QtPvdbEdgeItem::OnItemHasUpdated()
@@ -297,6 +308,27 @@ void QtPvdbEdgeItem::SetName(const std::string& name)
   m_edge->GetConcept()->SetName(name);
 }
 
+void QtPvdbEdgeItem::SetX(const double x)
+{
+  if (x != this->GetEdge()->GetX())
+  {
+    this->setPos(x,this->GetEdge()->GetY());
+    this->GetEdge()->SetX(x);
+    assert(x == this->GetEdge()->GetX());
+  }
+  assert(x == this->GetEdge()->GetX());
+}
+
+void QtPvdbEdgeItem::SetY(const double y)
+{
+  if (y != this->GetEdge()->GetY())
+  {
+    this->setPos(this->GetEdge()->GetX(),y);
+    this->GetEdge()->SetY(y);
+    assert(y == this->GetEdge()->GetY());
+  }
+  assert(y == this->GetEdge()->GetY());
+}
 
 QPainterPath QtPvdbEdgeItem::shape() const
 {
@@ -304,3 +336,90 @@ QPainterPath QtPvdbEdgeItem::shape() const
     .united(m_arrow->shape().translated(-this->pos()));
 }
 
+#ifndef NDEBUG
+void QtPvdbEdgeItem::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  //Test SetX and SetY being in sync
+  {
+    const boost::shared_ptr<pvdb::Node> node_from = pvdb::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<pvdb::Node> node_to = pvdb::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtPvdbNodeItem> qtnode_from(new QtPvdbNodeItem(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtPvdbNodeItem> qtnode_to(new QtPvdbNodeItem(node_to,qtconcept_item_to));
+    const std::size_t n_edges = pvdb::EdgeFactory::GetTests(node_from,node_to).size();
+    for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
+    {
+      const std::vector<boost::shared_ptr<pvdb::Edge> > edges = pvdb::EdgeFactory::GetTests(node_from,node_to);
+      boost::shared_ptr<pvdb::Edge> edge = edges[edge_index];
+      assert(edge);
+      boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtPvdbEdgeItem> qtedge(
+        new QtPvdbEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
+      assert(qtconcept_item->GetConcept() == edge->GetConcept());
+      assert(edge == qtedge->GetEdge());
+      {
+        const double node_x = edge->GetX();
+        const double qtnode_x = qtedge->pos().x();
+        const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = edge->GetY();
+        const double qtnode_y = qtedge->pos().y();
+        const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+      //Change via node
+      edge->SetX(M_PI);
+      edge->SetY(M_E);
+      {
+        const double node_x = edge->GetX();
+        const double qtnode_x = qtedge->pos().x();
+        const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = edge->GetY();
+        const double qtnode_y = qtedge->pos().y();
+        const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+      //Change via Qt node
+      qtedge->setPos(12.3,45.6);
+      {
+        const double node_x = edge->GetX();
+        const double qtnode_x = qtedge->pos().x();
+        const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = edge->GetY();
+        const double qtnode_y = qtedge->pos().y();
+        const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+      //Change via Qt concept item
+      qtedge->GetConceptItem()->setPos(12.3,45.6);
+      {
+        const double node_x = edge->GetX();
+        const double qtnode_x = qtedge->pos().x();
+        const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = edge->GetY();
+        const double qtnode_y = qtedge->pos().y();
+        const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+    }
+  }
+}
+#endif

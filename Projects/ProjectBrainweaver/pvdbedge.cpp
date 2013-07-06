@@ -56,7 +56,7 @@ void pvdb::Edge::SetFrom(const boost::shared_ptr<pvdb::Node> from)
   if (m_from != from)
   {
     m_from = from;
-    m_signal_changed(this);
+    m_signal_edge_changed(this);
   }
 }
 
@@ -65,7 +65,7 @@ void pvdb::Edge::SetHeadArrow(const bool has_head_arrow)
   if (m_head_arrow != has_head_arrow)
   {
     m_head_arrow = has_head_arrow;
-    m_signal_changed(this);
+    m_signal_edge_changed(this);
   }
 }
 
@@ -74,7 +74,7 @@ void pvdb::Edge::SetTailArrow(const bool has_tail_arrow)
   if (m_tail_arrow != has_tail_arrow)
   {
     m_tail_arrow = has_tail_arrow;
-    m_signal_changed(this);
+    m_signal_edge_changed(this);
   }
 }
 
@@ -85,7 +85,25 @@ void pvdb::Edge::SetTo(const boost::shared_ptr<pvdb::Node> to)
   {
     m_to = to;
 
-    m_signal_changed(this);
+    m_signal_edge_changed(this);
+  }
+}
+
+void pvdb::Edge::SetX(const int x)
+{
+  if (m_x != x)
+  {
+    m_x = x;
+    m_signal_edge_changed(this);
+  }
+}
+
+void pvdb::Edge::SetY(const int y)
+{
+  if (m_y != y)
+  {
+    m_y = y;
+    m_signal_edge_changed(this);
   }
 }
 

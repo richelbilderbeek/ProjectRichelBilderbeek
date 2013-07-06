@@ -25,6 +25,9 @@ struct QtRoundedTextRectItem : public QtRoundedRectItem
     const QFont& font = QFont("monospace",9),
     QGraphicsItem* parent = 0);
 
+  ///ABC must have public virtual destructor
+  // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines, and best practices.
+  //   ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'
   virtual ~QtRoundedTextRectItem() {}
 
   ///Get the font by which the text is drawn

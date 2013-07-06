@@ -50,8 +50,8 @@ struct Edge : public boost::noncopyable
   ///Does the edge have an arrow at the tail?
   bool HasTailArrow() const { return m_tail_arrow; }
 
-
-  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept) { m_concept = concept; } //NEW 2013-01-07
+  ///Set the concept
+  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept) { m_concept = concept; }
 
   ///Set the Node index this edge originates from
   void SetFrom(const boost::shared_ptr<pvdb::Node> from);
@@ -80,7 +80,7 @@ struct Edge : public boost::noncopyable
     );
 
   ///Emitted when an Edge attribute has changed
-  boost::signals2::signal<void (const Edge*)> m_signal_changed;
+  boost::signals2::signal<void (const Edge*)> m_signal_edge_changed;
 
   private:
 

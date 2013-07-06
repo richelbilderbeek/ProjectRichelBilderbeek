@@ -439,6 +439,7 @@ void QtPvdbConceptMapWidget::RepositionItems()
         qtcenter_node->boundingRect().height());
     const double r3 = 50.0;
     const double r = std::max(r1,r3);
+    assert(r > 10.0);
     const int n_nodes = qtnode_concepts.size();
     for (int i = 1; i!=n_nodes; ++i) //+1 to skip center node
     {
@@ -454,8 +455,8 @@ void QtPvdbConceptMapWidget::RepositionItems()
       qtnode->GetNode()->SetY(y);
       //qtnode->setPos(x,y);
 
-      assert(fuzzy_equal_to()(qtnode->pos().x(),qtnode->GetNode()->GetX()));
-      assert(fuzzy_equal_to()(qtnode->pos().y(),qtnode->GetNode()->GetY()));
+      assert(qtnode->pos().x() == qtnode->GetNode()->GetX());
+      assert(qtnode->pos().y() == qtnode->GetNode()->GetY());
     }
   }
 
@@ -471,6 +472,10 @@ void QtPvdbConceptMapWidget::RepositionItems()
         qtedge->GetEdge()->SetX(new_x);
         qtedge->GetEdge()->SetY(new_y);
         //qtedge->setPos(p);
+        assert(qtedge->pos().x() != 0.0);
+        assert(qtedge->GetEdge()->GetX() != 0.0);
+        assert(qtedge->pos().y() != 0.0);
+        assert(qtedge->GetEdge()->GetY() != 0.0);
         assert(fuzzy_equal_to()(qtedge->pos().x(),qtedge->GetEdge()->GetX()));
         assert(fuzzy_equal_to()(qtedge->pos().y(),qtedge->GetEdge()->GetY()));
       }
@@ -542,12 +547,12 @@ void QtPvdbConceptMapWidget::Shuffle()
 {
   const std::vector<QtPvdbNodeItem*> nodes = Collect<QtPvdbNodeItem>(scene());
   std::for_each(nodes.begin(),nodes.end(),
-    [this](QtPvdbNodeItem* node)
+    [this](QtPvdbNodeItem* qtnode)
     {
-      if (!IsCenterNode(node))
+      if (!IsCenterNode(qtnode))
       {
-        double x = node->pos().x();
-        double y = node->pos().y();
+        double x = qtnode->pos().x();
+        double y = qtnode->pos().y();
         const int i = (std::rand() >> 4) % 4;
         switch(i)
         {
@@ -557,8 +562,8 @@ void QtPvdbConceptMapWidget::Shuffle()
           case 3: y+=-1.0; break;
           default: assert(!"Should not get here");
         }
-        assert(QPointF(x,y) != node->pos());
-        node->setPos(x,y);
+        assert(QPointF(x,y) != qtnode->pos());
+        qtnode->SetPos(x,y);
       }
     }
   );

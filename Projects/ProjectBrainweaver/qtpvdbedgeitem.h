@@ -41,6 +41,7 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
   const boost::shared_ptr<      pvdb::Concept>  GetConcept()      ;
 
   const boost::shared_ptr<const QtPvdbConceptItem> GetConceptItem() const final { return m_concept_item; }
+  const boost::shared_ptr<      QtPvdbConceptItem> GetConceptItem()       final { return m_concept_item; }
 
   const boost::shared_ptr<const pvdb::Edge>  GetEdge() const { return m_edge; }
   const boost::shared_ptr<      pvdb::Edge>& GetEdge()       { return m_edge; }
@@ -53,13 +54,19 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
   const QtPvdbNodeItem * GetTo() const { return m_to; }
         QtPvdbNodeItem * GetTo()       { return m_to; }
 
-  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept); //NEW 2013-01-07
+  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept);
 
   void SetHasHeadArrow(const bool has_head_arrow);
   void SetHasTailArrow(const bool has_tail_arrow);
 
   ///Set the name of the relation on the edge
   void SetName(const std::string& name);
+
+  ///Set the X coordinat of the central concept
+  void SetX(const double x);
+
+  ///Set the Y coordinat of the central concept
+  void SetY(const double y);
 
   ///No 'own/autonomous' signals, these are present in the ConceptItems
 
@@ -95,25 +102,16 @@ private:
   QtPvdbNodeItem * const m_to;
 
   ///Called whenever the edge changes
-  void OnEdgeChanged();
-
-  #ifdef BELIEF_THIS_IS_A_BETTER_APPROACH_82768276582
-  ///Called whenever the head arrow of the edge changes
-  ///The bool indicates whether the arrow is set to shown
-  void OnEdgeHeadArrowChanged(const bool has_arrow);
-
-  ///Called whenever the head arrow of the edge changes
-  ///The bool indicates whether the arrow is set to shown
-  void OnEdgeTailArrowChanged(const bool has_arrow);
-
-  ///Called whenever the text of the edge changes
-  void OnEdgeTextChanged();
-  #endif
+  void OnEdgeChanged(const pvdb::Edge * const edge);
 
   ///Called whenever the arrow updates
   void OnItemHasUpdated();
 
   void OnRequestSceneUpdate();
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // QTPVDBEDGEITEM_H

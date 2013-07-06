@@ -30,6 +30,9 @@ QtPvdbNodeItem::QtPvdbNodeItem(
     m_focus_pen(concept_item->GetFocusPen()),
     m_node(node)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(node);
   assert(m_concept_item);
   assert(m_node);
@@ -245,6 +248,28 @@ void QtPvdbNodeItem::SetName(const std::string& name)
   m_node->GetConcept()->SetName(name);
 }
 
+void QtPvdbNodeItem::SetX(const double x)
+{
+  if (x != this->GetNode()->GetX())
+  {
+    this->setPos(x,this->GetNode()->GetY());
+    this->GetNode()->SetX(x);
+    assert(x == this->GetNode()->GetX());
+  }
+  assert(x == this->GetNode()->GetX());
+}
+
+void QtPvdbNodeItem::SetY(const double y)
+{
+  if (y != this->GetNode()->GetY())
+  {
+    this->setPos(this->GetNode()->GetX(),y);
+    this->GetNode()->SetY(y);
+    assert(y == this->GetNode()->GetY());
+  }
+  assert(y == this->GetNode()->GetY());
+}
+
 #ifndef NDEBUG
 void QtPvdbNodeItem::Test()
 {
@@ -255,8 +280,80 @@ void QtPvdbNodeItem::Test()
   }
   //Test SetX and SetY being in sync
   {
-    boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::GetTests()
-    boost::shared_ptr<QtPvdbNodeItem> qtnode(new QtPvdbNodeItem(node,qtconcept_item);
+    const std::size_t n_nodes = pvdb::NodeFactory::GetTests().size();
+    for (std::size_t node_index=0; node_index!=n_nodes; ++node_index)
+    {
+      const auto nodes = pvdb::NodeFactory::GetTests();
+      boost::shared_ptr<pvdb::Node> node = nodes[node_index];
+      assert(node);
+      boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(node->GetConcept()));
+      boost::shared_ptr<QtPvdbNodeItem> qtnode(new QtPvdbNodeItem(node,qtconcept_item));
+      assert(qtconcept_item->GetConcept() == qtnode->GetConcept());
+      assert(qtconcept_item->GetConcept() == node->GetConcept());
+      assert(node == qtnode->GetNode());
+      {
+        const double node_x = node->GetX();
+        const double qtnode_x = qtnode->pos().x();
+        const double qtconcept_item_x = qtnode->GetConceptItem()->pos().x();
+        if (!(node_x == qtnode_x && qtnode_x == qtconcept_item_x))
+        {
+          TRACE(node_x);
+          TRACE(qtnode_x);
+          TRACE(qtconcept_item_x);
+        }
+
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = node->GetY();
+        const double qtnode_y = qtnode->pos().y();
+        const double qtconcept_item_y = qtnode->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+      //Change via node
+      node->SetX(M_PI);
+      node->SetY(M_E);
+      {
+        const double node_x = node->GetX();
+        const double qtnode_x = qtnode->pos().x();
+        const double qtconcept_item_x = qtnode->GetConceptItem()->pos().x();
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = node->GetY();
+        const double qtnode_y = qtnode->pos().y();
+        const double qtconcept_item_y = qtnode->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+      //Change via Qt node
+      qtnode->setPos(12.3,45.6);
+      {
+        const double node_x = node->GetX();
+        const double qtnode_x = qtnode->pos().x();
+        const double qtconcept_item_x = qtnode->GetConceptItem()->pos().x();
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = node->GetY();
+        const double qtnode_y = qtnode->pos().y();
+        const double qtconcept_item_y = qtnode->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+      //Change via Qt concept item
+      qtnode->GetConceptItem()->setPos(12.3,45.6);
+      {
+        const double node_x = node->GetX();
+        const double qtnode_x = qtnode->pos().x();
+        const double qtconcept_item_x = qtnode->GetConceptItem()->pos().x();
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = node->GetY();
+        const double qtnode_y = qtnode->pos().y();
+        const double qtconcept_item_y = qtnode->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+    }
   }
 }
 #endif

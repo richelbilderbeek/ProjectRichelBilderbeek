@@ -547,7 +547,8 @@ void QtPvdbConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
   QtPvdbNodeItem * const qtnode = AddNode(node); //AddNode creates, connects and adds the node to scene
 
   assert(qtnode);
-  qtnode->setPos(mapToScene(event->pos()));
+  const QPointF new_point = mapToScene(event->pos());
+  qtnode->SetPos(new_point.x(),new_point.y());
 
   assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
