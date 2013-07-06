@@ -6,6 +6,7 @@
 #undef __STRICT_ANSI__
 #endif
 
+#include <boost/signals2.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>
 
@@ -44,16 +45,22 @@ struct Node : public boost::noncopyable
   ///Get the y coordinat
   double GetY() const { return m_y; }
 
-  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept) { m_concept = concept; } //NEW 2013-01-07
+  ///Set the concept
+  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept);
 
-  ///Get the x coordinat
-  void SetX(const double x) { m_x = x; }
+  ///Set the position
+  void SetPos(const double x, const double y) { SetX(x); SetY(y); }
 
-  ///Get the y coordinat
-  void SetY(const double y) { m_y = y; }
+  ///Set the x coordinat
+  void SetX(const double x);
+
+  ///Set the y coordinat
+  void SetY(const double y);
 
   ///Convert a Node from an XML std::string
   static const std::string ToXml(const boost::shared_ptr<const pvdb::Node>& c);
+
+  boost::signals2::signal<void(const pvdb::Node *)> m_signal_node_changed;
 
   private:
 
@@ -79,21 +86,10 @@ struct Node : public boost::noncopyable
   explicit Node(
     const boost::shared_ptr<pvdb::Concept>& concept,
     const double x = 0.0,
-    const double y = 0.0); //FIX 2013-01-10
+    const double y = 0.0);
 };
 
 bool IsEqual(const pvdb::Node& lhs, const pvdb::Node& rhs);
-
-/*
-bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs) = delete;
-bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs) = delete;
-*/
 
 } //~namespace pvdb
 

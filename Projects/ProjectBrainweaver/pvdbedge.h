@@ -59,6 +59,9 @@ struct Edge : public boost::noncopyable
   ///Set if the head has an arrow
   void SetHeadArrow(const bool has_head_arrow);
 
+  ///Set the coordinat of the concept at the center of the node
+  void SetPos(const double x, const double y) { SetX(x); SetY(y); }
+
   ///Set if the tail has an arrow
   void SetTailArrow(const bool has_tail_arrow);
 
@@ -66,10 +69,10 @@ struct Edge : public boost::noncopyable
   void SetTo(const boost::shared_ptr<pvdb::Node> to);
 
   ///Set the x coordinat of the concept at the center of the node
-  void SetX(const int x);
+  void SetX(const double x);
 
   ///Set the y coordinat of the concept at the center of the node
-  void SetY(const int y);
+  void SetY(const double y);
 
   ///Convert an Edge from an XML std::string
   ///The container of nodes is needed to convert the 'to' and 'from'

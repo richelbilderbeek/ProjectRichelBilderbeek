@@ -47,7 +47,7 @@ struct QtPvdbNodeItem : public QtPvdbConceptMapItem
   const boost::shared_ptr<const pvdb::Node>  GetNode() const { return m_node; }
   const boost::shared_ptr<      pvdb::Node>& GetNode()       { return m_node; }
 
-  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept); //NEW 2013-01-07
+  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept);
 
   void SetName(const std::string& name);
 
@@ -88,7 +88,9 @@ private:
   const boost::shared_ptr<pvdb::Node> m_node;
 
   void OnItemHasUpdated();
-  void OnNodeChanged();
+
+  ///The m_node has changed
+  void OnNodeChanged(const pvdb::Node * node);
   void OnRequestsSceneUpdate();
 
   ///The item

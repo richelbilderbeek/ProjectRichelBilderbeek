@@ -71,9 +71,9 @@ QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *parent) :
   assert(m_rate_concept->GetConcept().get()    == m_concept.get());
 
   //QtPvdbConceptItems are not aware of their surroundings, so put them into place manually
-  m_display_concept->setPos(0.0,-40.0);
-  m_edit_concept->setPos(   0.0,  0.0);
-  m_rate_concept->setPos(   0.0, 40.0);
+  m_display_concept->SetPos(0.0,-40.0);
+  m_edit_concept->SetPos(   0.0,  0.0);
+  m_rate_concept->SetPos(   0.0, 40.0);
 
   ui->view->scene()->addItem(m_display_concept);
   ui->view->scene()->addItem(m_edit_concept);

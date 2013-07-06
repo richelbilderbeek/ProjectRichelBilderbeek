@@ -212,12 +212,7 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   //Put the nodes around the focal question in an initial position
   if (MustReposition(AddConst(m_concept_map->GetNodes())))
   {
-    TRACE("REPOSITIONING");
     RepositionItems();
-  }
-  else
-  {
-    TRACE("NO REPOSITIONING");
   }
 
   #ifndef NDEBUG
@@ -416,7 +411,6 @@ void QtPvdbConceptMapWidget::OnRequestSceneUpdate()
 
 void QtPvdbConceptMapWidget::RepositionItems()
 {
-
   {
     //The ray of the upcoming circle of nodes, is the larger of
     //(1) half of the diagonal of the focal question (e.g. for short concepts)
@@ -451,12 +445,18 @@ void QtPvdbConceptMapWidget::RepositionItems()
       const double x =  std::cos(angle) * r;
       const double y = -std::sin(angle) * r;
       QtPvdbNodeItem * const qtnode = qtnode_concepts[i];
-      qtnode->GetNode()->SetX(x);
-      qtnode->GetNode()->SetY(y);
+      qtnode->GetNode()->SetPos(x,y);
       //qtnode->setPos(x,y);
+      #ifndef NDEBUG
+      const double epsilon = 0.000001;
+      #endif
+      assert(std::abs(x - qtnode->pos().x()) < epsilon);
+      assert(std::abs(x - qtnode->GetNode()->GetX()) < epsilon);
+      assert(std::abs(x - qtnode->GetConceptItem()->pos().x()) < epsilon);
+      assert(std::abs(y - qtnode->pos().y()) < epsilon);
+      assert(std::abs(y - qtnode->GetNode()->GetY()) < epsilon);
+      assert(std::abs(y - qtnode->GetConceptItem()->pos().y()) < epsilon);
 
-      assert(qtnode->pos().x() == qtnode->GetNode()->GetX());
-      assert(qtnode->pos().y() == qtnode->GetNode()->GetY());
     }
   }
 
@@ -469,15 +469,14 @@ void QtPvdbConceptMapWidget::RepositionItems()
         const QPointF p((qtedge->GetFrom()->pos() + qtedge->GetTo()->pos()) / 2.0);
         const double new_x = p.x();
         const double new_y = p.y();
-        qtedge->GetEdge()->SetX(new_x);
-        qtedge->GetEdge()->SetY(new_y);
-        //qtedge->setPos(p);
-        assert(qtedge->pos().x() != 0.0);
-        assert(qtedge->GetEdge()->GetX() != 0.0);
-        assert(qtedge->pos().y() != 0.0);
-        assert(qtedge->GetEdge()->GetY() != 0.0);
-        assert(fuzzy_equal_to()(qtedge->pos().x(),qtedge->GetEdge()->GetX()));
-        assert(fuzzy_equal_to()(qtedge->pos().y(),qtedge->GetEdge()->GetY()));
+        //qtedge->GetEdge()->SetX(new_x);
+        //qtedge->GetEdge()->SetY(new_y);
+        qtedge->GetEdge()->SetPos(new_x,new_y);
+        #ifndef NDEBUG
+        const double epsilon = 0.000001;
+        #endif
+        assert(std::abs(qtedge->pos().x() - qtedge->GetEdge()->GetX()) < epsilon);
+        assert(std::abs(qtedge->pos().y() - qtedge->GetEdge()->GetY()) < epsilon);
       }
     );
   }

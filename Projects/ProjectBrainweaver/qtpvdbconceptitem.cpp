@@ -149,6 +149,15 @@ void QtPvdbConceptItem::SetMainBrush(const QBrush& any_brush)
   assert(this->brush() == any_brush);
 }
 
+void QtPvdbConceptItem::SetPos(const double x, const double y)
+{
+  if (x != this->x() || y != this->y())
+  {
+    this->setPos(x,y);
+    this->m_signal_position_changed(x,y);
+  }
+}
+
 QPainterPath QtPvdbConceptItem::shape() const
 {
   const int click_easy_width = 5;

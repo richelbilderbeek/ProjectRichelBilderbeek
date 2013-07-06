@@ -105,8 +105,11 @@ void QtPvdbConceptMapRateWidget::AddEdge(
     this->GetConceptMap()->GetEdges().end(),
     edge) == 1 && "Assume edge is already in the concept map");
 
-  assert(qtedge->pos().x() == edge->GetX());
-  assert(qtedge->pos().y() == edge->GetY());
+  #ifndef NDEBUG
+  const double epsilon = 0.000001;
+  #endif
+  assert(std::abs(qtedge->pos().x() - edge->GetX()) < epsilon);
+  assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
 QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvdb::Node> node)

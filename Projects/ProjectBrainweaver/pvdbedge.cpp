@@ -89,7 +89,7 @@ void pvdb::Edge::SetTo(const boost::shared_ptr<pvdb::Node> to)
   }
 }
 
-void pvdb::Edge::SetX(const int x)
+void pvdb::Edge::SetX(const double x)
 {
   if (m_x != x)
   {
@@ -98,7 +98,7 @@ void pvdb::Edge::SetX(const int x)
   }
 }
 
-void pvdb::Edge::SetY(const int y)
+void pvdb::Edge::SetY(const double y)
 {
   if (m_y != y)
   {

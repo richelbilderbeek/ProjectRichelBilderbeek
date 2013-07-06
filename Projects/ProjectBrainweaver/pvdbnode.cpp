@@ -90,6 +90,33 @@ bool pvdb::Node::HasSameContent(const boost::shared_ptr<const pvdb::Node>& lhs, 
   return IsEqual(*lhs->GetConcept(),*rhs->GetConcept());
 }
 
+void pvdb::Node::SetConcept(const boost::shared_ptr<pvdb::Concept> concept)
+{
+  if (m_concept != concept)
+  {
+    m_concept = concept;
+    m_signal_node_changed(this);
+  }
+}
+
+void pvdb::Node::SetX(const double x)
+{
+  if (m_x != x)
+  {
+    m_x = x;
+    m_signal_node_changed(this);
+  }
+}
+
+void pvdb::Node::SetY(const double y)
+{
+  if (m_y != y)
+  {
+    m_y = y;
+    m_signal_node_changed(this);
+  }
+}
+
 #ifndef NDEBUG
 void pvdb::Node::Test()
 {
@@ -269,49 +296,5 @@ bool IsEqual(const pvdb::Node& lhs, const pvdb::Node& rhs)
     && lhs.GetX()       == rhs.GetX()
     && lhs.GetY()       == rhs.GetY();
 }
-
-/*
-bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs)
-{
-  return lhs == rhs;
-  //assert(lhs); assert(rhs);
-  //return IsEqual(*lhs,*rhs);
-}
-
-bool operator==(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Node>(lhs) == boost::shared_ptr<const pvdb::Node>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Node>(lhs) == boost::shared_ptr<const pvdb::Node>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Node>(lhs) == boost::shared_ptr<const pvdb::Node>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs)
-{
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Node>(lhs) != boost::shared_ptr<const pvdb::Node>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Node>(lhs) != boost::shared_ptr<const pvdb::Node>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Node>& lhs, const boost::shared_ptr<pvdb::Node>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Node>(lhs) != boost::shared_ptr<const pvdb::Node>(rhs);
-}
-*/
 
 } //~namespace pvdb

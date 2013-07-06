@@ -8,6 +8,8 @@
 #include "qtpvdbnodeitem.h"
 
 #include <cassert>
+#include <climits>
+
 #include <boost/lambda/lambda.hpp>
 #include <boost/signals2.hpp>
 #include <QKeyEvent>
@@ -48,14 +50,21 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   assert(flags() & QGraphicsItem::ItemIsMovable);
 
 
-  this->setPos(m_node->GetX(),m_node->GetY());
-  assert(this->pos().x() == m_node->GetX());
-  assert(this->pos().y() == m_node->GetY());
 
   this->setRect(m_concept_item->boundingRect());
   assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
     && "Bounding rects must by synced");
 
+  this->setPos(m_node->GetX(),m_node->GetY());
+  assert(this->pos().x() == m_node->GetX());
+  assert(this->pos().y() == m_node->GetY());
+  m_concept_item->SetPos(m_node->GetX(),m_node->GetY());
+
+  m_concept_item->m_signal_position_changed.connect(
+    boost::bind(&QtPvdbNodeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
+
+  m_node->m_signal_node_changed.connect(
+    boost::bind(&QtPvdbNodeItem::OnNodeChanged,this,boost::lambda::_1));
 
   m_concept_item->m_signal_item_has_updated.connect(
     boost::bind(
@@ -201,6 +210,12 @@ void QtPvdbNodeItem::OnItemRequestsRateExamples()
   m_signal_node_requests_rate_examples(this);
 }
 
+void QtPvdbNodeItem::OnNodeChanged(const pvdb::Node * node)
+{
+  //Keep the coordinats synced
+  this->SetPos(node->GetX(),node->GetY());
+}
+
 void QtPvdbNodeItem::OnRequestsSceneUpdate()
 {
   this->m_signal_request_scene_update();
@@ -250,24 +265,46 @@ void QtPvdbNodeItem::SetName(const std::string& name)
 
 void QtPvdbNodeItem::SetX(const double x)
 {
-  if (x != this->GetNode()->GetX())
+  #ifndef NDEBUG
+  const double epsilon = 0.000001;
+  #endif
+  if ( x != this->pos().x()
+    || x != GetNode()->GetX()
+    || x != m_concept_item->pos().x())
   {
-    this->setPos(x,this->GetNode()->GetY());
+    //Use Qt setX, otherwise an infinite recursion occurs
+    this->setX(x);
     this->GetNode()->SetX(x);
-    assert(x == this->GetNode()->GetX());
+    m_concept_item->setX(x);
+    assert(std::abs(x - this->pos().x()) < epsilon);
+    assert(std::abs(x - GetNode()->GetX()) < epsilon);
+    assert(std::abs(x - m_concept_item->pos().x()) < epsilon);
   }
-  assert(x == this->GetNode()->GetX());
+  assert(std::abs(x - this->pos().x()) < epsilon);
+  assert(std::abs(x - GetNode()->GetX()) < epsilon);
+  assert(std::abs(x - m_concept_item->pos().x()) < epsilon);
 }
 
 void QtPvdbNodeItem::SetY(const double y)
 {
-  if (y != this->GetNode()->GetY())
+  #ifndef NDEBUG
+  const double epsilon = 0.000001;
+  #endif
+  if ( y != this->pos().y()
+    || y != GetNode()->GetY()
+    || y != m_concept_item->pos().y())
   {
-    this->setPos(this->GetNode()->GetX(),y);
+    //Use Qt setY, otherwise an infinite recursion occurs
+    this->setY(y);
     this->GetNode()->SetY(y);
-    assert(y == this->GetNode()->GetY());
+    m_concept_item->setY(y);
+    assert(std::abs(y - this->pos().y()) < epsilon);
+    assert(std::abs(y - GetNode()->GetY()) < epsilon);
+    assert(std::abs(y - m_concept_item->pos().y()) < epsilon);
   }
-  assert(y == this->GetNode()->GetY());
+  assert(std::abs(y - this->pos().y()) < epsilon);
+  assert(std::abs(y - GetNode()->GetY()) < epsilon);
+  assert(std::abs(y - m_concept_item->pos().y()) < epsilon);
 }
 
 #ifndef NDEBUG
@@ -291,6 +328,7 @@ void QtPvdbNodeItem::Test()
       assert(qtconcept_item->GetConcept() == qtnode->GetConcept());
       assert(qtconcept_item->GetConcept() == node->GetConcept());
       assert(node == qtnode->GetNode());
+      const double epsilon = 0.00001;
       {
         const double node_x = node->GetX();
         const double qtnode_x = qtnode->pos().x();
@@ -310,10 +348,39 @@ void QtPvdbNodeItem::Test()
         assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
-      //Change via node
-      node->SetX(M_PI);
-      node->SetY(M_E);
       {
+        const double new_x = 12.34;
+        const double new_y = 43.21;
+
+        //Change via node
+        assert(node);
+        node->SetX(new_x);
+        node->SetY(new_y);
+
+        const double node_x = node->GetX();
+        const double qtnode_x = qtnode->pos().x();
+        const double qtconcept_item_x = qtnode->GetConceptItem()->pos().x();
+        if (!(node_x == qtnode_x && qtnode_x == qtconcept_item_x))
+        {
+          TRACE(node_x);
+          TRACE(qtnode_x);
+          TRACE(qtconcept_item_x);
+        }
+        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+         && "X coordinat must be in sync");
+        const double node_y = node->GetY();
+        const double qtnode_y = qtnode->pos().y();
+        const double qtconcept_item_y = qtnode->GetConceptItem()->pos().y();
+        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+         && "Y coordinat must be in sync");
+      }
+      {
+        const double new_x = 123.456;
+        const double new_y = 654.321;
+
+        //Change via Qt node
+        qtnode->SetPos(new_x,new_y);
+
         const double node_x = node->GetX();
         const double qtnode_x = qtnode->pos().x();
         const double qtconcept_item_x = qtnode->GetConceptItem()->pos().x();
@@ -325,33 +392,28 @@ void QtPvdbNodeItem::Test()
         assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
-      //Change via Qt node
-      qtnode->setPos(12.3,45.6);
       {
+        const double new_x = -1234.5678;
+        const double new_y = -8765.4321;
+        //Change via Qt concept item
+        qtnode->GetConceptItem()->SetPos(new_x,new_y);
+
         const double node_x = node->GetX();
         const double qtnode_x = qtnode->pos().x();
         const double qtconcept_item_x = qtnode->GetConceptItem()->pos().x();
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
-         && "X coordinat must be in sync");
+        assert(
+             std::abs(new_x - node_x) < epsilon
+          && std::abs(new_x - qtnode_x) < epsilon
+          && std::abs(new_x - qtconcept_item_x) < epsilon
+          && "X coordinat must be in sync");
         const double node_y = node->GetY();
         const double qtnode_y = qtnode->pos().y();
         const double qtconcept_item_y = qtnode->GetConceptItem()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
-         && "Y coordinat must be in sync");
-      }
-      //Change via Qt concept item
-      qtnode->GetConceptItem()->setPos(12.3,45.6);
-      {
-        const double node_x = node->GetX();
-        const double qtnode_x = qtnode->pos().x();
-        const double qtconcept_item_x = qtnode->GetConceptItem()->pos().x();
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
-         && "X coordinat must be in sync");
-        const double node_y = node->GetY();
-        const double qtnode_y = qtnode->pos().y();
-        const double qtconcept_item_y = qtnode->GetConceptItem()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
-         && "Y coordinat must be in sync");
+        assert(
+             std::abs(new_y - node_y) < epsilon
+          && std::abs(new_y - qtnode_y) < epsilon
+          && std::abs(new_y - qtconcept_item_y) < epsilon
+          && "Y coordinat must be in sync");
       }
     }
   }

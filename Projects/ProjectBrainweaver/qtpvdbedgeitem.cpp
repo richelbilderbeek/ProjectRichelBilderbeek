@@ -57,11 +57,23 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
-  this->SetPos(edge->GetX(),edge->GetY());
 
   m_concept_item->SetMainBrush(QtPvdbBrushFactory::CreateBlueGradientBrush());
   m_concept_item->SetContourPen(QPen(QColor(255,255,255)));
   m_concept_item->SetTextPen(QPen(QColor(0,0,0)));
+
+  this->SetPos(edge->GetX(),edge->GetY());
+
+  if (!(std::abs(this->pos().x() - GetEdge()->GetX()) < 0.000001))
+  {
+    TRACE(pos().x());
+    TRACE(GetEdge()->GetX());
+  }
+  assert(std::abs(this->pos().x() - GetEdge()->GetX()) < 0.000001);
+  assert(std::abs(this->pos().x() - this->GetConceptItem()->x()) < 0.000001);
+  this->GetConceptItem()->SetPos(edge->GetX(),edge->GetY());
+  assert(std::abs(this->pos().y() - GetEdge()->GetY()) < 0.000001);
+  assert(std::abs(this->pos().y() - this->GetConceptItem()->y()) < 0.000001);
 
   m_arrow->m_signal_item_updated.connect(
     boost::bind(
@@ -78,6 +90,10 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
   m_concept_item->m_signal_request_scene_update.connect(
     boost::bind(
       &QtPvdbEdgeItem::OnRequestSceneUpdate,this));
+
+  m_concept_item->m_signal_position_changed.connect(
+    boost::bind(
+      &QtPvdbEdgeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
   if (QtPvdbEditConceptItem * edit_concept = dynamic_cast<QtPvdbEditConceptItem*>(concept_item.get()))
   {
@@ -217,6 +233,7 @@ void QtPvdbEdgeItem::OnEdgeChanged(const pvdb::Edge * const edge)
   assert(m_arrow);
   assert(m_edge);
   assert(edge == m_edge.get());
+  this->SetPos(edge->GetX(),edge->GetY());
   //m_edge is changed, so change m_arrow
   m_arrow->SetHasHead(edge->HasHeadArrow());
   m_arrow->SetHasTail(edge->HasTailArrow());
@@ -310,24 +327,45 @@ void QtPvdbEdgeItem::SetName(const std::string& name)
 
 void QtPvdbEdgeItem::SetX(const double x)
 {
-  if (x != this->GetEdge()->GetX())
+  if ( x != this->pos().x()
+    || x != this->GetEdge()->GetX()
+    || x != this->GetConceptItem()->pos().x()
+  )
   {
-    this->setPos(x,this->GetEdge()->GetY());
+    this->setX(x);
     this->GetEdge()->SetX(x);
-    assert(x == this->GetEdge()->GetX());
+    this->GetConceptItem()->setX(x);
+    if (!(std::abs(x - this->GetEdge()->GetX()) < 0.000001))
+    {
+      TRACE(x);
+      TRACE(GetEdge()->GetX());
+    }
+    assert(std::abs(x - this->pos().x()) < 0.000001);
+    assert(std::abs(x - this->GetEdge()->GetX()) < 0.000001);
+    assert(std::abs(x - this->GetConceptItem()->pos().x()) < 0.000001);
   }
-  assert(x == this->GetEdge()->GetX());
+  assert(std::abs(x - this->pos().x()) < 0.000001);
+  assert(std::abs(x - this->GetEdge()->GetX()) < 0.000001);
+  assert(std::abs(x - this->GetConceptItem()->pos().x()) < 0.000001);
 }
 
 void QtPvdbEdgeItem::SetY(const double y)
 {
-  if (y != this->GetEdge()->GetY())
+  if ( y != this->pos().y()
+    || y != this->GetEdge()->GetY()
+    || y != this->GetConceptItem()->pos().y()
+    )
   {
-    this->setPos(this->GetEdge()->GetX(),y);
+    this->setY(y);
     this->GetEdge()->SetY(y);
-    assert(y == this->GetEdge()->GetY());
+    this->GetConceptItem()->setY(y);
+    assert(std::abs(y - this->pos().y()) < 0.000001);
+    assert(std::abs(y - this->GetEdge()->GetY()) < 0.000001);
+    assert(std::abs(y - this->GetConceptItem()->pos().y()) < 0.000001);
   }
-  assert(y == this->GetEdge()->GetY());
+  assert(std::abs(y - this->pos().y()) < 0.000001);
+  assert(std::abs(y - this->GetEdge()->GetY()) < 0.000001);
+  assert(std::abs(y - this->GetConceptItem()->pos().y()) < 0.000001);
 }
 
 QPainterPath QtPvdbEdgeItem::shape() const
@@ -361,62 +399,106 @@ void QtPvdbEdgeItem::Test()
       boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
       boost::shared_ptr<QtPvdbEdgeItem> qtedge(
         new QtPvdbEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      const double epsilon = 0.000001;
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
       assert(qtconcept_item->GetConcept() == edge->GetConcept());
       assert(edge == qtedge->GetEdge());
       {
-        const double node_x = edge->GetX();
-        const double qtnode_x = qtedge->pos().x();
+        const double edge_x = edge->GetX();
+        const double qtedge_x = qtedge->pos().x();
         const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+        if(!(edge_x == qtedge_x && qtedge_x == qtconcept_item_x))
+        {
+          TRACE(edge_x);
+          TRACE(qtedge_x);
+          TRACE(qtconcept_item_x);
+        }
+        assert(edge_x == qtedge_x && qtedge_x == qtconcept_item_x
          && "X coordinat must be in sync");
-        const double node_y = edge->GetY();
-        const double qtnode_y = qtedge->pos().y();
+        const double edge_y = edge->GetY();
+        const double qtedge_y = qtedge->pos().y();
         const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+        assert(edge_y == qtedge_y && qtedge_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
-      //Change via node
-      edge->SetX(M_PI);
-      edge->SetY(M_E);
       {
-        const double node_x = edge->GetX();
-        const double qtnode_x = qtedge->pos().x();
+        const double new_x = M_PI;
+        const double new_y = M_E;
+
+        //Change via edge
+        edge->SetX(new_x);
+        edge->SetY(new_y);
+
+        const double edge_x = edge->GetX();
+        const double qtedge_x = qtedge->pos().x();
         const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+        if(!(std::abs(new_x - edge_x) < epsilon
+          && std::abs(new_x - qtconcept_item_x) < epsilon
+          && std::abs(new_x - qtedge_x) < epsilon))
+        {
+         TRACE(new_x);
+         TRACE(edge_x);
+         TRACE(qtedge_x);
+         TRACE(qtconcept_item_x);
+        }
+
+        assert(
+            std::abs(new_x - edge_x) < epsilon
+         && std::abs(new_x - qtconcept_item_x) < epsilon
+         && std::abs(new_x - qtedge_x) < epsilon
          && "X coordinat must be in sync");
-        const double node_y = edge->GetY();
-        const double qtnode_y = qtedge->pos().y();
+        const double edge_y = edge->GetY();
+        const double qtedge_y = qtedge->pos().y();
         const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+        assert(edge_y == qtedge_y && qtedge_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
-      //Change via Qt node
-      qtedge->setPos(12.3,45.6);
       {
-        const double node_x = edge->GetX();
-        const double qtnode_x = qtedge->pos().x();
+        const double new_x = 123.456;
+        const double new_y = 654.321;
+
+        //Change via Qt node
+        qtedge->SetPos(new_x,new_y);
+
+        const double edge_x = edge->GetX();
+        const double qtedge_x = qtedge->pos().x();
         const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+        assert(
+            std::abs(new_x - edge_x) < epsilon
+         && std::abs(new_x - qtconcept_item_x) < epsilon
+         && std::abs(new_x - qtedge_x) < epsilon
          && "X coordinat must be in sync");
-        const double node_y = edge->GetY();
-        const double qtnode_y = qtedge->pos().y();
+        const double edge_y = edge->GetY();
+        const double qtedge_y = qtedge->pos().y();
         const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+        assert(
+            std::abs(new_y - edge_y) < epsilon
+         && std::abs(new_y - qtconcept_item_y) < epsilon
+         && std::abs(new_y - qtedge_y) < epsilon
          && "Y coordinat must be in sync");
       }
-      //Change via Qt concept item
-      qtedge->GetConceptItem()->setPos(12.3,45.6);
       {
-        const double node_x = edge->GetX();
-        const double qtnode_x = qtedge->pos().x();
+        const double new_x = -1234.5678;
+        const double new_y = -8765.4321;
+
+        //Change via Qt concept item
+        qtedge->GetConceptItem()->SetPos(new_x,new_y);
+
+        const double edge_x = edge->GetX();
+        const double qtedge_x = qtedge->pos().x();
         const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+        assert(
+            std::abs(new_x - edge_x) < epsilon
+         && std::abs(new_x - qtconcept_item_x) < epsilon
+         && std::abs(new_x - qtedge_x) < epsilon
          && "X coordinat must be in sync");
-        const double node_y = edge->GetY();
-        const double qtnode_y = qtedge->pos().y();
+        const double edge_y = edge->GetY();
+        const double qtedge_y = qtedge->pos().y();
         const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+        assert(
+            std::abs(new_y - edge_y) < epsilon
+         && std::abs(new_y - qtconcept_item_y) < epsilon
+         && std::abs(new_y - qtedge_y) < epsilon
          && "Y coordinat must be in sync");
       }
     }

@@ -63,13 +63,23 @@ struct QtPvdbConceptItem : public QtRoundedTextRectItem
   ///Set the main brush
   void SetMainBrush(const QBrush& any_brush);
 
+  ///Set the position
+  void SetPos(const double x, const double y);
+
   ///Increase the sensitive area
   ///Add final to be sure that the shape is not set smaller
   QPainterPath shape() const final;
 
+  ///Emitted by SetPos
+  boost::signals2::signal<void(const double,const double)> m_signal_position_changed;
+
 protected:
   void setBrush(const QBrush &brush) { QtRoundedRectItem::setBrush(brush); }
 
+  ///Hide setPos from callers, let them use SetPos instead
+  void setPos(const QPointF &pos) { QtRoundedTextRectItem::setPos(pos); }
+  ///Hide setPos from callers, let them use SetPos instead
+  void setPos(qreal x, qreal y) { QtRoundedTextRectItem::setPos(x,y); }
 
   void hoverMoveEvent(QGraphicsSceneHoverEvent *);
   void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

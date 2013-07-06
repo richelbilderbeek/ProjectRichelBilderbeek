@@ -136,8 +136,11 @@ void QtPvdbConceptMapEditWidget::AddEdge(
 
   assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
-  assert(qtedge->pos().x() == edge->GetX());
-  assert(qtedge->pos().y() == edge->GetY());
+  #ifndef NDEBUG
+  const double epsilon = 0.000001;
+  #endif
+  assert(std::abs(qtedge->pos().x() - edge->GetX()) < epsilon);
+  assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
 void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbNodeItem* const qt_to)
