@@ -223,11 +223,14 @@ void QtPvdbNodeItem::OnRequestsSceneUpdate()
 
 void QtPvdbNodeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget)
 {
-  this->m_concept_item->SetText(this->GetConcept()->GetName());
 
   assert(m_concept_item);
   assert(!m_concept_item->hasFocus());
   assert(!m_concept_item->isSelected());
+
+  this->m_concept_item->SetText(this->GetConcept()->GetName());
+  this->m_concept_item->SetPos(x(),y());
+
   //assert(this->boundingRect() == m_concept_item->boundingRect()); //2013-01-25: Don't care
 
   m_concept_item->paint(painter,item,widget);
