@@ -309,7 +309,6 @@ void pvdb::File::Save(const std::string &filename) const
   {
     const std::vector<std::string> v = pvdb::SafeFileToVector(filename);
     if (v.size() != 1) { TRACE(v.size()); TRACE(filename); }
-    for (std::size_t i=0; i!=v.size(); ++i) TRACE(v[i]);
     assert(v.size() == 1 && "File must have one line of XML");
   }
   #endif

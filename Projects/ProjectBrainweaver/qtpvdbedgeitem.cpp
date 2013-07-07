@@ -260,6 +260,13 @@ void QtPvdbEdgeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* op
 {
   m_concept_item->SetText(this->GetConcept()->GetName());
 
+  //Only QtPvdbEditConceptItem actually modifies the position of the concept items
+  if (dynamic_cast<QtPvdbEditConceptItem*>(m_concept_item.get()))
+  {
+    //Notifies the GUI-independent collaborators
+    this->m_concept_item->SetPos(x(),y());
+  }
+
   assert(this->pos() == m_arrow->GetMidItem()->pos());
   painter->translate(-this->pos());
   m_arrow->paint(painter,option,widget);

@@ -229,7 +229,14 @@ void QtPvdbNodeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* it
   assert(!m_concept_item->isSelected());
 
   this->m_concept_item->SetText(this->GetConcept()->GetName());
-  this->m_concept_item->SetPos(x(),y());
+
+
+  //Only QtPvdbEditConceptItem actually modifies the position of the concept items
+  if (dynamic_cast<QtPvdbEditConceptItem*>(m_concept_item.get()))
+  {
+    //Notifies the GUI-independent collaborators
+    this->m_concept_item->SetPos(x(),y());
+  }
 
   //assert(this->boundingRect() == m_concept_item->boundingRect()); //2013-01-25: Don't care
 
