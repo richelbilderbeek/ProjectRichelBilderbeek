@@ -41,6 +41,14 @@ Libraries used that are also in this repository are:
 These libraries are added to allow easy crosscompilation to Windows using the often-supplied 'crosscompile.sh' scripts. 
 For crosscompiling from Lubuntu to Windows I use [MXE](https://github.com/mxe/mxe).
 
+## Git policy
+
+I follow the branching policy from [this article](http://nvie.com/posts/a-successful-git-branching-model), using only
+three types: master, develop and feature branches.
+* After every push to the master branch, ProjectRichelBilderbeek* must all compile
+* Only the develop branch pushes to master
+* The feature branch branches and merges with the develop branch
+
 ## External links
 
 * [Richel Bilderbeek's HTML webpage](http://www.richelbilderbeek.nl)
