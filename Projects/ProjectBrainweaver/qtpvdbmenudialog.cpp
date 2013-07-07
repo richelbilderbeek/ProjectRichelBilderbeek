@@ -520,19 +520,23 @@ void QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked()
 
 void QtPvdbMenuDialog::on_button_create_test_files_clicked()
 {
-  //Obtain the four human student concept maps
+  //Obtain the human student concept maps
   {
-    for (int i=1; i!=4+1; ++i) //Base 1 counting
+    for (int i=0; ; ++i)  //Break when no file is found
     {
-      const std::string filename = boost::lexical_cast<std::string>(i) + "." + pvdb::File::GetFilenameExtension();
-      const std::string qtpath = ":/files/";
-      QFile file((qtpath + filename).c_str());
-
-      //assert(file.isReadable());
-      //assert(file.isWritable());
-      assert(file.size() > 0);
-
-      file.copy(filename.c_str());
+      //Base 1 counting
+      const std::string filename = boost::lexical_cast<std::string>(i+1) + "." + pvdb::File::GetFilenameExtension();
+      //Copy the file from Qt resources to local file
+      {
+        const std::string qtfilename = ":/files/" + filename;
+        QFile qtfile(qtfilename.c_str());
+        qtfile.copy(filename.c_str());
+        qtfile.close();
+      }
+      if (!QFile::exists(filename.c_str()))
+      {
+        break;
+      }
 
       assert(QFile::exists(filename.c_str()));
     }

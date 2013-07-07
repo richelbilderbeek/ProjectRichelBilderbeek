@@ -256,8 +256,10 @@ const boost::shared_ptr<pvdb::File> pvdb::File::Load(const std::string &filename
   std::string xml;
   //Read XML from file
   {
-    const std::vector<std::string> v = pvdb::FileToVector(filename);
-    assert(v.size() <= 2); //Allow empty line after text, due to difference in line ending
+    const std::vector<std::string> v = pvdb::SafeFileToVector(filename);
+    //FileToVector allowed an empty line after text, due to difference in line ending
+    //SafeFileToVector should remove this line
+    assert(v.size() == 1);
     xml = v[0];
   }
   //Backwards compatiblity with file format version 0.1
@@ -288,7 +290,6 @@ const boost::shared_ptr<pvdb::File> pvdb::File::Load(const std::string &filename
 
 void pvdb::File::Save(const std::string &filename) const
 {
-  //
   //Check for correct extension
   if (!(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == m_filename_extension))
@@ -306,7 +307,9 @@ void pvdb::File::Save(const std::string &filename) const
   #ifndef NDEBUG
   //Check if load results in the same File
   {
-    const std::vector<std::string> v = pvdb::FileToVector(filename);
+    const std::vector<std::string> v = pvdb::SafeFileToVector(filename);
+    if (v.size() != 1) { TRACE(v.size()); TRACE(filename); }
+    for (std::size_t i=0; i!=v.size(); ++i) TRACE(v[i]);
     assert(v.size() == 1 && "File must have one line of XML");
   }
   #endif
@@ -410,9 +413,11 @@ void pvdb::File::Test()
     assert(!IsEqual(*firstfile,*second_file));
   }
   {
-    for (int i=1; i!=5; ++i)
+    ///Continue loop until no file is found
+    for (int i=0; ; ++i)
     {
-      const std::string filename = boost::lexical_cast<std::string>(i) + ".cmp";
+      //Testing filenames start at 1
+      const std::string filename = boost::lexical_cast<std::string>(i + 1) + ".cmp";
       if (!QFile::exists(filename.c_str()))
       {
         //Copy the file from Qt resources to local file
@@ -422,7 +427,12 @@ void pvdb::File::Test()
           qtfile.copy(filename.c_str());
           qtfile.close();
         }
-        assert(QFile::exists(filename.c_str()));
+        if (!QFile::exists(filename.c_str()))
+        {
+          //TRACE("First filename not found: ");
+          //TRACE(filename);
+          break;
+        }
 
         QFile file(filename.c_str());
 
@@ -512,52 +522,5 @@ bool IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
   && lhs.GetStudentName() == rhs.GetStudentName()
   && lhs.GetVersion() == rhs.GetVersion();
 }
-
-bool operator==(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs)
-{
-  assert(lhs);
-  //assert(lhs->GetCluster());
-  //assert(lhs->GetConceptMap());
-  assert(rhs);
-  //assert(rhs->GetCluster());
-  //assert(rhs->GetConceptMap());
-  return IsEqual(*lhs,*rhs);
-}
-
-bool operator==(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<pvdb::File>& rhs)
-{
-  return boost::shared_ptr<const pvdb::File>(lhs) == boost::shared_ptr<const pvdb::File>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs)
-{
-  return boost::shared_ptr<const pvdb::File>(lhs) == boost::shared_ptr<const pvdb::File>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::File>& lhs, const boost::shared_ptr<pvdb::File>& rhs)
-{
-  return boost::shared_ptr<const pvdb::File>(lhs) == boost::shared_ptr<const pvdb::File>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs)
-{
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<pvdb::File>& rhs)
-{
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs)
-{
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::File>& lhs, const boost::shared_ptr<pvdb::File>& rhs)
-{
-  return !(lhs == rhs);
-}
-
 
 } //~namespace pvdb

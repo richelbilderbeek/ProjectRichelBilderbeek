@@ -156,16 +156,6 @@ struct File : public boost::noncopyable
 
 
 bool IsEqual(const pvdb::File& lhs, const pvdb::File& rhs);
-/*
-bool operator==(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs) = delete;
-bool operator==(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<pvdb::File>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::File>& lhs, const boost::shared_ptr<pvdb::File>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::File>& lhs, const boost::shared_ptr<pvdb::File>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::File>& lhs, const boost::shared_ptr<const pvdb::File>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::File>& lhs, const boost::shared_ptr<pvdb::File>& rhs) = delete;
-*/
 
 } //~namespace pvdb
 

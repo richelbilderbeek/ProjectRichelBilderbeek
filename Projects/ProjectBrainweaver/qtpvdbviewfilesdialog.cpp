@@ -46,8 +46,8 @@ void QtPvdbViewFilesDialog::on_button_left_clicked()
   ui->text_left->clear();
   if (QFile::exists(file.c_str()))
   {
-    assert(!pvdb::FileToVector(file).empty());
-    const std::vector<std::string> v = pvdb::XmlToPretty(pvdb::FileToVector(file)[0]);
+    assert(!pvdb::SafeFileToVector(file).empty());
+    const std::vector<std::string> v = pvdb::XmlToPretty(pvdb::SafeFileToVector(file)[0]);
     std::string text;
     std::for_each(v.begin(),v.end(),
       [&text](std::string s)

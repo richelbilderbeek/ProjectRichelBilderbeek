@@ -98,6 +98,11 @@ const std::vector<std::string> GetRegexMatches(
   const std::string& s,
   const QRegExp& r);
 
+///SafeFileToVector calls FileToVector and
+///removes an empty trailing line that can be created under
+///the Windows operating system, due to different line endings
+const std::vector<std::string> SafeFileToVector(const std::string& filename);
+
 ///Split an XML std::string into its parts
 //From http://www.richelbilderbeek.nl/CppSplitXml.htm
 const std::vector<std::string> SplitXml(const std::string& s);

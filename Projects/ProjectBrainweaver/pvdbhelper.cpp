@@ -73,6 +73,13 @@ const std::vector<std::string> pvdb::GetRegexMatches(
   return v;
 }
 
+const std::vector<std::string> pvdb::SafeFileToVector(const std::string& filename)
+{
+  std::vector<std::string> v = pvdb::FileToVector(filename);
+  if (!v.empty() && v.back().empty()) v.pop_back();
+  return v;
+}
+
 const std::vector<std::string> pvdb::SplitXml(const std::string& s)
 {
   #ifndef NDEBUG
