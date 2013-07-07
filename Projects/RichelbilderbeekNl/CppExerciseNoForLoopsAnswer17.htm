@@ -1,16 +1,3 @@
- 
-<title>Answer of exercise #9: No for-loops #17</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Answer of exercise #9: No for-loops #17</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek Answer of exercise #9: No for-loops #17</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -48,36 +35,20 @@
   <li><a href="CppTransform.htm">std::transform</a></li>
 </ul>
 <p>&nbsp;</p>
-
-
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>    <a href="CppHalve.htm">Halve</a>  (<a href="CppVector.htm">std::vector</a>&lt;<b><a
-href="CppDouble.htm">double</a></b>&gt;&amp; v)</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppConst.htm">const</a></b>
-<b><a href="CppInt.htm">int</a></b> sz = v.size();</p>
-
-<p>   <b><a href="CppFor.htm">for</a></b>
-(<b><a href="CppInt.htm">int</a></b> i=0; i!=sz; ++i)</p>
-
-<p>   {</p>
-
-<p>     v[i]/=2.0;</p>
-
-<p>   }</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="filebTj3ZW.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppHalve.htm">Halve</a> (<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]<a href="CppOperatorDivideAssign.htm">/=</a>2.0;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -85,38 +56,20 @@ href="CppDouble.htm">double</a></b>&gt;&amp; v)</p>
 <p>&nbsp;</p>
 <h2>Answer</h2>
 <p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;</p>
-
-<p>&nbsp;</p>
-
-<p><a href="CppComment.htm">//</a>From
-http://www.richelbilderbeek.nl/CppHalve.htm</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>    <a href="CppHalve.htm">Halve</a>  (<a href="CppVector.htm">std::vector</a>&lt;<b><a
-href="CppDouble.htm">double</a></b>&gt;&amp; v)</p>
-
-<p>{</p>
-
-<p>   <a href="CppTransform.htm">std::transform</a>(v.begin(),v.end(),v.begin(),</p>
-
-<p>     <a href="CppBind2nd.htm">std::bind2nd</a>(<a
-href="CppDivides.htm">std::divides</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(),2.0));    </p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="filegxaymw.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+ <br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppHalve.htm">Halve</a>.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppHalve.htm">Halve</a> (<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(v.begin(),v.end(),v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppDivides.htm">std::divides</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(),2.0));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

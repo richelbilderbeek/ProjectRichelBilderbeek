@@ -1,30 +1,3 @@
- 
-<title>std::for_each</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ std::for_each</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek std::for_each for_each algorithm</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>23</o:Revision>
-  <o:TotalTime>200</o:TotalTime>
-  <o:Created>2009-04-29T07:22:00Z</o:Created>
-  <o:LastSaved>2009-12-30T14:39:00Z</o:LastSaved>
-  <o:Pages>3</o:Pages>
-  <o:Words>541</o:Words>
-  <o:Characters>3086</o:Characters>
-  <o:Category>C++ Richel Bilderbeek std::for_each</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>25</o:Lines>
-  <o:Paragraphs>6</o:Paragraphs>
-  <o:CharactersWithSpaces>3789</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-<style>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -67,267 +40,110 @@ will show the first as an example. There are also <a href="CppStl.htm">STL</a> <
 <p>&nbsp;</p>
 <h2>Example: Use of plain <a href="CppFunction.htm">functions</a></h2>
 <p>&nbsp;</p>
-
- 
-
+<!-- start of code -->
+<table summary="filemeX4Bw.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;algorith&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> SetToOne(<b><a href="CppInt.htm">int</a></b>&amp; i)<br/>
+{<br/>
+&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+}<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppMultiply.htm">Multiply</a>ByTwo(<b><a href="CppInt.htm">int</a></b>&amp; i)<br/>
+{<br/>
+&nbsp;&nbsp;i<a href="CppOperatorMultiplyAssign.htm">*=</a>2;<br/>
+}<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> SetToRandom(<b><a href="CppInt.htm">int</a></b>&amp; i)<br/>
+{<br/>
+&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 10;<br/>
+}<br/>
+ <br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppCoutVector.htm">CoutVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; myVector)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(myVector.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " : " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myVector[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 5;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; myVector(size);<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(myVector.begin(),myVector.end(), SetToOne);<br/>
+&nbsp;&nbsp;<a href="CppCoutVector.htm">CoutVector</a>(myVector);<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(myVector.begin(),myVector.end(), <a href="CppMultiply.htm">Multiply</a>ByTwo);<br/>
+&nbsp;&nbsp;<a href="CppCoutVector.htm">CoutVector</a>(myVector);<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(myVector.begin(),myVector.end(), SetToRandom);<br/>
+&nbsp;&nbsp;<a href="CppCoutVector.htm">CoutVector</a>(myVector);<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(myVector.begin(),myVector.end(), <a href="CppMultiply.htm">Multiply</a>ByTwo);<br/>
+&nbsp;&nbsp;<a href="CppCoutVector.htm">CoutVector</a>(myVector);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p>#include &lt;iostream&gt;</p>
-
-<p>#include &lt;vector&gt;</p>
-
-<p>#include &lt;algorith&gt;</p>
-
 <p>&nbsp;</p>
-
-<p>void SetToOne(int&amp; i)</p>
-
-<p>{</p>
-
-<p> 
- i = 1;</p>
-
-<p>}</p>
-
 <p>&nbsp;</p>
-
-<p>void MultiplyByTwo(int&amp; i)</p>
-
-<p>{</p>
-
-<p> 
- i*=2;</p>
-
-<p>}</p>
-
 <p>&nbsp;</p>
-
-<p>void SetToRandom(int&amp; i)</p>
-
-<p>{</p>
-
-<p> 
- i = std::rand()%10;</p>
-
-<p>}</p>
-
 <p>&nbsp;</p>
-
-<p>void CoutVector(const
-std::vector&lt;int&gt;&amp; myVector)</p>
-
-<p>{</p>
-
-<p> 
- const int size = myVector.size();</p>
-
-<p> 
- for (int i=0; i!=size; ++i)</p>
-
-<p> 
- {</p>
-
-<p>   
- std::cout &lt;&lt; i &lt;&lt; &quot; : &quot; &lt;&lt; myVector[i]
-&lt;&lt; std::endl;</p>
-
-<p> 
- }</p>
-
-<p>}</p>
-
+<h2>Example: Use of non-<a href="CppStl.htm">STL</a> <a href="CppFunctor.htm">functors</a></h2>
 <p>&nbsp;</p>
-
-<p>int main()</p>
-
-<p>{</p>
-
-<p> 
- const int size = 5;</p>
-
-<p> 
- std::vector&lt;int&gt; myVector(size);</p>
-
-<p> 
- std::for_each(myVector.begin(),myVector.end(), SetToOne);</p>
-
-<p> 
- CoutVector(myVector);</p>
-
-<p> 
- std::for_each(myVector.begin(),myVector.end(), MultiplyByTwo);</p>
-
-<p> 
- CoutVector(myVector);</p>
-
-<p> 
- std::for_each(myVector.begin(),myVector.end(), SetToRandom);</p>
-
-<p> 
- CoutVector(myVector);</p>
-
-<p> 
- std::for_each(myVector.begin(),myVector.end(), MultiplyByTwo);</p>
-
-<p> 
- CoutVector(myVector);</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<h2>Example: Use of non-<a
-href="CppStl.htm">STL</a> <a href="CppFunctor.htm">functors</a></h2>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>#include &lt;iostream&gt;</p>
-
-<p>#include &lt;vector&gt;</p>
-
-<p>#include &lt;algorith&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>struct MyInitializer</p>
-
-<p>{</p>
-
-<p> 
- MyInitializer()</p>
-
-<p> 
- : index(0) {}</p>
-
-<p>&nbsp;</p>
-
-<p> 
- template&lt;class T&gt;</p>
-
-<p> 
- void operator () (T &amp; a)</p>
-
-<p> 
- {</p>
-
-<p>   
- a = index;</p>
-
-<p>   
- ++index;</p>
-
-<p> 
- }</p>
-
-<p> 
- private:</p>
-
-<p> 
- int index;</p>
-
-<p>&nbsp;</p>
-
-<p>};</p>
-
-<p>&nbsp;</p>
-
-<p>struct MyIndexCout</p>
-
-<p>{</p>
-
-<p> 
- MyIndexCout() : index(0) {}</p>
-
-<p> 
- template&lt;class T&gt;</p>
-
-<p> 
- void operator () (const T &amp; a)</p>
-
-<p> 
- {</p>
-
-<p>   
- std::cout &lt;&lt; index &lt;&lt; &quot; : &quot; &lt;&lt; a &lt;&lt;
-std::endl;</p>
-
-<p>   
- ++index;</p>
-
-<p> 
- }</p>
-
-<p> 
- private:</p>
-
-<p> 
- int index;</p>
-
-<p>};</p>
-
-<p>&nbsp;</p>
-
-<p>struct MySquarer</p>
-
-<p>{</p>
-
-<p> 
- template&lt;class T&gt; void operator () (T &amp; a)</p>
-
-<p> 
- {</p>
-
-<p>   
- a*=a;</p>
-
-<p> 
- }</p>
-
-<p>};</p>
-
-<p>&nbsp;</p>
-
-<p>int main()</p>
-
-<p>{</p>
-
-<p> 
- const int size = 10;</p>
-
-<p> 
- std::vector&lt;int&gt; myVector(size);</p>
-
-<p> 
- std::for_each(myVector.begin(), myVector.end(), MyInitializer());</p>
-
-<p> 
- std::for_each(myVector.begin(), myVector.end(), MyIndexCout());</p>
-
-<p> 
- std::cout &lt;&lt; &quot;-----------&quot; &lt;&lt; std::endl;</p>
-
-<p> 
- std::for_each(myVector.begin(), myVector.end(), MySquarer());</p>
-
-<p> 
- std::for_each(myVector.begin(), myVector.end(), MyIndexCout());</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="filer3eWzP.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;algorith&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> MyInitializer<br/>
+{<br/>
+&nbsp;&nbsp;MyInitializer() : index(0) {}<br/>
+&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperator.htm">operator</a></b> () (T &amp; a)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a <a href="CppOperatorAssign.htm">=</a> index;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+index;<br/>
+&nbsp;&nbsp;}<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> index;<br/>
+};<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> MyIndexCout<br/>
+{<br/>
+&nbsp;&nbsp;MyIndexCout() : index(0) {}<br/>
+&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperator.htm">operator</a></b> () (<b><a href="CppConst.htm">const</a></b> T &amp; a)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> index <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " : " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> a <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+index;<br/>
+&nbsp;&nbsp;}<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> index;<br/>
+};<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> MySquarer<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppClass.htm">class</a></b> T&gt; <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperator.htm">operator</a></b> () (T &amp; a)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a<a href="CppOperatorMultiplyAssign.htm">*=</a>a;<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+ <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; myVector(size);<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(myVector.begin(), myVector.end(), MyInitializer());<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(myVector.begin(), myVector.end(), MyIndexCout());<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "---------<a href="CppOperatorDecrement.htm">--</a>" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(myVector.begin(), myVector.end(), MySquarer());<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(myVector.begin(), myVector.end(), MyIndexCout());<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

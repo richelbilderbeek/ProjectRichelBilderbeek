@@ -1,33 +1,3 @@
- 
-<title>function declaration</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ function declaration</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek function declaration</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>24</o:Revision>
-  <o:TotalTime>181</o:TotalTime>
-  <o:Created>2010-02-06T10:35:00Z</o:Created>
-  <o:LastSaved>2010-02-06T11:21:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>422</o:Words>
-  <o:Characters>2406</o:Characters>
-  <o:Category>C++ Richel Bilderbeek function declaration</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>20</o:Lines>
-  <o:Paragraphs>4</o:Paragraphs>
-  <o:CharactersWithSpaces>2954</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
-</head>
-
- 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -85,32 +55,19 @@ href="CppImplementationFile.htm">implementation (.cpp) files</a>.</p>
 <p>&nbsp;</p>
 <p>Below I give some <a href="CppFunctionDeclaration.htm">function declarations</a> and how to read them.</p>
 <p>&nbsp;</p>
- 
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  SayHello();</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="SayHello" border = "1"><tr><td><code>
+<b><a href="CppVoid.htm">void</a></b> SayHello();<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>The function SayHello lets the computer say hello in a certain unspecified way.</p>
 <p>&nbsp;</p>
- 
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  <a href="CppSwap.htm">Swap</a>(<b><a
-href="CppInt.htm">int</a></b>&amp; a, <b><a href="CppInt.htm">int</a></b>&amp;
-b);</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
+<!-- start of code -->
+<table summary="Swap" border = "1"><tr><td><code>
+<b><a href="CppVoid.htm">void</a></b> Swap(<b><a href="CppInt.htm">int</a></b>&amp; a, <b><a href="CppInt.htm">int</a></b>&amp; b);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>The function <a href="CppSwap.htm">Swap</a> uses two non-copied values (due to the <a
 href="CppReference.htm">reference</a>) and modifies (due to the omission of <a
@@ -118,18 +75,11 @@ href="CppConst.htm">const</a>) them both. It probably swaps the values of 'a'
 and 'b'. <a href="CppSwap.htm">Swap</a> does nothing more, because it has no (<a
 href="CppVoid.htm">void</a>) <a href="CppReturnType.htm">return type</a>.</p>
 <p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  <b><a href="CppInt.htm">int</a></b>
-GetRows(<b><a href="CppConst.htm">const</a></b> Database&amp; d);</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="GetRows" border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> GetRows(<b><a href="CppConst.htm">const</a></b> Database&amp; d);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>The function GetRows obtains the number of rows (the <b><a href="CppConst.htm">const</a></b>
 <b><a href="CppInt.htm">int</a></b> <a href="CppReturnType.htm">return type</a>)
@@ -139,21 +89,12 @@ that can be <a href="CppNull.htm">null</a>) and does not copy (due to the <a
 href="CppReference.htm">reference</a>) nor modify (due to the <a
 href="CppConst.htm">const</a>) it.</p>
 <p>&nbsp;</p>
-
- 
-
+<!-- start of code -->
+<table summary="Sum" border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> Sum(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  <b><a href="CppInt.htm">int</a></b>
-Sum(<b><a href="CppConst.htm">const</a> </b><a href="CppVector.htm">std::vector</a>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt;&amp; v);</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
 <p>The
 function Sum obtains the sum of values (the <b><a href="CppConst.htm">const</a></b>
 <b><a href="CppInt.htm">int</a></b> <a href="CppReturnType.htm">return type</a>)
@@ -163,27 +104,12 @@ instead of a <a href="CppPointer.htm">pointer</a> that can be <a
 href="CppNull.htm">null</a>) and does not copy (due to the <a
 href="CppReference.htm">reference</a>) nor modify (due to the <a
 href="CppConst.htm">const</a>) it.</p>
-
 <p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b> <a
-href="CppMeanAndStdDev.htm">MeanAndStdDev</a>(<b><a href="CppConst.htm">const</a></b>
-<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp;
-v, <b><a href="CppDouble.htm">double</a></b>&amp; mean, <b><a
-href="CppDouble.htm">double</a></b>&amp; stdDev);</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
-
-
-
+<!-- start of code -->
+<table summary="MeanAndStdDev" border = "1"><tr><td><code>
+<b><a href="CppVoid.htm">void</a></b> MeanAndStdDev(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v, <b><a href="CppDouble.htm">double</a></b>&amp; mean, <b><a href="CppDouble.htm">double</a></b>&amp; stdDev);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>The
 function <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a> uses an existing <a
@@ -209,4 +135,3 @@ deviation after the call to <a href="CppMeanAndStdDev.htm">MeanAndStdDev</a>.</p
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
 </html>
-
