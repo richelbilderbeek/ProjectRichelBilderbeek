@@ -31,6 +31,8 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
     QtPvdbNodeItem* const from,
     QtPvdbNodeItem* const to);
 
+  QRectF boundingRect() const final;
+
   void DisableAll();
   void EnableAll();
 
@@ -49,6 +51,9 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
   ///The node item the arrow originates from
   const QtPvdbNodeItem * GetFrom() const { return m_from; }
         QtPvdbNodeItem * GetFrom()       { return m_from; }
+
+  ///Get the name of the relation
+  const std::string GetName() const;
 
   ///The node item the arrow targets
   const QtPvdbNodeItem * GetTo() const { return m_to; }
@@ -71,7 +76,6 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
   ///No 'own/autonomous' signals, these are present in the ConceptItems
 
 protected:
-  QRectF boundingRect() const final;
   void focusInEvent(QFocusEvent *event) final;
   void focusOutEvent(QFocusEvent *event) final;
   void keyPressEvent(QKeyEvent *event) final;

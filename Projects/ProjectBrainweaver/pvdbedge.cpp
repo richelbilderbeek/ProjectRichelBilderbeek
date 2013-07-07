@@ -47,8 +47,28 @@ pvdb::Edge::Edge(
   assert(to);
   assert(from != to);
   assert(m_concept);
+
+  //Subscribe to all Concept signals to re-emit m_signal_edge_changed
+  this->m_concept->m_signal_name_changed.connect(
+    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+
+  this->m_concept->m_signal_examples_changed.connect(
+    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+
+  this->m_concept->m_signal_rating_complexity_changed.connect(
+    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+
+  this->m_concept->m_signal_rating_concreteness_changed.connect(
+    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+
+  this->m_concept->m_signal_rating_specificity_changed.connect(
+    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
 }
 
+void pvdb::Edge::EmitSignalEdgeChanged()
+{
+  m_signal_edge_changed(this);
+}
 
 void pvdb::Edge::SetFrom(const boost::shared_ptr<pvdb::Node> from)
 {

@@ -34,7 +34,7 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
   : m_concept_item(concept_item),
     m_contour_pen(QPen(QColor(255,255,255))),
     m_focus_pen(concept_item->GetFocusPen()),
-    m_edge(edge), //m_edge must be initialized before m_arrow
+      m_edge(edge), //m_edge must be initialized before m_arrow
     m_from(from),
     m_to(to)
 {
@@ -62,19 +62,36 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
   m_concept_item->SetContourPen(QPen(QColor(255,255,255)));
   m_concept_item->SetTextPen(QPen(QColor(0,0,0)));
 
+  //Name
+  this->SetName(edge->GetConcept()->GetName());
+  this->GetConceptItem()->SetText(edge->GetConcept()->GetName());
+  assert(m_edge->GetConcept()->GetName() == GetName()
+      && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
+      && "Names/texts must be in sync");
+
+
+  //Position
   this->SetPos(edge->GetX(),edge->GetY());
-
-  if (!(std::abs(this->pos().x() - GetEdge()->GetX()) < 0.000001))
-  {
-    TRACE(pos().x());
-    TRACE(GetEdge()->GetX());
-  }
-  assert(std::abs(this->pos().x() - GetEdge()->GetX()) < 0.000001);
-  assert(std::abs(this->pos().x() - this->GetConceptItem()->x()) < 0.000001);
   this->GetConceptItem()->SetPos(edge->GetX(),edge->GetY());
-  assert(std::abs(this->pos().y() - GetEdge()->GetY()) < 0.000001);
-  assert(std::abs(this->pos().y() - this->GetConceptItem()->y()) < 0.000001);
 
+  #ifndef NDEBUG
+  const double epsilon = 0.000001;
+  assert(std::abs(this->pos().x() - GetEdge()->GetX()) < epsilon);
+  assert(std::abs(this->pos().x() - this->GetConceptItem()->x()) < epsilon);
+  assert(std::abs(this->pos().y() - GetEdge()->GetY()) < epsilon);
+  assert(std::abs(this->pos().y() - this->GetConceptItem()->y()) < epsilon);
+  #endif
+
+  //Bounding rectangle
+  this->setRect(m_concept_item->boundingRect()); //NEW
+  this->update();
+  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    && "Bounding rects must by synced");
+
+  //Qt things
+
+
+  //Signals
   m_arrow->m_signal_item_updated.connect(
     boost::bind(
       &QtPvdbEdgeItem::OnItemHasUpdated,this));
@@ -109,8 +126,15 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
 
 QRectF QtPvdbEdgeItem::boundingRect() const
 {
-  return m_concept_item->boundingRect()
+  //TRACE(m_concept_item->boundingRect().width());
+  //TRACE(QtPvdbConceptMapItem::boundingRect().width());
+  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    && "Bounding rects must by synced");
+
+  return QtPvdbConceptMapItem::boundingRect() //2013-07-06: Bypassed going via m_concept_item
     .united(m_arrow->boundingRect().translated(-this->pos()));
+  //return m_concept_item->boundingRect()
+  //  .united(m_arrow->boundingRect().translated(-this->pos()));
 }
 
 void QtPvdbEdgeItem::DisableAll()
@@ -145,6 +169,11 @@ const boost::shared_ptr<pvdb::Concept>  QtPvdbEdgeItem::GetConcept()
   const boost::shared_ptr<pvdb::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
+}
+
+const std::string QtPvdbEdgeItem::GetName() const
+{
+  return m_edge->GetConcept()->GetName();
 }
 
 void QtPvdbEdgeItem::focusInEvent(QFocusEvent*)
@@ -242,10 +271,45 @@ void QtPvdbEdgeItem::OnEdgeChanged(const pvdb::Edge * const edge)
   m_concept_item->SetText(edge->GetConcept()->GetName());
   this->GetEdge()->SetX(edge->GetX());
   this->GetEdge()->SetY(edge->GetY());
+
+  assert(m_edge->GetConcept()->GetName() == GetName()
+      && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
+      && "Names/texts must be in sync before");
+
+  this->SetName(m_concept_item->GetText());
+
+  assert(m_edge->GetConcept()->GetName() == GetName()
+      && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
+      && "Names/texts must be in sync after");
+
+  this->setRect(m_concept_item->boundingRect());
+  if (m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect())
+  {
+    TRACE(m_concept_item->boundingRect().width());
+    TRACE(QtPvdbConceptMapItem::boundingRect().width());
+  }
+  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    && "Bounding rects must by synced");
+
 }
 
 void QtPvdbEdgeItem::OnItemHasUpdated()
 {
+  this->SetName(m_concept_item->GetText());
+
+  assert(m_edge->GetConcept()->GetName() == GetName()
+      && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
+      && "Names/texts must be in sync after");
+
+  //this->setRect(QtPvdbConceptMapItem::boundingRect());
+  this->setRect(m_concept_item->boundingRect());
+  if (m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect())
+  {
+    TRACE(m_concept_item->boundingRect().width());
+    TRACE(QtPvdbConceptMapItem::boundingRect().width());
+  }
+  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    && "Bounding rects must by synced");
   this->update();
   this->m_signal_item_has_updated(this);
 }
@@ -464,7 +528,7 @@ void QtPvdbEdgeItem::Test()
         const double new_x = 123.456;
         const double new_y = 654.321;
 
-        //Change via Qt node
+        //Change via Qt edge
         qtedge->SetPos(new_x,new_y);
 
         const double edge_x = edge->GetX();
@@ -510,5 +574,205 @@ void QtPvdbEdgeItem::Test()
       }
     }
   }
+  //Test text on edge being in sync
+  {
+    const boost::shared_ptr<pvdb::Node> node_from = pvdb::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<pvdb::Node> node_to = pvdb::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtPvdbNodeItem> qtnode_from(new QtPvdbNodeItem(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtPvdbNodeItem> qtnode_to(new QtPvdbNodeItem(node_to,qtconcept_item_to));
+    const std::size_t n_edges = pvdb::EdgeFactory::GetTests(node_from,node_to).size();
+    for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
+    {
+      const std::vector<boost::shared_ptr<pvdb::Edge> > edges = pvdb::EdgeFactory::GetTests(node_from,node_to);
+      boost::shared_ptr<pvdb::Edge> edge = edges[edge_index];
+      assert(edge);
+      boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtPvdbEdgeItem> qtedge(
+        new QtPvdbEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
+      assert(qtconcept_item->GetConcept() == edge->GetConcept());
+      assert(edge == qtedge->GetEdge());
+      {
+        const std::string edge_name = edge->GetConcept()->GetName();
+        const std::string qtedge_name = qtedge->GetName();
+        const std::string qtconcept_text = qtconcept_item->GetText();
+
+        if(!(edge_name == qtedge_name && qtedge_name == qtconcept_text))
+        {
+          TRACE(edge_name);
+          TRACE(qtedge_name);
+          TRACE(qtconcept_text);
+        }
+        assert(edge_name == qtedge_name && qtedge_name == qtconcept_text
+         && "Names/texts must be in sync");
+      }
+      {
+        const std::string edge_name_before = edge->GetConcept()->GetName();
+        const std::string qtedge_name_before = qtedge->GetName();
+        const std::string qtconcept_text_before = qtconcept_item->GetText();
+        assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
+         && "Names/texts must be in sync");
+
+        //Change via edge's concept
+        edge->GetConcept()->SetName( edge->GetConcept()->GetName() + " made longer");
+
+        const std::string edge_name_after = edge->GetConcept()->GetName();
+        const std::string qtedge_name_after = qtedge->GetName();
+        const std::string qtconcept_text_after = qtconcept_item->GetText();
+
+        assert(edge_name_after == qtedge_name_after && qtedge_name_after == qtconcept_text_after
+         && "Names/texts must be in sync");
+      }
+      {
+        const std::string edge_name_before = edge->GetConcept()->GetName();
+        const std::string qtedge_name_before = qtedge->GetName();
+        const std::string qtconcept_text_before = qtconcept_item->GetText();
+        assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
+         && "Names/texts must be in sync");
+
+        //Change via Qt edge
+        qtedge->SetName(qtedge->GetName() + " and made longer again");
+
+        const std::string edge_name_after = edge->GetConcept()->GetName();
+        const std::string qtedge_name_after = qtedge->GetName();
+        const std::string qtconcept_text_after = qtconcept_item->GetText();
+
+        assert(edge_name_after == qtedge_name_after && qtedge_name_after == qtconcept_text_after
+         && "Names/texts must be in sync");
+      }
+      {
+        const std::string edge_name_before = edge->GetConcept()->GetName();
+        const std::string qtedge_name_before = qtedge->GetName();
+        const std::string qtconcept_text_before = qtconcept_item->GetText();
+        assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
+         && "Names/texts must be in sync");
+
+        //Change via Qt concept item
+        qtedge->GetConceptItem()->SetText(qtedge->GetConceptItem()->GetText() + " and again");
+
+        const std::string edge_name_after = edge->GetConcept()->GetName();
+        const std::string qtedge_name_after = qtedge->GetName();
+        const std::string qtconcept_text_after = qtconcept_item->GetText();
+        if (!(edge_name_after == qtedge_name_after && qtedge_name_after == qtconcept_text_after))
+        {
+          TRACE(edge_name_after);
+          TRACE(qtedge_name_after);
+          TRACE(qtconcept_text_after);
+        }
+
+        assert(edge_name_after == qtedge_name_after && qtedge_name_after == qtconcept_text_after
+         && "Names/texts must be in sync");
+      }
+    }
+  }
+
+  //Test boundingRects being in sync
+  {
+    const boost::shared_ptr<pvdb::Node> node_from = pvdb::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<pvdb::Node> node_to = pvdb::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtPvdbNodeItem> qtnode_from(new QtPvdbNodeItem(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtPvdbNodeItem> qtnode_to(new QtPvdbNodeItem(node_to,qtconcept_item_to));
+    const std::size_t n_edges = pvdb::EdgeFactory::GetTests(node_from,node_to).size();
+    for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
+    {
+      const std::vector<boost::shared_ptr<pvdb::Edge> > edges = pvdb::EdgeFactory::GetTests(node_from,node_to);
+      boost::shared_ptr<pvdb::Edge> edge = edges[edge_index];
+      assert(edge);
+      boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtPvdbEdgeItem> qtedge(
+        new QtPvdbEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      //const double epsilon = 0.000001;
+      assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
+      assert(qtconcept_item->GetConcept() == edge->GetConcept());
+      assert(edge == qtedge->GetEdge());
+      {
+        const QRectF qtedge_rect = qtedge->boundingRect();
+        const QRectF qtconcept_rect = qtconcept_item->boundingRect();
+
+        assert(qtedge->GetName() == qtconcept_item->GetText());
+
+        assert(qtedge_rect.width() >= qtconcept_rect.width()
+          && "The complete edge (including nodes will be at least as wide as the concept only");
+        assert(qtedge_rect.height() >= qtconcept_rect.height()
+          && "The complete edge (including nodes will be at least as high as the concept only");
+      }
+      {
+        const QRectF qtedge_rect_before = qtedge->boundingRect();
+        const QRectF qtconcept_rect_before = qtconcept_item->boundingRect();
+
+        assert(qtedge_rect_before.width() >= qtconcept_rect_before.width()
+          && "The complete edge (including nodes will be at least as wide as the concept only");
+        assert(qtedge_rect_before.height() >= qtconcept_rect_before.height()
+          && "The complete edge (including nodes will be at least as high as the concept only");
+
+        //Change via edge's concept
+        edge->GetConcept()->SetName( edge->GetConcept()->GetName() + " made longer");
+
+        const QRectF qtedge_rect_after = qtedge->boundingRect();
+        const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();
+
+        assert(qtedge_rect_after.width() >= qtconcept_rect_after.width()
+          && "The complete edge (including nodes will be at least as wide as the concept only");
+        assert(qtedge_rect_after.height() >= qtconcept_rect_after.height()
+          && "The complete edge (including nodes will be at least as high as the concept only");
+        assert(qtedge_rect_after.width() > qtedge_rect_before.width()
+         && "bounding rects must be bigger");
+        assert(qtconcept_rect_after.width() > qtconcept_rect_before.width()
+         && "bounding rects must be bigger");
+      }
+      {
+        const QRectF qtedge_rect_before = qtedge->boundingRect();
+        const QRectF qtconcept_rect_before = qtconcept_item->boundingRect();
+        assert(qtedge_rect_before.width() >= qtconcept_rect_before.width()
+          && "The complete edge (including nodes will be at least as wide as the concept only");
+        assert(qtedge_rect_before.height() >= qtconcept_rect_before.height()
+          && "The complete edge (including nodes will be at least as high as the concept only");
+
+        //Change via Qt edge
+        qtedge->SetName(qtedge->GetName() + " and made longer again");
+
+        const QRectF qtedge_rect_after = qtedge->boundingRect();
+        const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();
+
+        assert(qtedge_rect_after.width() >= qtconcept_rect_after.width()
+          && "The complete edge (including nodes will be at least as wide as the concept only");
+        assert(qtedge_rect_after.height() >= qtconcept_rect_after.height()
+          && "The complete edge (including nodes will be at least as high as the concept only");
+        assert(qtedge_rect_after.width() > qtedge_rect_before.width()
+         && "bounding rects must be bigger");
+        assert(qtconcept_rect_after.width() > qtconcept_rect_before.width()
+         && "bounding rects must be bigger");
+      }
+      {
+        const QRectF qtedge_rect_before = qtedge->boundingRect();
+        const QRectF qtconcept_rect_before = qtconcept_item->boundingRect();
+        assert(qtedge_rect_before.width() >= qtconcept_rect_before.width()
+          && "The complete edge (including nodes will be at least as wide as the concept only");
+        assert(qtedge_rect_before.height() >= qtconcept_rect_before.height()
+          && "The complete edge (including nodes will be at least as high as the concept only");
+
+        //Change via Qt concept item
+        qtedge->GetConceptItem()->SetText(qtedge->GetConceptItem()->GetText() + " and again");
+
+        const QRectF qtedge_rect_after = qtedge->boundingRect();
+        const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();
+
+        assert(qtedge_rect_after.width() >= qtconcept_rect_after.width()
+          && "The complete edge (including nodes will be at least as wide as the concept only");
+        assert(qtedge_rect_after.height() >= qtconcept_rect_after.height()
+          && "The complete edge (including nodes will be at least as high as the concept only");
+        assert(qtedge_rect_after.width() > qtedge_rect_before.width()
+         && "bounding rects must be bigger");
+        assert(qtconcept_rect_after.width() > qtconcept_rect_before.width()
+         && "bounding rects must be bigger");
+      }
+    }
+  }
+
+
 }
 #endif

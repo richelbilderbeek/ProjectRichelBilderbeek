@@ -110,6 +110,8 @@ struct Edge : public boost::noncopyable
   ///The y-coordinat
   double m_y;
 
+  void EmitSignalEdgeChanged();
+
   #ifndef NDEBUG
   ///Test this class
   static void Test();

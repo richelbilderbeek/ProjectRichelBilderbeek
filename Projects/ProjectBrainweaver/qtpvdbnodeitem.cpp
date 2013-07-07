@@ -55,6 +55,7 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
     && "Bounding rects must by synced");
 
+
   this->setPos(m_node->GetX(),m_node->GetY());
   assert(this->pos().x() == m_node->GetX());
   assert(this->pos().y() == m_node->GetY());
@@ -69,7 +70,6 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   m_concept_item->m_signal_item_has_updated.connect(
     boost::bind(
       &QtPvdbNodeItem::OnItemHasUpdated,this));
-
 
   m_concept_item->m_signal_request_scene_update.connect(
     boost::bind(
@@ -114,7 +114,6 @@ QRectF QtPvdbNodeItem::boundingRect() const
   //TRACE(QtPvdbConceptMapItem::boundingRect().width());
   assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
     && "Bounding rects must by synced");
-  //return m_concept_item->boundingRect(); //.adjusted(-1.0,-1.0,1.0,1.0); //2013-01-25: Added adjusted
   return QtPvdbConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item
 }
 
@@ -238,7 +237,8 @@ void QtPvdbNodeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* it
     this->m_concept_item->SetPos(x(),y());
   }
 
-  //assert(this->boundingRect() == m_concept_item->boundingRect()); //2013-01-25: Don't care
+  assert(this->boundingRect() == m_concept_item->boundingRect()
+    && "Keep bounding rects in sync (but is this check still relevent?) 2013-07-06");
 
   m_concept_item->paint(painter,item,widget);
 

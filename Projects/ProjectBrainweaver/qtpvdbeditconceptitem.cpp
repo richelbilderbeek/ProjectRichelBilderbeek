@@ -22,10 +22,17 @@ QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr<pvdb::Conce
   assert(GetConcept());
   #endif
 
-  this->setBrush(QtPvdbBrushFactory::CreateWhiteGradientBrush()); //NEW 2013-04-09
+  this->setBrush(QtPvdbBrushFactory::CreateGrayGradientBrush()); //NEW 2013-04-09
 
   GetConcept()->m_signal_name_changed.connect(
     boost::bind(&QtPvdbEditConceptItem::OnConceptNameChanged,this)); //Obligatory
+
+  //GetConcept()->m_signal_rating_complexity_changed.connect(
+  //  boost::bind(&QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
+  //GetConcept()->m_signal_rating_concreteness_changed.connect(
+  //  boost::bind(&QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
+  //GetConcept()->m_signal_rating_specificity_changed.connect(
+  //  boost::bind(&QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
 }
 
 

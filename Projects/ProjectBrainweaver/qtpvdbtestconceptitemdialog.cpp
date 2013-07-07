@@ -225,8 +225,6 @@ void QtPvdbTestConceptItemDialog::Test()
 
   //Test resizing due to text being changed
   {
-    TRACE("TODO");
-    /*
     const std::string s = d.m_concept->GetName();
     assert(d.m_display_concept->boundingRect().width() == d.m_edit_concept->boundingRect().width());
     assert(d.m_display_concept->boundingRect().width() == d.m_rate_concept->boundingRect().width());
@@ -235,12 +233,9 @@ void QtPvdbTestConceptItemDialog::Test()
     assert(d.m_display_concept->boundingRect().width() > w);
     assert(d.m_edit_concept->boundingRect().width() > w);
     assert(d.m_rate_concept->boundingRect().width() > w);
-    */
   }
   //Test brushes being changed when ratings are given
   {
-    TRACE("TODO");
-    /*
     const boost::shared_ptr<pvdb::Concept> concept = d.m_concept;
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
@@ -261,7 +256,6 @@ void QtPvdbTestConceptItemDialog::Test()
     assert(d.m_edit_concept->brush()    == QtPvdbBrushFactory::CreateGrayGradientBrush());
     assert(d.m_display_concept->brush() == QtPvdbBrushFactory::CreateGreenGradientBrush());
     assert(d.m_rate_concept->brush()    == QtPvdbBrushFactory::CreateGreenGradientBrush());
-    */
   }
   TRACE("QtPvdbTestConceptItemDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507

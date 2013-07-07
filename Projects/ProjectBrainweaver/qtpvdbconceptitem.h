@@ -81,9 +81,9 @@ protected:
   ///Hide setPos from callers, let them use SetPos instead
   void setPos(qreal x, qreal y) { QtRoundedTextRectItem::setPos(x,y); }
 
-  void hoverMoveEvent(QGraphicsSceneHoverEvent *);
-  void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-  void mousePressEvent(QGraphicsSceneMouseEvent *event);
+  virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
+  virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) final;
+  virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) final;
 
   ///Slot whenever the name of the concept is changed
   void OnConceptNameChanged();

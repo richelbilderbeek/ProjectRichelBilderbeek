@@ -240,6 +240,7 @@ void QtPvdbTestEdgeItemDialog::on_edit_name_textChanged(const QString &arg1)
   assert(GetEdge());
   assert(GetEdge()->GetConcept());
   this->GetEdge()->GetConcept()->SetName(arg1.toStdString());
+  assert(this->GetEdge()->GetConcept()->GetName() == arg1.toStdString());
 }
 
 void QtPvdbTestEdgeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
@@ -320,16 +321,30 @@ void QtPvdbTestEdgeItemDialog::Test()
   //Test resizing due to longer text being set
   {
     const std::string s = d->m_edge->GetConcept()->GetName();
-    const double w = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double concept_item_width = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double edge_item_width = d->m_edge_item->boundingRect().width();
     d->m_edge->GetConcept()->SetName(s + "*");
-    assert(d->m_edge_item->GetConceptItem()->boundingRect().width() > w);
+    //There must be no discrepancy between these boundingRects
+    assert(d->m_edge_item->GetConceptItem()->boundingRect().width() > 1 + concept_item_width);
+    assert(d->m_edge_item->boundingRect().width() > 1 + edge_item_width);
   }
   //Test resizing due to shorter text being set
   {
-    d->m_edge->GetConcept()->SetName("1234567890");
-    const double w = d->m_edge_item->GetConceptItem()->boundingRect().width();
-    d->m_edge->GetConcept()->SetName("123456789");
-    assert(d->m_edge_item->GetConceptItem()->boundingRect().width() < w);
+    d->m_edge->GetConcept()->SetName(std::string(80,'*'));
+
+    const double concept_item_width_before = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double edge_item_width_before = d->m_edge_item->boundingRect().width();
+
+    d->m_edge->GetConcept()->SetName(std::string(1,'*'));
+
+    const double concept_item_width_after = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double edge_item_width_after = d->m_edge_item->boundingRect().width();
+
+    assert(concept_item_width_before > concept_item_width_after
+      && "Concept item must shrink with shorter text");
+    assert(edge_item_width_before > edge_item_width_after
+      && "The edge as a whole does not need to shrink, as the to and from nodes remain in place,"
+      && "but with a very long to a very short text will enforce this");
   }
   //Push all buttons
   assert(d->ui);
@@ -340,6 +355,20 @@ void QtPvdbTestEdgeItemDialog::Test()
   {
     //Set the way to obtain the pointer to the edge
     d->ui->box_edit->setCurrentIndex(type);
+
+    //Set some texts to enforce growth and shrinking in the text
+    {
+      const std::string text = std::string(100,'*') + boost::lexical_cast<std::string>(type);
+      d->ui->edit_name->setText(text.c_str());
+    }
+    {
+      const std::string text = std::string(1,'*') + boost::lexical_cast<std::string>(type);
+      d->ui->edit_name->setText(text.c_str());
+    }
+    {
+      const std::string text = std::string(100,'*') + boost::lexical_cast<std::string>(type);
+      d->ui->edit_name->setText(text.c_str());
+    }
 
     //Change the arrow head
     {

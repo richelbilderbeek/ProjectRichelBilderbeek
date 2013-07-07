@@ -275,9 +275,9 @@ void QtPvdbMenuDialog::Test()
       =
       {
         //Duplication of tests, the ones I am most interested in now
-        ui->button_test_qtconceptmapeditwidget,
+        ui->button_test_edge_item,
 
-        //Normal order of tests
+        //Normal alphabetical order of tests
         ui->button_about,
         ui->button_assessor,
         ui->button_concept,
