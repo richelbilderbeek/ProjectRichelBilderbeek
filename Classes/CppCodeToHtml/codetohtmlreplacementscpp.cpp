@@ -154,6 +154,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "Wt::WAbstractItemDelegate","<a href=\"C$ppW$A$bstractI$temD$elegate.htm\">W$t::W$A$bstractI$temD$elegate</a>" },
     { "WtTimedServerPusherClient","<a href=\"C$ppW$tT$imedS$erverP$usherC$lient.htm\">W$tT$imedS$erverP$usherC$lient</a>" },
     //24
+    { "boost::reference_wrapper","<a href=\"C$ppR$ef$erence_w$rapper.htm\">b$oost::r$ef$erence_w$rapper</a>" },
     { "copy assignment operator","<a href=\"C$ppC$opyA$ssignmentO$perator.htm\">c$opy a$ssignment o$perator</a>" },
     { "std::adjacent_difference","<a href=\"C$ppAdjacent_di$fference.htm\">st$d::adj$acent_di$fference</a>" },
     { "Copy assignment operator","<a href=\"C$ppC$opyA$ssignmentO$perator.htm\">C$opy a$ssignment o$perator</a>" },
@@ -1155,6 +1156,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "base class","<a href=\"CppB$aseC$lass.htm\">b$ase c$lass</a>" },
     { "boost::any","<a href=\"CppAny.htm\">b$oost::a$ny</a>" },
     { "boost::get","<a href=\"CppGet.htm\">b$oost::g$et</a>" },
+    { "boost::ref","<a href=\"CppRef.htm\">b$oost::r$ef</a>" },
     { "const_cast","<b><a href=\"CppCo$nst_cast.htm\">co$nst_cast</a></b>" },
     { "definition","<a href=\"CppDe$finition.htm\">de$fi$nition</a>" },
     { "destructor","<a href=\"CppDestr$uctor.htm\">destr$uctor</a>" },

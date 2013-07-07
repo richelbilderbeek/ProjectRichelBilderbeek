@@ -205,6 +205,7 @@ void QtPvdbTestConceptItemDialog::on_edit_example_text_textChanged(const QString
   this->GetChosenConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
 
+#ifndef NDEBUG
 void QtPvdbTestConceptItemDialog::Test()
 {
   {
@@ -264,3 +265,4 @@ void QtPvdbTestConceptItemDialog::Test()
   t.detach();
   #endif
 }
+#endif

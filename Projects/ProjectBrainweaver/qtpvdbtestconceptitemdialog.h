@@ -53,8 +53,10 @@ private:
   ///Get the Concept via the route chosen by box_edit
   const boost::shared_ptr<pvdb::Concept> GetChosenConcept();
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test();
+  #endif
 };
 
 #endif // QTPVDBTESTCONCEPTITEMDIALOG_H
