@@ -7,6 +7,10 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtcopyalltableview.h"
 
+#include <string>
+#include <vector>
+#include <boost/algorithm/string/split.hpp>
+
 #include <QApplication>
 #include <QClipboard>
 #include <QHeaderView>
@@ -25,9 +29,8 @@ void QtCopyAllTableView::keyPressEvent(QKeyEvent *event)
     && event->modifiers() & Qt::ControlModifier)
   {
     this->selectAll();
-    return;
   }
-  if(event->key() == Qt::Key_C
+  else if(event->key() == Qt::Key_C
     && event->modifiers() & Qt::ControlModifier)
   {
     this->selectAll();
@@ -73,4 +76,46 @@ void QtCopyAllTableView::keyPressEvent(QKeyEvent *event)
     mimeData->setData("text/plain",byte_array);
     QApplication::clipboard()->setMimeData(mimeData);
   }
+  else if (event->modifiers() & Qt::ControlModifier && event->key() == Qt::Key_V)
+  {
+    std::vector<std::vector<std::string> > table;
+    {
+      const std::string raw_str = QApplication::clipboard()->text().toStdString();
+      const std::vector<std::string> rows = SeperateString(raw_str,'\n');
+      const std::size_t n_rows = rows.size();
+      for (std::size_t row_index=0; row_index!=n_rows; ++row_index)
+      {
+        const std::string& row_str = rows[row_index];
+        const std::vector<std::string> cols = SeperateString(row_str,'\t');
+        table.push_back(cols);
+      }
+    }
+
+    const std::size_t n_rows = table.size();
+    if (n_rows == 0) return;
+    for (std::size_t row_index=0; row_index!=n_rows; ++row_index)
+    {
+      const std::vector<std::string>& row = table[row_index];
+      const std::size_t n_cols = row.size(); //Note that n_cols might change per row
+      for (std::size_t col_index=0; col_index!=n_cols; ++col_index)
+      {
+        const std::string str = row[col_index];
+        const QString q = str.c_str();
+        const QModelIndex index = model()->index(row_index,col_index);
+        model()->setData(index,q);
+      }
+    }
+    this->selectAll();
+  }
+}
+
+const std::vector<std::string> QtCopyAllTableView::SeperateString(
+  const std::string& input,
+  const char seperator)
+{
+  std::vector<std::string> v;
+  boost::algorithm::split(v,input,
+    std::bind2nd(std::equal_to<char>(),seperator),
+    boost::algorithm::token_compress_on);
+  return v;
 }
