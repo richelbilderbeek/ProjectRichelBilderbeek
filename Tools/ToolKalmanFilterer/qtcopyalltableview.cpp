@@ -107,6 +107,10 @@ void QtCopyAllTableView::keyPressEvent(QKeyEvent *event)
     }
     this->selectAll();
   }
+  else
+  {
+    QTableView::keyPressEvent(event);
+  }
 }
 
 const std::vector<std::string> QtCopyAllTableView::SeperateString(
