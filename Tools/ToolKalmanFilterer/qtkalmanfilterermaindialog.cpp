@@ -783,3 +783,8 @@ void QtKalmanFiltererMainDialog::OnNewContext(const std::string context)
   assert(ui->edit_context->toPlainText().toStdString() == context);
 
 }
+
+void QtKalmanFiltererMainDialog::on_edit_context_textChanged()
+{
+  this->m_model->SetContext(ui->edit_context->toPlainText().toStdString());
+}
