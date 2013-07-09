@@ -53,6 +53,7 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 
+  this->setAcceptsHoverEvents(true);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
@@ -121,15 +122,17 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
       )
     );
   }
-
+  assert(this->acceptsHoverEvents());
+  assert(this->m_concept_item->acceptHoverEvents());
+  assert(this->m_arrow->acceptsHoverEvents());
 }
 
 QRectF QtPvdbEdgeItem::boundingRect() const
 {
-  //TRACE(m_concept_item->boundingRect().width());
-  //TRACE(QtPvdbConceptMapItem::boundingRect().width());
-  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    && "Bounding rects must by synced");
+  assert((m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+      || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect())
+    && "Bounding rects should be synced, but this member function is used to sync them,"
+    && "so this must be checked on a higher level");
 
   return QtPvdbConceptMapItem::boundingRect() //2013-07-06: Bypassed going via m_concept_item
     .united(m_arrow->boundingRect().translated(-this->pos()));

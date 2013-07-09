@@ -48,6 +48,8 @@ pvdb::Edge::Edge(
   assert(from != to);
   assert(m_concept);
 
+
+
   //Subscribe to all Concept signals to re-emit m_signal_edge_changed
   this->m_concept->m_signal_name_changed.connect(
     boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));

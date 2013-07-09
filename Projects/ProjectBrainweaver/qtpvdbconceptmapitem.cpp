@@ -9,6 +9,7 @@
 
 #include "pvdbconcept.h"
 #include "pvdbexamples.h"
+#include "qtpvdbconceptitem.h"
 #include "trace.h"
 
 void QtPvdbConceptMapItem::OnConceptRequestsEdit()
@@ -16,5 +17,11 @@ void QtPvdbConceptMapItem::OnConceptRequestsEdit()
   assert(this);
   assert(this->GetConcept());
   assert(this->GetConcept()->GetExamples());
+  this->setAcceptHoverEvents(true);
   m_signal_conceptmapitem_requests_edit(this);
+}
+
+void QtPvdbConceptMapItem::hoverMoveEvent(QGraphicsSceneHoverEvent * event)
+{
+  this->GetConceptItem()->hoverMoveEvent(event);
 }
