@@ -24,15 +24,17 @@
 <p>&nbsp;</p>
 <p>To <a href="CppBoostInstall.htm">install Boost</a> under Windows, just follow the procedure described by [1].</p>
 <p>&nbsp;</p>
-<p>A downloaded zip of Boost was extracted in '/Program Files/boost/boost_1_44_0', but
+<p>A downloaded zip of Boost was extracted in 'E:/Projects/Libraries/boost_1_54_0', but
 it does not seem to matter where to put these, as the next commands install the Boost libraries at their
 default locations.</p>
 <p>&nbsp;</p>
-<p>From the command line, in the Boost folder, type:</p>
+<p>First, add the <a href="CppGcc.htm">GCC</a> path to the PATH (for me, this was 'E:\Qt\Qt5.0.1\Tools\mingw48_32\bin', I verified that g++.exe is present in that folder). 
+Then, from the command line, in the Boost folder (for me, this was: 'E:/Projects/Libraries/boost_1_54_0'), type:</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
-booststrap<br/>
+bootstrap gcc<br/>
+b2<br/>
 bjam --toolset=gcc</br>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -47,7 +49,7 @@ bjam --toolset=gcc</br>
 <p>&nbsp;</p>
 <ul>
   <li>'cl' is not recognized as an internal or external command, operable program or batch file: do
-    not use 'bjam', but add a different toolset and use the command 'bjam --toolset=gcc'.
+    not use bjam without mentioning a toolset, but choose a toolset and use the command 'bjam --toolset=gcc' (for the <a href="CppGcc.htm">GCC</a> toolset).
   </li>
 </ul>
 <p>&nbsp;</p>
