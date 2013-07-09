@@ -25,7 +25,7 @@ const About KalmanFiltererMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "KalmanFilterer",
     "tool to work with Kalman filters",
-    "the 5th of July 2013",
+    "the 8th of July 2013",
     "2013",
     "http://www.richelbilderbeek.nl/ToolKalmanFilterer.htm",
     GetVersion(),
@@ -48,7 +48,7 @@ const About KalmanFiltererMenuDialog::GetAbout()
 
 const std::string KalmanFiltererMenuDialog::GetVersion()
 {
-  return "1.14 beta";
+  return "1.15";
 }
 
 const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
@@ -68,6 +68,7 @@ const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
   v.push_back("2013-06-27: version 1.11: added gaps-filled white noise system, added versioning to parameter files for backwards compatibility");
   v.push_back("2013-07-01: version 1.12: added the constants pi and tau to function parser, context can be saved to file, tables are displayed correctly");
   v.push_back("2013-07-05: version 1.13: added simple statistics");
-  v.push_back("2013-07-xx: version 1.14: delete statistics and value tables correctly");
+  v.push_back("2013-07-08: version 1.14: display statistics and value tables correctly, allow editing of context, tables resize to the number of rows");
+  v.push_back("2013-07-08: version 1.15: allow copying from and pasting to parameter tables");
   return v;
 }

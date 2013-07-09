@@ -28,7 +28,6 @@ Libraries/shiny
 Libraries/vpiano-0.9
 Libraries/john-1.7.9
 Libraries/wt
-/Test/*
 COPY*
 */build*
 Projects/RichelbilderbeekNl/*.wmv

@@ -5,7 +5,7 @@
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
-#include "qtcopyalltablewidget.h"
+#include "qtcopyalltableview.h"
 
 #include <string>
 #include <vector>
@@ -13,16 +13,17 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <QHeaderView>
 #include <QKeyEvent>
 
 #include "trace.h"
 
-QtCopyAllTableWidget::QtCopyAllTableWidget(QWidget *parent)
-  : QTableWidget(parent)
+QtCopyAllTableView::QtCopyAllTableView(QWidget *parent)
+  : QTableView(parent)
 {
 }
 
-void QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
+void QtCopyAllTableView::keyPressEvent(QKeyEvent *event)
 {
   if(event->key() == Qt::Key_A
     && event->modifiers() & Qt::ControlModifier)
@@ -33,18 +34,18 @@ void QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
     && event->modifiers() & Qt::ControlModifier)
   {
     this->selectAll();
-    const int n_rows = this->rowCount();
-    const int n_cols = this->columnCount();
+    const int n_rows = this->model()->rowCount();
+    const int n_cols = this->model()->columnCount();
     QByteArray byte_array;
     //Header
     {
       byte_array.append(" \t"); //Topleft header cell
       for (int col = 0; col!=n_cols; ++col)
       {
-        const QTableWidgetItem * const item = this->horizontalHeaderItem(col);
-        const QString text = item
-          ? item->text()
-          : QString(" ");
+        const QString s = this->model()->headerData(col,Qt::Horizontal).toString();
+        const QString text = s.isEmpty()
+          ? QString(" ")
+          : s;
         byte_array.append(text);
         byte_array.append(col < n_cols - 1 ? '\t' : '\n');
       }
@@ -53,20 +54,20 @@ void QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
     {
       //Vertical header
       {
-        const QTableWidgetItem * const item = this->verticalHeaderItem(row);
-        const QString text = item
-          ? item->text()
-          : QString(" ");
+        const QString s = this->model()->headerData(row,Qt::Vertical).toString();
+        const QString text = s.isEmpty()
+          ? QString(" ")
+          : s;
         byte_array.append(text);
         byte_array.append('\t');
       }
       //Normal items
       for (int col = 0; col!=n_cols; ++col)
       {
-        const QTableWidgetItem * const item = this->item(row,col);
-        const QString text = item
-          ? item->text()
-          : QString(" ");
+        const QString s = this->model()->data( this->model()->index( row,col) ).toString();
+        const QString text = s.isEmpty()
+          ? QString(" ")
+          : s;
         byte_array.append(text);
         byte_array.append(col < n_cols - 1 ? '\t' : '\n');
       }
@@ -100,20 +101,19 @@ void QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
       {
         const std::string str = row[col_index];
         const QString q = str.c_str();
-        QTableWidgetItem * const item = new QTableWidgetItem;
-        item->setText(q);
-        this->setItem(row_index,col_index,item);
+        const QModelIndex index = model()->index(row_index,col_index);
+        model()->setData(index,q);
       }
     }
     this->selectAll();
   }
   else
   {
-    QTableWidget::keyPressEvent(event);
+    QTableView::keyPressEvent(event);
   }
 }
 
-const std::vector<std::string> QtCopyAllTableWidget::SeperateString(
+const std::vector<std::string> QtCopyAllTableView::SeperateString(
   const std::string& input,
   const char seperator)
 {

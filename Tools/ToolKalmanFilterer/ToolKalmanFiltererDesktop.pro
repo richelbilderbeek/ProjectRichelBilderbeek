@@ -91,7 +91,8 @@ SOURCES += \
     qtmain.cpp \
     qtstandardkalmanfiltercalculationdialog.cpp \
     qtsteadystatekalmanfiltercalculationdialog.cpp \
-    qtwhitenoisesystemparametersdialog.cpp
+    qtwhitenoisesystemparametersdialog.cpp \
+    qtcopyalltableview.cpp
 
 
 HEADERS += \
@@ -162,7 +163,8 @@ HEADERS += \
     qtkalmanfilterexperimentmodel.h \
     qtstandardkalmanfiltercalculationdialog.h \
     qtsteadystatekalmanfiltercalculationdialog.h \
-    qtwhitenoisesystemparametersdialog.h
+    qtwhitenoisesystemparametersdialog.h \
+    qtcopyalltableview.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

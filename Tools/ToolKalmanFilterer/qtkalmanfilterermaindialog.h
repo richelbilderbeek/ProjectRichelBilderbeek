@@ -117,6 +117,7 @@ private slots:
   void on_button_start_clicked();
   void on_button_save_graph_clicked();
   void on_tab_context_currentChanged(int index);
+  void on_edit_context_textChanged();
 };
 
 #endif // QTKALMANFILTERERMAINDIALOG_H

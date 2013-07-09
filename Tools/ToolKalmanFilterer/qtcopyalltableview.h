@@ -1,23 +1,25 @@
-#ifndef QTCOPYALLTABLEWIDGET_H
-#define QTCOPYALLTABLEWIDGET_H
+#ifndef QTCOPYALLTABLEVIEW_H
+#define QTCOPYALLTABLEVIEW_H
+
+#include <QTableView>
 
 #include <string>
 #include <vector>
-#include <QTableWidget>
 
-class QtCopyAllTableWidget : public QTableWidget
+class QtCopyAllTableView : public QTableView
 {
   public:
-  QtCopyAllTableWidget(QWidget *parent = 0);
+  QtCopyAllTableView(QWidget *parent = 0);
 
   protected:
   void keyPressEvent(QKeyEvent *event);
 
+
+  private:
   ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
   static const std::vector<std::string> SeperateString(
     const std::string& input,
     const char seperator);
-
 };
 
-#endif // QTCOPYALLTABLEWIDGET_H
+#endif // QTCOPYALLTABLEVIEW_H
