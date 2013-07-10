@@ -19,12 +19,15 @@ Libraries/fparser4.4.3/
 Libraries/fparser4.5.1/
 Libraries/fparser4.3/
 Libraries/Hashcat
+Libraries/libcvautomation/
 Libraries/mxe
 Libraries/planner
 Libraries/polymorphable-master
 Libraries/projectlibre-code
 Libraries/qwt-6.0.1/
 Libraries/shiny
+Libraries/SikuliX-API/
+Libraries/SikuliX-IDE/
 Libraries/vpiano-0.9
 Libraries/john-1.7.9
 Libraries/wt
