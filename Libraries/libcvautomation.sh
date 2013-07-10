@@ -1,2 +1,2 @@
 #!/bin/sh
-git clone https://github.com/DjBushido/libcvautomation.git
+git clone https://github.com/richelbilderbeek/libcvautomation.git
