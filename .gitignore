@@ -20,6 +20,7 @@ Libraries/fparser4.5.1/
 Libraries/fparser4.3/
 Libraries/Hashcat
 Libraries/libcvautomation/
+Libraries/libcvautomation_readonly/
 Libraries/mxe
 Libraries/planner
 Libraries/polymorphable-master
