@@ -19,7 +19,6 @@ Libraries/boost_*
 Libraries/fparser4.4.3/
 Libraries/fparser4.5.1/
 Libraries/fparser4.3/
-Libraries/Hashcat/
 Libraries/mxe/
 Libraries/planner/
 Libraries/polymorphable-master/
@@ -30,6 +29,10 @@ Libraries/shiny/
 Libraries/vpiano-0.9/
 Libraries/john-1.7.9/
 Libraries/wt/
+Libraries/libcvautomation/
+Libraries/libcvautomation_readonly/
+Libraries/SikuliX-API/
+Libraries/SikuliX-IDE/
 COPY*
 */build*
 Projects/RichelbilderbeekNl/*.wmv

@@ -58,7 +58,10 @@ private:
   static const boost::shared_ptr<pvdb::Node> CreateTo();
 
   ///Get the Edge via the route chosen by box_edit
-  const boost::shared_ptr<pvdb::Edge> GetEdge();
+  const boost::shared_ptr<pvdb::Edge> GetEdgeCurrentWay();
+
+  ///Get the Edge from a route
+  const boost::shared_ptr<pvdb::Edge> GetEdge(const int index);
 
   ///Called whenever an item requests a scene update
   void OnRequestSceneUpdate();

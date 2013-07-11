@@ -55,6 +55,8 @@ struct QtPvdbConceptMapItem : public QtRoundedTextRectItem
   ///Remove this member function, let the client call the virual SetX and SetY member functions
   void setPos(qreal x, qreal y) { QtRoundedTextRectItem::setPos(x,y); }
 
+  void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
+
   private:
   virtual void SetConcept(const boost::shared_ptr<pvdb::Concept> concept) = 0;
 

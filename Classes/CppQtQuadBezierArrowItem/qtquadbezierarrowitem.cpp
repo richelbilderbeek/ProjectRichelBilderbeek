@@ -355,7 +355,7 @@ const QPointF QtQuadBezierArrowItem::GetTail() const
 
 const std::string QtQuadBezierArrowItem::GetVersion()
 {
-  return "1.3";
+  return "1.4";
 }
 
 const std::vector<std::string> QtQuadBezierArrowItem::GetVersionHistory()
@@ -365,6 +365,7 @@ const std::vector<std::string> QtQuadBezierArrowItem::GetVersionHistory()
   v.push_back("2012-12-13: version 1.1: respond to focus");
   v.push_back("2012-12-29: version 1.2: fixed bug in GetHead and GetTail that occurs when GetLineRectIntersections returns two points");
   v.push_back("2013-01-01: version 1.3: added QGraphicsItem getters");
+  v.push_back("2013-07-10: version 1.4: setting arrow heads emits a notification signal");
   return v;
 }
 
@@ -497,19 +498,18 @@ void QtQuadBezierArrowItem::SetHasHead(const bool has_head)
   if (m_head != has_head)
   {
     m_head = has_head;
-    //this->update();
-    //m_signal_item_updated(this); //FIX? 2013-04-15
+    this->update();
+    m_signal_item_updated(this);
   }
 }
 
 void QtQuadBezierArrowItem::SetHasTail(const bool has_tail)
 {
-
   if (m_tail != has_tail)
   {
     m_tail = has_tail;
-    //this->update();
-    //m_signal_item_updated(this); //FIX? 2013-04-15
+    this->update();
+    m_signal_item_updated(this);
   }
 }
 

@@ -40,14 +40,11 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   assert(m_node);
   assert(m_concept_item->GetConcept().get() == m_node->GetConcept().get());
 
+  this->setAcceptHoverEvents(true);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
-
-  assert(flags() & QGraphicsItem::ItemIsFocusable);
-  assert(flags() & QGraphicsItem::ItemIsSelectable);
-  assert(flags() & QGraphicsItem::ItemIsMovable);
 
 
 
@@ -104,8 +101,13 @@ QtPvdbNodeItem::QtPvdbNodeItem(
     );
   }
 
+  assert(flags() & QGraphicsItem::ItemIsFocusable);
+  assert(flags() & QGraphicsItem::ItemIsSelectable);
+  assert(flags() & QGraphicsItem::ItemIsMovable);
   assert(this->pos().x() == m_node->GetX());
   assert(this->pos().y() == m_node->GetY());
+  assert(this->acceptsHoverEvents());
+  assert(this->m_concept_item->acceptsHoverEvents());
 }
 
 QRectF QtPvdbNodeItem::boundingRect() const

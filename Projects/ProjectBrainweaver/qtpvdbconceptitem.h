@@ -47,6 +47,8 @@ struct QtPvdbConceptItem : public QtRoundedTextRectItem
   ///The pen by which the indicator is drawn
   const QPen& GetIndicatorPen() const { return m_indicator_pen; }
 
+  virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
+
   ///Derived classes respond differently to key presses
   virtual void keyPressEvent(QKeyEvent *event) = 0;
 
@@ -81,7 +83,6 @@ protected:
   ///Hide setPos from callers, let them use SetPos instead
   void setPos(qreal x, qreal y) { QtRoundedTextRectItem::setPos(x,y); }
 
-  virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) final;
   virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) final;
 

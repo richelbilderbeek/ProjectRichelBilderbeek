@@ -69,7 +69,6 @@ const boost::shared_ptr<const pvdb::Concept> QtPvdbConceptItem::GetConcept() con
 
 void QtPvdbConceptItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
-  assert(1==2);
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
