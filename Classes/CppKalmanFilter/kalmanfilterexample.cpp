@@ -1,6 +1,9 @@
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -8,6 +11,13 @@
 #include "kalmanfilterexample.h"
 
 #include <cassert>
+
+#ifdef __STRICT_ANSI__
+#include <boost/math/constants/constants.hpp>
+#else
+#include <cmath>
+#endif
+
 #include <memory>
 
 #include <boost/foreach.hpp>
@@ -295,7 +305,14 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
   const int n = 4; //Size of all vectors and matrices
   const double dt = 0.1; //Timestep
   const double g = 9.81; //Gravity
-  const double angle = M_PI / 4.0; //Radians. 45 degrees = M_PI / 4.0 radians
+
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+  const double angle = pi / 4.0; //Radians. 45 degrees = M_PI / 4.0 radians
+
 
   //Gravity influences y and Vy
   const boost::numeric::ublas::matrix<double> control
@@ -798,11 +815,17 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
   //One state
   const int n = 1;
   //As small as possible
-  const double e = 0.00000000001;
+  const double epsilon = 0.00000000001;
   //Reach a 10% value after 1000 timesteps with the closed-form solution
   const double gamma = -std::log(0.1)/1000.0;
   //Reach a 10% value after 1000 timesteps with the recurrence equation
-  const double tau = std::pow(M_E,std::log(0.1) / 1000.0);
+
+  #ifdef __STRICT_ANSI__
+  const double e = boost::math::constants::e<double>();
+  #else
+  const double e = M_E;
+  #endif
+  const double tau = std::pow(e,std::log(0.1) / 1000.0);
 
   const int number_of_timesteps = 1000;
 
@@ -815,7 +838,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
 
   //As small as possible
   const boost::numeric::ublas::matrix<double> initial_covariance_estimate
-    = Matrix::CreateMatrix(n,n, { e } );
+    = Matrix::CreateMatrix(n,n, { epsilon } );
 
   //From 100%
   const boost::numeric::ublas::vector<double> initial_state
@@ -826,7 +849,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
 
   //As small as possible
   const boost::numeric::ublas::matrix<double> estimated_measurement_noise
-    = Matrix::CreateMatrix(n,n, { e } );
+    = Matrix::CreateMatrix(n,n, { epsilon } );
 
   //Observe directly
   const boost::numeric::ublas::matrix<double> observation
@@ -834,15 +857,15 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample6()
 
   //As small as possible
   const boost::numeric::ublas::matrix<double> estimated_process_noise_covariance
-    = Matrix::CreateMatrix(n,n, { e } );
+    = Matrix::CreateMatrix(n,n, { epsilon } );
 
   //As small as possible
   const boost::numeric::ublas::vector<double> real_measurement_noise
-    = Matrix::CreateVector( { e } );
+    = Matrix::CreateVector( { epsilon } );
 
   //As small as possible
   const boost::numeric::ublas::vector<double> real_process_noise
-    = Matrix::CreateVector( { e } );
+    = Matrix::CreateVector( { epsilon } );
 
   //Reach a 10% value after 1000 timesteps with the recurrence equation
   const boost::numeric::ublas::matrix<double> state_transition
@@ -955,7 +978,15 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample7()
   //As small as possible
   const double e = 0.00000000001;
   //Period of 100 timesteps
-  const double angular_frequency = 2.0 * M_PI / 100.0;
+
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
+  const double angular_frequency = 2.0 * pi / 100.0;
+
   //Correct for floating point rounding errors that will increase the amplitude.
   //This value is found by experimenting
   const double correction = 0.998026148;
@@ -1118,7 +1149,14 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample8()
   //As small as possible
   const double e = 0.00000000001;
   //Period of 100 timesteps
-  const double angular_frequency = 2.0 * M_PI / 100.0;
+
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
+  const double angular_frequency = 2.0 * pi / 100.0;
   //Correct for floating point rounding errors that will increase the amplitude.
   //This value is found by experimenting
   const double correction = 0.998026148;

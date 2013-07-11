@@ -1,6 +1,9 @@
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -9,6 +12,12 @@
 
 #include <cassert>
 #include <stdexcept>
+
+#ifdef __STRICT_ANSI__
+#include <boost/math/constants/constants.hpp>
+#else
+#include <cmath>
+#endif
 
 //Warp's function parser
 #include "fparser.hh"
@@ -19,8 +28,15 @@ ModelFunctionParser::ModelFunctionParser(
   : m_parser(new FunctionParser)
 {
   assert(m_parser);
-  m_parser->AddConstant("pi",M_PI);
-  m_parser->AddConstant("tau",2.0*M_PI);
+
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
+  m_parser->AddConstant("pi",pi);
+  m_parser->AddConstant("tau",2.0*pi);
   m_parser->AddFunction("rand",MyRand,1);
   m_parser->Parse(my_function,variable_name);
 

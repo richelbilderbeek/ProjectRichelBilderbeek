@@ -28,6 +28,10 @@
 #include "slidingmodeobserver.h"
 #include "ui_qtstateobservermaindialog.h"
 
+#ifdef _WIN32
+#include "qwt_point_data.h"
+#endif
+
 QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtStateObserverMainDialog),
