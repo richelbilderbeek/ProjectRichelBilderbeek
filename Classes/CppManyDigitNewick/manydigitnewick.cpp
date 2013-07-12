@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ManyDigitNewick, Newick class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -36,16 +39,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #include <iostream>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "newickvector.h"
 #include "newick.h"
 #include "manydigitnewickindexer.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 double ManyDigitNewick::sm_theta = -1.0;
-//---------------------------------------------------------------------------
+
 ///Create an empty MyDigitNewick, to have a
 ///default contructor
 ManyDigitNewick::ManyDigitNewick()
@@ -56,7 +63,7 @@ ManyDigitNewick::ManyDigitNewick()
 {
   assert(this->Empty());
 }
-//---------------------------------------------------------------------------
+
 ManyDigitNewick::ManyDigitNewick(
   const std::vector<ManyDigitNewickDerivative>& derivatives,
   const int sum_above_zero,
@@ -70,7 +77,7 @@ ManyDigitNewick::ManyDigitNewick(
 {
 
 }
-//---------------------------------------------------------------------------
+
 double ManyDigitNewick::CalculateDenominator(
   const int sum_above_zero,
   const int sum_above_one) const
@@ -91,7 +98,7 @@ double ManyDigitNewick::CalculateDenominator(
        * sm_theta);
   return d;
 }
-//---------------------------------------------------------------------------
+
 ///Calculates the probability for a certain Newick
 ///with a certain theta. This is the main (helper)
 ///function.
@@ -105,35 +112,35 @@ double ManyDigitNewick::CalculateProbability(
   const ManyDigitNewickIndexer i(n,theta);
   return i.GetProbability();
 }
-//---------------------------------------------------------------------------
+
 bool ManyDigitNewick::Empty() const
 {
   return m_derivatives.empty();
 }
-//---------------------------------------------------------------------------
+
 double ManyDigitNewick::GetDenominator() const
 {
   assert(IsComplete());
   return m_denominator;
 }
-//---------------------------------------------------------------------------
+
 const std::vector<ManyDigitNewickDerivative>& ManyDigitNewick::GetDerivatives() const
 {
   return m_derivatives;
 }
-//---------------------------------------------------------------------------
+
 double ManyDigitNewick::GetProbability() const
 {
   assert(IsProbabilityKnown());
   return m_probability;
 }
-//---------------------------------------------------------------------------
+
 int ManyDigitNewick::GetSumTermsAboveOne() const
 {
   assert(m_sum_terms_above_one >= 0);
   return m_sum_terms_above_one;
 }
-//---------------------------------------------------------------------------
+
 int ManyDigitNewick::GetSumTermsAboveZero() const
 {
   if (!(m_sum_terms_above_zero >= 0))
@@ -143,12 +150,12 @@ int ManyDigitNewick::GetSumTermsAboveZero() const
   assert(m_sum_terms_above_zero >= 0);
   return m_sum_terms_above_zero;
 }
-//---------------------------------------------------------------------------
+
 const std::string ManyDigitNewick::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ManyDigitNewick::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -156,7 +163,7 @@ const std::vector<std::string> ManyDigitNewick::GetVersionHistory()
   v.push_back("2011-02-20: version 1.1: added version history");
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///A complete ManyDigitNewick has (hopefully) all its
 ///derivatives present, as well as its sums of terms
 ///above zero and one.
@@ -166,25 +173,27 @@ bool ManyDigitNewick::IsComplete() const
     && m_sum_terms_above_zero >= 0
     && m_sum_terms_above_one  >= 0);
 }
-//---------------------------------------------------------------------------
+
 bool ManyDigitNewick::IsProbabilityKnown() const
 {
   return m_probability >= 0.0;
 }
-//---------------------------------------------------------------------------
+
 void ManyDigitNewick::SetProbability(const double p)
 {
   assert(p >= 0.0);
   assert(p <= 1.0000001);
   m_probability = p;
 }
-//---------------------------------------------------------------------------
+
 void ManyDigitNewick::SetTheta(const double theta)
 {
   assert(theta >= 0.0);
   sm_theta = theta;
 }
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 void ManyDigitNewick::Test()
 {
   const double theta = 10.0;
@@ -200,4 +209,5 @@ void ManyDigitNewick::Test()
     ManyDigitNewick::CalculateProbability(s,theta);
   }
 }
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+

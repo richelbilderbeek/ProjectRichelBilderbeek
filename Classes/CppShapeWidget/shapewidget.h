@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ShapeWidget, class for displaying a Shape
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,22 +15,25 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppShapeWidget.htm
-//---------------------------------------------------------------------------
+
 #ifndef SHAPEWIDGET_H
 #define SHAPEWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "widget.h"
-//---------------------------------------------------------------------------
+
 struct Shape;
-//---------------------------------------------------------------------------
+
 ///ShapeWidget is a class to display a Shape
 struct ShapeWidget : public Widget
 {
@@ -65,7 +68,7 @@ struct ShapeWidget : public Widget
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs);
-//---------------------------------------------------------------------------
+
 #endif // SHAPEWIDGET_H

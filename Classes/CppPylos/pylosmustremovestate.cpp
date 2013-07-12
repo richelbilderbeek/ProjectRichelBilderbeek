@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Pylos::MustRemoveState, Pylos enum class for the state of a removal
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppPylos.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,11 +32,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include "pylosplayer.h"
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 MustRemoveState ToMustRemoveState(const Player& player)
 {
   switch (player)
@@ -44,7 +47,7 @@ MustRemoveState ToMustRemoveState(const Player& player)
   assert(!"Unknown value for Player");
   throw std::logic_error("Unknown value for Player");
 }
-//---------------------------------------------------------------------------
+
 std::string ToStr(const MustRemoveState state)
 {
   switch (state)
@@ -56,11 +59,11 @@ std::string ToStr(const MustRemoveState state)
   assert(!"Unknown value for MustRemoveState");
   throw std::logic_error("Unknown value for MustRemoveState");
 }
-//---------------------------------------------------------------------------
+
 bool operator!(const MustRemoveState& state)
 {
   return state == MustRemoveState::no;
 }
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+

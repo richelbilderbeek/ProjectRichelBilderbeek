@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 RubiksClockDialWidget, class for displaying a RubiksClockDial
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,16 +15,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppRubiksClockDialWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "rubiksclockdialwidget.h"
 
 #include <cassert>
@@ -36,14 +41,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "rubiksclockdial.h"
 #include "rectangle.h"
 //#include "trace.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 RubiksClockDialWidget::RubiksClockDialWidget(
   const double position,
   const int x,
@@ -57,24 +64,24 @@ RubiksClockDialWidget::RubiksClockDialWidget(
 {
   this->SetGeometry(Rect(x,y,width,height));
 }
-//---------------------------------------------------------------------------
+
 double RubiksClockDialWidget::GetDistance(const double dX, const double dY)
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
-//---------------------------------------------------------------------------
+
 const std::string RubiksClockDialWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> RubiksClockDialWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-09-08: Version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 bool RubiksClockDialWidget::IsClicked(const int x, const int y) const
 {
   const double widget_midx
@@ -88,7 +95,7 @@ bool RubiksClockDialWidget::IsClicked(const int x, const int y) const
   return GetDistance(x_d - widget_midx, y_d - widget_midy)
     < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const RubiksClockDialWidget& widget)
 {
   os
@@ -98,5 +105,5 @@ std::ostream& operator<<(std::ostream& os, const RubiksClockDialWidget& widget)
     << "</RubiksClockDialWidget>";
   return os;
 }
-//---------------------------------------------------------------------------
+
 

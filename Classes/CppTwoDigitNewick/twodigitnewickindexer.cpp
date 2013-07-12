@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 TestTwoDigitNewick, tool to test the two-digit-Newick architecture
 Copyright (C) 2010 Richel Bilderbeek
@@ -15,30 +15,33 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "twodigitnewickindexer.h"
 
-//---------------------------------------------------------------------------
+
 #include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <stack>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "newick.h"
 #include "binarynewickvector.h"
-//---------------------------------------------------------------------------
+
 //TwoDigitNewickIndexer constructor does all the work
 TwoDigitNewickIndexer::TwoDigitNewickIndexer(
   const BinaryNewickVector& n,
@@ -136,7 +139,7 @@ TwoDigitNewickIndexer::TwoDigitNewickIndexer(
     //all Newicks are solved
   }
 }
-//---------------------------------------------------------------------------
+
 int TwoDigitNewickIndexer::CalculateReserved(const BinaryNewickVector& n) const
 {
   const std::vector<int>& v = n.Peek();
@@ -148,7 +151,7 @@ int TwoDigitNewickIndexer::CalculateReserved(const BinaryNewickVector& n) const
   //\todo: +1 needed?
   return n_elements + max_element + 1;
 }
-//---------------------------------------------------------------------------
+
 ///ConstructNewick constructs a full BinaryNewickVector from
 ///the TwoDigitNewick at index i.
 ///ConstructNewick is for debugging purposes only,
@@ -202,7 +205,7 @@ const BinaryNewickVector TwoDigitNewickIndexer::ConstructNewick(const int i) con
   BinaryNewickVector n(v);
   return n;
 }
-//---------------------------------------------------------------------------
+
 const TwoDigitNewick TwoDigitNewickIndexer::CreateTwoDigitNewickDerivatives(
   const int x, const int y,
   const int sum_above_zero,
@@ -232,7 +235,7 @@ const TwoDigitNewick TwoDigitNewickIndexer::CreateTwoDigitNewickDerivatives(
     CreateTwoDigitNewickDerivativesComplexComplex(
       x,y,sum_above_zero,sum_above_one);
 }
-//---------------------------------------------------------------------------
+
 const TwoDigitNewick
   TwoDigitNewickIndexer::CreateTwoDigitNewickDerivativesSimpleSimple(
   const int x, const int y)
@@ -336,7 +339,7 @@ const TwoDigitNewick
     }
   }
 }
-//---------------------------------------------------------------------------
+
 const TwoDigitNewick TwoDigitNewickIndexer::CreateTwoDigitNewickDerivativesSimpleComplex(
   const int x, const int y,
   const int sum_above_zero,
@@ -398,7 +401,7 @@ const TwoDigitNewick TwoDigitNewickIndexer::CreateTwoDigitNewickDerivativesSimpl
   TwoDigitNewick n( v,sum_above_zero,sum_above_one);
   return n;
 }
-//---------------------------------------------------------------------------
+
 const TwoDigitNewick
   TwoDigitNewickIndexer::CreateTwoDigitNewickDerivativesComplexComplex(
   const int x, const int y,
@@ -470,7 +473,7 @@ const TwoDigitNewick
   TwoDigitNewick n(v,sum_above_zero,sum_above_one);
   return n;
 }
-//---------------------------------------------------------------------------
+
 ///GetDeltaSumAboveZero calculates the delta in the
 ///TwoDigitNewick::m_sum_above_zero of a new Newick
 ///when an old_value is changed.
@@ -479,7 +482,7 @@ int TwoDigitNewickIndexer::GetDeltaSumAboveZero(const int old_value) const
   assert(old_value > 0);
   return (old_value == 1 ? 0 : -1);
 }
-//---------------------------------------------------------------------------
+
 ///GetDeltaSumAboveOne calculates the delta in the
 ///TwoDigitNewick::m_sum_above_one of a new Newick
 ///when an old_value is changed.
@@ -493,7 +496,7 @@ int TwoDigitNewickIndexer::GetDeltaSumAboveOne(const TwoDigitNewickDerivative& d
   assert(x == 1);
   return (d.m_other_value_changed == 1 ? 2 : 1);
 }
-//---------------------------------------------------------------------------
+
 ///GetProbability returns the probability of the BinaryNewickVector
 ///given at the constructor
 double TwoDigitNewickIndexer::GetProbability() const
@@ -505,14 +508,14 @@ double TwoDigitNewickIndexer::GetProbability() const
 
   return m_probability;
 }
-//---------------------------------------------------------------------------
+
 ///IsSimple determines if an index is the index of
 ///a simple Newick
 bool TwoDigitNewickIndexer::IsSimple(const int i) const
 {
   return i < m_reserved;
 }
-//---------------------------------------------------------------------------
+
 ///Allow for recursion
 int TwoDigitNewickIndexer::SummarizeNewick(
   const int x, const int y,
@@ -569,7 +572,7 @@ int TwoDigitNewickIndexer::SummarizeNewick(
   m_newicks.SetNewick(i,n);
   return i;
 }
-//---------------------------------------------------------------------------
+
 ///TryToCalculateNewNewick tries to calculate the probability
 ///of Newick with index i
 void TwoDigitNewickIndexer::TryToCalculateNewNewick(const int i)
@@ -619,7 +622,7 @@ void TwoDigitNewickIndexer::TryToCalculateNewNewick(const int i)
   m_probability = p;
   this->m_newicks.SetNewickProbability(i,p);
 }
-//---------------------------------------------------------------------------
+
 ///TryToCalculateNewNewicks tries to calculate new Newick probabilities
 ///\warning: m_calculated_to_index is not increased
 void TwoDigitNewickIndexer::TryToCalculateNewNewicks()
@@ -633,7 +636,7 @@ void TwoDigitNewickIndexer::TryToCalculateNewNewicks()
     TryToCalculateNewNewick(i);
   }
 }
-//---------------------------------------------------------------------------
+
 void TwoDigitNewickIndexer::UpdateCalculatedFromIndex()
 {
   const int sz = m_newicks.Size();
@@ -655,6 +658,6 @@ void TwoDigitNewickIndexer::UpdateCalculatedFromIndex()
     }
   }
 }
-//---------------------------------------------------------------------------
+
 
 

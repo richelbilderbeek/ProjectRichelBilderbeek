@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 LedWidget, Widget for the Led class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,19 +15,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppLedWidget.htm
-//---------------------------------------------------------------------------
+
 #ifndef LEDWIDGET_H
 #define LEDWIDGET_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "widget.h"
-//---------------------------------------------------------------------------
+
 struct Led;
-//---------------------------------------------------------------------------
+
 ///Widget for displaying a Led
 struct LedWidget : public Widget
 {
@@ -60,7 +63,7 @@ struct LedWidget : public Widget
 
   friend std::ostream& operator<<(std::ostream& os, const LedWidget& widget);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const LedWidget& widget);
-//---------------------------------------------------------------------------
+
 #endif // LEDWIDGET_H

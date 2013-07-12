@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ShinyButtonWidget, widget for the ShinyButton class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,19 +15,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppShinyButtonWidget.htm
-//---------------------------------------------------------------------------
+
 #ifndef SHINYBUTTONWIDGET_H
 #define SHINYBUTTONWIDGET_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "widget.h"
-//---------------------------------------------------------------------------
+
 struct ShinyButton;
-//---------------------------------------------------------------------------
+
 struct ShinyButtonWidget : public Widget
 {
   explicit ShinyButtonWidget(
@@ -62,7 +65,7 @@ struct ShinyButtonWidget : public Widget
   ///Allow std::cout access to ShinyButtonWidget
   friend std::ostream& operator<<(std::ostream& os, const ShinyButtonWidget& button);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const ShinyButtonWidget& button);
-//---------------------------------------------------------------------------
+
 #endif // SHINYBUTTONWIDGET_H

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 TestLed, tool to test the Led class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/ToolTestLed.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "led.h"
 #include "ledwidget.h"
-//---------------------------------------------------------------------------
+
 const About TestLedMenuDialog::GetAbout()
 {
   About a(
@@ -45,12 +48,12 @@ const About TestLedMenuDialog::GetAbout()
   a.AddLibrary("LedWidget version: " + LedWidget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string TestLedMenuDialog::GetVersion()
 {
   return "1.3";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> TestLedMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -60,4 +63,4 @@ const std::vector<std::string> TestLedMenuDialog::GetVersionHistory()
   v.push_back("2011-09-08: Version 1.3: added Welcome screen picture and increased testing in website version");
   return v;
 }
-//---------------------------------------------------------------------------
+

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 TicTacToe, tic-tac-toe game class
 Copyright (C) 2010 Richel Bilderbeek
@@ -15,16 +15,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppTicTacToe.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "tictactoe.h"
 
 #include <algorithm>
@@ -38,7 +43,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 ///TicTacToe default contructor creates an empty board,
 ///where the current turn is to player1.
 TicTacToe::TicTacToe()
@@ -53,7 +60,7 @@ TicTacToe::TicTacToe()
   assert(GetCurrentTurn() == 0);
   assert(GetCurrentPlayer() == TicTacToe::player1);
 }
-//---------------------------------------------------------------------------
+
 ///TicTacToe contructor from summized state integer.
 TicTacToe::TicTacToe(const int state)
   : m_board(boost::extents[3][3]),
@@ -64,13 +71,13 @@ TicTacToe::TicTacToe(const int state)
   assert(GetCurrentPlayer() == TicTacToe::player1
     ||   GetCurrentPlayer() == TicTacToe::player2);
 }
-//---------------------------------------------------------------------------
+
 bool TicTacToe::CanDoMove(const int x, const int y) const
 {
   if (m_board[x][y]==0) return true;
   return false;
 }
-//---------------------------------------------------------------------------
+
 void TicTacToe::DoMove(const int x, const int y)
 {
   assert(CanDoMove(x,y));
@@ -79,7 +86,7 @@ void TicTacToe::DoMove(const int x, const int y)
   m_board[x][y] = m_current_player;
   m_current_player = (m_current_player == 1 ? 2 : 1);
 }
-//---------------------------------------------------------------------------
+
 ///GetCurrentTurn returns the turn number.
 int TicTacToe::GetCurrentTurn() const
 {
@@ -90,13 +97,13 @@ int TicTacToe::GetCurrentTurn() const
   }
   return turn;
 }
-//---------------------------------------------------------------------------
+
 ///GetSquare returns the content at square (x,y)
 int TicTacToe::GetSquare(const int x,const int y) const
 {
   return m_board[x][y];
 }
-//---------------------------------------------------------------------------
+
 ///GetSummarizedState returns an integer summarizing the
 ///state, which is both tic-tac-toe board and whose turn it is.
 ///In trinary, for lowest order digit:\n
@@ -131,7 +138,7 @@ int TicTacToe::GetSummarizedState() const
   z += (m_current_player * IntPower(3,9));
   return z;
 }
-//---------------------------------------------------------------------------
+
 ///GetWinner returns the winner.
 ///TicTacToe::no_winner : no winner yet\n
 ///TicTacToe::player1   : player1 has won\n
@@ -170,7 +177,7 @@ int TicTacToe::GetWinner() const
   //No winner
   return TicTacToe::no_winner;
 }
-//---------------------------------------------------------------------------
+
 bool TicTacToe::NoEmptySquares() const
 {
   for (int i=0; i!=9; ++i)
@@ -179,7 +186,7 @@ bool TicTacToe::NoEmptySquares() const
   }
   return true;
 }
-//---------------------------------------------------------------------------
+
 ///SetBoard sets a tic-tac-toe board.
 void TicTacToe::SetBoard(const boost::multi_array<int,2>& board)
 {
@@ -197,7 +204,7 @@ void TicTacToe::SetBoard(const boost::multi_array<int,2>& board)
   }
   #endif
 }
-//---------------------------------------------------------------------------
+
 ///SetSquare sets the value of square (x,y).
 void TicTacToe::SetSquare(
   const int x, const int y, const int square_state)
@@ -211,7 +218,7 @@ void TicTacToe::SetSquare(
   //Internal test
   assert(GetSquare(x,y)==square_state);
 }
-//---------------------------------------------------------------------------
+
 ///SetSummarizedState sets the TicTacToe state,
 ///which is both tic-tac-toe board and whose turn it is.
 void TicTacToe::SetSummarizedState(const int original_state)
@@ -232,7 +239,7 @@ void TicTacToe::SetSummarizedState(const int original_state)
   //Internal check
   assert(GetSummarizedState()==original_state);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os,const TicTacToe& t)
 {
   os
@@ -249,14 +256,14 @@ std::ostream& operator<<(std::ostream& os,const TicTacToe& t)
     << t.GetSquare(2,2);
   return os;
 }
-//---------------------------------------------------------------------------
+
 bool operator==(const TicTacToe& lhs, const TicTacToe& rhs)
 {
   return lhs.GetBoard() == rhs.GetBoard()
       && lhs.GetCurrentPlayer() == rhs.GetCurrentPlayer()
       && lhs.GetCurrentTurn() == rhs.GetCurrentTurn();
 }
-//---------------------------------------------------------------------------
+
 ///From http://www.richelbilderbeek.nl/CppIntPower.htm
 int IntPower(const int base, const int exponent)
 {
@@ -272,4 +279,4 @@ int IntPower(const int base, const int exponent)
   }
   return result;
 }
-//---------------------------------------------------------------------------
+

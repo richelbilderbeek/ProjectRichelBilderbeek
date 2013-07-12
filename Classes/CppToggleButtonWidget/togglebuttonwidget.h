@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ToggleButtonWidget, widget for the ToggleButton class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,18 +15,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppToggleButtonWidget.htm
-//---------------------------------------------------------------------------
+
 #ifndef TOGGLEBUTTONWIDGET_H
 #define TOGGLEBUTTONWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "widget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct ToggleButton;
-//---------------------------------------------------------------------------
+
 struct ToggleButtonWidget : public Widget
 {
   explicit ToggleButtonWidget(
@@ -56,7 +59,7 @@ struct ToggleButtonWidget : public Widget
 
   friend std::ostream& operator<<(std::ostream& os, const ToggleButtonWidget& button);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const ToggleButtonWidget& button);
-//---------------------------------------------------------------------------
+
 #endif // TOGGLEBUTTONWIDGET_H

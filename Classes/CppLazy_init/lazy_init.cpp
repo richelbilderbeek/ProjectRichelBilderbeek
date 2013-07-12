@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Lazy_init. Class to postpone constructor call upon first use.
 Copyright (C) 2012 Richel Bilderbeek
@@ -16,27 +16,30 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppLazy_init.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "lazy_init.h"
-//---------------------------------------------------------------------------
+
 const std::string Lazy_initVersion::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> Lazy_initVersion::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-02-11: version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+

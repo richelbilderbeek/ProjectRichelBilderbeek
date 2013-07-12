@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Encranger, encryption and de-encryption class
 Copyright (C) 2010-2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 // From http://www.richelbilderbeek.nl/ToolMultiEncranger.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -33,16 +36,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <numeric>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "loopreader.h"
-//---------------------------------------------------------------------------
+
 Encranger::Encranger(const int key)
   : characters(CreateCharacters()),
     table(CreateTable(key,characters.size()))
 {
 
 }
-//---------------------------------------------------------------------------
+
 const std::string Encranger::Encrypt(std::string s) const
 {
   typedef std::string::iterator StringIterator;
@@ -56,7 +59,7 @@ const std::string Encranger::Encrypt(std::string s) const
   }
   return s;
 }
-//---------------------------------------------------------------------------
+
 const std::string Encranger::Deencrypt(std::string s) const
 {
   typedef std::string::iterator StringIterator;
@@ -69,7 +72,7 @@ const std::string Encranger::Deencrypt(std::string s) const
   }
   return s;
 }
-//---------------------------------------------------------------------------
+
 char Encranger::Encrypt(const char c, const int d) const
 {
   const int i = GetIndex(c);
@@ -79,7 +82,7 @@ char Encranger::Encrypt(const char c, const int d) const
   assert(i_new < static_cast<int>(characters.size()));
   return characters[i_new];
 }
-//---------------------------------------------------------------------------
+
 char Encranger::Deencrypt(const char c, const int d) const
 {
   const int i = GetIndex(c);
@@ -89,7 +92,7 @@ char Encranger::Deencrypt(const char c, const int d) const
   assert(i_new < static_cast<int>(characters.size()));
   return characters[i_new];
 }
-//---------------------------------------------------------------------------
+
 int Encranger::GetIndex(const char c) const
 {
   if (c == '\t' || c == '\n') return GetIndex(' ');
@@ -98,7 +101,7 @@ int Encranger::GetIndex(const char c) const
   assert(i!=characters.end());
   return i - characters.begin();
 }
-//---------------------------------------------------------------------------
+
 const std::vector<int> Encranger::CreateTable(const int key, const unsigned int sz) const
 {
   assert(sz!=0);
@@ -121,7 +124,7 @@ const std::vector<int> Encranger::CreateTable(const int key, const unsigned int 
 
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::vector<char> Encranger::CreateCharacters() const
 {
   std::vector<char> v;
@@ -227,12 +230,12 @@ const std::vector<char> Encranger::CreateCharacters() const
   v.push_back(' ');
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::string Encranger::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> Encranger::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -240,4 +243,4 @@ const std::vector<std::string> Encranger::GetVersionHistory()
   v.push_back("2011-01-12: version 1.1: added version info");
   return v;
 }
-//---------------------------------------------------------------------------
+

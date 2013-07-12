@@ -1,21 +1,28 @@
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "newickcpp98.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/tuple/tuple.hpp>
 #include <boost/tuple/tuple_comparison.hpp>
-//---------------------------------------------------------------------------
+
 #include "fuzzy_equal_to.h"
 #include "newick.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 namespace NewickCpp98 {
-//---------------------------------------------------------------------------
+
 ///CreateValidTrinaryNewicks creates std::strings
 ///that can be converted to a TrinaryNewickVector.
 ///From http://www.richelbilderbeek.nl/CppCreateValidTinaryNewicks.htm
@@ -50,7 +57,7 @@ const std::vector<std::string> CreateValidTrinaryNewicks()
   v.push_back("((11,22,33),(44,55,66),(77,88,99))");
   return v;
 }
-//---------------------------------------------------------------------------
+
 std::vector<boost::tuple<std::string,double,double> > GetKnownProbabilities()
 {
   std::vector<boost::tuple<std::string,double,double> > v;
@@ -196,7 +203,7 @@ std::vector<boost::tuple<std::string,double,double> > GetKnownProbabilities()
   v.push_back(boost::make_tuple("(1,1,1,1,1,1)"  , 10.0, 0.2775003));
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///GetRootBranches obtains the root branches from a non-unary Newick.
 ///Examples:
 ///(1,2)               -> { 1     , 2             }
@@ -269,7 +276,7 @@ const std::vector<std::vector<int> >
   assert(v.size() > 1);
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///GetSimplerNewicksFrequencyPairs creates simpler, derived Newicks from a Newick.
 ///Its simpler Newicks are identical to those created by GetSimplerNewicks.
 ///From http://www.richelbilderbeek.nl/CppGetSimplerNewicksFrequencyPairs.htm
@@ -508,8 +515,9 @@ const std::vector<std::pair<std::vector<int>,int> >
   }
   */
 }
-//---------------------------------------------------------------------------
 
+
+#ifndef NDEBUG
 ///Test tests all Newick functions
 void Test()
 {
@@ -823,8 +831,8 @@ void Test()
     const std::string s("(1,(1,3,4))");
     const std::vector<std::pair<std::vector<int>,int> > n
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
-    typedef std::pair<std::vector<int>,int> Pair;
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_1_134
+    typedef std::pair<std::vector<int>,int> Pair;
     BOOST_FOREACH(const Pair& p, n)
     {
       std::cout << Newick::NewickToString(p.first) << '\n';
@@ -990,7 +998,8 @@ void Test()
     }
   }
 }
-//---------------------------------------------------------------------------
+#endif
+
 } //~namespace NewickCpp98
-//---------------------------------------------------------------------------
+
 

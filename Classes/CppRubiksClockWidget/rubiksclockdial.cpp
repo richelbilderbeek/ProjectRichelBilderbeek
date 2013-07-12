@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 RubiksClockDial, class for displaying a Rubik's Clock Dial
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,28 +15,35 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppRubiksClockWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "rubiksclockdial.h"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "rectangle.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 RubiksClockDial::RubiksClockDial(
   const int time,
   const int x,
@@ -52,19 +59,19 @@ RubiksClockDial::RubiksClockDial(
   this->SetGeometry(Rect(x,y,width,height));
   this->Turn(-1);
 }
-//---------------------------------------------------------------------------
+
 const std::string RubiksClockDial::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> RubiksClockDial::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-09-08: Version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void RubiksClockDial::Turn(const int n_positions_clockwise)
 {
   if (n_positions_clockwise % 12 != 0)
@@ -78,7 +85,7 @@ void RubiksClockDial::Turn(const int n_positions_clockwise)
     m_dial->SetPosition(boost::numeric_cast<double>(m_time) / 12.0);
   }
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget)
 {
   os
@@ -88,5 +95,5 @@ std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget)
     << "</RubiksClockDial>";
   return os;
 }
-//---------------------------------------------------------------------------
+
 

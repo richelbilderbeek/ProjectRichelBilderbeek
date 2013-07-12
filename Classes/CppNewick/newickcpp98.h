@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 NewickCpp98, C++98 Newick functions
 Copyright (C) 2010-2011 Richel Bilderbeek
@@ -15,31 +15,36 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppNewick.htm
-//---------------------------------------------------------------------------
+
 #ifndef NEWICKCPP98_H
 #define NEWICKCPP98_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
 #endif
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/tuple/tuple.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace NewickCpp98 {
-//---------------------------------------------------------------------------
+
 //Functions that do not use the C++0x standard
 const std::vector<std::string> CreateValidTrinaryNewicks();
 std::vector<boost::tuple<std::string,double,double> > GetKnownProbabilities();
 const std::vector<std::pair<std::vector<int>,int> > GetSimplerNewicksFrequencyPairs(const std::vector<int>& n);
 const std::vector<std::vector<int> > GetRootBranches(const std::vector<int>& n);
+#ifndef NDEBUG
 void Test();
-//---------------------------------------------------------------------------
+#endif
+
 } //~namespace NewickCpp98
-//---------------------------------------------------------------------------
+
 #endif // NEWICKCPP98_H

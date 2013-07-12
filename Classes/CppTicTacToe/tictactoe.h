@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 TicTacToe, tic-tac-toe game class
 Copyright (C) 2010 Richel Bilderbeek
@@ -15,15 +15,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppTicTacToe.htm
-//---------------------------------------------------------------------------
+
 #ifndef TICTACTOE_H
 #define TICTACTOE_H
-//---------------------------------------------------------------------------
+
 #include <iosfwd>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/multi_array.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ///TicTacToe is a tic-tac-toe game class.
 struct TicTacToe
 {
@@ -98,14 +102,14 @@ struct TicTacToe
 
   friend std::ostream& operator<<(std::ostream& os,const TicTacToe& t);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os,const TicTacToe& t);
-//---------------------------------------------------------------------------
+
 bool operator==(const TicTacToe& lhs, const TicTacToe& rhs);
-//---------------------------------------------------------------------------
+
 ///From http://www.richelbilderbeek.nl/CppIntPower.htm
 int IntPower(const int base, const int exponent);
-//---------------------------------------------------------------------------
+
 //YYYY-MM-DD: version X.Y: [description]
 //2010-09-19: version 1.3: made CanDoMove method a const method
 

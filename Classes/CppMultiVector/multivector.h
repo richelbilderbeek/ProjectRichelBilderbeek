@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 MultiVector, any-dimensional std::vector class
 Copyright (C) 2011 Richel Bilderbeek
@@ -10,27 +10,31 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+MERCHANTABILITY or FITNESS  A PARTICULAR PURPOSE.See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppMultiVector.htm
-//---------------------------------------------------------------------------
+
 #ifndef MULTIVECTOR_H
 #define MULTIVECTOR_H
-//---------------------------------------------------------------------------
+
 #include <cassert>
 #include <iostream>
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 template <class T>
 struct MultiVector
 {
-  //---------------------------------------------------------------------------
+
   ///CanRetrieve returns if an index/coordinat can be retrieved
   bool CanRetrieve(const std::vector<int>& indices) const
   {
@@ -50,7 +54,7 @@ struct MultiVector
       return m_multivectors[ indices[0] ].CanRetrieve(copy_indices);
     }
   }
-  //---------------------------------------------------------------------------
+
   ///CreateTable creates a non-recursive table
   const std::vector<std::pair<std::vector<T>,T> > CreateTable() const
   {
@@ -58,11 +62,11 @@ struct MultiVector
     std::vector<std::pair<std::vector<T>,T> > v;
     return v;
   }
-  //---------------------------------------------------------------------------
+
   const std::vector<T>& PeekIndices() const { return m_indices; }
-  //---------------------------------------------------------------------------
+
   const std::vector<MultiVector>& PeekMultiVectors() const { return m_multivectors; }
-  //---------------------------------------------------------------------------
+
   ///Retrieve retrieves a stored value at a certain, any-dimensional index/coordinat
   const T& Retrieve(const std::vector<int>& indices) const
   {
@@ -85,7 +89,7 @@ struct MultiVector
       return m_multivectors[ indices[0] ].Retrieve(copy_indices);
     }
   }
-  //---------------------------------------------------------------------------
+
   ///Store stores a value at a certain, any-dimensional index/coordinat
   void Store(const std::vector<int>& indices, const T& value)
   {
@@ -112,18 +116,18 @@ struct MultiVector
       m_multivectors[ indices[0] ].Store(copy_indices,value);
     }
   }
-  //---------------------------------------------------------------------------
+
   private:
   std::vector<T> m_indices;
   std::vector<MultiVector> m_multivectors;
 
   public:
-  //---------------------------------------------------------------------------
+
   static const std::string GetVersion()
   {
     return "1.1";
   }
-  //---------------------------------------------------------------------------
+
   const std::vector<std::string> GetVersionHistory()
   {
     std::vector<std::string> v;
@@ -132,7 +136,7 @@ struct MultiVector
     v.push_back("2011-03-02: version 1.1: added CanRetrieve and Peek methods");
     return v;
   }
-  //---------------------------------------------------------------------------
+
 }; //~MultiVector
-//---------------------------------------------------------------------------
+
 #endif // MULTIVECTOR_H
