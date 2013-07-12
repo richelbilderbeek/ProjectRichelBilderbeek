@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestAbout, tests the About classes
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,9 +18,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestAbout.htm
 //---------------------------------------------------------------------------
+
+#if QT_VERSION >= 0x050000
 #include <QtGui/QApplication>
+#else
+#include <QApplication>
+#endif
+
 #include "qttestaboutmaindialog.h"
-//---------------------------------------------------------------------------
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
@@ -28,4 +34,3 @@ int main(int argc, char *argv[])
   w.show();
   return a.exec();
 }
-//---------------------------------------------------------------------------

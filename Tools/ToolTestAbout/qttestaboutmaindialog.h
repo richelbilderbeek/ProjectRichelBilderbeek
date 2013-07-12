@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestAbout, tests the About classes
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,13 +20,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTABOUTMAINDIALOG_H
 #define QTTESTABOUTMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
 class QtTestAboutMainDialog;
 }
-//---------------------------------------------------------------------------
+
 class QtTestAboutMainDialog : public QDialog
 {
   Q_OBJECT
@@ -49,5 +49,5 @@ private:
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 #endif // QTTESTABOUTMAINDIALOG_H

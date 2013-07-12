@@ -35,12 +35,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <iterator>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
+
 #if !(__GNUC__ > 4 && __GNUC_MINOR__ > 4)
 #include <boost/foreach.hpp>
 #endif
 
 #include <boost/lexical_cast.hpp>
 #include <boost/version.hpp>
+#pragma GCC diagnostic pop
+
 
 //#include "trace.h"
 
