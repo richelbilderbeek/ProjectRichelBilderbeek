@@ -319,7 +319,9 @@ namespace Newick
   ///Surround surrounds the Newick with brackets
   const std::vector<int> Surround(const std::vector<int>& newick);
 
+  #ifndef NDEBUG
   void Test();
+  #endif
 
   char ValueToChar(const int value);
 
