@@ -57,7 +57,7 @@ const std::string KalmanFiltererMenuDialog::GetVersion()
 const std::vector<std::string> KalmanFiltererMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
-  v.push_back("2013-04-28: version 1.0: initial version that started from CppKalmanFilterExample13");
+  v.push_back("2013-04-28: version 1.0: initial Qt4 and Boost 1.49.0 version that started from CppKalmanFilterExample13");
   v.push_back("2013-05-01: version 1.1: added plotting, added steady-state Kalman filter");
   v.push_back("2013-05-02: version 1.2: fixed messed-up graphs and calculation displayal");
   v.push_back("2013-05-03: version 1.3: improved parameters GUI and use");

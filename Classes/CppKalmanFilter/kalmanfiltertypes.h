@@ -3,8 +3,14 @@
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #include <boost/bimap.hpp>
 #include "kalmanfiltertype.h"
+
+#pragma GCC diagnostic pop
 
 ///Class to work on one or more KalmanFilterType instances
 struct KalmanFilterTypes

@@ -8,6 +8,8 @@
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtstandardkalmanfiltercalculationdialog.h"
 
 #include <boost/lexical_cast.hpp>
@@ -18,6 +20,8 @@
 #include "standardkalmanfiltercalculationelements.h"
 #include "standardkalmanfilterparameters.h"
 #include "ui_qtstandardkalmanfiltercalculationdialog.h"
+
+#pragma GCC diagnostic pop
 
 QtStandardKalmanFilterCalculationDialog::QtStandardKalmanFilterCalculationDialog(QWidget *parent) :
   QtKalmanFilterCalculationDialog(parent),

@@ -3,7 +3,12 @@
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bimap.hpp>
+#pragma GCC diagnostic pop
+
 #include "whitenoisesystemtype.h"
 
 struct WhiteNoiseSystemTypes

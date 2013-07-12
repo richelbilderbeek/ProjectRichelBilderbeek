@@ -28,12 +28,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtublasvectordoublemodel.h"
 
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 #include "matrix.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent)
   : QAbstractTableModel(parent)

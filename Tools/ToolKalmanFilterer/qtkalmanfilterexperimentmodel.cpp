@@ -8,6 +8,8 @@
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkalmanfilterexperimentmodel.h"
 
 #include <cassert>
@@ -42,6 +44,8 @@
 #include "whitenoisesystemparameters.h"
 #include "whitenoisesystemtype.h"
 #include "whitenoisesystemtypes.h"
+
+#pragma GCC diagnostic pop
 
 const boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::numeric::ublas::matrix<std::string>& v)
 {

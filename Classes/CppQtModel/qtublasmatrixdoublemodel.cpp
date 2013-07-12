@@ -28,6 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtublasmatrixdoublemodel.h"
 
 #include <numeric>
@@ -36,6 +38,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "matrix.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent)
   : QAbstractTableModel(parent)

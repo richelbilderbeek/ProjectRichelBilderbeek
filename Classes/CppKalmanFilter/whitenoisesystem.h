@@ -5,7 +5,11 @@
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 #include "whitenoisesystemtype.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "whitenoisesystemparameters.h"
+#pragma GCC diagnostic pop
 
 struct WhiteNoiseSystem : public boost::noncopyable
 {

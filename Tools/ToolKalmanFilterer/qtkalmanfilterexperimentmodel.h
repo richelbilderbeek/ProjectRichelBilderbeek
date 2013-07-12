@@ -14,7 +14,11 @@
 
 #include <QAbstractTableModel>
 #include <QObject>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
 #include "kalmanfilterexperimentparametertype.h"
 #include "kalmanfiltertype.h"
 #include "kalmanfilter.h"

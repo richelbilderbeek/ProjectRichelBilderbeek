@@ -14,6 +14,8 @@
 #include <cstdlib>
 #include <fstream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
@@ -21,6 +23,8 @@
 #include <boost/numeric/ublas/functional.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+
+#pragma GCC diagnostic pop
 
 #include <QFileDialog>
 #include <QKeyEvent>

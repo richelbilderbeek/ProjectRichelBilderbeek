@@ -9,8 +9,12 @@
 #endif
 #endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+#pragma GCC diagnostic pop
+
 #include <QDialog>
 
 ///NEVER FORGET: Do never use forward declarations in header files parsed by MOC

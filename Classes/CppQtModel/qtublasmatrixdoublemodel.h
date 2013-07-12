@@ -29,7 +29,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #endif
 #endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
+#pragma GCC diagnostic pop
 #include <QAbstractTableModel>
 
 struct QtUblasMatrixDoubleModel : public QAbstractTableModel

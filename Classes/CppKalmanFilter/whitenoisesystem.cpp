@@ -8,11 +8,14 @@
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "whitenoisesystem.h"
 
 #include <cassert>
 #include <boost/random.hpp>
 
+#pragma GCC diagnostic pop
 
 WhiteNoiseSystem::WhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
   : m_current_state(parameters->GetInitialState()),

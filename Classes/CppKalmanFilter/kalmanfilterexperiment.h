@@ -3,6 +3,9 @@
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
@@ -15,6 +18,7 @@
 #include "kalmanfilter.h"
 #include "whitenoisesystem.h"
 
+#pragma GCC diagnostic pop
 
 ///A KalmanFilterExperiment
 struct KalmanFilterExperiment : public boost::noncopyable

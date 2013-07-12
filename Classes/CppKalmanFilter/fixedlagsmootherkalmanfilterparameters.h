@@ -1,6 +1,7 @@
 #ifndef FIXEDLAGSMOOTHERKALMANFILTERPARAMETERS_H
 #define FIXEDLAGSMOOTHERKALMANFILTERPARAMETERS_H
 
+
 #include <boost/shared_ptr.hpp>
 
 #include "kalmanfilterparameters.h"

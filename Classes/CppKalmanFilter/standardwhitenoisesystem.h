@@ -1,11 +1,14 @@
 #ifndef STANDARDWHITENOISESYSTEM_H
 #define STANDARDWHITENOISESYSTEM_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include "standardwhitenoisesystemparameters.h"
 #include "whitenoisesystem.h"
 #include "whitenoisesystemparameters.h"
 
+#pragma GCC diagnostic pop
 
 struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
 {

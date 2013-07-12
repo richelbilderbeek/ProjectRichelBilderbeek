@@ -12,7 +12,11 @@
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/split.hpp>
+#pragma GCC diagnostic pop
 
 #include <QApplication>
 #include <QClipboard>

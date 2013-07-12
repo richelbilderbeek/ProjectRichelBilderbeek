@@ -15,9 +15,12 @@
 #include <QDialog>
 #include <QTableWidget>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 ///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
 #include "laggedwhitenoisesystemparameters.h"

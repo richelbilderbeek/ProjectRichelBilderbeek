@@ -31,8 +31,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #include <boost/numeric/ublas/vector.hpp>
 #include <QAbstractTableModel>
+
+#pragma GCC diagnostic pop
 
 struct QtUblasVectorIntModel: public QAbstractTableModel
 {

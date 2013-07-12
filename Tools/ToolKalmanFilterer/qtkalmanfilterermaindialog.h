@@ -11,6 +11,8 @@
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -28,6 +30,9 @@
 #include "qtstandardkalmanfiltercalculationdialog.h"
 #include "qtsteadystatekalmanfiltercalculationdialog.h"
 #include "qtwhitenoisesystemparametersdialog.h"
+
+#pragma GCC diagnostic pop
+
 
 namespace Ui {
   class QtKalmanFiltererMainDialog;

@@ -1,12 +1,16 @@
 #ifndef STEADYSTATEKALMANFILTER_H
 #define STEADYSTATEKALMANFILTER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
 #include "kalmanfilter.h"
 #include "steadystatekalmanfilterparameters.h"
 #include "steadystatekalmanfiltercalculationelements.h"
+
+#pragma GCC diagnostic pop
 
 ///A discrete time Kalman filter
 struct SteadyStateKalmanFilter : public KalmanFilter

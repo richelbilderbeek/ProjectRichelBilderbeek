@@ -1,11 +1,14 @@
 #ifndef STANDARDKALMANFILTERPARAMETERS_H
 #define STANDARDKALMANFILTERPARAMETERS_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
-#include "kalmanfilterparameters.h"
-//#include <boost/numeric/ublas/vector.hpp>
 
+#include "kalmanfilterparameters.h"
+
+#pragma GCC diagnostic pop
 
 ///Parameters for the standard Kalman filter
 struct StandardKalmanFilterParameters : public KalmanFilterParameters

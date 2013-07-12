@@ -9,14 +9,12 @@
 #endif
 #endif
 
-//#include <vector>
-
 #include <QDialog>
-//#include <QTableWidget>
 
-//#include <boost/numeric/ublas/matrix.hpp>
-//#include <boost/numeric/ublas/vector.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
 
 ///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
 #include "kalmanfilterexample.h"

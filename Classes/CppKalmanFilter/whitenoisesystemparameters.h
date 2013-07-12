@@ -1,10 +1,15 @@
 #ifndef WHITENOISESYSTEMPARAMETERS_H
 #define WHITENOISESYSTEMPARAMETERS_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/noncopyable.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+
 #include "whitenoisesystemtype.h"
+
+#pragma GCC diagnostic pop
 
 ///ABC of the parameters of a white noise system
 struct WhiteNoiseSystemParameters : public boost::noncopyable

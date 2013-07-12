@@ -8,6 +8,8 @@
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtfixedlagsmootherkalmanfiltercalculationdialog.h"
 
 #include <boost/lexical_cast.hpp>
@@ -17,6 +19,8 @@
 #include "fixedlagsmootherkalmanfilterparameters.h"
 #include "kalmanfiltercalculationelements.h"
 #include "ui_qtfixedlagsmootherkalmanfiltercalculationdialog.h"
+
+#pragma GCC diagnostic pop
 
 QtFixedLagSmootherKalmanFilterCalculationDialog::QtFixedLagSmootherKalmanFilterCalculationDialog(QWidget *parent) :
   QtKalmanFilterCalculationDialog(parent),

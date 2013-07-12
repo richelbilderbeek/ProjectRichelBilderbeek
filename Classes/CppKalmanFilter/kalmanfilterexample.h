@@ -3,10 +3,16 @@
 
 #include <memory>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
+
 #include "standardkalmanfilterparameters.h"
 #include "standardwhitenoisesystemparameters.h"
+
+#pragma GCC diagnostic pop
 
 ///KalmanFilterExample contains an example set of variables
 struct KalmanFilterExample

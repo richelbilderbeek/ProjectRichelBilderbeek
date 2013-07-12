@@ -1,9 +1,12 @@
 #ifndef KALMANFILTERPARAMETERS_H
 #define KALMANFILTERPARAMETERS_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/noncopyable.hpp>
+#pragma GCC diagnostic pop
 
 #include "kalmanfiltertype.h"
 #include "kalmanfilterparametertype.h"

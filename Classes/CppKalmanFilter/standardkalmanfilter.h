@@ -1,12 +1,16 @@
 #ifndef STANDARDKALMANFILTER_H
 #define STANDARDKALMANFILTER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
 #include "kalmanfilter.h"
 #include "standardkalmanfilterparameters.h"
 #include "standardkalmanfiltercalculationelements.h"
+
+#pragma GCC diagnostic pop
 
 ///A discrete time Kalman filter
 struct StandardKalmanFilter : public KalmanFilter

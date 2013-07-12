@@ -12,6 +12,9 @@
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/split.hpp>
 
 #include <QApplication>
@@ -20,6 +23,8 @@
 #include <QMimeData>
 
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 QtCopyAllTableWidget::QtCopyAllTableWidget(QWidget *parent)
   : QTableWidget(parent)
