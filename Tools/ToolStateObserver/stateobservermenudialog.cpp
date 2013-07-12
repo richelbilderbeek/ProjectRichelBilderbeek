@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-StateObserver, tool to test the QtCreatorProFile class
-Copyright (C) 2010-2013 Richel Bilderbeek
+StateObserver, tool to examine state observers
+Copyright (C) 2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ const About StateObserverMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "StateObserver",
     "tool to examine state observers",
-    "the 17th of June 2013",
+    "the 12th of July 2013",
     "2013",
     "http://www.richelbilderbeek.nl/ToolStateObserver.htm",
     GetVersion(),
@@ -71,5 +71,6 @@ const std::vector<std::string> StateObserverMenuDialog::GetVersionHistory()
   v.push_back("2013-05-25: version 1.0: initial version");
   v.push_back("2013-06-04: version 1.1: added more state observers, allow plotting of subset of state observers");
   v.push_back("2013-06-17: version 1.1: improved menu screen");
+  v.push_back("2013-07-12: version 1.2: transitioned to Qt5 and Boost 1.54.0");
   return v;
 }
