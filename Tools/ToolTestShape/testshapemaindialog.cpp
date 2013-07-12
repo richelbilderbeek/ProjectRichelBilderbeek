@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 TestShape, tool to test the Shape and ShapeWidget classes
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/ToolTestShape.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -30,17 +30,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "testshapemaindialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+#include <boost/math/constants/constants.hpp>
+#pragma GCC diagnostic pop
+
 #include "shape.h"
 #include "shapewidget.h"
-//---------------------------------------------------------------------------
+
 TestShapeMainDialog::TestShapeMainDialog()
   : m_shapes(CreateShapes())
 {
 
 }
-//---------------------------------------------------------------------------
+
 std::vector<boost::shared_ptr<ShapeWidget> > TestShapeMainDialog::CreateShapes()
 {
   std::vector<boost::shared_ptr<ShapeWidget> > v;
@@ -48,7 +52,12 @@ std::vector<boost::shared_ptr<ShapeWidget> > TestShapeMainDialog::CreateShapes()
   {
     for (int angle=0; angle!=8; ++angle)
     {
-      const double rotation = (boost::numeric_cast<double>(angle) / 8.0) * 2.0 * M_PI;
+      #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
+      const double pi = M_PI;
+      #else
+      const double pi = boost::math::constants::pi<double>();
+      #endif
+      const double rotation = (boost::numeric_cast<double>(angle) / 8.0) * 2.0 * pi;
       const int r_i = (n_corners           * 32) % 256;
       const int g_i = (angle               * 32) % 256;
       const int b_i = ((n_corners + angle) * 32) % 256;
@@ -64,8 +73,8 @@ std::vector<boost::shared_ptr<ShapeWidget> > TestShapeMainDialog::CreateShapes()
   //std::random_shuffle(v.begin(),v.end());
   return v;
 }
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
+
+
+
