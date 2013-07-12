@@ -141,7 +141,7 @@ const About MenuDialog::GetAbout()
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 29th of May 2013",
+    "the 11th of July 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersion(),
@@ -248,7 +248,7 @@ const About MenuDialog::GetAbout()
 
 const std::string MenuDialog::GetVersion()
 {
-  return "1.08";
+  return "1.09";
 }
 
 const std::vector<std::string> MenuDialog::GetVersionHistory()
@@ -301,6 +301,7 @@ const std::vector<std::string> MenuDialog::GetVersionHistory()
   v.push_back("2013-05-25: Version 1.06: scalable architecture, added placeholder dialogs in desktop version");
   v.push_back("2013-05-26: Version 1.07: changed the main menu, added StateObserver");
   v.push_back("2013-05-29: Version 1.08: added KalmanFilterer, added About button in desktop version");
+  v.push_back("2013-07-11: Version 1.09: transition phase to Qt5, still supports Qt4");
   return v;
 }
 

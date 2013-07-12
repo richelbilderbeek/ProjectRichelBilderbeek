@@ -6,6 +6,8 @@
 #undef __STRICT_ANSI__
 #endif
 
+#include <boost/shared_ptr.hpp>
+
 #include "qtaboutdialog.h"
 
 struct QtPvdbAboutDialog
