@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,17 +19,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtconnectthreegamedialog.h"
+#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QTimer>
-//---------------------------------------------------------------------------
+
 #include "connectthree.h"
 #include "qtconnectthreeresources.h"
 #include "connectthreewidget.h"
@@ -37,7 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreegamedialog.h"
 #include "qtconnectthreewidget.h"
 #include "qtshowwinnerdialog.h"
-//---------------------------------------------------------------------------
+
 QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   QWidget *parent,
   const std::bitset<3>& is_player_human)
@@ -63,12 +69,12 @@ QtConnectThreeGameDialog::QtConnectThreeGameDialog(
 
   OnValidMove(); //Draw screen
 }
-//---------------------------------------------------------------------------
+
 QtConnectThreeGameDialog::~QtConnectThreeGameDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeGameDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -80,13 +86,13 @@ void QtConnectThreeGameDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeGameDialog::DoComputerTurn()
 {
   this->m_board->DoComputerTurn();
   OnValidMove();
 }
-//---------------------------------------------------------------------------
+
 ///OnValidMove is called after a valid move. The game
 ///is either terminated, or the next player can do
 ///his/her move.
@@ -144,4 +150,4 @@ void QtConnectThreeGameDialog::OnValidMove()
   d.exec();
   this->close();
 }
-//---------------------------------------------------------------------------
+

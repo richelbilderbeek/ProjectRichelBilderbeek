@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ConnectThreeWidget. GUI independent ConnectThree widget.
 Copyright (C) 2010 Richel Bilderbeek
@@ -16,21 +16,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppConnectThreeWidget.htm
-//---------------------------------------------------------------------------
+
 #ifndef CONNECTTHREEWIDGET_H
 #define CONNECTTHREEWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <bitset>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/tuple/tuple.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct ConnectThree;
-//---------------------------------------------------------------------------
+
 ///ConnectThreeWidget embodies the interaction with a user
 struct ConnectThreeWidget
 {
@@ -61,5 +64,5 @@ struct ConnectThreeWidget
   static const std::vector<std::string> GetVersionHistory();
 
 };
-//---------------------------------------------------------------------------
+
 #endif // CONNECTTHREEWIDGET_H

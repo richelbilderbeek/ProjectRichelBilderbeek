@@ -1,22 +1,29 @@
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtconnectthreewidget.h"
+#pragma GCC diagnostic pop
 
 #include <QMouseEvent>
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "connectthree.h"
 #include "connectthreewidget.h"
 #include "qtconnectthreeresources.h"
-//---------------------------------------------------------------------------
+
 const int QtConnectThreeWidget::m_sprite_width  = 50;
 const int QtConnectThreeWidget::m_sprite_height = 50;
-//---------------------------------------------------------------------------
+
 QtConnectThreeWidget::QtConnectThreeWidget(
   QWidget *parent,
   const std::bitset<3>& is_player_human,
@@ -34,7 +41,7 @@ QtConnectThreeWidget::QtConnectThreeWidget(
   this->setMaximumWidth( n_cols * m_sprite_width );
   this->setMaximumHeight(n_rows * m_sprite_height);
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeWidget::DoComputerTurn()
 {
   assert(IsComputerTurn());
@@ -42,17 +49,17 @@ void QtConnectThreeWidget::DoComputerTurn()
   m_widget->DoMove(move.get<0>(),move.get<1>());
   this->update();
 }
-//---------------------------------------------------------------------------
+
 int QtConnectThreeWidget::GetActivePlayer() const
 {
   return m_widget->GetGame()->GetActivePlayer();
 }
-//---------------------------------------------------------------------------
+
 const std::string QtConnectThreeWidget::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtConnectThreeWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -60,17 +67,17 @@ const std::vector<std::string> QtConnectThreeWidget::GetVersionHistory()
   v.push_back("2011-04-20: version 2.0: Moved logic to ConnectThreeWidget");
   return v;
 }
-//---------------------------------------------------------------------------
+
 int QtConnectThreeWidget::GetWinner() const
 {
   return m_widget->GetGame()->GetWinner();
 }
-//---------------------------------------------------------------------------
+
 bool QtConnectThreeWidget::IsComputerTurn() const
 {
   return m_widget->IsComputerTurn();
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeWidget::mousePressEvent(QMouseEvent * e)
 {
   //Disable clicking if it's the AI's turn
@@ -87,7 +94,7 @@ void QtConnectThreeWidget::mousePressEvent(QMouseEvent * e)
     m_signal_valid_move();
   }
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -104,7 +111,7 @@ void QtConnectThreeWidget::paintEvent(QPaintEvent *)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 const QImage& QtConnectThreeWidget::GetImage(const int sprite) const
 {
   switch (sprite)
@@ -117,6 +124,6 @@ const QImage& QtConnectThreeWidget::GetImage(const int sprite) const
   assert(!"Should not get here");
   throw std::logic_error("Unknown QtConnectThreeWidget::GetImage value");
 }
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
+

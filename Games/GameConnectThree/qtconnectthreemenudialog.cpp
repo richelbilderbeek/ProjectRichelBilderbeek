@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,8 +19,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -34,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreewidget.h"
 #include "qtselectplayerwidget.h"
 #include "ui_qtconnectthreemenudialog.h"
-//---------------------------------------------------------------------------
+
 QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtConnectThreeMenuDialog),
@@ -43,12 +46,12 @@ QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
   ui->setupUi(this);
   ui->layout_horizontal->addWidget(m_select.get());
 }
-//---------------------------------------------------------------------------
+
 QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeMenuDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -60,14 +63,14 @@ void QtConnectThreeMenuDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeMenuDialog::mousePressEvent(QMouseEvent *)
 {
   if (ui->label_start->underMouse()) { OnClickStart(); }
   else if (ui->label_about->underMouse()) { OnClickAbout(); }
   else if (ui->label_quit->underMouse()) { this->close(); }
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeMenuDialog::OnClickAbout()
 {
   About about = ConnectThreeMenuDialog::GetAbout();
@@ -77,7 +80,7 @@ void QtConnectThreeMenuDialog::OnClickAbout()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void QtConnectThreeMenuDialog::OnClickStart()
 {
   QtConnectThreeGameDialog d(0,this->m_select->GetIsPlayerHuman());
@@ -85,4 +88,4 @@ void QtConnectThreeMenuDialog::OnClickStart()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ConnectThree. A connect-three class.
 Copyright (C) 2010 Richel Bilderbeek
@@ -16,19 +16,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppConnectThree.htm
-//---------------------------------------------------------------------------
+
 #ifndef CONNECTTHREE_H
 #define CONNECTTHREE_H
-//---------------------------------------------------------------------------
+
 #include <bitset>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/tuple/tuple.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct ConnectThree
 {
   typedef boost::tuple<int,int,int> Move;
@@ -81,5 +84,5 @@ private:
   const Move MakeRandomMove() const;
 
 };
-//---------------------------------------------------------------------------
+
 #endif // CONNECTTHREE_H

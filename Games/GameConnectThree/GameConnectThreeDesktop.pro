@@ -1,13 +1,8 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-12-29T12:28:36
-#
-#-------------------------------------------------
 QT       += core gui
-TARGET = GameConnectThreeDesktop
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 TEMPLATE = app
-LIBS += -lboost_system -lboost_filesystem
-QMAKE_CXXFLAGS += -std=c++0x
+
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppConnectThree \
@@ -16,39 +11,130 @@ INCLUDEPATH += \
     ../../Classes/CppQtConnectThreeWidget \
     ../../Classes/CppTrace
 
-SOURCES += qtmain.cpp \
-    qtconnectthreegamedialog.cpp \
-    qtconnectthreemenudialog.cpp \
-    qtselectplayerwidget.cpp \
-    qtshowwinnerdialog.cpp \
+SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppConnectThree/connectthree.cpp \
+    ../../Classes/CppConnectThreeWidget/connectthreewidget.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.cpp \
-    connectthreeresources.cpp \
     connectthreemenudialog.cpp \
-    ../../Classes/CppConnectThreeWidget/connectthreewidget.cpp \
-    qtconnectthreeresources.cpp
+    connectthreeresources.cpp \
+    qtconnectthreegamedialog.cpp \
+    qtconnectthreemenudialog.cpp \
+    qtconnectthreeresources.cpp \
+    qtmain.cpp \
+    qtselectplayerwidget.cpp \
+    qtshowwinnerdialog.cpp
+
 HEADERS  += \
-    qtconnectthreegamedialog.h \
-    qtconnectthreemenudialog.h \
-    qtselectplayerwidget.h \
-    qtshowwinnerdialog.h \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppAssert/assert.h \
     ../../Classes/CppConnectThree/connectthree.h \
+    ../../Classes/CppConnectThreeWidget/connectthreewidget.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.h \
-    connectthreeresources.h \
     ../../Classes/CppTrace/trace.h \
     connectthreemenudialog.h \
-    ../../Classes/CppConnectThreeWidget/connectthreewidget.h \
-    qtconnectthreeresources.h
+    connectthreeresources.h \
+    qtconnectthreegamedialog.h \
+    qtconnectthreemenudialog.h \
+    qtconnectthreeresources.h \
+    qtselectplayerwidget.h \
+    qtshowwinnerdialog.h
+
 FORMS    += \
-    qtconnectthreemenudialog.ui \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     qtconnectthreegamedialog.ui \
-    qtshowwinnerdialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+    qtconnectthreemenudialog.ui \
+    qtshowwinnerdialog.ui
 
 RESOURCES += \
     GameConnectThree.qrc
+
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(debug, debug|release) {
+  message(Debug mode)
+}
+
+CONFIG(release, debug|release) {
+  message(Release mode)
+
+  #Remove all asserts and TRACE
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+#
+#
+# Platform specific
+#
+#
+
+#
+#
+# Compiler flags
+#
+#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
+
+unix {
+  message(Unix)
+  QMAKE_CXXFLAGS += -Werror
+}
+
+win32 {
+  !static {
+    message(Native Windows)
+    QMAKE_CXXFLAGS += -Werror
+
+  }
+
+  static {
+    message(Crosscompiling from Lubuntu to Windows)
+    #Allow the crosscompiler to emit warnings without terminating
+    QMAKE_CXXFLAGS += -std=c++0x #-Werror
+  }
+}
+
+#
+#
+# Boost
+#
+#
+
+unix {
+  message(Unix dynamic link to Boost)
+
+  LIBS += \
+  -lboost_date_time \
+  -lboost_filesystem \
+  -lboost_program_options \
+  -lboost_regex \
+  -lboost_signals \
+  -lboost_system
+}
+
+win32 {
+
+  message(Windows dynamic link to Boost)
+
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+
+  debug {
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
+  }
+  release {
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
+  }
+}
