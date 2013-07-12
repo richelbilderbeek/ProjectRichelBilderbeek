@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,8 +19,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,16 +31,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreeresources.h"
 
 #include <cassert>
-//---------------------------------------------------------------------------
+
 QtConnectThreeResources * QtConnectThreeResources::m_instance = 0;
-//---------------------------------------------------------------------------
+
 QtConnectThreeResources * QtConnectThreeResources::GetInstance()
 {
   if (!m_instance) m_instance = new QtConnectThreeResources;
   assert(m_instance);
   return m_instance;
 }
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
+
 

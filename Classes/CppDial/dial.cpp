@@ -19,16 +19,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppDial.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "dial.h"
 
-
-#include <cassert>
 #include <cmath>
 
 //Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
@@ -36,10 +39,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 # define M_PI		3.14159265358979323846	/* pi */
 #endif
 
+#include <cassert>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 Dial::Dial(
   const double position,

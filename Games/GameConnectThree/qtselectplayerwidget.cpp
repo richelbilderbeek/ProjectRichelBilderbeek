@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,8 +19,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,11 +32,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMouseEvent>
 #include <QPainter>
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
 const int QtSelectPlayerWidget::m_sprite_height = 50;
 const int QtSelectPlayerWidget::m_sprite_width  = 50;
-//---------------------------------------------------------------------------
+
 QtSelectPlayerWidget::QtSelectPlayerWidget(QWidget *parent)
   : QWidget(parent),
     m_player1(":/images/ConnectThreePlayer1.png"),
@@ -56,7 +59,7 @@ QtSelectPlayerWidget::QtSelectPlayerWidget(QWidget *parent)
   this->setMaximumWidth( 2 * m_sprite_width );
   this->setMaximumHeight(3 * m_sprite_height);
 }
-//---------------------------------------------------------------------------
+
 void QtSelectPlayerWidget::mousePressEvent(QMouseEvent * e)
 {
   const int mouse_x = e->x();
@@ -66,7 +69,7 @@ void QtSelectPlayerWidget::mousePressEvent(QMouseEvent * e)
   m_is_player_human[index] = is_human;
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtSelectPlayerWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -77,4 +80,4 @@ void QtSelectPlayerWidget::paintEvent(QPaintEvent *)
   painter.drawImage(1 * m_sprite_width,1 * m_sprite_height,m_is_player_human[1] ? m_computer_grey : m_computer2);
   painter.drawImage(1 * m_sprite_width,2 * m_sprite_height,m_is_player_human[2] ? m_computer_grey : m_computer3);
 }
-//---------------------------------------------------------------------------
+

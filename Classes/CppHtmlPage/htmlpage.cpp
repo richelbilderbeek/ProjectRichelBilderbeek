@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 HtmlPage, HTML page class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppHtmlPage.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
@@ -29,11 +29,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <fstream>
 #include <iostream>
-//---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/regex.hpp>
-#include <boost/algorithm/string.hpp>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+  #include <boost/filesystem.hpp>
+  #include <boost/regex.hpp>
+  #include <boost/algorithm/string.hpp>
+#pragma GCC diagnostic pop
+
 HtmlPage::HtmlPage(const std::string& filename)
   : m_filename(filename)
 {
@@ -63,7 +66,7 @@ HtmlPage::HtmlPage(const std::string& filename)
     }
   );
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> HtmlPage::FileToVector(const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
@@ -77,12 +80,12 @@ const std::vector<std::string> HtmlPage::FileToVector(const std::string& filenam
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::string HtmlPage::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> HtmlPage::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -90,7 +93,7 @@ const std::vector<std::string> HtmlPage::GetVersionHistory()
   v.push_back("2012-08-12: version 1.1: started versioning this class");
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::string HtmlPage::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
@@ -104,11 +107,11 @@ const std::string HtmlPage::ReplaceAll(
   }
   return s;
 }
-//---------------------------------------------------------------------------
+
 bool operator<(const HtmlPage& lhs, const HtmlPage& rhs)
 {
   //Case insensitive compare
   return boost::algorithm::to_lower_copy(lhs.GetTitle())
        < boost::algorithm::to_lower_copy(rhs.GetTitle());
 }
-//---------------------------------------------------------------------------
+

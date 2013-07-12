@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,28 +19,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "connectthreemenudialog.h"
 
-//---------------------------------------------------------------------------
+
 #include "connectthree.h"
 #include "connectthreewidget.h"
-//---------------------------------------------------------------------------
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
 const About ConnectThreeMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
     "ConnectThree",
     "connect-three game",
-    "the 25th of April 2011",
-    "2010-2011",
+    "the 11th of July 2013",
+    "2010-2013",
     "http://www.richelbilderbeek.nl/GameConnectThree.htm",
     GetVersion(),
     GetVersionHistory());
@@ -48,22 +51,23 @@ const About ConnectThreeMenuDialog::GetAbout()
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string ConnectThreeMenuDialog::GetVersion()
 {
-  return "6.2";
+  return "6.3";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ConnectThreeMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
-  v.push_back("2011-01-10: version 5.0: initial version");
+  v.push_back("2011-01-10: version 5.0: initial Qt4 version");
   v.push_back("2011-01-11: version 5.2: support that the game can end in a draw");
   v.push_back("2011-04-22: version 6.0: major architectural changes");
   v.push_back("2011-04-24: version 6.1: fixed a bug that showed when deploying to my WtWebsite");
   v.push_back("2011-04-25: version 6.2: hopefully fixed the bug as in 6.1, fixed desktop version");
+  v.push_back("2017-07-11: version 6.3: transitioned to Qt5 and Boost 1.54.0");
   return v;
 }
-//---------------------------------------------------------------------------
+
 
 

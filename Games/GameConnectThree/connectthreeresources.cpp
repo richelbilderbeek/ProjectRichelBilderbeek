@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,8 +19,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,13 +32,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
-//---------------------------------------------------------------------------
+
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
+
 ConnectThreeResources::ConnectThreeResources()
   : // m_background_filename(
     //  "RichelbilderbeekNlBackground.png"),
@@ -72,7 +75,7 @@ ConnectThreeResources::ConnectThreeResources()
 {
   Check();
 }
-//---------------------------------------------------------------------------
+
 void ConnectThreeResources::Check()
 {
   //CheckFile(m_background_filename);
@@ -92,7 +95,7 @@ void ConnectThreeResources::Check()
   CheckFile(m_players_grey_filenames[1]);
   CheckFile(m_players_grey_filenames[2]);
 }
-//---------------------------------------------------------------------------
+
 void ConnectThreeResources::CheckFile(const std::string& s)
 {
   if (!boost::filesystem::exists(s))
@@ -106,4 +109,4 @@ void ConnectThreeResources::CheckFile(const std::string& s)
   if (!boost::filesystem::exists(s)) { TRACE(s); }
   assert(boost::filesystem::exists(s));
 }
-//---------------------------------------------------------------------------
+

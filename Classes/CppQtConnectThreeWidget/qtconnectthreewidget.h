@@ -1,21 +1,28 @@
 #ifndef QTCONNECTTHREEWIDGET_H
 #define QTCONNECTTHREEWIDGET_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
 #endif
+#endif
 
 #include <bitset>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "connectthreewidget.h" //thanks to MOC :-(
 #include "connectthree.h"       //thanks to MOC :-(
 //struct ConnectThreeWidget;
-//---------------------------------------------------------------------------
+
 class QtConnectThreeWidget : public QWidget
 {
     Q_OBJECT
@@ -60,5 +67,5 @@ protected:
   static const int m_sprite_height;
 
 };
-//---------------------------------------------------------------------------
+
 #endif // QTCONNECTTHREEWIDGET_H

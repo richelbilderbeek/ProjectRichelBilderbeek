@@ -499,34 +499,51 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -Wall -Wextra
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
 
 unix {
   message(Unix)
-  #Strict error handling
-  QMAKE_CXXFLAGS += -std=c++11 -Werror
+  QMAKE_CXXFLAGS += -Werror
 }
 
 win32 {
   !static {
     message(Native Windows)
+    QMAKE_CXXFLAGS += -Werror
 
-    #Allow the GCC 4.4.0 native Windows build to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++0x #-Werror
   }
 
   static {
     message(Crosscompiling from Lubuntu to Windows)
-
     #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++11 #-Werror
+    QMAKE_CXXFLAGS += -std=c++0x #-Werror
   }
-
-
-  #Prevents error:
-  #/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"
-  DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED
 }
+
+#
+#
+# Big integer
+#
+#
+INCLUDEPATH += \
+    ../../Libraries/bigint-2010.04.30
+
+HEADERS += \
+    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.hh \
+    ../../Libraries/bigint-2010.04.30/BigInteger.hh \
+    ../../Libraries/bigint-2010.04.30/BigIntegerLibrary.hh \
+    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.hh \
+    ../../Libraries/bigint-2010.04.30/BigUnsigned.hh \
+    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.hh \
+    ../../Libraries/bigint-2010.04.30/NumberlikeArray.hh
+
+SOURCES += \
+    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \
+    ../../Libraries/bigint-2010.04.30/BigInteger.cc \
+    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \
+    ../../Libraries/bigint-2010.04.30/BigUnsigned.cc \
+    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc
 
 #
 #
@@ -535,6 +552,8 @@ win32 {
 #
 
 unix {
+  message(Unix dynamic link to Boost)
+
   LIBS += \
   -lboost_date_time \
   -lboost_filesystem \
@@ -546,84 +565,21 @@ unix {
 
 win32 {
 
-  #Boost libraries
+  message(Windows dynamic link to Boost)
+
   INCLUDEPATH += \
-    ../../Libraries/boost_1_53_0
+    ../../Libraries/boost_1_54_0
 
-  #Prevent the following error:
-  #../../Libraries/boost_1_53_0/libs/program_options/src/parsers.cpp: In function 'boost::program_options::parsed_options boost::program_options::parse_environment(const boost::program_options::options_description&, const boost::function1<std::basic_string<char>, std::basic_string<char> >&)':
-  #../../Libraries/boost_1_53_0/libs/program_options/src/parsers.cpp:194:36: error: 'environ' was not declared in this scope
-  DEFINES += __COMO_VERSION__
-
-
-  #Boost.Data_time
-  HEADERS += \
-    ../../Libraries/boost_1_53_0/libs/date_time/src/gregorian/greg_names.hpp
-  SOURCES += \
-    ../../Libraries/boost_1_53_0/libs/date_time/src/gregorian/greg_weekday.cpp \
-    ../../Libraries/boost_1_53_0/libs/date_time/src/gregorian/gregorian_types.cpp \
-    ../../Libraries/boost_1_53_0/libs/date_time/src/gregorian/greg_month.cpp \
-    ../../Libraries/boost_1_53_0/libs/date_time/src/gregorian/date_generators.cpp
-
-  #Boost.Filesystem
-  HEADERS += \
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/windows_file_codecvt.hpp
-  SOURCES += \
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/codecvt_error_category.cpp \
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/operations.cpp \
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/path.cpp \
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/path_traits.cpp \
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/portability.cpp \
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/unique_path.cpp \
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/utf8_codecvt_facet.cpp \ #Keep, comment program_options/src/utf8_codecvt_facet.cpp
-    ../../Libraries/boost_1_53_0/libs/filesystem/src/windows_file_codecvt.cpp
-
-  #Boost.Program_options
-  #
-  #This lib does not seem to work well together with Boost.Filesystem
-  #when compiled from source like this
-  #
-  #SOURCES += \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/cmdline.cpp \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/config_file.cpp \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/convert.cpp \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/options_description.cpp \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/parsers.cpp \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/positional_options.cpp \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/split.cpp \
-  #  #../../Libraries/boost_1_53_0/libs/program_options/src/utf8_codecvt_facet.cpp \ #Comment, keep filesystem/src/utf8_codecvt_facet.cpp
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/value_semantic.cpp \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/variables_map.cpp \
-  #  ../../Libraries/boost_1_53_0/libs/program_options/src/winmain.cpp
-
-  #Boost.Regex
-  HEADERS += \
-    ../../Libraries/boost_1_53_0/libs/regex/src/internals.hpp
-
-  SOURCES += \
-    ../../Libraries/boost_1_53_0/libs/regex/src/winstances.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/wide_posix_api.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/wc_regex_traits.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/w32_regex_traits.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/usinstances.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/static_mutex.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/regex_traits_defaults.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/regex_raw_buffer.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/regex_debug.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/regex.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/posix_api.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/instances.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/icu.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/fileiter.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/c_regex_traits.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/cregex.cpp \
-    ../../Libraries/boost_1_53_0/libs/regex/src/cpp_regex_traits.cpp
-
-  #Boost.System
-  HEADERS += \
-    ../../Libraries/boost_1_53_0/libs/system/src/local_free_on_destruction.hpp
-  SOURCES += \
-    ../../Libraries/boost_1_53_0/libs/system/src/error_code.cpp
+  debug {
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
+  }
+  release {
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
+    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
+  }
 }
 
 #
@@ -653,27 +609,30 @@ win32 {
     ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc
 #}
 
+#
+#
+# Qwt
+#
+#
 
-#
-#
-# Big integer
-#
-#
-INCLUDEPATH += \
-    ../../Libraries/bigint-2010.04.30
+unix {
+  INCLUDEPATH += /usr/include/qwt-qt4
+  LIBS += -lqwt-qt4
+}
 
-HEADERS += \
-    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.hh \
-    ../../Libraries/bigint-2010.04.30/BigInteger.hh \
-    ../../Libraries/bigint-2010.04.30/BigIntegerLibrary.hh \
-    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.hh \
-    ../../Libraries/bigint-2010.04.30/BigUnsigned.hh \
-    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.hh \
-    ../../Libraries/bigint-2010.04.30/NumberlikeArray.hh
+win32 {
+  message(Windows: Qwt: link dynamically)
+  INCLUDEPATH+= ../../Libraries/qwt-6.1.0/src
+  LIBS+= -L../../Libraries/qwt-6.1.0/lib
 
-SOURCES += \
-    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \
-    ../../Libraries/bigint-2010.04.30/BigInteger.cc \
-    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsigned.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc
+  CONFIG(release, debug|release) {
+    message(Windows: Qwt: Linking to qwt)
+    LIBS += -lqwt
+  }
+
+  CONFIG(debug, debug|release) {
+    message(Windows: Qwt: Linking to qwtd)
+    LIBS += -lqwtd
+  }
+}
+

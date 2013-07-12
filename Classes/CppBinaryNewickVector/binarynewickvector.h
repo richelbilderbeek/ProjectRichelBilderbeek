@@ -28,7 +28,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#pragma GCC diagnostic pop
 
 #include "BigIntegerLibrary.hh"
 #include "newickstorage.h"

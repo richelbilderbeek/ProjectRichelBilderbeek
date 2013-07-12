@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,10 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef CONNECTTHREERESOURCES_H
 #define CONNECTTHREERESOURCES_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 ///ConnectThreeResources contains all resources' filenames
 ///and checks that these are present
 struct ConnectThreeResources
@@ -55,5 +55,5 @@ struct ConnectThreeResources
   private:
   void CheckFile(const std::string& s);
 };
-//---------------------------------------------------------------------------
+
 #endif // CONNECTTHREERESOURCES_H
