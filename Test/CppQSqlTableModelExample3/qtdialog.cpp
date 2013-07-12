@@ -14,15 +14,18 @@ QtDialog::QtDialog(QWidget *parent) :
   ui->setupUi(this);
 
   QSqlTableModel * const model = new QSqlTableModel(this, m_database);
+
   model->setTable("Animals");
 
   const bool can_load_data = model->select();
   assert(can_load_data);
 
-  ui->tableView->setModel(model);
-  ui->tableView->setSortingEnabled(true);
-  ui->tableView->setAlternatingRowColors(true);
-  ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
+  ui->database->setModel(model);
+  ui->database->setSortingEnabled(true);
+  ui->database->setAlternatingRowColors(true);
+  ui->database->horizontalHeader()->setSortIndicatorShown(true);
+
+  ui->edit_sql->setText("select * from animals where n_paws > 2 and can_fly = 0");
 }
 
 QtDialog::~QtDialog()
@@ -43,7 +46,7 @@ const QSqlDatabase QtDialog::CreateDatabase()
   assert(db.tables().empty() && "There must be zero tables at startup");
 
   //Creata a 'Animals' table
-  QSqlQuery("CREATE TABLE Animals (Name TEXT NOT NULL, \"Number of paws\" INT, \"Can fly?\")");
+  QSqlQuery("CREATE TABLE Animals (name TEXT NOT NULL, \"n_paws\" INT, \"can_fly\")");
   assert(db.tables().size() == 1 && "Table Animals must have been created");
 
   //Check that table is empty
@@ -71,4 +74,30 @@ const QSqlDatabase QtDialog::CreateDatabase()
   }
 
   return db;
+}
+
+void QtDialog::on_edit_sql_textChanged(const QString &arg1)
+{
+  QSqlQuery query(arg1);
+  ui->selection->clear();
+
+  const int n_cols = 3;
+  ui->selection->setColumnCount(n_cols);
+  ui->selection->setRowCount(0);
+
+  if (!query.isActive()) return;
+  //Using QSqlQuery::size is not supported by all drivers, so count the number of rows manually
+  int row = 0;
+  while (query.next())
+  {
+    ui->selection->setRowCount(ui->selection->rowCount() + 1);
+    for (int col=0; col!=n_cols; ++col)
+    {
+      QTableWidgetItem * const item = new QTableWidgetItem;
+      item->setText(query.value(col).toString());
+      ui->selection->setItem(row,col,item);
+    }
+    ++row;
+  }
+  ui->selection->setRowCount(row);
 }

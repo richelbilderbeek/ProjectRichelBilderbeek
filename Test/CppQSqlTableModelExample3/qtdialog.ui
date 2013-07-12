@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>487</width>
+    <height>494</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,24 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QTableView" name="tableView"/>
+    <widget class="QTableView" name="database"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLineEdit" name="edit_sql">
+     <property name="toolTip">
+      <string>Type an SQL query here</string>
+     </property>
+     <property name="text">
+      <string>select * from animals</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QTableWidget" name="selection">
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

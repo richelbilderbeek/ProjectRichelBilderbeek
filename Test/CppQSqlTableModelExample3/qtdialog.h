@@ -16,6 +16,9 @@ public:
   explicit QtDialog(QWidget *parent = 0);
   ~QtDialog();
   
+private slots:
+  void on_edit_sql_textChanged(const QString &arg1);
+
 private:
   Ui::QtDialog *ui;
   QSqlDatabase m_database;
