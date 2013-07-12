@@ -6,13 +6,10 @@ win32 {
 QT += core gui
 QT += webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-<<<<<<< HEAD
 
 # undefined reference to `_imp___ZNK8QWebView8settingsEv'
 greaterThan(QT_MAJOR_VERSION, 4): QT += webkitwidgets
 
-=======
->>>>>>> e5d7016b967f9b29266296772ec8faab0455d5e1
 TEMPLATE = app
 
 #
@@ -287,18 +284,12 @@ win32 {
 
   debug {
     LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
-<<<<<<< HEAD
     LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
-=======
->>>>>>> e5d7016b967f9b29266296772ec8faab0455d5e1
     LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
   }
   release {
     LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
-<<<<<<< HEAD
     LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
-=======
->>>>>>> e5d7016b967f9b29266296772ec8faab0455d5e1
     LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
   }
 }
