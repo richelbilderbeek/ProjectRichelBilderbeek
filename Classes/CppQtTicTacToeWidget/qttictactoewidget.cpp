@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 QtTicTacToeWidget, widget for TicTacToe class
 Copyright (C) 2010 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppQtTicTacToeWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,12 +32,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <QMouseEvent>
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "tictactoe.h"
-//---------------------------------------------------------------------------
+
 QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   QWidget(parent),
   m_tictactoe(new TicTacToe)
@@ -43,7 +46,7 @@ QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   this->setMinimumHeight(64);
   this->setMinimumWidth(64);
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
 {
   if (m_tictactoe->GetWinner() != TicTacToe::no_winner) return;
@@ -62,7 +65,7 @@ void QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
   }
   repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeWidget::paintEvent(QPaintEvent *)
 {
   const int width  = this->width();
@@ -119,15 +122,15 @@ void QtTicTacToeWidget::paintEvent(QPaintEvent *)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeWidget::resizeEvent(QResizeEvent *)
 {
   repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeWidget::Restart()
 {
   m_tictactoe.reset(new TicTacToe);
   repaint();
 }
-//---------------------------------------------------------------------------
+

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Pylos, Pylos/Pyraos game
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GamePylos.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,11 +31,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpylosmaindialog.h"
 
 #include <QDesktopWidget>
-//---------------------------------------------------------------------------
+
 #include "pylosgame.h"
 #include "qtpyloswondialog.h"
 #include "ui_qtpylosmaindialog.h"
-//---------------------------------------------------------------------------
+
 QtPylosMainDialog::QtPylosMainDialog(
   QtPylosGameWidget * const pylos_widget,
   QWidget *parent) :
@@ -55,13 +58,13 @@ QtPylosMainDialog::QtPylosMainDialog(
     0,0,256,256);
   this->move( screen.center() - this->rect().center() );
 }
-//---------------------------------------------------------------------------
+
 QtPylosMainDialog::~QtPylosMainDialog()
 {
   delete ui;
   delete m_pylos_widget;
 }
-//---------------------------------------------------------------------------
+
 void QtPylosMainDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -73,12 +76,12 @@ void QtPylosMainDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 const std::string QtPylosMainDialog::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtPylosMainDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -86,7 +89,7 @@ const std::vector<std::string> QtPylosMainDialog::GetVersionHistory()
   v.push_back("2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtPylosMainDialog::OnWinner()
 {
   QtPylosWonDialog d;
@@ -94,5 +97,5 @@ void QtPylosMainDialog::OnWinner()
   d.exec();
   close();
 }
-//---------------------------------------------------------------------------
+
 

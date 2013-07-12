@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 QtMysteryMachineWidget, Wt widget for displaying the MysteryMachine class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppQtMysteryMachineWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -30,10 +33,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QMouseEvent>
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "dialwidget.h"
 #include "led.h"
@@ -46,7 +49,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtdialwidget.h"
 #include "qtledwidget.h"
 #include "qttogglebuttonwidget.h"
-//---------------------------------------------------------------------------
+
 QtMysteryMachineWidget::QtMysteryMachineWidget(QWidget *parent)
   : QWidget(parent),
     m_widget(new MysteryMachineWidget(
@@ -67,7 +70,7 @@ QtMysteryMachineWidget::QtMysteryMachineWidget(QWidget *parent)
 
   resize(200,400);
 }
-//---------------------------------------------------------------------------
+
 QtMysteryMachineWidget::QtMysteryMachineWidget(
   const int width, const int height,
   QWidget *parent)
@@ -90,17 +93,17 @@ QtMysteryMachineWidget::QtMysteryMachineWidget(
 
   resize(width,height);
 }
-//---------------------------------------------------------------------------
+
 void QtMysteryMachineWidget::DoRepaint()
 {
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 const std::string QtMysteryMachineWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtMysteryMachineWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -109,13 +112,13 @@ const std::vector<std::string> QtMysteryMachineWidget::GetVersionHistory()
   v.push_back("2011-09-15: version 2.0: made QtMysteryMachineWidget same as WtMysteryMachineWidget");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtMysteryMachineWidget::mousePressEvent(QMouseEvent * e)
 {
   m_widget->Click(e->x(),e->y());
   this->m_signal_changed();
 }
-//---------------------------------------------------------------------------
+
 void QtMysteryMachineWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -132,9 +135,9 @@ void QtMysteryMachineWidget::paintEvent(QPaintEvent *)
   QtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedTopMiddle());
   QtToggleButtonWidget::DrawToggleButton(painter,GetWidget()->GetMachine()->GetToggleButton());
 }
-//---------------------------------------------------------------------------
+
 void QtMysteryMachineWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }
-//---------------------------------------------------------------------------
+

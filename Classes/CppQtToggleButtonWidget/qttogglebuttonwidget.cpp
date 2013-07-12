@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 QtToggleButtonWidget, Qt widget for displaying the ToggleButtonWidget class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppQtToggleButtonWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -30,15 +33,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QBrush>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPen>
-//---------------------------------------------------------------------------
+
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
-//---------------------------------------------------------------------------
+
 QtToggleButtonWidget::QtToggleButtonWidget(
   const bool toggled,
   const unsigned char red,
@@ -59,13 +62,13 @@ QtToggleButtonWidget::QtToggleButtonWidget(
   this->resize(200,100);
   this->update();
 }
-//---------------------------------------------------------------------------
+
 void QtToggleButtonWidget::DoRepaint()
 {
   this->update();
   m_signal_toggled();
 }
-//---------------------------------------------------------------------------
+
 void QtToggleButtonWidget::DrawToggleButton(
   QPainter& painter,
   const int left, const int top,
@@ -103,7 +106,7 @@ void QtToggleButtonWidget::DrawToggleButton(
     left + maxx,
     top + (maxy * 2 / 3));
 }
-//---------------------------------------------------------------------------
+
 void QtToggleButtonWidget::DrawToggleButton(
   QPainter& painter,
   const ToggleButtonWidget * const widget)
@@ -116,12 +119,12 @@ void QtToggleButtonWidget::DrawToggleButton(
     widget->GetGeometry().GetHeight(),
     widget->GetToggleButton());
 }
-//---------------------------------------------------------------------------
+
 const std::string QtToggleButtonWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtToggleButtonWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -129,22 +132,22 @@ const std::vector<std::string> QtToggleButtonWidget::GetVersionHistory()
   v.push_back("2011-06-16: version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtToggleButtonWidget::mousePressEvent(QMouseEvent * e)
 {
   //m_widget its observers for a repaint
   m_widget->Click(e->x(),e->y());
 }
-//---------------------------------------------------------------------------
+
 void QtToggleButtonWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawToggleButton(painter,m_widget.get());
 }
-//---------------------------------------------------------------------------
+
 void QtToggleButtonWidget::resizeEvent(QResizeEvent *)
 {
   this->m_widget->SetGeometry(Rect(0,0,this->width(),this->height()));
   repaint();
 }
-//---------------------------------------------------------------------------
+

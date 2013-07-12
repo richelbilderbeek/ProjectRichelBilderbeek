@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 RubiksClock. Rubik's Clock game.
 Copyright (C) 2007-2012  Richel Bilderbeek
@@ -16,9 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GameRubiksClock.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 const About RubiksClockMenuDialog::GetAbout()
 {
   About a(
@@ -67,12 +67,12 @@ const About RubiksClockMenuDialog::GetAbout()
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string RubiksClockMenuDialog::GetVersion()
 {
   return "2.2";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> RubiksClockMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -82,4 +82,4 @@ const std::vector<std::string> RubiksClockMenuDialog::GetVersionHistory()
   v.push_back("2012-12-23: Version 2.2: created desktop version");
   return v;
 }
-//---------------------------------------------------------------------------
+

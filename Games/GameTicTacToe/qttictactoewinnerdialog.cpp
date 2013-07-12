@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 TicTacToe, tic-tac-toe game
 Copyright (C) 2010-2011 Richel Bilderbeek
@@ -15,31 +15,34 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qttictactoewinnerdialog.h"
 #include "ui_qttictactoewinnerdialog.h"
-//---------------------------------------------------------------------------
+
 QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTicTacToeWinnerDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 QtTicTacToeWinnerDialog::~QtTicTacToeWinnerDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeWinnerDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -51,21 +54,21 @@ void QtTicTacToeWinnerDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeWinnerDialog::SetDraw()
 {
   ui->label_title->setText("Draw");
   this->setWindowTitle("Draw");
   ui->label_winner->setText(" ");
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeWinnerDialog::SetWinnerCross()
 {
   ui->label_winner->setPixmap(QPixmap(":/images/X.png"));
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeWinnerDialog::SetWinnerCircle()
 {
   ui->label_winner->setPixmap(QPixmap(":/images/O.png"));
 }
-//---------------------------------------------------------------------------
+

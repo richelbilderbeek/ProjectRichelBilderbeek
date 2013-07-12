@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 CreateGlossary, tool to create my glossaries
 Copyright (C) 2011-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/ToolCreateGlossary.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -32,13 +35,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <sstream>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/function.hpp>
 #include <boost/regex.hpp>
-//---------------------------------------------------------------------------
+
 #include "htmlpage.h"
-//---------------------------------------------------------------------------
+
 CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 {
   //std::cout << "Starting CreateGlossary version 1.1...\n\n";
@@ -54,7 +57,7 @@ CreateGlossaryMainDialog::CreateGlossaryMainDialog()
   //std::cout << "Successfully created glossaries in folder "
   //  << boost::filesystem::path(argv[0]).parent_path().string() << "\n";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(const std::string& folder)
 {
   std::vector<std::string> v;
@@ -79,7 +82,7 @@ const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(const 
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(
   const std::string& folder,
   const std::string& regex_str)
@@ -103,7 +106,7 @@ const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(
 
   return w;
 }
-//---------------------------------------------------------------------------
+
 void CreateGlossaryMainDialog::CreatePage(
   const std::string& page_name,
   const std::string& page_url,
@@ -193,4 +196,4 @@ void CreateGlossaryMainDialog::CreatePage(
     << "</body>\n"
     << "</html>\n";
 }
-//---------------------------------------------------------------------------
+

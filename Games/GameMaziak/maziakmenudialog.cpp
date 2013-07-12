@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Maziak, a simple maze game
 Copyright (C) 2007-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -31,8 +34,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
 const About MaziakMenuDialog::GetAbout()
 {
   About a(
@@ -47,12 +50,12 @@ const About MaziakMenuDialog::GetAbout()
   //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string MaziakMenuDialog::GetVersion()
 {
   return "2.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> MaziakMenuDialog::GetVersionHistory()
 {
   return
@@ -66,4 +69,4 @@ const std::vector<std::string> MaziakMenuDialog::GetVersionHistory()
     "2007-10-22: version 1.0: Initial version"
   };
 }
-//---------------------------------------------------------------------------
+

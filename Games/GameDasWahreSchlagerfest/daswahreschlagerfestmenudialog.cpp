@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Das Wahre Schlagerfest, a simple game
 Copyright (C) 2003-2012 Richel Bilderbeek
@@ -15,23 +15,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "daswahreschlagerfestmenudialog.h"
-//---------------------------------------------------------------------------
+
 DasWahreSchlagerfestMenuDialog::DasWahreSchlagerfestMenuDialog()
 {
 
 }
-//---------------------------------------------------------------------------
+
 const About DasWahreSchlagerfestMenuDialog::GetAbout()
 {
   return About(
@@ -45,12 +48,12 @@ const About DasWahreSchlagerfestMenuDialog::GetAbout()
     GetVersionHistory());
 
 }
-//---------------------------------------------------------------------------
+
 const std::string DasWahreSchlagerfestMenuDialog::GetVersion()
 {
   return "2.2";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> DasWahreSchlagerfestMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -60,4 +63,4 @@ const std::vector<std::string> DasWahreSchlagerfestMenuDialog::GetVersionHistory
   v.push_back("2012-08-09: version 2.2: changed graphics, changed new tile selection (rendering the eat-it all tile) obsolete");
   return v;
 }
-//---------------------------------------------------------------------------
+

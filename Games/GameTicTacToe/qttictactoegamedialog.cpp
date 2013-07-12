@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 TicTacToe, tic-tac-toe game
 Copyright (C) 2010-2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,14 +31,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoegamedialog.h"
 
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <QDesktopWidget>
-//---------------------------------------------------------------------------
+
 #include "tictactoe.h"
 #include "qttictactoewidget.h"
 #include "qttictactoewinnerdialog.h"
 #include "ui_qttictactoegamedialog.h"
-//---------------------------------------------------------------------------
+
 QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
     QDialog(parent, Qt::Window),
     ui(new Ui::QtTicTacToeGameDialog),
@@ -51,12 +54,12 @@ QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
   this->setGeometry(0,0,3 * screen.width() / 4,3 * screen.height() / 4);
   this->move( screen.center() - this->rect().center() );
 }
-//---------------------------------------------------------------------------
+
 QtTicTacToeGameDialog::~QtTicTacToeGameDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeGameDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -68,7 +71,7 @@ void QtTicTacToeGameDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTicTacToeGameDialog::HasWinner()
 {
 
@@ -83,4 +86,4 @@ void QtTicTacToeGameDialog::HasWinner()
   d.exec();
   m_tictactoe->Restart();
 }
-//---------------------------------------------------------------------------
+

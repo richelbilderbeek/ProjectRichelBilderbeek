@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Pylos, Pylos/Pyraos game
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GamePylos.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,10 +31,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpylosmenudialog.h"
 
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <QMouseEvent>
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "pylosmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtpylosboardwidget.h"
@@ -40,7 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpylossprites.h"
 #include "qtpyloswidget.h"
 #include "ui_qtpylosmenudialog.h"
-//---------------------------------------------------------------------------
+
 QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtPylosMenuDialog),
@@ -65,12 +68,12 @@ QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
   }
 
 }
-//---------------------------------------------------------------------------
+
 QtPylosMenuDialog::~QtPylosMenuDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtPylosMenuDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -82,7 +85,7 @@ void QtPylosMenuDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
 {
   if (ui->label_theme->underMouse())
@@ -113,7 +116,7 @@ void QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
     case 3: this->close(); return;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
 {
   if (
@@ -167,7 +170,7 @@ void QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
     ? ":/images/sprite_player2.png" : ":/images/sprite_hole.png"));
   repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosMenuDialog::OnAbout()
 {
   About a = PylosMenuDialog::GetAbout();
@@ -179,13 +182,13 @@ void QtPylosMenuDialog::OnAbout()
 
   d.exec();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosMenuDialog::OnInstructions()
 {
   QtPylosInstructionsDialog d;
   d.exec();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosMenuDialog::OnStart()
 {
   QtPylosGameWidget * const p = new QtPylosGameWidget();
@@ -203,6 +206,6 @@ void QtPylosMenuDialog::OnStart()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 
 

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 QtDialWidget, Qt class for displaying a DialWidget
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppQtDialWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -34,14 +37,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef M_PI
 # define M_PI		3.14159265358979323846	/* pi */
 #endif
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QMouseEvent>
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
-//---------------------------------------------------------------------------
+
 QtDialWidget::QtDialWidget(QWidget *parent)
   : QWidget(parent),
     m_widget(new DialWidget)
@@ -57,7 +60,7 @@ QtDialWidget::QtDialWidget(QWidget *parent)
       &QtDialWidget::OnDialChanged,
       this));
 }
-//---------------------------------------------------------------------------
+
 void QtDialWidget::DrawDial(
   QPainter& painter,
   const DialWidget * const widget)
@@ -70,7 +73,7 @@ void QtDialWidget::DrawDial(
     widget->GetGeometry().GetHeight(),
     widget->GetDial());
 }
-//---------------------------------------------------------------------------
+
 void QtDialWidget::DrawDial(
   QPainter& painter,
   const int left, const int top,
@@ -112,12 +115,12 @@ void QtDialWidget::DrawDial(
   painter.drawLine(left+midx,top+midy,left+pointerX,top+pointerY);
   painter.setPen(initial_pen);
 }
-//---------------------------------------------------------------------------
+
 const std::string QtDialWidget::GetVersion()
 {
   return "2.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtDialWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -127,26 +130,26 @@ const std::vector<std::string> QtDialWidget::GetVersionHistory()
   v.push_back("2011-08-31: Version 2.1: removed bloat, fixed bugs");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtDialWidget::mousePressEvent(QMouseEvent * e)
 {
   assert(e);
   m_widget->Click(e->x(),e->y());
 }
-//---------------------------------------------------------------------------
+
 void QtDialWidget::OnDialChanged()
 {
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtDialWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawDial(painter,0,0,width(),height(),this->m_widget->GetDial());
 }
-//---------------------------------------------------------------------------
+
 void QtDialWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }
-//---------------------------------------------------------------------------
+

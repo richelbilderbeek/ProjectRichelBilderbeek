@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 BeerWanter. A simple game.
 Copyright (C) 2005-2012 Richel Bilderbeek
@@ -16,12 +16,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -32,7 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 const About BeerWanterMenuDialog::GetAbout()
 {
   About a(
@@ -47,12 +50,12 @@ const About BeerWanterMenuDialog::GetAbout()
   //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string BeerWanterMenuDialog::GetVersion()
 {
   return "7.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> BeerWanterMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -68,4 +71,4 @@ const std::vector<std::string> BeerWanterMenuDialog::GetVersionHistory()
   v.push_back("2012-03-06: version 7.0: added menu, conformized project architecture for ProjectRichelBilderbeek");
   return v;
 }
-//---------------------------------------------------------------------------
+

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 BeerWanter. A simple game.
 Copyright (C) 2005-2012 Richel Bilderbeek
@@ -16,12 +16,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,9 +32,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtbeerwanterwidget.h"
 
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QGraphicsPixmapItem>
@@ -41,9 +44,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QMouseEvent>
 #include <QTimer>
 #include <QVBoxLayout>
-//---------------------------------------------------------------------------
+
 #include "beerwantermaindialog.h"
-//---------------------------------------------------------------------------
+
 QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
   : QWidget(parent),
     m_timer(new QTimer),
@@ -69,12 +72,12 @@ QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
   m_timer->connect(m_timer.get(),SIGNAL(timeout()),this,SLOT(onTimer()));
   m_timer->start(20); //Framerate about (1000/20=) 50 fps
 }
-//---------------------------------------------------------------------------
+
 const BeerWanterMainDialog * QtBeerWanterWidget::GetBeerWanter() const
 {
   return m_beerwanter.get();
 }
-//---------------------------------------------------------------------------
+
 void QtBeerWanterWidget::mouseMoveEvent(QMouseEvent * event)
 {
   const int mouse_x = event->x();
@@ -110,7 +113,7 @@ void QtBeerWanterWidget::mouseMoveEvent(QMouseEvent * event)
   m_beerwanter->SetCursorPos(mouse_x,mouse_y);
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtBeerWanterWidget::mousePressEvent(QMouseEvent *)
 {
   //#define DEBUG_SHOW_MOUSE_CLICK_POSITION
@@ -131,7 +134,7 @@ void QtBeerWanterWidget::mousePressEvent(QMouseEvent *)
   }
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtBeerWanterWidget::onTimer()
 {
   m_beerwanter->ShakeCursor();
@@ -167,7 +170,7 @@ void QtBeerWanterWidget::onTimer()
   emit DoShake(m_beerwanter->GetWindowX(),m_beerwanter->GetWindowY());
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtBeerWanterWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -190,7 +193,7 @@ void QtBeerWanterWidget::paintEvent(QPaintEvent *)
     m_beerwanter->GetSpriteY(),
     *m_sprite.get());
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppPaint.htm
 void QtBeerWanterWidget::MyPaint(
   QPixmap& pixmap,
@@ -221,4 +224,4 @@ void QtBeerWanterWidget::MyPaint(
   }
   pixmap = pixmap.fromImage(image);
 }
-//---------------------------------------------------------------------------
+

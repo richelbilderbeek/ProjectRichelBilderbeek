@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Boenken. A multiplayer soccer/billiards game.
 Copyright (C) 2007-2012 Richel Bilderbeek
@@ -16,12 +16,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -35,14 +38,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef M_PI
 # define M_PI		3.14159265358979323846	/* pi */
 #endif
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QPainter>
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
 namespace Boenken {
-//---------------------------------------------------------------------------
+
 ///The acceleration (i.e. change of impulse)
 ///if a player presses accelerate
 const double SpritePlayer::m_acceleration = 1.0;
@@ -151,6 +154,6 @@ void SpritePlayer::Draw(QPainter& painter) const
   const double y2 = y_mid - (std::cos(m_angle) * half_size);
   painter.drawLine(x_mid,y_mid,x2,y2);
 }
-//---------------------------------------------------------------------------
+
 } //~namespace Boenken
-//---------------------------------------------------------------------------
+

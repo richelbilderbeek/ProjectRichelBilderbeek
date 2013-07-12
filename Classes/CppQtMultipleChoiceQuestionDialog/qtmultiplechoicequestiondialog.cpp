@@ -1,26 +1,29 @@
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtmultiplechoicequestiondialog.h"
 
-//---------------------------------------------------------------------------
+
 #include <boost/bind.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "qtquestiondialog.h"
 #include "questiondialog.h"
 #include "ui_qtmultiplechoicequestiondialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
+
 QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
   QWidget *parent) :
   QtQuestionDialog(
@@ -34,7 +37,7 @@ QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog,
   QWidget *parent) :
@@ -44,24 +47,24 @@ QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
   ui->setupUi(this);
   this->SetQuestion(dialog->GetQuestion());
 }
-//---------------------------------------------------------------------------
+
 QtMultipleChoiceQuestionDialog::~QtMultipleChoiceQuestionDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 const std::string QtMultipleChoiceQuestionDialog::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtMultipleChoiceQuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-28: version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///Set the Question
 void QtMultipleChoiceQuestionDialog::SetQuestion(
   const boost::shared_ptr<Question>& question)
@@ -103,7 +106,7 @@ void QtMultipleChoiceQuestionDialog::SetQuestion(
 
 
 }
-//---------------------------------------------------------------------------
+
 void QtMultipleChoiceQuestionDialog::on_button_submit_clicked()
 {
   assert(m_dialog->CanSubmit());
@@ -132,4 +135,4 @@ void QtMultipleChoiceQuestionDialog::on_button_submit_clicked()
 
   m_signal_submitted(is_correct);
 }
-//---------------------------------------------------------------------------
+

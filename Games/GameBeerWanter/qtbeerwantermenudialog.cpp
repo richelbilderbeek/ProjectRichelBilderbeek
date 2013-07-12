@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 BeerWanter. A simple game.
 Copyright (C) 2005-2012 Richel Bilderbeek
@@ -16,12 +16,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -32,19 +35,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtbeerwantermaindialog.h"
 #include "ui_qtbeerwantermenudialog.h"
-//---------------------------------------------------------------------------
+
 QtBeerWanterMenuDialog::QtBeerWanterMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtBeerWanterMenuDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 QtBeerWanterMenuDialog::~QtBeerWanterMenuDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtBeerWanterMenuDialog::on_button_start_clicked()
 {
   this->hide();
@@ -52,7 +55,7 @@ void QtBeerWanterMenuDialog::on_button_start_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void QtBeerWanterMenuDialog::on_button_about_clicked()
 {
   this->hide();
@@ -62,9 +65,9 @@ void QtBeerWanterMenuDialog::on_button_about_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void QtBeerWanterMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-//---------------------------------------------------------------------------
+

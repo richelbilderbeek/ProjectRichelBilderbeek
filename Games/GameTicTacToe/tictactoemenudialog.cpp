@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 TicTacToe, tic-tac-toe game
 Copyright (C) 2010-2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 #include "tictactoe.h"
-//---------------------------------------------------------------------------
+
 const About TicTacToeMenuDialog::GetAbout()
 {
   About a(
@@ -47,12 +47,12 @@ const About TicTacToeMenuDialog::GetAbout()
   a.AddLibrary("TicTacToe version: " + TicTacToe::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string TicTacToeMenuDialog::GetVersion()
 {
   return "1.5";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> TicTacToeMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -64,4 +64,4 @@ const std::vector<std::string> TicTacToeMenuDialog::GetVersionHistory()
   v.push_back("2011-04-16: version 1.5: added use of WtAutoConfig (for web application)");
   return v;
 }
-//---------------------------------------------------------------------------
+

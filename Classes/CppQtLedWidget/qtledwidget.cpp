@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 QtLedWidget, Qt widget for displaying the Led class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppQtLedWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,14 +32,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "led.h"
 //#include "trace.h"
-//---------------------------------------------------------------------------
+
 QtLedWidget::QtLedWidget(
   QWidget *parent,
   const double intensity,
@@ -66,7 +69,7 @@ QtLedWidget::QtLedWidget(
   this->GetWidget()->GetLed()->SetColor(255,124,0);
   this->GetWidget()->GetLed()->SetIntensity(0.99);
 }
-//---------------------------------------------------------------------------
+
 ///Draw a Led from a Led
 void QtLedWidget::DrawLed(
     QPainter& painter,
@@ -164,7 +167,7 @@ void QtLedWidget::DrawLed(
     painter.drawEllipse(x,y,w,h);
   }
 }
-//---------------------------------------------------------------------------
+
 ///Draw a Led from a LedWidget
 void QtLedWidget::DrawLed(
   QPainter& painter,
@@ -178,12 +181,12 @@ void QtLedWidget::DrawLed(
     widget->GetGeometry().GetHeight(),
     widget->GetLed());
 }
-//---------------------------------------------------------------------------
+
 const std::string QtLedWidget::GetVersion()
 {
   return "1.4";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtLedWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -194,7 +197,7 @@ const std::vector<std::string> QtLedWidget::GetVersionHistory()
   v.push_back("2012-08-26: Version 1.4: fixed bug in resizeEvent");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtLedWidget::OnResize()
 {
   this->setGeometry(
@@ -204,15 +207,15 @@ void QtLedWidget::OnResize()
     this->GetWidget()->GetGeometry().GetHeight());
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtLedWidget::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
   DrawLed(p,m_widget.get());
 }
-//---------------------------------------------------------------------------
+
 void QtLedWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }
-//---------------------------------------------------------------------------
+

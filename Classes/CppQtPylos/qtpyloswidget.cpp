@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 PylosWidget, widget to display Pylos class
 Copyright (C) 2010 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -30,19 +33,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QMouseEvent>
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "pylosboard.h"
 #include "pylosgame.h"
 #include "pylosmove.h"
 #include "pylosmustremovestate.h"
 #include "pylosplayer.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 QtPylosWidget::QtPylosWidget() :
     QWidget(0),
     m_select(0,0,0),
@@ -58,7 +61,7 @@ QtPylosWidget::QtPylosWidget() :
   this->setMinimumWidth(64);
   this->setMinimumHeight(64);
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::DeselectRemove(const Pylos::Coordinat& c)
 {
   assert(!m_other_selectors.empty());
@@ -84,7 +87,7 @@ void QtPylosWidget::DeselectRemove(const Pylos::Coordinat& c)
     m_other_selectors.pop_back();
   }
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::DrawRemove(QPainter& painter, const Pylos::Coordinat& c)
 {
   const Pylos::QtSprites::Type sprite =
@@ -104,7 +107,7 @@ void QtPylosWidget::DrawRemove(QPainter& painter, const Pylos::Coordinat& c)
       m_sprites.Get(sprite));
   */
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::DrawSelect(QPainter& painter)
 {
   if (GetWinner() != Pylos::Winner::none) return;
@@ -125,7 +128,7 @@ void QtPylosWidget::DrawSelect(QPainter& painter)
     m_sprites.Get(sprite));
   */
 }
-//---------------------------------------------------------------------------
+
 const std::vector<Pylos::Coordinat> QtPylosWidget::GetCoordinats(
   const int mouse_x, const int mouse_y)
 {
@@ -158,34 +161,34 @@ const std::vector<Pylos::Coordinat> QtPylosWidget::GetCoordinats(
   }
   return c;
 }
-//---------------------------------------------------------------------------
+
 double QtPylosWidget::GetDistance(const double dx, const double dy)
 {
   return std::sqrt( (dx * dx) + (dy * dy) );
 }
-//---------------------------------------------------------------------------
+
 const std::vector<Pylos::Coordinat>& QtPylosWidget::GetOtherSelectors() const
 {
   return m_other_selectors;
 }
-//---------------------------------------------------------------------------
+
 const std::string QtPylosWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtPylosWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-05-28: version 1.0: initial version. Added tilt.");
   return v;
 }
-//---------------------------------------------------------------------------
+
 bool QtPylosWidget::IsOtherSelector(const Pylos::Coordinat& c) const
 {
   return std::find(m_other_selectors.begin(),m_other_selectors.end(),c) != m_other_selectors.end();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::MouseLeftClick()
 {
   if (!GetMustRemove())
@@ -193,7 +196,7 @@ void QtPylosWidget::MouseLeftClick()
   else
     MouseLeftClickRemove();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::MouseLeftClickRemove()
 {
   //Player tries to select a third marble
@@ -242,7 +245,7 @@ void QtPylosWidget::MouseLeftClickRemove()
     emit Toggle();
   }
 }
-//---------------------------------------------------------------------------
+
 ///MouseLeftClickSelect handles mouse left-clicking
 ///during select state.
 void QtPylosWidget::MouseLeftClickSelect()
@@ -291,7 +294,7 @@ void QtPylosWidget::MouseLeftClickSelect()
     return;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::MouseMove(const int mouse_x, const int mouse_y)
 {
   if (!GetMustRemove())
@@ -299,7 +302,7 @@ void QtPylosWidget::MouseMove(const int mouse_x, const int mouse_y)
   else
     MouseMoveRemoval(mouse_x,mouse_y);
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::mouseMoveEvent(QMouseEvent * e)
 {
   assert(e->type() == QMouseEvent::MouseMove);
@@ -307,7 +310,7 @@ void QtPylosWidget::mouseMoveEvent(QMouseEvent * e)
   const int mouse_y = e->y();
   MouseMove(mouse_x,mouse_y);
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::mousePressEvent(QMouseEvent* e)
 {
   //std::clog << "void QtPylosWidget::mousePressEvent(QMouseEvent* e)\n";
@@ -321,7 +324,7 @@ void QtPylosWidget::mousePressEvent(QMouseEvent* e)
     default: break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::MouseMoveRemoval(
   const int mouse_x,
   const int mouse_y)
@@ -361,7 +364,7 @@ void QtPylosWidget::MouseMoveRemoval(
     }
   );
 }
-//---------------------------------------------------------------------------
+
 ///MouseMoveSelect handles mouse movement
 ///when player must select either a location to
 ///place a new marble or to select a marble to move
@@ -403,7 +406,7 @@ void QtPylosWidget::MouseMoveSelect(
     }
   );
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::MouseRightClick()
 {
   if (!GetMustRemove()) return;
@@ -420,7 +423,7 @@ void QtPylosWidget::MouseRightClick()
     repaint();
   }
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::paintEvent(QPaintEvent *)
 {
   //assert(m_pylos);
@@ -489,13 +492,13 @@ void QtPylosWidget::paintEvent(QPaintEvent *)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::resizeEvent(QResizeEvent *)
 {
   m_sprites.SetBoardSize(this->width(),this->height());
   repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::SaveAllSprites() const
 {
   m_sprites.Get(Pylos::QtSprites::Type::player1).save("sprite_player1.png");
@@ -507,31 +510,31 @@ void QtPylosWidget::SaveAllSprites() const
   m_sprites.Get(Pylos::QtSprites::Type::board_bottom).save("sprite_board_bottom.png");
   m_sprites.Get(Pylos::QtSprites::Type::board_hole).save("sprite_board_hole.png");
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::SetColorSchemeBlackWhite()
 {
   m_sprites.SetColorScheme(Pylos::GetBlackWhiteColors());
   repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::SetColorSchemeRedBlue()
 {
   m_sprites.SetColorScheme(Pylos::GetRedBlueColors());
   repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::SetSelector(const Pylos::Coordinat& c)
 {
   m_select = c;
   emit SelectorChanged();
 }
-//---------------------------------------------------------------------------
+
 void QtPylosWidget::SetTilt(const double tilt)
 {
   m_tilt = tilt;
   repaint();
 }
-//---------------------------------------------------------------------------
+
 const std::pair<int,int> QtPylosWidget::Transform(const Pylos::Coordinat& c) const
 {
   const int x_co
@@ -544,4 +547,4 @@ const std::pair<int,int> QtPylosWidget::Transform(const Pylos::Coordinat& c) con
     + (c.GetY() * m_sprites.GetMarbleHeight());
   return std::make_pair(x_co,y_co);
 }
-//---------------------------------------------------------------------------
+

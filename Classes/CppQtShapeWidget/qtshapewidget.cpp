@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 QtShapeWidget, Qt class for displaying a ShapeWidget
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppQtShapeWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,16 +32,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <cmath>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPolygon>
-//---------------------------------------------------------------------------
+
 #include "shape.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 QtShapeWidget::QtShapeWidget(QWidget *parent)
   : QWidget(parent),
     m_widget(new ShapeWidget(0,0.0))
@@ -48,7 +51,7 @@ QtShapeWidget::QtShapeWidget(QWidget *parent)
   //    &QtShapeWidget::repaint,
   //    this));
 }
-//---------------------------------------------------------------------------
+
 QtShapeWidget::QtShapeWidget(
   boost::shared_ptr<ShapeWidget> widget,
   QWidget *parent)
@@ -60,7 +63,7 @@ QtShapeWidget::QtShapeWidget(
   //    &QtShapeWidget::repaint,
   //    this));
 }
-//---------------------------------------------------------------------------
+
 void QtShapeWidget::DrawShape(
   QPainter& painter,
   const ShapeWidget * const widget)
@@ -73,7 +76,7 @@ void QtShapeWidget::DrawShape(
     widget->GetGeometry().GetHeight(),
     widget->GetShape());
 }
-//---------------------------------------------------------------------------
+
 void QtShapeWidget::DrawShape(
   QPainter& painter,
   const int left, const int top,
@@ -129,12 +132,12 @@ void QtShapeWidget::DrawShape(
   }
   painter.drawConvexPolygon(polygon);
 }
-//---------------------------------------------------------------------------
+
 const std::string QtShapeWidget::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtShapeWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -142,7 +145,7 @@ const std::vector<std::string> QtShapeWidget::GetVersionHistory()
   v.push_back("2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtShapeWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -151,4 +154,4 @@ void QtShapeWidget::paintEvent(QPaintEvent *)
     0,0,width(),height(),
     this->m_widget->GetShape());
 }
-//---------------------------------------------------------------------------
+

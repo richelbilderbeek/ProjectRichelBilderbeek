@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 BeerWanter. A simple game.
 Copyright (C) 2005-2012 Richel Bilderbeek
@@ -16,12 +16,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -32,8 +35,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
 BeerWanterMainDialog::BeerWanterMainDialog(
   int screen_width,
   int screen_height,
@@ -56,7 +59,7 @@ BeerWanterMainDialog::BeerWanterMainDialog(
   m_window_x = (m_screen_width  / 2) - (m_window_width  / 2);
   m_window_y = (m_screen_height / 2) - (m_window_height / 2);
 }
-//---------------------------------------------------------------------------
+
 bool BeerWanterMainDialog::ClickWilBeSuccess() const
 {
   return (
@@ -65,7 +68,7 @@ bool BeerWanterMainDialog::ClickWilBeSuccess() const
     && (m_cursor_y >= m_sprite_y)
     && (m_cursor_y <= m_sprite_y + m_sprite_height));
 }
-//---------------------------------------------------------------------------
+
 ///Click is called when the user presses a key. The bool returned
 ///indicates whether the user successfully clicked on a beer
 bool BeerWanterMainDialog::Click()
@@ -83,31 +86,31 @@ bool BeerWanterMainDialog::Click()
   }
   return false;
 }
-//---------------------------------------------------------------------------
+
 int BeerWanterMainDialog::GetRandomCursorShake() const
 {
   return (std::rand() % (2*((m_level-1)/2)+1))
     - ((m_level-1)/2);
 }
-//---------------------------------------------------------------------------
+
 int BeerWanterMainDialog::GetRandomWindowShake() const
 {
   return (std::rand() % (2*((m_level-1)/4)+1))
     - ((m_level-1)/4);
 }
-//---------------------------------------------------------------------------
+
 const std::string BeerWanterMainDialog::GetWindowTitle() const
 {
   return std::string("BeerWanter (C) 2005 Richel Bilderbeek. Beer already got: ")
     + IntToStr(m_level - 1);
 }
-//---------------------------------------------------------------------------
+
 void BeerWanterMainDialog::SetCursorPos(const int x, const int y)
 {
   m_cursor_x = x;
   m_cursor_y = y;
 }
-//---------------------------------------------------------------------------
+
 ///ShakeCursor shakes the cursor
 void BeerWanterMainDialog::ShakeCursor()
 {
@@ -128,14 +131,14 @@ void BeerWanterMainDialog::ShakeCursor()
   //  << m_cursor_y
   //  << ")\n";
 }
-//---------------------------------------------------------------------------
+
 ///ShakeWindow shakes the window (on desktop computer only)
 void BeerWanterMainDialog::ShakeWindow()
 {
   m_window_x += GetRandomWindowShake();
   m_window_y += GetRandomWindowShake();
 }
-//---------------------------------------------------------------------------
+
 ///From http://www.richelbilderbeek.nl/CppIntToStr.htm
 const std::string IntToStr(const int x)
 {
@@ -143,4 +146,4 @@ const std::string IntToStr(const int x)
   if (!(s << x)) throw std::logic_error("IntToStr failed");
   return s.str();
 }
-//---------------------------------------------------------------------------
+

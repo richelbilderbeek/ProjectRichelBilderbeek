@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Maziak, a simple maze game
 Copyright (C) 2007-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -304,11 +307,11 @@ int QtMaziakMenuDialog::getMazeSize() const
 #include "UnitFormMaziakAbout.h"
 #include "UnitFormMaziakGame.h"
 #include "UnitFormMaziakInstructions.h"
-//---------------------------------------------------------------------------
+
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TFormMaziakMenu *FormMaziakMenu;
-//---------------------------------------------------------------------------
+
 __fastcall TFormMaziakMenu::TFormMaziakMenu(TComponent* Owner)
   : TForm(Owner),
     mDifficulty(easy)
@@ -316,7 +319,7 @@ __fastcall TFormMaziakMenu::TFormMaziakMenu(TComponent* Owner)
   RandomizeTimer();
   ImageEasyClick(0);
 }
-//---------------------------------------------------------------------------
+
 const int TFormMaziakMenu::GetSize() const
 {
   switch (mDifficulty)
@@ -328,7 +331,7 @@ const int TFormMaziakMenu::GetSize() const
   assert(!"Should not get here");
   throw std::logic_error("Unsupported value of mDifficulty");
 }
-//---------------------------------------------------------------------------
+
 
 void __fastcall TFormMaziakMenu::ImageStartClick(TObject *Sender)
 {
@@ -336,18 +339,18 @@ void __fastcall TFormMaziakMenu::ImageStartClick(TObject *Sender)
   f->WindowState = wsMaximized;
   f->ShowModal();
 }
-//---------------------------------------------------------------------------
+
 void __fastcall TFormMaziakMenu::ImageAboutClick(TObject *Sender)
 {
   boost::scoped_ptr<TFormMaziakAbout> f(new TFormMaziakAbout(0));
   f->ShowModal();
 }
-//---------------------------------------------------------------------------
+
 void __fastcall TFormMaziakMenu::ImageQuitClick(TObject *Sender)
 {
   Close();
 }
-//---------------------------------------------------------------------------
+
 void __fastcall TFormMaziakMenu::FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
@@ -379,20 +382,20 @@ void __fastcall TFormMaziakMenu::FormKeyDown(TObject *Sender, WORD &Key,
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
 void RandomizeTimer()
 {
   std::srand(std::time(0));
 }
-//---------------------------------------------------------------------------
+
 
 void __fastcall TFormMaziakMenu::ImageInstructionsClick(TObject *Sender)
 {
   boost::scoped_ptr<TFormMaziakInstructions> f(new TFormMaziakInstructions(0));
   f->ShowModal();
 }
-//---------------------------------------------------------------------------
+
 
 
 void __fastcall TFormMaziakMenu::ImageEasyClick(TObject *Sender)
@@ -404,7 +407,7 @@ void __fastcall TFormMaziakMenu::ImageEasyClick(TObject *Sender)
   ImagePlayer->Picture = ImagePlayerEasy->Picture;
   ImageEnemy->Picture  = ImageEnemyEasy->Picture;
 }
-//---------------------------------------------------------------------------
+
 
 void __fastcall TFormMaziakMenu::ImageMediumClick(TObject *Sender)
 {
@@ -415,7 +418,7 @@ void __fastcall TFormMaziakMenu::ImageMediumClick(TObject *Sender)
   ImagePlayer->Picture = ImagePlayerMedium->Picture;
   ImageEnemy->Picture  = ImageEnemyMedium->Picture;
 }
-//---------------------------------------------------------------------------
+
 void __fastcall TFormMaziakMenu::ImageHardClick(TObject *Sender)
 {
   ImageEasy->Picture   = ImageEasyNotSelected->Picture;
@@ -425,5 +428,5 @@ void __fastcall TFormMaziakMenu::ImageHardClick(TObject *Sender)
   ImagePlayer->Picture = ImagePlayerHard->Picture;
   ImageEnemy->Picture  = ImageEnemyHard->Picture;
 }
-//---------------------------------------------------------------------------
+
 */

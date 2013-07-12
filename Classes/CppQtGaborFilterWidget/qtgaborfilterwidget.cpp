@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 QtGaborFilterWidget, Qt widget for displaying the GaborFilter class
 Copyright (C) 2011-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppQtGaborFilterWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,14 +32,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "gaborfilter.h"
 //#include "trace.h"
-//---------------------------------------------------------------------------
+
 QtGaborFilterWidget::QtGaborFilterWidget(
   QWidget *parent,
   const double intensity,
@@ -63,7 +66,7 @@ QtGaborFilterWidget::QtGaborFilterWidget(
     2.0,2.0));
 
 }
-//---------------------------------------------------------------------------
+
 void QtGaborFilterWidget::DrawGaborFilter(
     QPainter& painter,
     const int left, const int top,
@@ -90,7 +93,7 @@ void QtGaborFilterWidget::DrawGaborFilter(
   }
   painter.drawPixmap(left,top,width,height,QPixmap::fromImage(image));
 }
-//---------------------------------------------------------------------------
+
 void QtGaborFilterWidget::DrawGaborFilter(
   QPainter& painter,
   const GaborFilterWidget * const widget)
@@ -103,19 +106,19 @@ void QtGaborFilterWidget::DrawGaborFilter(
     widget->GetGeometry().GetHeight(),
     widget->GetGaborFilter());
 }
-//---------------------------------------------------------------------------
+
 const std::string QtGaborFilterWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtGaborFilterWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-07-07: Version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///OnResize is calgaborfilter when the geometry of the GaborFilterWidget is changed
 void QtGaborFilterWidget::OnResize()
 {
@@ -126,16 +129,16 @@ void QtGaborFilterWidget::OnResize()
     this->GetWidget()->GetGeometry().GetHeight());
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtGaborFilterWidget::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
   DrawGaborFilter(p,m_widget.get());
 }
-//---------------------------------------------------------------------------
+
 void QtGaborFilterWidget::resizeEvent(QResizeEvent *)
 {
   QRect r = this->geometry();
   this->GetWidget()->SetGeometry(Rect(r.x(),r.y(),r.width(),r.height()));
 }
-//---------------------------------------------------------------------------
+

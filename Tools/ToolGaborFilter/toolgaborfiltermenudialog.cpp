@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 GaborFilter, tool to demonstrate Gabor filtering
 Copyright (C) 2012  Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/ToolGaborFilter.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "toolgaborfiltermenudialog.h"
 
 #include "qtcreatorprofile.h"
-//---------------------------------------------------------------------------
+
 const About ToolGaborFilterMenuDialog::GetAbout()
 {
   About a(
@@ -43,12 +46,12 @@ const About ToolGaborFilterMenuDialog::GetAbout()
   //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string ToolGaborFilterMenuDialog::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ToolGaborFilterMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -56,4 +59,4 @@ const std::vector<std::string> ToolGaborFilterMenuDialog::GetVersionHistory()
   v.push_back("2012-07-07: version 2.0: port to Qt");
   return v;
 }
-//---------------------------------------------------------------------------
+

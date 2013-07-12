@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 QtShinyButtonWidget, Wt widget for displaying the ShinyButton class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppQtShinyButtonWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -30,15 +33,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QMouseEvent>
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "rainbow.h"
 //#include "trace.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
-//---------------------------------------------------------------------------
+
 QtShinyButtonWidget::QtShinyButtonWidget(QWidget *parent)
   : QWidget(parent),
     m_widget(new ShinyButtonWidget(0.5,0.5))
@@ -56,7 +59,7 @@ QtShinyButtonWidget::QtShinyButtonWidget(QWidget *parent)
 
   resize(200,400);
 }
-//---------------------------------------------------------------------------
+
 QtShinyButtonWidget::QtShinyButtonWidget(
   const double color,
   const double gradient,
@@ -79,7 +82,7 @@ QtShinyButtonWidget::QtShinyButtonWidget(
 
   resize(rect.GetWidth(),rect.GetHeight());
 }
-//---------------------------------------------------------------------------
+
 void QtShinyButtonWidget::DrawShinyButton(
   QPainter& painter,
   const int left, const int top,
@@ -115,7 +118,7 @@ void QtShinyButtonWidget::DrawShinyButton(
   QRectF r(left,top,width,height);
   painter.drawText(r,Qt::AlignCenter | Qt::AlignVCenter,button->GetText().c_str());
 }
-//---------------------------------------------------------------------------
+
 void QtShinyButtonWidget::DrawShinyButton(
   QPainter& painter,
   const ShinyButtonWidget * const widget)
@@ -128,18 +131,18 @@ void QtShinyButtonWidget::DrawShinyButton(
     widget->GetGeometry().GetHeight(),
     widget->GetShinyButton());
 }
-//---------------------------------------------------------------------------
+
 void QtShinyButtonWidget::DoRepaint()
 {
   this->repaint();
   m_signal_changed();
 }
-//---------------------------------------------------------------------------
+
 const std::string QtShinyButtonWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtShinyButtonWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -148,20 +151,20 @@ const std::vector<std::string> QtShinyButtonWidget::GetVersionHistory()
   v.push_back("2011-09-15: version 2.0: made QtShinyButtonWidget same as WtShinyButtonWidget");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtShinyButtonWidget::mousePressEvent(QMouseEvent *)
 {
   m_widget->Click();
 }
-//---------------------------------------------------------------------------
+
 void QtShinyButtonWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawShinyButton(painter,m_widget.get());
 }
-//---------------------------------------------------------------------------
+
 void QtShinyButtonWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }
-//---------------------------------------------------------------------------
+
