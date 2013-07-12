@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 LedWidget, Widget for the Led class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,17 +15,23 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppLedWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "ledwidget.h"
+#pragma GCC diagnostic pop
 
 #include <iostream>
 
@@ -44,12 +50,12 @@ LedWidget::LedWidget(
 {
   this->SetGeometry(Rect(x,y,width,height));
 }
-//---------------------------------------------------------------------------
+
 const std::string LedWidget::GetVersion()
 {
   return "1.3";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> LedWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -60,7 +66,7 @@ const std::vector<std::string> LedWidget::GetVersionHistory()
   v.push_back("2011-09-08: Version 1.3: removed redundant signals");
   return v;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const LedWidget& widget)
 {
   os
@@ -70,4 +76,4 @@ std::ostream& operator<<(std::ostream& os, const LedWidget& widget)
     << "</LedWidget>";
   return os;
 }
-//---------------------------------------------------------------------------
+

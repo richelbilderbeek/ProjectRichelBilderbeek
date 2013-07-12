@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Led, LED class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,19 +15,23 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppLed.htm
-//---------------------------------------------------------------------------
+
 #ifndef LED_H
 #define LED_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ///Led manages an LED lamp
 struct Led : public boost::noncopyable
 {
@@ -98,7 +102,7 @@ struct Led : public boost::noncopyable
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const Led& led);
-//---------------------------------------------------------------------------
+
 #endif // LED_H

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ManyDigitNewick, Newick class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,17 +15,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
-//---------------------------------------------------------------------------
+
 #ifndef MANYDIGITNEWICK_H
 #define MANYDIGITNEWICK_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "manydigitnewickderivative.h"
-//---------------------------------------------------------------------------
+
 ///ManyDigitNewick contains all
 ///ManyDigitDerivative that can be
 ///constructed from a phylogeny. For example,
@@ -103,6 +103,6 @@ struct ManyDigitNewick
   static void Test();
 
 };
-//---------------------------------------------------------------------------
+
 #endif // TWODIGITNEWICK_H
 

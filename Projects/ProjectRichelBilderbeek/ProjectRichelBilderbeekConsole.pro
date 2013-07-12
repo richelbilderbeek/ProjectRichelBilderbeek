@@ -69,7 +69,6 @@ INCLUDEPATH += \
     ../../Games/GamePylos \
     ../../Games/GameRubiksClock \
     ../../Games/GameTicTacToe \
-    ../../Libraries/bigint-2010.04.30 \
     ../../Tools/ToolAsciiArter \
     ../../Tools/ToolCodeToHtml \
     ../../Tools/ToolCreateQtProjectZipFile \
@@ -98,9 +97,9 @@ SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppAsciiArter/asciiarter.cpp \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.cpp \
+    ../../Classes/CppCodeToHtml/codetohtml.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.cpp \
-    ../../Classes/CppCodeToHtml/codetohtml.cpp \
     ../../Classes/CppCodeToHtml/codetohtmldialog.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlfooter.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlheader.cpp \
@@ -119,18 +118,20 @@ SOURCES += \
     ../../Classes/CppDialWidget/dialwidget.cpp \
     ../../Classes/CppEncranger/encranger.cpp \
     ../../Classes/CppExercise/exercise.cpp \
+    ../../Classes/CppGaborFilter/gaborfilter.cpp \
+    ../../Classes/CppGaborFilterWidget/gaborfilterwidget.cpp \
     ../../Classes/CppHtmlPage/htmlpage.cpp \
     ../../Classes/CppIpAddress/ipaddress.cpp \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
     ../../Classes/CppKalmanFilter/kalmanfilterexample.cpp \
     ../../Classes/CppKalmanFilter/kalmanfilterexperiment.cpp \
     ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.cpp \
@@ -144,15 +145,15 @@ SOURCES += \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.cpp \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/standardkalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.cpp \
     ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.cpp \
     ../../Classes/CppKalmanFilter/standardwhitenoisesystem.cpp \
     ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/steadystatekalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.cpp \
     ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.cpp \
     ../../Classes/CppKalmanFilter/whitenoisesystem.cpp \
@@ -165,15 +166,15 @@ SOURCES += \
     ../../Classes/CppLazy_init/lazy_init.cpp \
     ../../Classes/CppLed/led.cpp \
     ../../Classes/CppLedWidget/ledwidget.cpp \
-    ../../Classes/CppManyDigitNewick/manydigitnewickcoordinat.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewick.cpp \
+    ../../Classes/CppManyDigitNewick/manydigitnewickcoordinat.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewickderivative.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewickindexer.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewickindextable.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewicks.cpp \
     ../../Classes/CppMatrix/matrix.cpp \
-    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.cpp \
     ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.cpp \
+    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.cpp \
     ../../Classes/CppMusic/musicchord.cpp \
     ../../Classes/CppMusic/musicnote.cpp \
     ../../Classes/CppMusic/musicscale.cpp \
@@ -182,14 +183,23 @@ SOURCES += \
     ../../Classes/CppNewick/newick.cpp \
     ../../Classes/CppNewick/newickcpp98.cpp \
     ../../Classes/CppNewickVector/newickvector.cpp \
-    ../../Classes/CppOpenQuestionDialog/openquestiondialog.cpp \
     ../../Classes/CppOpenQuestion/openquestion.cpp \
+    ../../Classes/CppOpenQuestionDialog/openquestiondialog.cpp \
+    ../../Classes/CppPylos/pylosboard.cpp \
+    ../../Classes/CppPylos/pyloscoordinat.cpp \
+    ../../Classes/CppPylos/pyloscurrentmovestate.cpp \
+    ../../Classes/CppPylos/pylosgame.cpp \
+    ../../Classes/CppPylos/pylosmove.cpp \
+    ../../Classes/CppPylos/pylosmustremovestate.cpp \
+    ../../Classes/CppPylos/pylosplayer.cpp \
+    ../../Classes/CppPylos/pylospositionstate.cpp \
+    ../../Classes/CppPylos/pyloswinner.cpp \
     ../../Classes/CppQrcFile/qrcfile.cpp \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofile.cpp \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.cpp \
     ../../Classes/CppQtModel/modelfunctionparser.cpp \
-    ../../Classes/CppQuestionDialog/questiondialog.cpp \
     ../../Classes/CppQuestion/question.cpp \
+    ../../Classes/CppQuestionDialog/questiondialog.cpp \
     ../../Classes/CppRainbow/rainbow.cpp \
     ../../Classes/CppRandomCode/randomcode.cpp \
     ../../Classes/CppRectangle/rectangle.cpp \
@@ -225,10 +235,9 @@ SOURCES += \
     ../../Classes/CppWidget/widget.cpp \
     ../../Games/GameConnectThree/connectthreemenudialog.cpp \
     ../../Games/GameConnectThree/connectthreeresources.cpp \
+    ../../Games/GamePylos/pylosmenudialog.cpp \
     ../../Games/GameRubiksClock/rubiksclockmenudialog.cpp \
     ../../Games/GameTicTacToe/tictactoemenudialog.cpp \
-    main.cpp \
-    richelbilderbeekmenudialog.cpp \
     ../../Tools/ToolAsciiArter/asciiartermaindialog.cpp \
     ../../Tools/ToolAsciiArter/asciiartermenudialog.cpp \
     ../../Tools/ToolCodeToHtml/codetohtmlmenudialog.cpp \
@@ -243,6 +252,7 @@ SOURCES += \
     ../../Tools/ToolRegexTester/regextesterqtmaindialog.cpp \
     ../../Tools/ToolRegexTester/regextestertr1maindialog.cpp \
     ../../Tools/ToolSimMysteryMachine/simmysterymachinemenudialog.cpp \
+    ../../Tools/ToolStateObserver/stateobservermenudialog.cpp \
     ../../Tools/ToolTestDial/testdialmenudialog.cpp \
     ../../Tools/ToolTestEncranger/testencrangerdialog.cpp \
     ../../Tools/ToolTestExercise/testexercisemenudialog.cpp \
@@ -257,31 +267,20 @@ SOURCES += \
     ../../Tools/ToolTestShape/testshapemenudialog.cpp \
     ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.cpp \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.cpp \
-    ../../Classes/CppGaborFilter/gaborfilter.cpp \
-    ../../Classes/CppGaborFilterWidget/gaborfilterwidget.cpp \
-    ../../Games/GamePylos/pylosmenudialog.cpp \
-    ../../Tools/ToolStateObserver/stateobservermenudialog.cpp \
-    ../../Classes/CppPylos/pyloswinner.cpp \
-    ../../Classes/CppPylos/pylospositionstate.cpp \
-    ../../Classes/CppPylos/pylosplayer.cpp \
-    ../../Classes/CppPylos/pylosmustremovestate.cpp \
-    ../../Classes/CppPylos/pylosmove.cpp \
-    ../../Classes/CppPylos/pylosgame.cpp \
-    ../../Classes/CppPylos/pyloscurrentmovestate.cpp \
-    ../../Classes/CppPylos/pyloscoordinat.cpp \
-    ../../Classes/CppPylos/pylosboard.cpp
+    main.cpp \
+    richelbilderbeekmenudialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppAsciiArter/asciiarter.h \
     ../../Classes/CppAssert/assert.h \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
+    ../../Classes/CppCodeToHtml/codetohtml.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.h \
     ../../Classes/CppCodeToHtml/codetohtmlcreateemptypagedialog.h \
     ../../Classes/CppCodeToHtml/codetohtmldialog.h \
     ../../Classes/CppCodeToHtml/codetohtmlfooter.h \
-    ../../Classes/CppCodeToHtml/codetohtml.h \
     ../../Classes/CppCodeToHtml/codetohtmlheader.h \
     ../../Classes/CppCodeToHtml/codetohtmlinfo.h \
     ../../Classes/CppCodeToHtml/codetohtmlpagetype.h \
@@ -297,44 +296,46 @@ HEADERS += \
     ../../Classes/CppEncranger/encranger.h \
     ../../Classes/CppExercise/exercise.h \
     ../../Classes/CppFuzzy_equal_to/fuzzy_equal_to.h \
+    ../../Classes/CppGaborFilter/gaborfilter.h \
+    ../../Classes/CppGaborFilterWidget/gaborfilterwidget.h \
     ../../Classes/CppHtmlPage/htmlpage.h \
     ../../Classes/CppIpAddress/ipaddress.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h \
+    ../../Classes/CppKalmanFilter/kalmanfilter.h \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h \
     ../../Classes/CppKalmanFilter/kalmanfilterexample.h \
     ../../Classes/CppKalmanFilter/kalmanfilterexperiment.h \
     ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.h \
     ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.h \
     ../../Classes/CppKalmanFilter/kalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/kalmanfilter.h \
     ../../Classes/CppKalmanFilter/kalmanfilterparameter.h \
     ../../Classes/CppKalmanFilter/kalmanfilterparameters.h \
     ../../Classes/CppKalmanFilter/kalmanfilterparametertype.h \
     ../../Classes/CppKalmanFilter/kalmanfiltertype.h \
     ../../Classes/CppKalmanFilter/kalmanfiltertypes.h \
-    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfilter.h \
     ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.h \
     ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/standardkalmanfilter.h \
     ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/standardwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.h \
     ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.h \
     ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.h \
     ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/whitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/whitenoisesystemparameter.h \
     ../../Classes/CppKalmanFilter/whitenoisesystemparameters.h \
     ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.h \
@@ -344,33 +345,43 @@ HEADERS += \
     ../../Classes/CppLed/led.h \
     ../../Classes/CppLedWidget/ledwidget.h \
     ../../Classes/CppLoopReader/loopreader.h \
+    ../../Classes/CppManyDigitNewick/manydigitnewick.h \
     ../../Classes/CppManyDigitNewick/manydigitnewickcoordinat.h \
     ../../Classes/CppManyDigitNewick/manydigitnewickderivative.h \
-    ../../Classes/CppManyDigitNewick/manydigitnewick.h \
     ../../Classes/CppManyDigitNewick/manydigitnewickindexer.h \
     ../../Classes/CppManyDigitNewick/manydigitnewickindextable.h \
     ../../Classes/CppManyDigitNewick/manydigitnewicks.h \
     ../../Classes/CppMatrix/matrix.h \
-    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.h \
     ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.h \
+    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.h \
     ../../Classes/CppMultiVector/multivector.h \
     ../../Classes/CppMusic/musicchord.h \
     ../../Classes/CppMusic/musicnote.h \
     ../../Classes/CppMusic/musicscale.h \
     ../../Classes/CppMysteryMachine/mysterymachine.h \
     ../../Classes/CppMysteryMachineWidget/mysterymachinewidget.h \
-    ../../Classes/CppNewick/newickcpp98.h \
     ../../Classes/CppNewick/newick.h \
+    ../../Classes/CppNewick/newickcpp98.h \
     ../../Classes/CppNewick/newickstorage.h \
     ../../Classes/CppNewickVector/newickvector.h \
-    ../../Classes/CppOpenQuestionDialog/openquestiondialog.h \
     ../../Classes/CppOpenQuestion/openquestion.h \
+    ../../Classes/CppOpenQuestionDialog/openquestiondialog.h \
+    ../../Classes/CppPylos/pylosboard.h \
+    ../../Classes/CppPylos/pyloscoordinat.h \
+    ../../Classes/CppPylos/pyloscurrentmovestate.h \
+    ../../Classes/CppPylos/pylosfwd.h \
+    ../../Classes/CppPylos/pylosgame.h \
+    ../../Classes/CppPylos/pylosmove.h \
+    ../../Classes/CppPylos/pylosmustremovestate.h \
+    ../../Classes/CppPylos/pylosplayer.h \
+    ../../Classes/CppPylos/pylospositionstate.h \
+    ../../Classes/CppPylos/pyloswinner.h \
     ../../Classes/CppQrcFile/qrcfile.h \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofile.h \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.h \
     ../../Classes/CppQtModel/modelfunctionparser.h \
-    ../../Classes/CppQuestionDialog/questiondialog.h \
     ../../Classes/CppQuestion/question.h \
+    ../../Classes/CppQuestionDialog/questiondialog.h \
     ../../Classes/CppRainbow/rainbow.h \
     ../../Classes/CppRandomCode/randomcode.h \
     ../../Classes/CppRectangle/rectangle.h \
@@ -399,15 +410,15 @@ HEADERS += \
     ../../Classes/CppToggleButton/togglebutton.h \
     ../../Classes/CppToggleButtonWidget/togglebuttonwidget.h \
     ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.h \
     ../../Classes/CppTwoDigitNewick/twodigitnewick.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.h \
     ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.h \
     ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.h \
     ../../Classes/CppTwoDigitNewick/twodigitnewicks.h \
     ../../Classes/CppWidget/widget.h \
+    ../../Games/GamePylos/pylosmenudialog.h \
     ../../Games/GameRubiksClock/rubiksclockmenudialog.h \
     ../../Games/GameTicTacToe/tictactoemenudialog.h \
-    richelbilderbeekmenudialog.h \
     ../../Tools/ToolAsciiArter/asciiartermaindialog.h \
     ../../Tools/ToolAsciiArter/asciiartermenudialog.h \
     ../../Tools/ToolCodeToHtml/codetohtmlmenudialog.h \
@@ -422,6 +433,7 @@ HEADERS += \
     ../../Tools/ToolRegexTester/regextesterqtmaindialog.h \
     ../../Tools/ToolRegexTester/regextestertr1maindialog.h \
     ../../Tools/ToolSimMysteryMachine/simmysterymachinemenudialog.h \
+    ../../Tools/ToolStateObserver/stateobservermenudialog.h \
     ../../Tools/ToolTestDial/testdialmenudialog.h \
     ../../Tools/ToolTestEncranger/testencrangerdialog.h \
     ../../Tools/ToolTestExercise/testexercisemenudialog.h \
@@ -437,26 +449,16 @@ HEADERS += \
     ../../Tools/ToolTestShape/testshapemenudialog.h \
     ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.h \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
-    ../../Classes/CppGaborFilter/gaborfilter.h \
-    ../../Classes/CppGaborFilterWidget/gaborfilterwidget.h \
-    ../../Games/GamePylos/pylosmenudialog.h \
-    ../../Tools/ToolStateObserver/stateobservermenudialog.h \
-    ../../Classes/CppPylos/pyloswinner.h \
-    ../../Classes/CppPylos/pylospositionstate.h \
-    ../../Classes/CppPylos/pylosplayer.h \
-    ../../Classes/CppPylos/pylosmustremovestate.h \
-    ../../Classes/CppPylos/pylosmove.h \
-    ../../Classes/CppPylos/pylosgame.h \
-    ../../Classes/CppPylos/pylosfwd.h \
-    ../../Classes/CppPylos/pyloscurrentmovestate.h \
-    ../../Classes/CppPylos/pyloscoordinat.h \
-    ../../Classes/CppPylos/pylosboard.h
+    richelbilderbeekmenudialog.h
 
 OTHER_FILES += \
+    ../../Classes/CppGaborFilter/Licence.txt \
+    ../../Classes/CppGaborFilterWidget/Licence.txt \
     ../../Classes/CppHtmlPage/Licence.txt \
     ../../Classes/CppKalmanFilter/Licence.txt \
     ../../Classes/CppMatrix/Licence.txt \
     ../../Classes/CppMusic/Licence.txt \
+    ../../Classes/CppPylos/Licence.txt \
     ../../Classes/CppQrcFile/Licence.txt \
     ../../Classes/CppQtModel/Licence.txt \
     ../../Classes/CppStateObserver/Licence.txt \
@@ -466,10 +468,7 @@ OTHER_FILES += \
     ../../Tools/ToolTestEncranger/Licence.txt \
     ../../Tools/ToolTestLed/Licence.txt \
     ../../Tools/ToolTestQrcFile/Licence.txt \
-    ../../Tools/ToolTestQtCreatorProFile/Licence.txt \
-    ../../Classes/CppGaborFilter/Licence.txt \
-    ../../Classes/CppGaborFilterWidget/Licence.txt \
-    ../../Classes/CppPylos/Licence.txt
+    ../../Tools/ToolTestQtCreatorProFile/Licence.txt
 
 #
 #
@@ -587,27 +586,25 @@ win32 {
 # Warp's function parser
 #
 #
-#unix {
-  INCLUDEPATH += \
-    ../../Libraries/fparser4.5.1
+INCLUDEPATH += \
+  ../../Libraries/fparser4.5.1
 
-  HEADERS += \
-    ../../Libraries/fparser4.5.1/extrasrc/fpaux.hh \
-    ../../Libraries/fparser4.5.1/extrasrc/fptypes.hh \
-    ../../Libraries/fparser4.5.1/fparser_gmpint.hh \
-    ../../Libraries/fparser4.5.1/fparser.hh \
-    ../../Libraries/fparser4.5.1/fparser_mpfr.hh \
-    ../../Libraries/fparser4.5.1/fpconfig.hh
+HEADERS += \
+  ../../Libraries/fparser4.5.1/extrasrc/fpaux.hh \
+  ../../Libraries/fparser4.5.1/extrasrc/fptypes.hh \
+  ../../Libraries/fparser4.5.1/fparser_gmpint.hh \
+  ../../Libraries/fparser4.5.1/fparser.hh \
+  ../../Libraries/fparser4.5.1/fparser_mpfr.hh \
+  ../../Libraries/fparser4.5.1/fpconfig.hh
 
-  SOURCES += \
-    ../../Libraries/fparser4.5.1/fparser.cc \
-    ../../Libraries/fparser4.5.1/fpoptimizer.cc
+SOURCES += \
+  ../../Libraries/fparser4.5.1/fparser.cc \
+  ../../Libraries/fparser4.5.1/fpoptimizer.cc
 
 
-  OTHER_FILES += \
-    ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc \
-    ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc
-#}
+OTHER_FILES += \
+  ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc \
+  ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc
 
 #
 #

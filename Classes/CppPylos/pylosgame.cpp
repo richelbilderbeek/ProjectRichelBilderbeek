@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Pylos::Game, class for a game of Pylos/Phyraos
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppPylos.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -30,17 +33,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "pylosboard.h"
 #include "pyloscurrentmovestate.h"
 #include "pylosmove.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 Game::Game(const Game& rhs)
   : m_board(rhs.m_board->Clone()),
     m_current_move(new CurrentMoveState(*rhs.m_current_move)),
@@ -50,7 +53,7 @@ Game::Game(const Game& rhs)
   assert(m_board != rhs.m_board);
   assert(m_current_move != rhs.m_current_move);
 }
-//---------------------------------------------------------------------------
+
 Game::Game(const boost::shared_ptr<Board> &board)
   : m_board(board),
     m_current_move(new CurrentMoveState),
@@ -64,24 +67,24 @@ Game::Game(const boost::shared_ptr<Board> &board)
 
 
 }
-//---------------------------------------------------------------------------
+
 bool Game::CanDo(const Pylos::Move& m) const
 {
   return m_board->CanDo(m,m_current_player);
 }
-//---------------------------------------------------------------------------
+
 bool Game::CanDo(const std::string& s) const
 {
   return m_board->CanDo(s,m_current_player);
 }
-//---------------------------------------------------------------------------
+
 bool Game::CanRemove(const Coordinat& c) const
 {
   if (m_board->Get(c) != m_current_player) return false;
 
   return m_board->CanRemove( std::vector<Coordinat>(1,c), m_current_player);
 }
-//---------------------------------------------------------------------------
+
 bool Game::CanRemove(const std::vector<Coordinat>& v) const
 {
   assert(!v.empty());
@@ -94,19 +97,19 @@ bool Game::CanRemove(const std::vector<Coordinat>& v) const
 
   return m_board->CanRemove(v, m_current_player);
 }
-//---------------------------------------------------------------------------
+
 bool Game::CanSet(const Coordinat& c) const
 {
   return m_board->CanSet(c,m_current_player);
 }
-//---------------------------------------------------------------------------
+
 bool Game::CanTransfer(const Coordinat& c) const
 {
   if (m_board->Get(c) != GetCurrentTurn()) return false;
 
   return m_board->CanTransfer(c,m_current_player);
 }
-//---------------------------------------------------------------------------
+
 bool Game::CanTransfer(const Coordinat& from,
   const Coordinat& to) const
 {
@@ -114,7 +117,7 @@ bool Game::CanTransfer(const Coordinat& from,
 
   return m_board->CanTransfer(from,to,m_current_player);
 }
-//---------------------------------------------------------------------------
+
 void Game::Do(const std::string& s)
 {
   #ifndef NDEBUG
@@ -123,7 +126,7 @@ void Game::Do(const std::string& s)
   assert(CanDo(s));
   Do(Pylos::Move(s));
 }
-//---------------------------------------------------------------------------
+
 void Game::Do(const Pylos::Move& m)
 {
   assert(CanDo(m));
@@ -131,34 +134,34 @@ void Game::Do(const Pylos::Move& m)
   m_current_move->SetMove(m);
   TogglePlayer();
 }
-//---------------------------------------------------------------------------
+
 boost::shared_ptr<Game> Game::CreateAdvancedGame()
 {
   boost::shared_ptr<Board> board(Board::CreateAdvancedBoard());
   return boost::shared_ptr<Game>(new Game(board));
 }
-//---------------------------------------------------------------------------
+
 boost::shared_ptr<Game> Game::CreateBasicGame()
 {
   boost::shared_ptr<Board> board(Board::CreateBasicBoard());
   return boost::shared_ptr<Game>(new Game(board));
 }
-//---------------------------------------------------------------------------
+
 const std::vector<Move> Game::GetAllPossibleMoves() const
 {
   return m_board->GetAllPossibleMoves(m_current_player);
 }
-//---------------------------------------------------------------------------
+
 Player Game::GetCurrentTurn() const
 {
   return m_current_player;
 }
-//---------------------------------------------------------------------------
+
 const std::string Game::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> Game::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -169,17 +172,17 @@ const std::vector<std::string> Game::GetVersionHistory()
   v.push_back("2012-05-05: version 2.0: major achitectural rewrite");
   return v;
 }
-//---------------------------------------------------------------------------
+
 Winner Game::GetWinner() const
 {
   return m_board->GetWinner();
 }
-//---------------------------------------------------------------------------
+
 MustRemoveState Game::GetMustRemove() const
 {
   return m_current_move->GetMustRemove();
 }
-//---------------------------------------------------------------------------
+
 Winner Game::PlayRandomGame(const boost::shared_ptr<Board>& board)
 {
   boost::shared_ptr<Game> p;
@@ -241,7 +244,7 @@ Winner Game::PlayRandomGame(const boost::shared_ptr<Board>& board)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 void Game::Remove(const Coordinat& c)
 {
   assert(GetMustRemove() != MustRemoveState::no);
@@ -255,7 +258,7 @@ void Game::Remove(const Coordinat& c)
   //TogglePlayer();
 
 }
-//---------------------------------------------------------------------------
+
 void Game::Remove(const std::vector<Coordinat>& v)
 {
   //Cannot call RemoveMarbles(c), because this
@@ -289,7 +292,7 @@ void Game::Remove(const std::vector<Coordinat>& v)
   m_current_move->SetMustRemove(MustRemoveState::no);
   TogglePlayer();
 }
-//---------------------------------------------------------------------------
+
 void Game::Set(const Coordinat& c)
 {
   #ifndef NDEBUG
@@ -318,7 +321,7 @@ void Game::Set(const Coordinat& c)
     TogglePlayer();
   }
 }
-//---------------------------------------------------------------------------
+
 void Game::Test()
 {
   static bool tested = false;
@@ -721,7 +724,7 @@ void Game::Test()
     Pylos::Game::PlayRandomGame();
   }
 }
-//---------------------------------------------------------------------------
+
 void Game::TogglePlayer()
 {
   assert(!m_current_move->GetMustRemove()
@@ -730,7 +733,7 @@ void Game::TogglePlayer()
   m_current_move.reset(new CurrentMoveState);
   m_current_player = (m_current_player == Player::player1 ? Player::player2 : Player::player1);
 }
-//---------------------------------------------------------------------------
+
 void Game::Transfer(
     const Coordinat& from,
     const Coordinat& to)
@@ -755,7 +758,7 @@ void Game::Transfer(
     TogglePlayer();
   }
 }
-//---------------------------------------------------------------------------
+
 bool operator==(const Game& lhs, const Game& rhs)
 {
   return *lhs.m_board          == *rhs.m_board
@@ -763,11 +766,11 @@ bool operator==(const Game& lhs, const Game& rhs)
     &&    lhs.m_current_player ==  rhs.m_current_player
     &&    lhs.m_move_history   ==  rhs.m_move_history;
 }
-//---------------------------------------------------------------------------
+
 bool operator!=(const Game& lhs, const Game& rhs)
 {
   return !(lhs == rhs);
 }
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 RubiksClock, class for Rubik's clock
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,21 +15,25 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppRubiksClock.htm
-//---------------------------------------------------------------------------
+
 #ifndef RUBIKSCLOCK_H
 #define RUBIKSCLOCK_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct Rect;
 struct RubiksClockDialWidget;
 struct ToggleButtonWidget;
-//---------------------------------------------------------------------------
+
 ///RubiksClock is a Rubik's Clock
 struct RubiksClock
 {
@@ -114,12 +118,12 @@ struct RubiksClock
   friend std::ostream& operator<<(std::ostream& os, const RubiksClock& r);
 
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const RubiksClock& r);
 std::ostream& operator<<(std::ostream& os, const RubiksClock::Times& t);
 std::ostream& operator<<(std::ostream& os, const RubiksClock::Pegs& p);
-//---------------------------------------------------------------------------
+
 bool operator==(const RubiksClock::Times& lhs, const RubiksClock::Times& rhs);
 bool operator==(const RubiksClock::Pegs& lhs, const RubiksClock::Pegs& rhs);
-//---------------------------------------------------------------------------
+
 #endif // RUBIKSCLOCK_H

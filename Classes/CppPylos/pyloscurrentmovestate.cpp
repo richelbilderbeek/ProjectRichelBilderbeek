@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Pylos::CurrentMoveState, Pylos/Phyraos current move state class
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppPylos.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,11 +31,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pyloscurrentmovestate.h"
 
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 CurrentMoveState::CurrentMoveState()
   : m_must_remove(MustRemoveState::no)
 {
@@ -43,19 +46,19 @@ CurrentMoveState::CurrentMoveState()
   assert(IsMoveUnknown());
   //assert(IsRemoveUnknown());
 }
-//---------------------------------------------------------------------------
+
 const std::string CurrentMoveState::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> CurrentMoveState::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-05-05: version 2.0: initial release version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 bool CurrentMoveState::IsMoveMove() const
 {
   Test();
@@ -63,19 +66,19 @@ bool CurrentMoveState::IsMoveMove() const
   assert(m_current_move.m_move.size() < 3);
   return m_current_move.m_move.size() == 2;
 }
-//---------------------------------------------------------------------------
+
 bool CurrentMoveState::IsMovePlace() const
 {
   assert(m_current_move.m_move.size() < 3);
   return m_current_move.m_move.size() == 1;
 }
-//---------------------------------------------------------------------------
+
 bool CurrentMoveState::IsMoveUnknown() const
 {
   assert(m_current_move.m_move.size() < 3);
   return m_current_move.m_move.size() == 0;
 }
-//---------------------------------------------------------------------------
+
 /*
 bool PylosCurrentMoveState::IsRemoveUnknown() const
 {
@@ -85,19 +88,19 @@ bool PylosCurrentMoveState::IsRemoveUnknown() const
     && (!m_move_flag_remove_two);
 }
 */
-//---------------------------------------------------------------------------
+
 MustRemoveState CurrentMoveState::GetMustRemove() const
 {
   return m_must_remove;
 }
-//---------------------------------------------------------------------------
+
 void CurrentMoveState::Restart()
 {
   m_must_remove = MustRemoveState::no;
   m_current_move = Move();
   assert(IsMoveUnknown());
 }
-//---------------------------------------------------------------------------
+
 void CurrentMoveState::SetMove(const Move& move)
 {
   assert(m_current_move.m_move.empty());
@@ -105,7 +108,7 @@ void CurrentMoveState::SetMove(const Move& move)
   m_current_move = move;
   m_must_remove = MustRemoveState::no;
 }
-//---------------------------------------------------------------------------
+
 void CurrentMoveState::SetMoveTransfer(const Coordinat& from, const Coordinat& to)
 {
   assert(IsMoveUnknown());
@@ -113,14 +116,14 @@ void CurrentMoveState::SetMoveTransfer(const Coordinat& from, const Coordinat& t
   m_current_move.m_move.push_back(from);
   m_current_move.m_move.push_back(to);
 }
-//---------------------------------------------------------------------------
+
 void CurrentMoveState::SetMoveSet(const Coordinat& c)
 {
   assert(IsMoveUnknown());
   assert(m_current_move.m_move.empty());
   m_current_move.m_move.push_back(c);
 }
-//---------------------------------------------------------------------------
+
 void CurrentMoveState::SetMustRemove(const MustRemoveState must_remove)
 {
   assert(!(must_remove == MustRemoveState::player2
@@ -131,13 +134,13 @@ void CurrentMoveState::SetMustRemove(const MustRemoveState must_remove)
     && "Cannot set duty to remove from player 2 to player 1");
   m_must_remove = must_remove;
 }
-//---------------------------------------------------------------------------
+
 void CurrentMoveState::SetRemove(const std::vector<Coordinat>& v)
 {
   assert(m_must_remove != MustRemoveState::no);
   m_current_move.m_remove = v;
 }
-//---------------------------------------------------------------------------
+
 void CurrentMoveState::Test()
 {
   static bool tested = false;
@@ -161,13 +164,13 @@ void CurrentMoveState::Test()
     assert(s == t);
   }
 }
-//---------------------------------------------------------------------------
+
 bool operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs)
 {
   return lhs.GetMustRemove() == rhs.GetMustRemove()
     && lhs.GetMove() == rhs.GetMove();
 }
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+
 

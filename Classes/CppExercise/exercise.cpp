@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Exercise, a collection of Questions
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppExercise.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,17 +31,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "exercise.h"
 
 #include <fstream>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
 //#include "trace.h"
-//---------------------------------------------------------------------------
+
 Exercise::Exercise(const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
@@ -77,7 +80,7 @@ Exercise::Exercise(const std::string& filename)
 
   m_current = m_questions.begin();
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> Exercise::FileToVector(const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
@@ -91,22 +94,22 @@ const std::vector<std::string> Exercise::FileToVector(const std::string& filenam
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::string Exercise::GetCurrentQuestion() const
 {
   return *m_current;
 }
-//---------------------------------------------------------------------------
+
 int Exercise::GetNumberOfQuestions() const
 {
   return boost::numeric_cast<int>(m_questions.size());
 }
-//---------------------------------------------------------------------------
+
 const std::string Exercise::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> Exercise::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -114,7 +117,7 @@ const std::vector<std::string> Exercise::GetVersionHistory()
   v.push_back("2011-10-30: Version 1.1: shuffle questions at start");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void Exercise::Next()
 {
   ++m_current;
@@ -124,4 +127,4 @@ void Exercise::Next()
     m_current = m_questions.begin();
   }
 }
-//---------------------------------------------------------------------------
+

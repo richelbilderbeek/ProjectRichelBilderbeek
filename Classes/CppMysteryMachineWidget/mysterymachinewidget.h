@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 MysteryMachineWidget, GUI independent widget for MysteryMachine
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,30 +15,33 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppMysteryMachineWidget.htm
-//---------------------------------------------------------------------------
+
 #ifndef MYSTERYMACHINEWIDGET_H
 #define MYSTERYMACHINEWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <iosfwd>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/signals2.hpp>
 #include <boost/tuple/tuple.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "widget.h"
 #include "rectangle.h"
-//---------------------------------------------------------------------------
+
 struct MysteryMachine;
 struct DialWidget;
 struct ToggleButtonWidget;
 struct LedWidget;
-//---------------------------------------------------------------------------
+
 ///MysteryMachineWidget handles the GUI independent
 ///user interface of the display of a MysteryMachine
 struct MysteryMachineWidget : public Widget
@@ -76,7 +79,7 @@ struct MysteryMachineWidget : public Widget
 
   friend std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget);
-//---------------------------------------------------------------------------
+
 #endif // MYSTERYMACHINEWIDGET_H

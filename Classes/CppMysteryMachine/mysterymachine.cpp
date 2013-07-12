@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 MysteryMachine, my mystery machine class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,27 +15,34 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppMysteryMachine.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "mysterymachine.h"
 
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "dialwidget.h"
 #include "led.h"
 #include "ledwidget.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 MysteryMachine::MysteryMachine()
   : m_dial_back(new DialWidget),
     m_dial_front(new DialWidget),
@@ -60,12 +67,12 @@ MysteryMachine::MysteryMachine()
     &MysteryMachine::Update,this));
   Update();
 }
-//---------------------------------------------------------------------------
+
 const std::string MysteryMachine::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> MysteryMachine::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -73,7 +80,7 @@ const std::vector<std::string> MysteryMachine::GetVersionHistory()
   v.push_back("2011-08-20: Version 1.1: added operator<<");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void MysteryMachine::Update()
 {
   const int back = static_cast<int>(GetDialBack()->GetDial()->GetPosition() * 16.0) % 3;
@@ -97,7 +104,7 @@ void MysteryMachine::Update()
   m_led_top_middle->GetLed()->SetIntensity(top == 1 ? 1.0 : 0.0);
   m_led_top_back->GetLed()->SetIntensity(  top == 2 ? 1.0 : 0.0);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine)
 {
   os
@@ -141,4 +148,4 @@ std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine)
     << "</MysteryMachine>";
   return os;
 }
-//---------------------------------------------------------------------------
+

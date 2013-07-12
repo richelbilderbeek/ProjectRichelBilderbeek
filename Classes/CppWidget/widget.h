@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Widget, GUI independent widget class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,21 +15,25 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppWidget.htm
-//---------------------------------------------------------------------------
+
 #ifndef WIDGET_H
 #define WIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "rectangle.h"
-//---------------------------------------------------------------------------
+
 ///GUI indepedent widget class, modeled after the Qt and Wt architure
 struct Widget
 {
@@ -55,5 +59,5 @@ struct Widget
   private:
   Rect m_geometry;
 };
-//---------------------------------------------------------------------------
+
 #endif // WIDGET_H

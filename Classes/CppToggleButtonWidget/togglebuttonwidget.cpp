@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ToggleButtonWidget, widget for the ToggleButton class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,16 +15,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppToggleButtonWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "togglebuttonwidget.h"
 
 #include <cassert>
@@ -37,7 +42,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "togglebutton.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 ToggleButtonWidget::ToggleButtonWidget(
   const bool pressed,
   const unsigned char red,
@@ -47,17 +54,17 @@ ToggleButtonWidget::ToggleButtonWidget(
 {
 
 }
-//---------------------------------------------------------------------------
+
 void ToggleButtonWidget::Click(const int, const int)
 {
   m_button->Toggle();
 }
-//---------------------------------------------------------------------------
+
 const std::string ToggleButtonWidget::GetVersion()
 {
   return "1.2";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ToggleButtonWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -67,7 +74,7 @@ const std::vector<std::string> ToggleButtonWidget::GetVersionHistory()
   v.push_back("2011-08-31: Version 1.2: added setting the color of a ToggleButton");
   return v;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const ToggleButtonWidget& button)
 {
   os
@@ -77,5 +84,5 @@ std::ostream& operator<<(std::ostream& os, const ToggleButtonWidget& button)
     << "</ToggleButtonWidget>";
   return os;
 }
-//---------------------------------------------------------------------------
+
 

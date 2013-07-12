@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 Pylos::Move, class for a Pylos/Phyraos move
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppPylos.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,21 +31,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/regex.hpp>
-//---------------------------------------------------------------------------
+
 #include "pyloscoordinat.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 Move::Move()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
-//---------------------------------------------------------------------------
+
 Move::Move(
   const std::vector<Coordinat>& moving,
   const std::vector<Coordinat>& removing)
@@ -60,7 +63,7 @@ Move::Move(
   assert(m_remove.size() <= 2
     && "At most two marbles are removed in a move");
 }
-//---------------------------------------------------------------------------
+
 Move::Move(const std::string& s)
 {
   #ifndef NDEBUG
@@ -115,19 +118,19 @@ Move::Move(const std::string& s)
   }
   assert(s.size() == 34);
 }
-//---------------------------------------------------------------------------
+
 const std::string Move::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> Move::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-05-05: version 2.0: initial release version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 bool Move::IsValid() const
 {
   return
@@ -135,7 +138,7 @@ bool Move::IsValid() const
     && m_move.size() <= 2
     && m_remove.size() <= 2;
 }
-//---------------------------------------------------------------------------
+
 void Move::Test()
 {
   static bool tested = false;
@@ -181,7 +184,7 @@ void Move::Test()
     );
   }
 }
-//---------------------------------------------------------------------------
+
 const std::string Move::ToStr() const
 {
   #ifndef NDEBUG
@@ -207,19 +210,19 @@ const std::string Move::ToStr() const
   }
   return s;
 }
-//---------------------------------------------------------------------------
+
 bool operator==(const Move& lhs, const Move& rhs)
 {
   return lhs.m_move == rhs.m_move
     && lhs.m_remove == rhs.m_remove;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const Move& m)
 {
   os << m.ToStr();
   return os;
 }
-//---------------------------------------------------------------------------
+
 ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
 const std::vector<std::string> GetRegexMatches(
   const std::string& s,
@@ -241,6 +244,6 @@ const std::vector<std::string> GetRegexMatches(
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+

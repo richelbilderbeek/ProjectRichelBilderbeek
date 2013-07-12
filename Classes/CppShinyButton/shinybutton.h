@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ShinyButton, toggle button class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,18 +15,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppShinyButton.htm
-//---------------------------------------------------------------------------
+
 #ifndef SHINYBUTTON_H
 #define SHINYBUTTON_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ///ShinyButton is a class for a toggle button
 struct ShinyButton
 {
@@ -88,8 +92,8 @@ struct ShinyButton
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const ShinyButton& button);
-//---------------------------------------------------------------------------
+
 #endif // SHINYBUTTON_H
-//---------------------------------------------------------------------------
+

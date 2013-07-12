@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 RubiksClockWidget, class for displaying a RubiksClock
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,23 +15,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppRubiksClockWidget.htm
-//---------------------------------------------------------------------------
+
 #ifndef RUBIKSCLOCKWIDGET_H
 #define RUBIKSCLOCKWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <iosfwd>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "widget.h"
-//---------------------------------------------------------------------------
+
 struct RubiksClock;
-//---------------------------------------------------------------------------
+
 ///RubiksClockWidget is a class to display a RubiksClock
 struct RubiksClockWidget : public Widget
 {
@@ -81,7 +85,7 @@ struct RubiksClockWidget : public Widget
 
   friend std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget);
-//---------------------------------------------------------------------------
+
 #endif // RUBIKSCLOCKWIDGET_H

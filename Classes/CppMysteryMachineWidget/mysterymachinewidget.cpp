@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 MysteryMachineWidget, GUI independent widget for MysteryMachine
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,22 +15,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppMysteryMachineWidget.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "mysterymachinewidget.h"
 
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "dialwidget.h"
 #include "led.h"
@@ -40,7 +45,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 //#include "trace.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 MysteryMachineWidget::MysteryMachineWidget(
   const Rect& geometry)
   : m_machine(new MysteryMachine)
@@ -50,7 +57,7 @@ MysteryMachineWidget::MysteryMachineWidget(
     &MysteryMachineWidget::OnResize,this));
   SetGeometry(geometry);
 }
-//---------------------------------------------------------------------------
+
 ///Respond to the user clicking on the MysteryMachineWidget
 void MysteryMachineWidget::Click(const int x, const int y)
 {
@@ -67,12 +74,12 @@ void MysteryMachineWidget::Click(const int x, const int y)
     m_machine->GetToggleButton()->Click(x,y);
   }
 }
-//---------------------------------------------------------------------------
+
 const std::string MysteryMachineWidget::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> MysteryMachineWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -81,12 +88,12 @@ const std::vector<std::string> MysteryMachineWidget::GetVersionHistory()
   v.push_back("2011-08-20: Version 1.1: added operator<<");
   return v;
 }
-//---------------------------------------------------------------------------
+
 //void MysteryMachineWidget::OnMysteryMachineChanged()
 //{
 //  m_signal_mysterymachine_changed();
 //}
-//---------------------------------------------------------------------------
+
 void MysteryMachineWidget::OnResize()
 {
   const double w = boost::numeric_cast<double>(GetGeometry().GetWidth());
@@ -124,7 +131,7 @@ void MysteryMachineWidget::OnResize()
     s,s));
   //m_signal_mysterymachine_changed();
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget)
 {
   os
@@ -138,4 +145,4 @@ std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget)
     << "</MysteryMachineWidget>";
   return os;
 }
-//---------------------------------------------------------------------------
+

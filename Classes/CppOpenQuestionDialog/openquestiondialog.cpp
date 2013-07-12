@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 OpenQuestionDialog, dialog for OpenQuestion
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,12 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppOpenQuestionDialog.htm
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -30,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "openquestion.h"
 //#include "trace.h"
-//---------------------------------------------------------------------------
+
 OpenQuestionDialog::OpenQuestionDialog(const std::string& question)
   : QuestionDialog(boost::shared_ptr<Question>(new OpenQuestion(question)))
 {
@@ -38,7 +41,7 @@ OpenQuestionDialog::OpenQuestionDialog(const std::string& question)
   assert(!HasSubmitted());
   assert(GetQuestion());
 }
-//---------------------------------------------------------------------------
+
 OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<Question>& question)
   : QuestionDialog(question)
 {
@@ -46,16 +49,16 @@ OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<Question>& questi
   assert(!HasSubmitted());
   assert(GetQuestion());
 }
-//---------------------------------------------------------------------------
+
 const std::string OpenQuestionDialog::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> OpenQuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-29: version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+

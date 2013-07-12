@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 /*
 ManyDigitNewick, Newick class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,15 +15,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
-//---------------------------------------------------------------------------
+
 #ifndef MANYDIGITNEWICKINDEXER_H
 #define MANYDIGITNEWICKINDEXER_H
-//---------------------------------------------------------------------------
+
 #include <cassert>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "manydigitnewick.h"
 //#include "manydigitnewickcoordinat.h"
 #include "manydigitnewickderivative.h"
@@ -31,7 +33,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "manydigitnewicks.h"
 #include "multivector.h"
 #include "newickvector.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ///ManyDigitNewickIndexer converts any newick to (X,Y,...)
 
 struct ManyDigitNewickIndexer
@@ -136,5 +139,5 @@ struct ManyDigitNewickIndexer
 
   //static bool IsSorted(const std::vector<int>& v);
 };
-//---------------------------------------------------------------------------
+
 #endif //MANYDIGITNEWICKINDEXER_H
