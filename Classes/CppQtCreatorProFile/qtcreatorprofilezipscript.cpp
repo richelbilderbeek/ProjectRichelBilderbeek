@@ -31,10 +31,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iterator>
 #include <set>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>
+#pragma GCC diagnostic pop
 
 //#include "createqtprojectzipfilepath.h"
 //#include "createqtprojectzipfilemenudialog.h"

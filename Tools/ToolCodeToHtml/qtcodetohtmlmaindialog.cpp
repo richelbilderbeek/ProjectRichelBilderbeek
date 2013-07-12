@@ -37,8 +37,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
+#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QFile>

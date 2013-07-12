@@ -32,8 +32,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
+
 
 #include "codetohtmlcontent.h"
 #include "codetohtmlfooter.h"
@@ -43,6 +46,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreatorprofile.h"
 #include "qtcreatorprofilezipscript.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 namespace c2h {
 
