@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 AsciiArter, tool to create ASCII art
-Copyright (C) 2006-2012 Richel Bilderbeek
+Copyright (C) 2006-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,7 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
-#include <QApplication>
+#include <qglobal.h>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+  #include <QtWidgets/QApplication>
+#else
+  #include <QtGui/QApplication>
+#endif
+
 #include "qtasciiartermenudialog.h"
 
 int main(int argc, char *argv[])

@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "asciiarter.h"
 
 #include <algorithm>
@@ -33,6 +35,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <boost/scoped_ptr.hpp>
 #include <boost/numeric/conversion/cast.hpp>
+
+#pragma GCC diagnostic pop
 
 const std::vector<char> AsciiArter::m_gradient
   = AsciiArter::GetAsciiArtGradient();
