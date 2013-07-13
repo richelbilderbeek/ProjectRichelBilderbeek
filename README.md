@@ -15,7 +15,7 @@ ProjectRichelBilderbeek consists of:
 ## Where to start
 
 End-users can choose to checkout the stable 'master' branch or the bleeding edge 'develop' branch.
-Developers are best of forking from the 'develop' branch (see also 'Git policy')
+Developers should fork from the 'develop' branch (see also 'Git policy').
 
 The main .pro files are
 * /Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro: contains the bundled (Qt) desktop applications
