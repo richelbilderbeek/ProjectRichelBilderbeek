@@ -294,6 +294,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateProReplace
     { "ToolRegexTester","<a href=\"T$oolR$egexT$ester.htm\">T$oolR$egexT$ester</a>" },
     { "ToolTestQrcFile","<a href=\"T$oolT$estQ$rcF$ile.htm\">T$oolT$estQ$rcF$ile</a>" },
     { "TestShinyButton","<a href=\"T$oolT$estS$hinyB$utton.htm\">T$estS$hinyB$utton</a>" },
+    { "libcvautomation","<a href=\"C$ppL$ibc$va$utom$at$i$on.htm\">l$ibc$va$ut$om$at$ion</a>" },
     { "manydigitnewick","<a href=\"C$ppM$a$nyD$igitN$ewick.htm\">m$a$nyd$igitn$ewick</a>" },
     { "testgroupwidget","<a href=\"T$oolT$estG$roupW$idget.htm\">t$estg$roupw$idget</a>" },
     { "testshinybutton","<a href=\"T$oolT$estS$hinyB$utton.htm\">t$ests$hinyb$utton</a>" },
