@@ -6,7 +6,7 @@
 ///The VirtualBastard class
 struct VirtualBastard
 {
-  VirtualBastard() {}
+  VirtualBastard();
 
 
   ///Make the mouse cursor perform a click
@@ -18,8 +18,11 @@ struct VirtualBastard
   ///Set the mouse cursor to a certain position
   static void SetMousePos(const int x, const int y);
 
+  ///Press a key
   static void PressKey(const char key);
 
+  ///Sleep for some time (in msecs)
+  static void Sleep(const int m_secs);
 
   private:
   static void Execute(const std::string& cmd);

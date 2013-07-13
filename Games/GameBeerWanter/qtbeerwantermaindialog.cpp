@@ -1,7 +1,7 @@
-
+//---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
-
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtbeerwantermaindialog.h"
 
 QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtBeerWanterMainDialog),
     m_widget(new QtBeerWanterWidget)
 {

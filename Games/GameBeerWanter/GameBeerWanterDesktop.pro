@@ -1,30 +1,32 @@
 QT += core gui
-TARGET = BeerWanterDesktop
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++0x
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppQtAboutDialog
 
 SOURCES +=  \
-    qtmain.cpp \
     beerwantermaindialog.cpp \
     beerwantermenudialog.cpp \
-    qtbeerwanterwidget.cpp \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     qtbeerwantermaindialog.cpp \
+    qtbeerwanterwidget.cpp \
+    qtmain.cpp \
     qtbeerwantermenudialog.cpp
 
 HEADERS += \
     beerwantermaindialog.h \
     beerwantermenudialog.h \
-    qtbeerwanterwidget.h \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     qtbeerwantermaindialog.h \
-    qtbeerwantermenudialog.h
+    qtbeerwantermenudialog.h \
+    qtbeerwanterwidget.h
 
 
 RESOURCES += \
@@ -37,4 +39,7 @@ FORMS += \
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt
+    ../../Classes/CppQtAboutDialog/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
+    GameBeerWanterTest.sh
+

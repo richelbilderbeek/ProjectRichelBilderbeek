@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,18 +17,18 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
 #ifndef QTBEERWANTERMENUDIALOG_H
 #define QTBEERWANTERMENUDIALOG_H
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 namespace Ui {
 class QtBeerWanterMenuDialog;
 }
 
-class QtBeerWanterMenuDialog : public QDialog
+class QtBeerWanterMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

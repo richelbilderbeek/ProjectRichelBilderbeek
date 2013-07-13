@@ -4,17 +4,31 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 
+INCLUDEPATH += \
+    ../../Classes/CppVirtualBastard
+
 SOURCES += \
     qtmain.cpp \
     qtvirtualbastardmaindialog.cpp \
-    virtualbastard.cpp
+    ../../Classes/CppVirtualBastard/virtualbastard.cpp \
+    qtvirtualbastardmenudialog.cpp \
+    qtvirtualbastardexample1dialog.cpp \
+    ../../Classes/CppVirtualBastard/virtualbastardcommand.cpp \
+    ../../Classes/CppVirtualBastard/virtualbastardcommandfactory.cpp
 
 HEADERS  += \
-  qtvirtualbastardmaindialog.h \
-    virtualbastard.h
+    qtvirtualbastardmaindialog.h \
+    ../../Classes/CppVirtualBastard/virtualbastard.h \
+    qtvirtualbastardmenudialog.h \
+    qtvirtualbastardexample1dialog.h \
+    ../../Classes/CppVirtualBastard/virtualbastardcommand.h \
+    ../../Classes/CppVirtualBastard/virtualbastardcommandfactory.h
 
 
-FORMS    += qtvirtualbastardmaindialog.ui
+FORMS    += \
+    qtvirtualbastardmaindialog.ui \
+    qtvirtualbastardmenudialog.ui \
+    qtvirtualbastardexample1dialog.ui
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 

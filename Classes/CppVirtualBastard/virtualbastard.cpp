@@ -1,14 +1,20 @@
 #include "virtualbastard.h"
 
-
+#include <chrono>
 #include <limits>
 //#include <sstream>
+#include <thread>
 
 #include <boost/lexical_cast.hpp>
 
 extern "C"
 {
   #include "libcvautomation/libcvautomation.h"
+}
+
+VirtualBastard::VirtualBastard()
+{
+  XInitThreads();
 }
 
 void VirtualBastard::Click()
@@ -76,4 +82,9 @@ void VirtualBastard::SetMousePos(const int x, const int y)
     + " "
     + boost::lexical_cast<std::string>(y);
   Execute(cmd);
+}
+
+void VirtualBastard::Sleep(const int m_secs)
+{
+  std::this_thread::sleep_for(std::chrono::milliseconds(m_secs));
 }

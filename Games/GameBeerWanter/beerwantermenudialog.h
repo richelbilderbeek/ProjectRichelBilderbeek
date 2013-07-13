@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,16 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
 #ifndef BEERWANTERMENUDIALOG_H
 #define BEERWANTERMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
 ///BeerWanterMenuDialog contains the BeerWanter menu dialog
 struct BeerWanterMenuDialog
 {
@@ -34,8 +34,5 @@ struct BeerWanterMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
-///From http://www.richelbilderbeek.nl/CppIntToStr.htm
-const std::string IntToStr(const int x);
-//---------------------------------------------------------------------------
+
 #endif // BEERWANTERMENUDIALOG_H
