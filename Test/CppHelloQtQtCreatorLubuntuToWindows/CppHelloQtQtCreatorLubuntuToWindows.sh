@@ -2,8 +2,8 @@
 #From http://richelbilderbeek.nl/CppHelloQtQtCreatorLubuntuToWindows.htm
 echo "Cross compiling to Windows"
 
-#myfile="i686-pc-mingw32-qmake"
-myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
+myfile="i686-pc-mingw32-qmake"
+#myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
 mytarget="CppHelloQtQtCreatorLubuntuToWindows"
 myprofile=$mytarget.pro
 
@@ -13,7 +13,7 @@ then
   echo "MXE crosscompiler '$myfile' found"
 else
   echo "MXE crosscompiler '$myfile' not found"
-  exit
+  #exit
 fi
 
 if [ -e $myprofile ]
@@ -31,7 +31,7 @@ if [ -e Makefile ]
 then
   echo "Makefile created successfully"
 else
-  echo "FAIL: qmake CppHelloQtQtCreatorLubuntu.pro"
+  echo "FAIL: $myfile $myprofile"
   exit
 fi
 
@@ -39,7 +39,7 @@ echo "2/2: making makefile"
 
 make
 
-if [ -e $target ]
+if [ -e ./release/$mytarget.exe ]
 then
   echo "SUCCES"
 else
@@ -47,6 +47,9 @@ else
 fi
 
 #Cleaning up
-rm *.o
 rm Makefile
-rm $target
+rm Makefile.*
+rm -r release
+rm -r debug
+rm ui_*.*
+

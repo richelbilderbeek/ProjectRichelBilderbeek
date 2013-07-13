@@ -11,6 +11,9 @@
 *.pro.user.*
 *__Debug
 *__Release
+Makefile
+Makefile.Debug
+Makefile.Release
 /.directory
 Libraries/.directory
 Libraries/bigint-2010.04.30/
