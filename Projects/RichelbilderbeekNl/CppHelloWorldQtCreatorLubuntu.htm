@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>Hello World using Qt Creator under Ubuntu</title>
-  <meta name="description" content="C++ Hello World using Qt Creator under Ubuntu"/>
-  <meta name="keywords" content="C++ Hello World using Qt Creator under Ubuntu code snippet"/>
+  <title>Hello World using Qt Creator under Lubuntu</title>
+  <meta name="description" content="C++ Hello World using Qt Creator under Lubuntu"/>
+  <meta name="keywords" content="C++ Hello World using Qt Creator under Lubuntu code snippet"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -20,8 +20,8 @@
 <!-- Page header -->
 <h1>
   (<a href="Cpp.htm">C++</a>) 
-  <img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicUbuntu.png" alt="Ubuntu"/> 
-  <a href="CppHelloWorldQtCreatorUbuntu.htm">Hello World using Qt Creator under Ubuntu</a>
+  <img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicLubuntu.png" alt="Lubuntu"/> 
+  <a href="CppHelloWorldQtCreatorLubuntu.htm">Hello World using Qt Creator under Lubuntu</a>
 </h1>
 <p>&nbsp;</p>
 <p><a href="CppHelloWorld.htm">Hello World</a> (or 'The Hello World program') is a standard 
@@ -31,7 +31,7 @@ is <a href="CppHelloBoost.htm">Hello Boost</a>, which also tests if the <a href=
 <a href="CppLibrary.htm">libraries</a> are installed correctly.</p>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppHelloWorldQtCreatorUbuntu.zip">Download the Qt Creator project 'CppHelloWorldQtCreatorUbuntu' (with makefile)(zip)</a></li>
+  <li><a href="CppHelloWorldQtCreatorLubuntu.zip">Download the Qt Creator project 'CppHelloWorldQtCreatorLubuntu' (with makefile)(zip)</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>The (<a href="Cpp.htm">C++</a>) code of <a href="CppHelloWorld.htm">Hello World</a> is as follows:</p>
@@ -62,45 +62,52 @@ is okay (because the program runs). If you want the program to wait for a key pr
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>Below, a complete <a href="CppQtCreator.htm">Qt Creator</a> project and its created files is shown.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>Technical facts</h2>
 <p>&nbsp;</p>
-<h2>Environment</h2>
-<p>&nbsp;</p>
-<p>Operating system: <a href="http://www.ubuntu.com">Ubuntu</a> 10.04 LTS Lucid Lynx</p>
-<p><a href="CppIde.htm">IDE</a>: <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0</p>
-<p><a href="CppQtProjectType.htm">Project type</a>: console application</p>
-<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-<!--  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li> -->
-<!--  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li> -->
-  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloWorldQtCreatorLubuntu.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
-#-------------------------------------------------<br/>
-#<br/>
-# Project created by QtCreator 2010-09-29T14:58:49<br/>
-#<br/>
-#-------------------------------------------------<br/>
+<table summary="CppHelloWorldQtCreatorLubuntu.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-TARGET = CppHelloWorld<br/>
 CONFIG&nbsp;&nbsp; += console<br/>
 CONFIG&nbsp;&nbsp; -= app_bundle<br/>
 TEMPLATE = app<br/>
-SOURCES += main.cpp<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -111,12 +118,12 @@ SOURCES += main.cpp<br/>
 <h2>main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello World\n";<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppHelloWorld.htm">Hello World</a>\n";<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -128,13 +135,13 @@ SOURCES += main.cpp<br/>
 <h2>Makefile</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="Makefile" border = "1"><tr><td><code>
 #############################################################################<br/>
-# Makefile for building: CppHelloWorld<br/>
-# Generated by qmake (2.01a) (Qt 4.6.2) on: Wed Sep 29 14:59:17 2010<br/>
-# Project:&nbsp;&nbsp;CppHelloWorld.pro<br/>
+# Makefile for building: CppHelloBoostQtCreatorLubuntuToWindows<br/>
+# Generated by qmake (2.01a) (Qt 4.8.4) on: Sun Jul 14 18:22:37 2013<br/>
+# Project:&nbsp;&nbsp;../CppHelloBoostQtCreatorLubuntuToWindows/CppHelloBoostQtCreatorLubuntuToWindows.pro<br/>
 # Template: app<br/>
-# Command: /usr/bin/qmake-qt4 -spec /usr/share/qt4/mkspecs/linux-g++ -unix CONFIG+=debug -o Makefile CppHelloWorld.pro<br/>
+# Command: /usr/bin/qmake-qt4 -spec /usr/share/qt4/mkspecs/linux-g++ CONFIG+=debug CONFIG+=declarative_debug -o Makefile ../CppHelloBoostQtCreatorLubuntuToWindows/CppHelloBoostQtCreatorLubuntuToWindows.pro<br/>
 #############################################################################<br/>
 <br/>
 ####### Compiler, tools and options<br/>
@@ -144,10 +151,10 @@ CXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = g++<br/>
 DEFINES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = -DQT_CORE_LIB -DQT_SHARED<br/>
 CFLAGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= -pipe -g -Wall -W -D_REENTRANT $(DEFINES)<br/>
 CXXFLAGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= -pipe -g -Wall -W -D_REENTRANT $(DEFINES)<br/>
-INCPATH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = -I/usr/share/qt4/mkspecs/linux-g++ -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4 -I.<br/>
+INCPATH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = -I/usr/share/qt4/mkspecs/linux-g++ -I../CppHelloBoostQtCreatorLubuntuToWindows -I/usr/include/qt4/QtCore -I/usr/include/qt4 -I. -I../CppHelloBoostQtCreatorLubuntuToWindows -I.<br/>
 LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= g++<br/>
 LFLAGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <br/>
-LIBS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= $(SUBLIBS)&nbsp;&nbsp;-L/usr/lib -lQtCore -lpthread <br/>
+LIBS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= $(SUBLIBS)&nbsp;&nbsp;-L/usr/lib/i386-linux-gnu -L/home/richel/Projects/Libraries/mxe/usr/i686-pc-mingw32/lib -lgmp -lQtCore -lpthread <br/>
 AR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= ar cqs<br/>
 RANLIB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <br/>
 QMAKE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = /usr/bin/qmake-qt4<br/>
@@ -174,11 +181,14 @@ OBJECTS_DIR&nbsp;&nbsp; = ./<br/>
 <br/>
 ####### Files<br/>
 <br/>
-SOURCES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = main.cpp <br/>
+SOURCES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = ../CppHelloBoostQtCreatorLubuntuToWindows/main.cpp <br/>
 OBJECTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = main.o<br/>
-DIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= /usr/share/qt4/mkspecs/common/g++.conf \<br/>
-		/usr/share/qt4/mkspecs/common/unix.conf \<br/>
+DIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= /usr/share/qt4/mkspecs/common/unix.conf \<br/>
 		/usr/share/qt4/mkspecs/common/linux.conf \<br/>
+		/usr/share/qt4/mkspecs/common/gcc-base.conf \<br/>
+		/usr/share/qt4/mkspecs/common/gcc-base-unix.conf \<br/>
+		/usr/share/qt4/mkspecs/common/g++-base.conf \<br/>
+		/usr/share/qt4/mkspecs/common/g++-unix.conf \<br/>
 		/usr/share/qt4/mkspecs/qconfig.pri \<br/>
 		/usr/share/qt4/mkspecs/features/qt_functions.prf \<br/>
 		/usr/share/qt4/mkspecs/features/qt_config.prf \<br/>
@@ -186,6 +196,8 @@ DIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= /usr/share/qt4
 		/usr/share/qt4/mkspecs/features/default_pre.prf \<br/>
 		/usr/share/qt4/mkspecs/features/debug.prf \<br/>
 		/usr/share/qt4/mkspecs/features/default_post.prf \<br/>
+		/usr/share/qt4/mkspecs/features/declarative_debug.prf \<br/>
+		/usr/share/qt4/mkspecs/features/unix/gdb_dwarf_index.prf \<br/>
 		/usr/share/qt4/mkspecs/features/warn_on.prf \<br/>
 		/usr/share/qt4/mkspecs/features/qt.prf \<br/>
 		/usr/share/qt4/mkspecs/features/unix/thread.prf \<br/>
@@ -195,10 +207,10 @@ DIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= /usr/share/qt4
 		/usr/share/qt4/mkspecs/features/yacc.prf \<br/>
 		/usr/share/qt4/mkspecs/features/lex.prf \<br/>
 		/usr/share/qt4/mkspecs/features/include_source_dir.prf \<br/>
-		CppHelloWorld.pro<br/>
-QMAKE_TARGET&nbsp;&nbsp;= CppHelloWorld<br/>
+		../CppHelloBoostQtCreatorLubuntuToWindows/CppHelloBoostQtCreatorLubuntuToWindows.pro<br/>
+QMAKE_TARGET&nbsp;&nbsp;= CppHelloBoostQtCreatorLubuntuToWindows<br/>
 DESTDIR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = <br/>
-TARGET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= CppHelloWorld<br/>
+TARGET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= CppHelloBoostQtCreatorLubuntuToWindows<br/>
 <br/>
 first: all<br/>
 ####### Implicit rules<br/>
@@ -216,7 +228,6 @@ first: all<br/>
 <br/>
 .C.o:<br/>
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o "$@" "$&lt;"<br/>
-
 <br/>
 .c.o:<br/>
 	$(CC) -c $(CFLAGS) $(INCPATH) -o "$@" "$&lt;"<br/>
@@ -227,10 +238,14 @@ all: Makefile $(TARGET)<br/>
 <br/>
 $(TARGET):&nbsp;&nbsp;$(OBJECTS)&nbsp;&nbsp;<br/>
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)<br/>
+	{ test -n "$(DESTDIR)" &amp;&amp; DESTDIR="$(DESTDIR)" || DESTDIR=.; } &amp;&amp; test $$(gdb --version | sed -e 's,[^0-9]\+\([0-9]\)\.\([0-9]\).*,\1\2,;q') -gt 72 &amp;&amp; gdb --nx --batch --quiet -ex 'set confirm off' -ex "save gdb-index $$DESTDIR" -ex quit '$(TARGET)' &amp;&amp; test -f $(TARGET).gdb-index &amp;&amp; objcopy --add-section '.gdb_index=$(TARGET).gdb-index' --set-section-flags '.gdb_index=readonly' '$(TARGET)' '$(TARGET)' &amp;&amp; rm -f $(TARGET).gdb-index || true<br/>
 <br/>
-Makefile: CppHelloWorld.pro&nbsp;&nbsp;/usr/share/qt4/mkspecs/linux-g++/qmake.conf /usr/share/qt4/mkspecs/common/g++.conf \<br/>
-		/usr/share/qt4/mkspecs/common/unix.conf \<br/>
+Makefile: ../CppHelloBoostQtCreatorLubuntuToWindows/CppHelloBoostQtCreatorLubuntuToWindows.pro&nbsp;&nbsp;/usr/share/qt4/mkspecs/linux-g++/qmake.conf /usr/share/qt4/mkspecs/common/unix.conf \<br/>
 		/usr/share/qt4/mkspecs/common/linux.conf \<br/>
+		/usr/share/qt4/mkspecs/common/gcc-base.conf \<br/>
+		/usr/share/qt4/mkspecs/common/gcc-base-unix.conf \<br/>
+		/usr/share/qt4/mkspecs/common/g++-base.conf \<br/>
+		/usr/share/qt4/mkspecs/common/g++-unix.conf \<br/>
 		/usr/share/qt4/mkspecs/qconfig.pri \<br/>
 		/usr/share/qt4/mkspecs/features/qt_functions.prf \<br/>
 		/usr/share/qt4/mkspecs/features/qt_config.prf \<br/>
@@ -238,6 +253,8 @@ Makefile: CppHelloWorld.pro&nbsp;&nbsp;/usr/share/qt4/mkspecs/linux-g++/qmake.co
 		/usr/share/qt4/mkspecs/features/default_pre.prf \<br/>
 		/usr/share/qt4/mkspecs/features/debug.prf \<br/>
 		/usr/share/qt4/mkspecs/features/default_post.prf \<br/>
+		/usr/share/qt4/mkspecs/features/declarative_debug.prf \<br/>
+		/usr/share/qt4/mkspecs/features/unix/gdb_dwarf_index.prf \<br/>
 		/usr/share/qt4/mkspecs/features/warn_on.prf \<br/>
 		/usr/share/qt4/mkspecs/features/qt.prf \<br/>
 		/usr/share/qt4/mkspecs/features/unix/thread.prf \<br/>
@@ -247,11 +264,14 @@ Makefile: CppHelloWorld.pro&nbsp;&nbsp;/usr/share/qt4/mkspecs/linux-g++/qmake.co
 		/usr/share/qt4/mkspecs/features/yacc.prf \<br/>
 		/usr/share/qt4/mkspecs/features/lex.prf \<br/>
 		/usr/share/qt4/mkspecs/features/include_source_dir.prf \<br/>
-		/usr/lib/libQtCore.prl<br/>
-	$(QMAKE) -spec /usr/share/qt4/mkspecs/linux-g++ -unix CONFIG+=debug -o Makefile CppHelloWorld.pro<br/>
-/usr/share/qt4/mkspecs/common/g++.conf:<br/>
+		/usr/lib/i386-linux-gnu/libQtCore.prl<br/>
+	$(QMAKE) -spec /usr/share/qt4/mkspecs/linux-g++ CONFIG+=debug CONFIG+=declarative_debug -o Makefile ../CppHelloBoostQtCreatorLubuntuToWindows/CppHelloBoostQtCreatorLubuntuToWindows.pro<br/>
 /usr/share/qt4/mkspecs/common/unix.conf:<br/>
 /usr/share/qt4/mkspecs/common/linux.conf:<br/>
+/usr/share/qt4/mkspecs/common/gcc-base.conf:<br/>
+/usr/share/qt4/mkspecs/common/gcc-base-unix.conf:<br/>
+/usr/share/qt4/mkspecs/common/g++-base.conf:<br/>
+/usr/share/qt4/mkspecs/common/g++-unix.conf:<br/>
 /usr/share/qt4/mkspecs/qconfig.pri:<br/>
 /usr/share/qt4/mkspecs/features/qt_functions.prf:<br/>
 /usr/share/qt4/mkspecs/features/qt_config.prf:<br/>
@@ -259,6 +279,8 @@ Makefile: CppHelloWorld.pro&nbsp;&nbsp;/usr/share/qt4/mkspecs/linux-g++/qmake.co
 /usr/share/qt4/mkspecs/features/default_pre.prf:<br/>
 /usr/share/qt4/mkspecs/features/debug.prf:<br/>
 /usr/share/qt4/mkspecs/features/default_post.prf:<br/>
+/usr/share/qt4/mkspecs/features/declarative_debug.prf:<br/>
+/usr/share/qt4/mkspecs/features/unix/gdb_dwarf_index.prf:<br/>
 /usr/share/qt4/mkspecs/features/warn_on.prf:<br/>
 /usr/share/qt4/mkspecs/features/qt.prf:<br/>
 /usr/share/qt4/mkspecs/features/unix/thread.prf:<br/>
@@ -268,13 +290,13 @@ Makefile: CppHelloWorld.pro&nbsp;&nbsp;/usr/share/qt4/mkspecs/linux-g++/qmake.co
 /usr/share/qt4/mkspecs/features/yacc.prf:<br/>
 /usr/share/qt4/mkspecs/features/lex.prf:<br/>
 /usr/share/qt4/mkspecs/features/include_source_dir.prf:<br/>
-/usr/lib/libQtCore.prl:<br/>
+/usr/lib/i386-linux-gnu/libQtCore.prl:<br/>
 qmake:&nbsp;&nbsp;FORCE<br/>
-	@$(QMAKE) -spec /usr/share/qt4/mkspecs/linux-g++ -unix CONFIG+=debug -o Makefile CppHelloWorld.pro<br/>
+	@$(QMAKE) -spec /usr/share/qt4/mkspecs/linux-g++ CONFIG+=debug CONFIG+=declarative_debug -o Makefile ../CppHelloBoostQtCreatorLubuntuToWindows/CppHelloBoostQtCreatorLubuntuToWindows.pro<br/>
 <br/>
 dist: <br/>
-	@$(CHK_DIR_EXISTS) .tmp/CppHelloWorld1.0.0 || $(MKDIR) .tmp/CppHelloWorld1.0.0 <br/>
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/CppHelloWorld1.0.0/ &amp;&amp; $(COPY_FILE) --parents main.cpp .tmp/CppHelloWorld1.0.0/ &amp;&amp; (cd `dirname .tmp/CppHelloWorld1.0.0` &amp;&amp; $(TAR) CppHelloWorld1.0.0.tar CppHelloWorld1.0.0 &amp;&amp; $(COMPRESS) CppHelloWorld1.0.0.tar) &amp;&amp; $(MOVE) `dirname .tmp/CppHelloWorld1.0.0`/CppHelloWorld1.0.0.tar.gz . &amp;&amp; $(DEL_FILE) -r .tmp/CppHelloWorld1.0.0<br/>
+	@$(CHK_DIR_EXISTS) .tmp/CppHelloBoostQtCreatorLubuntuToWindows1.0.0 || $(MKDIR) .tmp/CppHelloBoostQtCreatorLubuntuToWindows1.0.0 <br/>
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/CppHelloBoostQtCreatorLubuntuToWindows1.0.0/ &amp;&amp; $(COPY_FILE) --parents ../CppHelloBoostQtCreatorLubuntuToWindows/main.cpp .tmp/CppHelloBoostQtCreatorLubuntuToWindows1.0.0/ &amp;&amp; (cd `dirname .tmp/CppHelloBoostQtCreatorLubuntuToWindows1.0.0` &amp;&amp; $(TAR) CppHelloBoostQtCreatorLubuntuToWindows1.0.0.tar CppHelloBoostQtCreatorLubuntuToWindows1.0.0 &amp;&amp; $(COMPRESS) CppHelloBoostQtCreatorLubuntuToWindows1.0.0.tar) &amp;&amp; $(MOVE) `dirname .tmp/CppHelloBoostQtCreatorLubuntuToWindows1.0.0`/CppHelloBoostQtCreatorLubuntuToWindows1.0.0.tar.gz . &amp;&amp; $(DEL_FILE) -r .tmp/CppHelloBoostQtCreatorLubuntuToWindows1.0.0<br/>
 <br/>
 <br/>
 clean:compiler_clean <br/>
@@ -288,6 +310,8 @@ distclean: clean<br/>
 	-$(DEL_FILE) $(TARGET) <br/>
 	-$(DEL_FILE) Makefile<br/>
 <br/>
+<br/>
+check: first<br/>
 <br/>
 mocclean: compiler_moc_header_clean compiler_moc_source_clean<br/>
 <br/>
@@ -314,8 +338,8 @@ compiler_clean: <br/>
 <br/>
 ####### Compile<br/>
 <br/>
-main.o: main.cpp <br/>
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp<br/>
+main.o: ../CppHelloBoostQtCreatorLubuntuToWindows/main.cpp <br/>
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CppHelloBoostQtCreatorLubuntuToWindows/main.cpp<br/>
 <br/>
 ####### Install<br/>
 <br/>
@@ -326,14 +350,11 @@ uninstall:&nbsp;&nbsp; FORCE<br/>
 FORCE:<br/>
 </code></td></tr></table>
 <!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
 <p>&nbsp;</p>
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
 </html>
+
