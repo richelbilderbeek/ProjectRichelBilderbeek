@@ -9,6 +9,8 @@
 #include <thread>
 #endif
 
+#include <boost/lexical_cast.hpp>
+
 #include <QtGlobal>
 #if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
 #include <QtWidgets/QApplication>
@@ -93,9 +95,59 @@ int main(int argc, char *argv[])
   a.setWindowIcon(QIcon(":/images/R.png"));
 
   QtPvdbMenuDialog d;
-
-  d.show();
-  a.exec();
+  if (argc == 1)
+  {
+    d.show();
+    a.exec();
+  }
+  else
+  {
+    const std::vector<boost::function<void(QtPvdbMenuDialog *)> > v
+      =
+      {
+        &QtPvdbMenuDialog::on_button_about_clicked,
+        &QtPvdbMenuDialog::on_button_assessor_clicked,
+        &QtPvdbMenuDialog::on_button_concept_clicked,
+        &QtPvdbMenuDialog::on_button_create_test_files_clicked,
+        &QtPvdbMenuDialog::on_button_modify_stylesheet_clicked,
+        &QtPvdbMenuDialog::on_button_overview_clicked,
+        &QtPvdbMenuDialog::on_button_print_concept_map_clicked,
+        &QtPvdbMenuDialog::on_button_print_rating_clicked,
+        &QtPvdbMenuDialog::on_button_rate_concept_auto_clicked,
+        &QtPvdbMenuDialog::on_button_rate_concept_clicked,
+        &QtPvdbMenuDialog::on_button_rate_concept_map_clicked,
+        &QtPvdbMenuDialog::on_button_rate_examples_clicked,
+        &QtPvdbMenuDialog::on_button_rating_clicked,
+        &QtPvdbMenuDialog::on_button_student_clicked,
+        &QtPvdbMenuDialog::on_button_test_arrowitems_clicked,
+        &QtPvdbMenuDialog::on_button_test_cluster_clicked,
+        &QtPvdbMenuDialog::on_button_test_conceptedit_clicked,
+        &QtPvdbMenuDialog::on_button_test_conceptmap_clicked,
+        &QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked,
+        &QtPvdbMenuDialog::on_button_test_edge_item_clicked,
+        &QtPvdbMenuDialog::on_button_test_node_item_clicked,
+        &QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked,
+        &QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked,
+        &QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked,
+        &QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked,
+        &QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked,
+        &QtPvdbMenuDialog::on_button_view_files_clicked,
+        &QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked
+      };
+    try
+    {
+      const int i = boost::lexical_cast<int>(argv[1]);
+      v.at(i)(&d);
+    }
+    catch (boost::bad_lexical_cast&)
+    {
+      std::cerr << "Incorrect argument: please supply a number from 0 to " << v.size() << std::endl;
+    }
+    catch (std::out_of_range&)
+    {
+      std::cerr << "Incorrect argument: please supply a number from 0 to " << v.size() << std::endl;
+    }
+  }
 }
 
 ///TODO
