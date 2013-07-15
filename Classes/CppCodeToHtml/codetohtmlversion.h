@@ -35,13 +35,17 @@ const std::vector<std::string> FileToVector(const std::string& filename);
 ///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm
 const std::string GetBoostVersion();
 
+#ifndef _WIN32
 ///GetLubuntuVersion returns the version number of the Lubuntu distribution currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetLubuntuVersion.htm
 const std::string GetLubuntuVersion();
+#endif
 
+#ifndef _WIN32
 ///GetLubuntuVersionCodename returns the codename of the Lubuntu distribution currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetLubuntuVersionCodename.htm
 const std::string GetLubuntuVersionCodename();
+#endif
 
 ///GetGccVersion returns the version number of GCC currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetGccVersion.htm
@@ -57,21 +61,27 @@ const std::string GetQuantLibVersion();
 ///From http://www.richelbilderbeek.nl/CppGetQtVersion.htm
 const std::string GetQtVersion();
 
+#ifndef _WIN32
 ///GetQtCreatorVersion returns the version Qt Creator currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetQtCreatorVersion.htm
 const std::string GetQtCreatorVersion();
+#endif
 
 ///GetStlVersion returns the version number of the GCC STL currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetStlVersion.htm
 const std::string GetStlVersion();
 
+#ifndef _WIN32
 ///GetUbuntuVersion returns the version number of the Ubuntu distribution currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetUbuntuVersion.htm
 const std::string GetUbuntuVersion();
+#endif
 
+#ifndef _WIN32
 ///GetUbuntuVersionCodename returns the codename of the Ubuntu distribution currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetUbuntuVersionCodename.htm
 const std::string GetUbuntuVersionCodename();
+#endif
 
 ///GetVirtualBoxVersion returns the version of the currently installed VirtualBox
 ///From http://www.richelbilderbeek.nl/CppGetVirtualBoxVersion.htm

@@ -54,6 +54,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace c2h {
 
+#ifndef _WIN32
 bool IsCleanHtml(const std::vector<std::string>& html)
 {
   assert(IsTidyInstalled());
@@ -110,8 +111,9 @@ bool IsCleanHtml(const std::vector<std::string>& html)
   }
   return true;
 }
+#endif
 
-
+#ifndef _WIN32
 bool IsTidyInstalled()
 {
   const std::string temp_filename_tidy = "tmp_tidy_output.txt";
@@ -131,7 +133,9 @@ bool IsTidyInstalled()
 
   return !error;
 }
+#endif
 
+#ifndef NDEBUG
 void Test()
 {
   {
@@ -198,6 +202,7 @@ void Test()
     assert(v == result);
   }
 }
+#endif
 
 const std::vector<std::string> ConvertCodeSnippet(
   const std::vector<std::string>& code,

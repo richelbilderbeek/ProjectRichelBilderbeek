@@ -61,12 +61,16 @@ Dialog::Dialog(
     m_content_type(content_type),
     m_tech_info(tech_info)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   //Check source
   assert(boost::filesystem::exists(source)
     && "Source can be a file or a path");
 }
 
-
+#ifndef NDEBUG
 void Dialog::Test()
 {
   {
@@ -75,6 +79,7 @@ void Dialog::Test()
     is_tested = true;
   }
   //Check if CodeToHtml creates a clean HTML file when it converts itself
+  #ifndef _WIN32
   assert(IsTidyInstalled() && "While I know I have tidy installed");
   if (IsTidyInstalled())
   {
@@ -112,8 +117,9 @@ void Dialog::Test()
   {
     TRACE("WARNING: 'tidy' not found, check if CodeToHtml generates clean HTML code is skipped");
   }
-
+  #endif
 }
+#endif
 
 const std::vector<std::string> Dialog::ToHtml() const
 {
@@ -175,7 +181,9 @@ const std::vector<std::string> Dialog::ToHtml() const
     const std::vector<std::string> w = footer.ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
+  #ifndef _WIN32
   assert(IsCleanHtml(v));
+  #endif
   return v;
 }
 

@@ -42,14 +42,17 @@ struct Dialog
   ///Convert a source (which can be a project file or code snippet text to an HTML page
   const std::vector<std::string> ToHtml() const;
 
-  ///Test this class
-  static void Test();
 
   private:
   const PageType m_page_type;
   const std::string m_source;
   const ContentType m_content_type;
   const TechInfoType m_tech_info;
+
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test();
+  #endif
 
 };
 

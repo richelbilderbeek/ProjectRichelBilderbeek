@@ -158,10 +158,12 @@ const std::vector<std::string> TechInfo::ToHtml() const
     {
       v.push_back("  <li><img src=\"PicCygwin.png\" alt=\"Cygwin\"/> <a href=\"CppCygwin.htm\">Cygwin</a> 1.7.7</li>");
     }
+    #ifndef _WIN32
     if (m_operating_systems.count(TechInfo::OperatingSystem::lubuntu))
     {
       v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"CppLubuntu.htm\">Lubuntu</a> "+ Version::GetLubuntuVersion()+" ("+Version::GetLubuntuVersionCodename()+")</li>");
     }
+    #endif
     if (m_operating_systems.count(TechInfo::OperatingSystem::maemo))
     {
       v.push_back("  <li><img src=\"PicMaemo.png\" alt=\"Maemo\"/> <a href=\"CppMaemo.htm\">Maemo</a></li>");
@@ -178,18 +180,22 @@ const std::vector<std::string> TechInfo::ToHtml() const
     {
       v.push_back("  <li><img src=\"PicSymbian.png\" alt=\"Symbian\"/> <a href=\"CppSymbian.htm\">Symbian</a></li>");
     }
+    #ifndef _WIN32
     if (m_operating_systems.count(TechInfo::OperatingSystem::ubuntu))
     {
       v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"CppUbuntu.htm\">Ubuntu</a> "+ Version::GetUbuntuVersion()+" ("+Version::GetUbuntuVersionCodename()+")</li>");
     }
+    #endif
     if (m_operating_systems.count(TechInfo::OperatingSystem::virtualbox))
     {
       v.push_back("  <li><img src=\"PicVirtualBox.png\" alt=\"VirtualBox\"/> <a href=\"CppVirtualBox.htm\">VirtualBox</a> " + Version::GetVirtualBoxVersion() + "</li>");
     }
+    #ifdef _WIN32
     if (m_operating_systems.count(TechInfo::OperatingSystem::windows))
     {
       v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppWindows.htm\">Windows</a> XP</li>");
     }
+    #endif
     if (m_operating_systems.count(TechInfo::OperatingSystem::wine))
     {
       v.push_back("  <li><img src=\"PicWine.png\" alt=\"Wine\"/> <a href=\"CppWine.htm\">Wine</a> " + Version::GetWineVersion() + "</li>");
@@ -209,10 +215,17 @@ const std::vector<std::string> TechInfo::ToHtml() const
     {
       v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 Enterprise edition</li>");
     }
+    #ifndef _WIN32
     if (m_ides.count(TechInfo::Ide::qt_creator))
     {
       v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQtCreator.htm\">Qt Creator</a> " + Version::GetQtCreatorVersion() + "</li>");
     }
+    #else
+    if (m_ides.count(TechInfo::Ide::qt_creator))
+    {
+      v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQtCreator.htm\">Qt Creator</a> 2.7.2</li>");
+    }
+    #endif
     v.push_back("</ul>");
   }
   //Project types

@@ -50,11 +50,27 @@ const std::vector<std::string> RegexTesterCpp11MainDialog::GetRegexMatches(
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
 const std::vector<std::string> RegexTesterCpp11MainDialog::GetRegexMatches(
-  const std::string&,
-  const std::regex&)
+  const std::string& /* s */,
+  const std::regex& /* r */) const
 {
   std::vector<std::string> v;
-  v.push_back("GCC does not support regex yet");
+
+  /* COMPILES, BUT NOT SUPPORTED
+  std::string::const_iterator start = s.begin();
+  const std::string::const_iterator end = s.end();
+  std::match_results<std::string::const_iterator> what;
+  std::regex_constants::match_flag_type flags = std::regex_constants::match_default;
+  while(std::regex_search(start, end, what, r, flags))
+  {
+    const std::string x = what.str();
+    v.push_back(x);
+    if (v.size() == 10) return v;
+    start = what[0].second;
+    flags |= std::regex_constants::match_prev_avail;
+    flags |= std::regex_constants::match_not_bow; //was: boost::match_not_bob
+  }
+  */
+  v.push_back("GCC does not support std::regex yet");
   return v;
 }
 

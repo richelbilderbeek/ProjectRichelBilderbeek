@@ -85,6 +85,7 @@ const std::string GetGccVersion()
     + boost::lexical_cast<std::string>(__GNUC_PATCHLEVEL__);
 }
 
+#ifndef _WIN32
 const std::string GetLubuntuVersion()
 {
   const std::string filename = std::tmpnam(0);
@@ -123,7 +124,9 @@ const std::string GetLubuntuVersion()
   }
   throw std::runtime_error("GetLubuntuVersion failed");
 }
+#endif
 
+#ifndef _WIN32
 const std::string GetLubuntuVersionCodename()
 {
   const std::string filename = std::tmpnam(0);
@@ -162,6 +165,7 @@ const std::string GetLubuntuVersionCodename()
   }
   throw std::runtime_error("GetLubuntuVersionCodename failed");
 }
+#endif
 
 /*
 const std::string GetQuantLibVersion()
@@ -175,6 +179,7 @@ const std::string GetQtVersion()
   return QT_VERSION_STR;
 }
 
+#ifndef _WIN32
 const std::string GetQtCreatorVersion()
 {
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
@@ -198,12 +203,14 @@ const std::string GetQtCreatorVersion()
   }
   return "(unknown version)";
 }
+#endif
 
 const std::string GetStlVersion()
 {
   return __VERSION__;
 }
 
+#ifndef _WIN32
 const std::string GetUbuntuVersion()
 {
   const std::string filename = std::tmpnam(0);
@@ -243,7 +250,9 @@ const std::string GetUbuntuVersion()
 
   throw std::runtime_error("GetUbuntuVersion failed");
 }
+#endif
 
+#ifndef _WIN32
 const std::string GetUbuntuVersionCodename()
 {
   const std::string filename = std::tmpnam(0);
@@ -280,6 +289,7 @@ const std::string GetUbuntuVersionCodename()
   }
   throw std::runtime_error("GetUbuntuVersionCodename failed");
 }
+#endif
 
 const std::string GetVirtualBoxVersion()
 {

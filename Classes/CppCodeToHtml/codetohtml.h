@@ -31,9 +31,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ///c2h contains the CodeToHtml functions
 namespace c2h {
-
+  #ifndef NDEBUG
   ///Test these functions
   void Test();
+  #endif
 
   ///Convert a code snippet
   const std::vector<std::string> ConvertCodeSnippet(
@@ -71,13 +72,17 @@ namespace c2h {
     const std::string& folder,
     const std::string& regex_str);
 
+  #ifndef _WIN32
   ///Tests if the HTML is clean, this will be checked by the tool 'tidy'
   bool IsCleanHtml(const std::vector<std::string>& html);
+  #endif
 
+  #ifndef _WIN32
   ///Check if the tool 'tidy' is installed
   ///If not, user should 'sudo-apt get instal-l tidy'
   ///Or go to http://tidy.sourceforge.net
   bool IsTidyInstalled();
+  #endif
 
   ///Sort files: .pro files first, then X.h, X.cpp, then .sh files
   const std::vector<std::string> SortFiles(std::vector<std::string> files);

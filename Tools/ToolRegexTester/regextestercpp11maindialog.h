@@ -36,7 +36,7 @@ struct RegexTesterCpp11MainDialog : public RegexTesterMainDialog
   const boost::shared_ptr<RegexTesterMainDialog> Clone() const;
 
   ///Get an example regex
-  const std::string GetExampleRegex() const { return ""; }
+  const std::string GetExampleRegex() const { return "\\d{4} [A-Z]{2}"; }
 
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
@@ -62,9 +62,9 @@ struct RegexTesterCpp11MainDialog : public RegexTesterMainDialog
   private:
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static const std::vector<std::string> GetRegexMatches(
+  const std::vector<std::string> GetRegexMatches(
     const std::string& s,
-    const std::regex& r);
+    const std::regex& r) const;
 };
 
 #endif // REGEXTESTERCPP11MAINDIALOG_H

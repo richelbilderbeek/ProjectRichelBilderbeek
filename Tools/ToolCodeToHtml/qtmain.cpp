@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #include <QApplication>
+#include <iostream>
 #include "codetohtml.h"
 #include "qtcreatorprofile.h"
 #include "qtcodetohtmlmenudialog.h"
@@ -33,19 +34,29 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  START_TRACE();
-  #ifndef NDEBUG
-  assert(c2h::IsTidyInstalled() && "I really want to be sure that tidy is installed");
-  c2h::Test();
-  c2h::Dialog::Test();
-  #endif
-  QtCodeToHtmlMenuDialog w;
-  w.show();
-  return a.exec();
+  try
+  {
+    START_TRACE();
+    #ifndef _WIN32
+    assert(c2h::IsTidyInstalled() && "I really want to be sure that tidy is installed");
+    #endif
+
+    #ifndef NDEBUG
+    c2h::Test();
+    #endif
+
+    QtCodeToHtmlMenuDialog w;
+    w.show();
+    return a.exec();
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "Exception thrown: " << e.what() << '\n';
+    return 1;
+  }
 }
 
 /*
- *
 
 #
 #

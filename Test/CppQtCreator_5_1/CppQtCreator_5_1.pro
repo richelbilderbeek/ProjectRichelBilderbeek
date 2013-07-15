@@ -63,11 +63,6 @@ win32 {
     #Allow the crosscompiler to emit warnings without terminating
     QMAKE_CXXFLAGS += -std=c++11 #-Werror
   }
-
-
-  #Prevents error:
-  #/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"
-  #DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED
 }
 
 #
