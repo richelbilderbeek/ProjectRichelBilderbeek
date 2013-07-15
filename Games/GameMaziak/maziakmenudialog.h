@@ -20,12 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef MAZIAKMENUDIALOG_H
 #define MAZIAKMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
 ///MaziakMenuDialog contains the Maziak menu dialog
 struct MaziakMenuDialog
 {
@@ -33,5 +33,5 @@ struct MaziakMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 #endif // MAZIAKMENUDIALOG_H
