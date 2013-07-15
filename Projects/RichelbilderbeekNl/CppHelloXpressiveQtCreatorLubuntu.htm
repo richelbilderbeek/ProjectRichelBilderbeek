@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Hello Boost.Xpressive using Qt Creator under Lubuntu</title>
+  <meta name="description" content="C++ Hello Boost.Xpressive using Qt Creator under Lubuntu"/>
+  <meta name="keywords" content="C++ Hello Boost.Xpressive using Qt Creator under Lubuntu Boost Xpressive code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicBoost.png" alt="Boost"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicLubuntu.png" alt="Lubuntu"/> 
+  <a href="CppHelloXpressiveQtCreatorLubuntu.htm">Hello Boost.Xpressive using Qt Creator under Lubuntu</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppHelloXpressiveQtCreatorLubuntu.htm">Hello Boost.Xpressive using Qt Creator under Lubuntu</a> 
+is a specialization of <a href="CppHelloXpressive.htm">Hello Boost.Xpressive</a>
+for <a href="CppQtCreator.htm">Qt Creator</a> under <a href="CppLubuntu.htm">Lubuntu</a>.
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppHelloXpressiveQtCreatorLubuntu.htm">Download the Qt Creator project 'CppHelloXpressiveQtCreatorLubuntu' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloXpressiveQtCreatorLubuntu.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppHelloXpressiveQtCreatorLubuntu.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= app_bundle<br/>
+CONFIG -= qt<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/xpressive/xpressive.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Example adapted from http://www.<a href="CppBoost.htm">boost</a>.org/doc/libs/1_54_0/doc/html/xpressive/user_s_guide.html<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> hello( "hello world!" );<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::xpressive::sregex rex <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::xpressive::sregex::<a href="CppCompile.htm">compile</a>( "(\\w+) (\\w+)!" );<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::xpressive::smatch what;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoost.htm">boost</a>::xpressive::regex_match( hello, what, rex ) )<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> whole match<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> first capture<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[2] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> second capture<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+
