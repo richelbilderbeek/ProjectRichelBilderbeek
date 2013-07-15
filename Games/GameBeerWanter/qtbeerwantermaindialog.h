@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,21 +17,22 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
 #ifndef QTBEERWANTERMAINDIALOG_H
 #define QTBEERWANTERMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+#include "qthideandshowdialog.h"
+
 struct QtBeerWanterWidget;
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtBeerWanterMainDialog;
 }
-//---------------------------------------------------------------------------
-class QtBeerWanterMainDialog : public QDialog
+
+class QtBeerWanterMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -46,6 +47,6 @@ private slots:
   void ChangeTitle(const std::string& title);
   void OnShake(const int x, const int y);
 };
-//---------------------------------------------------------------------------
+
 #endif // QTBEERWANTERMAINDIALOG_H
 

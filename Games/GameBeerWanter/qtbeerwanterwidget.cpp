@@ -1,7 +1,7 @@
-
+//---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
-
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -49,14 +49,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
   : QWidget(parent),
-    m_timer(new QTimer),
-    m_sprite(new QPixmap(":/Beer.png"))
+    m_background_rgb(
+      std::make_tuple(
+        (0xff + 0xff)/2, //Average redness in stylesheet of menu
+        (0xff + 0xc5)/2, //Average greenness in stylesheet of menu
+        (0x00 + 0x00)/2  //Average blueness in stylesheet of menu
+      )
+    ),
+    m_sprite(new QPixmap(":/PicBeer.png")),
+    m_timer(new QTimer)
 {
   assert(!m_sprite.get()->isNull());
 
   this->setMouseTracking(true);
 
-  m_beerwanter.reset(
+  m_dialog.reset(
     new BeerWanterMainDialog(
       QApplication::desktop()->width(),
       QApplication::desktop()->height(),
@@ -66,8 +73,8 @@ QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
       520));
 
   //Ensure the window does not get resized
-  this->setFixedHeight(m_beerwanter->GetWindowHeight());
-  this->setFixedWidth(m_beerwanter->GetWindowWidth());
+  this->setFixedHeight(m_dialog->GetWindowHeight());
+  this->setFixedWidth(m_dialog->GetWindowWidth());
 
   m_timer->connect(m_timer.get(),SIGNAL(timeout()),this,SLOT(onTimer()));
   m_timer->start(20); //Framerate about (1000/20=) 50 fps
@@ -75,7 +82,7 @@ QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
 
 const BeerWanterMainDialog * QtBeerWanterWidget::GetBeerWanter() const
 {
-  return m_beerwanter.get();
+  return m_dialog.get();
 }
 
 void QtBeerWanterWidget::mouseMoveEvent(QMouseEvent * event)
@@ -110,7 +117,7 @@ void QtBeerWanterWidget::mouseMoveEvent(QMouseEvent * event)
   #endif
   assert(event->type() == ::QMouseEvent::MouseMove);
   assert(event);
-  m_beerwanter->SetCursorPos(mouse_x,mouse_y);
+  m_dialog->SetCursorPos(mouse_x,mouse_y);
   this->repaint();
 }
 
@@ -127,20 +134,20 @@ void QtBeerWanterWidget::mousePressEvent(QMouseEvent *)
     + boost::lexical_cast<std::string>(mouse_y)
     + ")";
   #endif
-  if (m_beerwanter->Click())
+  if (m_dialog->Click())
   {
     //Inform user of level-up
-    emit LevelUp(m_beerwanter->GetWindowTitle());
+    emit LevelUp(m_dialog->GetWindowTitle());
   }
   this->repaint();
 }
 
 void QtBeerWanterWidget::onTimer()
 {
-  m_beerwanter->ShakeCursor();
+  m_dialog->ShakeCursor();
 
-  const int mouse_x = m_beerwanter->GetCursorX();
-  const int mouse_y = m_beerwanter->GetCursorY();
+  const int mouse_x = m_dialog->GetCursorX();
+  const int mouse_y = m_dialog->GetCursorY();
   //#define DEBUG_SHOW_MOUSE_TIMER_POSITION
   #ifdef DEBUG_SHOW_MOUSE_TIMER_POSITION
   m_debug_text
@@ -165,9 +172,9 @@ void QtBeerWanterWidget::onTimer()
     base_pos.x() + mouse_x,base_pos.y() + mouse_y);
 
   //Move window
-  m_beerwanter->ShakeWindow();
+  m_dialog->ShakeWindow();
   //QtBeerWanterWidget cannot shake itself
-  emit DoShake(m_beerwanter->GetWindowX(),m_beerwanter->GetWindowY());
+  emit DoShake(m_dialog->GetWindowX(),m_dialog->GetWindowY());
   this->repaint();
 }
 
@@ -175,11 +182,17 @@ void QtBeerWanterWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
 
+  Modify(std::get<0>(m_background_rgb));
+  Modify(std::get<1>(m_background_rgb));
+  Modify(std::get<2>(m_background_rgb));
+
   QPixmap p(this->width(),this->height());
   MyPaint(
     p,
-    //std::rand() % 256, std::rand() % 256, std::rand() % 256);
-    255,255,255);
+    std::get<0>(m_background_rgb),
+    std::get<1>(m_background_rgb),
+    std::get<2>(m_background_rgb)
+  );
   painter.drawPixmap(0,0,p);
 
   //#define DEBUG_SHOW_BEERWANTER_INFO
@@ -189,9 +202,16 @@ void QtBeerWanterWidget::paintEvent(QPaintEvent *)
 
   assert(m_sprite);
   painter.drawPixmap(
-    m_beerwanter->GetSpriteX(),
-    m_beerwanter->GetSpriteY(),
+    m_dialog->GetSpriteX(),
+    m_dialog->GetSpriteY(),
     *m_sprite.get());
+}
+
+void QtBeerWanterWidget::Modify(int& color)
+{
+  color += ((std::rand() >> 4) % 3) - 1;
+  if (color > 255) color = 255;
+  if (color < 0) color = 0;
 }
 
 //From http://www.richelbilderbeek.nl/CppPaint.htm

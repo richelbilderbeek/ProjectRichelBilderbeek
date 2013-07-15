@@ -11,6 +11,12 @@
 *.pro.user.*
 *__Debug
 *__Release
+Makefile
+Makefile.Debug
+Makefile.Release
+trace_out.txt
+autosave1.cmp
+autosave2.cmp
 /.directory
 Libraries/.directory
 Libraries/bigint-2010.04.30/
@@ -19,6 +25,7 @@ Libraries/boost_*
 Libraries/fparser4.4.3/
 Libraries/fparser4.5.1/
 Libraries/fparser4.3/
+Libraries/Hashcat/
 Libraries/mxe/
 Libraries/planner/
 Libraries/polymorphable-master/
@@ -28,6 +35,7 @@ Libraries/qwt-6.0.1/
 Libraries/qwt-6.1.0/
 Libraries/qwt-6.1.0.zip
 Libraries/shiny/
+Libraries/tor-browser*
 Libraries/vpiano-0.9/
 Libraries/john-1.7.9/
 Libraries/wt/

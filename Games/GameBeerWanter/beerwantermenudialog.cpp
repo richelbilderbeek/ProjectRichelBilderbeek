@@ -1,7 +1,7 @@
-
+//---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
-
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -42,8 +42,8 @@ const About BeerWanterMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "BeerWanter",
     "a simple game",
-    "the 6th of March 2012",
-    "2005-2012",
+    "the 13th of July 2013",
+    "2005-2013",
     "http://www.richelbilderbeek.nl/GameBeerWanter.htm",
     GetVersion(),
     GetVersionHistory());
@@ -53,7 +53,7 @@ const About BeerWanterMenuDialog::GetAbout()
 
 const std::string BeerWanterMenuDialog::GetVersion()
 {
-  return "7.0";
+  return "7.1";
 }
 
 const std::vector<std::string> BeerWanterMenuDialog::GetVersionHistory()
@@ -69,6 +69,6 @@ const std::vector<std::string> BeerWanterMenuDialog::GetVersionHistory()
   v.push_back("2010-12-19: version 6.0: seperated project files for NDS, Ubuntu and Windows development. Preparation for seperating game logic from GUI.");
   v.push_back("2010-12-23: version 6.1: added ClickWilBeSuccess method, fixed bug in BeerWanterMainDialog::ShakeWindow");
   v.push_back("2012-03-06: version 7.0: added menu, conformized project architecture for ProjectRichelBilderbeek");
+  v.push_back("2013-07-13: version 7.1: added libcvautomation script to beat the game, improved desktop menu and about screen");
   return v;
 }
-

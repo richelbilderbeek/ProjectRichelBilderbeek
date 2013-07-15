@@ -1,33 +1,33 @@
 QT       += core gui
-TARGET = GameDasWahreSchlagerfest
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++0x
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppQtAboutDialog
 
 
-SOURCES += qtmain.cpp \
-    daswahreschlagerfestmenudialog.cpp \
-    qtdaswahreschlagerfestmaindialog.cpp \
-    daswahreschlagerfestwidget.cpp \
+SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    daswahreschlagerfestmenudialog.cpp \
+    daswahreschlagerfestwidget.cpp \
+    qtdaswahreschlagerfestmaindialog.cpp \
+    qtdaswahreschlagerfestmenudialog.cpp \
     qtdaswahreschlagerfestwidget.cpp \
-    qtdaswahreschlagerfestmenudialog.cpp
+    qtmain.cpp
 
 HEADERS  += \
-    qtdaswahreschlagerfestmaindialog.h \
-    daswahreschlagerfestwidget.h \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    qtdaswahreschlagerfestwidget.h \
-    qtdaswahreschlagerfestmenudialog.h
+    daswahreschlagerfestwidget.h \
+    qtdaswahreschlagerfestmaindialog.h \
+    qtdaswahreschlagerfestmenudialog.h \
+    qtdaswahreschlagerfestwidget.h
 
 FORMS    += \
-    qtdaswahreschlagerfestmaindialog.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
+    qtdaswahreschlagerfestmaindialog.ui \
     qtdaswahreschlagerfestmenudialog.ui
 
 OTHER_FILES += \
@@ -35,5 +35,4 @@ OTHER_FILES += \
     ../../Classes/CppQtAboutDialog/Licence.txt
 
 RESOURCES += \
-    GameDasWahreSchlagerfest.qrc \
     GameDasWahreSchlagerfest.qrc

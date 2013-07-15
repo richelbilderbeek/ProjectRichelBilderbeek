@@ -323,3 +323,11 @@ CONFIG(release, debug|release) {
   #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
+
+#
+#
+# Boost
+#
+#
+
+# Do not link to the Boost libraries, as I cannot figure out how the crosscompiler detects these

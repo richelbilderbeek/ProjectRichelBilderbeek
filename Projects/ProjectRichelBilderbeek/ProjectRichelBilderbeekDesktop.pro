@@ -525,7 +525,8 @@ SOURCES += \
     ../../Classes/CppQtModel/qtublasvectorintmodel.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
+    ../../Tools/ToolKalmanFilterer/qtcopyalltableview.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -912,7 +913,8 @@ HEADERS += \
     ../../Classes/CppQtModel/qtublasvectorintmodel.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
+    ../../Tools/ToolKalmanFilterer/qtcopyalltableview.h
 
 
 RESOURCES += \

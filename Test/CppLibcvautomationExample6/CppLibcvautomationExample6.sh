@@ -20,8 +20,6 @@ sleep 1
 
 sleep 1
 
-exit
-
 #Alternative:
 #
 # 1) Move the cursor to the 'DO NOT PRESS' button

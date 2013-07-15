@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,14 +17,14 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
 #ifndef BEERWANTERMAINDIALOG_H
 #define BEERWANTERMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 ///BeerWanterMainDialog contains the logic behind the game BeerWanter
 struct BeerWanterMainDialog
 {
@@ -35,7 +35,11 @@ struct BeerWanterMainDialog
     int sprite_height,
     int window_width,
     int window_height);
+
+  ///Click is called when the user presses a key. The bool returned
+  ///indicates whether the user successfully clicked on a beer
   bool Click();
+
   bool ClickWilBeSuccess() const;
   int GetCursorX() const { return m_cursor_x; }
   int GetCursorY() const { return m_cursor_y; }
@@ -52,7 +56,11 @@ struct BeerWanterMainDialog
   void SetArenaSize(const int width, const int height);
   void SetCursorPos(const int x, const int y);
   void SetSpriteSize(const int width, const int height);
+
+  ///ShakeCursor shakes the cursor
   void ShakeCursor();
+
+  ///ShakeWindow shakes the window (on desktop computer only)
   void ShakeWindow();
   void Tick();
 
@@ -74,8 +82,5 @@ struct BeerWanterMainDialog
   int GetRandomCursorShake() const;
   int GetRandomWindowShake() const;
 };
-//---------------------------------------------------------------------------
-///From http://www.richelbilderbeek.nl/CppIntToStr.htm
-const std::string IntToStr(const int x);
-//---------------------------------------------------------------------------
+
 #endif // BEERWANTERMAINDIALOG_H

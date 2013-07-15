@@ -6,11 +6,11 @@ TEMPLATE = app
 
 SOURCES += \
     main.cpp \
-    qtdialog.cpp \
-    parser.cpp
+    qtdialog.cpp
 
-HEADERS  += qtdialog.h \
-    parser.h
+HEADERS  += \
+  qtdialog.h
+
 
 FORMS    += qtdialog.ui
 

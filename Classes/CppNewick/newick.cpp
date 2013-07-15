@@ -2012,6 +2012,7 @@ const std::vector<int> Surround(const std::vector<int>& newick)
   return new_newick;
 }
 
+#ifndef NDEBUG
 ///Test tests all Newick functions
 void Test()
 {
@@ -2498,6 +2499,7 @@ void Test()
   NewickCpp98::Test();
   #endif
 }
+#endif
 
 } //namespace Newick
 

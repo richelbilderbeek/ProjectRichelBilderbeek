@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,11 +17,11 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
 #include <QtGui/QApplication>
 #include "qtbeerwantermenudialog.h"
-//---------------------------------------------------------------------------
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
@@ -29,4 +29,4 @@ int main(int argc, char *argv[])
   w.show();
   return a.exec();
 }
-//---------------------------------------------------------------------------
+

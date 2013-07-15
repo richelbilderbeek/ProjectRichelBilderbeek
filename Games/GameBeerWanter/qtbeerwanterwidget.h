@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2012 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,25 +17,22 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
+//From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
 #ifndef QTBEERWANTERWIDGET_H
 #define QTBEERWANTERWIDGET_H
-//---------------------------------------------------------------------------
+
+#include <tuple>
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <QWidget>
 #include "beerwantermaindialog.h"
-//---------------------------------------------------------------------------
+
 struct BeerWanterMainDialog;
-//struct QGraphicsPixmapItem;
-//struct QGraphicsScene;
-//struct QGraphicsView;
 struct QMouseEvent;
 struct QPixmap;
-//struct QVBoxLayout;
 struct QTimer;
-//---------------------------------------------------------------------------
+
 class QtBeerWanterWidget : public QWidget
 {
   Q_OBJECT
@@ -45,16 +42,23 @@ public:
   const BeerWanterMainDialog * GetBeerWanter() const;
 
 private:
-  boost::shared_ptr<QTimer> m_timer;
-  boost::shared_ptr<QPixmap> m_sprite;
-  void mousePressEvent(QMouseEvent * event);
-  virtual void mouseMoveEvent(QMouseEvent * event);
-  boost::scoped_ptr<BeerWanterMainDialog> m_beerwanter;
-  void paintEvent(QPaintEvent *);
+  std::tuple<int,int,int> m_background_rgb;
+
   std::string m_debug_text;
 
+  boost::scoped_ptr<BeerWanterMainDialog> m_dialog;
+
+  boost::shared_ptr<QPixmap> m_sprite;
+  boost::shared_ptr<QTimer> m_timer;
+
+  ///Modify the color value, keep it in unsigned char range
+  void Modify(int& color);
+
 private slots:
+  void mouseMoveEvent(QMouseEvent * event);
+  void mousePressEvent(QMouseEvent * event);
   void onTimer();
+  void paintEvent(QPaintEvent *);
 
 signals:
   void DoShake(const int x,const int y);
@@ -69,6 +73,6 @@ private:
     const unsigned char b,
     const unsigned char a = 255); //Opaque
 };
-//---------------------------------------------------------------------------
+
 #endif // QTBEERWANTERWIDGET_H
-//---------------------------------------------------------------------------
+

@@ -26,14 +26,11 @@ class QtPvdbMenuDialog : public QtHideAndShowDialog
   explicit QtPvdbMenuDialog(QWidget* parent = 0);
   ~QtPvdbMenuDialog();
 
+
   ///Test this class and all other QDialogs
   static void Test();
 
-protected:
-  //void closeEvent(QCloseEvent * event) { QtHideAndShowDialog::closeEvent(event); }
-
-private slots:
-  void keyPressEvent(QKeyEvent* e);
+public slots:
   void on_button_about_clicked();
   void on_button_assessor_clicked();
   void on_button_concept_clicked();
@@ -62,6 +59,9 @@ private slots:
   void on_button_test_qtroundedtextrectitem_clicked();
   void on_button_view_files_clicked();
   void on_button_view_test_concept_maps_clicked();
+
+private slots:
+  void keyPressEvent(QKeyEvent* e);
 
 private:
   Ui::QtPvdbMenuDialog *ui;
