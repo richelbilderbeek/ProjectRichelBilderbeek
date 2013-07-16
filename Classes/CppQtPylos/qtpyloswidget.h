@@ -20,28 +20,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTPYLOSWIDGET_H
 #define QTPYLOSWIDGET_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
 #endif
 
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/tuple/tuple.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "pyloscoordinat.h"
 #include "pylosfwd.h"
 #include "pylosmove.h"
 #include "pyloswinner.h"
 #include "qtpylossprites.h"
-//---------------------------------------------------------------------------
+
 struct QPaintEvent;
 //namespace Pylos { struct Game; }
-//---------------------------------------------------------------------------
+
 ///PylosWidget is the base class of QtPylosBoardWidget and QtPylosWidget
 class QtPylosWidget : public QWidget
 {
@@ -227,6 +230,6 @@ private:
   ///Note: the (x,y) position denotes the center of the marble
   const std::pair<int,int> Transform(const Pylos::Coordinat& c) const;
 };
-//---------------------------------------------------------------------------
+
 #endif // QTPYLOSWIDGET_H
 

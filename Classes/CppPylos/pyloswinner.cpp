@@ -34,7 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 std::string ToStr(const Winner winner)
 {
   switch (winner)
@@ -46,6 +46,6 @@ std::string ToStr(const Winner winner)
   assert(!"Cannot convert this Winner to a std::string");
   throw std::logic_error("Cannot convert this Winner to a std::string");
 }
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+

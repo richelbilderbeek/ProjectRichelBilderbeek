@@ -20,17 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef PYLOSMOVE_H
 #define PYLOSMOVE_H
-//---------------------------------------------------------------------------
+
 #include <iosfwd>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
-#include <boost/regex.hpp>
-//---------------------------------------------------------------------------
+
 #include "pyloscoordinat.h"
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 ///PylosMove encapsulates a Pylos move.
 ///A Pylos move starts with either
 /// - placing (Set) a new marble or
@@ -58,9 +56,6 @@ struct Move
   ///Test if this Move is valid
   bool IsValid() const;
 
-  ///Test this class
-  static void Test();
-
   const std::string ToStr() const;
 
   ///What m_move is, depends on its size:
@@ -68,16 +63,18 @@ struct Move
   ///m_move.size() == 2: move from m_move[0] to m_move[1]
   std::vector<Coordinat> m_move;
   std::vector<Coordinat> m_remove;
+
+  private:
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test();
+  #endif
+
 };
-//---------------------------------------------------------------------------
+
 bool operator==(const Move& lhs, const Move& rhs);
 std::ostream& operator<<(std::ostream& os, const Move& m);
-//---------------------------------------------------------------------------
-///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> GetRegexMatches(
-  const std::string& s,
-  const boost::regex& r);
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+
 #endif // PYLOSMOVE_H

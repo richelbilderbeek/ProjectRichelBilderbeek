@@ -125,8 +125,6 @@ struct Board
     const Player player,
     MustRemoveState& must_remove) = 0;
 
-  ///Test this class
-  static void Test();
 
   ///Display the board as a std::string
   const std::string ToStr() const;
@@ -163,6 +161,11 @@ struct Board
 
   ///CreateLayer creates an empty layer.
   const Layer CreateLayer(const int sz) const;
+
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test();
+  #endif
 
   //Friends
   //friend void boost::checked_delete<>(Board* x);

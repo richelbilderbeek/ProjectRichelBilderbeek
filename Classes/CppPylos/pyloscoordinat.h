@@ -59,9 +59,6 @@ struct Coordinat
   ///IsValid returns if this coordinat is a valid Pylos coordinat
   bool IsValid() const;
 
-  ///Test this class
-  static void Test();
-
   ///ToStr() converts the coordinat to a std::string
   ///of the form '(layer,x,y)'.
   const std::string ToStr() const;
@@ -70,6 +67,12 @@ struct Coordinat
   int m_layer;
   int m_x;
   int m_y;
+
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test();
+  #endif
+
 };
 
 bool operator==(const Coordinat& lhs, const Coordinat& rhs);

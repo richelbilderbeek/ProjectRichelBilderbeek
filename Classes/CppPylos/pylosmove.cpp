@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 Pylos::Move, class for a Pylos/Phyraos move
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPylos.htm
-
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -30,9 +30,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "pylosmove.h"
 
+#include <cassert>
 #include <iostream>
-
-#include <boost/regex.hpp>
 
 #include "pyloscoordinat.h"
 #include "trace.h"
@@ -139,6 +138,7 @@ bool Move::IsValid() const
     && m_remove.size() <= 2;
 }
 
+#ifndef NDEBUG
 void Move::Test()
 {
   static bool tested = false;
@@ -184,6 +184,7 @@ void Move::Test()
     );
   }
 }
+#endif
 
 const std::string Move::ToStr() const
 {
@@ -221,28 +222,6 @@ std::ostream& operator<<(std::ostream& os, const Move& m)
 {
   os << m.ToStr();
   return os;
-}
-
-///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> GetRegexMatches(
-  const std::string& s,
-  const boost::regex& r)
-{
-  std::vector<std::string> v;
-
-  std::string::const_iterator start = s.begin();
-  const std::string::const_iterator end = s.end();
-  boost::match_results<std::string::const_iterator> what;
-  boost::match_flag_type flags = boost::match_default;
-  while(boost::regex_search(start, end, what, r, flags))
-  {
-    const std::string x = what.str();
-    v.push_back(x);
-    start = what[0].second;
-    flags |= boost::match_prev_avail;
-    flags |= boost::match_not_bob;
-  }
-  return v;
 }
 
 } //~namespace Pylos

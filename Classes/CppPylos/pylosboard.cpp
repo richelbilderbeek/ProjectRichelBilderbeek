@@ -137,27 +137,6 @@ bool Board::CanDo(const std::string& s, const Player player) const
 
 bool Board::CanDoSomething(const Player& player) const
 {
-  /*
-  const std::vector<Coordinat> v = Pylos::GetAllCoordinats();
-  //const std::vector<Coordinat> from = GetAllCoordinats();
-  return std::find_if(v.begin(),v.end(),
-    [v,this](const Coordinat& from)
-    {
-      if (!CanMove(from)) return false;
-      return
-      std::find_if(v.begin(),v.end(),
-        [from,this](const Coordinat& to)
-        {
-          #ifndef NDEBUG
-          if (CanMove(from,to)) { assert(from != to); }
-          #endif
-          return CanMove(from,to);
-        }
-      ) != v.end();
-    }
-  ) != v.end();
-  return false;
-  */
   return !GetAllPossibleMoves(player).empty();
 }
 
@@ -524,6 +503,7 @@ void Board::Remove(const std::vector<Coordinat>& v, const Player player)
   );
 }
 
+#ifndef NDEBUG
 void Board::Test()
 {
   static bool tested = false;
@@ -961,6 +941,7 @@ void Board::Test()
     Pylos::Board::PlayRandomPylosGame();
   }
 }
+#endif
 
 const std::string Board::ToStr() const
 {
@@ -1051,14 +1032,6 @@ boost::shared_ptr<Board> BoardAdvanced::Clone() const
   return sp;
 }
 
-/*
-const std::vector<Move> BoardAdvanced::GetAllPossibleMoves(const Player& ) const
-{
-  assert(!"TODO");
-  return std::vector<Move>();
-}
-*/
-
 void BoardAdvanced::Set(
   const Coordinat& c,
   const Player player,
@@ -1115,17 +1088,6 @@ void BoardAdvanced::Set(
           ) == s.end();
       }
     ) != v.end()) { must_remove = ToMustRemoveState(player); return; }
-    /*
-    BOOST_FOREACH(const Line& s, v)
-    {
-      bool success = true;
-      BOOST_FOREACH(const Coordinat& d,s)
-      {
-        if (Get(d)!=state) { success = false; break; }
-      }
-      if (success) return true;
-    }
-    */
   }
 
 }
@@ -1144,14 +1106,6 @@ boost::shared_ptr<Board> BoardBasic::Clone() const
   assert(*sp == *this);
   return sp;
 }
-
-/*
-const std::vector<Move> BoardBasic::GetAllPossibleMoves(const Player& ) const
-{
-  assert(!"TODO");
-  return std::vector<Move>();
-}
-*/
 
 void BoardBasic::Set(
   const Coordinat& c,
@@ -1185,19 +1139,7 @@ void BoardBasic::Set(
       must_remove = ToMustRemoveState(player);
       return;
     }
-    /*
-    BOOST_FOREACH(const Square& s, v)
-    {
-      bool success = true;
-      BOOST_FOREACH(const Coordinat& d,s)
-      {
-        if (Get(d)!=state) { success = false; break; }
-      }
-      if (success) return true;
-    }
-    */
   }
-
   must_remove = MustRemoveState::no;
   return;
 }

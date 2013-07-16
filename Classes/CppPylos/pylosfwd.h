@@ -20,9 +20,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef PYLOSFWD_H
 #define PYLOSFWD_H
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 /*
 struct Board;
 struct Coordinat;
@@ -33,7 +33,7 @@ struct Move;
 enum class Player;
 enum class PositionState;
 enum class MustRemoveState;
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+
 #endif // PYLOSFWD_H

@@ -20,15 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef PYLOSCURRENTMOVESTATE_H
 #define PYLOSCURRENTMOVESTATE_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "pyloscoordinat.h"
 #include "pylosmove.h"
 #include "pylosmustremovestate.h"
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 ///CurrentMoveState contains the state of the current Move.
 ///CurrentMoveState is used by Pylos::Game, to incrementally keep track of the
 ///ongoing move
@@ -69,16 +69,19 @@ struct CurrentMoveState
   void SetMustRemove(const MustRemoveState must_remove);
   void SetRemove(const std::vector<Coordinat>& v);
 
-  ///Test this class
-  static void Test();
 
   private:
   MustRemoveState m_must_remove;
   Move m_current_move;
+
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test();
+  #endif
 };
-//---------------------------------------------------------------------------
+
 bool operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs);
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+
 #endif // PYLOSCURRENTMOVESTATE_H

@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 Pylos::Game, class for a game of Pylos/Phyraos
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPylos.htm
-
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -50,6 +50,9 @@ Game::Game(const Game& rhs)
     m_current_player(rhs.m_current_player),
     m_move_history(rhs.m_move_history)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(m_board != rhs.m_board);
   assert(m_current_move != rhs.m_current_move);
 }
@@ -62,10 +65,7 @@ Game::Game(const boost::shared_ptr<Board> &board)
   #ifndef NDEBUG
   Test();
   #endif
-
   assert(m_board);
-
-
 }
 
 bool Game::CanDo(const Pylos::Move& m) const
@@ -322,6 +322,7 @@ void Game::Set(const Coordinat& c)
   }
 }
 
+#ifndef NDEBUG
 void Game::Test()
 {
   static bool tested = false;
@@ -724,6 +725,7 @@ void Game::Test()
     Pylos::Game::PlayRandomGame();
   }
 }
+#endif
 
 void Game::TogglePlayer()
 {

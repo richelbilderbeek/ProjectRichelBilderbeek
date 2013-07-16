@@ -20,13 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTPYLOSMENUDIALOG
 #define QTPYLOSMENUDIALOG
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtPylosMenuDialog;
 }
-//---------------------------------------------------------------------------
+
 class QtPylosMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -51,5 +51,6 @@ private slots:
   void OnAbout();
   void OnInstructions();
 };
-//---------------------------------------------------------------------------
+
+
 #endif // QTPYLOSMENUDIALOG

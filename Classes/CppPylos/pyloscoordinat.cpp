@@ -59,6 +59,9 @@ Coordinat::Coordinat(
 
 Coordinat::Coordinat(const std::string& s)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(s.size() == 7);
   m_layer = boost::lexical_cast<int>(s[1]);
   m_x = boost::lexical_cast<int>(s[3]);
@@ -248,6 +251,7 @@ const std::vector<std::vector<Coordinat> > GetSquares(
   return v;
 }
 
+#ifndef NDEBUG
 void Coordinat::Test()
 {
   static bool tested = false;
@@ -334,6 +338,7 @@ void Coordinat::Test()
       != v.end());
   }
 }
+#endif
 
 bool operator==(const Coordinat& lhs, const Coordinat& rhs)
 {

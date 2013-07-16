@@ -20,15 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTPYLOSWONDIALOG
 #define QTPYLOSWONDIALOG
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 #include "pyloswinner.h"
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtPylosWonDialog;
 }
-//---------------------------------------------------------------------------
+
 class QtPylosWonDialog : public QDialog
 {
   Q_OBJECT
@@ -44,5 +44,5 @@ protected:
 private:
   Ui::QtPylosWonDialog *ui;
 };
-//---------------------------------------------------------------------------
+
 #endif // QTPYLOSWONDIALOG

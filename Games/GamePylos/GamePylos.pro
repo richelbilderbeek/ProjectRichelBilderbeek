@@ -1,18 +1,9 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-09-22T10:16:35
-#
-#-------------------------------------------------
-
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 
-QMAKE_CXXFLAGS += -std=c++0x
-TARGET = GamePylos
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 TEMPLATE = app
-
-LIBS += \
-  -lboost_regex
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -84,3 +75,24 @@ OTHER_FILES += \
     ../../Classes/CppQtAboutDialog/Licence.txt \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppTrace/Licence.txt
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(debug, debug|release) {
+  message(Debug mode)
+}
+
+CONFIG(release, debug|release) {
+  message(Release mode)
+
+  #Remove all asserts and TRACE
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+win32 {
+  INCLUDEPATH+= ../../Libraries/boost_1_54_0
+}

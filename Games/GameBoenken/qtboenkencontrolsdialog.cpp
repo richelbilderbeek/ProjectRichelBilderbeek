@@ -31,7 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtboenkencontrolsdialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#pragma GCC diagnostic pop
 
 #include "qtboenkenpresskeydialog.h"
 #include "ui_qtboenkencontrolsdialog.h"

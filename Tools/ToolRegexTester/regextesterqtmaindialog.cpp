@@ -49,11 +49,14 @@ const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatches(
   return GetRegexMatches(s,QRegExp(r.c_str()));
 }
 
+///Obtain all regex matches in a std::string
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatches(
+const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatchesQt(
   const std::string& s,
-  const QRegExp& r)
+  const QRegExp& r_original)
 {
+  QRegExp r = r_original;
+  r.setMinimal(true); //QRegExp must be non-greedy
   std::vector<std::string> v;
   int pos = 0;
   while ((pos = r.indexIn(s.c_str(), pos)) != -1)

@@ -20,24 +20,27 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTPYLOSGAMEWIDGET_H
 #define QTPYLOSGAMEWIDGET_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
 #endif
 
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/tuple/tuple.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "qtpyloswidget.h"
-//---------------------------------------------------------------------------
+
 struct QPaintEvent;
 namespace Pylos { struct Game; }
-//---------------------------------------------------------------------------
+
 ///PylosWidget manages a Pylos::Game and facilitates its user interface
 class QtPylosGameWidget : public QtPylosWidget
 {
@@ -117,6 +120,6 @@ private:
   boost::shared_ptr<Pylos::Game> m_pylos;
 
 };
-//---------------------------------------------------------------------------
+
 #endif // QTPYLOSGAMEWIDGET_H
 

@@ -20,24 +20,27 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTPYLOSBOARDWIDGET_H
 #define QTPYLOSBOARDWIDGET_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
 #endif
 
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/tuple/tuple.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "qtpyloswidget.h"
 #include "pylosboard.h"
-//---------------------------------------------------------------------------
+
 struct QPaintEvent;
-//---------------------------------------------------------------------------
+
 ///PylosWidget manages a Pylos::Board and facilitates its user interface
 class QtPylosBoardWidget : public QtPylosWidget
 {
@@ -138,6 +141,6 @@ private:
   Pylos::Player m_player;
 
 };
-//---------------------------------------------------------------------------
+
 #endif // QTPYLOSBOARDWIDGET_H
 

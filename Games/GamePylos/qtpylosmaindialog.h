@@ -20,17 +20,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTPYLOSMAINDIALOG
 #define QTPYLOSMAINDIALOG
-//---------------------------------------------------------------------------
+
 #include <string>
-//---------------------------------------------------------------------------
+
 #include <QDialog>
 
 #include "qtpylosgamewidget.h"
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtPylosMainDialog;
 }
-//---------------------------------------------------------------------------
+
 class QtPylosMainDialog : public QDialog
 {
   Q_OBJECT
@@ -57,5 +57,5 @@ private:
 private slots:
   void OnWinner();
 };
-//---------------------------------------------------------------------------
+
 #endif // QTPYLOSMAINDIALOG

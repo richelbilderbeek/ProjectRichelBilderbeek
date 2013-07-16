@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 Pylos::CurrentMoveState, Pylos/Phyraos current move state class
 Copyright (C) 2010-2012 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPylos.htm
-
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -61,8 +61,6 @@ const std::vector<std::string> CurrentMoveState::GetVersionHistory()
 
 bool CurrentMoveState::IsMoveMove() const
 {
-  Test();
-
   assert(m_current_move.m_move.size() < 3);
   return m_current_move.m_move.size() == 2;
 }
@@ -78,16 +76,6 @@ bool CurrentMoveState::IsMoveUnknown() const
   assert(m_current_move.m_move.size() < 3);
   return m_current_move.m_move.size() == 0;
 }
-
-/*
-bool PylosCurrentMoveState::IsRemoveUnknown() const
-{
-  return
-       (!m_move_flag_remove_zero)
-    && (!m_move_flag_remove_zero)
-    && (!m_move_flag_remove_two);
-}
-*/
 
 MustRemoveState CurrentMoveState::GetMustRemove() const
 {
@@ -141,6 +129,7 @@ void CurrentMoveState::SetRemove(const std::vector<Coordinat>& v)
   m_current_move.m_remove = v;
 }
 
+#ifndef NDEBUG
 void CurrentMoveState::Test()
 {
   static bool tested = false;
@@ -164,6 +153,7 @@ void CurrentMoveState::Test()
     assert(s == t);
   }
 }
+#endif
 
 bool operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs)
 {

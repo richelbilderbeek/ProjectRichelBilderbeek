@@ -20,13 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTPYLOSINSTRUCTIONSDIALOG
 #define QTPYLOSINSTRUCTIONSDIALOG
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtPylosInstructionsDialog;
 }
-//---------------------------------------------------------------------------
+
 class QtPylosInstructionsDialog : public QDialog
 {
   Q_OBJECT
@@ -41,5 +41,5 @@ protected:
 private:
   Ui::QtPylosInstructionsDialog *ui;
 };
-//---------------------------------------------------------------------------
+
 #endif // QTPYLOSINSTRUCTIONSDIALOG

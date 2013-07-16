@@ -20,13 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef PYLOSMUSTREMOVESTATE_H
 #define PYLOSMUSTREMOVESTATE_H
-//---------------------------------------------------------------------------
+
 #include <string>
 
 #include "pylosfwd.h"
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 ///After placing (Set) or moving (Transfer) a marble, the MustRemoveState
 ///will be removed. These are:
 ///- no: no marbles need to be removed before next player's move
@@ -37,11 +37,11 @@ namespace Pylos {
 enum class MustRemoveState { player1, player2, no };
 MustRemoveState ToMustRemoveState(const Player& player);
 std::string ToStr(const MustRemoveState state);
-//---------------------------------------------------------------------------
+
 //bool operator==(const MustRemoveState& state, const MustRemoveState& player);
 //bool operator!=(const MustRemoveState& state, const MustRemoveState& player);
 bool operator!(const MustRemoveState& state);
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+
 #endif // PYLOSMUSTREMOVESTATE_H

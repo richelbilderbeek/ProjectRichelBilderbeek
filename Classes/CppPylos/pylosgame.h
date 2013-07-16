@@ -20,21 +20,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef PYLOSGAME_H
 #define PYLOSGAME_H
-//---------------------------------------------------------------------------
+
 #include <iosfwd>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "pylosboard.h"
 #include "pyloscurrentmovestate.h"
 #include "pylosfwd.h"
 #include "pylosplayer.h"
 #include "pylospositionstate.h"
 #include "pyloswinner.h"
-//---------------------------------------------------------------------------
+
 namespace Pylos {
-//---------------------------------------------------------------------------
+
 ///Pylos is a class for storing a Pylos game.
 ///Games can be player in:\n
 ///- Pylos notation: (Can)Do\n
@@ -136,17 +136,12 @@ struct Game
   ///Restart sets the game in its initial position.
   void Restart();
 
-  ///Save saves the current game in Pylos notation
-  //void Save(const std::string& s) const = 0;
-
   ///Set makes m_current_players place his marble
   ///at the specified position. After Place,
   ///MustRemoveMarbles must be called to determine if
   ///the current player must remove some marbles
   void Set(const Coordinat& c);
 
-  ///Test the Game class
-  static void Test();
 
   ///ToStr converts Game its contents to a std::string
   //const std::string ToStr() const = 0;
@@ -171,21 +166,10 @@ struct Game
   ///Remove lets the current player remove one marble.
   void Remove(const Coordinat& c);
 
-  ///CanMove determines if a player can move any marble.
-  ///This is important: if a player has no marbles left to
-  ///place, he/she may just move a marble.
-  //bool CanMove() const;
-
-
-  ///Remove lets the current player remove one marble.
-  //void Remove(const Coordinat& c);
-
-  ///Set sets the state of the given location.
-  ///Set returs true if the current player is allowed
-  ///to remove one or two marbles.
-  //bool Set(
-  //  const Coordinat& c,
-  //  const int state);
+  #ifndef NDEBUG
+  ///Test the Game class
+  static void Test();
+  #endif
 
   ///TogglePlayer toggles between player1 and player2 and saves the current
   ///move to the move history
@@ -193,21 +177,21 @@ struct Game
 
   friend bool operator==(const Game& lhs, const Game& rhs);
 };
-//---------------------------------------------------------------------------
+
 bool operator==(const Game& lhs, const Game& rhs);
 bool operator!=(const Game& lhs, const Game& rhs);
 std::ostream& operator<<(std::ostream& os,const Game& p);
-//---------------------------------------------------------------------------
+
 ///CanLoadPylos determines if loading a Pylos game from file
 ///will be successfull
 bool CanLoadPylos(const std::string& filename);
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> FileToVector(const std::string& fileName);
-//---------------------------------------------------------------------------
+
 ///LoadPylos loads a Pylos game from file
 boost::shared_ptr<Game> LoadPylos(const std::string& filename);
-//---------------------------------------------------------------------------
+
 } //~namespace Pylos
-//---------------------------------------------------------------------------
+
 #endif // PYLOSGAME_H
