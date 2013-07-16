@@ -32,14 +32,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenspriteplayer.h"
 
 #include <cassert>
-#include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
+#include <boost/math/constants/constants.hpp>
+#pragma GCC diagnostic pop
 
 #include <QPainter>
 
@@ -52,7 +50,9 @@ const double SpritePlayer::m_acceleration = 1.0;
 
 ///The speed of turning around
 ///if a player presses turn
-const double SpritePlayer::m_turnspeed = M_PI / 10.0;
+const double SpritePlayer::m_turnspeed
+  = boost::math::constants::pi<double>() / 10.0;
+
 
 ///The number of SpritePlayers.
 ///for debugging purposes

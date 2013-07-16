@@ -32,9 +32,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtboenkenmenudialog.h"
 
 #include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/timer.hpp>
+#pragma GCC diagnostic pop
 
 #include "boenkenmenudialog.h"
 #include "boenkenarenasettings.h"
@@ -111,7 +116,8 @@ const std::vector<boost::shared_ptr<Boenken::SpritePlayer> > QtBoenkenMenuDialog
     for (int i=0; i!=n_players; ++i,y+=(size/2))
     {
       const int x = (i % 2 ? x_right : x_left);
-      const double face_angle = (i % 2 ? 1.5 * M_PI : 0.5 * M_PI);
+      const double pi = boost::math::constants::pi<double>();
+      const double face_angle = (i % 2 ? 1.5 * pi : 0.5 * pi);
       const unsigned char r = (i % 2 ?   0 : 255);
       const unsigned char g = (i % 2 ?   0 :   0);
       const unsigned char b = (i % 2 ? 255 :   0);
@@ -127,8 +133,9 @@ const std::vector<boost::shared_ptr<Boenken::SpritePlayer> > QtBoenkenMenuDialog
     assert(a.formation==Boenken::circle_inward || a.formation==Boenken::circle_outward);
     const double ray_x = mid_x / 2.0;
     const double ray_y = mid_y / 2.0;
-    const double d_angle = (2.0 * M_PI) / boost::numeric_cast<double>(n_players);
-    double angle = 1.5 * M_PI;
+    const double pi = boost::math::constants::pi<double>();
+    const double d_angle = (2.0 * pi) / boost::numeric_cast<double>(n_players);
+    double angle = 1.5 * pi;
 
     for (int i=0; i!=n_players; ++i,angle+=d_angle)
     {
@@ -142,7 +149,7 @@ const std::vector<boost::shared_ptr<Boenken::SpritePlayer> > QtBoenkenMenuDialog
       const unsigned char g = (i % 2 ?   0 :   0);
       const unsigned char b = (i % 2 ? 255 :   0);
       const double face_angle = angle
-        + (a.formation==Boenken::circle_inward ? M_PI : 0.0);
+        + (a.formation==Boenken::circle_inward ? pi : 0.0);
 
       boost::shared_ptr<Boenken::SpritePlayer> p(
         new Boenken::SpritePlayer(x,y,face_angle,size,r,g,b));

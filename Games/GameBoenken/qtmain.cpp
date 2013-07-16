@@ -19,24 +19,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <qglobal.h>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+  #include <QtWidgets/QApplication>
+#else
+  #include <QtGui/QApplication>
+#endif
+
 #include "qtboenkenmenudialog.h"
-//---------------------------------------------------------------------------
-/// \mainpage Boenken documentation
-///
-/// Boenken is a simple game
-///
-/// Boenken version 4.0\n
-/// (C) 2005-2012 Richel Bilderbeek\n
-/// programmed on the 6th of March of 2012\n
-/// From http://www.richelbilderbeek.nl/GameBoenken.htm\n
-/// Licenced under GPL 3.0\n
-///
-/// \author  Richel Bilderbeek
-/// \version 4.0
-/// \date    2012-03-06
-//---------------------------------------------------------------------------
-///Only shows the menu
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
@@ -51,4 +42,3 @@ int main(int argc, char *argv[])
   w.show();
   return a.exec();
 }
-//---------------------------------------------------------------------------

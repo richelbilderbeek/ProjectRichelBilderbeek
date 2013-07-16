@@ -32,14 +32,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenspritemoving.h"
 
 #include <cassert>
-#include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
+#include <boost/math/constants/constants.hpp>
+#pragma GCC diagnostic pop
 
 namespace Boenken {
 
@@ -114,10 +112,11 @@ void SpriteMoving::Collision(SpriteMoving * const p1, SpriteMoving * const p2)
     {
       const double go_away_distance = collision_distance - distance;
       assert(go_away_distance > 0);
-      const double go_away_dx1 =  std::sin(a + M_PI) * (go_away_distance / 2.0);
-      const double go_away_dy1 = -std::cos(a + M_PI) * (go_away_distance / 2.0);
-      const double go_away_dx2 =  std::sin(a +  0.0) * (go_away_distance / 2.0);
-      const double go_away_dy2 = -std::cos(a +  0.0) * (go_away_distance / 2.0);
+      const double pi = boost::math::constants::pi<double>();
+      const double go_away_dx1 =  std::sin(a + pi) * (go_away_distance / 2.0);
+      const double go_away_dy1 = -std::cos(a + pi) * (go_away_distance / 2.0);
+      const double go_away_dx2 =  std::sin(a + 0.0) * (go_away_distance / 2.0);
+      const double go_away_dy2 = -std::cos(a + 0.0) * (go_away_distance / 2.0);
       p1->Move(go_away_dx1,go_away_dy1);
       p2->Move(go_away_dx2,go_away_dy2);
     }

@@ -1,8 +1,9 @@
 QT       += core gui
-TARGET = BoenkenDesktop
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11 -Wextra -Werror
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -63,3 +64,13 @@ RESOURCES += \
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt
+
+#
+#
+# Boost
+#
+#
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

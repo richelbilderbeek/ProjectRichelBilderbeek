@@ -32,14 +32,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "boenkensprite.h"
 
 #include <cassert>
-#include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
+#include <boost/math/constants/constants.hpp>
+#pragma GCC diagnostic pop
 
 #include <QBitmap>
 #include <QImage>
@@ -117,44 +116,45 @@ void Sprite::Test()
     is_tested = true;
   }
   //Test GetAngle
+  const double pi = boost::math::constants::pi<double>();
   {
     const double angle =  GetAngle(0.0,-1.0); //North
-    const double expected = 0.0 * M_PI;
+    const double expected = 0.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,-1.0); //North-East
-    const double expected = 0.25 * M_PI;
+    const double expected = 0.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,0.0); //East
-    const double expected = 0.5 * M_PI;
+    const double expected = 0.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,1.0); //South-East
-    const double expected = 0.75 * M_PI;
+    const double expected = 0.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(0.0,1.0); //South
-    const double expected = 1.0 * M_PI;
+    const double expected = 1.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,1.0); //South-West
-    const double expected = 1.25 * M_PI;
+    const double expected = 1.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,0.0); //West
-    const double expected = 1.5 * M_PI;
+    const double expected = 1.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,-1.0); //North-West
-    const double expected = 1.75 * M_PI;
+    const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
 }
@@ -231,7 +231,8 @@ QPixmap Sprite::DrawGlobe(
 
 double Sprite::GetAngle(const double dx, const double dy)
 {
-  return M_PI - std::atan2(dx,dy);
+  const double pi = boost::math::constants::pi<double>();
+  return pi - std::atan2(dx,dy);
 }
 
 //From http://www.richelbilderbeek.nl/CppDoPerfectElasticCollision.htm
@@ -242,6 +243,7 @@ void Sprite::DoPerfectElasticCollision(
   double& angle2,
   double& speed2)
 {
+  const double pi = boost::math::constants::pi<double>();
   //The length of the impulse of player 1 (assumes both players have equal mass!)
   const double A = speed1;
   //The length of the impulse of player 2 (assumes both players have equal mass!)
@@ -251,7 +253,7 @@ void Sprite::DoPerfectElasticCollision(
   //The angle between c and the impulse direction of player 1
   const double a = c - angle1;
   //The angle between c and the impulse direction of player 2
-  const double b = c + M_PI - angle2;
+  const double b = c + pi - angle2;
 
   //Seperate the impulses to their impulses paralel and othoganal the angle of collision
   //The length of the impulse of player 1 parallel to the collision
@@ -264,14 +266,14 @@ void Sprite::DoPerfectElasticCollision(
   const double G = E * std::sin(b);
 
   //Seperate the impulses in X and Y directions
-  const double BdX = B *  std::sin(c + (0.0 * M_PI));
-  const double BdY = B * -std::cos(c + (0.0 * M_PI));
-  const double CdX = C *  std::sin(c + (1.5 * M_PI));
-  const double CdY = C * -std::cos(c + (1.5 * M_PI));
-  const double FdX = F *  std::sin(c + (1.0 * M_PI));
-  const double FdY = F * -std::cos(c + (1.0 * M_PI));
-  const double GdX = G *  std::sin(c + (0.5 * M_PI));
-  const double GdY = G * -std::cos(c + (0.5 * M_PI));
+  const double BdX = B *  std::sin(c + (0.0 * pi));
+  const double BdY = B * -std::cos(c + (0.0 * pi));
+  const double CdX = C *  std::sin(c + (1.5 * pi));
+  const double CdY = C * -std::cos(c + (1.5 * pi));
+  const double FdX = F *  std::sin(c + (1.0 * pi));
+  const double FdY = F * -std::cos(c + (1.0 * pi));
+  const double GdX = G *  std::sin(c + (0.5 * pi));
+  const double GdY = G * -std::cos(c + (0.5 * pi));
 
   //The resulting impulses
   //The resulting impulse of player 1 in the X direction

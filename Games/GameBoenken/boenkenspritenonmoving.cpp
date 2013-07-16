@@ -32,16 +32,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenspritenonmoving.h"
 
 #include <cassert>
-#include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
-
+#include <boost/math/constants/constants.hpp>
 #include "boenkenspritemoving.h"
+#pragma GCC diagnostic pop
 
 namespace Boenken {
 
@@ -61,7 +58,8 @@ void SpriteNonMoving::Collision(SpriteNonMoving * const p1, SpriteMoving * const
     double p2_a = p2->CalcImpulseAngle();
     double p2_s = p2->CalcImpulseSpeed();
     //Obstacles have opposite impulse
-    double p1_a = p2_a + M_PI;
+    const double pi = boost::math::constants::pi<double>();
+    double p1_a = p2_a + pi;
     double p1_s = p1_s;
     //Obtain the new impulses
     DoPerfectElasticCollision(a, p1_a,p1_s,p2_a,p2_s);
