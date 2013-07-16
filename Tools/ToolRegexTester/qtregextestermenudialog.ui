@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>238</width>
-    <height>269</height>
+    <width>224</width>
+    <height>342</height>
    </rect>
   </property>
   <property name="font">
@@ -115,7 +115,7 @@ QPushButton {
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QPushButton" name="button_find_cpp11">
+    <widget class="QPushButton" name="button_cpp11">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -163,9 +163,9 @@ QPushButton {
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QPushButton" name="button_find_boost">
+    <widget class="QPushButton" name="button_boost_regex">
      <property name="text">
-      <string>Boost</string>
+      <string>Boost.Regex</string>
      </property>
     </widget>
    </item>
@@ -189,6 +189,51 @@ QPushButton {
     </widget>
    </item>
    <item row="3" column="0">
+    <widget class="QLabel" name="label_boost_left_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolRegexTester.qrc">:/images/PicBoost.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="button_boost_xpressive">
+     <property name="text">
+      <string>Boost.Xpressive</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLabel" name="label_boost_right_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolRegexTester.qrc">:/images/PicBoost.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
     <widget class="QLabel" name="label_qt_left">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -207,14 +252,14 @@ QPushButton {
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QPushButton" name="button_find_qt">
+   <item row="4" column="1">
+    <widget class="QPushButton" name="button_qt">
      <property name="text">
       <string>Qt</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="2">
+   <item row="4" column="2">
     <widget class="QLabel" name="label_qt_right">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -233,7 +278,7 @@ QPushButton {
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
+   <item row="5" column="1">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -246,14 +291,14 @@ QPushButton {
      </property>
     </spacer>
    </item>
-   <item row="5" column="0" colspan="3">
+   <item row="6" column="0" colspan="2">
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>&amp;About</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="0" colspan="3">
+   <item row="7" column="0" colspan="2">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>
@@ -265,9 +310,9 @@ QPushButton {
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>pushButton</tabstop>
-  <tabstop>button_find_cpp11</tabstop>
-  <tabstop>button_find_boost</tabstop>
-  <tabstop>button_find_qt</tabstop>
+  <tabstop>button_cpp11</tabstop>
+  <tabstop>button_boost_regex</tabstop>
+  <tabstop>button_qt</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>

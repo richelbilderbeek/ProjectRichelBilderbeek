@@ -28,18 +28,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
-#include "regextesterboostmaindialog.h"
+#include "regextesterboostregexmaindialog.h"
 
 #include <boost/regex.hpp>
 
-const boost::shared_ptr<RegexTesterMainDialog> RegexTesterBoostMainDialog::Clone() const
+const boost::shared_ptr<RegexTesterMainDialog> RegexTesterBoostRegexMainDialog::Clone() const
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
-    new RegexTesterBoostMainDialog);
+    new RegexTesterBoostRegexMainDialog);
   return d;
 }
 
-const std::vector<std::string> RegexTesterBoostMainDialog::GetRegexMatches(
+const std::vector<std::string> RegexTesterBoostRegexMainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
 {
@@ -49,7 +49,7 @@ const std::vector<std::string> RegexTesterBoostMainDialog::GetRegexMatches(
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> RegexTesterBoostMainDialog::GetRegexMatches(
+const std::vector<std::string> RegexTesterBoostRegexMainDialog::GetRegexMatches(
   const std::string& s,
   const boost::regex& r)
 {
@@ -70,7 +70,7 @@ const std::vector<std::string> RegexTesterBoostMainDialog::GetRegexMatches(
   return v;
 }
 
-bool RegexTesterBoostMainDialog::GetRegexMatchLine(
+bool RegexTesterBoostRegexMainDialog::GetRegexMatchLine(
   const std::string& line, const std::string& regex_str) const
 {
   if (!GetRegexValid(regex_str)) return false;
@@ -78,7 +78,7 @@ bool RegexTesterBoostMainDialog::GetRegexMatchLine(
   return boost::regex_match(line,r);
 }
 
-const std::string RegexTesterBoostMainDialog::GetRegexReplace(
+const std::string RegexTesterBoostRegexMainDialog::GetRegexReplace(
   const std::string& str,
   const std::string& regex_str,
   const std::string& format_str) const
@@ -95,7 +95,7 @@ const std::string RegexTesterBoostMainDialog::GetRegexReplace(
   }
 }
 
-bool RegexTesterBoostMainDialog::GetRegexValid(
+bool RegexTesterBoostRegexMainDialog::GetRegexValid(
   const std::string& regex_str) const
 {
   try { const boost::regex regex_temp(regex_str); }

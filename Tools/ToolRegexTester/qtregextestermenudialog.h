@@ -44,9 +44,10 @@ private:
 private slots:
   void on_button_quit_clicked();
   void on_button_about_clicked();
-  void on_button_find_cpp11_clicked();
-  void on_button_find_boost_clicked();
-  void on_button_find_qt_clicked();
+  void on_button_cpp11_clicked();
+  void on_button_qt_clicked();
+  void on_button_boost_regex_clicked();
+  void on_button_boost_xpressive_clicked();
 };
 
 #endif // QTREGEXTESTERMENUDIALOG_H

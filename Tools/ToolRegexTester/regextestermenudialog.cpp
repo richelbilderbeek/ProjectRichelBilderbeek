@@ -36,7 +36,7 @@ const About RegexTesterMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "RegexTester",
     "regular expression tester",
-    "the 20th of March 2013",
+    "the 16th of July 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ToolRegexTester.htm",
     GetVersion(),
@@ -46,7 +46,7 @@ const About RegexTesterMenuDialog::GetAbout()
 
 const std::string RegexTesterMenuDialog::GetVersion()
 {
-  return "1.6";
+  return "1.7";
 }
 
 const std::vector<std::string> RegexTesterMenuDialog::GetVersionHistory()
@@ -56,5 +56,6 @@ const std::vector<std::string> RegexTesterMenuDialog::GetVersionHistory()
   v.push_back("2012-01-07: Version 1.4: port to Wt and console application");
   v.push_back("2012-09-24: Version 1.5: added Qt and C++11 versions");
   v.push_back("2013-03-20: Version 1.6: added TR1 version, added replace");
+  v.push_back("2013-07-16: Version 1.7: added Boost.Xpressive");
   return v;
 }

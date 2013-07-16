@@ -495,6 +495,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
   //15
     { "circular_buffer","<a href=\"C$ppC$ircular_b$uffer.htm\">c$ircular_b$uffer</a>" },
     { "compressed_pair","<a href=\"C$ppC$ompressed_p$air.htm\">c$ompressed_p$air</a>" },
+    { "Boost.Xpressive","<a href=\"C$ppX$p$ress$ive.htm\">B$oost.X$p$ress$ive</a>" },
     { "Design patterns","<a href=\"C$ppD$esignPattern.htm\">D$esign p$atterns</a>" },
     { "Function parser","<a href=\"C$ppF$unctionP$arser.htm\">F$unction p$arser</a>" },
     { "Function Parser","<a href=\"C$ppF$unctionP$arser.htm\">F$unction P$arser</a>" },
@@ -1281,6 +1282,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "StrToAnsi","<a href=\"CppS$trT$oA$nsi.htm\">S$trT$oA$nsi</a>" },
     { "StrToWStr","<a href=\"C$ppS$trT$oW$Str.htm\">S$trT$oW$Str</a>" },
     { "WMenuItem","<a href=\"C$ppW$M$enuI$tem.htm\">W$M$enuI$tem</a>" },
+    { "Xpressive","<a href=\"C$ppX$p$ress$ive.htm\">X$p$ress$ive</a>" },
     { "SumSecond","<a href=\"CppS$umS$econd.htm\">S$umS$econd</a>" },
     { "Therefore","Therefo$re" },
     { "TimeToStr","<a href=\"CppT$imeToStr.htm\">T$imeToStr</a>" },
@@ -1382,6 +1384,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "std::wcto","<a href=\"CppW$cto.htm\">s$td::w$cto</a>" },
     { "templates","<a href=\"CppTe$mplate.htm\">tem$plates</a>" },
     { "therefore","therefo$re" },
+    { "xpressive","<a href=\"C$ppX$p$ress$ive.htm\">x$p$ress$ive</a>" },
   //8
     { "__thread","<b><a href=\"C$pp_$_T$hread.htm\">_$_t$hread</a></b>" },
     { "#include","<a href=\"CppInclude.htm\">#inc$lude</a>" },

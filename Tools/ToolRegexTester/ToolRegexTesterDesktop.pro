@@ -17,12 +17,13 @@ SOURCES += \
     qtmain.cpp \
     qtregextestermaindialog.cpp \
     qtregextestermenudialog.cpp \
-    regextesterboostmaindialog.cpp \
     regextestercpp11maindialog.cpp \
     regextestermaindialog.cpp \
     regextestermenudialog.cpp \
     regextesterqtmaindialog.cpp \
-    regextestertr1maindialog.cpp
+    regextestertr1maindialog.cpp \
+    regextesterboostregexmaindialog.cpp \
+    regextesterboostxpressivemaindialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -31,12 +32,13 @@ HEADERS  += \
     ../../Classes/CppTrace/trace.h \
     qtregextestermaindialog.h \
     qtregextestermenudialog.h \
-    regextesterboostmaindialog.h \
     regextestercpp11maindialog.h \
     regextestermaindialog.h \
     regextestermenudialog.h \
     regextesterqtmaindialog.h \
-    regextestertr1maindialog.h
+    regextestertr1maindialog.h \
+    regextesterboostregexmaindialog.h \
+    regextesterboostxpressivemaindialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

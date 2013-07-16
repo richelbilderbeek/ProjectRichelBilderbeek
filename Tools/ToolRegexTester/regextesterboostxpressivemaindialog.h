@@ -18,21 +18,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-#ifndef REGEXTESTERBOOSTMAINDIALOG_H
-#define REGEXTESTERBOOSTMAINDIALOG_H
+#ifndef REGEXTESTERBOOSTXPRESSIVEMAINDIALOG_H
+#define REGEXTESTERBOOSTXPRESSIVEMAINDIALOG_H
 
 
 #include <string>
 #include <vector>
 
-#include <boost/regex.hpp>
+#include <boost/xpressive/xpressive_fwd.hpp>
 #include "regextestermaindialog.h"
 
-//namespace boost { struct regex; };
 
-struct RegexTesterBoostMainDialog : public RegexTesterMainDialog
+struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
 {
-  RegexTesterBoostMainDialog() {}
+  RegexTesterBoostXpressiveMainDialog() {}
 
   ///Clone this class
   const boost::shared_ptr<RegexTesterMainDialog> Clone() const;
@@ -66,8 +65,8 @@ struct RegexTesterBoostMainDialog : public RegexTesterMainDialog
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
   static const std::vector<std::string> GetRegexMatches(
     const std::string& s,
-    const boost::regex& r);
+    const boost::xpressive::sregex& r);
 
 };
 
-#endif // REGEXTESTERBOOSTMAINDIALOG_H
+#endif // REGEXTESTERBOOSTXPRESSIVEMAINDIALOG_H

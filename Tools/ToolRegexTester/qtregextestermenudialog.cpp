@@ -34,9 +34,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/shared_ptr.hpp>
 #include <QIcon>
+
 #include "qtaboutdialog.h"
 #include "qtregextestermaindialog.h"
-#include "regextesterboostmaindialog.h"
+#include "regextesterboostregexmaindialog.h"
+#include "regextesterboostxpressivemaindialog.h"
 #include "regextestercpp11maindialog.h"
 #include "regextestermaindialog.h"
 #include "regextestermenudialog.h"
@@ -83,7 +85,7 @@ void QtRegexTesterMenuDialog::on_button_quit_clicked()
 }
 
 
-void QtRegexTesterMenuDialog::on_button_find_cpp11_clicked()
+void QtRegexTesterMenuDialog::on_button_cpp11_clicked()
 {
   boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterCpp11MainDialog);
   QtRegexTesterMainDialog qd(d);
@@ -91,18 +93,26 @@ void QtRegexTesterMenuDialog::on_button_find_cpp11_clicked()
   this->ShowChild(&qd);
 }
 
-void QtRegexTesterMenuDialog::on_button_find_boost_clicked()
+void QtRegexTesterMenuDialog::on_button_qt_clicked()
 {
-  boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterBoostMainDialog);
+  boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterQtMainDialog);
+  QtRegexTesterMainDialog qd(d);
+  qd.setWindowIcon(QIcon(QPixmap(":/images/PicQt.png")));
+  this->ShowChild(&qd);
+}
+
+void QtRegexTesterMenuDialog::on_button_boost_regex_clicked()
+{
+  boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterBoostRegexMainDialog);
   QtRegexTesterMainDialog qd(d);
   qd.setWindowIcon(QIcon(QPixmap(":/images/PicBoost.png")));
   this->ShowChild(&qd);
 }
 
-void QtRegexTesterMenuDialog::on_button_find_qt_clicked()
+void QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
 {
-  boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterQtMainDialog);
+  boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterBoostXpressiveMainDialog);
   QtRegexTesterMainDialog qd(d);
-  qd.setWindowIcon(QIcon(QPixmap(":/images/PicQt.png")));
+  qd.setWindowIcon(QIcon(QPixmap(":/images/PicBoost.png")));
   this->ShowChild(&qd);
 }
