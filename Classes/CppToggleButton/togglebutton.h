@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 ToggleButton, toggle button class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppToggleButton.htm
-
+//---------------------------------------------------------------------------
 #ifndef TOGGLEBUTTON_H
 #define TOGGLEBUTTON_H
 

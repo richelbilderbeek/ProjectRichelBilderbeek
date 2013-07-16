@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 ToggleButtonWidget, widget for the ToggleButton class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppToggleButtonWidget.htm
-
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -35,10 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
+#include <boost/math/constants/constants.hpp>
 
 #include "togglebutton.h"
 #include "trace.h"

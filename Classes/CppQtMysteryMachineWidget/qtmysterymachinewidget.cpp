@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 QtMysteryMachineWidget, Wt widget for displaying the MysteryMachine class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtMysteryMachineWidget.htm
-
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -28,6 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtmysterymachinewidget.h"
 
 #include <iostream>
@@ -49,6 +52,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtdialwidget.h"
 #include "qtledwidget.h"
 #include "qttogglebuttonwidget.h"
+
+#pragma GCC diagnostic pop
 
 QtMysteryMachineWidget::QtMysteryMachineWidget(QWidget *parent)
   : QWidget(parent),

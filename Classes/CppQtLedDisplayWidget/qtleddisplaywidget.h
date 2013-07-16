@@ -20,16 +20,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTLEDDISPLAYWIDGET_H
 #define QTLEDDISPLAYWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "ledwidget.h" //Needed by MOC
-//---------------------------------------------------------------------------
+
 ///QtLedDisplayWidget displays a Led without
 ///managing it.
 class QtLedDisplayWidget : public QWidget
@@ -51,5 +51,5 @@ static const std::string GetVersion();
 static const std::vector<std::string> GetVersionHistory();
 
 };
-//---------------------------------------------------------------------------
+
 #endif // QTLEDDISPLAYWIDGET_H

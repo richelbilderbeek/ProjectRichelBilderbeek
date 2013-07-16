@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "widget.h"
-//---------------------------------------------------------------------------
+
 const About SimMysteryMachineMenuDialog::GetAbout()
 {
   About a(
@@ -64,12 +64,12 @@ const About SimMysteryMachineMenuDialog::GetAbout()
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string SimMysteryMachineMenuDialog::GetVersion()
 {
   return "1.2";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> SimMysteryMachineMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -78,4 +78,4 @@ const std::vector<std::string> SimMysteryMachineMenuDialog::GetVersionHistory()
   v.push_back("2012-08-26: Version 1.2: added picture of a physical MysteryMachine, improved aesthetics");
   return v;
 }
-//---------------------------------------------------------------------------
+

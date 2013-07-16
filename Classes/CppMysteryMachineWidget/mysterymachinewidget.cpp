@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 MysteryMachineWidget, GUI independent widget for MysteryMachine
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppMysteryMachineWidget.htm
-
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)

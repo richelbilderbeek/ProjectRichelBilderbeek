@@ -19,8 +19,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -28,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtsimmysterymachinemenudialog.h"
 
 
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "led.h"
 #include "ledwidget.h"
@@ -43,7 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttogglebuttonwidget.h"
 #include "simmysterymachinemenudialog.h"
 #include "ui_qtsimmysterymachinemenudialog.h"
-//---------------------------------------------------------------------------
+
 QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtSimMysteryMachineMenuDialog)
@@ -64,12 +67,12 @@ QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) :
   ui->led_5->GetWidget()->SetGeometry(Rect(0,0,size,size));
   */
 }
-//---------------------------------------------------------------------------
+
 QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtSimMysteryMachineMenuDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -81,7 +84,7 @@ void QtSimMysteryMachineMenuDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtSimMysteryMachineMenuDialog::on_button_start_clicked()
 {
   this->hide();
@@ -89,7 +92,7 @@ void QtSimMysteryMachineMenuDialog::on_button_start_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void QtSimMysteryMachineMenuDialog::on_button_about_clicked()
 {
   this->hide();
@@ -104,12 +107,12 @@ void QtSimMysteryMachineMenuDialog::on_button_about_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void QtSimMysteryMachineMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
-//---------------------------------------------------------------------------
+
 void QtSimMysteryMachineMenuDialog::on_button_instructions_clicked()
 {
   this->hide();
@@ -117,7 +120,7 @@ void QtSimMysteryMachineMenuDialog::on_button_instructions_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void QtSimMysteryMachineMenuDialog::on_button_real_clicked()
 {
   this->hide();
@@ -125,4 +128,4 @@ void QtSimMysteryMachineMenuDialog::on_button_real_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+

@@ -20,19 +20,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTMYSTERYMACHINEWIDGET_H
 #define QTMYSTERYMACHINEWIDGET_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
 #endif
+#endif
+
 
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "dial.h" //For MOC
 #include "dialwidget.h" //For MOC
 #include "led.h" //For MOC
@@ -41,9 +47,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "mysterymachinewidget.h" //For MOC
 #include "togglebutton.h" //For MOC
 #include "togglebuttonwidget.h" //For MOC
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct QtToggleButtonWidget;
-//---------------------------------------------------------------------------
+
 ///QtMysteryMachineWidget displays a MysteryMachine
 struct QtMysteryMachineWidget : public QWidget
 {
@@ -93,5 +100,5 @@ struct QtMysteryMachineWidget : public QWidget
   ///Respond to mouse click
   //void OnClicked(const Wt::WMouseEvent& e);
 };
-//---------------------------------------------------------------------------
+
 #endif // WTMYSTERYMACHINEWIDGET_H

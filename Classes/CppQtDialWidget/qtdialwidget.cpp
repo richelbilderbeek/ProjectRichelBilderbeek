@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 QtDialWidget, Qt class for displaying a DialWidget
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtDialWidget.htm
-
+//---------------------------------------------------------------------------
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
 #if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
@@ -28,22 +28,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtdialwidget.h"
 
 #include <cassert>
-#include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
-
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QMouseEvent>
 #include <QPainter>
 
 #include "dial.h"
+
+#pragma GCC diagnostic pop
 
 QtDialWidget::QtDialWidget(QWidget *parent)
   : QWidget(parent),
@@ -101,7 +100,8 @@ void QtDialWidget::DrawDial(
   const int midy = height / 2;
   const double ray_x = static_cast<double>(midx);
   const double ray_y = static_cast<double>(midy);
-  const double angle = position * 2.0 * M_PI;
+  const double pi = boost::math::constants::pi<double>();
+  const double angle = position * 2.0 * pi;
   const int pointerX
     = static_cast<int>( static_cast<double>(midx) + (std::sin(angle) * ray_x) );
   const int pointerY
@@ -152,4 +152,3 @@ void QtDialWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }
-

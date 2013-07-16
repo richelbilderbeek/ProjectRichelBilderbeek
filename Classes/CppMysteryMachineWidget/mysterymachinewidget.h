@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 MysteryMachineWidget, GUI independent widget for MysteryMachine
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppMysteryMachineWidget.htm
-
+//---------------------------------------------------------------------------
 #ifndef MYSTERYMACHINEWIDGET_H
 #define MYSTERYMACHINEWIDGET_H
 
@@ -60,9 +60,6 @@ struct MysteryMachineWidget : public Widget
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 
-  ///The signal that is emitted when MysteryMachineWidget changes state
-  //mutable boost::signals2::signal<void ()> m_signal_mysterymachine_changed;
-
   private:
   ///MysteryMachineWidget can only be deleted by Boost smart pointers
   virtual ~MysteryMachineWidget() {}
@@ -70,9 +67,6 @@ struct MysteryMachineWidget : public Widget
   friend void boost::checked_delete<>(MysteryMachineWidget*);
 
   boost::scoped_ptr<MysteryMachine> m_machine;
-
-  ///This method is called when MysteryMachineWidget changes state
-  //void OnMysteryMachineChanged();
 
   ///Respond to a change in geometry
   void OnResize();

@@ -19,8 +19,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 //#include own header file as first substantive line of code, from:
@@ -29,9 +32,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 #include <iostream>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "dial.h"
 #include "dialwidget.h"
 #include "led.h"
@@ -42,7 +48,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "ui_qtsimmysterymachinemaindialog.h"
-//---------------------------------------------------------------------------
+
 QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *parent)
  : QDialog(parent),
    ui(new Ui::QtSimMysteryMachineMainDialog),
@@ -52,12 +58,12 @@ QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *parent)
 
   ui->my_layout->addWidget(m_machine.get());
 }
-//---------------------------------------------------------------------------
+
 QtSimMysteryMachineMainDialog::~QtSimMysteryMachineMainDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtSimMysteryMachineMainDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -69,4 +75,4 @@ void QtSimMysteryMachineMainDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+

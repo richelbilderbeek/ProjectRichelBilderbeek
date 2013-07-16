@@ -20,19 +20,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTLEDWIDGET_H
 #define QTLEDWIDGET_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
 #endif
 
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "led.h"       //Needed by MOC
 #include "ledwidget.h" //Needed by MOC
-//---------------------------------------------------------------------------
+
 class QtLedWidget : public QWidget
 {
   Q_OBJECT
@@ -74,5 +74,5 @@ public:
   static const std::vector<std::string> GetVersionHistory();
 
 };
-//---------------------------------------------------------------------------
+
 #endif // QTLEDWIDGET_H

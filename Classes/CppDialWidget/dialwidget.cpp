@@ -28,22 +28,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "dialwidget.h"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
-
 #include <boost/numeric/conversion/cast.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include "dial.h"
 #include "rectangle.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 DialWidget::DialWidget(
   const double position,
@@ -70,7 +70,8 @@ void DialWidget::Click(const int x,const int y)
   const double dx = boost::numeric_cast<double>(x - midx);
   const double dy = boost::numeric_cast<double>(y - midy);
   const double angle = Dial::GetAngle(dx,dy);
-  const double position = angle / (2.0 * M_PI);
+  const double pi = boost::math::constants::pi<double>();
+  const double position = angle / (2.0 * pi);
   assert(position >= 0.0);
   assert(position <= 1.0);
   m_dial->SetPosition(position);

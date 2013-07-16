@@ -32,15 +32,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "dial.h"
 
-#include <cmath>
-
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
-
 #include <cassert>
 #include <boost/lexical_cast.hpp>
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "trace.h"
@@ -135,7 +129,8 @@ void Dial::SetPosition(const double position)
 
 double Dial::GetAngle(const double dx, const double dy)
 {
-  return M_PI - (std::atan2(dx,dy));
+  const double pi = boost::math::constants::pi<double>();
+  return pi - (std::atan2(dx,dy));
 }
 
 double Dial::GetDistance(const double dX, const double dY)
@@ -151,45 +146,46 @@ void Dial::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  const double pi = boost::math::constants::pi<double>();
   //Test GetAngle
   {
     const double angle =  GetAngle(0.0,-1.0); //North
-    const double expected = 0.0 * M_PI;
+    const double expected = 0.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,-1.0); //North-East
-    const double expected = 0.25 * M_PI;
+    const double expected = 0.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,0.0); //East
-    const double expected = 0.5 * M_PI;
+    const double expected = 0.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,1.0); //South-East
-    const double expected = 0.75 * M_PI;
+    const double expected = 0.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(0.0,1.0); //South
-    const double expected = 1.0 * M_PI;
+    const double expected = 1.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,1.0); //South-West
-    const double expected = 1.25 * M_PI;
+    const double expected = 1.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,0.0); //West
-    const double expected = 1.5 * M_PI;
+    const double expected = 1.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,-1.0); //North-West
-    const double expected = 1.75 * M_PI;
+    const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   //GetDistance

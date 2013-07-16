@@ -20,14 +20,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "led.h"
 #include "qtleddisplaywidget.h"
-//---------------------------------------------------------------------------
+
 QtLedDisplayWidget::QtLedDisplayWidget(
   QWidget *parent,
   LedWidget * const widget)
@@ -52,19 +52,19 @@ QtLedDisplayWidget::QtLedDisplayWidget(
       &QtLedDisplayWidget::repaint,
       this));
 }
-//---------------------------------------------------------------------------
+
 const std::string QtLedDisplayWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtLedDisplayWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-04-10: Version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtLedDisplayWidget::paintEvent(QPaintEvent *)
 {
   assert(m_widget && "QtLedDisplayWidget must be initialized with a Led*");
@@ -165,10 +165,10 @@ void QtLedDisplayWidget::paintEvent(QPaintEvent *)
   p.setPen(initial_pen);
 
 }
-//---------------------------------------------------------------------------
+
 void QtLedDisplayWidget::SetLed(const LedWidget * const led)
 {
   assert(led);
   m_widget = led;
 }
-//---------------------------------------------------------------------------
+

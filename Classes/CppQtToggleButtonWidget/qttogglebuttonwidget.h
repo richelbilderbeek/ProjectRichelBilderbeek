@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTOGGLEBUTTONWIDGET_H
 #define QTTOGGLEBUTTONWIDGET_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
@@ -28,14 +28,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 struct ToggleButton;
 struct ToggleButtonWidget;
-//---------------------------------------------------------------------------
+
 ///QtToggleButtonWidget displays a ToggleButton
 struct QtToggleButtonWidget : public QWidget
 {
@@ -91,5 +95,5 @@ struct QtToggleButtonWidget : public QWidget
   ///Respond to mouse click
   void mousePressEvent(QMouseEvent * e);
 };
-//---------------------------------------------------------------------------
+
 #endif // QTTOGGLEBUTTONWIDGET_H

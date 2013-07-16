@@ -20,23 +20,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTDIALWIDGET_H
 #define QTDIALWIDGET_H
-//---------------------------------------------------------------------------
+
 #ifdef _WIN32
+//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
+#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #undef __STRICT_ANSI__
+#endif
 #endif
 
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "dial.h" //For MOC
 #include "dialwidget.h" //For MOC
-//---------------------------------------------------------------------------
+
 ///QtDialWidget manages and displays a Dial
 class QtDialWidget : public QWidget
 {
@@ -71,6 +77,6 @@ public:
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 #endif // QTDIALWIDGET_H
-//---------------------------------------------------------------------------
+

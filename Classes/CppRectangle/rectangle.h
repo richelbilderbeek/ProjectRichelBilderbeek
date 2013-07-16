@@ -20,10 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 ///RectanglePolicyUseSize stores a rectangle by its topleft coordinats and its size
 /*
 template <class T>
@@ -60,10 +60,10 @@ struct RectanglePolicyUseSize
   T h;
 };
 */
-//---------------------------------------------------------------------------
+
 ///RectanglePolicyUseBottomRight stores a rectangle by its topleft
 ///and bottomright coordinats
-//---------------------------------------------------------------------------
+
 template <class T>
 struct RectanglePolicyUseBottomRight
 {
@@ -85,7 +85,7 @@ struct RectanglePolicyUseBottomRight
   T x2;
   T y2;
 };
-//---------------------------------------------------------------------------
+
 ///IntRectanglePolicyUseSize stores a rectangle by its topleft coordinats and its size
 struct Rect
 {
@@ -135,9 +135,9 @@ struct Rect
   friend bool operator==(const Rect& lhs, const Rect& rhs);
   friend std::ostream& operator<<(std::ostream& os,const Rect& rect);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os,const Rect& rect);
 bool operator==(const Rect& lhs, const Rect& rhs);
 bool operator!=(const Rect& lhs, const Rect& rhs);
-//---------------------------------------------------------------------------
+
 #endif // RECTANGLE_H
