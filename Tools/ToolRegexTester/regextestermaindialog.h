@@ -20,13 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef REGEXTESTERMAINDIALOG_H
 #define REGEXTESTERMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/logic/tribool.hpp>
 #include <boost/regex.hpp>
-//---------------------------------------------------------------------------
+
 ///RegexTesterMainDialog is a Strategy Design Pattern
 struct RegexTesterMainDialog
 {
@@ -60,6 +60,9 @@ struct RegexTesterMainDialog
   ///Obtain a description of the used implementation
   virtual const std::string GetUsedImplementation() const = 0;
 
+  static const std::vector<std::string> GetTestRegexes();
+  static const std::vector<std::string> GetTestStrings();
+
 };
-//---------------------------------------------------------------------------
+
 #endif // REGEXTESTERMAINDIALOG_H

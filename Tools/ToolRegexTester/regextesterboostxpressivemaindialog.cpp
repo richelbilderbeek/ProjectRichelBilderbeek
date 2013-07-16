@@ -35,6 +35,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/xpressive/xpressive.hpp>
 #pragma GCC diagnostic pop
 
+RegexTesterBoostXpressiveMainDialog::RegexTesterBoostXpressiveMainDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+
 const boost::shared_ptr<RegexTesterMainDialog>
   RegexTesterBoostXpressiveMainDialog::Clone() const
 {
@@ -61,14 +69,21 @@ const std::vector<std::string>
 {
   std::vector<std::string> v;
 
-  boost::xpressive::sregex_iterator cur(s.begin(),s.end(),r);
-  boost::xpressive::sregex_iterator end;
-
-  for( ; cur != end; ++cur )
+  try
   {
-    const boost::xpressive::smatch& what = *cur;
-    assert(!what.empty());
-    v.push_back(what[0]);
+    boost::xpressive::sregex_iterator cur(s.begin(),s.end(),r);
+    boost::xpressive::sregex_iterator end;
+
+    for( ; cur != end; ++cur )
+    {
+      const boost::xpressive::smatch& what = *cur;
+      assert(!what.empty());
+      v.push_back(what[0]);
+    }
+  }
+  catch (...)
+  {
+    v.push_back("UNKNOWN exception");
   }
   return v;
 }
@@ -96,8 +111,10 @@ const std::string RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
       boost::xpressive::regex_constants::match_default
         | boost::xpressive::regex_constants::format_all);
   }
-  catch (boost::xpressive::regex_error& )
+  catch (boost::xpressive::regex_error& e)
   {
+    const std::string s
+      = "boost::xpressive::regex_error: " + std::string(e.what());
     return "";
   }
 }
@@ -113,3 +130,32 @@ bool RegexTesterBoostXpressiveMainDialog::GetRegexValid(
   catch (boost::xpressive::regex_error& e) { return false; }
   return true;
 }
+
+#ifndef NDEBUG
+void RegexTesterBoostXpressiveMainDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  RegexTesterBoostXpressiveMainDialog d;
+  assert(!d.GetExampleRegex().empty());
+  for (auto v: d.GetTestRegexes() )
+  {
+    d.GetRegexValid(v);
+    for (auto w: d.GetTestStrings() )
+    {
+      d.GetRegexMatches(v,w);
+      d.GetRegexMatches(w,v);
+      d.GetRegexMatchLine(v,w);
+      d.GetRegexMatchLine(w,v);
+      d.GetRegexReplace(v,w,v);
+      d.GetRegexReplace(w,v,v);
+      d.GetRegexReplace(v,w,w);
+      d.GetRegexReplace(w,v,w);
+      d.GetRegexValid(w);
+    }
+  }
+}
+#endif

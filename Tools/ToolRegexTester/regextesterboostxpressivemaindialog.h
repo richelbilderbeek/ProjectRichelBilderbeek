@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
 {
-  RegexTesterBoostXpressiveMainDialog() {}
+  RegexTesterBoostXpressiveMainDialog();
 
   ///Clone this class
   const boost::shared_ptr<RegexTesterMainDialog> Clone() const;
@@ -67,6 +67,9 @@ struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
     const std::string& s,
     const boost::xpressive::sregex& r);
 
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // REGEXTESTERBOOSTXPRESSIVEMAINDIALOG_H
