@@ -30,9 +30,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <string>
-#include <trace.h>
 
+#include <boost/function.hpp>
 #include <boost/shared_ptr.hpp>
+
 #include <QIcon>
 
 #include "qtaboutdialog.h"
@@ -43,12 +44,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "regextestermaindialog.h"
 #include "regextestermenudialog.h"
 #include "regextesterqtmaindialog.h"
+#include "trace.h"
 #include "ui_qtregextestermenudialog.h"
 
 QtRegexTesterMenuDialog::QtRegexTesterMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRegexTesterMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 }
 
@@ -116,3 +122,36 @@ void QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
   qd.setWindowIcon(QIcon(QPixmap(":/images/PicBoost.png")));
   this->ShowChild(&qd);
 }
+
+#ifndef NDEBUG
+void QtRegexTesterMenuDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtRegexTesterMenuDialog::Test");
+  {
+    const boost::shared_ptr<RegexTesterMainDialog> d(
+      new RegexTesterCpp11MainDialog);
+    assert(d);
+  }
+  {
+    boost::shared_ptr<RegexTesterMainDialog> d(
+      new RegexTesterQtMainDialog);
+    assert(d);
+  }
+  {
+    boost::shared_ptr<RegexTesterMainDialog> d(
+      new RegexTesterBoostRegexMainDialog);
+    assert(d);
+  }
+  {
+    boost::shared_ptr<RegexTesterMainDialog> d(
+      new RegexTesterBoostXpressiveMainDialog);
+    assert(d);
+  }
+  TRACE("Finished QtRegexTesterMenuDialog::Test successfully");
+}
+#endif

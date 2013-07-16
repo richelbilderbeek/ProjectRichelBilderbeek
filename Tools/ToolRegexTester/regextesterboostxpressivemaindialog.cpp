@@ -67,6 +67,7 @@ const std::vector<std::string>
   for( ; cur != end; ++cur )
   {
     const boost::xpressive::smatch& what = *cur;
+    assert(!what.empty());
     v.push_back(what[0]);
   }
   return v;

@@ -51,7 +51,7 @@ const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatches(
 
 ///Obtain all regex matches in a std::string
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatchesQt(
+const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {

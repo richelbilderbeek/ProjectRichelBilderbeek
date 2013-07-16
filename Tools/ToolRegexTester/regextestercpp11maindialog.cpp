@@ -87,9 +87,17 @@ const std::string RegexTesterCpp11MainDialog::GetRegexReplace(
   const std::string& regex_str,
   const std::string& format_str) const
 {
-  return std::regex_replace(
-    str, std::regex(regex_str), format_str,
-    std::regex_constants::match_default | std::regex_constants::format_default);
+  try
+  {
+    return std::regex_replace(
+      str, std::regex(regex_str), format_str,
+      std::regex_constants::match_default | std::regex_constants::format_default);
+  }
+  catch (std::regex_error& e)
+  {
+    const std::string s = "std::regex_error: " + std::string(e.what());
+    return s;
+  }
 }
 
 bool RegexTesterCpp11MainDialog::GetRegexValid(const std::string &regex_str) const
