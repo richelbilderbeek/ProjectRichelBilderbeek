@@ -43,10 +43,11 @@ then
   echo "SUCCESS"
 else
   echo "FAIL"
+  echo "Note: check if mxe can build glibc" #Knowledge
 fi
 
 #Cleaning up
-#rm ui_*.*
+rm ui_*.*
 rm Makefile
 rm Makefile.*
 rm -r debug
