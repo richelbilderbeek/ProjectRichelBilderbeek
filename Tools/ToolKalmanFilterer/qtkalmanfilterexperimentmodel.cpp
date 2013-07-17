@@ -16,7 +16,6 @@
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#include <boost/regex.hpp>
 #include <boost/algorithm/string/trim.hpp>
 
 #include <string>
@@ -1318,16 +1317,6 @@ void QtKalmanFilterExperimentModel::Test()
     is_tested = true;
   }
   //Test some regexes
-  {
-    const std::string s = "ABC\nPre: GETME\nDEF";
-    const boost::regex r("(.*)(\nPre: )(.*)(\n)(.*)");
-    assert(boost::regex_search(s,r));
-    const std::string t
-      = boost::regex_replace(
-      s,r,"$3",
-      boost::match_default | boost::format_all);
-     assert(t == std::string("GETME"));
-  }
   /*
   {
     const std::string s

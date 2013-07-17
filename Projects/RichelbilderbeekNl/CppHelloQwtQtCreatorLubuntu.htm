@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>'HelloQwt' using Qt Creator under Lubuntu</title>
+  <meta name="description" content="C++ 'HelloQwt' using Qt Creator under Lubuntu"/>
+  <meta name="keywords" content="C++ Qwt Hello World HelloQwt using Qt Creator under Lubuntu"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>
+  (<a href="Cpp.htm">C++</a>) 
+  <img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicLubuntu.png" alt="Lubuntu"/> 
+  <a href="CppHelloQwtQtCreatorLubuntu.htm">'HelloQwt' using Qt Creator under Lubuntu</a>
+</h1>
+<p>&nbsp;</p>
+<p><a href="CppHelloQwtQtCreatorLubuntu.htm">'HelloQwt' using Qt Creator under Lubuntu</a> is a 
+<a href="CppHelloQwt.htm">HelloQwt</a> program using the <a href="CppQtCreator.htm">Qt Creator</a>
+<a href="CppIde.htm">IDE</a> under the <a href="CppLubuntu.htm">Lubuntu</a> <a href="CppOs.htm">operating system</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppHelloQwtQtCreatorLubuntu.zip">Download the Qt Creator project 'CppHelloQwtQtCreatorLubuntu' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloQwtQtCreatorLubuntu.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppHelloQwtQtCreatorLubuntu.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+TEMPLATE = app<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /usr/include/qwt-qt4<br/>
+<a href="CppLIBS.htm">LIBS</a> += <a href="CppQwt.htm">-lqwt-qt4</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "qwt_plot.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_plot_curve.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_text.h"<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppInclude.htm">#include</a> "qwt_<a href="CppPointer.htm">point</a>_data.h"<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+<br/>
+&nbsp;&nbsp;QwtPlotCurve * <b><a href="CppConst.htm">const</a></b> m_curve <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QwtPlotCurve("Sine");<br/>
+&nbsp;&nbsp;QwtPlot * <b><a href="CppConst.htm">const</a></b> m_plot <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QwtPlot(QwtText("CppHelloQwt<a href="CppQtCreator.htm">QtCreator</a>Lubuntu"));<br/>
+<br/>
+&nbsp;&nbsp;m_plot-&gt;setGeometry(0,0,640,400);<br/>
+&nbsp;&nbsp;m_plot-&gt;setAxisScale(QwtPlot::xBottom, 0.0,2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;m_plot-&gt;setAxisScale(QwtPlot::yLeft,-1.0,1.0);<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; xs;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ys;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> 0; x &lt; 2.0 * <a href="CppM_PI.htm">M_PI</a>; x<a href="CppOperatorPlusAssign.htm">+=</a>(<a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorDivide.htm">/</a> 10.0))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;xs.push_back(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ys.push_back(<a href="CppSin.htm">std::sin</a>(x));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+&nbsp;&nbsp;Qwt<a href="CppPoint.htm">Point</a>ArrayData * <b><a href="CppConst.htm">const</a></b> data <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;xs[0],&amp;ys[0],xs.size());<br/>
+&nbsp;&nbsp;m_curve-&gt;setData(data);<br/>
+&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;m_curve-&gt;setData(&amp;xs[0],&amp;ys[0],xs.size());<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;m_curve-&gt;attach(m_plot);<br/>
+&nbsp;&nbsp;m_plot-&gt;replot();<br/>
+&nbsp;&nbsp;m_plot-&gt;show();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+
