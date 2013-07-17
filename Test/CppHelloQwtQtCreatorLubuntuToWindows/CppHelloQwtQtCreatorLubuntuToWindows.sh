@@ -40,7 +40,7 @@ make
 
 if [ -e ./release/$mytarget.exe ]
 then
-  echo "SUCCES"
+  echo "SUCCESS"
 else
   echo "FAIL"
 fi

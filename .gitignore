@@ -11,6 +11,7 @@
 *.pro.user.*
 *__Debug
 *__Release
+tmp.txt
 Makefile
 Makefile.Debug
 Makefile.Release

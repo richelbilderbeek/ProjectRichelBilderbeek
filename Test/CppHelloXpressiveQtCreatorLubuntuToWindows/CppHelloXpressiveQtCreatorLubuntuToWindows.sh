@@ -41,7 +41,7 @@ make
 
 if [ -e $myexefile ]
 then
-  echo "SUCCES"
+  echo "SUCCESS"
 else
   echo $myexefile
   echo "FAIL"
@@ -52,4 +52,3 @@ rm -r release
 rm -r debug
 rm Makefile
 rm Makefile.*
-#rm $target

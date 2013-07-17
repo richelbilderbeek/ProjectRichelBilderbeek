@@ -1,0 +1,12 @@
+Boost
+FAIL
+Cpp11
+SUCCESS
+Qt
+SUCCESS
+Qwt
+SUCCESS
+World
+SUCCESS
+Xpressive
+SUCCESS
