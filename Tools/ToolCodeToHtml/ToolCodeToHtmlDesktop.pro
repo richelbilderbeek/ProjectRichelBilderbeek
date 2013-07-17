@@ -129,12 +129,15 @@ win32 {
     message(Crosscompiling from Lubuntu to Windows)
     #Allow the crosscompiler to emit warnings without terminating
     QMAKE_CXXFLAGS += -std=c++0x #-Werror
+
+    #See http://www.richelbilderbeek.nl/CppCompileErrorParseErrorAtBOOST_JOIN.htm
+    #Prevents error:
+    #/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"
+    DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED
+
   }
 
 
-  #Prevents error:
-  #/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"
-  #DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED
 }
 
 #

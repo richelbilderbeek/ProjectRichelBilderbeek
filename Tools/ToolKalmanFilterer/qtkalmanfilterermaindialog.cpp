@@ -37,10 +37,6 @@
 #include <qwt_plot_grid.h>
 #include <qwt_legend.h>
 
-#ifdef _WIN32
-#include <qwt_point_data.h>
-#endif
-
 #include "kalmanfilter.h"
 #include "kalmanfilterexample.h"
 #include "kalmanfilterexperiment.h"

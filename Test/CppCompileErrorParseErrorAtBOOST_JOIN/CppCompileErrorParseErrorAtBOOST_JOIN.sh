@@ -3,9 +3,9 @@
 echo "Cross compiling to Windows"
 
 myfile="i686-pc-mingw32-qmake"
-#myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
-mytarget="CppHelloBoostQtCreatorLubuntuToWindows"
+mytarget="CppCompileErrorParseErrorAtBOOST_JOIN"
 myprofile=$mytarget.pro
+myexefile=./release/$mytarget.exe
 
 
 if [ -e $myfile ]
@@ -31,7 +31,7 @@ if [ -e Makefile ]
 then
   echo "Makefile created successfully"
 else
-  echo "FAIL: qmake CppHelloBoostQtCreatorLubuntu.pro"
+  echo "FAIL: qmake $myprofile"
   exit
 fi
 
@@ -39,7 +39,7 @@ echo "2/2: making makefile"
 
 make
 
-if [ -e /release/$mytarget.exe ]
+if [ -e $myexefile ]
 then
   echo "SUCCESS"
 else
@@ -47,7 +47,7 @@ else
 fi
 
 #Cleaning up
-#rm ui_*.*
+rm -r debug
+rm -r release
 rm Makefile
 rm Makefile.*
-#rm $target
