@@ -246,7 +246,6 @@ win32 {
   static {
     message(Crosscompiling from Lubuntu to Windows)
     #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++0x #-Werror
   }
 }
 

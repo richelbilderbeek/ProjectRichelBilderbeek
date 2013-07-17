@@ -1,18 +1,14 @@
 #!/bin/bash
-#From http://richelbilderbeek.nl/CppHelloBoostQtCreatorLubuntuToWindows.htm
-echo "Cross compiling to Windows"
-
-myfile="i686-pc-mingw32-qmake"
-#myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
-mytarget="CppHelloBoostQtCreatorLubuntuToWindows"
+myfile="qmake"
+mytarget="CppHelloXpressiveQtCreatorLubuntu"
 myprofile=$mytarget.pro
 
 
 if [ -e $myfile ]
 then
-  echo "MXE crosscompiler '$myfile' found"
+  echo "Compiler '$myfile' found"
 else
-  echo "MXE crosscompiler '$myfile' not found directly, but perhaps it is in the PATH"
+  echo "Compiler '$myfile' not found directly"
   #exit
 fi
 
@@ -39,7 +35,7 @@ echo "2/2: making makefile"
 
 make
 
-if [ -e ./release/$mytarget.exe ]
+if [ -e $mytarget ]
 then
   echo "SUCCESS"
 else
@@ -47,7 +43,6 @@ else
 fi
 
 #Cleaning up
-rm -r release
-rm -r debug
+rm *.o
 rm Makefile
-rm Makefile.*
+rm $mytarget

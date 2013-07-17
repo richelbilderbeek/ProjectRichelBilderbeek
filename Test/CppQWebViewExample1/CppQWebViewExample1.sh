@@ -3,8 +3,7 @@
 echo "Cross compiling to Windows"
 
 myfile="i686-pc-mingw32-qmake"
-#myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
-mytarget="CppHelloBoostQtCreatorLubuntuToWindows"
+mytarget="CppQWebViewExample1"
 myprofile=$mytarget.pro
 
 
@@ -39,7 +38,7 @@ echo "2/2: making makefile"
 
 make
 
-if [ -e ./release/$mytarget.exe ]
+if [ -e /release/$mytarget.exe ]
 then
   echo "SUCCESS"
 else
@@ -47,7 +46,7 @@ else
 fi
 
 #Cleaning up
-rm -r release
-rm -r debug
+#rm ui_*.*
 rm Makefile
 rm Makefile.*
+#rm $target

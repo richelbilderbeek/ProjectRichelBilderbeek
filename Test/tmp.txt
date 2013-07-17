@@ -1,5 +1,7 @@
 Boost
-FAIL
+SUCCESS
+Cpp0x
+SUCCESS
 Cpp11
 SUCCESS
 Qt

@@ -1,15 +1,26 @@
 #!/bin/bash
-target="CppHelloQtQtCreatorLubuntu"
+myfile="qmake"
+mytarget="CppHelloQtQtCreatorLubuntu"
+myprofile=$mytarget.pro
 
-if [ -e Makefile ]
+if [ -e $myfile ]
 then
-  cp Makefile Makefile.prev
-  echo "Makefile copied to Makefile.prev"
-  rm Makefile
-  echo "Removed Makefile"
+  echo "Compiler '$myfile' found"
+else
+  echo "Compiler '$myfile' not found directly"
+  #exit
 fi
 
-qmake $target.pro
+if [ -e $myprofile ]
+then
+  echo "Qt Creator project '$myprofile' found"
+else
+  echo "Qt Creator project '$myprofile' not found"
+  exit
+fi
+
+echo "1/2: Creating Windows makefile"
+$myfile $myprofile
 
 if [ -e Makefile ]
 then
@@ -19,11 +30,13 @@ else
   exit
 fi
 
+echo "2/2: making makefile"
+
 make
 
-if [ -e $target ]
+if [ -e $mytarget ]
 then
-  echo "SUCCES"
+  echo "SUCCESS"
 else
   echo "FAIL"
 fi
@@ -31,7 +44,6 @@ fi
 #Cleaning up
 rm *.o
 rm Makefile
-rm $target
-rm *.pro.user
+rm $mytarget
 rm moc_*.*
 rm ui_*.*
