@@ -1,8 +1,9 @@
 #!/bin/bash
-mymake="make"
-myqmake="qmake"
-mytarget="CppHelloWorldQtCreatorLubuntu"
+mymake="e:/Qt/Qt5.1.0/Tools/mingw48_32/bin/mingw32-make.exe"
+myqmake="e:/Qt/Qt5.1.0/5.1.0/mingw48_32/bin/qmake.exe"
+mytarget="CppHelloXpressiveQtCreatorWindows"
 myprofile=$mytarget.pro
+myexe=release/$mytarget.exe
 
 
 if [ -e $myqmake ]
@@ -32,11 +33,21 @@ else
   exit
 fi
 
+if [ -e $mymake ]
+then
+  echo "Compiler '$mymake' found"
+else
+  echo "Compiler '$mymake' not found directly"
+  #exit
+fi
+
 echo "2/2: making makefile"
 
 $mymake
 
-if [ -e $mytarget ]
+echo $myexe
+
+if [ -e $myexe ]
 then
   echo "SUCCESS"
 else
@@ -44,6 +55,7 @@ else
 fi
 
 #Cleaning up
-rm *.o
 rm Makefile
-rm $mytarget
+rm Makefile.*
+rm -r release
+rm -r debug
