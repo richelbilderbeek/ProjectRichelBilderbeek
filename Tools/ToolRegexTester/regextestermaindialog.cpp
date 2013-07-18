@@ -34,6 +34,7 @@ const std::vector<std::string> RegexTesterMainDialog::GetTestRegexes()
 {
   return
   {
+    "\{d}4 [",
     "/",
     "\\",
     "{d}2",

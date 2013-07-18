@@ -1,29 +1,3 @@
- 
-<title>std::search_n</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ std::search_n</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek std::search_n std search_n search algorithm</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>15</o:Revision>
-  <o:TotalTime>166</o:TotalTime>
-  <o:Created>2009-05-07T10:05:00Z</o:Created>
-  <o:LastSaved>2009-05-07T10:20:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>261</o:Words>
-  <o:Characters>1491</o:Characters>
-  <o:Category>C++ Richel Bilderbeek std::search_n</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>12</o:Lines>
-  <o:Paragraphs>2</o:Paragraphs>
-  <o:CharactersWithSpaces>1831</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -56,69 +30,32 @@
 <p>&nbsp;</p>
 <h2>Example</h2>
 <p>&nbsp;</p>
-
- 
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppStringH.htm">string</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
-
+<!-- start of code -->
+<table summary="s2l0.3o.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+ <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "abc***def";<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>* <b><a href="CppConst.htm">const</a></b> <a href="CppComment.htm">*/</a> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Number of repeats <a href="CppComment.htm">//</a>Note: Must leave out <b><a href="CppConst.htm">const</a></b>, don't known why<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c <a href="CppOperatorAssign.htm">=</a> '*'; <a href="CppComment.htm">//</a><a href="CppChar.htm">Character</a> to find<br/>
+ <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume three Kleene stars can be found<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>:: const_iterator i <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch_n.htm">std::search_n</a> ( s.begin(),s.end(),n,c);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( i <a href="CppOperatorNotEqual.htm">!=</a> s.end() );<br/>
+ <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume four Kleene stars cannot be found<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::const_iterator j <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch_n.htm">std::search_n</a> ( s.begin(),s.end(),n+1,c);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( j <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> s.end() );<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
-
-<p>{</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>
-s = &quot;abc***def&quot;;</p>
-
-<p>
- /* <b><a href="CppConst.htm">const</a></b> */ <b><a href="CppInt.htm">int</a></b>
-n = 3; //Number of repeats //Note: Must leave out <b><a href="CppConst.htm">const</a></b>,
-don't known why</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>
-c = '*'; //Character to find</p>
-
 <p>&nbsp;</p>
-
-<p>
- //Assume three Kleene stars can be found</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::
-<a href="CppConst_iterator.htm">const_iterator</a> i =   <a
-href="CppSearch_n.htm"> std::search_n</a> ( s.begin(),s.end(),n,c);</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>( i != s.end() );</p>
-
 <p>&nbsp;</p>
-
-<p>
- //Assume four Kleene stars cannot be found</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::<a
-href="CppConst_iterator.htm">const_iterator</a> j =   <a
-href="CppSearch_n.htm"> std::search_n</a> ( s.begin(),s.end(),n+1,c);</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>( j == s.end() );</p>
-
-<p>}</p>
-
 <p>&nbsp;</p>
-
-</div>
-
 <p>&nbsp;</p>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>

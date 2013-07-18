@@ -1,29 +1,3 @@
- 
-<title>RemoveExtension</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Code Snippet RemoveExtension</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>Richel Bilderbeek C++ Code Snippet RemoveExtension remove extension filename file name string std::string</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>9</o:Revision>
-  <o:TotalTime>114</o:TotalTime>
-  <o:Created>2007-07-16T18:52:00Z</o:Created>
-  <o:LastSaved>2009-08-24T08:21:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>118</o:Words>
-  <o:Characters>674</o:Characters>
-  <o:Category>Richel Bilderbeek C++ Code Snippet RemoveExtension</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>5</o:Lines>
-  <o:Paragraphs>1</o:Paragraphs>
-  <o:CharactersWithSpaces>827</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -48,45 +22,17 @@
 <p>&nbsp;</p>
 <p><a href="CppString.htm">std::string</a> <a href="CppCodeSnippets.htm">code snippet</a> to remove a filename's extension.</p>
 <p>&nbsp;</p>
-<ul>
-  <li><a href="CppRemoveExtension.txt">View the code of 'RemoveEntension' in plain text</a></li>
-</ul>
-<p>&nbsp;</p>
-
-
-
- 
-
-
-<p>#include &lt;string&gt;</p>
-
-<p>#include &lt;cassert&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>//From
-http://www.richelbilderbeek.nl/CppRemoveExtension.htm</p>
-
-<p>const std::string
-RemoveExtension(const std::string&amp; filename)</p>
-
-<p>{</p>
-
-<p>
- const int dot_index = filename.rfind(&quot;.&quot;,filename.size());</p>
-
-<p>
- assert(dot_index != -1 &amp;&amp; &quot;No dot found in filename&quot;);</p>
-
-<p>
- return filename.substr(0,dot_index);</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.2c.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppRemoveExtension.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> RemoveExtension(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dot_index <a href="CppOperatorAssign.htm">=</a> filename.rfind(".",filename.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dot_index <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppOperatorMinus.htm">-</a>1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "No dot found in filename");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filename.substr(0,dot_index);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

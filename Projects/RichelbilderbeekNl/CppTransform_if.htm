@@ -1,29 +1,3 @@
- 
-<title>Transform_if</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Transform_if</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek Transform_if algorithm</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>16</o:Revision>
-  <o:TotalTime>228</o:TotalTime>
-  <o:Created>2009-12-30T14:57:00Z</o:Created>
-  <o:LastSaved>2009-12-30T15:09:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>602</o:Words>
-  <o:Characters>3437</o:Characters>
-  <o:Category>C++ Richel Bilderbeek Transform_if</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>28</o:Lines>
-  <o:Paragraphs>6</o:Paragraphs>
-  <o:CharactersWithSpaces>4220</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -55,132 +29,50 @@ View <a href="CppExerciseNoForLoops.htm"> Exercise #9: No for-loops</a> to learn
 <p>&nbsp;</p>
 <p>Simplified from the STL that ships with C++ Builder 6.0.</p>
 <p>&nbsp;</p>
-<p><a href="CppTransform_if.txt">View the Transform_if function definition in plain text</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-<p><a href="CppComment.htm">//</a>From
-http://www.richelbilderbeek.nl/CppTransform_if.htm</p>
-
-<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> InputIter,</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> OutputIter,</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> Predicate,</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> UnaryOperation</p>
-
-<p> 
- &gt;</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  OutputIter
-Transform_if(</p>
-
-<p> 
- InputIter first,</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a> </b>InputIter last,</p>
-
-<p> 
- OutputIter result,</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a> </b>Predicate pred,</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a> </b>UnaryOperation opr)</p>
-
-<p>{</p>
-
-<p> 
- <b><a href="CppFor.htm">for</a></b> ( ; first != last; ++first,
-++result)</p>
-
-<p>   
- *result = pred(*first) ? opr(*first) : *first;</p>
-
-<p> 
- <b><a href="CppReturn.htm">return</a></b> result;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p><a href="CppComment.htm">//</a>From
-http://www.richelbilderbeek.nl/CppTransform_if.htm</p>
-
-<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> InputIter1,</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> InputIter2,</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> OutputIter,</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> Predicate,</p>
-
-<p> 
- <b><a href="CppClass.htm">class</a></b> BinaryOperation&gt;</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  OutputIter
-Transform_if(</p>
-
-<p> 
- InputIter1 first1,</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> InputIter1 last1,</p>
-
-<p> 
- InputIter2 first2,</p>
-
-<p> 
- OutputIter result,</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> Predicate pred,</p>
-
-<p> 
- <b><a href="CppConst.htm">const</a></b> BinaryOperation binary_op)</p>
-
-<p>{</p>
-
-<p> 
- <b><a href="CppFor.htm">for</a></b> ( ; first1 != last1; ++first1,
-++first2, ++result)</p>
-
-<p>   
- *result = pred(*first1) ? binary_op(*first1, *first2) : *first1;</p>
-
-<p> 
- <b><a href="CppReturn.htm">return</a></b> result;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
+<!-- start of code -->
+<table summary="s2l0.34.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppTransform_if.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> InputIter,<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> OutputIter,<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppPredicate.htm">Predicate</a>,<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> UnaryOperation<br/>
+&nbsp;&nbsp;&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> OutputIter Transform_if(<br/>
+&nbsp;&nbsp;InputIter first,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> InputIter last,<br/>
+&nbsp;&nbsp;OutputIter result,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPredicate.htm">Predicate</a> pred,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> UnaryOperation opr)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( ; first <a href="CppOperatorNotEqual.htm">!=</a> last; <a href="CppOperatorPlus.htm">+</a>+first, <a href="CppOperatorPlus.htm">+</a>+result)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;*result <a href="CppOperatorAssign.htm">=</a> pred(*first) ? opr(*first) : *first;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+}<br/>
+<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppTransform_if.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> InputIter1, <br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> InputIter2, <br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> OutputIter,<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppPredicate.htm">Predicate</a>,<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> BinaryOperation&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> OutputIter Transform_if(<br/>
+&nbsp;&nbsp;InputIter1 first1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> InputIter1 last1,<br/>
+&nbsp;&nbsp;InputIter2 first2,<br/>
+&nbsp;&nbsp;OutputIter result,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPredicate.htm">Predicate</a> pred,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> BinaryOperation binary_op)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( ; first1 <a href="CppOperatorNotEqual.htm">!=</a> last1; <a href="CppOperatorPlus.htm">+</a>+first1, <a href="CppOperatorPlus.htm">+</a>+first2, <a href="CppOperatorPlus.htm">+</a>+result)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;*result <a href="CppOperatorAssign.htm">=</a> pred(*first1) ? binary_op(*first1, *first2) : *first1;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

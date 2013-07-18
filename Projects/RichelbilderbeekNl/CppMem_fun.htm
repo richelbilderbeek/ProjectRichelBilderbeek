@@ -1,29 +1,3 @@
- 
-<title>std::mem_fun</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ std::mem_fun</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek std::mem_fun_ref std mem_fun member function algorithm for_each</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>10</o:Revision>
-  <o:TotalTime>132</o:TotalTime>
-  <o:Created>2008-05-03T07:00:00Z</o:Created>
-  <o:LastSaved>2009-12-29T14:22:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>324</o:Words>
-  <o:Characters>1847</o:Characters>
-  <o:Category>C++ Richel Bilderbeek std::mem_fun</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>15</o:Lines>
-  <o:Paragraphs>3</o:Paragraphs>
-  <o:CharactersWithSpaces>2268</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -59,89 +33,43 @@ on a <a href="CppMemberFunction.htm">member function</a> of T stored in a <a hre
 <p>&nbsp;</p>
 <h2>Replacing a <a href="CppFor.htm">for</a> loop by algorithms using <a href="CppMem_fun.htm">std::mem_fun</a></h2>
 <p>&nbsp;</p>
-
-
-
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
+<!-- start of code -->
+<table summary="s2l0.1l.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoIt() <b><a href="CppConst.htm">const</a></b> { <a href="CppOperatorDivide.htm">/</a>* <b><a href="CppDo.htm">do</a></b> it <a href="CppComment.htm">*/</a> }<br/>
+};<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> DoIt(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppWidget.htm">Widget</a>*&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i]-&gt;DoIt();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p><b> <a href="CppStruct.htm">struct</a> </b>  Widget</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppVoid.htm">void</a></b>
-DoIt() <b><a href="CppConst.htm">const</a></b> { /* do it */ }</p>
-
-<p>};</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  DoIt(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Widget*&gt;&amp;
-v)</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppConst.htm">const</a></b>
-<b><a href="CppInt.htm">int</a></b> sz = v.size();</p>
-
-<p>   <b><a href="CppFor.htm">for</a></b>
-(<b><a href="CppInt.htm">int</a></b> i=0; i!=sz; ++i)</p>
-
-<p>   {</p>
-
-<p>     v[i]-&gt;DoIt();</p>
-
-<p>   }</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppStruct.htm">struct</a> </b>  Widget</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppVoid.htm">void</a></b>
-DoIt() <b><a href="CppConst.htm">const</a></b> { /* do it */ }</p>
-
-<p>};</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  DoIt(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Widget*&gt;&amp;
-v)</p>
-
-<p>{</p>
-
-<p>   <a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a
-href="CppMem_fun.htm">std::mem_fun</a>(&amp;Widget::DoIt));</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.1l.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoIt() <b><a href="CppConst.htm">const</a></b> { <a href="CppOperatorDivide.htm">/</a>* <b><a href="CppDo.htm">do</a></b> it <a href="CppComment.htm">*/</a> }<br/>
+};<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> DoIt(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppWidget.htm">Widget</a>*&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppMem_fun.htm">std::mem_fun</a>(&amp;<a href="CppWidget.htm">Widget</a>::DoIt));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

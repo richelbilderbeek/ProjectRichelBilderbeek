@@ -1,30 +1,3 @@
- 
-<title>Link error: Error processing module JConsts.pas</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Link error: Error processing module JConsts.pas</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek C++ Link error: Error processing module JConsts.pas</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>11</o:Revision>
-  <o:TotalTime>152</o:TotalTime>
-  <o:Created>2009-05-09T12:31:00Z</o:Created>
-  <o:LastSaved>2009-05-09T12:37:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>183</o:Words>
-  <o:Characters>1046</o:Characters>
-  <o:Category>C++ Richel Bilderbeek C++ Link error: Error processing module JConsts.pas</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>8</o:Lines>
-  <o:Paragraphs>2</o:Paragraphs>
-  <o:CharactersWithSpaces>1284</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- </head>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -58,16 +31,11 @@
 <p>&nbsp;</p>
 <h2>Full error messages</h2>
 <p>&nbsp;</p>
-
-
-
-<p>[Linker Error] Error processing module
-JConsts.pas</p>
-</div>
-
-
-
-
+<!-- start of code -->
+<table summary="s2l0.p.cpp" border = "1"><tr><td><code>
+[<a href="CppLinker.htm">Linker</a> Error] Error processing module JConsts.pas<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -80,38 +48,21 @@ JConsts.pas</p>
 <p>Added the following line to support JPEGs, to only one of the <a
 href="CppImplementationFile.htm">implementation files (.cpp)</a> that will need
 it:</p>
-
-
- 
-
 <p>&nbsp;</p>
-
-<p>#include &lt;jpeg.hpp&gt;</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
-
+<!-- start of code -->
+<table summary="s2l0.q.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;jpeg.hpp&gt;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>Or made a too difficult std::string concatenation</p>
 <p>&nbsp;</p>
-
-
-
-<p>std::vector&lt;std::string&gt; v;</p>
-
-<p>v.push_back(&quot; &quot; + m_question-&gt;m_filename
-+ &quot; &quot;);</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
-
-
+<!-- start of code -->
+<table summary="s2l0.r.cpp" border = "1"><tr><td><code>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+v.push_back(" " <a href="CppOperatorPlus.htm">+</a> m_<a href="CppQuestion.htm">question</a>-&gt;m_filename <a href="CppOperatorPlus.htm">+</a> " ");<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -123,35 +74,21 @@ it:</p>
 <p>&nbsp;</p>
 <p>I added the following line to the other <a href="CppImplementationFile.htm">implementation files (.cpp)</a> that will need it:</p>
 <p>&nbsp;</p>
- 
-
-<p>&nbsp;</p>
-
-<p>#include &lt;jpeg.hpp&gt;</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-
+<!-- start of code -->
+<table summary="s2l0.s.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;jpeg.hpp&gt;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>I also broke apart the std::string concatenation</p>
 <p>&nbsp;</p>
- 
-
-<p>&nbsp;</p>
-
-<p>std::vector&lt;std::string&gt; v;</p>
-
-<p>const std::string filename = &quot;
-&quot; + m_question-&gt;m_filename + &quot; &quot;;</p>
-
-<p>v.push_back(filename);</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.s.cpp" border = "1"><tr><td><code>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> " " <a href="CppOperatorPlus.htm">+</a> m_<a href="CppQuestion.htm">question</a>-&gt;m_filename <a href="CppOperatorPlus.htm">+</a> " ";<br/>
+v.push_back(filename);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

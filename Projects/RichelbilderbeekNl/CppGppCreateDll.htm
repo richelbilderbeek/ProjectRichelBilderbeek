@@ -1,30 +1,3 @@
- 
-<title>G++ Create a DLL</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ G++ Create a DLL</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ G++ Richel Bilderbeek Create a DLL creating starting making make start write GPP GCC</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>19</o:Revision>
-  <o:TotalTime>210</o:TotalTime>
-  <o:Created>2009-06-01T11:01:00Z</o:Created>
-  <o:LastSaved>2009-06-01T11:33:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>427</o:Words>
-  <o:Characters>2438</o:Characters>
-  <o:Category>C++ G++ Richel Bilderbeek Create a DLL</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>20</o:Lines>
-  <o:Paragraphs>4</o:Paragraphs>
-  <o:CharactersWithSpaces>2994</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -61,199 +34,98 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <h2>UnitEntryPoint.cpp</h2>
-
 <p>&nbsp;</p>
-
- 
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include &lt;windows.h&gt;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>int WINAPI DllEntryPoint(HINSTANCE
-hinst, unsigned long reason, void* lpReserved)</p>
-
-<p>{</p>
-
-<p>
- return 1;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>int WINAPI WinMain(      </p>
-
-<p> 
- HINSTANCE hInstance,</p>
-
-<p> 
- HINSTANCE hPrevInstance,</p>
-
-<p> 
- LPSTR lpCmdLine,</p>
-
-<p> 
- int nCmdShow)</p>
-
-<p>{  
-</p>
-
-<p>
- return 0;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.a.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;windows.h&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> WINAPI DllEntry<a href="CppPoint.htm">Point</a>(HINSTANCE hinst, <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppLong.htm">long</a></b> reason, <b><a href="CppVoid.htm">void</a></b>* lpReserved)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppInt.htm">int</a></b> WINAPI WinMain(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;HINSTANCE hInstance,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;HINSTANCE hPrevInstance,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;LPSTR lpCmdLine,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> nCmdShow)<br/>
+{&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo4;
-tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a
-href="CppGppCreateDllEntryPointCpp.txt">View this code in plain text</a>.</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
 <h2>UnitFunctions.h</h2>
-
 <p>&nbsp;</p>
-
- 
-
+<!-- start of code -->
+<table summary="s2l0.b.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> Unit<a href="CppFunction.htm">Function</a>sH<br/>
+<a href="CppDefine.htm">#define</a> Unit<a href="CppFunction.htm">Function</a>sH<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> __cplusplus<br/>
+<b><a href="CppExtern.htm">extern</a></b> "C"<br/>
+{<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+__declspec (dll<b><a href="CppExport.htm">export</a></b>) <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> GetAnswerOfLife();<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> __cplusplus<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#ifndef UnitFunctionsH</p>
-
-<p>#define UnitFunctionsH</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#ifdef __cplusplus</p>
-
-<p>extern &quot;C&quot;</p>
-
-<p>{</p>
-
-<p>#endif</p>
-
-<p>&nbsp;</p>
-
-<p>__declspec (dllexport) const int GetAnswerOfLife();</p>
-
-<p>&nbsp;</p>
-
-<p>#ifdef __cplusplus</p>
-
-<p>}</p>
-
-<p>#endif</p>
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#endif</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo4;
-tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a
-href="CppGppCreateDllUnitFunctionsH.txt">View this code in plain text</a></p>
-
-<p>&nbsp;</p>
-
-<p>The
-function put in the DLL is called GetAnswerOfLife and will return the value of
+<p>The function put in the DLL is called GetAnswerOfLife and will return the value of
 42. Note the <a href="CppIfdef.htm">#ifdef</a>'s before and after the function.
 These are obligatory!</p>
-
 <p>&nbsp;</p>
-
-<p>Now
-the function GetAnswerOfLife must be defined in UnitFunctions.cpp. Upon viewing
+<p>Now the function GetAnswerOfLife must be defined in UnitFunctions.cpp. Upon viewing
 it, the code looks like below</p>
-
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>UnitFunctions.cpp</h2>
-
 <p>&nbsp;</p>
-
- 
-
+<!-- start of code -->
+<table summary="s2l0.c.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppFunction.htm">Function</a>s.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> GetAnswerOfLife()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 42;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include &quot;UnitFunctions.h&quot;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>const int GetAnswerOfLife()</p>
-
-<p>{</p>
-
-<p>
- return 42;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
 <p>&nbsp;</p>
-
-</div>
-
 <p>&nbsp;</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo4;
-tab-stops:list .25in'>  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a
-href="CppGppCreateDllUnitFunctionsCpp.txt">View this code in plain text</a>.</p>
-
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
 <h2>Building the DLL</h2>
-
 <p>&nbsp;</p>
-
 <p>Use the following G++ commands:</p>
-
 <p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>g++ -c
-UnitFunctions.cpp</p>
-
-<p>g++ -c
-UnitEntryPoint.cpp</p>
-
-<p>g++ -o
-Functions.dll UnitEntryPoint.o UnitFunctions.o</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.e.txt" border = "1"><tr><td><code>
+g++ -c UnitFunctions.cpp<br/>
+g++ -c UnitEntryPoint.cpp<br/>
+g++ -o Functions.dll UnitEntryPoint.o UnitFunctions.o<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>This should yield your first DLL!</p>
 <p>&nbsp;</p>

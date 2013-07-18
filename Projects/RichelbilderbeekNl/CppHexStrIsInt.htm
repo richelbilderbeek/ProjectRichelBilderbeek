@@ -1,26 +1,3 @@
-
-<title>HexStrIsInt</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Code Snippet</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>Richel Bilderbeek C++ Code Snippet HexStrIsInt hex string integer hexadecimal std::string check</o:Keywords>
-  <o:LastAuthor>Richel</o:LastAuthor>
-  <o:Revision>11</o:Revision>
-  <o:TotalTime>119</o:TotalTime>
-  <o:Created>2007-07-16T18:03:00Z</o:Created>
-  <o:LastSaved>2007-07-30T09:57:00Z</o:LastSaved>
-  <o:Pages>3</o:Pages>
-  <o:Words>485</o:Words>
-  <o:Characters>2767</o:Characters>
-  <o:Lines>23</o:Lines>
-  <o:Paragraphs>5</o:Paragraphs>
-  <o:CharactersWithSpaces>3398</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -60,109 +37,46 @@
 <h3>Option #1</h3>
 
 <p>&nbsp;</p>
-
- 
-
-<p> #include &lt;sstream&gt;</p>
-
-<p> #include &lt;cassert&gt;</p>
-
-<p>&nbsp;</p>
-
-<p> //From http://www.richelbilderbeek.nl/CppHexStrIsInt.htm</p>
-
-<p> //Checks whether a std::string containg
-hexadecimal</p>
-
-<p> //can be converted to an int.</p>
-
-<p> //Returns true if possible, also returning
-this integer by referencing.</p>
-
-<p> //Returns false otherwise, setting the
-referenced int to zero.</p>
-
-<p><b> bool </b>  IsHexInt(<b>const</b> std::string&amp; s, <b>int</b>&amp;
-rInt)</p>
-
-<p> {</p>
-
-<p>   
- std::istringstream i(s);</p>
-
-<p>     i
-&gt;&gt; std::hex;</p>
-
-<p>     <b>if</b>
-(!(i &gt;&gt; rInt))</p>
-
-<p>     {</p>
-
-<p>     
- rInt = 0; <b>return false</b>;</p>
-
-<p>     }</p>
-
-<p>     <b>return
-true</b>;</p>
-
-<p> }</p>
-
-<p>&nbsp;</p>
-
-<p><b> int </b>  main()</p>
-
-<p> {</p>
-
-<p>     <b>int</b>
-temp = -1;</p>
-
-<p>   
- assert(IsHexInt(&quot;0&quot;,temp) == <b>true</b>);</p>
-
-<p>   
- assert(IsHexInt(&quot;9&quot;,temp) == <b>true</b>);</p>
-
-<p>     assert(IsHexInt(&quot;A&quot;,temp)
-== <b>true</b>);</p>
-
-<p>   
- assert(IsHexInt(&quot;F&quot;,temp) == <b>true</b>);</p>
-
-<p>   
- assert(IsHexInt(&quot;-F&quot;,temp) == <b>true</b>);</p>
-
-<p>   
- assert(IsHexInt(&quot;-F85AE&quot;,temp) == <b>true</b>);</p>
-
-<p>   
- assert(IsHexInt(&quot;80000000&quot;,temp) == <b>true</b>); //Maximal
-value</p>
-
-<p>   
- assert(IsHexInt(&quot;80000001&quot;,temp) == <b>false</b>); //Out of
-range</p>
-
-<p>   
- assert(IsHexInt(&quot;G&quot;,temp) == false);</p>
-
-<p>&nbsp;</p>
-
-<p>   
- assert(IsHexInt(&quot;--80000000&quot;,temp) == <b>false</b>);</p>
-
-<p>   
- assert(IsHexInt(&quot;-800-00000&quot;,temp) == <b>true</b>); //Does not
-detect ill-formed numbers</p>
-
-<p>   
- assert(IsHexInt(&quot;80000-000&quot;,temp) == <b>true</b>); //Does not
-detect ill-formed numbers</p>
-
-<p> }</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.g.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppHexStr<a href="CppIsInt.htm">IsInt</a>.htm<br/>
+<a href="CppComment.htm">//</a>Checks whether a <a href="CppString.htm">std::string</a> containg hexadecimal <br/>
+<a href="CppComment.htm">//</a>can be <a href="CppConvert.htm">convert</a>ed to an <b><a href="CppInt.htm">int</a></b>. <br/>
+<a href="CppComment.htm">//</a>Returns <b><a href="CppTrue.htm">true</a></b> <b><a href="CppIf.htm">if</a></b> possible, also <b><a href="CppReturn.htm">return</a></b>ing <b><a href="CppThis.htm">this</a></b> <a href="CppInt.htm">integer</a> by referencing.<br/>
+<a href="CppComment.htm">//</a>Returns <b><a href="CppFalse.htm">false</a></b> otherwise, setting the referenced <b><a href="CppInt.htm">int</a></b> to zero.<br/>
+<b><a href="CppBool.htm">bool</a></b> IsHexInt(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppInt.htm">int</a></b>&amp; rInt)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIstringstream.htm">std::istringstream</a> i(s);<br/>
+&nbsp;&nbsp;i <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppHex.htm">std::hex</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(i <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> rInt))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rInt <a href="CppOperatorAssign.htm">=</a> 0; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> temp <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("0",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("9",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("A",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("F",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("-F",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("-F85AE",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("80000000",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>); <a href="CppComment.htm">//</a>Maximal value<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("80000001",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>); <a href="CppComment.htm">//</a>Out of range<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("G",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("<a href="CppOperatorDecrement.htm">--</a>80000000",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>); <br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("-800-00000",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>); <a href="CppComment.htm">//</a>Does not detect ill-formed numbers<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsHexInt("80000-000",temp) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>); <a href="CppComment.htm">//</a>Does not detect ill-formed numbers<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>Note that the std::string cannot have a value higher then <b>80000000</b>.</p>
 <p>&nbsp;</p>
@@ -174,133 +88,80 @@ detect ill-formed numbers</p>
 <p>&nbsp;</p>
 <p>Suggested by <a href="http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069">AsmGuru62</a>:</p>
 <p>&nbsp;</p>
-
- 
-
-<p> #include &lt;cstring&gt;</p>
-
-<p> #include &lt;cassert&gt;</p>
-
+<!-- start of code -->
+<table summary="s2l0.h.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">cstring</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppHexStr<a href="CppIsInt.htm">IsInt</a>.htm<br/>
+<a href="CppComment.htm">//</a>This solution was inspired by AsmGuru62<br/>
+<a href="CppComment.htm">//</a>http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069<br/>
+<a href="CppComment.htm">//</a>Checks <b><a href="CppIf.htm">if</a></b> a C-style string only contains hexadecimal <a href="CppChar.htm">character</a>s<br/>
+<b><a href="CppBool.htm">bool</a></b> IsAllHex (<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>* <b><a href="CppConst.htm">const</a></b> must_be_hex)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> copy_of_param[64];<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrtok.htm">std::strtok</a> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrcpy.htm">std::strcpy</a>(copy_of_param, must_be_hex),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"0123456789ABCDEFabcdef") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsAllHex("0")<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsAllHex("9")<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsAllHex("A")<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsAllHex("F")<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsAllHex("-F")<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>); <a href="CppComment.htm">//</a>Does not accept negatives<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsAllHex("-F85AE")<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>); <a href="CppComment.htm">//</a>Does not accept negatives<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsAllHex("FFFFFFFFFFFFFFFFFFFFFFFFFFF")<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsAllHex("G")<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>As option #1 also has defects in detecting negatives, you might want to change<br/>
+<a href="CppComment.htm">//</a>the IsAllHex to the one below:<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppHexStr<a href="CppIsInt.htm">IsInt</a>.htm<br/>
+<a href="CppComment.htm">//</a>This solution was inspired by AsmGuru62<br/>
+<a href="CppComment.htm">//</a>http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069<br/>
+<a href="CppComment.htm">//</a>Checks <b><a href="CppIf.htm">if</a></b> a C-style string only contains hexadecimal <a href="CppChar.htm">character</a>s<br/>
+<a href="CppComment.htm">//</a>and minuses<br/>
+<b><a href="CppBool.htm">bool</a></b> IsAllHex (<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>* <b><a href="CppConst.htm">const</a></b> must_be_hex)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> copy_of_param[64];<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrtok.htm">std::strtok</a> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrcpy.htm">std::strcpy</a>(copy_of_param, must_be_hex),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"0123456789ABCDEFabcdef-") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p> //From http://www.richelbilderbeek.nl/CppHexStrIsInt.htm</p>
-
-<p> //This solution was inspired by AsmGuru62</p>
-
-<p> //http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069</p>
-
-<p> //Checks if a C-style string only contains
-hexadecimal characters</p>
-
-<p><b> bool </b>  IsAllHex (<b>const char</b>* <b>const</b>
-must_be_hex)</p>
-
-<p> {</p>
-
-<p>     <b>char</b>
-copy_of_param[64];</p>
-
-<p>&nbsp;</p>
-
-<p>     <b>return</b>(</p>
-
-<p>     
- std::strtok (</p>
-
-<p>       
- std::strcpy(copy_of_param, must_be_hex),</p>
-
-<p>       
- &quot;0123456789ABCDEFabcdef&quot;) == 0);</p>
-
-<p> }</p>
-
-<p>&nbsp;</p>
-
-<p><b> int </b>  main()</p>
-
-<p> {</p>
-
-<p>   
- assert(IsAllHex(&quot;0&quot;)==<b>true</b>);</p>
-
-<p>   
- assert(IsAllHex(&quot;9&quot;)==<b>true</b>);</p>
-
-<p>   
- assert(IsAllHex(&quot;A&quot;)==<b>true</b>);</p>
-
-<p>   
- assert(IsAllHex(&quot;F&quot;)==<b>true</b>);</p>
-
-<p>   
- assert(IsAllHex(&quot;-F&quot;)==<b>false</b>); //Does not accept
-negatives</p>
-
-<p>   
- assert(IsAllHex(&quot;-F85AE&quot;)==<b>false</b>); //Does not accept
-negatives</p>
-
-<p>   
- assert(IsAllHex(&quot;FFFFFFFFFFFFFFFFFFFFFFFFFFF&quot;)==<b>true</b>);</p>
-
-<p>   
- assert(IsAllHex(&quot;G&quot;)==<b>false</b>);</p>
-
-<p> }</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p> As option #1
-also has defects in detecting negatives, you might want to change the <b>IsAllHex</b>
+<p> As option #1 also has defects in detecting negatives, you might want to change the IsAllHex
 to the one below:</p>
-
 <p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p> //From http://www.richelbilderbeek.nl/CppHexStrIsInt.htm</p>
-
-<p> //This solution was inspired by AsmGuru62</p>
-
-<p> //http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069</p>
-
-<p> //Checks if a C-style string only contains
-hexadecimal characters</p>
-
-<p> //and minuses</p>
-
-<p> bool IsAllHex (const char* const must_be_hex)</p>
-
-<p> {</p>
-
-<p>     char
-copy_of_param[64];</p>
-
-<p>&nbsp;</p>
-
-<p>   
- return(</p>
-
-<p>     
- std::strtok (</p>
-
-<p>       
- std::strcpy(copy_of_param, must_be_hex),</p>
-
-<p>       
- &quot;0123456789ABCDEFabcdef-&quot;) == 0);</p>
-
-<p> }</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.i.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppHexStr<a href="CppIsInt.htm">IsInt</a>.htm<br/>
+<a href="CppComment.htm">//</a>This solution was inspired by AsmGuru62<br/>
+<a href="CppComment.htm">//</a>http://www.programmersheaven.com/c/authorpage.asp?AuthorID=12069<br/>
+<a href="CppComment.htm">//</a>Checks <b><a href="CppIf.htm">if</a></b> a C-style string only contains hexadecimal <a href="CppChar.htm">character</a>s<br/>
+<a href="CppComment.htm">//</a>and minuses<br/>
+<b><a href="CppBool.htm">bool</a></b> IsAllHex (<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>* <b><a href="CppConst.htm">const</a></b> must_be_hex)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> copy_of_param[64];<br/>
+ <br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrtok.htm">std::strtok</a> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrcpy.htm">std::strcpy</a>(copy_of_param, must_be_hex),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"0123456789ABCDEFabcdef-") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

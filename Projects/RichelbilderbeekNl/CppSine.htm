@@ -1,29 +1,3 @@
- 
-<title>Sine class</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Sine class</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek Sine class std::sin sin look up table lut</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>9</o:Revision>
-  <o:TotalTime>411</o:TotalTime>
-  <o:Created>2009-04-27T11:05:00Z</o:Created>
-  <o:LastSaved>2009-04-27T11:15:00Z</o:LastSaved>
-  <o:Pages>5</o:Pages>
-  <o:Words>1257</o:Words>
-  <o:Characters>7166</o:Characters>
-  <o:Category>C++ Richel Bilderbeek Sine class</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>59</o:Lines>
-  <o:Paragraphs>14</o:Paragraphs>
-  <o:CharactersWithSpaces>8800</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -53,562 +27,177 @@ You can view all code below or download the source code.</p>
   <li><a href="CppSine.zip">Download the 'Sine' source code, including C++ Builder 6.0 project (zip)</a></li>
 </ul>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h1>UnitSineMain.cpp</h1>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>/*</p>
-
-<p>  Sine, a class that uses a look-up table to
-calculate a sine</p>
-
-<p>  Copyright (C) 2009    Richel Bilderbeek</p>
-
-<p>&nbsp;</p>
-
-<p>  This program is free software: you can
-redistribute it and/or modify</p>
-
-<p>  it under the terms of the GNU General Public
-License as published by</p>
-
-<p>  the Free Software Foundation, either version
-3 of the License, or</p>
-
-<p>  (at your option) any later version.</p>
-
-<p>&nbsp;</p>
-
-<p>  This program is distributed in the hope that
-it will be useful,</p>
-
-<p>  but WITHOUT ANY WARRANTY; without even the
-implied warranty of</p>
-
-<p>  MERCHANTABILITY or FITNESS FOR A PARTICULAR
-PURPOSE.    See the</p>
-
-<p>  GNU General Public License for more details.</p>
-
-<p>&nbsp;</p>
-
-<p>  You should have received a copy of the GNU
-General Public License</p>
-
-<p>  along with this program.    If not, see
-&lt;http://www.gnu.org/licenses/&gt;.</p>
-
-<p>*/</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>// From
-http://www.richelbilderbeek.nl</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#pragma
-hdrstop</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include
-&lt;cassert&gt;</p>
-
-<p>#include
-&lt;limits&gt;</p>
-
-<p>#include
-&lt;iostream&gt;</p>
-
-<p>#include
-&lt;cmath&gt;</p>
-
-<p>#include
-&quot;UnitSine.h&quot;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>//From
-htpp://www.richelbilderbeek.nl/CppGetRandomUniform.htm</p>
-
-<p>const double
-GetRandomUniform()</p>
-
-<p>{</p>
-
-<p>  return
-static_cast&lt;double&gt;(std::rand())/static_cast&lt;double&gt;(RAND_MAX);</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>//Range from
-[ - 3.0 * M_PI , 3.0 * M_PI ]</p>
-
-<p>const double
-GetRandomNumber()</p>
-
-<p>{</p>
-
-
-<p>  return (-3.0 * M_PI) + (GetRandomUniform() *
-6.0 * M_PI);</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>int main()</p>
-
-<p>{</p>
-
-<p>  Sine s;</p>
-
-<p>  //Check special values</p>
-
-<p>  s( 0.0 * M_PI);</p>
-
-<p>  s( 0.5 * M_PI);</p>
-
-<p>  s( 1.0 * M_PI);</p>
-
-<p>  s( 1.5 * M_PI);</p>
-
-<p>  s( 2.0 * M_PI);</p>
-
-<p>  s(-0.0 * M_PI);</p>
-
-<p>  s(-0.5 * M_PI);</p>
-
-<p>  s(-1.0 * M_PI);</p>
-
-<p>  s(-1.5 * M_PI);</p>
-
-<p>  s(-2.0 * M_PI);</p>
-
-<p>  for (int i=0; i!=1000000; ++i)</p>
-
-<p>  {</p>
-
-<p>    if (i % 100000 == 0) std::cout &lt;&lt;
-&quot;.&quot;;</p>
-
-<p>    const double x = GetRandomNumber();</p>
-
-<p>    const double y = s(x);</p>
-
-<p>    const double yToo = std::sin(x);</p>
-
-<p>    const double error = std::fabs(y - yToo);</p>
-
-<p>    assert( error &lt; s.GetMaxError());</p>
-
-<p>  }</p>
-
-<p>  std::cout &lt;&lt; &quot;Sine tested as
-safe&quot; &lt;&lt; std::endl;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<h1>UnitSine.h</h1>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>/*</p>
-
-<p>   Sine, a class that uses a
-look-up table to calculate a sine</p>
-
-<p>   Copyright (C) 2009    Richel Bilderbeek</p>
-
-<p>&nbsp;</p>
-
-<p>   This program is free software:
-you can redistribute it and/or modify</p>
-
-<p>   it under the terms of the GNU
-General Public License as published by</p>
-
-<p>   the Free Software Foundation,
-either version 3 of the License, or</p>
-
-<p>   (at your option) any later
-version.</p>
-
-<p>&nbsp;</p>
-
-<p>   This program is distributed in
-the hope that it will be useful,</p>
-
-<p>   but WITHOUT ANY WARRANTY;
-without even the implied warranty of</p>
-
-<p>   MERCHANTABILITY or FITNESS FOR
-A PARTICULAR PURPOSE.    See the</p>
-
-<p>   GNU General Public License for
-more details.</p>
-
-<p>&nbsp;</p>
-
-<p>   You should have received a copy
-of the GNU General Public License</p>
-
-<p>   along with this program.    If not, see
-&lt;http://www.gnu.org/licenses/&gt;.</p>
-
-<p>*/</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>// From http://www.richelbilderbeek.nl</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#ifndef UnitSineH</p>
-
-<p>#define UnitSineH</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include &lt;vector&gt;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>struct Sine</p>
-
-<p>{</p>
-
-<p>   Sine(const int size = 1000,
-const double notInitializedValue = 123.0);</p>
-
-<p>   double operator()(const double
-x);</p>
-
-<p>   const double GetMaxError()
-const;</p>
-
-<p>&nbsp;</p>
-
-<p>   private:</p>
-
-<p>   std::vector&lt;double&gt; mLut;
-//Look-up table</p>
-
-<p>   const double
-mNotInitializedValue;</p>
-
-<p>   const double Transform(const
-double f) const;</p>
-
-<p>   const int CalculateIndex(const
-double f) const;</p>
-
-<p>&nbsp;</p>
-
-<p>};</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#endif</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<h1>UnitSine.cpp</h1>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>/*</p>
-
-<p>   Sine, a class that uses a
-look-up table to calculate a sine</p>
-
-<p>   Copyright (C) 2009    Richel Bilderbeek</p>
-
-<p>&nbsp;</p>
-
-<p>   This program is free software:
-you can redistribute it and/or modify</p>
-
-<p>   it under the terms of the GNU
-General Public License as published by</p>
-
-<p>   the Free Software Foundation,
-either version 3 of the License, or</p>
-
-<p>   (at your option) any later
-version.</p>
-
-<p>&nbsp;</p>
-
-<p>   This program is distributed in
-the hope that it will be useful,</p>
-
-<p>     but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
-
-<p>   MERCHANTABILITY or FITNESS FOR
-A PARTICULAR PURPOSE.    See the</p>
-
-<p>   GNU General Public License for
-more details.</p>
-
-<p>&nbsp;</p>
-
-<p>   You should have received a copy
-of the GNU General Public License</p>
-
-<p>   along with this program.    If not, see
-&lt;http://www.gnu.org/licenses/&gt;.</p>
-
-<p>*/</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>// From http://www.richelbilderbeek.nl</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#pragma hdrstop</p>
-
-<p>&nbsp;</p>
-
-<p>#include &lt;cassert&gt;</p>
-
-<p>#include &lt;cmath&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>#include &quot;UnitSine.h&quot;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>Sine::Sine(const int size, const double notInitializedValue)</p>
-
-<p>   : mLut(size,notInitializedValue),</p>
-
-<p>   
- mNotInitializedValue(notInitializedValue)</p>
-
-<p>{</p>
-
-<p>   //Calculate the value of
-mLut[1]</p>
-
-<p>   //for the GetErrorMax method</p>
-
-<p>   this-&gt;operator()( (M_PI *
-0.5) / static_cast&lt;double&gt;(mLut.size()));</p>
-
-<p>   assert(mLut[1] !=
-mNotInitializedValue);</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>double Sine::operator()(const double x)</p>
-
-<p>{</p>
-
-<p>   const double di = 2.0 * M_PI;</p>
-
-<p>   //preY e [ -di, di &gt;</p>
-
-<p>   const double preY =
-std::fmod(x,di);</p>
-
-<p>   //y e [ 0.0 , di &gt;</p>
-
-<p>   const double y = (preY &lt; 0.0
-? preY + di : preY);</p>
-
-<p>   assert( y &gt;= 0.0 );</p>
-
-<p>   assert( y &lt;    di  
- );</p>
-
-<p>   //f = fractional part e [ 0.0,
-4.0 &gt;</p>
-
-<p>   const double f = 4.0 * (y /
-di);</p>
-
-<p>   assert( f &gt;= 0.0 );</p>
-
-<p>   assert( f    &lt; 4.0 );</p>
-
-<p>   const bool addMinus = ( f &lt;
-2.0 ? false : true);</p>
-
-<p>   const int index =
-CalculateIndex(f);</p>
-
-<p>   assert(index &gt;= 0);</p>
-
-<p>&nbsp;</p>
-
-<p>   if (index ==
-static_cast&lt;int&gt;(mLut.size()) )</p>
-
-<p>     return ( addMinus == true ?
--1.0 : 1.0);</p>
-
-<p>   assert(index    &lt; static_cast&lt;int&gt;(mLut.size()) );</p>
-
-<p>   //Check if already calculated</p>
-
-<p>   if (mLut[index] ==
-mNotInitializedValue)</p>
-
-<p>   {</p>
-
-<p>     mLut[index] = std::sin(
-std::fmod(y,M_PI) );</p>
-
-<p>     assert(mLut[index] &gt;=
-0.0);</p>
-
-<p>     assert(mLut[index] &lt;=
-1.0);</p>
-
-<p>   }</p>
-
-<p>   if (addMinus == true)</p>
-
-<p>   {</p>
-
-<p>&nbsp;</p>
-
-<p>     return -mLut[index];</p>
-
-<p>   }</p>
-
-<p>   else</p>
-
-<p>   {</p>
-
-<p>     return mLut[index];</p>
-
-<p>   }</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>const double Sine::GetMaxError() const</p>
-
-<p>{</p>
-
-<p>   //The maximal error is twice
-the distance between</p>
-
-<p>   //mLut[0] and mLut[1], because
-the sine is steepest there</p>
-
-<p>   //Because mLut[0] == 0.0, it is
-twice the value of mLut[1]</p>
-
-<p>   assert(mLut[1] !=
-mNotInitializedValue);</p>
-
-<p>   return mLut[1] * 2.0;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>const int Sine::CalculateIndex(const double f) const</p>
-
-<p>{</p>
-
-<p>   const int size = mLut.size();</p>
-
-<p>   assert( f &gt;= 0.0 );</p>
-
-<p>   assert( f    &lt; 4.0 );</p>
-
-<p>   const double fTransformed =
-Transform(f);</p>
-
-<p>   assert(fTransformed &gt;= 0.0);</p>
-
-<p>   assert(fTransformed &lt;= 1.0);</p>
-
-<p>   const int index =
-static_cast&lt;int&gt;(fTransformed * static_cast&lt;double&gt;(size));</p>
-
-<p>   assert(index &gt;= 0);</p>
-
-<p>   assert(index &lt;= size); //
-index == size is handled by caller (i.e. operator() )</p>
-
-<p>   return index;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>const double Sine::Transform(const double f) const</p>
-
-<p>{</p>
-
-<p>   assert( f &gt;= 0.0 );</p>
-
-<p>   assert( f    &lt; 4.0 );</p>
-
-<p>   if (f &lt; 1.0) return f;</p>
-
-<p>   if (f &lt; 2.0) return 1.0 - (f
-- 1.0);</p>
-
-<p>   return Transform(f - 2.0);</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>&nbsp;</p>
-
-<p>#pragma package(smart_init)</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
+<!-- start of code -->
+<table summary="s2l0.2k.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a><a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppLimitsH.htm">limits</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "UnitSine.h"<br/>
+<br/>
+<a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Range from [ <a href="CppOperatorMinus.htm">-</a> 3.0 * <a href="CppM_PI.htm">M_PI</a> , 3.0 * <a href="CppM_PI.htm">M_PI</a> ]<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GetRandomNumber()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (-3.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> (<a href="CppGetRandomUniform.htm">GetRandomUniform</a>() * 6.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Sine s;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check special values<br/>
+&nbsp;&nbsp;s( 0.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s( 0.5 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s( 1.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s( 1.5 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s( 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s(-0.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s(-0.5 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s(-1.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s(-1.5 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;s(-2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>1000000; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorModulus.htm">%</a> 100000 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ".";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> GetRandomNumber();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> s(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yToo <a href="CppOperatorAssign.htm">=</a> <a href="CppSin.htm">std::sin</a>(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppFabs.htm">std::fabs</a>(y <a href="CppOperatorMinus.htm">-</a> yToo);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( error &lt; s.GetMaxError());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Sine tested as safe" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+}<br/>
+<br/>
+ <br/>
+<br/>
+<br/>
+<br/>
+UnitSine.h<br/>
+ <br/>
+<a href="CppIfndef.htm">#ifndef</a> UnitSineH<br/>
+<a href="CppDefine.htm">#define</a> UnitSineH<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Sine<br/>
+{<br/>
+&nbsp;&nbsp;Sine(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 1000, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> notInitializedValue <a href="CppOperatorAssign.htm">=</a> 123.0);<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GetMaxError() <b><a href="CppConst.htm">const</a></b>;<br/>
+ <br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; mLut; <a href="CppComment.htm">//</a>Look-up table<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mNotInitializedValue;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> Transform(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> CalculateIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f) <b><a href="CppConst.htm">const</a></b>;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+ <br/>
+<br/>
+<br/>
+UnitSine.cpp<br/>
+ <br/>
+<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+ <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+ <br/>
+<a href="CppInclude.htm">#include</a> "UnitSine.h"<br/>
+<br/>
+Sine::Sine(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> notInitializedValue)<br/>
+&nbsp;&nbsp;: mLut(size,notInitializedValue),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mNotInitializedValue(notInitializedValue)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Calculate the value of mLut[1]<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFor.htm">for</a></b> the GetErrorMax method<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;<b><a href="CppOperatorFunctionCall.htm">operator()</a></b>( (<a href="CppM_PI.htm">M_PI</a> * 0.5) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(mLut.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mLut[1] <a href="CppOperatorNotEqual.htm">!=</a> mNotInitializedValue);<br/>
+}<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> Sine::<b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> di <a href="CppOperatorAssign.htm">=</a> 2.0 * <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>preY e [ <a href="CppOperatorMinus.htm">-</a>di, di &gt;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> preY <a href="CppOperatorAssign.htm">=</a> <a href="CppFmod.htm">std::fmod</a>(x,di);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>y e [ 0.0 , di &gt;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> (preY &lt; 0.0 ? preY <a href="CppOperatorPlus.htm">+</a> di : preY);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y &lt; di );<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>f <a href="CppOperatorAssign.htm">=</a> fractional part e [ 0.0, 4.0 &gt;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f <a href="CppOperatorAssign.htm">=</a> 4.0 * (y <a href="CppOperatorDivide.htm">/</a> di);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f &lt; 4.0 );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> addMinus <a href="CppOperatorAssign.htm">=</a> ( f &lt; 2.0 ? <b><a href="CppFalse.htm">false</a></b> : <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> CalculateIndex(f);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(index <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+ <br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (index <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mLut.size()) )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> ( addMinus <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b> ? <a href="CppOperatorMinus.htm">-</a>1.0 : 1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(index &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mLut.size()) );<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> already calculated<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mLut[index] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> mNotInitializedValue)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mLut[index] <a href="CppOperatorAssign.htm">=</a> <a href="CppSin.htm">std::sin</a>( <a href="CppFmod.htm">std::fmod</a>(y,<a href="CppM_PI.htm">M_PI</a>) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mLut[index] <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mLut[index] <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (addMinus <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppOperatorMinus.htm">-</a>mLut[index];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mLut[index];<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> Sine::GetMaxError() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The maximal error is twice the distance between<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>mLut[0] and mLut[1], because the sine is steepest there<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Because mLut[0] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0, it is twice the value of mLut[1]<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mLut[1] <a href="CppOperatorNotEqual.htm">!=</a> mNotInitializedValue);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mLut[1] * 2.0;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Sine::CalculateIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mLut.size();<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f &lt; 4.0 );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fTransformed <a href="CppOperatorAssign.htm">=</a> Transform(f);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(fTransformed <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(fTransformed <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(fTransformed * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(size));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(index <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(index <a href="CppOperatorLessEqual.htm">&lt;=</a> size); <a href="CppComment.htm">//</a> index <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> size is handled by caller (i.e. <b><a href="CppOperatorFunctionCall.htm">operator()</a></b> )<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> index;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> Sine::Transform(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f &lt; 4.0 );<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (f &lt; 1.0) <b><a href="CppReturn.htm">return</a></b> f;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (f &lt; 2.0) <b><a href="CppReturn.htm">return</a></b> 1.0 <a href="CppOperatorMinus.htm">-</a> (f <a href="CppOperatorMinus.htm">-</a> 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Transform(f <a href="CppOperatorMinus.htm">-</a> 2.0);<br/>
+}<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<br/>
+ <br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

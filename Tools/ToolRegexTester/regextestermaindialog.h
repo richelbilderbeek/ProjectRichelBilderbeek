@@ -37,7 +37,18 @@ struct RegexTesterMainDialog
   ///Clone this class
   virtual const boost::shared_ptr<RegexTesterMainDialog> Clone() const = 0;
 
+  ///Get an example format used to replace regex matches
+  virtual const std::string GetExampleFormat() const = 0;
+
+  ///Get an example line to apply a regex on
+  virtual const std::string GetExampleLine() const
+  {
+    return "Both '1234 AB' and '9999 ZZ' are valid Dutch zip codes";
+  }
+
+  ///Get an example regex
   virtual const std::string GetExampleRegex() const = 0;
+
 
   ///Is the regex valid?
   virtual bool GetRegexValid(const std::string& regex_str) const = 0;

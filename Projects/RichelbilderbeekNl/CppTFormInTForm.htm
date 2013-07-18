@@ -1,29 +1,3 @@
- 
-<title>VCL TForm custom shape</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>VCL TForm custom shape</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ VCL Richel Bilderbeek TForm custom shape VCL Builder Turbo</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>18</o:Revision>
-  <o:TotalTime>197</o:TotalTime>
-  <o:Created>2009-04-28T10:45:00Z</o:Created>
-  <o:LastSaved>2009-04-28T11:46:00Z</o:LastSaved>
-  <o:Pages>5</o:Pages>
-  <o:Words>1245</o:Words>
-  <o:Characters>7100</o:Characters>
-  <o:Category>C++ VCL Richel Bilderbeek TForm custom shape</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>59</o:Lines>
-  <o:Paragraphs>14</o:Paragraphs>
-  <o:CharactersWithSpaces>8719</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -63,548 +37,132 @@ and put FormChild in the  Available forms  list).</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>UnitFormParent.h</h2>
-<p>&nbsp;</p>
-
-
-
- 
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>/*</p>
-
-<p> 
- ProjectTFormInTForm, demonstration to put a TForm in a TForm</p>
-
-<p> 
- Copyright (C) 2009    Richel
-Bilderbeek</p>
-
-<p>&nbsp;</p>
-
-<p> 
- This program is free software: you can redistribute it and/or modify</p>
-
-<p> 
- it under the terms of the GNU General Public License as published by</p>
-
-<p> 
- the Free Software Foundation, either version 3 of the License, or</p>
-
-<p> 
- (at your option) any later version.</p>
-
-<p>&nbsp;</p>
-
-<p> 
- This program is distributed in the hope that it will be useful,</p>
-
-<p> 
- but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
-
-<p> 
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the</p>
-
-<p> 
- GNU General Public License for more details.</p>
-
-<p>&nbsp;</p>
-
-<p> 
- You should have received a copy of the GNU General Public License</p>
-
-<p> 
- along with this program.    If not,
-see &lt;http://www.gnu.org/licenses/&gt;.</p>
-
-<p>*/</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>// From
-http://www.richelbilderbeek.nl</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#ifndef UnitFormParentH</p>
-
-<p>#define UnitFormParentH</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include &lt;Classes.hpp&gt;</p>
-
-<p>#include &lt;Controls.hpp&gt;</p>
-
-<p>#include &lt;StdCtrls.hpp&gt;</p>
-
-<p>#include &lt;Forms.hpp&gt;</p>
-
-<p>#include &lt;ExtCtrls.hpp&gt;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include
-&lt;boost/shared_ptr.hpp&gt;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>class TFormParent : public TForm</p>
-
-<p>{</p>
-
-<p>__published:<span style='mso-tab-count:
-1'>   // IDE-managed Components</p>
-
-<p>         TPanel *PanelBottom;</p>
-
-<p>         TPanel *PanelTop;</p>
-
-
-<p>         TPanel *PanelTopLeft;</p>
-
-<p>         TPanel *PanelBottomLeft;</p>
-
-<p>         TPanel *PanelTopRight;</p>
-
-<p>         TPanel *PanelBottomRight;</p>
-
-<p>private:<span style='mso-tab-count:
-1'>   // User declarations</p>
-
-<p>public:<span style='mso-tab-count:
-2'>        // User declarations</p>
-
-<p>         __fastcall TFormParent(TComponent* Owner);</p>
-
-<p>};</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>extern PACKAGE TFormParent
-*FormParent;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#endif</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<h2>UnitFormParent.cpp</h2>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>/*</p>
-
-<p> 
- ProjectTFormInTForm, demonstration to put a TForm in a TForm</p>
-
-<p> 
- Copyright (C) 2009    Richel
-Bilderbeek</p>
-
-<p>&nbsp;</p>
-
-<p> 
- This program is free software: you can redistribute it and/or modify</p>
-
-<p> 
- it under the terms of the GNU General Public License as published by</p>
-
-<p> 
- the Free Software Foundation, either version 3 of the License, or</p>
-
-<p> 
- (at your option) any later version.</p>
-
-<p>&nbsp;</p>
-
-<p> 
- This program is distributed in the hope that it will be useful,</p>
-
-<p> 
- but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
-
-<p> 
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the</p>
-
-<p> 
- GNU General Public License for more details.</p>
-
-<p>&nbsp;</p>
-
-<p> 
- You should have received a copy of the GNU General Public License</p>
-
-<p> 
- along with this program.    If not,
-see &lt;http://www.gnu.org/licenses/&gt;.</p>
-
-<p>*/</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>// From
-http://www.richelbilderbeek.nl</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include &lt;vcl.h&gt;</p>
-
-<p>#pragma hdrstop</p>
-
-<p>&nbsp;</p>
-
-<p>#include
-&quot;UnitFormParent.h&quot;</p>
-
-<p>#include &quot;UnitFormChild.h&quot;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#pragma package(smart_init)</p>
-
-<p>#pragma resource &quot;*.dfm&quot;</p>
-
-<p>TFormParent *FormParent;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>__fastcall
-TFormParent::TFormParent(TComponent* Owner)</p>
-
-<p>         : TForm(Owner)</p>
-
-<p>{</p>
-
-<p> 
- {</p>
-
-<p>   
- TFormChild * child = new TFormChild(this,&quot;1&quot;);</p>
-
-<p>   
- assert(child-&gt;BorderStyle == bsNone);</p>
-
-<p>   
- child-&gt;Parent = PanelTopLeft;</p>
-
-<p>   
- child-&gt;Align = alClient;</p>
-
-<p>   
- child-&gt;Show();</p>
-
-<p> 
- }</p>
-
-<p> 
- {</p>
-
-<p>   
- TFormChild * child = new TFormChild(this,&quot;2&quot;);</p>
-
-<p>   
- assert(child-&gt;BorderStyle == bsNone);</p>
-
-<p>   
- child-&gt;Parent = PanelTopRight;</p>
-
-<p>   
- child-&gt;Align = alClient;</p>
-
-<p>   
- child-&gt;Show();</p>
-
-<p> 
- }</p>
-
-<p> 
- {</p>
-
-<p>   
- TFormChild * child = new TFormChild(this,&quot;3&quot;);</p>
-
-<p>   
- assert(child-&gt;BorderStyle == bsNone);</p>
-
-<p>   
- child-&gt;Parent = PanelBottomLeft;</p>
-
-<p>   
- child-&gt;Align = alClient;</p>
-
-<p>   
- child-&gt;Show();</p>
-
-<p> 
- }</p>
-
-<p> 
- {</p>
-
-<p>   
- TFormChild * child = new TFormChild(this,&quot;4&quot;);</p>
-
-<p>   
- assert(child-&gt;BorderStyle == bsNone);</p>
-
-<p>   
- child-&gt;Parent = PanelBottomRight;</p>
-
-<p>   
- child-&gt;Align = alClient;</p>
-
-<p>   
- child-&gt;Show();</p>
-
-<p> 
- }</p>
-
-<p>&nbsp;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<h2>UnitFormChild.h</h2>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>/*</p>
-
-<p>
- ProjectTFormInTForm, demonstration to put a TForm in a TForm</p>
-
-<p>
- Copyright (C) 2009    Richel
-Bilderbeek</p>
-
-<p>&nbsp;</p>
-
-<p>
- This program is free software: you can redistribute it and/or modify</p>
-
-<p>
- it under the terms of the GNU General Public License as published by</p>
-
-<p>
- the Free Software Foundation, either version 3 of the License, or</p>
-
-<p>
- (at your option) any later version.</p>
-
-<p>&nbsp;</p>
-
-<p>
- This program is distributed in the hope that it will be useful,</p>
-
-<p>
- but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
-
-<p>
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the</p>
-
-<p>
- GNU General Public License for more details.</p>
-
-<p>&nbsp;</p>
-
-<p>
- You should have received a copy of the GNU General Public License</p>
-
-<p>
- along with this program.    If not,
-see &lt;http://www.gnu.org/licenses/&gt;.</p>
-
-<p>*/</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>// From
-http://www.richelbilderbeek.nl</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#ifndef UnitFormChildH</p>
-
-<p>#define UnitFormChildH</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include &lt;Classes.hpp&gt;</p>
-
-<p>#include &lt;Controls.hpp&gt;</p>
-
-<p>#include &lt;StdCtrls.hpp&gt;</p>
-
-<p>#include &lt;Forms.hpp&gt;</p>
-
-<p>#include &lt;ExtCtrls.hpp&gt;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>class TFormChild : public TForm</p>
-
-<p>{</p>
-
-<p>__published:<span style='mso-tab-count:
-1'>   // IDE-managed Components</p>
-
-<p>       TPanel *Panel;</p>
-
-<p>private:<span style='mso-tab-count:
-1'>   // User declarations</p>
-
-<p>public:<span style='mso-tab-count:
-2'>        // User declarations</p>
-
-<p>
- __fastcall TFormChild(TComponent* Owner, const String&amp; s);</p>
-
-<p>};</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>extern PACKAGE TFormChild
-*FormChild;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#endif</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<h2>UnitFormChild.cpp</h2>
-
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>/*</p>
-
-<p>
- ProjectTFormInTForm, demonstration to put a TForm in a TForm</p>
-
-<p>
- Copyright (C) 2009    Richel
-Bilderbeek</p>
-
-<p>&nbsp;</p>
-
-<p>
- This program is free software: you can redistribute it and/or modify</p>
-
-<p>
- it under the terms of the GNU General Public License as published by</p>
-
-<p>
- the Free Software Foundation, either version 3 of the License, or</p>
-
-<p>
- (at your option) any later version.</p>
-
-<p>&nbsp;</p>
-
-<p>
- This program is distributed in the hope that it will be useful,</p>
-
-<p>
- but WITHOUT ANY WARRANTY; without even the implied warranty of</p>
-
-<p>
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the</p>
-
-<p>
- GNU General Public License for more details.</p>
-
-<p>&nbsp;</p>
-
-<p>
- You should have received a copy of the GNU General Public License</p>
-
-<p>
- along with this program.    If not,
-see &lt;http://www.gnu.org/licenses/&gt;.</p>
-
-<p>*/</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>// From
-http://www.richelbilderbeek.nl</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#include &lt;vcl.h&gt;</p>
-
-<p>#pragma hdrstop</p>
-
-<p>&nbsp;</p>
-
-<p>#include &quot;UnitFormChild.h&quot;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>#pragma package(smart_init)</p>
-
-<p>#pragma resource &quot;*.dfm&quot;</p>
-
-<p>TFormChild *FormChild;</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>__fastcall
-TFormChild::TFormChild(TComponent* Owner, const String&amp; s)</p>
-
-<p>       : TForm(Owner)</p>
-
-<p>{</p>
-
-<p>
- Panel-&gt;Caption = &quot;Child #&quot; + s;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.32.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>UnitFormParent.h<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> UnitFormParentH<br/>
+<a href="CppDefine.htm">#define</a> UnitFormParentH<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> TFormParent : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+{<br/>
+&nbsp;&nbsp;__published: <a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+&nbsp;&nbsp;TPanel *PanelBottom;<br/>
+&nbsp;&nbsp;TPanel *PanelTop;<br/>
+&nbsp;&nbsp;TPanel *PanelTopLeft;<br/>
+&nbsp;&nbsp;TPanel *PanelBottomLeft;<br/>
+&nbsp;&nbsp;TPanel *PanelTopRight;<br/>
+&nbsp;&nbsp;TPanel *PanelBottomRight;<br/>
+<b><a href="CppPrivate.htm">private</a></b>: <a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
+<b><a href="CppPublic.htm">public</a></b>: <a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
+&nbsp;&nbsp;__fastcall TFormParent(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+};<br/>
+<br/>
+<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormParent *FormParent;<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+ <br/>
+ <br/>
+<a href="CppComment.htm">//</a>UnitFormParent.cpp<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+ <br/>
+<a href="CppInclude.htm">#include</a> "UnitFormParent.h"<br/>
+<a href="CppInclude.htm">#include</a> "UnitFormChild.h"<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+TFormParent *FormParent;<br/>
+<br/>
+__fastcall TFormParent::TFormParent(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+: TForm(Owner)<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TFormChild * child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>,"1");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(child-&gt;BorderStyle <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> bsNone);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Parent <a href="CppOperatorAssign.htm">=</a> PanelTopLeft;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Align <a href="CppOperatorAssign.htm">=</a> alClient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Show();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TFormChild * child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>,"2");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(child-&gt;BorderStyle <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> bsNone);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Parent <a href="CppOperatorAssign.htm">=</a> PanelTopRight;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Align <a href="CppOperatorAssign.htm">=</a> alClient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Show();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TFormChild * child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>,"3");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(child-&gt;BorderStyle <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> bsNone);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Parent <a href="CppOperatorAssign.htm">=</a> PanelBottomLeft;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Align <a href="CppOperatorAssign.htm">=</a> alClient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Show();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TFormChild * child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>,"4");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(child-&gt;BorderStyle <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> bsNone);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Parent <a href="CppOperatorAssign.htm">=</a> PanelBottomRight;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Align <a href="CppOperatorAssign.htm">=</a> alClient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;child-&gt;Show();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+ <br/>
+<br/>
+ <br/>
+<a href="CppComment.htm">//</a>UnitFormChild.h<br/>
+<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> UnitFormChildH<br/>
+<a href="CppDefine.htm">#define</a> UnitFormChildH<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> TFormChild : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+{<br/>
+__published: <a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+&nbsp;&nbsp;TPanel *Panel;<br/>
+<b><a href="CppPrivate.htm">private</a></b>: <a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
+<b><a href="CppPublic.htm">public</a></b>: <a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
+&nbsp;&nbsp;__fastcall TFormChild(T<a href="CppComponent.htm">Component</a>* Owner, <b><a href="CppConst.htm">const</a></b> String&amp; s);<br/>
+};<br/>
+<br/>
+<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormChild *FormChild;<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+ <br/>
+<a href="CppComment.htm">//</a>UnitFormChild.cpp<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+ <br/>
+<a href="CppInclude.htm">#include</a> "UnitFormChild.h"<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+TFormChild *FormChild;<br/>
+<br/>
+__fastcall TFormChild::TFormChild(T<a href="CppComponent.htm">Component</a>* Owner, <b><a href="CppConst.htm">const</a></b> String&amp; s)<br/>
+: TForm(Owner)<br/>
+{<br/>
+&nbsp;&nbsp;Panel-&gt;Caption <a href="CppOperatorAssign.htm">=</a> "Child #" <a href="CppOperatorPlus.htm">+</a> s;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

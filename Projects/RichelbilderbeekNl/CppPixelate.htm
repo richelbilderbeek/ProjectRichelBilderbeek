@@ -1,32 +1,3 @@
- 
-<title>Pixelate</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Code Snippet Pixelate</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Code Snippet Richel Bilderbeek Pixelate pixel blur VCL</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>8</o:Revision>
-  <o:TotalTime>132</o:TotalTime>
-  <o:Created>2008-01-05T13:33:00Z</o:Created>
-  <o:LastSaved>2008-01-05T14:08:00Z</o:LastSaved>
-  <o:Pages>3</o:Pages>
-  <o:Words>506</o:Words>
-  <o:Characters>2885</o:Characters>
-  <o:Category>C++ Code Snippet Richel Bilderbeek Pixelate</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>24</o:Lines>
-  <o:Paragraphs>5</o:Paragraphs>
-  <o:CharactersWithSpaces>3542</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
-</head>
-
- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -48,304 +19,125 @@
 <p>&nbsp;</p>
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppPixelate.htm">Pixelate</a></h1>
-
 <p>&nbsp;</p>
 <p>The 'pixelate' function generalizes multiple pixels into one. The function relies heavily
 on the <a href="CppGetPixel.htm">GetPixel</a>, <a href="CppGetGreyness.htm">GetGreyness</a>,
 <a href="CppSetPixel.htm">SetPixel</a> and <a href="CppSetGreyness.htm">SetGreyness</a>
 functions.</p>
-
 <p>&nbsp;</p>
-
-<p>'Pixelate'
-works under both CLX and VCL.</p>
-
+<p>'Pixelate' works under both CLX and VCL.</p>
 <p>&nbsp;</p>
-
-<p>* <a
-href="CppPixelateExample.PNG">View an example image demonstrating the
-'Pixelate' function</a>.</p>
-
-<p>* <a
-href="CppPixelate.txt">View the code of 'Pixelate' in plain text</a>.</p>
-
+<ul>
+  <li><a href="CppPixelateExample.PNG">View an example image demonstrating the 'Pixelate' function</a></li>
+</ul>
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
 <p>&nbsp;</p>
-
- 
-
-<p>#include &lt;cassert&gt;</p>
-
-<p>#include &lt;algorithm&gt;</p>
-
 <p>&nbsp;</p>
-
-<p>//From
-http://www.richelbilderbeek.nl</p>
-
-<p><b> void </b>  DoPixelateRgb(</p>
-
-<p>
- <b>const</b> TImage * <b>const</b> imageOriginal,</p>
-
-<p>
- TImage * <b>const</b> imageResult,</p>
-
-<p>
- <b>const int</b> pixelSize)</p>
-
-<p>{</p>
-
-<p>
- assert(imageOriginal!=0);</p>
-
-<p>
- assert(imageResult!=0);</p>
-
 <p>&nbsp;</p>
-
-<p>
- imageResult-&gt;Picture-&gt;Graphic =
-imageOriginal-&gt;Picture-&gt;Graphic;</p>
-
-<p>&nbsp;</p>
-
-<p>
- assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width    ==
-imageResult-&gt;Picture-&gt;Bitmap-&gt;Width );</p>
-
-<p>
- assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height ==
-imageResult-&gt;Picture-&gt;Bitmap-&gt;Height);</p>
-
-<p>&nbsp;</p>
-
-<p>
- <b>const int</b> width    =
-imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
-
-<p>
- <b>const int </b>height =
-imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
-
-<p>
- <b>const int</b> maxx = 1 + (width  
- / pixelSize);</p>
-
-<p>
- <b>const int </b>maxy = 1 + (height / pixelSize);</p>
-
-<p>&nbsp;</p>
-
-<p>
- <b>for</b> (<b>int</b> y=0; y!=maxy; ++y)</p>
-
-<p>
- {</p>
-
-<p> 
- <b>const int</b> y1 = (y * pixelSize);</p>
-
-<p> 
- <b>if</b> (y1 &gt;= height) <b>continue</b>;</p>
-
-<p> 
- <b>const int </b>y2 = std::min( y1 + pixelSize, height);</p>
-
-<p> 
- assert(y1 &lt;= height);</p>
-
-<p> 
- assert(y2 &lt;= height);</p>
-
-<p> 
- assert(y1!=y2);</p>
-
-<p>&nbsp;</p>
-
-<p> 
- <b>for</b> (<b>int</b> x=0; x!=maxx; ++x)</p>
-
-<p> 
- {</p>
-
-<p>     <b>const int</b> x1 = (x * pixelSize);</p>
-
-<p>     <b>if </b>(x1 &gt;= width) continue;</p>
-
-<p>     <b>const int</b> x2 = std::min( x1 + pixelSize, width);</p>
-
-<p>     assert(x1 &lt;= width);</p>
-
-<p>     assert(x2 &lt;= width);</p>
-
-<p>     assert(x1!=x2);</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>     <b>unsigned char</b> r,g,b;</p>
-
-<p>     GetPixel(imageOriginal,</p>
-
-<p>       x1, y1, x2, y2,</p>
-
-<p>       r,g,b);</p>
-
-<p>     SetPixel(</p>
-
-<p>       imageResult,</p>
-
-<p>  
-      x1, y1, x2, y2,</p>
-
-<p>       r,g,b);</p>
-
-<p> 
- }</p>
-
-<p>
- }</p>
-
-<p>}</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>#include &lt;cassert&gt;</p>
-
-<p>#include &lt;algorithm&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>//From
-http://www.richelbilderbeek.nl</p>
-
-<p><b> void </b>  DoPixelateGrey(</p>
-
-<p>
- <b>const</b> TImage * <b>const</b> imageOriginal,</p>
-
-<p>
- TImage * <b>const</b> imageResult,</p>
-
-<p>
- <b>const int</b> pixelSize)</p>
-
-<p>{</p>
-
-<p>
- assert(imageOriginal!=0);</p>
-
-<p>
- assert(imageResult!=0);</p>
-
-<p>&nbsp;</p>
-
-<p>
- imageResult-&gt;Picture-&gt;Graphic =
-imageOriginal-&gt;Picture-&gt;Graphic;</p>
-
-<p>&nbsp;</p>
-
-<p>
- assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width    ==
-imageResult-&gt;Picture-&gt;Bitmap-&gt;Width );</p>
-
-<p>
- assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height ==
-imageResult-&gt;Picture-&gt;Bitmap-&gt;Height);</p>
-
-<p>&nbsp;</p>
-
-<p>
- <b>const int</b> width    =
-imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;</p>
-
-<p>
- <b>const int</b> height =
-imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;</p>
-
-<p>
- <b>const int</b> maxx = 1 + (width  
- / pixelSize);</p>
-
-<p>
- <b>const int</b> maxy = 1 + (height / pixelSize);</p>
-
-<p>&nbsp;</p>
-
-<p>
- <b>for</b> (<b>int</b> y=0; y!=maxy; ++y)</p>
-
-<p>
- {</p>
-
-<p> 
- <b>const int</b> y1 = (y * pixelSize);</p>
-
-<p> 
- <b>if</b> (y1 &gt;= height) continue;</p>
-
-<p> 
- <b>const int</b> y2 = std::min( y1 + pixelSize, height );</p>
-
-<p> 
- assert(y1 &lt;= height);</p>
-
-<p> 
- assert(y2 &lt;= height);</p>
-
-<p> 
- assert(y1!=y2);</p>
-
-<p>&nbsp;</p>
-
-<p> 
- <b>for</b> (<b>int</b> x=0; x!=maxx; ++x)</p>
-
-<p> 
- {</p>
-
-<p>     <b>const int</b> x1 = (x * pixelSize);</p>
-
-<p>     <b>if</b> (x1 &gt;= width) continue;</p>
-
-<p>     <b>const int</b> x2 = std::min( x1 + pixelSize, width );</p>
-
-<p>     assert(x1 &lt;= width);</p>
-
-<p>     assert(x2 &lt;= width);</p>
-
-<p>     assert(x1!=x2);</p>
-
-<p>     <b>const int</b> grey = GetGreyness(imageOriginal,x1,y1,x2,y2);</p>
-
-<p>     SetGreyness(imageResult,x1,y1,x2,y2,grey);</p>
-
-<p> 
- }</p>
-
-<p>
- }</p>
-
-<p>}</p>
-
-</div>
-
-
-
+<!-- start of code -->
+<table summary="s2l0.1u.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
+<b><a href="CppVoid.htm">void</a></b> DoPixelateRgb(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageOriginal,<br/>
+&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageResult,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pixelSize)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageOriginal<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageResult<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+<br/>
+&nbsp;&nbsp;imageResult-&gt;Picture-&gt;Graphic <a href="CppOperatorAssign.htm">=</a> imageOriginal-&gt;Picture-&gt;Graphic;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> imageResult-&gt;Picture-&gt;Bitmap-&gt;Width );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> imageResult-&gt;Picture-&gt;Bitmap-&gt;Height);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (width&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> pixelSize);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (height <a href="CppOperatorDivide.htm">/</a> pixelSize);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> (y * pixelSize);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> height) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2 <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>( y1 <a href="CppOperatorPlus.htm">+</a> pixelSize, height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 <a href="CppOperatorLessEqual.htm">&lt;=</a> height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y2 <a href="CppOperatorLessEqual.htm">&lt;=</a> height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1<a href="CppOperatorNotEqual.htm">!=</a>y2);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> (x * pixelSize);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> width) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2 <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>( x1 <a href="CppOperatorPlus.htm">+</a> pixelSize, width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 <a href="CppOperatorLessEqual.htm">&lt;=</a> width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x2 <a href="CppOperatorLessEqual.htm">&lt;=</a> width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1<a href="CppOperatorNotEqual.htm">!=</a>x2);<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,g,b;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetPixel.htm">GetPixel</a>(imageOriginal,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x1, y1, x2, y2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r,g,b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetPixel(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageResult,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x1, y1, x2, y2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r,g,b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
+<b><a href="CppVoid.htm">void</a></b> DoPixelateGrey(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageOriginal,<br/>
+&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageResult,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pixelSize)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageOriginal<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageResult<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+<br/>
+&nbsp;&nbsp;imageResult-&gt;Picture-&gt;Graphic <a href="CppOperatorAssign.htm">=</a> imageOriginal-&gt;Picture-&gt;Graphic;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> imageResult-&gt;Picture-&gt;Bitmap-&gt;Width );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> imageResult-&gt;Picture-&gt;Bitmap-&gt;Height);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (width&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> pixelSize);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (height <a href="CppOperatorDivide.htm">/</a> pixelSize);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> (y * pixelSize);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> height) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2 <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>( y1 <a href="CppOperatorPlus.htm">+</a> pixelSize, height );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 <a href="CppOperatorLessEqual.htm">&lt;=</a> height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y2 <a href="CppOperatorLessEqual.htm">&lt;=</a> height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1<a href="CppOperatorNotEqual.htm">!=</a>y2);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> (x * pixelSize);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> width) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2 <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>( x1 <a href="CppOperatorPlus.htm">+</a> pixelSize, width );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 <a href="CppOperatorLessEqual.htm">&lt;=</a> width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x2 <a href="CppOperatorLessEqual.htm">&lt;=</a> width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1<a href="CppOperatorNotEqual.htm">!=</a>x2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> grey <a href="CppOperatorAssign.htm">=</a> GetGreyness(imageOriginal,x1,y1,x2,y2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetGreyness(imageResult,x1,y1,x2,y2,grey);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

@@ -1,29 +1,3 @@
- 
-<title>SetGreyness</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Code Snippet SetGreyness</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Code Snippet Richel Bilderbeek SetGreyness set pixel pixels grey greyness gray grayness VCL</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>6</o:Revision>
-  <o:TotalTime>129</o:TotalTime>
-  <o:Created>2008-01-02T10:05:00Z</o:Created>
-  <o:LastSaved>2008-01-05T13:57:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>402</o:Words>
-  <o:Characters>2294</o:Characters>
-  <o:Category>C++ Code Snippet Richel Bilderbeek SetGreyness</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>19</o:Lines>
-  <o:Paragraphs>4</o:Paragraphs>
-  <o:CharactersWithSpaces>2817</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -51,223 +25,78 @@ set a single pixel's greyness, a horizontal line or a square of pixels.</p>
 <p>&nbsp;</p>
 <p>To get pixels' their greynesses, use <a href="CppGetGreyness.htm">GetGreyness</a>.</p>
 <p>&nbsp;</p>
-<p>* <a href="CppSetGreyness.txt">View the code of 'SetGreyness' in plain text</a>.</p>
-<p>&nbsp;</p>
-
- 
-
-<p>//Set a pixel's greyness</p>
-
-<p>//From
-http://www.richelbilderbeek.nl</p>
-
-<p><b> void </b>  SetGreyness(</p>
-
-<p>
- TImage * <b>const</b> image,</p>
-
-<p>
- <b>const int</b> x,</p>
-
-<p>
- <b>const int</b> y,</p>
-
-<p>
- <b>const unsigned char </b>grey)</p>
-
-<p>{</p>
-
-<p>
- assert(image!=0 &amp;&amp; &quot;Image is NULL&quot;);</p>
-
-<p>
- assert(image-&gt;Picture-&gt;Bitmap!=0 &amp;&amp; &quot;Bitmap is
-NULL&quot;);</p>
-
-<p>
- assert(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit
-&amp;&amp; &quot;Bitmap must be 24 bit&quot;);</p>
-
-<p>
- assert( x &gt;= 0 &amp;&amp; &quot;x coordinat is below zero&quot;);</p>
-
-<p>
- assert( y &gt;= 0 &amp;&amp; &quot;y coordinat is below zero&quot;);</p>
-
-<p>
- assert( x &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width    &amp;&amp; &quot;x coordinat is beyond image
-width&quot;);</p>
-
-<p>
- assert( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height &amp;&amp;
-&quot;y coordinat is beyond image height&quot;);</p>
-
-<p>&nbsp;</p>
-
-<p>
- <b>unsigned char</b> * <b>const</b> myLine</p>
-
-<p> 
- = <b>static_cast</b>&lt;<b>unsigned char</b>
-*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
-
-<p>&nbsp;</p>
-
-<p>
- myLine[x*3+2] = grey;</p>
-
-<p>
- myLine[x*3+1] = grey;</p>
-
-<p>
- myLine[x*3+0] = grey;</p>
-
-<p>}</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>//Set a line of pixel's greyness</p>
-
-<p>//From
-http://www.richelbilderbeek.nl</p>
-
-<p><b> void </b>  SetGreyness(</p>
-
-<p>
- TImage * <b>const</b> image,</p>
-
-<p>
- <b>const int</b> x1,</p>
-
-<p>
- <b>const int</b> x2,</p>
-
-<p>
- <b>const int</b> y,</p>
-
-<p>
- <b>const unsigned char</b> grey)</p>
-
-<p>{</p>
-
-<p>
- assert(image!=0 &amp;&amp; &quot;Image is NULL&quot;);</p>
-
-<p>
- assert(image-&gt;Picture-&gt;Bitmap!=0 &amp;&amp; &quot;Bitmap is
-NULL&quot;);</p>
-
-<p>
- assert(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit
-&amp;&amp; &quot;Bitmap must be 24 bit&quot;);</p>
-
-<p>
- assert( x1 &gt;= 0 &amp;&amp; &quot;x1 coordinat is below zero&quot;);</p>
-
-<p>
- assert( x2 &gt;= 0 &amp;&amp; &quot;x2 coordinat is below zero&quot;);</p>
-
-<p>
- assert( y &gt;= 0 &amp;&amp; &quot;y coordinat is below zero&quot;);</p>
-
-<p>
- assert( x1 &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width    &amp;&amp; &quot;x1 coordinat is beyond
-image width&quot;);</p>
-
-<p>
- assert( x2 &lt;= image-&gt;Picture-&gt;Bitmap-&gt;Width    &amp;&amp; &quot;x2 coordinat is beyond
-image width&quot;);</p>
-
-<p>
- assert( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height &amp;&amp;
-&quot;y coordinat is beyond image height&quot;);</p>
-
-<p>&nbsp;</p>
-
-<p>
- <b>unsigned char</b> * <b>const</b> myLine</p>
-
-<p> 
- = <b>static_cast</b>&lt;<b>unsigned char</b>
-*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);</p>
-
-<p>
- <b>for</b> (<b>int</b> x=x1; x!=x2; ++x)</p>
-
-<p>
- {</p>
-
-<p> 
- myLine[x*3+2] = grey;</p>
-
-<p> 
- myLine[x*3+1] = grey;</p>
-
-<p> 
- myLine[x*3+0] = grey;</p>
-
-<p>
- }</p>
-
-<p>}</p>
-
-</div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
- 
-
-<p>//Set a square of pixels' greyness</p>
-
-<p>//From
-http://www.richelbilderbeek.nl</p>
-
-<p><b> void </b>  SetGreyness(</p>
-
-<p>
- TImage * <b>const</b> image,</p>
-
-<p>
- <b>const int</b> x1,</p>
-
-<p>
- <b>const int</b> y1,</p>
-
-<p>
- <b>const int</b> x2,</p>
-
-<p>
- <b>const int</b> y2,</p>
-
-<p>
- <b>const unsigned char</b> grey)</p>
-
-<p>{</p>
-
-<p>
- <b>for</b> (<b>int</b> y=y1; y!=y2; ++y)</p>
-
-<p>
- {</p>
-
-<p> 
- SetGreyness(image,x1,x2,y,grey);</p>
-
-<p>
- }</p>
-
-<p>}</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.2i.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>Set a pixel's greyness<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
+<b><a href="CppVoid.htm">void</a></b> SetGreyness(<br/>
+&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> grey)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is beyond image height");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> myLine<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+<br/>
+&nbsp;&nbsp;myLine[x*3+2] <a href="CppOperatorAssign.htm">=</a> grey;<br/>
+&nbsp;&nbsp;myLine[x*3+1] <a href="CppOperatorAssign.htm">=</a> grey;<br/>
+&nbsp;&nbsp;myLine[x*3+0] <a href="CppOperatorAssign.htm">=</a> grey;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Set a line of pixel's greyness<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
+<b><a href="CppVoid.htm">void</a></b> SetGreyness(<br/>
+&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> grey)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x1 coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x2 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x2 coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x1 &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x1 coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x2 <a href="CppOperatorLessEqual.htm">&lt;=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x2 coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is beyond image height");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> myLine<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=x1; x<a href="CppOperatorNotEqual.htm">!=</a>x2; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;myLine[x*3+2] <a href="CppOperatorAssign.htm">=</a> grey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;myLine[x*3+1] <a href="CppOperatorAssign.htm">=</a> grey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;myLine[x*3+0] <a href="CppOperatorAssign.htm">=</a> grey;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Set a square of pixels' greyness<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
+<b><a href="CppVoid.htm">void</a></b> SetGreyness(<br/>
+&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> grey)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=y1; y<a href="CppOperatorNotEqual.htm">!=</a>y2; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SetGreyness(image,x1,x2,y,grey);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

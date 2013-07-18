@@ -1,29 +1,3 @@
- 
-<title>VCL TImage</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>VCL TImage</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ VCL Richel Bilderbeek TImage Image VCL Builder Turbo</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>26</o:Revision>
-  <o:TotalTime>178</o:TotalTime>
-  <o:Created>2009-04-28T09:30:00Z</o:Created>
-  <o:LastSaved>2009-04-28T12:10:00Z</o:LastSaved>
-  <o:Pages>4</o:Pages>
-  <o:Words>964</o:Words>
-  <o:Characters>5495</o:Characters>
-  <o:Category>C++ VCL Richel Bilderbeek TImage</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>45</o:Lines>
-  <o:Paragraphs>10</o:Paragraphs>
-  <o:CharactersWithSpaces>6748</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -83,16 +57,11 @@ MDI Childs. MDI is an abbreviation for 'Multiple Document Interface'.</p>
 <p>&nbsp;</p>
 <p>Now you can type, e.g. under an OnClick event:</p>
 <p>&nbsp;</p>
- 
-
-
-<p>
- Form2-&gt;Show();</p>
-
-</div>
-
-
-
+<!-- start of code -->
+<table summary="s2l0.2p.cpp" border = "1"><tr><td><code>
+Form2-&gt;Show();<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -115,18 +84,11 @@ MDI Childs. MDI is an abbreviation for 'Multiple Document Interface'.</p>
 <p>&nbsp;</p>
 <p>Now you can type, e.g. under an OnClick event:</p>
 <p>&nbsp;</p>
-
- 
-
-
-
-<p>
- FormChild-&gt;Show();</p>
-
-</div>
-
-
-
+<!-- start of code -->
+<table summary="s2l0.2q.cpp" border = "1"><tr><td><code>
+FormChild-&gt;Show();<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>Note that this is not the standard use of an MDI application, as we only have one
 single Child, which only has one <a href="CppInstance.htm">instance</a>. But
@@ -136,7 +98,6 @@ the Child does have different behaviour compared to standard Forms.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-
 <h3>An Auto-created MDI Form showing multiple dynamically-created MDI Childs</h3>
 <p>&nbsp;</p>
 <ul>
@@ -155,137 +116,66 @@ the Child does have different behaviour compared to standard Forms.</p>
 <p>&nbsp;</p>
 <p>Creating an instance of a Child can be done like this:</p>
 <p>&nbsp;</p>
- 
-
-
-<p>
- //Somewhere in code of FormParent, e.g. under an OnClick Event</p>
-
-<p>
- TFormChild * child = new TFormChild(this);</p>
-
-<p>
- //Code</p>
-
-<p>
- <b><a href="CppDelete.htm">delete</a></b> child;</p>
-
-
-</div>
-
-
+<!-- start of code -->
+<table summary="s2l0.2r.cpp" border = "1"><tr><td><code>
+ <a href="CppComment.htm">//</a>Somewhere in code of FormParent, e.g. under an OnClick Event<br/>
+TFormChild * child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>);<br/>
+<a href="CppComment.htm">//</a>Code<br/>
+<b><a href="CppDelete.htm">delete</a></b> child;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>Or using a <a href="CppAuto_ptr.htm">std::auto_ptr</a>:</p>
 <p>&nbsp;</p>
-
-
-
-<p>
- //Headers</p>
-
-<p>
- #include &lt;memory&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>
- //Somewhere in code of FormParent, e.g. under an OnClick Event</p>
-
-<p>
- std::auto_ptr&lt;TFormChild&gt; child(new TFormChild(this));</p>
-
-<p>
- //Code</p>
-
-</div>
-
-
-
-
-
+<!-- start of code -->
+<table summary="s2l0.2r.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>Headers<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>Somewhere in code of FormParent, e.g. under an OnClick Event<br/>
+<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormChild&gt; child(<b><a href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>));<br/>
+<a href="CppComment.htm">//</a>Code<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>But this simple code is not enough, as you probably want to keep the Child Forms on
 the Parent Form. So you could use a <a href="CppVector.htm">std::vector</a>
 storing these child <a href="CppPointer.htm">pointers</a>. I use the <a
 href="CppShared_ptr.htm">boost::shared_ptr</a> for this:</p>
 <p>&nbsp;</p>
-
-
- 
-
-
-<p>//UnitFormParent.h</p>
-
-<p>&nbsp;</p>
-
-<p>//Add these headers</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;boost/shared_ptr&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>//Add to the <a href="CppPrivate.htm">private</a>
-section of the class <a href="CppDeclaration.htm">declaration</a>:</p>
-
-<p><a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;TFormChild&gt; &gt; mChilds;</p>
-
-</div>
-
-
-
+<!-- start of code -->
+<table summary="s2l0.2s.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>UnitFormParent.h<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> these headers<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> to the <b><a href="CppPrivate.htm">private</a></b> section of the <b><a href="CppClass.htm">class</a></b> <a href="CppDeclaration.htm">declaration</a>:<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;TFormChild&gt; &gt; mChilds;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>Then add to FormParent's definitions:</p>
 <p>&nbsp;</p>
-
- 
-
-<p>//A button for creating a new Child</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  <b>
-__fastcall</b> TFormMain::ButtonNewClick()</p>
-
-<p>{</p>
-
-<p>
- mChilds.push_back(<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;TFormChild&gt;(<b><a
-href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>)));</p>
-
-<p>
- //Optionally: (you'll need to add a Label to the Child)</p>
-
-<p>
- mChilds.back()-&gt;Label1-&gt;Caption = &quot;Child #&quot; +
-IntToStr(Tag);</p>
-
-<p>
- ++Tag;</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-<p>//A button for removing a Child</p>
-
-<p><b> <a href="CppVoid.htm">void</a> </b>  <b>
-__fastcall</b> TFormMain::ButtonDeleteClick()</p>
-
-<p>{</p>
-
-<p>
- <b><a href="CppIf.htm">if</a></b> (!mChilds.empty()) mChilds.pop_back();</p>
-
-<p>}</p>
-
-<p>//---------------------------------------------------------------------------</p>
-
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.2t.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>A button <b><a href="CppFor.htm">for</a></b> creating a <b><a href="CppNew.htm">new</a></b> Child<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMain::ButtonNewClick()<br/>
+{<br/>
+&nbsp;&nbsp;mChilds.push_back(<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;TFormChild&gt;(<b><a href="CppNew.htm">new</a></b> TFormChild(<b><a href="CppThis.htm">this</a></b>)));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Optionally: (you'll need to add a Label to the Child)<br/>
+&nbsp;&nbsp;mChilds.back()-&gt;Label1-&gt;Caption <a href="CppOperatorAssign.htm">=</a> "Child #" <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(Tag);<br/>
+&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+Tag;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>A button <b><a href="CppFor.htm">for</a></b> removing a Child<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMain::ButtonDeleteClick()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!mChilds.empty()) mChilds.pop_back();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -314,64 +204,31 @@ of 255 denotes the standard non-transparency.</p>
 <p>&nbsp;</p>
 <p>Never change the TForm <a href="CppConstructor.htm">constructor</a> to the following:</p>
 <p></p>
-
- 
-
+<!-- start of code -->
+<table summary="s2l0.2u.cpp" border = "1"><tr><td><code>
+__fastcall TFormParent::TFormParent(T<a href="CppComponent.htm">Component</a>* Owner, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <a href="CppComment.htm">//</a>Don't <b><a href="CppDo.htm">do</a></b> <b><a href="CppThis.htm">this</a></b>!<br/>
+&nbsp;&nbsp;: TForm(Owner)<br/>
+<a href="CppComment.htm">//</a>Rest of the code<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Rest of the code<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p><b> __fastcall </b>  TFormParent::TFormParent(TComponent* Owner, <b><a
-href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) //Don't
-do this!</p>
-
-<p>
- : TForm(Owner)</p>
-
-<p>
- //Rest of the code</p>
-
-<p>{</p>
-
-<p>
- //Rest of the code</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
 <p>This will (strangely) result in a <a href="CppStackOverflow.htm">stack overflow</a>.</p>
 <p>&nbsp;</p>
 <p>One workaround is to use <a href="CppAnsiString.htm">AnsiString</a> instead of an <a href="CppInt.htm">integer</a>:</p>
 <p>&nbsp;</p>
- 
-
-
-
-
-<p><b> __fastcall </b>  TFormParent::TFormParent(TComponent* Owner, <b><a
-href="CppConst.htm">const</a></b> <a href="CppAnsiString.htm">AnsiString</a> i)
-</p>
-
-<p>
- : TForm(Owner)</p>
-
-<p>
- //Rest of the code</p>
-
-<p>{</p>
-
-<p>
- //Rest of the code</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.30.cpp" border = "1"><tr><td><code>
+__fastcall TFormParent::TFormParent(T<a href="CppComponent.htm">Component</a>* Owner, <b><a href="CppConst.htm">const</a></b> <a href="CppAnsiString.htm">AnsiString</a> i)<br/>
+&nbsp;&nbsp;: TForm(Owner)<br/>
+<a href="CppComment.htm">//</a>Rest of the code<br/>
+{<br/>
+<a href="CppComment.htm">//</a>Rest of the code<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

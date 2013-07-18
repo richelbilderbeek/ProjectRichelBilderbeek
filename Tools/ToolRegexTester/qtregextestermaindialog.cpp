@@ -48,6 +48,7 @@ QtRegexTesterMainDialog::QtRegexTesterMainDialog(
 
 
   ui->edit_regex->setText(m_dialog->GetExampleRegex().c_str());
+  ui->edit_format->setText(m_dialog->GetExampleFormat().c_str());
   this->onAnyChange();
 }
 

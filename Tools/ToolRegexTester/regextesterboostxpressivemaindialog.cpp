@@ -33,7 +33,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/xpressive/xpressive.hpp>
+
+#include <boost/xpressive/detail/dynamic/parse_charset.hpp>
 #pragma GCC diagnostic pop
+
+#include "trace.h"
 
 RegexTesterBoostXpressiveMainDialog::RegexTesterBoostXpressiveMainDialog()
 {
@@ -109,7 +113,8 @@ const std::string RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
       boost::xpressive::sregex(boost::xpressive::sregex::compile(regex_str)),
       format_str,
       boost::xpressive::regex_constants::match_default
-        | boost::xpressive::regex_constants::format_all);
+        | boost::xpressive::regex_constants::format_all
+        | boost::xpressive::regex_constants::format_no_copy);
   }
   catch (boost::xpressive::regex_error& e)
   {
@@ -124,8 +129,7 @@ bool RegexTesterBoostXpressiveMainDialog::GetRegexValid(
 {
   try
   {
-    const boost::xpressive::sregex regex_temp(
-      boost::xpressive::sregex::compile(regex_str));
+    boost::xpressive::sregex::compile(regex_str);
   }
   catch (boost::xpressive::regex_error& e) { return false; }
   return true;
@@ -139,23 +143,36 @@ void RegexTesterBoostXpressiveMainDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Started RegexTesterBoostXpressiveMainDialog::Test")
   RegexTesterBoostXpressiveMainDialog d;
   assert(!d.GetExampleRegex().empty());
   for (auto v: d.GetTestRegexes() )
   {
+    TRACE(v);
     d.GetRegexValid(v);
     for (auto w: d.GetTestStrings() )
     {
+      TRACE(w);
       d.GetRegexMatches(v,w);
+      TRACE_FUNC();
       d.GetRegexMatches(w,v);
+      TRACE_FUNC();
       d.GetRegexMatchLine(v,w);
+      TRACE_FUNC();
       d.GetRegexMatchLine(w,v);
+      TRACE_FUNC();
       d.GetRegexReplace(v,w,v);
+      TRACE_FUNC();
       d.GetRegexReplace(w,v,v);
+      TRACE_FUNC();
       d.GetRegexReplace(v,w,w);
+      TRACE_FUNC();
       d.GetRegexReplace(w,v,w);
+      TRACE_FUNC();
       d.GetRegexValid(w);
+      TRACE_FUNC();
     }
   }
+  TRACE("Finished RegexTesterBoostXpressiveMainDialog::Test successfully")
 }
 #endif

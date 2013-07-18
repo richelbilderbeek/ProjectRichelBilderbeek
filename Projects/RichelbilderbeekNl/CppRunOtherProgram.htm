@@ -1,25 +1,3 @@
- 
-<title>RunOtherProgram</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ Code Snippet</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Code Snippet Richel Bilderbeek Run execute other pogram and read use output</o:Keywords>
-  <o:LastAuthor>Richel</o:LastAuthor>
-  <o:Revision>7</o:Revision>
-  <o:TotalTime>115</o:TotalTime>
-  <o:Created>2007-07-27T16:02:00Z</o:Created>
-  <o:LastSaved>2007-07-30T10:29:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>195</o:Words>
-  <o:Characters>1114</o:Characters>
-  <o:Lines>9</o:Lines>
-  <o:Paragraphs>2</o:Paragraphs>
-  <o:CharactersWithSpaces>1368</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -49,82 +27,34 @@ screen.</p>
 <p>&nbsp;</p>
 <p>Assumes you have already declared the <a href="CppFileExists.htm">FileExists</a> and <a href="CppFileToVector.htm">FileToVector</a> functions.</p>
 <p>&nbsp;</p>
-<p>Code in plain text can be found <a href="CppRunOtherProgram.txt">here</a>.</p>
-<p>&nbsp;</p>
-
- 
-
-<p>#include &lt;cstdlib&gt;</p>
-
-<p>#include &lt;vector&gt;</p>
-
-<p>#include &lt;fstream&gt;</p>
-
-<p>#include &lt;string&gt;</p>
-
-<p>#include &lt;cassert&gt;</p>
-
-<p>#include &lt;iostream&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p><b> int </b>  main()</p>
-
-<p>{</p>
-
-<p> 
- //From http://www.richelbilderbeek.nl/CppRunOtherProgram.htm</p>
-
-<p> 
- //Silenty executes 'dir' and writes the output to the file
-&quot;temp.txt&quot;</p>
-
-<p> 
- std::system(&quot;dir &gt; temp.txt&quot;);</p>
-
-<p>&nbsp;</p>
-
-<p> 
- //Read &quot;temp.txt&quot; in a std::vector&lt;std::string&gt;</p>
-
-<p> 
- <b>const</b> std::vector&lt;std::string&gt;
-file(FileToVector(&quot;temp.txt&quot;));</p>
-
-<p>&nbsp;</p>
-
-<p> 
- //Display the file</p>
-
-<p> 
- <b>typedef</b> std::vector&lt;std::string&gt;::const_iterator Iterator;</p>
-
-<p> 
- <b>for</b> (Iterator i = file.begin(); i!=file.end(); ++i)</p>
-
-<p> 
- {</p>
-
-<p>   
- std::cout &lt;&lt; *i &lt;&lt; std::endl;</p>
-
-<p> 
- }</p>
-
-<p>&nbsp;</p>
-
-<p> 
- //Wait for key press</p>
-
-<p> 
- std::cin.get();</p>
-
-<p>}</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.2g.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppRunOtherProgram.htm<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Silenty executes 'dir' and writes the output to the file "temp.txt"<br/>
+&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("dir &gt; temp.txt");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read "temp.txt" in a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; file(<a href="CppFileToVector.htm">FileToVector</a>("temp.txt"));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the file<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppIterator.htm">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> file.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>file.end(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

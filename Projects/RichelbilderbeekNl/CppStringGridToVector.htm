@@ -1,29 +1,3 @@
- 
-<title>StringGridToVector</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ StringGridToVector</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek StringGridToVector</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>9</o:Revision>
-  <o:TotalTime>137</o:TotalTime>
-  <o:Created>2008-07-18T08:50:00Z</o:Created>
-  <o:LastSaved>2009-05-07T09:57:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>458</o:Words>
-  <o:Characters>2614</o:Characters>
-  <o:Category>C++ Richel Bilderbeek StringGridToVector</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>21</o:Lines>
-  <o:Paragraphs>5</o:Paragraphs>
-  <o:CharactersWithSpaces>3210</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -49,127 +23,43 @@
 <p><a href="CppVcl.htm">VCL</a> <a href="CppCodeSnippets.htm">code snippet</a> to convert a <a href="CppVcl.htm">VCL</a> <a href="CppTStringGrid.htm">TStringGrid</a>
 to a 2D <a href="CppVector.htm">std::vector</a>.</p>
 <p>&nbsp;</p>
-<p><a href="CppStringGridToVector.txt">View the code of 'StringGridToVector' in plain text</a>.</p>
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;<a href="CppStringH.htm">string</a>&gt;</p>
-
-<p class=MsoNormal style='border:none;mso-border-alt:solid windowtext .5pt;
-
-padding:0in;mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt'> <a href="CppInclude.htm">#include</a>
-&lt;<a href="CppCassertH.htm">cassert</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;boost/lexical_cast.hpp&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a>
-&lt;vcl.h&gt;</p>
-
-<p>&nbsp;</p>
-
-<p>//From
-http://www.richelbilderbeek.nl/CppStringGridToVector.htm</p>
-
-<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;<b><a
-href="CppClass.htm">class</a></b> T&gt;</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;T&gt; &gt; <a
-href="CppStringGridToVector.htm">StringGridToVector</a>(<b><a
-href="CppConst.htm">const</a></b> <a href="CppTStringGrid.htm">TStringGrid</a>
-* <b><a href="CppConst.htm">const</a></b> stringGrid)</p>
-
-<p>{</p>
-
-<p>
- <a href="CppAssert.htm">assert</a>(stringGrid!=0 &amp;&amp;
-&quot;StringGrid must not be NULL&quot;);</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-height = stringGrid-&gt;RowCount;</p>
-
-<p>
- <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>
-width    = stringGrid-&gt;ColCount;</p>
-
-<p>
- <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt;
-&gt; v(height, <a href="CppVector.htm">std::vector</a>&lt;T&gt;(width));</p>
-
-<p>
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-y=0; y!=height; ++y)</p>
-
-<p>
- {</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(y &gt;=0);</p>
-
-<p> 
- <a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a
-href="CppInt.htm">int</a></b>&gt;(v.size()) );</p>
-
-<p> 
- <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; line = v[y];</p>
-
-<p> 
- //Don't have the guts to do a line-access on a TStringGrid...</p>
-
-<p>&nbsp;</p>
-
-<p> 
- <b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>
-x=0; x!=width; ++x)</p>
-
-<p> 
- {</p>
-
-<p>     <a href="CppAssert.htm">assert</a>(x &gt;=0);</p>
-
-<p>       <a href="CppAssert.htm"><span
-style='mso-bidi-font-family:"Courier New";color:windowtext;text-decoration:
-none;text-underline:none'><span style='mso-field-code:"HYPERLINK \0022CppAssert\.htm\0022"'><u><span
-style='color:blue'>assert </u></a> (x &lt; <b><a
-href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(line.size())
-);</p>
-
-<p>       
- //<a href="CppConst_cast.htm">const_cast</a> because the VCL is not
-const-correct. Grumble, grumble...</p>
-
-<p>     <b><a href="CppConst.htm">const</a></b> <a
-href="CppString.htm">std::string</a> s = (<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;TStringGrid*&gt;(stringGrid)-&gt;Cells[x][y]).c_str();</p>
-
-<p>     <b><a href="CppConst.htm">const</a></b> T t = <a
-href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;T&gt;(s);</p>
-
-<p>     vLine[x] = t;</p>
-
-<p> 
- }</p>
-
-<p>
- }</p>
-
-<p>
- <b><a href="CppReturn.htm">return</a></b> v;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.2l.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppStringGridToVector.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt; StringGridToVector(<b><a href="CppConst.htm">const</a></b> TStringGrid * <b><a href="CppConst.htm">const</a></b> stringGrid)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(stringGrid<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "StringGrid must not be <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;RowCount;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;ColCount;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt; v(height, <a href="CppVector.htm">std::vector</a>&lt;T&gt;(width));<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; line <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Don't have the guts to <b><a href="CppDo.htm">do</a></b> a line-access on a TStringGrid...<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(line.size()) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst_cast.htm">const_cast</a></b> because the VCL is not <b><a href="CppConst.htm">const</a></b>-correct. Grumble, grumble...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;TStringGrid*&gt;(stringGrid)-&gt;Cells[x][y]).c_str();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T t <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;T&gt;(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vLine[x] <a href="CppOperatorAssign.htm">=</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

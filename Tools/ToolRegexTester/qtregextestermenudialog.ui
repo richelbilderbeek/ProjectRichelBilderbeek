@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>224</width>
-    <height>342</height>
+    <height>304</height>
    </rect>
   </property>
   <property name="font">
@@ -312,6 +312,7 @@ QPushButton {
   <tabstop>pushButton</tabstop>
   <tabstop>button_cpp11</tabstop>
   <tabstop>button_boost_regex</tabstop>
+  <tabstop>button_boost_xpressive</tabstop>
   <tabstop>button_qt</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>

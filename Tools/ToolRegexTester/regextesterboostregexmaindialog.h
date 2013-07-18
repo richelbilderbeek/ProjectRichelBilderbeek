@@ -37,6 +37,9 @@ struct RegexTesterBoostRegexMainDialog : public RegexTesterMainDialog
   ///Clone this class
   const boost::shared_ptr<RegexTesterMainDialog> Clone() const;
 
+  ///Get an example format used to replace regex matches
+  const std::string GetExampleFormat() const { return "$0"; }
+
   ///Get an example regex
   const std::string GetExampleRegex() const { return "\\d{4} [A-Z]{2}"; }
 

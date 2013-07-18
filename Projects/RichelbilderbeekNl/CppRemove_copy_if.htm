@@ -1,29 +1,3 @@
- 
-<title>std::remove_copy_if</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ std::remove_copy_if</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek std::remove_copy_if std remove_copy_if copy_if copy_if_not</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>7</o:Revision>
-  <o:TotalTime>129</o:TotalTime>
-  <o:Created>2008-05-04T16:12:00Z</o:Created>
-  <o:LastSaved>2008-05-04T16:23:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>246</o:Words>
-  <o:Characters>1407</o:Characters>
-  <o:Category>C++ Richel Bilderbeek std::remove_copy_if</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>11</o:Lines>
-  <o:Paragraphs>2</o:Paragraphs>
-  <o:CharactersWithSpaces>1727</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -57,92 +31,48 @@ as it does not remove anything, and only copies the elements that do not fulfull
 <p>&nbsp;</p>
 <h2>Example</h2>
 <p>&nbsp;</p>
-
- 
-
-<p>#include &lt;algorithm&gt;</p>
-
-<p>#include &lt;list&gt;</p>
-
-<p>#include &lt;iostream&gt;</p>
-
-<p>#include &lt;iterator&gt;</p>
-
+<!-- start of code -->
+<table summary="s2l0.29.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppListH.htm">list</a>&gt;<br/>
+ <br/>
+<b><a href="CppStruct.htm">struct</a></b> IsEven : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppBool.htm">bool</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) { <b><a href="CppReturn.htm">return</a></b> i <a href="CppOperatorModulus.htm">%</a> 2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ; }<br/>
+};<br/>
+ <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorPlus.htm">+</a>+i) v.push_back(i);<br/>
+ <br/>
+&nbsp;&nbsp;<a href="CppList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; temp;<br/>
+&nbsp;&nbsp;<a href="CppRemove_copy_if.htm">std::remove_copy_if</a>(v.begin(),v.end(), <a href="CppBack_inserter.htm">std::back_inserter</a>(temp), IsEven() );<br/>
+ <br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Content of v:" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(), v.end(), <a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Content of temp:" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(temp.begin(), temp.end(), <a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
-
-<p>struct IsEven : public
-std::unary_function&lt;bool,int&gt;</p>
-
-<p>{</p>
-
-<p>
- const bool operator()(const int i) { return i % 2 == 0 ; }</p>
-
-<p>};</p>
-
 <p>&nbsp;</p>
-
-<p>int main()</p>
-
-<p>{</p>
-
-<p>
- std::list&lt;int&gt; v;</p>
-
-<p>
- for (int i=0; i!=10; ++i) v.push_back(i);</p>
-
 <p>&nbsp;</p>
-
-<p>
- std::list&lt;int&gt; temp;</p>
-
-<p>
- std::remove_copy_if(v.begin(),v.end(), std::back_inserter(temp),
-IsEven() );</p>
-
 <p>&nbsp;</p>
-
-<p>
- std::cout &lt;&lt; &quot;Content of v:&quot; &lt;&lt; std::endl;</p>
-
-<p>
- std::copy(v.begin(), v.end(),
-std::ostream_iterator&lt;int&gt;(std::cout,&quot; &quot;));</p>
-
-<p>
- std::cout &lt;&lt; &quot;Content of temp:&quot; &lt;&lt; std::endl;</p>
-
-<p>
- std::copy(temp.begin(), temp.end(),
-std::ostream_iterator&lt;int&gt;(std::cout,&quot; &quot;));</p>
-
 <p>&nbsp;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
-<p>&nbsp;</p>
-
 <h3>Screen output</h3>
-
 <p>&nbsp;</p>
-
- 
-
-<p>Content of v:</p>
-
-<p>0 1 2 3 4 5 6 7 8 9</p>
-
-<p>Content of temp:</p>
-
-<p>1 3 5 7 9</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.2a.cpp" border = "1"><tr><td><code>
+Content of v:<br/>
+0 1 2 3 4 5 6 7 8 9<br/>
+Content of temp:<br/>
+1 3 5 7 9<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

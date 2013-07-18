@@ -1,29 +1,3 @@
- 
-<title>Quadratic</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>Texas TI-84 plus code Quadratic equation</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>Richel Bilderbeek Texas TI-84 plus code Quadratic equation formula abc</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>8</o:Revision>
-  <o:TotalTime>118</o:TotalTime>
-  <o:Created>2007-11-14T12:20:00Z</o:Created>
-  <o:LastSaved>2007-11-14T12:39:00Z</o:LastSaved>
-  <o:Pages>2</o:Pages>
-  <o:Words>189</o:Words>
-  <o:Characters>1081</o:Characters>
-  <o:Category>Richel Bilderbeek Texas TI-84 plus code Quadratic equation</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>9</o:Lines>
-  <o:Paragraphs>2</o:Paragraphs>
-  <o:CharactersWithSpaces>1327</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -50,146 +24,73 @@
 <p>&nbsp;</p>
 <p>A quadratic equation can be written in the form below.</p>
 <p>&nbsp;</p>
-
- 
-
 <p>a.x<sup>2</sup> + b.x + c = 0</p>
-
-</div>
-
 <p>&nbsp;</p>
-
-<p>First
-the discrimant must be calculated:</p>
-
+<p>First the discrimant must be calculated:</p>
 <p>&nbsp;</p>
-
- 
-
 <p>D = b<sup>2</sup> - 4.a.c</p>
-
-</div>
-
 <p>&nbsp;</p>
-
-<p>If
-the discriminant is below zero, the equation has no solution.</p>
-
+<p>If the discriminant is below zero, the equation has no solution.</p>
 <p>&nbsp;</p>
-
-<p>If
-the discriminant is zero, the equation has a single solution. The solution will
+<p>If the discriminant is zero, the equation has a single solution. The solution will
 be equal to the formula below:</p>
-
 <p>&nbsp;</p>
-
- 
-
 <p>x = (-b) / (2.a)</p>
-
-</div>
-
 <p>&nbsp;</p>
-
-<p>If
-the discriminant is above zero, the equation has two solutions. The solutions
+<p>If the discriminant is above zero, the equation has two solutions. The solutions
 can be calcultaed by the formulas below:</p>
-
 <p>&nbsp;</p>
-
- 
-
-<p>x<sub>1</sub> = (-b + &#8730;(D) ) /
-(2.a)</p>
-
-<p>x<sub>2</sub> = (-b - &#8730;(D) ) /
-(2.a)</p>
-
-</div>
-
+<p>x<sub>1</sub> = (-b + &#8730;(D) ) / (2.a)</p>
+<p>x<sub>2</sub> = (-b - &#8730;(D) ) / (2.a)</p>
 <p>&nbsp;</p>
-
-<p>The
-code in the Texas TI-84 might look like this:</p>
-
+<p>The code in the Texas TI-84 might look like this:</p>
 <p>&nbsp;</p>
-
- 
-
-<p>: ClrHome</p>
-
-<p>:</p>
-
-<p>: Prompt A</p>
-
-<p>: Prompt B</p>
-
-<p>: Prompt C</p>
-
-<p>:</p>
-
-<p>: (B*B)-(4*A*C) -&gt; D</p>
-
-<p>:</p>
-
-<p>: Disp &quot;Discriminant:&quot;</p>
-
-<p>: Disp D</p>
-
-<p>:</p>
-
-<p>: If D&lt;0</p>
-
-<p>: Then</p>
-
-<p>: Disp &quot;No solution.&quot;</p>
-
-<p>: End</p>
-
-<p>:</p>
-
-<p>: If D=0</p>
-
-<p>: Then</p>
-
-<p>: Disp &quot;1 solution:&quot;</p>
-
-<p>: -B / (2*A) -&gt; E</p>
-
-<p>: Disp E</p>
-
-<p>: End</p>
-
-<p>:</p>
-
-<p>: If D&gt;0</p>
-
-<p>: Then</p>
-
-<p>: Disp &quot;2 solutions:&quot;</p>
-
-<p>: (-B+&#8730;(D)) / (2*A) -&gt; E</p>
-
-<p>: (-B-&#8730;(D)) / (2*A) -&gt; F</p>
-
-<p>: Disp E</p>
-
-<p>: Disp F</p>
-
-<p>: End</p>
-
-<p>:</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.3m.txt" border = "1"><tr><td><code>
+: ClrHome<br/>
+:<br/>
+: Prompt A<br/>
+: Prompt B<br/>
+: Prompt C<br/>
+:<br/>
+: (B*B)-(4*A*C) -&gt; D<br/>
+:<br/>
+: Disp "Discriminant:"<br/>
+: Disp D<br/>
+:<br/>
+: If D&lt;0<br/>
+: Then<br/>
+: Disp "No solution."<br/>
+: End<br/>
+:<br/>
+: If D=0<br/>
+: Then<br/>
+: Disp "1 solution:"<br/>
+: -B / (2*A) -&gt; E<br/>
+: Disp E<br/>
+: End<br/>
+:<br/>
+: If D&gt;0<br/>
+: Then<br/>
+: Disp "2 solutions:"<br/>
+: (-B+√(D)) / (2*A) -&gt; E<br/>
+: (-B-√(D)) / (2*A) -&gt; F<br/>
+: Disp E<br/>
+: Disp F<br/>
+: End<br/>
+:<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p><a href="TexasCodeSnippets.htm">Go back to Richel Bilderbeek's Texas Code Snippets</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
 <p>&nbsp;</p>
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
 </html>
+

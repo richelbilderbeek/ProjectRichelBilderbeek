@@ -1,29 +1,3 @@
- 
-<title>GetSum (on matrix)</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ GetSum</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek GetSum get sum of matrix 2D 2-d std::vector vector</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>5</o:Revision>
-  <o:TotalTime>421</o:TotalTime>
-  <o:Created>2010-02-19T11:29:00Z</o:Created>
-  <o:LastSaved>2010-02-19T11:43:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>228</o:Words>
-  <o:Characters>1305</o:Characters>
-  <o:Category>C++ Richel Bilderbeek GetSum</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>10</o:Lines>
-  <o:Paragraphs>2</o:Paragraphs>
-  <o:CharactersWithSpaces>1602</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -51,78 +25,34 @@
 a two-dimensional <a href="CppMatrix.htm">matrix</a>. To sum all values in a one-dimensional 
 <a href="CppContainer.htm">container</a>, <a href="CppGetSum.htm">go to the GetSum (on container) page</a>.</p>
 <p>&nbsp;</p>
-<p><a href="CppGetSumMatrix.htm"> View 'GetSum' (on matrix) in plain text</a></p>
-<p>&nbsp;</p>
-
- 
-
-<p>&nbsp;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;</p>
-
-<p><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;</p>
-
-<p>&nbsp;</p>
-
-<p><a href="CppComment.htm">//</a>From <a
-href="http://www.richelbilderbeek.nl/CppGetSum.htm">http://www.richelbilderbeek.nl/CppGetSum.htm</a></p>
-
-<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;<b><a href="CppClass.htm">class</a></b> T&gt;</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  T::value_type <a href="CppGetSum.htm">GetSum</a>(<b><a
-href="CppConst.htm">const</a></b> T&amp; v)</p>
-
-<p>{</p>
-
-<p>   <b><a href="CppReturn.htm">return</a></b>
-<a href="CppAccumulate.htm">std::accumulate</a>(v.begin(), v.end(), <b><a
-href="CppStatic_cast.htm">static_cast</a></b>&lt;T::value_type&gt;(0.0));</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-<p><a href="CppComment.htm">//</a>From
-http://www.richelbilderbeek.nl/CppGetSumMatrix.htm</p>
-
-<p><b> <a href="CppTemplate.htm">template</a> </b>  &lt;<b><a href="CppClass.htm">class</a></b> T&gt;</p>
-
-<p><b> <a href="CppConst.htm">const</a> </b>  T <a href="CppGetSumMatrix.htm">GetSum</a>(<b><a href="CppConst.htm">const</a></b>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt;
-&gt;&amp; v)</p>
-
-<p>{</p>
-
-<p>   T sum = <b><a
-href="CppStatic_cast.htm">static_cast</a></b>&lt;T&gt;(0.0);</p>
-
-<p>   typedef <a href="CppVector.htm">std::vector</a>&lt;<a
-href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;::<a
-href="CppConst_iterator.htm">const_iterator</a> Iterator;</p>
-
-<p>   <b><a href="CppConst.htm">const</a></b>
-Iterator j = v.end();</p>
-
-<p>   <b><a href="CppFor.htm">for</a></b>
-(Iterator i = v.begin(); i!=j; ++i)</p>
-
-<p>   {</p>
-
-<p>     sum+=GetSum(*i);</p>
-
-<p>   }</p>
-
-<p>   <b><a href="CppReturn.htm">return</a></b>
-sum;</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="GetSumMatrix" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetSum.htm">GetSum</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> T::value_type <a href="CppGetSum.htm">GetSum</a>(<b><a href="CppConst.htm">const</a></b> T&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAccumulate.htm">std::accumulate</a>(v.begin(), v.end(), <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;T::value_type&gt;(0.0));<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetSum.htm">GetSum</a><a href="CppMatrix.htm">Matrix</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> T <a href="CppGetSum.htm">GetSum</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;T sum <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;T&gt;(0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> j <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppIterator.htm">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppGetSum.htm">GetSum</a>(*i);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

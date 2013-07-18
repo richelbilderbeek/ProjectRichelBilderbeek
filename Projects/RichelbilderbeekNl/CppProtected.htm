@@ -1,29 +1,3 @@
- 
-<title>protected</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Subject>C++ protected</o:Subject>
-  <o:Author>Richel Bilderbeek</o:Author>
-  <o:Keywords>C++ Richel Bilderbeek protected class access</o:Keywords>
-  <o:Description>From http://www.richelbilderbeek.nl</o:Description>
-  <o:LastAuthor>Richel Bilderbeek</o:LastAuthor>
-  <o:Revision>5</o:Revision>
-  <o:TotalTime>133</o:TotalTime>
-  <o:Created>2009-12-30T12:39:00Z</o:Created>
-  <o:LastSaved>2009-12-30T12:43:00Z</o:LastSaved>
-  <o:Pages>1</o:Pages>
-  <o:Words>208</o:Words>
-  <o:Characters>1188</o:Characters>
-  <o:Category>C++ Richel Bilderbeek protected</o:Category>
-  <o:Manager>Richel Bilderbeek</o:Manager>
-  <o:Company>Richel Bilderbeek</o:Company>
-  <o:Lines>9</o:Lines>
-  <o:Paragraphs>2</o:Paragraphs>
-  <o:CharactersWithSpaces>1458</o:CharactersWithSpaces>
-  <o:Version>9.3821</o:Version>
- </o:DocumentProperties>
-</xml><![endif]-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -54,54 +28,25 @@ or for <a href="CppProtectedInheritance.htm">protected inheritance</a>.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-
- 
-
-
-
-<p><b> <a href="CppClass.htm">class</a> </b>  Base</p>
-
-<p>{</p>
-
-<p>
- <b><a href="CppProtected.htm">protected</a></b>: <b><a href="CppInt.htm">int</a></b>
-m_x;</p>
-
-<p>};</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppClass.htm">class</a> </b>  Derived : <b><a
-href="CppPublic.htm">public</a></b> Base</p>
-
-<p>{</p>
-
-<p>
- <b><a href="CppVoid.htm">void</a></b> ResetX() { m_x = 0; } //For a
-derived class (only) m_x is public</p>
-
-<p>};</p>
-
-<p>&nbsp;</p>
-
-<p><b> <a href="CppInt.htm">int</a> </b>  <a href="CppMain.htm">main</a>()</p>
-
-<p>{</p>
-
-<p>
- Base b;</p>
-
-<p>
- b.m_x = 0; //Not allowed! Only derived classes have access to Base::m_x</p>
-
-<p>}</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-</div>
-
+<!-- start of code -->
+<table summary="s2l0.24.cpp" border = "1"><tr><td><code>
+<b><a href="CppClass.htm">class</a></b> Base<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>: <b><a href="CppInt.htm">int</a></b> m_x;<br/>
+};<br/>
+ <br/>
+<b><a href="CppClass.htm">class</a></b> Derived : <b><a href="CppPublic.htm">public</a></b> Base<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ResetX() { m_x <a href="CppOperatorAssign.htm">=</a> 0; } <a href="CppComment.htm">//</a>For a derived <b><a href="CppClass.htm">class</a></b> (only) m_x is <b><a href="CppPublic.htm">public</a></b><br/>
+};<br/>
+ <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;Base b;<br/>
+&nbsp;&nbsp;b.m_x <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Not allowed! Only derived <b><a href="CppClass.htm">classes</a></b> have access to Base::m_x<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
