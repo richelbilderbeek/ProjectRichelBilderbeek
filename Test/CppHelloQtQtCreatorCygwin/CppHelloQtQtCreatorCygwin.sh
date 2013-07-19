@@ -1,7 +1,7 @@
 #!/bin/bash
 mymake="make.exe"
 myqmake="/usr/lib/qt4/bin/qmake.exe"
-mytarget="CppHelloBoostQtCreatorCygwin"
+mytarget="CppHelloQtQtCreatorCygwin"
 myprofile=$mytarget.pro
 myexe=$mytarget.exe
 
@@ -58,3 +58,5 @@ fi
 rm *.o
 rm $myexe
 rm Makefile
+rm ui_*.*
+rm moc_*.*

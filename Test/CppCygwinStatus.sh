@@ -8,7 +8,7 @@ then
 fi
 
 
-for mytest in Boost Cpp0x Cpp11 Qt Qwt World Xpressive
+for mytest in Boost Cpp11 Qt Qwt World Xpressive
 do
 myfolder='CppHello'$mytest'QtCreator'$myos
 myscript=$myfolder'.sh'

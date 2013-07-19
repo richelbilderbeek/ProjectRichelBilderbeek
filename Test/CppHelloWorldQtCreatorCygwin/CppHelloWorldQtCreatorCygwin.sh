@@ -1,9 +1,9 @@
 #!/bin/bash
-mymake="e:/Qt/Qt5.1.0/Tools/mingw48_32/bin/mingw32-make.exe"
-myqmake="e:/Qt/Qt5.1.0/5.1.0/mingw48_32/bin/qmake.exe"
+mymake="make.exe"
+myqmake="/usr/lib/qt4/bin/qmake.exe"
 mytarget="CppHelloWorldQtCreatorCygwin"
 myprofile=$mytarget.pro
-myexe=release/$mytarget.exe
+myexe=$mytarget.exe
 
 
 if [ -e $myqmake ]
@@ -55,7 +55,6 @@ else
 fi
 
 #Cleaning up
+rm *.o
+rm $myexe
 rm Makefile
-rm Makefile.*
-rm -r release
-rm -r debug

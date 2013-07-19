@@ -1,14 +1,16 @@
 #!/bin/bash
-myfile="qmake"
+mymake="make.exe"
+myqmake="/usr/lib/qt4/bin/qmake.exe"
 mytarget="CppHelloCpp11QtCreatorCygwin"
 myprofile=$mytarget.pro
+myexe=$mytarget.exe
 
 
-if [ -e $myfile ]
+if [ -e $myqmake ]
 then
-  echo "Compiler '$myfile' found"
+  echo "Compiler '$myqmake' found"
 else
-  echo "Compiler '$myfile' not found directly"
+  echo "Compiler '$myqmake' not found directly"
   #exit
 fi
 
@@ -21,21 +23,31 @@ else
 fi
 
 echo "1/2: Creating Windows makefile"
-$myfile $myprofile
+$myqmake $myprofile
 
 if [ -e Makefile ]
 then
   echo "Makefile created successfully"
 else
-  echo "FAIL: qmake CppHelloBoostQtCreatorLubuntu.pro"
+  echo "FAIL: $myqmake $myprofile"
   exit
+fi
+
+if [ -e $mymake ]
+then
+  echo "Compiler '$mymake' found"
+else
+  echo "Compiler '$mymake' not found directly"
+  #exit
 fi
 
 echo "2/2: making makefile"
 
-make
+$mymake
 
-if [ -e $mytarget ]
+echo $myexe
+
+if [ -e $myexe ]
 then
   echo "SUCCESS"
 else
@@ -44,5 +56,5 @@ fi
 
 #Cleaning up
 rm *.o
+rm $myexe
 rm Makefile
-rm $mytarget
