@@ -8,7 +8,7 @@ then
 fi
 
 
-for mytest in BoostLexical_Cast BoostRegex BoostXpressive Cpp0x Cpp11 Qt Qwt World
+for mytest in BoostLexical_Cast BoostRegex BoostUblas BoostXpressive Cpp0x Cpp11 Qt Qwt World
 do
 myfolder='CppHello'$mytest'QtCreator'$myos
 myscript=$myfolder'.sh'
