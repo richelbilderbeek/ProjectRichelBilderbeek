@@ -1,7 +1,7 @@
 #!/bin/bash
 mymake="make"
 myqmake="qmake"
-mytarget="CppHelloWorldQtCreatorLubuntu"
+mytarget="CppHelloWtQtCreatorLubuntu"
 myprofile=$mytarget.pro
 
 

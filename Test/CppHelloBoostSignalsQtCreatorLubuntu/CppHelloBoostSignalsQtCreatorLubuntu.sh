@@ -1,15 +1,14 @@
 #!/bin/bash
-mymake="make"
-myqmake="qmake"
-mytarget="CppHelloWorldQtCreatorLubuntu"
+myfile="qmake"
+mytarget="CppHelloBoostSignalsQtCreatorLubuntu"
 myprofile=$mytarget.pro
 
 
-if [ -e $myqmake ]
+if [ -e $myfile ]
 then
-  echo "Compiler '$myqmake' found"
+  echo "Compiler '$myfile' found"
 else
-  echo "Compiler '$myqmake' not found directly"
+  echo "Compiler '$myfile' not found directly"
   #exit
 fi
 
@@ -21,20 +20,21 @@ else
   exit
 fi
 
-echo "1/2: Creating Windows makefile"
-$myqmake $myprofile
+echo "1/2: Creating makefile"
+
+$myfile $myprofile
 
 if [ -e Makefile ]
 then
   echo "Makefile created successfully"
 else
-  echo "FAIL: $myqmake $myprofile"
+  echo "FAIL: $myfile $myprofile"
   exit
 fi
 
 echo "2/2: Making makefile"
 
-$mymake
+make
 
 if [ -e $mytarget ]
 then
