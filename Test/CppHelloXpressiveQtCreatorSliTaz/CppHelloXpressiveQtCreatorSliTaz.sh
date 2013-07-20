@@ -1,6 +1,6 @@
 #!/bin/bash
 myfile="qmake"
-mytarget="CppHelloBoostQtCreatorLubuntu"
+mytarget="CppHelloXpressiveQtCreatorSliTaz"
 myprofile=$mytarget.pro
 
 
@@ -27,7 +27,7 @@ if [ -e Makefile ]
 then
   echo "Makefile created successfully"
 else
-  echo "FAIL: $myfile $myprofile"
+  echo "FAIL: $myfile $mytarget"
   exit
 fi
 
