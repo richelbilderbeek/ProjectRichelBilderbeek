@@ -10,8 +10,9 @@ fi
 
 for mytest in Boost Cpp0x Cpp11 Qt Qwt World Xpressive
 do
-myfolder='CppHello'$mytest'QtCreatorLubuntu'
-myscript='CppHello'$mytest'QtCreatorLubuntu.sh'
+myos='Lubuntu'
+myfolder='CppHello'$mytest'QtCreator'$myos
+myscript=$myfolder'.sh'
 
 if [ ! -d $myfolder ]
 then
