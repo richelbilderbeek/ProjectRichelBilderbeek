@@ -1,7 +1,6 @@
 #!/bin/bash
-#Script to check the status of native Windows compiles
-
-mytempfile="tmp.txt"
+myos="Windows"
+mytempfile='tmp'$myos'.txt'
 if [ -e $mytempfile ]
 then
   rm $mytempfile
@@ -10,8 +9,8 @@ fi
 
 for mytest in Boost Cpp0x Cpp11 Qt Qwt World Xpressive
 do
-myfolder='CppHello'$mytest'QtCreatorWindows'
-myscript='CppHello'$mytest'QtCreatorWindows.sh'
+myfolder='CppHello'$mytest'QtCreator'$myos
+myscript=$myfolder'.sh'
 
 if [ ! -d $myfolder ]
 then

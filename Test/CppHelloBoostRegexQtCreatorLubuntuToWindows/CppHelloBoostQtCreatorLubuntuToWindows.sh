@@ -3,10 +3,8 @@
 echo "Cross compiling to Windows"
 
 myfile="i686-pc-mingw32-qmake"
-#myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
 mytarget="CppHelloBoostQtCreatorLubuntuToWindows"
 myprofile=$mytarget.pro
-
 
 if [ -e $myfile ]
 then
@@ -31,7 +29,7 @@ if [ -e Makefile ]
 then
   echo "Makefile created successfully"
 else
-  echo "FAIL: qmake CppHelloBoostQtCreatorLubuntu.pro"
+  echo "FAIL: $myfile $myprofile"
   exit
 fi
 

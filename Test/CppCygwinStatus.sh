@@ -1,14 +1,14 @@
 #!/bin/bash
 #Script to check the status of MXE crosscompiles
 myos="Cygwin"
-mytempfile="tmp.txt"
+mytempfile="tmp'$myos'.txt"
 if [ -e $mytempfile ]
 then
   rm $mytempfile
 fi
 
 
-for mytest in Boost Cpp11 Qt Qwt World Xpressive
+for mytest in BoostRegex BoostXpressive Cpp11 Qt Qwt World
 do
 myfolder='CppHello'$mytest'QtCreator'$myos
 myscript=$myfolder'.sh'

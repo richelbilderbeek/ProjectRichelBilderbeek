@@ -1,16 +1,15 @@
 #!/bin/bash
-#Script to check the status of MXE crosscompiles
-
-mytempfile="tmp.txt"
+#Script to check the status of compiles
+myos='Lubuntu'
+mytempfile='tmp'$myos'.txt'
 if [ -e $mytempfile ]
 then
   rm $mytempfile
 fi
 
 
-for mytest in Boost BoostLexical_Cast Cpp0x Cpp11 Qt Qwt World Xpressive
+for mytest in BoostLexical_Cast BoostRegex BoostXpressive Cpp0x Cpp11 Qt Qwt World
 do
-myos='Lubuntu'
 myfolder='CppHello'$mytest'QtCreator'$myos
 myscript=$myfolder'.sh'
 
