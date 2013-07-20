@@ -1,7 +1,8 @@
 #!/bin/bash
 myfile="qmake"
-mytarget="CppHelloQtQtCreatorLubuntu"
+mytarget="CppHelloBoostLexical_CastQtCreatorLubuntu"
 myprofile=$mytarget.pro
+
 
 if [ -e $myfile ]
 then
@@ -45,5 +46,3 @@ fi
 rm *.o
 rm Makefile
 rm $mytarget
-rm moc_*.*
-rm ui_*.*
