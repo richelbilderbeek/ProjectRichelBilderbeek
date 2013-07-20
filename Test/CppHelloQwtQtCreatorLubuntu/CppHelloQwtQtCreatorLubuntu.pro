@@ -4,4 +4,6 @@ TEMPLATE = app
 SOURCES += main.cpp
 QMAKE_CXXFLAGS += -Wall -Wextra -Werror
 INCLUDEPATH += /usr/include/qwt-qt4
-LIBS += -lqwt-qt4
+INCLUDEPATH += /usr/include/qwt
+#LIBS += -lqwt-qt4
+LIBS += -L/usr/lib/qwt -lqwt

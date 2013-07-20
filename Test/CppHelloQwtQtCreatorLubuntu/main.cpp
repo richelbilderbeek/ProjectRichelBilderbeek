@@ -9,13 +9,9 @@
 #include <QApplication>
 
 
-#include "qwt_plot.h"
-#include "qwt_plot_curve.h"
-#include "qwt_text.h"
-
-#ifdef _WIN32
-#include "qwt_point_data.h"
-#endif
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
+#include <qwt_text.h>
 
 int main(int argc, char *argv[])
 {
@@ -34,12 +30,8 @@ int main(int argc, char *argv[])
     xs.push_back(x);
     ys.push_back(std::sin(x));
   }
-  #ifdef _WIN32
   QwtPointArrayData * const data = new QwtPointArrayData(&xs[0],&ys[0],xs.size());
   m_curve->setData(data);
-  #else
-  m_curve->setData(&xs[0],&ys[0],xs.size());
-  #endif
   m_curve->attach(m_plot);
   m_plot->replot();
   m_plot->show();
