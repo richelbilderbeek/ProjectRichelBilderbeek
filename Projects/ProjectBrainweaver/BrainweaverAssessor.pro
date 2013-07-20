@@ -1,4 +1,5 @@
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TEMPLATE = app
 
 DEFINES += PVDB_USE_FORWARD_DECLARATIONS_248738

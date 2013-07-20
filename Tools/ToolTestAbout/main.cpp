@@ -18,11 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestAbout.htm
 //---------------------------------------------------------------------------
-
-#if QT_VERSION >= 0x050000
-#include <QtGui/QApplication>
+#include <QtGlobal>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QtWidgets/QApplication>
 #else
-#include <QApplication>
+#include <QtGui/QApplication>
 #endif
 
 #include "qttestaboutmaindialog.h"
