@@ -8,7 +8,7 @@ then
 fi
 
 
-for mytest in Boost Cpp0x Cpp11 Qt Qwt World Xpressive
+for mytest in Boost BoostLexical_Cast Cpp0x Cpp11 Qt Qwt World Xpressive
 do
 myos='Lubuntu'
 myfolder='CppHello'$mytest'QtCreator'$myos
