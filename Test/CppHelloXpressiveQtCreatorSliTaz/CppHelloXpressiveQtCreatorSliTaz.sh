@@ -1,6 +1,6 @@
 #!/bin/bash
 myfile="qmake"
-mytarget="CppHelloBoostRegexQtCreatorLubuntu"
+mytarget="CppHelloXpressiveQtCreatorSliTaz"
 myprofile=$mytarget.pro
 
 
@@ -20,15 +20,14 @@ else
   exit
 fi
 
-echo "1/2: Creating makefile"
-
+echo "1/2: Creating Windows makefile"
 $myfile $myprofile
 
 if [ -e Makefile ]
 then
   echo "Makefile created successfully"
 else
-  echo "FAIL: $myfile $myprofile"
+  echo "FAIL: $myfile $mytarget"
   exit
 fi
 

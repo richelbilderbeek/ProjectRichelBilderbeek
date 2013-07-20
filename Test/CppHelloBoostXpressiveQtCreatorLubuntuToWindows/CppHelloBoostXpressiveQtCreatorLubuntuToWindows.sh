@@ -1,10 +1,9 @@
 #!/bin/bash
-#From http://richelbilderbeek.nl/CppHelloBoostQtCreatorLubuntuToWindows.htm
-echo "Cross compiling to Windows"
-
 myfile="i686-pc-mingw32-qmake"
-mytarget="CppHelloBoostQtCreatorLubuntuToWindows"
+mytarget="CppHelloBoostXpressiveQtCreatorLubuntuToWindows"
 myprofile=$mytarget.pro
+myexefile=release/$mytarget.exe
+
 
 if [ -e $myfile ]
 then
@@ -23,6 +22,7 @@ else
 fi
 
 echo "1/2: Creating Windows makefile"
+
 $myfile $myprofile
 
 if [ -e Makefile ]
@@ -33,14 +33,15 @@ else
   exit
 fi
 
-echo "2/2: making makefile"
+echo "2/2: Making makefile"
 
 make
 
-if [ -e ./release/$mytarget.exe ]
+if [ -e $myexefile ]
 then
   echo "SUCCESS"
 else
+  echo $myexefile
   echo "FAIL"
 fi
 

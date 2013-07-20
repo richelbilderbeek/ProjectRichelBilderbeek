@@ -1,9 +1,9 @@
 #!/bin/bash
-mymake="make.exe"
-myqmake="/usr/lib/qt4/bin/qmake.exe"
-mytarget="CppHelloXpressiveQtCreatorCygwin"
+mymake="e:/Qt/Qt5.1.0/Tools/mingw48_32/bin/mingw32-make.exe"
+myqmake="e:/Qt/Qt5.1.0/5.1.0/mingw48_32/bin/qmake.exe"
+mytarget="CppHelloBoostRegexQtCreatorWindows"
 myprofile=$mytarget.pro
-myexe=$mytarget.exe
+myexe=release/$mytarget.exe
 
 
 if [ -e $myqmake ]
@@ -22,7 +22,8 @@ else
   exit
 fi
 
-echo "1/2: Creating Windows makefile"
+echo "1/2: Creating makefile"
+
 $myqmake $myprofile
 
 if [ -e Makefile ]
@@ -41,7 +42,7 @@ else
   #exit
 fi
 
-echo "2/2: making makefile"
+echo "2/2: Making makefile"
 
 $mymake
 
@@ -55,6 +56,7 @@ else
 fi
 
 #Cleaning up
-rm *.o
-rm $myexe
 rm Makefile
+rm Makefile.*
+rm -r release
+rm -r debug
