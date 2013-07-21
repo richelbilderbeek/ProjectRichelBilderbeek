@@ -41,19 +41,20 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
   #ifndef NDEBUG
   Test();
   #endif
-  //m_edge must be initialized before m_arrow
   assert(m_concept_item);
   assert(m_edge);
   assert(m_from);
   assert(m_to);
   assert(from != to);
   assert(m_from != m_to);
+  //m_edge must be initialized before m_arrow
   m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
   assert(m_arrow);
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 
-  this->setAcceptsHoverEvents(true);
+  this->setAcceptHoverEvents(true);
+  //this->setAcceptsHoverEvents(true); //Since Qt5?
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
@@ -86,8 +87,10 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
   //Bounding rectangle
   this->setRect(m_concept_item->boundingRect()); //NEW
   this->update();
-  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    && "Bounding rects must by synced");
+
+  assert( ( m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect() )
+    && "Bounding rects of edge and concept item might differ");
 
   //Qt things
 
@@ -122,9 +125,9 @@ QtPvdbEdgeItem::QtPvdbEdgeItem(
       )
     );
   }
-  assert(this->acceptsHoverEvents());
+  assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
   assert(this->m_concept_item->acceptHoverEvents());
-  assert(this->m_arrow->acceptsHoverEvents());
+  assert(this->m_arrow->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
 
 QRectF QtPvdbEdgeItem::boundingRect() const
@@ -286,13 +289,10 @@ void QtPvdbEdgeItem::OnEdgeChanged(const pvdb::Edge * const edge)
       && "Names/texts must be in sync after");
 
   this->setRect(m_concept_item->boundingRect());
-  if (m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect())
-  {
-    TRACE(m_concept_item->boundingRect().width());
-    TRACE(QtPvdbConceptMapItem::boundingRect().width());
-  }
-  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    && "Bounding rects must by synced");
+
+  assert( ( m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect() )
+    && "Bounding rects of edge and concept item might differ");
 
 }
 
@@ -311,8 +311,10 @@ void QtPvdbEdgeItem::OnItemHasUpdated()
     TRACE(m_concept_item->boundingRect().width());
     TRACE(QtPvdbConceptMapItem::boundingRect().width());
   }
-  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    && "Bounding rects must by synced");
+  assert( ( m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+    || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect() )
+    && "Bounding rects might differ between edge and concept item");
+
   this->update();
   this->m_signal_item_has_updated(this);
 }

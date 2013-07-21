@@ -325,7 +325,7 @@ void QtCreatorProFileZipScript::Test()
       "../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro",
       "../../Tools/ToolCodeToHtml/ToolCodeToHtmlDesktop.pro",
       "../../Tools/ToolKalmanFilterer/ToolKalmanFiltererDesktop.pro",
-      "../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro"
+      "../../ProjectRichelBilderbeek/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro"
     };
   for (const std::string& pro_file_name: pro_file_names)
   {

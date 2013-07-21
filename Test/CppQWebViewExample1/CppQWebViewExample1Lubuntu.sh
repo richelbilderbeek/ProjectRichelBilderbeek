@@ -1,8 +1,7 @@
 #!/bin/bash
+myos="Lubuntu"
 myfile="qmake"
-for mytarget in "BrainweaverDeveloper" "BrainweaverStudent" "BrainweaverAssessor"
-do
-
+mytarget="CppQWebViewExample1"
 myprofile=$mytarget.pro
 
 if [ ! -e $myprofile ]
@@ -32,8 +31,3 @@ fi
 rm *.o
 rm Makefile
 rm $mytarget
-rm ui_*.h
-rm qrc_*.cpp
-rm moc_*.cpp
-
-done

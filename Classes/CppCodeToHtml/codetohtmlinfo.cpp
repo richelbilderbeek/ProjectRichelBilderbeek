@@ -591,6 +591,17 @@ const std::vector<std::string> Info::ToHtml() const
   {
     v.push_back("<p><a href=\"CppQuestionDialog.htm\">QuestionDialog</a> is a dialog for <a href=\"CppQuestion.htm\">Question</a>.</p>");
   }
+  else if (m_page_name == "CppQWebViewExample1")
+  {
+    v.push_back("<p><a href=\"CppQWebViewExample1.htm\">QWebView example 1</a> is a <a href=\"CppQWebView.htm\">QWebView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQWebViewExample1.png\">View a screenshot of CppQWebViewExample1 (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQWebViewExample1.zip\">Download the Qt Creator project 'CppQWebViewExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+
+
   else if (m_page_name == "CppRainbow")
   {
     v.push_back("<p><a href=\"CppRainbow.htm\">Rainbow</a> is a <a href=\"CppGraphics.htm\">graphics</a> <a href=\"CppClass.htm\">class</a> to create a rainbow.</p>");

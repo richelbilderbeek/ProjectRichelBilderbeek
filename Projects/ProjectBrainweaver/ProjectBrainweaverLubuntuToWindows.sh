@@ -1,50 +1,34 @@
 #!/bin/bash
-
 myfile="i686-pc-mingw32-qmake"
-mytarget="CppHelloWorldQtCreatorLubuntuToWindows"
-myprofile=$mytarget.pro
+mytarget="BrainweaverStudent"
+myprofile=$mytarget".pro"
+myexe=$mytarget".exe"
 
-
-if [ -e $myfile ]
+if [ ! -e $myprofile ]
 then
-  echo "MXE crosscompiler '$myfile' found"
-else
-  echo "MXE crosscompiler '$myfile' not found"
-  #exit
-fi
-
-if [ -e $myprofile ]
-then
-  echo "Qt Creator project '$myprofile' found"
-else
   echo "Qt Creator project '$myprofile' not found"
   exit
 fi
 
-echo "1/2: Creating Windows makefile"
 $myfile $myprofile
 
-if [ -e Makefile ]
+if [ ! -e Makefile ]
 then
-  echo "Makefile created successfully"
-else
   echo "FAIL: $myfile $myprofile"
   exit
 fi
 
-echo "2/2: making makefile"
-
 make
 
-if [ -e ./release/$mytarget.exe ]
+if [ -e ./release/$mytarget ]
 then
-  echo "SUCCESS"
+  echo $mytarget": SUCCESS"
 else
-  echo "FAIL"
+  echo $mytarget": FAIL"
 fi
 
 #Cleaning up
-rm Makefile
-rm Makefile.*
-rm -r release
-rm -r debug
+#rm Makefile
+#rm Makefile.*
+#rm -r release
+#rm -r debug

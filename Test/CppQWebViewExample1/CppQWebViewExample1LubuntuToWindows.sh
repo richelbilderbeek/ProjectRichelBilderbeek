@@ -1,8 +1,7 @@
 #!/bin/bash
-myfile="qmake"
-for mytarget in "BrainweaverDeveloper" "BrainweaverStudent" "BrainweaverAssessor"
-do
-
+myos="LubuntuToWindows"
+myfile="i686-pc-mingw32-qmake"
+mytarget="CppQWebViewExample1"
 myprofile=$mytarget.pro
 
 if [ ! -e $myprofile ]
@@ -21,7 +20,7 @@ fi
 
 make
 
-if [ -e $mytarget ]
+if [ -e ./release/$mytarget.exe ]
 then
   echo $mytarget": SUCCESS"
 else
@@ -29,11 +28,8 @@ else
 fi
 
 #Cleaning up
-rm *.o
 rm Makefile
-rm $mytarget
-rm ui_*.h
-rm qrc_*.cpp
-rm moc_*.cpp
+rm Makefile.*
+rm -r release
+rm -r debug
 
-done

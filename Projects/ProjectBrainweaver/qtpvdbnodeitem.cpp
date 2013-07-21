@@ -46,11 +46,11 @@ QtPvdbNodeItem::QtPvdbNodeItem(
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
 
-
-
   this->setRect(m_concept_item->boundingRect());
-  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+  assert(m_concept_item->boundingRect() == this->boundingRect()
     && "Bounding rects must by synced");
+  //assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+  //  && "Bounding rects must by synced");
 
 
   this->setPos(m_node->GetX(),m_node->GetY());
@@ -106,17 +106,20 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   assert(flags() & QGraphicsItem::ItemIsMovable);
   assert(this->pos().x() == m_node->GetX());
   assert(this->pos().y() == m_node->GetY());
-  assert(this->acceptsHoverEvents());
-  assert(this->m_concept_item->acceptsHoverEvents());
+  assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
+  assert(this->m_concept_item->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
 
 QRectF QtPvdbNodeItem::boundingRect() const
 {
   //TRACE(m_concept_item->boundingRect().width());
   //TRACE(QtPvdbConceptMapItem::boundingRect().width());
-  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    && "Bounding rects must by synced");
-  return QtPvdbConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item
+
+  //Cannot check here
+  //assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+  //  && "Bounding rects must by synced");
+  return m_concept_item->boundingRect();
+  //return QtPvdbConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item
 }
 
 QBrush QtPvdbNodeItem::brush() const
@@ -195,8 +198,10 @@ void QtPvdbNodeItem::keyPressEvent(QKeyEvent *event)
 void QtPvdbNodeItem::OnItemHasUpdated()
 {
   this->setRect(m_concept_item->boundingRect());
-  assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    && "Bounding rects must by synced");
+
+  //Cannot check here, as setRect triggers this member function
+  //assert(m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
+  //  && "Bounding rects must by synced");
   this->update();
   this->m_signal_item_has_updated(this);
 }
