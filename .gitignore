@@ -17,6 +17,7 @@ tmp*.txt
 *__Release
 tmp.txt
 Makefile
+objects_script*
 Makefile.Debug
 Makefile.Release
 trace_out.txt
