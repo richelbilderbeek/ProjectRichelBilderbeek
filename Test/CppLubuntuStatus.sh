@@ -8,7 +8,7 @@ then
 fi
 
 
-for mytest in BoostLexical_Cast BoostRegex BoostSignals BoostSignals2 BoostUblas BoostXpressive Cpp0x Cpp11 Qt Qwt World World64 Wt
+for mytest in BoostLexical_Cast BoostRegex BoostSignals BoostSignals2 BoostUblas BoostXpressive Cpp0x Cpp11 Qt4 Qt5 Qt Qwt World World64 Wt
 do
 myfolder='CppHello'$mytest'QtCreator'$myos
 myscript=$myfolder'.sh'
@@ -36,3 +36,4 @@ done
 
 cat $mytempfile | sed 'N;s/\n/: /'
 
+rm $mytempfile

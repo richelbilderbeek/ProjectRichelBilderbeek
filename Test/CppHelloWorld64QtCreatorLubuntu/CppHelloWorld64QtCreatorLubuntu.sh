@@ -4,43 +4,27 @@ myqmake="qmake"
 mytarget="CppHelloWorld64QtCreatorLubuntu"
 myprofile=$mytarget.pro
 
-
-if [ -e $myqmake ]
+if [ ! -e $myprofile ]
 then
-  echo "Compiler '$myqmake' found"
-else
-  echo "Compiler '$myqmake' not found directly"
-  #exit
-fi
-
-if [ -e $myprofile ]
-then
-  echo "Qt Creator project '$myprofile' found"
-else
   echo "Qt Creator project '$myprofile' not found"
   exit
 fi
 
-echo "1/2: Creating Windows makefile"
 $myqmake $myprofile
 
-if [ -e Makefile ]
+if [ ! -e Makefile ]
 then
-  echo "Makefile created successfully"
-else
-  echo "FAIL: $myqmake $myprofile"
+  echo $mytarget": FAIL"  
   exit
 fi
-
-echo "2/2: Making makefile"
 
 $mymake
 
 if [ -e $mytarget ]
 then
-  echo "SUCCESS"
+  echo $mytarget": SUCCESS"
 else
-  echo "FAIL"
+  echo $mytarget": FAIL"
 fi
 
 #Cleaning up

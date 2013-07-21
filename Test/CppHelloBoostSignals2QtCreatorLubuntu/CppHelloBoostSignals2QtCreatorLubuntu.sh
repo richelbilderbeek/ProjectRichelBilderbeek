@@ -3,45 +3,29 @@ myfile="qmake"
 mytarget="CppHelloBoostSignals2QtCreatorLubuntu"
 myprofile=$mytarget.pro
 
-
-if [ -e $myfile ]
+if [ ! -e $myprofile ]
 then
-  echo "Compiler '$myfile' found"
-else
-  echo "Compiler '$myfile' not found directly"
-  #exit
-fi
-
-if [ -e $myprofile ]
-then
-  echo "Qt Creator project '$myprofile' found"
-else
   echo "Qt Creator project '$myprofile' not found"
   exit
 fi
 
-echo "1/2: Creating makefile"
-
 $myfile $myprofile
 
-if [ -e Makefile ]
+if [ ! -e Makefile ]
 then
-  echo "Makefile created successfully"
-else
   echo "FAIL: $myfile $myprofile"
   exit
 fi
-
-echo "2/2: Making makefile"
 
 make
 
 if [ -e $mytarget ]
 then
-  echo "SUCCESS"
+  echo $mytarget": SUCCESS"
 else
-  echo "FAIL"
+  echo $mytarget": FAIL"
 fi
+
 
 #Cleaning up
 rm *.o
