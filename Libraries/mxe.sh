@@ -1,4 +1,2 @@
 #!/bin/sh
-
-#Obtains the Wt library
-git clone https://github.com/kdeforche/wt.git
+git clone https://github.com/mxe/mxe.git

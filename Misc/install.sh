@@ -1,5 +1,5 @@
 #!/bin/bash
-apt-get install git vim qt5-qmake tmux libqt4-dev make g++ libboost-dev libboost-all-dev witty-dev libqwt-dev libqwt5-qt4-dev libqwt6 libqwtplot3d-qt4-dev
+apt-get install git vim qt5-qmake tmux libqt4-dev make g++ libboost-dev libboost-all-dev witty-dev libqwt-dev libqwt5-qt4-dev libqwt6 libqwtplot3d-qt4-dev autoconf bison cmake flex intltool libtool pkg-config scons
 
 #cd ~/
 #if [ ! -d "ProjectRichelBilderbeek" ]
