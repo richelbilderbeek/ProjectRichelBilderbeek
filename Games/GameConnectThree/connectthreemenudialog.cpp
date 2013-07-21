@@ -42,7 +42,7 @@ const About ConnectThreeMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "ConnectThree",
     "connect-three game",
-    "the 11th of July 2013",
+    "the 21th of July 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/GameConnectThree.htm",
     GetVersion(),
@@ -54,7 +54,7 @@ const About ConnectThreeMenuDialog::GetAbout()
 
 const std::string ConnectThreeMenuDialog::GetVersion()
 {
-  return "6.3";
+  return "6.4";
 }
 
 const std::vector<std::string> ConnectThreeMenuDialog::GetVersionHistory()
@@ -66,8 +66,6 @@ const std::vector<std::string> ConnectThreeMenuDialog::GetVersionHistory()
   v.push_back("2011-04-24: version 6.1: fixed a bug that showed when deploying to my WtWebsite");
   v.push_back("2011-04-25: version 6.2: hopefully fixed the bug as in 6.1, fixed desktop version");
   v.push_back("2017-07-11: version 6.3: transitioned to Qt5 and Boost 1.54.0");
+  v.push_back("2017-07-21: version 6.4: improved looks");
   return v;
 }
-
-
-

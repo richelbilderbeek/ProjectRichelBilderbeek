@@ -43,6 +43,10 @@ QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
     ui(new Ui::QtConnectThreeMenuDialog),
     m_select(new QtSelectPlayerWidget)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
   ui->layout_horizontal->addWidget(m_select.get());
 }
@@ -64,28 +68,39 @@ void QtConnectThreeMenuDialog::changeEvent(QEvent *e)
   }
 }
 
-void QtConnectThreeMenuDialog::mousePressEvent(QMouseEvent *)
+void QtConnectThreeMenuDialog::Test()
 {
-  if (ui->label_start->underMouse()) { OnClickStart(); }
-  else if (ui->label_about->underMouse()) { OnClickAbout(); }
-  else if (ui->label_quit->underMouse()) { this->close(); }
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  QtConnectThreeGameDialog d(0,std::bitset<3>(false));
 }
 
-void QtConnectThreeMenuDialog::OnClickAbout()
+void QtConnectThreeMenuDialog::on_button_start_clicked()
+{
+  QtConnectThreeGameDialog d(0,this->m_select->GetIsPlayerHuman());
+  d.setStyleSheet(this->styleSheet());
+  d.setWindowIcon(this->windowIcon());
+  this->hide();
+  d.exec();
+  this->show();
+}
+
+void QtConnectThreeMenuDialog::on_button_about_clicked()
 {
   About about = ConnectThreeMenuDialog::GetAbout();
   about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
   QtAboutDialog d(about);
+  d.setStyleSheet(this->styleSheet());
+  d.setWindowIcon(this->windowIcon());
   this->hide();
   d.exec();
   this->show();
 }
 
-void QtConnectThreeMenuDialog::OnClickStart()
+void QtConnectThreeMenuDialog::on_button_quit_clicked()
 {
-  QtConnectThreeGameDialog d(0,this->m_select->GetIsPlayerHuman());
-  this->hide();
-  d.exec();
-  this->show();
+  close();
 }
-

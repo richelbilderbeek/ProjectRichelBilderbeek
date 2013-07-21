@@ -14,5 +14,7 @@
         <file>ConnectThreeGood1.png</file>
         <file>ConnectThreeGood2.png</file>
         <file>ConnectThreeWrong.png</file>
+        <file>GameConnectThree.css</file>
+        <file>R.png</file>
     </qresource>
 </RCC>

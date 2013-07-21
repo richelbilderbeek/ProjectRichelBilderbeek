@@ -1,5 +1,6 @@
 #!/bin/bash
-myfile="i686-pc-mingw32-qmake"
+myfile="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
+#myfile="i686-pc-mingw32-qmake" #Qt4
 mytarget="BrainweaverStudent"
 myprofile=$mytarget".pro"
 myexe=$mytarget".exe"
@@ -28,7 +29,7 @@ else
 fi
 
 #Cleaning up
-#rm Makefile
-#rm Makefile.*
-#rm -r release
-#rm -r debug
+rm Makefile
+rm Makefile.*
+rm -r release
+rm -r debug

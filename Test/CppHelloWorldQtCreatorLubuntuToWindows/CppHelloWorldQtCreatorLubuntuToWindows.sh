@@ -8,43 +8,30 @@ mytarget="CppHelloWorldQtCreatorLubuntuToWindows"
 myprofile=$mytarget.pro
 
 
-if [ -e $myfile ]
+if [ ! -e $myprofile ]
 then
-  echo "MXE crosscompiler '$myfile' found"
-else
-  echo "MXE crosscompiler '$myfile' not found"
-  #exit
-fi
-
-if [ -e $myprofile ]
-then
-  echo "Qt Creator project '$myprofile' found"
-else
   echo "Qt Creator project '$myprofile' not found"
   exit
 fi
 
-echo "1/2: Creating Windows makefile"
 $myfile $myprofile
 
-if [ -e Makefile ]
+if [ ! -e Makefile ]
 then
-  echo "Makefile created successfully"
-else
   echo "FAIL: $myfile $myprofile"
   exit
 fi
 
-echo "2/2: making makefile"
-
 make
 
-if [ -e ./release/$mytarget.exe ]
+if [ -e ./release/$mytarget ]
 then
-  echo "SUCCESS"
+  echo $mytarget": SUCCESS"
 else
-  echo "FAIL"
+  echo $mytarget": FAIL"
 fi
+echo "2/2: making makefile"
+make
 
 #Cleaning up
 rm Makefile

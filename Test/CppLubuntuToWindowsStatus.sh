@@ -9,7 +9,7 @@ then
 fi
 
 
-for mytest in BoostLexical_Cast BoostRegex BoostXpressive Cpp11 Qt Qwt World
+for mytest in BoostLexical_Cast BoostLexical_CastQt5 BoostRegex BoostRegexQt5 BoostXpressive Cpp11 Qt Qwt World WorldQt5
 do
 myfolder='CppHello'$mytest'QtCreator'$myos
 myscript=$myfolder'.sh'
@@ -28,12 +28,14 @@ then
   continue
 fi
 
-echo $mytest >> ../$mytempfile
 ./$myscript | egrep "SUCCESS|FAIL" >> ../$mytempfile
 
 cd ..
 
 done
 
-cat $mytempfile | sed 'N;s/\n/: /'
+clear
 
+cat $mytempfile
+
+rm $mytempfile

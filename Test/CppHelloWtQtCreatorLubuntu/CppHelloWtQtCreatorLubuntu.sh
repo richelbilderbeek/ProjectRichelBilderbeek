@@ -14,7 +14,7 @@ $myfile $myprofile
 
 if [ ! -e Makefile ]
 then
-  echo "FAIL: $myfile $myprofile"
+  echo "FAIL: "$myfile" "$myprofile" (makefile not found)"
   exit
 fi
 
@@ -24,7 +24,7 @@ if [ -e $mytarget ]
 then
   echo $mytarget": SUCCESS"
 else
-  echo $mytarget": FAIL"
+  echo "FAIL: "$myfile" "$myprofile" (executable not found)"
 fi
 
 #Cleaning up

@@ -1,6 +1,7 @@
 #!/bin/bash
-myfile="qmake"
-mytarget="CppHelloQt5QtCreatorLubuntu"
+myos="LubuntuToWindows"
+myfile="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
+mytarget="CppQWebViewExample1"
 myprofile=$mytarget.pro
 
 if [ ! -e $myprofile ]
@@ -13,22 +14,22 @@ $myfile $myprofile
 
 if [ ! -e Makefile ]
 then
-  echo $mytarget": FAIL (makefile not found)"
+  echo "FAIL: $myfile $myprofile"
   exit
 fi
 
 make
 
-if [ -e $mytarget ]
+if [ -e ./release/$mytarget.exe ]
 then
   echo $mytarget": SUCCESS"
 else
-  echo $mytarget": FAIL (executable not found)"
+  echo $mytarget": FAIL"
 fi
 
 #Cleaning up
-rm *.o
 rm Makefile
-rm $mytarget
-rm moc_*.*
-rm ui_*.*
+rm Makefile.*
+rm -r release
+rm -r debug
+

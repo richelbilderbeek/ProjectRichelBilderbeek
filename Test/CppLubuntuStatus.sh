@@ -27,13 +27,14 @@ then
   continue
 fi
 
-echo $mytest >> ../$mytempfile
 ./$myscript | egrep "SUCCESS|FAIL" >> ../$mytempfile
 
 cd ..
 
 done
 
-cat $mytempfile | sed 'N;s/\n/: /'
+clear
+
+cat $mytempfile
 
 rm $mytempfile

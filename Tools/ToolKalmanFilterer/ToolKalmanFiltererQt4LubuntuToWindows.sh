@@ -1,7 +1,8 @@
 #!/bin/bash
 myfile="i686-pc-mingw32-qmake"
-mytarget="CppHelloWtQtCreatorLubuntuToWindows"
+mytarget="ToolKalmanFiltererDesktop"
 myprofile=$mytarget.pro
+myexe=$mytarget.exe
 
 if [ ! -e $myprofile ]
 then
@@ -26,8 +27,10 @@ else
   echo $mytarget": FAIL (executable not found)"
 fi
 
+
 #Cleaning up
 rm -r release
 rm -r debug
 rm Makefile
 rm Makefile.*
+rm ui_*

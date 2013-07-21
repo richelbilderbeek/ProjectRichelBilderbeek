@@ -43,15 +43,22 @@ public:
 
 protected:
   void changeEvent(QEvent *e);
-  void mousePressEvent(QMouseEvent *);
 
 private:
   Ui::QtConnectThreeMenuDialog *ui;
   boost::shared_ptr<QtSelectPlayerWidget> m_select;
 
 private slots:
-  void OnClickAbout();
-  void OnClickStart();
+
+  void on_button_start_clicked();
+  void on_button_about_clicked();
+  void on_button_quit_clicked();
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
+
+
 };
 
 #endif // QTCONNECTTHREEMENUDIALOG_H

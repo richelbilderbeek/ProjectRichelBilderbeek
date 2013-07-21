@@ -15,9 +15,10 @@ tmp*.txt
 *.pro.user.*
 *__Debug
 *__Release
+*_plugin_import.cpp
 tmp.txt
 Makefile
-objects_script*
+object_script*
 Makefile.Debug
 Makefile.Release
 trace_out.txt

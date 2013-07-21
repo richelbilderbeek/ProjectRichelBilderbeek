@@ -1,11 +1,11 @@
 #!/bin/bash
-myfile="i686-pc-mingw32-qmake"
-mytarget="CppHelloWtQtCreatorLubuntuToWindows"
+myfile="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
+mytarget="CppHelloBoostRegexQt5QtCreatorLubuntuToWindows"
 myprofile=$mytarget.pro
 
 if [ ! -e $myprofile ]
 then
-  echo $mytarget": FAIL (Qt Creator project "$myprofile" not found)"
+  echo "FAIL: Qt Creator project '$myprofile' not found"
   exit
 fi
 
@@ -13,7 +13,7 @@ $myfile $myprofile
 
 if [ ! -e Makefile ]
 then
-  echo $mytarget": FAIL (makefile not found)"
+  echo "FAIL: "$myfile" "$myprofile" (makefile not found)"
   exit
 fi
 

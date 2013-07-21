@@ -50,7 +50,7 @@ ConnectThreeResources::ConnectThreeResources()
     } ),
     m_computer_grey_filename(
       "ConnectThreeComputerGrey.png"),
-    m_css("wt.css"),
+    m_css("GameConnectThree.css"),
     m_empty_filename(
       "ConnectThreeEmpty.png"),
     m_instructions_good_filenames(
