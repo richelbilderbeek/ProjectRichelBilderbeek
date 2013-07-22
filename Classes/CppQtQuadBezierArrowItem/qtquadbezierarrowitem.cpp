@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include <QCursor>
 #include <QGraphicsScene>
@@ -226,7 +227,8 @@ QRectF QtQuadBezierArrowItem::boundingRect() const
 
 double QtQuadBezierArrowItem::GetAngle(const double dx, const double dy)
 {
-  return M_PI - (std::atan(dx/dy));
+  const double pi = boost::math::constants::pi<double>();
+  return pi - (std::atan(dx/dy));
 }
 
 const QPointF QtQuadBezierArrowItem::GetBeyond() const
@@ -456,39 +458,41 @@ void QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsI
     {
       //The angle from midpoint to tail
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
+      const double pi = boost::math::constants::pi<double>();
       const double dx = beyond.x() - m_from->pos().x();
       const double dy = beyond.y() - m_from->pos().y();
       double angle = GetAngle(dx,dy);
-      if (dy >= 0.0) angle = (1.0 * M_PI) + angle;
+      if (dy >= 0.0) angle = (1.0 * pi) + angle;
       const QPointF p0(p_tail_end.x(),p_tail_end.y());
       const QPointF p1
         = p0 + QPointF(
-           std::sin(angle + M_PI + (M_PI * 0.1)) * sz,
-          -std::cos(angle + M_PI + (M_PI * 0.1)) * sz);
+           std::sin(angle + pi + (pi * 0.1)) * sz,
+          -std::cos(angle + pi + (pi * 0.1)) * sz);
       const QPointF p2
         = p0 + QPointF(
-           std::sin(angle + M_PI - (M_PI * 0.1)) * sz,
-          -std::cos(angle + M_PI - (M_PI * 0.1)) * sz);
+           std::sin(angle + pi - (pi * 0.1)) * sz,
+          -std::cos(angle + pi - (pi * 0.1)) * sz);
       painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
     }
     if (m_head)
     {
       //The angle from midpoint to head
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
+      const double pi = boost::math::constants::pi<double>();
       const double dx = m_to->pos().x() - beyond.x();
       const double dy = m_to->pos().y() - beyond.y();
       double angle = GetAngle(dx,dy);
-      if (dy >= 0.0) angle = (1.0 * M_PI) + angle;
+      if (dy >= 0.0) angle = (1.0 * pi) + angle;
 
       const QPointF p0(p_head_end.x(),p_head_end.y());
       const QPointF p1
         = p0 + QPointF(
-           std::sin(angle +  0.0 + (M_PI * 0.1)) * sz,
-          -std::cos(angle +  0.0 + (M_PI * 0.1)) * sz);
+           std::sin(angle +  0.0 + (pi * 0.1)) * sz,
+          -std::cos(angle +  0.0 + (pi * 0.1)) * sz);
       const QPointF p2
         = p0 + QPointF(
-           std::sin(angle +  0.0 - (M_PI * 0.1)) * sz,
-          -std::cos(angle +  0.0 - (M_PI * 0.1)) * sz);
+           std::sin(angle +  0.0 - (pi * 0.1)) * sz,
+          -std::cos(angle +  0.0 - (pi * 0.1)) * sz);
 
       painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
     }

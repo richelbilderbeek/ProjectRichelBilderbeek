@@ -10,6 +10,7 @@
 #include <cassert>
 
 #include <boost/lambda/lambda.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
@@ -498,8 +499,10 @@ void QtPvdbEdgeItem::Test()
          && "Y coordinat must be in sync");
       }
       {
-        const double new_x = M_PI;
-        const double new_y = M_E;
+        const double pi = boost::math::constants::pi<double>();
+        const double e = boost::math::constants::e<double>();
+        const double new_x = pi;
+        const double new_y = e;
 
         //Change via edge
         edge->SetX(new_x);

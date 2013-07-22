@@ -7,6 +7,8 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpvdbitemhighlighter.h"
 
+#include <boost/math/constants/constants.hpp>
+
 #include <QGraphicsItem>
 #include <QTimer>
 //#include "qtpvdbconceptitem.h"
@@ -62,7 +64,8 @@ void QtPvdbItemHighlighter::OnTimer()
     m_item->setPos(pos);
     #endif
     #ifdef USE_ROTATION_ANIMATION_675982734653425297529
-    const double angle = 2.0 * M_PI * static_cast<double>(m_cnt) / 360.0;
+    const double pi = boost::math::constants::pi<double>();
+    const double angle = 2.0 * pi * static_cast<double>(m_cnt) / 360.0;
     const double speed_up = 5.0;
     const double r = std::sin(angle * speed_up) * 5.0;
     m_item->setRotation(r);
