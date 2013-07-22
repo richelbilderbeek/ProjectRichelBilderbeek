@@ -11,6 +11,7 @@
 
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QKeyEvent>
@@ -439,8 +440,9 @@ void QtPvdbConceptMapWidget::RepositionItems()
     {
       //Added +0 (instead of -1) to n_nodes, to prevent, in a setup with two concepts and
       //one edge, the edge to overlap the central question
+      const double pi = boost::math::constants::pi<double>();
       const double angle
-        = 2.0 * M_PI * boost::numeric_cast<double>(i)
+        = 2.0 * pi * boost::numeric_cast<double>(i)
         / boost::numeric_cast<double>(n_nodes - 1);
       const double x =  std::cos(angle) * r;
       const double y = -std::sin(angle) * r;

@@ -32,6 +32,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <cmath>
+
+#include <boost/math/constants/constants.hpp>
+
 #include <QCursor>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
@@ -74,7 +77,8 @@ QRectF QtPathArrowItem::boundingRect() const
 
 double QtPathArrowItem::GetAngle(const double dx, const double dy)
 {
-  return M_PI - (std::atan(dx/dy));
+  const double pi = boost::math::constants::pi<double>();
+  return pi - (std::atan(dx/dy));
 }
 
 const std::string QtPathArrowItem::GetVersion()
@@ -170,35 +174,37 @@ void QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
   const double sz = 10.0; //pixels
   if (m_tail)
   {
+    const double pi = boost::math::constants::pi<double>();
     const double dx = m_mid_pos[0].x() - m_tail_pos.x();
     const double dy = m_mid_pos[0].y() - m_tail_pos.y();
     double angle = GetAngle(dx,dy);
-    if (dy >= 0.0) angle = (1.0 * M_PI) + angle;
+    if (dy >= 0.0) angle = (1.0 * pi) + angle;
     //const QPointF m_tail_pos(m_tail_x,m_tail_y);
     const QPointF p1
       = m_tail_pos + QPointF(
-         std::sin(angle + M_PI + (M_PI * 0.1)) * sz,
-        -std::cos(angle + M_PI + (M_PI * 0.1)) * sz);
+         std::sin(angle + pi + (pi * 0.1)) * sz,
+        -std::cos(angle + pi + (pi * 0.1)) * sz);
     const QPointF p2
       = m_tail_pos + QPointF(
-         std::sin(angle + M_PI - (M_PI * 0.1)) * sz,
-        -std::cos(angle + M_PI - (M_PI * 0.1)) * sz);
+         std::sin(angle + pi - (pi * 0.1)) * sz,
+        -std::cos(angle + pi - (pi * 0.1)) * sz);
     painter->drawPolygon(QPolygonF() << m_tail_pos << p1 << p2);
   }
   if (m_head)
   {
+    const double pi = boost::math::constants::pi<double>();
     const double dx = m_head_pos.x() - m_mid_pos[m_mid_pos.size() - 1].x();
     const double dy = m_head_pos.y() - m_mid_pos[m_mid_pos.size() - 1].y();
     double angle = GetAngle(dx,dy);
-    if (dy >= 0.0) angle = (1.0 * M_PI) + angle;
+    if (dy >= 0.0) angle = (1.0 * pi) + angle;
     const QPointF p1
       = m_head_pos + QPointF(
-         std::sin(angle +  0.0 + (M_PI * 0.1)) * sz,
-        -std::cos(angle +  0.0 + (M_PI * 0.1)) * sz);
+         std::sin(angle +  0.0 + (pi * 0.1)) * sz,
+        -std::cos(angle +  0.0 + (pi * 0.1)) * sz);
     const QPointF p2
       = m_head_pos + QPointF(
-         std::sin(angle +  0.0 - (M_PI * 0.1)) * sz,
-        -std::cos(angle +  0.0 - (M_PI * 0.1)) * sz);
+         std::sin(angle +  0.0 - (pi * 0.1)) * sz,
+        -std::cos(angle +  0.0 - (pi * 0.1)) * sz);
 
     painter->drawPolygon(QPolygonF() << m_head_pos << p1 << p2);
   }

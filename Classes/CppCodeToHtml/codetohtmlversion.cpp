@@ -95,10 +95,7 @@ const std::string GetLubuntuVersion()
       = std::string("cat /etc/*-release > ")
       + filename;
     const int error_code = std::system(cmd.c_str());
-    if (error_code) throw std::runtime_error(
-      std::string("Command ")
-      + cmd
-      + std::string("failed"));
+    if (error_code) return "unknown";
   }
   //Read info to std::vector
   std::vector<std::string> v;
@@ -122,7 +119,7 @@ const std::string GetLubuntuVersion()
       return s.substr(i+1,s.size()-(i+1));
     }
   }
-  throw std::runtime_error("GetLubuntuVersion failed");
+  return "unknown";
 }
 #endif
 
@@ -136,10 +133,7 @@ const std::string GetLubuntuVersionCodename()
       = std::string("cat /etc/*-release > ")
       + filename;
     const int error_code = std::system(cmd.c_str());
-    if (error_code) throw std::runtime_error(
-      std::string("Command ")
-      + cmd
-      + std::string("failed"));
+    if (error_code) return "unknown";
   }
   //Read info to std::vector
   std::vector<std::string> v;
@@ -163,7 +157,7 @@ const std::string GetLubuntuVersionCodename()
       return s.substr(i+1,s.size()-(i+1));
     }
   }
-  throw std::runtime_error("GetLubuntuVersionCodename failed");
+  return "unknown";
 }
 #endif
 
@@ -184,8 +178,11 @@ const std::string GetQtCreatorVersion()
 {
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
   const int error = std::system("qtcreator -version 2> tmp.txt");
+  if (error)
+  {
+    return "unknown";
+  }
   assert(error == 0);
-  if (error != 0) throw std::logic_error("Version::GetQtCreatorVersion");
   const std::vector<std::string> v = FileToVector("tmp.txt");
 
   //Delete file
@@ -201,7 +198,7 @@ const std::string GetQtCreatorVersion()
       return s.substr(11,5);
     }
   }
-  return "(unknown version)";
+  return "unknown";
 }
 #endif
 
@@ -220,10 +217,7 @@ const std::string GetUbuntuVersion()
       = std::string("cat /etc/*-release > ")
       + filename;
     const int error_code = std::system(cmd.c_str());
-    if (error_code) throw std::runtime_error(
-      std::string("Command ")
-      + cmd
-      + std::string("failed"));
+    if (error_code) return "unknown";
   }
   //Read info to std::vector
   std::vector<std::string> v;
@@ -247,8 +241,7 @@ const std::string GetUbuntuVersion()
       return s.substr(i+1,s.size()-(i+1));
     }
   }
-
-  throw std::runtime_error("GetUbuntuVersion failed");
+  return "unknown";
 }
 #endif
 
@@ -260,10 +253,7 @@ const std::string GetUbuntuVersionCodename()
   {
     const std::string cmd = "cat /etc/*-release > " + filename;
     const int error_code = std::system(cmd.c_str());
-    if (error_code) throw std::runtime_error(
-      std::string("Command ")
-      + cmd
-      + std::string("failed"));
+    if (error_code) return "unknown";
   }
   //Read info to std::vector
   std::vector<std::string> v;
@@ -287,7 +277,7 @@ const std::string GetUbuntuVersionCodename()
       return s.substr(i+1,s.size()-(i+1));
     }
   }
-  throw std::runtime_error("GetUbuntuVersionCodename failed");
+  return "unknown";
 }
 #endif
 
@@ -300,10 +290,7 @@ const std::string GetVirtualBoxVersion()
       = std::string("vboxmanage --version > ")
       + filename;
     const int error_code = std::system(cmd.c_str());
-    if (error_code) throw std::runtime_error(
-      std::string("Command ")
-      + cmd
-      + std::string("failed"));
+    if (error_code) return "unknown";
   }
   {
     std::ifstream f(filename.c_str());
@@ -313,7 +300,7 @@ const std::string GetVirtualBoxVersion()
     std::remove(filename.c_str());
     return version;
   }
-  throw std::runtime_error("GetVirtualBoxVersion failed");
+  return "unknown";
 }
 
 const std::string GetWineVersion()
@@ -325,10 +312,7 @@ const std::string GetWineVersion()
       = std::string("wine --version > ")
       + filename;
     const int error_code = std::system(cmd.c_str());
-    if (error_code) throw std::runtime_error(
-      std::string("Command ")
-      + cmd
-      + std::string("failed"));
+    if (error_code) return "unknown";
   }
   {
     std::ifstream f(filename.c_str());
@@ -341,7 +325,7 @@ const std::string GetWineVersion()
     std::remove(filename.c_str());
     return version;
   }
-  throw std::runtime_error("GetWineVersion failed");
+  return "unknown";
 }
 
 const std::string GetWtVersion()

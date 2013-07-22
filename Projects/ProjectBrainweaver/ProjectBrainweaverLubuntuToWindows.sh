@@ -33,3 +33,7 @@ rm Makefile
 rm Makefile.*
 rm -r release
 rm -r debug
+rm ui_*.h
+rm qrc_*.cpp
+rm moc_*.cpp
+
