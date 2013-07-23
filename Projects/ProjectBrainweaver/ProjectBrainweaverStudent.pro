@@ -5,7 +5,11 @@ TEMPLATE = app
 DEFINES += PVDB_USE_FORWARD_DECLARATIONS_248738
 #DEFINES += PVDB_KEEP_NAMESPACE_IN_CPP_FILES
 DEFINES += NTRACE_BILDERBIKKEL NTRACE NDEBUG
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror #-Weffc++
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra #-Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #LIBS += -lboost_date_time #Do not use Boost.date_time as crosscompiler cannot find it
 

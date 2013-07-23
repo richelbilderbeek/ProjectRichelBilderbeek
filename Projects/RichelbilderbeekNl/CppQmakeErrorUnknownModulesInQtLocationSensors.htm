@@ -92,9 +92,89 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 &nbsp;&nbsp;QT += <a href="CppWidget.htm">widget</a>s webkit<a href="CppWidget.htm">widget</a>s #Gives error
 <br/>
 }
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
+<p>&nbsp;</p>
+<p>I sent a bug report to <a href="https://bugreports.qt-project.org/browse/QTBUG-32533">qt-project.org</a>,
+where I was told to contact my linux distributor.</p>
+<p>&nbsp;</p>
+<p>My currently installed packages were read by:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="Get Qt4 and Qt5 packages" border = "1"><tr><td><code>
+dpkg --get-selections | egrep -i "Qt(4|5)"<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>My currently installed packages (as of 2013-07-23) are:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="My list of Qt4 and Qt5 packages 2013-07-23" border = "1"><tr><td><code>
+libntrack-qt4-1					install<br/>
+libpoppler-qt4-4:i386				install<br/>
+libqt4-dbus:i386				install<br/>
+libqt4-declarative:i386				install<br/>
+libqt4-designer:i386				install<br/>
+libqt4-dev					install<br/>
+libqt4-dev-bin					install<br/>
+libqt4-help:i386				install<br/>
+libqt4-network:i386				install<br/>
+libqt4-opengl:i386				install<br/>
+libqt4-opengl-dev				install<br/>
+libqt4-qt3support:i386				install<br/>
+libqt4-script:i386				install<br/>
+libqt4-scripttools:i386				install<br/>
+libqt4-sql:i386					install<br/>
+libqt4-sql-mysql:i386				install<br/>
+libqt4-svg:i386					install<br/>
+libqt4-test:i386				install<br/>
+libqt4-xml:i386					install<br/>
+libqt4-xmlpatterns:i386				install<br/>
+libqt53d5:i386					install<br/>
+libqt5clucene5:i386				install<br/>
+libqt5concurrent5:i386				install<br/>
+libqt5core5:i386				install<br/>
+libqt5dbus5:i386				install<br/>
+libqt5declarative5:i386				install<br/>
+libqt5designer5:i386				install<br/>
+libqt5designercomponents5:i386			install<br/>
+libqt5gui5:i386					install<br/>
+libqt5help5:i386				install<br/>
+libqt5location5:i386				install<br/>
+libqt5network5:i386				install<br/>
+libqt5opengl5:i386				install<br/>
+libqt5opengl5-dev				install<br/>
+libqt5printsupport5:i386			install<br/>
+libqt5qml5:i386					install<br/>
+libqt5quick5:i386				install<br/>
+libqt5quickparticles5:i386			install<br/>
+libqt5quicktest5:i386				install<br/>
+libqt5script5:i386				install<br/>
+libqt5sensors5:i386				install<br/>
+libqt5sql5:i386					install<br/>
+libqt5sql5-mysql:i386				install<br/>
+libqt5sql5-sqlite:i386				install<br/>
+libqt5svg5:i386					install<br/>
+libqt5test5:i386				install<br/>
+libqt5v8-5:i386					install<br/>
+libqt5webkit5:i386				install<br/>
+libqt5webkit5-dev				install<br/>
+libqt5widgets5:i386				install<br/>
+libqt5xml5:i386					install<br/>
+libqwt5-qt4					deinstall<br/>
+libqwtplot3d-qt4-0				install<br/>
+libqwtplot3d-qt4-dev				install<br/>
+libsoqt4-20					deinstall<br/>
+qt4-designer					deinstall<br/>
+qt4-dev-tools					deinstall<br/>
+qt4-linguist-tools				install<br/>
+qt4-qmake					install<br/>
+qt5-default					install<br/>
+qt5-qmake					install<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Post a bug report at <a href="https://bugs.launchpad.net/lubuntu-software-center/+bug/1204071">launchpad.net</a>.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -103,7 +183,8 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 <h2>External links</h2>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="https://bugreports.qt-project.org/browse/QTBUG-32533">Bug report of this error</a></li>
+  <li><a href="https://bugreports.qt-project.org/browse/QTBUG-32533">qt-project.org bug report of this error</a></li>
+  <li><a href="https://bugs.launchpad.net/lubuntu-software-center/+bug/1204071">launchpad.net bug report of this error</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

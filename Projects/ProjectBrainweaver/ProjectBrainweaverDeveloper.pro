@@ -2,12 +2,16 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TEMPLATE = app
 
+
 DEFINES += PVDB_USE_FORWARD_DECLARATIONS_248738
 #DEFINES += PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-DEFINES += NTRACE_BILDERBIKKEL NTRACE NDEBUG
-QMAKE_CXXFLAGS += -std=c++11 -Werror -Wextra #-Weffc++
+QMAKE_CXXFLAGS += -std=c++11 -Wextra #-Weffc++
 
-#LIBS += -lboost_date_time #Do not use Boost.date_time as crosscompiler cannot find it
+unix {
+  QMAKE_CXXFLAGS += -Werror
+  #The crosscompiler does not support threads yet, as of 2013-05-02
+  #DEFINES += COMPILER_SUPPORTS_THREADS_20130507
+}
 
 INCLUDEPATH += \
   ../../Classes/CppAbout \
@@ -23,7 +27,11 @@ INCLUDEPATH += \
   ../../Classes/CppQtRoundedRectItem \
   ../../Classes/CppQtRoundedTextRectItem \
   ../../Classes/CppQtScopedDisable \
-  ../../Classes/CppTrace
+  ../../Classes/CppTrace \
+  ../../Tools/ToolStyleSheetSetter \
+  ../../Tools/ToolTestQtArrowItems \
+  ../../Tools/ToolTestQtRoundedEditRectItem \
+  ../../Tools/ToolTestQtRoundedTextRectItem
 
 SOURCES += \
     ../../Classes/CppAbout/about.cpp \
@@ -56,15 +64,17 @@ SOURCES += \
     pvdbmenudialog.cpp \
     pvdbnode.cpp \
     pvdbnodefactory.cpp \
-    qtmain_assessor.cpp \
+    qtmain_developer.cpp \
     qtpvdbaboutdialog.cpp \
     qtpvdbassessormenudialog.cpp \
     qtpvdbbrushfactory.cpp \
     qtpvdbcenternodeitem.cpp \
+    qtpvdbclusterdialog.cpp \
     qtpvdbclusterwidget.cpp \
     qtpvdbcompetency.cpp \
     qtpvdbconcepteditdialog.cpp \
     qtpvdbconceptitem.cpp \
+    qtpvdbconceptmapdialog.cpp \
     qtpvdbconceptmapdisplaywidget.cpp \
     qtpvdbconceptmapeditwidget.cpp \
     qtpvdbconceptmapitem.cpp \
@@ -74,23 +84,58 @@ SOURCES += \
     qtpvdbcreateassessmentmenudialog.cpp \
     qtpvdbcreateassessmentpartialdialog.cpp \
     qtpvdbdisplayconceptitem.cpp \
+    qtpvdbdisplay.cpp \
     qtpvdbedgeitem.cpp \
     qtpvdbeditconceptitem.cpp \
     qtpvdbexamplesitem.cpp \
     qtpvdbitemhighlighter.cpp \
+    qtpvdbmenudialog.cpp \
     qtpvdbnewarrow.cpp \
     qtpvdbnodeitem.cpp \
+    qtpvdboverviewdialog.cpp \
+    qtpvdboverviewwidget.cpp \
+    qtpvdbprintconceptmapdialog.cpp \
     qtpvdbprintratingdialog.cpp \
     qtpvdbrateconceptdialog.cpp \
     qtpvdbrateconceptitem.cpp \
     qtpvdbrateconceptmapdialog.cpp \
+    qtpvdbratedconceptwidget.cpp \
     qtpvdbrateexamplesdialog.cpp \
     qtpvdbratingdialog.cpp \
+    qtpvdbstudentmenudialog.cpp \
+    qtpvdbstudentstartcompletedialog.cpp \
+    qtpvdbtestconceptitemdialog.cpp \
+    qtpvdbtestconceptmapdisplaywidgetdialog.cpp \
+    qtpvdbtestconceptmapeditwidgetdialog.cpp \
+    qtpvdbtestconceptmapratewidgetdialog.cpp \
+    qtpvdbtestedgeitemdialog.cpp \
+    qtpvdbtestnodeitemdialog.cpp \
     qtpvdbtoolsitem.cpp \
-    qtpvdbratedconceptwidget.cpp \
-    qtpvdbdisplay.cpp \
+    qtpvdbviewfilesdialog.cpp \
+    qtpvdbviewtestsdialog.cpp \
+    test_pvdbcluster.cpp \
+    test_pvdbconcept.cpp \
+    test_pvdbconceptmap.cpp \
+    test_qtpvdbconceptmapdialog.cpp \
+    test_qtpvdbconceptmapeditwidget.cpp \
+    test_qtpvdbconceptmapratewidget.cpp \
+    test_qtpvdbconceptmapwidget.cpp \
     pvdbrating.cpp \
-    qtpvdbrateconcepttallydialog.cpp
+    qtpvdbtestcreatesubconceptmapdialog.cpp \
+    ../../Tools/ToolStyleSheetSetter/toolstylesheetsettermaindialog.cpp \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.cpp \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.cpp \
+    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.cpp \
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmaindialog.cpp \
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmenudialog.cpp \
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemwidget.cpp \
+    ../../Tools/ToolTestQtRoundedEditRectItem/testqtroundededitrectitemmenudialog.cpp \
+    ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmaindialog.cpp \
+    ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.cpp \
+    ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.cpp \
+    ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.cpp \
+    qtpvdbrateconcepttallydialog.cpp \
+    qtpvdbrateconcepttallymodel.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -131,10 +176,12 @@ HEADERS  += \
     qtpvdbassessormenudialog.h \
     qtpvdbbrushfactory.h \
     qtpvdbcenternodeitem.h \
+    qtpvdbclusterdialog.h \
     qtpvdbclusterwidget.h \
     qtpvdbcompetency.h \
     qtpvdbconcepteditdialog.h \
     qtpvdbconceptitem.h \
+    qtpvdbconceptmapdialog.h \
     qtpvdbconceptmapdisplaywidget.h \
     qtpvdbconceptmapeditwidget.h \
     qtpvdbconceptmapitem.h \
@@ -144,37 +191,87 @@ HEADERS  += \
     qtpvdbcreateassessmentmenudialog.h \
     qtpvdbcreateassessmentpartialdialog.h \
     qtpvdbdisplayconceptitem.h \
+    qtpvdbdisplay.h \
     qtpvdbedgeitem.h \
     qtpvdbeditconceptitem.h \
     qtpvdbexamplesitem.h \
     qtpvdbitemhighlighter.h \
+    qtpvdbmenudialog.h \
     qtpvdbnewarrow.h \
     qtpvdbnodeitem.h \
+    qtpvdboverviewdialog.h \
+    qtpvdboverviewwidget.h \
+    qtpvdbprintconceptmapdialog.h \
     qtpvdbprintratingdialog.h \
     qtpvdbrateconceptdialog.h \
     qtpvdbrateconceptitem.h \
     qtpvdbrateconceptmapdialog.h \
+    qtpvdbratedconceptwidget.h \
     qtpvdbrateexamplesdialog.h \
     qtpvdbratingdialog.h \
+    qtpvdbstudentmenudialog.h \
+    qtpvdbstudentstartcompletedialog.h \
+    qtpvdbtestconceptitemdialog.h \
+    qtpvdbtestconceptmapdisplaywidgetdialog.h \
+    qtpvdbtestconceptmapeditwidgetdialog.h \
+    qtpvdbtestconceptmapratewidgetdialog.h \
+    qtpvdbtestedgeitemdialog.h \
+    qtpvdbtestnodeitemdialog.h \
     qtpvdbtoolsitem.h \
-    qtpvdbratedconceptwidget.h \
-    qtpvdbdisplay.h \
+    qtpvdbviewfilesdialog.h \
+    qtpvdbviewtestsdialog.h \
     pvdbrating.h \
-    qtpvdbrateconcepttallydialog.h
+    qtpvdbtestcreatesubconceptmapdialog.h \
+    ../../Tools/ToolStyleSheetSetter/toolstylesheetsettermaindialog.h \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.h \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.h \
+    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.h \
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmaindialog.h \
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemwidget.h \
+    ../../Tools/ToolTestQtRoundedEditRectItem/testqtroundededitrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmaindialog.h \
+    ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.h \
+    ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.h \
+    qtpvdbrateconcepttallydialog.h \
+    qtpvdbrateconcepttallymodel.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     qtpvdbassessormenudialog.ui \
+    qtpvdbclusterdialog.ui \
     qtpvdbconcepteditdialog.ui \
+    qtpvdbconceptmapdialog.ui \
     qtpvdbcreateassessmentcompletedialog.ui \
     qtpvdbcreateassessmentmenudialog.ui \
     qtpvdbcreateassessmentpartialdialog.ui \
+    qtpvdbmenudialog.ui \
+    qtpvdbprintconceptmapdialog.ui \
     qtpvdbprintratingdialog.ui \
     qtpvdbrateconceptdialog.ui \
     qtpvdbrateconceptmapdialog.ui \
+    qtpvdbratedconceptwidget.ui \
     qtpvdbrateexamplesdialog.ui \
     qtpvdbratingdialog.ui \
-    qtpvdbratedconceptwidget.ui \
+    qtpvdbstudentmenudialog.ui \
+    qtpvdbstudentstartcompletedialog.ui \
+    qtpvdbtestconceptitemdialog.ui \
+    qtpvdbtestconceptmapdisplaywidgetdialog.ui \
+    qtpvdbtestconceptmapeditwidgetdialog.ui \
+    qtpvdbtestconceptmapratewidgetdialog.ui \
+    qtpvdbtestedgeitemdialog.ui \
+    qtpvdbtestnodeitemdialog.ui \
+    qtpvdbviewfilesdialog.ui \
+    qtpvdbviewtestsdialog.ui \
+    qtpvdbtestcreatesubconceptmapdialog.ui \
+    ../../Tools/ToolStyleSheetSetter/toolstylesheetsettermaindialog.ui \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.ui \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.ui \
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmaindialog.ui \
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmenudialog.ui \
+    ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmaindialog.ui \
+    ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.ui \
     qtpvdbrateconcepttallydialog.ui
 
 OTHER_FILES += \
@@ -194,7 +291,44 @@ OTHER_FILES += \
     ../../Classes/CppQtScopedDisable/Licence.txt \
     ../../Classes/CppTrace/Licence.txt \
     crosscompiletowindows.sh \
-    doxygen_config.txt
+    doxygen_config.txt \
+    ../../Tools/ToolTestQtArrowItems/crosscompiletowindows.sh \
+    ../../Tools/ToolTestQtArrowItems/Licence.txt \
+    ../../Tools/ToolTestQtArrowItems/R.png \
+    ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.png \
+    ../../Tools/ToolTestQtRoundedEditRectItem/Licence.txt \
+    ../../Tools/ToolTestQtRoundedTextRectItem/Licence.txt \
+    zipexes.sh \
+    BrainweaverTest.py
 
 RESOURCES += \
-    Brainweaver.qrc
+    Brainweaver.qrc \
+    ../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetter.qrc \
+    ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.qrc \
+    ../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItem.qrc \
+    ../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItem.qrc
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(debug, debug|release) {
+  message(Debug mode)
+}
+
+CONFIG(release, debug|release) {
+  message(Release mode)
+
+  #Remove all asserts and TRACE
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+#
+#
+# Boost
+#
+#
+
+# Do not link to the Boost libraries, as I cannot figure out how the crosscompiler detects these

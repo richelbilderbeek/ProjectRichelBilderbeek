@@ -1,9 +1,21 @@
 #!/bin/bash
 myfile="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
 #myfile="i686-pc-mingw32-qmake" #Qt4
-mytarget="BrainweaverStudent"
+mytarget="ProjectBrainweaverDeveloper"
 myprofile=$mytarget".pro"
 myexe=$mytarget".exe"
+
+#Cleaning up
+rm *.o
+rm Makefile
+rm Makefile.*
+rm -r release
+rm -r debug
+rm ui_*.h
+rm qrc_*.cpp
+rm moc_*.cpp
+rm object_script*.*
+rm *_plugin_import.cpp
 
 if [ ! -e $myprofile ]
 then
@@ -21,7 +33,7 @@ fi
 
 make
 
-if [ -e ./release/$mytarget ]
+if [ -e ./release/$myexe ]
 then
   echo $mytarget": SUCCESS"
 else
@@ -29,6 +41,7 @@ else
 fi
 
 #Cleaning up
+rm *.o
 rm Makefile
 rm Makefile.*
 rm -r release
@@ -36,4 +49,5 @@ rm -r debug
 rm ui_*.h
 rm qrc_*.cpp
 rm moc_*.cpp
-
+rm object_script*.*
+rm *_plugin_import.cpp
