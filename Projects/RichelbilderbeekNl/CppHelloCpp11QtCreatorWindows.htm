@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>HelloCpp11QtCreatorWindows</title>
+  <meta name="description" content="C++ HelloCpp11QtCreatorWindows"/>
+  <meta name="keywords" content="C++ HelloCpp11QtCreatorWindows code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloCpp11QtCreatorWindows.htm">HelloCpp11QtCreatorWindows</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppHelloCpp11QtCreatorWindows-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloCpp11QtCreatorWindows.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppHelloCpp11QtCreatorWindows.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> s <a href="CppOperatorAssign.htm">=</a> "Hello <a href="Cpp11.htm">C++11</a>";<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>CppHelloCpp11QtCreatorWindows.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppHelloCpp11QtCreatorWindows.sh" border = "1"><tr><td><code>
+#!/bin/bash<br/>
+mymake="e:/Qt/Qt5.1.0/Tools/mingw48_32/bin/mingw32-make.exe"<br/>
+myqmake="e:/Qt/Qt5.1.0/5.1.0/mingw48_32/bin/qmake.exe"<br/>
+mytarget="CppHelloCpp11QtCreatorWindows"<br/>
+myprofile=$mytarget.pro<br/>
+myexe=release/$mytarget.exe<br/>
+<br/>
+<br/>
+if [ -e $myqmake ]<br/>
+then<br/>
+&nbsp;&nbsp;echo "Compiler '$myqmake' found"<br/>
+else<br/>
+&nbsp;&nbsp;echo "Compiler '$myqmake' not found directly"<br/>
+&nbsp;&nbsp;#exit<br/>
+fi<br/>
+<br/>
+if [ -e $myprofile ]<br/>
+then<br/>
+&nbsp;&nbsp;echo "Qt Creator project '$myprofile' found"<br/>
+else<br/>
+&nbsp;&nbsp;echo "Qt Creator project '$myprofile' not found"<br/>
+&nbsp;&nbsp;exit<br/>
+fi<br/>
+<br/>
+echo "1/2: Creating Windows makefile"<br/>
+$myqmake $myprofile<br/>
+<br/>
+if [ -e Makefile ]<br/>
+then<br/>
+&nbsp;&nbsp;echo "Makefile created successfully"<br/>
+else<br/>
+&nbsp;&nbsp;echo "FAIL: $myqmake $myprofile"<br/>
+&nbsp;&nbsp;exit<br/>
+fi<br/>
+<br/>
+if [ -e $mymake ]<br/>
+then<br/>
+&nbsp;&nbsp;echo "Compiler '$mymake' found"<br/>
+else<br/>
+&nbsp;&nbsp;echo "Compiler '$mymake' not found directly"<br/>
+&nbsp;&nbsp;#exit<br/>
+fi<br/>
+<br/>
+echo "2/2: making makefile"<br/>
+<br/>
+$mymake<br/>
+<br/>
+echo $myexe<br/>
+<br/>
+if [ -e $myexe ]<br/>
+then<br/>
+&nbsp;&nbsp;echo "SUCCESS"<br/>
+else<br/>
+&nbsp;&nbsp;echo "FAIL"<br/>
+fi<br/>
+<br/>
+#Cleaning up<br/>
+rm Makefile<br/>
+rm Makefile.*<br/>
+rm -r release<br/>
+rm -r debug<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

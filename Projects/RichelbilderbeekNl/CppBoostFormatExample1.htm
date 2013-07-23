@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>BoostFormatExample1</title>
+  <meta name="description" content="C++ BoostFormatExample1"/>
+  <meta name="keywords" content="C++ BoostFormatExample1 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBoostFormatExample1.htm">BoostFormatExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppBoostFormatExample1-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppBoostFormatExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppBoostFormatExample1.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= app_bundle<br/>
+CONFIG -= qt<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/format.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display <a href="CppInt.htm">integer</a>s, <b><a href="CppDefault.htm">default</a></b><br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 1;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 12;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 123;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 1234;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 12345;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 123456;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display <b><a href="CppDouble.htm">double</a></b>s, <b><a href="CppDefault.htm">default</a></b><br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 1.2345678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 12.345678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 123.45678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 1234.5678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 12345.678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1%\n") <a href="CppOperatorModulus.htm">%</a> 123456.78;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display <b><a href="CppDouble.htm">double</a></b>s with two significant digits<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$.2d\n") <a href="CppOperatorModulus.htm">%</a> 1.2345678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$.2d\n") <a href="CppOperatorModulus.htm">%</a> 12.345678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$.2d\n") <a href="CppOperatorModulus.htm">%</a> 123.45678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$.2d\n") <a href="CppOperatorModulus.htm">%</a> 1234.5678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$.2d\n") <a href="CppOperatorModulus.htm">%</a> 12345.678;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$.2d\n") <a href="CppOperatorModulus.htm">%</a> 123456.78;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display sign<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Pad to 5 digits<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$+5d\n") <a href="CppOperatorModulus.htm">%</a> 1;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$+5d\n") <a href="CppOperatorModulus.htm">%</a> 12;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$+5d\n") <a href="CppOperatorModulus.htm">%</a> 123;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$+5d\n") <a href="CppOperatorModulus.htm">%</a> 1234;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$+5d\n") <a href="CppOperatorModulus.htm">%</a> 12345;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFormat.htm">boost::format</a>("%1$+5d\n") <a href="CppOperatorModulus.htm">%</a> 123456;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a> Screen output<br/>
+<br/>
+1<br/>
+12<br/>
+123<br/>
+1234<br/>
+12345<br/>
+123456<br/>
+1.23457<br/>
+12.3457<br/>
+123.457<br/>
+1234.57<br/>
+12345.7<br/>
+123457<br/>
+1.2<br/>
+12<br/>
+1.2e+002<br/>
+1.2e+003<br/>
+1.2e+004<br/>
+1.2e+005<br/>
+&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a>1<br/>
+&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>12<br/>
+ <a href="CppOperatorPlus.htm">+</a>123<br/>
++1234<br/>
++12345<br/>
++123456<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

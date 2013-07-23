@@ -1,0 +1,572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QtCreator_5_1</title>
+  <meta name="description" content="C++ QtCreator_5_1"/>
+  <meta name="keywords" content="C++ QtCreator_5_1 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtCreator_5_1.htm">QtCreator_5_1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQtCreator_5_1-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQtCreator_5_1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppQtCreator_5_1.pro" border = "1"><tr><td><code>
+win32 {<br/>
+&nbsp;&nbsp;#Add the line below when cross-compiling<br/>
+&nbsp;&nbsp;#CONFIG += static<br/>
+}<br/>
+<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+TEMPLATE = app<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtdialog.cpp<br/>
+<br/>
+<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= qtdialog.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= qtdialog.ui<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+CONFIG(debug, debug|release) {<br/>
+&nbsp;&nbsp;message(Debug mode)<br/>
+}<br/>
+<br/>
+CONFIG(release, debug|release) {<br/>
+&nbsp;&nbsp;message(Release mode)<br/>
+<br/>
+&nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
+&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Platform specific<br/>
+#<br/>
+#<br/>
+<br/>
+#<br/>
+#<br/>
+# Compiler flags<br/>
+#<br/>
+#<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;message(Unix)<br/>
+&nbsp;&nbsp;#Strict error handling<br/>
+&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;!static {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;message(Native Windows)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#Allow native Windows to emit warnings without terminating<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> #<a href="CppWerror.htm">-Werror</a><br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;static {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;message(Crosscompiling from Lubuntu to Windows)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#Allow the crosscompiler to emit warnings without terminating<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> #<a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;message(Unix dynamic link to Boost)<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += \<br/>
+&nbsp;&nbsp;<a href="CppDate_Time.htm">-lboost_date_time</a> \<br/>
+&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
+&nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a> \<br/>
+&nbsp;&nbsp;<a href="CppBoostSignals.htm">-lboost_signals</a> \<br/>
+&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a><br/>
+}<br/>
+<br/>
+win32 {<br/>
+<br/>
+&nbsp;&nbsp;message(Windows dynamic link to Boost)<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+<br/>
+&nbsp;&nbsp;debug {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;release {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Warp's function parser<br/>
+#<br/>
+#<br/>
+#unix {<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/extrasrc/fpaux.hh \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/extrasrc/fptypes.hh \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fparser_gmpint.hh \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fparser.hh \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fparser_mpfr.hh \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fpconfig.hh<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fparser.cc \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fpoptimizer.cc<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/extrasrc/fp_identifier_parser.inc \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/extrasrc/fp_opcode_add.inc<br/>
+#}<br/>
+<br/>
+#<br/>
+#<br/>
+# Qwt<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /usr/include/qwt-qt4<br/>
+&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += <a href="CppQwt.htm">-lqwt-qt4</a><br/>
+}<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;message(Windows: Qwt: link dynamically)<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>+= ../../<a href="CppLibrary.htm">Libraries</a>/qwt-6.1.0/src<br/>
+&nbsp;&nbsp;#DEPENDPATH += ../../<a href="CppLibrary.htm">Libraries</a>/qwt-6.1.0/src<br/>
+&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a>+= -L../../<a href="CppLibrary.htm">Libraries</a>/qwt-6.1.0/lib<br/>
+<br/>
+&nbsp;&nbsp;CONFIG(release, debug|release) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;message(Windows: Qwt: Linking to qwt)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -lqwt<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;CONFIG(debug, debug|release) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;message(Windows: Qwt: Linking to qwtd)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -lqwtd<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+<br/>
+<br/>
+#<br/>
+#<br/>
+# <a href="CppBoost.htm">Boost</a><br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;<a href="CppDate_Time.htm">-lboost_date_time</a> \<br/>
+&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
+&nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a> \<br/>
+&nbsp;&nbsp;<a href="CppBoostSignals.htm">-lboost_signals</a> \<br/>
+&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a><br/>
+}<br/>
+<br/>
+win32 {<br/>
+<br/>
+&nbsp;&nbsp;#<a href="CppBoost.htm">Boost</a> libraries<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0<br/>
+<br/>
+&nbsp;&nbsp;#Prevent the following error:<br/>
+&nbsp;&nbsp;#../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/parsers.cpp: In <a href="CppFunction.htm">function</a> '<a href="CppProgram_options.htm">boost::program_options</a>::parsed_options <a href="CppProgram_options.htm">boost::program_options</a>::parse_environment(<b><a href="CppConst.htm">const</a></b> <a href="CppProgram_options.htm">boost::program_options</a>::options_description&amp;, <b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">boost::function</a>1&lt;<a href="CppStd.htm">std</a>::basic_string&lt;<b><a href="CppChar.htm">char</a></b>&gt;, <a href="CppStd.htm">std</a>::basic_string&lt;<b><a href="CppChar.htm">char</a></b>&gt; &gt;&amp;)':<br/>
+&nbsp;&nbsp;#../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/parsers.cpp:194:36: error: 'environ' was not declared in <b><a href="CppThis.htm">this</a></b> <a href="CppScope.htm">scope</a><br/>
+&nbsp;&nbsp;#DEFINES <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> __COMO_VERSION__<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;#<a href="CppBoost.htm">Boost</a>.Data_<a href="CppTime.htm">time</a><br/>
+&nbsp;&nbsp;<a href="CppHEADERS.htm">HEADERS</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/date_<a href="CppTime.htm">time</a>/src/gregorian/greg_names.hpp<br/>
+&nbsp;&nbsp;<a href="CppSOURCES.htm">SOURCES</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/date_<a href="CppTime.htm">time</a>/src/gregorian/greg_weekday.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/date_<a href="CppTime.htm">time</a>/src/gregorian/gregorian_types.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/date_<a href="CppTime.htm">time</a>/src/gregorian/greg_month.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/date_<a href="CppTime.htm">time</a>/src/gregorian/date_generators.cpp<br/>
+<br/>
+&nbsp;&nbsp;#<a href="CppBoost.htm">Boost</a>.Filesystem<br/>
+&nbsp;&nbsp;<a href="CppHEADERS.htm">HEADERS</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/windows_file_codecvt.hpp<br/>
+&nbsp;&nbsp;<a href="CppSOURCES.htm">SOURCES</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/codecvt_error_category.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/operations.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/path.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/path_traits.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/portability.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/unique_path.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/utf8_codecvt_facet.cpp \ #Keep, comment program_options/src/utf8_codecvt_facet.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/filesystem/src/windows_file_codecvt.cpp<br/>
+<br/>
+&nbsp;&nbsp;#<a href="CppBoost.htm">Boost</a>.Program_options<br/>
+&nbsp;&nbsp;#<br/>
+&nbsp;&nbsp;#This lib does not seem to work well together with <a href="CppBoost.htm">Boost</a>.Filesystem<br/>
+&nbsp;&nbsp;#when <a href="CppCompile.htm">compile</a>d from source like <b><a href="CppThis.htm">this</a></b><br/>
+&nbsp;&nbsp;#<br/>
+&nbsp;&nbsp;#<a href="CppSOURCES.htm">SOURCES</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/cmdline.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/config_file.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/<a href="CppConvert.htm">convert</a>.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/options_description.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/parsers.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/positional_options.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/split.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;#../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/utf8_codecvt_facet.cpp \ #Comment, keep filesystem/src/utf8_codecvt_facet.cpp<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/value_semantic.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/variables_map.cpp \<br/>
+&nbsp;&nbsp;#&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/program_options/src/winmain.cpp<br/>
+<br/>
+&nbsp;&nbsp;#<a href="CppRegex.htm">Boost.Regex</a><br/>
+&nbsp;&nbsp;<a href="CppHEADERS.htm">HEADERS</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/internals.hpp<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppSOURCES.htm">SOURCES</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/w<a href="CppInstance.htm">instances</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/wide_posix_api.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/wc_regex_traits.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/w32_regex_traits.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/us<a href="CppInstance.htm">instances</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/<b><a href="CppStatic.htm">static</a></b>_mutex.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/regex_traits_defaults.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/regex_raw_buffer.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/regex_<a href="CppDebug.htm">debug</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/regex.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/posix_api.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/<a href="CppInstance.htm">instances</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/icu.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/fileiter.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/c_regex_traits.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/cregex.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/regex/src/cpp_regex_traits.cpp<br/>
+<br/>
+&nbsp;&nbsp;#<a href="CppBoost.htm">Boost</a>.System<br/>
+&nbsp;&nbsp;<a href="CppHEADERS.htm">HEADERS</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/system/src/local_free_on_<a href="CppDestructor.htm">destruct</a>ion.hpp<br/>
+&nbsp;&nbsp;<a href="CppSOURCES.htm">SOURCES</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBoost.htm">boost</a>_1_54_0/libs/system/src/error_code.cpp<br/>
+}<br/>
+<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtdialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> QwtPlotCurve;<br/>
+<b><a href="CppStruct.htm">struct</a></b> QwtPlot;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Dialog();<br/>
+<br/>
+&nbsp;&nbsp;QwtPlotCurve * <b><a href="CppConst.htm">const</a></b> m_curve;<br/>
+&nbsp;&nbsp;QwtPlot * <b><a href="CppConst.htm">const</a></b> m_plot;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppFileToVector.htm">FileToVector</a> reads a file and <a href="CppConvert.htm">converts</a> it to a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppGetBoostVersion.htm">GetBoostVersion</a> <a href="CppReturn.htm">returns</a> the <a href="CppVersion.htm">version</a> of the current <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a>.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.htm">GetBoostVersion</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetBoostVersion.htm">GetBoostVersion</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppGetGccVersion.htm">GetGccVersion</a> <a href="CppReturn.htm">returns</a> the <a href="CppVersion.htm">version</a> number of GCC currently installed.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppGetGccVersion.htm">GetGccVersion</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetGccVersion.htm">GetGccVersion</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppGetQtCreatorVersion.htm">GetQtCreatorVersion</a> obtains the <a href="CppVersion.htm">version</a> of <a href="CppQtCreator.htm">Qt Creator</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Fails under <a href="CppWindows.htm">Windows</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppGetQtCreatorVersion.htm">GetQtCreatorVersion</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetQtCreatorVersion.htm">GetQtCreatorVersion</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppGetStlVersion.htm">GetStlVersion</a> <a href="CppReturn.htm">returns</a> the <a href="CppVersion.htm">version</a> number of the GCC <a href="CppStl.htm">STL</a> currently installed.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppGetStlVersion.htm">GetStlVersion</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetStlVersion.htm">GetStlVersion</a>();<br/>
+<br/>
+<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtdialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtdialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppVersion.htm">version</a>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "fparser.hh"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "qwt_plot.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_plot_curve.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_<a href="CppPointer.htm">point</a>_data.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_text.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Dialog::<a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog),<br/>
+&nbsp;&nbsp;m_curve(<b><a href="CppNew.htm">new</a></b> QwtPlotCurve("Sine")),<br/>
+&nbsp;&nbsp;m_plot(<b><a href="CppNew.htm">new</a></b> QwtPlot(QwtText("CppQwtExample1")))<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<b><a href="CppThis.htm">this</a></b>-&gt;layout());<br/>
+&nbsp;&nbsp;<a href="CppQLayout.htm">QLayout</a> * <b><a href="CppConst.htm">const</a></b> my_layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setLayout(my_layout);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;my_layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>("DEBUG"));<br/>
+&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;my_layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>("RELEASE"));<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;my_layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>( ("GCC <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppGetGccVersion.htm">GetGccVersion</a>()).c_str()));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>my_layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>( ("<a href="CppQtCreator.htm">Qt Creator</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppGetQtCreatorVersion.htm">GetQtCreatorVersion</a>()).c_str()));<br/>
+&nbsp;&nbsp;my_layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>( ("<a href="CppStl.htm">STL</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppGetStlVersion.htm">GetStlVersion</a>()).c_str()));<br/>
+&nbsp;&nbsp;my_layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>( ("<a href="CppBoost.htm">Boost</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppGetBoostVersion.htm">GetBoostVersion</a>()).c_str()));<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFunctionParser.htm">FunctionParser</a> f;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f.Parse("x * x","x");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f.GetParseErrorType()=<a href="CppOperatorAssign.htm">=</a> <a href="CppFunctionParser.htm">FunctionParser</a>::FP_NO_ERROR);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xs[1] <a href="CppOperatorAssign.htm">=</a> { <a href="CppM_PI.htm">M_PI</a> };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> f.Eval(xs);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f.EvalError()<a href="CppOperatorEqual.htm">==</a>0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;my_layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>("Warp's <a href="CppFunctionParser.htm">function parser</a> <a href="CppVersion.htm">version</a>: 4.5.1"));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_plot-&gt;setGeometry(0,0,640,400);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_plot-&gt;setAxisScale(QwtPlot::xBottom, 0.0,2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_plot-&gt;setAxisScale(QwtPlot::yLeft,-1.0,1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; xs;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ys;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> 0; x &lt; 2.0 * <a href="CppM_PI.htm">M_PI</a>; x<a href="CppOperatorPlusAssign.htm">+=</a>(<a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorDivide.htm">/</a> 10.0))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xs.push_back(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ys.push_back(<a href="CppSin.htm">std::sin</a>(x));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qwt<a href="CppPoint.htm">Point</a>ArrayData * <b><a href="CppConst.htm">const</a></b> data <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;xs[0],&amp;ys[0],xs.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_curve-&gt;setData(data);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_curve-&gt;attach(m_plot);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_plot-&gt;replot();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;my_layout-&gt;addWidget(m_plot);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Dialog::~<a href="CppQt.htm">Qt</a>Dialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>Dialog::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename));<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>Dialog::<a href="CppGetBoostVersion.htm">GetBoostVersion</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> BOOST_LIB_VERSION;<br/>
+&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),'_','.');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>Dialog::<a href="CppGetGccVersion.htm">GetGccVersion</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(__GNUC__)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(".")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(__GNUC_MINOR__)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(".")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(__GNUC_PATCHLEVEL__);<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>Dialog::<a href="CppGetQtCreatorVersion.htm">GetQtCreatorVersion</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>'2&gt;' denotes <a href="CppOperatorMinus.htm">-</a>AFAIK<a href="CppOperatorMinus.htm">-</a> 'Write to file only, no screen output'<br/>
+&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("qtcreator <a href="CppOperatorMinus.htm">-</a><a href="CppVersion.htm">version</a> 2&gt; tmp.txt");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>("tmp.txt");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sz &gt; 1);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s <a href="CppOperatorAssign.htm">=</a> v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.substr(0,11) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("<a href="CppQtCreator.htm">Qt Creator</a> "))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.substr(11,5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>Dialog::<a href="CppGetStlVersion.htm">GetStlVersion</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(__VERSION__);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
