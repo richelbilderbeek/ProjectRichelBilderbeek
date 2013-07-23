@@ -6,25 +6,25 @@ myprofile=$mytarget.pro
 
 if [ ! -e $myprofile ]
 then
-  echo "Qt Creator project '$myprofile' not found"
+  echo $mytarget": FAIL: (Qt Creator project not found)"
   exit
 fi
 
-$myfile $myprofile
+$myqmake $myprofile
 
 if [ ! -e Makefile ]
 then
-  echo "FAIL: "$myfile" "$myprofile" (makefile not found)"
+  echo $mytarget": FAIL: (makefile not found)"
   exit
 fi
 
-make
+$mymake
 
 if [ -e $mytarget ]
 then
   echo $mytarget": SUCCESS"
 else
-  echo "FAIL: "$myfile" "$myprofile" (executable not found)"
+  echo $mytarget": FAIL: (executable not found)"
 fi
 
 #Cleaning up

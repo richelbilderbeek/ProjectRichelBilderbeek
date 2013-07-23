@@ -1,2 +1,7 @@
 #!/bin/bash
-~/bin/ToolCodeToHtmlConsole --source ./CppGetFilesInFolder
+for folder in `ls | egrep "Cpp"`
+do
+  echo $folder
+
+  ~/bin/ToolCodeToHtmlConsole --source ./$folder
+done

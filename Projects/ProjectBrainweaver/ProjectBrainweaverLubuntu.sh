@@ -11,7 +11,7 @@ rm moc_*.cpp
 rm object_script*.*
 
 myfile="qmake"
-for mytarget in "BrainweaverDeveloper" "BrainweaverStudent" "BrainweaverAssessor"
+for mytarget in "ProjectBrainweaverDeveloper" "ProjectBrainweaverStudent" "ProjectBrainweaverAssessor"
 do
 
 myprofile=$mytarget.pro
