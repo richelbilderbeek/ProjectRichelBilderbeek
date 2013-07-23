@@ -208,9 +208,39 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("is a GUI to test and experiment with <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
   }
+  else if (m_page_name == "CppBoostFormatExample1")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppBoostFormatExample1.htm\">Boost.Format example 1</a> is a <a href=\"CppBoostFormatExample1.htm\">Boost.Format</a> example.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppBoostFormatExample1.zip\">Download the Qt Creator project 'CppBoostFormatExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppBoostFormatExample1")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppBoostFormatExample2.htm\">Boost.Format example 2</a> is a <a href=\"CppBoostFormatExample1.htm\">Boost.Format</a> example.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppBoostFormatExample2.zip\">Download the Qt Creator project 'CppBoostFormatExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppChess")
   {
     v.push_back("<p><a href=\"CppChess.htm\">Chess</a> has many chess <a href=\"CppClass.htm\">classes</a></p>");
+  }
+  else if (m_page_name == "CppCompileErrorParseErrorAtBOOST_JOIN")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppCompileErrorParseErrorAtBOOST_JOIN.htm\">CppCompileErrorParseErrorAtBOOST_JOIN</a> is a <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppCompileError.htm\">compile error</a>.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppCompileErrorParseErrorAtBOOST_JOIN.zip\">Download the Qt Creator project 'CppCompileErrorParseErrorAtBOOST_JOIN' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppConnectThree")
   {
@@ -316,6 +346,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("</ol>");
     v.push_back("");
   }
+
   else if (m_page_name == "CppCounter")
   {
     v.push_back("<p><a href=\"CppCounter.htm\">Counter</a> is a <a href=\"CppClass.htm\">class</a>");
@@ -380,38 +411,418 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppGetTxtFilesInFolder.zip\">Download the Qt Creator project 'CppGetTxtFilesInFolder' (zip)</a></li>");
     v.push_back("</ul>");
   }
+
+  else if (m_page_name == "CppHelloBoostLexical_CastQtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostLexical_CastQtCreatorCygwin.htm\">Hello Boost.Lexical_cast using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloBoostLexical_Cast.htm\">Hello Boost.Lexical_cast</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostLexical_CastQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorCygwin' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostLexical_CastQtCreatorLubuntu")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostLexical_CastQtCreatorLubuntu.htm\">Hello Boost.Lexical_cast using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloBoostLexical_Cast.htm\">Hello Boost.Lexical_cast</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostLexical_CastQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorLubuntu' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostLexical_CastQtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostLexical_CastQtCreatorLubuntuToWindows.htm\">Hello Boost.Lexical_cast using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostLexical_Cast.htm\">Hello Boost.Lexical_cast</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostLexical_CastQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostLexical_CastQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostLexical_CastQtCreatorSliTaz.htm\">Hello Boost.Lexical_cast using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloBoostLexical_Cast.htm\">Hello Boost.Lexical_cast</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostLexical_CastQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostLexical_CastQt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostLexical_CastQt4QtCreatorLubuntuToWindows.htm\">Hello Boost.Lexical_cast using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostLexical_Cast.htm\">Hello Boost.Lexical_cast</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostLexical_CastQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows.htm\">Hello Boost.Lexical_cast using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostLexical_Cast.htm\">Hello Boost.Lexical_cast</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostLexical_CastQtCreatorWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostLexical_CastQtCreatorWindows.htm\">Hello Boost.Lexical_cast using Qt Creator under Windows</a> is <p><a href=\"CppHelloBoostLexical_Cast.htm\">Hello Boost.Lexical_cast</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostLexical_CastQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppHelloBoostQtCreatorLubuntu")
   {
-    //v.push_back("<h1>(<a href=\"Cpp.htm\">C++</a>) <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"CppHelloBoostQtCreatorLubuntu.htm\">'Hello Boost' using Qt Creator under Lubuntu</a></h1>");
-    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<!-- This text is generated by CodeToHtml -->");
     v.push_back("<p><a href=\"CppHelloBoost.htm\">Hello Boost</a> is an extension of <a href=\"CppHelloWorld.htm\">Hello World</a>.");
     v.push_back("Like <a href=\"CppHelloWorld.htm\">Hello World</a>, <a href=\"CppHelloBoost.htm\">Hello Boost</a> is a simple console");
     v.push_back("application. <a href=\"CppHelloBoost.htm\">Hello Boost</a>, however, also requires multiple <a href=\"CppBoost.htm\">Boost</a> ");
     v.push_back("<a href=\"CppLibrary.htm\">libraries</a> to <a href=\"CppLink.htm\">link</a> against.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"CppHelloBoostQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostQtCreatorLubuntu' (including Makefile and bash script)(zip)</a></li>");
+    v.push_back("  <li><a href=\"CppHelloBoostQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostQtCreatorLubuntu' (zip)</a></li>");
     v.push_back("</ul>");
+  }
 
+
+
+
+
+
+
+
+
+
+
+  else if (m_page_name == "CppHelloBoostRegexQtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostRegexQtCreatorCygwin.htm\">Hello Boost.Regex using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloBoostRegex.htm\">Hello Boost.Regex</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostRegexQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorCygwin' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostRegexQtCreatorLubuntu")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostRegexQtCreatorLubuntu.htm\">Hello Boost.Regex using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloBoostRegex.htm\">Hello Boost.Regex</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostRegexQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorLubuntu' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostRegexQtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostRegexQtCreatorLubuntuToWindows.htm\">Hello Boost.Regex using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostRegex.htm\">Hello Boost.Regex</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostRegexQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostRegexQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostRegexQtCreatorSliTaz.htm\">Hello Boost.Regex using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloBoostRegex.htm\">Hello Boost.Regex</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostRegexQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostRegexQt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostRegexQt4QtCreatorLubuntuToWindows.htm\">Hello Boost.Regex using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostRegex.htm\">Hello Boost.Regex</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostRegexQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostRegexQt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostRegexQt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostRegexQt5QtCreatorLubuntuToWindows.htm\">Hello Boost.Regex using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostRegex.htm\">Hello Boost.Regex</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostRegexQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostRegexQt5QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostRegexQtCreatorWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostRegexQtCreatorWindows.htm\">Hello Boost.Regex using Qt Creator under Windows</a> is <p><a href=\"CppHelloBoostRegex.htm\">Hello Boost.Regex</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostRegexQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostSignalsQtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostSignalsQtCreatorCygwin.htm\">Hello Boost.Signals using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloBoostSignals.htm\">Hello Boost.Signals</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostSignalsQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorCygwin' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostSignalsQtCreatorLubuntu")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostSignalsQtCreatorLubuntu.htm\">Hello Boost.Signals using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloBoostSignals.htm\">Hello Boost.Signals</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostSignalsQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorLubuntu' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostSignalsQtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostSignalsQtCreatorLubuntuToWindows.htm\">Hello Boost.Signals using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostSignals.htm\">Hello Boost.Signals</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostSignalsQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostSignalsQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostSignalsQtCreatorSliTaz.htm\">Hello Boost.Signals using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloBoostSignals.htm\">Hello Boost.Signals</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostSignalsQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostSignalsQt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostSignalsQt4QtCreatorLubuntuToWindows.htm\">Hello Boost.Signals using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostSignals.htm\">Hello Boost.Signals</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostSignalsQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostSignalsQt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostSignalsQt5QtCreatorLubuntuToWindows.htm\">Hello Boost.Signals using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostSignals.htm\">Hello Boost.Signals</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostSignalsQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQt5QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostSignalsQtCreatorWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostSignalsQtCreatorWindows.htm\">Hello Boost.Signals using Qt Creator under Windows</a> is <p><a href=\"CppHelloBoostSignals.htm\">Hello Boost.Signals</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostSignalsQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostUblasQtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostUblasQtCreatorCygwin.htm\">Hello Boost.uBLAS using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloBoostUblas.htm\">Hello Boost.uBLAS</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostUblasQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorCygwin' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostUblasQtCreatorLubuntu")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostUblasQtCreatorLubuntu.htm\">Hello Boost.uBLAS using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloBoostUblas.htm\">Hello Boost.uBLAS</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostUblasQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorLubuntu' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostUblasQtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostUblasQtCreatorLubuntuToWindows.htm\">Hello Boost.uBLAS using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostUblas.htm\">Hello Boost.uBLAS</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostUblasQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostUblasQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostUblasQtCreatorSliTaz.htm\">Hello Boost.uBLAS using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloBoostUblas.htm\">Hello Boost.uBLAS</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostUblasQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostUblasQt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostUblasQt4QtCreatorLubuntuToWindows.htm\">Hello Boost.uBLAS using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostUblas.htm\">Hello Boost.uBLAS</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostUblasQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostUblasQt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostUblasQt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostUblasQt5QtCreatorLubuntuToWindows.htm\">Hello Boost.uBLAS using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostUblas.htm\">Hello Boost.uBLAS</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostUblasQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostUblasQt5QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostUblasQtCreatorWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostUblasQtCreatorWindows.htm\">Hello Boost.uBLAS using Qt Creator under Windows</a> is <p><a href=\"CppHelloBoostUblas.htm\">Hello Boost.uBLAS</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostUblasQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostXpressiveQtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostXpressiveQtCreatorCygwin.htm\">Hello Boost.Xpressive using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloBoostXpressive.htm\">Hello Boost.Xpressive</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostXpressiveQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorCygwin' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostXpressiveQtCreatorLubuntu")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostXpressiveQtCreatorLubuntu.htm\">Hello Boost.Xpressive using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloBoostXpressive.htm\">Hello Boost.Xpressive</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostXpressiveQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorLubuntu' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostXpressiveQtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostXpressiveQtCreatorLubuntuToWindows.htm\">Hello Boost.Xpressive using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostXpressive.htm\">Hello Boost.Xpressive</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostXpressiveQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostXpressiveQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostXpressiveQtCreatorSliTaz.htm\">Hello Boost.Xpressive using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloBoostXpressive.htm\">Hello Boost.Xpressive</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostXpressiveQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostXpressiveQt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostXpressiveQt4QtCreatorLubuntuToWindows.htm\">Hello Boost.Xpressive using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostXpressive.htm\">Hello Boost.Xpressive</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostXpressiveQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostXpressiveQt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostXpressiveQt5QtCreatorLubuntuToWindows.htm\">Hello Boost.Xpressive using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostXpressive.htm\">Hello Boost.Xpressive</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostXpressiveQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQt5QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloBoostXpressiveQtCreatorWindows")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloBoostXpressiveQtCreatorWindows.htm\">Hello Boost.Xpressive using Qt Creator under Windows</a> is <p><a href=\"CppHelloBoostXpressive.htm\">Hello Boost.Xpressive</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloBoostXpressiveQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorWindows' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppHelloCpp0xQtCreatorLubuntu")
   {
-
+    v.push_back("<p><img src=\"PicCpp0x.png\" alt=\"C++0x\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppHelloCpp0xQtCreatorLubuntu.htm\">'HelloC++0x' using Qt Creator under Lubuntu</a> is a ");
-    v.push_back("<a href=\"CppHelloCpp0x.htm\">HelloC++0x</a> program using the <a href=\"CppQtCreator.htm\">Qt Creator</a>");
-    v.push_back("<a href=\"CppIde.htm\">IDE</a> under the <a href=\"CppLubuntu.htm\">Lubuntu</a> <a href=\"CppOs.htm\">operating system</a>.</p>");
+    v.push_back("<a href=\"CppHelloCpp0x.htm\">HelloC++0x</a> program.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppHelloCpp0xQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloCpp0xQtCreatorLubuntu' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppHelloCpp0xQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicCpp0x.png\" alt=\"C++0x\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloCpp0xQtCreatorSliTaz.htm\">'HelloC++0x' using Qt Creator under SliTaz</a> is a ");
+    v.push_back("<a href=\"CppHelloCpp0x.htm\">HelloC++0x</a> program.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloCpp0xQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloCpp0xQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloCpp11QtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloCpp11QtCreatorCygwin.htm\">Hello C++11 using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloCpp11.htm\">Hello C++11</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloCpp11QtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorCygwin' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppHelloCpp11QtCreatorLubuntu")
   {
-    v.push_back("<p><a href=\"CppHelloCpp11QtCreatorLubuntu.htm\">'HelloC++11' using Qt Creator under Lubuntu</a> is a");
-    v.push_back("<a href=\"CppHelloCpp11.htm\">HelloC++11</a> program using the <a href=\"CppQtCreator.htm\">Qt Creator</a>");
-    v.push_back("<a href=\"CppIde.htm\">IDE</a> under the <a href=\"CppLubuntu.htm\">Lubuntu</a> <a href=\"CppOs.htm\">operating system</a>.</p>");
+    v.push_back("<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloCpp11QtCreatorLubuntu.htm\">Hello C++11 using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloCpp11.htm\">Hello C++11</a> program.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppHelloCpp11QtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorLubuntu' (zip)</a></li>");
@@ -419,56 +830,140 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppHelloCpp11QtCreatorLubuntuToWindows")
   {
-    v.push_back("<p><a href=\"CppHelloCpp11QtCreatorLubuntuToWindows.htm\">'HelloC++11' using Qt Creator under Lubuntu, crosscompile to Windows</a> is a");
-    v.push_back("<a href=\"CppHelloCpp11.htm\">HelloC++11</a> program using the <a href=\"CppQtCreator.htm\">Qt Creator</a>");
-    v.push_back("<a href=\"CppIde.htm\">IDE</a> under the <a href=\"CppLubuntu.htm\">Lubuntu</a> <a href=\"CppOs.htm\">operating system</a>,");
-    v.push_back("<a href=\"CppCrossCompile.htm\">cross compiled</a> using <a href=\"CppMxe.htm\">MXE</a>.</p>");
+    v.push_back("<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloCpp11QtCreatorLubuntuToWindows.htm\">Hello C++11 using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloCpp11.htm\">Hello C++11</a> program.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppHelloCpp11QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorLubuntuToWindows' (zip)</a></li>");
     v.push_back("</ul>");
   }
-  else if (m_page_name == "CppHelloQtQtCreatorLubuntu")
+  else if (m_page_name == "CppHelloCpp11QtCreatorSliTaz")
   {
-
-    v.push_back("<p><a href=\"CppHelloQtQtCreatorLubuntu.htm\">'Hello Qt' using Qt Creator under Lubuntu</a> is a <a href=\"CppHelloQt.htm\">Hello Qt</a>");
-    v.push_back("program using the <a href=\"CppQtCreator.htm\">Qt Creator</a> <a href=\"CppIde.htm\">IDE</a> under the <a href=\"CppLubuntu.htm\">Lubuntu</a>");
-    v.push_back("<a href=\"CppOs.htm\">operating system</a>.</p>");
+    v.push_back("<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloCpp11QtCreatorSliTaz.htm\">Hello C++11 using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloCpp11.htm\">Hello C++11</a> program.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"CppHelloQtQtCreatorLubuntu.png\">View a screenshot of 'CppHelloQtQtCreatorLubuntu' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppHelloCpp11QtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloCpp11Qt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloCpp11Qt4QtCreatorLubuntuToWindows.htm\">Hello C++11 using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloCpp11.htm\">Hello C++11</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloCpp11Qt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloCpp11Qt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloCpp11Qt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloCpp11Qt5QtCreatorLubuntuToWindows.htm\">Hello C++11 using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloCpp11.htm\">Hello C++11</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloCpp11Qt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloCpp11Qt5QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloCpp11QtCreatorWindows")
+  {
+    v.push_back("<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloCpp11QtCreatorWindows.htm\">Hello C++11 using Qt Creator under Windows</a> is <p><a href=\"CppHelloCpp11.htm\">Hello C++11</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloCpp11QtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQtQtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQtQtCreatorCygwin.htm\">Hello Qt using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloQt.htm\">Hello Qt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQtQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorCygwin' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQtQtCreatorLubuntu")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQtQtCreatorLubuntu.htm\">Hello Qt using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloQt.htm\">Hello Qt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppHelloQtQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorLubuntu' (zip)</a></li>");
     v.push_back("</ul>");
   }
-  else if (m_page_name == "CppHelloQtQtCreatorUbuntu")
+  else if (m_page_name == "CppHelloQtQtCreatorLubuntuToWindows")
   {
-
-    v.push_back("<p><a href=\"CppHelloQtQtCreatorUbuntu.htm\">'Hello Qt' using Qt Creator under Ubuntu</a> is a <a href=\"CppHelloQt.htm\">Hello Qt</a>");
-    v.push_back("program using the <a href=\"CppQtCreator.htm\">Qt Creator</a> <a href=\"CppIde.htm\">IDE</a> under");
-    v.push_back("the <a href=\"CppUbuntu.htm\">Ubuntu</a> <a href=\"CppOs.htm\">operating system</a>.</p>");
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQtQtCreatorLubuntuToWindows.htm\">Hello Qt using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloQt.htm\">Hello Qt</a> program.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"CppHelloQtQtCreatorUbuntu.png\">View a screenshot of 'CppHelloQtQtCreatorUbuntu' (png)</a></li>");
-    v.push_back("  <li><a href=\"CppHelloQtQtCreatorUbuntu.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorUbuntu' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppHelloQtQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQtQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQtQtCreatorSliTaz.htm\">Hello Qt using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloQt.htm\">Hello Qt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQtQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQtQt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQtQt4QtCreatorLubuntuToWindows.htm\">Hello Qt using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloQt.htm\">Hello Qt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQtQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQtQt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQtQt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQtQt5QtCreatorLubuntuToWindows.htm\">Hello Qt using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloQt.htm\">Hello Qt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQtQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQtQt5QtCreatorLubuntuToWindows' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppHelloQtQtCreatorWindows")
   {
-    v.push_back("<p><a href=\"CppHelloQtQtCreatorWindows.htm\">'Hello Qt' using Qt Creator under Windows</a> is a <a href=\"CppHelloQt.htm\">Hello Qt</a>");
-    v.push_back("program using the <a href=\"CppQtCreator.htm\">Qt Creator</a> <a href=\"CppIde.htm\">IDE</a> under");
-    v.push_back("the <a href=\"CppWindows.htm\">Windows</a> <a href=\"CppOs.htm\">operating system</a>.</p>");
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQtQtCreatorWindows.htm\">Hello Qt using Qt Creator under Windows</a> is <p><a href=\"CppHelloQt.htm\">Hello Qt</a> program.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"CppHelloQtQtCreatorWindows.png\">View a screenshot of 'CppHelloQtQtCreatorWindows' (png)</a></li>");
     v.push_back("  <li><a href=\"CppHelloQtQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+
+  else if (m_page_name == "CppHelloQwtQtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQwtQtCreatorCygwin.htm\">Hello Qwt using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloQwt.htm\">Hello Qwt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQwtQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorCygwin' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppHelloQwtQtCreatorLubuntu")
   {
-
-    v.push_back("<p><a href=\"CppHelloQwtQtCreatorLubuntu.htm\">'HelloQwt' using Qt Creator under Lubuntu</a> is a");
-    v.push_back("<a href=\"CppHelloQwt.htm\">HelloQwt</a> program using the <a href=\"CppQtCreator.htm\">Qt Creator</a>");
-    v.push_back("<a href=\"CppIde.htm\">IDE</a> under the <a href=\"CppLubuntu.htm\">Lubuntu</a> <a href=\"CppOs.htm\">operating system</a>.</p>");
+    v.push_back("<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQwtQtCreatorLubuntu.htm\">Hello Qwt using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloQwt.htm\">Hello Qwt</a> program.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppHelloQwtQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorLubuntu' (zip)</a></li>");
@@ -476,12 +971,52 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppHelloQwtQtCreatorLubuntuToWindows")
   {
-    v.push_back("<p><a href=\"CppHelloQwtQtCreatorLubuntuToWindows.htm\">'HelloQwt' using Qt Creator under Lubuntu, crosscompile to Windows</a> is a");
-    v.push_back("<a href=\"CppHelloQwt.htm\">HelloQwt</a> program using the <a href=\"CppQtCreator.htm\">Qt Creator</a>");
-    v.push_back("<a href=\"CppIde.htm\">IDE</a> under the <a href=\"CppLubuntu.htm\">Lubuntu</a> <a href=\"CppOs.htm\">operating system</a>.</p>");
+    v.push_back("<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQwtQtCreatorLubuntuToWindows.htm\">Hello Qwt using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloQwt.htm\">Hello Qwt</a> program.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppHelloQwtQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQwtQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQwtQtCreatorSliTaz.htm\">Hello Qwt using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloQwt.htm\">Hello Qwt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQwtQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQwtQt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQwtQt4QtCreatorLubuntuToWindows.htm\">Hello Qwt using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloQwt.htm\">Hello Qwt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQwtQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQwtQt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQwtQt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQwtQt5QtCreatorLubuntuToWindows.htm\">Hello Qwt using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloQwt.htm\">Hello Qwt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQwtQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQwtQt5QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloQwtQtCreatorWindows")
+  {
+    v.push_back("<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloQwtQtCreatorWindows.htm\">Hello Qwt using Qt Creator under Windows</a> is <p><a href=\"CppHelloQwt.htm\">Hello Qwt</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloQwtQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorWindows' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppHelloWorld64QtCreatorLubuntu")
@@ -523,6 +1058,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppHelloWorldQtCreatorLubuntuToWindows")
   {
+    v.push_back("<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"to\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppHelloWorldQtCreatorLubuntuToWindows.htm\">'Hello World' using Qt Creator under Lubuntu, crosscompile to Windows</a> is a");
     v.push_back("<a href=\"CppHelloWorld.htm\">Hello World</a> program using the <a href=\"CppQtCreator.htm\">Qt Creator</a>");
     v.push_back("<a href=\"CppIde.htm\">IDE</a> under the <a href=\"CppLubuntu.htm\">Lubuntu</a> <a href=\"CppOs.htm\">operating system</a>,");
@@ -595,6 +1132,76 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppHelloQwtQtCreatorWindows.png\">View a screenshot of 'CppHelloQwtQtCreatorWindows' (png)</a></li>");
     v.push_back("  <li><a href=\"CppHelloQwtQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloWorldQtCreatorCygwin")
+  {
+    v.push_back("<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloWorldQtCreatorCygwin.htm\">Hello World using Qt Creator under Cygwin</a> is <p><a href=\"CppHelloWorld.htm\">Hello World</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloWorldQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorCygwin' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloWorldQtCreatorLubuntu")
+  {
+    v.push_back("<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloWorldQtCreatorLubuntu.htm\">Hello World using Qt Creator under Lubuntu</a> is <p><a href=\"CppHelloWorld.htm\">Hello World</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloWorldQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorLubuntu' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloWorldQtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloWorldQtCreatorLubuntuToWindows.htm\">Hello World using Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloWorld.htm\">Hello World</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloWorldQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloWorldQtCreatorSliTaz")
+  {
+    v.push_back("<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloWorldQtCreatorSliTaz.htm\">Hello World using Qt Creator under SliTaz</a> is <p><a href=\"CppHelloWorld.htm\">Hello World</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloWorldQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorSliTaz' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloWorldQt4QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloWorldQt4QtCreatorLubuntuToWindows.htm\">Hello World using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloWorld.htm\">Hello World</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloWorldQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloWorldQt4QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloWorldQt5QtCreatorLubuntuToWindows")
+  {
+    v.push_back("<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloWorldQt5QtCreatorLubuntuToWindows.htm\">Hello World using Qt5 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloWorld.htm\">Hello World</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloWorldQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloWorldQt5QtCreatorLubuntuToWindows' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppHelloWorldQtCreatorWindows")
+  {
+    v.push_back("<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppHelloWorldQtCreatorWindows.htm\">Hello World using Qt Creator under Windows</a> is <p><a href=\"CppHelloWorld.htm\">Hello World</a> program.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppHelloWorldQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorWindows' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppLibcvautomationExample1")
@@ -697,6 +1304,15 @@ const std::vector<std::string> Info::ToHtml() const
   else if (m_page_name == "CppLedWidget")
   {
     v.push_back("<p><a href=\"CppLedWidget.htm\">LedWidget</a> is a <a href=\"CppLed.htm\">Led</a> <a href=\"CppWidget.htm\">widget</a>.</p>");
+  }
+  else if (m_page_name == "CppLinkErrorUndefinedReferenceToWebCore")
+  {
+    v.push_back("<p><a href=\"CppLinkErrorUndefinedReferenceToWebCore.htm\">CppLinkErrorUndefinedReferenceToWebCore</a> is a");
+    v.push_back("<a href=\"CppLinkError.htm\">link error</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppLinkErrorUndefinedReferenceToWebCore.zip\">Download the Qt Creator project 'CppLinkErrorUndefinedReferenceToWebCore' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppLoopReader")
   {
@@ -818,6 +1434,15 @@ const std::vector<std::string> Info::ToHtml() const
   {
     v.push_back("<p><a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a> is a dialog for <a href=\"CppOpenQuestion.htm\">OpenQuestion</a>.</p>");
   }
+  else if (m_page_name == "CppPreprocessorSwitchGccVersion")
+  {
+    v.push_back("<p><a href=\"CppPreprocessorSwitchGccVersion.htm\">CppPreprocessorSwitchGccVersion</a> displays");
+    v.push_back("how to switch on teh <a href=\"CppGcc.htm\">GCC</a> version.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppPreprocessorSwitchGccVersion.zip\">Download the Qt Creator project 'CppPreprocessorSwitchGccVersion' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppPrimeExpert")
   {
     v.push_back("<p><a href=\"CppPrimeExpert.htm\">PrimeExpert</a> is a <a href=\"CppClass.htm\">class</a> with only one important");
@@ -855,6 +1480,37 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQmakeErrorUnknownModulesInQtLocationSensors.htm\">Download the Qt Creator project 'CppQmakeErrorUnknownModulesInQtLocationSensors' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppQSqlTableModelExample1")
+  {
+    v.push_back("<p><a href=\"CppQSqlTableModelExample1.htm\">QSqlTableModel example 1</a> is a");
+    v.push_back("<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQSqlTableModelExample1.png\">View a screenshot of 'CppQSqlTableModelExample1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQSqlTableModelExample1.zip\">Download the Qt Creator project 'CppQSqlTableModelExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQSqlTableModelExample2")
+  {
+    v.push_back("<p><a href=\"CppQSqlTableModelExample2.htm\">QSqlTableModel example 2</a> is a");
+    v.push_back("<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQSqlTableModelExample2.png\">View a screenshot of 'CppQSqlTableModelExample2' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQSqlTableModelExample2.zip\">Download the Qt Creator project 'CppQSqlTableModelExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQSqlTableModelExample3")
+  {
+    v.push_back("<p><a href=\"CppQSqlTableModelExample3.htm\">QSqlTableModel example 3</a> is a");
+    v.push_back("<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQSqlTableModelExample3.png\">View a screenshot of 'CppQSqlTableModelExample3' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQSqlTableModelExample3.zip\">Download the Qt Creator project 'CppQSqlTableModelExample3' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+
   else if (m_page_name == "CppQtAboutDialog")
   {
     v.push_back("<p><a href=\"CppQtAboutDialog.htm\">QtAboutDialog</a> is a <a href=\"CppQt.htm\">Qt</a> dialog");
@@ -869,6 +1525,16 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"CppQtConnectThreeWidget.htm\">QtConnectThreeWidget</a> is a <a href=\"CppQt.htm\">Qt</a> <a href=\"CppWidget.htm\">widget</a>");
     v.push_back("<a href=\"CppClass.htm\">class</a> for a responsive connect-three game. <a href=\"CppQtConnectThreeWidget.htm\">QtConnectThreeWidget</a> is");
     v.push_back("used in, among others, the <a href=\"Games.htm\">game</a> <a href=\"GameConnectThree.htm\">ConnectThree</a>.</p>");
+  }
+  else if (m_page_name == "CppQtCreator_5_1")
+  {
+    v.push_back("<p><a href=\"CppQtCreator_5_1.htm\">Qt Creator 5.1 example 1</a> is a");
+    v.push_back("<a href=\"CppQtSql.htm\">Qt Creator 5.1</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtCreator_5_1.png\">View a screenshot of 'CppQtCreator_5_1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQtCreator_5_1.zip\">Download the Qt Creator project 'CppQtCreator_5_1' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtDialWidget")
   {
@@ -928,6 +1594,16 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"CppQtSprites.htm\">QtSprites</a> is a <a href=\"CppClass.htm\">class</a>");
     v.push_back("containing sprites.</p>");
 
+  }
+  else if (m_page_name == "CppQtSqlExample1")
+  {
+    v.push_back("<p><a href=\"CppQtSqlExample1.htm\">Qt SQL example 1</a> is a");
+    v.push_back("<a href=\"CppQtSql.htm\">Qt SQL</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtSqlExample1.png\">View a screenshot of 'CppQtSqlExample1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQtSqlExample1.zip\">Download the Qt Creator project 'CppQtSqlExample1' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtTicTacToeWidget")
   {
@@ -1265,61 +1941,7 @@ const std::vector<std::string> Info::ToHtml() const
     assert(v.size() == 1);
     v[0] = "<!-- No CodeToHtmlInfo about this class with page name " + m_page_name + "-->";
   }
-  //if (!v.empty())
-  //{
-  //  v.push_back("<p>&nbsp;</p>");
-  //  v.push_back("<p>&nbsp;</p>");
-  //  v.push_back("<p>&nbsp;</p>");
-  //  v.push_back("<p>&nbsp;</p>");
-  //  v.push_back("<p>&nbsp;</p>");
-  //}
   return v;
 }
 
 } //~namespace CodeToHtml
-
-
-/*
-
-CppBoostFormatExample1
-CppBoostFormatExample2
-CppCompileErrorParseErrorAtBOOST_JOIN
-CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows
-CppHelloBoostLexical_CastQtCreatorLubuntu
-CppHelloBoostLexical_CastQtCreatorLubuntuToWindows
-CppHelloBoostLexical_CastQtCreatorSliTaz
-CppHelloBoostRegexQt5QtCreatorLubuntuToWindows
-CppHelloBoostRegexQtCreatorCygwin
-CppHelloBoostRegexQtCreatorLubuntu
-CppHelloBoostRegexQtCreatorLubuntuToWindows
-CppHelloBoostRegexQtCreatorSliTaz
-CppHelloBoostRegexQtCreatorUbuntu
-CppHelloBoostRegexQtCreatorWindows
-CppHelloBoostSignals2QtCreatorLubuntu
-CppHelloBoostSignalsQtCreatorLubuntu
-CppHelloBoostUblasQtCreatorLubuntu
-CppHelloBoostUblasQtCreatorSliTaz
-CppHelloBoostXpressiveQtCreatorCygwin
-CppHelloBoostXpressiveQtCreatorLubuntu
-CppHelloBoostXpressiveQtCreatorLubuntuToWindows
-CppHelloBoostXpressiveQtCreatorSliTaz
-CppHelloBoostXpressiveQtCreatorWindows
-CppHelloCpp0xQtCreatorSliTaz
-CppHelloCpp11QtCreatorCygwin
-CppHelloCpp11QtCreatorSliTaz
-CppHelloCpp11QtCreatorWindows
-CppHelloQt4QtCreatorLubuntu
-CppHelloQt5QtCreatorLubuntu
-CppHelloQtQtCreatorCygwin
-CppHelloQtQtCreatorLubuntuToWindows
-CppHelloQwtQtCreatorCygwin
-CppHelloQwtQtCreatorWindows
-CppHelloWorldQt5QtCreatorLubuntuToWindows
-CppLinkErrorUndefinedReferenceToWebCore
-CppPreprocessorSwitchGccVersion
-CppQSqlTableModelExample1
-CppQSqlTableModelExample2
-CppQSqlTableModelExample3
-CppQtCreator_5_1
-CppQtSqlExample1
-*/

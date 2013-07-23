@@ -34,7 +34,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>120</width>
+         <width>339</width>
          <height>275</height>
         </rect>
        </property>
@@ -91,7 +91,7 @@
      </widget>
      <widget class="QTabWidget" name="tab_main">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="layout_context">
        <attribute name="title">
@@ -109,17 +109,9 @@
            </attribute>
            <layout class="QGridLayout" name="gridLayout_6">
             <item row="0" column="0">
-             <widget class="QWebView" name="web_view_context">
-              <property name="font">
-               <font>
-                <family>Courier</family>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="url">
-               <url>
-                <string>about:blank</string>
-               </url>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>web_view_context disabled, due to Qt5 dependency problems</string>
               </property>
              </widget>
             </item>
@@ -161,8 +153,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>822</width>
-             <height>231</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
           </widget>
@@ -185,8 +177,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>822</width>
-             <height>202</height>
+             <width>604</width>
+             <height>191</height>
             </rect>
            </property>
           </widget>
@@ -229,8 +221,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>822</width>
-             <height>231</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
           </widget>
@@ -253,8 +245,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>822</width>
-             <height>231</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
           </widget>
@@ -268,13 +260,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

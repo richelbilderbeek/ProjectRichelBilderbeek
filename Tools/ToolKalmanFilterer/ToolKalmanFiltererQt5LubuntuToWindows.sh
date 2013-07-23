@@ -29,8 +29,10 @@ fi
 
 
 #Cleaning up
-rm -r release
-rm -r debug
-rm Makefile
-rm Makefile.*
-rm ui_*
+#rm *.o
+#rm object_script.*
+#rm -r release
+#rm -r debug
+#rm Makefile
+#rm Makefile.*
+#rm ui_*

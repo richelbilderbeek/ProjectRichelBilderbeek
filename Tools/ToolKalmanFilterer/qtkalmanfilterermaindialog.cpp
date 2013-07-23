@@ -57,6 +57,12 @@
 #include "trace.h"
 #include "ui_qtkalmanfilterermaindialog.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+//Due to Qmake error
+//http://richelbilderbeek.nl/CppQmakeErrorUnknownModulesInQtLocationSensors.htm
+#define DISABLE_QWEBVIEW
+#endif
+
 #pragma GCC diagnostic pop
 
 QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
@@ -77,6 +83,7 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   assert(m_model);
   assert(ui->scroll_area_parameters_layout->layout());
   //TRACE(QWebSettings::globalSettings()->fontFamily(QWebSettings::FixedFont).toStdString());
+  #ifndef DISABLE_QWEBVIEW
   QWebSettings::globalSettings()->setFontFamily(QWebSettings::FixedFont,"Courier New");
   QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize,14);
   QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,false);
@@ -88,6 +95,7 @@ QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
     "  font-size: 18px;"
     "  font-family: \"Courier New\", \"Courier\", Courier, monospace;"
     "} ");
+  #endif
 
   ui->scroll_area_parameters_layout->layout()->addWidget(m_experiment_dialog);
 
@@ -497,7 +505,7 @@ void QtKalmanFiltererMainDialog::ShowGraph(const boost::shared_ptr<const KalmanF
     assert(i < vs.size());
     const std::vector<double>& v = vs[i];
     assert(n_timesteps == boost::numeric_cast<int>(v.size()));
-    #ifdef _WIN32
+    #if QWT_VERSION >= 0x060000
     curves[i]->setData(new QwtPointArrayData(&time_series[0],&v[0],time_series.size()));
     #else
     curves[i]->setData(&time_series[0],&v[0],time_series.size());
@@ -769,9 +777,11 @@ void QtKalmanFiltererMainDialog::on_tab_context_currentChanged(int index)
   assert(index == ui->tab_context->currentIndex());
   if (index == 0)
   {
+    #ifndef DISABLE_QWEBVIEW
     //Render HTML when user really wants to see it
     const QString s = ui->edit_context->toPlainText();
     ui->web_view_context->setHtml(s);
+    #endif
   }
 }
 
@@ -782,8 +792,10 @@ void QtKalmanFiltererMainDialog::OnNewContext(const std::string context)
     ui->edit_context->setPlainText(context.c_str());
     if (ui->tab_context->currentIndex() == 0)
     {
+      #ifndef DISABLE_QWEBVIEW
       //Only display HTML when visible
       ui->web_view_context->setHtml(context.c_str());
+      #endif
     }
     assert(ui->edit_context->toPlainText().toStdString() == context);
   }
