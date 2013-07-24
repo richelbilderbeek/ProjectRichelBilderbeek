@@ -1,15 +1,5 @@
 #!/bin/bash
 
-#Cleaning up
-rm Makefile
-rm Makefile.*
-rm -r release
-rm -r debug
-rm ui_*.h
-rm qrc_*.cpp
-rm moc_*.cpp
-rm object_script*.*
-
 myfile="qmake"
 for mytarget in "ProjectBrainweaverDeveloper" "ProjectBrainweaverStudent" "ProjectBrainweaverAssessor"
 do

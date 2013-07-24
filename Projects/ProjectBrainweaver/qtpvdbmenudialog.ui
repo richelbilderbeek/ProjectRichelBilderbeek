@@ -114,7 +114,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="button_concept">
+       <widget class="QPushButton" name="button_test_conceptitem">
         <property name="text">
          <string>&amp;K. QtPvdbConceptItem</string>
         </property>
@@ -348,7 +348,7 @@
   <tabstop>button_test_qtroundedtextrectitem</tabstop>
   <tabstop>button_test_qtroundededitrectitem</tabstop>
   <tabstop>button_test_arrowitems</tabstop>
-  <tabstop>button_concept</tabstop>
+  <tabstop>button_test_conceptitem</tabstop>
   <tabstop>button_test_node_item</tabstop>
   <tabstop>button_test_edge_item</tabstop>
   <tabstop>button_test_qtconceptmapdisplaywidget</tabstop>

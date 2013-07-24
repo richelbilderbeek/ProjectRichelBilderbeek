@@ -107,7 +107,6 @@ int main(int argc, char *argv[])
       {
         &QtPvdbMenuDialog::on_button_about_clicked,
         &QtPvdbMenuDialog::on_button_assessor_clicked,
-        &QtPvdbMenuDialog::on_button_concept_clicked,
         &QtPvdbMenuDialog::on_button_create_test_files_clicked,
         &QtPvdbMenuDialog::on_button_modify_stylesheet_clicked,
         &QtPvdbMenuDialog::on_button_overview_clicked,
@@ -122,6 +121,7 @@ int main(int argc, char *argv[])
         &QtPvdbMenuDialog::on_button_test_arrowitems_clicked,
         &QtPvdbMenuDialog::on_button_test_cluster_clicked,
         &QtPvdbMenuDialog::on_button_test_conceptedit_clicked,
+        &QtPvdbMenuDialog::on_button_test_conceptitem_clicked,
         &QtPvdbMenuDialog::on_button_test_conceptmap_clicked,
         &QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked,
         &QtPvdbMenuDialog::on_button_test_edge_item_clicked,

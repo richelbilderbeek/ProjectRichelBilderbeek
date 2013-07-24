@@ -275,12 +275,11 @@ void QtPvdbMenuDialog::Test()
       =
       {
         //Duplication of tests, the ones I am most interested in now
-        ui->button_test_edge_item,
+        ui->button_test_conceptitem,
 
         //Normal alphabetical order of tests
         ui->button_about,
         ui->button_assessor,
-        ui->button_concept,
         ui->button_create_test_files,
         ui->button_modify_stylesheet,
         ui->button_overview,
@@ -295,6 +294,7 @@ void QtPvdbMenuDialog::Test()
         ui->button_test_arrowitems,
         ui->button_test_cluster,
         ui->button_test_conceptedit,
+        ui->button_test_conceptitem,
         ui->button_test_conceptmap,
         ui->button_test_create_sub_concept_map,
         ui->button_test_edge_item,
@@ -469,7 +469,7 @@ void QtPvdbMenuDialog::Test()
 }
 #endif
 
-void QtPvdbMenuDialog::on_button_concept_clicked()
+void QtPvdbMenuDialog::on_button_test_conceptitem_clicked()
 {
   QtPvdbTestConceptItemDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
