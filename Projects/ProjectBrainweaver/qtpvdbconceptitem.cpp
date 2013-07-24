@@ -67,8 +67,15 @@ const boost::shared_ptr<const pvdb::Concept> QtPvdbConceptItem::GetConcept() con
   return p;
 }
 
+void QtPvdbConceptItem::hoverStartEvent(QGraphicsSceneHoverEvent *)
+{
+  std::exit(1); //Never called
+  this->setCursor(QCursor(Qt::PointingHandCursor));
+}
+
 void QtPvdbConceptItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
+  //std::exit(2);
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
@@ -158,6 +165,7 @@ void QtPvdbConceptItem::SetPos(const double x, const double y)
   }
 }
 
+/*
 QPainterPath QtPvdbConceptItem::shape() const
 {
   const int click_easy_width = 5;
@@ -168,3 +176,4 @@ QPainterPath QtPvdbConceptItem::shape() const
   stroker.setWidth(click_easy_width);
   return stroker.createStroke(path);
 }
+*/

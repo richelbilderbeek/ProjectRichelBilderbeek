@@ -47,6 +47,8 @@ struct QtPvdbConceptItem : public QtRoundedTextRectItem
   ///The pen by which the indicator is drawn
   const QPen& GetIndicatorPen() const { return m_indicator_pen; }
 
+  //Move hove
+  virtual void hoverStartEvent(QGraphicsSceneHoverEvent *) final;
   virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
 
   ///Derived classes respond differently to key presses
@@ -70,7 +72,7 @@ struct QtPvdbConceptItem : public QtRoundedTextRectItem
 
   ///Increase the sensitive area
   ///Add final to be sure that the shape is not set smaller
-  QPainterPath shape() const final;
+  //QPainterPath shape() const final;
 
   ///Emitted by SetPos
   boost::signals2::signal<void(const double,const double)> m_signal_position_changed;

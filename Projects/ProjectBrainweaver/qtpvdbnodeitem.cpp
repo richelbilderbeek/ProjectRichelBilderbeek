@@ -169,6 +169,16 @@ const boost::shared_ptr<pvdb::Concept> QtPvdbNodeItem::GetConcept()
   return p;
 }
 
+/*
+void QtPvdbNodeItem::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
+{
+  this->setCursor(QCursor(Qt::PointingHandCursor));
+  //m_concept_item->hoverMoveEvent(e);
+  //Won't cause a hover, because the concept item
+  //is not visible??
+}
+*/
+
 void QtPvdbNodeItem::keyPressEvent(QKeyEvent *event)
 {
   assert(m_concept_item);
