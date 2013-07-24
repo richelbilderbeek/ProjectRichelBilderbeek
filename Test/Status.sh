@@ -80,7 +80,6 @@ do
       rm *.o
       rm *_plugin_import.cpp
 
-      exit #tmp
     done #next type
 
   done #next profile
