@@ -41,6 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/regex.hpp>
 
 #include "htmlpage.h"
+#include "trace.h"
 
 CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 {
@@ -113,13 +114,13 @@ void CreateGlossaryMainDialog::CreatePage(
   const std::string& regex)
 {
   const std::vector<std::string> pagenames
-    = GetFilesInFolder("/home/richel/Projects/Projects/RichelbilderbeekNl",regex);
+    = GetFilesInFolder("/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",regex);
 
   std::vector<HtmlPage> pages;
   std::for_each(pagenames.begin(),pagenames.end(),
     [&pages](const std::string& s)
     {
-      pages.push_back(HtmlPage("/home/richel/Projects/Projects/RichelbilderbeekNl/" + s));
+      pages.push_back(HtmlPage("/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl/" + s));
     }
   );
 
@@ -180,6 +181,8 @@ void CreateGlossaryMainDialog::CreatePage(
       }
     }
   );
+
+  TRACE(pagenames.size());
 
   f
     << "</ul>\n"

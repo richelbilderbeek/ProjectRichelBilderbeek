@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>326</width>
-    <height>244</height>
+    <width>129</width>
+    <height>179</height>
    </rect>
   </property>
   <property name="font">
@@ -32,25 +32,6 @@ QLabel { font: 32px, &quot;Courier&quot; }
 QPushButton { font: 32px, &quot;Courier&quot; }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label_title">
-     <property name="font">
-      <font>
-       <family>,Courier</family>
-       <pointsize>-1</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>SitemapGenerator</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
    <item>
     <widget class="QWidget" name="widget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -117,21 +98,21 @@ QPushButton { font: 32px, &quot;Courier&quot; }</string>
    <item>
     <widget class="QPushButton" name="button_start">
      <property name="text">
-      <string>Start</string>
+      <string>&amp;Start</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_about">
      <property name="text">
-      <string>About</string>
+      <string>&amp;About</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_quit">
      <property name="text">
-      <string>Quit</string>
+      <string>&amp;Quit</string>
      </property>
     </widget>
    </item>

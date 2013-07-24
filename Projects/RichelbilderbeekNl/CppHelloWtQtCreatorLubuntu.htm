@@ -55,7 +55,7 @@
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
   <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
   <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.2.2</li>
 </ul>
@@ -210,25 +210,25 @@ myprofile=$mytarget.pro<br/>
 <br/>
 if [ ! -e $myprofile ]<br/>
 then<br/>
-&nbsp;&nbsp;echo "Qt Creator project '$myprofile' not found"<br/>
+&nbsp;&nbsp;echo $mytarget": FAIL: (Qt Creator project not found)"<br/>
 &nbsp;&nbsp;exit<br/>
 fi<br/>
 <br/>
-$myfile $myprofile<br/>
+$myqmake $myprofile<br/>
 <br/>
 if [ ! -e Makefile ]<br/>
 then<br/>
-&nbsp;&nbsp;echo "FAIL: "$myfile" "$myprofile" (makefile not found)"<br/>
+&nbsp;&nbsp;echo $mytarget": FAIL: (makefile not found)"<br/>
 &nbsp;&nbsp;exit<br/>
 fi<br/>
 <br/>
-make<br/>
+$mymake<br/>
 <br/>
 if [ -e $mytarget ]<br/>
 then<br/>
 &nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
 else<br/>
-&nbsp;&nbsp;echo "FAIL: "$myfile" "$myprofile" (executable not found)"<br/>
+&nbsp;&nbsp;echo $mytarget": FAIL: (executable not found)"<br/>
 fi<br/>
 <br/>
 #Cleaning up<br/>

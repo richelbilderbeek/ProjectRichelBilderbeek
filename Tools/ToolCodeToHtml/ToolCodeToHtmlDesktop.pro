@@ -150,6 +150,8 @@ win32 {
 unix {
   #message(Unix dynamic link to Boost)
 
+  #Don't link to Boost when crosscompiling is desired
+
   #LIBS += \
   #-lboost_date_time \
   #-lboost_filesystem \
@@ -160,10 +162,12 @@ unix {
 }
 
 win32 {
-  message(Native Windows dynamic link to Boost)
+  #message(Native Windows dynamic link to Boost)
 
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
+
+  #Don't link to Boost when crosscompiling is desired
 
   #debug {
   #  LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
