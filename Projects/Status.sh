@@ -61,7 +61,7 @@ do
 
       make
 
-      if [ -e ./$mybasename or -e ./release/$mybasename".exe" ]
+      if [ -e $mybasename] || [ -e ./release/$mybasename".exe" ]
       then
         echo $myprofile", "$mytypestr": SUCCESS" >> ../$mytempfile
       else
