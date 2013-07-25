@@ -38,7 +38,6 @@ protected:
 
 private slots:
 
-  void on_button_modify_clicked();
 
 private:
 
@@ -48,6 +47,8 @@ private:
   boost::shared_ptr<QtPvdbConceptMapEditWidget> m_concept_map;
 
   static void Test();
+
+  void DoSomethingRandom();
 };
 
 #endif // QTPVDBTESTCONCEPTMAPEDITWIDGETDIALOG_H

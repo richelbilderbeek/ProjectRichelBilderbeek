@@ -59,6 +59,11 @@ QtPvdbTestConceptMapEditWidgetDialog::~QtPvdbTestConceptMapEditWidgetDialog()
 void QtPvdbTestConceptMapEditWidgetDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+  if (event->key() == Qt::Key_1
+     && event->modifiers() & Qt::AltModifier)
+  {
+    DoSomethingRandom();
+  }
 }
 
 void QtPvdbTestConceptMapEditWidgetDialog::Test()
@@ -75,7 +80,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::Test()
   #endif
   TRACE("QtPvdbTestConceptMapEditWidgetDialog::Test started");
   QtPvdbTestConceptMapEditWidgetDialog d;
-  d.on_button_modify_clicked();
+  d.DoSomethingRandom();
   TRACE("TODO");
   /*
   assert(d.m_concept_map.get() == d.m_display_node->GetNode().get());
@@ -144,7 +149,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::Test()
   #endif
 }
 
-void QtPvdbTestConceptMapEditWidgetDialog::on_button_modify_clicked()
+void QtPvdbTestConceptMapEditWidgetDialog::DoSomethingRandom()
 {
 
   const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();

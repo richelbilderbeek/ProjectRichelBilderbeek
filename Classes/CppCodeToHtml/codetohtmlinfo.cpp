@@ -1284,6 +1284,18 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppLibcvautomationExample6.zip\">Download the Qt Creator project 'CppLibcvautomationExample6' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppLibcvautomationExample7")
+  {
+    v.push_back("<p><a href=\"CppLibcvautomationExample7.htm\">libcvautomation example 7: test a simple Qt desktop application by sending keys</a> is a");
+    v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example with a simple Qt desktop application and a ");
+    v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> test script. The application is called from the script, and has three");
+    v.push_back("buttons: two labeled 'Press me' and one labeled 'DON'T PRESS ME'. The test presses the tab and space keys, which causes that the upper 'Press me' button");
+    v.push_back("its text will change to OK, after which the 'DON'T PRESS ME' button is pressed, which causes an error.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppLibcvautomationExample7.zip\">Download the Qt Creator project 'CppLibcvautomationExample7' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppHtmlPage")
   {
     v.push_back("<p><a href=\"CppHtmlPage.htm\">HtmlPage</a> is a <a href=\"CppClass.htm\">class</a>");

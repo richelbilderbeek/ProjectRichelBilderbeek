@@ -7,6 +7,8 @@
 
 #include "ui_qtdialog.h"
 
+//#include <X11/keysymdef.h> //To find keymap
+
 extern "C"
 {
   #include "libcvautomation/libcvautomation.h"

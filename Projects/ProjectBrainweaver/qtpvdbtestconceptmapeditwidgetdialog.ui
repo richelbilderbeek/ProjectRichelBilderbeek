@@ -45,9 +45,30 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="button_modify">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>&amp;1. Modify</string>
+         <string>Tests triggered by keyboard</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>keyboard shortcuts only</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>for libcvautomation</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>1. Modify</string>
         </property>
        </widget>
       </item>

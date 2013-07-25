@@ -1,5 +1,6 @@
 #!/bin/bash
-#./../build-BrainweaverDeveloper-Desktop-Debug/BrainweaverDeveloper 1 &
+# Test if a concept item shows a hand cursor when hovering over it
+
 
 #0 about
 #1 assessor
@@ -45,12 +46,18 @@ then
   exit
 fi
 
+if [ -e /$mytester ]
+then
+  echo $mytestname": FAIL (executable '"$mytester"' not found)"
+  exit
+fi
+
 $myexe $test_test_conceptitem_index &
 #./../build-BrainweaverDeveloper-Desktop-Release/BrainweaverDeveloper $test_qtconceptmapeditwidget_index &
 
 sleep 2
 
-./$mytester -s "mouselocation"
+output=`./$mytester -s "mouselocation"`
 ./$mytester -s "mousexy 500 500"
 ./$mytester -s "mouseclick"
 ./$mytester -s "mouseclick"
