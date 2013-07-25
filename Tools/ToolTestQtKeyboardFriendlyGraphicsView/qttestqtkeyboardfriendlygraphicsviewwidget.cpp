@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/array.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include <QKeyEvent>
 
@@ -44,6 +45,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidget()
 {
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
   {
     //Legend
     const double midx = 0.0;
@@ -79,7 +86,7 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
 
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
@@ -103,7 +110,7 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
     scene()->addItem(circle);
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
@@ -125,7 +132,7 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
     scene()->addItem(circle);
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
@@ -148,7 +155,7 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
     scene()->addItem(circle);
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
@@ -171,7 +178,7 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
     scene()->addItem(circle);
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
@@ -196,13 +203,13 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
 
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       boost::array<QGraphicsItem *,3> v;
       v.assign(nullptr); assert(v[0] == nullptr && v[1] == nullptr && v[2] == nullptr);
       for (int j=0; j!=3; ++j)
       {
         const double sub_ray = 90.0;
-        const double sub_angle = angle + (2.0 * 2.0 * M_PI * static_cast<double>(j + 1) / static_cast<double>( (3 + 2) * n));
+        const double sub_angle = angle + (2.0 * 2.0 * pi * static_cast<double>(j + 1) / static_cast<double>( (3 + 2) * n));
         const double x = midx + std::sin(sub_angle) * sub_ray;
         const double y = midy - std::cos(sub_angle) * sub_ray;
         QtRoundedRectItem * const item = new QtRoundedRectItem;
@@ -233,7 +240,7 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
 
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       const double x1 = midx + std::sin(angle) * 0.5 * ray;
       const double y1 = midy - std::cos(angle) * 0.5 * ray;
       const double x2 = midx + std::sin(angle) * 0.9 * ray;
@@ -258,7 +265,7 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
 
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       const double x1 = midx + std::sin(angle) * 0.5 * ray;
       const double y1 = midy - std::cos(angle) * 0.5 * ray;
 
@@ -287,7 +294,7 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
     scene()->addItem(circle);
     for (int i=0; i!=n; ++i)
     {
-      const double angle = 2.0 * M_PI * static_cast<double>(i) / static_cast<double>(n);
+      const double angle = 2.0 * pi * static_cast<double>(i) / static_cast<double>(n);
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;

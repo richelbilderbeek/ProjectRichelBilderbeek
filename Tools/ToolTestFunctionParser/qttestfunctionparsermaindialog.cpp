@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttestfunctionparsermaindialog.h"
 
 #include <boost/lexical_cast.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include "fparser.hh"
 #include "ui_qttestfunctionparsermaindialog.h"
@@ -37,7 +38,14 @@ QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) 
   ui(new Ui::QtTestFunctionParserMainDialog)
 {
   ui->setupUi(this);
-  ui->edit_value->setText(boost::lexical_cast<std::string>(M_PI).c_str());
+
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
+  ui->edit_value->setText(boost::lexical_cast<std::string>(pi).c_str());
   Parse();
 }
 

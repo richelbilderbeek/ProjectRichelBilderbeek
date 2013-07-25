@@ -3,7 +3,10 @@ win32 {
   #CONFIG += static
 }
 
-QT += core gui webkit
+QT += core gui #webkit
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
@@ -421,7 +424,6 @@ SOURCES += \
     ../../Tools/ToolRegexTester/regextestermenudialog.cpp \
     ../../Tools/ToolRegexTester/regextestermaindialog.cpp \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.cpp \
-    ../../Tools/ToolRegexTester/regextesterboostmaindialog.cpp \
     ../../Tools/ToolRegexTester/qtregextestermenudialog.cpp \
     ../../Tools/ToolRegexTester/qtregextestermaindialog.cpp \
     ../../Tools/ToolTestQuestion/testquestionmenudialog.cpp \
@@ -526,7 +528,9 @@ SOURCES += \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
-    ../../Tools/ToolKalmanFilterer/qtcopyalltableview.cpp
+    ../../Tools/ToolKalmanFilterer/qtcopyalltableview.cpp \
+    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.cpp \
+    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -765,7 +769,6 @@ HEADERS += \
     ../../Tools/ToolRandomCode/randomcodemenudialog.h \
     ../../Tools/ToolRegexTester/qtregextestermaindialog.h \
     ../../Tools/ToolRegexTester/qtregextestermenudialog.h \
-    ../../Tools/ToolRegexTester/regextesterboostmaindialog.h \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.h \
     ../../Tools/ToolRegexTester/regextestermaindialog.h \
     ../../Tools/ToolRegexTester/regextestermenudialog.h \
@@ -914,7 +917,9 @@ HEADERS += \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
-    ../../Tools/ToolKalmanFilterer/qtcopyalltableview.h
+    ../../Tools/ToolKalmanFilterer/qtcopyalltableview.h \
+    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.h \
+    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.h
 
 
 RESOURCES += \
@@ -1749,8 +1754,18 @@ SOURCES += \
 #
 
 unix {
-  INCLUDEPATH += /usr/include/qwt-qt4
-  LIBS += -lqwt-qt4
+
+  exists(/usr/include/qwt) {
+    message(qwt)
+    INCLUDEPATH += /usr/include/qwt
+    LIBS += -lqwt
+  }
+
+  exists(/usr/include/qwt-qt4) {
+    message(qwt-qt4)
+    INCLUDEPATH += /usr/include/qwt-qt4
+    LIBS += -lqwt-qt4
+  }
 }
 
 win32 {

@@ -1,5 +1,5 @@
 #!/bin/bash
-apt-get install git vim qtcreator tmux make g++ libboost-dev libboost-all-dev witty-dev libqwt-dev autoconf bison cmake flex intltool libtool pkg-config scons
+apt-get install git vim qtcreator tmux make g++ libboost-all-dev witty-dev libqwt-dev autoconf bison cmake flex intltool libtool pkg-config scons tidy
 
 cd ~/
 if [ ! -d "ProjectRichelBilderbeek" ]

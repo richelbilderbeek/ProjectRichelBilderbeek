@@ -120,7 +120,11 @@ void QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
   QMessageBox box;
   box.setWindowIcon(this->windowIcon());
   box.setStyleSheet(this->styleSheet());
+  #if (QT_VERSION < 0x050000)
   const std::string s = boost::filesystem::path( qApp->argv()[0]).parent_path().string();
+  #else
+  const std::string s = boost::filesystem::path( qApp->arguments()[0].toStdString() ).parent_path().string();
+  #endif
   box.setWindowTitle( this->windowTitle() );
   box.setText( (std::string("HTML pages have been created in folder ") + s).c_str());
   box.exec();

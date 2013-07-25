@@ -30,11 +30,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
-
 #include <QGraphicsScene>
 #include <QPainterPath>
 #include <QPen>
@@ -55,13 +50,14 @@ QtMultiScaleChordRelationsWidget::QtMultiScaleChordRelationsWidget(QWidget *pare
 
 const std::string QtMultiScaleChordRelationsWidget::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> QtMultiScaleChordRelationsWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-08-17: version 1.0: initial version");
+  v.push_back("2013-07-25: version 1.1: transition to Qt5");
   return v;
 }
 
@@ -100,7 +96,8 @@ void QtMultiScaleChordRelationsWidget::SetChords(
     [this,chords1,chords2](boost::shared_ptr<Music::Chord>& chord)
     {
       //m_scene will delete these QtChords
-      QtChordVertex * const qt_chord = new QtChordVertex(chord,0,this->m_scene);
+      QtChordVertex * const qt_chord = new QtChordVertex(chord,0);
+      m_scene->addItem(qt_chord);
       const int cnt1 = std::count_if(chords1.begin(),chords1.end(),
         [chord](const boost::shared_ptr<Music::Chord>& another_chord)
         {
@@ -152,7 +149,8 @@ void QtMultiScaleChordRelationsWidget::SetChords(
       const int same = Music::Chord::CountSameNotes(x,y);
       if (same)
       {
-        QtChordEdge * const edge = new QtChordEdge(0,this->m_scene);
+        QtChordEdge * const edge = new QtChordEdge(0);
+        m_scene->addItem(edge);
         QPen pen;
         pen.setWidth(same * same);
         edge->setPen(pen);

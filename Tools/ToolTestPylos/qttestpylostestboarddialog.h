@@ -20,21 +20,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTPYLOSTESTBOARDDIALOG_H
 #define QTTESTPYLOSTESTBOARDDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 #include "pylosmove.h"
 #include "pylosboard.h"
 #include "qtpylosboardwidget.h"
-//---------------------------------------------------------------------------
+
 struct QLabel;
 struct QTimer;
 namespace Ui {
   class QtTestPylosTestBoardDialog;
 }
-//---------------------------------------------------------------------------
+
 class QtTestPylosTestBoardDialog : public QDialog
 {
   Q_OBJECT
@@ -68,5 +68,5 @@ private slots:
 
   void on_slider_tilt_sliderMoved(int position);
 };
-//---------------------------------------------------------------------------
+
 #endif // QTTESTPYLOSTESTBOARDDIALOG_H

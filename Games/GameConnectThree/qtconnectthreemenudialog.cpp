@@ -68,6 +68,7 @@ void QtConnectThreeMenuDialog::changeEvent(QEvent *e)
   }
 }
 
+#ifndef NDEBUG
 void QtConnectThreeMenuDialog::Test()
 {
   {
@@ -77,6 +78,7 @@ void QtConnectThreeMenuDialog::Test()
   }
   QtConnectThreeGameDialog d(0,std::bitset<3>(false));
 }
+#endif
 
 void QtConnectThreeMenuDialog::on_button_start_clicked()
 {

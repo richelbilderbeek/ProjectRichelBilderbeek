@@ -33,8 +33,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 QtChordVertex::QtChordVertex(
   boost::shared_ptr<Music::Chord>& chord,
-  QGraphicsItem *parent, QGraphicsScene *scene)
-  : QGraphicsItem(parent,scene), m_chord(chord), m_color(200,200,200)
+  QGraphicsItem *parent)
+  : QGraphicsItem(parent), m_chord(chord), m_color(200,200,200)
 {
   //this->setFlag(ItemIsMovable);
   {
@@ -67,7 +67,7 @@ void QtChordVertex::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
 
 const std::string QtChordVertex::GetVersion()
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> QtChordVertex::GetVersionHistory()
@@ -75,5 +75,6 @@ const std::vector<std::string> QtChordVertex::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2012-08-10: version 1.0: initial version");
   v.push_back("2012-08-17: version 1.1: added SetColor method");
+  v.push_back("2013-07-25: version 1.2: transition to Qt5");
   return v;
 }

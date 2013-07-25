@@ -32,7 +32,7 @@ struct QtChordVertex : public QGraphicsItem
 {
   QtChordVertex(
     boost::shared_ptr<Music::Chord>& chord,
-    QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+    QGraphicsItem *parent = 0);
 
   //Thanks compiler, for reminding me to define this
   QRectF boundingRect() const;

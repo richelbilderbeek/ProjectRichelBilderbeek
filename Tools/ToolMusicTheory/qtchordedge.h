@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 struct QtChordEdge : public QGraphicsLineItem
 {
-  QtChordEdge(QGraphicsItem *parent, QGraphicsScene *scene);
+  QtChordEdge(QGraphicsItem *parent);
 
   ///Obtain this class its version number
   static const std::string GetVersion();

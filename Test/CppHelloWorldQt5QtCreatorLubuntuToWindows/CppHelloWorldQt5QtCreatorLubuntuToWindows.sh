@@ -29,7 +29,7 @@ fi
 
 #Cleaning up
 #rm *.o
-rm Makefile
-rm Makefile.*
-rm -r release
-rm -r debug
+#rm Makefile
+#rm Makefile.*
+#rm -r release
+#rm -r debug

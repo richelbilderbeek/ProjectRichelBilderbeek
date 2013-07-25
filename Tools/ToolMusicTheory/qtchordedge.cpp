@@ -27,20 +27,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtchordedge.h"
 
-QtChordEdge::QtChordEdge(QGraphicsItem *parent, QGraphicsScene *scene)
-  : QGraphicsLineItem(parent,scene)
+QtChordEdge::QtChordEdge(QGraphicsItem *parent)
+  : QGraphicsLineItem(parent)
 {
 
 }
 
 const std::string QtChordEdge::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> QtChordEdge::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-08-10: version 1.0: initial version");
+  v.push_back("2013-07-25: version 1.1: transition to Qt5");
   return v;
 }

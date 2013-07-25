@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include <boost/lexical_cast.hpp>
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QBitmap>
@@ -97,14 +98,20 @@ void QtPerfectElasticCollisionMainDialog::paintEvent(QPaintEvent*)
   assert(ui->slider_impulse_1->minimum() == 0);
   assert(ui->slider_impulse_2->minimum() == 0);
 
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
   const double angle
-    = 2.0 * M_PI * boost::numeric_cast<double>(ui->dial_angle->sliderPosition())
+    = 2.0 * pi * boost::numeric_cast<double>(ui->dial_angle->sliderPosition())
     / boost::numeric_cast<double>(ui->dial_angle->maximum());
   const double angle_impulse1
-    = 2.0 * M_PI * boost::numeric_cast<double>(ui->dial_impulse_angle1->sliderPosition())
+    = 2.0 * pi * boost::numeric_cast<double>(ui->dial_impulse_angle1->sliderPosition())
     / boost::numeric_cast<double>(ui->dial_impulse_angle1->maximum());
   const double angle_impulse2
-    = 2.0 * M_PI * boost::numeric_cast<double>(ui->dial_impulse_angle2->sliderPosition())
+    = 2.0 * pi * boost::numeric_cast<double>(ui->dial_impulse_angle2->sliderPosition())
     / boost::numeric_cast<double>(ui->dial_impulse_angle2->maximum());
   const double speed_impulse1
     = 100.0 * boost::numeric_cast<double>(ui->slider_impulse_1->sliderPosition())
@@ -355,6 +362,12 @@ void QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
   double& angle2,
   double& speed2)
 {
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
   //The length of the impulse of player 1 (assumes both players have equal mass!)
   const double A = speed1;
   //The length of the impulse of player 2 (assumes both players have equal mass!)
@@ -364,7 +377,7 @@ void QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
   //The angle between c and the impulse direction of player 1
   const double a = c - angle1;
   //The angle between c and the impulse direction of player 2
-  const double b = c + M_PI - angle2;
+  const double b = c + pi - angle2;
 
   //Seperate the impulses to their impulses paralel and othoganal the angle of collision
   //The length of the impulse of player 1 parallel to the collision
@@ -377,14 +390,14 @@ void QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
   const double G = E * std::sin(b);
 
   //Seperate the impulses in X and Y directions
-  const double BdX = B *  std::sin(c + (0.0 * M_PI));
-  const double BdY = B * -std::cos(c + (0.0 * M_PI));
-  const double CdX = C *  std::sin(c + (1.5 * M_PI));
-  const double CdY = C * -std::cos(c + (1.5 * M_PI));
-  const double FdX = F *  std::sin(c + (1.0 * M_PI));
-  const double FdY = F * -std::cos(c + (1.0 * M_PI));
-  const double GdX = G *  std::sin(c + (0.5 * M_PI));
-  const double GdY = G * -std::cos(c + (0.5 * M_PI));
+  const double BdX = B *  std::sin(c + (0.0 * pi));
+  const double BdY = B * -std::cos(c + (0.0 * pi));
+  const double CdX = C *  std::sin(c + (1.5 * pi));
+  const double CdY = C * -std::cos(c + (1.5 * pi));
+  const double FdX = F *  std::sin(c + (1.0 * pi));
+  const double FdY = F * -std::cos(c + (1.0 * pi));
+  const double GdX = G *  std::sin(c + (0.5 * pi));
+  const double GdY = G * -std::cos(c + (0.5 * pi));
 
   //The resulting impulses
   //The resulting impulse of player 1 in the X direction
@@ -405,7 +418,12 @@ void QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
 
 double QtPerfectElasticCollisionMainDialog::GetAngle(const double dx, const double dy)
 {
-  return M_PI - (std::atan2(dx,dy));
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+  return pi - (std::atan2(dx,dy));
 }
 
 #ifndef NDEBUG
@@ -416,45 +434,50 @@ void QtPerfectElasticCollisionMainDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
   //Test GetAngle
   {
     const double angle =  GetAngle(0.0,-1.0); //North
-    const double expected = 0.0 * M_PI;
+    const double expected = 0.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,-1.0); //North-East
-    const double expected = 0.25 * M_PI;
+    const double expected = 0.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,0.0); //East
-    const double expected = 0.5 * M_PI;
+    const double expected = 0.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,1.0); //South-East
-    const double expected = 0.75 * M_PI;
+    const double expected = 0.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(0.0,1.0); //South
-    const double expected = 1.0 * M_PI;
+    const double expected = 1.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,1.0); //South-West
-    const double expected = 1.25 * M_PI;
+    const double expected = 1.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,0.0); //West
-    const double expected = 1.5 * M_PI;
+    const double expected = 1.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,-1.0); //North-West
-    const double expected = 1.75 * M_PI;
+    const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
 }

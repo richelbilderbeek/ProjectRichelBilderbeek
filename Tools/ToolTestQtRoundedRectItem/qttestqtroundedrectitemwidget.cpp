@@ -10,6 +10,9 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
+
+#include <boost/math/constants/constants.hpp>
+
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QGraphicsSimpleTextItem>
@@ -18,10 +21,16 @@
 QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *parent)
   : QGraphicsView(new QGraphicsScene,parent)
 {
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
   const int n_items = 16;
   for (int i=0; i!=n_items; ++i)
   {
-    const double angle = 2.0 * M_PI * (static_cast<double>(i) / static_cast<double>(n_items));
+    const double angle = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
     {
       const double ray = 200.0;
       const double x =  std::sin(angle) * ray;

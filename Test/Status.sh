@@ -1,6 +1,6 @@
 #!/bin/bash
 #Script to check the status of compiles
-mytempfile="tmpStatus.txt"
+mytempfile="Status.txt"
 if [ -e $mytempfile ]
 then
   rm $mytempfile

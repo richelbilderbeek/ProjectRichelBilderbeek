@@ -29,26 +29,27 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
-#include <boost/numeric/conversion/cast.hpp>
+
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+#include <boost/math/constants/constants.hpp>
+#include <boost/numeric/conversion/cast.hpp>
+
 #include <QBitmap>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QTimer>
-//---------------------------------------------------------------------------
+
 #include "pylosboard.h"
 #include "pylosmove.h"
 #include "pylosmustremovestate.h"
 #include "pylospositionstate.h"
 #include "qtpylosboardwidget.h"
 #include "ui_qttestpylostestboarddialog.h"
-//---------------------------------------------------------------------------
+
 #ifdef PYLOSGAME_H
 #error Pylos::Game must not be used by a QtPylosTestBoard
 #endif
-//---------------------------------------------------------------------------
+
 QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestPylosTestBoardDialog),
@@ -79,13 +80,13 @@ QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
 
   UpdateLog();
 }
-//---------------------------------------------------------------------------
+
 QtTestPylosTestBoardDialog::~QtTestPylosTestBoardDialog()
 {
   m_timer->stop();
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -97,7 +98,7 @@ void QtTestPylosTestBoardDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
 {
   if (m_timer->isActive())
@@ -123,7 +124,7 @@ void QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
     m_timer->start();
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::OnTimer()
 {
   //Click player
@@ -166,7 +167,7 @@ void QtTestPylosTestBoardDialog::OnTimer()
     m_timer->stop();
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::on_radio_set_player1_clicked()
 {
   if (m_widget->CanSetPlayer(Pylos::Player::player1))
@@ -178,7 +179,7 @@ void QtTestPylosTestBoardDialog::on_radio_set_player1_clicked()
     ui->radio_set_player2->setChecked(true);
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::on_radio_set_player2_clicked()
 {
   if (m_widget->CanSetPlayer(Pylos::Player::player2))
@@ -190,27 +191,27 @@ void QtTestPylosTestBoardDialog::on_radio_set_player2_clicked()
     ui->radio_set_player1->setChecked(true);
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::on_radio_advanced_clicked()
 {
   m_widget->StartAdvanced();
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::on_radio_basic_clicked()
 {
   m_widget->StartBasic();
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::on_radio_bw_clicked()
 {
   m_widget->SetColorSchemeBlackWhite();
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::on_radio_rb_clicked()
 {
   m_widget->SetColorSchemeRedBlue();
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::UpdateLog()
 {
   ui->text_log->clear();
@@ -257,10 +258,16 @@ void QtTestPylosTestBoardDialog::UpdateLog()
     }
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestPylosTestBoardDialog::on_slider_tilt_sliderMoved(int position)
 {
-  const double radians = (static_cast<double>(position) * 2.0 * M_PI) / 360.0;
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
+  const double radians = (static_cast<double>(position) * 2.0 * pi) / 360.0;
   this->m_widget->SetTilt(radians);
   {
     const std::string s = "Tilt: " + boost::lexical_cast<std::string>(radians)
@@ -269,4 +276,4 @@ void QtTestPylosTestBoardDialog::on_slider_tilt_sliderMoved(int position)
     ui->slider_tilt->setToolTip(s.c_str());
   }
 }
-//---------------------------------------------------------------------------
+

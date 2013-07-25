@@ -317,7 +317,7 @@ void QtStateObserverMainDialog::Run()
     }
   }
   //Clear all plots
-  #ifdef _WIN32
+  #if (QWT_VERSION >= 0x060000)
   m_curve_outputs_alpha->setData(new QwtPointArrayData(0,0,0));
   m_curve_outputs_alpha_beta->setData(new QwtPointArrayData(0,0,0));
   m_curve_outputs_alpha_beta_gamma->setData(new QwtPointArrayData(0,0,0));
@@ -341,7 +341,7 @@ void QtStateObserverMainDialog::Run()
     {
       timeseries.push_back(static_cast<double>(i));
     }
-    #ifdef _WIN32
+    #if (QWT_VERSION >= 0x060000)
     m_curve_inputs->setData(new QwtPointArrayData(&timeseries[0],&inputs[0],inputs.size()));
     if (ui->groupbox_alpha->isChecked())
     {

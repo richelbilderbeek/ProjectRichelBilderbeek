@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 
 #include <boost/lexical_cast.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include <QKeyEvent>
 
@@ -52,17 +53,23 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
 
   assert(this->ui->view->scene());
 
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
   //Add normal arrows
   {
     const int n_items = 12;
     const double ray = 100;
     for (int i=0; i<n_items; i+=2) //1 arrow per 2 items
     {
-      const double angle1 = 2.0 * M_PI * (static_cast<double>(i) / static_cast<double>(n_items));
+      const double angle1 = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
       const double x1 =  std::sin(angle1) * ray;
       const double y1 = -std::cos(angle1) * ray;
       const bool tail = (std::rand() >> 4) % 2;
-      const double angle2 = 2.0 * M_PI * (static_cast<double>(i + 1) / static_cast<double>(n_items));
+      const double angle2 = 2.0 * pi * (static_cast<double>(i + 1) / static_cast<double>(n_items));
       const double x2 =  std::sin(angle2) * ray;
       const double y2 = -std::cos(angle2) * ray;
       const bool head = (std::rand() >> 4) % 2;
@@ -77,10 +84,10 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
     const double ray = 150;
     for (int i=0; i<n_items; i+=2) //1 arrow per 2 items
     {
-      const double angle1 = 2.0 * M_PI * (static_cast<double>(i) / static_cast<double>(n_items));
+      const double angle1 = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
       const QPointF tail_pos(std::sin(angle1) * ray,-std::cos(angle1) * ray);
       const bool tail = (std::rand() >> 4) % 2;
-      const double angle2 = 2.0 * M_PI * (static_cast<double>(i+1) / static_cast<double>(n_items));
+      const double angle2 = 2.0 * pi * (static_cast<double>(i+1) / static_cast<double>(n_items));
       const QPointF head_pos(std::sin(angle2) * ray,-std::cos(angle2) * ray);
       const bool head = (std::rand() >> 4) % 2;
 
@@ -110,7 +117,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
 
     for (int i=0; i!=n_items; ++i)
     {
-      const double angle = 2.0 * M_PI * (static_cast<double>(i) / static_cast<double>(n_items));
+      const double angle = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
       const double x1 =  std::sin(angle) * ray;
       const double y1 = -std::cos(angle) * ray;
       QtRoundedRectItem * rect = nullptr;
@@ -152,7 +159,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
     std::vector<QtRoundedRectItem *> rects;
     for (int i=0; i!=n_items; ++i)
     {
-      const double angle = 2.0 * M_PI * (static_cast<double>(i) / static_cast<double>(n_items));
+      const double angle = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
       const double x1 =  std::sin(angle) * ray;
       const double y1 = -std::cos(angle) * ray;
       QtRoundedRectItem * rect = new QtRoundedRectItem;

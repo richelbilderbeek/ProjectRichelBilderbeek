@@ -408,7 +408,8 @@ SOURCES += \
     ../../Tools/ToolRegexTester/regextestermenudialog.cpp \
     ../../Tools/ToolRegexTester/regextestermaindialog.cpp \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.cpp \
-    ../../Tools/ToolRegexTester/regextesterboostmaindialog.cpp \
+    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.cpp \
+    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.cpp \
     ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.cpp \
     ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp \
     ../../Classes/CppKalmanFilter/whitenoisesystemtype.cpp \
@@ -769,7 +770,8 @@ HEADERS += \
     ../../Tools/ToolRegexTester/regextestermenudialog.h \
     ../../Tools/ToolRegexTester/regextestermaindialog.h \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.h \
-    ../../Tools/ToolRegexTester/regextesterboostmaindialog.h \
+    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.h \
+    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.h \
     ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.h \
     ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h \
     ../../Classes/CppKalmanFilter/whitenoisesystemtype.h \

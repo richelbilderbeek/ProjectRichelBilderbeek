@@ -1,13 +1,10 @@
 win32 {
   #Add the line below when cross-compiling
-  CONFIG += static
+  #CONFIG += static
 }
 
 QT += core gui
 #QT += webkit
-
-#QWebView and Qt4 vs Qt5 drives me nuts!
-DEFINES += DISABLE_QWEBVIEW
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -243,7 +240,7 @@ unix {
 win32 {
   !static {
     message(Native Windows)
-    QMAKE_CXXFLAGS += -Werror
+    #QMAKE_CXXFLAGS += -Werror
 
   }
 
