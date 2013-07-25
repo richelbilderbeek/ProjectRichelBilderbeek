@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QMouseEvent>
@@ -83,6 +84,12 @@ void QtShapeWidget::DrawShape(
   const int width, const int height,
   const Shape * const shape)
 {
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
   const unsigned char red = shape->GetRed();
   const unsigned char green = shape->GetGreen();
   const unsigned char blue = shape->GetBlue();
@@ -109,14 +116,14 @@ void QtShapeWidget::DrawShape(
     const int y1 = boost::numeric_cast<int>(
       midy + (std::sin(rotation) * midy));
     const int x2 = boost::numeric_cast<int>(
-      midx - (std::cos(rotation + M_PI) * midx));
+      midx - (std::cos(rotation + pi) * midx));
     const int y2 = boost::numeric_cast<int>(
-      midy + (std::sin(rotation + M_PI) * midy));
+      midy + (std::sin(rotation + pi) * midy));
     painter.drawLine(x1,y1,x2,y2);
     return;
   }
 
-  const double d_angle = 2.0 * M_PI / boost::numeric_cast<double>(n_corners);
+  const double d_angle = 2.0 * pi / boost::numeric_cast<double>(n_corners);
 
   QPolygon polygon;
 

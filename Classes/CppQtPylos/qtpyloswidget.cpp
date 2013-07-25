@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <iostream>
 
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QMouseEvent>
@@ -50,7 +51,7 @@ QtPylosWidget::QtPylosWidget() :
     QWidget(0),
     m_select(0,0,0),
     m_sprites(this->width(),this->height(),Pylos::GetRedBlueColors()),
-    m_tilt(30.0 * 2.0 * M_PI / 360.0)
+    m_tilt(30.0 * 2.0 * boost::math::constants::pi<double>() / 360.0)
 {
   //Allows this widget to respond to mouse moving over it
   this->setMouseTracking(true);

@@ -36,8 +36,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 #include <QKeyEvent>
 
-QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent, QGraphicsScene* scene)
- : QGraphicsRectItem(parent,scene),
+QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent)
+ : QGraphicsRectItem(parent),
    m_focus(Focus::left)
 {
   this->setFlags(
@@ -49,13 +49,14 @@ QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent, QGraphicsScene* 
 
 const std::string QtLeftRightRectItem::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> QtLeftRightRectItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-19: version 1.0: initial version");
+  v.push_back("2013-07-25: version 1.1: transition to Qt5");
   return v;
 }
 

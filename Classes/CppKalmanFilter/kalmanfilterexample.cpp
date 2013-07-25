@@ -315,7 +315,7 @@ std::unique_ptr<KalmanFilterExample> KalmanFilterExample::CreateExample2()
   #else
   const double pi = M_PI;
   #endif
-  const double angle = pi / 4.0; //Radians. 45 degrees = M_PI / 4.0 radians
+  const double angle = pi / 4.0; //Radians. 45 degrees = pi / 4.0 radians
 
 
   //Gravity influences y and Vy

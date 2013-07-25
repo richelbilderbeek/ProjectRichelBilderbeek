@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlheader.h"
 
 #include <cassert>
+#include <stdexcept>
 
 #include <boost/filesystem.hpp>
 

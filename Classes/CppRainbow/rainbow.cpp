@@ -33,10 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
+#include <boost/math/constants/constants.hpp>
 
 void Rainbow::GetRgb(
   const double x,
@@ -44,15 +41,21 @@ void Rainbow::GetRgb(
   double& g,
   double& b)
 {
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
   if (x <= 0.0 || x >= 1.0) { r = g = b = 0.0; return; }
 
   const double f_r = std::max(0.0,
     (x < 0.5
-    ? std::cos(x * 1.5 * M_PI)
-    : -std::sin(x * 1.5 * M_PI)
+    ? std::cos(x * 1.5 * pi)
+    : -std::sin(x * 1.5 * pi)
     ) );
-  const double f_g = std::max(0.0, std::sin( x * 1.5 * M_PI ) );
-  const double f_b = std::max(0.0, -std::cos( x * 1.5 * M_PI ) );
+  const double f_g = std::max(0.0, std::sin( x * 1.5 * pi ) );
+  const double f_b = std::max(0.0, -std::cos( x * 1.5 * pi ) );
   const double max = std::max(f_r, std::max(f_g,f_b));
   assert(max!=0.0);
 

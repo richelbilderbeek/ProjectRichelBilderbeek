@@ -35,11 +35,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 
-//Terrible #define, but my crosscompiler cannot find the definition of M_PI in cmath.h :-(
-#ifndef M_PI
-# define M_PI		3.14159265358979323846	/* pi */
-#endif
-
 #include "shinybutton.h"
 #include "trace.h"
 

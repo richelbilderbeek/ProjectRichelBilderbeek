@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ///A rect item that has two focuses: left and right!
 struct QtLeftRightRectItem : public QGraphicsRectItem
 {
-  QtLeftRightRectItem(QGraphicsItem* parent = 0, QGraphicsScene* scene = 0);
+  QtLeftRightRectItem(QGraphicsItem* parent = 0);
 
   ///Obtain the version of this class
   static const std::string GetVersion();

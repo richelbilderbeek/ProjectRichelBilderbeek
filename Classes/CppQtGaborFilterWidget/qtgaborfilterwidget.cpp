@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QPainter>
@@ -60,7 +61,12 @@ QtGaborFilterWidget::QtGaborFilterWidget(
       &QtGaborFilterWidget::OnResize,
       this));
 
-  this->GetWidget()->GetGaborFilter()->SetAngle(M_PI * 2.0 / 16.0);
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+  this->GetWidget()->GetGaborFilter()->SetAngle(pi * 2.0 / 16.0);
   this->GetWidget()->GetGaborFilter()->SetFrequency(16.0);
   this->GetWidget()->GetGaborFilter()->SetSigma(this->GetWidget()->GetGaborFilter()->SuggestSigma(
     2.0,2.0));

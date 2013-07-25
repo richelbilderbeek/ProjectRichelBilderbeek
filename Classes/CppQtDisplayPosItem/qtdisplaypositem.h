@@ -31,7 +31,7 @@ struct QtDisplayPosItem : public QGraphicsSimpleTextItem
 {
   typedef QtDisplayPosItem This_t;
 
-  QtDisplayPosItem(QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+  QtDisplayPosItem(QGraphicsItem *parent = 0);
 
   ///Obtain the version of this class
   static const std::string GetVersion();

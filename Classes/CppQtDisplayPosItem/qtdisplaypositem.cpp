@@ -34,8 +34,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 //#include <QGraphicsScene>
 
-QtDisplayPosItem::QtDisplayPosItem(QGraphicsItem *parent, QGraphicsScene *scene)
- : QGraphicsSimpleTextItem(parent,scene)
+QtDisplayPosItem::QtDisplayPosItem(QGraphicsItem *parent)
+ : QGraphicsSimpleTextItem(parent)
 {
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
@@ -46,13 +46,14 @@ QtDisplayPosItem::QtDisplayPosItem(QGraphicsItem *parent, QGraphicsScene *scene)
 
 const std::string QtDisplayPosItem::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> QtDisplayPosItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-19: version 1.0: initial version");
+  v.push_back("2013-07-25: version 1.1: transition to Qt5");
   return v;
 }
 
