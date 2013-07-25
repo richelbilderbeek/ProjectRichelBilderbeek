@@ -108,6 +108,7 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
   //Without this line, mouseMoveEvent won't be called
   this->setMouseTracking(true);
 
+
   {
     //QLinearGradient linearGradient(-500,-500,500,500);
     //linearGradient.setColorAt(0.0,QColor(214,214,214));

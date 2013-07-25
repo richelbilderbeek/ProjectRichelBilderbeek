@@ -7,6 +7,8 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpvdbconceptmapitem.h"
 
+#include <QCursor>
+
 #include "pvdbconcept.h"
 #include "pvdbexamples.h"
 #include "qtpvdbconceptitem.h"
@@ -21,7 +23,7 @@ void QtPvdbConceptMapItem::OnConceptRequestsEdit()
   m_signal_conceptmapitem_requests_edit(this);
 }
 
-void QtPvdbConceptMapItem::hoverMoveEvent(QGraphicsSceneHoverEvent * event)
+void QtPvdbConceptMapItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
-  this->GetConceptItem()->hoverMoveEvent(event);
+  this->setCursor(QCursor(Qt::PointingHandCursor));
 }
