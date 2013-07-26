@@ -29,7 +29,7 @@
         <x>0</x>
         <y>0</y>
         <width>697</width>
-        <height>626</height>
+        <height>624</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -108,11 +108,22 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_print">
-     <property name="text">
-      <string>&amp;Print</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="button_print">
+       <property name="text">
+        <string>&amp;Print</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="text">
+        <string>Am I responsive?</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

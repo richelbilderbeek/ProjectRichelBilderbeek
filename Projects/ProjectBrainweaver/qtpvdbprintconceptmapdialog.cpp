@@ -82,6 +82,15 @@ const std::vector<QWidget *> QtPvdbPrintConceptMapDialog::CollectWidgets() const
 void QtPvdbPrintConceptMapDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+  if (event->key() == Qt::Key_Question)
+  {
+    std::stringstream s;
+    s << "Nodes: " << m_widget->GetConceptMap()->GetNodes().size() << '\n'
+      << "QGraphicsSceneItems: " << m_widget->GetScene()->items().count() << '\n';
+    ui->lineEdit->setText(s.str().c_str());
+
+
+  }
 }
 
 void QtPvdbPrintConceptMapDialog::on_button_print_clicked()
@@ -133,6 +142,7 @@ void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
   {
     //const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
     //  = m_file->GetConceptMap();
+    assert(m_widget);
     assert(m_widget->GetConceptMap());
 
     //m_widget->ReadFromConceptMap(copy_concept_map);
@@ -141,6 +151,10 @@ void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     m_widget->setMinimumHeight(m_widget->scene()->itemsBoundingRect().height() + 2);
     //Fit concept map to widget
     m_widget->fitInView(m_widget->scene()->itemsBoundingRect());
+
+    assert(m_widget->scene()->items().count()
+      >= m_widget->GetConceptMap()->GetNodes().size() + m_widget->GetConceptMap()->GetEdges().size());
+
   }
   //Concept map as text
   {

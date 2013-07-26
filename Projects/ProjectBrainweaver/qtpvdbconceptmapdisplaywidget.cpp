@@ -51,8 +51,8 @@ QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
   Test();
   assert( (concept_map || !concept_map)
     && "Also an empty concept map can be displayed");
-  BuildQtConceptMap();
   #endif
+  BuildQtConceptMap(); //Must be in release mode as well
 }
 
 
