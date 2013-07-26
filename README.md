@@ -44,6 +44,10 @@ Libraries used that are also in this repository are:
 These libraries are added to allow easy crosscompilation to Windows using the often-supplied 'crosscompile.sh' scripts. 
 For crosscompiling from Lubuntu to Windows I use [MXE](https://github.com/mxe/mxe).
 
+## Questions and feature requests
+
+Questions and feature requests can be done by creating a new issue or sending an email to the address at [Richel Bilderbeek's HTML webpage](http://www.richelbilderbeek.nl).
+
 ## Git policy
 
 I follow the branching policy from [this article](http://nvie.com/posts/a-successful-git-branching-model), using only
