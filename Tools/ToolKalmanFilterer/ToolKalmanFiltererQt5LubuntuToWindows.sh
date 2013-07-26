@@ -23,6 +23,7 @@ make
 if [ -e ./release/$myexe ]
 then
   echo $mytarget": SUCCESS"
+  cp ./release/$myexe ./$myexe
 else
   echo $mytarget": FAIL (executable not found)"
 fi

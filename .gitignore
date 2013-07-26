@@ -13,6 +13,7 @@ tmp*.txt
 *.pro.autosave
 *.autosave
 *.pro.user.*
+*.exe
 *__Debug
 *__Release
 *_plugin_import.cpp

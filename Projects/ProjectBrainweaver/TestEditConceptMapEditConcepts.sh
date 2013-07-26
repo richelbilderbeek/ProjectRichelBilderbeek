@@ -36,7 +36,8 @@ test_qtconceptmapeditwidget_index=22
 mytestname="TestConceptItemMouseCursor"
 
 #Test with release version
-myexe="../../../bin/ProjectBrainweaverDeveloperRelease"
+#myexe="../../../bin/ProjectBrainweaverDeveloperRelease"
+myexe="../../../.wine/drive_c/windows/system32/ProjectBrainweaverDeveloper.exe"
 #mytester="../../Libraries/libcvautomation/examples/cva-input"
 mytester="../../Test/build-CppLibcvautomationExample2-Desktop-Debug/CppLibcvautomationExample2"
 
@@ -52,10 +53,10 @@ then
   exit
 fi
 
-$myexe $test_qtconceptmapeditwidget_index &
+wine $myexe $test_qtconceptmapeditwidget_index &
 #./../build-BrainweaverDeveloper-Desktop-Release/BrainweaverDeveloper $test_qtconceptmapeditwidget_index &
 
-sleep 1
+sleep 2
 
 #Go to the concept map
 ./$mytester -s "keyclick Tab"
@@ -66,7 +67,7 @@ for i in {1..1000}
 do
   #echo $i
 
-  mynumber=$[ ( $RANDOM % 23 ) ]
+  mynumber=$[ ( $RANDOM % 43 ) ]
 
   case $mynumber in
    0) ./$mytester -s "keyclick a" ;;
@@ -75,53 +76,73 @@ do
    3) ./$mytester -s "keyclick d" ;;
    4) ./$mytester -s "keyclick e" ;;
    5) ./$mytester -s "keyclick f" ;;
-   6) ./$mytester -s "keyclick space" ;;
-   7) ./$mytester -s "keyclick F2" ;;
-   8) ./$mytester -s "keyclick BackSpace" ;;
-   9) ./$mytester -s "keyclick Return" ;;
-  10) ./$mytester -s "keyclick Up" ;;
-  11) ./$mytester -s "keyclick Right" ;;
-  12) ./$mytester -s "keyclick Down" ;;
-  13) ./$mytester -s "keyclick Left" ;;
-  14) #Choose OK
+   6) ./$mytester -s "keyclick g" ;;
+   7) ./$mytester -s "keyclick h" ;;
+   8) ./$mytester -s "keyclick i" ;;
+   9) ./$mytester -s "keyclick j" ;;
+  10) ./$mytester -s "keyclick k" ;;
+  11) ./$mytester -s "keyclick l" ;;
+  12) ./$mytester -s "keyclick m" ;;
+  13) ./$mytester -s "keyclick n" ;;
+  14) ./$mytester -s "keyclick o" ;;
+  15) ./$mytester -s "keyclick p" ;;
+  16) ./$mytester -s "keyclick q" ;;
+  17) ./$mytester -s "keyclick r" ;;
+  18) ./$mytester -s "keyclick s" ;;
+  19) ./$mytester -s "keyclick t" ;;
+  20) ./$mytester -s "keyclick u" ;;
+  21) ./$mytester -s "keyclick v" ;;
+  22) ./$mytester -s "keyclick w" ;;
+  23) ./$mytester -s "keyclick x" ;;
+  24) ./$mytester -s "keyclick y" ;;
+  25) ./$mytester -s "keyclick z" ;;
+  26) ./$mytester -s "keyclick space" ;;
+  27) ./$mytester -s "keyclick F2" ;;
+  28) ./$mytester -s "keyclick BackSpace" ;;
+  29) ./$mytester -s "keyclick Return" ;;
+  30) ./$mytester -s "keyclick Up" ;;
+  31) ./$mytester -s "keyclick Right" ;;
+  32) ./$mytester -s "keyclick Down" ;;
+  33) ./$mytester -s "keyclick Left" ;;
+  34) #Choose OK
     ./$mytester -s "keydown Alt_L"
     ./$mytester -s "keyclick o"
     ./$mytester -s "keyup Alt_L"
     ;;
-  15) #Choose Add
+  35) #Choose Add
     ./$mytester -s "keydown Alt_L"
     ./$mytester -s "keyclick v"
     ./$mytester -s "keyup Alt_L"
     ;;
-  16) ./$mytester -s "keyclick Tab" ;;
-  17) ./$mytester -s "keyclick Insert" ;;
-  18) #Move up
+  36) ./$mytester -s "keyclick Tab" ;;
+  37) ./$mytester -s "keyclick Insert" ;;
+  38) #Move up
     ./$mytester -s "keydown Shift_L"
     ./$mytester -s "keyclick Up"
     ./$mytester -s "keyup Shift_L"
     ;;
-  19) #Move right
+  39) #Move right
     ./$mytester -s "keydown Shift_L"
     ./$mytester -s "keyclick Right"
     ./$mytester -s "keyup Shift_L"
     ;;
-  20) #Move down
+  40) #Move down
     ./$mytester -s "keydown Shift_L"
     ./$mytester -s "keyclick Down"
     ./$mytester -s "keyup Shift_L"
     ;;
-  21) #Move left
+  41) #Move left
     ./$mytester -s "keydown Shift_L"
     ./$mytester -s "keyclick Left"
     ./$mytester -s "keyup Shift_L"
     ;;
-  22) ./$mytester -s "keyclick Tab" ;;
-  23) #Choose 1: Modify
+  42) ./$mytester -s "keyclick Tab" ;;
+  43) #Choose 1: Modify
     ./$mytester -s "keydown Alt_L"
     ./$mytester -s "keyclick 1"
     ./$mytester -s "keyup Alt_L"
     ;;
-  24) ./$mytester -s "keyclick Delete" ;;
+  44) ./$mytester -s "keyclick Delete" ;;
   esac
 
 done

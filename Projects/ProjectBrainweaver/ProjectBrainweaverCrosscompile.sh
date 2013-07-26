@@ -1,5 +1,7 @@
 #!/bin/bash
-myqmake="i686-pc-mingw32-qmake"
+
+#myqmake="i686-pc-mingw32-qmake" #Qt4
+myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
 for mytarget in "ProjectBrainweaverDeveloper" "ProjectBrainweaverStudent" "ProjectBrainweaverAssessor"
 do
 
@@ -25,6 +27,8 @@ if [ -e ./release/$mytarget".exe" ]
 then
   echo $mytarget": SUCCESS"
   cp ./release/$mytarget".exe" ./$mytarget".exe"
+  cp ./release/$mytarget".exe" "../../../.wine/drive_c/windows/system32/"$mytarget".exe"
+
 else
   echo $mytarget": FAIL"
 fi
