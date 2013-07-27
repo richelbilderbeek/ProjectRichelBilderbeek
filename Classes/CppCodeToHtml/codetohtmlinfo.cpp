@@ -1532,6 +1532,102 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQSqlTableModelExample3.zip\">Download the Qt Creator project 'CppQSqlTableModelExample3' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppQTableViewExample1")
+  {
+    v.push_back("<p><a href=\"CppQTableViewExample1.htm\">QTableView example 1: table with three columns, one with an X</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableViewExample1.png\">View a screenshot of 'QTableViewExample1' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableViewExample1.zip\">Download the Qt Creator project 'QTableViewExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample2")
+  {
+    v.push_back("<p><a href=\"CppQTableViewExample2.htm\">QTableView example 2: table with ten columns of checkboxes</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableViewExample2.png\">View a screenshot of 'QTableViewExample2' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableViewExample2.zip\">Download the Qt Creator project 'QTableViewExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample3")
+  {
+    v.push_back("<p><a href=\"CppQTableViewExample3.htm\">QTableView example 3: table with checkboxes and editable text</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableViewExample3.png\">View a screenshot of 'QTableViewExample3' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableViewExample3.zip\">Download the Qt Creator project 'QTableViewExample3' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample4")
+  {
+    v.push_back("<p><a href=\"CppQTableViewExample4.htm\">QTableView example 4: custom data</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableViewExample4.png\">View a screenshot of 'QTableViewExample4' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableViewExample4.zip\">Download the Qt Creator project 'QTableViewExample4' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample5")
+  {
+    v.push_back("<p><a href=\"CppQTableViewExample5.htm\">QTableView example 5: simple custom data</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableViewExample5.png\">View a screenshot of 'QTableViewExample5' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableViewExample5.zip\">Download the Qt Creator project 'QTableViewExample5' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample6")
+  {
+    v.push_back("<p><a href=\"CppQTableViewExample6.htm\">QTableView example 6: two views on one model</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This was to demonstrate that if two tables must remain identical, the model/view architecture is an easy way to do so: because");
+    v.push_back("the two views work on the same model, they cannot be different.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableViewExample6.png\">View a screenshot of 'QTableViewExample6' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableViewExample6.zip\">Download the Qt Creator project 'QTableViewExample6' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample7")
+  {
+    v.push_back("<p><a href=\"CppQTableViewExample7.htm\">QTableView example 7: two views on one model with a custom data type</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableViewExample7.png\">View a screenshot of 'QTableViewExample7' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableViewExample7.zip\">Download the Qt Creator project 'QTableViewExample7' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample8")
+  {
+    v.push_back("<p><a href=\"CppQTableViewExample8.htm\">QTableView example 8: table with checkboxes and editable text using a custom model</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableViewExample8.png\">View a screenshot of 'QTableViewExample8' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableViewExample8.zip\">Download the Qt Creator project 'QTableViewExample8' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample9")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQTableViewExample9.htm\">QTableView example 9: two tables with checkboxes and editable text using a custom model</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQTableViewExample9.png\">View a screenshot of 'QTableViewExample9' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample9.zip\">Download the Qt Creator project 'QTableViewExample9' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+
 
   else if (m_page_name == "CppQtAboutDialog")
   {

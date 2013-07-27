@@ -1,5 +1,5 @@
 #!/bin/sh
-# Created from file '../../Projects/ProjectBrainweaver/BrainweaverDeveloper.pro'
+# Created from file '../../Projects/ProjectBrainweaver/ProjectBrainweaverDeveloper.pro'
 
 echo "Creating of all folders"
 
@@ -42,6 +42,8 @@ cp ../../Projects/ProjectBrainweaver/1.cmp Projects/Projects/ProjectBrainweaver/
 cp ../../Projects/ProjectBrainweaver/2.cmp Projects/Projects/ProjectBrainweaver/2.cmp
 cp ../../Projects/ProjectBrainweaver/3.cmp Projects/Projects/ProjectBrainweaver/3.cmp
 cp ../../Projects/ProjectBrainweaver/4.cmp Projects/Projects/ProjectBrainweaver/4.cmp
+cp ../../Projects/ProjectBrainweaver/5.cmp Projects/Projects/ProjectBrainweaver/5.cmp
+cp ../../Projects/ProjectBrainweaver/6.cmp Projects/Projects/ProjectBrainweaver/6.cmp
 cp ../../Projects/ProjectBrainweaver/R.png Projects/Projects/ProjectBrainweaver/R.png
 cp ../../Classes/CppQtArrowItem/Licence.txt Projects/Classes/CppQtArrowItem/Licence.txt
 cp ../../Classes/CppQtAboutDialog/Licence.txt Projects/Classes/CppQtAboutDialog/Licence.txt
@@ -150,7 +152,6 @@ cp ../../Projects/ProjectBrainweaver/qtpvdbclusterwidget.h Projects/Projects/Pro
 cp ../../Projects/ProjectBrainweaver/qtpvdbconceptitem.cpp Projects/Projects/ProjectBrainweaver/qtpvdbconceptitem.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbratingdialog.ui Projects/Projects/ProjectBrainweaver/qtpvdbratingdialog.ui
 cp ../../Classes/CppQtRoundedRectItem/qtroundedrectitem.cpp Projects/Classes/CppQtRoundedRectItem/qtroundedrectitem.cpp
-cp ../../Projects/ProjectBrainweaver/BrainweaverStudent.pro Projects/Projects/ProjectBrainweaver/BrainweaverStudent.pro
 cp ../../Projects/ProjectBrainweaver/pvdbclusterfactory.cpp Projects/Projects/ProjectBrainweaver/pvdbclusterfactory.cpp
 cp ../../Projects/ProjectBrainweaver/pvdbconceptfactory.cpp Projects/Projects/ProjectBrainweaver/pvdbconceptfactory.cpp
 cp ../../Projects/ProjectBrainweaver/pvdbexamplefactory.cpp Projects/Projects/ProjectBrainweaver/pvdbexamplefactory.cpp
@@ -163,7 +164,6 @@ cp ../../Projects/ProjectBrainweaver/qtpvdboverviewdialog.h Projects/Projects/Pr
 cp ../../Projects/ProjectBrainweaver/qtpvdboverviewwidget.h Projects/Projects/ProjectBrainweaver/qtpvdboverviewwidget.h
 cp ../../Projects/ProjectBrainweaver/qtpvdbratingdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbratingdialog.cpp
 cp ../../Classes/CppQtLabeledQuadBezierArrowItem/Licence.txt Projects/Classes/CppQtLabeledQuadBezierArrowItem/Licence.txt
-cp ../../Projects/ProjectBrainweaver/BrainweaverAssessor.pro Projects/Projects/ProjectBrainweaver/BrainweaverAssessor.pro
 cp ../../Projects/ProjectBrainweaver/pvdbconceptmapfactory.h Projects/Projects/ProjectBrainweaver/pvdbconceptmapfactory.h
 cp ../../Projects/ProjectBrainweaver/pvdbexamplesfactory.cpp Projects/Projects/ProjectBrainweaver/pvdbexamplesfactory.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbclusterdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbclusterdialog.cpp
@@ -179,7 +179,6 @@ cp ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.png Projects/Tools/Tool
 cp ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.qrc Projects/Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.qrc
 cp ../../Tools/ToolTestQtArrowItems/crosscompiletowindows.sh Projects/Tools/ToolTestQtArrowItems/crosscompiletowindows.sh
 cp ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h Projects/Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
-cp ../../Projects/ProjectBrainweaver/BrainweaverDeveloper.pro Projects/Projects/ProjectBrainweaver/BrainweaverDeveloper.pro
 cp ../../Projects/ProjectBrainweaver/crosscompiletowindows.sh Projects/Projects/ProjectBrainweaver/crosscompiletowindows.sh
 cp ../../Projects/ProjectBrainweaver/qtpvdbcenternodeitem.cpp Projects/Projects/ProjectBrainweaver/qtpvdbcenternodeitem.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbconceptmapdialog.h Projects/Projects/ProjectBrainweaver/qtpvdbconceptmapdialog.h
@@ -236,6 +235,7 @@ cp ../../Projects/ProjectBrainweaver/qtpvdbratedconceptwidget.cpp Projects/Proje
 cp ../../Projects/ProjectBrainweaver/qtpvdbrateexamplesdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbrateexamplesdialog.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.cpp
+cp ../../Projects/ProjectBrainweaver/ProjectBrainweaverStudent.pro Projects/Projects/ProjectBrainweaver/ProjectBrainweaverStudent.pro
 cp ../../Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.h Projects/Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.h
 cp ../../Projects/ProjectBrainweaver/qtpvdbrateconceptmapdialog.ui Projects/Projects/ProjectBrainweaver/qtpvdbrateconceptmapdialog.ui
 cp ../../Projects/ProjectBrainweaver/qtpvdbrateconcepttallymodel.h Projects/Projects/ProjectBrainweaver/qtpvdbrateconcepttallymodel.h
@@ -246,6 +246,7 @@ cp ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.cpp Projects/Tool
 cp ../../Classes/CppQtQuadBezierArrowItem/qtquadbezierarrowitem.cpp Projects/Classes/CppQtQuadBezierArrowItem/qtquadbezierarrowitem.cpp
 cp ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.cpp Projects/Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.cpp
 cp ../../Classes/CppQtRoundedTextRectItem/qtroundedtextrectitem.cpp Projects/Classes/CppQtRoundedTextRectItem/qtroundedtextrectitem.cpp
+cp ../../Projects/ProjectBrainweaver/ProjectBrainweaverAssessor.pro Projects/Projects/ProjectBrainweaver/ProjectBrainweaverAssessor.pro
 cp ../../Projects/ProjectBrainweaver/qtpvdbconceptmapeditwidget.cpp Projects/Projects/ProjectBrainweaver/qtpvdbconceptmapeditwidget.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbconceptmapratewidget.cpp Projects/Projects/ProjectBrainweaver/qtpvdbconceptmapratewidget.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.ui Projects/Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.ui
@@ -254,6 +255,7 @@ cp ../../Projects/ProjectBrainweaver/qtpvdbrateconcepttallydialog.h Projects/Pro
 cp ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.ui Projects/Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.ui
 cp ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.ui Projects/Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.ui
 cp ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.ui Projects/Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.ui
+cp ../../Projects/ProjectBrainweaver/ProjectBrainweaverDeveloper.pro Projects/Projects/ProjectBrainweaver/ProjectBrainweaverDeveloper.pro
 cp ../../Projects/ProjectBrainweaver/qtpvdbconceptmapdisplaywidget.h Projects/Projects/ProjectBrainweaver/qtpvdbconceptmapdisplaywidget.h
 cp ../../Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.cpp Projects/Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.cpp
 cp ../../Projects/ProjectBrainweaver/qtpvdbrateconcepttallydialog.ui Projects/Projects/ProjectBrainweaver/qtpvdbrateconcepttallydialog.ui
