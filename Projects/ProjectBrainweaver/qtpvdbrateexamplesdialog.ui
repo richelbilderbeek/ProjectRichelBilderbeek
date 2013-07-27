@@ -14,7 +14,7 @@
    <string>Evalueer voorbeelden</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ProjectVanDenBogaart.qrc">
+   <iconset resource="Brainweaver.qrc">
     <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -42,7 +42,7 @@
        <string>A</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicRed14x14.png</normaloff>:/images/PicRed14x14.png</iconset>
       </property>
      </item>
@@ -51,7 +51,7 @@
        <string>B</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicOrange14x14.png</normaloff>:/images/PicOrange14x14.png</iconset>
       </property>
      </item>
@@ -60,7 +60,7 @@
        <string>C</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicYellow14x14.png</normaloff>:/images/PicYellow14x14.png</iconset>
       </property>
      </item>
@@ -69,7 +69,7 @@
        <string>D</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicGreen14x14.png</normaloff>:/images/PicGreen14x14.png</iconset>
       </property>
      </item>
@@ -78,7 +78,7 @@
        <string>E</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicCyan14x14.png</normaloff>:/images/PicCyan14x14.png</iconset>
       </property>
      </item>
@@ -87,7 +87,7 @@
        <string>F</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicBlue14x14.png</normaloff>:/images/PicBlue14x14.png</iconset>
       </property>
      </item>
@@ -96,7 +96,7 @@
        <string>G</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicPurple14x14.png</normaloff>:/images/PicPurple14x14.png</iconset>
       </property>
      </item>
@@ -105,7 +105,7 @@
        <string>H</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicWhite14x14.png</normaloff>:/images/PicWhite14x14.png</iconset>
       </property>
      </item>
@@ -114,7 +114,7 @@
        <string>I</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicWhite14x14.png</normaloff>:/images/PicWhite14x14.png</iconset>
       </property>
      </item>
@@ -123,7 +123,7 @@
        <string>J</string>
       </property>
       <property name="icon">
-       <iconset resource="ProjectVanDenBogaart.qrc">
+       <iconset resource="Brainweaver.qrc">
         <normaloff>:/images/PicWhite14x14.png</normaloff>:/images/PicWhite14x14.png</iconset>
       </property>
      </item>
@@ -150,7 +150,7 @@
          <string>&amp;Beroepsdomein</string>
         </property>
         <property name="icon">
-         <iconset resource="ProjectVanDenBogaart.qrc">
+         <iconset resource="Brainweaver.qrc">
           <normaloff>:/images/PicRed14x14.png</normaloff>:/images/PicRed14x14.png</iconset>
         </property>
         <property name="checkable">
@@ -173,7 +173,7 @@
          <string>&amp;Organisaties</string>
         </property>
         <property name="icon">
-         <iconset resource="ProjectVanDenBogaart.qrc">
+         <iconset resource="Brainweaver.qrc">
           <normaloff>:/images/PicOrange14x14.png</normaloff>:/images/PicOrange14x14.png</iconset>
         </property>
        </widget>
@@ -190,7 +190,7 @@
          <string>&amp;Sociale omgeving</string>
         </property>
         <property name="icon">
-         <iconset resource="ProjectVanDenBogaart.qrc">
+         <iconset resource="Brainweaver.qrc">
           <normaloff>:/images/PicYellow14x14.png</normaloff>:/images/PicYellow14x14.png</iconset>
         </property>
        </widget>
@@ -207,7 +207,7 @@
          <string>&amp;Doelgroep</string>
         </property>
         <property name="icon">
-         <iconset resource="ProjectVanDenBogaart.qrc">
+         <iconset resource="Brainweaver.qrc">
           <normaloff>:/images/PicGreen14x14.png</normaloff>:/images/PicGreen14x14.png</iconset>
         </property>
        </widget>
@@ -224,7 +224,7 @@
          <string>&amp;Technisch instrumentele aspecten</string>
         </property>
         <property name="icon">
-         <iconset resource="ProjectVanDenBogaart.qrc">
+         <iconset resource="Brainweaver.qrc">
           <normaloff>:/images/PicCyan14x14.png</normaloff>:/images/PicCyan14x14.png</iconset>
         </property>
        </widget>
@@ -241,7 +241,7 @@
          <string>&amp;Professionele ontwikkeling</string>
         </property>
         <property name="icon">
-         <iconset resource="ProjectVanDenBogaart.qrc">
+         <iconset resource="Brainweaver.qrc">
           <normaloff>:/images/PicBlue14x14.png</normaloff>:/images/PicBlue14x14.png</iconset>
         </property>
        </widget>
@@ -258,7 +258,7 @@
          <string>&amp;Overig</string>
         </property>
         <property name="icon">
-         <iconset resource="ProjectVanDenBogaart.qrc">
+         <iconset resource="Brainweaver.qrc">
           <normaloff>:/images/PicPurple14x14.png</normaloff>:/images/PicPurple14x14.png</iconset>
         </property>
        </widget>
@@ -295,7 +295,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="ProjectVanDenBogaart.qrc"/>
+  <include location="Brainweaver.qrc"/>
  </resources>
  <connections/>
 </ui>

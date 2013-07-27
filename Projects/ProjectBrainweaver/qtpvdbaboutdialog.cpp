@@ -9,6 +9,10 @@
 
 #include <cassert>
 
+#include <QLabel>
+#include <QLayout>
+#include <QPixmap>
+
 #include "about.h"
 #include "pvdbmenudialog.h"
 #include "qtarrowitem.h"
@@ -25,7 +29,14 @@ const boost::shared_ptr<QtAboutDialog> QtPvdbAboutDialog::Get()
   about.AddLibrary("QtKeyboardFriendlyGraphicsView version: " + QtKeyboardFriendlyGraphicsView::GetVersion());
   about.AddLibrary("QtQuadBezierArrowItem version: " + QtQuadBezierArrowItem::GetVersion());
   about.AddLibrary("QtScopedDisable version: " + QtScopedDisable<int>::GetVersion());
+  about.AddLibrary("Artwork from LibreOffice");
   const boost::shared_ptr<QtAboutDialog> d(new QtAboutDialog(about));
   assert(d);
+
+  //Add Loom image
+  assert(d->layout());
+  QLabel * const label = new QLabel(d.get());
+  label->setPixmap(QPixmap(":/images/PicLoomAbout.png"));
+  d->layout()->addWidget(label);
   return d;
 }

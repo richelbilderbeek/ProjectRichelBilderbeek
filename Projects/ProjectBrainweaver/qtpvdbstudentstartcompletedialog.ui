@@ -21,7 +21,7 @@
    <string>Mijn persoonlijke werktheorie, programma voor de student</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ProjectVanDenBogaart.qrc">
+   <iconset resource="Brainweaver.qrc">
     <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -47,7 +47,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ProjectVanDenBogaart.qrc">:/images/ConceptMapEdit.png</pixmap>
+         <pixmap resource="Brainweaver.qrc">:/images/ConceptMapEdit.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -79,7 +79,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ProjectVanDenBogaart.qrc">:/images/Cluster.png</pixmap>
+         <pixmap resource="Brainweaver.qrc">:/images/Cluster.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -92,7 +92,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ProjectVanDenBogaart.qrc">:/images/ConceptMapEdit.png</pixmap>
+         <pixmap resource="Brainweaver.qrc">:/images/ConceptMapEdit.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -125,7 +125,7 @@
   <tabstop>button_start_construct</tabstop>
  </tabstops>
  <resources>
-  <include location="ProjectVanDenBogaart.qrc"/>
+  <include location="Brainweaver.qrc"/>
  </resources>
  <connections/>
 </ui>

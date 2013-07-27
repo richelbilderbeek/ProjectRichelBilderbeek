@@ -38,7 +38,8 @@ const std::string CreateStyleSheet()
 {
   const std::string s =
     "QDialog { "
-    "  background-color: qlineargradient(x1: 0, y1: 1, x2: 1, y2: 0, stop: 0 #bbf, stop: 1 #bff);"
+    "  background-image: url(:/images/PicLoomBackground.png);"
+//    "  background-color: qlineargradient(x1: 0, y1: 1, x2: 1, y2: 0, stop: 0 #bbf, stop: 1 #bff);"
     "} "
     "QLabel { "
     "  font-size: 18px;"

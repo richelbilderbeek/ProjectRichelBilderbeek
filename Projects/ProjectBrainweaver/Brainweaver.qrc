@@ -13,6 +13,16 @@
         <file>PicYellow14x14.png</file>
         <file>ConceptMapEdit.png</file>
         <file>Cluster.png</file>
+        <file>PicLoomAbout.png</file>
+        <file>PicLoomBackground.png</file>
+        <file>PicExport.png</file>
+        <file>PicLoad.png</file>
+        <file>PicQuit.png</file>
+        <file>PicSave.png</file>
+        <file>PicCreateAssessment.png</file>
+        <file>PicAssess.png</file>
+        <file>PicAbout.png</file>
+        <file>PicPrint.png</file>
     </qresource>
     <qresource prefix="/files">
         <file>1.cmp</file>

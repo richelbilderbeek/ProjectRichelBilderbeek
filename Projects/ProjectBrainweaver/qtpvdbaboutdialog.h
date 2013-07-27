@@ -12,6 +12,7 @@
 
 struct QtPvdbAboutDialog
 {
+
   ///Obtain the QtAboutDialog for this project
   static const boost::shared_ptr<QtAboutDialog> Get();
 };
