@@ -25,7 +25,7 @@ const About pvdb::MenuDialog::GetAbout()
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
     "Brainweaver",
     "program to create and assess concept maps",
-    "the 30th of June 2013",
+    "the 27th of July 2013",
     "2012-2013",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
     GetVersion(),
