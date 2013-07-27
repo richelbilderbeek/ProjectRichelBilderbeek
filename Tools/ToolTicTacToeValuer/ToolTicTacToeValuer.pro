@@ -1,15 +1,8 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-09-17T10:26:37
-#
-#-------------------------------------------------
 QT       += core gui xml
 CONFIG(debug, debug|release) {
-  TARGET = TicTacToeValuerDebug
   message(Building debug version)
 
 } else {
-  TARGET = TicTacToeValuerRelease
   DEFINES += NDEBUG
   message(Building release version)
 }

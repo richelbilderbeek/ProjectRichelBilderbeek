@@ -1,6 +1,5 @@
 QT       += core gui
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
-TARGET = ToolTestQtRoundedEditRectItem
 TEMPLATE = app
 
 INCLUDEPATH += \

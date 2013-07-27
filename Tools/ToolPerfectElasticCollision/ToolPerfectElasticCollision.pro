@@ -1,5 +1,4 @@
 QT       += core gui
-TARGET = PerfectElasticCollision
 TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++0x
 

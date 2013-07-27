@@ -7,7 +7,6 @@ QT       += core
 QT       -= gui
 LIBS += -lwt -lwthttp -lboost_program_options
 QMAKE_CXXFLAGS += -std=c++0x
-TARGET = TestDialWebsite
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

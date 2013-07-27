@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT       += core gui
-TARGET = GameTicTacToeQt
 QMAKE_CXXFLAGS += -std=c++0x
 TEMPLATE = app
 INCLUDEPATH += \

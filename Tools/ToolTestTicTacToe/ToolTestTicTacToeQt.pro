@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT       += core gui
-TARGET = ToolTestTicTacToeQt
 TEMPLATE = app
 SOURCES += \
     qtmain.cpp\

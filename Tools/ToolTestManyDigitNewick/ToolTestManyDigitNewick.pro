@@ -17,7 +17,6 @@ INCLUDEPATH += \
   ../../Classes/CppQtAboutDialog \
   ../../Classes/CppTrace \
   ../../Classes/CppTwoDigitNewick
-TARGET = TestManyDigitNewick
 #Debug flag for keeping/removing assert
 CONFIG(release,debug|release):DEFINES += NDEBUG
 DEFINES += DEBUG_SKIP_SAZ_AND_SAO

@@ -1,6 +1,5 @@
 QT       += core gui
 QMAKE_CXXFLAGS += -std=c++0x
-TARGET = ToolSurfacePlotterDesktop
 TEMPLATE = app
 
 INCLUDEPATH += \

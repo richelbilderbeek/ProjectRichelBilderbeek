@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT += core gui
-TARGET = gtst_test_concurrency
 LIBS += -lwt -lwthttp
 QMAKE_CXXFLAGS += -std=c++0x
 TEMPLATE = app

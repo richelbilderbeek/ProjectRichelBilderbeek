@@ -1,10 +1,4 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-01-11T14:13:29
-#
-#-------------------------------------------------
 QT -= core gui
-TARGET = ToolMultiEncrangerUbuntuDesktopConsole
 LIBS += \
   -lboost_program_options \
   -lboost_system \

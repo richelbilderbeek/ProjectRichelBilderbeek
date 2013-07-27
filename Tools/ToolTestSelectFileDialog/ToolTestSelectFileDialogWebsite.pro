@@ -13,7 +13,6 @@ LIBS += \
   -lboost_system \
   -lboost_filesystem
 
-TARGET = ToolTestSelectFileDialog
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

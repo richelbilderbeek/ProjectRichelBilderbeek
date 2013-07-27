@@ -6,7 +6,6 @@
 
 QT       += core gui
 
-TARGET = ToolTestToggleButtonDesktop
 TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++0x
 

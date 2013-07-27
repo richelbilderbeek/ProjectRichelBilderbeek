@@ -18,7 +18,6 @@ LIBS += -lwt -lwthttp
 #  http://richelbilderbeek.nl/CppCompileErrorCc1plusInternalCompilerErrorSegmentationFault.htm
 #Drawback: all asserts will removed as well
 QMAKE_CXXFLAGS += -DNDEBUG
-TARGET = BeerWanterWt
 CONFIG   += console
 CONFIG   += qt
 CONFIG   -= app_bundle

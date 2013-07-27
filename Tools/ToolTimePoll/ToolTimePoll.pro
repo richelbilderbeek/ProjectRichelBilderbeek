@@ -7,7 +7,6 @@ QT       -= core
 QT       -= gui
 LIBS += -lwt -lwthttp
 QMAKE_CXXFLAGS += -std=c++0x
-TARGET = ToolTimePoll
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

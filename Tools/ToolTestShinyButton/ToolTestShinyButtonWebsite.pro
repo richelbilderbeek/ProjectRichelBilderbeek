@@ -1,12 +1,6 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-04-11T09:14:30
-#
-#-------------------------------------------------
 QT       += core
 QT       -= gui
 LIBS += -lwt -lwthttp -lboost_program_options -lboost_signals -lboost_system -lboost_filesystem
-TARGET = TestShinyButtonWebsite
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

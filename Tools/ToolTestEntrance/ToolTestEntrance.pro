@@ -2,7 +2,6 @@ QT       += core
 QT       -= gui
 LIBS += -lwt -lwthttp -lboost_signals -lboost_regex -lboost_system -lboost_filesystem -lboost_program_options
 QMAKE_CXXFLAGS += -std=c++0x
-TARGET = ToolTestEntrance
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

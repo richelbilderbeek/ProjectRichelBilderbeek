@@ -1,6 +1,5 @@
 
 QT       += core gui
-TARGET = TestPylosDesktop
 LIBS += \
     -lboost_filesystem \
     -lboost_regex \

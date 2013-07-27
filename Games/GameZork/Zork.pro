@@ -5,7 +5,6 @@
 #-------------------------------------------------
 # -spec linux-pgcc
 QT -= gui
-TARGET = Zork
 CONFIG += console
 CONFIG -= app_bundle -qt
 #LIBS += -L/usr/lib -lstdc++

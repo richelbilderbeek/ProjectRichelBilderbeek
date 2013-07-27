@@ -1,5 +1,4 @@
 QT       += core gui
-TARGET = ToolTestBoucingBallsWidget
 TEMPLATE = app
 SOURCES += \
     qttooltestbouncingballswidgetmaindialog.cpp \

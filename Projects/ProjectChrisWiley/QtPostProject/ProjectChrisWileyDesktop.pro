@@ -34,7 +34,6 @@ HEADERS += \
     densitydependentselection.h \
     enums.h
 QT += core gui
-TARGET = ProjectChrisWileyDesktop
 TEMPLATE = app
 RESOURCES +=
 FORMS +=

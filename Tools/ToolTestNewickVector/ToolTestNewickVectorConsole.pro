@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-19T15:10:48
-#
-#-------------------------------------------------
 QT       += core gui
 CONFIG   += console
 CONFIG   -= app_bundle
@@ -16,8 +11,6 @@ INCLUDEPATH += \
   ../../Classes/CppTrace \
   ../../Classes/CppTwoDigitNewick \
   ../../Libraries/bigint-2010.04.30
-
-TARGET = TestNewickVectorDesktop
 
 #Libraries
 #win32: LIBS +=C:/Qt/2010.02.1/qt/lib/libboost_regex.lib

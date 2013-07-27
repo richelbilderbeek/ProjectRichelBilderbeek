@@ -21,7 +21,6 @@ INCLUDEPATH += \
   ../../Classes/CppTwoDigitNewick \
   ../../Libraries/bigint-2010.04.30
 
-TARGET = TestTwoDigitNewickDesktop
 #Debug flag for keeping/removing assert
 CONFIG(release,debug|release): DEFINES += NDEBUG
 #Libraries

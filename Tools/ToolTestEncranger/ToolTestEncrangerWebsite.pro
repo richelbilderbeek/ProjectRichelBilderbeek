@@ -6,7 +6,6 @@
 QT       += core
 QT       -= gui
 LIBS += -lwt -lwthttp -lboost_program_options
-TARGET = TestEncrangerWebsite
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

@@ -1,6 +1,7 @@
 #!/bin/bash
 #Script to check the status of compiles
 #Copies executables (both Linux and Win32) executables to ~/bin (overwrites older)
+set -x verbose #echo on
 
 mytempfile="tmpStatus.txt"
 if [ -e $mytempfile ]
@@ -9,15 +10,21 @@ then
 fi
 
 
-for folder in `ls | egrep "Tool"`
+for folder in `ls`
 do
-  #echo "folder: "$folder
+  if [ ! -d $folder ]
+  then
+    echo $folder" is not a folder"
+    continue
+  fi
+
+  echo "folder: "$folder
   #Go in folder
   cd $folder
 
   for myprofile in `ls | egrep ".pro\>"`
   do
-    #echo $myprofile
+    echo $myprofile
     mybasename=`echo $myprofile | sed "s/\.pro//"`
 
     #echo "mybasename: "$mybasename

@@ -6,7 +6,6 @@
 
 QT       += core gui
 
-TARGET = GameTronCollection
 TEMPLATE = app
 
 

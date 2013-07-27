@@ -3,11 +3,9 @@ CONFIG -= app_bundle
 QMAKE_CXXFLAGS += -std=c++0x
 #Configure difference in debug and release version
 CONFIG(debug, debug|release) {
-  TARGET = SimplifyNewickDebug
   message(Building debug version)
 
 } else {
-  TARGET = SimplifyNewickRelease
   DEFINES += NDEBUG
   message(Building release version)
 }

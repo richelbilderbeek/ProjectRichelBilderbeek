@@ -1,5 +1,4 @@
 QT       += core gui
-TARGET = ToolTestBoucingRectsWidget
 TEMPLATE = app
 
 

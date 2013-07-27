@@ -1,12 +1,6 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-04-10T11:16:42
-#
-#-------------------------------------------------
 QT       += core
 QT       -= gui
 LIBS += -lwt -lwthttp -lboost_program_options
-TARGET = TestLedWebsite
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

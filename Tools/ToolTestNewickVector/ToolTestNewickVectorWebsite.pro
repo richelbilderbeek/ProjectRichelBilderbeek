@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-02-23T15:47:47
-#
-#-------------------------------------------------
 QT       += core gui
 LIBS += -lwt -lwthttp -lboost_program_options
 TEMPLATE = app
@@ -27,10 +22,6 @@ unix: CONFIG(release,debug|release):message("Building Ubuntu release")
 win32:CONFIG(debug  ,debug|release):message("Building Windows debug")
 win32:CONFIG(release,debug|release):message("Building Windows release")
 #Application name
-unix: CONFIG(debug  ,debug|release):TARGET = TestNewickVectorUbuntuDebugWebsite
-unix: CONFIG(release,debug|release):TARGET = TestNewickVectorUbuntuReleaseWebsite
-win32:CONFIG(debug  ,debug|release):TARGET = TestNewickVectorWinDebugWebsite
-win32:CONFIG(release,debug|release):TARGET = TestNewickVectorWinReleaseWebsite
 #Debug flag for keeping/removing assert
 CONFIG(release,debug|release):DEFINES += NDEBUG
 #Libraries

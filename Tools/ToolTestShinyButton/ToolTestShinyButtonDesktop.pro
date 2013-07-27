@@ -1,11 +1,5 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-04-11T09:14:30
-#
-#-------------------------------------------------
 QT       += core gui
 LIBS += -lboost_program_options
-TARGET = TestShinyButtonDesktop
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

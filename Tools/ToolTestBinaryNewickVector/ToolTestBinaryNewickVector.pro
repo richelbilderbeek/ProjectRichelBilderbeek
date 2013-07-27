@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-19T15:10:48
-#
-#-------------------------------------------------
 QT       += core gui
 CONFIG   += console
 CONFIG   -= app_bundle
@@ -16,7 +11,6 @@ INCLUDEPATH += \
   ../../Classes/CppSortedBinaryNewickVector \
   ../../Classes/CppTrace \
   ../../Libraries/bigint-2010.04.30
-TARGET = TestBinaryNewickVector
 #Debug flag for keeping/removing assert
 CONFIG(release,debug|release):DEFINES += NDEBUG
 #Libraries

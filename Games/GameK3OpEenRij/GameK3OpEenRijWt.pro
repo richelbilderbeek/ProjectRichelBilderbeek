@@ -7,7 +7,6 @@ QT       += core
 QT       -= gui
 LIBS += -lwt -lwthttp -lboost_filesystem
 QMAKE_CXXFLAGS += -DNDEBUG
-TARGET = GameK3OpEenRijWt
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

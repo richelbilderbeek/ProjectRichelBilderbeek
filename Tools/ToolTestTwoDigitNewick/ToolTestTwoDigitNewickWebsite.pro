@@ -22,7 +22,6 @@ INCLUDEPATH += \
   ../../Classes/CppWtAboutDialog \
   ../../Libraries/bigint-2010.04.30
 
-TARGET = TestTwoDigitNewickWebsite
 
 CONFIG(release,debug|release): DEFINES += NDEBUG
 

@@ -12,7 +12,6 @@ LIBS += \
   -lboost_thread
 QMAKE_CXXFLAGS += -DNDEBUG
 #QMAKE_CXXFLAGS += -std=c++0x
-TARGET = GamePaperRockScissors
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

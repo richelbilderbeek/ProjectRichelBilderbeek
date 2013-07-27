@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT       += core gui
-TARGET = ToolPrimeExpert
 TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \

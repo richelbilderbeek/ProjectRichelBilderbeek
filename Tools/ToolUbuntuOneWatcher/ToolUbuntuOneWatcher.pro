@@ -6,7 +6,6 @@
 
 QT       += core gui
 
-TARGET = ToolUbuntuOneWatcher
 TEMPLATE = app
 
 

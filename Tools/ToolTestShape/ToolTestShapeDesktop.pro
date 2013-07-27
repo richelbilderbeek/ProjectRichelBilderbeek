@@ -1,12 +1,5 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-04-11T09:14:30
-#
-#-------------------------------------------------
-
 QT       += core gui
 
-TARGET = ToolTestShapeDesktop
 TEMPLATE = app
 
 QMAKE_CXXFLAGS += -std=c++0x

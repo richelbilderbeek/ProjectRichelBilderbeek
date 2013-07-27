@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT       += core gui
-TARGET = ToolTestReversi
 TEMPLATE = app
 SOURCES += main.cpp\
     dialogmain.cpp \

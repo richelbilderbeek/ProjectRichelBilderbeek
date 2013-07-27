@@ -2,7 +2,6 @@
 QT       += core gui
 LIBS += -lwt -lwthttp -lboost_program_options
 QMAKE_CXXFLAGS += -DNDEBUG
-TARGET = AsciiArterWebsite
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

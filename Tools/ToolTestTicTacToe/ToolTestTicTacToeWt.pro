@@ -5,7 +5,6 @@
 #-------------------------------------------------
 QT       += core
 QT       -= gui
-TARGET = ToolTestTicTacToeWt
 LIBS += -L/usr/lib -lwt  -lwthttp
 #-lwtext
 QMAKE_CXXFLAGS += -DNDEBUG

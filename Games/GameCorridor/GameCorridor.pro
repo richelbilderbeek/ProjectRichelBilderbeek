@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT       += core gui
-TARGET = GameCorridor
 TEMPLATE = app
 LIBS += -L/usr/local/lib -lSDL \
   -L/usr/local/lib -lSDL_ttf \

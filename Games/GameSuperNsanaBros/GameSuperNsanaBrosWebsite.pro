@@ -10,7 +10,6 @@ QMAKE_CXXFLAGS += \
   -DNDEBUG \
   -std=c++0x
 
-TARGET = GameSuperNsanaBrosWebsite
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

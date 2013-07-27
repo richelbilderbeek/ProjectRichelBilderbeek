@@ -1,13 +1,7 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-04-10T11:16:42
-#
-#-------------------------------------------------
 QT       -= core
 QT       -= gui
 LIBS += -lwt -lwthttp
 QMAKE_CXXFLAGS += -std=c++0x
-TARGET = ToolTestServerPusher
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

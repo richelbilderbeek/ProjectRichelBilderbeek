@@ -5,7 +5,6 @@
 #-------------------------------------------------
 QT       += core gui
 QMAKE_CXXFLAGS += -std=c++0x
-TARGET = GameSuperNsanaBrosDesktop
 TEMPLATE = app
 INCLUDEPATH += \
   ../../Classes/CppAbout \

@@ -1,11 +1,5 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-10-10T09:30:26
-#
-#-------------------------------------------------
 QT += core
 QT -= gui qt
-TARGET = ndsmake
 CONFIG   += console static
 CONFIG   -= app_bundle
 TEMPLATE = app

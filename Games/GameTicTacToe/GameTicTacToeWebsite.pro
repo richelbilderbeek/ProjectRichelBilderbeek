@@ -5,7 +5,6 @@
 #-------------------------------------------------
 QT       += core
 QT       -= gui
-TARGET = GameTicTacToeWt
 LIBS += -lwt -lwthttp
 QMAKE_CXXFLAGS += -DNDEBUG
 CONFIG   += console

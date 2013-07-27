@@ -8,7 +8,7 @@ LIBS += \
     -lboost_filesystem \
     -lboost_regex
 INCLUDEPATH += ../../Classes/CppHtmlPage
-TARGET = ToolCreateGlossaryConsole
+
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

@@ -8,7 +8,6 @@ QT       += core gui
 
 LIBS += -lwt -lwthttp
 
-TARGET = ToolTestFunctionParser
 TEMPLATE = app
 
 INCLUDEPATH += \

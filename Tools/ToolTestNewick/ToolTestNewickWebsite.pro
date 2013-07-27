@@ -1,10 +1,4 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-02-23T15:47:47
-#
-#-------------------------------------------------
 QT       += core gui
-TARGET = ToolTestNewick
 LIBS += -lwt -lwthttp -lboost_program_options
 TEMPLATE = app
 #Use C++0x standard

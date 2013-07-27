@@ -11,7 +11,6 @@ QMAKE_CXXFLAGS += \
   -DNDEBUG \
   -std=c++0x
 
-TARGET = ProjectMuscaDomesitica
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

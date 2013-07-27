@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT += core gui
-TARGET = gtst
 LIBS += -lwt -lwthttp
 QMAKE_CXXFLAGS += -std=c++0x
 TEMPLATE = app

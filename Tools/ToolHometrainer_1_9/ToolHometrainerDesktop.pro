@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT += core gui
-TARGET = Hometrainer
 TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++0x
 

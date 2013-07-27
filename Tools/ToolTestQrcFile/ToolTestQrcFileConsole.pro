@@ -1,6 +1,5 @@
 QT       += core
 QT       -= gui
-TARGET = ToolTestQrcFileConsole
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

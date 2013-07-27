@@ -1,10 +1,4 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-10-10T15:04:27
-#
-#-------------------------------------------------
 QT       += core gui
-TARGET = PicToCodeDesktop
 TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \

@@ -1,6 +1,5 @@
 QT       += core gui
 
-TARGET = ToolTestDialDesktop
 TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++0x
 

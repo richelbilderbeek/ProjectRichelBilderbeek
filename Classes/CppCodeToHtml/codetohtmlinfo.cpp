@@ -1534,6 +1534,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQTableViewExample1")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableViewExample1.htm\">QTableView example 1: table with three columns, one with an X</a> is a");
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1544,6 +1546,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQTableViewExample2")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableViewExample2.htm\">QTableView example 2: table with ten columns of checkboxes</a> is a");
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1554,6 +1558,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQTableViewExample3")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableViewExample3.htm\">QTableView example 3: table with checkboxes and editable text</a> is a");
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1564,6 +1570,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQTableViewExample4")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableViewExample4.htm\">QTableView example 4: custom data</a> is a");
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1574,6 +1582,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQTableViewExample5")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableViewExample5.htm\">QTableView example 5: simple custom data</a> is a");
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1584,6 +1594,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQTableViewExample6")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableViewExample6.htm\">QTableView example 6: two views on one model</a> is a");
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1597,6 +1609,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQTableViewExample7")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableViewExample7.htm\">QTableView example 7: two views on one model with a custom data type</a> is a");
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1607,6 +1621,8 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQTableViewExample8")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableViewExample8.htm\">QTableView example 8: table with checkboxes and editable text using a custom model</a> is a");
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1627,7 +1643,54 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQTableViewExample9.zip\">Download the Qt Creator project 'QTableViewExample9' (zip)</a></li>");
     v.push_back("</ul>");
   }
-
+  else if (m_page_name == "CppQTableViewExample1")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQTreeViewExample1.htm\">QTreeView example 1: add a row</a> is an example to use");
+    v.push_back("a <a href=\"CppQTreeView.htm\">QTreeView</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQTreeViewExample1.png\">View a screenshot of 'CppQTreeViewExample1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTreeViewExample1.zip\">Download the Qt Creator project 'CppQTreeViewExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample2")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQTreeViewExample2.htm\">QTreeView example 2: add a row and undo/redo this</a> is an example to use");
+    v.push_back("a <a href=\"CppQTreeView.htm\">QTreeView</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQTreeViewExample2.png\">View a screenshot of 'CppQTreeViewExample2' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTreeViewExample2.zip\">Download the Qt Creator project 'CppQTreeViewExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample3")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQTreeViewExample3.htm\">QTreeView example 3: improved undo/redo and added drag/drop</a> is an example to use");
+    v.push_back("a <a href=\"CppQTreeView.htm\">QTreeView</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQTreeViewExample3.png\">View a screenshot of 'CppQTreeViewExample3' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTreeViewExample3.zip\">Download the Qt Creator project 'CppQTreeViewExample3' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableViewExample4")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQTreeViewExample4.htm\">QTreeView example 4: directory view</a> is an example to use");
+    v.push_back("a <a href=\"CppQTreeView.htm\">QTreeView</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQTreeViewExample4.png\">View a screenshot of 'CppQTreeViewExample4' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTreeViewExample4.zip\">Download the Qt Creator project 'CppQTreeViewExample4' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
 
   else if (m_page_name == "CppQtAboutDialog")
   {

@@ -1,12 +1,5 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-11-18T00:17:46
-#
-#-------------------------------------------------
-
 QT       += core gui
 
-TARGET = ToolStaircaseCardCreator
 TEMPLATE = app
 
 

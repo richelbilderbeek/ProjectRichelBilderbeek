@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT       += core gui
-TARGET = ToolTestEncranger
 TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \

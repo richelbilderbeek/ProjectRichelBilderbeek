@@ -2,8 +2,8 @@
 #From http://richelbilderbeek.nl/CppHelloWorldQtCreatorLubuntuToWindows.htm
 echo "Cross compiling to Windows"
 
-myfile="i686-pc-mingw32-qmake"
-#myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
+#myfile="i686-pc-mingw32-qmake"
+myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
 mytarget="CppHelloWorldQtCreatorLubuntuToWindows"
 myprofile=$mytarget.pro
 

@@ -1,5 +1,4 @@
 QT       += core gui debug
-TARGET = GameRubiksClockDesktop
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

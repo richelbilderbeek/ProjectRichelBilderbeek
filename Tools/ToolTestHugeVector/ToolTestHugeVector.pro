@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT       += core gui
-TARGET = ToolTestHugeVector
 LIBS += -L/usr/local/lib -lcln
 TEMPLATE = app
 SOURCES += main.cpp\

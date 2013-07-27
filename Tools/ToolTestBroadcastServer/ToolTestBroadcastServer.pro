@@ -9,7 +9,6 @@ LIBS += \
   -lwt \
   -lwthttp
 QMAKE_CXXFLAGS += -std=c++0x
-TARGET = ToolTestBroadcastServer
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

@@ -1,13 +1,7 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-02-23T15:47:47
-#
-#-------------------------------------------------
 QT       += core gui
 LIBS += -lboost_program_options
 TEMPLATE = app
 DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-TARGET = ToolTestNewickDesktopRelease
 #Use C++0x standard
 QMAKE_CXXFLAGS += -std=c++0x
 INCLUDEPATH += \

@@ -22,7 +22,6 @@ INCLUDEPATH += \
 
 win32:INCLUDEPATH+=C:/QtSDK/Libraries/boost/boost_1_47_0
 
-TARGET = TestTwoDigitNewickDesktop
 
 #Libraries
 unix:LIBS += -lboost_regex

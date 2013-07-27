@@ -13,7 +13,6 @@ INCLUDEPATH += /opt/devkitpro/devkitARM/arm-eabi/include
 LIBS += -L/opt/devkitpro/libnds-1.4.7/lib -lnds9
 LIBS += -L/opt/devkitpro/devkitARM/arm-eabi/lib -lstdc++
 DEFINES += ARM9
-TARGET = BeerWanterNds
 CONFIG   += console
 CONFIG   -= qt
 CONFIG   -= app_bundle

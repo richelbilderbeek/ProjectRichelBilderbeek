@@ -1,14 +1,8 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2012-01-07T18:43:19
-#
-#-------------------------------------------------
 
 QT       += core gui
 
 QMAKE_CXXFLAGS += -std=c++0x
 
-TARGET = ToolTestChessDesktop
 CONFIG   += console
 CONFIG   -= app_bundle
 

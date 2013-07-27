@@ -1,6 +1,5 @@
 QT += core
 QT -= gui
-TARGET = ToolRegexTesterConsole
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 TEMPLATE = app
 LIBS += \

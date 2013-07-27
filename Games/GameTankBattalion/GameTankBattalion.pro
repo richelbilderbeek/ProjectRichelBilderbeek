@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 QT       += core gui
-TARGET = GameTankBattalion
 TEMPLATE = app
 SOURCES += main.cpp\
         dialoggame.cpp \

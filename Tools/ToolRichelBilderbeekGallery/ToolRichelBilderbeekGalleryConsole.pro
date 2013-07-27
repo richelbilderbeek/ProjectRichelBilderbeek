@@ -1,5 +1,4 @@
 QT       += core gui
-TARGET = ToolRichelBilderbeekGalleryConsole
 TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++11 -Wextra -Werror
 

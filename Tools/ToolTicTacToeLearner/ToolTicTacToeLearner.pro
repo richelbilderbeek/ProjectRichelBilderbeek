@@ -6,11 +6,9 @@
 QT       += core gui
 
 CONFIG(debug, debug|release) {
-  TARGET = TicTacToeLearnerDebug
   message(Building debug version)
 
 } else {
-  TARGET = TicTacToeLearnerRelease
   DEFINES += NDEBUG
   message(Building release version)
 }

@@ -18,10 +18,6 @@ unix: CONFIG(release,debug|release):message("Building Ubuntu release: SHOULD NOT
 win32:CONFIG(debug  ,debug|release):message("Building Windows debug")
 win32:CONFIG(release,debug|release):message("Building Windows release: SHOULD NOT HAPPEN")
 #Application name
-unix: CONFIG(debug  ,debug|release):TARGET = ProjectRampalTestUbuntuDebug
-unix: CONFIG(release,debug|release):TARGET = ProjectRampalTestUbuntuRelease
-win32:CONFIG(debug  ,debug|release):TARGET = ProjectRampalTestWinDebug
-win32:CONFIG(release,debug|release):TARGET = ProjectRampalTestWinRelease
 #Debug flag for keeping/removing assert
 CONFIG(release,debug|release):DEFINES += NDEBUG
 #Add the path of the BigInt library and BinaryNewickVector

@@ -12,7 +12,6 @@ QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
 #QMAKE_CXXFLAGS += -DNDEBUG
 
-TARGET = TestOpenQuestionWebsite
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
