@@ -6,4 +6,4 @@ fi
 
 cd mxe
 
-make #gcc boost qt wt
+make #gcc boost qt wt qt5

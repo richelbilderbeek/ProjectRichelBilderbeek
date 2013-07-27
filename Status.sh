@@ -1,94 +1,133 @@
 #!/bin/bash
 #Script to check the status of compiles
+#Copies executables (both Linux and Win32) executables to ~/bin (overwrites older)
+#set -x verbose #echo on
+
 mytempfile="tmpStatus.txt"
 if [ -e $mytempfile ]
 then
   rm $mytempfile
 fi
 
-
-for folder in `ls | egrep "Tool"`
+for superfolder in `ls`
 do
-  echo $folder
-  #Go in folder
-  cd $folder
+  if [ ! -d $superfolder ]
+  then
+    echo $superfolder" is not a folder"
+    continue
+  fi
 
-  for myprofile in `ls | egrep ".pro\>"`
+  echo "superfolder:"$superfolder
+  cd $superfolder
+
+
+  for folder in `ls`
   do
-    #echo $myprofile
-    mybasename=`echo $pyprofile | egrep [A-Za-z]{4}[A-Za-z]*\.`
-  
-    echo $mybasename
- 
-    #For every .pro file, 
-    # 0: compile
-    # 1: crosscompile using Qt4
-    # (2: crosscompile using Qt5)
-    #Execute script, write results to temp file in Projects folder
-    #./$shfile | egrep "SUCCESS|FAIL" >> ../$mytempfile
-    for type in 0 1 2
+    if [ ! -d $folder ]
+    then
+      echo $folder" is not a folder"
+      continue
+    fi
+
+    echo "folder: "$folder
+    #Go in folder
+    cd $folder
+
+    for myprofile in `ls | egrep ".pro\>"`
     do
-      myqmake=""
-      mytypestr=""
+      echo $myprofile
+      mybasename=`echo $myprofile | sed "s/\.pro//"`
 
-      #Cleaning up
-      rm Makefile
-      rm Makefile.*
-      rm -r release
-      rm -r debug
-      rm ui_*.h
-      rm qrc_*.cpp
-      rm moc_*.cpp
-      rm object_script*.*
-      rm *.o
-      rm *_plugin_import.cpp
+      #echo "mybasename: "$mybasename
+     
+      #For every .pro file, 
+      # 0: compile
+      # 1: crosscompile using Qt4
+      # (2: crosscompile using Qt5)
+      #Execute script, write results to temp file in Projects folder
+      #./$shfile | egrep "SUCCESS|FAIL" >> ../$mytempfile
+      for type in 0 1 2
+      do
+        myqmake=""
+        mytypestr=""
 
-      case $type in
-      0) myqmake="qmake" mytypestr="Lubuntu" ;;
-      1) myqmake="i686-pc-mingw32-qmake" mytypestr="Qt4LubuntuToWindows" ;; 
-      2) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;; 
-      esac
+        #Cleaning up
+        rm Makefile
+        rm Makefile.*
+        rm -r release
+        rm -r debug
+        rm ui_*.h
+        rm qrc_*.cpp
+        rm moc_*.cpp
+        rm object_script*.*
+        rm *.o
+        rm *_plugin_import.cpp
 
-      
+        case $type in
+        0) myqmake="qmake" mytypestr="Lubuntu" ;;
+        1) myqmake="i686-pc-mingw32-qmake" mytypestr="Qt4LubuntuToWindows" ;; 
+        2) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;; 
+        esac
 
-      $myqmake $myprofile
+        
 
-      if [ ! -e Makefile ]
-      then
-        echo $myprofile", "$mytypestr": FAIL (Makefile not found)" >> ../$mytempfile
-        continue
-      fi
+        $myqmake $myprofile
 
-      make
+        if [ ! -e Makefile ]
+        then
+          echo $myprofile", "$mytypestr": FAIL (Makefile not found)" >> ../../$mytempfile
+          continue
+        fi
 
-      if [ -e $mybasename] || [ -e ./release/$mybasename".exe" ]
-      then
-        echo $myprofile", "$mytypestr": SUCCESS" >> ../$mytempfile
-      else
-        echo $myprofile", "$mytypestr": FAIL (executable not found)" >> ../$mytempfile
-      fi
-
-      #Cleaning up
-      rm Makefile
-      rm Makefile.*
-      rm -r release
-      rm -r debug
-      rm ui_*.h
-      rm qrc_*.cpp
-      rm moc_*.cpp
-      rm object_script*.*
-      rm *.o
-      rm *_plugin_import.cpp
+        make
 
 
-    done #next type
+        if [ -e $mybasename ] || [ -e ./release/$mybasename".exe" ]
+        then
+          echo $myprofile", "$mytypestr": SUCCESS" >> ../../$mytempfile
+          #echo "SUCCESS for mybasename: "$mybasename
+          if [ -e $mybasename ] 
+          then
+            #echo "(1) cp "$mybasename" ~/bin/" 
+            cp $mybasename ~/bin/ 
+            rm $mybasename
+          fi
+          if [ -e ./release/$mybasename".exe" ] 
+          then 
+            #echo "(2) cp ./release/"$mybasename".exe ~/bin/"
+            cp ./release/$mybasename".exe" ~/bin/
+          fi
+        else
+          echo $myprofile", "$mytypestr": FAIL (executable not found)" >> ../../$mytempfile
+          #echo "FAIL for mybasename: "$mybasename
+        fi
 
-  done #next profile
+        #Cleaning up
+        rm Makefile
+        rm Makefile.*
+        rm -r release
+        rm -r debug
+        rm ui_*.h
+        rm qrc_*.cpp
+        rm moc_*.cpp
+        rm object_script*.*
+        rm *.o
+        rm *_plugin_import.cpp
 
-  #Go back to Projects folder
+
+      done #next type
+
+    done #next profile
+
+    #Go back to supfolder
+    cd ..
+
+  done #next folder
+
+  #Go back to ProjectRichelBilderbeek main folder
   cd ..
 
-done #next folder
+done #next superfolder
 
 echo ""
 

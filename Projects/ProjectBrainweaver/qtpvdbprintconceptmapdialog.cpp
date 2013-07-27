@@ -10,6 +10,8 @@
 #include <cassert>
 #include <ctime>
 
+#include <boost/numeric/conversion/cast.hpp>
+
 #include <QKeyEvent>
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
@@ -159,7 +161,9 @@ void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     m_widget->fitInView(m_widget->scene()->itemsBoundingRect());
 
     assert(m_widget->scene()->items().count()
-      >= m_widget->GetConceptMap()->GetNodes().size() + m_widget->GetConceptMap()->GetEdges().size());
+      >= boost::numeric_cast<int>(
+        m_widget->GetConceptMap()->GetNodes().size()
+        + m_widget->GetConceptMap()->GetEdges().size()));
 
   }
   //Concept map as text

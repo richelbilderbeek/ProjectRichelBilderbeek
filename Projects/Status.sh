@@ -1,5 +1,8 @@
 #!/bin/bash
 #Script to check the status of compiles
+#Copies executables (both Linux and Win32) executables to ~/bin (overwrites older)
+set -x verbose #echo on
+
 mytempfile="tmpStatus.txt"
 if [ -e $mytempfile ]
 then
@@ -7,19 +10,25 @@ then
 fi
 
 
-for folder in `ls | egrep "Project"`
+for folder in `ls`
 do
-  echo $folder
+  if [ ! -d $folder ]
+  then
+    echo $folder" is not a folder"
+    continue
+  fi
+
+  echo "folder: "$folder
   #Go in folder
   cd $folder
 
   for myprofile in `ls | egrep ".pro\>"`
   do
-    #echo $myprofile
-    mybasename=`echo $pyprofile | egrep [A-Za-z]{4}[A-Za-z]*\.`
-  
-    echo $mybasename
- 
+    echo $myprofile
+    mybasename=`echo $myprofile | sed "s/\.pro//"`
+
+    #echo "mybasename: "$mybasename
+   
     #For every .pro file, 
     # 0: compile
     # 1: crosscompile using Qt4
@@ -61,11 +70,25 @@ do
 
       make
 
-      if [ -e $mybasename] || [ -e ./release/$mybasename".exe" ]
+
+      if [ -e $mybasename ] || [ -e ./release/$mybasename".exe" ]
       then
         echo $myprofile", "$mytypestr": SUCCESS" >> ../$mytempfile
+        #echo "SUCCESS for mybasename: "$mybasename
+        if [ -e $mybasename ] 
+        then
+          #echo "(1) cp "$mybasename" ~/bin/" 
+          cp $mybasename ~/bin/ 
+          rm $mybasename
+        fi
+        if [ -e ./release/$mybasename".exe" ] 
+        then 
+          #echo "(2) cp ./release/"$mybasename".exe ~/bin/"
+          cp ./release/$mybasename".exe" ~/bin/
+        fi
       else
         echo $myprofile", "$mytypestr": FAIL (executable not found)" >> ../$mytempfile
+        #echo "FAIL for mybasename: "$mybasename
       fi
 
       #Cleaning up

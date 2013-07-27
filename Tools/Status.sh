@@ -79,11 +79,12 @@ do
         then
           #echo "(1) cp "$mybasename" ~/bin/" 
           cp $mybasename ~/bin/ 
+          rm $mybasename
         fi
         if [ -e ./release/$mybasename".exe" ] 
         then 
           #echo "(2) cp ./release/"$mybasename".exe ~/bin/"
-          cp ./release/$mybasename".exe" ~/bin/ 
+          cp ./release/$mybasename".exe" ~/bin/
         fi
       else
         echo $myprofile", "$mytypestr": FAIL (executable not found)" >> ../$mytempfile
