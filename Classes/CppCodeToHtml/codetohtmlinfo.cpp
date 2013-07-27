@@ -1492,6 +1492,16 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQmakeErrorUnknownModulesInQtLocationSensors.htm\">Download the Qt Creator project 'CppQmakeErrorUnknownModulesInQtLocationSensors' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppQPrintDialogExample1")
+  {
+    v.push_back("<p><a href=\"CppQPrintDialogExample1.htm\">QPrintDialog example 1</a> is a");
+    v.push_back("<a href=\"CppQPrintDialog.htm\">QPrintDialog</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQPrintDialogExample1.png\">View a screenshot of 'CppQPrintDialogExample1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQPrintDialogExample1.zip\">Download the Qt Creator project 'CppQPrintDialogExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppQSqlTableModelExample1")
   {
     v.push_back("<p><a href=\"CppQSqlTableModelExample1.htm\">QSqlTableModel example 1</a> is a");

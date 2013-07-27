@@ -95,6 +95,7 @@ void QtPvdbPrintConceptMapDialog::keyPressEvent(QKeyEvent * event)
 
 void QtPvdbPrintConceptMapDialog::on_button_print_clicked()
 {
+  ui->lineEdit->setText("Start");
   Print();
 }
 
@@ -109,7 +110,11 @@ void QtPvdbPrintConceptMapDialog::Print()
   //Start printer dialog
   const boost::shared_ptr<QPrintDialog> print_dialog(new QPrintDialog(&printer));
   print_dialog->setWindowTitle(tr("Print document"));
-  if (print_dialog->exec() != QDialog::Accepted) return;
+  if (print_dialog->exec() != QDialog::Accepted)
+  {
+    ui->lineEdit->setText("Cancelled print");
+    return;
+  }
 
 
   //Collect widgets to print
@@ -134,6 +139,7 @@ void QtPvdbPrintConceptMapDialog::Print()
     }
   }
   painter.end();
+  ui->lineEdit->setText("Printed");
 }
 
 void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
