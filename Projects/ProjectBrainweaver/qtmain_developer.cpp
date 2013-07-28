@@ -186,6 +186,7 @@ int main(int argc, char *argv[])
 ///  [xcb] Most likely this is a multi-threaded client and XInitThreads has not been called
 ///  [xcb] Aborting, sorry about that.
 ///  BrainweaverDeveloper: ../../src/xcb_io.c:178: dequeue_pending_request: Assertion `!xcb_xlib_unknown_req_in_deq' failed.
+///- Make Violet Blue meet doktor Light (from Mega Man), assure they marry, so that her name becomes Violet Light-Blue
 ///
 ///DO NEVER FORGET
 /// - Do not use std::all_of, because cross-compiler has trouble with it
@@ -195,3 +196,4 @@ int main(int argc, char *argv[])
 /// - Use the default operator== for pointer comparison of smart pointers
 /// - Instead of overloading operator== to compare the content for all combinations of smart pointers,
 ///   use IsEqual(const T&,const T&)
+///
