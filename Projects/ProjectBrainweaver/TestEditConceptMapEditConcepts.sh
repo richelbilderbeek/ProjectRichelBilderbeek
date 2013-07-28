@@ -36,10 +36,11 @@ test_qtconceptmapeditwidget_index=22
 mytestname="TestConceptItemMouseCursor"
 
 #Test with release version
-#myexe="../../../bin/ProjectBrainweaverDeveloperRelease"
-myexe="../../../.wine/drive_c/windows/system32/ProjectBrainweaverDeveloper.exe"
-#mytester="../../Libraries/libcvautomation/examples/cva-input"
-mytester="../../Test/build-CppLibcvautomationExample2-Desktop-Debug/CppLibcvautomationExample2"
+myexe="../../../bin/ProjectBrainweaverDeveloper"
+#myexe="../../../.wine/drive_c/windows/system32/ProjectBrainweaverDeveloper.exe"
+
+mytester="../../Libraries/libcvautomation/examples/cva-input"
+#mytester="../../Test/build-CppLibcvautomationExample2-Desktop-Debug/CppLibcvautomationExample2"
 
 if [ -e /$myexe ]
 then
@@ -53,7 +54,8 @@ then
   exit
 fi
 
-wine $myexe $test_qtconceptmapeditwidget_index &
+#wine $myexe $test_qtconceptmapeditwidget_index &
+$myexe $test_qtconceptmapeditwidget_index &
 #./../build-BrainweaverDeveloper-Desktop-Release/BrainweaverDeveloper $test_qtconceptmapeditwidget_index &
 
 sleep 2

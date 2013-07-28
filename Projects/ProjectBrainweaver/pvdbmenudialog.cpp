@@ -72,10 +72,10 @@ const std::vector<std::string> pvdb::MenuDialog::GetVersionHistory()
   v.push_back("2013-01-20: Version 0.27: added graphics to menu's, using 'Dolphin' style");
   v.push_back("2013-01-23: Version 0.28: allow ConceptMapEdit arrows having solitary focus, progress on printing");
   v.push_back("2013-02-12: Version 0.29: changed name to Brainweaver (formely called ProjectVanDenBogaart), progress on printing");
-  v.push_back("2013-04-21: Version 0.30: Shows sub-concepts maps in rating well, allows saving without going back to the main menu");
-  v.push_back("2013-05-04: Version 0.31: Improved printing for student and assessor, first steps in implementing undo functionality");
-  v.push_back("2013-07-27: Version 0.32: First step in semi-automated rating mechanism");
-  v.push_back("2013-0x-xx: Version 0.33: ");
+  v.push_back("2013-04-21: Version 0.30: shows sub-concepts maps in rating well, allows saving without going back to the main menu");
+  v.push_back("2013-05-04: Version 0.31: improved printing for student and assessor, first steps in implementing undo functionality");
+  v.push_back("2013-07-27: Version 0.32: first step in semi-automated rating mechanism");
+  v.push_back("2013-0x-xx: Version 0.33: added icons and artwork");
   return v;
 }
 
