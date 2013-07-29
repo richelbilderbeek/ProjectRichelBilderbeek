@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>115</width>
+    <width>116</width>
     <height>144</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
    <string>Winner</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="GameConnectThree.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -54,7 +54,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="resources.qrc">:/images/ConnectThreePlayer1.png</pixmap>
+      <pixmap resource="GameConnectThree.qrc">:/images/ConnectThreePlayer1.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -80,7 +80,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="GameConnectThree.qrc"/>
  </resources>
  <connections/>
 </ui>
