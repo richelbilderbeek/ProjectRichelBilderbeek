@@ -3,7 +3,7 @@
 #Copies executables (both Linux and Win32) executables to ~/bin (overwrites older)
 set -x verbose #echo on
 
-mytempfile="tmpGameConnectThreeStatus.txt"
+mytempfile="tmpK3OpEenRijStatus.txt"
 if [ -e $mytempfile ]
 then
   rm $mytempfile
