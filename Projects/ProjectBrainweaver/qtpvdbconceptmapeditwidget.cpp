@@ -63,11 +63,16 @@ QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   #ifndef NDEBUG
   Test();
   #endif
-  assert(scene());
-  scene()->addItem(m_tools); //Give m_tools a parent
+  if (!concept_map) return;
+
 
   assert(concept_map  && "Only an existing concept map can be edited");
   BuildQtConceptMap();
+
+  assert(scene());
+  scene()->addItem(m_tools); //Give m_tools a parent
+
+
 
   #ifndef NDEBUG
   assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");

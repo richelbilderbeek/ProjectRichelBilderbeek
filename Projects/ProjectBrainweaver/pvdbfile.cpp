@@ -18,18 +18,21 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/xpressive/xpressive.hpp>
 
 #include <QFile>
 #include <QRegExp>
 
-#include "pvdbcluster.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbfilefactory.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmap.h"
-#include "pvdbhelper.h"
-#include "trace.h"
 #include "pvdbclusterfactory.h"
+#include "pvdbcluster.h"
+#include "pvdbconcept.h"
+#include "pvdbconcept.h"
+#include "pvdbconceptmapfactory.h"
+#include "pvdbconceptmap.h"
+#include "pvdbfilefactory.h"
+#include "pvdbhelper.h"
+#include "pvdbnode.h"
+#include "trace.h"
 
 #ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
 namespace pvdb {
@@ -42,8 +45,9 @@ pvdb::File::File()
     m_assessor_name(""),
     m_cluster(),
     m_concept_map(), //nullptr
+    m_question(""),
     m_student_name(""),
-    m_version("0.3")
+    m_version("0.4")
 {
   #ifndef NDEBUG
   Test();
@@ -58,17 +62,27 @@ pvdb::File::File(
   const std::string& assessor_name,
   const boost::shared_ptr<pvdb::Cluster>& cluster,
   const boost::shared_ptr<pvdb::ConceptMap>& concept_map,
+  const std::string& question,
   const std::string& student_name,
   const std::string& version)
   : m_about(about),
     m_assessor_name(assessor_name),
     m_cluster(cluster),
     m_concept_map(concept_map),
+    m_question(question),
     m_student_name(student_name),
     m_version(version)
 {
   #ifndef NDEBUG
   Test();
+  if (!(!concept_map || this->GetQuestion() == concept_map->GetQuestion()))
+  {
+    if (concept_map)
+    {
+      TRACE(this->GetQuestion());
+      TRACE(concept_map->GetQuestion());
+    }
+  }
   assert(!concept_map || this->GetQuestion() == concept_map->GetQuestion());
   #endif
 }
@@ -97,7 +111,24 @@ const std::string pvdb::File::ConvertFrom_0_1(const std::string& s)
 const std::string pvdb::File::ConvertFrom_0_2(const std::string& s)
 {
   const std::string a = boost::algorithm::replace_all_copy(s,"</about><cluster>","</about><assessor_name></assessor_name><cluster>");
-  return a;
+  const std::string b = boost::algorithm::replace_all_copy(a,"<version>0.2</version>","<version>0.3</version>");
+  return b;
+}
+
+const std::string pvdb::File::ConvertFrom_0_3(const std::string& s)
+{
+  const std::string a
+    = boost::algorithm::replace_all_copy(s,"<about>ProjectVanDenBogaart</about>","<about>Brainweaver</about>");
+  const std::string b = boost::algorithm::replace_all_copy(a,"<version>0.3</version>","<version>0.4</version>");
+  //Copy the question from the concept map
+  const std::string question = DoXpressiveRegexReplace(
+    b,
+    "<concept_map><nodes><node><concept><name>(.*)</name></concept>",
+    "$1");
+  const std::string c = boost::algorithm::replace_all_copy(b,"</concept_map><student_name>"
+    , std::string("</concept_map><question>") + question + "</question><student_name>");
+
+  return c;
 }
 
 /*
@@ -181,14 +212,18 @@ const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
       //No concept map yet
     }
   }
+  //m_question
+  {
+    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<question>.*</question>)"));
+    assert(v.size() == 1);
+    f->m_question = pvdb::StripXmlTag(v[0]);
+  }
   //m_student_name
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<student_name>.*</student_name>)"));
     assert(v.size() == 1);
     f->m_student_name = pvdb::StripXmlTag(v[0]);
   }
-  assert(GetRegexMatches(s,QRegExp("(<question>.*</question>)")).empty()
-    && "Must be obsolete");
   //m_version
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<version>.*</version>)"));
@@ -200,15 +235,7 @@ const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
 
 const std::string pvdb::File::GetQuestion() const
 {
-  if (m_concept_map)
-  {
-    assert(m_concept_map);
-    return m_concept_map->GetQuestion();
-  }
-  else
-  {
-    return "";
-  }
+  return m_question;
 }
 
 const std::string pvdb::File::GetTempFileName()
@@ -224,25 +251,30 @@ const std::string pvdb::File::GetTestFileName()
 const std::vector<boost::shared_ptr<pvdb::File> > pvdb::File::GetTests()
 {
   std::vector<boost::shared_ptr<pvdb::File> > v;
-  const std::vector<boost::shared_ptr<pvdb::Cluster> > clusters = pvdb::ClusterFactory::GetTests();
-  assert(std::count_if(clusters.begin(),clusters.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0);
-  //assert(std::all_of(clusters.begin(),clusters.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } )); //Do not use std::all_of when crosscompiling
-  const std::vector<boost::shared_ptr<pvdb::ConceptMap> > concept_maps = pvdb::ConceptMapFactory::GetAllTests();
-  const int n_clusters = static_cast<int>(clusters.size());
-  const int n_concept_maps = static_cast<int>(concept_maps.size());
-  for (int cluster=0; cluster!=n_clusters; ++cluster)
+  const int n_clusters = static_cast<int>(pvdb::ClusterFactory::GetTests().size());
+  const int n_concept_maps = static_cast<int>(pvdb::ConceptMapFactory::GetAllTests().size());
+  for (int cluster_index=0; cluster_index!=n_clusters; ++cluster_index)
   {
-    for (int concept_map=0; concept_map!=n_concept_maps; ++concept_map)
+    for (int concept_map_index=0; concept_map_index!=n_concept_maps; ++concept_map_index)
     {
       const std::string about = "about";
       const std::string assessor_name = "assessor_name";
+      std::string question = "question";
       const std::string student_name = "student_name";
       const std::string version = "version";
+      const auto cluster = pvdb::ClusterFactory::GetTests()[cluster_index];
+      const auto concept_map = pvdb::ConceptMapFactory::GetAllTests()[concept_map_index];
+      if (concept_map)
+      {
+        assert(!concept_map->GetNodes().empty());
+        question = concept_map->GetNodes()[0]->GetConcept()->GetName();
+      }
       boost::shared_ptr<pvdb::File> file(new File(
         about,
         assessor_name,
-        clusters[cluster],
-        concept_maps[concept_map],
+        cluster,
+        concept_map,
+        question,
         student_name,
         version));
       v.push_back(file);
@@ -280,6 +312,16 @@ const boost::shared_ptr<pvdb::File> pvdb::File::Load(const std::string &filename
     if (version == std::string("0.2"))
     {
       xml = ConvertFrom_0_2(xml);
+    }
+  }
+  //Backwards compatiblity with file format version 0.3
+  {
+    const std::vector<std::string> v = pvdb::GetRegexMatches(xml,QRegExp("(<version>.*</version>)"));
+    assert(v.size() == 1);
+    const std::string version = pvdb::StripXmlTag(v[0]);
+    if (version == std::string("0.3"))
+    {
+      xml = ConvertFrom_0_3(xml);
     }
   }
 
@@ -323,8 +365,11 @@ void pvdb::File::SetAssessorName(const std::string& assessor_name)
 
 void pvdb::File::SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept_map)
 {
-  assert(concept_map);
-  assert(!m_concept_map);
+  if (m_concept_map)
+  {
+    TRACE("BREAK");
+  }
+  assert(!m_concept_map && "Can only set when there is no concept map present yet");
   m_concept_map = concept_map;
   this->AutoSave();
 }
@@ -332,8 +377,19 @@ void pvdb::File::SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept
 void pvdb::File::SetCluster(const boost::shared_ptr<pvdb::Cluster>& cluster)
 {
   assert(cluster);
-  //assert(!m_cluster); //Don't care
+  //Don't care: m_cluster will be overwritten more often,
+  //because the TreeWidget has no Model/View architecture: the resulting
+  //cluster is allocated new and calculated every save
+  //assert(!m_cluster);
+
   m_cluster = cluster;
+  this->AutoSave();
+}
+
+void pvdb::File::SetQuestion(const std::string& question)
+{
+  assert(question.size() > 1);
+  m_question = question;
   this->AutoSave();
 }
 
@@ -399,7 +455,7 @@ void pvdb::File::Test()
         = pvdb::ConceptMapFactory::Create(question);
       firstfile->SetConceptMap(concept_map);
     }
-    //firstfile->SetQuestion("Focal question?");
+    firstfile->SetQuestion("Focal question?");
     assert(firstfile->GetQuestion() == question);
     firstfile->Save(tmp_filename.c_str());
     assert(firstfile->GetQuestion() == question);
@@ -486,6 +542,7 @@ const std::string pvdb::File::ToXml(const File& file)
   s << "<assessor_name>" << file.GetAssessorName() << "</assessor_name>";
   if (file.GetCluster()   ) s << Cluster::ToXml(file.GetCluster());
   if (file.GetConceptMap()) s << ConceptMap::ToXml(file.GetConceptMap());
+  s << "<question>" << file.GetQuestion() << "</question>";
   s << "<student_name>" << file.GetStudentName() << "</student_name>";
   s << "<version>" << file.GetVersion() << "</version>";
   s << "</file>";
@@ -496,6 +553,34 @@ const std::string pvdb::File::ToXml(const File& file)
   assert(r.substr(r.size() - 7,7) == std::string("</file>"));
 
   return r;
+}
+
+const std::string pvdb::File::DoXpressiveRegexReplace(
+  const std::string& str,
+  const std::string& regex_str,
+  const std::string& format_str)
+{
+  try
+  {
+    return boost::xpressive::regex_replace(
+      str,
+      boost::xpressive::sregex(boost::xpressive::sregex::compile(regex_str)),
+      format_str,
+      boost::xpressive::regex_constants::match_default
+        | boost::xpressive::regex_constants::format_all
+        | boost::xpressive::regex_constants::format_no_copy);
+  }
+  catch (boost::xpressive::regex_error& e)
+  {
+    const std::string s
+      = "boost::xpressive::regex_error: " + std::string(e.what());
+    TRACE(str);
+    TRACE(regex_str);
+    TRACE(format_str);
+    TRACE(s);
+    assert(!"Should not get here");
+    throw std::logic_error(s.c_str());
+  }
 }
 
 #ifndef PVDB_KEEP_NAMESPACE_IN_CPP_FILES

@@ -73,7 +73,7 @@ const boost::shared_ptr<pvdb::Cluster> pvdb::ClusterFactory::GetTest(const std::
 
 const std::vector<boost::shared_ptr<pvdb::Cluster> > pvdb::ClusterFactory::GetTests()
 {
-  std::vector<boost::shared_ptr<pvdb::Cluster> > v(5);
+  std::vector<boost::shared_ptr<pvdb::Cluster> > v(6);
   {
     const boost::shared_ptr<pvdb::Cluster> p = GetTest( {0} );
     assert(p);
@@ -99,6 +99,12 @@ const std::vector<boost::shared_ptr<pvdb::Cluster> > pvdb::ClusterFactory::GetTe
     assert(p);
     v[4] = p;
   }
+  {
+    //NULLPTR
+    const boost::shared_ptr<pvdb::Cluster> p;
+    assert(!p);
+    v[5] = p;
+  }
   /* DO NOT DO THIS FOR WINE
   const std::vector<boost::shared_ptr<pvdb::Cluster> > v
     =
@@ -110,8 +116,6 @@ const std::vector<boost::shared_ptr<pvdb::Cluster> > pvdb::ClusterFactory::GetTe
       GetTest( { } )
     };
   */
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0); //FIX 2012-01-02
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } ));
   return v;
 }
 

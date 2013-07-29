@@ -71,12 +71,7 @@ void QtPvdbCreateAssessmentCompleteDialog::Save(const std::string& filename) con
     && "File must have correct file extension name");
   const std::string question = ui->edit->text().toStdString();
   const boost::shared_ptr<pvdb::File> file(new pvdb::File);
-  {
-    boost::shared_ptr<pvdb::ConceptMap> concept_map(
-      pvdb::ConceptMapFactory::Create(question));
-    assert(concept_map);
-    file->SetConceptMap(concept_map);
-  }
+  file->SetQuestion(question);
   assert(file->GetQuestion() == question);
   file->Save(filename);
 }

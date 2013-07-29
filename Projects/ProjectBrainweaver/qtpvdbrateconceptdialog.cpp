@@ -38,7 +38,9 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbRateConceptDialog),
-    m_concept(sub_concept_map->GetNodes().at(0)->GetConcept()),
+    m_concept(sub_concept_map
+      ? sub_concept_map->GetNodes().at(0)->GetConcept()
+      : boost::shared_ptr<pvdb::Concept>() ),
     m_sub_concept_map(sub_concept_map),
     m_widget(new QtPvdbConceptMapRateWidget(sub_concept_map))
 {
@@ -46,6 +48,7 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   #ifndef NDEBUG
   Test();
   #endif
+  if (!m_sub_concept_map) return;
 
   assert(m_sub_concept_map);
   assert(!m_sub_concept_map->GetNodes().empty());
@@ -102,6 +105,10 @@ void QtPvdbRateConceptDialog::keyPressEvent(QKeyEvent* e)
 
 void QtPvdbRateConceptDialog::on_button_ok_clicked()
 {
+  if (!m_concept)
+  {
+    close();
+  }
   //Change concept
   assert(m_concept);
   assert(ui->box_complexity->currentIndex() >= -1);
@@ -133,6 +140,11 @@ void QtPvdbRateConceptDialog::Test()
     for (std::size_t i=0; i!=n_concept_maps; ++i)
     {
       const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[i];
+      if (!concept_map)
+      {
+        QtPvdbRateConceptDialog d(concept_map);
+        continue;
+      }
       assert(concept_map);
       const boost::shared_ptr<pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
       assert(concept);
@@ -157,6 +169,11 @@ void QtPvdbRateConceptDialog::Test()
     for (std::size_t i=0; i!=n_concept_maps; ++i)
     {
       const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[i];
+      if (!concept_map)
+      {
+        QtPvdbRateConceptDialog d(concept_map);
+        continue;
+      }
       assert(concept_map);
       const boost::shared_ptr<pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
       assert(concept);

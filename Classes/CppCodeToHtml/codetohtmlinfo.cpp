@@ -1643,7 +1643,19 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQTableViewExample9.zip\">Download the Qt Creator project 'QTableViewExample9' (zip)</a></li>");
     v.push_back("</ul>");
   }
-  else if (m_page_name == "CppQTableViewExample1")
+  else if (m_page_name == "CppQTableViewExample10")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQTableViewExample10.htm\">QTableView example 10: two tables with checkboxes and editable text using a custom model and a custom data type</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQTableViewExample10.png\">View a screenshot of 'QTableViewExample10' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample10.zip\">Download the Qt Creator project 'QTableViewExample10' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTreeViewExample1")
   {
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1655,7 +1667,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQTreeViewExample1.zip\">Download the Qt Creator project 'CppQTreeViewExample1' (zip)</a></li>");
     v.push_back("</ul>");
   }
-  else if (m_page_name == "CppQTableViewExample2")
+  else if (m_page_name == "CppQTreeViewExample2")
   {
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1667,7 +1679,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQTreeViewExample2.zip\">Download the Qt Creator project 'CppQTreeViewExample2' (zip)</a></li>");
     v.push_back("</ul>");
   }
-  else if (m_page_name == "CppQTableViewExample3")
+  else if (m_page_name == "CppQTreeViewExample3")
   {
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1679,7 +1691,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQTreeViewExample3.zip\">Download the Qt Creator project 'CppQTreeViewExample3' (zip)</a></li>");
     v.push_back("</ul>");
   }
-  else if (m_page_name == "CppQTableViewExample4")
+  else if (m_page_name == "CppQTreeViewExample4")
   {
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");

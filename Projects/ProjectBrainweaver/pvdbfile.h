@@ -33,6 +33,7 @@ struct File : public boost::noncopyable
     const std::string& assessor_name,
     const boost::shared_ptr<pvdb::Cluster>& cluster,
     const boost::shared_ptr<pvdb::ConceptMap>& concept_map,
+    const std::string& question,
     const std::string& student_name,
     const std::string& version
   );
@@ -99,6 +100,9 @@ struct File : public boost::noncopyable
   ///Can only be done exactly once
   void SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept_map);
 
+  ///Set the question
+  void SetQuestion(const std::string& question);
+
   ///Set the student his/her name
   void SetStudentName(const std::string& student_name);
 
@@ -126,17 +130,23 @@ struct File : public boost::noncopyable
   ///The file extension of a a File
   static const std::string m_filename_extension;
 
+  ///The question the student must answer
+  std::string m_question;
+
   ///The student his/her name
   std::string m_student_name;
-
-  ///The question the student must answer
-  //std::string m_question;
 
   ///The version of this class
   std::string m_version;
 
   ///AutoSave, called after each setter
   void AutoSave() const;
+
+  ///Replace the regex_str in str with format_str
+  static const std::string DoXpressiveRegexReplace(
+    const std::string& str,
+    const std::string& regex_str,
+    const std::string& format_str);
 
   ///Convert a file's content to a single std::string
   static const std::string FileToStr(const std::string& filename);
@@ -146,6 +156,9 @@ struct File : public boost::noncopyable
 
   ///Convert a File from version 0.2
   static const std::string ConvertFrom_0_2(const std::string& xml);
+
+  ///Convert a File from version 0.3
+  static const std::string ConvertFrom_0_3(const std::string& xml);
 
   ///Test this class
   static void Test();

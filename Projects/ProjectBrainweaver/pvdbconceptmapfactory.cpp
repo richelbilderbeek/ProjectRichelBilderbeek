@@ -217,6 +217,13 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     }
   }
   #endif
+  //Add empty concept map
+  {
+    boost::shared_ptr<pvdb::ConceptMap> p;
+    assert(!p);
+    v.push_back(p);
+  }
+
   return v;
 }
 

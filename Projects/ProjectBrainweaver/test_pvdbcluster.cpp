@@ -48,20 +48,16 @@ void pvdb::Cluster::Test()
   //Test operator== and operator!=
   {
     const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_1 = pvdb::ClusterFactory::GetTests();
-    assert(std::count_if(tmp_tests_1.begin(),tmp_tests_1.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0); //FIX 2013-01-02
-    //assert(std::all_of(tmp_tests_1.begin(),tmp_tests_1.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } )); //BUG IN CROSSCOMPILER 2013-01-02
     const int sz = static_cast<int>(tmp_tests_1.size());
     for (int i=0; i!=sz; ++i)
     {
       const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_a = pvdb::ClusterFactory::GetTests(); //For crosscompiler
-      assert(std::count_if(tmp_tests_a.begin(),tmp_tests_a.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0);
-      //assert(std::all_of(tmp_tests_a.begin(),tmp_tests_a.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } ));
       const boost::shared_ptr<const pvdb::Cluster> a = tmp_tests_a.at(i);
+      if (!a) continue;
       assert(a);
       const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_b = pvdb::ClusterFactory::GetTests(); //For crosscompiler
-      assert(std::count_if(tmp_tests_b.begin(),tmp_tests_b.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0);
-      //assert(std::all_of(tmp_tests_b.begin(),tmp_tests_b.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } ));
       const boost::shared_ptr<pvdb::Cluster> b = tmp_tests_b.at(i);
+      if (!b) continue;
       assert(a); assert(b);
       assert(IsEqual(*a,*a));
       assert(IsEqual(*a,*b));
@@ -70,15 +66,12 @@ void pvdb::Cluster::Test()
       for (int j=0; j!=sz; ++j)
       {
         const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_c = pvdb::ClusterFactory::GetTests(); //For crosscompiler
-        assert(std::count_if(tmp_tests_c.begin(),tmp_tests_c.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0);
-        //assert(std::all_of(tmp_tests_c.begin(),tmp_tests_c.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } ));
         const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_d = pvdb::ClusterFactory::GetTests(); //For crosscompiler
-        assert(std::count_if(tmp_tests_d.begin(),tmp_tests_d.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0);
-        //assert(std::all_of(tmp_tests_d.begin(),tmp_tests_d.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } ));
-
         const boost::shared_ptr<const pvdb::Cluster> c = tmp_tests_c.at(j);
+        if (!c) continue;
         assert(c);
         const boost::shared_ptr<      pvdb::Cluster> d = tmp_tests_d.at(j);
+        if (!d) continue;
         assert(c); assert(d);
         assert(IsEqual(*c,*c));
         assert(IsEqual(*c,*d));

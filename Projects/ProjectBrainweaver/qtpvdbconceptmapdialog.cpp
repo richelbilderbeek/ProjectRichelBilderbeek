@@ -69,7 +69,7 @@ QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
     ui(new Ui::QtPvdbConceptMapDialog),
     m_back_to_menu(false),
     m_file(file),
-    m_widget(CreateWidget(file->GetConceptMap()))
+    m_widget(CreateWidget(file))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -105,6 +105,7 @@ QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog()
   delete ui;
 }
 
+/*
 QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::ConceptMap> concept_map)
 {
   assert(concept_map);
@@ -112,53 +113,64 @@ QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::s
   assert(widget);
   return widget;
 }
+*/
 
-
-/*
 QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
-  boost::shared_ptr<pvdb::ConceptMap> concept_map;
 
-  if (!file->GetCluster()->Empty())
+  const bool had_cluster = file->GetCluster();
+  const bool had_concept_map = file->GetConceptMap();
+
+  if (!had_cluster && !had_concept_map)
   {
-    //TRACE("User supplied a filled-in cluster");
+    TRACE("User starts building a concept map from scratch");
+    boost::shared_ptr<pvdb::ConceptMap> concept_map
+      = pvdb::ConceptMapFactory::Create(file->GetQuestion());
+    file->SetConceptMap(concept_map);
+  }
+  else if ( had_cluster && !had_concept_map)
+  {
+    TRACE("User supplied a filled-in cluster");
     assert(file->GetCluster());
-    concept_map = pvdb::ConceptMapFactory::CreateFromCluster(
-        file->GetConceptMap()->GetQuestion(),
+
+    boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::CreateFromCluster(
+        file->GetQuestion(),
         file->GetCluster()
       );
+
+    file->SetConceptMap(concept_map);
+
     assert((file->GetCluster()->Get().size() + 1)
       == (concept_map->GetNodes().size())
       && "As much cluster items as nodes + focus question");
   }
-  else
+
+  if (!had_cluster && !had_concept_map)
   {
-    //TRACE("User starts constructing a concept map from scratch or already filled in one");
-    if (file->GetConceptMap()->GetNodes().empty())
-    {
-      const boost::shared_ptr<pvdb::Node > node = pvdb::NodeFactory::Create(file->GetQuestion());
-      assert(node);
-      const std::vector<boost::shared_ptr<pvdb::Node> > nodes = { node };
-      const std::vector<boost::shared_ptr<pvdb::Edge> > edges = { };
-      concept_map = pvdb::ConceptMapFactory::Create(nodes,edges);
-    }
-    else
-    {
-      concept_map = file->GetConceptMap();
-    }
+    assert(!file->GetCluster());
+    assert( file->GetConceptMap()); //Created
   }
-  assert(concept_map);
-  file->SetConceptMap(concept_map);
+  if ( had_cluster && !had_concept_map)
+  {
+    assert( file->GetCluster());
+    assert( file->GetConceptMap()); //Created from concept map
+  }
+  if (!had_cluster &&  had_concept_map)
+  {
+    assert(!file->GetCluster());
+    assert( file->GetConceptMap());
+  }
+  if ( had_cluster &&  had_concept_map)
+  {
+    assert( file->GetCluster());
+    assert( file->GetConceptMap());
+  }
 
-  assert(file->GetConceptMap());
-  assert(file->GetConceptMap()->GetNodes().size() >= 1);
-
-  QtPvdbConceptMapEditWidget * const widget = new QtPvdbConceptMapEditWidget(concept_map);
+  QtPvdbConceptMapEditWidget * const widget = new QtPvdbConceptMapEditWidget(file->GetConceptMap());
   assert(widget);
   return widget;
 }
-*/
 
 #ifndef NDEBUG
 void QtPvdbConceptMapDialog::DoRandomStuff()

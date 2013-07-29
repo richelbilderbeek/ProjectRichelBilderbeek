@@ -36,6 +36,7 @@ void QtPvdbConceptMapEditWidget::Test()
     const auto v = pvdb::ConceptMapFactory::GetAllTests();
     for (const boost::shared_ptr<pvdb::ConceptMap> concept_map: v)
     {
+      if (!concept_map) continue;
       assert(concept_map);
       assert(concept_map->IsValid());
 
@@ -49,10 +50,12 @@ void QtPvdbConceptMapEditWidget::Test()
     const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
+      if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
       const std::size_t n_nodes = pvdb::ConceptMapFactory::GetAllTests()[i]->GetNodes().size();
       for (std::size_t j=0; j!=n_nodes; ++j)
       {
         boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+        if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetNodes().size() == n_nodes);
         assert(j < concept_map->GetNodes().size());
@@ -71,10 +74,12 @@ void QtPvdbConceptMapEditWidget::Test()
     const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
+      if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
       const std::size_t n_edges = pvdb::ConceptMapFactory::GetAllTests()[i]->GetEdges().size();
       for (std::size_t j=0; j!=n_edges; ++j)
       {
         boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+        if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetEdges().size() == n_edges);
         assert(j < concept_map->GetEdges().size());

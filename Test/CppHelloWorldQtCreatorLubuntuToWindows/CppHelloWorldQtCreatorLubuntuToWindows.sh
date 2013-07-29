@@ -1,10 +1,5 @@
 #!/bin/bash
-#From http://richelbilderbeek.nl/CppHelloWorldQtCreatorLubuntuToWindows.htm
-echo "Cross compiling to Windows"
-
-#myfile="i686-pc-mingw32-qmake"
-#myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"
-myfile="../../Libraries/mxe/usr/i686-pc-mingw32/qt/bin
+myfile="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
 mytarget="CppHelloWorldQtCreatorLubuntuToWindows"
 myprofile=$mytarget.pro
 
@@ -25,7 +20,7 @@ fi
 
 make
 
-if [ -e ./release/$mytarget ]
+if [ -e ./release/$mytarget".exe" ]
 then
   echo $mytarget": SUCCESS"
 else

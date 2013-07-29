@@ -51,43 +51,36 @@ QtPvdbClusterDialog::QtPvdbClusterDialog(
   #ifndef NDEBUG
   Test();
   assert(file);
-  assert(m_file);
-  assert(file == m_file);
   assert(IsEqual(*file,*m_file));
-  assert(m_widget);
-  assert(file->GetCluster() && "The dialog creates a cluster if not present");
+  assert(m_widget || !m_widget);
+  assert( (file->GetCluster() || !file->GetCluster())
+    && "The dialog creates a cluster when there is no concept map"
+    && "Or keeps cluster nullptr when there is a concept map");
   #endif
 
   //Add the cluster widget
   {
-
     assert(!ui->widget_tree->layout());
     QGridLayout * const layout = new QGridLayout;
-    layout->addWidget(m_widget);
+    if (m_widget)
+    {
+      layout->addWidget(m_widget);
+    }
+    else
+    {
+      assert(!file->GetCluster() && file->GetConceptMap());
+      QLabel * const label = new QLabel("Cannot start a new clustering when there is already a concept map created");
+      layout->addWidget(label);
+    }
     ui->widget_tree->setLayout(layout);
   }
+  //Enabled/disable controls
+  ui->button_add->setEnabled(!file->GetConceptMap());
+  if (m_widget) m_widget->setEnabled( !file->GetConceptMap() );
+  ui->edit->setEnabled(!file->GetConceptMap());
 
-  ui->label_question->setText(m_file->GetConceptMap()->GetQuestion().c_str());
-
-  assert(!m_file->GetConceptMap()->GetNodes().empty());
-  if (m_file->GetConceptMap()->GetNodes().size() > 1) //1, as node[0] is focal question
-  {
-    m_widget->setEnabled(false);
-    ui->button_add->setEnabled(false);
-    ui->edit->setEnabled(false);
-    assert(!this->GetWidget()->isEnabled());
-  }
-
-  #ifndef NDEBUG
-  {
-    //Check that writing to pvdb::File works
-    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::DeepCopy(m_file));
-    assert(file);
-    const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
-    file->SetCluster(cluster);
-    assert(IsEqual(*file->GetCluster(),*GetWidget()->GetCluster()));
-  }
-  #endif
+  //Display the focal question
+  ui->label_question->setText(m_file->GetQuestion().c_str());
 }
 
 
@@ -102,21 +95,29 @@ QtPvdbClusterDialog::~QtPvdbClusterDialog()
 QtPvdbClusterWidget * QtPvdbClusterDialog::BuildWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
-  if (!file->GetCluster())
+  //Create a cluster a new cluster
+  if (!file->GetCluster() && !file->GetConceptMap())
   {
     const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::Create( {} );
     assert(cluster);
     file->SetCluster(cluster);
   }
-  assert(file->GetCluster());
-  QtPvdbClusterWidget * const widget = new QtPvdbClusterWidget(file->GetCluster());
-  assert(widget);
-  return widget;
+  //Read an existing cluster
+  if (file->GetCluster())
+  {
+    QtPvdbClusterWidget * const widget = new QtPvdbClusterWidget(file->GetCluster());
+    assert(widget);
+    return widget;
+  }
+  //Only where there is an existing concept map, and no existing cluster, will this return null
+  assert(!file->GetCluster() && file->GetConceptMap());
+  return nullptr;
 }
 
 void QtPvdbClusterDialog::DoRandomStuff()
 {
   #ifndef NDEBUG
+  if (!GetWidget()) return;
   assert(GetWidget());
   assert(m_file->GetCluster());
   assert(m_file->GetCluster() == this->GetWidget()->GetCluster());
@@ -148,8 +149,7 @@ void QtPvdbClusterDialog::DoRandomStuff()
 
 const QtPvdbClusterWidget * QtPvdbClusterDialog::GetWidget() const
 {
-  assert(ui);
-  assert(m_widget);
+  assert(m_widget || !m_widget);
   return m_widget;
 }
 
@@ -209,6 +209,8 @@ void QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
 
 void QtPvdbClusterDialog::on_button_add_clicked()
 {
+  assert(m_widget && "This button can only be clicked when there is a widget");
+
   assert(boost::algorithm::trim_all_copy(std::string(" \t x \t ")) == std::string("x"));
   const std::string text = boost::algorithm::trim_all_copy(ui->edit->text().toStdString());
   if (text.empty()) return;
@@ -234,30 +236,43 @@ void QtPvdbClusterDialog::on_button_add_clicked()
 void QtPvdbClusterDialog::on_button_next_clicked()
 {
   assert(m_file);
-  if (GetWidget()->isEnabled()) //Save concept map, when user is all
+  if (GetWidget() && GetWidget()->isEnabled()) //Save concept map, when user is all
   {
 
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
+    TRACE(cluster->Get().size());
     m_file->SetCluster(cluster);
-  }
-  //File's cluster and widget's cluster should be the same
-  assert(m_file->GetCluster() == GetWidget()->GetCluster());
 
+
+    //File's cluster and widget's cluster should be the same
+    assert(m_file->GetCluster() == GetWidget()->GetCluster());
+
+    //The concept map is either (1) not yet created (2) already present
+    assert(!m_file->GetConceptMap() || m_file->GetConceptMap());
+  }
 
   QtPvdbConceptMapDialog d(m_file);
   this->ShowChild(&d);
+
+  //By now, the concept map must have been (1) created (2) already present
+  assert(m_file->GetConceptMap());
+
   if (d.GoBackToMenu())
   {
     m_back_to_menu = true;
     close();
   }
+
   //Same test as in constructor
   if (m_file->GetConceptMap()->GetNodes().size() > 1) //1, as node[0] is focal question
   {
-    m_widget->setEnabled(false);
+    if (m_widget)
+    {
+      m_widget->setEnabled(false);
+      assert(!this->GetWidget()->isEnabled());
+    }
     ui->button_add->setEnabled(false);
     ui->edit->setEnabled(false);
-    assert(!this->GetWidget()->isEnabled());
   }
 }
 
@@ -284,18 +299,47 @@ void QtPvdbClusterDialog::Test()
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<pvdb::File> & file)
       {
-        assert((file->GetCluster() || !file->GetCluster())
-          && "If the file has no cluster, the cluster dialog creates it");
+        const bool had_cluster = file->GetCluster();
+        const bool had_concept_map = file->GetConceptMap();
         boost::shared_ptr<QtPvdbClusterDialog> d(new QtPvdbClusterDialog(file));
-        assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
-        assert(file->GetCluster() == d->GetWidget()->GetCluster());
-        const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
-        assert(before);
-        assert(before != file->GetCluster());
-        assert(IsEqual(*file->GetCluster(),*before));
-        d->GetWidget()->Add("Modification!");
-        //assert(!IsEqual(*file->GetCluster(),*before)); //Does not work, must obtain the cluster from the widget
-        assert(!IsEqual(*d->GetWidget()->GetCluster(),*before)); //Widget updates the cluster
+
+        if (!had_cluster && !had_concept_map)
+        {
+          assert(file->GetCluster());
+          assert(!file->GetConceptMap());
+          assert(d->ui->button_add->isEnabled());
+        }
+        if ( had_cluster && !had_concept_map)
+        {
+          assert(file->GetCluster());
+          assert(!file->GetConceptMap());
+          assert(d->ui->button_add->isEnabled());
+        }
+        if (!had_cluster &&  had_concept_map)
+        {
+          assert(!file->GetCluster());
+          assert( file->GetConceptMap());
+          assert(!d->ui->button_add->isEnabled());
+        }
+        if ( had_cluster &&  had_concept_map)
+        {
+          assert( file->GetCluster());
+          assert( file->GetConceptMap());
+          assert(!d->ui->button_add->isEnabled());
+        }
+        //Test cluster copying, if there
+        if (file->GetCluster())
+        {
+          assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
+          assert(file->GetCluster() == d->GetWidget()->GetCluster());
+          const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
+          assert(before);
+          assert(before != file->GetCluster());
+          assert(IsEqual(*file->GetCluster(),*before));
+          d->GetWidget()->Add("Modification!");
+          //assert(!IsEqual(*file->GetCluster(),*before)); //Does not work, must obtain the cluster from the widget
+          assert(!IsEqual(*d->GetWidget()->GetCluster(),*before)); //Widget updates the cluster
+        }
       }
     );
   }
@@ -304,55 +348,77 @@ void QtPvdbClusterDialog::Test()
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<pvdb::File> & file)
       {
-        assert((file->GetCluster() || !file->GetCluster())
-          && "If the file has no cluster, the cluster dialog creates it");
+        const bool had_cluster = file->GetCluster();
+        const bool had_concept_map = file->GetConceptMap();
+
         boost::shared_ptr<QtPvdbClusterDialog> d(new QtPvdbClusterDialog(file));
-        assert(file->GetCluster() && "the cluster dialog used an existing or created a cluster");
-        assert(file->GetCluster() == d->GetWidget()->GetCluster());
-        const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
-        assert(before);
-        assert(before != file->GetCluster());
-        assert(IsEqual(*file->GetCluster(),*before));
-        d->ui->edit->setText("modification");
-        d->on_button_add_clicked();
-        assert(!IsEqual(*before,*d->GetWidget()->GetCluster()));
+
+        if (!had_cluster && !had_concept_map)
+        {
+          assert(file->GetCluster());
+          assert(!file->GetConceptMap());
+          assert(d->ui->button_add->isEnabled());
+        }
+        if ( had_cluster && !had_concept_map)
+        {
+          assert(file->GetCluster());
+          assert(!file->GetConceptMap());
+          assert(d->ui->button_add->isEnabled());
+        }
+        if (!had_cluster &&  had_concept_map)
+        {
+          assert(!file->GetCluster());
+          assert( file->GetConceptMap());
+          assert(!d->ui->button_add->isEnabled());
+        }
+        if ( had_cluster &&  had_concept_map)
+        {
+          assert( file->GetCluster());
+          assert( file->GetConceptMap());
+          assert(!d->ui->button_add->isEnabled());
+        }
+        if (file->GetCluster())
+        {
+
+          const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
+          assert(before);
+          assert(before != file->GetCluster());
+          assert(IsEqual(*file->GetCluster(),*before));
+          d->ui->edit->setText("modification");
+          if (d->ui->button_add->isEnabled())
+          {
+            d->on_button_add_clicked();
+            assert(!IsEqual(*before,*d->GetWidget()->GetCluster()));
+          }
+        }
       }
     );
   }
-  //QtPvdbClusterDialog must be enabled if there is only a center node at the concept map
+  //QtPvdbClusterDialog must be enabled if there is no concept map
   {
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
+    file->SetQuestion(question);
+    assert(file->GetQuestion() == question);
 
     const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::GetTest( {0,1,2} );
 
     file->SetCluster(cluster);
 
-    assert(file->GetCluster());
+    assert( file->GetCluster());
+    assert(!file->GetConceptMap());
 
-    const boost::shared_ptr<pvdb::Node> node_a(
-      pvdb::NodeFactory::Create(
-        pvdb::ConceptFactory::Create(question),
-        0,
-        0
-      )
-    );
-
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(
-      pvdb::ConceptMapFactory::Create( { node_a } ));
-    assert(concept_map);
-    file->SetConceptMap(concept_map);
-    assert(file->GetQuestion() == question);
-    assert(file->GetCluster());
     const QtPvdbClusterDialog d(file);
     assert(d.GetWidget()->isEnabled()
-      && "QtClusterWidget is enabled when there is only a question in the ConceptMap");
+      && "QtClusterWidget is enabled only when there is no ConceptMap");
   }
 
   //QtPvdbClusterDialog must be disabled if there are more nodes in the concept map
   {
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
+    file->SetQuestion(question);
+
     const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::GetTest( { 0,1,2 } );
 
     file->SetCluster(cluster);
@@ -377,6 +443,7 @@ void QtPvdbClusterDialog::Test()
     assert(file->GetQuestion() == question);
     assert(file->GetCluster());
     const QtPvdbClusterDialog d(file);
+    assert(d.GetWidget());
     assert(!d.GetWidget()->isEnabled()
       && "QtClusterWidget is disabled when there is a filled ConceptMap");
   }
@@ -391,18 +458,7 @@ void QtPvdbClusterDialog::Test()
 void QtPvdbClusterDialog::on_edit_textChanged(const QString &arg1)
 {
   assert(ui->edit->text() == arg1);
-  ui->button_add->setEnabled( arg1.size() > 0);
-
-  #ifndef NDEBUG
-  {
-    //Check that writing to pvdb::File works
-    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::DeepCopy(m_file));
-    assert(file);
-    const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
-    file->SetCluster(cluster);
-    assert(IsEqual(*file->GetCluster(),*GetWidget()->GetCluster()));
-  }
-  #endif
+  ui->button_add->setEnabled(!m_file->GetConceptMap() && arg1.size() > 0);
 }
 
 void QtPvdbClusterDialog::Save()
@@ -432,10 +488,14 @@ void QtPvdbClusterDialog::Save(const std::string& filename)
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
     && "File must have correct file extension name");
-  const boost::shared_ptr<pvdb::Cluster> cluster = this->GetWidget()->GetCluster();
-  assert(cluster);
-  m_file->SetCluster(cluster);
-  assert(m_file->GetCluster() == GetWidget()->GetCluster());
+  if (this->GetWidget())
+  {
+    assert(this->GetWidget());
+    const boost::shared_ptr<pvdb::Cluster> cluster = this->GetWidget()->GetCluster();
+    assert(cluster);
+    m_file->SetCluster(cluster);
+    assert(m_file->GetCluster() == GetWidget()->GetCluster());
+  }
   m_file->Save(filename);
 }
 

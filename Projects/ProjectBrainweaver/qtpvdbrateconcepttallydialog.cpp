@@ -32,6 +32,7 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
     m_map(sub_concept_map)
 {
   ui->setupUi(this);
+  if (!sub_concept_map) return;
   ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   assert(sub_concept_map);
   assert(!sub_concept_map->GetNodes().empty());

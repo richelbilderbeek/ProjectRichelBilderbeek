@@ -70,9 +70,9 @@ private:
   ///The concept map widget
   QtPvdbConceptMapEditWidget * const m_widget;
 
-  static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::ConceptMap> concept_map);
+  //static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::ConceptMap> concept_map);
   ///DON'T USE: puts a new ConceptMap in file
-  //static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::File> file);
+  static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::File> file);
 
   ///NEW 2013-01-07
   void OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item);

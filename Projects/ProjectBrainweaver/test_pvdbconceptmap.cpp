@@ -60,13 +60,16 @@ void pvdb::ConceptMap::Test()
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<const pvdb::ConceptMap> m)
       {
-        //Test copy constructor
-        const boost::shared_ptr<pvdb::ConceptMap> c(pvdb::ConceptMapFactory::DeepCopy(m));
-        assert(IsEqual(*c,*m));
-        //Test XML conversions
-        const std::string s = ToXml(c);
-        const boost::shared_ptr<pvdb::ConceptMap> d = pvdb::ConceptMapFactory::FromXml(s);
-        assert(IsEqual(*c,*d));
+        if (m)
+        {
+          //Test copy constructor
+          const boost::shared_ptr<pvdb::ConceptMap> c(pvdb::ConceptMapFactory::DeepCopy(m));
+          assert(IsEqual(*c,*m));
+          //Test XML conversions
+          const std::string s = ToXml(c);
+          const boost::shared_ptr<pvdb::ConceptMap> d = pvdb::ConceptMapFactory::FromXml(s);
+          assert(IsEqual(*c,*d));
+        }
       }
     );
   }
@@ -419,17 +422,18 @@ void pvdb::ConceptMap::Test()
   //Conversion from Cluster
   {
     const std::vector<boost::shared_ptr<pvdb::Cluster> > clusters = pvdb::ClusterFactory::GetTests();
-    assert(std::count_if(clusters.begin(),clusters.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0);
-    //assert(std::all_of(clusters.begin(),clusters.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } ));
     std::for_each(clusters.begin(),clusters.end(),
       [](const boost::shared_ptr<pvdb::Cluster> & cluster)
       {
-        const boost::shared_ptr<pvdb::ConceptMap> m(pvdb::ConceptMapFactory::CreateFromCluster("Focal question",cluster));
-        assert(m);
-        const std::string s = pvdb::ConceptMap::ToXml(m);
-        const boost::shared_ptr<pvdb::ConceptMap> n = pvdb::ConceptMapFactory::FromXml(s);
-        assert(n);
-        assert(IsEqual(*m,*n));
+        if (cluster)
+        {
+          const boost::shared_ptr<pvdb::ConceptMap> m(pvdb::ConceptMapFactory::CreateFromCluster("Focal question",cluster));
+          assert(m);
+          const std::string s = pvdb::ConceptMap::ToXml(m);
+          const boost::shared_ptr<pvdb::ConceptMap> n = pvdb::ConceptMapFactory::FromXml(s);
+          assert(n);
+          assert(IsEqual(*m,*n));
+        }
       }
     );
   }
@@ -453,7 +457,9 @@ void pvdb::ConceptMap::Test()
       const int sz = static_cast<int>(n_subs_expected.size());
       for (int i=0; i!=sz; ++i)
       {
+        if (!maps[i]) continue;
         const boost::shared_ptr<pvdb::ConceptMap>& map = maps[i];
+
         const std::vector<boost::shared_ptr<pvdb::ConceptMap> > subs = map->CreateSubs();
         #ifndef NDEBUG
         if (static_cast<int>(subs.size()) != n_subs_expected[i])
@@ -472,6 +478,7 @@ void pvdb::ConceptMap::Test()
       const int sz = boost::numeric_cast<int>(maps.size());
       for (int i=0; i!=sz; ++i)
       {
+        if (!maps[i]) continue;
         const boost::shared_ptr<pvdb::ConceptMap>& map = maps[i];
         const std::vector<boost::shared_ptr<pvdb::ConceptMap> > subs = map->CreateSubs();
         assert(!subs.empty());
@@ -495,6 +502,7 @@ void pvdb::ConceptMap::Test()
     const auto concept_maps = pvdb::ConceptMapFactory::GetAllTests();
     for (const auto concept_map: concept_maps)
     {
+      if (!concept_map) continue;
       assert(concept_map);
       const int n_nodes_before = concept_map->GetNodes().size();
       const int n_edges_before = concept_map->GetEdges().size();
@@ -517,10 +525,13 @@ void pvdb::ConceptMap::Test()
     const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
+      if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
+      assert(pvdb::ConceptMapFactory::GetAllTests()[i]);
       const std::size_t n_nodes = pvdb::ConceptMapFactory::GetAllTests()[i]->GetNodes().size();
       for (std::size_t j=0; j!=n_nodes; ++j)
       {
         boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+        if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetNodes().size() == n_nodes);
         assert(j < concept_map->GetNodes().size());
@@ -536,10 +547,13 @@ void pvdb::ConceptMap::Test()
     const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
+      if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
+      assert(pvdb::ConceptMapFactory::GetAllTests()[i]);
       const std::size_t n_edges = pvdb::ConceptMapFactory::GetAllTests()[i]->GetEdges().size();
       for (std::size_t j=0; j!=n_edges; ++j)
       {
         boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+        if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetEdges().size() == n_edges);
         assert(j < concept_map->GetEdges().size());

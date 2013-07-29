@@ -313,12 +313,10 @@ void QtPvdbClusterWidget::Test()
   #endif
   TRACE("Started QtPvdbClusterWidget::Test");
   {
-    const std::vector<boost::shared_ptr<pvdb::Cluster> > v = pvdb::ClusterFactory::GetTests();
-    assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return !p; } ) == 0);
-    //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Cluster>& p) { return p; } ));
-    std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<pvdb::Cluster>& c)
+    //const std::vector<boost::shared_ptr<pvdb::Cluster> > v = pvdb::ClusterFactory::GetTests();
+    for (const boost::shared_ptr<pvdb::Cluster>& c: pvdb::ClusterFactory::GetTests())
       {
+        if (!c) continue;
         assert(c);
         QtPvdbClusterWidget w(c);
         assert(w.topLevelItemCount() == static_cast<int>(c->Get().size()));
@@ -337,7 +335,7 @@ void QtPvdbClusterWidget::Test()
         assert( IsEqual(*c,*e));
         assert(!IsEqual(*d,*e));
       }
-    );
+    //);
   }
   TRACE("QtPvdbClusterWidget::Test completed successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507

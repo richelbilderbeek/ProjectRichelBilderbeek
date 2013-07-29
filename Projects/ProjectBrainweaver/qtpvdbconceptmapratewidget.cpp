@@ -56,9 +56,11 @@ QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
   #ifndef NDEBUG
   Test();
 
-  assert(concept_map && "Only an existing concept map can be rated");
-  BuildQtConceptMap();
+  assert( (concept_map || !concept_map )
+    && "Only an existing concept map can be rated,"
+       "an empty one displays nothing");
   #endif
+  if (concept_map) BuildQtConceptMap();
 }
 
 void QtPvdbConceptMapRateWidget::AddEdge(

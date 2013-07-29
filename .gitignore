@@ -26,10 +26,13 @@ trace_out.txt
 autosave1.cmp
 autosave2.cmp
 /.directory
+Examples/
 Libraries/.directory
 Libraries/bigint-2010.04.30/
 Libraries/boost_1_53_0/
 Libraries/boost_*
+Libraries/bot.sh
+Libraries/ircbot_fsx/
 Libraries/eggdrop1.6.21
 Libraries/fparser4.4.3/
 Libraries/fparser4.5.1/
@@ -39,6 +42,7 @@ Libraries/mxe/
 Libraries/planner/
 Libraries/polymorphable-master/
 Libraries/projectlibre-code/
+Libraries/quxbot/
 Libraries/Qwt/
 Libraries/qwt-6.0.1/
 Libraries/qwt-6.1/
@@ -47,6 +51,7 @@ Libraries/qwt-6.1.0.zip
 Libraries/shiny/
 Libraries/tesseract-3.00/
 Libraries/tor-browser*
+Libraries/tornado/
 Libraries/vpiano-0.9/
 Libraries/john-1.7.9/
 Libraries/wt/

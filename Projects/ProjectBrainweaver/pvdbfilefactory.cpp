@@ -54,6 +54,7 @@ const boost::shared_ptr<pvdb::File> pvdb::FileFactory::DeepCopy(const boost::sha
       file->GetAssessorName(),
       cluster,
       concept_map,
+      file->GetQuestion(),
       file->GetStudentName(),
       file->GetVersion()));
   assert(p);
