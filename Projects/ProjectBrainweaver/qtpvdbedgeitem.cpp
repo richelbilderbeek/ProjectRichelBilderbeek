@@ -307,11 +307,6 @@ void QtPvdbEdgeItem::OnItemHasUpdated()
 
   //this->setRect(QtPvdbConceptMapItem::boundingRect());
   this->setRect(m_concept_item->boundingRect());
-  if (m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect())
-  {
-    TRACE(m_concept_item->boundingRect().width());
-    TRACE(QtPvdbConceptMapItem::boundingRect().width());
-  }
   assert( ( m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
     || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect() )
     && "Bounding rects might differ between edge and concept item");

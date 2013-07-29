@@ -53,6 +53,9 @@ QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
     && "Also an empty concept map can be displayed");
   #endif
   if (concept_map) BuildQtConceptMap();
+
+  //assert(m_tools->scene() && "m_tools is added at CleanMe at BuildQtConceptMap");
+  //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
 
@@ -83,6 +86,8 @@ void QtPvdbConceptMapDisplayWidget::AddEdge(
     boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
   assert(this->scene());
 
+
+  assert(!qtedge->scene());
   this->scene()->addItem(qtedge);
 
   assert(std::count(
@@ -112,6 +117,7 @@ QtPvdbNodeItem * QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<
   qtnode->m_signal_request_scene_update.connect(
     boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
 
+  assert(!qtnode->scene());
   this->scene()->addItem(qtnode);
 
   assert(std::count(
@@ -149,6 +155,7 @@ void QtPvdbConceptMapDisplayWidget::CleanMe()
     SetExamplesItem(item);
     assert(GetExamplesItem());
     GetExamplesItem()->setVisible(false);
+    assert(!GetExamplesItem()->scene());
     this->scene()->addItem(GetExamplesItem());
   }
 }

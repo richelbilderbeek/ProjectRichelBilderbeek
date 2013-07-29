@@ -9,6 +9,7 @@
 
 #include <cassert>
 #include <boost/lambda/lambda.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -119,8 +120,8 @@ QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::s
 {
   assert(file);
 
-  const bool had_cluster = file->GetCluster();
-  const bool had_concept_map = file->GetConceptMap();
+  const bool had_cluster = file->GetCluster().get();
+  const bool had_concept_map = file->GetConceptMap().get();
 
   if (!had_cluster && !had_concept_map)
   {

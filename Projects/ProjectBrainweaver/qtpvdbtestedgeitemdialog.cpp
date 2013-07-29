@@ -113,6 +113,10 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   assert(node1);
   assert(node2);
   assert(m_edge_item);
+  assert(!node1->scene());
+  assert(!node2->scene());
+  assert(!m_edge_item->scene());
+
   ui->view->scene()->addItem(node1);
   ui->view->scene()->addItem(node2);
   ui->view->scene()->addItem(m_edge_item);

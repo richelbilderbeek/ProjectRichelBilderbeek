@@ -101,6 +101,8 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
   //Cannot test this ABC here, its derived classes will test themselves
 
   this->setScene(new QGraphicsScene(this));
+
+  assert(!m_examples_item->scene());
   scene()->addItem(m_examples_item); //Add the examples so it has a parent
 
   assert(Collect<QtPvdbNodeItem>(scene()).empty());
@@ -155,6 +157,7 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
     qtnode->m_signal_item_has_updated.connect(
       boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
     //Add the center node to scene
+    assert(!qtnode->scene());
     this->scene()->addItem(qtnode);
     qtnodes.push_back(qtnode);
     assert(Collect<QtPvdbNodeItem>(scene()).size() == 1);

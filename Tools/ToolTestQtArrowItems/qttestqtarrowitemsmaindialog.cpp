@@ -75,6 +75,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
       const bool head = (std::rand() >> 4) % 2;
       QtArrowItem * const item = new QtArrowItem(x1,y1,tail,x2,y2,head);
       item->SetFocusPen(QPen(QColor(255,0,0),2));
+      assert(!item->scene());
       this->ui->view->scene()->addItem(item);
     }
   }
@@ -106,6 +107,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
 
       QtPathArrowItem * const item = new QtPathArrowItem(tail_pos,tail,mid,head,head_pos);
       item->SetFocusPen(QPen(QColor(255,0,0),2));
+      assert(!item->scene());
       this->ui->view->scene()->addItem(item);
     }
   }
@@ -132,6 +134,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
       rect->setPos(x1,y1);
+      assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
 
@@ -147,6 +150,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
         rects[(i+1) % n_items],
         true,
         rects[(i+2) % n_items]);
+      assert(!item->scene());
       this->ui->view->scene()->addItem(item);
     }
   }
@@ -167,6 +171,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
       rect->SetRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
       rect->setPos(x1,y1);
+      assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
       rect->m_signal_request_scene_update.connect(
@@ -182,6 +187,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
         true,
         rects.at(i+1)
       );
+      assert(!item->scene());
       this->ui->view->scene()->addItem(item);
     }
   }

@@ -57,6 +57,7 @@ void QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
       const double h = item->boundingRect().height();
       const double y = -100.0 + (static_cast<double>(i - (sz/2)) * 20.0);
       item->setPos(-0.5 * w,(-0.5 * h) + y);
+      assert(!item->scene());
       scene()->addItem(item);
     }
   }
@@ -79,6 +80,7 @@ void QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
       item->SetText( std::vector<std::string>(1 + col,s) );
       item->setPos(x,y);
       item->SetFocusPen(QPen(QColor(255,0,0),3.0));
+      assert(!item->scene());
       scene()->addItem(item);
 
       y += item->boundingRect().height() + 2.0;

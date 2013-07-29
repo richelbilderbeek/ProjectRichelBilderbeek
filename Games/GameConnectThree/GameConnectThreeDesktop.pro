@@ -114,7 +114,7 @@ win32 {
     message(Linux to Windows: Boost: linking)
 
     LIBS += -L../../Libraries/mxe/usr/i686-pc-mingw32/lib
-    LIBS += -lboost_regex
+    LIBS += -lboost_regex -lboost_filesystem -lboost_system
   }
 
   exists(../../Libraries/boost_1_54_0) {

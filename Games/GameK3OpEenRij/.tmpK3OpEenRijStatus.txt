@@ -1,0 +1,6 @@
+GameK3OpEenRijDesktop.pro, Lubuntu: FAIL (executable not found)
+GameK3OpEenRijDesktop.pro, Qt5LubuntuToWindows: FAIL (executable not found)
+GameK3OpEenRijWebsite.pro, Lubuntu: FAIL (executable not found)
+GameK3OpEenRijWebsite.pro, Qt5LubuntuToWindows: FAIL (executable not found)
+GameK3OpEenRijWt.pro, Lubuntu: FAIL (executable not found)
+GameK3OpEenRijWt.pro, Qt5LubuntuToWindows: FAIL (executable not found)

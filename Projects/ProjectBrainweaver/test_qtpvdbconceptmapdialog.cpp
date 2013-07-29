@@ -13,6 +13,8 @@
 #include <thread>
 #endif
 
+#include <boost/shared_ptr.hpp>
+
 //#include <boost/lambda/lambda.hpp>
 
 #include "pvdbclusterfactory.h"
@@ -277,8 +279,8 @@ void QtPvdbConceptMapDialog::Test()
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<pvdb::File>& file)
       {
-        const bool had_cluster = file->GetCluster();
-        const bool had_concept_map = file->GetConceptMap();
+        const bool had_cluster = file->GetCluster().get();
+        const bool had_concept_map = file->GetConceptMap().get();
         const boost::shared_ptr<QtPvdbConceptMapDialog> dialog(new QtPvdbConceptMapDialog(file));
 
         if (!had_cluster && !had_concept_map)

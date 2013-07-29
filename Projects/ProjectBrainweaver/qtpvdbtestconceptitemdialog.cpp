@@ -75,6 +75,9 @@ QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *parent) :
   m_edit_concept->SetPos(   0.0,  0.0);
   m_rate_concept->SetPos(   0.0, 40.0);
 
+  assert(!m_display_concept->scene());
+  assert(!m_edit_concept->scene());
+  assert(!m_rate_concept->scene());
   ui->view->scene()->addItem(m_display_concept);
   ui->view->scene()->addItem(m_edit_concept);
   ui->view->scene()->addItem(m_rate_concept);

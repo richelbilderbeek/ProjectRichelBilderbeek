@@ -70,9 +70,9 @@ QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   BuildQtConceptMap();
 
   assert(scene());
-  scene()->addItem(m_tools); //Give m_tools a parent
 
-
+  assert(m_tools->scene() && "m_tools is added at CleanMe at BuildQtConceptMap");
+  //scene()->addItem(m_tools); //Give m_tools a parent
 
   #ifndef NDEBUG
   assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");
@@ -131,6 +131,7 @@ void QtPvdbConceptMapEditWidget::AddEdge(
       &QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
+  assert(!qtedge->scene());
   this->scene()->addItem(qtedge);
 
   assert(std::count(
@@ -229,7 +230,9 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
 
+  assert(!qtedge->scene());
   this->scene()->addItem(qtedge);
+
   this->GetConceptMap()->AddEdge(edge);
 
   assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
@@ -263,6 +266,7 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
       &QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
+  assert(!qtnode->scene());
   this->scene()->addItem(qtnode);
 
   assert(std::count(
@@ -309,6 +313,7 @@ void QtPvdbConceptMapEditWidget::CleanMe()
       boost::bind(
         &QtPvdbConceptMapEditWidget::OnRequestSceneUpdate,this));
     item->setVisible(false);
+    assert(!item->scene());
     this->scene()->addItem(item);
   }
 
@@ -320,6 +325,7 @@ void QtPvdbConceptMapEditWidget::CleanMe()
       boost::bind(
         &QtPvdbConceptMapEditWidget::OnToolsClicked,
         this));
+    assert(!m_tools->scene());
     this->scene()->addItem(m_tools);
   }
 }
@@ -648,6 +654,7 @@ void QtPvdbConceptMapEditWidget::OnToolsClicked()
     m_tools->GetBuddyItem()->pos().y() - 32.0);
   m_arrow = new QtPvdbNewArrow(
     m_tools->GetBuddyItem(),cursor_pos_approx);
+  assert(!m_arrow->scene());
   this->scene()->addItem(m_arrow);
   m_arrow->update();
   this->scene()->update();

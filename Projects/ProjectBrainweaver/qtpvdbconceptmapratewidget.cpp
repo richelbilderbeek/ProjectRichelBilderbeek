@@ -61,6 +61,9 @@ QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
        "an empty one displays nothing");
   #endif
   if (concept_map) BuildQtConceptMap();
+
+  //assert(m_tools->scene() && "m_tools is added at CleanMe at BuildQtConceptMap");
+  //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
 void QtPvdbConceptMapRateWidget::AddEdge(
@@ -100,6 +103,7 @@ void QtPvdbConceptMapRateWidget::AddEdge(
 
 
   //Add the EdgeConcepts to the scene
+  assert(!qtedge->scene());
   this->scene()->addItem(qtedge);
 
   assert(std::count(
@@ -141,6 +145,7 @@ QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvd
       &QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
+  assert(!qtnode->scene());
   this->scene()->addItem(qtnode);
 
   assert(std::count(
@@ -179,6 +184,7 @@ void QtPvdbConceptMapRateWidget::CleanMe()
       boost::bind(
         &QtPvdbConceptMapRateWidget::OnRequestSceneUpdate,this));
     item->setVisible(false);
+    assert(!item->scene());
     this->scene()->addItem(item);
   }
 

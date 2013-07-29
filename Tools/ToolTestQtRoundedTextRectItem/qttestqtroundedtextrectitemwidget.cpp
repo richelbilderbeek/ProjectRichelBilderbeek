@@ -76,6 +76,7 @@ void QtTestQtRoundedTextRectItemWidget::Display(const QFont& font)
       const double h = item->boundingRect().height();
       const double y = static_cast<double>(i - (sz/2)) * 20.0;
       item->setPos(-0.5 * w,(-0.5 * h) + y);
+      assert(!item->scene());
       scene()->addItem(item);
     }
   }
@@ -96,6 +97,7 @@ void QtTestQtRoundedTextRectItemWidget::Display(const QFont& font)
         + boost::lexical_cast<std::string>(c);
       item->SetText(s);
       item->setPos(x,y);
+      assert(!item->scene());
       scene()->addItem(item);
     }
   }

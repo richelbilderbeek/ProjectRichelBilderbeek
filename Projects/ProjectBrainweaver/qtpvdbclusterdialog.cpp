@@ -14,6 +14,8 @@
 #endif
 
 #include <boost/algorithm/string/trim_all.hpp>
+#include <boost/shared_ptr.hpp>
+
 #include <QFileDialog>
 #include <QKeyEvent>
 #include <QMessageBox>
@@ -299,8 +301,8 @@ void QtPvdbClusterDialog::Test()
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<pvdb::File> & file)
       {
-        const bool had_cluster = file->GetCluster();
-        const bool had_concept_map = file->GetConceptMap();
+        const bool had_cluster = file->GetCluster().get();
+        const bool had_concept_map = file->GetConceptMap().get();
         boost::shared_ptr<QtPvdbClusterDialog> d(new QtPvdbClusterDialog(file));
 
         if (!had_cluster && !had_concept_map)

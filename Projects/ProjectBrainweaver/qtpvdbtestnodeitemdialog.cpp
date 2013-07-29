@@ -96,6 +96,9 @@ QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
   assert(m_edit_node->GetNode().get()    == m_node.get());
   assert(m_rate_node->GetNode().get()    == m_node.get());
 
+  assert(!m_display_node->scene());
+  assert(!m_edit_node->scene());
+  assert(!m_rate_node->scene());
   ui->view->scene()->addItem(m_display_node);
   ui->view->scene()->addItem(m_edit_node);
   ui->view->scene()->addItem(m_rate_node);
