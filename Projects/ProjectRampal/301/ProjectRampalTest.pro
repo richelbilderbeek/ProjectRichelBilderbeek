@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-19T15:10:48
-#
-#-------------------------------------------------
 QT       += core
 CONFIG   += console
 CONFIG   -= app_bundle
@@ -50,4 +45,4 @@ HEADERS += \
 FORMS += \
     dialogrampaltest.ui
 RESOURCES += \
-    resources.qrc
+    ProjectRampal.qrc

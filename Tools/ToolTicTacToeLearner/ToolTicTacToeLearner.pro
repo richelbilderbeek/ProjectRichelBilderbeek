@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-15T23:08:25
-#
-#-------------------------------------------------
 QT       += core gui
 
 CONFIG(debug, debug|release) {
@@ -35,7 +30,7 @@ FORMS += \
     dialogabout.ui \
     dialogwhatsnew.ui
 RESOURCES += \
-    resources.qrc
+    ToolTicTacToeLearner.qrc
 
  release {
    DEFINES += \

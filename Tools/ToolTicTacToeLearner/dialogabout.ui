@@ -20,7 +20,7 @@
    <string>About</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="ToolTicTacToeLearner.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -45,7 +45,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="resources.qrc">:/images/R.png</pixmap>
+         <pixmap resource="ToolTicTacToeLearner.qrc">:/images/R.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -153,7 +153,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.</strin
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="ToolTicTacToeLearner.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -24,4 +24,4 @@ FORMS    += dialogmenu.ui \
     dialogcreate.ui
 
 RESOURCES += \
-    resources.qrc
+    ToolStaircaseCardCreator.qrc

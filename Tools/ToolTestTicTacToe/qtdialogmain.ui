@@ -84,7 +84,7 @@
    <string>TestTicTacToe (C) 2010 Richel Bilderbeek</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="ToolTestTicTacToe.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -173,7 +173,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="ToolTestTicTacToe.qrc"/>
  </resources>
  <connections/>
 </ui>

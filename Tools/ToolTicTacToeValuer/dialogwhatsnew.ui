@@ -20,7 +20,7 @@
    <string>What's new?</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="ToolTicTacToeValuer.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -44,7 +44,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="ToolTicTacToeValuer.qrc"/>
  </resources>
  <connections/>
 </ui>

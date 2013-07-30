@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-19T15:10:48
-#
-#-------------------------------------------------
 QT       += core gui
 CONFIG   += console
 CONFIG   -= app_bundle
@@ -74,7 +69,7 @@ FORMS += \
     dialogtestmanydigitnewick.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
 RESOURCES += \
-    resources.qrc
+    ToolTestManyDigitNewick.qrc
 
 OTHER_FILES += \
     ../../Classes/CppManyDigitNewick/manydigitnewickalgorithm.txt

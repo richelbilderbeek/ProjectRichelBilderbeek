@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-09T18:34:16
-#
-#-------------------------------------------------
-
 QT       += core gui
 
 TEMPLATE = app
@@ -21,4 +15,4 @@ HEADERS  += dialoggame.h \
 FORMS    += dialoggame.ui
 
 RESOURCES += \
-    resources.qrc
+    GameTronCollection.qrc

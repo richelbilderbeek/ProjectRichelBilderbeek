@@ -86,7 +86,7 @@
    <string>Victory!</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="GameTicTacToe.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -106,7 +106,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="resources.qrc">:/images/X.png</pixmap>
+      <pixmap resource="GameTicTacToe.qrc">:/images/X.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -116,7 +116,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="GameTicTacToe.qrc"/>
  </resources>
  <connections/>
 </ui>

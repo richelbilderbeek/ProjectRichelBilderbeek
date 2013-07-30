@@ -43,4 +43,4 @@ FORMS += \
     dialogtestbinarynewickvector.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
 RESOURCES += \
-    resources.qrc
+    ToolTestBinaryNewickVector.qrc

@@ -50,4 +50,4 @@ FORMS += \
     dialogwhatsnew.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
 RESOURCES += \
-    resources.qrc
+    ToolSimplifyNewick.qrc

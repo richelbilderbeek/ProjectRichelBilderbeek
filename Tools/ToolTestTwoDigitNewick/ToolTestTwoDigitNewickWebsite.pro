@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-19T15:10:48
-#
-#-------------------------------------------------
 QT       += core gui
 
 CONFIG   += console
@@ -66,7 +61,7 @@ HEADERS += \
     ../../Classes/CppFuzzy_equal_to/fuzzy_equal_to.h
 
 RESOURCES += \
-    resources.qrc
+    ToolTestTwoDigitNewick.qrc
 OTHER_FILES += \
     wt.css
 

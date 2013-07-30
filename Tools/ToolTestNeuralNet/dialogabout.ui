@@ -20,7 +20,7 @@
    <string>About</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="ToolTestNeuralNet.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -207,7 +207,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.</strin
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="ToolTestNeuralNet.qrc"/>
  </resources>
  <connections/>
 </ui>

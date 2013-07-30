@@ -28,7 +28,7 @@ FORMS    += dialogmain.ui \
     ../ToolTestTicTacToe/dialogwhatsnew.ui \
     dialogwhatsnew.ui
 RESOURCES += \
-    resources.qrc
+    ToolTicTacToeValuer.qrc
 #Disable depreciated warning, caused by boost/graph/adjacency_list.hpp
 #  including the depreciated hash_set
 QMAKE_CXXFLAGS_DEBUG   += -Wno-deprecated

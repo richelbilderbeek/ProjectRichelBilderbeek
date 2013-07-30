@@ -1,6 +1,5 @@
 QT       += core gui
 
-
 CONFIG(debug, debug|release) {
   message(Building debug version)
 
@@ -24,4 +23,4 @@ FORMS    += dialogmain.ui \
     dialogabout.ui
 
 RESOURCES += \
-    resources.qrc
+    ToolTestNeuralNet.qrc

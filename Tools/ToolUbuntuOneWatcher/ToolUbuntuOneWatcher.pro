@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-09-26T10:32:33
-#
-#-------------------------------------------------
-
 QT       += core gui
 
 TEMPLATE = app
@@ -25,4 +19,4 @@ FORMS    += dialog.ui \
     dialogmain.ui
 
 RESOURCES += \
-    resources.qrc
+    ToolUbuntuOneWatcher.qrc

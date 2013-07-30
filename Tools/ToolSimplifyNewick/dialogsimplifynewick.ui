@@ -20,7 +20,7 @@
    <string>SimplifyNewick (C) 2010 Richel Bilderbeek</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="ToolSimplifyNewick.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -104,7 +104,7 @@
   <tabstop>edit_max_complexity</tabstop>
  </tabstops>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="ToolSimplifyNewick.qrc"/>
  </resources>
  <connections/>
 </ui>
