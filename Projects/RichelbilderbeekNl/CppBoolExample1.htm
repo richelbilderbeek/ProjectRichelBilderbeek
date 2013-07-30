@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>BoolExample1</title>
+  <meta name="description" content="C++ BoolExample1"/>
+  <meta name="keywords" content="C++ BoolExample1 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBoolExample1.htm">BoolExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppBoolExample1-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppBoolExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppBoolExample1.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= app_bundle<br/>
+CONFIG -= qt<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; p_a(<b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; p_b;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> a <a href="CppOperatorAssign.htm">=</a> p_a;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> b <a href="CppOperatorAssign.htm">=</a> p_b;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !b);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !b) { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello <b><a href="CppBool.htm">bool</a></b> example 1" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; }<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>CppBoolExample1.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppBoolExample1.sh" border = "1"><tr><td><code>
+#!/bin/bash<br/>
+<br/>
+#myqmake="i686-pc-mingw32-qmake" #Qt4<br/>
+myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"<br/>
+<br/>
+rm *.pro.user<br/>
+<br/>
+for myprofile in `ls | egrep ".pro\&gt;"`<br/>
+do<br/>
+&nbsp;&nbsp;echo $myprofile<br/>
+&nbsp;&nbsp;mytarget=`echo $myprofile | sed "s/\.pro//"`<br/>
+<br/>
+&nbsp;&nbsp;$myqmake $myprofile<br/>
+<br/>
+&nbsp;&nbsp;if [ ! -e Makefile ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL: $myqmake $myprofile"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exit<br/>
+&nbsp;&nbsp;fi<br/>
+<br/>
+&nbsp;&nbsp;make<br/>
+<br/>
+&nbsp;&nbsp;if [ -e ./release/$mytarget".exe" ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#cp ./release/$mytarget".exe" ./$mytarget".exe"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#cp ./release/$mytarget".exe" "../../../.wine/drive_c/windows/system32/"$mytarget".exe"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cp ./release/$mytarget".exe" ~/bin/<br/>
+<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": FAIL"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exit<br/>
+&nbsp;&nbsp;fi<br/>
+<br/>
+&nbsp;&nbsp;#Cleaning up<br/>
+&nbsp;&nbsp;rm Makefile<br/>
+&nbsp;&nbsp;rm Makefile.*<br/>
+&nbsp;&nbsp;rm -r release<br/>
+&nbsp;&nbsp;rm -r debug<br/>
+&nbsp;&nbsp;rm ui_*.h<br/>
+&nbsp;&nbsp;rm qrc_*.cpp<br/>
+&nbsp;&nbsp;rm moc_*.cpp<br/>
+&nbsp;&nbsp;rm object_script*.*<br/>
+<br/>
+done #next .pro file<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

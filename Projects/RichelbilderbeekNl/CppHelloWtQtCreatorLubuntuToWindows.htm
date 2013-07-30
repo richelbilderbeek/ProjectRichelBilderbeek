@@ -38,7 +38,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -55,7 +55,7 @@
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
   <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
   <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.2.2</li>
 </ul>
@@ -71,12 +71,18 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
 <br/>
-#<a href="CppLIBS.htm">LIBS</a> += -L/home/richel/<a href="Projects.htm">Projects</a>/<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
-#<a href="CppLIBS.htm">LIBS</a> += -L/../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
-#<a href="CppLIBS.htm">LIBS</a> += -Lhome/richel/<a href="Projects.htm">Projects</a>/<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a><br/>
-<br/>
+!win32 {<br/>
+&nbsp;&nbsp;error(Must be a Win32 environment)<br/>
+}<br/>
+win32 {<br/>
+&nbsp;&nbsp;!cross_compile {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;error(Must be using crosscompiler)<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;cross_compile {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a><br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
 CONFIG&nbsp;&nbsp; += console<br/>
 CONFIG&nbsp;&nbsp; -= app_bundle<br/>
 TEMPLATE = app<br/>

@@ -218,7 +218,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppBoostFormatExample1.zip\">Download the Qt Creator project 'CppBoostFormatExample1' (zip)</a></li>");
     v.push_back("</ul>");
   }
-  else if (m_page_name == "CppBoostFormatExample1")
+  else if (m_page_name == "CppBoostFormatExample2")
   {
     v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
@@ -226,6 +226,16 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppBoostFormatExample2.zip\">Download the Qt Creator project 'CppBoostFormatExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppBoostTupleExample1")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppBoostTupleExample1.htm\">Boost.Tuple example 1</a> is a <a href=\"CppBoostTupleExample1.htm\">Boost.Tuple</a> example.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppBoostTupleExample1.zip\">Download the Qt Creator project 'CppBoostTupleExample1' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppChess")
@@ -1655,6 +1665,41 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQTableViewExample10.zip\">Download the Qt Creator project 'QTableViewExample10' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppQTableWidgetExample1")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableWidgetExample2")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQTableWidgetExample2.htm\">QTableWidget example 2: checkboxes and text</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableWidgetExample2.png\">View a screenshot of 'QTableWidgetExample2' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableWidgetExample2.zip\">Download the Qt Creator project 'QTableWidgetExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQTableWidgetExample3")
+  {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQTableWidgetExample3.htm\">QTableWidget example 3: checkboxes and text modifying external data</a> is a");
+    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("<li><a href=\"CppQTableWidgetExample3.png\">View a screenshot of 'QTableWidgetExample3' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableWidgetExample3.zip\">Download the Qt Creator project 'QTableWidgetExample3' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppQTreeViewExample1")
   {
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
@@ -1918,6 +1963,16 @@ const std::vector<std::string> Info::ToHtml() const
   else if (m_page_name == "CppShapeWidget")
   {
     v.push_back("<p><a href=\"CppShapeWidget.htm\">ShapeWidget</a> is a <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> for a <a href=\"CppShape.htm\">Shape</a>.</p>");
+  }
+  else if (m_page_name == "CppStdTupleExample1")
+  {
+    v.push_back("<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppStdTupleExample1.htm\">std::tuple example 1</a> is a <a href=\"CppStdTupleExample1.htm\">std::tuple</a> example.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppStdTupleExample1.zip\">Download the Qt Creator project 'CppStdTupleExample1' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppSortedBinaryNewickVector")
   {
