@@ -15,6 +15,7 @@ class QtDialog : public QDialog
   Q_OBJECT
 
 public:
+  typedef std::tuple<bool,bool,bool,std::string> Tuple;
   explicit QtDialog(QWidget *parent = 0);
   ~QtDialog();
 
@@ -23,7 +24,7 @@ private:
 
   std::vector<std::tuple<bool,bool,bool,std::string> > m_data;
 
-  static const std::vector<std::tuple<bool,bool,bool,std::string> > CreateData();
+  static const std::vector<Tuple> CreateData();
 };
 
 #endif // QTDIALOG_H

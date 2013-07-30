@@ -14,15 +14,19 @@ QtDialog::QtDialog(QWidget *parent) :
   ui->setupUi(this);
 
   QTableWidget * const t = ui->table_edit;
-  t->setRowCount(10);
-  const int n_rows = t->rowCount();
-  const int n_cols = t->columnCount();
-  for (int col=0; col!=n_cols; ++col)
+
+  const int n_rows = static_cast<int>(m_data.size());
+  const int n_cols = std::tuple_size<Tuple>::value;
+  t->setRowCount(n_rows);
+  t->setColumnCount(n_cols);
+
+  for (int row=0; row!=n_rows; ++row)
   {
-    for (int row=0; row!=n_rows; ++row)
+    const Tuple& tuple = m_data[row];
+    for (int col=0; col!=n_cols; ++col)
     {
       QTableWidgetItem * const i = new QTableWidgetItem;
-      if (col != 3)
+      if (std::tuple_element<col,Tuple>::type == bool)
       {
         //Checkbox
         i->setFlags(
@@ -30,20 +34,18 @@ QtDialog::QtDialog(QWidget *parent) :
           | Qt::ItemIsUserCheckable
           | Qt::ItemIsEnabled
         );
-        i->setCheckState(Qt::Unchecked);
+        i->setCheckState(std::get<col>(tuple) ? Qt::Checked : Qt::Unchecked);
       }
       else
       {
+        static_assert(std::is_same<std::tuple_element<col,Tuple>::type,std::string>(),
+          "Either have bools or std::strings");
         //Text
         i->setFlags(
             Qt::ItemIsSelectable
           | Qt::ItemIsEditable
           | Qt::ItemIsEnabled);
-        const std::string s = "("
-          + boost::lexical_cast<std::string>(col)
-          + ","
-          + boost::lexical_cast<std::string>(row)
-          + ")";
+        const std::string s = std::get<col>(tuple);
         i->setText(s.c_str());
       }
       t->setItem(row, col, i);
