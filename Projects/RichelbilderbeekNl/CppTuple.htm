@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>boost::tuple</title>
+  <title>tuple</title>
   <meta name="description" content="C++ boost::tuple"/>
-  <meta name="keywords" content="C++ tuple std::tuple boost::tuple boost stl std tuple code snippet"/>
+  <meta name="keywords" content="C++ tuple tuples"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,102 +18,18 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppTuple.htm">tuple</a>, <a href="CppTuple.htm">std::tuple</a>, <a href="CppTuple.htm">boost::tuple</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppTuple.htm">tuple</a></h1>
 <p>&nbsp;</p>
 <p>A <a href="CppTuple.htm">tuple</a> is an on-the-fly <a href="CppDataType.htm">data type</a> similar to 
 <a href="CppPair.htm">std::pair</a>, except for a bigger number of possible elements.</p>
 <p>&nbsp;</p>
-<ul>
-  <li><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> <a href="CppTuple.htm">std::tuple</a></li>
-  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> <a href="CppTuple.htm">boost::tuple</a></li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> <a href="CppTuple.htm">std::tuple</a></h2>
+<p>There are multiple <a href="CppTuple.htm">tuple</a> <a href="CppClass.htm">classes</a>:</p>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppTuple.zip">Download the Qt Creator project 'CppTuple' (zip)</a></li>
+  <li><img src="PicCpp11.png" alt="C++11"/><img src="PicStl.png" alt="STL"/> <a href="CppStdTuple.htm">std::tuple</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> <a href="CppBoostTuple.htm">boost::tuple</a></li>
 </ul>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;tuple&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppStd.htm">std</a>::tuple&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppString.htm">std::string</a>&gt; t<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_tuple(123,3.14159,"Bilderbikkel");<br/>
-<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> <a href="CppGet.htm">std::get</a>&lt;0&gt;(t);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> <a href="CppGet.htm">std::get</a>&lt;1&gt;(t);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x3 <a href="CppOperatorAssign.htm">=</a> <a href="CppGet.htm">std::get</a>&lt;2&gt;(t);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppGet.htm">std::get</a>&lt;0&gt;(t) <a href="CppOperatorAssign.htm">=</a> x1 <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<a href="CppGet.htm">std::get</a>&lt;1&gt;(t) <a href="CppOperatorAssign.htm">=</a> x2 <a href="CppOperatorPlus.htm">+</a> 1.0;<br/>
-&nbsp;&nbsp;<a href="CppGet.htm">std::get</a>&lt;2&gt;(t) <a href="CppOperatorAssign.htm">=</a> x3 <a href="CppOperatorPlus.htm">+</a> " was here";<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGet.htm">std::get</a>&lt;0&gt;(t) <a href="CppOperatorEqual.htm">==</a> 124);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGet.htm">std::get</a>&lt;1&gt;(t) <a href="CppOperatorEqual.htm">==</a> 4.14159);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGet.htm">std::get</a>&lt;2&gt;(t) <a href="CppOperatorEqual.htm">==</a> "Bilderbikkel was here");<br/>
-<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><img src="PicCpp98.png" alt="C++98"/><img src="PicBoost.png" alt="Boost"/> <a href="CppTuple.htm">boost::tuple</a></h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-&nbsp;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/tuple/tuple.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/tuple/tuple_io.hpp&gt;<br/>
-&nbsp;<br/>
-&nbsp;<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppTuple.htm">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppString.htm">std::string</a>&gt; t <a href="CppOperatorAssign.htm">=</a> <a href="CppMake_tuple.htm">boost::make_tuple</a>(123,3.14159,"Bilderbikkel");<br/>
-&nbsp;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1         <a href="CppOperatorAssign.htm">=</a> t.get&lt;0&gt;();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2      <a href="CppOperatorAssign.htm">=</a> t.get&lt;1&gt;();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x3 <a href="CppOperatorAssign.htm">=</a> t.get&lt;2&gt;();<br/>
-&nbsp;<br/>
-&nbsp;&nbsp;<a href="CppGet.htm">boost::get</a>&lt;0&gt;(t) <a href="CppOperatorAssign.htm">=</a> x1 <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<a href="CppGet.htm">boost::get</a>&lt;1&gt;(t) <a href="CppOperatorAssign.htm">=</a> x2 <a href="CppOperatorPlus.htm">+</a> 1.0;<br/>
-&nbsp;&nbsp;<a href="CppGet.htm">boost::get</a>&lt;2&gt;(t) <a href="CppOperatorAssign.htm">=</a> x3 <a href="CppOperatorPlus.htm">+</a> " was here";<br/>
-&nbsp;<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Note the following:</p>
-<ol>
-  <li>a <a href="CppTuple.htm">boost::tuple</a> is like an extended <a href="CppPair.htm">std::pair</a>, with a maximum of ten elements</li>
-  <li>similar to <a href="CppMake_pair.htm">std::make_pair</a>, for tuples you can use <a href="CppMake_tuple.htm">boost::make_tuple</a></li>
-  <li><a href="CppGet.htm">boost::get</a> is used for getting and setting elements</li>
-</ol>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>External links</h2>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="http://www.boost.org/doc/libs/1_31_0/libs/tuple/doc/tuple_users_guide.html">Boost documentation about boost::tuple</a></li>
-</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

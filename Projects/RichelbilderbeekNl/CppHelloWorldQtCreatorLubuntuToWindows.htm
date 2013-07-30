@@ -44,7 +44,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -60,7 +60,7 @@
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
 </ul>
 <p>&nbsp;</p>
@@ -107,11 +107,7 @@ TEMPLATE = app<br/>
 <!-- start of code -->
 <table summary="CppHelloWorldQtCreatorLubuntuToWindows.sh" border = "1"><tr><td><code>
 #!/bin/bash<br/>
-#From http://richelbilderbeek.nl/CppHelloWorldQtCreatorLubuntuToWindows.htm<br/>
-echo "Cross compiling to Windows"<br/>
-<br/>
-myfile="i686-pc-mingw32-qmake"<br/>
-#myfile="../../Libraries/mxe/usr/bin/i686-pc-mingw32-qmake"<br/>
+myfile="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"<br/>
 mytarget="CppHelloWorldQtCreatorLubuntuToWindows"<br/>
 myprofile=$mytarget.pro<br/>
 <br/>
@@ -132,7 +128,7 @@ fi<br/>
 <br/>
 make<br/>
 <br/>
-if [ -e ./release/$mytarget ]<br/>
+if [ -e ./release/$mytarget".exe" ]<br/>
 then<br/>
 &nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
 else<br/>
