@@ -135,6 +135,8 @@ CppSeperateString
 CppSeperateString.exe
 CppUblasMatrixExample1
 CppUblasMatrixExample1.exe
+CppWilcoxonsSignedRankTest
+CppWilcoxonsSignedRankTest.exe
 GameBoenken
 GameBoenken.exe
 GameConnectThreeDesktop
@@ -145,9 +147,7 @@ GamePylos
 GamePylos.exe
 GameRubiksClockWebsite
 GetTxtFilesInFolder
-ProjectBrainweaverAssessor
 ProjectBrainweaverAssessor.exe
-ProjectBrainweaverDeveloper
 ProjectBrainweaverDeveloper.exe
 ProjectBrainweaverStudent
 ProjectBrainweaverStudent.exe
@@ -198,4 +198,5 @@ ToolTestStopwatch
 ToolTestStopwatch.exe
 ToolTestTwoDigitNewickConsole
 ToolTestTwoDigitNewickConsole.exe
+ToolVirtualBastard
 Zork
