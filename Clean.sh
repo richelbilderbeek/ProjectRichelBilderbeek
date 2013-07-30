@@ -1,2 +1,3 @@
 #!/bin/bash
-rm `find . | egrep "\.pro\.user"` -i
+#Remove all .pro.user files
+rm `find . | egrep "\.pro\.user"`

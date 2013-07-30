@@ -1992,6 +1992,25 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>Similar <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">classes</a> are ");
     v.push_back("<a href=\"CppQWidget.htm\">QWidget</a> and <a href=\"CppWWidget.htm\">Wt::WWidget</a>.</p>");
   }
+  else if (m_page_name == "CppWilcoxonsSignedRankTest")
+  {
+    v.push_back("<p><a href=\"CppWilcoxonsSignedRankTest.htm\">Wilcoxon's signed rank test</a> is a <a href=\"CppMath.htm\">math</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> that performs an example from [1].</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2><a href=\"CppReferences.htm\">References</a></h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ol>");
+    v.push_back("  <li>David Heath. An introduction to experimental design and statistics for biology. 1995. ISBN: 1-85728-132-2 PB.</li>");
+    v.push_back("</ol>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+  }
   else if (m_page_name == "CppWtAboutDialog")
   {
     v.push_back("<p><a href=\"CppWtAboutDialog.htm\">WtAboutDialog</a> is a <a href=\"CppClass.htm\">class</a> for");
