@@ -77,7 +77,7 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppWilcoxonsSignedRankTest.pro" border = "1"><tr><td><code>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 TEMPLATE = app<br/>
 CONFIG += console<br/>
 CONFIG -= app_bundle<br/>
@@ -251,7 +251,8 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (lowest <a href="CppOperatorNotEqual.htm">!=</a> max ? lowest : above);<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>INCORRECT<br/>
+<br/>
+<a href="CppComment.htm">//</a>Thanks to Senbong G <b><a href="CppFor.htm">for</a></b> detecting and fixing a <a href="CppBug.htm">bug</a> in <b><a href="CppThis.htm">this</a></b> code<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetRanks(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
@@ -259,7 +260,11 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> w.size());<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> lowest_value <a href="CppOperatorAssign.htm">=</a> *<a href="CppMin_element.htm">std::min_element</a>(v.begin(),v.end());<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> rank <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (lowest_value <a href="CppOperatorNotEqual.htm">!=</a> 0.0)<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(lowest_value <a href="CppOperatorNotEqual.htm">!=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Please take out the value of zero");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (lowest_value <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;lowest_value <a href="CppOperatorAssign.htm">=</a> <a href="CppMinElementAbove.htm">MinElementAbove</a>(v,0.0);<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+rank;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_with_this_value<br/>
@@ -271,11 +276,13 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(assigned_rank &gt; 0.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> lowest_value) w[i] <a href="CppOperatorAssign.htm">=</a> assigned_rank;<br/>
-<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> lowest_value)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w[i] <a href="CppOperatorAssign.htm">=</a> assigned_rank;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+rank;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+rank;<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -302,6 +309,8 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
+<br/>
+<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetSignedRanks(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Sign&gt;&amp; signs,<br/>
@@ -378,18 +387,40 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; values&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> { 0.6, 1.4, 4.0, 13.0, 14.5, 9.4, 11.4, 12.6, 4.0 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; expected <a href="CppOperatorAssign.htm">=</a> { 1.0, 2.0, 3.5,&nbsp;&nbsp;8.0,&nbsp;&nbsp;9.0, 5.0,&nbsp;&nbsp;6.0,&nbsp;&nbsp;7.0, 3.5 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; results <a href="CppOperatorAssign.htm">=</a> GetRanks(values);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Are<a href="CppAbout.htm">About</a>Equal(expected,results));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Are<a href="CppAbout.htm">About</a>Equal(expected,results) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Heath, page 263, no zero value");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Thanks to Senbon G<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>From Heath, page 263, now with zero added<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; values&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> { 0.6, 1.4, 0.0,&nbsp;&nbsp;4.0, 13.0, 14.5, 9.4, 11.4, 12.6, 4.0 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; expected <a href="CppOperatorAssign.htm">=</a> { 1.0, 2.0, 0.0,&nbsp;&nbsp;3.5,&nbsp;&nbsp;8.0,&nbsp;&nbsp;9.0, 5.0,&nbsp;&nbsp;6.0,&nbsp;&nbsp;7.0, 3.5 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; results <a href="CppOperatorAssign.htm">=</a> GetRanks(values);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Are<a href="CppAbout.htm">About</a>Equal(expected,results) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Heath, page 263, with zero value");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Thanks to Senbong G <b><a href="CppFor.htm">for</a></b> adding <b><a href="CppThis.htm">this</a></b> test<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; values&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> { 1.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 3.0};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; expected <a href="CppOperatorAssign.htm">=</a> { 2.0, 2.0, 2.0, 4.5, 4.5, 7.0 ,7.0, 7.0};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; results <a href="CppOperatorAssign.htm">=</a> GetRanks(values);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(expected.begin(), expected.end(), <a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppCout.htm">std::cout</a>,","));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(results.begin(), results.end(), <a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppCout.htm">std::cout</a>,","));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Are<a href="CppAbout.htm">About</a>Equal(expected,results)); <a href="CppComment.htm">//</a>FAILS<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Are<a href="CppAbout.htm">About</a>Equal(expected,results) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Senbong G test");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v1 <a href="CppOperatorAssign.htm">=</a> GetValuesNonDrinkers();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v2 <a href="CppOperatorAssign.htm">=</a> GetValuesDrinkers();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v1.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> v2.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; differences <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDifference.htm">GetDifference</a>(v1,v2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v1.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> differences.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; values<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppGetAbs.htm">GetAbs</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(differences);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v1.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> values.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; results <a href="CppOperatorAssign.htm">=</a> GetRanks(values);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; expected <a href="CppOperatorAssign.htm">=</a> { 1.0, 2.0, 0.0, 3.5, 8.0, 9.0, 5.0, 6.0,&nbsp;&nbsp;7.0, 3.5 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCopy.htm">std::copy</a>(values.begin(), values.end(), <a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppCout.htm">std::cout</a>,","));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCopy.htm">std::copy</a>(expected.begin(), expected.end(), <a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppCout.htm">std::cout</a>,","));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCopy.htm">std::copy</a>(results.begin(), results.end(), <a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppCout.htm">std::cout</a>,","));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Are<a href="CppAbout.htm">About</a>Equal(expected,results) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Heath 263, from data used");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>

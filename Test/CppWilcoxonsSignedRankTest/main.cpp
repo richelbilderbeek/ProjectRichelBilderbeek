@@ -154,7 +154,8 @@ double MinElementAbove(const std::vector<double>& v, const double above)
   return (lowest != max ? lowest : above);
 }
 
-//INCORRECT
+
+//Thanks to Senbong G for detecting and fixing a bug in this code
 const std::vector<double> GetRanks(const std::vector<double>& v)
 {
   const std::size_t sz = v.size();
@@ -162,7 +163,11 @@ const std::vector<double> GetRanks(const std::vector<double>& v)
   assert(v.size() == w.size());
   double lowest_value = *std::min_element(v.begin(),v.end());
   int rank = 0;
-  if (lowest_value != 0.0)
+  //assert(lowest_value != 0.0 && "Please take out the value of zero");
+  if (lowest_value == 0.0)
+  {
+    lowest_value = MinElementAbove(v,0.0);
+  }
   {
     ++rank;
     const int n_with_this_value
@@ -174,11 +179,13 @@ const std::vector<double> GetRanks(const std::vector<double>& v)
     assert(assigned_rank > 0.0);
     for (std::size_t i = 0; i!=sz; ++i)
     {
-      if (v[i] == lowest_value) w[i] = assigned_rank;
-
+      if (v[i] == lowest_value)
+      {
+        w[i] = assigned_rank;
+        ++rank;
+      }
     }
   }
-  ++rank;
   while (1)
   {
     {
@@ -205,6 +212,8 @@ const std::vector<double> GetRanks(const std::vector<double>& v)
   }
   return w;
 }
+
+
 
 const std::vector<double> GetSignedRanks(
   const std::vector<Sign>& signs,
@@ -281,18 +290,40 @@ int main()
       const std::vector<double> values   = { 0.6, 1.4, 4.0, 13.0, 14.5, 9.4, 11.4, 12.6, 4.0 };
       const std::vector<double> expected = { 1.0, 2.0, 3.5,  8.0,  9.0, 5.0,  6.0,  7.0, 3.5 };
       const std::vector<double> results = GetRanks(values);
-      assert(AreAboutEqual(expected,results));
+      assert(AreAboutEqual(expected,results) && "Heath, page 263, no zero value");
     }
     {
-      //Thanks to Senbong G
+      //From Heath, page 263, now with zero added
+      const std::vector<double> values   = { 0.6, 1.4, 0.0,  4.0, 13.0, 14.5, 9.4, 11.4, 12.6, 4.0 };
+      const std::vector<double> expected = { 1.0, 2.0, 0.0,  3.5,  8.0,  9.0, 5.0,  6.0,  7.0, 3.5 };
+      const std::vector<double> results = GetRanks(values);
+      assert(AreAboutEqual(expected,results) && "Heath, page 263, with zero value");
+    }
+    {
+      //Thanks to Senbong G for adding this test
       const std::vector<double> values   = { 1.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 3.0};
       const std::vector<double> expected = { 2.0, 2.0, 2.0, 4.5, 4.5, 7.0 ,7.0, 7.0};
       const std::vector<double> results = GetRanks(values);
-      std::copy(expected.begin(), expected.end(), std::ostream_iterator<double>(std::cout,","));
-      std::cout << std::endl;
-      std::copy(results.begin(), results.end(), std::ostream_iterator<double>(std::cout,","));
-      std::cout << std::endl;
-      assert(AreAboutEqual(expected,results)); //FAILS
+      assert(AreAboutEqual(expected,results) && "Senbong G test");
+    }
+    {
+      const std::vector<double> v1 = GetValuesNonDrinkers();
+      const std::vector<double> v2 = GetValuesDrinkers();
+      assert(v1.size() == v2.size());
+      const std::vector<double> differences = GetDifference(v1,v2);
+      assert(v1.size() == differences.size());
+      const std::vector<double> values
+        = GetAbs<double>(differences);
+      assert(v1.size() == values.size());
+      const std::vector<double> results = GetRanks(values);
+      const std::vector<double> expected = { 1.0, 2.0, 0.0, 3.5, 8.0, 9.0, 5.0, 6.0,  7.0, 3.5 };
+      //std::copy(values.begin(), values.end(), std::ostream_iterator<double>(std::cout,","));
+      //std::cout << std::endl;
+      //std::copy(expected.begin(), expected.end(), std::ostream_iterator<double>(std::cout,","));
+      //std::cout << std::endl;
+      //std::copy(results.begin(), results.end(), std::ostream_iterator<double>(std::cout,","));
+      //std::cout << std::endl;
+      assert(AreAboutEqual(expected,results) && "Heath 263, from data used");
     }
   }
 

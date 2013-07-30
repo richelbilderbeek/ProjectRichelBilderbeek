@@ -1,4 +1,4 @@
-QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 TEMPLATE = app
 CONFIG += console
 CONFIG -= app_bundle
