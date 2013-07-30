@@ -281,7 +281,6 @@ void QtPvdbConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* co
 
 void QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept(QtPvdbNodeItem * const item)
 {
-  TRACE_FUNC();
   assert(item);
   assert(item->GetNode()->GetConcept());
   //Concept map must be edited, so item changes with it
@@ -291,13 +290,21 @@ void QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept(QtPvdbNodeItem * cons
   assert(sub_concept_map->GetNodes().at(0)->GetConcept());
   assert(sub_concept_map->GetNodes().at(0)->GetConcept().get() == item->GetNode()->GetConcept().get()
     && "Should not be a deep copy, otherwise item will not be changed");
-  m_request_tally_dialog(sub_concept_map);
+
+  m_signal_request_rate_concept_dialog(sub_concept_map);
+
 
   //PUT RATING HERE
-  item->GetNode()->GetConcept()->GetExamples().
+  //item->GetNode()->GetConcept()->GetExamples().
+  TRACE("CALCULATE RATING HERE");
 
   //QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
   //d.exec();
+  this->setFocus();
+  this->scene()->setFocusItem(item);
+  item->setSelected(true);
+  this->scene()->update();
+  this->OnItemRequestsUpdate(item);
 }
 
 void QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples(QtPvdbNodeItem * const item)

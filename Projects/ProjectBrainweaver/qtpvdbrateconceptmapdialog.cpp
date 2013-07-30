@@ -12,7 +12,11 @@
 #endif
 
 #include <cassert>
+
+#include <boost/bind.hpp>
+#include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
+
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QKeyEvent>
@@ -25,6 +29,7 @@
 #include "qtpvdbconceptmapratewidget.h"
 #include "trace.h"
 #include "qtpvdbratingdialog.h"
+#include "qtpvdbrateconceptdialog.h"
 #include "ui_qtpvdbrateconceptmapdialog.h"
 
 QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
@@ -61,6 +66,11 @@ QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
     this->setGeometry(screen.adjusted(64,64,-64,-64));
     this->move( screen.center() - this->rect().center() );
   }
+
+
+  m_widget->m_signal_request_rate_concept_dialog.connect(
+    boost::bind(&QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog,this,boost::lambda::_1));
+
 }
 
 QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog()
@@ -94,6 +104,12 @@ void QtPvdbRateConceptMapDialog::on_button_next_clicked()
   {
     close();
   }
+}
+
+void QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map)
+{
+  QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
+  this->ShowChild(&d);
 }
 
 #ifndef NDEBUG

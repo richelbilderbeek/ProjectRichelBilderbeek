@@ -11,6 +11,8 @@
 #include <thread>
 #endif
 
+#include <boost/bind.hpp>
+#include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <QDesktopWidget>
@@ -92,6 +94,8 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   }
 }
 
+
+
 QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog()
 {
   delete ui;
@@ -119,6 +123,14 @@ void QtPvdbRateConceptDialog::on_button_ok_clicked()
   m_concept->SetRatingSpecificity(ui->box_specificity->currentIndex());
   close();
 }
+
+/*
+void QtPvdbRateConceptDialog::OnRequestTallyDialog(const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map)
+{
+  QtPvdbRateConceptTallyDialog d(sub_concept_map); //Item may be changed
+  this->ShowChild(&d);
+}
+*/
 
 #ifndef NDEBUG
 void QtPvdbRateConceptDialog::Test()

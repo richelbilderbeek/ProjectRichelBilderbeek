@@ -35,9 +35,9 @@ struct QtPvdbConceptMapRateWidget : public QtPvdbConceptMapWidget
   void DoRandomStuff();
   #endif
 
-  ///If the user wants to tally relevancies of a sub concept map,
+  ///If the user wants to rate the focal concept of the already generated sub concept map
   ///the dialog using this widget must display the tally dialog
-  boost::signals2::signal<void (boost::shared_ptr<pvdb::ConceptMap>)> m_request_tally_dialog;
+  boost::signals2::signal<void (boost::shared_ptr<pvdb::ConceptMap>)> m_signal_request_rate_concept_dialog;
 
 private:
 

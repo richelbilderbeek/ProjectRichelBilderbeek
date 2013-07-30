@@ -109,7 +109,6 @@ void QtPvdbRateConceptItem::Test()
 
 void QtPvdbRateConceptItem::UpdateBrushesAndPens()
 {
-  TRACE_FUNC();
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
 

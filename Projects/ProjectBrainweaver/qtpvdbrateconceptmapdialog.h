@@ -48,6 +48,10 @@ private:
   boost::shared_ptr<pvdb::File> m_file;
   QtPvdbConceptMapRateWidget * const m_widget;
 
+  ///The widget requested for a rating of the already supplied sub concept map,
+  ///with the focal concept item as the central node
+  void OnRequestRateConceptDialog(const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map);
+
   static void Test();
 };
 

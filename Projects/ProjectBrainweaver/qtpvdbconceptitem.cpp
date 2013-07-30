@@ -95,8 +95,6 @@ void QtPvdbConceptItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 
 void QtPvdbConceptItem::OnConceptNameChanged()
 {
-  TRACE_FUNC();
-
   assert(this);
   assert(m_concept);
   assert(m_concept->GetExamples());
