@@ -38,14 +38,14 @@ protected:
 
 private slots:
 
-  void on_button_test_modify_clicked();
-
 private:
 
   Ui::QtPvdbTestConceptMapRateWidgetDialog *ui;
 
   ///The to-be-tested concept map
   boost::shared_ptr<QtPvdbConceptMapRateWidget> m_concept_map;
+
+  void DoSomethingRandom();
 
   static void Test();
 };

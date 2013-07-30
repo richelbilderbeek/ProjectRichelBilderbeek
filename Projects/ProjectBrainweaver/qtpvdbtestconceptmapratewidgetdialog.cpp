@@ -61,36 +61,9 @@ QtPvdbTestConceptMapRateWidgetDialog::~QtPvdbTestConceptMapRateWidgetDialog()
   delete ui;
 }
 
-void QtPvdbTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *event)
+void QtPvdbTestConceptMapRateWidgetDialog::DoSomethingRandom()
 {
-  if (event->key() == Qt::Key_Escape) { close(); return; }
-}
 
-void QtPvdbTestConceptMapRateWidgetDialog::Test()
-{
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
-  TRACE("QtPvdbTestConceptMapRateWidgetDialog::Test started");
-  QtPvdbTestConceptMapRateWidgetDialog d;
-  for (int i=0; i!=100; ++i) d.on_button_test_modify_clicked();
-  TRACE("QtPvdbTestConceptMapRateWidgetDialog::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
-}
-
-void QtPvdbTestConceptMapRateWidgetDialog::on_button_test_modify_clicked()
-{
   const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();
   std::for_each(v.begin(),v.end(),
     [](QGraphicsItem * const item)
@@ -127,4 +100,40 @@ void QtPvdbTestConceptMapRateWidgetDialog::on_button_test_modify_clicked()
     }
   );
   m_concept_map->GetScene()->update();
+}
+
+void QtPvdbTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
+{
+  if (e->key() == Qt::Key_Escape) { close(); return; }
+  if (e->modifiers() & Qt::AltModifier && e->key() == Qt::Key_1)
+  {
+    DoSomethingRandom();
+    return;
+  }
+}
+
+void QtPvdbTestConceptMapRateWidgetDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  #ifdef COMPILER_SUPPORTS_THREADS_20130507
+  std::thread t(
+    []
+    {
+  #endif
+  TRACE("QtPvdbTestConceptMapRateWidgetDialog::Test started");
+  //Doing random stuff
+  {
+    QtPvdbTestConceptMapRateWidgetDialog d;
+    for (int i=0; i!=100; ++i) d.DoSomethingRandom();
+  }
+  TRACE("QtPvdbTestConceptMapRateWidgetDialog::Test finished successfully");
+  #ifdef COMPILER_SUPPORTS_THREADS_20130507
+    }
+  );
+  t.detach();
+  #endif
 }

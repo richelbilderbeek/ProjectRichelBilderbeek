@@ -100,7 +100,7 @@ QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog()
 void QtPvdbRateConceptDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
-  QDialog::keyPressEvent(e);
+  //QDialog::keyPressEvent(e);
 }
 
 void QtPvdbRateConceptDialog::on_button_ok_clicked()
@@ -202,8 +202,10 @@ void QtPvdbRateConceptDialog::Test()
 
 void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
 {
+  const bool has_concept_map = m_sub_concept_map.get(); //.get() needed for crosscompiler
   QtPvdbRateConceptTallyDialog d(m_sub_concept_map);
   this->ShowChild(&d);
+  assert(has_concept_map == static_cast<bool>(m_sub_concept_map.get()));
   ui->box_complexity->setCurrentIndex(d.GetSuggestedComplexity());
   ui->box_concreteness->setCurrentIndex(d.GetSuggestedConcreteness());
   ui->box_specificity->setCurrentIndex(d.GetSuggestedSpecificity());

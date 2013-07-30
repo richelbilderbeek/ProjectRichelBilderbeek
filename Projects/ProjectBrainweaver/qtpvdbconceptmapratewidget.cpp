@@ -281,28 +281,23 @@ void QtPvdbConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* co
 
 void QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept(QtPvdbNodeItem * const item)
 {
+  TRACE_FUNC();
   assert(item);
   assert(item->GetNode()->GetConcept());
-  this->hide();
-  {
-    QtScopedDisable<QtPvdbConceptMapRateWidget> disable(this);
-    //Concept map must be edited, so item changes with it
-    const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map = CreateSubConceptMap(item);
-    assert(sub_concept_map);
-    assert(sub_concept_map->GetNodes().at(0));
-    assert(sub_concept_map->GetNodes().at(0)->GetConcept());
-    assert(sub_concept_map->GetNodes().at(0)->GetConcept().get() == item->GetNode()->GetConcept().get()
-      && "Should not be a deep copy, otherwise item will not be changed");
-    QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
-    d.exec();
-  }
-  this->show();
-  item->update();
-  this->setFocus();
-  this->scene()->setFocusItem(item);
-  item->setSelected(true);
-  this->scene()->update();
-  this->OnItemRequestsUpdate(item);
+  //Concept map must be edited, so item changes with it
+  const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map = CreateSubConceptMap(item);
+  assert(sub_concept_map);
+  assert(sub_concept_map->GetNodes().at(0));
+  assert(sub_concept_map->GetNodes().at(0)->GetConcept());
+  assert(sub_concept_map->GetNodes().at(0)->GetConcept().get() == item->GetNode()->GetConcept().get()
+    && "Should not be a deep copy, otherwise item will not be changed");
+  m_request_tally_dialog(sub_concept_map);
+
+  //PUT RATING HERE
+  item->GetNode()->GetConcept()->GetExamples().
+
+  //QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
+  //d.exec();
 }
 
 void QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples(QtPvdbNodeItem * const item)

@@ -98,26 +98,7 @@ void QtPvdbRateConceptItem::Test()
     assert(QtPvdbBrushFactory::CreateRedGradientBrush() != QtPvdbBrushFactory::CreateYellowGradientBrush());
     assert(QtPvdbBrushFactory::CreateRedGradientBrush() != QtPvdbBrushFactory::CreateGreenGradientBrush());
   }
-  ///Check if the correct brushes are used when rating the concept
-  {
-    TRACE("TODO");
-    /*
-    const boost::shared_ptr<pvdb::Concept> concept = pvdb::ConceptFactory::GetTests().at(4);
-    concept->SetRatingComplexity(-1);
-    concept->SetRatingConcreteness(-1);
-    concept->SetRatingSpecificity(-1);
-    QtPvdbRateConceptItem item(concept);
-    assert(item.brush() ==  QtPvdbBrushFactory::CreateRedGradientBrush());
-    concept->SetRatingComplexity(0);
-    concept->SetRatingConcreteness(1);
-    assert(item.brush() ==  QtPvdbBrushFactory::CreateYellowGradientBrush());
-    concept->SetRatingSpecificity(2);
-    assert(item.brush() ==  QtPvdbBrushFactory::CreateGreenGradientBrush());
-    */
-  }
-  ///Check that if the examples are changed, the brushes changed
-  {
-  }
+
   TRACE("QtPvdbRateConceptItem::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
@@ -128,6 +109,99 @@ void QtPvdbRateConceptItem::Test()
 
 void QtPvdbRateConceptItem::UpdateBrushesAndPens()
 {
+  TRACE_FUNC();
+  assert(GetConcept());
+  assert(GetConcept()->GetExamples());
+
+  //Brush for the concept being rated
+  QBrush new_main_brush = this->brush();
+  {
+    const int n_rated
+      = (GetConcept()->GetRatingComplexity()   != -1 ? 1 : 0)
+      + (GetConcept()->GetRatingConcreteness() != -1 ? 1 : 0)
+      + (GetConcept()->GetRatingSpecificity()  != -1 ? 1 : 0);
+    switch (n_rated)
+    {
+      case 0:
+        new_main_brush = QtPvdbBrushFactory::CreateRedGradientBrush();
+        break;
+      case 1:
+      case 2:
+        new_main_brush = QtPvdbBrushFactory::CreateYellowGradientBrush();
+        break;
+      case 3:
+        new_main_brush = QtPvdbBrushFactory::CreateGreenGradientBrush();
+        break;
+      default: assert(!"Should not get here");
+    }
+  }
+  //Brush and pen for the examples being rated
+  QBrush new_indicator_brush = this->GetIndicatorBrush();
+  QPen new_indicator_pen = this->GetIndicatorPen();
+  if (GetConcept()->GetExamples()->Get().empty())
+  {
+    //No examples
+    new_indicator_brush = QBrush(QColor(0,0,0));
+    new_indicator_pen = QPen(QColor(0,0,0));
+  }
+  else
+  {
+    const std::vector<boost::shared_ptr<const pvdb::Example> > v = AddConst(GetConcept()->GetExamples()->Get());
+    const int n_examples = boost::numeric_cast<int>(v.size());
+    const int n_judged
+      = std::count_if(v.begin(),v.end(),
+        [](const boost::shared_ptr<const pvdb::Example>& p)
+        {
+          assert(p);
+          const pvdb::Competency this_competency = p->GetCompetency();
+          return this_competency != pvdb::Competency::uninitialized;
+        }
+      );
+    if (n_judged == 0)
+    {
+      new_indicator_brush = QBrush(QColor(255,128,128)); //Red
+    }
+    else if (n_judged < n_examples)
+    {
+      new_indicator_brush = QBrush(QColor(255,196,128)); //Orange
+    }
+    else
+    {
+      assert(n_judged == n_examples);
+      new_indicator_brush = QBrush(QColor(128,255,128)); //Green
+    }
+    if (n_judged == 0)
+    {
+      new_indicator_pen = QPen(QColor(255,0,0),3); //Thick pen
+    }
+    else if (n_judged < n_examples)
+    {
+      new_indicator_pen = QPen(QColor(255,196,0),2); //Less thick pen
+    }
+    else
+    {
+      assert(n_judged == n_examples);
+      new_indicator_pen = QPen(QColor(0,255,0),1); //Thin pen
+    }
+  }
+
+  if (this->brush() != new_main_brush
+    || this->GetIndicatorBrush() != new_indicator_brush
+    || this->GetIndicatorPen() != new_indicator_pen)
+  {
+    this->setBrush(new_main_brush);
+    this->SetIndicatorBrush(new_indicator_brush);
+    this->SetIndicatorPen(new_indicator_pen);
+    assert(this->brush() == new_main_brush);
+    assert(this->GetIndicatorBrush() == new_indicator_brush);
+    assert(this->GetIndicatorPen() == new_indicator_pen);
+    //TRACE(std::rand()); //GOOD: Detects infinite recursion
+    //this->update();
+    this->m_signal_item_has_updated(this); //Obligatory
+    this->m_signal_request_scene_update(); //Obligatory
+  }
+
+  #ifdef USE_BEFORE_20130729
   //Brush for the concept being rated
   const int n_rated
     = (GetConcept()->GetRatingComplexity()   != -1 ? 1 : 0)
@@ -188,4 +262,5 @@ void QtPvdbRateConceptItem::UpdateBrushesAndPens()
   //this->update(); //FIX 2013-01-17
   //this->m_signal_item_has_updated(this); //FIX 2013-01-17
   //this->m_signal_request_scene_update(); //FIX 2013-01-17
+  #endif
 }

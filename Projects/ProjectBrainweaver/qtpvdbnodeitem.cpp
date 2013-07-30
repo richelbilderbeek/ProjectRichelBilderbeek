@@ -218,11 +218,13 @@ void QtPvdbNodeItem::OnItemHasUpdated()
 
 void QtPvdbNodeItem::OnItemRequestsRateConcept()
 {
+  TRACE_FUNC();
   m_signal_node_requests_rate_concept(this);
 }
 
 void QtPvdbNodeItem::OnItemRequestsRateExamples()
 {
+  TRACE_FUNC();
   m_signal_node_requests_rate_examples(this);
 }
 

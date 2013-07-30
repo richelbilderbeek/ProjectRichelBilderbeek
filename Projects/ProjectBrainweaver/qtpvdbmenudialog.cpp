@@ -95,7 +95,7 @@ void QtPvdbMenuDialog::keyPressEvent(QKeyEvent* e)
 void QtPvdbMenuDialog::on_button_assessor_clicked()
 {
   QtPvdbAssessorMenuDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); } //For testing
 }
 
 void QtPvdbMenuDialog::on_button_rate_concept_clicked()
@@ -117,7 +117,7 @@ void QtPvdbMenuDialog::on_button_rate_concept_clicked()
   //Create and show the dialog
   boost::shared_ptr<QtPvdbRateConceptDialog> d(
     new QtPvdbRateConceptDialog(concept_map));
-  this->ShowChild(d.get());
+  if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
 void QtPvdbMenuDialog::on_button_rate_concept_map_clicked()
@@ -134,7 +134,7 @@ void QtPvdbMenuDialog::on_button_rate_examples_clicked()
 {
   const boost::shared_ptr<pvdb::Concept> concept = pvdb::ConceptFactory::GetTests().at(4);
   boost::shared_ptr<QtPvdbRateExamplesDialog> d(new QtPvdbRateExamplesDialog(concept));
-  this->ShowChild(d.get());
+  if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
 void QtPvdbMenuDialog::on_button_rating_clicked()
@@ -158,7 +158,7 @@ void QtPvdbMenuDialog::on_button_student_clicked()
       const boost::shared_ptr<pvdb::File> file(pvdb::File::Load(filename));
       assert(file);
       QtPvdbStudentMenuDialog d(file);
-      if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
+      if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); } //For testing
     }
     catch (...)
     {
@@ -643,7 +643,7 @@ void QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
     //Create and show the dialog
     boost::shared_ptr<QtPvdbRateConceptTallyDialog> d(
       new QtPvdbRateConceptTallyDialog(concept_map));
-    this->ShowChild(d.get());
+    if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); }
     break;
   }
 }

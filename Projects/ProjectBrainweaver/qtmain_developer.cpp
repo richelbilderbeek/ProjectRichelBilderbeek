@@ -96,12 +96,7 @@ int main(int argc, char *argv[])
   a.setWindowIcon(QIcon(":/images/R.png"));
 
   QtPvdbMenuDialog d;
-  if (argc == 1)
-  {
-    d.show();
-    a.exec();
-  }
-  else
+  if (argc != 1)
   {
     const std::vector<boost::function<void(QtPvdbMenuDialog *)> > v
       =
@@ -149,6 +144,8 @@ int main(int argc, char *argv[])
       std::cerr << "Incorrect argument: please supply a number from 0 to " << v.size() << std::endl;
     }
   }
+  d.show();
+  a.exec();
 }
 
 ///TODO

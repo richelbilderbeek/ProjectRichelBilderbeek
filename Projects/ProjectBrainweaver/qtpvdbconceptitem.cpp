@@ -93,9 +93,10 @@ void QtPvdbConceptItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
   m_signal_request_scene_update();
 }
 
-// ?FIX 2013-01-06 22:47
 void QtPvdbConceptItem::OnConceptNameChanged()
 {
+  TRACE_FUNC();
+
   assert(this);
   assert(m_concept);
   assert(m_concept->GetExamples());

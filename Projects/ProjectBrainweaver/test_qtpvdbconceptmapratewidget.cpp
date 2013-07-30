@@ -11,6 +11,8 @@
 #include <thread>
 #endif
 
+#include <QGraphicsItem>
+
 #include "pvdbconceptmapfactory.h"
 #include "trace.h"
 
@@ -37,11 +39,21 @@ void QtPvdbConceptMapRateWidget::Test()
       QtPvdbConceptMapWidget::Test(widget);
     }
   }
+  /*
   {
-    //QtPvdbConceptMapRateWidget w;
-    //const int sz = pvdb::ConceptMapFactory::GetAllTests().size();
-    //w.ReadFromConceptMap(
+    const auto v = pvdb::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<pvdb::ConceptMap> concept_map: v)
+    {
+      boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
+      assert(widget);
+      for(QGraphicsItem * const item: widget->items())
+      {
+        assert(item);
+        item->setFocus();
+      }
+    }
   }
+  */
   TRACE("QtPvdbConceptMapRateWidget::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }

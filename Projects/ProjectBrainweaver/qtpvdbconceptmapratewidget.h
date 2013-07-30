@@ -35,6 +35,10 @@ struct QtPvdbConceptMapRateWidget : public QtPvdbConceptMapWidget
   void DoRandomStuff();
   #endif
 
+  ///If the user wants to tally relevancies of a sub concept map,
+  ///the dialog using this widget must display the tally dialog
+  boost::signals2::signal<void (boost::shared_ptr<pvdb::ConceptMap>)> m_request_tally_dialog;
+
 private:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
@@ -80,14 +84,5 @@ private:
   static void Test();
   #endif
 };
-
-bool operator==(const boost::shared_ptr<const QtPvdbConceptMapRateWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapRateWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<const QtPvdbConceptMapRateWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapRateWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<QtPvdbConceptMapRateWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapRateWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<QtPvdbConceptMapRateWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapRateWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const QtPvdbConceptMapRateWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapRateWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const QtPvdbConceptMapRateWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapRateWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<QtPvdbConceptMapRateWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapRateWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<QtPvdbConceptMapRateWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapRateWidget>& rhs) = delete;
 
 #endif // QTPVDBCONCEPTMAPRATEWIDGET_H
