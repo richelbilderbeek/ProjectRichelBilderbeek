@@ -156,64 +156,54 @@ double MinElementAbove(const std::vector<double>& v, const double above)
 
 
 //Thanks to Senbong G for detecting and fixing a bug in this code
-const std::vector<double> GetRanks(const std::vector<double>& v)
+const std::vector<double> GetRanks(const std::vector<double> &v)
 {
-  const std::size_t sz = v.size();
-  std::vector<double> w(sz,0.0);
-  assert(v.size() == w.size());
-  double lowest_value = *std::min_element(v.begin(),v.end());
+  const size_t s = v.size();
+  std::vector<double> w(s,0.0);
+  double lowest_value = MinElementAbove(v, 0.0);
   int rank = 0;
-  //assert(lowest_value != 0.0 && "Please take out the value of zero");
-  if (lowest_value == 0.0)
-  {
-    lowest_value = MinElementAbove(v,0.0);
-  }
+  if(lowest_value != 0.0)
   {
     ++rank;
-    const int n_with_this_value
-      = std::count(v.begin(),v.end(),lowest_value);
-    assert(n_with_this_value > 0);
-    const double assigned_rank
-      = static_cast<double>(rank + (rank + n_with_this_value - 1))
-      / 2.0;
-    assert(assigned_rank > 0.0);
-    for (std::size_t i = 0; i!=sz; ++i)
+    const int n_with_this_value =
+      std::count(v.begin(), v.end(), lowest_value);
+    const double assigned_rank =
+      static_cast<double>(rank + (rank + n_with_this_value - 1)) / 2.0;
+    for(size_t i = 0; i != s; ++i)
     {
-      if (v[i] == lowest_value)
+      if(v[i] == lowest_value)
       {
         w[i] = assigned_rank;
         ++rank;
       }
     }
-  }
-  while (1)
+  } // end if
+
+  while(1)
   {
-    {
-      const double new_lowest_value
-        = MinElementAbove(v,lowest_value);
-      if (new_lowest_value == lowest_value) break;
-      assert(new_lowest_value > lowest_value);
-      lowest_value = new_lowest_value;
-    }
+    const double new_lowest_value =
+      MinElementAbove(v, lowest_value);
+    if(new_lowest_value == lowest_value)
+      break;
+    lowest_value = new_lowest_value;
 
-    const int n_with_this_value
-      = std::count(v.begin(),v.end(),lowest_value);
+    const int n_with_this_value =
+        std::count(v.begin(), v.end(), lowest_value);
     assert(n_with_this_value > 0);
-    const double assigned_rank
-      = static_cast<double>(rank + (rank + n_with_this_value - 1))
-      / 2.0;
+    const double assigned_rank =
+        static_cast<double>(rank + (rank + n_with_this_value - 1))/2.0;
     assert(assigned_rank > 0.0);
-    for (std::size_t i = 0; i!=sz; ++i)
+    for(size_t i = 0; i != s; ++i)
     {
-      if (v[i] == lowest_value) w[i] = assigned_rank;
-
+      if(v[i] == lowest_value)
+      {
+        w[i] = assigned_rank;
+      }
     }
     rank += n_with_this_value;
   }
   return w;
 }
-
-
 
 const std::vector<double> GetSignedRanks(
   const std::vector<Sign>& signs,
@@ -305,6 +295,13 @@ int main()
       const std::vector<double> expected = { 2.0, 2.0, 2.0, 4.5, 4.5, 7.0 ,7.0, 7.0};
       const std::vector<double> results = GetRanks(values);
       assert(AreAboutEqual(expected,results) && "Senbong G test");
+    }
+    {
+      //Thanks to Senbong G for adding this test
+      const std::vector<double> values   = { 0.0, 0.0, 0.0 };
+      const std::vector<double> expected = { 0.0, 0.0, 0.0 };
+      const std::vector<double> results = GetRanks(values);
+      assert(AreAboutEqual(expected,results) && "Senbong G zero-only test");
     }
     {
       const std::vector<double> v1 = GetValuesNonDrinkers();
