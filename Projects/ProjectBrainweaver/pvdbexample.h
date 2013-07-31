@@ -44,6 +44,15 @@ struct Example : public boost::noncopyable
   ///Set the competency
   void SetCompetency(const pvdb::Competency competency);
 
+  ///Has an assessor rated this example as being an addition to the complexity?
+  void SetIsComplex(const bool is_complex) { m_is_complex = is_complex; }
+
+  ///Has an assessor rated this example as being an addition to the concreteness?
+  void SetIsConcrete(const bool is_concrete) { m_is_concrete = is_concrete; }
+
+  ///Has an assessor rated this example as being an addition to the specificity?
+  void SetIsSpecific(const bool is_specific) { m_is_specific = is_specific; }
+
   ///Set the text
   void SetText(const std::string& text);
 

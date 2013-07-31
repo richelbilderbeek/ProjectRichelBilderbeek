@@ -282,7 +282,7 @@ void QtPvdbMenuDialog::Test()
       =
       {
         //Duplication of tests, the ones I am most interested in now
-        ui->button_test_cluster,
+        ui->button_rate_concept_auto,
 
         //Normal alphabetical order of tests
         ui->button_about,
@@ -612,40 +612,11 @@ void QtPvdbMenuDialog::on_button_print_rating_clicked()
 
 void QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
 {
-  //Obtain a random file
-  //const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::File::GetTests();
-  //const int file_index = std::rand() % v.size();
-  //assert(file_index < boost::numeric_cast<int>(v.size()));
-  //const boost::shared_ptr<pvdb::File> file = v[ file_index ];
-  //Set HeteromorphousTestConceptMap[15]
-  //{
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map
-      = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
-    assert(concept_map);
-    //file->SetConceptMap(concept_map);
-  //}
-  //Obtain a random sub-concept-map
-  #ifndef NDEBUG
-  const auto nodes = concept_map->GetNodes();
-  const auto edges = concept_map->GetEdges();
-  assert(pvdb::ConceptMap::CanConstruct(nodes,edges));
-  #endif
-  while (1)
-  {
-    const std::vector<boost::shared_ptr<pvdb::ConceptMap> > concept_maps
-      = concept_map->CreateSubs();
-    assert(!concept_maps.empty());
-    //Display this random concept map
-    const int sub_index = std::rand() % concept_maps.size();
-    assert(sub_index < boost::numeric_cast<int>(concept_maps.size()));
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[ sub_index ];
-    if (concept_map->GetNodes()[0]->GetConcept()->GetExamples()->Get().empty()) continue;
-    //Create and show the dialog
-    boost::shared_ptr<QtPvdbRateConceptTallyDialog> d(
-      new QtPvdbRateConceptTallyDialog(concept_map));
-    if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); }
-    break;
-  }
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map
+    = QtPvdbRateConceptTallyDialog::CreateTestConceptMap();
+  boost::shared_ptr<QtPvdbRateConceptTallyDialog> d(
+    new QtPvdbRateConceptTallyDialog(concept_map));
+  if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); }
 }
 
 void QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked()

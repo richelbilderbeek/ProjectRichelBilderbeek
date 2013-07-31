@@ -228,6 +228,45 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppBoostFormatExample2.zip\">Download the Qt Creator project 'CppBoostFormatExample2' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppBoostRegexExample1")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppBoostRegexExample1.htm\">Boost.Regex example 1</a> is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a> <a href=\"CppLibrary.htm\">library</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The example below shows how to define a regular expression for a Dutch zip code, how to check for it and how to search for it.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppBoostRegexExample1.zip\">Download the Qt Creator project 'CppBoostRegexExample1' (zip)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppBoostRegexExample1Exe.zip\">Download the 'CppBoostRegexExample1' Windows executable (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppBoostRegexExample2")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppBoostRegexExample2.htm\">Boost.Regex example 2: replace</a> is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a> <a href=\"CppLibrary.htm\">library</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The example below shows how to perform a replacement within a regular expression.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppBoostRegexExample2.zip\">Download the Qt Creator project 'CppBoostRegexExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppBoostRegexExample3")
+  {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppBoostRegexExample3.htm\">Boost.Regex example 3</a> is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a> <a href=\"CppLibrary.htm\">library</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The example below shows how to iterate through a text with a regular expression.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppBoostRegexExample3.zip\">Download the Qt Creator project 'CppBoostRegexExample3' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+
+
   else if (m_page_name == "CppBoostTupleExample1")
   {
     v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");

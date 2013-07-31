@@ -30,6 +30,7 @@ struct ConceptFactory
   static const boost::shared_ptr<pvdb::Concept> Create(
     const std::string& name,
     const boost::shared_ptr<pvdb::Examples>& examples,
+    const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
     const int rating_specificity);
@@ -37,6 +38,7 @@ struct ConceptFactory
   static const boost::shared_ptr<pvdb::Concept> Create(
     const std::string& name = "",
     const std::vector<std::pair<std::string,Competency> >& examples = {},
+    const bool is_complex = true,
     const int rating_complexity = -1,
     const int rating_concreteness = -1,
     const int rating_specificity = -1

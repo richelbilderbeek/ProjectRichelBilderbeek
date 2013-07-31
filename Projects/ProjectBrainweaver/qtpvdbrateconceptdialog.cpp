@@ -145,6 +145,8 @@ void QtPvdbRateConceptDialog::Test()
     []
     {
   #endif
+  TRACE("Started QtPvdbRateConceptDialog::Test");
+
   {
     const std::vector<boost::shared_ptr<pvdb::ConceptMap> > concept_maps
       = pvdb::ConceptMapFactory::GetAllTests();
@@ -209,12 +211,15 @@ void QtPvdbRateConceptDialog::Test()
   );
   t.detach();
   #endif
+  TRACE("Finished QtPvdbRateConceptDialog::Test successfully");
 }
 #endif
 
 void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
 {
+  #ifndef NDEBUG
   const bool has_concept_map = m_sub_concept_map.get(); //.get() needed for crosscompiler
+  #endif
   QtPvdbRateConceptTallyDialog d(m_sub_concept_map);
   this->ShowChild(&d);
   assert(has_concept_map == static_cast<bool>(m_sub_concept_map.get()));

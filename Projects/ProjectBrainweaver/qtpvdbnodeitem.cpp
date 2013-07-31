@@ -342,6 +342,8 @@ void QtPvdbNodeItem::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Started QtPvdbNodeItem::Test");
+
   //Test SetX and SetY being in sync
   {
     const std::size_t n_nodes = pvdb::NodeFactory::GetTests().size();
@@ -444,5 +446,6 @@ void QtPvdbNodeItem::Test()
       }
     }
   }
+  TRACE("Finished QtPvdbNodeItem::Test successfully");
 }
 #endif

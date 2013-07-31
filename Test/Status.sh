@@ -1,7 +1,7 @@
 #!/bin/bash
 #Script to check the status of compiles
 #Copies executables (both Linux and Win32) executables to ~/bin (overwrites older)
-set -x verbose #echo on
+#set -x verbose #echo on
 
 mytempfile="tmpStatus.txt"
 if [ -e $mytempfile ]
@@ -22,6 +22,8 @@ do
   #Go in folder
   cd $folder
 
+  rm *.pro.user
+
   for myprofile in `ls | egrep ".pro\>"`
   do
     echo $myprofile
@@ -31,11 +33,10 @@ do
    
     #For every .pro file, 
     # 0: compile
-    # 1: crosscompile using Qt4
-    # (2: crosscompile using Qt5)
+    # 1: crosscompile using Qt5
     #Execute script, write results to temp file in Projects folder
     #./$shfile | egrep "SUCCESS|FAIL" >> ../$mytempfile
-    for type in 0 1 2
+    for type in 0 1
     do
       myqmake=""
       mytypestr=""
@@ -54,8 +55,7 @@ do
 
       case $type in
       0) myqmake="qmake" mytypestr="Lubuntu" ;;
-      1) myqmake="i686-pc-mingw32-qmake" mytypestr="Qt4LubuntuToWindows" ;; 
-      2) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;; 
+      1) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;; 
       esac
 
       
@@ -116,3 +116,6 @@ done #next folder
 echo ""
 
 cat $mytempfile
+
+rm $mytempfile
+

@@ -18,15 +18,15 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <img src="PicBoost.png" alt="Boost"/> <a href="CppRegexExample1.htm">Boost.Regex example 1</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <img src="PicBoost.png" alt="Boost"/> <a href="CppBoostRegexExample1.htm">Boost.Regex example 1</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppRegexExample1.htm">Boost.Regex example 1</a> is a example how to use the <a href="CppRegex.htm">Boost.Regex</a> <a href="CppLibrary.htm">library</a>.</p>
+<p><a href="CppBoostRegexExample1.htm">Boost.Regex example 1</a> is a example how to use the <a href="CppBoostRegex.htm">Boost.Regex</a> <a href="CppLibrary.htm">library</a>.</p>
 <p>&nbsp;</p>
 <p>The example below shows how to define a regular expression for a Dutch zip code, how to check for it and how to search for it.</p>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppRegexExample1.zip">Download the Qt Creator project 'CppRegexExample1' (zip)</a></li>
-  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppRegexExample1Exe.zip">Download the 'CppRegexExample1' Windows executable (zip)</a></li>
+  <li><a href="CppBoostRegexExample1.zip">Download the Qt Creator project 'CppBoostRegexExample1' (zip)</a></li>
+  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppBoostRegexExample1Exe.zip">Download the 'CppBoostRegexExample1' Windows executable (zip)</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -67,10 +67,10 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppRegexExample1.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppBoostRegexExample1.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppRegexExample1.pro" border = "1"><tr><td><code>
+<table summary="CppBoostRegexExample1.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
 CONFIG&nbsp;&nbsp; += console<br/>
@@ -79,7 +79,7 @@ TEMPLATE = app<br/>
 <a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += <a href="CppRegex.htm">-lboost_regex</a><br/>
+&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += <a href="CppBoostRegex.htm">-lboost_regex</a><br/>
 }<br/>
 <br/>
 win32 {<br/>
@@ -124,18 +124,18 @@ win32 {<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Define how a dutch zip code is formatted<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a> dutch_zip_code("\\d{4}\\s[A-Z]{2}");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> dutch_zip_code("\\d{4}\\s[A-Z]{2}");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> the regex works properly<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRegex_match.htm">boost::regex_match</a>("1234 AB",dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRegex_match.htm">boost::regex_match</a>("1234 ab",dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRegex_match.htm">boost::regex_match</a>("1234ab",dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostRegex_match.htm">boost::regex_match</a>("1234 AB",dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostRegex_match.htm">boost::regex_match</a>("1234 ab",dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostRegex_match.htm">boost::regex_match</a>("1234ab",dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Define a sentence with a Dutch zip code in it<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "My Dutch zip code is 1234 AB.";<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show how <a href="CppRegex_match.htm">boost::regex_match</a> and boost::regex_search work<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRegex_match.htm">boost::regex_match</a>(s,dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show how <a href="CppBoostRegex_match.htm">boost::regex_match</a> and boost::regex_search work<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostRegex_match.htm">boost::regex_match</a>(s,dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "the <a href="CppString.htm">std::string</a> does not match a dutch zip code");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(boost::regex_search(s,dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "but the <a href="CppString.htm">std::string</a> does contain a dutch zip code");<br/>
@@ -162,7 +162,7 @@ win32 {<br/>
 echo "Cross compiling to Windows"<br/>
 <br/>
 echo "1/2: Creating Windows makefile"<br/>
-i686-pc-mingw32-qmake CppRegexExample1.pro<br/>
+i686-pc-mingw32-qmake CppBoostRegexExample1.pro<br/>
 <br/>
 echo "2/2: making makefile"<br/>
 <br/>

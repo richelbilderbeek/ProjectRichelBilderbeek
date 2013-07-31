@@ -21,6 +21,7 @@ namespace pvdb {
 const boost::shared_ptr<pvdb::Concept> pvdb::ConceptFactory::Create(
   const std::string& name,
   const boost::shared_ptr<pvdb::Examples>& examples,
+  const bool is_complex,
   const int rating_complexity,
   const int rating_concreteness,
   const int rating_specificity)
@@ -33,6 +34,7 @@ const boost::shared_ptr<pvdb::Concept> pvdb::ConceptFactory::Create(
     new Concept(
       name,
       examples,
+      is_complex,
       rating_complexity,
       rating_concreteness,
       rating_specificity
@@ -58,6 +60,7 @@ const boost::shared_ptr<pvdb::Concept> pvdb::ConceptFactory::DeepCopy(
     = Create(
       concept->GetName(),
       examples,
+      concept->GetIsComplex(),
       concept->GetRatingComplexity(),
       concept->GetRatingConcreteness(),
       concept->GetRatingSpecificity());
@@ -79,6 +82,7 @@ const boost::shared_ptr<pvdb::Concept> pvdb::ConceptFactory::DeepCopy(
 const boost::shared_ptr<pvdb::Concept> pvdb::ConceptFactory::Create(
   const std::string& name,
   const std::vector<std::pair<std::string,Competency> >& v,
+  const bool is_complex,
   const int rating_complexity,
   const int rating_concreteness,
   const int rating_specificity)
@@ -105,6 +109,7 @@ const boost::shared_ptr<pvdb::Concept> pvdb::ConceptFactory::Create(
     = Create(
     name,
     examples,
+    is_complex,
     rating_complexity,
     rating_concreteness,
     rating_specificity);
@@ -118,7 +123,7 @@ const std::vector<boost::shared_ptr<pvdb::Concept> > pvdb::ConceptFactory::GetTe
   {
     const boost::shared_ptr<pvdb::Examples> examples = ExamplesFactory::Create();
     assert(examples);
-    const boost::shared_ptr<pvdb::Concept> p = Create("Concept without examples", examples, 0, 1, 2);
+    const boost::shared_ptr<pvdb::Concept> p = Create("Concept without examples", examples, false, 0, 1, 2);
     assert(p);
     assert(p->GetRatingComplexity() >= -1);
     assert(p->GetRatingComplexity() <=  2);

@@ -24,11 +24,12 @@ namespace pvdb {
 pvdb::Concept::Concept(
   const std::string& name,
   const boost::shared_ptr<pvdb::Examples>& examples,
+  const bool is_complex,
   const int rating_complexity,
   const int rating_concreteness,
   const int rating_specificity)
   : m_examples(examples),
-    m_is_complex(true),
+    m_is_complex(is_complex),
     m_name(name),
     m_rating_complexity(rating_complexity),
     m_rating_concreteness(rating_concreteness),
@@ -55,6 +56,7 @@ const boost::shared_ptr<pvdb::Concept> pvdb::Concept::FromXml(const std::string&
 
   std::string name;
   boost::shared_ptr<pvdb::Examples> examples;
+  bool is_complex = false;
   int rating_complexity    = -2; //Not even unrated (which has -1 as its value)
   int rating_concreteness  = -2; //Not even unrated (which has -1 as its value)
   int rating_specificity   = -2; //Not even unrated (which has -1 as its value)
@@ -70,6 +72,14 @@ const boost::shared_ptr<pvdb::Concept> pvdb::Concept::FromXml(const std::string&
     assert(v.size() == 1 && "<examples>*.</examples> must be present once in a Concept");
     examples = Examples::FromXml(v[0]);
   }
+
+  //m_is_complex
+  {
+    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<is_complex>.*</is_complex>)"));
+    assert(v.size() == 1 && "(<is_complex>.*</is_complex>) must be present once per Concept");
+    is_complex = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+  }
+
   //m_rating_complexity
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<complexity>.*</complexity>)"));
@@ -90,7 +100,7 @@ const boost::shared_ptr<pvdb::Concept> pvdb::Concept::FromXml(const std::string&
     assert(v.size() == 1);
     rating_specificity = boost::lexical_cast<int>(StripXmlTag(v[0]));
   }
-  return ConceptFactory::Create(name,examples,rating_complexity,rating_concreteness,rating_specificity);
+  return ConceptFactory::Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity);
 }
 
 const boost::shared_ptr<const pvdb::Examples> pvdb::Concept::GetExamples() const
@@ -165,6 +175,9 @@ const std::string pvdb::Concept::ToXml(const boost::shared_ptr<const pvdb::Conce
   s <<     c->GetName();
   s <<   "</name>";
   s <<   Examples::ToXml(c->GetExamples());
+  s <<   "<is_complex>";
+  s <<     c->GetIsComplex();
+  s <<   "</is_complex>";
   s <<   "<complexity>";
   s <<     c->GetRatingComplexity();
   s <<   "</complexity>";
@@ -193,9 +206,9 @@ bool IsEqual(const pvdb::Concept& lhs, const pvdb::Concept& rhs)
   assert(lhs_examples);
   const boost::shared_ptr<const pvdb::Examples> rhs_examples = rhs.GetExamples();
   assert(rhs_examples);
-  return
-       lhs.GetName()               == rhs.GetName()
-    && IsEqual(*lhs_examples,*rhs_examples)
+  return IsEqual(*lhs_examples,*rhs_examples)
+    && lhs.GetIsComplex()          == rhs.GetIsComplex()
+    && lhs.GetName()               == rhs.GetName()
     && lhs.GetRatingComplexity()   == rhs.GetRatingComplexity()
     && lhs.GetRatingConcreteness() == rhs.GetRatingConcreteness()
     && lhs.GetRatingSpecificity()  == rhs.GetRatingSpecificity();

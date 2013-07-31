@@ -183,6 +183,7 @@ const std::vector<boost::shared_ptr<pvdb::Node> > pvdb::ConceptMap::CreateNodes(
     pvdb::ConceptFactory::Create(
       question,
       pvdb::ExamplesFactory::Create(), //No examples
+      false, //Is not complex
       -1, //No rated complexity
       -1, //No rated concreteness
       -1  //No rated specificity

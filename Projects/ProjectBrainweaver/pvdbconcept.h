@@ -60,6 +60,12 @@ struct Concept
   ///-1: not rated, 0: lowest, 2: highest
   int GetRatingSpecificity() const { return m_rating_specificity; }
 
+  ///Has an assessor rated the name of this concept as being an addition to the complexity?
+  ///This is something different than m_rating_complexity:
+  ///m_is_complex can be used to help the assessor determine a m_rating_complexity,
+  ///but m_rating_complexity is the final and complete rating
+  void SetIsComplex(const bool is_complex) { m_is_complex = is_complex; }
+
   ///Emitted when the examples are changed
   mutable boost::signals2::signal<void(const pvdb::Concept*)> m_signal_examples_changed;
 
@@ -146,6 +152,7 @@ struct Concept
   Concept(
     const std::string& name,
     const boost::shared_ptr<pvdb::Examples>& examples,
+    const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
     const int rating_specificity);

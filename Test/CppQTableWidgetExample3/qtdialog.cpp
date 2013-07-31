@@ -1,5 +1,6 @@
 #include "qtdialog.h"
 
+/*
 #include <string>
 
 #include <boost/lexical_cast.hpp>
@@ -13,47 +14,11 @@ QtDialog::QtDialog(QWidget *parent) :
 {
   ui->setupUi(this);
 
-  QTableWidget * const t = ui->table_edit;
 
-  const int n_rows = static_cast<int>(m_data.size());
-  const int n_cols = std::tuple_size<Tuple>::value;
-  t->setRowCount(n_rows);
-  t->setColumnCount(n_cols);
+  DataToTable(m_data,ui->table_edit);
+  DataToTable(m_data,ui->table_display);
 
-  for (int row=0; row!=n_rows; ++row)
-  {
-    const Tuple& tuple = m_data[row];
-    for (int col=0; col!=n_cols; ++col)
-    {
-      QTableWidgetItem * const i = new QTableWidgetItem;
-      if (std::tuple_element<col,Tuple>::type == bool)
-      {
-        //Checkbox
-        i->setFlags(
-            Qt::ItemIsSelectable
-          | Qt::ItemIsUserCheckable
-          | Qt::ItemIsEnabled
-        );
-        i->setCheckState(std::get<col>(tuple) ? Qt::Checked : Qt::Unchecked);
-      }
-      else
-      {
-        static_assert(std::is_same<std::tuple_element<col,Tuple>::type,std::string>(),
-          "Either have bools or std::strings");
-        //Text
-        i->setFlags(
-            Qt::ItemIsSelectable
-          | Qt::ItemIsEditable
-          | Qt::ItemIsEnabled);
-        const std::string s = std::get<col>(tuple);
-        i->setText(s.c_str());
-      }
-      t->setItem(row, col, i);
-    }
-  }
-  t->setColumnWidth(0,24);
-  t->setColumnWidth(1,24);
-  t->setColumnWidth(2,24);
+  QObject::connect(ui->table_edit,SIGNAL(cellChanged(int,int)),this,OnCellChanged(int,int));
 }
 
 QtDialog::~QtDialog()
@@ -76,3 +41,81 @@ const std::vector<std::tuple<bool,bool,bool,std::string> > QtDialog::CreateData(
   };
 
 }
+
+void QtDialog::DataToTable(const std::vector<Tuple>& data, QTableWidget * const t)
+{
+  const int n_rows = static_cast<int>(data.size());
+  const int n_cols = std::tuple_size<Tuple>::value;
+  assert(n_cols == 4);
+  t->setRowCount(n_rows);
+  t->setColumnCount(n_cols);
+
+  for (int row=0; row!=n_rows; ++row)
+  {
+    const Tuple& tuple = data[row];
+    for (int col=0; col!=n_cols; ++col)
+    {
+      QTableWidgetItem * const i = new QTableWidgetItem;
+      switch (col)
+      {
+        case 0:
+          static_assert(std::is_same<std::tuple_element<0,Tuple>::type,bool>(),"First element is bool");
+          //Checkbox
+          i->setFlags(
+              Qt::ItemIsSelectable
+            | Qt::ItemIsUserCheckable
+            | Qt::ItemIsEnabled
+          );
+          i->setCheckState(std::get<0>(tuple) ? Qt::Checked : Qt::Unchecked);
+          break;
+
+        case 1:
+          static_assert(std::is_same<std::tuple_element<1,Tuple>::type,bool>(),"Second element is bool");
+          //Checkbox
+          i->setFlags(
+              Qt::ItemIsSelectable
+            | Qt::ItemIsUserCheckable
+            | Qt::ItemIsEnabled
+          );
+          i->setCheckState(std::get<1>(tuple) ? Qt::Checked : Qt::Unchecked);
+          break;
+
+        case 2:
+          static_assert(std::is_same<std::tuple_element<2,Tuple>::type,bool>(),"Third element is bool");
+            //Checkbox
+          i->setFlags(
+              Qt::ItemIsSelectable
+            | Qt::ItemIsUserCheckable
+            | Qt::ItemIsEnabled
+          );
+          i->setCheckState(std::get<2>(tuple) ? Qt::Checked : Qt::Unchecked);
+          break;
+
+        case 3:
+          static_assert(std::is_same<std::tuple_element<3,Tuple>::type,std::string>(),"Fourth element is std::string");
+          i->setFlags(
+              Qt::ItemIsSelectable
+            | Qt::ItemIsEditable
+            | Qt::ItemIsEnabled);
+          i->setText(std::get<3>(tuple).c_str());
+          break;
+        default:
+          assert(!"Should not get here");
+          break;
+
+      }
+      t->setItem(row, col, i);
+    }
+  }
+  t->setColumnWidth(0,24);
+  t->setColumnWidth(1,24);
+  t->setColumnWidth(2,24);
+}
+
+void QtDialog::OnCellChanged(int row, int column)
+{
+  qDebug() << "Cell changed: " << row << "," << column << "\n";
+  ui->table_edit->itemAt(row,col)->checkState()
+
+}
+*/

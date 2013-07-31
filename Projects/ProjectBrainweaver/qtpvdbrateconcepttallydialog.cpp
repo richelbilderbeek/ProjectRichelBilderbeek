@@ -14,9 +14,14 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <QKeyEvent>
+#include "pvdbconceptfactory.h"
 #include "pvdbconceptmap.h"
+#include "pvdbconceptmapfactory.h"
 #include "pvdbconcept.h"
+#include "pvdbedge.h"
+#include "pvdbedgefactory.h"
 #include "pvdbnode.h"
+#include "pvdbnodefactory.h"
 #include "pvdbexample.h"
 #include "pvdbedge.h"
 #include "pvdbexamples.h"
@@ -29,151 +34,109 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbRateConceptTallyDialog),
-    m_map(sub_concept_map)
+    m_data(CreateData(sub_concept_map))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
-  if (!sub_concept_map) return;
-  ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-  assert(sub_concept_map);
-  assert(!sub_concept_map->GetNodes().empty());
-  const boost::shared_ptr<const pvdb::Concept> focal_concept = sub_concept_map->GetNodes().at(0)->GetConcept();
-  assert(focal_concept);
-  ui->label_concept_name->setText(
-    (std::string("Voorbeelden/toelichting bij concept: ") + focal_concept->GetName()).c_str() );
-  //Collect all examples of the focal node of this sub concept map
-  //Put X,C,S checkboxes in front
-  const int n_examples = boost::numeric_cast<int>(focal_concept->GetExamples()->Get().size());
-  const int n_edges = boost::numeric_cast<int>(m_map->GetEdges().size());
-  const int n_edge_examples
-    = std::accumulate(
-      m_map->GetEdges().begin(),
-      m_map->GetEdges().end(),
-      static_cast<int>(0),
-        [](int init, const boost::shared_ptr<const pvdb::Edge>& edge)
-        {
-          assert(edge);
-          return init + boost::numeric_cast<int>(edge->GetConcept()->GetExamples()->Get().size());
-        }
-    );
-  ui->table->setRowCount(n_examples + n_edges + n_edge_examples);
-  int current_row = 0;
-  for (const boost::shared_ptr<const pvdb::Example> example: focal_concept->GetExamples()->Get())
-  {
-    //const boost::shared_ptr<const pvdb::Example> example = focal_concept->GetExamples()->Get().at(i);
-    assert(example);
-    //const int row = i;
-    const int n_cols = 4;
-    assert(n_cols == 4);
-    for (int col=0; col!=n_cols; ++col)
-    {
-      QTableWidgetItem * const i = new QTableWidgetItem;
-      if (col != 3)
-      {
-        i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-        switch (col)
-        {
-          case 0: i->setCheckState(example->GetIsComplex() ? Qt::Checked : Qt::Unchecked); break;
-          case 1: i->setCheckState(example->GetIsConcrete() ? Qt::Checked : Qt::Unchecked); break;
-          case 2: i->setCheckState(example->GetIsSpecific() ? Qt::Checked : Qt::Unchecked); break;
-          default: assert(!"Should not get here");
-        }
-      }
-      else
-      {
-        //Text
-        i->setFlags(
-            Qt::ItemIsSelectable
-          | Qt::ItemIsEnabled);
-        const std::string s = example->GetText();
-        i->setText(s.c_str());
-      }
-      ui->table->setItem(current_row, col, i);
-    }
-    ++current_row;
-  }
 
-  //Collect all relations of the focal node of this sub concept map
-  for(const boost::shared_ptr<pvdb::Edge> edge:sub_concept_map->GetEdges())
+  const int n_rows = static_cast<int>(m_data.size());
+  const int n_cols = 4;
+  ui->table->setRowCount(n_rows);
+  for (int row_index=0; row_index!=n_rows; ++row_index)
   {
-    //Put X checkbox in the relation's name
-    //Keep C and S columns empty
+    const Row& row = m_data[row_index];
+    const boost::shared_ptr<pvdb::Concept> concept = row.first;
+    const int example_index = row.second;
+
+    assert(concept);
+    if (example_index == -1)
     {
+      //Display concept text
+      //Put X checkbox in the relation's name
+      //Keep C and S columns empty
       {
         //Put X checkbox in the relation's name in column[0]
         const int column = 0;
         QTableWidgetItem * const i = new QTableWidgetItem;
         i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-        i->setCheckState(edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked);
-        ui->table->setItem(current_row, column, i);
+        i->setCheckState(concept->GetIsComplex() ? Qt::Checked : Qt::Unchecked);
+        ui->table->setItem(row_index, column, i);
       }
       {
         //Put uneditable nothing column[1]
         const int column = 1;
         QTableWidgetItem * const i = new QTableWidgetItem;
         i->setFlags(Qt::ItemIsEnabled);
-        ui->table->setItem(current_row, column, i);
+        ui->table->setItem(row_index, column, i);
       }
       {
         //Put uneditable nothing column[2]
         const int column = 2;
         QTableWidgetItem * const i = new QTableWidgetItem;
         i->setFlags(Qt::ItemIsEnabled);
-        ui->table->setItem(current_row, column, i);
+        ui->table->setItem(row_index, column, i);
+      }
+      {
+        //Put the relation's name in place
+        QTableWidgetItem * const i = new QTableWidgetItem;
+        i->setFlags(
+            Qt::ItemIsSelectable
+          | Qt::ItemIsEnabled);
+        const std::string s = concept->GetName();
+        i->setText(s.c_str());
+        const int column = 3;
+        ui->table->setItem(row_index, column, i);
       }
     }
+    else
     {
-      //Put the relation's name in place
-      QTableWidgetItem * const i = new QTableWidgetItem;
-      i->setFlags(
-          Qt::ItemIsSelectable
-        | Qt::ItemIsEnabled);
-      const std::string s = edge->GetConcept()->GetName();
-      i->setText(s.c_str());
-      const int column = 3;
-      ui->table->setItem(current_row, column, i);
-    }
-
-    ++current_row;
-
-    //Of every relation, collect all examples
-    //Put X,C,S checkboxes in front
-
-    for (const boost::shared_ptr<const pvdb::Example> example: edge->GetConcept()->GetExamples()->Get())
-    {
-      //const boost::shared_ptr<const pvdb::Example> example = focal_concept->GetExamples()->Get().at(i);
-      assert(example);
-      //const int row = i;
-      const int n_cols = 4;
-      assert(n_cols == 4);
-      for (int col=0; col!=n_cols; ++col)
+      assert(concept->GetExamples());
+      assert(example_index < static_cast<int>(concept->GetExamples()->Get().size()));
+      const boost::shared_ptr<pvdb::Example> example = concept->GetExamples()->Get()[example_index];
+      //Display index'th example
+      for (int col_index=0; col_index!=n_cols; ++col_index)
       {
-        QTableWidgetItem * const i = new QTableWidgetItem;
-        if (col != 3)
+        if (col_index != 3)
         {
-          i->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-          switch (col)
+          QTableWidgetItem * const item = new QTableWidgetItem;
+          item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+          switch (col_index)
           {
-            case 0: i->setCheckState(example->GetIsComplex() ? Qt::Checked : Qt::Unchecked); break;
-            case 1: i->setCheckState(example->GetIsConcrete() ? Qt::Checked : Qt::Unchecked); break;
-            case 2: i->setCheckState(example->GetIsSpecific() ? Qt::Checked : Qt::Unchecked); break;
+            case 0: item->setCheckState(example->GetIsComplex() ? Qt::Checked : Qt::Unchecked); break;
+            case 1: item->setCheckState(example->GetIsConcrete() ? Qt::Checked : Qt::Unchecked); break;
+            case 2: item->setCheckState(example->GetIsSpecific() ? Qt::Checked : Qt::Unchecked); break;
             default: assert(!"Should not get here");
           }
+          ui->table->setItem(row_index, col_index, item);
         }
         else
         {
           //Text
-          i->setFlags(
+          QTableWidgetItem * const item = new QTableWidgetItem;
+          item->setFlags(
               Qt::ItemIsSelectable
             | Qt::ItemIsEnabled);
           const std::string s = example->GetText();
-          i->setText(s.c_str());
+          item->setText(s.c_str());
+          ui->table->setItem(row_index, col_index, item);
         }
-        ui->table->setItem(current_row, col, i);
       }
-      ++current_row;
     }
 
   }
+
+  //Set text on top
+  {
+    const boost::shared_ptr<const pvdb::Concept> focal_concept = sub_concept_map->GetNodes().at(0)->GetConcept();
+    assert(focal_concept);
+    ui->label_concept_name->setText(
+      (std::string("Voorbeelden/toelichting bij concept: ") + focal_concept->GetName()).c_str() );
+  }
+  ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+  QObject::connect(ui->table,SIGNAL(cellChanged(int,int)),this,SLOT(OnCellChanged(int,int)));
 }
 
 QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog()
@@ -181,30 +144,148 @@ QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog()
   delete ui;
 }
 
+const std::vector<QtPvdbRateConceptTallyDialog::Row>
+  QtPvdbRateConceptTallyDialog::CreateData(const boost::shared_ptr</* const */ pvdb::ConceptMap> map)
+{
+  std::vector<Row> data;
+
+  if (!map) return data;
+
+  assert(map);
+  assert(!map->GetNodes().empty());
+
+
+  //Add the focal concept its examples (not its name: this cannot be judged)
+  {
+    const boost::shared_ptr<pvdb::Concept> focal_concept = map->GetNodes().at(0)->GetConcept();
+    assert(focal_concept);
+    const int n_examples = boost::numeric_cast<int>(focal_concept->GetExamples()->Get().size());
+    for (int i=0; i!=n_examples; ++i)
+    {
+      data.push_back(std::make_pair(focal_concept,i));
+    }
+  }
+
+  //Collect all relations of the focal node of this sub concept map
+  for(const boost::shared_ptr<pvdb::Edge> edge: map->GetEdges())
+  {
+    const boost::shared_ptr<pvdb::Concept> concept = edge->GetConcept();
+    data.push_back(std::make_pair(concept,-1));
+    const int n_examples = boost::numeric_cast<int>(concept->GetExamples()->Get().size());
+    for (int i=0; i!=n_examples; ++i)
+    {
+      data.push_back(std::make_pair(concept,i));
+    }
+  }
+  return data;
+}
+
+const boost::shared_ptr<pvdb::ConceptMap> QtPvdbRateConceptTallyDialog::CreateTestConceptMap()
+{
+  //Create a concept map for testing:
+  // - node with a concept with (1) text 'TextNode' (2) one example with text 'TextExampleNode'
+  // - edge with a concept with (1) text 'TextEdge' (2) one example with text 'TextExampleEdge'
+  // - node with a concept with (1) text 'TextDontCare'
+
+  const boost::shared_ptr<pvdb::Concept> concept_node_focal(pvdb::ConceptFactory::Create("TextNode",
+    {
+      {"TextExampleNpde",pvdb::Competency::misc}
+    },
+    0,1,2));
+  const boost::shared_ptr<pvdb::Concept> concept_node_other(pvdb::ConceptFactory::Create("TextDontCare",
+    {
+      { }
+    },
+    0,1,2));
+
+  const boost::shared_ptr<pvdb::Concept> concept_edge(pvdb::ConceptFactory::Create("TextEdge",
+    {
+      {"TextExampleEdge",pvdb::Competency::misc}
+    },
+    2,1,0));
+  const boost::shared_ptr<pvdb::Node> node_focal(pvdb::NodeFactory::Create(concept_node_focal));
+  const boost::shared_ptr<pvdb::Node> node_other(pvdb::NodeFactory::Create(concept_node_other));
+
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map(
+    pvdb::ConceptMapFactory::Create(
+      {
+        node_focal,
+        node_other
+      } ,
+      {
+        pvdb::EdgeFactory::Create(concept_edge,1.2,3.4,node_focal,true,node_other,true)
+      }
+    )
+  );
+  assert(concept_map);
+  return concept_map;
+}
+
 int QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
 {
   //Rate as if all items are relevant
   TRACE("TODO: GetSuggestedComplexity not yet completely implemented");
-  return pvdb::Rating::SuggestComplexity(m_map);
+  //return pvdb::Rating::SuggestComplexity(m_map);
+  return 0;
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
 {
   //Rate as if all items are relevant
   TRACE("TODO: GetSuggestedConcreteness not yet completely implemented");
-  return pvdb::Rating::SuggestConcreteness(m_map);
+  //return pvdb::Rating::SuggestConcreteness(m_map);
+  return 0;
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
 {
   //Rate as if all items are relevant
   TRACE("TODO: GetSuggestedSpecificity not yet completely implemented");
-  return pvdb::Rating::SuggestSpecificity(m_map);
+  //return pvdb::Rating::SuggestSpecificity(m_map);
+  return 0;
 }
 
 void QtPvdbRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+}
+
+void QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
+{
+  assert(row_index >= 0);
+  assert(row_index < static_cast<int>(m_data.size()));
+  assert(col >= 0);
+  assert(col < 4);
+  const QTableWidgetItem * const item = ui->table->item(row_index,col);
+  assert(item);
+  const Row& row = m_data[row_index];
+  boost::shared_ptr<pvdb::Concept> concept = row.first;
+  const int index = row.second;
+
+  if (index == -1)
+  {
+    //Concept name
+    switch (col)
+    {
+      case 0: concept->SetIsComplex( item->checkState() == Qt::Checked );
+      case 1: break; //Empty cell
+      case 2: break; //Empty cell
+      case 3: break; //It's read-only! //concept->SetName( item->text().toStdString() ); break;
+    }
+  }
+  else
+  {
+    //Concept example
+    assert(index < static_cast<int>(concept->GetExamples()->Get().size()));
+    const boost::shared_ptr<pvdb::Example> example = concept->GetExamples()->Get()[index];
+    switch (col)
+    {
+      case 0: example->SetIsComplex( item->checkState() == Qt::Checked );
+      case 1: example->SetIsConcrete( item->checkState() == Qt::Checked );
+      case 2: example->SetIsSpecific( item->checkState() == Qt::Checked );
+      case 3: break; //It's read-only! //example->SetText( item->text().toStdString() ); break;
+    }
+  }
 }
 
 void QtPvdbRateConceptTallyDialog::resizeEvent(QResizeEvent *)
@@ -221,3 +302,100 @@ void QtPvdbRateConceptTallyDialog::on_button_ok_clicked()
 {
   close();
 }
+
+#ifndef NDEBUG
+void QtPvdbRateConceptTallyDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Started QtPvdbRateConceptTallyDialog::Test");
+  //Empty table
+  {
+    const boost::shared_ptr<pvdb::ConceptMap> concept_map;
+    assert(!concept_map);
+    QtPvdbRateConceptTallyDialog d(concept_map);
+  }
+
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map = CreateTestConceptMap();
+  assert(concept_map);
+
+
+  QtPvdbRateConceptTallyDialog d(concept_map);
+  assert(d.ui->table->columnCount() == 4);
+  assert(d.ui->table->rowCount() == 3);
+  assert(concept_map->GetNodes().size() == 2);
+  assert(concept_map->GetEdges().size() == 1);
+  const boost::shared_ptr<pvdb::Node> focal_node = concept_map->GetNodes()[0];
+  //const boost::shared_ptr<pvdb::Node> other_node = concept_map->GetNodes()[1]; //Don't care
+  const boost::shared_ptr<pvdb::Edge> edge = concept_map->GetEdges()[0];
+
+  assert(d.ui->table->item(0,0)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
+  assert(d.ui->table->item(0,1)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
+  assert(d.ui->table->item(0,2)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
+  assert(d.ui->table->item(0,3)->flags() == (Qt::ItemIsSelectable | Qt::ItemIsEnabled));
+
+  assert(d.ui->table->item(1,0)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
+  assert(d.ui->table->item(1,1)->flags() == Qt::ItemIsEnabled); //Empty
+  assert(d.ui->table->item(1,2)->flags() == Qt::ItemIsEnabled); //Empty
+  assert(d.ui->table->item(1,3)->flags() == (Qt::ItemIsSelectable | Qt::ItemIsEnabled));
+
+  assert(d.ui->table->item(2,0)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
+  assert(d.ui->table->item(2,1)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
+  assert(d.ui->table->item(2,2)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
+  assert(d.ui->table->item(2,3)->flags() == (Qt::ItemIsSelectable | Qt::ItemIsEnabled));
+
+  //Check current state, before modification
+
+  assert(d.ui->table->item(0,0)->checkState() == (focal_node->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(0,1)->checkState() == (focal_node->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(0,2)->checkState() == (focal_node->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(0,3)->text() == QString(focal_node->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
+
+  assert(d.ui->table->item(1,0)->checkState() == (edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(1,1)->text() == "");
+  assert(d.ui->table->item(1,2)->text() == "");
+  assert(d.ui->table->item(1,3)->text() == QString(edge->GetConcept()->GetName().c_str()));
+
+  assert(d.ui->table->item(2,0)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,1)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,2)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,3)->text() == QString(edge->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
+
+  //Modify table
+  d.ui->table->item(0,0)->setCheckState(d.ui->table->item(0,0)->checkState() == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+  d.ui->table->item(0,1)->setCheckState(d.ui->table->item(0,1)->checkState() == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+  d.ui->table->item(0,2)->setCheckState(d.ui->table->item(0,2)->checkState() == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+  //d.ui->table->item(0,3)->setText("MODIFIED"); //User should not be able to modify this
+
+  d.ui->table->item(1,0)->setCheckState(d.ui->table->item(1,0)->checkState() == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+  //d.ui->table->item(1,3)->setText("MODIFIED TOO"); //User should not be able to modify this
+
+  d.ui->table->item(2,0)->setCheckState(d.ui->table->item(2,0)->checkState() == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+  d.ui->table->item(2,1)->setCheckState(d.ui->table->item(2,1)->checkState() == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+  d.ui->table->item(2,2)->setCheckState(d.ui->table->item(2,2)->checkState() == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+  //d.ui->table->item(2,3)->setText("MODIFIED AS WELL"); //User should not be able to modify this
+
+  //Check that data is modified by GUI
+
+  assert(d.ui->table->item(0,0)->checkState() == (focal_node->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(0,1)->checkState() == (focal_node->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(0,2)->checkState() == (focal_node->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(0,3)->text() == QString(focal_node->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
+
+  assert(d.ui->table->item(1,0)->checkState() == (edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(1,1)->text() == "");
+  assert(d.ui->table->item(1,2)->text() == "");
+  assert(d.ui->table->item(1,3)->text() == QString(edge->GetConcept()->GetName().c_str()));
+
+  assert(d.ui->table->item(2,0)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,1)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,2)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
+  assert(d.ui->table->item(2,3)->text() == QString(edge->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
+
+  assert(1==2);
+  TRACE("Finished QtPvdbRateConceptTallyDialog::Test successfully");
+}
+#endif
