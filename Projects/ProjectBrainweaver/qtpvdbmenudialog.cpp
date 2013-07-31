@@ -612,6 +612,7 @@ void QtPvdbMenuDialog::on_button_print_rating_clicked()
 
 void QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
 {
+
   const boost::shared_ptr<pvdb::ConceptMap> concept_map
     = QtPvdbRateConceptTallyDialog::CreateTestConceptMap();
   boost::shared_ptr<QtPvdbRateConceptTallyDialog> d(

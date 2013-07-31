@@ -229,26 +229,61 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbRateConceptTallyDialog::CreateTe
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
 {
-  //Rate as if all items are relevant
-  TRACE("TODO: GetSuggestedComplexity not yet completely implemented");
-  //return pvdb::Rating::SuggestComplexity(m_map);
-  return 0;
+  //Tally the edges that contribute to complexity
+  const int n_edges = std::accumulate(m_data.begin(),m_data.end(),0,
+    [](int init, const Row& row)
+      {
+        return init + (row.second == -1 && row.first->GetIsComplex() ? 1 : 0);
+      }
+    );
+
+  //Tally the examples that contribute to complexity
+  const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
+    [](int init, const Row& row)
+      {
+        const int index = row.second;
+        if (index == -1) return init + 0;
+        assert(row.first);
+        assert(row.first->GetExamples());
+        assert(index < static_cast<int>(row.first->GetExamples()->Get().size()));
+        return init + (row.first->GetExamples()->Get()[index]->GetIsComplex() ? 1 : 0);
+      }
+    );
+  return pvdb::Rating::SuggestComplexity(n_edges,n_examples);
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
 {
-  //Rate as if all items are relevant
-  TRACE("TODO: GetSuggestedConcreteness not yet completely implemented");
-  //return pvdb::Rating::SuggestConcreteness(m_map);
-  return 0;
+  //Tally the examples that contribute to concreteness
+  const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
+    [](int init, const Row& row)
+      {
+        const int index = row.second;
+        if (index == -1) return init + 0;
+        assert(row.first);
+        assert(row.first->GetExamples());
+        assert(index < static_cast<int>(row.first->GetExamples()->Get().size()));
+        return init + (row.first->GetExamples()->Get()[index]->GetIsConcrete() ? 1 : 0);
+      }
+    );
+  return pvdb::Rating::SuggestConcreteness(n_examples);
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
 {
-  //Rate as if all items are relevant
-  TRACE("TODO: GetSuggestedSpecificity not yet completely implemented");
-  //return pvdb::Rating::SuggestSpecificity(m_map);
-  return 0;
+  //Tally the examples that contribute to specificity
+  const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
+    [](int init, const Row& row)
+      {
+        const int index = row.second;
+        if (index == -1) return init + 0;
+        assert(row.first);
+        assert(index < static_cast<int>(row.first->GetExamples()->Get().size()));
+        assert(row.first->GetExamples());
+        return init + (row.first->GetExamples()->Get()[index]->GetIsSpecific() ? 1 : 0);
+      }
+    );
+  return pvdb::Rating::SuggestSpecificity(n_examples);
 }
 
 void QtPvdbRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)

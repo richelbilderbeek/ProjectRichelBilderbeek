@@ -15,6 +15,7 @@
 #include <thread>
 #endif
 
+#include <boost/lexical_cast.hpp>
 #include <QRegExp>
 
 #include "pvdbexample.h"

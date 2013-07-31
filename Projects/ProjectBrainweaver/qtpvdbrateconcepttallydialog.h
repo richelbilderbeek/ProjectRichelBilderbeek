@@ -26,9 +26,7 @@ public:
 
   ~QtPvdbRateConceptTallyDialog();
 
-  #ifndef NDEBUG
   static const boost::shared_ptr<pvdb::ConceptMap> CreateTestConceptMap();
-  #endif
 
   ///Obtain the suggested complexity, calculated from this dialog
   int GetSuggestedComplexity() const;
