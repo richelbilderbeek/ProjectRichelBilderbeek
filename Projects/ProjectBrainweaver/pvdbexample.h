@@ -97,24 +97,17 @@ private:
   friend void boost::checked_delete<>(Example* x);
 
   ///Only let ExampleFactory create Example instances
-  Example(const std::string& text, const pvdb::Competency competency = pvdb::Competency::uninitialized);
+  Example(
+    const std::string& text,
+    const pvdb::Competency competency = pvdb::Competency::uninitialized,
+    const bool is_complex = true,
+    const bool is_concrete = true,
+    const bool is_specific = true
+    );
   friend class ExampleFactory;
 };
 
 bool IsEqual(const pvdb::Example& lhs, const pvdb::Example& rhs);
-
-/*
-bool operator==(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs) = delete;
-bool operator==(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs) = delete;
-bool operator==(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs) = delete;
-bool operator==(const pvdb::Example& lhs,const pvdb::Example& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs) = delete;
-bool operator!=(const pvdb::Example& lhs,const pvdb::Example& rhs) = delete;
-*/
 
 bool operator<(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs);
 bool operator<(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs);

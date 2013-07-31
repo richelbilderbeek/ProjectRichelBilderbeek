@@ -26,11 +26,17 @@
 namespace pvdb {
 #endif
 
-pvdb::Example::Example(const std::string& text, const pvdb::Competency competency)
+pvdb::Example::Example(
+  const std::string& text,
+  const pvdb::Competency competency,
+  const bool is_complex,
+  const bool is_concrete,
+  const bool is_specific
+  )
   : m_competency(competency),
-    m_is_complex(true),  //Often, an example is assessed to be complex
-    m_is_concrete(true), //Often, an example is assessed to be concrete
-    m_is_specific(true), //Often, an example is assessed to be specific
+    m_is_complex(is_complex),
+    m_is_concrete(is_concrete),
+    m_is_specific(is_specific),
     m_text(text)
 {
   #ifndef NDEBUG
@@ -63,21 +69,42 @@ const boost::shared_ptr<pvdb::Example> pvdb::Example::FromXml(const std::string&
 
   std::string text;
   pvdb::Competency competency = pvdb::Competency::uninitialized;
+  bool is_complex = false;
+  bool is_concrete = false;
+  bool is_specific = false;
 
-  //text
-  {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<text>.*</text>)"));
-    assert(v.size() == 1 && "<text>.*</text> must be present once in an Example");
-    text = pvdb::StripXmlTag(v[0]);
-  }
   //competency
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<competency>.*</competency>)"));
     assert(v.size() == 1);
     competency = StrToCompetency(StripXmlTag(v[0]));
   }
+  //is_complex
+  {
+    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<is_complex>.*</is_complex>)"));
+    assert(v.size() == 1);
+    is_complex = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+  }
+  //is_concrete
+  {
+    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<is_concrete>.*</is_concrete>)"));
+    assert(v.size() == 1);
+    is_concrete = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+  }
+  //is_specific
+  {
+    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<is_specific>.*</is_specific>)"));
+    assert(v.size() == 1);
+    is_specific = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+  }
+  //text
+  {
+    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<text>.*</text>)"));
+    assert(v.size() == 1 && "<text>.*</text> must be present once in an Example");
+    text = pvdb::StripXmlTag(v[0]);
+  }
 
-  return pvdb::ExampleFactory::Create(text,competency);
+  return pvdb::ExampleFactory::Create(text,competency,is_complex,is_concrete,is_specific);
 }
 
 void pvdb::Example::SetCompetency(const pvdb::Competency competency)
@@ -257,6 +284,15 @@ const std::string pvdb::Example::ToXml(const boost::shared_ptr<const pvdb::Examp
   s <<   "<competency>";
   s <<     CompetencyToStr(c->GetCompetency());
   s <<   "</competency>";
+  s <<   "<is_complex>";
+  s <<     c->GetIsComplex();
+  s <<   "</is_complex>";
+  s <<   "<is_concrete>";
+  s <<     c->GetIsConcrete();
+  s <<   "</is_concrete>";
+  s <<   "<is_specific>";
+  s <<     c->GetIsSpecific();
+  s <<   "</is_specific>";
   s << "</example>";
 
   const std::string r = s.str();
@@ -276,51 +312,6 @@ bool IsEqual(const pvdb::Example& lhs, const pvdb::Example& rhs)
        lhs.GetText() == rhs.GetText()
     && lhs.GetCompetency() == rhs.GetCompetency();
 }
-
-/*
-bool operator==(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
-{
-  assert(lhs && rhs);
-  return
-       lhs->GetText() == rhs->GetText()
-    && lhs->GetCompetency() == rhs->GetCompetency();
-}
-
-bool operator==(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Example>(lhs) == boost::shared_ptr<const pvdb::Example>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Example>(lhs) == boost::shared_ptr<const pvdb::Example>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Example>(lhs) == boost::shared_ptr<const pvdb::Example>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
-{
-  return !(lhs == rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Example>(lhs) != boost::shared_ptr<const pvdb::Example>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Example>(lhs) != boost::shared_ptr<const pvdb::Example>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<pvdb::Example>& rhs)
-{
-  return boost::shared_ptr<const pvdb::Example>(lhs) != boost::shared_ptr<const pvdb::Example>(rhs);
-}
-*/
 
 bool operator<(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
 {

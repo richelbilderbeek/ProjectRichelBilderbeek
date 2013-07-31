@@ -30,11 +30,13 @@ struct QtPvdbTreeWidgetItem : public QTreeWidgetItem
 {
   QtPvdbTreeWidgetItem(
     const pvdb::Competency competency,
+    const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
     const int rating_specifity)
     : QTreeWidgetItem(0),
       m_competency(competency),
+      m_is_complex(is_complex),
       m_rating_complexity(rating_complexity),
       m_rating_concreteness(rating_concreteness),
       m_rating_specifity(rating_specifity)
@@ -43,6 +45,7 @@ struct QtPvdbTreeWidgetItem : public QTreeWidgetItem
     assert(rating_complexity <=  2);
   }
   const pvdb::Competency m_competency;
+  const bool m_is_complex;
   const int m_rating_complexity;
   const int m_rating_concreteness;
   const int m_rating_specifity;
@@ -83,7 +86,7 @@ QtPvdbClusterWidget::QtPvdbClusterWidget(
 void QtPvdbClusterWidget::Add(const std::string& text)
 {
   QtPvdbTreeWidgetItem * const item = new QtPvdbTreeWidgetItem(
-    pvdb::Competency::uninitialized,-1,-1,-1);
+    pvdb::Competency::uninitialized,true,-1,-1,-1);
   item->setText(0,text.c_str());
   this->addTopLevelItem(item);
 }
@@ -91,10 +94,10 @@ void QtPvdbClusterWidget::Add(const std::string& text)
 void QtPvdbClusterWidget::DoRandomStuff()
 {
   QtPvdbTreeWidgetItem * const top = new QtPvdbTreeWidgetItem(
-    pvdb::Competency::misc,0,1,2);
+    pvdb::Competency::misc,true,0,1,2);
   top->setText(0,"SOMETEXT");
   QtPvdbTreeWidgetItem * const child_item = new QtPvdbTreeWidgetItem(
-    pvdb::Competency::uninitialized,-1,0,2);
+    pvdb::Competency::uninitialized,true,-1,0,2);
   child_item->setText(0,"SOMETEXT");
   top->addChild(child_item);
   child_item->setFlags(
@@ -251,6 +254,7 @@ void QtPvdbClusterWidget::BuildCluster()
       QtPvdbTreeWidgetItem * const top
         = new QtPvdbTreeWidgetItem(
           pvdb::Competency::uninitialized, //A concept is not classified in competencies
+          concept->GetIsComplex(),
           concept->GetRatingComplexity(),
           concept->GetRatingConcreteness(),
           concept->GetRatingSpecificity()
@@ -263,6 +267,7 @@ void QtPvdbClusterWidget::BuildCluster()
           QtPvdbTreeWidgetItem * const child_item
             = new QtPvdbTreeWidgetItem(
               example->GetCompetency(),
+              example->GetIsComplex(),
               -1, //An example is not rated for complexity   //FIX 2013-02-03
               -1, //An example is not rated for concreteness //FIX 2013-02-03
               -1  //An example is not rated for specifity    //FIX 2013-02-03
@@ -324,7 +329,7 @@ void QtPvdbClusterWidget::Test()
         assert(c != d);
         assert(IsEqual(*c,*d));
         QtPvdbTreeWidgetItem * const item = new QtPvdbTreeWidgetItem(
-          pvdb::Competency::misc,0,1,2);
+          pvdb::Competency::misc,true,0,1,2);
         item->setText(0,QString("An extra line"));
         w.addTopLevelItem(item);
         assert(w.topLevelItemCount() == static_cast<int>(c->Get().size()) + 1);
@@ -380,6 +385,7 @@ void QtPvdbClusterWidget::WriteToCluster()
       pvdb::ConceptFactory::Create(
         name,
         pvdb::ExamplesFactory::Create(examples),
+        pvdb_top ? pvdb_top->m_is_complex : true,
         pvdb_top ? pvdb_top->m_rating_complexity : -1,
         pvdb_top ? pvdb_top->m_rating_concreteness : -1,
         pvdb_top ? pvdb_top->m_rating_specifity : -1

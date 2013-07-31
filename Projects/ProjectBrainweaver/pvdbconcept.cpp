@@ -75,7 +75,7 @@ const boost::shared_ptr<pvdb::Concept> pvdb::Concept::FromXml(const std::string&
 
   //m_is_complex
   {
-    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<is_complex>.*</is_complex>)"));
+    const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<concept_is_complex>.*</concept_is_complex>)"));
     assert(v.size() == 1 && "(<is_complex>.*</is_complex>) must be present once per Concept");
     is_complex = boost::lexical_cast<bool>(StripXmlTag(v[0]));
   }
@@ -175,9 +175,9 @@ const std::string pvdb::Concept::ToXml(const boost::shared_ptr<const pvdb::Conce
   s <<     c->GetName();
   s <<   "</name>";
   s <<   Examples::ToXml(c->GetExamples());
-  s <<   "<is_complex>";
+  s <<   "<concept_is_complex>";
   s <<     c->GetIsComplex();
-  s <<   "</is_complex>";
+  s <<   "</concept_is_complex>";
   s <<   "<complexity>";
   s <<     c->GetRatingComplexity();
   s <<   "</complexity>";

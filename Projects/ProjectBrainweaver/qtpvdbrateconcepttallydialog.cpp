@@ -128,14 +128,20 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   }
 
   //Set text on top
+  if (sub_concept_map)
   {
+    assert(!sub_concept_map->GetNodes().empty());
     const boost::shared_ptr<const pvdb::Concept> focal_concept = sub_concept_map->GetNodes().at(0)->GetConcept();
     assert(focal_concept);
     ui->label_concept_name->setText(
       (std::string("Voorbeelden/toelichting bij concept: ") + focal_concept->GetName()).c_str() );
   }
-  ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+  else
+  {
+    ui->label_concept_name->setText("Voorbeelden/toelichting bij concept: (geen concept)");
+  }
 
+  ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   QObject::connect(ui->table,SIGNAL(cellChanged(int,int)),this,SLOT(OnCellChanged(int,int)));
 }
 
@@ -395,7 +401,6 @@ void QtPvdbRateConceptTallyDialog::Test()
   assert(d.ui->table->item(2,2)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(2,3)->text() == QString(edge->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
-  assert(1==2);
   TRACE("Finished QtPvdbRateConceptTallyDialog::Test successfully");
 }
 #endif

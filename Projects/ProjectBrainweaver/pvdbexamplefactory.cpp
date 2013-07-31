@@ -13,9 +13,22 @@
 namespace pvdb {
 #endif
 
-const boost::shared_ptr<pvdb::Example> pvdb::ExampleFactory::Create(const std::string& text, const pvdb::Competency& competency)
+const boost::shared_ptr<pvdb::Example> pvdb::ExampleFactory::Create(
+  const std::string& text,
+  const pvdb::Competency& competency,
+  const bool is_complex,
+  const bool is_concrete,
+  const bool is_specific)
 {
-  boost::shared_ptr<pvdb::Example> example(new Example(text,competency));
+  boost::shared_ptr<pvdb::Example> example(
+    new Example(
+      text,
+      competency,
+      is_complex,
+      is_concrete,
+      is_specific
+    )
+  );
   assert(example);
   return example;
 }

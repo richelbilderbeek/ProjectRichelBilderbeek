@@ -95,7 +95,9 @@ const boost::shared_ptr<pvdb::Concept> pvdb::ConceptFactory::Create(
     [](const std::pair<std::string,Competency>& p)
     {
       const boost::shared_ptr<pvdb::Example> q
-        = ExampleFactory::Create(p.first,p.second);
+        = ExampleFactory::Create(
+          p.first,
+          p.second);
       assert(q);
       return q;
     }

@@ -17,7 +17,12 @@ namespace pvdb {
 struct ExampleFactory
 {
   ///Create an example from string and enum
-  static const boost::shared_ptr<pvdb::Example> Create(const std::string& text, const pvdb::Competency& competency);
+  static const boost::shared_ptr<pvdb::Example> Create(
+    const std::string& text,
+    const pvdb::Competency& competency,
+    const bool is_complex = true,   //DEFAULT
+    const bool is_concrete = true,  //DEFAULT
+    const bool is_specific = true); //DEFAULT
 
   ///Create examples for strings
   ///Note that all pvdb::Competency values are set to uninitialized

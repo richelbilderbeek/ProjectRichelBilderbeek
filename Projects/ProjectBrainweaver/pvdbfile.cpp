@@ -128,7 +128,18 @@ const std::string pvdb::File::ConvertFrom_0_3(const std::string& s)
   const std::string c = boost::algorithm::replace_all_copy(b,"</concept_map><student_name>"
     , std::string("</concept_map><question>") + question + "</question><student_name>");
 
-  return c;
+
+  const std::string d
+    = boost::algorithm::replace_all_copy(c,
+      "</competency></example>",
+      "</competency><is_complex>1</is_complex><is_concrete>1</is_concrete><is_specific>1</is_specific></example>");
+
+  const std::string e
+    = boost::algorithm::replace_all_copy(d,
+      "</examples><complexity>",
+      "</examples><concept_is_complex>1</concept_is_complex><complexity>");
+
+  return e;
 }
 
 /*
