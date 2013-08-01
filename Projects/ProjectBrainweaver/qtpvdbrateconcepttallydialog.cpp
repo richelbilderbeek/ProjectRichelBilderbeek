@@ -328,9 +328,9 @@ void QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
     const boost::shared_ptr<pvdb::Example> example = concept->GetExamples()->Get()[index];
     switch (col)
     {
-      case 0: example->SetIsComplex( item->checkState() == Qt::Checked );
-      case 1: example->SetIsConcrete( item->checkState() == Qt::Checked );
-      case 2: example->SetIsSpecific( item->checkState() == Qt::Checked );
+      case 0: example->SetIsComplex( item->checkState() == Qt::Checked ); break;
+      case 1: example->SetIsConcrete( item->checkState() == Qt::Checked ); break;
+      case 2: example->SetIsSpecific( item->checkState() == Qt::Checked ); break;
       case 3: break; //It's read-only! //example->SetText( item->text().toStdString() ); break;
     }
   }
