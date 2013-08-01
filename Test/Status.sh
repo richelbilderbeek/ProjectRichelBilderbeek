@@ -58,8 +58,6 @@ do
       1) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;; 
       esac
 
-      
-
       $myqmake $myprofile
 
       if [ ! -e Makefile ]
