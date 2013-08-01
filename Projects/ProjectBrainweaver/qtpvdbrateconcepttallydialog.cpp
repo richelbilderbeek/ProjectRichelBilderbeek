@@ -37,7 +37,7 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
     m_data(CreateData(sub_concept_map))
 {
   #ifndef NDEBUG
-  Test();
+  Test();  
   #endif
   ui->setupUi(this);
 
@@ -142,6 +142,13 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   }
 
   ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+  #ifndef NDEBUG
+  ui->label_debug->setVisible(true);
+  #else
+  ui->label_debug->setVisible(false);
+  #endif
+
   QObject::connect(ui->table,SIGNAL(cellChanged(int,int)),this,SLOT(OnCellChanged(int,int)));
 }
 
@@ -327,6 +334,18 @@ void QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
       case 3: break; //It's read-only! //example->SetText( item->text().toStdString() ); break;
     }
   }
+
+  #ifndef NDEBUG
+  {
+    const int x = GetSuggestedComplexity();
+    const int c = GetSuggestedConcreteness();
+    const int s = GetSuggestedSpecificity();
+    std::stringstream m;
+    m << "DEBUG ONLY: X: " << x << ", C: " << c << ", S: " << s;
+    ui->label_debug->setText(m.str().c_str());
+
+  }
+  #endif
 }
 
 void QtPvdbRateConceptTallyDialog::resizeEvent(QResizeEvent *)

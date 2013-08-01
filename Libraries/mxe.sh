@@ -6,5 +6,5 @@ fi
 
 cd mxe
 
-make gcc boost qt qt5 qtbase wt
-make
+make gcc boost qt qt5 qtbase wt qwt
+#make
