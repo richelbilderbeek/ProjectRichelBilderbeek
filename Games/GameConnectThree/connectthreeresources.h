@@ -39,7 +39,16 @@ struct ConnectThreeResources
   const std::vector<std::string>& GetPlayersGreyFilenames() const { return  m_players_grey_filenames; }
 
   protected:
-  ConnectThreeResources();
+  ConnectThreeResources(
+    const std::vector<std::string>& computers_filenames,
+    const std::string& computer_grey_filename,
+    const std::string& css,
+    const std::string& empty_filename,
+    const std::vector<std::string>& instructions_good_filenames,
+    const std::string& instructions_wrong_filename,
+    const std::vector<std::string>& players_filenames,
+    const std::vector<std::string>& players_grey_filenames
+    );
 
   //const std::string m_background_filename;
   const std::vector<std::string> m_computers_filenames;

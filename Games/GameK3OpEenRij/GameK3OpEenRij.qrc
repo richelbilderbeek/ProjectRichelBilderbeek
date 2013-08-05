@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>K3OpEenRijBackground.png</file>
+        <file>K3OpEenRijBackgroundColored.png</file>
+        <file>K3OpEenRijBackgroundGrey.png</file>
+        <file>K3OpEenRijComputer1.png</file>
+        <file>K3OpEenRijComputer2.png</file>
+        <file>K3OpEenRijComputer3.png</file>
+        <file>K3OpEenRijComputerGrey.png</file>
+        <file>K3OpEenRijEmpty.png</file>
+        <file>K3OpEenRijInstructions1.png</file>
+        <file>K3OpEenRijInstructions2.png</file>
+        <file>K3OpEenRijInstructions3.png</file>
+        <file>K3OpEenRijPlayer1.png</file>
+        <file>K3OpEenRijPlayer1Grey.png</file>
+        <file>K3OpEenRijPlayer2.png</file>
+        <file>K3OpEenRijPlayer2Grey.png</file>
+        <file>K3OpEenRijPlayer3.png</file>
+        <file>K3OpEenRijPlayer3Grey.png</file>
+    </qresource>
+</RCC>

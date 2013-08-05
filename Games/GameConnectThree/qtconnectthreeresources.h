@@ -32,7 +32,7 @@ struct QtConnectThreeResources
   static QtConnectThreeResources * GetInstance();
 
   private:
-  QtConnectThreeResources() {}
+  QtConnectThreeResources();
   static QtConnectThreeResources * m_instance;
 };
 

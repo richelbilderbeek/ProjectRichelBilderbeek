@@ -49,7 +49,10 @@ QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   const std::bitset<3>& is_player_human)
   : QDialog(parent, Qt::Window),
     ui(new Ui::QtConnectThreeGameDialog),
-    m_board(new QtConnectThreeWidget(0,is_player_human,16,8)),
+    m_board(
+      new QtConnectThreeWidget(
+        QtConnectThreeResources(),
+        0,is_player_human,16,8)),
     m_is_player_human(is_player_human)
 {
   ui->setupUi(this);

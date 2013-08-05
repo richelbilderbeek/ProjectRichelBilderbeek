@@ -39,39 +39,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-ConnectThreeResources::ConnectThreeResources()
-  : // m_background_filename(
-    //  "RichelbilderbeekNlBackground.png"),
-    m_computers_filenames(
-    {
-      "ConnectThreeComputer1.png",
-      "ConnectThreeComputer2.png",
-      "ConnectThreeComputer3.png"
-    } ),
-    m_computer_grey_filename(
-      "ConnectThreeComputerGrey.png"),
-    m_css("GameConnectThree.css"),
-    m_empty_filename(
-      "ConnectThreeEmpty.png"),
-    m_instructions_good_filenames(
-    {
-      "ConnectThreeGood1.png",
-      "ConnectThreeGood2.png"
-    } ),
-    m_instructions_wrong_filename(
-      "ConnectThreeWrong.png"),
-    m_players_filenames(
-    {
-      "ConnectThreePlayer1.png",
-      "ConnectThreePlayer2.png",
-      "ConnectThreePlayer3.png"
-    } ),
-    m_players_grey_filenames(
-    {
-      "ConnectThreePlayer1Grey.png",
-      "ConnectThreePlayer2Grey.png",
-      "ConnectThreePlayer3Grey.png"
-    } )
+ConnectThreeResources::ConnectThreeResources(
+  const std::vector<std::string>& computers_filenames,
+  const std::string& computer_grey_filename,
+  const std::string& css,
+  const std::string& empty_filename,
+  const std::vector<std::string>& instructions_good_filenames,
+  const std::string& instructions_wrong_filename,
+  const std::vector<std::string>& players_filenames,
+  const std::vector<std::string>& players_grey_filenames
+  )
+  : m_computers_filenames(computers_filenames),
+    m_computer_grey_filename(computer_grey_filename),
+    m_css(css),
+    m_empty_filename(empty_filename),
+    m_instructions_good_filenames(instructions_good_filenames),
+    m_instructions_wrong_filename(instructions_wrong_filename),
+    m_players_filenames(players_filenames),
+    m_players_grey_filenames(players_grey_filenames)
 {
   Check();
 }

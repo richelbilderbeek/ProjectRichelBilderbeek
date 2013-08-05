@@ -32,6 +32,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+QtConnectThreeResources::QtConnectThreeResources()
+  : ConnectThreeResources(
+    {
+      "ConnectThreeComputer1.png",
+      "ConnectThreeComputer2.png",
+      "ConnectThreeComputer3.png"
+    },
+    "ConnectThreeComputerGrey.png",
+    "GameConnectThree.css",
+    "ConnectThreeEmpty.png",
+    {
+      "ConnectThreeGood1.png",
+      "ConnectThreeGood2.png"
+    },
+    "ConnectThreeWrong.png",
+    {
+      "ConnectThreePlayer1.png",
+      "ConnectThreePlayer2.png",
+      "ConnectThreePlayer3.png"
+    },
+    {
+      "ConnectThreePlayer1Grey.png",
+      "ConnectThreePlayer2Grey.png",
+      "ConnectThreePlayer3Grey.png"
+    }
+  )
+{
+
+}
+
 QtConnectThreeResources * QtConnectThreeResources::m_instance = 0;
 
 QtConnectThreeResources * QtConnectThreeResources::GetInstance()
@@ -40,7 +70,3 @@ QtConnectThreeResources * QtConnectThreeResources::GetInstance()
   assert(m_instance);
   return m_instance;
 }
-
-
-
-

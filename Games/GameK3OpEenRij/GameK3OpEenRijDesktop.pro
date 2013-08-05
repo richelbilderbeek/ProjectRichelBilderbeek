@@ -22,40 +22,45 @@ INCLUDEPATH += \
     ../../Classes/CppConnectThreeWidget \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtConnectThreeWidget \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppTrace \
     ../../Games/GameConnectThree
 
 SOURCES += qtmain.cpp \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppConnectThree/connectthree.cpp \
+    ../../Classes/CppConnectThreeWidget/connectthreewidget.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.cpp \
-    ../GameConnectThree/connectthreemenudialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../GameConnectThree/connectthreeresources.cpp \
     ../GameConnectThree/qtconnectthreegamedialog.cpp \
-    ../GameConnectThree/qtconnectthreemenudialog.cpp \
-    ../GameConnectThree/qtconnectthreeresources.cpp \
-    ../GameConnectThree/qtselectplayerwidget.cpp \
     ../GameConnectThree/qtshowwinnerdialog.cpp \
-    ../../Classes/CppConnectThreeWidget/connectthreewidget.cpp
+    k3opeenrijmenudialog.cpp \
+    qtk3opeenrijinstructionsdialog.cpp \
+    qtk3opeenrijmenudialog.cpp \
+    qtk3opeenrijselectplayerwidget.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppConnectThree/connectthree.h \
+    ../../Classes/CppConnectThreeWidget/connectthreewidget.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppTrace/trace.h \
-    ../GameConnectThree/connectthreemenudialog.h \
     ../GameConnectThree/connectthreeresources.h \
     ../GameConnectThree/qtconnectthreegamedialog.h \
-    ../GameConnectThree/qtconnectthreemenudialog.h \
-    ../GameConnectThree/qtconnectthreeresources.h \
-    ../GameConnectThree/qtselectplayerwidget.h \
     ../GameConnectThree/qtshowwinnerdialog.h \
-    ../../Classes/CppConnectThreeWidget/connectthreewidget.h
+    k3opeenrijmenudialog.h \
+    qtk3opeenrijinstructionsdialog.h \
+    qtk3opeenrijmenudialog.h \
+    qtk3opeenrijselectplayerwidget.h
 
 OTHER_FILES += \
+    ../../Classes/CppConnectThreeWidget/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
     ../../Classes/CppTrace/Licence.txt \
     ../GameConnectThree/ConnectThreeComputer1.png \
     ../GameConnectThree/ConnectThreeComputer2.png \
@@ -78,15 +83,15 @@ OTHER_FILES += \
     ../GameConnectThree/Licence.txt \
     ../GameConnectThree/R.png \
     ../GameConnectThree/zip.sh \
-    K3OpEenRij.css \
-    ../../Classes/CppConnectThreeWidget/Licence.txt
+    K3OpEenRij.css
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     ../GameConnectThree/qtconnectthreegamedialog.ui \
-    ../GameConnectThree/qtconnectthreemenudialog.ui \
-    ../GameConnectThree/qtshowwinnerdialog.ui
+    ../GameConnectThree/qtshowwinnerdialog.ui \
+    qtk3opeenrijinstructionsdialog.ui \
+    qtk3opeenrijmenudialog.ui
 
 RESOURCES += \
-    ../GameConnectThree/GameConnectThree.qrc
+    GameK3OpEenRij.qrc
 
