@@ -10,6 +10,7 @@
 ///Forward declarations
 namespace pvdb
 {
+  struct CenterNode;
   struct Cluster;
   struct Concept;
   struct ConceptFactory;

@@ -15,6 +15,7 @@
 #include <boost/numeric/conversion/cast.hpp>
 #include <QKeyEvent>
 #include "pvdbconceptfactory.h"
+#include "pvdbcenternode.h"
 #include "pvdbconceptmap.h"
 #include "pvdbconceptmapfactory.h"
 #include "pvdbconcept.h"
@@ -182,6 +183,14 @@ const std::vector<QtPvdbRateConceptTallyDialog::Row>
   //Collect all relations of the focal node of this sub concept map
   for(const boost::shared_ptr<pvdb::Edge> edge: map->GetEdges())
   {
+    //But skip the connections to the focal question
+    if (boost::dynamic_pointer_cast<pvdb::CenterNode>(edge->GetTo())
+      || boost::dynamic_pointer_cast<pvdb::CenterNode>(edge->GetFrom()))
+    {
+      continue;
+    }
+
+
     const boost::shared_ptr<pvdb::Concept> concept = edge->GetConcept();
     data.push_back(std::make_pair(concept,-1));
     const int n_examples = boost::numeric_cast<int>(concept->GetExamples()->Get().size());

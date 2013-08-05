@@ -116,7 +116,7 @@ QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::s
 }
 */
 
-QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
+QtPvdbConceptMapEditW-idget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
 

@@ -1,0 +1,27 @@
+#ifndef PVDBCENTERNODEFACTORY_H
+#define PVDBCENTERNODEFACTORY_H
+
+#include <string>
+#include <boost/shared_ptr.hpp>
+#include "pvdbfwd.h"
+#include "pvdbcompetency.h"
+
+namespace pvdb {
+
+struct CenterNodeFactory
+{
+  static const boost::shared_ptr<pvdb::CenterNode> Create(
+    const boost::shared_ptr<pvdb::Concept>& concept,
+    const double x = 0.0,
+    const double y = 0.0);
+
+  static const boost::shared_ptr<pvdb::CenterNode> Create(
+    const std::string& name,
+    const std::vector<std::pair<std::string,Competency> >& examples = {},
+    const double x = 0.0,
+    const double y = 0.0);
+};
+
+} //~namespace pvdb
+
+#endif // PVDBCENTERNODEFACTORY_H

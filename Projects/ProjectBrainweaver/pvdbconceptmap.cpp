@@ -10,6 +10,8 @@
 #include <set>
 #include <sstream>
 
+#include "pvdbcenternode.h"
+#include "pvdbcenternodefactory.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
 #include "pvdbhelper.h"
@@ -33,6 +35,9 @@ pvdb::ConceptMap::ConceptMap(const std::string& question)
   Test();
   assert(ConceptMap::CanConstruct(m_nodes,m_edges));
   assert(this->GetQuestion() == question);
+
+  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(this->GetNodes()[0])
+    && "Assume a CenterNode at the center of ConceptMap");
   #endif
 }
 
@@ -189,7 +194,7 @@ const std::vector<boost::shared_ptr<pvdb::Node> > pvdb::ConceptMap::CreateNodes(
       -1  //No rated specificity
     )
   );
-  const boost::shared_ptr<pvdb::Node> center_node = pvdb::NodeFactory::Create(concept,0,0);
+  const boost::shared_ptr<pvdb::CenterNode> center_node = pvdb::CenterNodeFactory::Create(concept,0,0);
   assert(center_node);
   v.push_back(center_node);
   std::copy(nodes.begin(),nodes.end(),std::back_inserter(v));

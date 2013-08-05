@@ -17,6 +17,7 @@
 
 #include <boost/lexical_cast.hpp>
 #include <QRegExp>
+#include "pvdbcenternode.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
 #include "pvdbconceptmapfactory.h"
@@ -562,6 +563,21 @@ void pvdb::ConceptMap::Test()
         assert(concept_map->GetEdges().size() == n_edges - 1
           && "Edge must really be gone");
       }
+    }
+  }
+  //Is GetNode()[0] a CenterNode?
+  {
+    const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
+    for (std::size_t i = 0; i!=n_concept_maps; ++i)
+    {
+      if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
+      assert(pvdb::ConceptMapFactory::GetAllTests()[i]);
+      boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+      if (!concept_map) continue;
+      assert(concept_map);
+      assert(!concept_map->GetNodes().empty());
+      assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(concept_map->GetNodes()[0])
+        && "Assume a CenterNode at the center of ConceptMap");
     }
   }
   TRACE("ConceptMap::Test finished successfully");

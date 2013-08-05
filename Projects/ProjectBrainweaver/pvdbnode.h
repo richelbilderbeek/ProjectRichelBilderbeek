@@ -23,6 +23,7 @@ struct NodeFactory;
 ///A Node is the GUI independent part as used in QtPvdbConceptMapItem
 struct Node : public boost::noncopyable
 {
+
   ///Obtain a Node from an XML std::string
   static const boost::shared_ptr<pvdb::Node> FromXml(const std::string& s);
 
@@ -30,8 +31,10 @@ struct Node : public boost::noncopyable
   const boost::shared_ptr<const pvdb::Concept>  GetConcept() const { return m_concept; }
   const boost::shared_ptr<      pvdb::Concept>& GetConcept() { return m_concept; }
 
+  #ifndef NDEBUG
   ///Get boost::shared_ptr::use_count
   int GetConceptUseCount() const { return m_concept.use_count(); }
+  #endif
 
   ///Get some test nodes
   static const std::vector<boost::shared_ptr<pvdb::Node> > GetTests();
@@ -62,6 +65,20 @@ struct Node : public boost::noncopyable
 
   boost::signals2::signal<void(const pvdb::Node *)> m_signal_node_changed;
 
+  protected:
+  ///Block construction, except for NodeFactory and derived classes
+  Node() = delete;
+  friend NodeFactory;
+
+  explicit Node(
+    const boost::shared_ptr<pvdb::Concept>& concept,
+    const double x = 0.0,
+    const double y = 0.0);
+
+  ///Block destructor, except for the friend boost::checked_delete
+  virtual ~Node() {}
+  friend void boost::checked_delete<>(Node* x);
+
   private:
 
   ///The Concept
@@ -76,17 +93,6 @@ struct Node : public boost::noncopyable
   ///Test this class
   static void Test();
 
-  ///Block destructor, except for the friend boost::checked_delete
-  ~Node() {}
-  friend void boost::checked_delete<>(Node* x);
-
-  ///Block construction, except for NodeFactory
-  friend NodeFactory;
-  Node() = delete;
-  explicit Node(
-    const boost::shared_ptr<pvdb::Concept>& concept,
-    const double x = 0.0,
-    const double y = 0.0);
 };
 
 bool IsEqual(const pvdb::Node& lhs, const pvdb::Node& rhs);

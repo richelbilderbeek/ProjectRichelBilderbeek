@@ -7,15 +7,23 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpvdbcenternodeitem.h"
 
+#include "pvdbcenternode.h"
 #include "qtpvdbconceptitem.h"
 #include "qtpvdbbrushfactory.h"
 #include "pvdbnode.h"
 #include "qtpvdbdisplayconceptitem.h"
+#include "trace.h"
 
 QtPvdbCenterNodeItem::QtPvdbCenterNodeItem(
   const boost::shared_ptr<pvdb::Node> node)
   : QtPvdbNodeItem(node,CreateConceptItem(node))
 {
+  if (!boost::dynamic_pointer_cast<pvdb::CenterNode>(node))
+  {
+    TRACE("HIERO");
+  }
+  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(node)
+    && "Only CenterNodes can be put in QtCenterNodeItem");
   assert(node);
   assert(this->GetConceptItem());
   this->setFlags(QGraphicsItem::ItemIsFocusable);

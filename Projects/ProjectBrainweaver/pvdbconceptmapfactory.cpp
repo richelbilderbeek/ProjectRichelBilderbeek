@@ -10,6 +10,8 @@
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 
+#include "pvdbcenternodefactory.h"
+#include "pvdbcenternode.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
 #include "pvdbconceptmap.h"
@@ -239,7 +241,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
       };
 
     const Edges edges
@@ -258,7 +260,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A")
       };
 
@@ -278,7 +280,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B")
       };
@@ -299,7 +301,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B")
       };
@@ -322,7 +324,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B")
       };
@@ -346,7 +348,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B")
       };
@@ -370,7 +372,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B")
       };
@@ -393,7 +395,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -416,7 +418,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -442,7 +444,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -467,7 +469,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -493,7 +495,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -522,7 +524,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -550,7 +552,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -579,7 +581,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -614,7 +616,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         node_c,
         node_d,
@@ -654,7 +656,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         node_c,
         node_d,
@@ -710,7 +712,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         node_c,
         node_d,
@@ -787,7 +789,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C"),
@@ -816,7 +818,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("B")
@@ -844,7 +846,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("C")
@@ -872,7 +874,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("A")
@@ -901,7 +903,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B")
@@ -930,7 +932,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("A")
@@ -959,7 +961,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -988,7 +990,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("B")
@@ -1016,7 +1018,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("C")
@@ -1052,7 +1054,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("A")
@@ -1089,7 +1091,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B")
@@ -1117,7 +1119,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("A")
@@ -1181,7 +1183,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C")
@@ -1203,7 +1205,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("B")
@@ -1223,7 +1225,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("C")
@@ -1245,7 +1247,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("A")
@@ -1267,7 +1269,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("A"),
         pvdb::NodeFactory::Create("B")
@@ -1290,7 +1292,7 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMapFactory:
     const Nodes nodes
       =
       {
-        pvdb::NodeFactory::Create("X"),
+        pvdb::CenterNodeFactory::Create("X"),
         pvdb::NodeFactory::Create("C"),
         pvdb::NodeFactory::Create("B"),
         pvdb::NodeFactory::Create("A")
