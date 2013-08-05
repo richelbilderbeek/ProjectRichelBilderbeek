@@ -6,7 +6,7 @@ win32 {
 QT += core gui
 #QT += webkit
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
 # undefined reference to `_imp___ZNK8QWebView8settingsEv'
 #greaterThan(QT_MAJOR_VERSION, 4): QT += webkitwidgets

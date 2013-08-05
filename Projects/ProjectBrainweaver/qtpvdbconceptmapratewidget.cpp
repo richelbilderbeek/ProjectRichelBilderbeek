@@ -76,13 +76,21 @@ void QtPvdbConceptMapRateWidget::AddEdge(
   QtPvdbNodeItem * const to   = FindQtNode(edge->GetTo());
   assert(to);
   assert(from != to);
-
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
     edge,
     qtconcept,
     from,
     to
   );
+  assert(qtedge);
+
+  //Edges connected to the center node do not show their concepts
+  if (IsCenterNode(from) || IsCenterNode(to))
+  {
+    assert(qtconcept == qtedge->GetConceptItem());
+    qtconcept->setVisible(false);
+  }
+
 
   //General
   qtedge->m_signal_request_scene_update.connect(

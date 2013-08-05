@@ -13,7 +13,7 @@
 #include "qtpvdbbrushfactory.h"
 #include "trace.h"
 
-QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr<pvdb::Concept>& concept)
+QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr<pvdb::Concept> concept)
   : QtPvdbConceptItem(concept)
 {
   #ifndef NDEBUG

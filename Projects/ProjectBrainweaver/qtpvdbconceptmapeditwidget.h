@@ -107,14 +107,4 @@ private:
   static void Test();
 };
 
-///Keep undefined
-bool operator==(const boost::shared_ptr<const QtPvdbConceptMapEditWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapEditWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<const QtPvdbConceptMapEditWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapEditWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<QtPvdbConceptMapEditWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapEditWidget>& rhs) = delete;
-bool operator==(const boost::shared_ptr<QtPvdbConceptMapEditWidget>& lhs, const boost::shared_ptr<QtPvdbConceptMapEditWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const QtPvdbConceptMapEditWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapEditWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<const QtPvdbConceptMapEditWidget>& lhs, boost::shared_ptr<const QtPvdbConceptMapEditWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<QtPvdbConceptMapEditWidget>& lhs, const boost::shared_ptr<const QtPvdbConceptMapEditWidget>& rhs) = delete;
-bool operator!=(const boost::shared_ptr<QtPvdbConceptMapEditWidget>& lhs, const boost::shared_ptr<QtPvdbConceptMapEditWidget>& rhs) = delete;
-
 #endif // QTPVDBCONCEPTMAPEDITWIDGET_H

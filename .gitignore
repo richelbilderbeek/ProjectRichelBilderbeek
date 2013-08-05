@@ -34,11 +34,13 @@ Libraries/boost_*
 Libraries/bot.sh
 Libraries/ircbot_fsx/
 Libraries/eggdrop1.6.21
+Libraries/Fritzing-Library/
 Libraries/fparser4.4.3/
 Libraries/fparser4.5.1/
 Libraries/fparser4.3/
 Libraries/Hashcat/
 Libraries/mxe/
+Libraries/OpenPCR/
 Libraries/planner/
 Libraries/polymorphable-master/
 Libraries/projectlibre-code/

@@ -70,7 +70,7 @@ void pvdb::Cluster::Test()
         const boost::shared_ptr<const pvdb::Cluster> c = tmp_tests_c.at(j);
         if (!c) continue;
         assert(c);
-        const boost::shared_ptr<      pvdb::Cluster> d = tmp_tests_d.at(j);
+        const boost::shared_ptr<pvdb::Cluster> d = tmp_tests_d.at(j);
         if (!d) continue;
         assert(c); assert(d);
         assert(IsEqual(*c,*c));

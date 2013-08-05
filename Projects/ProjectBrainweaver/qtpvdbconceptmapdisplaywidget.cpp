@@ -63,8 +63,8 @@ void QtPvdbConceptMapDisplayWidget::AddEdge(
   const boost::shared_ptr<pvdb::Edge> edge)
 {
   assert(edge);
-  const boost::shared_ptr<QtPvdbConceptItem> concept(new QtPvdbDisplayConceptItem(edge->GetConcept()));
-  assert(concept);
+  const boost::shared_ptr<QtPvdbConceptItem> qtconcept(new QtPvdbDisplayConceptItem(edge->GetConcept()));
+  assert(qtconcept);
   QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
   QtPvdbNodeItem * const to   = FindQtNode(edge->GetTo());
@@ -72,11 +72,18 @@ void QtPvdbConceptMapDisplayWidget::AddEdge(
   assert(from != to);
   QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
     edge,
-    concept,
+    qtconcept,
     from,
     to
   );
   assert(qtedge);
+
+  //Edges connected to the center node do not show their concepts
+  if (IsCenterNode(from) || IsCenterNode(to))
+  {
+    qtedge->GetConceptItem()->setVisible(false);
+  }
+
   //Add the EdgeConcepts to the scene
   qtedge->m_signal_item_has_updated.connect(
     boost::bind(

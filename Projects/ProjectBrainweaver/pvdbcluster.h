@@ -61,16 +61,6 @@ struct Cluster
 };
 
 bool IsEqual(const pvdb::Cluster& lhs, const pvdb::Cluster& rhs);
-/*
-bool operator==(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs);
-bool operator==(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs);
-bool operator==(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs);
-bool operator==(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs);
-bool operator!=(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs);
-bool operator!=(const boost::shared_ptr<const pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs);
-bool operator!=(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared_ptr<const pvdb::Cluster>& rhs);
-bool operator!=(const boost::shared_ptr<pvdb::Cluster>& lhs, const boost::shared_ptr<pvdb::Cluster>& rhs);
-*/
 
 } //~namespace pvdb
 

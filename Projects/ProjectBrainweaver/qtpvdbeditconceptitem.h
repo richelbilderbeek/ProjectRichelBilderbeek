@@ -19,7 +19,7 @@
 struct QtPvdbEditConceptItem : public QtPvdbConceptItem
 {
   //concept will be modified
-  explicit QtPvdbEditConceptItem(const boost::shared_ptr<pvdb::Concept>& concept);
+  explicit QtPvdbEditConceptItem(const boost::shared_ptr<pvdb::Concept> concept);
 
   ///Signalled when the user wants to edit
   boost::signals2::signal<void (QtPvdbConceptItem *)> m_signal_request_edit;

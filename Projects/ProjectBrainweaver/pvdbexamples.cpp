@@ -264,55 +264,6 @@ bool IsEqual(const pvdb::Examples& lhs, const pvdb::Examples& rhs)
   );
 }
 
-bool operator==(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs)
-{
-  assert(lhs && rhs);
-  return IsEqual(*lhs,*rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs)
-{
-  assert(lhs && rhs);
-  return boost::shared_ptr<const pvdb::Examples>(lhs) == boost::shared_ptr<const pvdb::Examples>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs)
-{
-  assert(lhs && rhs);
-  return boost::shared_ptr<const pvdb::Examples>(lhs) == boost::shared_ptr<const pvdb::Examples>(rhs);
-}
-
-bool operator==(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs)
-{
-  assert(lhs && rhs);
-  return boost::shared_ptr<const pvdb::Examples>(lhs) == boost::shared_ptr<const pvdb::Examples>(rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs)
-{
-  assert(lhs && rhs);
-  return !(lhs==rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs)
-{
-  assert(lhs && rhs);
-  return !(lhs==rhs);
-}
-
-bool operator!=(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs)
-{
-  assert(lhs && rhs);
-  return !(lhs==rhs);
-}
-
-bool operator!=(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<pvdb::Examples>& rhs)
-{
-  assert(lhs && rhs);
-  return !(lhs==rhs);
-}
-
-
 bool operator<(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs)
 {
   assert(lhs && rhs);
