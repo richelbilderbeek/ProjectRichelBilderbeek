@@ -256,7 +256,10 @@ int QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
         return init + (row.first->GetExamples()->Get()[index]->GetIsComplex() ? 1 : 0);
       }
     );
-  return pvdb::Rating::SuggestComplexity(n_edges,n_examples);
+  const int n_tallied = n_examples + n_edges;
+  if (n_tallied < 2) return 0;
+  if (n_tallied < 4) return 1;
+  return 2;
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
@@ -273,7 +276,10 @@ int QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
         return init + (row.first->GetExamples()->Get()[index]->GetIsConcrete() ? 1 : 0);
       }
     );
-  return pvdb::Rating::SuggestConcreteness(n_examples);
+  const int n_tallied = n_examples;
+  if (n_tallied < 2) return 0;
+  if (n_tallied < 4) return 1;
+  return 2;
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
@@ -290,7 +296,10 @@ int QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
         return init + (row.first->GetExamples()->Get()[index]->GetIsSpecific() ? 1 : 0);
       }
     );
-  return pvdb::Rating::SuggestSpecificity(n_examples);
+  const int n_tallied = n_examples;
+  if (n_tallied < 2) return 0;
+  if (n_tallied < 4) return 1;
+  return 2;
 }
 
 void QtPvdbRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)
