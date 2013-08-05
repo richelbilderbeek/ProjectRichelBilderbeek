@@ -1,10 +1,16 @@
 QT += core gui
 
+cross_compile {
+  message(Crosscompiling)
+}
+
 greaterThan(QT_MAJOR_VERSION, 4) {
   message(Qt5)
-  #Add webkitwidgets give the following error
-  # :-1: error: Unknown module(s) in QT: location sensors
-  QT += widgets webkitwidgets #Gives error
+  QT += widgets
+  !cross_compile {
+    message(Not crosscompiling)
+    QT += webkitwidgets
+  }
 } else {
   message(Qt4)
   QT += webkit
