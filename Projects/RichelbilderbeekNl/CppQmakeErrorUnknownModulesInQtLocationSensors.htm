@@ -78,14 +78,61 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppQmakeErrorUnknownModulesInQtLocationSensors.pro" border = "1"><tr><td><code>
-QT += core gui<br/>
-<br/>
-#To show I compile with Qt5<br/>
-greaterThan(QT_MAJOR_VERSION, 4) {<br/>
-&nbsp;&nbsp;#Add webkit<a href="CppWidget.htm">widget</a>s give the following error<br/>
-&nbsp;&nbsp;# :-1: error: Unknown module(s) in QT: location sensors<br/>
-&nbsp;&nbsp;QT += <a href="CppWidget.htm">widget</a>s webkit<a href="CppWidget.htm">widget</a>s #Gives error<br/>
-}<br/>
+QT += core gui
+<br/>
+
+<br/>
+#To show I compile with Qt5
+<br/>
+greaterThan(QT_MAJOR_VERSION, 4) {
+<br/>
+&nbsp;&nbsp;#Add webkit<a href="CppWidget.htm">widget</a>s give the following error
+<br/>
+&nbsp;&nbsp;# :-1: error: Unknown module(s) in QT: location sensors
+<br/>
+&nbsp;&nbsp;QT += <a href="CppWidget.htm">widget</a>s webkit<a href="CppWidget.htm">widget</a>s #Gives error
+<br/>
+}
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>Many thanks to Xiao for contacting me with the following solution: you need to find and install all packages starting with 
+'qtsensors5' and 'qtlocation5' and ending with 'dev'.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="fileGIvyMQ.txt" border = "1"><tr><td><code>
+sudo apt-get install aptitude<br/>
+sudo aptitude search sensors5|grep dev <br/>
+sudo apt-get install qtsensors5-dev <br/>
+sudo apt-get install qtsensors5-private-dev <br/>
+sudo aptitude search location5|grep dev <br/>
+sudo apt-get install qtlocation5-dev <br/>
+sudo apt-get install qtlocation5-private-dev <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Note that this project now results in a different error, <a href="CppLinkErrorCannotFindLgstapp.htm">cannot find -lgstapp-0.10</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="filenNl1dy.txt" border = "1"><tr><td><code>
+06:43:41: Starting: "/usr/bin/make" <br/>
+g++&nbsp;&nbsp;-o CppQmakeErrorUnknownModulesInQtLocationSensors&nbsp;&nbsp;&nbsp;&nbsp;-lQt5WebKitWidgets -lX11 -lxslt -lrt -lgio-2.0 -lgstapp-0.10 -lgstinterfaces-0.10 -lgstpbutils-0.10 -pthread -lgstvideo-0.10 -lgstbase-0.10 -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lxml2 -lglib-2.0 -lsqlite3 -L/build/buildd/qtdeclarative-opensource-src-5.0.1/lib -L/usr/lib/i386-linux-gnu -L/usr/lib/i386-linux-gnu/i386-linux-gnu -L/usr/lib/i386-linux-gnu/i386-linux-gnu/i386-linux-gnu -L/build/buildd/qtwebkit-opensource-src-5.0.1/lib -lQt5Sql -lQt5Quick -lQt5OpenGL -lQt5PrintSupport -lQt5WebKit -lQt5Qml -lQt5Location -lQt5Widgets -lQt5Network -lQt5Sensors -lQt5Gui -lQt5Core -lGL -lpthread <br/>
+/usr/bin/ld: cannot find -lgstapp-0.10<br/>
+/usr/bin/ld: cannot find -lgstinterfaces-0.10<br/>
+/usr/bin/ld: cannot find -lgstpbutils-0.10<br/>
+/usr/bin/ld: cannot find -lgstvideo-0.10<br/>
+collect2: error: ld returned 1 exit status<br/>
+make: *** [CppQmakeErrorUnknownModulesInQtLocationSensors] Error 1<br/>
+06:43:41: The process "/usr/bin/make" exited with code 2.<br/>
+Error while building/deploying project CppQmakeErrorUnknownModulesInQtLocationSensors (kit: Qt 5.0.1 (qt5))<br/>
+When executing step 'Make'<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
