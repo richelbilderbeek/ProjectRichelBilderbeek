@@ -18,6 +18,7 @@
 #include <QPainter>
 
 #include "connectthree.h"
+#include "connectthreeresources.h"
 #include "connectthreewidget.h"
 #include "qtconnectthreeresources.h"
 
@@ -25,16 +26,17 @@ const int QtConnectThreeWidget::m_sprite_width  = 50;
 const int QtConnectThreeWidget::m_sprite_height = 50;
 
 QtConnectThreeWidget::QtConnectThreeWidget(
+  const ConnectThreeResources& resources,
   QWidget *parent,
   const std::bitset<3>& is_player_human,
   const int n_cols,
   const int n_rows)
   : QWidget(parent),
     m_widget(new ConnectThreeWidget(is_player_human,n_cols,n_rows)),
-    m_player1(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[0].c_str()),
-    m_player2(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[1].c_str()),
-    m_player3(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[2].c_str()),
-    m_empty(QtConnectThreeResources::GetInstance()->GetEmptyFilename().c_str())
+    m_player1(resources.GetPlayersFilenames()[0].c_str()),
+    m_player2(resources.GetPlayersFilenames()[1].c_str()),
+    m_player3(resources.GetPlayersFilenames()[2].c_str()),
+    m_empty(resources.GetEmptyFilename().c_str())
 {
   this->setMinimumWidth( n_cols * m_sprite_width );
   this->setMinimumHeight(n_rows * m_sprite_height);

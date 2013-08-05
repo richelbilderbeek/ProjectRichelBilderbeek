@@ -1366,6 +1366,41 @@ const std::vector<std::string> Info::ToHtml() const
   {
     v.push_back("<p><a href=\"CppLedWidget.htm\">LedWidget</a> is a <a href=\"CppLed.htm\">Led</a> <a href=\"CppWidget.htm\">widget</a>.</p>");
   }
+
+  else if (m_page_name == "CppLinkErrorCannotFindLgstapp")
+  {
+    v.push_back("<p><a href=\"CppLinkErrorCannotFindLgstapp.htm\">cannot find -lgstapp-0.10</a> is a");
+    v.push_back("<a href=\"CppLinkError.htm\">link error</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppLinkErrorCannotFindLgstapp.zip\">Download the Qt Creator project 'CppLinkErrorCannotFindLgstapp' (zip)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This bug is reported with this <a href=\"https://bugs.launchpad.net/ubuntu/+source/qtwebkit-opensource-src/+bug/1134745\">Launchpad bug report</a>");
+    v.push_back("and another <a href=\"https://bugs.launchpad.net/ubuntu/+source/qtbase-opensource-src/+bug/1165250\">Launchpad bug report</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Solution</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>Install some gstreamer packages:</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<!-- start of code -->");
+    v.push_back("<table summary=\"fileMMYf2H.txt\" border = \"1\"><tr><td><code>");
+    v.push_back("sudo apt-get install libgstreamer1.0-dev <br/>");
+    v.push_back("sudo apt-get install libgstreamer0.10-dev <br/>");
+    v.push_back("sudo apt-get install libgstreamer-plugins-base1.0-dev <br/>");
+    v.push_back("sudo apt-get install libgstreamer-plugins-base0.10-dev <br/>");
+    v.push_back("</code></td></tr></table>");
+    v.push_back("<!-- end of the code -->");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+  }
   else if (m_page_name == "CppLinkErrorUndefinedReferenceToWebCore")
   {
     v.push_back("<p><a href=\"CppLinkErrorUndefinedReferenceToWebCore.htm\">CppLinkErrorUndefinedReferenceToWebCore</a> is a");
@@ -1914,9 +1949,14 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppQWebViewExample1.png\">View a screenshot of CppQWebViewExample1 (png)</a></li>");
     v.push_back("  <li><a href=\"CppQWebViewExample1.zip\">Download the Qt Creator project 'CppQWebViewExample1' (zip)</a></li>");
     v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This example might cause following errors:</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><img src=\"PicGreen.png\" alt=\"OK\"/> <a href=\"CppQmakeErrorUnknownModulesInQtLocationSensors.htm\">Unknown module(s) in QT: location sensors</a></li>");
+    v.push_back("  <li><img src=\"PicGreen.png\" alt=\"OK\"/> <a href=\"CppLinkErrorCannotFindLgstapp.htm\">cannot find -lgstapp-0.10</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
   }
-
-
   else if (m_page_name == "CppRainbow")
   {
     v.push_back("<p><a href=\"CppRainbow.htm\">Rainbow</a> is a <a href=\"CppGraphics.htm\">graphics</a> <a href=\"CppClass.htm\">class</a> to create a rainbow.</p>");

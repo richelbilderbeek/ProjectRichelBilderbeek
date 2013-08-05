@@ -22,12 +22,14 @@
 #include "connectthreewidget.h" //thanks to MOC :-(
 #include "connectthree.h"       //thanks to MOC :-(
 //struct ConnectThreeWidget;
+struct ConnectThreeResources;
 
 class QtConnectThreeWidget : public QWidget
 {
     Q_OBJECT
 public:
   explicit QtConnectThreeWidget(
+    const ConnectThreeResources& resources,
     QWidget *parent = 0,
     const std::bitset<3>& is_player_human = std::bitset<3>(true),
     const int n_cols = 16,
