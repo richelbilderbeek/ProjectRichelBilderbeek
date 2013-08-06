@@ -1,6 +1,8 @@
 #ifndef QTK3OPEENRIJRESOURCES_H
 #define QTK3OPEENRIJRESOURCES_H
 
+#include <boost/logic/tribool.hpp>
+
 #include "connectthreeresources.h"
 
 ///QtK3OpEenRijResources is a class containing
@@ -10,7 +12,13 @@
 struct QtK3OpEenRijResources
   : public ConnectThreeResources
 {
-  QtK3OpEenRijResources();
+  QtK3OpEenRijResources(const boost::logic::tribool is_player3_kathleen
+    = boost::logic::indeterminate);
+
+  private:
+
+  const std::vector<std::string> CreatePlayerNames(const boost::logic::tribool is_player3_kathleen);
+  const std::vector<std::string> CreatePlayerGreyNames(const boost::logic::tribool is_player3_kathleen);
 };
 
 #endif // QTK3OPEENRIJRESOURCES_H

@@ -80,18 +80,6 @@ QtConnectThreeGameDialog::~QtConnectThreeGameDialog()
   delete ui;
 }
 
-void QtConnectThreeGameDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 void QtConnectThreeGameDialog::DoComputerTurn()
 {
   this->m_board->DoComputerTurn();
@@ -135,6 +123,7 @@ void QtConnectThreeGameDialog::OnValidMove()
   }
   //There is a winner
   QtShowWinnerDialog d;
+  d.setStyleSheet(this->styleSheet());
 
   switch(m_board->GetWinner())
   {

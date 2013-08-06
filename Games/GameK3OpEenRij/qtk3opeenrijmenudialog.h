@@ -12,13 +12,16 @@ namespace Ui {
   class QtK3OpEenRijMenuDialog;
 }
 struct QtK3OpEenRijSelectPlayerWidget;
+struct QtK3OpEenRijResources;
 
 class QtK3OpEenRijMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtK3OpEenRijMenuDialog(QWidget *parent = 0);
+  explicit QtK3OpEenRijMenuDialog(
+    const boost::shared_ptr<const QtK3OpEenRijResources> resources,
+    QWidget *parent = 0);
   ~QtK3OpEenRijMenuDialog();
 
 private:

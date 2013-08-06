@@ -51,9 +51,6 @@ public:
 
   ~QtConnectThreeGameDialog();
 
-protected:
-  void changeEvent(QEvent *e);
-
 public slots:
   void DoComputerTurn();
 

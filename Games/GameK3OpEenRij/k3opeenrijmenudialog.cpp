@@ -34,16 +34,16 @@ const About K3OpEenRijMenuDialog::GetAbout()
 
 const std::string K3OpEenRijMenuDialog::GetVersion()
 {
-  return "5.0";
+  return "5.1";
 }
 
 const std::vector<std::string> K3OpEenRijMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
 
-  v.push_back("2007-01-03: version 3.0: initial C++ Builder verion");
+  v.push_back("2007-01-03: version 3.0: initial C++ Builder verion, ");
   v.push_back("2009-12-31: version 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs");
   v.push_back("2013-08-06: version 5.0: port to Qt Creator");
-  v.push_back("2013-??-??: version 5.1: allow selection of both Kathleen and Josje");
+  v.push_back("2013-08-06: version 5.1: allow selection of both Kathleen and Josje");
   return v;
 }

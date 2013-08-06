@@ -3,15 +3,22 @@
 
 #include <bitset>
 
+#include <boost/shared_ptr.hpp>
+
 #include <QImage>
 #include <QWidget>
+
+struct QtK3OpEenRijResources;
 
 class QtK3OpEenRijSelectPlayerWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit QtK3OpEenRijSelectPlayerWidget(QWidget *parent = 0);
+  explicit QtK3OpEenRijSelectPlayerWidget(
+    const boost::shared_ptr<const QtK3OpEenRijResources> resources,
+    QWidget *parent = 0);
   const std::bitset<3>& GetIsPlayerHuman() const { return m_is_player_human; }
+  bool GetIsPlayer3Kathleen() const { return m_is_player3_kathleen; }
 
 protected:
   void mousePressEvent(QMouseEvent * e);
@@ -20,12 +27,15 @@ protected:
 
 private:
   std::bitset<3> m_is_player_human;
-  const QImage m_player1;
-  const QImage m_player1_grey;
-  const QImage m_player2;
-  const QImage m_player2_grey;
-  const QImage m_player3;
-  const QImage m_player3_grey;
+  bool m_is_player3_kathleen; //Player 3 can be either Kathleen or Josje
+  const QImage m_josje;
+  const QImage m_josje_grey;
+  const QImage m_karen;
+  const QImage m_karen_grey;
+  const QImage m_kathleen;
+  const QImage m_kathleen_grey;
+  const QImage m_kristel;
+  const QImage m_kristel_grey;
   const QImage m_computer1;
   const QImage m_computer2;
   const QImage m_computer3;

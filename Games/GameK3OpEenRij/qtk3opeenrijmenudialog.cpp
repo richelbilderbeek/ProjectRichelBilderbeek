@@ -19,10 +19,12 @@
 #include "qtk3opeenrijselectplayerwidget.h"
 #include "ui_qtk3opeenrijmenudialog.h"
 
-QtK3OpEenRijMenuDialog::QtK3OpEenRijMenuDialog(QWidget *parent) :
+QtK3OpEenRijMenuDialog::QtK3OpEenRijMenuDialog(
+  const boost::shared_ptr<const QtK3OpEenRijResources> resources,
+  QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtK3OpEenRijMenuDialog),
-    m_select(new QtK3OpEenRijSelectPlayerWidget)
+    m_select(new QtK3OpEenRijSelectPlayerWidget(resources))
 {
   #ifndef NDEBUG
   Test();
@@ -52,8 +54,14 @@ void QtK3OpEenRijMenuDialog::Test()
 
 void QtK3OpEenRijMenuDialog::on_button_start_clicked()
 {
-  const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
-  QtConnectThreeGameDialog d(resources,nullptr,this->m_select->GetIsPlayerHuman());
+  //Supply the correct resources, depending on if player 3 chose Kathleen or Josje
+  const boost::shared_ptr<QtK3OpEenRijResources> resources(
+    new QtK3OpEenRijResources(m_select->GetIsPlayer3Kathleen()));
+
+  QtConnectThreeGameDialog d(
+    resources,
+    nullptr,this->
+    m_select->GetIsPlayerHuman());
   d.setWindowTitle("K3OpEenRij (C) 2007-2013");
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());

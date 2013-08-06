@@ -25,7 +25,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
   #include <QtGui/QApplication>
 #endif
 
-#include "connectthreeresources.h"
+#include <boost/shared_ptr.hpp>
+
+#include "qtk3opeenrijresources.h"
 #include "qtk3opeenrijmenudialog.h"
 #include "trace.h"
 
@@ -74,7 +76,8 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
   START_TRACE();
-  QtK3OpEenRijMenuDialog w;
+  const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
+  QtK3OpEenRijMenuDialog w(resources);
   w.show();
   return a.exec();
 }

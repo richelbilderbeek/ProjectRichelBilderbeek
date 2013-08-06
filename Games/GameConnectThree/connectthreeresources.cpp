@@ -64,21 +64,15 @@ ConnectThreeResources::ConnectThreeResources(
 void ConnectThreeResources::Check()
 {
   //CheckFile(m_background_filename);
-  CheckFile(m_computers_filenames[0]);
-  CheckFile(m_computers_filenames[1]);
-  CheckFile(m_computers_filenames[2]);
+  for (const std::string filename: m_computers_filenames) { CheckFile(filename); }
+  for (const std::string filename: m_players_filenames) { CheckFile(filename); }
+  for (const std::string filename: m_players_grey_filenames) { CheckFile(filename); }
   CheckFile(m_computer_grey_filename);
   CheckFile(m_css);
   CheckFile(m_empty_filename);
   CheckFile(m_instructions_good_filenames[0]);
   CheckFile(m_instructions_good_filenames[1]);
   CheckFile(m_instructions_wrong_filename);
-  CheckFile(m_players_filenames[0]);
-  CheckFile(m_players_filenames[1]);
-  CheckFile(m_players_filenames[2]);
-  CheckFile(m_players_grey_filenames[0]);
-  CheckFile(m_players_grey_filenames[1]);
-  CheckFile(m_players_grey_filenames[2]);
 }
 
 void ConnectThreeResources::CheckFile(const std::string& s)

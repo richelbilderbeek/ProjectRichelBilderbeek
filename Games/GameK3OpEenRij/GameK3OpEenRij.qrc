@@ -11,12 +11,14 @@
         <file>K3OpEenRijInstructions1.png</file>
         <file>K3OpEenRijInstructions2.png</file>
         <file>K3OpEenRijInstructions3.png</file>
-        <file>K3OpEenRijPlayer1.png</file>
-        <file>K3OpEenRijPlayer1Grey.png</file>
-        <file>K3OpEenRijPlayer2.png</file>
-        <file>K3OpEenRijPlayer2Grey.png</file>
-        <file>K3OpEenRijPlayer3.png</file>
-        <file>K3OpEenRijPlayer3Grey.png</file>
         <file>K3OpEenRij.css</file>
+        <file>K3OpEenRijJosje.png</file>
+        <file>K3OpEenRijJosjeGrey.png</file>
+        <file>K3OpEenRijKaren.png</file>
+        <file>K3OpEenRijKarenGrey.png</file>
+        <file>K3OpEenRijKathleen.png</file>
+        <file>K3OpEenRijKathleenGrey.png</file>
+        <file>K3OpEenRijKristel.png</file>
+        <file>K3OpEenRijKristelGrey.png</file>
     </qresource>
 </RCC>
