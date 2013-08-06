@@ -12,10 +12,31 @@ ProjectRichelBilderbeek consists of:
 * C++ Builder Windows-only code, to be ported to cross-platform Qt Creator code
 * The core of Richel Bilderbeek's HTML website
 
-## Where to start
+## I want to collaborate!
+
+ProjectRichelBilderbeek encourages collaboration, and already has had contributions from many people, 
+and their names are mentioned in the appropriate places for eternal glory.
+
+You can collaborate by
+* email richelbilderbeek (at [Richel Bilderbeek's webpage its 'Contact Me' section](http://www.richelbilderbeek.nl/Contact.htm))
+* add a GitHub issue: this can be a question, suggestion, or whatever
+* fork this repository, make the changes, and submit a pull request. 
+
+richelbilderbeek has promised never to bite :)
+
+### Forking and pull requests
 
 End-users can choose to checkout the stable 'master' branch or the bleeding edge 'develop' branch.
 Developers should fork from the 'develop' branch (see also 'Git policy').
+
+For HTML code, richelbilderbeek will accept the pull request when:
+* it improves the content in an undiable aspect (e.g. correcting a spelling error)
+* it improves the content with a reference to the literature (as stated in [Richel Bilderbeek's its goals](http://www.richelbilderbeek.nl/CppGoal.htm))
+
+For C++ code, richelbilderbeek will accept the pull request when:
+* it shows the current code to fail, either with a certain input, or with an added test
+* the new suggested still passes all current tests, and additionally the test the normal code fails
+* the coding standard is maintained: GNU brackets, two spaces instead of tabs, const-correct, asserts, sufficient documentation (as stated in [Richel Bilderbeek's its goals](http://www.richelbilderbeek.nl/CppGoal.htm))
 
 ### Build prerequisites
 
