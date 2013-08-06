@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/tuple/tuple.hpp>
 #pragma GCC diagnostic pop
 
+#include "connectthree.h"
 struct ConnectThree;
 
 ///ConnectThreeWidget embodies the interaction with a user
