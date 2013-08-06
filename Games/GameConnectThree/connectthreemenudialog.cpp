@@ -60,13 +60,14 @@ const std::string ConnectThreeMenuDialog::GetVersion()
 const std::vector<std::string> ConnectThreeMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
+  v.push_back("2007-xx-xx: version 1.0: initial version as part of K3OpEenRij");
   v.push_back("2011-01-10: version 5.0: initial Qt4 version");
   v.push_back("2011-01-11: version 5.2: support that the game can end in a draw");
   v.push_back("2011-04-22: version 6.0: major architectural changes");
   v.push_back("2011-04-24: version 6.1: fixed a bug that showed when deploying to my WtWebsite");
   v.push_back("2011-04-25: version 6.2: hopefully fixed the bug as in 6.1, fixed desktop version");
-  v.push_back("2017-07-11: version 6.3: transitioned to Qt5 and Boost 1.54.0");
-  v.push_back("2017-07-21: version 6.4: improved looks");
-  v.push_back("2017-08-01: version 6.5: facilitate K3OpEenRij using ConnectThree classes");
+  v.push_back("2013-07-11: version 6.3: transitioned to Qt5 and Boost 1.54.0");
+  v.push_back("2013-07-21: version 6.4: improved looks");
+  v.push_back("2013-08-06: version 6.5: facilitate K3OpEenRij using ConnectThree classes");
   return v;
 }

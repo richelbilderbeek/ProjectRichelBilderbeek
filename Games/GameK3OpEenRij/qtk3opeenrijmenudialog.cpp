@@ -14,6 +14,7 @@
 #include "qtaboutdialog.h"
 #include "qtconnectthreegamedialog.h"
 #include "qtconnectthreewidget.h"
+#include "qtk3opeenrijresources.h"
 #include "qtk3opeenrijinstructionsdialog.h"
 #include "qtk3opeenrijselectplayerwidget.h"
 #include "ui_qtk3opeenrijmenudialog.h"
@@ -44,13 +45,15 @@ void QtK3OpEenRijMenuDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  QtConnectThreeGameDialog d(0,std::bitset<3>(false));
+  const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
+  QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
 }
 #endif
 
 void QtK3OpEenRijMenuDialog::on_button_start_clicked()
 {
-  QtConnectThreeGameDialog d(0,this->m_select->GetIsPlayerHuman());
+  const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
+  QtConnectThreeGameDialog d(resources,nullptr,this->m_select->GetIsPlayerHuman());
   d.setWindowTitle("K3OpEenRij (C) 2007-2013");
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());

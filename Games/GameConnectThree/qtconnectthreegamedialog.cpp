@@ -37,23 +37,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QTimer>
 
 #include "connectthree.h"
-#include "qtconnectthreeresources.h"
 #include "connectthreewidget.h"
+#include "connectthreeresources.h"
 #include "ui_qtconnectthreegamedialog.h"
 #include "qtconnectthreegamedialog.h"
 #include "qtconnectthreewidget.h"
 #include "qtshowwinnerdialog.h"
 
 QtConnectThreeGameDialog::QtConnectThreeGameDialog(
+  const boost::shared_ptr<const ConnectThreeResources> resources,
   QWidget *parent,
   const std::bitset<3>& is_player_human)
   : QDialog(parent, Qt::Window),
     ui(new Ui::QtConnectThreeGameDialog),
     m_board(
       new QtConnectThreeWidget(
-        QtConnectThreeResources(),
-        0,is_player_human,16,8)),
-    m_is_player_human(is_player_human)
+        resources,
+        nullptr,is_player_human,16,8)),
+    m_is_player_human(is_player_human),
+    m_resources(resources)
 {
   ui->setupUi(this);
   ui->layout_game->addWidget(m_board.get());
@@ -108,15 +110,15 @@ void QtConnectThreeGameDialog::OnValidMove()
     {
       case ConnectThree::player1:
         ui->label_current_player->setPixmap(
-          QPixmap(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[0].c_str()));
+          QPixmap(m_resources->GetPlayersFilenames()[0].c_str()));
         break;
       case ConnectThree::player2:
         ui->label_current_player->setPixmap(
-          QPixmap(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[1].c_str()));
+          QPixmap(m_resources->GetPlayersFilenames()[1].c_str()));
         break;
       case ConnectThree::player3:
         ui->label_current_player->setPixmap(
-          QPixmap(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[2].c_str()));
+          QPixmap(m_resources->GetPlayersFilenames()[2].c_str()));
         break;
       default:
         assert(!"Should not get here");
@@ -137,13 +139,13 @@ void QtConnectThreeGameDialog::OnValidMove()
   switch(m_board->GetWinner())
   {
       case ConnectThree::player1:
-        d.SetPixmap(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[0].c_str());
+        d.SetPixmap(m_resources->GetPlayersFilenames()[0].c_str());
         break;
       case ConnectThree::player2:
-        d.SetPixmap(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[1].c_str());
+        d.SetPixmap(m_resources->GetPlayersFilenames()[1].c_str());
         break;
       case ConnectThree::player3:
-        d.SetPixmap(QtConnectThreeResources::GetInstance()->GetPlayersFilenames()[2].c_str());
+        d.SetPixmap(m_resources->GetPlayersFilenames()[2].c_str());
         break;
       default:
         assert(!"Should not get here");

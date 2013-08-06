@@ -39,7 +39,8 @@ SOURCES += qtmain.cpp \
     k3opeenrijmenudialog.cpp \
     qtk3opeenrijinstructionsdialog.cpp \
     qtk3opeenrijmenudialog.cpp \
-    qtk3opeenrijselectplayerwidget.cpp
+    qtk3opeenrijselectplayerwidget.cpp \
+    qtk3opeenrijresources.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -55,7 +56,8 @@ HEADERS += \
     k3opeenrijmenudialog.h \
     qtk3opeenrijinstructionsdialog.h \
     qtk3opeenrijmenudialog.h \
-    qtk3opeenrijselectplayerwidget.h
+    qtk3opeenrijselectplayerwidget.h \
+    qtk3opeenrijresources.h
 
 OTHER_FILES += \
     ../../Classes/CppConnectThreeWidget/Licence.txt \

@@ -22,7 +22,7 @@ const About K3OpEenRijMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "K3OpEenRij",
     "connect-three game",
-    "the 1st of August 2013",
+    "the 6th of August 2013",
     "2007-2013",
     "http://www.richelbilderbeek.nl/GameK3OpEenRij.htm",
     GetVersion(),
@@ -43,6 +43,7 @@ const std::vector<std::string> K3OpEenRijMenuDialog::GetVersionHistory()
 
   v.push_back("2007-01-03: version 3.0: initial C++ Builder verion");
   v.push_back("2009-12-31: version 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs");
-  v.push_back("2013-08-01: version 5.0: port to Qt Creator, allow selection of both Kathleen and Josje");
+  v.push_back("2013-08-06: version 5.0: port to Qt Creator");
+  v.push_back("2013-??-??: version 5.1: allow selection of both Kathleen and Josje");
   return v;
 }

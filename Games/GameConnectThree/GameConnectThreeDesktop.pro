@@ -76,6 +76,20 @@ CONFIG(release, debug|release) {
 #
 #
 
+unix {
+  message(Unix build)
+}
+
+win32 {
+  cross_compile {
+    message(Windows cross-compile build)
+  }
+
+  cross_compile {
+    message(Native Windows build)
+  }
+}
+
 #
 #
 # Compiler flags

@@ -23,17 +23,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthreeresources.h"
 
-///QtConnectThreeResources is a Singleton that manages
-///all Wt resources. Its base class, ConnectThreeResources,
+///QtConnectThreeResources is a class containing
+///all filenames to be used by the program
+///Its base class, ConnectThreeResources,
 ///ensures the files needed are present upon construction.
 struct QtConnectThreeResources
   : public ConnectThreeResources
 {
-  static QtConnectThreeResources * GetInstance();
-
-  private:
   QtConnectThreeResources();
-  static QtConnectThreeResources * m_instance;
 };
 
 #endif // QTCONNECTTHREERESOURCES_H

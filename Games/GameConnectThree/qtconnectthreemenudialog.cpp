@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreemenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtconnectthreegamedialog.h"
+#include "qtconnectthreeresources.h"
 #include "qtconnectthreewidget.h"
 #include "qtselectplayerwidget.h"
 #include "ui_qtconnectthreemenudialog.h"
@@ -76,13 +77,15 @@ void QtConnectThreeMenuDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  QtConnectThreeGameDialog d(0,std::bitset<3>(false));
+  const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
+  QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
 }
 #endif
 
 void QtConnectThreeMenuDialog::on_button_start_clicked()
 {
-  QtConnectThreeGameDialog d(0,this->m_select->GetIsPlayerHuman());
+  const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
+  QtConnectThreeGameDialog d(resources, nullptr,this->m_select->GetIsPlayerHuman());
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
   this->hide();

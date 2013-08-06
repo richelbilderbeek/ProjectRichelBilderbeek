@@ -61,12 +61,3 @@ QtConnectThreeResources::QtConnectThreeResources()
 {
 
 }
-
-QtConnectThreeResources * QtConnectThreeResources::m_instance = 0;
-
-QtConnectThreeResources * QtConnectThreeResources::GetInstance()
-{
-  if (!m_instance) m_instance = new QtConnectThreeResources;
-  assert(m_instance);
-  return m_instance;
-}
