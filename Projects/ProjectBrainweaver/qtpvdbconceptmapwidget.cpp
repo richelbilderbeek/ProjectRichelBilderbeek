@@ -151,6 +151,8 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   {
     //Add the main question as the first node
     const boost::shared_ptr<pvdb::Node> node = m_concept_map->GetNodes()[0];
+    QtPvdbNodeItem* const qtnode = new QtPvdbCenterNodeItem(node);
+    #ifdef USE_NEW_STYLE
     QtPvdbNodeItem* qtnode = nullptr;
     if (const boost::shared_ptr<pvdb::CenterNode> center_node = boost::dynamic_pointer_cast<pvdb::CenterNode>(node))
     {
@@ -163,6 +165,7 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
       assert(item);
       qtnode = new QtPvdbNodeItem(node,item);
     }
+    #endif
     assert(qtnode);
     //Let the center node respond to mouse clicks
     qtnode->m_signal_request_scene_update.connect(

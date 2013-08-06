@@ -113,7 +113,8 @@ void QtPvdbMenuDialog::on_button_rate_concept_clicked()
   //Obtain a random sub-concept-map
   const std::vector<boost::shared_ptr<pvdb::ConceptMap> > concept_maps = file->GetConceptMap()->CreateSubs();
   //Display this random concept map
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[ std::rand() % concept_maps.size() ];
+  const int index = std::rand() % concept_maps.size();
+  const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[ index ];
   //Create and show the dialog
   boost::shared_ptr<QtPvdbRateConceptDialog> d(
     new QtPvdbRateConceptDialog(concept_map));

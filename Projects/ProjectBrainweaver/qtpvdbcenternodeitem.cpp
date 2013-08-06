@@ -18,12 +18,11 @@ QtPvdbCenterNodeItem::QtPvdbCenterNodeItem(
   const boost::shared_ptr<pvdb::Node> node)
   : QtPvdbNodeItem(node,CreateConceptItem(node))
 {
-  if (!boost::dynamic_pointer_cast<pvdb::CenterNode>(node))
-  {
-    TRACE("HIERO");
-  }
-  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(node)
-    && "Only CenterNodes can be put in QtCenterNodeItem");
+  assert( ( boost::dynamic_pointer_cast<pvdb::CenterNode>(node)
+        || !boost::dynamic_pointer_cast<pvdb::CenterNode>(node) )
+    && "Both Nodes and CenterNodes can be put in QtCenterNodeItem"
+    && "CenterNode: this QtNode is the center of a ConceptMap"
+    && "Node: this QtNode is the focal node of a sub ConceptMap");
   assert(node);
   assert(this->GetConceptItem());
   this->setFlags(QGraphicsItem::ItemIsFocusable);
