@@ -14,8 +14,11 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <QKeyEvent>
+
+
 #include "pvdbconceptfactory.h"
 #include "pvdbcenternode.h"
+#include "pvdbcenternodefactory.h"
 #include "pvdbconceptmap.h"
 #include "pvdbconceptmapfactory.h"
 #include "pvdbconcept.h"
@@ -187,6 +190,7 @@ const std::vector<QtPvdbRateConceptTallyDialog::Row>
     if (boost::dynamic_pointer_cast<pvdb::CenterNode>(edge->GetTo())
       || boost::dynamic_pointer_cast<pvdb::CenterNode>(edge->GetFrom()))
     {
+      TRACE("X");
       continue;
     }
 
@@ -204,14 +208,14 @@ const std::vector<QtPvdbRateConceptTallyDialog::Row>
 
 const boost::shared_ptr<pvdb::ConceptMap> QtPvdbRateConceptTallyDialog::CreateTestConceptMap()
 {
-  //Create a concept map for testing:
+  //Create a subconcept map for testing:
   // - node with a concept with (1) text 'TextNode' (2) one example with text 'TextExampleNode'
   // - edge with a concept with (1) text 'TextEdge' (2) one example with text 'TextExampleEdge'
   // - node with a concept with (1) text 'TextDontCare'
 
   const boost::shared_ptr<pvdb::Concept> concept_node_focal(pvdb::ConceptFactory::Create("TextNode",
     {
-      {"TextExampleNpde",pvdb::Competency::misc}
+      {"TextExampleNode",pvdb::Competency::misc}
     },
     0,1,2));
   const boost::shared_ptr<pvdb::Concept> concept_node_other(pvdb::ConceptFactory::Create("TextDontCare",
@@ -228,7 +232,7 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbRateConceptTallyDialog::CreateTe
   const boost::shared_ptr<pvdb::Node> node_focal(pvdb::NodeFactory::Create(concept_node_focal));
   const boost::shared_ptr<pvdb::Node> node_other(pvdb::NodeFactory::Create(concept_node_other));
 
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map(
+  const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map(
     pvdb::ConceptMapFactory::Create(
       {
         node_focal,
@@ -239,8 +243,10 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbRateConceptTallyDialog::CreateTe
       }
     )
   );
-  assert(concept_map);
-  return concept_map;
+  assert(sub_concept_map);
+  assert(!boost::dynamic_pointer_cast<pvdb::CenterNode>(sub_concept_map->GetNodes()[0]));
+  assert(!boost::dynamic_pointer_cast<pvdb::CenterNode>(sub_concept_map->GetNodes()[1]));
+  return sub_concept_map;
 }
 
 int QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
@@ -402,6 +408,13 @@ void QtPvdbRateConceptTallyDialog::Test()
 
 
   QtPvdbRateConceptTallyDialog d(concept_map);
+
+  //TEMP
+  {
+    if(d.ui->table->columnCount() != 4) TRACE(d.ui->table->columnCount());
+    if(d.ui->table->rowCount() != 3) TRACE(d.ui->table->rowCount());
+  }
+
   assert(d.ui->table->columnCount() == 4);
   assert(d.ui->table->rowCount() == 3);
   assert(concept_map->GetNodes().size() == 2);

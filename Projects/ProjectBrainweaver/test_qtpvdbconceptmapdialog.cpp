@@ -17,6 +17,8 @@
 
 //#include <boost/lambda/lambda.hpp>
 
+#include "pvdbcenternode.h"
+#include "pvdbcenternodefactory.h"
 #include "pvdbclusterfactory.h"
 #include "pvdbcluster.h"
 #include "pvdbconceptfactory.h"
@@ -64,6 +66,11 @@ void QtPvdbConceptMapDialog::Test()
     assert(concept_map);
     file->SetConceptMap(concept_map);
     assert(file->GetQuestion() == question);
+    assert(file->GetConceptMap());
+    assert(!file->GetConceptMap()->GetNodes().empty());
+    assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(file->GetConceptMap()->GetNodes()[0])
+      && "The first node in a file's ConceptMap must be a CenterNode");
+
     QtPvdbConceptMapDialog d(file);
     assert(d.GetWidget()->GetConceptMap()->GetNodes().size() == 1);
   }
@@ -72,7 +79,9 @@ void QtPvdbConceptMapDialog::Test()
   {
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
+    assert(file);
     file->SetQuestion(question);
+    assert(file->GetQuestion() == question);
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
     const boost::shared_ptr<pvdb::Concept> concept_a(pvdb::ConceptFactory::Create("Concept A"));
@@ -82,7 +91,11 @@ void QtPvdbConceptMapDialog::Test()
     file->SetCluster(cluster);
     file->SetConceptMap(concept_map);
     //file->CreateConceptMapFromCluster();
-    assert(file->GetQuestion() == question);
+    assert(file->GetConceptMap());
+    assert(!file->GetConceptMap()->GetNodes().empty());
+    assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(file->GetConceptMap()->GetNodes()[0])
+      && "The first node in a file's ConceptMap must be a CenterNode");
+
     const QtPvdbConceptMapDialog d(file);
     assert(file->GetConceptMap());
 
@@ -94,6 +107,7 @@ void QtPvdbConceptMapDialog::Test()
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
     file->SetQuestion(question);
+    assert(file->GetQuestion() == question);
 
     const boost::shared_ptr<pvdb::Cluster> cluster = pvdb::ClusterFactory::GetTest( {0,1,2} );
     file->SetCluster(cluster);
@@ -102,7 +116,11 @@ void QtPvdbConceptMapDialog::Test()
     const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::CreateFromCluster(question,cluster));
     assert(concept_map);
     file->SetConceptMap(concept_map);
-    assert(file->GetQuestion() == question);
+    assert(file->GetConceptMap());
+    assert(!file->GetConceptMap()->GetNodes().empty());
+    assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(file->GetConceptMap()->GetNodes()[0])
+      && "The first node in a file's ConceptMap must be a CenterNode");
+
     const QtPvdbConceptMapDialog d(file);
     assert(file->GetConceptMap());
     assert(d.GetWidget()->GetConceptMap()->GetNodes().size()
@@ -126,7 +144,7 @@ void QtPvdbConceptMapDialog::Test()
     const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("Concept F"));
     const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(3));
     const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(4));
-    const boost::shared_ptr<pvdb::Node> node_a(pvdb::NodeFactory::Create(question));
+    const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
     const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(3));
     const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(4));
 
@@ -149,6 +167,9 @@ void QtPvdbConceptMapDialog::Test()
     assert( file->GetConceptMap());
 
     assert(file->GetConceptMap() == concept_map);
+    assert(!file->GetConceptMap()->GetNodes().empty());
+    assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(file->GetConceptMap()->GetNodes()[0])
+      && "The first node in a file's ConceptMap must be a CenterNode");
 
     assert(file->GetQuestion() == question);
 
@@ -172,7 +193,7 @@ void QtPvdbConceptMapDialog::Test()
     const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::GetTests().at(0));
     const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(1));
     const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(2));
-    const boost::shared_ptr<pvdb::Node> node_a(pvdb::NodeFactory::Create(question));
+    const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
     const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
     const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(1));
 
@@ -193,6 +214,9 @@ void QtPvdbConceptMapDialog::Test()
 
     assert(!file->GetCluster());
     assert( file->GetConceptMap());
+    assert(!file->GetConceptMap()->GetNodes().empty());
+    assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(file->GetConceptMap()->GetNodes()[0])
+      && "The first node in a file's ConceptMap must be a CenterNode");
 
     assert(file->GetQuestion() == question);
     const QtPvdbConceptMapDialog d(file);
@@ -214,13 +238,14 @@ void QtPvdbConceptMapDialog::Test()
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
     file->SetQuestion(question);
+    assert(file->GetQuestion() == question);
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
 
     const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::GetTests().at(0));
     const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(1));
     const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(2));
-    const boost::shared_ptr<pvdb::Node> node_a(pvdb::NodeFactory::Create(question));
+    const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
     const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
     const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(1));
 
@@ -238,10 +263,11 @@ void QtPvdbConceptMapDialog::Test()
     );
     assert(concept_map);
     file->SetConceptMap(concept_map);
-
     assert(!file->GetCluster());
     assert( file->GetConceptMap());
-    assert(file->GetQuestion() == question);
+    assert(!file->GetConceptMap()->GetNodes().empty());
+    assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(file->GetConceptMap()->GetNodes()[0])
+      && "The first node in a file's ConceptMap must be a CenterNode");
 
     //Let the dialog position the nodes
     const QtPvdbConceptMapDialog d(file);
@@ -262,9 +288,15 @@ void QtPvdbConceptMapDialog::Test()
 
     //Load the repositioned nodes
     const boost::shared_ptr<pvdb::File> file_again = pvdb::File::Load(pvdb::File::GetTestFileName());
+
     assert(pvdb::ConceptMap::HasSameContent(*file->GetConceptMap(),*file_again->GetConceptMap()));
     assert(IsEqual(*file->GetConceptMap(),*file_again->GetConceptMap())
       && "Save and load must yield identical concept maps");
+
+    assert(file_again->GetConceptMap());
+    assert(!file_again->GetConceptMap()->GetNodes().empty());
+    assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(file_again->GetConceptMap()->GetNodes()[0])
+      && "The first node in a file's ConceptMap must be a CenterNode");
 
     //Let another dialog keep the node positions in the same place
     const QtPvdbConceptMapDialog d_again(file_again);

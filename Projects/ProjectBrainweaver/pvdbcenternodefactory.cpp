@@ -43,4 +43,26 @@ const boost::shared_ptr<pvdb::CenterNode> CenterNodeFactory::Create(
   return node;
 }
 
+#ifndef NDEBUG
+const boost::shared_ptr<pvdb::CenterNode> CenterNodeFactory::DeepCopy(
+  const boost::shared_ptr<const pvdb::CenterNode>& node)
+{
+  assert(node);
+  assert(node->GetConcept());
+  const boost::shared_ptr<pvdb::Concept> new_concept
+    = ConceptFactory::DeepCopy(node->GetConcept());
+  assert(new_concept);
+  assert(IsEqual(*node->GetConcept(),*new_concept));
+  const boost::shared_ptr<pvdb::CenterNode> new_node
+    = Create(new_concept,
+      node->GetX(),
+      node->GetY()
+    );
+  assert(new_node);
+  assert(new_node->GetConcept());
+  assert(IsEqual(*node,*new_node));
+  return new_node;
+}
+#endif
+
 } //~namespace pvdb

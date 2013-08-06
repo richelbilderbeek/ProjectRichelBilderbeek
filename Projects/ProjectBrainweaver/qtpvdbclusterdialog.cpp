@@ -20,6 +20,8 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
+#include "pvdbcenternodefactory.h"
+#include "pvdbcenternode.h"
 #include "pvdbcluster.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
@@ -428,7 +430,7 @@ void QtPvdbClusterDialog::Test()
     const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("Concept F"));
     const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(3));
     const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(4));
-    const boost::shared_ptr<pvdb::Node> node_a(pvdb::NodeFactory::Create(question));
+    const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
     const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
     const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(2));
     const Nodes nodes = { node_a, node_b, node_c };

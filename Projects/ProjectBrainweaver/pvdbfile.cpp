@@ -23,6 +23,7 @@
 #include <QFile>
 #include <QRegExp>
 
+#include "pvdbcenternode.h"
 #include "pvdbclusterfactory.h"
 #include "pvdbcluster.h"
 #include "pvdbconcept.h"
@@ -242,6 +243,12 @@ const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
     assert(v.size() == 1);
     f->m_version = pvdb::StripXmlTag(v[0]);
   }
+
+  assert( (!f->GetConceptMap() || !f->GetConceptMap()->GetNodes().empty() )
+    && "Either a file has no concept map or it has at least one node");
+  assert( (!f->GetConceptMap() || boost::dynamic_pointer_cast<pvdb::CenterNode>(f->GetConceptMap()->GetNodes()[0]) )
+    && "Either a file has no concept map or the first node in a file's ConceptMap is be a CenterNode");
+
   return f;
 }
 
@@ -339,6 +346,12 @@ const boost::shared_ptr<pvdb::File> pvdb::File::Load(const std::string &filename
 
   const boost::shared_ptr<pvdb::File> file = pvdb::File::FromXml(xml);
   assert(file);
+
+  assert( (!file->GetConceptMap() || !file->GetConceptMap()->GetNodes().empty() )
+    && "Either a file has no concept map or it has at least one node");
+  assert( (!file->GetConceptMap() || boost::dynamic_pointer_cast<pvdb::CenterNode>(file->GetConceptMap()->GetNodes()[0]) )
+    && "Either a file has no concept map or the first node in a file's ConceptMap is be a CenterNode");
+
   return file;
 }
 
@@ -377,12 +390,11 @@ void pvdb::File::SetAssessorName(const std::string& assessor_name)
 
 void pvdb::File::SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept_map)
 {
-  if (m_concept_map)
-  {
-    TRACE("BREAK");
-  }
   assert(!m_concept_map && "Can only set when there is no concept map present yet");
   m_concept_map = concept_map;
+  assert(!m_concept_map->GetNodes().empty());
+  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(m_concept_map->GetNodes()[0])
+    && "The first node in a file's ConceptMap must be a CenterNode");
   this->AutoSave();
 }
 
@@ -465,6 +477,10 @@ void pvdb::File::Test()
     {
       const boost::shared_ptr<pvdb::ConceptMap> concept_map
         = pvdb::ConceptMapFactory::Create(question);
+      assert(!concept_map->GetNodes().empty());
+      assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(concept_map->GetNodes()[0])
+        && "The first node in a file's ConceptMap must be a CenterNode");
+
       firstfile->SetConceptMap(concept_map);
     }
     firstfile->SetQuestion("Focal question?");

@@ -20,6 +20,11 @@ struct CenterNodeFactory
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const double x = 0.0,
     const double y = 0.0);
+
+  #ifndef NDEBUG
+  static const boost::shared_ptr<pvdb::CenterNode> DeepCopy(
+    const boost::shared_ptr<const pvdb::CenterNode>& node);
+  #endif
 };
 
 } //~namespace pvdb

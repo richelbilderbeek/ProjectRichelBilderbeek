@@ -17,6 +17,7 @@
 #include <QKeyEvent>
 
 #include "fuzzy_equal_to.h"
+#include "pvdbcenternode.h"
 #include "pvdbconceptfactory.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptmapfactory.h"
@@ -27,6 +28,7 @@
 #include "pvdbnodefactory.h"
 #include "pvdbnode.h"
 #include "qtarrowitem.h"
+#include "qtpvdbdisplayconceptitem.h"
 #include "qtpvdbbrushfactory.h"
 #include "qtpvdbcenternodeitem.h"
 #include "qtpvdbconcepteditdialog.h"
@@ -139,7 +141,6 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   assert(m_concept_map);
   assert(m_concept_map->IsValid());
   assert(this->scene());
-
   //This std::vector keeps the QtNodes in the same order as the nodes in the concept map
   //You cannot rely on Collect<QtPvdbNodeConcept*>(scene), as this shuffles the order
   std::vector<QtPvdbNodeItem*> qtnodes;
@@ -150,7 +151,19 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   {
     //Add the main question as the first node
     const boost::shared_ptr<pvdb::Node> node = m_concept_map->GetNodes()[0];
-    QtPvdbNodeItem* const qtnode = new QtPvdbCenterNodeItem(node);
+    QtPvdbNodeItem* qtnode = nullptr;
+    if (const boost::shared_ptr<pvdb::CenterNode> center_node = boost::dynamic_pointer_cast<pvdb::CenterNode>(node))
+    {
+      qtnode = new QtPvdbCenterNodeItem(center_node);
+    }
+    else
+    {
+      assert(node);
+      const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbDisplayConceptItem(node->GetConcept()));
+      assert(item);
+      qtnode = new QtPvdbNodeItem(node,item);
+    }
+    assert(qtnode);
     //Let the center node respond to mouse clicks
     qtnode->m_signal_request_scene_update.connect(
       boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));

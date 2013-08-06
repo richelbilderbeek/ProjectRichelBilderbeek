@@ -31,6 +31,13 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::Create(
   const std::vector<boost::shared_ptr<pvdb::Node> >& nodes,
   const std::vector<boost::shared_ptr<pvdb::Edge> >& edges)
 {
+  assert(!nodes.empty());
+  assert(
+    (
+        boost::dynamic_pointer_cast<pvdb::CenterNode>(nodes[0])
+    || !boost::dynamic_pointer_cast<pvdb::CenterNode>(nodes[0])
+    )
+    && "The first node in a (sub)ConceptMap can be, but does not have to be a CenterNode");
   boost::shared_ptr<pvdb::ConceptMap> p(new ConceptMap(nodes,edges));
   assert(p);
   assert(p->IsValid());
@@ -52,13 +59,17 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::Create(
   const std::string& focal_question)
 {
   //A single-node ConceptMap contains only the focal question
-  const boost::shared_ptr<pvdb::Node> focal_node = pvdb::NodeFactory::Create(focal_question);
+  const boost::shared_ptr<pvdb::Node> focal_node = pvdb::CenterNodeFactory::Create(focal_question);
   assert(focal_node);
   const std::vector<boost::shared_ptr<pvdb::Node> > nodes = { focal_node };
   assert(nodes.at(0));
   const boost::shared_ptr<pvdb::ConceptMap> p = Create(nodes);
   assert(p);
   assert(p->IsValid());
+  assert(!p->GetNodes().empty());
+  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(p->GetNodes()[0])
+    && "The first node in a ConceptMap created from a question must be a CenterNode");
+
   return p;
 }
 
@@ -69,17 +80,29 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::DeepCopy(
   if (!map) return boost::shared_ptr<pvdb::ConceptMap>();
   assert(map->IsValid() && "Must be a valid original");
 
-  //Deep-copy the nodes
+  //Deep-copy the center node if present
+  //Deep-copy the non-center nodes
   const std::vector<boost::shared_ptr<const pvdb::Node> > nodes = map->GetNodes();
   std::vector<boost::shared_ptr<pvdb::Node> > new_nodes;
   for (const boost::shared_ptr<const pvdb::Node> node: nodes)
   {
     assert(node);
-    const boost::shared_ptr<pvdb::Node> new_node = pvdb::NodeFactory::DeepCopy(node);
+    boost::shared_ptr<pvdb::Node> new_node;
+    if (const boost::shared_ptr<const pvdb::CenterNode> center_node
+     = boost::dynamic_pointer_cast<const pvdb::CenterNode>(node))
+    {
+      assert(center_node);
+      new_node = pvdb::CenterNodeFactory::DeepCopy(center_node);
+    }
+    else
+    {
+      new_node = pvdb::NodeFactory::DeepCopy(node);
+    }
     assert(new_node);
     assert(IsEqual(*new_node,*node));
     new_nodes.push_back(new_node);
   }
+
 
   //Deep-copy the edges
   const std::vector<boost::shared_ptr<const pvdb::Edge> > edges = map->GetEdges();
@@ -151,6 +174,18 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::FromXml(const
         nodes.push_back( Node::FromXml(s) );
       }
     );
+    assert(!nodes.empty());
+    //Replace the first node by its CenterNode equivalent
+    {
+      const boost::shared_ptr<pvdb::Node> old_node = nodes[0];
+      const boost::shared_ptr<pvdb::Concept> concept = old_node->GetConcept();
+      const double x = old_node->GetX();
+      const double y = old_node->GetY();
+      const boost::shared_ptr<pvdb::CenterNode> center_node(
+        new pvdb::CenterNode(concept,x,y));
+      nodes[0] = center_node;
+      assert(IsEqual(*old_node,*center_node));
+    }
   }
   std::vector<boost::shared_ptr<pvdb::Edge> > edges;
   {
@@ -174,6 +209,12 @@ const boost::shared_ptr<pvdb::ConceptMap> pvdb::ConceptMapFactory::FromXml(const
   const boost::shared_ptr<pvdb::ConceptMap> concept_map(new ConceptMap(nodes,edges));
   assert(concept_map);
   assert(concept_map->IsValid());
+
+  assert( !concept_map->GetNodes().empty()
+    && "A file's ConceptMap has at least one node");
+  assert( boost::dynamic_pointer_cast<pvdb::CenterNode>(concept_map->GetNodes()[0])
+    && "A file's ConceptMap is be a CenterNode");
+
   return concept_map;
 }
 

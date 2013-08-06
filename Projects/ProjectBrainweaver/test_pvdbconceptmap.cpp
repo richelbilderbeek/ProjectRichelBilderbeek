@@ -18,6 +18,7 @@
 #include <boost/lexical_cast.hpp>
 #include <QRegExp>
 #include "pvdbcenternode.h"
+#include "pvdbcenternodefactory.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
 #include "pvdbconceptmapfactory.h"
@@ -99,7 +100,7 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::ConceptMap> map_a(
         pvdb::ConceptMapFactory::Create(
           {
-            pvdb::NodeFactory::Create("FOCAL QUESTION"),
+            pvdb::CenterNodeFactory::Create("FOCAL QUESTION"),
             pvdb::NodeFactory::GetTests().at(1),
             pvdb::NodeFactory::GetTests().at(2)
           }
@@ -113,7 +114,7 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::ConceptMap> map_b(
         pvdb::ConceptMapFactory::Create(
           {
-            pvdb::NodeFactory::Create("FOCAL QUESTION"),
+            pvdb::CenterNodeFactory::Create("FOCAL QUESTION"),
             pvdb::NodeFactory::GetTests().at(1),
             pvdb::NodeFactory::GetTests().at(2)
           }
@@ -130,7 +131,7 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::ConceptMap> map_c(
         pvdb::ConceptMapFactory::Create(
           {
-            pvdb::NodeFactory::Create("FOCAL QUESTION"),
+            pvdb::CenterNodeFactory::Create("FOCAL QUESTION"),
             pvdb::NodeFactory::GetTests().at(1),
             pvdb::NodeFactory::GetTests().at(2),
             pvdb::NodeFactory::GetTests().at(2)
@@ -155,7 +156,7 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::ConceptMap> map_a(
         pvdb::ConceptMapFactory::Create(
           {
-            pvdb::NodeFactory::Create("FOCAL QUESTION"),
+            pvdb::CenterNodeFactory::Create("FOCAL QUESTION"),
             pvdb::NodeFactory::GetTests().at(1),
             pvdb::NodeFactory::Create("4", { {"5",pvdb::Competency::misc},{"6",pvdb::Competency::misc} },345,456)
           }
@@ -164,7 +165,7 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::ConceptMap> map_b(
         pvdb::ConceptMapFactory::Create(
           {
-            pvdb::NodeFactory::Create("FOCAL QUESTION"),
+            pvdb::CenterNodeFactory::Create("FOCAL QUESTION"),
             pvdb::NodeFactory::GetTests().at(1),
             pvdb::NodeFactory::Create("4", { {"5",pvdb::Competency::misc},{"6",pvdb::Competency::misc} },901,012)
           }
@@ -178,7 +179,7 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::ConceptMap> map_c(
         pvdb::ConceptMapFactory::Create(
           {
-            pvdb::NodeFactory::Create("FOCAL QUESTION"), node_b, node_g
+            pvdb::CenterNodeFactory::Create("FOCAL QUESTION"), node_b, node_g
           }
         )
       );
@@ -194,10 +195,10 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("FOCAL QUESTION"));
       const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::Create("4",{{"5",pvdb::Competency::misc},{"6",pvdb::Competency::misc} } ));
       const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::Create("1",{{"2",pvdb::Competency::misc},{"3",pvdb::Competency::misc} } ));
-      const boost::shared_ptr<pvdb::Node> node_a(pvdb::NodeFactory::Create(concept_a,123,234));
+      const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(concept_a,123,234));
       const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::Create(concept_b,123,234));
       const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::Create(concept_c,345,456));
-      const boost::shared_ptr<pvdb::Node> node_d(pvdb::NodeFactory::Create(concept_d,567,678));
+      const boost::shared_ptr<pvdb::Node> node_d(pvdb::CenterNodeFactory::Create(concept_d,567,678));
       const boost::shared_ptr<pvdb::Node> node_e(pvdb::NodeFactory::Create(concept_e,789,890));
       const boost::shared_ptr<pvdb::Node> node_f(pvdb::NodeFactory::Create(concept_f,901,012));
       const boost::shared_ptr<pvdb::ConceptMap> map_a(pvdb::ConceptMapFactory::Create( { node_a, node_b, node_c } ));
@@ -219,10 +220,10 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::Concept> concept_n22(pvdb::ConceptFactory::Create("2"));
       const boost::shared_ptr<pvdb::Concept> concept_n23(pvdb::ConceptFactory::Create("3"));
 
-      const boost::shared_ptr<pvdb::Node> node_11(pvdb::NodeFactory::Create(concept_n11,123,234));
+      const boost::shared_ptr<pvdb::Node> node_11(pvdb::CenterNodeFactory::Create(concept_n11,123,234));
       const boost::shared_ptr<pvdb::Node> node_12(pvdb::NodeFactory::Create(concept_n12,321,432));
       const boost::shared_ptr<pvdb::Node> node_13(pvdb::NodeFactory::Create(concept_n13,345,456));
-      const boost::shared_ptr<pvdb::Node> node_21(pvdb::NodeFactory::Create(concept_n21,567,678));
+      const boost::shared_ptr<pvdb::Node> node_21(pvdb::CenterNodeFactory::Create(concept_n21,567,678));
       const boost::shared_ptr<pvdb::Node> node_22(pvdb::NodeFactory::Create(concept_n22,789,890));
       const boost::shared_ptr<pvdb::Node> node_23(pvdb::NodeFactory::Create(concept_n23,901,012));
 
@@ -274,7 +275,7 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::Concept> concept_n12(pvdb::ConceptFactory::Create("2"));
       const boost::shared_ptr<pvdb::Concept> concept_n13(pvdb::ConceptFactory::Create("3"));
 
-      const boost::shared_ptr<pvdb::Node> node_11(pvdb::NodeFactory::Create(concept_n11,123,234));
+      const boost::shared_ptr<pvdb::Node> node_11(pvdb::CenterNodeFactory::Create(concept_n11,123,234));
       const boost::shared_ptr<pvdb::Node> node_12(pvdb::NodeFactory::Create(concept_n12,321,432));
       const boost::shared_ptr<pvdb::Node> node_13(pvdb::NodeFactory::Create(concept_n13,345,456));
 
@@ -286,7 +287,7 @@ void pvdb::ConceptMap::Test()
       const boost::shared_ptr<pvdb::Concept> concept_n22(pvdb::ConceptFactory::Create("3"));
       const boost::shared_ptr<pvdb::Concept> concept_n23(pvdb::ConceptFactory::Create("2"));
 
-      const boost::shared_ptr<pvdb::Node> node_21(pvdb::NodeFactory::Create(concept_n21,123,234));
+      const boost::shared_ptr<pvdb::Node> node_21(pvdb::CenterNodeFactory::Create(concept_n21,123,234));
       const boost::shared_ptr<pvdb::Node> node_22(pvdb::NodeFactory::Create(concept_n22,321,432));
       const boost::shared_ptr<pvdb::Node> node_23(pvdb::NodeFactory::Create(concept_n23,345,456));
 
@@ -488,7 +489,7 @@ void pvdb::ConceptMap::Test()
   }
   //Test IsValid
   {
-    boost::shared_ptr<pvdb::Node> node_a = pvdb::NodeFactory::Create("...");
+    boost::shared_ptr<pvdb::Node> node_a = pvdb::CenterNodeFactory::Create("...");
 
     boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::Create(
       { node_a } );

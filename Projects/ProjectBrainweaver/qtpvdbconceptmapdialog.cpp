@@ -27,6 +27,7 @@
 #endif
 
 #include "pvdbcluster.h"
+#include "pvdbcenternode.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptmapfactory.h"
 #include "pvdbconceptmap.h"
@@ -77,6 +78,10 @@ QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   Test();
   assert(m_file);
   assert(m_file->GetConceptMap());
+  assert(!m_file->GetConceptMap()->GetNodes().empty());
+  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(m_file->GetConceptMap()->GetNodes()[0])
+    && "The first node in a file's ConceptMap must be a CenterNode");
+
   assert(file == m_file);
   assert(m_widget);
   assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
@@ -106,17 +111,7 @@ QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog()
   delete ui;
 }
 
-/*
-QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::ConceptMap> concept_map)
-{
-  assert(concept_map);
-  QtPvdbConceptMapEditWidget * const widget = new QtPvdbConceptMapEditWidget(concept_map);
-  assert(widget);
-  return widget;
-}
-*/
-
-QtPvdbConceptMapEditW-idget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
+QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
 
@@ -179,6 +174,10 @@ void QtPvdbConceptMapDialog::DoRandomStuff()
   //Do random stuff
   assert(m_file);
   assert(m_file->GetConceptMap());
+  assert(!m_file->GetConceptMap()->GetNodes().empty());
+  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(m_file->GetConceptMap()->GetNodes()[0])
+    && "The first node in a file's ConceptMap must be a CenterNode");
+
   const int n_edges_before = boost::numeric_cast<int>(m_file->GetConceptMap()->GetEdges().size());
   const int n_nodes_before = boost::numeric_cast<int>(m_file->GetConceptMap()->GetNodes().size());
   this->GetWidget()->DoRandomStuff();
