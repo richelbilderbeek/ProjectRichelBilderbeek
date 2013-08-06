@@ -33,8 +33,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <stdexcept>
 
-#include <boost/filesystem.hpp>
-
 #include "trace.h"
 
 #include <QFile>
@@ -77,15 +75,15 @@ void ConnectThreeResources::Check()
 
 void ConnectThreeResources::CheckFile(const std::string& s)
 {
-  if (!boost::filesystem::exists(s))
+  if (!QFile::exists(s.c_str()))
   {
     const std::string filename = ":/images/" + s;
     QFile f(filename.c_str());
     f.copy(s.c_str());
-    if (!boost::filesystem::exists(s)) { TRACE(s); }
-    assert(boost::filesystem::exists(s));
+    if (!QFile::exists(s.c_str())) { TRACE(s); }
+    assert(QFile::exists(s.c_str()));
   }
-  if (!boost::filesystem::exists(s)) { TRACE(s); }
-  assert(boost::filesystem::exists(s));
+  if (!QFile::exists(s.c_str())) { TRACE(s); }
+  assert(QFile::exists(s.c_str()));
 }
 

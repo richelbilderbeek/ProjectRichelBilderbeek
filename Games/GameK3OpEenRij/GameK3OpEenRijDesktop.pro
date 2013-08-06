@@ -13,7 +13,8 @@ win32 {
   LIBS += -L../../Libraries/mxe/usr/i686-pc-mingw32/lib
 }
 
-LIBS += -lboost_system -lboost_filesystem
+#Don't link to these for cross-compiler
+#LIBS += -lboost_system -lboost_filesystem
 
 
 INCLUDEPATH += \
@@ -96,4 +97,3 @@ FORMS += \
 
 RESOURCES += \
     GameK3OpEenRij.qrc
-
