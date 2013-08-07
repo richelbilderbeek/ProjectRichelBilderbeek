@@ -41,7 +41,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -92,10 +92,10 @@ CONFIG -= qt<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> hello( "hello world!" );<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::sregex rex <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::sregex::<a href="CppCompile.htm">compile</a>( "(\\w+) (\\w+)!" );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a> rex <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>( "(\\w+) (\\w+)!" );<br/>
 &nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::smatch what;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::regex_match( hello, what, rex ) )<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::<a href="CppRegex.htm">regex</a>_match( hello, what, rex ) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> whole match<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> first capture<br/>

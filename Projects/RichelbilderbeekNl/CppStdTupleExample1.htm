@@ -41,7 +41,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -97,9 +97,9 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppString.htm">std::string</a>&gt; Tuple;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppStdTuple.htm">std::tuple</a>_size&lt;Tuple&gt;::value <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,"Tuple has size 3");<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppStd.htm">std</a>::is_same&lt;<a href="CppStdTuple.htm">std::tuple</a>_element&lt;0,Tuple&gt;::type,<b><a href="CppInt.htm">int</a></b>&gt;(),"First element is <b><a href="CppInt.htm">int</a></b>");<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppStd.htm">std</a>::is_same&lt;<a href="CppStdTuple.htm">std::tuple</a>_element&lt;1,Tuple&gt;::type,<b><a href="CppDouble.htm">double</a></b>&gt;(),"Second element is <b><a href="CppDouble.htm">double</a></b>");<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppStd.htm">std</a>::is_same&lt;<a href="CppStdTuple.htm">std::tuple</a>_element&lt;2,Tuple&gt;::type,<a href="CppString.htm">std::string</a>&gt;(),"Third element is <a href="CppString.htm">std::string</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppIs_same.htm">std::is_same</a>&lt;<a href="CppStdTuple.htm">std::tuple</a>_element&lt;0,Tuple&gt;::type,<b><a href="CppInt.htm">int</a></b>&gt;(),"First element is <b><a href="CppInt.htm">int</a></b>");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppIs_same.htm">std::is_same</a>&lt;<a href="CppStdTuple.htm">std::tuple</a>_element&lt;1,Tuple&gt;::type,<b><a href="CppDouble.htm">double</a></b>&gt;(),"Second element is <b><a href="CppDouble.htm">double</a></b>");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppIs_same.htm">std::is_same</a>&lt;<a href="CppStdTuple.htm">std::tuple</a>_element&lt;2,Tuple&gt;::type,<a href="CppString.htm">std::string</a>&gt;(),"Third element is <a href="CppString.htm">std::string</a>");<br/>
 <br/>
 &nbsp;&nbsp;Tuple t <a href="CppOperatorAssign.htm">=</a> <a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(123,3.14159,"Bilderbikkel");<br/>
 <br/>

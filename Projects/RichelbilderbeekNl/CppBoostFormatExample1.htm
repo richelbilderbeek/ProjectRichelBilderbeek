@@ -41,7 +41,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -160,6 +160,63 @@ win32 {<br/>
 +123456<br/>
 <br/>
 <a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>crosscompile.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="crosscompile.sh" border = "1"><tr><td><code>
+#!/bin/bash<br/>
+myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"<br/>
+ <br/>
+#Cleaning up<br/>
+rm *.pro.user<br/>
+rm Makefile<br/>
+rm Makefile.*<br/>
+rm -r release<br/>
+rm -r debug<br/>
+rm ui_*.h<br/>
+rm qrc_*.cpp<br/>
+rm moc_*.cpp<br/>
+rm object_script*.*<br/>
+ <br/>
+for myprofile in `ls | egrep ".pro\&gt;"`<br/>
+do<br/>
+&nbsp;&nbsp;mytarget=`echo $myprofile | sed "s/\.pro//"`<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;$myqmake $myprofile<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;if [ ! -e Makefile ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL: $myqmake $myprofile"<br/>
+&nbsp;&nbsp;fi<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;make<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;if [ -e ./release/$mytarget".exe" ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cp ./release/$mytarget".exe" ~/bin/<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": FAIL"<br/>
+&nbsp;&nbsp;fi<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;#Cleaning up<br/>
+&nbsp;&nbsp;rm Makefile<br/>
+&nbsp;&nbsp;rm Makefile.*<br/>
+&nbsp;&nbsp;rm -r release<br/>
+&nbsp;&nbsp;rm -r debug<br/>
+&nbsp;&nbsp;rm ui_*.h<br/>
+&nbsp;&nbsp;rm qrc_*.cpp<br/>
+&nbsp;&nbsp;rm moc_*.cpp<br/>
+&nbsp;&nbsp;rm object_script*.*<br/>
+ <br/>
+done #next .pro file<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

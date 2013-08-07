@@ -42,7 +42,7 @@ all <a href="CppString.htm">std::strings</a> in a <a href="CppString.htm">std::s
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -113,24 +113,24 @@ win32 {<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<a href="CppComment.htm">///</a>Obtain all regex matches in a <a href="CppString.htm">std::string</a><br/>
+<a href="CppComment.htm">///</a>Obtain all <a href="CppRegex.htm">regex</a> matches in a <a href="CppString.htm">std::string</a><br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetRegexMatches.htm">GetRegexMatches</a>Cpp11(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppOperatorDivide.htm">/</a>* s <a href="CppComment.htm">*/</a>,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">std::regex</a>&amp; <a href="CppOperatorDivide.htm">/</a>* r <a href="CppComment.htm">*/</a>)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdRegex.htm">std::regex</a>&amp; <a href="CppOperatorDivide.htm">/</a>* r <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("GCC has not yet implemented <a href="CppRegex.htm">std::regex</a>");<br/>
+&nbsp;&nbsp;v.push_back("GCC has not yet implemented <a href="CppStdRegex.htm">std::regex</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/regex.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
 <br/>
-<a href="CppComment.htm">///</a>Obtain all regex matches in a <a href="CppString.htm">std::string</a><br/>
+<a href="CppComment.htm">///</a>Obtain all <a href="CppRegex.htm">regex</a> matches in a <a href="CppString.htm">std::string</a><br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a>&amp; r)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a>&amp; r)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 <br/>
@@ -158,11 +158,11 @@ win32 {<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
 &nbsp;&nbsp;<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppBoost.htm">Boost</a><a href="CppXpressive.htm">Xpressive</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::sregex&amp; r)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>&amp; r)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::sregex_<a href="CppIterator.htm">iterator</a> cur(s.begin(),s.end(),r);<br/>
-&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::sregex_<a href="CppIterator.htm">iterator</a> end;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>_<a href="CppIterator.htm">iterator</a> cur(s.begin(),s.end(),r);<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>_<a href="CppIterator.htm">iterator</a> end;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>( ; cur <a href="CppOperatorNotEqual.htm">!=</a> end; <a href="CppOperatorPlus.htm">+</a>+cur )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::smatch&amp; what <a href="CppOperatorAssign.htm">=</a> *cur;<br/>
@@ -174,7 +174,7 @@ win32 {<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQRegExp.htm">QRegExp</a>&gt;<br/>
 <br/>
-<a href="CppComment.htm">///</a>Obtain all regex matches in a <a href="CppString.htm">std::string</a><br/>
+<a href="CppComment.htm">///</a>Obtain all <a href="CppRegex.htm">regex</a> matches in a <a href="CppString.htm">std::string</a><br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppQt.htm">Qt</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
@@ -209,12 +209,12 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> r <a href="CppOperatorAssign.htm">=</a> "(\\d{4} [A-Z]{2})";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppQt.htm">Qt</a>(s,<a href="CppQRegExp.htm">QRegExp</a>(r.c_str())) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppBoost.htm">Boost</a><a href="CppXpressive.htm">Xpressive</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s,<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::sregex::<a href="CppCompile.htm">compile</a>(r))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s,<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>(r))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> r <a href="CppOperatorAssign.htm">=</a> "\\d{4} [A-Z]{2}";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>(s,<a href="CppRegex.htm">boost::regex</a>(r)) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>(s,<a href="CppBoostRegex.htm">boost::regex</a>(r)) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppFor.htm">for</a></b> <a href="CppGetRegexMatches.htm">GetRegexMatches</a> not being greedy<br/>
@@ -230,12 +230,12 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> r <a href="CppOperatorAssign.htm">=</a> "(&lt;<b><a href="CppInt.htm">int</a></b>&gt;*.&lt;/<b><a href="CppInt.htm">int</a></b>&gt;)";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppQt.htm">Qt</a>(s,<a href="CppQRegExp.htm">QRegExp</a>(r.c_str())) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppBoost.htm">Boost</a><a href="CppXpressive.htm">Xpressive</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s,<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::sregex::<a href="CppCompile.htm">compile</a>(r))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s,<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>(r))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> r <a href="CppOperatorAssign.htm">=</a> "&lt;<b><a href="CppInt.htm">int</a></b>&gt;*.&lt;/<b><a href="CppInt.htm">int</a></b>&gt;";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>(s,<a href="CppRegex.htm">boost::regex</a>(r)) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetRegexMatches.htm">GetRegexMatches</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>(s,<a href="CppBoostRegex.htm">boost::regex</a>(r)) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

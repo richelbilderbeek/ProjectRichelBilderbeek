@@ -1553,7 +1553,47 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"CppPrimeExpert.htm\">PrimeExpert</a> can be tested using the <a href=\"Tools.htm\">tool</a> ");
     v.push_back("<a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a>.</p>");
   }
-  else if (m_page_name == "CppProFile" || m_page_name == "CppQtCreatorProFile")
+  else if (m_page_name == "CppQFileExample1")
+  {
+    v.push_back("<p><a href=\"CppQFileExample1.htm\">QFile example 1: copying file and checking if the copy exists</a> is a");
+    v.push_back("<a href=\"CppQFile.htm\">QFile</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQFileExample1.zip\">Download the Qt Creator project 'CppQFileExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQFileDialogExample1")
+  {
+    v.push_back("<p><a href=\"CppQFileDialogExample1.htm\">QFileDialog example 1: crafting a QFileDialog</a> is a");
+    v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQFileDialogExample1.png\">View a screenshot of 'CppQFileDialogExample1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQFileDialogExample1.zip\">Download the Qt Creator project 'CppQFileDialogExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQFileDialogExample2")
+  {
+    v.push_back("<p><a href=\"CppQFileDialogExample2.htm\">QFileDialog example 2: using QFileDialog::getOpenFileNames</a> is a");
+    v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQFileDialogExample2.png\">View a screenshot of 'CppQFileDialogExample2' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQFileDialogExample2.zip\">Download the Qt Creator project 'CppQFileDialogExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQFileDialogExample3")
+  {
+    v.push_back("<p><a href=\"CppQFileDialogExample3.htm\">QFileDialog example 3: compare class and convenience function from GUI</a> is a");
+    v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQFileDialogExample3.png\">View a screenshot of 'CppQFileDialogExample3' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQFileDialogExample3.zip\">Download the Qt Creator project 'CppQFileDialogExample3' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+
+  else if (m_page_name == "CppQtCreatorProFile")
   {
     v.push_back("<p><a href=\"CppQtCreatorProFile.htm\">QtCreatorProFile</a> is a <a href=\"CppQtProjectFile.htm\">Qt project file (.pro)</a>");
     v.push_back("<a href=\"CppClass.htm\">class</a>.</p>");

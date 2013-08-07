@@ -41,7 +41,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -91,13 +91,13 @@ TEMPLATE = app<br/>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/regex.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
 <br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="CppHelloWorld.htm">Hello World</a>";<br/>
-&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> boost::regex_replace(s,<a href="CppRegex.htm">boost::regex</a>("World"),<a href="CppString.htm">std::string</a>("<a href="CppBoost.htm">Boost</a>"));<br/>
+&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> boost::regex_replace(s,<a href="CppBoostRegex.htm">boost::regex</a>("World"),<a href="CppString.htm">std::string</a>("<a href="CppBoost.htm">Boost</a>"));<br/>
 &nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 }<br/>
 </code></td></tr></table>
@@ -112,54 +112,51 @@ TEMPLATE = app<br/>
 <!-- start of code -->
 <table summary="CppHelloBoostRegexQtCreatorLubuntuToWindows.sh" border = "1"><tr><td><code>
 #!/bin/bash<br/>
-myfile="i686-pc-mingw32-qmake"<br/>
-mytarget="CppHelloBoostRegexQtCreatorLubuntuToWindows"<br/>
-myprofile=$mytarget.pro<br/>
-<br/>
-if [ -e $myfile ]<br/>
-then<br/>
-&nbsp;&nbsp;echo "MXE crosscompiler '$myfile' found"<br/>
-else<br/>
-&nbsp;&nbsp;echo "MXE crosscompiler '$myfile' not found directly, but perhaps it is in the PATH"<br/>
-&nbsp;&nbsp;#exit<br/>
-fi<br/>
-<br/>
-if [ -e $myprofile ]<br/>
-then<br/>
-&nbsp;&nbsp;echo "Qt Creator project '$myprofile' found"<br/>
-else<br/>
-&nbsp;&nbsp;echo "Qt Creator project '$myprofile' not found"<br/>
-&nbsp;&nbsp;exit<br/>
-fi<br/>
-<br/>
-echo "1/2: Creating makefile"<br/>
-<br/>
-$myfile $myprofile<br/>
-<br/>
-if [ -e Makefile ]<br/>
-then<br/>
-&nbsp;&nbsp;echo "Makefile created successfully"<br/>
-else<br/>
-&nbsp;&nbsp;echo "FAIL: $myfile $myprofile"<br/>
-&nbsp;&nbsp;exit<br/>
-fi<br/>
-<br/>
-echo "2/2: Making makefile"<br/>
-<br/>
-make<br/>
-<br/>
-if [ -e ./release/$mytarget.exe ]<br/>
-then<br/>
-&nbsp;&nbsp;echo "SUCCESS"<br/>
-else<br/>
-&nbsp;&nbsp;echo "FAIL"<br/>
-fi<br/>
-<br/>
+myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"<br/>
+ <br/>
 #Cleaning up<br/>
-rm -r release<br/>
-rm -r debug<br/>
+rm *.pro.user<br/>
 rm Makefile<br/>
 rm Makefile.*<br/>
+rm -r release<br/>
+rm -r debug<br/>
+rm ui_*.h<br/>
+rm qrc_*.cpp<br/>
+rm moc_*.cpp<br/>
+rm object_script*.*<br/>
+ <br/>
+for myprofile in `ls | egrep ".pro\&gt;"`<br/>
+do<br/>
+&nbsp;&nbsp;mytarget=`echo $myprofile | sed "s/\.pro//"`<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;$myqmake $myprofile<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;if [ ! -e Makefile ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL: $myqmake $myprofile"<br/>
+&nbsp;&nbsp;fi<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;make<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;if [ -e ./release/$mytarget".exe" ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cp ./release/$mytarget".exe" ~/bin/<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": FAIL"<br/>
+&nbsp;&nbsp;fi<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;#Cleaning up<br/>
+&nbsp;&nbsp;rm Makefile<br/>
+&nbsp;&nbsp;rm Makefile.*<br/>
+&nbsp;&nbsp;rm -r release<br/>
+&nbsp;&nbsp;rm -r debug<br/>
+&nbsp;&nbsp;rm ui_*.h<br/>
+&nbsp;&nbsp;rm qrc_*.cpp<br/>
+&nbsp;&nbsp;rm moc_*.cpp<br/>
+&nbsp;&nbsp;rm object_script*.*<br/>
+ <br/>
+done #next .pro file<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

@@ -69,7 +69,7 @@ sudo apt-get install libgstreamer-plugins-base0.10-dev <br/>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -97,30 +97,18 @@ sudo apt-get install libgstreamer-plugins-base0.10-dev <br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppLinkErrorCannotFindLgstapp.pro" border = "1"><tr><td><code>
-QT += core gui
-<br/>
-
-<br/>
-#To show I compile with Qt5
-<br/>
-greaterThan(QT_MAJOR_VERSION, 4) {
-<br/>
-&nbsp;&nbsp;QT += <a href="CppWidget.htm">widget</a>s webkit<a href="CppWidget.htm">widget</a>s
-<br/>
-}
-<br/>
-
-<br/>
-# Solution:
-<br/>
-#&nbsp;&nbsp;sudo apt-get install libgstreamer1.0-dev
-<br/>
-#&nbsp;&nbsp;sudo apt-get install libgstreamer0.10-dev
-<br/>
-#&nbsp;&nbsp;sudo apt-get install libgstreamer-plugins-base1.0-dev
-<br/>
-#&nbsp;&nbsp;sudo apt-get install libgstreamer-plugins-base0.10-dev
-<br/>
+QT += core gui<br/>
+<br/>
+#To show I compile with Qt5<br/>
+greaterThan(QT_MAJOR_VERSION, 4) {<br/>
+&nbsp;&nbsp;QT += <a href="CppWidget.htm">widget</a>s webkit<a href="CppWidget.htm">widget</a>s<br/>
+}<br/>
+<br/>
+# Solution:<br/>
+#&nbsp;&nbsp;sudo apt-get install libgstreamer1.0-dev<br/>
+#&nbsp;&nbsp;sudo apt-get install libgstreamer0.10-dev<br/>
+#&nbsp;&nbsp;sudo apt-get install libgstreamer-plugins-base1.0-dev<br/>
+#&nbsp;&nbsp;sudo apt-get install libgstreamer-plugins-base0.10-dev<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -135,4 +123,3 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 <p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
 </html>
-

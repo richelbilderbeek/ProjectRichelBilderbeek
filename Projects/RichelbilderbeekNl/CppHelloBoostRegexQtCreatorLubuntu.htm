@@ -41,7 +41,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -97,12 +97,12 @@ TEMPLATE = app<br/>
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/regex.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="CppHelloWorld.htm">Hello World</a>";<br/>
-&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> boost::regex_replace(s,<a href="CppRegex.htm">boost::regex</a>("World"),<a href="CppString.htm">std::string</a>("<a href="CppBoost.htm">Boost</a>"));<br/>
+&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> boost::regex_replace(s,<a href="CppBoostRegex.htm">boost::regex</a>("World"),<a href="CppString.htm">std::string</a>("<a href="CppBoost.htm">Boost</a>"));<br/>
 &nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 }<br/>
 </code></td></tr></table>
