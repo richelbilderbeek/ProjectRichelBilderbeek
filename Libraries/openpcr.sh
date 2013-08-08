@@ -1,3 +1,3 @@
 #!/bin/sh
-git clone https://github.com/jperfetto/OpenPCR.git
+git clone https://github.com/richelbilderbeek/OpenPCR.git
 
