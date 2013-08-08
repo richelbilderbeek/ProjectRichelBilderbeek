@@ -9,10 +9,8 @@ INCLUDEPATH += \
 
 SOURCES += \
     main.cpp \
-    ../../Classes/CppIrcBot/messagehandle.cpp \
     ../../Classes/CppIrcBot/ircbot.cpp
 
 HEADERS += \
-    ../../Classes/CppIrcBot/messagehandle.h \
     ../../Classes/CppIrcBot/ircbot.h
 
