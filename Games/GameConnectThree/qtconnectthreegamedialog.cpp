@@ -136,6 +136,7 @@ void QtConnectThreeGameDialog::OnValidMove()
     }
     QtShowWinnerDialog d(m_resources->GetPlayersFilenames()[index],m_resources->GetWinnerText());
     d.setStyleSheet(this->styleSheet());
+    d.setWindowIcon(this->windowIcon());
 
     //this->hide();
     d.exec();

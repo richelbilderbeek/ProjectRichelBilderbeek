@@ -27,6 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/shared_ptr.hpp>
 
+#include <QIcon>
+#include <QFile>
+#include <QPixmap>
 #include "qtk3opeenrijresources.h"
 #include "qtk3opeenrijmenudialog.h"
 #include "trace.h"
@@ -78,6 +81,15 @@ int main(int argc, char *argv[])
   START_TRACE();
   const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
   QtK3OpEenRijMenuDialog w(resources);
+
+  {
+    const QtK3OpEenRijResources resources2;
+    const std::string icon_filename = resources2.GetIconFilename();
+    assert(QFile::exists(icon_filename.c_str()));
+    qApp->setWindowIcon(QIcon(QPixmap(icon_filename.c_str())));
+    w.setWindowIcon(QIcon(QPixmap(icon_filename.c_str())));
+  }
+
   w.show();
   return a.exec();
 }

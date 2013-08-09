@@ -43,6 +43,7 @@ ConnectThreeResources::ConnectThreeResources(
   const std::string& computer_grey_filename,
   const std::string& css,
   const std::string& empty_filename,
+  const std::string& icon_filename,
   const std::vector<std::string>& instructions_good_filenames,
   const std::string& instructions_wrong_filename,
   const std::vector<std::string>& players_filenames,
@@ -54,6 +55,7 @@ ConnectThreeResources::ConnectThreeResources(
     m_computer_grey_filename(computer_grey_filename),
     m_css(css),
     m_empty_filename(empty_filename),
+    m_icon_filename(icon_filename),
     m_instructions_good_filenames(instructions_good_filenames),
     m_instructions_wrong_filename(instructions_wrong_filename),
     m_players_filenames(players_filenames),
@@ -61,7 +63,7 @@ ConnectThreeResources::ConnectThreeResources(
     m_quit_text(quit_text),
     m_winner_text(winner_text)
 {
-  Check();
+  Create();
 }
 
 ConnectThreeResources::~ConnectThreeResources()
@@ -73,24 +75,26 @@ ConnectThreeResources::~ConnectThreeResources()
   std::remove(m_computer_grey_filename.c_str());
   std::remove(m_css.c_str());
   std::remove(m_empty_filename.c_str());
+  std::remove(m_icon_filename.c_str());
   std::remove(m_instructions_wrong_filename.c_str());
 }
 
-void ConnectThreeResources::Check()
+void ConnectThreeResources::Create()
 {
   //CheckFile(m_background_filename);
-  for (const std::string filename: m_computers_filenames) { CheckFile(filename); }
-  for (const std::string filename: m_players_filenames) { CheckFile(filename); }
-  for (const std::string filename: m_players_grey_filenames) { CheckFile(filename); }
-  CheckFile(m_computer_grey_filename);
-  CheckFile(m_css);
-  CheckFile(m_empty_filename);
-  CheckFile(m_instructions_good_filenames[0]);
-  CheckFile(m_instructions_good_filenames[1]);
-  CheckFile(m_instructions_wrong_filename);
+  for (const std::string filename: m_computers_filenames) { CreateFile(filename); }
+  for (const std::string filename: m_players_filenames) { CreateFile(filename); }
+  for (const std::string filename: m_players_grey_filenames) { CreateFile(filename); }
+  CreateFile(m_computer_grey_filename);
+  CreateFile(m_css);
+  CreateFile(m_empty_filename);
+  CreateFile(m_icon_filename);
+  CreateFile(m_instructions_good_filenames[0]);
+  CreateFile(m_instructions_good_filenames[1]);
+  CreateFile(m_instructions_wrong_filename);
 }
 
-void ConnectThreeResources::CheckFile(const std::string& s)
+void ConnectThreeResources::CreateFile(const std::string& s)
 {
   if (!QFile::exists(s.c_str()))
   {

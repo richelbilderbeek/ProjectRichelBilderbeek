@@ -34,6 +34,7 @@ struct ConnectThreeResources
   const std::vector<std::string>& GetComputersFilenames() const { return  m_computers_filenames; }
   const std::string& GetComputerGreyFilename() const { return m_computer_grey_filename; }
   const std::string& GetEmptyFilename() const { return m_empty_filename; }
+  const std::string& GetIconFilename() const { return m_icon_filename; }
   const std::vector<std::string>& GetInstructionsGoodFilenames() const { return  m_instructions_good_filenames; }
   const std::string& GetInstructionsWrongFilename() const { return m_instructions_wrong_filename; }
   const std::vector<std::string>& GetPlayersFilenames() const { return  m_players_filenames; }
@@ -51,6 +52,7 @@ struct ConnectThreeResources
     const std::string& computer_grey_filename,
     const std::string& css,
     const std::string& empty_filename,
+    const std::string& icon_filename,
     const std::vector<std::string>& instructions_good_filenames,
     const std::string& instructions_wrong_filename,
     const std::vector<std::string>& players_filenames,
@@ -64,15 +66,16 @@ struct ConnectThreeResources
   const std::string m_computer_grey_filename;
   const std::string m_css;
   const std::string m_empty_filename;
+  const std::string m_icon_filename;
   const std::vector<std::string> m_instructions_good_filenames;
   const std::string m_instructions_wrong_filename;
   const std::vector<std::string> m_players_filenames;
   const std::vector<std::string> m_players_grey_filenames;
   const std::string m_quit_text;
   const std::string m_winner_text;
-  void Check();
   private:
-  void CheckFile(const std::string& s);
+  void Create();
+  void CreateFile(const std::string& s);
 };
 
 #endif // CONNECTTHREERESOURCES_H

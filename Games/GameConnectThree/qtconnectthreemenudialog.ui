@@ -19,10 +19,6 @@
   <property name="windowTitle">
    <string>ConnectThree</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
-  </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
 background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);

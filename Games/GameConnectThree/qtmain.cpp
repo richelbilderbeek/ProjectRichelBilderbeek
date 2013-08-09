@@ -25,18 +25,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
   #include <QtGui/QApplication>
 #endif
 
-#include "connectthreeresources.h"
+#include "qtconnectthreeresources.h"
 #include "qtconnectthreemenudialog.h"
 #include "trace.h"
+
+#include <QFile>
+#include <QIcon>
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
 
   START_TRACE();
-  //ConnectThreeResources::Check();
 
   QtConnectThreeMenuDialog w;
+  {
+    QtConnectThreeResources resources;
+    const std::string icon_filename = resources.GetIconFilename();
+    assert(QFile::exists(icon_filename.c_str()));
+    w.setWindowIcon( QIcon( QPixmap(icon_filename.c_str())));
+  }
+
   w.show();
   return a.exec();
 }

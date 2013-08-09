@@ -23,13 +23,16 @@ QtK3OpEenRijResources::QtK3OpEenRijResources(
     "K3OpEenRijComputerGrey.png",
     "K3OpEenRij.css",
     "K3OpEenRijEmpty.png",
+    "K3OpEenRijIcon.png",
     {
       "K3OpEenRijInstructions1.png",
       "K3OpEenRijInstructions2.png"
     },
     "K3OpEenRijInstructions3.png",
     CreatePlayerNames(is_player3_kathleen),
-    CreatePlayerGreyNames(is_player3_kathleen)
+    CreatePlayerGreyNames(is_player3_kathleen),
+    "Stoppen",
+    "Winnaar"
   )
 {
 

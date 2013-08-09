@@ -42,6 +42,7 @@ QtConnectThreeResources::QtConnectThreeResources()
     "ConnectThreeComputerGrey.png",
     "GameConnectThree.css",
     "ConnectThreeEmpty.png",
+    "ConnectThreeIcon.png",
     {
       "ConnectThreeGood1.png",
       "ConnectThreeGood2.png"

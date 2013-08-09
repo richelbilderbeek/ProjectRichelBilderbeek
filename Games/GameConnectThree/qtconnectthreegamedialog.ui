@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>ConnectThree (C) 2011 Richel Bilderbeek</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="GameConnectThree.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QWidget" name="widget_top" native="true">
