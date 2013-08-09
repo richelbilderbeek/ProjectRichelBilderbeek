@@ -62,14 +62,14 @@ ConnectThreeResources::ConnectThreeResources(
 
 ConnectThreeResources::~ConnectThreeResources()
 {
-  for (const std::string filename: m_computers_filenames) { std::erase(filename.c_str()); }
-  for (const std::string filename: m_players_filenames) { std::erase(filename.c_str()); }
-  for (const std::string filename: m_players_grey_filenames) { std::erase(filename.c_str()); }
-  for (const std::string filename: m_instructions_good_filenames) { std::erase(filename.c_str()); }
-  std::erase(m_computer_grey_filename.c_str());
-  std::erase(m_css.c_str());
-  std::erase(m_empty_filename.c_str());
-  std::erase(m_instructions_wrong_filename.c_str());
+  for (const std::string filename: m_computers_filenames) { std::remove(filename.c_str()); }
+  for (const std::string filename: m_players_filenames) { std::remove(filename.c_str()); }
+  for (const std::string filename: m_players_grey_filenames) { std::remove(filename.c_str()); }
+  for (const std::string filename: m_instructions_good_filenames) { std::remove(filename.c_str()); }
+  std::remove(m_computer_grey_filename.c_str());
+  std::remove(m_css.c_str());
+  std::remove(m_empty_filename.c_str());
+  std::remove(m_instructions_wrong_filename.c_str());
 }
 
 void ConnectThreeResources::Check()
