@@ -4,6 +4,9 @@ CppBoostFormatExample1
 CppBoostFormatExample1.exe
 CppBoostFormatExample2
 CppBoostFormatExample2.exe
+CppBoostRegexExample1
+CppBoostTupleExample1
+CppBoostTupleExample1.exe
 CppGetFilesInFolder
 CppGetRegexMatches
 CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows
@@ -91,6 +94,14 @@ CppMxeExample4.exe
 CppMxeExample5
 CppPreprocessorSwitchGccVersion
 CppPreprocessorSwitchGccVersion.exe
+CppQFileDialogExample1
+CppQFileDialogExample1.exe
+CppQFileDialogExample2
+CppQFileDialogExample2.exe
+CppQFileDialogExample3
+CppQFileDialogExample3.exe
+CppQFileExample1
+CppQFileExample1.exe
 CppQPrintDialogExample1
 CppQPrintDialogExample1.exe
 CppQSqlTableModelExample1
@@ -119,6 +130,10 @@ CppQTableViewExample8
 CppQTableViewExample8.exe
 CppQTableViewExample9
 CppQTableViewExample9.exe
+CppQTableWidgetExample1
+CppQTableWidgetExample1.exe
+CppQTableWidgetExample2
+CppQTableWidgetExample2.exe
 CppQTreeViewExample1
 CppQTreeViewExample1.exe
 CppQTreeViewExample2
@@ -129,10 +144,14 @@ CppQtSqlExample1
 CppQtSqlExample1.exe
 CppRefExample2
 CppRefExample2.exe
+CppRegexExample2
+CppRegexExample3
 CppRuntimeErrorAssertionFailedXpressiveDetailDynamicParse_charset201
 CppRuntimeErrorAssertionFailedXpressiveDetailDynamicParse_charset201.exe
 CppSeperateString
 CppSeperateString.exe
+CppStdTupleExample1
+CppStdTupleExample1.exe
 CppUblasMatrixExample1
 CppUblasMatrixExample1.exe
 CppWilcoxonsSignedRankTest
@@ -141,6 +160,7 @@ GameBoenken
 GameBoenken.exe
 GameConnectThreeDesktop
 GameK3OpEenRijDesktop
+GameK3OpEenRijDesktop.exe
 GameMaziakDesktop
 GameMaziakDesktop.exe
 GamePylos
@@ -148,6 +168,7 @@ GamePylos.exe
 GameRubiksClockWebsite
 GetTxtFilesInFolder
 ProjectBrainweaverAssessor.exe
+ProjectBrainweaverDeveloper
 ProjectBrainweaverDeveloper.exe
 ProjectBrainweaverStudent
 ProjectBrainweaverStudent.exe
@@ -165,6 +186,7 @@ ToolHometrainerWebsite
 ToolKalmanFiltererDesktop
 ToolKTouchLectureCreator
 ToolKTouchLectureCreator.exe
+ToolLambdaBot
 ToolLoose
 ToolMidiLessonCreator
 ToolMidiLessonCreator.exe
