@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreeresources.h"
 
 #include <cassert>
+#include <cstdio>
 #include <stdexcept>
 
 #include "trace.h"
@@ -57,6 +58,18 @@ ConnectThreeResources::ConnectThreeResources(
     m_players_grey_filenames(players_grey_filenames)
 {
   Check();
+}
+
+ConnectThreeResources::~ConnectThreeResources()
+{
+  for (const std::string filename: m_computers_filenames) { std::erase(filename.c_str()); }
+  for (const std::string filename: m_players_filenames) { std::erase(filename.c_str()); }
+  for (const std::string filename: m_players_grey_filenames) { std::erase(filename.c_str()); }
+  for (const std::string filename: m_instructions_good_filenames) { std::erase(filename.c_str()); }
+  std::erase(m_computer_grey_filename.c_str());
+  std::erase(m_css.c_str());
+  std::erase(m_empty_filename.c_str());
+  std::erase(m_instructions_wrong_filename.c_str());
 }
 
 void ConnectThreeResources::Check()
@@ -86,4 +99,3 @@ void ConnectThreeResources::CheckFile(const std::string& s)
   if (!QFile::exists(s.c_str())) { TRACE(s); }
   assert(QFile::exists(s.c_str()));
 }
-

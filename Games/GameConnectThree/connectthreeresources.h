@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///and checks that these are present
 struct ConnectThreeResources
 {
+  virtual ~ConnectThreeResources();
   //const std::string& GetBackgroundFilename() const { return m_background_filename; }
   const std::string& GetCss() const { return m_css; }
   const std::vector<std::string>& GetComputersFilenames() const { return  m_computers_filenames; }
@@ -60,7 +61,6 @@ struct ConnectThreeResources
   const std::vector<std::string> m_players_filenames;
   const std::vector<std::string> m_players_grey_filenames;
   void Check();
-
   private:
   void CheckFile(const std::string& s);
 };
