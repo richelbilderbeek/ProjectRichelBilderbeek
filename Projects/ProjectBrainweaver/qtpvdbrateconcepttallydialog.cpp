@@ -374,7 +374,7 @@ void QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
 
 void QtPvdbRateConceptTallyDialog::resizeEvent(QResizeEvent *)
 {
-  const int small_col_width = 24;
+  const int small_col_width = 20;
   ui->table->setColumnWidth(0, small_col_width);
   ui->table->setColumnWidth(1, small_col_width);
   ui->table->setColumnWidth(2, small_col_width);

@@ -94,7 +94,10 @@ SOURCES += \
     qtpvdbratedconceptwidget.cpp \
     qtpvdbdisplay.cpp \
     pvdbrating.cpp \
-    qtpvdbrateconcepttallydialog.cpp
+    qtpvdbrateconcepttallydialog.cpp \
+    pvdbcenternodefactory.cpp \
+    pvdbcenternode.cpp \
+    qtpvdbfiledialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -164,7 +167,10 @@ HEADERS  += \
     qtpvdbratedconceptwidget.h \
     qtpvdbdisplay.h \
     pvdbrating.h \
-    qtpvdbrateconcepttallydialog.h
+    qtpvdbrateconcepttallydialog.h \
+    pvdbcenternodefactory.h \
+    pvdbcenternode.h \
+    qtpvdbfiledialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

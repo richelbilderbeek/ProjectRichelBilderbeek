@@ -86,7 +86,10 @@ SOURCES += \
     qtpvdbstudentmenudialog.cpp \
     qtpvdbstudentstartcompletedialog.cpp \
     qtpvdbtoolsitem.cpp \
-    qtpvdbratedconceptwidget.cpp
+    qtpvdbratedconceptwidget.cpp \
+    pvdbcenternodefactory.cpp \
+    pvdbcenternode.cpp \
+    qtpvdbfiledialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -149,7 +152,10 @@ HEADERS  += \
     qtpvdbstudentmenudialog.h \
     qtpvdbstudentstartcompletedialog.h \
     qtpvdbtoolsitem.h \
-    qtpvdbratedconceptwidget.h
+    qtpvdbratedconceptwidget.h \
+    pvdbcenternodefactory.h \
+    pvdbcenternode.h \
+    qtpvdbfiledialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
