@@ -25,6 +25,7 @@
 #include "pvdbconceptmap.h"
 #include "qtpvdbrateconcepttallydialog.h"
 #include "pvdbexamples.h"
+#include "qtpvdbfiledialog.h"
 #include "qtpvdbtestcreatesubconceptmapdialog.h"
 #include "pvdbfilefactory.h"
 #include "pvdbfile.h"
@@ -148,12 +149,15 @@ void QtPvdbMenuDialog::on_button_rating_clicked()
 
 void QtPvdbMenuDialog::on_button_student_clicked()
 {
-  const std::string filter_str = std::string("*.") + pvdb::File::GetFilenameExtension();
-  const std::string filename
-    = QFileDialog::getOpenFileName(0,"Kies een assessment bestand",QString(),
-      filter_str.c_str()).toStdString();
-  if (!filename.empty())
+  const auto d = pvdb::QtFileDialog::GetOpenFileDialog();
+  d->setWindowTitle("Kies een assessment bestand");
+  const int status = d->exec();
+  if (status == QDialog::Rejected) return;
+  const auto v = d->selectedFiles();
+  if (!v.isEmpty())
   {
+    assert(v.size() == 1);
+    const std::string filename = v[0].toStdString();
     try
     {
       const boost::shared_ptr<pvdb::File> file(pvdb::File::Load(filename));

@@ -16,6 +16,7 @@
 #include "qtpvdbcreateassessmentcompletedialog.h"
 #include "qtpvdbcreateassessmentmenudialog.h"
 #include "qtpvdbrateconceptmapdialog.h"
+#include "qtpvdbfiledialog.h"
 #include "trace.h"
 
 
@@ -61,14 +62,16 @@ void QtPvdbAssessorMenuDialog::on_button_quit_clicked()
 
 void QtPvdbAssessorMenuDialog::on_button_assess_result_clicked()
 {
-
-  //Load file
-  const std::string filter_str = std::string("*.") + pvdb::File::GetFilenameExtension();
-  const std::string filename
-    = QFileDialog::getOpenFileName(0,"Kies een assessment bestand",QString(),
-      filter_str.c_str()).toStdString();
-  if (!filename.empty())
+  //Load assessent file
+  const auto d = pvdb::QtFileDialog::GetOpenFileDialog();
+  d->setWindowTitle("Kies een assessment bestand");
+  const int status = d->exec();
+  if (status == QDialog::Rejected) return;
+  const auto v = d->selectedFiles();
+  if (!v.isEmpty())
   {
+    assert(v.size() == 1);
+    const std::string filename = v[0].toStdString();
     const boost::shared_ptr<pvdb::File> file(pvdb::File::Load(filename));
     assert(file);
     QtPvdbRateConceptMapDialog d(file);

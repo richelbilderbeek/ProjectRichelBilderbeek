@@ -74,12 +74,4 @@ void QtPvdbCreateAssessmentPartialDialog::keyPressEvent(QKeyEvent* e)
 
 void QtPvdbCreateAssessmentPartialDialog::on_button_save_clicked()
 {
-
-  //const QString filename = QFileDialog::getSaveFileName(0,"Sla het assessment invoer-bestand op",QString(),"*.txt");
-
-  //if (!filename.isEmpty())
-  //{
-  //  pvdb::ProgramFlow::GetInstance()->GoBack(pvdb::State::assessor_menu);
-  //  this->hide();
-  //}
 }

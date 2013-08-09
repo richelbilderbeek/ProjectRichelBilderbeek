@@ -29,6 +29,8 @@
 #include "qtpvdbprintratingdialog.h"
 #include "qtpvdbconceptmapeditwidget.h"
 #include "qtpvdbdisplay.h"
+#include "qtpvdbfiledialog.h"
+#include "qtpvdbdisplayconceptitem.h"
 #include "pvdbfile.h"
 #include "trace.h"
 #include "ui_qtpvdbratingdialog.h"
@@ -90,28 +92,30 @@ void QtPvdbRatingDialog::on_button_save_clicked()
 {
   //Temporarily disable to widget, otherwise saving cannot succeed
   this->hide();
-  const std::string filter_str = std::string("*.") + pvdb::File::GetFilenameExtension();
-  const std::string filename_raw = QFileDialog::getSaveFileName(0,"Sla het assessment rapport op",
-    QString(),
-    filter_str.c_str()).toStdString();
-  if (!filename_raw.empty())
-  {
-    const std::string filename
-      =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
-        || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
-       ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
-       : filename_raw);
-    assert(filename.size() > 3
-      && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
-      && "File must have correct file extension name");
-    Save(filename);
-    this->m_back_to_menu = true;
-    close();
-  }
-  else
+
+  const auto d = pvdb::QtFileDialog::GetSaveFileDialog();
+  d->setWindowTitle("Sla het assessment invoer-bestand op");
+  const int status = d->exec();
+  if (status == QDialog::Rejected)
   {
     this->show();
+    return;
   }
+  assert(d->selectedFiles().size() == 1);
+  const std::string filename_raw = d->selectedFiles()[0].toStdString();
+  assert(!filename_raw.empty());
+
+  const std::string filename
+    =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
+      || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
+     ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
+     : filename_raw);
+  assert(filename.size() > 3
+    && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
+    && "File must have correct file extension name");
+  Save(filename);
+  this->m_back_to_menu = true;
+  close();
 }
 
 void QtPvdbRatingDialog::Save(const std::string& filename) const

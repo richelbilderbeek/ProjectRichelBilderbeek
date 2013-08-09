@@ -15,6 +15,7 @@
 #include "pvdbfile.h"
 //#include "pvdbmenudialog.h"
 #include "qtpvdbaboutdialog.h"
+#include "qtpvdbfiledialog.h"
 #include "qtpvdbstudentstartcompletedialog.h"
 #include "trace.h"
 #include "ui_qtpvdbstudentmenudialog.h"
@@ -86,22 +87,26 @@ void QtPvdbStudentMenuDialog::on_edit_name_textChanged(const QString &arg1)
 
 void QtPvdbStudentMenuDialog::on_button_save_clicked()
 {
-  const std::string filter_str = std::string("*.") + pvdb::File::GetFilenameExtension();
-  const std::string filename_raw = QFileDialog::getSaveFileName(0,"Sla de concept map op",
-    QString(),
-    filter_str.c_str()).toStdString();
-  if (!filename_raw.empty())
+  const auto d = pvdb::QtFileDialog::GetSaveFileDialog();
+  d->setWindowTitle("Sla de concept map op");
+  const int status = d->exec();
+  if (status == QDialog::Rejected)
   {
-    const std::string filename
-      =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
-        || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
-       ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
-       : filename_raw);
-    assert(filename.size() > 3
-      && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
-      && "File must have correct file extension name");
-    Save(filename);
+    return;
   }
+  assert(d->selectedFiles().size() == 1);
+  const std::string filename_raw = d->selectedFiles()[0].toStdString();
+  assert(!filename_raw.empty());
+
+  const std::string filename
+    =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
+      || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
+     ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
+     : filename_raw);
+  assert(filename.size() > 3
+    && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
+    && "File must have correct file extension name");
+  Save(filename);
 }
 
 void QtPvdbStudentMenuDialog::Save(const std::string& filename) const

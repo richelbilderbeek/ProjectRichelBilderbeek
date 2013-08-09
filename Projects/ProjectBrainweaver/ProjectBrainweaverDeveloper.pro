@@ -137,7 +137,8 @@ SOURCES += \
     qtpvdbrateconcepttallydialog.cpp \
     qtpvdbrateconcepttallymodel.cpp \
     pvdbcenternode.cpp \
-    pvdbcenternodefactory.cpp
+    pvdbcenternodefactory.cpp \
+    qtpvdbfiledialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -239,7 +240,8 @@ HEADERS  += \
     qtpvdbrateconcepttallydialog.h \
     qtpvdbrateconcepttallymodel.h \
     pvdbcenternode.h \
-    pvdbcenternodefactory.h
+    pvdbcenternodefactory.h \
+    qtpvdbfiledialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
