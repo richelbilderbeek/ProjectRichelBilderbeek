@@ -34,12 +34,12 @@ class QtShowWinnerDialog : public QDialog
   Q_OBJECT
 
 public:
-  explicit QtShowWinnerDialog(QWidget *parent = 0);
+  explicit QtShowWinnerDialog(
+    const std::string& filename,
+    const std::string& winner_text,
+    QWidget *parent = 0);
   ~QtShowWinnerDialog();
-  void SetPixmap(const std::string& filename);
-
-protected:
-  void changeEvent(QEvent *e);
+  void SetPixmap();
 
 private:
   Ui::QtShowWinnerDialog *ui;

@@ -122,26 +122,24 @@ void QtConnectThreeGameDialog::OnValidMove()
     return;
   }
   //There is a winner
-  QtShowWinnerDialog d;
-  d.setStyleSheet(this->styleSheet());
-
-  switch(m_board->GetWinner())
   {
-      case ConnectThree::player1:
-        d.SetPixmap(m_resources->GetPlayersFilenames()[0].c_str());
-        break;
-      case ConnectThree::player2:
-        d.SetPixmap(m_resources->GetPlayersFilenames()[1].c_str());
-        break;
-      case ConnectThree::player3:
-        d.SetPixmap(m_resources->GetPlayersFilenames()[2].c_str());
-        break;
-      default:
-        assert(!"Should not get here");
-        throw std::logic_error("Known value of GetCurrentPlayer in WtConnectThreeGameDialog::OnValidMove");
+
+    int index = -1;
+    switch(m_board->GetWinner())
+    {
+        case ConnectThree::player1: index = 0; break;
+        case ConnectThree::player2: index = 1; break;
+        case ConnectThree::player3: index = 2; break;
+        default:
+          assert(!"Should not get here");
+          throw std::logic_error("Known value of GetCurrentPlayer in WtConnectThreeGameDialog::OnValidMove");
+    }
+    QtShowWinnerDialog d(m_resources->GetPlayersFilenames()[index],m_resources->GetWinnerText());
+    d.setStyleSheet(this->styleSheet());
+
+    //this->hide();
+    d.exec();
   }
-  this->hide();
-  d.exec();
   this->close();
 }
 

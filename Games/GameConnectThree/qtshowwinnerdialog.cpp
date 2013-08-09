@@ -31,32 +31,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtshowwinnerdialog.h"
 #include "ui_qtshowwinnerdialog.h"
 
-QtShowWinnerDialog::QtShowWinnerDialog(QWidget *parent) :
-    QDialog(parent),
+QtShowWinnerDialog::QtShowWinnerDialog(
+  const std::string& filename,
+  const std::string& winner_text,
+  QWidget *parent)
+  : QDialog(parent),
     ui(new Ui::QtShowWinnerDialog)
 {
   ui->setupUi(this);
+  ui->label_image->setPixmap(QPixmap(filename.c_str()));
+  ui->label_footer->setText(winner_text.c_str());
+  ui->label_title->setText(winner_text.c_str());
 }
 
 QtShowWinnerDialog::~QtShowWinnerDialog()
 {
   delete ui;
 }
-
-void QtShowWinnerDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtShowWinnerDialog::SetPixmap(const std::string& filename)
-{
-  ui->label_image->setPixmap(QPixmap(filename.c_str()));
-}
-

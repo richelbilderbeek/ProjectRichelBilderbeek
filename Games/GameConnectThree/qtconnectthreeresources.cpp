@@ -56,7 +56,9 @@ QtConnectThreeResources::QtConnectThreeResources()
       "ConnectThreePlayer1Grey.png",
       "ConnectThreePlayer2Grey.png",
       "ConnectThreePlayer3Grey.png"
-    }
+    },
+    "Quit",
+    "Winner"
   )
 {
 

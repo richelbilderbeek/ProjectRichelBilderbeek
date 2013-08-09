@@ -46,7 +46,9 @@ ConnectThreeResources::ConnectThreeResources(
   const std::vector<std::string>& instructions_good_filenames,
   const std::string& instructions_wrong_filename,
   const std::vector<std::string>& players_filenames,
-  const std::vector<std::string>& players_grey_filenames
+  const std::vector<std::string>& players_grey_filenames,
+  const std::string& quit_text,
+  const std::string& winner_text
   )
   : m_computers_filenames(computers_filenames),
     m_computer_grey_filename(computer_grey_filename),
@@ -55,7 +57,9 @@ ConnectThreeResources::ConnectThreeResources(
     m_instructions_good_filenames(instructions_good_filenames),
     m_instructions_wrong_filename(instructions_wrong_filename),
     m_players_filenames(players_filenames),
-    m_players_grey_filenames(players_grey_filenames)
+    m_players_grey_filenames(players_grey_filenames),
+    m_quit_text(quit_text),
+    m_winner_text(winner_text)
 {
   Check();
 }

@@ -39,6 +39,12 @@ struct ConnectThreeResources
   const std::vector<std::string>& GetPlayersFilenames() const { return  m_players_filenames; }
   const std::vector<std::string>& GetPlayersGreyFilenames() const { return  m_players_grey_filenames; }
 
+  ///The text displayed at the Quit button
+  const std::string& GetQuitText() const { return m_quit_text; }
+
+  ///The text display at the Winner dialog
+  const std::string& GetWinnerText() const { return m_winner_text; }
+
   protected:
   ConnectThreeResources(
     const std::vector<std::string>& computers_filenames,
@@ -48,7 +54,9 @@ struct ConnectThreeResources
     const std::vector<std::string>& instructions_good_filenames,
     const std::string& instructions_wrong_filename,
     const std::vector<std::string>& players_filenames,
-    const std::vector<std::string>& players_grey_filenames
+    const std::vector<std::string>& players_grey_filenames,
+    const std::string& quit_text,
+    const std::string& winner_text
     );
 
   //const std::string m_background_filename;
@@ -60,6 +68,8 @@ struct ConnectThreeResources
   const std::string m_instructions_wrong_filename;
   const std::vector<std::string> m_players_filenames;
   const std::vector<std::string> m_players_grey_filenames;
+  const std::string m_quit_text;
+  const std::string m_winner_text;
   void Check();
   private:
   void CheckFile(const std::string& s);
