@@ -58,7 +58,14 @@ QtConnectThreeGameDialog::QtConnectThreeGameDialog(
     m_resources(resources)
 {
   ui->setupUi(this);
-  ui->layout_game->addWidget(m_board.get());
+
+  //Add board widget
+  {
+    assert(!ui->widget->layout());
+    QLayout * const mylayout = new QVBoxLayout;
+    mylayout->addWidget(m_board.get());
+    ui->widget->setLayout(mylayout);
+  }
 
   QObject::connect(ui->button_quit,SIGNAL(clicked()),
     this,SLOT(close()));
@@ -97,16 +104,19 @@ void QtConnectThreeGameDialog::OnValidMove()
     switch(active_player)
     {
       case ConnectThree::player1:
-        ui->label_current_player->setPixmap(
-          QPixmap(m_resources->GetPlayersFilenames()[0].c_str()));
+        ui->label_player1->setPixmap(QPixmap(m_resources->GetPlayersFilenames()[0].c_str()));
+        ui->label_player2->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[1].c_str()));
+        ui->label_player3->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[2].c_str()));
         break;
       case ConnectThree::player2:
-        ui->label_current_player->setPixmap(
-          QPixmap(m_resources->GetPlayersFilenames()[1].c_str()));
+        ui->label_player1->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[0].c_str()));
+        ui->label_player2->setPixmap(QPixmap(m_resources->GetPlayersFilenames()[1].c_str()));
+        ui->label_player3->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[2].c_str()));
         break;
       case ConnectThree::player3:
-        ui->label_current_player->setPixmap(
-          QPixmap(m_resources->GetPlayersFilenames()[2].c_str()));
+        ui->label_player1->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[0].c_str()));
+        ui->label_player2->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[1].c_str()));
+        ui->label_player3->setPixmap(QPixmap(m_resources->GetPlayersFilenames()[2].c_str()));
         break;
       default:
         assert(!"Should not get here");
