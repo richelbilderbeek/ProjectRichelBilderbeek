@@ -49,6 +49,7 @@ const About ConnectThreeMenuDialog::GetAbout()
     GetVersionHistory());
   a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
+  a.AddLibrary("Special thanks to Mark Wiering for his excellent bug reports");
   return a;
 }
 
