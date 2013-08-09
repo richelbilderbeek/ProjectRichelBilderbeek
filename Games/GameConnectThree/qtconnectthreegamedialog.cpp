@@ -75,9 +75,11 @@ QtConnectThreeGameDialog::QtConnectThreeGameDialog(
       &QtConnectThreeGameDialog::OnValidMove,
       this));
 
- //Put the dialog in the screen center
+  //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();
   this->move( screen.center() - this->rect().center() );
+
+  ui->button_quit->setText(resources->GetQuitText().c_str());
 
   OnValidMove(); //Draw screen
 }
@@ -131,20 +133,20 @@ void QtConnectThreeGameDialog::OnValidMove()
 
     return;
   }
-  //There is a winner
+  //There is a winner, or the screen is full
   {
-
-    int index = -1;
+    std::string filename;
     switch(m_board->GetWinner())
     {
-        case ConnectThree::player1: index = 0; break;
-        case ConnectThree::player2: index = 1; break;
-        case ConnectThree::player3: index = 2; break;
+        case ConnectThree::player1  : filename = m_resources->GetPlayersFilenames()[0]; break;
+        case ConnectThree::player2  : filename = m_resources->GetPlayersFilenames()[1]; break;
+        case ConnectThree::player3  : filename = m_resources->GetPlayersFilenames()[2]; break;
+        case ConnectThree::no_player: filename = m_resources->GetEmptyFilename(); break;
         default:
           assert(!"Should not get here");
           throw std::logic_error("Known value of GetCurrentPlayer in WtConnectThreeGameDialog::OnValidMove");
     }
-    QtShowWinnerDialog d(m_resources->GetPlayersFilenames()[index],m_resources->GetWinnerText());
+    QtShowWinnerDialog d(filename,m_resources->GetWinnerText());
     d.setStyleSheet(this->styleSheet());
     d.setWindowIcon(this->windowIcon());
 
