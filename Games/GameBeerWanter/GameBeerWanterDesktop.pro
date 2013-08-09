@@ -1,4 +1,4 @@
-QT += core gui
+QT += core gui widgets
 TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
