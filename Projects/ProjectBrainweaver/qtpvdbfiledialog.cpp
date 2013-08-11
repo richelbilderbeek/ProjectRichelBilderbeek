@@ -30,8 +30,8 @@ const boost::shared_ptr<QFileDialog> QtFileDialog::GetOpenFileDialog()
   d->setNameFilter(namefile.c_str());
 
   //Put the dialog in the screen center
-  const QRect screen = QApplication::desktop()->screenGeometry();
-  d->move( screen.center() - d->rect().center() );
+  //const QRect screen = QApplication::desktop()->screenGeometry();
+  //d->move( screen.center() - d->rect().center() );
 
   return d;
 }
@@ -58,8 +58,8 @@ const boost::shared_ptr<QFileDialog> QtFileDialog::GetSaveFileDialog()
   d->setNameFilter(namefile.c_str());
 
   //Put the dialog in the screen center
-  const QRect screen = QApplication::desktop()->screenGeometry();
-  d->move( screen.center() - d->rect().center() );
+  //const QRect screen = QApplication::desktop()->screenGeometry();
+  //d->move( screen.center() - d->rect().center() );
 
   return d;
 }

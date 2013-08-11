@@ -135,7 +135,6 @@ SOURCES += \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.cpp \
     ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.cpp \
     qtpvdbrateconcepttallydialog.cpp \
-    qtpvdbrateconcepttallymodel.cpp \
     pvdbcenternode.cpp \
     pvdbcenternodefactory.cpp \
     qtpvdbfiledialog.cpp
@@ -238,7 +237,6 @@ HEADERS  += \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.h \
     ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.h \
     qtpvdbrateconcepttallydialog.h \
-    qtpvdbrateconcepttallymodel.h \
     pvdbcenternode.h \
     pvdbcenternodefactory.h \
     qtpvdbfiledialog.h
