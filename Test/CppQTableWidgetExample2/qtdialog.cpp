@@ -27,8 +27,13 @@ QtDialog::QtDialog(QWidget *parent) :
         i->setFlags(
             Qt::ItemIsSelectable
           | Qt::ItemIsUserCheckable
-          | Qt::ItemIsEnabled
+          //| Qt::ItemIsEnabled
         );
+        //i->setFlags(
+        //    Qt::ItemIsSelectable
+        //  | Qt::ItemIsUserCheckable
+        //  | Qt::ItemIsEnabled
+        //);
         i->setCheckState(Qt::Unchecked);
       }
       else

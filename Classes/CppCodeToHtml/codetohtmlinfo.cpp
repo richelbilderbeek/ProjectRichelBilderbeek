@@ -1783,7 +1783,8 @@ const std::vector<std::string> Info::ToHtml() const
   {
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<p><a href=\"CppQTableWidgetExample1.htm\">QTableWidget example 1: display text</a> is a");
+    v.push_back("<a href=\"CppQTableWidget.htm\">QTableWidget</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("<li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>");
@@ -1795,11 +1796,11 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQTableWidgetExample2.htm\">QTableWidget example 2: checkboxes and text</a> is a");
-    v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
+    v.push_back("<a href=\"CppQTableWidget.htm\">QTableWidget</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableWidgetExample2.png\">View a screenshot of 'QTableWidgetExample2' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableWidgetExample2.zip\">Download the Qt Creator project 'QTableWidgetExample2' (zip)</a></li>");
+    v.push_back("<li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>");
+    v.push_back("<li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableWidgetExample3")
