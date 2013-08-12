@@ -1,8 +1,3 @@
-win32 {
-  #Add the line below when cross-compiling
-  #CONFIG += static
-}
-
 QT += core gui
 #QT += webkit
 
@@ -316,10 +311,10 @@ unix {
 
 win32 {
 
-  exists (../../Libraries/qwt-6.1/src) {
+  exists (../../Libraries/qwt-6.1.0/src) {
     message(Windows: Qwt: link dynamically)
-    INCLUDEPATH+= ../../Libraries/qwt-6.1/src
-    LIBS+= -L../../Libraries/qwt-6.1/lib
+    INCLUDEPATH+= ../../Libraries/qwt-6.1.0/src
+    LIBS+= -L../../Libraries/qwt-6.1.0/lib
 
     CONFIG(release, debug|release) {
       message(Windows: Qwt: Linking to qwt)
