@@ -41,6 +41,9 @@ public:
   ~QtShowWinnerDialog();
   void SetPixmap();
 
+protected:
+  void keyPressEvent(QKeyEvent *);
+
 private:
   Ui::QtShowWinnerDialog *ui;
 };

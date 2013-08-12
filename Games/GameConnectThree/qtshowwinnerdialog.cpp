@@ -29,6 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtshowwinnerdialog.h"
+
+#include <QKeyEvent>
+
 #include "ui_qtshowwinnerdialog.h"
 
 QtShowWinnerDialog::QtShowWinnerDialog(
@@ -42,9 +45,15 @@ QtShowWinnerDialog::QtShowWinnerDialog(
   ui->label_image->setPixmap(QPixmap(filename.c_str()));
   ui->label_footer->setText(winner_text.c_str());
   ui->label_title->setText(winner_text.c_str());
+  this->setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
 QtShowWinnerDialog::~QtShowWinnerDialog()
 {
   delete ui;
+}
+
+void QtShowWinnerDialog::keyPressEvent(QKeyEvent * e)
+{
+  if (e->key() == Qt::Key_Escape) { close(); return; }
 }

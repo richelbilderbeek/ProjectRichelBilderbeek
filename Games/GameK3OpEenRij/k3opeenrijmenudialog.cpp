@@ -29,12 +29,13 @@ const About K3OpEenRijMenuDialog::GetAbout()
     GetVersionHistory());
   a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
+  a.AddLibrary("Special thanks to Mark Wiering for his excellent bug reports");
   return a;
 }
 
 const std::string K3OpEenRijMenuDialog::GetVersion()
 {
-  return "5.1";
+  return "6.0";
 }
 
 const std::vector<std::string> K3OpEenRijMenuDialog::GetVersionHistory()
@@ -45,5 +46,6 @@ const std::vector<std::string> K3OpEenRijMenuDialog::GetVersionHistory()
   v.push_back("2009-12-31: version 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs");
   v.push_back("2013-08-06: version 5.0: port to Qt Creator");
   v.push_back("2013-08-06: version 5.1: allow selection of both Kathleen and Josje");
+  v.push_back("2013-08-09: version 6.0: implemented suggestions and bugfixes from Mark Wiering's report");
   return v;
 }
