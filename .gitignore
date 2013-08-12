@@ -33,6 +33,8 @@ Libraries/boost_1_53_0/
 Libraries/boost_*
 Libraries/bot.sh
 Libraries/cabalistic-ogredeps-70ef5cdddebb
+Libraries/CMakeFiles/
+Libraries/CMakeCache.txt
 Libraries/ircbot_fsx/
 Libraries/eggdrop1.6.21
 Libraries/Fritzing-Library/
@@ -40,6 +42,7 @@ Libraries/fparser4.4.3/
 Libraries/fparser4.5.1/
 Libraries/fparser4.3/
 Libraries/Hashcat/
+Libraries/irrlicht-1.8/
 Libraries/mxe/
 Libraries/ogre_src_v1-8-1/
 Libraries/OpenPCR/
