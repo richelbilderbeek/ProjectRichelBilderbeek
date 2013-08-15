@@ -65,6 +65,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "[LESS_THAN]cassert[GREATER_THAN]","[LESS_THAN]<a href=\"CppCas$sertH.htm\">cas$sert</a>[GREATER_THAN]" },
     { "[LESS_THAN]climits[GREATER_THAN]","[LESS_THAN]<a href=\"CppCl$imitsH.htm\">cl$imits</a>[GREATER_THAN]" },
     { "[LESS_THAN]clocale[GREATER_THAN]","[LESS_THAN]<a href=\"CppClo$caleH.htm\">clo$cale</a>[GREATER_THAN]" },
+    { "[LESS_THAN]csignal[GREATER_THAN]","[LESS_THAN]<a href=\"CppCs$ig$na$lH.htm\">c$si$gn$al</a>[GREATER_THAN]" },
     { "[LESS_THAN]cstdarg[GREATER_THAN]","[LESS_THAN]<a href=\"CppCs$tdargH.htm\">cs$tdarg</a>[GREATER_THAN]" },
     { "[LESS_THAN]cstdint[GREATER_THAN]","[LESS_THAN]<a href=\"CppCs$tdi$ntH.htm\">cs$td$i$nt</a>[GREATER_THAN]" },
 

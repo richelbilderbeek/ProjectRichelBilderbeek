@@ -34,25 +34,12 @@ The use of <a href="CppAssert.htm">assert</a> statements can help to
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example</h2>
+<h2>Examples</h2>
 <p>&nbsp;</p>
-<p>A division will only succeed if the denominator is unequal to zero. In your code, you will have to take care that a division by zero never occurs. Using assert, as shown in the code below, will take you to the problem directly.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x = <a href="CppComment.htm">/* something */</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y = <a href="CppComment.htm">/* something */</a>;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y!=0.0); <a href="CppComment.htm">//</a>Cannot divide by zero<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> z = x / y;<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <li><a href="CppAssertExample1.htm">assert example 1: basics</a></li>
+  <li><a href="CppAssertExample2.htm">assert example 2: basics with informative output</a></li>
+</ul>  
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
