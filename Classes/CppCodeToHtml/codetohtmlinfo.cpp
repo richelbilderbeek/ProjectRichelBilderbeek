@@ -199,6 +199,30 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppConvert.htm\">convert</a> images to");
     v.push_back("<a href=\"CppAsciiArt.htm\">ASCII art</a>.</p>");
   }
+  else if (m_page_name == "CppAssertExample1")
+  {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppAssertExample1.htm\">assert example 1: basics</a> is an <a href=\"CppAssert.htm\">assert</a> example.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>A division will only succeed if the denominator is unequal to zero. ");
+    v.push_back("In your code, you will have to take care that a division by zero never occurs. ");
+    v.push_back("Using <a href=\"CppAssert.htm\">assert</a>, as shown in the code below, will take you to the problem directly.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppAssertExample1.zip\">Download the Qt Creator project 'CppAssertExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppAssertExample2")
+  {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppAssertExample2.htm\">assert example 2: basics with informative output</a> is an <a href=\"CppAssert.htm\">assert</a> example.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppAssertExample2.zip\">Download the Qt Creator project 'CppAssertExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppBinaryNewickVector")
   {
     v.push_back("<p><a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> is a <a href=\"CppDataType.htm\">data type</a> ");

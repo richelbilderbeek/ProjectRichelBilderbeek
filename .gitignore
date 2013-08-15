@@ -9,6 +9,7 @@ ui_*
 moc_*
 qrc_*
 tmp*.txt
+\#*
 *.pro.user
 *.pro.autosave
 *.autosave
