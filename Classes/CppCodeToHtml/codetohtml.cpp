@@ -37,9 +37,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-//#include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 #include <boost/xpressive/xpressive.hpp>
+
+#include <QDir>
 
 #include "codetohtmlcontent.h"
 #include "codetohtmlfooter.h"
@@ -213,6 +214,11 @@ void Test()
     assert(GetFileBasename("MyFolder/MyFolder/tmp.txt") == std::string("tmp"));
     assert(GetFileBasename("MyFolder/MyFolder\\tmp.txt") == std::string("tmp"));
   }
+  //GetPath
+  {
+    assert(GetPath("C:\\any_path\\any_file.cpp")=="C:\\any_path");
+    assert(GetPath("/any_path/any_file.cpp")=="/any_path");
+  }
 }
 #endif
 
@@ -375,34 +381,18 @@ const std::string GetFileBasename(const std::string& filename)
 
 const std::vector<std::string> GetFilesInFolder(const std::string& folder)
 {
+  QDir dir(folder.c_str());
+  dir.setFilter(QDir::Files);
+  const QFileInfoList list = dir.entryInfoList();
+
+  //Convert QFileInfoList to std::vector<std::string> of filenames
   std::vector<std::string> v;
-
-  const boost::filesystem::path my_folder
-    = boost::filesystem::system_complete(
-        boost::filesystem::path(folder));
-
-  if (!boost::filesystem::is_directory(my_folder)) return v;
-
-  const boost::filesystem::directory_iterator j;
-  for ( boost::filesystem::directory_iterator i(my_folder);
-        i != j;
-        ++i)
+  const int size = list.size();
+  for (int i = 0; i != size; ++i)
   {
-    if ( IsRegularFile( i->status() ) )
-    {
-      #if BOOST_FILESYSTEM_VERSION == 2
-      const std::string filename = i->path().filename(); //Depreciated
-      #endif
-      #if BOOST_FILESYSTEM_VERSION == 3
-      const std::string filename = i->path().filename().string();
-      #endif
-      //Compile error will occur on new boost::filesystem version
-
-      const std::string full_filename = folder + "/" + filename;
-      v.push_back(full_filename);
-    }
+    const std::string file_name = list.at(i).fileName().toStdString();
+    v.push_back(file_name);
   }
-  TRACE(v.size());
   return v;
 }
 
@@ -424,6 +414,15 @@ const std::vector<std::string> GetFilesInFolder(
     [regex](const std::string& s) { return boost::regex_match(s,regex); } );
 
   return w;
+}
+
+const std::string GetPath(const std::string& filename)
+{
+  const int a = filename.rfind("\\",filename.size());
+  const int b = filename.rfind("/",filename.size());
+  const int i = std::max(a,b);
+  assert(i < static_cast<int>(filename.size()));
+  return filename.substr(0,i);
 }
 
 const std::vector<std::string> GetSortedFilesInFolder(const std::string& folder)

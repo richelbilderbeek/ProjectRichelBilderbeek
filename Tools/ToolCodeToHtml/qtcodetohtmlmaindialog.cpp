@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -42,7 +43,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 #pragma GCC diagnostic pop
 
@@ -173,13 +173,14 @@ void QtCodeToHtmlMainDialog::on_button_convert_clicked()
       GetTechInfo());
     const std::vector<std::string> v = d.ToHtml();
     Display(v);
-    boost::filesystem::remove(source);
+    std::remove(source.c_str());
+    //boost::filesystem::remove(source);
   }
   else
   {
     //Convert file or folder
     const std::string source = ui->edit_source->text().toStdString();
-    if (!boost::filesystem::exists(source))
+    if (!QFile::exists(source.c_str()))
     {
       ui->button_convert->setText("Source (file or folder) does not exist");
       ui->button_convert->setEnabled(false);
@@ -224,7 +225,7 @@ void QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
   {
     //assert(ui->tab_source->currentWidget() == ui->tab_source_snippet);
     const std::string source = ui->edit_source->text().toStdString();
-    if (!boost::filesystem::exists(source))
+    if (!QFile::exists(source.c_str()))
     {
       ui->button_convert->setText("Source (file or folder) does not exist");
       ui->button_convert->setEnabled(false);
@@ -241,14 +242,16 @@ void QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
 {
   const std::string source = ui->edit_source->text().toStdString();
 
-  if (!boost::filesystem::exists(source))
+  if (!QFile::exists(source.c_str()))
   {
     ui->button_convert->setText("Source does not exist");
     ui->button_convert->setEnabled(false);
     return;
   }
-  if (boost::filesystem::is_directory(source))
+
+  if (!c2h::IsRegularFile(source))
   {
+    //source is a folder
     const std::vector<std::string> v
       = c2h::SortFiles(
           c2h::FilterFiles(

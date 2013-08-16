@@ -33,8 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <stdexcept>
 
-//#include <boost/filesystem.hpp>
-
+#include "codetohtml.h"
 
 namespace c2h {
 

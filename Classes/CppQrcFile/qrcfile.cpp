@@ -42,7 +42,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/trim.hpp>
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 #include <boost/function.hpp>
 #include <boost/regex.hpp>
 #pragma GCC diagnostic pop

@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 
 //#include "trace.h"
 
@@ -524,6 +524,14 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppGetFilesInFolder.zip\">Download the Qt Creator project 'CppGetFilesInFolder' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppGetPath")
+  {
+    v.push_back("<p><a href=\"CppGetPath.htm\">GetPath</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's path.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppGetPath.zip\">Download the Qt Creator project 'CppGetPath' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppGetRegexMatches")

@@ -80,6 +80,10 @@ namespace c2h {
     const std::string& folder,
     const std::string& regex_str);
 
+  ///Returns the path of a filename
+  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
+  const std::string GetPath(const std::string& filename);
+
   #ifndef _WIN32
   ///Tests if the HTML is clean, this will be checked by the tool 'tidy'
   bool IsCleanHtml(const std::vector<std::string>& html);
@@ -91,7 +95,7 @@ namespace c2h {
 
   #ifndef _WIN32
   ///Check if the tool 'tidy' is installed
-  ///If not, user should 'sudo-apt get instal-l tidy'
+  ///If not, user should 'sudo-apt get install tidy'
   ///Or go to http://tidy.sourceforge.net
   bool IsTidyInstalled();
   #endif

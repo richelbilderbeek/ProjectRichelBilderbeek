@@ -38,8 +38,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-//#include <boost/filesystem.hpp>
-
 #include "codetohtmlcontent.h"
 #include "codetohtmldialog.h"
 #include "codetohtmlfooter.h"
@@ -169,9 +167,9 @@ const std::vector<std::string> Dialog::ToHtml() const
   //Source
   {
     const std::vector<std::string> w
-      = (boost::filesystem::is_directory(m_source)
-     ? c2h::ConvertFiles(m_source)
-     : c2h::ConvertFile(m_source,m_content_type));
+      = IsRegularFile(m_source)
+     ? c2h::ConvertFile(m_source,m_content_type)
+     : c2h::ConvertFiles(m_source) ;
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
 

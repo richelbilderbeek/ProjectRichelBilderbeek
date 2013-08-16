@@ -30,20 +30,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtcreatorprofilezipscript.h"
 
+#include <fstream>
 #include <functional>
 #include <iterator>
 #include <set>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>
 #pragma GCC diagnostic pop
 
+#include <QDir>
+
 //#include "createqtprojectzipfilepath.h"
 //#include "createqtprojectzipfilemenudialog.h"
+
 #include "qtcreatorprofile.h"
 //#include "createqtprojectzipfilepath.h"
 #include "qrcfile.h"
@@ -149,7 +152,8 @@ const std::set<std::string> QtCreatorProFileZipScript::ExtractFilenames(
   {
     const std::string qrc_filename_full
         = qrc_filename_raw.size() < 7 || qrc_filename_raw.substr(0,6) != std::string("../../")
-        ? boost::filesystem::path(pro_file->GetQtCreatorProFilename()).parent_path().string()
+        ? GetPath(pro_file->GetQtCreatorProFilename())
+        //? boost::filesystem::path(pro_file->GetQtCreatorProFilename()).parent_path().string()
             + "/" + qrc_filename_raw
         : qrc_filename_raw;
 
@@ -175,7 +179,8 @@ const std::set<std::string> QtCreatorProFileZipScript::ExtractFilenames(
     for (const std::string& filename : qrc_file->GetFiles())
     {
       const std::string full_resource_item_name
-        = boost::filesystem::path(qrc_filename_full).parent_path().string() + "/" + filename;
+        = GetPath(qrc_filename_full) + "/" + filename;
+      //  = boost::filesystem::path(qrc_filename_full).parent_path().string() + "/" + filename;
       assert(IsRegularFile(full_resource_item_name));
       v.push_back(full_resource_item_name);
     }
@@ -196,7 +201,8 @@ const std::set<std::string> QtCreatorProFileZipScript::ExtractFilenames(
     {
       //Add full path
       const std::string s
-        = boost::filesystem::path(pro_file->GetQtCreatorProFilename()).parent_path().string();
+        = GetPath(pro_file->GetQtCreatorProFilename());
+      //  = boost::filesystem::path(pro_file->GetQtCreatorProFilename()).parent_path().string();
       assert(s.size() > 6);
       const std::string t = s + "/" + filename;
       //TRACE(t);
@@ -226,35 +232,28 @@ const About QtCreatorProFileZipScript::GetAbout()
 
 const std::vector<std::string> QtCreatorProFileZipScript::GetFilesInFolder(const std::string& folder)
 {
+  QDir dir(folder.c_str());
+  dir.setFilter(QDir::Files);
+  const QFileInfoList list = dir.entryInfoList();
+
+  //Convert QFileInfoList to std::vector<std::string> of filenames
   std::vector<std::string> v;
-
-  const boost::filesystem::path my_folder
-    = boost::filesystem::system_complete(
-        boost::filesystem::path(folder));
-
-  if (!boost::filesystem::is_directory(my_folder)) return v;
-
-  const boost::filesystem::directory_iterator j;
-  for ( boost::filesystem::directory_iterator i(my_folder);
-        i != j;
-        ++i)
+  const int size = list.size();
+  for (int i = 0; i != size; ++i)
   {
-    if ( IsRegularFile( i->status() ) )
-    {
-      #if BOOST_FILESYSTEM_VERSION == 2
-      const std::string filename = i->path().filename(); //Depreciated
-      #endif
-      #if BOOST_FILESYSTEM_VERSION == 3
-      const std::string filename = i->path().filename().string();
-      #endif
-      //Compile error will occur on new boost::filesystem version
-
-      const std::string full_filename = folder + "/" + filename;
-      assert(IsRegularFile(full_filename));
-      v.push_back(full_filename);
-    }
+    const std::string file_name = list.at(i).fileName().toStdString();
+    v.push_back(file_name);
   }
   return v;
+}
+
+const std::string QtCreatorProFileZipScript::GetPath(const std::string& filename)
+{
+  const int a = filename.rfind("\\",filename.size());
+  const int b = filename.rfind("/",filename.size());
+  const int i = std::max(a,b);
+  assert(i < static_cast<int>(filename.size()));
+  return filename.substr(0,i);
 }
 
 const std::vector<std::string> QtCreatorProFileZipScript::GetProFilesInFolder(const std::string& folder)
@@ -285,6 +284,13 @@ const std::vector<std::string> QtCreatorProFileZipScript::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2013-05-19: version 1.0: initial version");
   return v;
+}
+
+bool QtCreatorProFileZipScript::IsRegularFile(const std::string& filename)
+{
+  std::fstream f;
+  f.open(filename.c_str(),std::ios::in);
+  return f.is_open();
 }
 
 const boost::shared_ptr<QtCreatorProFileZipScript> QtCreatorProFileZipScript::Merge(
@@ -357,6 +363,7 @@ void QtCreatorProFileZipScript::Test()
 
 std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script)
 {
+  //using QtCreatorProFileZipScript::GetPath;
   assert(script.GetProFileName().size() > 6);
   assert(script.GetProFileName().substr(0,6) == std::string("../../"));
 
@@ -399,11 +406,13 @@ std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& scrip
   //Add the folders added by the .pro file
   for (const std::string filename: file_names)
   {
-    std::string s = boost::filesystem::path(filename).parent_path().string();
+    std::string s = QtCreatorProFileZipScript::GetPath(filename);
+    //std::string s = boost::filesystem::path(filename).parent_path().string();
     while (!s.empty())
     {
       folder_names.insert(s);
-      s = boost::filesystem::path(s).parent_path().string();
+      s = QtCreatorProFileZipScript::GetPath(s);
+      //s = boost::filesystem::path(s).parent_path().string();
     }
   }
 
@@ -430,7 +439,8 @@ std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& scrip
     {
       //A file in the .pro file its folder
       os << "cp " << s << " Projects/"
-        << boost::filesystem::path(script.GetProFileName()).parent_path().string()
+        //<< boost::filesystem::path(script.GetProFileName()).parent_path().string()
+        << QtCreatorProFileZipScript::GetPath(script.GetProFileName())
         << s
         << '\n';
     }
@@ -438,7 +448,8 @@ std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& scrip
 
   os << '\n';
   os << "FILENAME=\""
-     << boost::filesystem::path( script.GetProFileName() ).parent_path().string()
+     << QtCreatorProFileZipScript::GetPath( script.GetProFileName() )
+     //<< boost::filesystem::path( script.GetProFileName() ).parent_path().string()
      << "Source\"" << '\n';
   os << "ZIP_FILENAME=$FILENAME\".zip\"" << '\n';
   os << '\n';
