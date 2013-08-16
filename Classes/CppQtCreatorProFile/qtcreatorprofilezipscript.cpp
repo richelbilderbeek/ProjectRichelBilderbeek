@@ -89,7 +89,7 @@ const std::vector<boost::shared_ptr<QtCreatorProFile> > QtCreatorProFileZipScrip
   std::vector<boost::shared_ptr<QtCreatorProFile> > pro_files;
   for (const std::string& filename: filenames)
   {
-    assert(boost::filesystem::is_regular_file(filename));
+    assert(IsRegularFile(filename));
     const boost::shared_ptr<QtCreatorProFile> pro_file(new QtCreatorProFile(filename));
     assert(pro_file);
     pro_files.push_back(pro_file);
@@ -156,13 +156,13 @@ const std::set<std::string> QtCreatorProFileZipScript::ExtractFilenames(
     assert(qrc_filename_full.size() > 6);
     assert(qrc_filename_full.substr(0,6) == std::string("../../"));
 
-    if (!boost::filesystem::is_regular_file(qrc_filename_full))
+    if (!IsRegularFile(qrc_filename_full))
     {
       const std::string s = "Warning: Resource file \'" + qrc_filename_full + "\' not found";
       TRACE(s);
       continue;
     }
-    assert(boost::filesystem::is_regular_file(qrc_filename_full));
+    assert(IsRegularFile(qrc_filename_full));
     assert(qrc_filename_full.size() > 6 && qrc_filename_full.substr(0,6) == std::string("../../"));
     assert(qrc_filename_full.size() > 7 && qrc_filename_full.substr(0,7) != std::string("../../."));
     const boost::shared_ptr<const QrcFile> qrc_file(
@@ -176,7 +176,7 @@ const std::set<std::string> QtCreatorProFileZipScript::ExtractFilenames(
     {
       const std::string full_resource_item_name
         = boost::filesystem::path(qrc_filename_full).parent_path().string() + "/" + filename;
-      assert(boost::filesystem::is_regular_file(full_resource_item_name));
+      assert(IsRegularFile(full_resource_item_name));
       v.push_back(full_resource_item_name);
     }
   }
@@ -239,7 +239,7 @@ const std::vector<std::string> QtCreatorProFileZipScript::GetFilesInFolder(const
         i != j;
         ++i)
   {
-    if ( boost::filesystem::is_regular_file( i->status() ) )
+    if ( IsRegularFile( i->status() ) )
     {
       #if BOOST_FILESYSTEM_VERSION == 2
       const std::string filename = i->path().filename(); //Depreciated
@@ -250,7 +250,7 @@ const std::vector<std::string> QtCreatorProFileZipScript::GetFilesInFolder(const
       //Compile error will occur on new boost::filesystem version
 
       const std::string full_filename = folder + "/" + filename;
-      assert(boost::filesystem::is_regular_file(full_filename));
+      assert(IsRegularFile(full_filename));
       v.push_back(full_filename);
     }
   }
@@ -329,9 +329,9 @@ void QtCreatorProFileZipScript::Test()
     };
   for (const std::string& pro_file_name: pro_file_names)
   {
-    if (!boost::filesystem::is_regular_file(pro_file_name)) continue;
+    if (!IsRegularFile(pro_file_name)) continue;
 
-    assert(boost::filesystem::is_regular_file(pro_file_name));
+    assert(IsRegularFile(pro_file_name));
     const boost::shared_ptr<const QtCreatorProFile> pro_file(
       new QtCreatorProFile(pro_file_name) );
     assert(pro_file);
@@ -343,13 +343,13 @@ void QtCreatorProFileZipScript::Test()
     const std::set<std::string> filenames = zip_script->GetFilenames();
     for (const std::string& filename: filenames)
     {
-      if (!boost::filesystem::is_regular_file(filename))
+      if (!IsRegularFile(filename))
       {
         const std::string warning = "Warning: file \'" + filename + "\' not found";
         TRACE(warning);
         continue;
       }
-      assert(boost::filesystem::is_regular_file(filename));
+      assert(IsRegularFile(filename));
     }
   }
 }

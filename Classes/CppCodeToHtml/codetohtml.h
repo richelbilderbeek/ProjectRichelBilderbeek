@@ -85,6 +85,10 @@ namespace c2h {
   bool IsCleanHtml(const std::vector<std::string>& html);
   #endif
 
+  ///Determines if a filename is a regular file
+  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
+  bool IsRegularFile(const std::string& filename);
+
   #ifndef _WIN32
   ///Check if the tool 'tidy' is installed
   ///If not, user should 'sudo-apt get instal-l tidy'

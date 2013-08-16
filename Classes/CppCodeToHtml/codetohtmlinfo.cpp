@@ -1338,6 +1338,10 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppHelloWorldQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorWindows' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppIsRegularFile")
+  {
+    v.push_back("<p><a href=\"CppIsRegularFile.htm\">IsRegularFile</a> is a <a href=\"CppFileIo.htm\">file I/O</a>  <a href=\"CppCodeSnippets.htm\">code snippet</a> to determine if a filename is a regular file.</p>");
+  }
   else if (m_page_name == "CppLibcvautomationExample1")
   {
     v.push_back("<p><a href=\"CppLibcvautomationExample1.htm\">libcvautomation example 1: using an example</a> is a");

@@ -54,8 +54,8 @@ QrcFile::QrcFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  if(!boost::filesystem::is_regular_file(filename)) TRACE(filename);
-  assert(boost::filesystem::is_regular_file(filename)
+  if(!IsRegularFile(filename)) TRACE(filename);
+  assert(IsRegularFile(filename)
     && "QrcFile::QrcFile error: .qrc file must exist");
   #endif
 
@@ -79,7 +79,7 @@ QrcFile::QrcFile(const std::string& filename)
 
 const std::vector<std::string> QrcFile::FileToVector(const std::string& filename)
 {
-  assert(boost::filesystem::is_regular_file(filename));
+  assert(IsRegularFile(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;

@@ -84,7 +84,7 @@ void Dialog::Test()
   if (IsTidyInstalled())
   {
     const std::string filename = "../ToolCodeToHtml/qtmain.cpp";
-    if (boost::filesystem::is_regular_file(filename))
+    if (IsRegularFile(filename))
     {
       Dialog d(PageType::cpp,filename,ContentType::cpp,TechInfoType::automatic);
       const std::vector<std::string> v = d.ToHtml();

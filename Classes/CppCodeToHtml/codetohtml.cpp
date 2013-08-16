@@ -65,7 +65,7 @@ bool IsCleanHtml(const std::vector<std::string>& html)
   //Remove previous HTML file
   {
     std::remove(temp_filename.c_str());
-    assert(!boost::filesystem::is_regular_file(temp_filename));
+    assert(!IsRegularFile(temp_filename));
   }
   //Write HTML to file
   {
@@ -74,7 +74,7 @@ bool IsCleanHtml(const std::vector<std::string>& html)
   }
   //Start tidy, creates output file
   {
-    assert(boost::filesystem::is_regular_file(temp_filename));
+    assert(IsRegularFile(temp_filename));
     const std::string command = "tidy -q -e -f " + temp_filename_tidy + " " + temp_filename;
     const int error = std::system(command.c_str());
     if (error)
@@ -91,7 +91,7 @@ bool IsCleanHtml(const std::vector<std::string>& html)
       return false;
     }
     assert(!error);
-    assert(boost::filesystem::is_regular_file(temp_filename_tidy));
+    assert(IsRegularFile(temp_filename_tidy));
   }
   const auto v = FileToVector(temp_filename_tidy);
 
@@ -119,17 +119,17 @@ bool IsTidyInstalled()
   const std::string temp_filename_tidy = "tmp_tidy_output.txt";
 
   std::remove(temp_filename_tidy.c_str());
-  assert(!boost::filesystem::is_regular_file(temp_filename_tidy));
+  assert(!IsRegularFile(temp_filename_tidy));
 
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
   const std::string command = "tidy -v 2> " + temp_filename_tidy;
   const int error = std::system(command.c_str());
   //assert(ok == 0 && "While I know I have tidy installed");
-  //assert(boost::filesystem::is_regular_file(temp_filename_tidy) && "While I know I have tidy installed");
-  if (!boost::filesystem::is_regular_file(temp_filename_tidy)) return false;
+  //assert(IsRegularFile(temp_filename_tidy) && "While I know I have tidy installed");
+  if (!IsRegularFile(temp_filename_tidy)) return false;
 
   std::remove(temp_filename_tidy.c_str());
-  assert(!boost::filesystem::is_regular_file(temp_filename_tidy));
+  assert(!IsRegularFile(temp_filename_tidy));
 
   return !error;
 }
@@ -327,11 +327,11 @@ const std::vector<std::string> ConvertProject(const std::string& filename)
 
 const std::vector<std::string> FileToVector(const std::string& filename)
 {
-  if (!boost::filesystem::is_regular_file(filename))
+  if (!IsRegularFile(filename))
   {
     TRACE(filename);
   }
-  assert(boost::filesystem::is_regular_file(filename));
+  assert(IsRegularFile(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
@@ -388,7 +388,7 @@ const std::vector<std::string> GetFilesInFolder(const std::string& folder)
         i != j;
         ++i)
   {
-    if ( boost::filesystem::is_regular_file( i->status() ) )
+    if ( IsRegularFile( i->status() ) )
     {
       #if BOOST_FILESYSTEM_VERSION == 2
       const std::string filename = i->path().filename(); //Depreciated
@@ -454,6 +454,14 @@ const std::vector<std::string> FilterFiles(const std::vector<std::string>& files
   TRACE(v.size());
   return v;
 }
+
+bool IsRegularFile(const std::string& filename)
+{
+  std::fstream f;
+  f.open(filename.c_str(),std::ios::in);
+  return f.is_open();
+}
+
 
 const std::vector<std::string> SortFiles(std::vector<std::string> files)
 {

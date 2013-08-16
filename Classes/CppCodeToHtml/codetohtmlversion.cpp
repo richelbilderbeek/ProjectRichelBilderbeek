@@ -56,7 +56,7 @@ namespace Version
 
 const std::vector<std::string> FileToVector(const std::string& filename)
 {
-  assert(boost::filesystem::is_regular_file(filename));
+  assert(IsRegularFile(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
