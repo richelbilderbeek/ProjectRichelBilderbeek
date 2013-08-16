@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 
 
@@ -201,6 +201,18 @@ void Test()
     v = SortFiles(FilterFiles(v));
     assert(v == result);
   }
+  //GetFileBasename
+  {
+    assert(GetFileBasename("") == std::string(""));
+    assert(GetFileBasename("tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("tmp") == std::string("tmp"));
+    assert(GetFileBasename("MyFolder/tmp") == std::string("tmp"));
+    assert(GetFileBasename("MyFolder/tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("MyFolder\\tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("MyFolder/MyFolder/tmp") == std::string("tmp"));
+    assert(GetFileBasename("MyFolder/MyFolder/tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("MyFolder/MyFolder\\tmp.txt") == std::string("tmp"));
+  }
 }
 #endif
 
@@ -246,7 +258,7 @@ const std::vector<std::string> ConvertFolder(
 {
   std::vector<std::string> v;
   {
-    const boost::shared_ptr<Header> h(new Header(page_type,boost::filesystem::basename(foldername)));
+    const boost::shared_ptr<Header> h(new Header(page_type,GetFileBasename(foldername)));
     const std::vector<std::string> w = h->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
@@ -282,7 +294,7 @@ const std::vector<std::string> ConvertProject(const std::string& filename)
 
   std::vector<std::string> v;
   {
-    const boost::shared_ptr<Header> h(new Header(PageType::cpp,boost::filesystem::basename(filename)));
+    const boost::shared_ptr<Header> h(new Header(PageType::cpp,GetFileBasename(filename)));
     const std::vector<std::string> w = h->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
@@ -329,6 +341,21 @@ const std::vector<std::string> FileToVector(const std::string& filename)
     v.push_back(s);
   }
   return v;
+}
+
+const std::string GetFileBasename(const std::string& filename)
+{
+  const boost::xpressive::sregex rex
+    = boost::xpressive::sregex::compile(
+      "((.*)(/|\\\\))?([A-Za-z]*)((\\.)([A-Za-z]*))?" );
+  boost::xpressive::smatch what;
+
+  if( boost::xpressive::regex_match( filename, what, rex ) )
+  {
+    return what[4];
+  }
+
+  return "";
 }
 
 const std::vector<std::string> GetFilesInFolder(const std::string& folder)
@@ -418,8 +445,8 @@ const std::vector<std::string> SortFiles(std::vector<std::string> files)
   std::sort(files.begin(), files.end(),
     [](const std::string& lhs,const std::string& rhs)
     {
-      const std::string lhs_base = boost::filesystem::basename(lhs);
-      const std::string rhs_base = boost::filesystem::basename(rhs);
+      const std::string lhs_base = GetFileBasename(lhs);
+      const std::string rhs_base = GetFileBasename(rhs);
       const std::string lhs_ext = boost::filesystem::extension(lhs);
       const std::string rhs_ext = boost::filesystem::extension(rhs);
       static const std::string pro(".pro");

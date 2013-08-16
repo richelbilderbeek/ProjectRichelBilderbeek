@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <stdexcept>
 
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 
 
 namespace c2h {
@@ -67,7 +67,7 @@ const std::string Header::CreateFilename(
   else
   {
     assert(!filename_original.empty());
-    return boost::filesystem::basename(filename_original) + ".htm";
+    return GetFileBasename(filename_original) + ".htm";
   }
 }
 
@@ -91,7 +91,7 @@ const std::string Header::CreateTitle(
   else
   {
     assert(!filename.empty());
-    std::string s = boost::filesystem::basename(filename);
+    std::string s = GetFileBasename(filename);
     int chars_to_strip = 0;
     if (s.size() > 3 && s.substr(0,3) == "Cpp") chars_to_strip = 3;
     else if (s.size() > 4 && s.substr(0,4) == "Song") chars_to_strip = 4;
