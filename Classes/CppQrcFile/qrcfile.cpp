@@ -42,7 +42,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/trim.hpp>
-//#include <boost/filesystem.hpp>
 #include <boost/function.hpp>
 #include <boost/regex.hpp>
 #pragma GCC diagnostic pop
@@ -54,8 +53,8 @@ QrcFile::QrcFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  if(!IsRegularFile(filename)) TRACE(filename);
-  assert(IsRegularFile(filename)
+  if(!FileExists(filename)) TRACE(filename);
+  assert(FileExists(filename)
     && "QrcFile::QrcFile error: .qrc file must exist");
   #endif
 
@@ -77,9 +76,16 @@ QrcFile::QrcFile(const std::string& filename)
   }
 }
 
+bool QrcFile::FileExists(const std::string& filename)
+{
+  std::fstream f;
+  f.open(filename.c_str(),std::ios::in);
+  return f.is_open();
+}
+
 const std::vector<std::string> QrcFile::FileToVector(const std::string& filename)
 {
-  assert(IsRegularFile(filename));
+  assert(FileExists(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;

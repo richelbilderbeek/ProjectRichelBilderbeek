@@ -49,6 +49,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/regex.hpp>
 #pragma GCC diagnostic pop
 
+#include <QFile>
+
 #include "trace.h"
 
 QtCreatorProFile::QtCreatorProFile(const std::string& filename)
@@ -58,7 +60,7 @@ QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   Test();
   #endif
 
-  assert(IsRegularFile(filename));
+  assert(QFile::exists(filename.c_str()));
 
   //if (!IsRegularFile(filename))
   //{
@@ -72,7 +74,7 @@ QtCreatorProFile::QtCreatorProFile(const std::string& filename)
 
 const std::vector<std::string> QtCreatorProFile::FileToVector(const std::string& filename)
 {
-  assert(IsRegularFile(filename));
+  assert(QFile::exists(filename.c_str()));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;

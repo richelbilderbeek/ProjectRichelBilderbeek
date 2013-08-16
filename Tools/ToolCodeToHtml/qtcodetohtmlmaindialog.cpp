@@ -266,7 +266,7 @@ void QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
   }
   else
   {
-    assert(boost::filesystem::exists(source));
+    assert(QFile::exists(source.c_str()));
     ui->button_convert->setText("Convert (source type: file)");
     ui->button_convert->setEnabled(true);
   }

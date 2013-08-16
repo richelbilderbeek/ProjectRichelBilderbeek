@@ -51,12 +51,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WConfig.h>
 #endif
 
+#include "codetohtml.h"
+
 namespace Version
 {
 
 const std::vector<std::string> FileToVector(const std::string& filename)
 {
-  assert(IsRegularFile(filename));
+  assert(c2h::IsRegularFile(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
