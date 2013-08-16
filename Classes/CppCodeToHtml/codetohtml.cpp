@@ -39,7 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 //#include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
-
+#include <boost/xpressive/xpressive.hpp>
 
 #include "codetohtmlcontent.h"
 #include "codetohtmlfooter.h"
@@ -289,7 +289,7 @@ const std::vector<std::string> ConvertFolder(
 
 const std::vector<std::string> ConvertProject(const std::string& filename)
 {
-  assert(boost::filesystem::extension(filename) == ".pro");
+  assert(GetExtension(filename) == ".pro");
   boost::shared_ptr<QtCreatorProFile> pro_file(new QtCreatorProFile(filename));
 
   std::vector<std::string> v;
@@ -341,6 +341,21 @@ const std::vector<std::string> FileToVector(const std::string& filename)
     v.push_back(s);
   }
   return v;
+}
+
+const std::string GetExtension(const std::string& filename)
+{
+  const boost::xpressive::sregex rex
+    = boost::xpressive::sregex::compile(
+      "(.*)?(\\.[A-Za-z]*)" );
+  boost::xpressive::smatch what;
+
+  if( boost::xpressive::regex_match( filename, what, rex ) )
+  {
+    return what[2];
+  }
+
+  return "";
 }
 
 const std::string GetFileBasename(const std::string& filename)
@@ -425,7 +440,7 @@ const std::vector<std::string> FilterFiles(const std::vector<std::string>& files
     [](const std::string& file)
     {
       TRACE(file);
-      const std::string ext = boost::filesystem::extension(file);
+      const std::string ext = GetExtension(file);
       return
            ext == ".c"
         || ext == ".cpp"
@@ -447,8 +462,8 @@ const std::vector<std::string> SortFiles(std::vector<std::string> files)
     {
       const std::string lhs_base = GetFileBasename(lhs);
       const std::string rhs_base = GetFileBasename(rhs);
-      const std::string lhs_ext = boost::filesystem::extension(lhs);
-      const std::string rhs_ext = boost::filesystem::extension(rhs);
+      const std::string lhs_ext = GetExtension(lhs);
+      const std::string rhs_ext = GetExtension(rhs);
       static const std::string pro(".pro");
       static const std::string sh(".sh");
       static const std::string h(".h");

@@ -58,7 +58,7 @@ Content::Content(
   const std::vector<std::string>& content)
     : m_content_type(DeduceContentType(filename)),
       m_contents(content),
-      m_filename(GetFileBasename(filename) + boost::filesystem::extension(filename))
+      m_filename(GetFileBasename(filename) + GetExtension(filename))
 {
 
 }
@@ -69,7 +69,7 @@ Content::Content(
   const ContentType content_type)
     : m_content_type(content_type),
       m_contents(content),
-      m_filename(GetFileBasename(filename) + boost::filesystem::extension(filename))
+      m_filename(GetFileBasename(filename) + GetExtension(filename))
 {
 
 }

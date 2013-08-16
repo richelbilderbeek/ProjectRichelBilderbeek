@@ -508,6 +508,16 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppClass.htm\">class</a> for a");
     v.push_back("<a href=\"CppGaborFilter.htm\">Gabor filter</a> <a href=\"CppWidget.htm\">widget</a>.</p>");
   }
+  else if (m_page_name == "CppGetExtension")
+  {
+    v.push_back("<p><a href=\"CppGetExtension.htm\">GetExtension</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's extension.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>Thanks goes to Curtis Krauskopf, who supported me to improve the (terrible and error-prone) STL version GetExtension.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppGetExtension.zip\">Download the Qt Creator project 'CppGetExtension' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppGetFilesInFolder")
   {
     v.push_back("<p><a href=\"CppGetFilesInFolder.htm\">GetFilesInFolder</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to obtain all filenames in a folder.</p>");

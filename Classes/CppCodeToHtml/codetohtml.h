@@ -65,6 +65,10 @@ namespace c2h {
   ///Filter files: only let .pro, .h, .hpp, . cpp, .c and .sh files pass
   const std::vector<std::string> FilterFiles(const std::vector<std::string>& files);
 
+  //Returns the extension of a filename
+  //From http://www.richelbilderbeek.nl/CppGetExtension.htm
+  const std::string GetExtension(const std::string& filename);
+
   ///Obtain the basename of a file, e.g. '/Folder/temp.txt' -> 'temp'
   ///From http://www.richelbilderbeek.nl/CppGetFileBasename.htm
   const std::string GetFileBasename(const std::string& filename);
