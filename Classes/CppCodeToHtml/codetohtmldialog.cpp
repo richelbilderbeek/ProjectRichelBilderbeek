@@ -64,7 +64,7 @@ Dialog::Dialog(
   #endif
 
   //Check source
-  assert(boost::filesystem::exists(source)
+  assert(IsFolder(source)
     && "Source can be a file or a path");
 }
 

@@ -454,6 +454,11 @@ const std::vector<std::string> FilterFiles(const std::vector<std::string>& files
   return v;
 }
 
+bool IsFolder(const std::string& filename)
+{
+  return QDir(filename.c_str()).exists();
+}
+
 bool IsRegularFile(const std::string& filename)
 {
   std::fstream f;
