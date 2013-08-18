@@ -25,12 +25,12 @@
 #include "trace.h"
 #include "ui_qtpvdbviewtestsdialog.h"
 
-QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtPvdbViewTestsDialog),
-  m_c(pvdb::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
-  m_h(pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps()),
-  m_s(pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps())
+QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtPvdbViewTestsDialog),
+    m_c(pvdb::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
+    m_h(pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps()),
+    m_s(pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps())
 {
 
   ui->setupUi(this);
@@ -187,8 +187,8 @@ void QtPvdbViewTestsDialog::Test()
   }
   TRACE("Started QtPvdbViewTestsDialog::Test");
   QtPvdbViewTestsDialog d;
-  //d.show();
-  d.exec();
+  d.show();
+  //d.exec();
   d.update();
   d.resize(100,100);
   d.show();
@@ -196,6 +196,7 @@ void QtPvdbViewTestsDialog::Test()
   d.resize(200,200);
   d.show();
   d.update();
+  d.close();
   TRACE("QtPvdbViewTestsDialog::Test finished successfully");
 }
 #endif

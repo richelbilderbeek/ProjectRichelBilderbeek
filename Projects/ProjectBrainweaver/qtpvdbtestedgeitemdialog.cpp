@@ -322,11 +322,11 @@ void QtPvdbTestEdgeItemDialog::Test()
     {
   #endif
   TRACE("QtPvdbTestEdgeItemDialog::Test started");
-  boost::shared_ptr<QtPvdbTestEdgeItemDialog> parent(new QtPvdbTestEdgeItemDialog);
+  //boost::shared_ptr<QtPvdbTestEdgeItemDialog> parent(new QtPvdbTestEdgeItemDialog);
   boost::shared_ptr<QtPvdbTestEdgeItemDialog> d(new QtPvdbTestEdgeItemDialog);
-  assert(parent);
+  //assert(parent);
   assert(d);
-  parent->ShowChild(d.get());
+  //parent->ShowChild(d.get());
   assert(d->m_edge);
   assert(d->m_edge->GetConcept());
   assert(d->m_edge_item);

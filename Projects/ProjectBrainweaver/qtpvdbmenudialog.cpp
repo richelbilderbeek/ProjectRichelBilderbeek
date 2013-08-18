@@ -149,6 +149,8 @@ void QtPvdbMenuDialog::on_button_rating_clicked()
 
 void QtPvdbMenuDialog::on_button_student_clicked()
 {
+  if (!m_show_child_dialogs_modal) return;
+
   const auto d = pvdb::QtFileDialog::GetOpenFileDialog();
   d->setWindowTitle("Kies een assessment bestand");
   const int status = d->exec();
