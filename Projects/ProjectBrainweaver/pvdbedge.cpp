@@ -162,7 +162,14 @@ void pvdb::Edge::Test()
       assert(IsEqual(*c->GetTo(),*nodes[1]));
       const std::string s = ToXml(c,AddConst(nodes));
       const boost::shared_ptr<pvdb::Edge> d = pvdb::EdgeFactory::FromXml(s,nodes);
-      assert(IsEqual(*c,*d));
+      assert(d);
+      if (!IsEqual(*c,*d))
+      {
+        TRACE("BREAK");
+        TRACE(ToXml(c,AddConst(nodes)));
+        TRACE(ToXml(d,AddConst(nodes)));
+      }
+      assert(IsEqual(*c,*d)); //HIERO
     }
   }
   TRACE("Edge::Test finished successfully");
@@ -217,6 +224,15 @@ namespace pvdb {
 bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs)
 {
   assert(lhs.GetConcept()); assert(rhs.GetConcept());
+  #ifndef NDEBUG
+  if (!IsEqual(*lhs.GetConcept(),*rhs.GetConcept())) TRACE("Concept differs");
+  if (!IsEqual(*lhs.GetFrom(),*rhs.GetFrom())) TRACE("From node differs");
+  if (!IsEqual(*lhs.GetTo(),*rhs.GetTo())) TRACE("To node differs");
+  if (!lhs.GetX()         == rhs.GetX()) TRACE("X differs");
+  if (!lhs.GetY()         == rhs.GetY()) TRACE("Y differs");
+  if (!lhs.HasHeadArrow() == rhs.HasHeadArrow()) TRACE("Has head arrow differs");
+  if (!lhs.HasTailArrow() == rhs.HasTailArrow()) TRACE("Has tail arrow differs");
+  #endif
   return
        IsEqual(*lhs.GetConcept(),*rhs.GetConcept())
     && IsEqual(*lhs.GetFrom(),*rhs.GetFrom())

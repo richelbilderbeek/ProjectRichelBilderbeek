@@ -124,6 +124,7 @@ void QtPvdbMenuDialog::on_button_rate_concept_clicked()
 
 void QtPvdbMenuDialog::on_button_rate_concept_map_clicked()
 {
+  TRACE("***");
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   const boost::shared_ptr<pvdb::ConceptMap> concept_map
     = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);

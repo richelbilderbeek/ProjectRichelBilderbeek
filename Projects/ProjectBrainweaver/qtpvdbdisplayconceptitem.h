@@ -20,6 +20,8 @@
 ///QtPvdbDisplayConcept display a Concept
 struct QtPvdbDisplayConceptItem : public QtPvdbConceptItem
 {
+  ~QtPvdbDisplayConceptItem();
+
   //concept can be modified (as it is not const), but I can promise I will try to prevent this from happening
   explicit QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb::Concept>& concept);
 

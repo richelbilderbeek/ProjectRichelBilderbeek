@@ -52,7 +52,7 @@ IrcBot::IrcBot(
   {
     switch (count)
     {
-      case 1: //Note: must be 2 on e.g. irc.freenode.net
+      case 2: //Note: must be 2 on e.g. irc.freenode.net
       {
         const std::string nickname_str = "NICK " + bot_name + "\r\n";
         send(socket_index,nickname_str.c_str(),nickname_str.size(),0);
@@ -61,7 +61,7 @@ IrcBot::IrcBot(
         send(socket_index,user_str.c_str(),user_str.size(),0);
       }
       break;
-      case 2: //Note: must be 3 on e.g. irc.freenode.net
+      case 3: //Note: must be 3 on e.g. irc.freenode.net
       {
         const std::string joinmsg = "JOIN " + channel_name + "\r\n";
         send(socket_index,joinmsg.c_str(),joinmsg.size(),0);

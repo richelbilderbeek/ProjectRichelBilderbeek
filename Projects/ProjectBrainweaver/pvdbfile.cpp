@@ -227,6 +227,11 @@ const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
   //m_question
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<question>.*</question>)"));
+    if (v.empty())
+    {
+      TRACE("BREAK");
+      TRACE(s);
+    }
     assert(!v.empty());
     assert(v.size() == 1);
     f->m_question = pvdb::StripXmlTag(v[0]);

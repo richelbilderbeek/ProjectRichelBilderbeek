@@ -2,6 +2,9 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TEMPLATE = app
 
+#For gprof
+QMAKE_CXXFLAGS_DEBUG += -pg
+QMAKE_LFLAGS_DEBUG += -pg
 
 DEFINES += PVDB_USE_FORWARD_DECLARATIONS_248738
 #DEFINES += PVDB_KEEP_NAMESPACE_IN_CPP_FILES

@@ -8,6 +8,7 @@
 #include "qtpvdbdisplayconceptitem.h"
 
 #include <cstdlib>
+#include <sstream>
 
 #include <QKeyEvent>
 
@@ -24,6 +25,11 @@ QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb:
 {
   #ifndef NDEBUG
   Test();
+  {
+    std::stringstream s;
+    s << "QtPvdbDisplayConceptItem constructor: " << this << '\n';
+    TRACE(s.str());
+  }
   assert(concept);
   assert(GetConcept());
   #endif
@@ -60,8 +66,16 @@ QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb:
     );
 }
 
+QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
+{
+  std::stringstream s;
+  s << "QtPvdbDisplayConceptItem destructor: " << this << '\n';
+  TRACE(s.str());
+}
+
 void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
 {
+  TRACE("Start of void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
 
@@ -136,7 +150,6 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
       new_indicator_pen = QPen(QColor(0,255,0),1); //Thin pen
     }
   }
-
   if (this->brush() != new_main_brush
     || this->GetIndicatorBrush() != new_indicator_brush
     || this->GetIndicatorPen() != new_indicator_pen)
@@ -152,4 +165,5 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
     this->m_signal_item_has_updated(this); //Obligatory
     this->m_signal_request_scene_update(); //Obligatory
   }
+  TRACE("End of void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
 }

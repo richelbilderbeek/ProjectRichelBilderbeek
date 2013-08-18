@@ -40,9 +40,20 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbRateConceptDialog),
+    m_button_ok_clicked(false),
     m_concept(sub_concept_map
       ? sub_concept_map->GetNodes().at(0)->GetConcept()
       : boost::shared_ptr<pvdb::Concept>() ),
+    m_initial_complexity(sub_concept_map
+      ? sub_concept_map->GetNodes().at(0)->GetConcept()->GetRatingComplexity()
+      : -1 ),
+    m_initial_concreteness(sub_concept_map
+      ? sub_concept_map->GetNodes().at(0)->GetConcept()->GetRatingConcreteness()
+      : -1),
+    m_initial_specificity(sub_concept_map
+      ? sub_concept_map->GetNodes().at(0)->GetConcept()->GetRatingSpecificity()
+      : -1),
+
     m_sub_concept_map(sub_concept_map),
     m_widget(new QtPvdbConceptMapRateWidget(sub_concept_map))
 {
@@ -56,17 +67,16 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   assert(!m_sub_concept_map->GetNodes().empty());
   assert(m_sub_concept_map->GetNodes()[0]);
 
-  {
-    assert(m_widget);
-    assert(ui->concept_map_layout);
-    ui->concept_map_layout->addWidget(m_widget);
-  }
+  assert(m_widget);
+  assert(ui->concept_map_layout);
+
+  ui->concept_map_layout->addWidget(m_widget.get());
 
   assert(m_concept);
 
-  ui->box_complexity->setCurrentIndex(m_concept->GetRatingComplexity());
-  ui->box_concreteness->setCurrentIndex(m_concept->GetRatingConcreteness());
-  ui->box_specificity->setCurrentIndex(m_concept->GetRatingSpecificity());
+  ui->box_complexity->setCurrentIndex(m_initial_complexity);
+  ui->box_concreteness->setCurrentIndex(m_initial_concreteness);
+  ui->box_specificity->setCurrentIndex(m_initial_specificity);
   ui->box_complexity->setFocus();
 
   //Set suggestions
@@ -98,6 +108,15 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
 
 QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog()
 {
+  //If user clicked OK, keep the current ratings (which are updated by the comboboxes)
+  //else the user cancelled, so put back the initial ratings
+  if (!m_button_ok_clicked && m_concept)
+  {
+    m_concept->SetRatingComplexity(m_initial_complexity);
+    m_concept->SetRatingConcreteness(m_initial_concreteness);
+    m_concept->SetRatingSpecificity(m_initial_specificity);
+  }
+
   delete ui;
 }
 
@@ -109,28 +128,10 @@ void QtPvdbRateConceptDialog::keyPressEvent(QKeyEvent* e)
 
 void QtPvdbRateConceptDialog::on_button_ok_clicked()
 {
-  if (!m_concept)
-  {
-    close();
-  }
-  //Change concept
-  assert(m_concept);
-  assert(ui->box_complexity->currentIndex() >= -1);
-  assert(ui->box_complexity->currentIndex() <=  2);
-
-  m_concept->SetRatingComplexity(ui->box_complexity->currentIndex());
-  m_concept->SetRatingConcreteness(ui->box_concreteness->currentIndex());
-  m_concept->SetRatingSpecificity(ui->box_specificity->currentIndex());
+  //Ratings already set by comboboxes
+  m_button_ok_clicked = true;
   close();
 }
-
-/*
-void QtPvdbRateConceptDialog::OnRequestTallyDialog(const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map)
-{
-  QtPvdbRateConceptTallyDialog d(sub_concept_map); //Item may be changed
-  this->ShowChild(&d);
-}
-*/
 
 #ifndef NDEBUG
 void QtPvdbRateConceptDialog::Test()
@@ -166,13 +167,19 @@ void QtPvdbRateConceptDialog::Test()
       assert(old_concept);
       assert(concept != old_concept);
       assert(IsEqual(*concept,*old_concept));
-      QtPvdbRateConceptDialog d(concept_map);
-      assert(concept->GetRatingComplexity() == d.ui->box_complexity->currentIndex());
-      assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
-      assert(concept->GetRatingSpecificity() == d.ui->box_specificity->currentIndex());
-      //Change a box
-      d.ui->box_complexity->setCurrentIndex( (d.ui->box_complexity->currentIndex() + 1) % 3);
-      //But do not click OK
+      {
+        QtPvdbRateConceptDialog d(concept_map);
+        assert(concept->GetRatingComplexity() == d.ui->box_complexity->currentIndex());
+        assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
+        assert(concept->GetRatingSpecificity() == d.ui->box_specificity->currentIndex());
+        //Change all boxes
+        d.ui->box_complexity->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
+        d.ui->box_concreteness->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
+        d.ui->box_specificity->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
+        //But do not click OK
+        d.close();
+        //Need to call the destructor
+      }
       assert(IsEqual(*concept,*old_concept) && "Without clicking OK, QtPvdbRateConceptDialog must not change the concept");
     }
   }
@@ -200,8 +207,10 @@ void QtPvdbRateConceptDialog::Test()
       assert(concept->GetRatingComplexity()   == d.ui->box_complexity->currentIndex());
       assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
       assert(concept->GetRatingSpecificity()  == d.ui->box_specificity->currentIndex());
-      //Change a box
-      d.ui->box_complexity->setCurrentIndex( (d.ui->box_complexity->currentIndex() + 1) % 3);
+      //Change all boxes, in range [-1,2]
+      d.ui->box_complexity->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
+      d.ui->box_concreteness->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
+      d.ui->box_specificity->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
       d.ui->button_ok->click();
       assert(!IsEqual(*concept,*old_concept) && "QtPvdbRateConceptDialog must change the concept when clicked OK");
     }
@@ -226,4 +235,22 @@ void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
   ui->box_complexity->setCurrentIndex(d.GetSuggestedComplexity());
   ui->box_concreteness->setCurrentIndex(d.GetSuggestedConcreteness());
   ui->box_specificity->setCurrentIndex(d.GetSuggestedSpecificity());
+}
+
+void QtPvdbRateConceptDialog::on_box_complexity_currentTextChanged(const QString &)
+{
+  assert(m_concept);
+  m_concept->SetRatingComplexity(ui->box_complexity->currentIndex());
+}
+
+void QtPvdbRateConceptDialog::on_box_concreteness_currentTextChanged(const QString &)
+{
+  assert(m_concept);
+  m_concept->SetRatingConcreteness(ui->box_concreteness->currentIndex());
+}
+
+void QtPvdbRateConceptDialog::on_box_specificity_currentTextChanged(const QString &)
+{
+  assert(m_concept);
+  m_concept->SetRatingSpecificity(ui->box_specificity->currentIndex());
 }

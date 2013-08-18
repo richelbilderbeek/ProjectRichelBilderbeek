@@ -7,7 +7,7 @@ const std::vector<std::string> Respond(const std::string& s);
 
 int main()
 {
-  const std::string bot_name = "lambda";
+  const std::string bot_name = "voidhosbn";
   const std::string server_name = "irc.zeronode.net";
   const std::string channel_name = "#Hive5";
   const int port = 6667;
@@ -28,6 +28,7 @@ const std::vector<std::string> Respond(const std::string& s)
 
   //Generate a response
   std::vector<std::string> v;
+
   if (s.find("JOIN") != std::string::npos)
   {
     //Welcome message
@@ -99,5 +100,10 @@ const std::vector<std::string> Respond(const std::string& s)
     v.push_back("++++++syyssyooossssssssssoooshssssss////");
     v.push_back("++++++syyssho+oooooooooooooosyssssss+///");
   }
+  if (s.find("kick voidzero") != std::string::npos)
+  {
+    v.push_back("/kick voidzero");
+  }
+
   return v;
 }

@@ -95,10 +95,6 @@ void QtPvdbRateConceptMapDialog::keyPressEvent(QKeyEvent* e)
 void QtPvdbRateConceptMapDialog::on_button_next_clicked()
 {
   assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
-  //const boost::shared_ptr<pvdb::ConceptMap> concept_map
-  //  = m_widget->GetConceptMap();
-  //assert(concept_map);
-  //m_file->SetConceptMap(concept_map);
   QtPvdbRatingDialog d(m_file);
   ShowChild(&d);
   if (d.GetBackToMenu())
@@ -109,8 +105,20 @@ void QtPvdbRateConceptMapDialog::on_button_next_clicked()
 
 void QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map)
 {
+  assert(sub_concept_map);
+  #ifdef HIDE_PARENT_IDEA_5675869837643987593795
+  this->setEnabled(false);
+  this->hide();
+  this->m_widget->setEnabled(false);
   QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
   this->ShowChild(&d);
+  this->setEnabled(true);
+  this->show();
+  this->m_widget->setEnabled(true);
+  #else
+  QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
+  d.exec();
+  #endif
 }
 
 #ifndef NDEBUG

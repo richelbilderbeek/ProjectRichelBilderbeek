@@ -188,7 +188,6 @@ void QtPvdbViewTestsDialog::Test()
   TRACE("Started QtPvdbViewTestsDialog::Test");
   QtPvdbViewTestsDialog d;
   d.show();
-  //d.exec();
   d.update();
   d.resize(100,100);
   d.show();

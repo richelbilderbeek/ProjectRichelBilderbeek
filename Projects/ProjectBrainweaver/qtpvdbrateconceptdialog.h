@@ -42,19 +42,34 @@ private slots:
 
   void on_button_tally_relevancies_clicked();
 
+  void on_box_complexity_currentTextChanged(const QString &arg1);
+  void on_box_concreteness_currentTextChanged(const QString &arg1);
+  void on_box_specificity_currentTextChanged(const QString &arg1);
+
 private:
-    Ui::QtPvdbRateConceptDialog *ui;
+  Ui::QtPvdbRateConceptDialog *ui;
+
+  ///To distinguish between closing the dialog by clicking OK, or by ALT-F4
+  bool m_button_ok_clicked;
 
   ///The center concept, may be changed when the user clicks OK
   const boost::shared_ptr</* NO CONST */ pvdb::Concept> m_concept;
 
+  ///The complexity at this dialog its creation, stored so that the user can cancel the dialog
+  const int m_initial_complexity;
+  const int m_initial_concreteness;
+  const int m_initial_specificity;
+
   ///Cannot be const, only used in calculating the suggestions
   const boost::shared_ptr<pvdb::ConceptMap> m_sub_concept_map;
 
-  QtPvdbConceptMapRateWidget * const m_widget;
+  const boost::shared_ptr<QtPvdbConceptMapRateWidget> m_widget;
+  //QtPvdbConceptMapRateWidget * const m_widget; //WHY DID I DO THIS???
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test();
+  #endif
 };
 
 

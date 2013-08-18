@@ -130,7 +130,7 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
 
 QtPvdbConceptMapWidget::~QtPvdbConceptMapWidget()
 {
-
+  delete m_examples_item; //Why did I forget this?
   m_examples_item = nullptr;
 }
 
