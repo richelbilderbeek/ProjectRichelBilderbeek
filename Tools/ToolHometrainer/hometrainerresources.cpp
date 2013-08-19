@@ -33,8 +33,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
-#include <boost/filesystem.hpp>
-
 #include "trace.h"
 
 //Must be #included after Wt header files
@@ -138,16 +136,16 @@ HometrainerResources::HometrainerResources()
   std::for_each(files.begin(),files.end(),
     [](const std::string& s)
     {
-      if (!boost::filesystem::exists(s))
+      if (!QFile::exists(s.c_str()))
       {
         const std::string filename = ":/images/" + s;
         QFile f(filename.c_str());
         f.copy(s.c_str());
-        if (!boost::filesystem::exists(s)) { TRACE(s); }
-        assert(boost::filesystem::exists(s));
+        if (!QFile::exists(s.c_str())) { TRACE(s); }
+        assert(QFile::exists(s.c_str()));
       }
-      if (!boost::filesystem::exists(s)) { TRACE(s); }
-      assert(boost::filesystem::exists(s));
+      if (!QFile::exists(s.c_str())) { TRACE(s); }
+      assert(QFile::exists(s.c_str()));
     }
   );
 
@@ -172,11 +170,11 @@ HometrainerResources::HometrainerResources()
           QFile f( (std::string(":/textfiles/") + filename).c_str() );
           f.copy(filename.c_str());
         }
-        if (!boost::filesystem::exists(filename.c_str()))
+        if (!QFile::exists(filename.c_str()))
         {
           std::cerr << "File not found: " << filename << '\n';
         }
-        assert(boost::filesystem::exists(filename.c_str()));
+        assert(QFile::exists(filename.c_str()));
       }
     );
   }
@@ -194,11 +192,11 @@ HometrainerResources::HometrainerResources()
         QFile f( (std::string(":/docs/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+      if (!QFile::exists(filename.c_str()))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(QFile::exists(filename.c_str()));
     }
   );
 }

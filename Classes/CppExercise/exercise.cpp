@@ -32,7 +32,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <fstream>
 
-#include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -42,10 +41,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "openquestiondialog.h"
 //#include "trace.h"
 
+#include <QFile>
+
 Exercise::Exercise(const std::string& filename)
 {
-  assert(boost::filesystem::exists(filename));
-  if (!boost::filesystem::exists(filename))
+  assert(QFile::exists(filename.c_str()));
+  if (!QFile::exists(filename.c_str()))
   {
     throw std::logic_error("File does not exist");
   }
@@ -83,7 +84,7 @@ Exercise::Exercise(const std::string& filename)
 
 const std::vector<std::string> Exercise::FileToVector(const std::string& filename)
 {
-  assert(boost::filesystem::exists(filename));
+  assert(QFile::exists(filename.c_str()));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
