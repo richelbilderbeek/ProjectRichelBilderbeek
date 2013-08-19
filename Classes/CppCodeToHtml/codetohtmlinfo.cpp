@@ -141,7 +141,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppComment.htm\">//</a>---------------------------------------------------------------------------<br/>");
     v.push_back("<a href=\"CppComment.htm\">/*</a><br/>");
     v.push_back("Assert, a custom <a href=\"CppAssert.htm\">assert</a> macro<br/>");
-    v.push_back("Copyright (C) 2011 Richel Bilderbeek<br/>");
+    v.push_back("Copyright (C) 2011-2013 Richel Bilderbeek<br/>");
     v.push_back("<br/>");
     v.push_back("This program is free software: you can redistribute it and/or modify<br/>");
     v.push_back("it under the terms of the GNU General Public License as published by<br/>");
@@ -2206,6 +2206,158 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"CppQtDisplayPosItem.htm\">QtDisplayPosItem</a> is a <a href=\"CppQt.htm\">Qt</a> ");
     v.push_back("<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays its position.</p>");
   }
+  else if (m_page_name == "CppQtExample1")
+  {
+    v.push_back("<p><a href=\"CppQtExample1.htm\">Qt example 1: moving a sprite over a background in 2D</a> is a <a href=\"CppQtExample.htm\">Qt example</a> that shows an image moving over a background image, like <a href=\"CppQtExample1.png\">this screenshot (png)</a>.</p>");
+  }
+  else if (m_page_name == "CppQtExample2")
+  {
+    v.push_back("<p><a href=\"CppQtExample2.htm\">Qt example 2: moving many sprites over a background in 2D</a> is a <a href=\"CppQtExample.htm\">Qt example</a>  shows an 250 images moving over a background image, like <a href=\"CppQtExample2.png\">this screenshot (png)</a>.</p>");
+  }
+  else if (m_page_name == "CppQtExample3")
+  {
+    v.push_back("<p><a href=\"CppQtExample3.htm\">Qt example 3: a changing background in 2D</a></h1> is a <a href=\"CppQtExample.htm\">Qt example</a> that shows a changing background in 2D, like <a href=\"CppQtExample3.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample3.zip\">Download the Qt Creator project file 'CppQtExample3' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQtExample4")
+  {
+    v.push_back("<p><a href=\"CppQtExample4.htm\">Qt example 4: moving many sprites over a changing background in 2D</a></h1> is a <a href=\"CppQtExample.htm\">Qt example</a> that shows how to move many sprites over a changing background in 2D, like <a href=\"CppQtExample4.png\">this screenshot (png)</a>.</p>");
+  }
+  else if (m_page_name == "CppQtExample5")
+  {
+    v.push_back("<p><a href=\"CppQtExample5.htm\">Qt example 5: moving many changing sprites over a changing background in 2D</a> is a ");
+    v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> that shows how to move many changing sprites over a changing background in 2D, like <a href=\"CppQtExample5.png\">this screenshot (png)</a>.</p>");
+  }
+  else if (m_page_name == "CppQtExample6")
+  {
+    v.push_back("<p><a href=\"CppQtExample6.htm\">Qt example 6: moving customly-drawn and partially transparent sprites over a changing background in 2D</a> is a ");
+    v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> that shows how to move customly-drawn and partially transparent sprites over a changing background in 2D, like <a href=\"CppQtExample6.png\">this screenshot (png)</a>.</p>");
+  }
+  else if (m_page_name == "CppQtExample7")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample8")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample9")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample10")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample11")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample12")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample13")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample14")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample15")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample16")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample17")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample18")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample19")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample20")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample21")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample22")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample23")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample24")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample25")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample26")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample27")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample28")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample29")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample30")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample31")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample32")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample33")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample34")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample35")
+  {
+    //TODO
+  }
+  else if (m_page_name == "CppQtExample36")
+  {
+    //TODO
+  }
+
+
   else if (m_page_name == "CppQtExerice")
   {
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
