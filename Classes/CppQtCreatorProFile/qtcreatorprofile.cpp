@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <iostream>
 #include <iterator>
+#include <map>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -46,7 +47,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/trim.hpp>
 //#include <boost/filesystem.hpp>
 #include <boost/function.hpp>
-#include <boost/regex.hpp>
+//#include <boost/regex.hpp>
 #pragma GCC diagnostic pop
 
 #include <QFile>
@@ -60,13 +61,14 @@ QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   Test();
   #endif
 
+  #ifndef NDEBUG
+  if (!QFile::exists(filename.c_str()))
+  {
+    TRACE(filename);
+    TRACE("BREAK");
+  }
+  #endif
   assert(QFile::exists(filename.c_str()));
-
-  //if (!IsRegularFile(filename))
-  //{
-  //  m_signal_warning("QtCreatorProFile::QtCreatorProFile error: .pro file must exist");
-  //  return;
-  //}
 
   const std::vector<std::string> v = FileToVector(filename);
   Parse(v);
@@ -118,6 +120,7 @@ const std::vector<std::string> QtCreatorProFile::GetVersionHistory()
   v.push_back("2012-12-23: version 1.7: set destructor to private, except for boost::checked_delete");
   v.push_back("2012-12-23: version 1.8: renamed to QtCreatorProFile due to naming conflicts when cross-compiling");
   v.push_back("2013-05-18: version 2.0: simplified architecture by removing file I/O");
+  v.push_back("2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem");
   return v;
 }
 

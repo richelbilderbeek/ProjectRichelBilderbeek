@@ -32,12 +32,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/regex.hpp>
 #include <boost/xpressive/xpressive.hpp>
 
 #include <QDir>
@@ -219,6 +219,29 @@ void Test()
     assert(GetPath("C:\\any_path\\any_file.cpp")=="C:\\any_path");
     assert(GetPath("/any_path/any_file.cpp")=="/any_path");
   }
+  //GetProFiles
+  {
+    //Always first remove the temp file
+    std::remove("tmp23465278.pro");
+
+    const std::size_t n = GetProFilesInFolder("").size();
+    {
+      std::ofstream f("tmp23465278.pro");
+      f << "tmp";
+      f.close();
+    }
+    const std::size_t p = GetProFilesInFolder("").size();
+    if (n != p - 1)
+    {
+      TRACE(n);
+      TRACE(p);
+      for (std::string s: GetProFilesInFolder("")) TRACE(s);
+    }
+    assert(n == p - 1);
+    std::remove("tmp23465278.pro");
+    const std::size_t q = GetProFilesInFolder("").size();
+    assert(n == q);
+  }
 }
 #endif
 
@@ -269,7 +292,7 @@ const std::vector<std::string> ConvertFolder(
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   {
-    const boost::shared_ptr<TechInfo> techInfo(new TechInfo(GetFilesInFolder(foldername,".*\\.pro\\z")));
+    const boost::shared_ptr<TechInfo> techInfo(new TechInfo(GetProFilesInFolder(foldername)));
     const std::vector<std::string> w = techInfo->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
@@ -396,7 +419,7 @@ const std::vector<std::string> GetFilesInFolder(const std::string& folder)
   return v;
 }
 
-const std::vector<std::string> GetFilesInFolder(
+const std::vector<std::string> GetFilesInFolderByRegex(
   const std::string& folder,
   const std::string& regex_str)
 {
@@ -404,14 +427,19 @@ const std::vector<std::string> GetFilesInFolder(
   const std::vector<std::string> v = GetFilesInFolder(folder);
 
   //Create the regex
-  const boost::regex regex(regex_str);
+  const boost::xpressive::sregex rex = boost::xpressive::sregex::compile(regex_str);
 
   //Create the resulting std::vector
   std::vector<std::string> w;
 
   //Copy all filenames matching the regex in the resulting std::vector
   std::copy_if(v.begin(),v.end(),std::back_inserter(w),
-    [regex](const std::string& s) { return boost::regex_match(s,regex); } );
+    [rex](const std::string& s)
+    {
+      boost::xpressive::smatch what;
+      return boost::xpressive::regex_match(s, what, rex);
+    }
+  );
 
   return w;
 }
@@ -423,6 +451,12 @@ const std::string GetPath(const std::string& filename)
   const int i = std::max(a,b);
   assert(i < static_cast<int>(filename.size()));
   return filename.substr(0,i);
+}
+
+const std::vector<std::string> GetProFilesInFolder(
+  const std::string& folder)
+{
+  return GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
 }
 
 const std::vector<std::string> GetSortedFilesInFolder(const std::string& folder)

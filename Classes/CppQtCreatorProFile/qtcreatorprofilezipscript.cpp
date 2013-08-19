@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/regex.hpp>
+#include <boost/xpressive/xpressive.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>
 #pragma GCC diagnostic pop
@@ -262,14 +262,18 @@ const std::vector<std::string> QtCreatorProFileZipScript::GetProFilesInFolder(co
   const std::vector<std::string> v = GetFilesInFolder(folder);
 
   //Create the regex for a correct Qt Creator project filename
-  const boost::regex pro_file_regex(".*\\.(pro)\\z");
+  const boost::xpressive::sregex rex = boost::xpressive::sregex::compile(".*\\.(pro)\\>");
 
   //Create the resulting std::vector
   std::vector<std::string> w;
 
   //Copy all filenames matching the regex in the resulting std::vector
   std::copy_if(v.begin(),v.end(),std::back_inserter(w),
-    [pro_file_regex](const std::string& s) { return boost::regex_match(s,pro_file_regex); }
+    [rex](const std::string& s)
+    {
+      boost::xpressive::smatch what;
+      return boost::xpressive::regex_match(s, what, rex);
+    }
   );
   return w;
 }
@@ -283,6 +287,7 @@ const std::vector<std::string> QtCreatorProFileZipScript::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-19: version 1.0: initial version");
+  v.push_back("2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive");
   return v;
 }
 
@@ -317,13 +322,12 @@ const boost::shared_ptr<QtCreatorProFileZipScript> QtCreatorProFileZipScript::Me
 #ifndef NDEBUG
 void QtCreatorProFileZipScript::Test()
 {
-  //Test exactly once
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-
+  TRACE("Starting QtCreatorProFileZipScript::Test");
   //Test basic functions on this project with going two folders down
   const std::vector<std::string> pro_file_names
     =
@@ -358,6 +362,17 @@ void QtCreatorProFileZipScript::Test()
       assert(IsRegularFile(filename));
     }
   }
+  //GetProFiles
+  {
+    const std::size_t n = GetProFilesInFolder("").size();
+    std::ofstream f("tmp23465278.pro");
+    const std::size_t p = GetProFilesInFolder("").size();
+    assert(n == p - 1);
+    std::remove("tmp23465278.pro");
+    const std::size_t q = GetProFilesInFolder("").size();
+    assert(n == q);
+  }
+  TRACE("Finished QtCreatorProFileZipScript::Test successfully");
 }
 #endif
 

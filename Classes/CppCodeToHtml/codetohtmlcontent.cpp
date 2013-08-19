@@ -34,12 +34,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
-#include <boost/regex.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/xpressive/xpressive.hpp>
 
 #include "codetohtml.h"
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
 #include "codetohtmlreplacements.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
 #define PROGRAM_HANGS
 
@@ -59,7 +63,9 @@ Content::Content(
       m_contents(content),
       m_filename(GetFileBasename(filename) + GetExtension(filename))
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 Content::Content(
@@ -70,28 +76,37 @@ Content::Content(
       m_contents(content),
       m_filename(GetFileBasename(filename) + GetExtension(filename))
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 ContentType Content::DeduceContentType(const std::string& filename)
 {
-  if (boost::regex_match(filename,boost::regex(".*\\.(pro)\\z")))
+  boost::xpressive::smatch what;
+
+  if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(pro)\\>") ) )
   {
     return ContentType::pro;
   }
-  else if (boost::regex_match(filename,boost::regex(".*\\.(c|cpp|h|hpp)\\z")))
+  else if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(c|cpp|h|hpp)\\>") ) )
   {
     return ContentType::cpp;
   }
-  else if (boost::regex_match(filename,boost::regex(".*\\.(sh)\\z")))
+  else if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(sh)\\>") ) )
   {
     return ContentType::sh;
   }
-  else if (boost::regex_match(filename,boost::regex(".*\\.(txt)\\z")))
+  else if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(txt)\\>") ) )
   {
     return ContentType::txt;
   }
-  else if (boost::regex_match(filename,boost::regex(".*\\.(py)\\z")))
+  else if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(py)\\>") ) )
   {
     return ContentType::py;
   }
@@ -216,6 +231,42 @@ const std::string Content::ReplaceAll(
   }
   return s;
 }
+
+#ifndef NDEBUG
+void Content::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting Content::Test");
+  //Be gentle
+  assert(DeduceContentType("tmp.pro") == ContentType::pro);
+  assert(DeduceContentType("tmp.c"  ) == ContentType::cpp);
+  assert(DeduceContentType("tmp.cpp") == ContentType::cpp);
+  assert(DeduceContentType("tmp.h"  ) == ContentType::cpp);
+  assert(DeduceContentType("tmp.hpp") == ContentType::cpp);
+  assert(DeduceContentType("tmp.sh" ) == ContentType::sh);
+  assert(DeduceContentType("tmp.txt") == ContentType::txt);
+  assert(DeduceContentType("tmp.py" ) == ContentType::py);
+  assert(DeduceContentType("tmp.xyz") == ContentType::other);
+  //Be nasty
+  assert(DeduceContentType("cpp.pro") == ContentType::pro);
+  assert(DeduceContentType("h.c"    ) == ContentType::cpp);
+  assert(DeduceContentType("hpp.cpp") == ContentType::cpp);
+  assert(DeduceContentType("sh.h"   ) == ContentType::cpp);
+  assert(DeduceContentType("txt.hpp") == ContentType::cpp);
+  assert(DeduceContentType("py.sh"  ) == ContentType::sh);
+  assert(DeduceContentType("xyz.txt") == ContentType::txt);
+  assert(DeduceContentType("pro.py" ) == ContentType::py);
+  assert(DeduceContentType("c.xyz"  ) == ContentType::other);
+
+
+  TRACE("Finished Content::Test successfully");
+}
+#endif
+
 
 } //~namespace CodeToHtml
 

@@ -112,6 +112,10 @@ struct Content
     std::string s,
     const std::string& replaceWhat,
     const std::string& replaceWithWhat);
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 } //~namespace CodeToHtml

@@ -37,30 +37,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtcodetohtmlmaindialog.h"
 #include "qthideandshowdialog.h"
+#include "trace.h"
 #include "ui_qtcodetohtmlmenudialog.h"
 
 QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtCodeToHtmlMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
 QtCodeToHtmlMenuDialog::~QtCodeToHtmlMenuDialog()
 {
   delete ui;
-}
-
-void QtCodeToHtmlMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
 }
 
 void QtCodeToHtmlMenuDialog::keyPressEvent(QKeyEvent * event)
@@ -94,3 +86,16 @@ void QtCodeToHtmlMenuDialog::on_button_start_clicked()
   ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void QtCodeToHtmlMenuDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtCodeToHtmlMenuDialog::Test");
+  QtCodeToHtmlMainDialog();
+  TRACE("Finished QtCodeToHtmlMenuDialog::Test successfully");
+}
+#endif

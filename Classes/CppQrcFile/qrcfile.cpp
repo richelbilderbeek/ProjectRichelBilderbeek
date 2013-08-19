@@ -43,7 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/function.hpp>
-#include <boost/regex.hpp>
+#include <boost/xpressive/xpressive.hpp>
 #pragma GCC diagnostic pop
 
 #include "trace.h"
@@ -65,7 +65,10 @@ QrcFile::QrcFile(const std::string& filename)
     std::string s;
     file >> s;
     if (s.empty()) continue;
-    if (boost::regex_search(s,boost::regex("<file>.*</file>")))
+
+    const boost::xpressive::sregex rex = boost::xpressive::sregex::compile("<file>.*</file>");
+    boost::xpressive::smatch what;
+    if( boost::xpressive::regex_match(s, what, rex ) )
     {
       assert(!s.empty());
       s = boost::algorithm::trim_copy(s);
@@ -113,13 +116,14 @@ const About QrcFile::GetAbout()
 
 const std::string QrcFile::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> QrcFile::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-06-13: version 1.0: initial version");
+  v.push_back("2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive");
   return v;
 }
 

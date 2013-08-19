@@ -47,6 +47,7 @@ TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
     [](const std::string& s)
     {
       TRACE(s);
+      assert(IsRegularFile(s));
       boost::shared_ptr<const QtCreatorProFile> p(new QtCreatorProFile(s));
       return p;
     }

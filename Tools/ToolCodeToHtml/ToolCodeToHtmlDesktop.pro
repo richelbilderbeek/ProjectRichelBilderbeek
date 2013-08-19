@@ -148,28 +148,17 @@ win32 {
 #
 
 unix {
-  #message(Unix dynamic link to Boost)
-
+  message(Unix: Boost already in INCLUDEPATH)
   #Don't link to Boost when crosscompiling is desired
-
-  LIBS += \
-  -lboost_regex
 }
 
 win32 {
-  #message(Native Windows dynamic link to Boost)
+  message(Windows: add Boost to INCLUDEPATH)
 
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 
   #Don't link to Boost when crosscompiling is desired
-
-  debug {
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
-  }
-  release {
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
-  }
 }
 
 #

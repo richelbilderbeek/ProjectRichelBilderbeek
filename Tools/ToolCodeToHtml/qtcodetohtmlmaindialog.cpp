@@ -63,6 +63,9 @@ QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtCodeToHtmlMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Put this dialog in the screen center
@@ -272,3 +275,34 @@ void QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
   }
 }
 
+#ifndef NDEBUG
+void QtCodeToHtmlMainDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtCodeToHtmlMainDialog::Test");
+  QtCodeToHtmlMainDialog d;
+  for (int index = 0; index != 2; ++index)
+  {
+    d.ui->tab_source->setCurrentIndex(index);
+    for (const std::string& s:
+      {
+        "/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml",
+        "E:/Projects/Tools/ToolCodeToHtml",
+        "../../Tools/ToolCodeToHtml"
+      }
+    )
+    {
+      d.ui->edit_source->setText(s.c_str());
+      if (d.ui->button_convert->isEnabled())
+      {
+        d.on_button_convert_clicked();
+      }
+    }
+  }
+  TRACE("Finished QtCodeToHtmlMainDialog::Test successfully");
+}
+#endif

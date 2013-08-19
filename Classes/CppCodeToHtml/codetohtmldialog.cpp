@@ -64,7 +64,7 @@ Dialog::Dialog(
   #endif
 
   //Check source
-  assert(IsFolder(source)
+  assert( (IsFolder(source) || IsRegularFile(source))
     && "Source can be a file or a path");
 }
 
@@ -154,7 +154,7 @@ const std::vector<std::string> Dialog::ToHtml() const
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<p>&nbsp;</p>");
-      TechInfo info( GetFilesInFolder(m_source,".*\\.pro\\z") );
+      TechInfo info( GetProFilesInFolder(m_source) );
       const std::vector<std::string> w = info.ToHtml();
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }

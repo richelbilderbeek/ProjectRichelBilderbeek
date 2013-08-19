@@ -78,6 +78,11 @@ private slots:
 
   ///Respond to a change in the edit containing the source file or source folder
   void on_edit_source_textChanged(QString );
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
+
 };
 
 #endif // QTCODETOHTMLMAINDIALOG_H
