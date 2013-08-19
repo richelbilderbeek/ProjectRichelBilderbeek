@@ -269,14 +269,14 @@ const std::vector<std::string> ConvertFiles(const std::string& foldername)
   {
     const std::vector<std::string> files = GetSortedFilesInFolder(foldername);
     std::copy(files.begin(),files.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
-    std::for_each(files.begin(),files.end(),
-      [&v](const std::string& filename)
-      {
-        const boost::shared_ptr<Content> content(new Content(filename,FileToVector(filename)));
-        const std::vector<std::string> w = content->ToHtml();
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-    );
+    for(const std::string& filename: files)
+    {
+      const std::string filename_full = foldername + "/" + filename;
+      assert(IsRegularFile(filename_full));
+      const boost::shared_ptr<Content> content(new Content(filename,FileToVector(filename_full)));
+      const std::vector<std::string> w = content->ToHtml();
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
   }
   return v;
 }
@@ -292,7 +292,12 @@ const std::vector<std::string> ConvertFolder(
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   {
-    const boost::shared_ptr<TechInfo> techInfo(new TechInfo(GetProFilesInFolder(foldername)));
+    const std::vector<std::string> pro_files = GetProFilesInFolder(foldername);
+    #ifndef NDEBUG
+    for (const std::string& pro_file: pro_files) { assert(IsRegularFile(pro_file)); }
+    #endif
+
+    const boost::shared_ptr<TechInfo> techInfo(new TechInfo(pro_files));
     const std::vector<std::string> w = techInfo->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
@@ -328,6 +333,7 @@ const std::vector<std::string> ConvertProject(const std::string& filename)
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   {
+    assert(IsRegularFile(filename));
     boost::shared_ptr<TechInfo> i(new TechInfo( { filename } ));
     const std::vector<std::string> w = i->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
@@ -356,10 +362,13 @@ const std::vector<std::string> ConvertProject(const std::string& filename)
 
 const std::vector<std::string> FileToVector(const std::string& filename)
 {
+  #ifndef NDEBUG
   if (!IsRegularFile(filename))
   {
     TRACE(filename);
+    TRACE("BREAK");
   }
+  #endif
   assert(IsRegularFile(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());

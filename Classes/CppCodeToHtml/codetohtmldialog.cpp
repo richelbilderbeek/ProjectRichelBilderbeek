@@ -154,7 +154,18 @@ const std::vector<std::string> Dialog::ToHtml() const
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<p>&nbsp;</p>");
-      TechInfo info( GetProFilesInFolder(m_source) );
+      std::vector<std::string> pro_files = GetProFilesInFolder(m_source);
+      for (std::string& pro_file: pro_files)
+      {
+        pro_file = m_source + "/" + pro_file;
+        assert(IsRegularFile(pro_file));
+      }
+      for (const std::string& pro_file: pro_files)
+      {
+        assert(IsRegularFile(pro_file));
+      }
+
+      TechInfo info(pro_files);
       const std::vector<std::string> w = info.ToHtml();
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
