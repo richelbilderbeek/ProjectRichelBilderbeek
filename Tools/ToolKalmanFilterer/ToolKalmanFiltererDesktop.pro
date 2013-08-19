@@ -244,14 +244,12 @@ unix {
 
 win32 {
 
-  exists(../../Libraries/mxe/usr/i686-pc-mingw32/lib) {
+  cross_compile {
     message(Lubuntu to Windows: Boost: link)
-    LIBS += -L../../Libraries/mxe/usr/i686-pc-mingw32/lib
-    LIBS += -lboost_regex
   }
 
-  exists(../../Libraries/boost_1_54_0) {
-    message(Lubuntu to Windows: Boost: include)
+  !cross_compile {
+    message(Native Windows: Boost: include)
     INCLUDEPATH += \
       ../../Libraries/boost_1_54_0
   }
