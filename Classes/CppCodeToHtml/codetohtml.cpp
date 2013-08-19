@@ -159,12 +159,6 @@ void Test()
       {
         const std::string& s = p.first;
         const std::string t = Content::MultiReplace(s,Content::GetReplacementsCpp().Get());
-        if (t != p.second)
-        {
-          TRACE(s);
-          TRACE(t);
-          TRACE(p.second);
-        }
         assert(t == p.second);
       }
     );
@@ -481,7 +475,6 @@ const std::vector<std::string> FilterFiles(const std::vector<std::string>& files
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
     [](const std::string& file)
     {
-      TRACE(file);
       const std::string ext = GetExtension(file);
       return
            ext == ".c"
@@ -493,7 +486,6 @@ const std::vector<std::string> FilterFiles(const std::vector<std::string>& files
         || ext == ".sh";
     }
   );
-  TRACE(v.size());
   return v;
 }
 

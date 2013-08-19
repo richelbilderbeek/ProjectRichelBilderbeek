@@ -40,7 +40,7 @@ const About CodeToHtmlMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
-    "the 19th of May 2013",
+    "the 19th of August 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
@@ -53,7 +53,7 @@ const About CodeToHtmlMenuDialog::GetAbout()
 
 const std::string CodeToHtmlMenuDialog::GetVersion()
 {
-  return "2.5";
+  return "2.6";
 }
 
 const std::vector<std::string> CodeToHtmlMenuDialog::GetVersionHistory()
@@ -90,5 +90,6 @@ const std::vector<std::string> CodeToHtmlMenuDialog::GetVersionHistory()
   v.push_back("2012-10-30: version 2.3: replaced C++0x by C++11, obtain the Qt Creator version automatically");
   v.push_back("2012-12-22: version 2.4: HTML produced is checked by 'tidy', many minor improvements");
   v.push_back("2013-05-19: version 2.5: +3400 replacements, following architectural changes in QtCreatorProFile and QtCreatorProFileZipScript");
+  v.push_back("2013-08-19: version 2.6: replaced Boost.Filesystem and Boost.Regex by Qt and Boost.Xpressive, added tests, added +5000 lines of CodeToHtml info");
   return v;
 }

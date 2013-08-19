@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QrcFile, class to parse Qt Project files
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2012-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -106,8 +106,8 @@ const About QrcFile::GetAbout()
     "Richel Bilderbeek",
     "QrcFile",
     "class to parse Qt Resource files",
-    "the 13th of June 2012",
-    "2012",
+    "the 19th of August 2013",
+    "2012-2013",
     "http://www.richelbilderbeek.nl/CppQrcFile.htm",
     GetVersion(),
     GetVersionHistory());

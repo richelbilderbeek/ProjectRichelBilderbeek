@@ -94,7 +94,7 @@ const About QtCreatorProFile::GetAbout()
     "Richel Bilderbeek",
     "QtCreatorProFile",
     "class to parse Qt Project files",
-    "the 18th May 2013",
+    "the 19th of August 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/CppQtCreatorProFile.htm",
     GetVersion(),
@@ -104,7 +104,7 @@ const About QtCreatorProFile::GetAbout()
 
 const std::string QtCreatorProFile::GetVersion()
 {
-  return "2.0";
+  return "2.1";
 }
 
 const std::vector<std::string> QtCreatorProFile::GetVersionHistory()
