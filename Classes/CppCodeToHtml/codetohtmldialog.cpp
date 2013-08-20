@@ -160,10 +160,6 @@ const std::vector<std::string> Dialog::ToHtml() const
         pro_file = m_source + "/" + pro_file;
         assert(IsRegularFile(pro_file));
       }
-      for (const std::string& pro_file: pro_files)
-      {
-        assert(IsRegularFile(pro_file));
-      }
 
       TechInfo info(pro_files);
       const std::vector<std::string> w = info.ToHtml();

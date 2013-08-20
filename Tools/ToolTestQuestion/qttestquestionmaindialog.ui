@@ -10,9 +10,6 @@
     <height>607</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>TestQuestion</string>
-  </property>
   <property name="windowIcon">
    <iconset resource="ToolTestQuestion.qrc">
     <normaloff>:/images/ToolTestQuestionIcon14x14.png</normaloff>:/images/ToolTestQuestionIcon14x14.png</iconset>
@@ -29,7 +26,7 @@
         <x>0</x>
         <y>0</y>
         <width>480</width>
-        <height>558</height>
+        <height>561</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3"/>

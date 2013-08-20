@@ -20,13 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef OPENQUESTIONDIALOG_H
 #define OPENQUESTIONDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "questiondialog.h"
-//---------------------------------------------------------------------------
+
 struct OpenQuestion;
-//---------------------------------------------------------------------------
+
 ///Dialog for an OpenQuestion
 struct OpenQuestionDialog : public QuestionDialog
 {
@@ -44,5 +44,5 @@ struct OpenQuestionDialog : public QuestionDialog
   friend void boost::checked_delete<>(OpenQuestionDialog*);
   ~OpenQuestionDialog() {}
 };
-//---------------------------------------------------------------------------
+
 #endif // OPENQUESTIONDIALOG_H

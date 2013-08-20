@@ -160,14 +160,6 @@ const std::vector<std::pair<std::string,std::string> >
       }
     );
     std::copy(w.begin(),w.end(),std::back_inserter(v));
-    /*
-    std::for_each(w.begin(),w.end(),
-      [](const std::pair<std::string,std::string>& p)
-      {
-        TRACE(p.first);
-      }
-    );
-    */
   }
   //End
   {

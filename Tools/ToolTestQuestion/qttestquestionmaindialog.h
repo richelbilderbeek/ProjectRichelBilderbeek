@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,9 +39,10 @@ class QtTestQuestionMainDialog : public QtHideAndShowDialog
 public:
   explicit QtTestQuestionMainDialog(QWidget *parent = 0);
   ~QtTestQuestionMainDialog();
+  const boost::shared_ptr<const QtQuestionDialog> GetDialog() const { return m_dialog; }
+  void SetQuestion(const std::string& s);
 
 protected:
-  void changeEvent(QEvent *e);
   void keyPressEvent(QKeyEvent* event);
 
 private slots:
@@ -52,6 +53,10 @@ private:
   boost::shared_ptr<QtQuestionDialog> m_dialog;
 
   static boost::shared_ptr<QtQuestionDialog> CreateQtQuestionDialog(const std::string& s);
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // QTTESTQUESTIONMAINDIALOG_H

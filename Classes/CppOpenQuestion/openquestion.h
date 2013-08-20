@@ -21,12 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef OPENQUESTION_H
 #define OPENQUESTION_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "question.h"
-//---------------------------------------------------------------------------
+
 ///class for an open question
 struct OpenQuestion : public Question
 {
@@ -62,5 +62,5 @@ struct OpenQuestion : public Question
     const char seperator);
 
 };
-//---------------------------------------------------------------------------
+
 #endif // OPENQUESTION_H

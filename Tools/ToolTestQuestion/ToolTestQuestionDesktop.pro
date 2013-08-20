@@ -1,8 +1,6 @@
-QT       += core gui
+QT       += core gui widgets
 
 TEMPLATE = app
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -19,7 +17,8 @@ INCLUDEPATH += \
     ../../Classes/CppQuestionDialog \
     ../../Classes/CppTrace
 
-SOURCES += qtmain.cpp \
+SOURCES += \
+    qtmain.cpp \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.cpp \
     ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.cpp \
@@ -68,3 +67,58 @@ RESOURCES += \
 
 OTHER_FILES += \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(debug, debug|release) {
+  message(Debug mode)
+}
+
+CONFIG(release, debug|release) {
+  message(Release mode)
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+#
+#
+# Platform specific
+#
+#
+
+#
+#
+# Compiler flags
+#
+#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
+#unix {
+  QMAKE_CXXFLAGS += -Werror
+#}
+
+#
+#
+# Boost
+#
+#
+
+unix {
+  message(Unix: Boost already in include path)
+}
+
+win32 {
+  !cross_compile
+  {
+    message(Native Windows: add Boost to include path)
+    INCLUDEPATH += \
+      ../../Libraries/boost_1_54_0
+  }
+  cross_compile
+  {
+    message(Lubuntu to Windows: Boost already in include path)
+  }
+}

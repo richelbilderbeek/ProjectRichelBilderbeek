@@ -56,9 +56,6 @@ public:
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtAboutDialog *ui;
 };

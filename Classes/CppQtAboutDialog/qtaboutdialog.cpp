@@ -123,18 +123,6 @@ QtAboutDialog::~QtAboutDialog()
   delete ui;
 }
 
-void QtAboutDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 const std::string QtAboutDialog::GetVersion()
 {
   return "1.5";

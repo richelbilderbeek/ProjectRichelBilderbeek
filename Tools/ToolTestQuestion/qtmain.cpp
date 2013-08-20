@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,15 +27,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/foreach.hpp>
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QFile>
 #include "qttestquestionmenudialog.h"
-//#include "trace.h"
+#include "trace.h"
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  //START_TRACE();
+  START_TRACE();
   QtTestQuestionMenuDialog w;
   w.show();
   return a.exec();

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,57 +27,43 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qttestquestionmaindialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
+#include <QVBoxLayout>
 #include <QKeyEvent>
 #include <QLabel>
 
-#include "qtaboutdialog.h"
-#include "qtopenquestiondialog.h"
-#include "qtmultiplechoicequestiondialog.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "qtaboutdialog.h"
+#include "qtmultiplechoicequestiondialog.h"
+#include "qtopenquestiondialog.h"
 #include "questiondialog.h"
 #include "testquestionmaindialog.h"
+#include "trace.h"
 #include "ui_qttestquestionmaindialog.h"
+#pragma GCC diagnostic pop
 
 QtTestQuestionMainDialog::QtTestQuestionMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestQuestionMainDialog),
-    m_dialog(CreateQtQuestionDialog("-,1+1=,2,1,3"))
-
+    ui(new Ui::QtTestQuestionMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
-
-  assert(ui->contents_here->layout());
-  delete  ui->contents_here->layout();
-  assert(!ui->contents_here->layout());
-  QGridLayout * const my_layout = new QGridLayout;
-  ui->contents_here->setLayout(my_layout);
-  assert(ui->contents_here->layout());
-
-  my_layout->addWidget(m_dialog.get());
+  SetQuestion("-,1+1=,2,1,3");
 }
 
 QtTestQuestionMainDialog::~QtTestQuestionMainDialog()
 {
   delete ui;
-}
-
-void QtTestQuestionMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
 }
 
 boost::shared_ptr<QtQuestionDialog> QtTestQuestionMainDialog::CreateQtQuestionDialog(const std::string& s)
@@ -87,7 +73,7 @@ boost::shared_ptr<QtQuestionDialog> QtTestQuestionMainDialog::CreateQtQuestionDi
   try
   {
     boost::shared_ptr<QuestionDialog> d(new OpenQuestionDialog(s));
-    if (d) p.reset(new QtQuestionDialog(d));
+    if (d) p.reset(new QtOpenQuestionDialog(d));
     assert(p);
     return p;
   }
@@ -98,7 +84,7 @@ boost::shared_ptr<QtQuestionDialog> QtTestQuestionMainDialog::CreateQtQuestionDi
   try
   {
     boost::shared_ptr<QuestionDialog> d(new MultipleChoiceQuestionDialog(s));
-    if (d) p.reset(new QtQuestionDialog(d));
+    if (d) p.reset(new QtMultipleChoiceQuestionDialog(d));
     assert(p);
     return p;
   }
@@ -118,6 +104,7 @@ void QtTestQuestionMainDialog::keyPressEvent(QKeyEvent* event)
 void QtTestQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
 {
   const std::string s = arg1.toStdString();
+  m_dialog = CreateQtQuestionDialog(s);
 
   if (ui->contents_here->layout())
   {
@@ -125,16 +112,40 @@ void QtTestQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
   }
   assert(!ui->contents_here->layout());
 
-  m_dialog = CreateQtQuestionDialog(s);
   if (m_dialog)
   {
     assert(m_dialog);
     assert(!ui->contents_here->layout());
-    QGridLayout * const my_layout = new QGridLayout;
+    QLayout * const my_layout = new QVBoxLayout;
     ui->contents_here->setLayout(my_layout);
     assert(ui->contents_here->layout());
     my_layout->addWidget(m_dialog.get());
-    QLabel * const label = new QLabel("Created dialog!");
-    my_layout->addWidget(label);
   }
 }
+
+void QtTestQuestionMainDialog::SetQuestion(const std::string& s)
+{
+  this->ui->edit_question->setText(s.c_str());
+}
+
+#ifndef NDEBUG
+void QtTestQuestionMainDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtTestQuestionMainDialog::Test");
+  QtTestQuestionMainDialog d;
+  d.SetQuestion("-,1+1=,2,1,3");
+  assert(d.GetDialog());
+  d.SetQuestion("nonsense");
+  assert(!d.GetDialog());
+  d.SetQuestion("-,1+1=,2,1,3");
+  assert(d.GetDialog());
+  d.SetQuestion("again nonsense");
+  assert(!d.GetDialog());
+  TRACE("Finished QtTestQuestionMainDialog::Test successfully");
+}
+#endif

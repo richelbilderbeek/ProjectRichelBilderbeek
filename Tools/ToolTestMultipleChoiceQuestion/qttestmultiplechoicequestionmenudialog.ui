@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestMultipleChoiceQuestionMenuDialog</class>
+ <widget class="QDialog" name="QtTestMultipleChoiceQuestionMenuDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>231</width>
+    <height>220</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>24</pointsize>
+   </font>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/images/TooltestopenquestionIcon14x14.png</normaloff>:/images/TooltestopenquestionIcon14x14.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*QDialog { 
+ background-image: url(:/images/TooltestopenquestionIcon14x14.png);
+  background-repeat: no-repeat
+  background-position: center center
+}
+*/
+QDialog { 
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 #B0B0B0, stop: 1 #ffffff);
+ }
+QPushButton {
+  font-family: &quot;Courier New&quot;, &quot;Courier&quot;, Courier, monospace;
+  font-size: 24px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>:/images/TooltestopenquestionIcon14x14.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_start">
+     <property name="text">
+      <string>Start</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>About</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -28,3 +28,6 @@ win32 {
     LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
   }
 }
+
+RESOURCES += \
+    CppIsFolder.qrc

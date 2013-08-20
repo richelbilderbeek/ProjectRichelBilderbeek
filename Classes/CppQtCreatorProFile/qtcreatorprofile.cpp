@@ -45,11 +45,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/trim.hpp>
-//#include <boost/filesystem.hpp>
 #include <boost/function.hpp>
-//#include <boost/regex.hpp>
 #pragma GCC diagnostic pop
 
+#include <QDir>
 #include <QFile>
 
 #include "trace.h"
@@ -62,13 +61,13 @@ QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   #endif
 
   #ifndef NDEBUG
-  if (!QFile::exists(filename.c_str()))
+  if (!IsRegularFile(filename.c_str()))
   {
     TRACE(filename);
     TRACE("BREAK");
   }
   #endif
-  assert(QFile::exists(filename.c_str()));
+  assert(IsRegularFile(filename.c_str()));
 
   const std::vector<std::string> v = FileToVector(filename);
   Parse(v);
@@ -76,7 +75,7 @@ QtCreatorProFile::QtCreatorProFile(const std::string& filename)
 
 const std::vector<std::string> QtCreatorProFile::FileToVector(const std::string& filename)
 {
-  assert(QFile::exists(filename.c_str()));
+  assert(IsRegularFile(filename.c_str()));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
@@ -123,6 +122,13 @@ const std::vector<std::string> QtCreatorProFile::GetVersionHistory()
   v.push_back("2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem");
   return v;
 }
+
+#ifndef NDEBUG
+bool QtCreatorProFile::IsRegularFile(const std::string& filename)
+{
+  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
+}
+#endif
 
 void QtCreatorProFile::Parse(const std::vector<std::string> &v)
 {
@@ -398,7 +404,32 @@ void QtCreatorProFile::Test()
     }
     std::remove(mypath.c_str());
   }
+  //IsRegularFile
+  {
+    {
+      std::remove("tmp.txt");
 
+      //Create a regular file
+      assert(!IsRegularFile("tmp.txt"));
+      {
+        std::fstream f;
+        f.open("tmp.txt",std::ios::out);
+        f << "TEMP TEXT";
+        f.close();
+      }
+      assert(IsRegularFile("tmp.txt"));
+
+      std::remove("tmp.txt");
+
+      assert(!IsRegularFile("tmp.txt"));
+    }
+    {
+      //Create a folder
+      std::system("mkdir tmp");
+      assert(!IsRegularFile("tmp"));
+      std::system("rmdir tmp");
+    }
+  }
 }
 
 std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p)

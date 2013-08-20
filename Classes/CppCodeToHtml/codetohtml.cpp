@@ -236,6 +236,11 @@ void Test()
     const std::size_t q = GetProFilesInFolder("").size();
     assert(n == q);
   }
+  //IsRegularFile
+  {
+
+  }
+  //IsFolder
 }
 #endif
 

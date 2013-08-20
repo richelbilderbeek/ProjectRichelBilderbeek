@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestMultipleChoiceQuestionMainDialog</class>
+ <widget class="QDialog" name="QtTestMultipleChoiceQuestionMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>607</height>
+   </rect>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/images/ToolTestQuestionIcon14x14.png</normaloff>:/images/ToolTestQuestionIcon14x14.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="contents_here">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>480</width>
+        <height>561</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3"/>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="edit_question">
+     <property name="text">
+      <string>-,This is an open question,yes</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

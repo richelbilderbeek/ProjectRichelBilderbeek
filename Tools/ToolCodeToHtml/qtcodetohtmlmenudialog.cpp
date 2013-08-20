@@ -79,9 +79,6 @@ void QtCodeToHtmlMenuDialog::on_button_quit_clicked()
 
 void QtCodeToHtmlMenuDialog::on_button_start_clicked()
 {
-  //Make a screenshot
-  //QPixmap::grabWidget(this,this->window()->rect()).save("ToolCodeToHtmlMenuDialog.png");
-
   QtCodeToHtmlMainDialog d;
   ShowChild(&d);
 }

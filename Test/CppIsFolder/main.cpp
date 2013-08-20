@@ -22,8 +22,14 @@ bool IsFolderQt(const std::string& filename)
   return QDir(filename.c_str()).exists();
 }
 
-int main()
+int main(int, char * argv[])
 {
+  assert(!IsFolderBoostFilesystem(argv[0]));
+  assert(!IsFolderQt(argv[0]));
+
+  assert(IsFolderBoostFilesystem("../CppIsFolder"));
+  assert(IsFolderQt("../CppIsFolder"));
+
   assert(!IsFolderBoostFilesystem("tempfolder"));
   assert(!IsFolderQt("tempfolder"));
 
@@ -36,4 +42,7 @@ int main()
 
   assert(!IsFolderBoostFilesystem("tempfolder"));
   assert(!IsFolderQt("tempfolder"));
+
+  assert(!IsFolderBoostFilesystem(":/images/R.png"));
+  assert(!IsFolderQt(":/images/R.png"));
 }

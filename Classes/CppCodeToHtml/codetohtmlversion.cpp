@@ -163,13 +163,6 @@ const std::string GetLubuntuVersionCodename()
 }
 #endif
 
-/*
-const std::string GetQuantLibVersion()
-{
-  return QL_LIB_VERSION;
-}
-*/
-
 const std::string GetQtVersion()
 {
   return QT_VERSION_STR;

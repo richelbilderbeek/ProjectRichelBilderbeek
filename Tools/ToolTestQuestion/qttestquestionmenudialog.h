@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -49,6 +49,10 @@ private slots:
 private:
   Ui::QtTestQuestionMenuDialog *ui;
   boost::scoped_ptr<TestQuestionMenuDialog> m_dialog;
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 #endif // QTTESTQUESTIONMENUDIALOG_H

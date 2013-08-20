@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -62,8 +62,8 @@ const About TestQuestionMenuDialog::GetAbout() const
     "Richel Bilderbeek",
     "TestQuestion",
     "tool to test the Question and QuestionDialog classes",
-    "the 23rd of December 2012",
-    "2011-2012",
+    "the 20th of August 2013",
+    "2011-2013",
     "http://www.richelbilderbeek.nl/ToolTestQuestion.htm",
     GetVersion(),
     GetVersionHistory());
@@ -73,13 +73,13 @@ const About TestQuestionMenuDialog::GetAbout() const
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
   a.AddLibrary("Question version: " + Question::GetVersion());
   a.AddLibrary("QuestionDialog version: " + QuestionDialog::GetVersion());
-  //a.AddLibrary("Trace version: " + Trace::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
 const std::string TestQuestionMenuDialog::GetVersion()
 {
-  return "2.1";
+  return "3.0";
 }
 
 const std::vector<std::string> TestQuestionMenuDialog::GetVersionHistory()
@@ -88,6 +88,6 @@ const std::vector<std::string> TestQuestionMenuDialog::GetVersionHistory()
   v.push_back("2011-06-28: Version 1.0: initial version");
   v.push_back("2011-09-16: Version 2.0: show QuestionDialog from std::string in website version");
   v.push_back("2012-12-23: Version 2.1: finished desktop application");
+  v.push_back("2013-08-20: Version 3.0: major architectural rewrite");
   return v;
 }
-

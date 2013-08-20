@@ -100,20 +100,6 @@ const std::string Header::CreateTitle(
   }
 }
 
-/*
-void Header::SetPageType(const CodeToHtml::PageType page_type)
-{
-  m_page_type = page_type;
-  switch (m_page_type)
-  {
-    case CodeToHtml::cpp:   m_filename = "CppXXX.htm"; m_title = "XXX"; break;
-    case CodeToHtml::text:  m_filename = "CppXXX.htm"; m_title = "XXX"; break;
-    case CodeToHtml::music: m_filename = "SongXXX.htm"; m_title = "XXX"; break;
-    case CodeToHtml::tool:  m_filename = "ToolXXX.htm"; m_title = "XXX"; break;
-  }
-}
-*/
-
 const std::vector<std::string> Header::ToHtml() const
 {
   std::vector<std::string> v;

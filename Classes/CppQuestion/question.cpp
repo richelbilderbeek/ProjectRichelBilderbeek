@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <string>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 Question::Question(
     const std::string& filename,
     const std::string& question,
@@ -48,12 +48,12 @@ Question::Question(
   if (m_question.empty()) throw std::logic_error("Question must not be empty");
   if (m_answers.empty()) throw std::logic_error("Answers must not be empty");
 }
-//---------------------------------------------------------------------------
+
 const std::string Question::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> Question::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -61,9 +61,8 @@ const std::vector<std::string> Question::GetVersionHistory()
   v.push_back("2011-09-16: version 1.1: contructor throws error when input is invalid");
   return v;
 }
-//---------------------------------------------------------------------------
+
 bool Question::IsCorrect(const std::string& s) const
 {
   return std::find(m_answers.begin(),m_answers.end(),s) != m_answers.end();
 }
-//---------------------------------------------------------------------------

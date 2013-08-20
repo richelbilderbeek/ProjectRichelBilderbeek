@@ -51,12 +51,6 @@ const std::string GetLubuntuVersionCodename();
 ///From http://www.richelbilderbeek.nl/CppGetGccVersion.htm
 const std::string GetGccVersion();
 
-/*
-///GetQuantLibVersion returns the version of the QuantLib library installed.
-///From http://www.richelbilderbeek.nl/CppGetQuantLibVersion.htm
-const std::string GetQuantLibVersion();
-*/
-
 ///GetQtVersion returns the version of the Qt library installed.
 ///From http://www.richelbilderbeek.nl/CppGetQtVersion.htm
 const std::string GetQtVersion();

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,9 +35,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmultiplechoicequestiondialog.h"
 #include "qtopenquestiondialog.h"
 #include "qtquestiondialog.h"
-#include "questiondialog.h"
 #include "qttestquestionmaindialog.h"
+#include "questiondialog.h"
 #include "testquestionmenudialog.h"
+#include "trace.h"
 #include "ui_qttestquestionmenudialog.h"
 
 QtTestQuestionMenuDialog::QtTestQuestionMenuDialog(QWidget *parent) :
@@ -45,6 +46,9 @@ QtTestQuestionMenuDialog::QtTestQuestionMenuDialog(QWidget *parent) :
   ui(new Ui::QtTestQuestionMenuDialog),
   m_dialog(new TestQuestionMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -84,4 +88,17 @@ void QtTestQuestionMenuDialog::on_button_quit_clicked()
   close();
 }
 
+#ifndef NDEBUG
+void QtTestQuestionMenuDialog::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtTestQuestionMenuDialog::Test");
+  QtTestQuestionMainDialog();
+  TRACE("Finished QtTestQuestionMenuDialog::Test successfully");
+}
+#endif
 

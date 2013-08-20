@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>question.png</file>
+        <file>TooltestopenquestionWelcome.png</file>
+        <file>TooltestopenquestionIcon14x14.png</file>
+    </qresource>
+</RCC>

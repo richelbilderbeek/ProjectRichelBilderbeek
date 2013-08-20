@@ -57,11 +57,6 @@ struct Content
     const std::string& line,
     const std::vector<std::pair<std::string,std::string> >& replacements);
 
-  ///Replace all instances in a text by the replacements
-  //static const std::vector<std::string> MultiReplace(
-  //  const std::vector<std::string>& text,
-  //  const std::vector<std::pair<std::string,std::string> >& replacements);
-
   ///Convert the content to HTML
   const std::vector<std::string> ToHtml() const;
 
@@ -91,10 +86,6 @@ struct Content
 
   ///The text file replacements
   static const CodeToHtmlReplacements m_replacements_txt;
-
-  //static void CheckReplacement(const std::pair<std::string,std::string>& p);
-
-  //static void CheckReplacements(const std::vector<std::pair<std::string,std::string> >& v);
 
   ///CreateCppReplacements creates the (many) replacements when
   ///code is converted to HTML. It uses all the replacements from a .pro file

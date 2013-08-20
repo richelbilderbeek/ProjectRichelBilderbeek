@@ -44,12 +44,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QDir>
 
-//#include "createqtprojectzipfilepath.h"
-//#include "createqtprojectzipfilemenudialog.h"
-
-#include "qtcreatorprofile.h"
-//#include "createqtprojectzipfilepath.h"
 #include "qrcfile.h"
+#include "qtcreatorprofile.h"
 #include "trace.h"
 
 struct PathOrdering

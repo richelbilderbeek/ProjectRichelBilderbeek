@@ -45,7 +45,7 @@ QtQuestionDialog::QtQuestionDialog(
   : QDialog(parent),
     m_dialog(dialog)
 {
-
+  assert(m_dialog);
 }
 
 const std::string QtQuestionDialog::GetVersion()

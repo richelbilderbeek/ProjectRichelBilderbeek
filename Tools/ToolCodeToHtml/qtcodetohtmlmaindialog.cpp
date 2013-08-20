@@ -177,7 +177,6 @@ void QtCodeToHtmlMainDialog::on_button_convert_clicked()
     const std::vector<std::string> v = d.ToHtml();
     Display(v);
     std::remove(source.c_str());
-    //boost::filesystem::remove(source);
   }
   else
   {
@@ -197,8 +196,6 @@ void QtCodeToHtmlMainDialog::on_button_convert_clicked()
     const std::vector<std::string> v = d.ToHtml();
     Display(v);
   }
-  //Make a screenshot
- // QPixmap::grabWidget(this).save("ToolCodeToHtmlMainDialog.png");
 }
 
 void QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v)
@@ -226,7 +223,6 @@ void QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
   }
   else
   {
-    //assert(ui->tab_source->currentWidget() == ui->tab_source_snippet);
     const std::string source = ui->edit_source->text().toStdString();
     if (!QFile::exists(source.c_str()))
     {
@@ -269,7 +265,7 @@ void QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
   }
   else
   {
-    assert(QFile::exists(source.c_str()));
+    assert(c2h::IsRegularFile(source.c_str()));
     ui->button_convert->setText("Convert (source type: file)");
     ui->button_convert->setEnabled(true);
   }
@@ -284,22 +280,28 @@ void QtCodeToHtmlMainDialog::Test()
     is_tested = true;
   }
   TRACE("Starting QtCodeToHtmlMainDialog::Test");
-  QtCodeToHtmlMainDialog d;
-  for (int index = 0; index != 2; ++index)
+  //IsRegularFile
   {
-    d.ui->tab_source->setCurrentIndex(index);
-    for (const std::string& s:
-      {
-        "/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml",
-        "E:/Projects/Tools/ToolCodeToHtml",
-        "../../Tools/ToolCodeToHtml"
-      }
-    )
+    assert(!c2h::IsRegularFile("../ToolCodeToHtml"));
+  }
+  {
+    QtCodeToHtmlMainDialog d;
+    for (int index = 0; index != 2; ++index)
     {
-      d.ui->edit_source->setText(s.c_str());
-      if (d.ui->button_convert->isEnabled())
+      d.ui->tab_source->setCurrentIndex(index);
+      for (const std::string& s:
+        {
+          "/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml",
+          "E:/Projects/Tools/ToolCodeToHtml",
+          "../../Tools/ToolCodeToHtml"
+        }
+      )
       {
-        d.on_button_convert_clicked();
+        d.ui->edit_source->setText(s.c_str());
+        if (d.ui->button_convert->isEnabled())
+        {
+          d.on_button_convert_clicked();
+        }
       }
     }
   }
