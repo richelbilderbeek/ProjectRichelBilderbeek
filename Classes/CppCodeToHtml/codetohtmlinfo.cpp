@@ -2834,6 +2834,28 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppSurvey.htm\">Survey</a> is a <a href=\"CppClass.htm\">class</a> for a survey.</p>");
   }
+  else if (m_page_name == "CppTemplateClassExample1")
+  {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppTemplateClassExample1.htm\">Template class example 1: class holding a templated member variable</a>");
+    v.push_back("is a <a href=\"CppTemplateClass.htm\">template class</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppTemplateClassExample1.zip\">Download the Qt Creator project 'CppTemplateClassExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppTemplateClassExample2")
+  {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppTemplateClassExample2.htm\">Template class example 2: class that must be specialized; compile-time polymorphism</a>");
+    v.push_back("is a <a href=\"CppTemplateClass.htm\">template class</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppTemplateClassExample2.zip\">Download the Qt Creator project 'CppTemplateClassExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppTicTacToe")
   {
     v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
