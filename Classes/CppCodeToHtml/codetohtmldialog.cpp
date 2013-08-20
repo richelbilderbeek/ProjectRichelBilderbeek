@@ -100,7 +100,7 @@ void Dialog::Test()
   if (IsTidyInstalled())
   {
     const std::string path = "../ToolCodeToHtml";
-    if (boost::filesystem::exists(path))
+    if (IsFolder(path))
     {
       Dialog d(PageType::cpp,path,ContentType::cpp,TechInfoType::automatic);
       const std::vector<std::string> v = d.ToHtml();
@@ -178,7 +178,7 @@ const std::vector<std::string> Dialog::ToHtml() const
   //Source
   {
     const std::vector<std::string> w
-      = IsRegularFile(m_source)
+      = !IsFolder(m_source)
      ? c2h::ConvertFile(m_source,m_content_type)
      : c2h::ConvertFiles(m_source) ;
     std::copy(w.begin(),w.end(),std::back_inserter(v));

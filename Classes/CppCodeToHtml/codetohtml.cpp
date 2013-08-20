@@ -356,6 +356,8 @@ const std::vector<std::string> ConvertProject(const std::string& filename)
 
 const std::vector<std::string> FileToVector(const std::string& filename)
 {
+  TRACE_FUNC();
+  TRACE(filename);
   #ifndef NDEBUG
   if (!IsRegularFile(filename))
   {
@@ -364,6 +366,7 @@ const std::vector<std::string> FileToVector(const std::string& filename)
   }
   #endif
   assert(IsRegularFile(filename));
+  assert(!IsFolder(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
