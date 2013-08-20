@@ -41,7 +41,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -89,18 +89,18 @@ CONFIG -= qt<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppXpressive.htm">xpressive</a>/<a href="CppXpressive.htm">xpressive</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppComment.htm">///</a>Example adapted from http://www.<a href="CppBoost.htm">boost</a>.org/doc/libs/1_54_0/doc/html/<a href="CppXpressive.htm">xpressive</a>/user_s_guide.html<br/>
+<a href="CppComment.htm">///</a>Example adapted from http://www.<a href="CppBoost.htm">boost</a>.org/doc/libs/1_54_0/doc/html/<a href="CppBoostXpressive.htm">xpressive</a>/user_s_guide.html<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> hello( "hello world!" );<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a> rex <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>( "(\\w+) (\\w+)!" );<br/>
-&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::smatch what;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a> rex <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>( "(\\w+) (\\w+)!" );<br/>
+&nbsp;&nbsp;<a href="CppBoostXpressive.htm">boost::xpressive</a>::smatch what;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::<a href="CppRegex.htm">regex</a>_match( hello, what, rex ) )<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match( hello, what, rex ) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> whole match<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> first capture<br/>

@@ -39,7 +39,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -123,7 +123,7 @@ win32 {<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppXpressive.htm">xpressive</a>/<a href="CppXpressive.htm">xpressive</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
@@ -168,9 +168,9 @@ win32 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a><a href="CppBoost.htm">Boost</a><a href="CppXpressive.htm">Xpressive</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>&amp; <a href="CppRegex.htm">regex</a>)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>&amp; <a href="CppRegex.htm">regex</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get all filenames<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(folder);<br/>
@@ -181,7 +181,7 @@ win32 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy all filenames matching the <a href="CppRegex.htm">regex</a> in the resulting <a href="CppVector.htm">std::vector</a><br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s: v)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::<a href="CppRegex.htm">regex</a>_match(s,<a href="CppRegex.htm">regex</a>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(s,<a href="CppRegex.htm">regex</a>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -192,8 +192,8 @@ win32 {<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetTxtFilesInFolder(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRegex.htm">regex</a>_str("(.*\\.txt)");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a> <a href="CppXpressive.htm">xpressive</a>_<a href="CppRegex.htm">regex</a>(<a href="CppBoost.htm">boost</a>::<a href="CppXpressive.htm">xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>(<a href="CppRegex.htm">regex</a>_str));<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; files <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a><a href="CppBoost.htm">Boost</a><a href="CppXpressive.htm">Xpressive</a>(folder,<a href="CppXpressive.htm">xpressive</a>_<a href="CppRegex.htm">regex</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a> <a href="CppBoostXpressive.htm">xpressive</a>_<a href="CppRegex.htm">regex</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>(<a href="CppRegex.htm">regex</a>_str));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; files <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>(folder,<a href="CppBoostXpressive.htm">xpressive</a>_<a href="CppRegex.htm">regex</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> <a href="CppRegex.htm">regex</a>_<a href="CppRegex.htm">regex</a>(<a href="CppRegex.htm">regex</a>_str);<br/>

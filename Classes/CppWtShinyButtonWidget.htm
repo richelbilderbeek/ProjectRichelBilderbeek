@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>WtShinyButtonWidget</title>
+  <meta name="description" content="C++ WtShinyButtonWidget"/>
+  <meta name="keywords" content="C++ WtShinyButtonWidget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppWtShinyButtonWidget-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtshinybuttonwidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="wtshinybuttonwidget.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWtShinyButtonWidget.htm">CppWtShinyButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> WTSHINYBUTTONWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> WTSHINYBUTTONWIDGET_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintDevice.htm">WPaintDevice</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> { <b><a href="CppStruct.htm">struct</a></b> <a href="CppWMouseEvent.htm">WMouseEvent</a>Event; }<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppShinyButton.htm">ShinyButton</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> displays a <a href="CppShinyButton.htm">ShinyButton</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> is created by its toggle state and its color<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text <a href="CppOperatorAssign.htm">=</a> "");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a> to the <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * Get<a href="CppWidget.htm">Widget</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a> to the <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a><br/>
+&nbsp;&nbsp;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * Get<a href="CppWidget.htm">Widget</a>() { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> its <a href="CppVersion.htm">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> its <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw the <a href="CppShinyButton.htm">ShinyButton</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButton.htm">ShinyButton</a> * <b><a href="CppConst.htm">const</a></b> button);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw the <a href="CppShinyButton.htm">ShinyButton</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.htm">Paint</a> the <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a><br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&gt; m_<a href="CppWidget.htm">widget</a>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Do not let <b><a href="CppThis.htm">this</a></b> be called by the client<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Repaint the <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRepaint();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to mouse click<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the <a href="CppWidget.htm">widget</a> resizing<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnResize();<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTSHINYBUTTONWIDGET_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>wtshinybuttonwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="wtshinybuttonwidget.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2011 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppWtShinyButtonWidget.htm">CppWtShinyButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WBrush&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEvent.htm">WEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPainter.htm">WPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WPen&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppRainbow.htm">rainbow</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppShinyButton.htm">shinybutton</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWtShinyButtonWidget.htm">wtshinybuttonwidget</a>.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text)<br/>
+&nbsp;&nbsp;: m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(color,gradient,text))<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setInline(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;m_signal_color_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;m_signal_text_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnResize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnClicked);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::DoRepaint()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
+&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButton.htm">ShinyButton</a> * <b><a href="CppConst.htm">const</a></b> button)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> from <a href="CppOperatorAssign.htm">=</a> button-&gt;GetColor() <a href="CppOperatorMinus.htm">-</a> (0.5 * button-&gt;GetGradient());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> button-&gt;GetColor() <a href="CppOperatorPlus.htm">+</a> (0.5 * button-&gt;GetGradient());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dc&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> (to <a href="CppOperatorMinus.htm">-</a> from) <a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> right <a href="CppOperatorAssign.htm">=</a> left <a href="CppOperatorPlus.htm">+</a> width;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> c <a href="CppOperatorAssign.htm">=</a> from;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWPen.htm">Wt::WPen</a> old_pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
+&nbsp;&nbsp;<a href="CppWPen.htm">Wt::WPen</a> pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=left; x<a href="CppOperatorNotEqual.htm">!=</a>right; <a href="CppOperatorPlus.htm">+</a>+x,c<a href="CppOperatorPlusAssign.htm">+=</a>dc)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> r,g,b;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRainbow.htm">Rainbow</a>::GetRgb(c,r,g,b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppWColor.htm">Wt::WColor</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r * 255.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g * 255.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b * 255.0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(pen);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top <a href="CppOperatorPlus.htm">+</a> height);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;painter.setPen(old_pen);<br/>
+&nbsp;&nbsp;<a href="CppWRectF.htm">Wt::WRectF</a> r(left,top,width,height);<br/>
+&nbsp;&nbsp;painter.drawText(r,<a href="CppWt.htm">Wt</a>::AlignCenter | <a href="CppWt.htm">Wt</a>::AlignMiddle,button-&gt;GetText().c_str());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
+&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
+{<br/>
+&nbsp;&nbsp;Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetX(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetY(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2011-09-21: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-10-29: <a href="CppVersion.htm">version</a> 1.1: added OnClicked method");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp;)<br/>
+{<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnResize()<br/>
+{<br/>
+&nbsp;&nbsp;resize(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
+&nbsp;&nbsp;Draw<a href="CppShinyButton.htm">ShinyButton</a>(painter,m_<a href="CppWidget.htm">widget</a>.get());<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a>::resize(width,height);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

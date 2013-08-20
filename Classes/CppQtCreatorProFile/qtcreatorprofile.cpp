@@ -248,7 +248,7 @@ const std::vector<std::string> QtCreatorProFile::SeperateString(
   return v;
 }
 
-
+#ifndef NDEBUG
 void QtCreatorProFile::Test()
 {
   //Test exactly once
@@ -431,7 +431,7 @@ void QtCreatorProFile::Test()
     }
   }
 }
-
+#endif
 std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p)
 {
   assert(p);

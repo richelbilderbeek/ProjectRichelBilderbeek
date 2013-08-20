@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #undef __STRICT_ANSI__
 #endif
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "qtcreateglossarymenudialog.h"
 #include "trace.h"
 

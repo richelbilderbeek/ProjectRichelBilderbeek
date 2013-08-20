@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>HelloOdeQtCreatorLubuntu</title>
+  <meta name="description" content="C++ HelloOdeQtCreatorLubuntu"/>
+  <meta name="keywords" content="C++ HelloOdeQtCreatorLubuntu code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloOdeQtCreatorLubuntu.htm">HelloOdeQtCreatorLubuntu</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppHelloOdeQtCreatorLubuntu-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloOdeQtCreatorLubuntu.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppHelloOdeQtCreatorLubuntu.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/opende-code/include<br/>
+<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/opende-code/ode/demo<br/>
+<br/>
+#The Open Dynamics Engine (ODE)<br/>
+<a href="CppLIBS.htm">LIBS</a> += -lode<br/>
+<br/>
+#The Open Dynamics Engine its drawstuff library<br/>
+<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/opende-code/drawstuff/src -ldrawstuff<br/>
+<br/>
+#POSIX thread<br/>
+<a href="CppLIBS.htm">LIBS</a> += -lpthread<br/>
+<br/>
+#Open Graphics Library (OpenGL)<br/>
+<a href="CppLIBS.htm">LIBS</a> += -lGL<br/>
+<br/>
+#The X11 display server<br/>
+<a href="CppLIBS.htm">LIBS</a> += -lX11<br/>
+<br/>
+#OpenGL Utilities (GLU)<br/>
+<a href="CppLIBS.htm">LIBS</a> += -lGLU<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a>************************************************************************<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ * Open Dynamics Engine, Copyright (C) 2001,2002 Russell L. Smith.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ * All rights reserved.&nbsp;&nbsp;Email: russ@q12.org&nbsp;&nbsp; Web: www.q12.org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ * This <a href="CppLibrary.htm">library</a> is free software; you can redistribute it and/or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ * modify it under the terms of EITHER:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br/>
+ *&nbsp;&nbsp; (1) The GNU Lesser General Public License as published by the Free&nbsp;&nbsp;*<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Software Foundation; either <a href="CppVersion.htm">version</a> 2.1 of the License, or (at&nbsp;&nbsp;*<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; your option) any later version. The text of the GNU Lesser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; General Public License is included with <b><a href="CppThis.htm">this</a></b> <a href="CppLibrary.htm">library</a> in the&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file LICENSE.TXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ *&nbsp;&nbsp; (2) The BSD-style license that is included with <b><a href="CppThis.htm">this</a></b> <a href="CppLibrary.htm">library</a> in&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the file LICENSE-BSD.TXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ * This <a href="CppLibrary.htm">library</a> is distributed in the hope that it will be useful,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br/>
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the files&nbsp;&nbsp;&nbsp;&nbsp;*<br/>
+ * LICENSE.TXT and LICENSE-BSD.TXT <b><a href="CppFor.htm">for</a></b> more details.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
+ ************************************************************************<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+<br/>
+<a href="CppBug.htm">bug</a>gy with suspension.<br/>
+<b><a href="CppThis.htm">this</a></b> also shows you how to use geom groups.<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;ode/ode.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;drawstuff/drawstuff.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>RJCB: changed <b><a href="CppThis.htm">this</a></b> path<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "texturepath.h"<br/>
+<a href="CppDefine.htm">#define</a> DRAWSTUFF_TEXTURE_PATH "../../<a href="CppLibrary.htm">Libraries</a>/opende-code/drawstuff/textures"<br/>
+<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> _MSC_VER<br/>
+<a href="CppPragma.htm">#pragma</a> warning(disable:4244 4305)&nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppFor.htm">for</a></b> V<a href="Cpp.htm">C++</a>, no precision loss complaints<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a> select correct drawing <a href="CppFunction.htm">function</a>s<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> dDOUBLE<br/>
+<a href="CppDefine.htm">#define</a> dsDrawBox dsDrawBoxD<br/>
+<a href="CppDefine.htm">#define</a> dsDrawSphere dsDrawSphereD<br/>
+<a href="CppDefine.htm">#define</a> dsDrawCylinder dsDrawCylinderD<br/>
+<a href="CppDefine.htm">#define</a> dsDrawCapsule dsDrawCapsuleD<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a> some constants<br/>
+<br/>
+<a href="CppDefine.htm">#define</a> LENGTH 0.7	<a href="CppComment.htm">//</a> chassis length<br/>
+<a href="CppDefine.htm">#define</a> WIDTH 0.5	<a href="CppComment.htm">//</a> chassis width<br/>
+<a href="CppDefine.htm">#define</a> HEIGHT 0.2	<a href="CppComment.htm">//</a> chassis height<br/>
+<a href="CppDefine.htm">#define</a> RADIUS 0.18	<a href="CppComment.htm">//</a> wheel radius<br/>
+<a href="CppDefine.htm">#define</a> STARTZ 0.5	<a href="CppComment.htm">//</a> starting height of chassis<br/>
+<a href="CppDefine.htm">#define</a> CMASS 1		<a href="CppComment.htm">//</a> chassis mass<br/>
+<a href="CppDefine.htm">#define</a> WMASS 0.2	<a href="CppComment.htm">//</a> wheel mass<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a> dynamics and collision objects (chassis, 3 wheels, environment)<br/>
+<br/>
+<b><a href="CppStatic.htm">static</a></b> dWorldID world;<br/>
+<b><a href="CppStatic.htm">static</a></b> dSpaceID space;<br/>
+<b><a href="CppStatic.htm">static</a></b> dBodyID body[4];<br/>
+<b><a href="CppStatic.htm">static</a></b> dJointID joint[3];	<a href="CppComment.htm">//</a> joint[0] is the front wheel<br/>
+<b><a href="CppStatic.htm">static</a></b> dJointGroupID contactgroup;<br/>
+<b><a href="CppStatic.htm">static</a></b> dGeomID ground;<br/>
+<b><a href="CppStatic.htm">static</a></b> dSpaceID car_space;<br/>
+<b><a href="CppStatic.htm">static</a></b> dGeomID box[1];<br/>
+<b><a href="CppStatic.htm">static</a></b> dGeomID sphere[3];<br/>
+<b><a href="CppStatic.htm">static</a></b> dGeomID ground_box;<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a> things that the user controls<br/>
+<br/>
+<b><a href="CppStatic.htm">static</a></b> dReal speed=0,steer=0;	<a href="CppComment.htm">//</a> user commands<br/>
+<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a> <b><a href="CppThis.htm">this</a></b> is called by dSpaceCollide when two objects in space are<br/>
+<a href="CppComment.htm">//</a> potentially colliding.<br/>
+<a href="CppComment.htm">//</a>RJCB: changed '<b><a href="CppVoid.htm">void</a></b> * data' to '<b><a href="CppVoid.htm">void</a></b> *'<br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> nearCallback (<b><a href="CppVoid.htm">void</a></b> *, dGeomID o1, dGeomID o2)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i,n;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> only collide things with the ground<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> g1 <a href="CppOperatorAssign.htm">=</a> (o1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ground <a href="CppOperatorLogicalOr.htm">||</a> o1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ground_box);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> g2 <a href="CppOperatorAssign.htm">=</a> (o2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ground <a href="CppOperatorLogicalOr.htm">||</a> o2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ground_box);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(g1 ^ g2)) <b><a href="CppReturn.htm">return</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> N <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;dContact contact[N];<br/>
+&nbsp;&nbsp;n <a href="CppOperatorAssign.htm">=</a> dCollide (o1,o2,N,&amp;contact[0].geom,<b><a href="CppSizeof.htm">sizeof</a></b>(dContact));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 0) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=0; i&lt;n; i<a href="CppOperatorIncrement.htm">++</a>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contact[i].surface.mode <a href="CppOperatorAssign.htm">=</a> dContactSlip1 | dContactSlip2 |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dContactSoftERP | dContactSoftCFM | dContactApprox1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contact[i].surface.mu <a href="CppOperatorAssign.htm">=</a> dInfinity;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contact[i].surface.slip1 <a href="CppOperatorAssign.htm">=</a> 0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contact[i].surface.slip2 <a href="CppOperatorAssign.htm">=</a> 0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contact[i].surface.soft_erp <a href="CppOperatorAssign.htm">=</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contact[i].surface.soft_cfm <a href="CppOperatorAssign.htm">=</a> 0.3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointID c <a href="CppOperatorAssign.htm">=</a> dJointCreateContact (world,contactgroup,&amp;contact[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointAttach (c,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dGeomGetBody(contact[i].geom.g1),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dGeomGetBody(contact[i].geom.g2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a> start simulation <a href="CppOperatorMinus.htm">-</a> set view<a href="CppPointer.htm">point</a><br/>
+<br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> start()<br/>
+{<br/>
+&nbsp;&nbsp;dAllocateODEDataFor<a href="CppThread.htm">Thread</a>(dAllocateMaskAll);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppFloat.htm">float</a></b> xyz[3] <a href="CppOperatorAssign.htm">=</a> {0.8317f,-0.9817f,0.8000f};<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppFloat.htm">float</a></b> hpr[3] <a href="CppOperatorAssign.htm">=</a> {121.0000f,-27.5000f,0.0000f};<br/>
+&nbsp;&nbsp;dsSetView<a href="CppPointer.htm">point</a> (xyz,hpr);<br/>
+&nbsp;&nbsp;printf ("Press:\t'a' to increase speed.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\t'z' to decrease speed.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\t',' to steer left.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\t'.' to steer right.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\t' ' to reset speed and steering.\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\t'1' to save the current state to 'state.dif'.\n");<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a> called when a key pressed<br/>
+<br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> command (<b><a href="CppInt.htm">int</a></b> cmd)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (cmd) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 'a': <b><a href="CppCase.htm">case</a></b> 'A':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;speed <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> 0.3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 'z': <b><a href="CppCase.htm">case</a></b> 'Z':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;speed <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> 0.3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ',':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;steer <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> '.':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;steer <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ' ':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;speed <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;steer <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> '1': {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE *f <a href="CppOperatorAssign.htm">=</a> fopen ("state.dif","wt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (f) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dWorldExportDIF (world,f,"");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fclose (f);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a> simulation loop<br/>
+<br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> simLoop (<b><a href="CppInt.htm">int</a></b> pause)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!pause) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> motor<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamVel2,-speed);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamFMax2,0.1);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> steering<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dReal v <a href="CppOperatorAssign.htm">=</a> steer <a href="CppOperatorMinus.htm">-</a> dJointGetHinge2Angle1 (joint[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v &gt; 0.1) v <a href="CppOperatorAssign.htm">=</a> 0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v &lt; <a href="CppOperatorMinus.htm">-</a>0.1) v <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorMultiplyAssign.htm">*=</a> 10.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamVel,v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamFMax,0.2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamLoStop,-0.75);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamHiStop,0.75);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamFudgeFactor,0.1);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dSpaceCollide (space,0,&amp;nearCallback);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dWorldStep (world,0.05);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> remove all contact joints<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointGroupEmpty (contactgroup);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;dsSetColor (0,1,1);<br/>
+&nbsp;&nbsp;dsSetTexture (DS_WOOD);<br/>
+&nbsp;&nbsp;dReal sides[3] <a href="CppOperatorAssign.htm">=</a> {LENGTH,WIDTH,HEIGHT};<br/>
+&nbsp;&nbsp;dsDrawBox (dBodyGetPosition(body[0]),dBodyGetRotation(body[0]),sides);<br/>
+&nbsp;&nbsp;dsSetColor (1,1,1);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=1; i<a href="CppOperatorLessEqual.htm">&lt;=</a>3; i<a href="CppOperatorIncrement.htm">++</a>) dsDrawCylinder (dBodyGetPosition(body[i]),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dBodyGetRotation(body[i]),0.02f,RADIUS);<br/>
+<br/>
+&nbsp;&nbsp;dVector3 ss;<br/>
+&nbsp;&nbsp;dGeomBoxGetLengths (ground_box,ss);<br/>
+&nbsp;&nbsp;dsDrawBox (dGeomGetPosition(ground_box),dGeomGetRotation(ground_box),ss);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;printf ("%.10f <a href="CppOperatorModulus.htm">%</a>.10f <a href="CppOperatorModulus.htm">%</a>.10f <a href="CppOperatorModulus.htm">%</a>.10f\n",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointGetHingeAngle (joint[1]),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointGetHingeAngle (joint[2]),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointGetHingeAngleRate (joint[1]),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointGetHingeAngleRate (joint[2]));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a> (<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i;<br/>
+&nbsp;&nbsp;dMass m;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> setup <a href="CppPointer.htm">pointer</a>s to drawstuff callback <a href="CppFunction.htm">function</a>s<br/>
+&nbsp;&nbsp;ds<a href="CppFunction.htm">Function</a>s fn;<br/>
+&nbsp;&nbsp;fn.<a href="CppVersion.htm">version</a> <a href="CppOperatorAssign.htm">=</a> DS_VERSION;<br/>
+&nbsp;&nbsp;fn.start <a href="CppOperatorAssign.htm">=</a> &amp;start;<br/>
+&nbsp;&nbsp;fn.step <a href="CppOperatorAssign.htm">=</a> &amp;simLoop;<br/>
+&nbsp;&nbsp;fn.command <a href="CppOperatorAssign.htm">=</a> &amp;command;<br/>
+&nbsp;&nbsp;fn.stop <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;fn.path_to_textures <a href="CppOperatorAssign.htm">=</a> DRAWSTUFF_TEXTURE_PATH;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> create world<br/>
+&nbsp;&nbsp;dInitODE2(0);<br/>
+&nbsp;&nbsp;world <a href="CppOperatorAssign.htm">=</a> dWorldCreate();<br/>
+&nbsp;&nbsp;space <a href="CppOperatorAssign.htm">=</a> dHashSpaceCreate (0);<br/>
+&nbsp;&nbsp;contactgroup <a href="CppOperatorAssign.htm">=</a> dJointGroupCreate (0);<br/>
+&nbsp;&nbsp;dWorldSetGravity (world,0,0,-0.5);<br/>
+&nbsp;&nbsp;ground <a href="CppOperatorAssign.htm">=</a> dCreatePlane (space,0,0,1,0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> chassis body<br/>
+&nbsp;&nbsp;body[0] <a href="CppOperatorAssign.htm">=</a> dBodyCreate (world);<br/>
+&nbsp;&nbsp;dBodySetPosition (body[0],0,0,STARTZ);<br/>
+&nbsp;&nbsp;dMassSetBox (&amp;m,1,LENGTH,WIDTH,HEIGHT);<br/>
+&nbsp;&nbsp;dMassAdjust (&amp;m,CMASS);<br/>
+&nbsp;&nbsp;dBodySetMass (body[0],&amp;m);<br/>
+&nbsp;&nbsp;box[0] <a href="CppOperatorAssign.htm">=</a> dCreateBox (0,LENGTH,WIDTH,HEIGHT);<br/>
+&nbsp;&nbsp;dGeomSetBody (box[0],body[0]);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> wheel bodies<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=1; i<a href="CppOperatorLessEqual.htm">&lt;=</a>3; i<a href="CppOperatorIncrement.htm">++</a>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;body[i] <a href="CppOperatorAssign.htm">=</a> dBodyCreate (world);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dQuaternion q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dQFromAxisAndAngle (q,1,0,0,<a href="CppM_PI.htm">M_PI</a>*0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dBodySetQuaternion (body[i],q);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dMassSetSphere (&amp;m,1,RADIUS);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dMassAdjust (&amp;m,WMASS);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dBodySetMass (body[i],&amp;m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sphere[i-1] <a href="CppOperatorAssign.htm">=</a> dCreateSphere (0,RADIUS);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dGeomSetBody (sphere[i-1],body[i]);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;dBodySetPosition (body[1],0.5*LENGTH,0,STARTZ-HEIGHT*0.5);<br/>
+&nbsp;&nbsp;dBodySetPosition (body[2],-0.5*LENGTH, WIDTH*0.5,STARTZ-HEIGHT*0.5);<br/>
+&nbsp;&nbsp;dBodySetPosition (body[3],-0.5*LENGTH,-WIDTH*0.5,STARTZ-HEIGHT*0.5);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> front wheel hinge<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;joint[0] <a href="CppOperatorAssign.htm">=</a> dJointCreateHinge2 (world,0);<br/>
+&nbsp;&nbsp;dJointAttach (joint[0],body[0],body[1]);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> dReal *a <a href="CppOperatorAssign.htm">=</a> dBodyGetPosition (body[1]);<br/>
+&nbsp;&nbsp;dJointSetHinge2Anchor (joint[0],a[0],a[1],a[2]);<br/>
+&nbsp;&nbsp;dJointSetHinge2Axis1 (joint[0],0,0,1);<br/>
+&nbsp;&nbsp;dJointSetHinge2Axis2 (joint[0],0,1,0);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> front and back wheel hinges<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=0; i&lt;3; i<a href="CppOperatorIncrement.htm">++</a>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;joint[i] <a href="CppOperatorAssign.htm">=</a> dJointCreateHinge2 (world,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointAttach (joint[i],body[0],body[i+1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> dReal *a <a href="CppOperatorAssign.htm">=</a> dBodyGetPosition (body[i+1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Anchor (joint[i],a[0],a[1],a[2]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Axis1 (joint[i],0,0,1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Axis2 (joint[i],0,1,0);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> set joint suspension<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=0; i&lt;3; i<a href="CppOperatorIncrement.htm">++</a>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[i],dParamSuspensionERP,0.4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[i],dParamSuspensionCFM,0.8);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> lock back wheels along the steering axis<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=1; i&lt;3; i<a href="CppOperatorIncrement.htm">++</a>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> set stops to <a href="CppMake.htm">make</a> sure wheels always stay in alignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[i],dParamLoStop,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[i],dParamHiStop,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> the following alternative method is no good as the wheels may get out<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> of alignment:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; dJointSetHinge2Param (joint[i],dParamVel,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; dJointSetHinge2Param (joint[i],dParamFMax,dInfinity);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> create car space and add it to the top level space<br/>
+&nbsp;&nbsp;car_space <a href="CppOperatorAssign.htm">=</a> dSimpleSpaceCreate (space);<br/>
+&nbsp;&nbsp;dSpaceSetCleanup (car_space,0);<br/>
+&nbsp;&nbsp;dSpace<a href="CppAdd.htm">Add</a> (car_space,box[0]);<br/>
+&nbsp;&nbsp;dSpace<a href="CppAdd.htm">Add</a> (car_space,sphere[0]);<br/>
+&nbsp;&nbsp;dSpace<a href="CppAdd.htm">Add</a> (car_space,sphere[1]);<br/>
+&nbsp;&nbsp;dSpace<a href="CppAdd.htm">Add</a> (car_space,sphere[2]);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> environment<br/>
+&nbsp;&nbsp;ground_box <a href="CppOperatorAssign.htm">=</a> dCreateBox (space,2,1.5,1);<br/>
+&nbsp;&nbsp;d<a href="CppMatrix.htm">Matrix</a>3 R;<br/>
+&nbsp;&nbsp;dRFromAxisAndAngle (R,0,1,0,-0.15);<br/>
+&nbsp;&nbsp;dGeomSetPosition (ground_box,2,0,-0.34);<br/>
+&nbsp;&nbsp;dGeomSetRotation (ground_box,R);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> run simulation<br/>
+&nbsp;&nbsp;dsSimulationLoop (<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,352,288,&amp;fn);<br/>
+<br/>
+&nbsp;&nbsp;dGeomDestroy (box[0]);<br/>
+&nbsp;&nbsp;dGeomDestroy (sphere[0]);<br/>
+&nbsp;&nbsp;dGeomDestroy (sphere[1]);<br/>
+&nbsp;&nbsp;dGeomDestroy (sphere[2]);<br/>
+&nbsp;&nbsp;dJointGroupDestroy (contactgroup);<br/>
+&nbsp;&nbsp;dSpaceDestroy (space);<br/>
+&nbsp;&nbsp;dWorldDestroy (world);<br/>
+&nbsp;&nbsp;dCloseODE();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

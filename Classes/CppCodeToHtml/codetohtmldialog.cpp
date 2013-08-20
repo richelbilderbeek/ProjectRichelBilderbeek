@@ -100,7 +100,7 @@ void Dialog::Test()
   if (IsTidyInstalled())
   {
     const std::string path = "../ToolCodeToHtml";
-    if (IsFolder(path))
+    if (!IsRegularFile(path))
     {
       Dialog d(PageType::cpp,path,ContentType::cpp,TechInfoType::automatic);
       const std::vector<std::string> v = d.ToHtml();

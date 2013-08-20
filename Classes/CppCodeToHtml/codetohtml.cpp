@@ -41,6 +41,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/xpressive/xpressive.hpp>
 
 #include <QDir>
+#include <QFile>
 
 #include "codetohtmlcontent.h"
 #include "codetohtmlfooter.h"
@@ -80,6 +81,7 @@ bool IsCleanHtml(const std::vector<std::string>& html)
     const int error = std::system(command.c_str());
     if (error)
     {
+      TRACE("CHECK tmp.htm");
       TRACE(command);
       TRACE(error);
       #ifndef NDEBUG
@@ -504,9 +506,7 @@ bool IsFolder(const std::string& filename)
 
 bool IsRegularFile(const std::string& filename)
 {
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
+  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }
 
 

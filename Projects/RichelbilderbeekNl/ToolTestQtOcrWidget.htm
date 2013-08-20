@@ -1,0 +1,1533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>TestQtOcrWidget</title>
+  <meta name="description" content="C++ TestQtOcrWidget"/>
+  <meta name="keywords" content="C++ TestQtOcrWidget code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolTestQtOcrWidget.htm">TestQtOcrWidget</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name ToolTestQtOcrWidget-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolTestQtOcrWidget.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ToolTestQtOcrWidget.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+TEMPLATE = app<br/>
+<br/>
+<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/api \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/viewer \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/vs2008 \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec<br/>
+<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/api/baseapi.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/api/tesseract<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/adaptions.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/ambigsrecog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/applybox.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/blobcmp.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/callnet.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/charcut.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/charsample.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/control.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/docqual.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/expandblob.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/fixspace.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/fixxht.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/imgscale.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/matmatch.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/osdetect.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/output.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/pagewalk.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/paircmp.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/pgedit.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/reject.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/scaleimg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessbox.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessedit.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessembedded.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tesseractclass.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessvars.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tfacepp.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/thresholder.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tstruct.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/varab<a href="CppLed.htm">led</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/werdit.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/blobbox.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/blobs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/blread.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/callcpp.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ccstruct.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/coutln.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/detlinefit.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/genblob.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/labls.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/linlsq.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/lmedsq.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/mod128.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/normalis.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ocrblock.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ocrrow.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/otsuthr.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/pageres.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/pdblock.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/points.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/polyaprx.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/polyblk.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/polyblob.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/polyvert.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/poutline.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/quadlsq.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/quadratc.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/quspline.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ratngs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/rect.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/rejctmap.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/statistc.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/stepblob.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/vecfuncs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/werd.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/ambigs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/basedir.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/bits16.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/boxread.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/ccutil.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/clst.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/debugwin.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/elst2.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/elst.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/errcode.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/globaloc.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/hashfn.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/<a href="CppMain.htm">main</a>blk.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/memblk.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/memry.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/mfcpch.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/ocrshell.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/scanutils.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/serialis.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/strngs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tessdatamanager.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tessopt.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tordvars.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tprintf.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/unichar.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/unicharmap.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/unicharset.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/varable.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/adaptive.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/adaptmatch.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/baseline.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/blobclass.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/chartoname.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/classify.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/cluster.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/clusttool.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/cutoffs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/extract.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/featdefs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/flexfx.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/float2int.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/fpoint.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/fxdefs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/hideedge.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/intfx.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/intmatcher.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/intproto.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/kdtree.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/mf.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/mfdefs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/mfoutline.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/mfx.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/normfeat.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/normmatch.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/ocrfeatures.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/outfeat.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/picofeat.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/protos.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/speckle.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/xform2d.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/bitvec.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/cutil_class.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/cutil.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/danerror.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/efio.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/emalloc.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/freelist.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/globals.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/listio.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/oldheap.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/oldlist.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/structures.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/tessarray.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/choices.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/context.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/conversion.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/dawg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/dict.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/hyphen.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/permdawg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/permngram.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/permute.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/states.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/stopper.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/trie.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/bitstrm.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/image.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgbmp.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgio.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgs.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgtiff.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/svshowim.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/alignedblob.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/bbgrid.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/blkocc.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/colfind.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/colpartition.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/colpartitionset.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/drawedg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/drawtord.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/edgblob.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/edgloop.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/fpchop.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/gap_map.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/imagefind.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/linefind.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/makerow.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/oldbasel.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/pageseg<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/pithsync.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/pitsync1.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/scanedg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/sortflts.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/strokewidth.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tabfind.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tablefind.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tabvector.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/topitch.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tord<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tospace.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tovars.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/underlin.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/wordseg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/workingpartset.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/cntraining.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/combine_tessdata.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/commontraining.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/mergenf.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/mftraining.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/name2char.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/unicharset_extractor.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/wordlist2dawg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/viewer/scrollview.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/viewer/svmnode.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/viewer/svpaint.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/viewer/svutil.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/vs2008/StdAfx.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/associate.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/badwords.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/bestfirst.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/chop.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/chopper.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/closed.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/drawfx.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/findseam.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/gradechop.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/heuristic.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/makechop.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/matchtab.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/<a href="CppMatrix.htm">matrix</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/metrics.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/mfvars.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/olutil.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/outlines.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/pieces.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/plotedges.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/plotseg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/render.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/seam.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/split.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/tally.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/tessinit.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/tface.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/wordclass.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/wordrec.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ocr.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtocrinputdialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtocr<a href="CppWidget.htm">widget</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtsketch<a href="CppWidget.htm">widget</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tesseracthelper.cpp<br/>
+<br/>
+<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/api/baseapi.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/api/tesseract<a href="CppMain.htm">main</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/adaptions.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/applybox.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/blobcmp.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/callnet.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/charcut.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/charsample.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/control.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/docqual.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/expandblob.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/fixspace.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/fixxht.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/imgscale.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/matmatch.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/osdetect.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/output.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/pagewalk.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/paircmp.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/pgedit.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/reject.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/scaleimg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessbox.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessedit.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessembedded.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tesseractclass.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessio.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tessvars.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tfacep.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tfacepp.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/thresholder.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/tstruct.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/varab<a href="CppLed.htm">led</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cc<a href="CppMain.htm">main</a>/werdit.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/blckerr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/blobbox.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/blobs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/blread.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ccstruct.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/coutln.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/crakedge.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/detlinefit.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/genblob.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/hpddef.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/hpdsizes.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ipoints.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/labls.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/linlsq.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/lmedsq.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/mod128.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/normalis.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ocrblock.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ocrrow.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/otsuthr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/pageres.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/pdblock.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/points.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/polyaprx.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/polyblk.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/polyblob.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/polyvert.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/poutline.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/quadlsq.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/quadratc.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/quspline.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/ratngs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/rect.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/rejctmap.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/statistc.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/stepblob.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/vecfuncs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccstruct/werd.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/ambigs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/basedir.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/bits16.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/boxread.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/callback.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/ccutil.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/clst.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/debugwin.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/elst2.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/elst.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/errcode.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/fileerr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/genericvector.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/globaloc.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/hashfn.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/helpers.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/host.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/hosthplb.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/lsterr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/<a href="CppMain.htm">main</a>blk.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/memblk.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/memryerr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/memry.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/mfcpch.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/ndminx.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/notdll.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/nw<a href="CppMain.htm">main</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/ocrclass.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/ocrshell.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/platform.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/qrsequence.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/scanutils.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/secname.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/serialis.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/stderr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/strngs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tessclas.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tessdatamanager.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tessopt.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tordvars.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/tprintf.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/unichar.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/unicharmap.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/unicharset.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/unicity_table.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/ccutil/varable.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/adaptive.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/adaptmatch.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/baseline.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/blobclass.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/chartoname.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/classify.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/cluster.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/clusttool.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/cutoffs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/extern.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/extract.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/featdefs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/flexfx.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/float2int.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/fpoint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/fxdefs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/fxid.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/hideedge.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/intfx.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/intmatcher.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/intproto.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/kdtree.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/mfdefs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/mf.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/mfoutline.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/mfx.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/normfeat.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/normmatch.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/ocrfeatures.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/outfeat.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/picofeat.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/protos.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/speckle.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/classify/xform2d.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/bitvec.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/callcpp.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/const.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/cutil_class.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/cutil.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/danerror.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/efio.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/emalloc.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/freelist.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/funcdefs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/general.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/globals.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/listio.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/oldheap.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/oldlist.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/structures.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/cutil/tessarray.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/choicearr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/choices.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/context.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/conversion.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/dawg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/dict.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/matchdefs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/permdawg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/permngram.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/permute.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/states.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/stopper.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/dict/trie.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/bitstrm.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/image.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgbmp.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgerrs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/img.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgio.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgtiff.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/imgunpk.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/image/svshowim.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/alignedblob.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/bbgrid.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/blkocc.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/blobcmpl.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/colfind.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/colpartition.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/colpartitionset.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/drawedg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/drawtord.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/edgblob.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/edgloop.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/fpchop.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/gap_map.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/imagefind.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/linefind.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/makerow.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/oldbasel.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/pithsync.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/pitsync1.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/scanedg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/sortflts.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/strokewidth.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tabfind.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tablefind.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tabvector.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tessout.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/topitch.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tord<a href="CppMain.htm">main</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tospace.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/tovars.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/underlin.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/wordseg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/textord/workingpartset.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/commontraining.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/mergenf.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/training/name2char.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/viewer/scrollview.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/viewer/svmnode.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/viewer/svutil.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/vs2008/StdAfx.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/associate.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/badwords.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/bestfirst.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/chop.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/chopper.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/closed.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/drawfx.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/findseam.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/gradechop.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/heuristic.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/makechop.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/matchtab.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/<a href="CppMatrix.htm">matrix</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/measure.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/metrics.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/mfvars.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/olutil.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/outlines.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/pieces.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/plotedges.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/plotseg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/render.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/seam.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/split.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/tally.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/tessinit.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/tface.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/wordclass.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/tesseract-3.00/wordrec/wordrec.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ocr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtocrinputdialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtocr<a href="CppWidget.htm">widget</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtsketch<a href="CppWidget.htm">widget</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tesseracthelper.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtocrinputdialog.ui<br/>
+<br/>
+<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ToolTestQtOcr<a href="CppWidget.htm">Widget</a>.qrc<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;eng.traineddata<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary=".h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QT<a href="CppOcr.htm">OCR</a>WIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> QT<a href="CppOcr.htm">OCR</a>WIDGET_H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a> is the transparent <a href="CppWidget.htm">widget</a><br/>
+<a href="CppComment.htm">///</a>the user can use his/her finger to draw a <a href="CppChar.htm">character</a> on.<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> clear();<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> getChar() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> set<a href="CppDebug.htm">Debug</a>Label(<a href="CppQLabel.htm">QLabel</a> * <b><a href="CppConst.htm">const</a></b> label_<a href="CppDebug.htm">debug</a>);<br/>
+<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> * m_label_<a href="CppDebug.htm">debug</a>;<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> m_image;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_mouse_down;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQPoint.htm">QPoint</a>&gt; m_positions;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_line_thickness;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> drawThickLine(<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; from,<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; to);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> drawLine(<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; from,<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; to);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> drawThickDot(<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; p);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseReleaseEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
+<br/>
+<b><a href="CppQtSignals.htm">signals</a></b>:<br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QT<a href="CppOcr.htm">OCR</a>WIDGET_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary=".cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQResizeEvent.htm">QResizeEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;QRgb&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "My<a href="CppAssert.htm">Assert</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ocr.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtocr<a href="CppWidget.htm">widget</a>_qimage.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::m_line_thickness <a href="CppOperatorAssign.htm">=</a> 20;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_label_<a href="CppDebug.htm">debug</a>(0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_mouse_down(<b><a href="CppFalse.htm">false</a></b>)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMouseTracking(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;setAttribute(<a href="CppQt.htm">Qt</a>::WA_NoSystemBackground);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;setAttribute(<a href="CppQt.htm">Qt</a>::WA_TranslucentBackground);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a>clears the painting area<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::clear()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> m_image.height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> m_image.width();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_planes <a href="CppOperatorAssign.htm">=</a> m_image.bytesPerLine() <a href="CppOperatorDivide.htm">/</a> maxx;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(n_planes <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line <a href="CppOperatorAssign.htm">=</a> m_image.scanLine(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[(x * n_planes) <a href="CppOperatorPlus.htm">+</a> 0] <a href="CppOperatorAssign.htm">=</a> 0xFE; <a href="CppComment.htm">//</a>White<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[(x * n_planes) <a href="CppOperatorPlus.htm">+</a> 1] <a href="CppOperatorAssign.htm">=</a> 0xFE; <a href="CppComment.htm">//</a>White<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[(x * n_planes) <a href="CppOperatorPlus.htm">+</a> 2] <a href="CppOperatorAssign.htm">=</a> 0xFE; <a href="CppComment.htm">//</a>White<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[(x * n_planes) <a href="CppOperatorPlus.htm">+</a> 3] <a href="CppOperatorAssign.htm">=</a> 0x10; <a href="CppComment.htm">//</a>Transparent<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://en.wikipedia.org/wiki/Bresenham's_line_<a href="CppAlgorithm.htm">algorithm</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::drawLine(<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; from,<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; to)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x0 <a href="CppOperatorAssign.htm">=</a> from.x();<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> y0 <a href="CppOperatorAssign.htm">=</a> from.y();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> m_image.width();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> m_image.height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> to.x();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> to.y();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(x0-x1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(y0-y1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sx <a href="CppOperatorAssign.htm">=</a> (x0 &lt; x1 ? 1 : <a href="CppOperatorMinus.htm">-</a>1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sy <a href="CppOperatorAssign.htm">=</a> (y0 &lt; y1 ? 1 : <a href="CppOperatorMinus.htm">-</a>1);<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> err <a href="CppOperatorAssign.htm">=</a> dx-dy;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (x0 <a href="CppOperatorNotEqual.htm">!=</a> x1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y0 <a href="CppOperatorNotEqual.htm">!=</a> y1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> e2 <a href="CppOperatorAssign.htm">=</a> 2.0*err;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e2 &gt; <a href="CppOperatorMinus.htm">-</a>dy)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;err<a href="CppOperatorMinusAssign.htm">-=</a>dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x0 <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> sx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e2 &lt;&nbsp;&nbsp;dx)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;err<a href="CppOperatorPlusAssign.htm">+=</a>dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y0<a href="CppOperatorPlusAssign.htm">+=</a>sy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x0 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> x0 &lt; maxx <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y0 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y0 &lt; maxy)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_image.setPixel(x0,y0,0xFFFFFFFF);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::drawThickDot(<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_mid <a href="CppOperatorAssign.htm">=</a> p.x();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y_mid <a href="CppOperatorAssign.htm">=</a> p.y();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> ray <a href="CppOperatorAssign.htm">=</a> m_line_thickness <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_from <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0,x_mid <a href="CppOperatorMinus.htm">-</a> ray);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(m_image.width(),x_mid <a href="CppOperatorPlus.htm">+</a> ray);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y_from <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0,y_mid <a href="CppOperatorMinus.htm">-</a> ray);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y_to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(m_image.height(),y_mid <a href="CppOperatorPlus.htm">+</a> ray);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x_from <a href="CppOperatorGreaterEqual.htm">&gt;=</a> x_to) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y_from <a href="CppOperatorGreaterEqual.htm">&gt;=</a> y_to) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(x_from <a href="CppOperatorLessEqual.htm">&lt;=</a> x_to);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(y_from <a href="CppOperatorLessEqual.htm">&lt;=</a> y_to);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> y_from; y<a href="CppOperatorNotEqual.htm">!=</a> y_to; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(y &lt; m_image.height());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> x_from; x<a href="CppOperatorNotEqual.htm">!=</a> x_to; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(x &lt; m_image.width());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx <a href="CppOperatorAssign.htm">=</a> x_mid <a href="CppOperatorMinus.htm">-</a> x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy <a href="CppOperatorAssign.htm">=</a> y_mid <a href="CppOperatorMinus.htm">-</a> y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dist<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSqrt.htm">std::sqrt</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(dx * dx) <a href="CppOperatorPlus.htm">+</a> (dy * dy))));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dist &lt; ray)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>FF <a href="CppOperatorAssign.htm">=</a> opaque<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>000000 <a href="CppOperatorAssign.htm">=</a> black<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_image.setPixel(x,y,0xFFFFFFFF);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::drawThickLine(<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; from,<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; to)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x0 <a href="CppOperatorAssign.htm">=</a> from.x();<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> y0 <a href="CppOperatorAssign.htm">=</a> from.y();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> m_image.width();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> m_image.height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> to.x();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> to.y();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(x0-x1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(y0-y1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sx <a href="CppOperatorAssign.htm">=</a> (x0 &lt; x1 ? 1 : <a href="CppOperatorMinus.htm">-</a>1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sy <a href="CppOperatorAssign.htm">=</a> (y0 &lt; y1 ? 1 : <a href="CppOperatorMinus.htm">-</a>1);<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> err <a href="CppOperatorAssign.htm">=</a> dx-dy;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (x0 <a href="CppOperatorNotEqual.htm">!=</a> x1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y0 <a href="CppOperatorNotEqual.htm">!=</a> y1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> e2 <a href="CppOperatorAssign.htm">=</a> 2.0*err;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e2 &gt; <a href="CppOperatorMinus.htm">-</a>dy)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;err<a href="CppOperatorMinusAssign.htm">-=</a>dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x0 <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> sx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e2 &lt;&nbsp;&nbsp;dx)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;err<a href="CppOperatorPlusAssign.htm">+=</a>dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y0<a href="CppOperatorPlusAssign.htm">+=</a>sy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;drawThickDot(<a href="CppQPoint.htm">QPoint</a>(x0,y0));<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::drawThickLine(<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; from,<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a>&amp; to)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>drawThickDot(from);<br/>
+&nbsp;&nbsp;drawThickDot(to);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Are the two <a href="CppPointer.htm">point</a>s more horizontal or vertical?<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.htm">std::abs</a>(from.x() <a href="CppOperatorMinus.htm">-</a> to.x()) &gt; <a href="CppAbs.htm">std::abs</a>(from.y() <a href="CppOperatorMinus.htm">-</a> to.y()))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppPoint.htm">Point</a>s are more horizontal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a> from_new <a href="CppOperatorAssign.htm">=</a> from;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a> to_new <a href="CppOperatorAssign.htm">=</a> to;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;from_new.setY(from_new.y() <a href="CppOperatorMinus.htm">-</a> (m_line_thickness <a href="CppOperatorDivide.htm">/</a> 2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;to_new.setY(to_new.y() <a href="CppOperatorMinus.htm">-</a> (m_line_thickness <a href="CppOperatorDivide.htm">/</a> 2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> count <a href="CppOperatorAssign.htm">=</a> m_line_thickness;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>count; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from_new.setY(from_new.y() <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to_new.setY(to_new.y() <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawLine(from_new,to_new);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppPoint.htm">Point</a>s are more vertical<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a> from_new <a href="CppOperatorAssign.htm">=</a> from;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a> to_new <a href="CppOperatorAssign.htm">=</a> to;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;from_new.setX(from_new.x() <a href="CppOperatorMinus.htm">-</a> (m_line_thickness <a href="CppOperatorDivide.htm">/</a> 2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;to_new.setX(to_new.x() <a href="CppOperatorMinus.htm">-</a> (m_line_thickness <a href="CppOperatorDivide.htm">/</a> 2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> count <a href="CppOperatorAssign.htm">=</a> m_line_thickness;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>count; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from_new.setX(from_new.x() <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to_new.setX(to_new.x() <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawLine(from_new,to_new);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">///</a>getChar <a href="CppReturn.htm">returns</a> the <a href="CppChar.htm">character</a> guessed by the <a href="CppOcr.htm">OCR</a><br/>
+<a href="CppComment.htm">///</a>engine to be written<br/>
+<b><a href="CppChar.htm">char</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::getChar() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> copy(m_image);<br/>
+&nbsp;&nbsp;Ocr ocr;<br/>
+&nbsp;&nbsp;ocr.Analyze(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.bits(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.depth() <a href="CppOperatorDivide.htm">/</a> 8, <a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> bit to byte<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.bytesPerLine(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;0, <a href="CppComment.htm">//</a>left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;0, <a href="CppComment.htm">//</a>top<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.width(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.height());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> ocr.GetBestChar();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_mouse_down)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_label_<a href="CppDebug.htm">debug</a>) m_label_<a href="CppDebug.htm">debug</a>-&gt;setText("Mouse move...");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_positions.push_back(e-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;button() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::LeftButton)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_mouse_down <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_label_<a href="CppDebug.htm">debug</a>) m_label_<a href="CppDebug.htm">debug</a>-&gt;setText("Mouse down");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_positions.push_back(e-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::mouseReleaseEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;button() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::LeftButton)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_positions.push_back(e-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_mouse_down <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_label_<a href="CppDebug.htm">debug</a>) m_label_<a href="CppDebug.htm">debug</a>-&gt;setText("Mouse up");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_positions.clear();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> m_positions.size();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i&lt;sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_positions.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;drawThickLine(m_positions[i-1],m_positions[i]);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_positions.size() &gt; 1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_positions[0] <a href="CppOperatorAssign.htm">=</a> m_positions.back();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_positions.resize(1);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> p(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;p.drawImage(<a href="CppQPoint.htm">QPoint</a>(0,0),m_image);<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> * e)<br/>
+{<br/>
+&nbsp;&nbsp;m_image <a href="CppOperatorAssign.htm">=</a> <a href="CppQImage.htm">QImage</a>(e-&gt;size(),<a href="CppQImage.htm">QImage</a>::Format_ARGB32);<br/>
+&nbsp;&nbsp;clear();<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::set<a href="CppDebug.htm">Debug</a>Label(<a href="CppQLabel.htm">QLabel</a> * <b><a href="CppConst.htm">const</a></b> label_<a href="CppDebug.htm">debug</a>)<br/>
+{<br/>
+&nbsp;&nbsp;m_label_<a href="CppDebug.htm">debug</a> <a href="CppOperatorAssign.htm">=</a> label_<a href="CppDebug.htm">debug</a>;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "ocr.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtocrinputdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtocr<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> dataset exists. If not, recreate it<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQrcFile.htm">qrcfile</a>name <a href="CppOperatorAssign.htm">=</a> "eng.traineddata";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Tesseract wants it to be in a folder called tessdata<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> tesseract_filename <a href="CppOperatorAssign.htm">=</a> "tessdata/eng.traineddata";<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.htm">QFile</a>::exists(tesseract_filename.c_str()))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> f( (<a href="CppString.htm">std::string</a>(":/data/") <a href="CppOperatorPlus.htm">+</a> <a href="CppQrcFile.htm">qrcfile</a>name).c_str() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f.size() &gt; 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDir.htm">QDir</a>().mkdir("tessdata");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> success <a href="CppOperatorAssign.htm">=</a> f.copy(tesseract_filename.c_str());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(success);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f.close();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(tesseract_filename.c_str()));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The <b><a href="CppChar.htm">char</a></b>s enabled to be detected<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> whitelist <a href="CppOperatorAssign.htm">=</a> "ABCDEFGHIJKLMNOPQRSTUVWXYZ";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>But Tesseract wants the qrc filename, because it will add the 'tessdata' folder itself<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>OcrInputDialog w(<a href="CppString.htm">std::string</a>("./") <a href="CppOperatorPlus.htm">+</a> <a href="CppQrcFile.htm">qrcfile</a>name,whitelist);<br/>
+<br/>
+&nbsp;&nbsp;w.show();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>ocr.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ocr.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppOcr.htm">OCR</a>_H<br/>
+<a href="CppDefine.htm">#define</a> <a href="CppOcr.htm">OCR</a>_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppUtilityH.htm">utility</a>&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> tesseract { <b><a href="CppStruct.htm">struct</a></b> TessBaseAPI; }<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppOcr.htm">OCR</a> is an adapter <b><a href="CppFor.htm">for</a></b> Tesseract<br/>
+<b><a href="CppStruct.htm">struct</a></b> Ocr<br/>
+{<br/>
+&nbsp;&nbsp;Ocr(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; data_path,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; whitelist);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Read(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> image_data,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> bytes_per_pixel,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> bytes_per_line,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;tesseract::TessBaseAPI&gt; m_api;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> <a href="CppOcr.htm">OCR</a>_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>ocr.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ocr.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "ocr.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "tesseract-3.00/api/baseapi.h"<br/>
+<br/>
+Ocr::Ocr(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; datafile,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; whitelist)<br/>
+&nbsp;&nbsp;: m_api(<b><a href="CppNew.htm">new</a></b> tesseract::TessBaseAPI)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(datafile.c_str())); <a href="CppComment.htm">//</a>Tesseract adds path<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> success <a href="CppOperatorAssign.htm">=</a> m_api-&gt;Init(datafile.c_str(),"eng"); <a href="CppComment.htm">//</a>English<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(success <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>CCUtil::main_setup(<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>tesseract::TessdataManager::Init(datafile.c_str());<br/>
+&nbsp;&nbsp;m_api-&gt;SetVariable("tessedit_char_whitelist", whitelist.c_str());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_api-&gt;SetVariable("tessedit_char_whitelist", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Ocr::Read(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> image_data,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> bytes_per_pixel,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> bytes_per_line,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(width&nbsp;&nbsp;&gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(height &gt; 0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> m_api-&gt;TesseractRect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;image_data,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bytes_per_pixel,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bytes_per_line,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;left,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;top,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;width,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;height);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> text;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtocrinputdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtocrinputdialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QT<a href="CppOcr.htm">OCR</a>DIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QT<a href="CppOcr.htm">OCR</a>DIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>OcrInputDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>;<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>OcrInputDialog displays a GUI <b><a href="CppFor.htm">for</a></b> the <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>OcrInputDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>OcrInputDialog(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; path,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; whitelist,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>OcrInputDialog();<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_clear_clicked();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>OcrInputDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>&gt; m_ocr_<a href="CppWidget.htm">widget</a>;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QT<a href="CppOcr.htm">OCR</a>DIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtocrinputdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtocrinputdialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtocrinputdialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "qtocr<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtocrinputdialog.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>OcrInputDialog::<a href="CppQt.htm">Qt</a>OcrInputDialog(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; path,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; whitelist,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>OcrInputDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_ocr_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>(path,whitelist))<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!ui-&gt;ocr_<a href="CppWidget.htm">widget</a>_placeholder-&gt;layout());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLayout.htm">QLayout</a> * <b><a href="CppConst.htm">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QGridLayout;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;ocr_<a href="CppWidget.htm">widget</a>_placeholder-&gt;setLayout(layout);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;layout-&gt;addWidget(m_ocr_<a href="CppWidget.htm">widget</a>.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui-&gt;ocr_<a href="CppWidget.htm">widget</a>_placeholder-&gt;layout());<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;m_ocr_<a href="CppWidget.htm">widget</a>-&gt;resize(m_ocr_<a href="CppWidget.htm">widget</a>-&gt;size());<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>OcrInputDialog::~<a href="CppQt.htm">Qt</a>OcrInputDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>OcrInputDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_ocr_<a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> m_ocr_<a href="CppWidget.htm">widget</a>-&gt;Read();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Remove trailing '\n' and '\r'<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> last_<b><a href="CppChar.htm">char</a></b> <a href="CppOperatorAssign.htm">=</a> s.substr(s.size()-1,1)[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (last_<b><a href="CppChar.htm">char</a></b> <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '\r' <a href="CppOperatorLogicalOr.htm">||</a> last_<b><a href="CppChar.htm">char</a></b> <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '\n')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.resize(s.size() <a href="CppOperatorMinus.htm">-</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle(s.c_str());<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>OcrInputDialog::on_button_clear_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;m_ocr_<a href="CppWidget.htm">widget</a>-&gt;clear();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtocrwidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtocrwidget.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QT<a href="CppOcr.htm">OCR</a>WIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> QT<a href="CppOcr.htm">OCR</a>WIDGET_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "qtsketch<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Ocr;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; path,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; whitelist,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Read() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Ocr&gt; m_ocr;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QT<a href="CppOcr.htm">OCR</a>WIDGET_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtocrwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtocrwidget.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtocr<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "ocr.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; datafile,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; whitelist,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_ocr(<b><a href="CppNew.htm">new</a></b> Ocr(datafile,whitelist))<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(datafile.c_str())); <a href="CppComment.htm">//</a>Tesseract adds path<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>::Read() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> copy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>*&gt;(<b><a href="CppThis.htm">this</a></b>)-&gt;grab().toImage();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQImage.htm">QImage</a> copy <a href="CppOperatorAssign.htm">=</a> <a href="CppQPixmap.htm">QPixmap</a>::grab<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>*&gt;(<b><a href="CppThis.htm">this</a></b>)).toImage();<br/>
+&nbsp;&nbsp;copy.save("<a href="CppQt.htm">Qt</a>Ocr<a href="CppWidget.htm">Widget</a>.png");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> m_ocr-&gt;Read(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.bits(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.depth() <a href="CppOperatorDivide.htm">/</a> 8, <a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> bit to byte<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.bytesPerLine(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;0, <a href="CppComment.htm">//</a>left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;0, <a href="CppComment.htm">//</a>top<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.width(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;copy.height());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> text;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtsketchwidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtsketchwidget.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTSKETCHWIDGET_H<br/>
+<a href="CppDefine.htm">#define</a> QTSKETCHWIDGET_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a> example<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> clear();<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>() {}<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQPoint.htm">QPoint</a>&gt; &gt; m_<a href="CppPointer.htm">point</a>s;<br/>
+<b><a href="CppQtSignals.htm">signals</a></b>:<br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSKETCHWIDGET_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtsketchwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtsketchwidget.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtsketch<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;QSysInfo&gt;<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMouseTracking(<b><a href="CppTrue.htm">true</a></b>);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>::clear()<br/>
+{<br/>
+&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s.clear();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;buttons() &amp; <a href="CppQt.htm">Qt</a>::LeftButton)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s.back().push_back(e-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;buttons() &amp; <a href="CppQt.htm">Qt</a>::LeftButton)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s.push_back(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQPoint.htm">QPoint</a>&gt;());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s.back().push_back(e-&gt;pos());<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sketch<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QPen pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setCapStyle(<a href="CppQt.htm">Qt</a>::RoundCap);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQt.htm">Qt</a>::gray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(pen);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_lines <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppPointer.htm">point</a>s.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> line=0; line<a href="CppOperatorNotEqual.htm">!=</a>n_lines; <a href="CppOperatorPlus.htm">+</a>+line)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQPoint.htm">QPoint</a>&gt;&amp; <a href="CppPointer.htm">point</a>s <a href="CppOperatorAssign.htm">=</a> m_<a href="CppPointer.htm">point</a>s[line];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppPointer.htm">point</a>s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppPointer.htm">point</a>s.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> <a href="CppPointer.htm">point</a>=1; <a href="CppPointer.htm">point</a><a href="CppOperatorNotEqual.htm">!=</a>n_<a href="CppPointer.htm">point</a>s; <a href="CppOperatorPlus.htm">+</a>+<a href="CppPointer.htm">point</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.drawLine(<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>-1],<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>tesseracthelper.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="tesseracthelper.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> TESSERACTHELPER_H<br/>
+<a href="CppDefine.htm">#define</a> TESSERACTHELPER_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>These <a href="CppFunction.htm">function</a>s must be in the global <b><a href="CppNamespace.htm">namespace</a></b>,<br/>
+<a href="CppComment.htm">//</a>because tesseract assumes these exist in the<br/>
+<a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b>-absent C <a href="CppHeaderFile.htm">header file</a>s<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSignal.htm">signal</a>.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;uni<a href="CppStd.htm">std</a>.h&gt;<br/>
+<br/>
+<a href="CppDefine.htm">#define</a> BILDERBIKKEL_FIX_COMPILER_ERROR_CREATEPROCESS<br/>
+<br/>
+<a href="CppDefine.htm">#define</a> BILDERBIKKEL_REMOVE_FSYNC<br/>
+<a href="CppDefine.htm">#define</a> BILDERBIKKEL_REMOVE_OTHER_MAIN<br/>
+<a href="CppDefine.htm">#define</a> BILDERBIKKEL_REMOVE_SLEEP<br/>
+<br/>
+<a href="CppComment.htm">//</a>Call of <a href="CppLinux.htm">Linux</a> <a href="CppFork.htm">fork</a>() or the <a href="CppWindows.htm">Windows</a> equivalent<br/>
+<a href="CppDefine.htm">#define</a> BILDERBIKKEL_REMOVE_SVSYNCH_STARTPROCESS_SVUTIL_CPP<br/>
+<br/>
+<a href="CppComment.htm">//</a>Call of <a href="CppLinux.htm">Linux</a> <a href="CppFork.htm">fork</a>() or the <a href="CppWindows.htm">Windows</a> equivalent<br/>
+<a href="CppDefine.htm">#define</a> BILDERBIKKEL_REMOVE_SVNETWORK_RECEIVE_SVUTIL_CPP<br/>
+<br/>
+<a href="CppDefine.htm">#define</a> BILDERBIKKEL_REMOVE_USELESS_GLOBAL_DEMODIR<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> BILDERBIKKEL_STRTOK_R_ALREADY_DEFINED<br/>
+<a href="CppDefine.htm">#define</a> strtok_r(s, d, p) strtok(s, d)<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<b><a href="CppLong.htm">long</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppNrand48.htm">Nrand48</a>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b> xsubi[3]);<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESSERACTHELPER_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>tesseracthelper.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="tesseracthelper.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "tesseracthelper.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppLimitsH.htm">limits</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStd.htm">std</a>lib.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStd.htm">std</a>int.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>Identical to <a href="CppUnix.htm">UNIX</a> <a href="CppNrand48.htm">nrand48</a><br/>
+<b><a href="CppLong.htm">long</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppNrand48.htm">Nrand48</a>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b> xsubi[3])<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppLongLongInt.htm">long long int</a></b> a <a href="CppOperatorAssign.htm">=</a> 0x5deece66dull;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b> c <a href="CppOperatorAssign.htm">=</a> 0xb;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> uint64_t x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;uint64_t&gt;(xsubi[2]) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;uint32_t&gt;(xsubi[1]) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 16<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| xsubi[0];<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> uint64_t y <a href="CppOperatorAssign.htm">=</a> x * a <a href="CppOperatorPlus.htm">+</a> c;<br/>
+<br/>
+&nbsp;&nbsp;xsubi[0] <a href="CppOperatorAssign.htm">=</a> y &amp; 0xffff;<br/>
+&nbsp;&nbsp;xsubi[1] <a href="CppOperatorAssign.htm">=</a> (y <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 16) &amp; 0xffff;<br/>
+&nbsp;&nbsp;xsubi[2] <a href="CppOperatorAssign.htm">=</a> (y <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 32) &amp; 0xffff;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppSizeof.htm">sizeof</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppShort.htm">short</a></b> <b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> xsubi[2] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 15 | xsubi[1] <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 1;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> xsubi[2] <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 1;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Used by the original program<br/>
+<a href="CppComment.htm">//</a>uinT32 <a href="CppNrand48.htm">nrand48</a>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>get <a href="CppRandomNumber.htm">random number</a><br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uinT16 *seeds&nbsp;&nbsp;<a href="CppComment.htm">//</a>seeds to use<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) {<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> uinT32 seed <a href="CppOperatorAssign.htm">=</a> 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>only seed<br/>
+<a href="CppComment.htm">//</a><br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (seed <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) {<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;seed <a href="CppOperatorAssign.htm">=</a> seeds[0] ^ (seeds[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 8) ^ (seeds[2] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 16);<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;srand(seed);<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;}<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a><a href="CppMake.htm">make</a> 32 bit one<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> rand () | (rand () <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 16);<br/>
+<a href="CppComment.htm">//</a>}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -1,0 +1,890 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>TestQtCreatorProFile</title>
+  <meta name="description" content="C++ TestQtCreatorProFile"/>
+  <meta name="keywords" content="C++ TestQtCreatorProFile code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name ToolTestQtCreatorProFile-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolTestQtCreatorProFileConsole.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ToolTestQtCreatorProFileConsole.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<br/>
+<a href="CppLIBS.htm">LIBS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a><br/>
+<br/>
+<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;testqtcreator<a href="CppProFile.htm">profile</a>menudialog.cpp<br/>
+<br/>
+<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;testqtcreator<a href="CppProFile.htm">profile</a>menudialog.h<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolTestQtCreatorProFileDesktop.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ToolTestQtCreatorProFileDesktop.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<br/>
+<a href="CppLIBS.htm">LIBS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a><br/>
+<br/>
+<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttestqtcreator<a href="CppProFile.htm">profile</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttestqtcreator<a href="CppProFile.htm">profile</a>menudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;testqtcreator<a href="CppProFile.htm">profile</a>menudialog.cpp<br/>
+<br/>
+<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttestqtcreator<a href="CppProFile.htm">profile</a><a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttestqtcreator<a href="CppProFile.htm">profile</a>menudialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;testqtcreator<a href="CppProFile.htm">profile</a>menudialog.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttestqtcreator<a href="CppProFile.htm">profile</a><a href="CppMain.htm">main</a>dialog.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttestqtcreator<a href="CppProFile.htm">profile</a>menudialog.ui<br/>
+<br/>
+<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.qrc<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;zip.sh<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppProgram_options.htm">boost/program_options.hpp</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "testqtcreator<a href="CppProFile.htm">profile</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d("Allowed options <b><a href="CppFor.htm">for</a></b> <a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>Console");<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> filename;<br/>
+<br/>
+&nbsp;&nbsp;d.add_options()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("<a href="CppAbout.htm">about</a>","displays the '<a href="CppAbout.htm">About</a>' information")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("filename",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;filename),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "filename of <a href="CppQtCreator.htm">Qt Creator</a> project (.pro) file")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("help","produce <b><a href="CppThis.htm">this</a></b> help message")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("<a href="CppVersion.htm">version</a>","displays the <a href="CppVersion.htm">version</a>")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::variables_map m;<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::store(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::parse_command_line(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, d), m);<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::notify(m);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("help"))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("<a href="CppAbout.htm">about</a>"))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::GetAbout() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("<a href="CppVersion.htm">version</a>"))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("filename"))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filename.empty())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please specify a filename.\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filename.size() &lt; 5)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please specify a full <a href="CppQtCreator.htm">Qt Creator</a> (.pro) project filename.\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filename.substr(filename.size() <a href="CppOperatorMinus.htm">-</a> 4,4) <a href="CppOperatorNotEqual.htm">!=</a> ".pro")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please specify a filename ending on .pro.\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please specify a <a href="CppQtCreator.htm">Qt Creator</a> (.pro) project filename that exists.\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; p(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile(filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the help<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtmain.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+TestProFile, <a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestProFile.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qttestqtcreator<a href="CppProFile.htm">profile</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> CreateStyleSheet()<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> style_sheet<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppQDialog.htm">QDialog</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"{"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 #bbb, stop: 1 #fff);"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> style_sheet;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;a.setStyleSheet(CreateStyleSheet().c_str());<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qttestqtcreatorprofilemaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qttestqtcreatorprofilemaindialog.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTTESTQTCREATORPROFILEMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTTESTQTCREATORPROFILEMAINDIALOG_H<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_select_clicked();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog *ui;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTQTCREATORPROFILEMAINDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qttestqtcreatorprofilemaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qttestqtcreatorprofilemaindialog.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "qttestqtcreator<a href="CppProFile.htm">profile</a>maindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>Dialog&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "testqtcreator<a href="CppProFile.htm">profile</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qttestqtcreator<a href="CppProFile.htm">profile</a>maindialog.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog::on_button_select_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppQFile.htm">QFile</a>Dialog::getOpenFileName(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,"Please select a .pro file",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppQt.htm">Qt</a> Project files (*.pro)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).toStdString();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_result-&gt;clear();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("File '") <a href="CppOperatorPlus.htm">+</a> filename <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("' does not exist.");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_result-&gt;setPlainText(text.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile(filename));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p;<br/>
+<br/>
+&nbsp;&nbsp;ui-&gt;text_result-&gt;clear();<br/>
+&nbsp;&nbsp;ui-&gt;text_result-&gt;setPlainText(s.str().c_str());<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qttestqtcreatorprofilemenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qttestqtcreatorprofilemenudialog.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTTESTQTCREATORPROFILEMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTTESTQTCREATORPROFILEMENUDIALOG_H<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog *ui;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTQTCREATORPROFILEMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qttestqtcreatorprofilemenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qttestqtcreatorprofilemenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "qttestqtcreator<a href="CppProFile.htm">profile</a>menudialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qttestqtcreator<a href="CppProFile.htm">profile</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "testqtcreator<a href="CppProFile.htm">profile</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qttestqtcreator<a href="CppProFile.htm">profile</a>menudialog.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::on_button_start_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MainDialog d;<br/>
+&nbsp;&nbsp;d.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::on_button_about_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekResources <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> RichelBilderbeek::<a href="CppQt.htm">Qt</a>Resources::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
+&nbsp;&nbsp;d.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::on_button_quit_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;close();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>testqtcreatorprofilemenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="testqtcreatorprofilemenudialog.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> TESTQTCREATORPROFILEMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> TESTQTCREATORPROFILEMENUDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppAbout.htm">About</a> information<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTQTCREATORPROFILEMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>testqtcreatorprofilemenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="testqtcreatorprofilemenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2010-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "testqtcreator<a href="CppProFile.htm">profile</a>menudialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::GetAbout()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the <a href="CppQtCreator.htm">QtCreator</a>ProFile <b><a href="CppClass.htm">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"the 18th May 2013",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2010-2013",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestQtCreatorProFile.htm">ToolTestQtCreatorProFile</a>.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtCreator.htm">QtCreator</a>ProFile <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtCreator.htm">QtCreator</a>ProFile::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2010-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>, called TestProFile");<br/>
+&nbsp;&nbsp;v.push_back("2012-02-27: <a href="CppVersion.htm">version</a> 1.1: initial <a href="CppVersion.htm">version</a> with <a href="CppAbout.htm">About</a> information");<br/>
+&nbsp;&nbsp;v.push_back("2013-05-18: <a href="CppVersion.htm">version</a> 1.2: renamed <b><a href="CppThis.htm">this</a></b> <a href="Tools.htm">tool</a> to <a href="ToolTestQtCreatorProFile.htm">TestQtCreatorProFile</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>zip.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="zip.sh" border = "1"><tr><td><code>
+#!/bin/sh<br/>
+<br/>
+echo "Removing user information"<br/>
+rm *.user<br/>
+<br/>
+echo "Removing possible temp file"<br/>
+rm copy.txt<br/>
+rm tmp.txt<br/>
+<br/>
+<br/>
+echo "Creating of all main folders"<br/>
+<br/>
+mkdir temp_zip<br/>
+mkdir temp_zip/..<br/>
+mkdir temp_zip/Classes<br/>
+mkdir temp_zip/Website<br/>
+<br/>
+echo "Creating of all subfolders"<br/>
+<br/>
+mkdir temp_zip/../ToolRichelBilderbeekGallery<br/>
+mkdir temp_zip/Classes/CppAbout<br/>
+mkdir temp_zip/Classes/CppCodeToHtml<br/>
+mkdir temp_zip/Classes/CppProFile<br/>
+mkdir temp_zip/Classes/CppQtAboutDialog<br/>
+mkdir temp_zip/Classes/CppQtRichelBilderbeekGalleryDialog<br/>
+mkdir temp_zip/Classes/CppRichelBilderbeekProgram<br/>
+mkdir temp_zip/Classes/CppWtAboutDialog<br/>
+mkdir temp_zip/Classes/CppWtAutoConfig<br/>
+mkdir temp_zip/Classes/CppWtRichelBilderbeekGalleryDialog<br/>
+mkdir temp_zip/Website<br/>
+<br/>
+echo "Copying files"<br/>
+<br/>
+cp ../../../ToolRichelBilderbeekGallery/*.* temp_zip/../ToolRichelBilderbeekGallery<br/>
+cp ../../Classes/CppAbout/*.* temp_zip/Classes/CppAbout<br/>
+cp ../../Classes/CppCodeToHtml/*.* temp_zip/Classes/CppCodeToHtml<br/>
+cp ../../Classes/CppProFile/*.* temp_zip/Classes/CppProFile<br/>
+cp ../../Classes/CppQtAboutDialog/*.* temp_zip/Classes/CppQtAboutDialog<br/>
+cp ../../Classes/CppQtRichelBilderbeekGalleryDialog/*.* temp_zip/Classes/CppQtRichelBilderbeekGalleryDialog<br/>
+cp ../../Classes/CppRichelBilderbeekProgram/*.* temp_zip/Classes/CppRichelBilderbeekProgram<br/>
+cp ../../Classes/CppWtAboutDialog/*.* temp_zip/Classes/CppWtAboutDialog<br/>
+cp ../../Classes/CppWtAutoConfig/*.* temp_zip/Classes/CppWtAutoConfig<br/>
+cp ../../Classes/CppWtRichelBilderbeekGalleryDialog/*.* temp_zip/Classes/CppWtRichelBilderbeekGalleryDialog<br/>
+cp ../../Website/*.* temp_zip/Website<br/>
+<br/>
+FILENAME="ToolRichelBilderbeekGallerySource"<br/>
+ZIP_FILENAME=$FILENAME".zip"<br/>
+<br/>
+echo "Compressing files"<br/>
+<br/>
+cd temp_zip<br/>
+zip -r $FILENAME ..<br/>
+zip -r $FILENAME Classes<br/>
+zip -r $FILENAME Website<br/>
+cd ..<br/>
+cp "temp_zip/"$ZIP_FILENAME $ZIP_FILENAME<br/>
+<br/>
+echo "Cleaning up"<br/>
+<br/>
+echo "Emptying subfolders"<br/>
+<br/>
+rm temp_zip/../ToolRichelBilderbeekGallery/*.*<br/>
+rm temp_zip/Classes/CppAbout/*.*<br/>
+rm temp_zip/Classes/CppCodeToHtml/*.*<br/>
+rm temp_zip/Classes/CppProFile/*.*<br/>
+rm temp_zip/Classes/CppQtAboutDialog/*.*<br/>
+rm temp_zip/Classes/CppQtRichelBilderbeekGalleryDialog/*.*<br/>
+rm temp_zip/Classes/CppRichelBilderbeekProgram/*.*<br/>
+rm temp_zip/Classes/CppWtAboutDialog/*.*<br/>
+rm temp_zip/Classes/CppWtAutoConfig/*.*<br/>
+rm temp_zip/Classes/CppWtRichelBilderbeekGalleryDialog/*.*<br/>
+rm temp_zip/Website/*.*<br/>
+<br/>
+echo "Removing subfolders"<br/>
+<br/>
+rmdir temp_zip/../ToolRichelBilderbeekGallery<br/>
+rmdir temp_zip/Classes/CppAbout<br/>
+rmdir temp_zip/Classes/CppCodeToHtml<br/>
+rmdir temp_zip/Classes/CppProFile<br/>
+rmdir temp_zip/Classes/CppQtAboutDialog<br/>
+rmdir temp_zip/Classes/CppQtRichelBilderbeekGalleryDialog<br/>
+rmdir temp_zip/Classes/CppRichelBilderbeekProgram<br/>
+rmdir temp_zip/Classes/CppWtAboutDialog<br/>
+rmdir temp_zip/Classes/CppWtAutoConfig<br/>
+rmdir temp_zip/Classes/CppWtRichelBilderbeekGalleryDialog<br/>
+rmdir temp_zip/Website<br/>
+<br/>
+echo "Removing main folders"<br/>
+<br/>
+rmdir temp_zip/..<br/>
+rmdir temp_zip/Classes<br/>
+rmdir temp_zip/Website<br/>
+<br/>
+echo "Removing temporary folder"<br/>
+<br/>
+rm temp_zip/*.*<br/>
+rmdir temp_zip<br/>
+<br/>
+echo "Done"<br/>
+<br/>
+# CreateQtProjectZipFile, version 1.0<br/>
+# Copyright (C) 2012 Richel Bilderbeek<br/>
+# Programmed on the 25th February 2012<br/>
+# by Richel Bilderbeek<br/>
+# <br/>
+# CreateQtProjectZipFile can be downloaded from http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm<br/>
+# Licenced under GPL 3.0<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

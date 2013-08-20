@@ -70,6 +70,13 @@ const std::vector<std::string> GetFoldersInFolder(const std::string& folder)
 int main(int argc, char* argv[])
 {
   START_TRACE();
+
+  #ifndef NDEBUG
+
+  #else
+  assert(1==2 && "I will be deleted");
+  #endif
+
   // Declare the supported options.
   boost::program_options::options_description d("Allowed options for CodeToHtmlConsole");
 

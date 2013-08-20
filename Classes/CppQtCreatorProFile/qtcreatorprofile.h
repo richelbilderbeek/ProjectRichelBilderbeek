@@ -195,8 +195,10 @@ struct QtCreatorProFile : public boost::noncopyable
   static const std::vector<std::string> SeperateString(
     const std::string& input, const char seperator);
 
+  #ifndef NDEBUG
   ///Test QtCreatorProFile
   static void Test();
+  #endif
 
   friend std::ostream& operator<<(std::ostream& os, const QtCreatorProFile& p);
   friend bool operator==(const QtCreatorProFile& lhs, const QtCreatorProFile& rhs);

@@ -4,52 +4,167 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>CreateGlossary</title>
-  <meta name="description" content="C++ tool CreateGlossary"/>
-  <meta name="keywords" content="C++ tool CreateGlossary free freeware GPL"/>
+  <meta name="description" content="C++ CreateGlossary"/>
+  <meta name="keywords" content="C++ CreateGlossary code snippet"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
 <body>
 <p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Tools.htm">Tool</a>) <a href="ToolCreateGlossary.htm">CreateGlossary</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolCreateGlossary.htm">CreateGlossary</a></h1>
 <p>&nbsp;</p>
-<p><a href="ToolCreateGlossary.htm">CreateGlossary</a> is a <a href="Tools.htm">tool</a> to 
-create my <a href="CppGlossary.htm">glossary</a>, by browsing through all HTML pages for their titles.</p>
+<!-- No CodeToHtmlInfo about this class with page name ToolCreateGlossary-->
 <p>&nbsp;</p>
-<p><a href="ToolCreateGlossary.htm">CreateGlossary</a> does not have any screen output.</p>
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
 <ul>
-  <li><a href="ToolCreateGlossarySource_1_1.zip">Download the 'CreateGlossary' source code (version 1.1)(zip)</a></li>
-  <li><a href="ToolCreateGlossarySource_1_0.htm">View the 'CreateGlossary' source code as a web page (version 1.0)(htm)</a></li>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Older downloads</h2>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="ToolCreateGlossarySource_1_0.zip">Download the 'CreateGlossary' source code (version 1.0)(zip)</a></li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><a href="CppLicence.htm">Licence</a></h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolCreateGlossaryConsole.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
-CreateGlossary, tool to create my glossary<br/>
-Copyright (C) 2011 Richel Bilderbeek<br/>
+<table summary="ToolCreateGlossaryConsole.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<br/>
+<a href="CppLIBS.htm">LIBS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a><br/>
+<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppClass.htm">Classes</a>/<a href="CppHtmlPage.htm">CppHtmlPage</a><br/>
+<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppHtmlPage.htm">CppHtmlPage</a>/<a href="CppHtmlPage.htm">htmlpage</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">createglossary</a><a href="CppMain.htm">main</a>dialog.cpp<br/>
+<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppHtmlPage.htm">CppHtmlPage</a>/<a href="CppHtmlPage.htm">htmlpage</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">createglossary</a><a href="CppMain.htm">main</a>dialog.h<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolCreateGlossaryDesktop.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ToolCreateGlossaryDesktop.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+<br/>
+<a href="CppLIBS.htm">LIBS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a><br/>
+<br/>
+<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppHtmlPage.htm">CppHtmlPage</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
+<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppHtmlPage.htm">CppHtmlPage</a>/<a href="CppHtmlPage.htm">htmlpage</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">createglossary</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolCreateGlossary.htm">createglossary</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.cpp<br/>
+<br/>
+<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppHtmlPage.htm">CppHtmlPage</a>/<a href="CppHtmlPage.htm">htmlpage</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">createglossary</a><a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolCreateGlossary.htm">createglossary</a><a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolCreateGlossary.htm">createglossary</a><a href="CppMain.htm">main</a>dialog.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.ui<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Licence.txt<br/>
+<br/>
+<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.qrc<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>createglossarymaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="createglossarymaindialog.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
 it under the terms of the GNU General Public License as published by<br/>
@@ -62,6 +177,40 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
 GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> CREATEGLOSSARYMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> CREATEGLOSSARYMAINDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create all glossaries<br/>
+&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a glossary<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> CreatePage(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; page_name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; page_url,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain all files in a folder<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the files in a folder with a <a href="CppRegex.htm">regex</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str);<br/>
+<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CREATEGLOSSARYMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -69,9 +218,839 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<h2>createglossarymaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="createglossarymaindialog.cpp" border = "1"><tr><td><code>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolCreateGlossary.htm">createglossary</a>maindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppFunction.htm">function</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppHtmlPage.htm">htmlpage</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog::<a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Starting <a href="ToolCreateGlossary.htm">CreateGlossary</a> <a href="CppVersion.htm">version</a> 1.1...\n\n";<br/>
+<br/>
+&nbsp;&nbsp;CreatePage("Command-line glossary","ClGlossary.htm","Cl.*\\.htm\\z");<br/>
+&nbsp;&nbsp;CreatePage("<a href="Cpp.htm">C++</a> glossary","CppGlossary.htm","Cpp.*\\.htm\\z");<br/>
+&nbsp;&nbsp;CreatePage("Game glossary","GameGlossary.htm","Game.*\\.htm\\z");<br/>
+&nbsp;&nbsp;CreatePage("Levend Cluedo glossary","LevendCluedoGlossary.htm","LevendCluedo.*\\.htm\\z");<br/>
+&nbsp;&nbsp;CreatePage("<a href="Tools.htm">Tool</a> glossary","<a href="Tools.htm">Tool</a>Glossary.htm","<a href="Tools.htm">Tool</a>.*\\.htm\\z");<br/>
+&nbsp;&nbsp;CreatePage("<a href="CppMusic.htm">Music</a> glossary","<a href="CppMusic.htm">Music</a>Glossary.htm","(<a href="CppMusic.htm">Music</a>|Song|Cd).*\\.htm\\z");<br/>
+&nbsp;&nbsp;CreatePage("Sitemap","Sitemap.htm",".*\\.htm\\z");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Successfully created glossaries in folder "<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFilesystem.htm">boost::filesystem</a>::path(<a href="CppArgc.htm">argv</a>[0]).parent_path().string() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog::<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::path my_folder<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppFilesystem.htm">boost::filesystem</a>::system_complete(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">boost::filesystem</a>::path(folder));<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::is_directory(my_folder)) <b><a href="CppReturn.htm">return</a></b> v;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::directory_<a href="CppIterator.htm">iterator</a> j;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( <a href="CppFilesystem.htm">boost::filesystem</a>::directory_<a href="CppIterator.htm">iterator</a> i(my_folder);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorNotEqual.htm">!=</a> j;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppFilesystem.htm">boost::filesystem</a>::is_regular_file( i-&gt;status() ) )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> i-&gt;path().filename().string();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> full_filename <a href="CppOperatorAssign.htm">=</a> folder <a href="CppOperatorPlus.htm">+</a> "/" <a href="CppOperatorPlus.htm">+</a> filename;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog::<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get all filenames<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(folder);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the <a href="CppRegex.htm">regex</a> <b><a href="CppFor.htm">for</a></b> a correct <a href="Cpp.htm">C++</a> filename<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> <a href="CppRegex.htm">regex</a>(<a href="CppRegex.htm">regex</a>_str);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the resulting <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy all filenames matching the <a href="CppRegex.htm">regex</a> in the resulting <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(), v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;w,<a href="CppRegex.htm">regex</a>](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppRegex_match.htm">boost::regex_match</a>(s,<a href="CppRegex.htm">regex</a>)) w.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog::CreatePage(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; page_name,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; page_url,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; pagenames<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>("/home/richel/<a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>/<a href="Projects.htm">Projects</a>/RichelbilderbeekNl",<a href="CppRegex.htm">regex</a>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppHtmlPage.htm">HtmlPage</a>&gt; pages;<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(pagenames.begin(),pagenames.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;pages](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pages.push_back(<a href="CppHtmlPage.htm">HtmlPage</a>("/home/richel/<a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>/<a href="Projects.htm">Projects</a>/RichelbilderbeekNl/" <a href="CppOperatorPlus.htm">+</a> s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(pages.begin(),pages.end());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(page_url.c_str());<br/>
+<br/>
+&nbsp;&nbsp;f<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;!DOCTYPE html PUBLIC \"-<a href="CppComment.htm">//</a>W3C<a href="CppComment.htm">//</a>DTD XHTML 1.0 Strict<a href="CppComment.htm">//</a>EN\"\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\"&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;head&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&lt;meta http-equiv=\"Content-Type\" content=\"text/html;<b><a href="CppChar.htm">char</a></b>set=utf-8\"/&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&lt;title&gt;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> page_name <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/title&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&lt;meta name=\"description\" content=\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> page_name <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\"/&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&lt;meta name=\"keywords\" content=\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> page_name <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " table of content index overview\"/&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&lt;<a href="CppLink.htm">link</a> rel=\"stylesheet\" href=\"Richelbilderbeek.css\" type=\"text/css\"/&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/head&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;!-<a href="CppOperatorMinus.htm">-</a> End of head, start of body <a href="CppOperatorMinus.htm">-</a>-&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;body&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&lt;a href=\"index.htm\"&gt;Go back to Richel Bilderbeek's homepage&lt;/a&gt;.&lt;/p&gt;\n"<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&lt;a href=\"Cpp.htm\"&gt;Go back to Richel Bilderbeek's <a href="Cpp.htm">C++</a> page&lt;/a&gt;.&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;!-<a href="CppOperatorMinus.htm">-</a> Page header <a href="CppOperatorMinus.htm">-</a>-&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;h1&gt;&lt;a href=\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> page_url <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\"&gt;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> page_name <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/a&gt;&lt;/h1&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;This page is generated by the\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;a href=\"Cpp<a href="Tools.htm">Tools</a>.htm\"&gt;<a href="Tools.htm">tool</a>&lt;/a&gt; &lt;a href=\"<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm\"&gt;<a href="ToolCreateGlossary.htm">CreateGlossary</a>&lt;/a&gt;.&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;ul&gt;\n";<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(pages.begin(),pages.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;f](<b><a href="CppConst.htm">const</a></b> <a href="CppHtmlPage.htm">HtmlPage</a>&amp; p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (p.GetTitle() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "Redirection page"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> p.GetTitle().empty()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> p.GetFilename().find("_old.htm") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;&lt;li&gt;&lt;a href=\""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppFilesystem.htm">boost::filesystem</a>::path(p.GetFilename()).filename().string()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "\"&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> p.GetTitle()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "&lt;/a&gt;&lt;/li&gt;";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppHtmlPage.htm">HtmlPage</a>::<a href="CppReplaceAll.htm">ReplaceAll</a>(s,"&amp;","&amp;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppHtmlPage.htm">HtmlPage</a>::<a href="CppReplaceAll.htm">ReplaceAll</a>(s,"&amp;","&amp;amp;");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(pagenames.size());<br/>
+<br/>
+&nbsp;&nbsp;f<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/ul&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;Number of pages: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> pagenames.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&lt;a href=\"Cpp.htm\"&gt;Go back to Richel Bilderbeek's <a href="Cpp.htm">C++</a> page&lt;/a&gt;.&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&lt;a href=\"index.htm\"&gt;Go back to Richel Bilderbeek's homepage&lt;/a&gt;.&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;p&gt;&lt;a href=\"http://validator.w3.org/check?uri=referer\"&gt;&lt;img src=\"valid-xhtml10.png\" alt=\"Valid XHTML 1.0 Strict\" height=\"31\" width=\"88\" <a href="CppOperatorDivide.htm">/</a>&gt;&lt;/a&gt;&lt;/p&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/body&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/html&gt;\n";<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>createglossarymenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="createglossarymenudialog.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> CREATEGLOSSARYMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> CREATEGLOSSARYMENUDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<br/>
+<a href="CppComment.htm">///</a>GUI independent <a href="ToolCreateGlossary.htm">CreateGlossary</a> menu dialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog<br/>
+{<br/>
+&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CREATEGLOSSARYMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>createglossarymenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="createglossarymenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppHtmlPage.htm">htmlpage</a>.h"<br/>
+<br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::<a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog()<br/>
+{<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::GetAbout()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolCreateGlossary.htm">CreateGlossary</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> <b><a href="CppFor.htm">for</a></b> creating my site's glossaries",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"the 11th of August 2012",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppHtmlPage.htm">HtmlPage</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppHtmlPage.htm">HtmlPage</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2012-08-06: <a href="CppVersion.htm">version</a> 1.1: added the creation of more type of glossaries");<br/>
+&nbsp;&nbsp;v.push_back("2012-08-11: <a href="CppVersion.htm">version</a> 1.2: add desktop <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolCreateGlossary.htm">createglossary</a>maindialog.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b>, <b><a href="CppChar.htm">char</a></b> * <a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Working...\n\n";<br/>
+&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Successfully created glossaries in folder "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFilesystem.htm">boost::filesystem</a>::path(<a href="CppArgc.htm">argv</a>[0]).parent_path().string() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtcreateglossarymaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtcreateglossarymaindialog.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTCREATEGLOSSARYMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTCREATEGLOSSARYMAINDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> create_glossary();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog *ui;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCREATEGLOSSARYMAINDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtcreateglossarymaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtcreateglossarymaindialog.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolCreateGlossary.htm">createglossary</a>maindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolCreateGlossary.htm">createglossary</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolCreateGlossary.htm">createglossary</a>maindialog.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a>::singleShot(100,<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(create_glossary()));<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog()<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog::create_glossary()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog();<br/>
+&nbsp;&nbsp;ui-&gt;label-&gt;setText("Done!");<br/>
+<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtcreateglossarymenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtcreateglossarymenudialog.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTCREATEGLOSSARYMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTCREATEGLOSSARYMENUDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog();<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog *ui;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCREATEGLOSSARYMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtcreateglossarymenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtcreateglossarymenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolCreateGlossary.htm">createglossary</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolCreateGlossary.htm">createglossary</a>maindialog.h"<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::on_button_about_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::GetAbout());<br/>
+&nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
+&nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
+&nbsp;&nbsp;d.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::on_button_quit_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;close();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog::on_button_start_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Make a screenshot<br/>
+&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a>::grab<a href="CppWidget.htm">Widget</a>(<b><a href="CppThis.htm">this</a></b>,<b><a href="CppThis.htm">this</a></b>-&gt;window()-&gt;rect()).save("<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>MenuDialog.png");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MainDialog d;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
+&nbsp;&nbsp;d.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtmain.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="ToolCreateGlossary.htm">CreateGlossary</a>, <a href="Tools.htm">tool</a> to create my glossaries<br/>
+Copyright (C) 2011-2012 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateGlossary.htm">ToolCreateGlossary</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolCreateGlossary.htm">createglossary</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolCreateGlossary.htm">CreateGlossary</a>MenuDialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>zip.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="zip.sh" border = "1"><tr><td><code>
+#!/bin/sh<br/>
+<br/>
+echo "Removing user information"<br/>
+rm *.user<br/>
+<br/>
+echo "Removing possible temp file"<br/>
+rm copy.txt<br/>
+rm tmp.txt<br/>
+<br/>
+<br/>
+echo "Creating of all main folders"<br/>
+<br/>
+mkdir temp_zip<br/>
+mkdir temp_zip/Classes<br/>
+mkdir temp_zip/Tools<br/>
+<br/>
+echo "Creating of all subfolders"<br/>
+<br/>
+mkdir temp_zip/Classes/CppAbout<br/>
+mkdir temp_zip/Classes/CppHtmlPage<br/>
+mkdir temp_zip/Classes/CppQtAboutDialog<br/>
+mkdir temp_zip/Classes/CppTrace<br/>
+mkdir temp_zip/Tools/ToolCreateGlossary<br/>
+<br/>
+echo "Copying files"<br/>
+<br/>
+cp ../../Classes/CppAbout/Licence.txt temp_zip/Classes/CppAbout/Licence.txt<br/>
+cp ../../Classes/CppAbout/about.cpp temp_zip/Classes/CppAbout/about.cpp<br/>
+cp ../../Classes/CppAbout/about.h temp_zip/Classes/CppAbout/about.h<br/>
+cp ../../Classes/CppHtmlPage/htmlpage.cpp temp_zip/Classes/CppHtmlPage/htmlpage.cpp<br/>
+cp ../../Classes/CppHtmlPage/htmlpage.h temp_zip/Classes/CppHtmlPage/htmlpage.h<br/>
+cp ../../Classes/CppQtAboutDialog/Licence.txt temp_zip/Classes/CppQtAboutDialog/Licence.txt<br/>
+cp ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp temp_zip/Classes/CppQtAboutDialog/qtaboutdialog.cpp<br/>
+cp ../../Classes/CppQtAboutDialog/qtaboutdialog.h temp_zip/Classes/CppQtAboutDialog/qtaboutdialog.h<br/>
+cp ../../Classes/CppQtAboutDialog/qtaboutdialog.ui temp_zip/Classes/CppQtAboutDialog/qtaboutdialog.ui<br/>
+cp ../../Classes/CppTrace/Licence.txt temp_zip/Classes/CppTrace/Licence.txt<br/>
+cp ../../Classes/CppTrace/trace.h temp_zip/Classes/CppTrace/trace.h<br/>
+cp ../../Tools/ToolCreateGlossary/Licence.txt temp_zip/Tools/ToolCreateGlossary/Licence.txt<br/>
+cp ../../Tools/ToolCreateGlossary/R.png temp_zip/Tools/ToolCreateGlossary/R.png<br/>
+cp ../../Tools/ToolCreateGlossary/ToolCreateGlossary.qrc temp_zip/Tools/ToolCreateGlossary/ToolCreateGlossary.qrc<br/>
+cp ../../Tools/ToolCreateGlossary/ToolCreateGlossaryConsole.pro temp_zip/Tools/ToolCreateGlossary/ToolCreateGlossaryConsole.pro<br/>
+cp ../../Tools/ToolCreateGlossary/ToolCreateGlossaryDesktop.pro temp_zip/Tools/ToolCreateGlossary/ToolCreateGlossaryDesktop.pro<br/>
+cp ../../Tools/ToolCreateGlossary/createglossarymaindialog.cpp temp_zip/Tools/ToolCreateGlossary/createglossarymaindialog.cpp<br/>
+cp ../../Tools/ToolCreateGlossary/createglossarymaindialog.h temp_zip/Tools/ToolCreateGlossary/createglossarymaindialog.h<br/>
+cp ../../Tools/ToolCreateGlossary/createglossarymenudialog.cpp temp_zip/Tools/ToolCreateGlossary/createglossarymenudialog.cpp<br/>
+cp ../../Tools/ToolCreateGlossary/createglossarymenudialog.h temp_zip/Tools/ToolCreateGlossary/createglossarymenudialog.h<br/>
+cp ../../Tools/ToolCreateGlossary/main.cpp temp_zip/Tools/ToolCreateGlossary/main.cpp<br/>
+cp ../../Tools/ToolCreateGlossary/qtcreateglossarymaindialog.cpp temp_zip/Tools/ToolCreateGlossary/qtcreateglossarymaindialog.cpp<br/>
+cp ../../Tools/ToolCreateGlossary/qtcreateglossarymaindialog.h temp_zip/Tools/ToolCreateGlossary/qtcreateglossarymaindialog.h<br/>
+cp ../../Tools/ToolCreateGlossary/qtcreateglossarymaindialog.ui temp_zip/Tools/ToolCreateGlossary/qtcreateglossarymaindialog.ui<br/>
+cp ../../Tools/ToolCreateGlossary/qtcreateglossarymenudialog.cpp temp_zip/Tools/ToolCreateGlossary/qtcreateglossarymenudialog.cpp<br/>
+cp ../../Tools/ToolCreateGlossary/qtcreateglossarymenudialog.h temp_zip/Tools/ToolCreateGlossary/qtcreateglossarymenudialog.h<br/>
+cp ../../Tools/ToolCreateGlossary/qtcreateglossarymenudialog.ui temp_zip/Tools/ToolCreateGlossary/qtcreateglossarymenudialog.ui<br/>
+cp ../../Tools/ToolCreateGlossary/qtmain.cpp temp_zip/Tools/ToolCreateGlossary/qtmain.cpp<br/>
+cp ../../Tools/ToolCreateGlossary/zip.sh temp_zip/Tools/ToolCreateGlossary/zip.sh<br/>
+<br/>
+FILENAME="ToolCreateGlossarySource"<br/>
+ZIP_FILENAME=$FILENAME".zip"<br/>
+<br/>
+echo "Compressing files"<br/>
+<br/>
+cd temp_zip<br/>
+zip -r $FILENAME Classes<br/>
+zip -r $FILENAME Tools<br/>
+cd ..<br/>
+cp "temp_zip/"$ZIP_FILENAME $ZIP_FILENAME<br/>
+<br/>
+echo "Cleaning up"<br/>
+<br/>
+echo "Emptying subfolders"<br/>
+<br/>
+rm temp_zip/Classes/CppAbout/*.*<br/>
+rm temp_zip/Classes/CppHtmlPage/*.*<br/>
+rm temp_zip/Classes/CppQtAboutDialog/*.*<br/>
+rm temp_zip/Classes/CppTrace/*.*<br/>
+rm temp_zip/Tools/ToolCreateGlossary/*.*<br/>
+<br/>
+echo "Removing subfolders"<br/>
+<br/>
+rmdir temp_zip/Classes/CppAbout<br/>
+rmdir temp_zip/Classes/CppHtmlPage<br/>
+rmdir temp_zip/Classes/CppQtAboutDialog<br/>
+rmdir temp_zip/Classes/CppTrace<br/>
+rmdir temp_zip/Tools/ToolCreateGlossary<br/>
+<br/>
+echo "Removing main folders"<br/>
+<br/>
+rmdir temp_zip/Classes<br/>
+rmdir temp_zip/Tools<br/>
+<br/>
+echo "Removing temporary folder"<br/>
+<br/>
+rm temp_zip/*.*<br/>
+rmdir temp_zip<br/>
+<br/>
+echo "Done"<br/>
+<br/>
+# CreateQtProjectZipFile, version 1.3<br/>
+# Copyright (C) 2012 Richel Bilderbeek<br/>
+# Programmed on the 10th of June 2012<br/>
+# by Richel Bilderbeek<br/>
+# <br/>
+# CreateQtProjectZipFile can be downloaded from http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm<br/>
+# Licenced under GPL 3.0<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
 <p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
 <p>&nbsp;</p>
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
 </html>
