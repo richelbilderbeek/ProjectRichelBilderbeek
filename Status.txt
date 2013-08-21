@@ -163,6 +163,10 @@ CppSeperateString
 CppSeperateString.exe
 CppStdTupleExample1
 CppStdTupleExample1.exe
+CppTemplateClassExample1
+CppTemplateClassExample1.exe
+CppTemplateClassExample2
+CppTemplateClassExample2.exe
 CppUblasMatrixExample1
 CppUblasMatrixExample1.exe
 CppWilcoxonsSignedRankTest
@@ -198,10 +202,9 @@ ProjectBrainweaverStudent
 ProjectBrainweaverStudent.exe
 simpletreemodel
 ToolAsciiArterDesktop
+ToolCodeToHtmlConsole
 ToolCodeToHtmlDesktop.exe
 ToolCreateGlossaryDesktop
-ToolCreateQtProjectZipFileConsole
-ToolCreateQtProjectZipFileDesktop
 ToolFakeEvy
 ToolFakeEvy.exe
 ToolHometrainerDesktop.exe
@@ -244,6 +247,8 @@ ToolTestGravityWidget
 ToolTestLazy_init
 ToolTestLazy_init.exe
 ToolTestLedDesktop
+ToolTestMultipleChoiceQuestionDesktop
+ToolTestMultipleChoiceQuestionDesktop.exe
 ToolTestMultiVector
 ToolTestMultiVector.exe
 ToolTestNewickVectorConsole
@@ -253,15 +258,11 @@ ToolTestPrimeExpert
 ToolTestQrcFileConsole
 ToolTestQrcFileDesktop
 ToolTestQtArrowItems
-ToolTestQtCreatorProFileConsole
-ToolTestQtCreatorProFileDesktop
 ToolTestQtHideAndShowDialog
 ToolTestQtModels
 ToolTestQtRoundedEditRectItem
 ToolTestQtRoundedRectItem
 ToolTestQtRoundedTextRectItem
-ToolTestQuestionDesktop
-ToolTestQuestionWebsite
 ToolTestSelectFileDialogWebsite
 ToolTestShapeDesktop
 ToolTestShinyButtonDesktop
