@@ -7,16 +7,13 @@
 #include "gamexenonzerosprite.h"
 
 
-namespace xenon_zero {
+namespace xnz {
 
 Area::Area(const int width,const int height)
-  : mArea(height,std::string(width,' ')),
-    mWidth(width),
-    mHeight(height)
+  : mArea(height,std::string(width,' '))
 {
-  assert(static_cast<int>(mArea.size()) == mHeight);
-  assert(mArea.size() > 0);
-  assert(static_cast<int>(mArea[0].size()) == mWidth);
+  assert(width > 0);
+  assert(height > 0);
 
   DrawEdge();
 
@@ -26,18 +23,14 @@ Area::Area(const int width,const int height)
 void Area::DrawEdge()
 {
   //Create an initial edged screen
-  Sprite::mMaxx = mWidth  - 1;
-  Sprite::mMaxy = mHeight - 1;
+  Sprite::mMaxx = GetWidth() - 1;
+  Sprite::mMaxy = GetHeight() - 1;
 
-  assert(static_cast<int>(mArea.size()) == mHeight);
-  assert(mArea.size() > 0);
-  assert(static_cast<int>(mArea[0].size()) == mWidth);
-
-  const std::string edge = std::string(mWidth,'*');
-  const std::string nonEdge = "*" + std::string(mWidth-2,' ') + "*";
+  const std::string edge = std::string(GetWidth(),'*');
+  const std::string nonEdge = "*" + std::string(GetWidth()-2,' ') + "*";
   mArea[0] = edge;
-  for (int i=0; i!=mHeight-2; ++i) mArea[1+i] = nonEdge;
-  mArea[mHeight - 1] = edge;
+  for (int i=0; i!=GetHeight()-2; ++i) mArea[1+i] = nonEdge;
+  mArea[GetHeight() - 1] = edge;
 }
 
 void Area::DrawLife(const double fraction)
@@ -69,8 +62,8 @@ void Area::Draw(const int x, const int y, const Container& g)
   if (graphicHeight == 0) return;
   const int graphicWidth = g[0].size();
 
-  const int areaWidth = this->mWidth;
-  const int areaHeight = this->mHeight;
+  const int areaWidth = this->GetWidth();
+  const int areaHeight = this->GetHeight();
 
   for (int j=0; j!=graphicHeight; ++j)
   {
@@ -107,61 +100,11 @@ std::ostream& operator<<(std::ostream& os, const Area& a)
   return os;
 }
 
-int GetInRange(const int x, const int min, const int max)
+int Area::GetInRange(const int x, const int min, const int max)
 {
   if (x < min) return min;
   if (x > max) return max;
   return x;
 }
 
-/*
-BitBlitLine::BitBlitLine(const std::string& source, const int x)
-  : mSource(source), mX(x)
-{
-  assert(mX >= 0);
-  assert(mSource.empty() == false);
-}
-
-void BitBlitLine::operator()(std::string& dest) const
-{
-  //Copy source on dest, but do not write beyond bounds of dest
-  const int maxCopyLength = dest.size() - mX;
-
-
-  const std::string::const_iterator begin = mSource.begin();
-  const std::string::const_iterator end = mSource.begin() + maxCopyLength;
-  const std::string::iterator destBegin = dest.begin() + mX;
-
-  assert(end <= mSource.end());
-  assert(destBegin <= dest.end());
-  assert(destBegin + maxCopyLength <= dest.end());
-  assert(!"TODO?");
-  //std::copy(begin,end,dest);
-}
-
-BitBlitter::BitBlitter(
-  const Area::Graphic& source,
-  const int x,
-  const int y)
-  : mSource(source), mX(x), mY(y)
-{
-  assert(mX >= 0);
-
-}
-
-
-void BitBlitter::operator()(Area& dest) const
-{
-  //
-  //std::for_each( dest.begin(), dest.end(), BitBlitLine(
-  const int height = mSource.size();
-  for (int i=0; i!=height; ++i)
-  {
-    assert(!"TODO?");
-
-  }
-
-}
-*/
-
-} //~namespace xenon_zero
+} //~namespace xnz

@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-namespace xenon_zero {
+namespace xnz {
 
 
 int Sprite::mMinx = 1;
@@ -339,4 +339,4 @@ bool IsCollision(
   return false;
 }
 
-} //~namespace xenon_zero
+} //~namespace xnz

@@ -1,5 +1,3 @@
-
-
 #ifndef GAMEXENONZEROSPRITE_H
 #define GAMEXENONZEROSPRITE_H
 
@@ -15,7 +13,7 @@ enum class EnumSprite
   spriteEnemyMedium
 };
 
-namespace xenon_zero {
+namespace xnz {
 
 struct Sprite
 {
@@ -133,6 +131,6 @@ bool IsCollision(
   const boost::shared_ptr<Sprite>& s1,
   const boost::shared_ptr<Sprite>& s2);
 
-} //~namespace xenon_zero
+} //~namespace xnz
 
 #endif

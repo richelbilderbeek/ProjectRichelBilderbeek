@@ -11,10 +11,10 @@
 
 #include "gamexenonzerosprite.h"
 
-namespace xenon_zero {
+namespace xnz {
 
-XeNonZero::XeNonZero()
-  : mArea(78,23),
+Dialog::Dialog()
+  : mArea(new Area(78,23)),
     mSpritePlayer(new SpritePlayer(78/2-2,23-1-4))
 {
   mSprites.push_back( boost::shared_ptr<Sprite>(new SpriteEnemyMedium(35, 1)));
@@ -28,22 +28,13 @@ XeNonZero::XeNonZero()
   DrawSprites();
 }
 
-int XeNonZero::GetAreaHeight() const
-{
-  return mArea.mHeight;
-}
-
-int XeNonZero::GetAreaWidth() const
-{
-  return mArea.mWidth;
-}
-
-bool XeNonZero::IsGameOver() const
+bool Dialog::IsGameOver() const
 {
   return (mSpritePlayer->GetHealth() <= 0);
 }
 
-void XeNonZero::AskUserInputAndProcess()
+/*
+void xnzDialog::AskUserInputAndProcess()
 {
   const std::string userInput = AskUserInput();
 
@@ -70,13 +61,45 @@ void XeNonZero::AskUserInputAndProcess()
   DrawSprites();
 
 }
+*/
 
-void XeNonZero::MoveSprites()
+const boost::shared_ptr<const Area> Dialog::ProcessInput(const Dialog::Input input)
+{
+  switch (input)
+  {
+    case Input::up:
+      mSpritePlayer->Move( 0,-1);
+      break;
+    case Input::right:
+      mSpritePlayer->Move( 1, 0);
+      break;
+    case Input::down:
+      mSpritePlayer->Move( 0,-1);
+      break;
+    case Input::left:
+      mSpritePlayer->Move(-1, 0);
+      break;
+    case Input::shoot:
+    {
+      SpriteContainer tempSprites;
+      mSpritePlayer->Shoot(tempSprites);
+      std::copy(tempSprites.begin(),tempSprites.end(),std::back_inserter(mSprites));
+    }
+    case Input::space:
+    break;
+  }
+  MoveSprites();
+  LetSpritesInteract();
+  DrawSprites();
+  return GetArea();
+}
+
+void Dialog::MoveSprites()
 {
   std::for_each(mSprites.begin(),mSprites.end(),SpriteMover());
 }
 
-void XeNonZero::LetSpritesInteract()
+void Dialog::LetSpritesInteract()
 {
   //Let player interact with all non-player sprites
   {
@@ -125,35 +148,42 @@ void XeNonZero::LetSpritesInteract()
 
 }
 
-void XeNonZero::DrawSprites()
+void Dialog::DrawSprites()
 {
-  mArea.DrawEdge();
+  mArea->DrawEdge();
 
-  mArea.Draw(
+  mArea->Draw(
     mSpritePlayer->GetX(),
     mSpritePlayer->GetY(),
     mSpritePlayer->GetGraphic());
 
-  std::for_each(mSprites.begin(),mSprites.end(),SpriteDrawer(mArea));
+  for(auto s: mSprites)
+  {
+    mArea->Draw(s->GetX(), s->GetY(), s->GetGraphic());
+  }
 
-  mArea.DrawLife(
+  mArea->DrawLife(
     static_cast<double>(mSpritePlayer->GetHealth())
     / static_cast<double>(mSpritePlayer->GetMaxHealth() ) );
 }
 
+/*
 void SpriteDrawer::operator()(boost::shared_ptr<Sprite>& s) const
 {
-  mArea.Draw(s->GetX(), s->GetY(), s->GetGraphic());
+  mArea->Draw(s->GetX(), s->GetY(), s->GetGraphic());
 }
+*/
 
+/*
 const std::string AskUserInput()
 {
   std::string s;
   std::getline(std::cin,s);
   return s;
 }
+*/
 
-std::ostream& operator<<(std::ostream& os, const XeNonZero& s)
+std::ostream& operator<<(std::ostream& os, const Dialog& s)
 {
   os << s.GetArea();
   return os;
@@ -174,4 +204,4 @@ void SpriteShoot::operator()(boost::shared_ptr<Sprite>& s) const
   s->Shoot(mTempSprites);
 }
 
-} //~namespace xenon_zero
+} //~namespace xnz

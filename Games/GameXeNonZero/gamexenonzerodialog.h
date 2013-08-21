@@ -6,58 +6,61 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 
+#include "gamexenonzerofwd.h"
 #include "gamexenonzeroarea.h"
 
-namespace xenon_zero {
+namespace xnz {
 
-struct Sprite;
-struct SpritePlayer;
 
-struct XeNonZero
+struct Dialog
 {
+  enum class Input { up, right, down, left, space, shoot };
+
   typedef boost::shared_ptr<Sprite> SpritePtr;
   typedef std::vector<boost::shared_ptr<Sprite> > SpriteContainer;
-
   typedef SpriteContainer::iterator Iterator;
   typedef SpriteContainer::const_iterator ConstIterator;
 
-  XeNonZero();
-  void AskUserInputAndProcess();
+  Dialog();
 
+  const boost::shared_ptr<const Area> ProcessInput(const Input input);
   bool IsGameOver() const;
-  void DrawSprites();
-
-  const Area& GetArea() const { return mArea; }
-  int GetAreaHeight() const;
-  int GetAreaWidth() const;
 
   private:
 
+  void DrawSprites();
+
+  const boost::shared_ptr<const xnz::Area> GetArea() const { return mArea; }
 
   void MoveSprites();
   void LetSpritesInteract();
 
-  Area mArea;
+  const boost::shared_ptr<xnz::Area> mArea;
+
   SpriteContainer mSprites;
   boost::shared_ptr<SpritePlayer> mSpritePlayer;
+
+  friend std::ostream& operator<<(std::ostream& os, const Dialog& s);
 };
 
 
-std::ostream& operator<<(std::ostream& os, const XeNonZero& s);
+std::ostream& operator<<(std::ostream& os, const Dialog& s);
 
-const std::string AskUserInput();
+//const std::string AskUserInput();
 
 struct SpriteMover : public std::unary_function<void,Sprite>
 {
   void operator()(boost::shared_ptr<Sprite>& s) const;
 };
 
+/*
 struct SpriteDrawer : public std::unary_function<void,Sprite>
 {
   SpriteDrawer(Area& area) : mArea(area) {}
   void operator()(boost::shared_ptr<Sprite>& s) const;
   Area& mArea;
 };
+*/
 
 struct SpriteIsDead : public std::unary_function<bool,Sprite>
 {
@@ -66,11 +69,11 @@ struct SpriteIsDead : public std::unary_function<bool,Sprite>
 
 struct SpriteShoot : public std::unary_function<void,Sprite>
 {
-  SpriteShoot(XeNonZero::SpriteContainer& tempSprites) : mTempSprites(tempSprites) {}
+  SpriteShoot(Dialog::SpriteContainer& tempSprites) : mTempSprites(tempSprites) {}
   void operator()(boost::shared_ptr<Sprite>& s) const;
-  XeNonZero::SpriteContainer& mTempSprites;
+  Dialog::SpriteContainer& mTempSprites;
 };
 
-} //~namespace xenon_zero
+} //~namespace xnz
 
 #endif

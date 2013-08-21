@@ -28,11 +28,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 struct Canvas
 {
   Canvas(const int width = 0, const int height = 0);
-  int GetHeight() const { return mCanvas.size(); }
-  int GetWidth() const { return (GetHeight()==0 ? 0 : mCanvas[0].size() ); }
+
   void DrawDot(const double x, const double y);
   void DrawLine(const double x1, const double y1, const double x2, const double y2);
   void DrawCircle(const double xMid, const double yMid, const double ray);
+
+  int GetHeight() const { return mCanvas.size(); }
 
   ///Obtain the version of this class
   static const std::string GetVersion();
@@ -40,25 +41,28 @@ struct Canvas
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 
+  int GetWidth() const { return (GetHeight()==0 ? 0 : mCanvas[0].size() ); }
+
   void Cout() const; //operator<< is not used, as PlotSurface only writes to std::cout
+
   private:
   bool IsInRange(const int x, const int y) const;
   std::vector<std::vector<double> > mCanvas;
 
+  //From http://www.richelbilderbeek.nl/CppMinElement.htm
+  template <class Container>
+  static const typename Container::value_type::value_type MinElement(const Container& v);
+
+  //From http://www.richelbilderbeek.nl/CppMaxElement.htm
+  template <class Container>
+  static const typename Container::value_type::value_type MaxElement(const Container& v);
+
+  //From http://www.richelbilderbeek.nl/CppPlotSurface.htm
+  static void PlotSurface(const std::vector<std::vector<double> >& v);
+
+  //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
+  static const std::vector<char> GetAsciiArtGradient();
 };
 
-//From http://www.richelbilderbeek.nl/CppMinElement.htm
-template <class Container>
-const typename Container::value_type::value_type MinElement(const Container& v);
-
-//From http://www.richelbilderbeek.nl/CppMaxElement.htm
-template <class Container>
-const typename Container::value_type::value_type MaxElement(const Container& v);
-
-//From http://www.richelbilderbeek.nl/CppPlotSurface.htm
-void PlotSurface(const std::vector<std::vector<double> >& v);
-
-//From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-const std::vector<char> GetAsciiArtGradient();
 
 #endif

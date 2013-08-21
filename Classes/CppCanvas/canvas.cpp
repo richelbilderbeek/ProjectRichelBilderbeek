@@ -127,7 +127,7 @@ const std::vector<std::string> Canvas::GetVersionHistory()
 
 //The 2D std::vector must be y-x-ordered
 //From http://www.richelbilderbeek.nl/CppPlotSurface.htm
-void PlotSurface(const std::vector<std::vector<double> >& v)
+void Canvas::PlotSurface(const std::vector<std::vector<double> >& v)
 {
   assert(v.empty() == false && "Surface must have a size");
   assert(v[0].size() > 0 && "Surface must have a two-dimensional size");
@@ -171,7 +171,7 @@ void PlotSurface(const std::vector<std::vector<double> >& v)
 }
 
 //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-const std::vector<char> GetAsciiArtGradient()
+const std::vector<char> Canvas::GetAsciiArtGradient()
 {
   std::vector<char> chars;
   chars.push_back('M');
@@ -195,7 +195,7 @@ const std::vector<char> GetAsciiArtGradient()
 //Obtains the minimum element of a 2D container
 //From http://www.richelbilderbeek.nl/CppMinElement.htm
 template <class Container>
-const typename Container::value_type::value_type MinElement(const Container& v)
+const typename Container::value_type::value_type Canvas::MinElement(const Container& v)
 {
   assert(v.empty() == false && "Container must have a size");
   //Obtain an initial lowest value
@@ -219,7 +219,7 @@ const typename Container::value_type::value_type MinElement(const Container& v)
 //Obtains the maximal element of a 2D container
 //From http://www.richelbilderbeek.nl/CppMaxElement.htm
 template <class Container>
-const typename Container::value_type::value_type MaxElement(const Container& v)
+const typename Container::value_type::value_type Canvas::MaxElement(const Container& v)
 {
   assert(v.empty() == false && "Container must have a size");
 
