@@ -3,7 +3,6 @@
 #include <cassert>
 
 #include <QStandardItemModel>
-//#include <QStyledItemDelegate>
 #include "ui_qtdialog.h"
 
 QtDialog::QtDialog(QWidget *parent) :
@@ -46,5 +45,4 @@ void QtDialog::on_button_clicked()
   ui->table->scrollToBottom();
   ui->table->setCurrentIndex(items[j]->index());
   ui->table->edit(items[j]->index());
-
 }

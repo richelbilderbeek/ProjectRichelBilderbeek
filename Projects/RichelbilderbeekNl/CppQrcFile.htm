@@ -224,7 +224,7 @@ QrcFile::QrcFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm"
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;file <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppContinue.htm">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (boost::regex_search(s,<a href="CppRegex.htm">boost::regex</a>("&lt;file&gt;.*&lt;/file&gt;")))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (boost::regex_search(s,<a href="CppBoostRegex.htm">boost::regex</a>("&lt;file&gt;.*&lt;/file&gt;")))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!s.empty());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::trim_copy(s);<br/>

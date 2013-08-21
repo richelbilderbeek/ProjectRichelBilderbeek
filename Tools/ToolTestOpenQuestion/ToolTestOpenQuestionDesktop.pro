@@ -1,4 +1,5 @@
-QT       += core gui widgets
+QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 
@@ -86,9 +87,9 @@ CONFIG(release, debug|release) {
 #
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
-#unix {
+unix {
   QMAKE_CXXFLAGS += -Werror
-#}
+}
 
 #
 #

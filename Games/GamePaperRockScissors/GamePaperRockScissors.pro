@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-04-10T11:16:42
-#
-#-------------------------------------------------
 QT       -= core
 QT       -= gui
 LIBS += \
@@ -10,8 +5,8 @@ LIBS += \
   -lboost_program_options \
   -lboost_signals \
   -lboost_thread
-QMAKE_CXXFLAGS += -DNDEBUG
-#QMAKE_CXXFLAGS += -std=c++0x
+  
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

@@ -30,8 +30,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "questiondialog.h"
 
-#include "multiplechoicequestion.h"
-#include "multiplechoicequestiondialog.h"
+#include <cassert>
+
+#include "question.h"
 
 QuestionDialog::QuestionDialog(const boost::shared_ptr<Question>& question)
   : m_has_submitted(false),

@@ -948,7 +948,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a>&amp; r);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a>&amp; r);<br/>
 <br/>
 };<br/>
 <br/>
@@ -1011,13 +1011,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppRegex.htm">Regex</a>Valid(r)) <b><a href="CppReturn.htm">return</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetRegexMatches.htm">GetRegexMatches</a>(s,<a href="CppRegex.htm">boost::regex</a>(r));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetRegexMatches.htm">GetRegexMatches</a>(s,<a href="CppBoostRegex.htm">boost::regex</a>(r));<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a>&amp; r)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a>&amp; r)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a>::const_iterator start <a href="CppOperatorAssign.htm">=</a> s.begin();<br/>
@@ -1040,7 +1040,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; line, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; regex_str) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!Get<a href="CppRegex.htm">Regex</a>Valid(regex_str)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a> r(regex_str);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> r(regex_str);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRegex_match.htm">boost::regex_match</a>(line,r);<br/>
 }<br/>
 <br/>
@@ -1052,7 +1052,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> boost::regex_replace(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str, <a href="CppRegex.htm">boost::regex</a>(regex_str), format_str,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str, <a href="CppBoostRegex.htm">boost::regex</a>(regex_str), format_str,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::match_default | <a href="CppFormat.htm">boost::format</a>_all);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (boost::regex_error&amp; )<br/>
@@ -1064,7 +1064,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; regex_str) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a> regex_temp(regex_str); }<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> regex_temp(regex_str); }<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (boost::regex_error&amp; e) { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
@@ -1994,7 +1994,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; line, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; regex_str) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!Get<a href="CppRegex.htm">Regex</a>Valid(regex_str)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a> r(regex_str);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> r(regex_str);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRegex_match.htm">boost::regex_match</a>(line,r);<br/>
 }<br/>
 <br/>
@@ -2010,7 +2010,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; regex_str) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a> regex_temp(regex_str); }<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> regex_temp(regex_str); }<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (boost::regex_error&amp; e) { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>

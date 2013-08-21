@@ -1,10 +1,6 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-03-28T16:12:00
-#
-#-------------------------------------------------
 QT       += core gui
-QMAKE_CXXFLAGS += -std=c++0x
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 TEMPLATE = app
 INCLUDEPATH += \
   ../../Classes/CppAbout \

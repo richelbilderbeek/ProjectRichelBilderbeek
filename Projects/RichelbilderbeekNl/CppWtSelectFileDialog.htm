@@ -231,7 +231,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRegex.htm">boost::regex</a>(ui.m_edit_filter-&gt;text().toUTF8());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostRegex.htm">boost::regex</a>(ui.m_edit_filter-&gt;text().toUTF8());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppBoost.htm">boost</a>::bad_expression&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
@@ -243,7 +243,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(m_path);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the regex <b><a href="CppFor.htm">for</a></b> a correct text file<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a> txt_file_regex(ui.m_edit_filter-&gt;text().toUTF8());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> txt_file_regex(ui.m_edit_filter-&gt;text().toUTF8());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCopy_if.htm">Copy_if</a>(v.begin(),v.end(),<br/>

@@ -1,9 +1,5 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-01-06T18:38:43
-#
-#-------------------------------------------------
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 SOURCES += main.cpp\
         dialoggame.cpp \

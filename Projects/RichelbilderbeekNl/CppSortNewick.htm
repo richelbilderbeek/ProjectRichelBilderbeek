@@ -211,7 +211,7 @@
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> n <a href="CppOperatorAssign.htm">=</a> "";<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Find initial leaf and replace it with x<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a> r("\\(\\d+,\\d+\\)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> r("\\(\\d+,\\d+\\)");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>::const_iterator start <a href="CppOperatorAssign.htm">=</a> s.begin();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::const_iterator end <a href="CppOperatorAssign.htm">=</a> s.end();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::match_results&lt;<a href="CppString.htm">std::string</a>::const_iterator&gt; what;<br/>
@@ -223,7 +223,7 @@
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (s<a href="CppOperatorNotEqual.htm">!=</a>"x")<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain leaf with x<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">boost::regex</a> r("(\\(x,\\d+\\))|(\\(\\d+,x\\))");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> r("(\\(x,\\d+\\))|(\\(\\d+,x\\))");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>::const_iterator start <a href="CppOperatorAssign.htm">=</a> s.begin();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::const_iterator end <a href="CppOperatorAssign.htm">=</a> s.end();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::match_results&lt;<a href="CppString.htm">std::string</a>::const_iterator&gt; what;<br/>
@@ -231,7 +231,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::regex_search(start, end, what, r);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> l <a href="CppOperatorAssign.htm">=</a> what.str();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Search leaf <b><a href="CppFor.htm">for</a></b> digit<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::regex_search(l.begin(), l.end(), what,<a href="CppRegex.htm">boost::regex</a>("\\d+"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::regex_search(l.begin(), l.end(), what,<a href="CppBoostRegex.htm">boost::regex</a>("\\d+"));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> digit to n<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;n <a href="CppOperatorAssign.htm">=</a> "(" <a href="CppOperatorPlus.htm">+</a> n <a href="CppOperatorPlus.htm">+</a> "," <a href="CppOperatorPlus.htm">+</a> what.str() <a href="CppOperatorPlus.htm">+</a> ")";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Replace the leaf by an x<br/>
