@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Green64x64.png</file>
+        <file>GreenOff64x64.png</file>
+        <file>Orange64x64.png</file>
+        <file>OrangeOff64x64.png</file>
+        <file>Red64x64.png</file>
+        <file>RedOff64x64.png</file>
+        <file>R.bmp</file>
+    </qresource>
+</RCC>

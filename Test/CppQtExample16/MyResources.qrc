@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/MyImages">
+        <file>BeerSmall.bmp</file>
+    </qresource>
+</RCC>
