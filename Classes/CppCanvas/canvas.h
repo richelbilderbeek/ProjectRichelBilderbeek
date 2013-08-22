@@ -27,6 +27,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 struct Canvas
 {
+  ///The number of characters the Canvas is heigh and wide
+  ///but also the maximum x and y coordinat. The minimum
+  ///x and y coordinats are 0.0 and 0.0
   Canvas(const int width = 0, const int height = 0);
 
   void DrawDot(const double x, const double y);
@@ -47,6 +50,7 @@ struct Canvas
 
   private:
   bool IsInRange(const int x, const int y) const;
+
   std::vector<std::vector<double> > mCanvas;
 
   //From http://www.richelbilderbeek.nl/CppMinElement.htm
