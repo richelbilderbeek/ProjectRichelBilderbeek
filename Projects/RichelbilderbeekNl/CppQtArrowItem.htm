@@ -26,46 +26,8 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
-<p><a href="CppApplication.htm">Application type(s)</a></p>
-<ul>
-  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
-</ul>
-<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
-<ul>
-  <li><img src="PicCygwin.png" alt="Cygwin"/> <a href="CppCygwin.htm">Cygwin</a> 1.7.7</li>
-  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
-  <li><img src="PicWine.png" alt="Wine"/> <a href="CppWine.htm">Wine</a> 1.4.1</li>
-</ul>
-<p><a href="CppIde.htm">IDE(s)</a>:</p>
-<ul>
-  <li><img src="PicCppBuilder.png" alt="C++ Builder"/> <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition</li>
-</ul>
-<p><a href="CppQtProjectType.htm">Project type</a>:</p>
-<ul>
-  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
-</ul>
-<p><a href="CppStandard.htm">C++ standard</a>:</p>
-<ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
-</ul>
-<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
-<ul>
-  <li>Borland <a href="CppBcc32Exe.htm">BCC32.EXE</a> version 6.0.10.157</li>
-</ul>
-<p><a href="CppLibrary.htm">Libraries</a> used:</p>
-<ul>
-  <li><img src="PicBigInt.png" alt="BigInt"/> <a href="CppBigInt.htm">BigInteger</a>: version 2010.04.30</li>
-  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
-  <li><img src="PicVcl.png" alt="VCL"/> <a href="CppVcl.htm">VCL</a>: supplied with <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition
-</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -117,8 +79,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> head,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>* scene <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
@@ -202,7 +163,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTARROWITEM_H<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -235,8 +195,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtArrowItem.htm">CppQtArrowItem</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
 <a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
 <a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
@@ -245,10 +208,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQCursor.htm">QCursor</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppQtArrowItem.htm">QtArrowItem</a>::m_click_easy_width <a href="CppOperatorAssign.htm">=</a> 10.0;<br/>
@@ -260,16 +228,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> head,<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* parent,<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>* scene)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a>(x1,y1,x2,y2,parent,scene),<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a>(x1,y1,x2,y2,parent),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>New since <a href="CppQt.htm">Qt</a>5<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_arrow_head_clicking_distance(20.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_focus_pen(QPen(<a href="CppQt.htm">Qt</a>::DashLine)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_head(head),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_pen(QPen(<a href="CppQColor.htm">QColor</a>(0,0,0))),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_tail(tail)<br/>
 {<br/>
-<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlags(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsFocusable<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable<br/>
@@ -289,7 +255,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppDouble.htm">double</a></b> <a href="CppQtArrowItem.htm">QtArrowItem</a>::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.htm">std::atan</a>(dx/dy));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pi <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.htm">std::atan</a>(dx/dy));<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQtArrowItem.htm">QtArrowItem</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
@@ -372,21 +339,23 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;painter-&gt;drawLine(<b><a href="CppThis.htm">this</a></b>-&gt;line());<br/>
 <br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The angle from tail to head<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>(line().dx(),line().dy());<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (line().dy() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0) angle <a href="CppOperatorAssign.htm">=</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> angle;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (line().dy() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0) angle <a href="CppOperatorAssign.htm">=</a> (1.0 * pi) <a href="CppOperatorPlus.htm">+</a> angle;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sz <a href="CppOperatorAssign.htm">=</a> 10.0; <a href="CppComment.htm">//</a>pixels<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_tail)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p0 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;line().p1();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> pi <a href="CppOperatorPlus.htm">+</a> (pi * 0.1)) * sz,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> pi <a href="CppOperatorPlus.htm">+</a> (pi * 0.1)) * sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> pi <a href="CppOperatorMinus.htm">-</a> (pi * 0.1)) * sz,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> pi <a href="CppOperatorMinus.htm">-</a> (pi * 0.1)) * sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawPolygon(QPolygonF() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p0 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p2);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_head)<br/>
@@ -395,12 +364,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorPlus.htm">+</a> (pi * 0.1)) * sz,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorPlus.htm">+</a> (pi * 0.1)) * sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorMinus.htm">-</a> (pi * 0.1)) * sz,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorMinus.htm">-</a> (pi * 0.1)) * sz);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawPolygon(QPolygonF() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p0 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p2);<br/>
 &nbsp;&nbsp;}<br/>
@@ -436,7 +405,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppQtArrowItem.htm">QtArrowItem</a>::<a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Thanks to norobro <b><a href="CppFor.htm">for</a></b> posting <b><a href="CppThis.htm">this</a></b> code at<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>http://www.qtcentre.org/<a href="CppThread.htm">thread</a>s/49201-<a href="CppFunctorIncrease.htm">Increase</a>-margin-<b><a href="CppFor.htm">for</a></b>-detecting-<a href="Tools.htm">tool</a>tip-events-of-<a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>http://www.qtcentre.org/<a href="CppThread.htm">thread</a>s/49201-<a href="CppIncrease.htm">Increase</a>-margin-<b><a href="CppFor.htm">for</a></b>-detecting-<a href="Tools.htm">tool</a>tip-events-of-<a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a><br/>
 &nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a> path;<br/>
 &nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a>Stroker stroker;<br/>
 &nbsp;&nbsp;path.moveTo(line().p1());<br/>
@@ -444,7 +413,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;stroker.setWidth(m_click_easy_width);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> stroker.createStroke(path);<br/>
 }<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

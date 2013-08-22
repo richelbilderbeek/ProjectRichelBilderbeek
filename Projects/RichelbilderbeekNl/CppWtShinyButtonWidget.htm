@@ -20,10 +20,23 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a></h1>
 <p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppWtShinyButtonWidget-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>wtshinybuttonwidget.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="wtshinybuttonwidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
@@ -50,7 +63,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintDevice.htm">WPaintDevice</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
@@ -63,7 +76,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> is created by its toggle state and its color<br/>
-&nbsp;&nbsp;<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text <a href="CppOperatorAssign.htm">=</a> "");<br/>
@@ -73,12 +86,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a> to the <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a><br/>
 &nbsp;&nbsp;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * Get<a href="CppWidget.htm">Widget</a>() { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the color of the <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetColor(<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> its <a href="CppVersion.htm">version</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
@@ -106,15 +113,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a><br/>
 &nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&gt; m_<a href="CppWidget.htm">widget</a>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> its red color intensity<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_red;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> its green color intensity<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_green;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> its blue color intensity<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_blue;<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Do not let <b><a href="CppThis.htm">this</a></b> be called by the client<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height);<br/>
 <br/>
@@ -122,14 +120,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRepaint();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to mouse click<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp;) {}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the <a href="CppWidget.htm">widget</a> resizing<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnResize();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTSHINYBUTTONWIDGET_H<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -140,7 +137,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <h2>wtshinybuttonwidget.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="wtshinybuttonwidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
@@ -182,6 +179,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;: m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(color,gradient,text))<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setInline(<b><a href="CppTrue.htm">true</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;m_signal_color_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
@@ -193,7 +191,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_geometry_changed.connect(<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnResize,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
@@ -257,7 +255,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
@@ -265,7 +263,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
 &nbsp;&nbsp;v.push_back("2011-09-21: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-10-29: <a href="CppVersion.htm">version</a> 1.1: added OnClicked method");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp;)<br/>
+{<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>::OnResize()<br/>
@@ -284,7 +288,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a>::resize(width,height);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

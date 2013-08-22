@@ -26,46 +26,77 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
-<p><a href="CppApplication.htm">Application type(s)</a></p>
-<ul>
-  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
-</ul>
-<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
-<ul>
-  <li><img src="PicCygwin.png" alt="Cygwin"/> <a href="CppCygwin.htm">Cygwin</a> 1.7.7</li>
-  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
-  <li><img src="PicWine.png" alt="Wine"/> <a href="CppWine.htm">Wine</a> 1.4.1</li>
-</ul>
-<p><a href="CppIde.htm">IDE(s)</a>:</p>
-<ul>
-  <li><img src="PicCppBuilder.png" alt="C++ Builder"/> <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition</li>
-</ul>
-<p><a href="CppQtProjectType.htm">Project type</a>:</p>
-<ul>
-  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
-</ul>
-<p><a href="CppStandard.htm">C++ standard</a>:</p>
-<ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
-</ul>
-<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
-<ul>
-  <li>Borland <a href="CppBcc32Exe.htm">BCC32.EXE</a> version 6.0.10.157</li>
-</ul>
-<p><a href="CppLibrary.htm">Libraries</a> used:</p>
-<ul>
-  <li><img src="PicBigInt.png" alt="BigInt"/> <a href="CppBigInt.htm">BigInteger</a>: version 2010.04.30</li>
-  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
-  <li><img src="PicVcl.png" alt="VCL"/> <a href="CppVcl.htm">VCL</a>: supplied with <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition
-</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>musicbar.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="musicbar.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> MUSICBAR_H<br/>
+<a href="CppDefine.htm">#define</a> MUSICBAR_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>note.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
+<br/>
+<a href="CppComment.htm">///</a>A Bar is a collection of Note <a href="CppInstance.htm">instances</a> ensuring that<br/>
+<a href="CppComment.htm">///</a>the sum of the length of the Notes equals the <a href="CppTime.htm">time</a> signature of the bar.<br/>
+<a href="CppComment.htm">///</a>Note that rests are not supported<br/>
+<b><a href="CppStruct.htm">struct</a></b> Bar<br/>
+{<br/>
+&nbsp;&nbsp;Bar(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppTime.htm">time</a>_signature,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt;&amp; notes);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m_<a href="CppTime.htm">time</a>_signature;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt; m_notes;<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICBAR_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>musicbar.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="musicbar.cpp" border = "1"><tr><td><code>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
+<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>bar.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
+<br/>
+Bar::Bar(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppTime.htm">time</a>_signature,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt;&amp; notes)<br/>
+&nbsp;&nbsp;: m_notes(notes),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>_signature(<a href="CppTime.htm">time</a>_signature)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO: Check that the num of lengths of the notes equals the <a href="CppTime.htm">time</a> signature");<br/>
+}<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -90,7 +121,7 @@
 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create <a href="CppAny.htm">any</a> Chord from its root (e.g. 'C'), postfix (e.g. 'm7') and its intervals<br/>
-&nbsp;&nbsp;Chord(<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Chord(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Note root,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; postfix,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; intervals);<br/>
@@ -98,16 +129,16 @@
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Chord() {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Count the number of notes two chords share<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> CountSameNotes(<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; rhs);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> CountSameNotes(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; rhs);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/A Factory method: create all Chords<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; CreateAllChords();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; CreateAllChords();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/A Factory method: create all Chords from a root<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; CreateChords(<b><a href="CppConst.htm">const</a></b> Note root);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; CreateChords(<b><a href="CppConst.htm">const</a></b> Note root);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/A Factory method: create a Chord from its name (which includes its root)<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; CreateChord(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; chord_name);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; CreateChord(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; chord_name);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the Chord its name<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/For example, 'C' (<b><a href="CppFor.htm">for</a></b> C major) or 'D#m'<br/>
@@ -231,7 +262,6 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICCHORD_H<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -244,8 +274,11 @@
 <!-- start of code -->
 <table summary="musicchord.cpp" border = "1"><tr><td><code>
 <a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
 <a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
 <a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
@@ -268,7 +301,7 @@ Chord::Chord(<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Chord::CountSameNotes(<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; rhs)<br/>
+<b><a href="CppInt.htm">int</a></b> Chord::CountSameNotes(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The indices of the notes<br/>
 &nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; x;<br/>
@@ -289,40 +322,40 @@ Chord::Chord(<br/>
 }<br/>
 <br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; Chord::CreateAllChords()<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; Chord::CreateAllChords()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; v;<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Note&gt; notes <a href="CppOperatorAssign.htm">=</a> Note::GetAllNotes();<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(notes.begin(),notes.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[&amp;v](<b><a href="CppConst.htm">const</a></b> Note&amp; note)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; w <a href="CppOperatorAssign.htm">=</a> CreateChords(note);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; w <a href="CppOperatorAssign.htm">=</a> CreateChords(note);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.insert(v.end(),w.begin(),w.end());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; Chord::CreateChords(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; Chord::CreateChords(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordAug(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordDim(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMajor(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMinor(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> Chord6(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMinor6(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> Chord7(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMinor7(root))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordAug(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordDim(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMajor(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMinor(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> Chord6(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMinor6(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> Chord7(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMinor7(root))<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; Chord::CreateChord(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; chord_name)<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; Chord::CreateChord(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; chord_name)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> CreateAllChords();<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> CreateAllChords();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppFind_if.htm">std::find_if</a>(v.begin(),v.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[chord_name](<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; chord)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[chord_name](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; chord)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> chord-&gt;ToStr() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> chord_name;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -350,7 +383,7 @@ Chord::Chord(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> chord_name.substr(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root.ToStr().size(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chord_name.size() <a href="CppOperatorMinus.htm">-</a> root.ToStr().size());<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (chord_type.empty()) <b><a href="CppReturn.htm">return</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMajor(root));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (chord_type.empty()) <b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;(<b><a href="CppNew.htm">new</a></b> ChordMajor(root));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <br/>
@@ -444,9 +477,29 @@ ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 }<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>musicfwd.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="musicfwd.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> MUSICFWD_H<br/>
+<a href="CppDefine.htm">#define</a> MUSICFWD_H<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
 <br/>
+<b><a href="CppStruct.htm">struct</a></b> Chord;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Note;<br/>
+<b><a href="CppStruct.htm">struct</a></b> Scale;<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICFWD_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -466,6 +519,7 @@ ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
 <br/>
+<a href="CppComment.htm">///</a>Note <b><a href="CppClass.htm">class</a></b>, e.g. 'C with length 1/1'<br/>
 <b><a href="CppStruct.htm">struct</a></b> Note<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> Letter { A,B,C,D,E,F,G };<br/>
@@ -473,14 +527,18 @@ ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a Note from an <a href="CppInt.htm">integer</a>, always uses the sharp <b><a href="CppFor.htm">for</a></b> an accidental<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Examples: 0 <a href="CppOperatorAssign.htm">=</a> C, 1 <a href="CppOperatorAssign.htm">=</a> C#, 2 <a href="CppOperatorAssign.htm">=</a> D, 3 <a href="CppOperatorAssign.htm">=</a> D#<br/>
-&nbsp;&nbsp;Note(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Note(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length <a href="CppOperatorAssign.htm">=</a> {1,1} );<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a Note from a <a href="CppString.htm">std::string</a>.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Throws an exception when string is invalid<br/>
-&nbsp;&nbsp;Note(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Note(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length <a href="CppOperatorAssign.htm">=</a> {1,1} );<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a Note from a Letter and Accidental, will always succeed<br/>
-&nbsp;&nbsp;Note(<b><a href="CppConst.htm">const</a></b> Letter letter, <b><a href="CppConst.htm">const</a></b> Accidental accidental <a href="CppOperatorAssign.htm">=</a> Accidental::none);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Note(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Letter letter <a href="CppOperatorAssign.htm">=</a> Letter::C,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Accidental accidental <a href="CppOperatorAssign.htm">=</a> Accidental::none,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length <a href="CppOperatorAssign.htm">=</a> {1,1}<br/>
+&nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/A Factory method to create all notes<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt; GetAllNotes();<br/>
@@ -503,8 +561,9 @@ ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;Letter m_letter;<br/>
 &nbsp;&nbsp;Accidental m_accidental;<br/>
+&nbsp;&nbsp;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m_length;<br/>
+&nbsp;&nbsp;Letter m_letter;<br/>
 };<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Note&amp; lhs, <b><a href="CppConst.htm">const</a></b> Note&amp; rhs);<br/>
@@ -513,7 +572,6 @@ ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICNOTE_H<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -526,8 +584,11 @@ ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 <!-- start of code -->
 <table summary="musicnote.cpp" border = "1"><tr><td><code>
 <a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
 <a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
 <a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
@@ -542,7 +603,10 @@ ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
 <br/>
-Note::Note(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
+Note::Note(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length)<br/>
+&nbsp;&nbsp;: m_accidental(<a href="CppMusic.htm">Music</a>::Note::Accidental::none),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_length(length),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_letter(<a href="CppMusic.htm">Music</a>::Note::Letter::C)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -569,7 +633,10 @@ Note::Note(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-Note::Note(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+Note::Note(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length)<br/>
+&nbsp;&nbsp;: m_accidental(<a href="CppMusic.htm">Music</a>::Note::Accidental::none),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_length(length),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_letter(<a href="CppMusic.htm">Music</a>::Note::Letter::C)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -606,8 +673,14 @@ Note::Note(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-Note::Note(<b><a href="CppConst.htm">const</a></b> Letter letter, <b><a href="CppConst.htm">const</a></b> Accidental accidental)<br/>
-&nbsp;&nbsp;: m_letter(letter), m_accidental(accidental)<br/>
+Note::Note(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Letter letter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Accidental accidental,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length)<br/>
+&nbsp;&nbsp;: m_accidental(accidental),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_length(length),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_letter(letter)<br/>
+<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -712,9 +785,6 @@ Note::Note(<b><a href="CppConst.htm">const</a></b> Letter letter, <b><a href="Cp
 }<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
-<br/>
-<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -740,20 +810,20 @@ Note::Note(<b><a href="CppConst.htm">const</a></b> Letter letter, <b><a href="Cp
 <b><a href="CppStruct.htm">struct</a></b> Scale<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a Scale from its root and its intervals<br/>
-&nbsp;&nbsp;Scale(<b><a href="CppConst.htm">const</a></b> Note root, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; intervals);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Scale(<b><a href="CppConst.htm">const</a></b> Note root, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; intervals);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Scale() {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/A Factory method: create all Scales from a root<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; &gt; CreateScales(<b><a href="CppConst.htm">const</a></b> Note root);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; &gt; CreateScales(<b><a href="CppConst.htm">const</a></b> Note root);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/A Factory method: create a Scale from its name and root<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; CreateScale(<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; CreateScale(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; scale_name,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Note root);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Does the Chord fit in <b><a href="CppThis.htm">this</a></b> Scale?<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Fits(<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; chord) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Fits(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; chord) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the Scale its name<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/For example, 'Major' or 'Moll-Dur subdominant'<br/>
@@ -878,7 +948,6 @@ Note::Note(<b><a href="CppConst.htm">const</a></b> Letter letter, <b><a href="Cp
 <br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICSCALE_H<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -891,8 +960,11 @@ Note::Note(<b><a href="CppConst.htm">const</a></b> Letter letter, <b><a href="Cp
 <!-- start of code -->
 <table summary="musicscale.cpp" border = "1"><tr><td><code>
 <a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
 <a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
 <a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
@@ -915,13 +987,13 @@ Scale::Scale(<b><a href="CppConst.htm">const</a></b> Note root, <b><a href="CppC
 <br/>
 }<br/>
 <br/>
-<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; Scale::CreateScale(<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; Scale::CreateScale(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; scale_name,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> CreateScales(root);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> CreateScales(root);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppFind_if.htm">std::find_if</a>(v.begin(),v.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[scale_name](<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;&amp; scale)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[scale_name](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;&amp; scale)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> scale-&gt;GetName() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> scale_name;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -934,23 +1006,23 @@ Scale::Scale(<b><a href="CppConst.htm">const</a></b> Note root, <b><a href="CppC
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *i;<br/>
 }<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; &gt; Scale::CreateScales(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt; &gt; Scale::CreateScales(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleBlues(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleHarmonicMinor(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleHexatonic(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleHyperMajor(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMajor(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMajorPentatonic(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMinorPentatonic(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMollDurDominant(root)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMollDurSubdominant(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleBlues(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleHarmonicMinor(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleHexatonic(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleHyperMajor(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMajor(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMajorPentatonic(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMinorPentatonic(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMollDurDominant(root)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Scale&gt;(<b><a href="CppNew.htm">new</a></b> ScaleMollDurSubdominant(root)),<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Scale::Fits(<b><a href="CppConst.htm">const</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; chord) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> Scale::Fits(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; chord) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt; notes_chord <a href="CppOperatorAssign.htm">=</a> chord-&gt;GetNotes();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt; notes_scale <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetNotes();<br/>
@@ -1067,8 +1139,6 @@ ScaleMollDurSubdominant::ScaleMollDurSubdominant(<b><a href="CppConst.htm">const
 }<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
-<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

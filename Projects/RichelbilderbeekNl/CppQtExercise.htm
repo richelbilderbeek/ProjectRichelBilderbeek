@@ -26,46 +26,8 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
-<p><a href="CppApplication.htm">Application type(s)</a></p>
-<ul>
-  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
-</ul>
-<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
-<ul>
-  <li><img src="PicCygwin.png" alt="Cygwin"/> <a href="CppCygwin.htm">Cygwin</a> 1.7.7</li>
-  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppWindows.htm">Windows</a> XP</li>
-  <li><img src="PicWine.png" alt="Wine"/> <a href="CppWine.htm">Wine</a> 1.4.1</li>
-</ul>
-<p><a href="CppIde.htm">IDE(s)</a>:</p>
-<ul>
-  <li><img src="PicCppBuilder.png" alt="C++ Builder"/> <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition</li>
-</ul>
-<p><a href="CppQtProjectType.htm">Project type</a>:</p>
-<ul>
-  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
-</ul>
-<p><a href="CppStandard.htm">C++ standard</a>:</p>
-<ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
-</ul>
-<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
-<ul>
-  <li>Borland <a href="CppBcc32Exe.htm">BCC32.EXE</a> version 6.0.10.157</li>
-</ul>
-<p><a href="CppLibrary.htm">Libraries</a> used:</p>
-<ul>
-  <li><img src="PicBigInt.png" alt="BigInt"/> <a href="CppBigInt.htm">BigInteger</a>: version 2010.04.30</li>
-  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
-  <li><img src="PicVcl.png" alt="VCL"/> <a href="CppVcl.htm">VCL</a>: supplied with <a href="CppBuilder.htm">C++ Builder</a> 6.0 Enterprise edition
-</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -93,7 +55,7 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtExercise.htm">CppQtExercise</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTEXERCISE_H<br/>
 <a href="CppDefine.htm">#define</a> QTEXERCISE_H<br/>
@@ -106,6 +68,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppExercise.htm">Exercise</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> QGroupBox;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQLabel.htm">QLabel</a>;<br/>
 <br/>
 <a href="CppComment.htm">///</a>A <a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a> is the <a href="CppQt.htm">Qt</a> dialog of <a href="CppExercise.htm">Exercise</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
@@ -137,7 +101,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppExercise.htm">Exercise</a><br/>
-&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppExercise.htm">Exercise</a>&gt; m_exercise;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppExercise.htm">Exercise</a>&gt; m_exercise;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of answered <a href="CppQuestion.htm">question</a>s<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_n_answered;<br/>
@@ -151,12 +115,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppTime.htm">time</a> the user has to wait when he/she answered incorrectly, in milliseconds<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_waiting_<a href="CppTime.htm">time</a>_incorrect;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Ui<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> MyUi<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Ui();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MyUi();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QGroupBox * <b><a href="CppConst.htm">const</a></b> m_box;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> * <b><a href="CppConst.htm">const</a></b> m_label_score;<br/>
-&nbsp;&nbsp;} ui;<br/>
+&nbsp;&nbsp;} m_ui;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Displays m_dialog its current <a href="CppQuestion.htm">question</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DisplayCurrent<a href="CppQuestion.htm">Question</a>();<br/>
@@ -169,7 +133,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTEXERCISE_H<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -199,10 +162,19 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtExercise.htm">CppQtExercise</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
+<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
+<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
 <br/>
@@ -212,14 +184,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppExercise.htm">exercise</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestionDialog.htm">multiplechoicequestiondialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestionDialog.htm">openquestiondialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppExercise.htm">exercise</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtMultipleChoiceQuestionDialog.htm">qtmultiplechoicequestiondialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtOpenQuestionDialog.htm">qtopenquestiondialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtQuestionDialog.htm">qtquestiondialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<br/>
-<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::<a href="CppUi.htm">Ui</a>::Ui()<br/>
+<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::My<a href="CppUi.htm">Ui</a>::MyUi()<br/>
 &nbsp;&nbsp;: m_box(<b><a href="CppNew.htm">new</a></b> QGroupBox),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_label_score(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>)<br/>
 {<br/>
@@ -232,21 +205,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_correct(1000),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_incorrect(5000)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui.m_box);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui.m_label_score);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_ui.m_box);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_ui.m_label_score);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> * <b><a href="CppConst.htm">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setLayout(layout);<br/>
-&nbsp;&nbsp;layout-&gt;addWidget(ui.m_box);<br/>
-&nbsp;&nbsp;layout-&gt;addWidget(ui.m_label_score);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(m_ui.m_box);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(m_ui.m_label_score);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a> #1")<br/>
-<br/>
-&nbsp;&nbsp;ui.m_label_score-&gt;setText("Score: 0/0");<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a> end")<br/>
+&nbsp;&nbsp;m_ui.m_label_score-&gt;setText("Score: 0/0");<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::DisplayCurrent<a href="CppQuestion.htm">Question</a>()<br/>
@@ -256,29 +223,30 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.htm">QuestionDialog</a> * <a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>(d);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp;) {}<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQuestion.htm">question</a>)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtMultipleChoiceQuestionDialog.htm">QtMultipleChoiceQuestionDialog</a>(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtMultipleChoiceQuestionDialog.htm">QtMultipleChoiceQuestionDialog</a>(d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp;) {}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQuestion.htm">question</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppExercise.htm">Exercise</a> only contains valid <a href="CppQuestion.htm">question</a>");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a><br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui.m_box);<br/>
-&nbsp;&nbsp;ui.m_box-&gt;clear();<br/>
-&nbsp;&nbsp;ui.m_box-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignLeft);<br/>
-&nbsp;&nbsp;ui.m_box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.htm">QuestionDialog</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_ui.m_box);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_ui.m_box-&gt;layout()) <b><a href="CppDelete.htm">delete</a></b> m_ui.m_box-&gt;layout();<br/>
+&nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> * <b><a href="CppConst.htm">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>;<br/>
+&nbsp;&nbsp;m_ui.m_box-&gt;setLayout(layout);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(<a href="CppQuestion.htm">question</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQuestion.htm">question</a>-&gt;m_signal_submitted.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnSubmittedAnswer,<b><a href="CppThis.htm">this</a></b>,<a href="CppLambda.htm">boost::lambda</a>::_1));<br/>
-&nbsp;&nbsp;ui.m_box-&gt;addWidget(<a href="CppQuestion.htm">question</a>);<br/>
-&nbsp;&nbsp;ui.m_box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnSubmittedAnswer,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1));<br/>
 <br/>
 }<br/>
 <br/>
@@ -304,11 +272,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (answered_correct) <a href="CppOperatorPlus.htm">+</a>+m_n_correct;<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_n_answered;<br/>
-&nbsp;&nbsp;ui.m_label_score-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWString.htm">Wt::WString</a>("Score: {1}/{2}").arg(m_n_correct).arg(m_n_answered));<br/>
-&nbsp;&nbsp;<a href="CppWTimer.htm">Wt::WTimer</a>::singleShot(<br/>
+&nbsp;&nbsp;m_ui.m_label_score-&gt;setText(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("Score: {1}/{2}").arg(m_n_correct).arg(m_n_answered));<br/>
+&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a>::singleShot(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;answered_correct ? m_waiting_<a href="CppTime.htm">time</a>_correct : m_waiting_<a href="CppTime.htm">time</a>_incorrect,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnViewedAnswer,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSLOT.htm">SLOT</a>(&amp;<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnViewedAnswer));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnViewedAnswer()<br/>
@@ -334,8 +303,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(msecs <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_incorrect <a href="CppOperatorAssign.htm">=</a> msecs;<br/>
 }<br/>
-<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
