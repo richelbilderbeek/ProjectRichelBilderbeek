@@ -859,6 +859,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "std::freopen","<a href=\"C$ppF$reopen.htm\">s$td::fr$eopen</a>" },
     { "std::fstream","<a href=\"C$ppF$stream.htm\">st$d::fstream</a>" },
     { "std::fsetpos","<a href=\"C$ppF$setpos.htm\">s$td::fs$etpos</a>" },
+    { "std::function","<a href=\"C$ppS$tdF$unction.htm\">s$td::f$unction</a>" },
     { "std::fwscanf","<a href=\"C$ppF$wscanf.htm\">s$td::fw$scanf</a>" },
     { "std::getchar","<a href=\"C$ppG$etch$ar.htm\">st$d::ge$tch$ar</a>" },
     { "std::getline","<a href=\"C$ppG$etline.htm\">st$d::ge$tline</a>" },

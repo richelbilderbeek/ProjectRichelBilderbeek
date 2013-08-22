@@ -2206,14 +2206,28 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQtExample1")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQtExample1.htm\">Qt example 1: moving a sprite over a background in 2D</a> is a <a href=\"CppQtExample.htm\">Qt example</a> that shows an image moving over a background image, like <a href=\"CppQtExample1.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample1.zip\">Download the Qt Creator project file 'CppQtExample1' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample2")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQtExample2.htm\">Qt example 2: moving many sprites over a background in 2D</a> is a <a href=\"CppQtExample.htm\">Qt example</a>  shows an 250 images moving over a background image, like <a href=\"CppQtExample2.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample2.zip\">Download the Qt Creator project file 'CppQtExample2' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample3")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQtExample3.htm\">Qt example 3: a changing background in 2D</a></h1> is a <a href=\"CppQtExample.htm\">Qt example</a> that shows a changing background in 2D, like <a href=\"CppQtExample3.png\">this screenshot (png)</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
@@ -2222,146 +2236,416 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQtExample4")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQtExample4.htm\">Qt example 4: moving many sprites over a changing background in 2D</a></h1> is a <a href=\"CppQtExample.htm\">Qt example</a> that shows how to move many sprites over a changing background in 2D, like <a href=\"CppQtExample4.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample4.zip\">Download the Qt Creator project file 'CppQtExample4' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample5")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQtExample5.htm\">Qt example 5: moving many changing sprites over a changing background in 2D</a> is a ");
     v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> that shows how to move many changing sprites over a changing background in 2D, like <a href=\"CppQtExample5.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample5.zip\">Download the Qt Creator project file 'CppQtExample5' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample6")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQtExample6.htm\">Qt example 6: moving customly-drawn and partially transparent sprites over a changing background in 2D</a> is a ");
     v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> that shows how to move customly-drawn and partially transparent sprites over a changing background in 2D, like <a href=\"CppQtExample6.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample6.zip\">Download the Qt Creator project file 'CppQtExample6' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample7")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to let customly-drawn and partially transparent sprites move and collide over a changing background in 2D, like <a href=\"CppQtExample7.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample7.zip\">Download the Qt Creator project file 'CppQtExample7' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample8")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how implement a simple 2D SIR simulation, like <a href=\"CppQtExample8.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample8.zip\">Download the Qt Creator project file 'CppQtExample8' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample9")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to let custom sprites move over custom background, like <a href=\"CppQtExample9.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>There are multiple ways to do the same, for example, as shown in <a href=\"CppQtExample9_2.htm\">Qt example 9.2</a>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample9.zip\">Download the Qt Creator project file 'QtExample9' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample10")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to change a QLabel when a QDialog is resized, like <a href=\"CppQtExample10.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample10.zip\">Download the Qt Project of 'QtExample10' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample11")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to create a <a href=\"CppQDialog.htm\">QDialog</a> with <a href=\"CppQVBoxLayout.htm\">QVBoxLayout</a> on the fly, like <a href=\"CppQtExample11.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample11.zip\">Download the Qt Project of 'QtExample11' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample12")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to create a custom QDialog with a custom slot, like <a href=\"CppQtExample12.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample12.zip\">Download the Qt Project of 'QtExample12' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample13")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to create a more complete custom QDialog with a custom slot, like <a href=\"CppQtExample13.png\">this screenshot (png)</a>. This example elaborates on <a href=\"CppQtExample12.htm\">Qt example 12: creating a custom QDialog with slot</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample13.zip\">Download the Qt Project of 'QtExample13' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample14")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to create a more complete custom QDialog with a custom slot with shorter compilation time, like <a href=\"CppQtExample14.png\">this screenshot (png)</a>. This example elaborates on <a href=\"CppQtExample13.htm\">Qt example 13: creating a more complete custom QDialog with slot</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample14.zip\">Download the Qt Project of 'QtExample14' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample15")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to create pop-up windows from pop-up windows, like <a href=\"CppQtExample15.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample15.zip\">Download the Qt Project of 'QtExample15' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample16")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to using resources, like <a href=\"CppQtExample16.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample16.zip\">Download the Qt Project of 'QtExample16' (zip)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Using resources in <a href=\"CppQt.htm\">Qt Creator</a> 2.0.0</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>Here follows a step-by-step guide to add a bitmap as a resource to a <a href=\"CppQt.htm\">Qt Creator</a> project:</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ol>");
+    v.push_back("  <li><a href=\"CppQtExample16_1.png\">View screenshot</a></li>");
+    v.push_back("  <li>In the Project Manager, right-click on the project name on on the 'Sources' folder. Click 'Add New'</li>");
+    v.push_back("  <li><a href=\"CppQtExample16_2.png\">View screenshot</a></li>");
+    v.push_back("  <li>In the 'New File' dialog, select to create a new 'Qt Resource file'</li>");
+    v.push_back("  <li><a href=\"CppQtExample16_3.png\">View screenshot</a></li>");
+    v.push_back("  <li>In the 'New Qt Resource file -> Location' dialog, give the resource file a name. For example, 'MyResources'</li>");
+    v.push_back("  <li><a href=\"CppQtExample16_4.png\">View screenshot</a></li>");
+    v.push_back("  <li>In the 'New Qt Resource file -> Project management' dialog, click 'Finish'</li>");
+    v.push_back("  <li><a href=\"CppQtExample16_5.png\">View screenshot</a></li>");
+    v.push_back("  <li>As you can see, 'MyResources.qrc' has now been added to the Project Manager. Double-click on 'MyResources.qrt' and click 'Add -> Add Prefix' (which is all there is to choose yet)</li>");
+    v.push_back("  <li><a href=\"CppQtExample16_6.png\">View screenshot</a></li>");
+    v.push_back("  <li>Change the prefix to a more fitting name, for example 'MyImages'.");
+    v.push_back("  <li><a href=\"CppQtExample16_7.png\">View screenshot</a></li>");
+    v.push_back("  <li>Click 'Add -> Add Files' and add an image. In this example, this is a file called 'BeerSmall.bmp' (a sprite from <a href=\"GameBeerWanter.htm\">BeerWanter</a>)</li>");
+    v.push_back("  <li><a href=\"CppQtExample16_8.png\">View screenshot</a></li>");
+    v.push_back("  <li>Now, the file has been added to your resources. The image can be accessed with the filename ':/MyImages/BeerSmall.bmp'</li>");
+    v.push_back("  <li><a href=\"CppQtExample16_9.png\">View screenshot</a></li>");
+    v.push_back("  <li>Copy-paste the example code below</li>");
+    v.push_back("  <li><a href=\"CppQtExample16.png\">View final screenshot</a></li>");
+    v.push_back("</ol>");
   }
   else if (m_page_name == "CppQtExample17")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to modify a QLabel to make it clickable, resulting in a traffic light, like <a href=\"CppQtExample17.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample17.zip\">Download the Qt Project of 'QtExample17' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample18")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQtExample.htm\">Qt example</a> shows how to stretchdraw and rotate an image, like <a href=\"CppQtExample18.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample18.zip\">Download the Qt Project of 'QtExample18' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample19")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQt.htm\">Qt</a> example shows how to create a GUI around a program that displays a rotating image, like <a href=\"CppQtExample19.png\">this screenshot (png)</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample19.zip\">Download the Qt Project of 'QtExample19' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample20")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQtExample.htm\">Qt example</a> shows how to develop a sketch widget.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample20.zip\">Download the 'CppQtExample20' source code (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample20.png\">View a screenshot of 'CppQtExample20' (desktop)(png)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample20Simulator.png\">View a screenshot of 'CppQtExample20' (mobile simulator)(png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample21")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQtExample.htm\">Qt example</a> shows a way to develop a transparent-like dialog.");
+    v.push_back("The trick used is to take a screenshot of the desktop before the dialog is shown. The illusion");
+    v.push_back("fades if the dialog is moved.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample21.zip\">Download the 'CppQtExample21' source code (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample21.png\">View a screenshot of 'CppQtExample21' (png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample22")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQtExample.htm\">Qt example</a> shows a way to develop a transparent dialog.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample22.zip\">Download the 'CppQtExample22' source code (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample22.png\">View a screenshot of 'CppQtExample22' (png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample23")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>This <a href=\"CppQtExample.htm\">Qt example</a> shows a way to grab a widget as an image.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample23.zip\">Download the 'CppQtExample23' source code (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample23.png\">View a screenshot of 'CppQtExample23' (png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample24")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample24.htm\">Qt example 24: create a simple text positioning widget</a> is a <a href=\"CppQtExample.htm\">Qt Example</a>");
+    v.push_back("that uses <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> to create a simple text positioning <a href=\"CppWidget.htm\">widget</a>:");
+    v.push_back("in the <a href=\"CppConstructor.htm\">constructor</a> the different <a href=\"CppString.htm\">std::strings</a> are specified, upon which");
+    v.push_back("the <a href=\"CppWidget.htm\">widget</a> puts these overlapping in the center. Then, the <a href=\"CppString.htm\">std::strings</a> can");
+    v.push_back("dragged.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample24.zip\">Download the source code for Qt example 24 (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample24.png\">View a screenshot of Qt example 24 (png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample25")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample25.htm\">Qt example 25: a transparent widget</a> shows a transparent sketch widget.</p>");
   }
   else if (m_page_name == "CppQtExample26")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample26.htm\">Qt example 26: create a text positioning widget</a> is an elaboration of");
+    v.push_back("<a href=\"CppQtExample24.htm\">Qt example 24: create a simple text positioning widget</a>. This <a href=\"CppQtExample.htm\">Qt Example</a>");
+    v.push_back("that uses <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> to create a simple text positioning <a href=\"CppWidget.htm\">widget</a>:");
+    v.push_back("in the <a href=\"CppConstructor.htm\">constructor</a> the different <a href=\"CppString.htm\">std::strings</a> are specified, upon which");
+    v.push_back("the <a href=\"CppWidget.htm\">widget</a> puts these overlapping in the center. Then, the <a href=\"CppString.htm\">std::strings</a> can");
+    v.push_back("dragged.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample26.zip\">Download the source code for Qt example 26 (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample26.png\">View a screenshot of Qt example 26 (png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample27")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample27.htm\">Qt example 27: create a simple gravity widget</a> is a <a href=\"CppQtExample.htm\">Qt Example</a>");
+    v.push_back("that uses <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> to create a simple <a href=\"CppWidget.htm\">widget</a>");
+    v.push_back("in which the item (a ball) is responding as if there is gravity, bouncing perfectly elasticly.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample27.zip\">Download the source code for Qt example 27 (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample27.png\">View a screenshot of Qt example 27 (png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample28")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample28.htm\">Qt example 28: bouncing rectangles widget</a> is a <a href=\"CppQtExample.htm\">Qt Example</a>");
+    v.push_back("that uses <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> to create a simple <a href=\"CppWidget.htm\">widget</a>");
+    v.push_back("in which the items (rectangles) respond to collision with others.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample28.zip\">Download the source code for Qt example 28 (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample28.png\">View a screenshot of Qt example 28 (png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample29")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample29.htm\">Qt example 29: bouncing balls widget</a> is a <a href=\"CppQtExample.htm\">Qt Example</a>");
+    v.push_back("that uses <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> to create a simple <a href=\"CppWidget.htm\">widget</a>");
+    v.push_back("in which the items (ellipses) respond to collision with others.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQtExample29.zip\">Download the source code for Qt example 29 (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQtExample29.png\">View a screenshot of Qt example 29 (png)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtExample30")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample30.htm\">Qt example 30: controlling program flow with a Singleton</a> is a <a href=\"CppQtExample.htm\">Qt Example</a>");
+    v.push_back("that uses <a href=\"CppSingleton.htm\">Singleton</a> to produce dialogs until it is told to quit.</p>");
   }
   else if (m_page_name == "CppQtExample31")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample31.htm\">Qt example 31: moveable thin lines</a> is a <a href=\"CppQtExample.htm\">Qt example</a> to create some lines that are moveable. Note");
+    v.push_back("that because the lines are one pixel thin, it is difficult to really move them!");
+    v.push_back("<a href=\"CppQtExample32.htm\">QtExample32</a> solves this problem.</p>");
   }
   else if (m_page_name == "CppQtExample32")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample32.htm\">Qt example 32: moveable and selectable thin lines</a> is a");
+    v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> to create some lines that are moveable, yet");
+    v.push_back("selectable easy.</p>");
   }
   else if (m_page_name == "CppQtExample33")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample33.htm\">Qt example 33: moveable and selectable arrows</a> is a");
+    v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> to create some arrows that are (easily) selectable and moveable.</p>");
   }
   else if (m_page_name == "CppQtExample34")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample34.htm\">Qt example 34: moveable, selectable and editable arrows</a> is a ");
+    v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> to create some arrows that are (easily) selectable, moveable and editable.");
+    v.push_back("Arrows can be edited by mouse press and a keyboard press: whil holding shift, click the end of an arrow to have an arrowhead");
+    v.push_back("added or removed. When having selected an arrow, press 1,F1,the minus sign of 't' to have the tail arrowhead added or removed.");
+    v.push_back("Or, when having selected an arrow, press 2,F2,the plus sign of 'h' to have the head arrowhead added or removed.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>What I liked, is that it is possible to select multiple items while holding CTRL (which is standard");
+    v.push_back("GUI behavior) and edit these all at the same time using a key press!</p>");
   }
   else if (m_page_name == "CppQtExample35")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample35.htm\">Qt example 35: arrows with an angle</a> is a ");
+    v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> elaborates on <a href=\"CppQtExample34.htm\">Qt example 34: moveable, selectable and editable arrows</a>,");
+    v.push_back("but has arrows with an angle in them instead.</p>");
   }
   else if (m_page_name == "CppQtExample36")
   {
-    //TODO
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppQtExample36.htm\">Qt example 36: arrows with multiple midpoints</a> is a ");
+    v.push_back("<a href=\"CppQtExample.htm\">Qt example</a> elaborates on <a href=\"CppQtExample34.htm\">Qt example 34: moveable, selectable and editable arrows</a>,");
+    v.push_back("but has arrows with an angle in them instead.</p>");
   }
-
-
-  else if (m_page_name == "CppQtExerice")
+  else if (m_page_name == "CppQtExercise")
   {
     v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"CppQtExerice.htm\">QtExerice</a> is a <a href=\"CppQt.htm\">Qt</a>");
-    v.push_back("<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppExerice.htm\">Exerice</a>.</p>");
+    v.push_back("<p><a href=\"CppQtExercise.htm\">QtExercise</a> is a <a href=\"CppQt.htm\">Qt</a>");
+    v.push_back("<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppExercise.htm\">Exercise</a>.</p>");
   }
   else if (m_page_name == "CppQtGaborFilterWidget")
   {
