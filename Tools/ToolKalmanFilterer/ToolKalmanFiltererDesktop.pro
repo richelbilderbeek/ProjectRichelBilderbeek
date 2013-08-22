@@ -1,7 +1,5 @@
 QT += core gui
-#QT += webkit
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # undefined reference to `_imp___ZNK8QWebView8settingsEv'
 #greaterThan(QT_MAJOR_VERSION, 4): QT += webkitwidgets

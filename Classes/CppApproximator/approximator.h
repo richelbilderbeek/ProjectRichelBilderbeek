@@ -10,20 +10,33 @@
 #include <boost/container/flat_map.hpp>
 
 #include "exceptionnoextrapolation.h"
-
+#include "trace.h"
 #pragma GCC diagnostic pop
 
-///Approximator can estimate a value for a key
+///Approximator can estimate a value between unique keys.
 ///For example, supply Approximator<X,Y> with (1.0,10.0) and (2.0,20.0)
-///and it will estimate an X if 1.5 to have a Y of 15.0
-template <class Key, class Value>
+///and it will estimate an X if 1.5 to have a Y of 15.0.
+///If the data used has duplicate keys, e.g. (1.0,9.0) and (1.0,11.0), use
+///MultiApproximator instead.
+///
+///Key: a type that has operator<
+///Value: a type that has operator/(double)
+///Container: how to store the std::pair<Key,Value>
+///  - boost::container::flat_imap<Key,Value>
+///    : faster for lookup, data adding is slower
+///  - std::map<Key,Value>
+///    : faster adding of data, lookup is slower
+template <class Key = double, class Value = double, class Container = boost::container::flat_map<Key,Value> >
 struct Approximator
 {
-  //typedef std::map<Key,Value> Container;
-  typedef boost::container::flat_map<Key,Value> Container;
+  typedef Key key_type;
+  typedef Value value_type;
 
   Approximator()
   {
+
+    static_assert(!std::is_integral<Key>(),
+      "Approximator will not work on integer keys");
     #ifndef NDEBUG
     Test();
     #endif
@@ -31,70 +44,117 @@ struct Approximator
 
   void Add(const Key& key, const Value& value)
   {
+    assert( CanAdd(key,value)
+      && "Every key must be unique,"
+         "use MultiApproximator if you need non-unique keys");
     m_m.insert(std::make_pair(key,value));
+    assert( !CanAdd(key,value) );
   }
-  const Value Approximate(const Key& key) const
-  {
-    typedef typename Container::const_iterator Iterator;
-    {
-      const Iterator i = m_m.find(key);
-      if (i!=m_m.end()) return (*i).second;
-    }
 
-    const Iterator high = m_m.lower_bound(key);
-    if (high == m_m.begin() || high == m_m.end())
-    {
-      assert(!m_m.empty());
-      const Key lowest  = (*m_m.begin()).first;
-      const Key highest = (*m_m.rbegin()).first;
-      throw ExceptionNoExtrapolation<Key>(key,lowest,highest);
-    }
-    const Iterator low = --Iterator(high);
-    assert(low != m_m.end());
-    assert(high != m_m.end());
-    const Key d_low = (*low).first;
-    const Key d_high = (*high).first;
-    assert(d_low < key);
-    assert(d_high > key);
-    const double fraction
-      = (key - d_low)
-      / (d_high - d_low);
-    assert(fraction >= 0.0);
-    assert(fraction <= 1.0);
-    assert(m_m.find(d_low)  != m_m.end());
-    assert(m_m.find(d_high) != m_m.end());
-    const Value h_low  = (*m_m.find(d_low)).second;
-    const Value h_high = (*m_m.find(d_high)).second;
-    return ((1.0 - fraction)) * h_low + ((0.0 + fraction) * h_high);
+  ///Approximate a key its value
+  const Value Approximate(const Key& key) const;
+
+  ///Can only add a value if its key is not present
+  bool CanAdd(const Key& key, const Value& ) const
+  {
+    return m_m.find(key) == m_m.end();
   }
+
+  const Container& Get() const { return m_m; }
   const Key GetMax() const { return (*m_m.rbegin()).first; }
   const Key GetMin() const { return (*m_m.begin()).first; }
+
+  ///Obtain the version of this class
+  static const std::string GetVersion();
+
+  ///Obtain the version history of this class
+  static const std::vector<std::string> GetVersionHistory();
 
   private:
   Container m_m;
 
   #ifndef NDEBUG
-  static void Test()
-  {
-    {
-      static bool is_tested = false;
-      if (is_tested) return;
-      is_tested = true;
-    }
-    {
-      Approximator<double,double> m;
-      m.Add(1.0,10.0);
-      m.Add(2.0,20.0);
-      assert(m.Approximate(1.5) == 15.0);
-      m.Add(4.0,40.0);
-      assert(m.Approximate(3.0) == 30.0);
-      m.Add(3.0,35.0);
-      assert(m.Approximate(3.0) == 35.0);
-      assert(m.GetMin() == 1.0);
-      assert(m.GetMax() == 4.0);
-    }
-  }
+  static void Test();
   #endif
+
 };
+
+template <class Key, class Value, class Container>
+const Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
+{
+  typedef typename Container::const_iterator Iterator;
+  {
+    const Iterator i = m_m.find(key);
+    if (i!=m_m.end()) return (*i).second;
+  }
+
+  const Iterator high = m_m.lower_bound(key);
+  if (high == m_m.begin() || high == m_m.end())
+  {
+    assert(!m_m.empty());
+    const Key lowest  = (*m_m.begin()).first;
+    const Key highest = (*m_m.rbegin()).first;
+    throw ExceptionNoExtrapolation<Key>(key,lowest,highest);
+  }
+  const Iterator low = --Iterator(high);
+  assert(low != m_m.end());
+  assert(high != m_m.end());
+  const Key d_low = (*low).first;
+  const Key d_high = (*high).first;
+  assert(d_low < key);
+  assert(d_high > key);
+  const double fraction
+    = (key - d_low)
+    / (d_high - d_low);
+  assert(fraction >= 0.0);
+  assert(fraction <= 1.0);
+  assert(m_m.find(d_low)  != m_m.end());
+  assert(m_m.find(d_high) != m_m.end());
+  const Value h_low  = (*m_m.find(d_low)).second;
+  const Value h_high = (*m_m.find(d_high)).second;
+  return ((1.0 - fraction)) * h_low + ((0.0 + fraction) * h_high);
+}
+
+template <class Key, class Value, class Container>
+const std::string Approximator<Key,Value,Container>::GetVersion()
+{
+  return "1.0";
+}
+
+///Obtain the version history of this class
+template <class Key, class Value, class Container>
+const std::vector<std::string> Approximator<Key,Value,Container>::GetVersionHistory()
+{
+  std::vector<std::string> v;
+  v.push_back("2013-08-22: version 1.0: initial version");
+  return v;
+}
+
+
+#ifndef NDEBUG
+template <class Key, class Value, class Container>
+void Approximator<Key,Value,Container>::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    TRACE("Starting Approximator::Test");
+    Approximator<double,int> m;
+    m.Add(1.0,10);
+    m.Add(2.0,20);
+    assert(m.Approximate(1.5) == 15);
+    m.Add(4.0,40);
+    assert(m.Approximate(3.0) == 30);
+    m.Add(3.0,35);
+    assert(m.Approximate(3.0) == 35);
+    assert(m.GetMin() == 1.0);
+    assert(m.GetMax() == 4.0);
+    TRACE("Completed Approximator::Test successfully");
+  }
+}
+#endif
 
 #endif // APPROXIMATOR_H
