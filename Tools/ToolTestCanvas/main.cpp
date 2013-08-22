@@ -62,42 +62,46 @@ int main()
   //Coordinat (79,23) is the bottom-right coordinat
   const int maxx = 49;
   const int maxy = 23;
-  Canvas c( maxx,maxy);
 
-  //Draw smiley to Canvas
-
-  //Determine and calculate dimensions and coordinats of smiley
-  const double maxxD = static_cast<double>(maxx);
-  const double maxyD = static_cast<double>(maxy);
-  const double midX        = 0.50 * maxxD;
-  const double midY        = 0.50 * maxyD;
-  const double headRay     = 0.50 * maxyD;
-  const double eyeLeftX    = 0.50 * maxxD - (0.35 * headRay) ;
-  const double eyeLeftY    = 0.50 * maxyD - (0.25 * headRay) ;
-  const double eyeRightX   = 0.50 * maxxD + (0.35 * headRay) ;
-  const double eyeRightY   = 0.50 * maxyD - (0.25 * headRay) ;
-  const double eyeRay      = 0.30 * headRay;
-  const double mouthLeftX  = 0.50 * maxxD - (0.7 * headRay) ;
-  const double mouthMidX   = 0.50 * maxxD;
-  const double mouthRightX = 0.50 * maxxD + (0.7 * headRay) ;
-  const double mouthLeftY  = 0.50 * maxyD + (0.2 * headRay) ;
-  const double mouthMidY   = 0.50 * maxyD + (0.7 * headRay) ;
-  const double mouthRightY = 0.50 * maxyD + (0.2 * headRay) ;
-  //Draw the image on Canvas
-  c.DrawCircle(midX, midY, headRay);
-  c.DrawCircle(eyeLeftX, eyeLeftY, eyeRay);
-  c.DrawDot(eyeLeftX, eyeLeftY);
-  c.DrawCircle(eyeRightX, eyeRightY, eyeRay);
-  c.DrawDot(eyeRightX, eyeRightY);
-  c.DrawLine(mouthLeftX, mouthLeftY, mouthMidX, mouthMidY);
-  c.DrawLine(mouthMidX, mouthMidY, mouthRightX, mouthRightY);
-  c.DrawLine(mouthRightX, mouthRightY, mouthLeftX, mouthLeftY);
-  //Display the image
-  c.Cout();
-  ShowLicence();
+  for (int i=0; i!=4; ++i)
   {
-    //Ask user for input
-    std::string temp;
-    std::getline(std::cin,temp);
+    const Canvas::ColorSystem color_system
+      = i % 2 ? Canvas::ColorSystem::normal : Canvas::ColorSystem::invert;
+    const Canvas::CoordinatSystem coordinat_system
+      = i / 2 ? Canvas::CoordinatSystem::graph : Canvas::CoordinatSystem::screen;
+    Canvas c( maxx, maxy, color_system, coordinat_system);
+
+    //Draw smiley to Canvas
+
+    //Determine and calculate dimensions and coordinats of smiley
+    const double maxxD = static_cast<double>(maxx);
+    const double maxyD = static_cast<double>(maxy);
+    const double midX        = 0.50 * maxxD;
+    const double midY        = 0.50 * maxyD;
+    const double headRay     = 0.50 * maxyD;
+    const double eyeLeftX    = 0.50 * maxxD - (0.35 * headRay) ;
+    const double eyeLeftY    = 0.50 * maxyD - (0.25 * headRay) ;
+    const double eyeRightX   = 0.50 * maxxD + (0.35 * headRay) ;
+    const double eyeRightY   = 0.50 * maxyD - (0.25 * headRay) ;
+    const double eyeRay      = 0.30 * headRay;
+    const double mouthLeftX  = 0.50 * maxxD - (0.7 * headRay) ;
+    const double mouthMidX   = 0.50 * maxxD;
+    const double mouthRightX = 0.50 * maxxD + (0.7 * headRay) ;
+    const double mouthLeftY  = 0.50 * maxyD + (0.2 * headRay) ;
+    const double mouthMidY   = 0.50 * maxyD + (0.7 * headRay) ;
+    const double mouthRightY = 0.50 * maxyD + (0.2 * headRay) ;
+    //Draw the image on Canvas
+    c.DrawCircle(midX, midY, headRay);
+    c.DrawCircle(eyeLeftX, eyeLeftY, eyeRay);
+    c.DrawDot(eyeLeftX, eyeLeftY);
+    c.DrawCircle(eyeRightX, eyeRightY, eyeRay);
+    c.DrawDot(eyeRightX, eyeRightY);
+    c.DrawLine(mouthLeftX, mouthLeftY, mouthMidX, mouthMidY);
+    c.DrawLine(mouthMidX, mouthMidY, mouthRightX, mouthRightY);
+    c.DrawLine(mouthRightX, mouthRightY, mouthLeftX, mouthLeftY);
+    //Display the image
+    std::cout << c;
+    std::cout << std::endl;
   }
+  ShowLicence();
 }

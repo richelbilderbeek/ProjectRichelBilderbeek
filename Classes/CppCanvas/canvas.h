@@ -25,12 +25,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+
+
 struct Canvas
 {
+  ///The color system used:
+  ///- normal: black is displayed by M (assumes white background, black characters)
+  ///- invert: white is displayed by M
+  enum class ColorSystem { normal, invert };
+
+  ///The coordinat system used in displayal:
+  ///- screen: origin is at top-left of the screen
+  ///- graph: origin is at bottom-left of the screen
+  enum class CoordinatSystem { screen, graph };
+
   ///The number of characters the Canvas is heigh and wide
   ///but also the maximum x and y coordinat. The minimum
   ///x and y coordinats are 0.0 and 0.0
-  Canvas(const int width = 0, const int height = 0);
+  Canvas(
+    const int width = 0,
+    const int height = 0,
+    const ColorSystem colorSystem = ColorSystem::normal,
+    const CoordinatSystem coordinatSystem = CoordinatSystem::screen);
 
   void DrawDot(const double x, const double y);
   void DrawLine(const double x1, const double y1, const double x2, const double y2);
@@ -46,12 +62,20 @@ struct Canvas
 
   int GetWidth() const { return (GetHeight()==0 ? 0 : mCanvas[0].size() ); }
 
-  void Cout() const; //operator<< is not used, as PlotSurface only writes to std::cout
-
   private:
   bool IsInRange(const int x, const int y) const;
 
   std::vector<std::vector<double> > mCanvas;
+
+  ///The color system used:
+  ///- normal: black is displayed by M (assumes white background, black characters)
+  ///- invert: white is displayed by M
+  const ColorSystem mColorSystem;
+
+  ///The coordinat system used in displayal:
+  ///- screen: origin is at top-left of the screen
+  ///- graph: origin is at bottom-left of the screen
+  const CoordinatSystem mCoordinatSystem;
 
   //From http://www.richelbilderbeek.nl/CppMinElement.htm
   template <class Container>
@@ -61,12 +85,25 @@ struct Canvas
   template <class Container>
   static const typename Container::value_type::value_type MaxElement(const Container& v);
 
+  ///Plot a surface on screen
+  ///if as_screen_coordinat_system is true, the origin is in the top left
+  ///corner of the screen, else it is in the bottom left of the screen,
+  ///as is usual in graphs
   //From http://www.richelbilderbeek.nl/CppPlotSurface.htm
-  static void PlotSurface(const std::vector<std::vector<double> >& v);
+  static void PlotSurface(
+    std::ostream& os,
+    const std::vector<std::vector<double> >& v,
+    const bool use_normal_color_system,
+    const bool as_screen_coordinat_system);
 
   //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
   static const std::vector<char> GetAsciiArtGradient();
+
+  friend std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
+
 };
+
+std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
 
 
 #endif

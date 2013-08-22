@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 #include <algorithm>
+#include <functional>
 #include <iterator>
 
 #pragma GCC diagnostic push
@@ -31,10 +32,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 #pragma GCC diagnostic pop
 
-Canvas::Canvas(const int width, const int height)
-  : mCanvas(std::vector<std::vector<double> >(height,std::vector<double>(width,0.0)))
+Canvas::Canvas(
+  const int width,
+  const int height,
+  const ColorSystem colorSystem,
+  const CoordinatSystem coordinatSystem)
+  : mCanvas(std::vector<std::vector<double> >(height,std::vector<double>(width,0.0))),
+    mColorSystem(colorSystem),
+    mCoordinatSystem(coordinatSystem)
 {
-
+  assert(width  > 0);
+  assert(height > 0);
 }
 
 void Canvas::DrawDot(const double x, const double y)
@@ -103,18 +111,19 @@ bool Canvas::IsInRange(const int x, const int y) const
   return true;
 }
 
-//operator<< is not used, as PlotSurface only writes to std::cout
-//therefore, writing 'myOutStream << myCanvas' would not stream Canvas
-//to myOutStream (e.g. a file) but to std::cout!
-//And I know that programmers hate surprises...
-void Canvas::Cout() const
+std::ostream& operator<<(std::ostream& os, const Canvas& canvas)
 {
-  PlotSurface(this->mCanvas); //PlotSurface always writes to std::cout
+  Canvas::PlotSurface(
+    os,
+    canvas.mCanvas,
+    canvas.mColorSystem == Canvas::ColorSystem::normal,
+    canvas.mCoordinatSystem == Canvas::CoordinatSystem::screen);
+  return os;
 }
 
 const std::string Canvas::GetVersion()
 {
-  return "2.0";
+  return "2.1";
 }
 
 const std::vector<std::string> Canvas::GetVersionHistory()
@@ -122,12 +131,17 @@ const std::vector<std::string> Canvas::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2008-xx-xx: version 1.0: initial C++ Builder version");
   v.push_back("2013-08-21: version 2.0: port to C++11 under Qt Creator");
+  v.push_back("2013-08-22: version 2.1: allow two color and coordinat systems");
   return v;
 }
 
 //The 2D std::vector must be y-x-ordered
 //From http://www.richelbilderbeek.nl/CppPlotSurface.htm
-void Canvas::PlotSurface(const std::vector<std::vector<double> >& v)
+void Canvas::PlotSurface(
+  std::ostream& os,
+  const std::vector<std::vector<double> >& v,
+  const bool use_normal_color_system,
+  const bool as_screen_coordinat_system)
 {
   assert(v.empty() == false && "Surface must have a size");
   assert(v[0].size() > 0 && "Surface must have a two-dimensional size");
@@ -143,30 +157,54 @@ void Canvas::PlotSurface(const std::vector<std::vector<double> >& v)
 
   //Draw the pixels
 
-  //Iterator through all rows
-  const std::vector<std::vector<double> >::const_iterator rowEnd = v.end();
-  for (std::vector<std::vector<double> >::const_iterator row = v.begin();
-    row != rowEnd;
-    ++row)
-  {
-    //Iterate through each row's collumns
-    const std::vector<double>::const_iterator colEnd = row->end();
-    for (std::vector<double>::const_iterator col = row->begin();
-      col != colEnd;
-      ++col)
+  const auto row_function(
+    [](const std::vector<double>& row,
+      std::ostream& os,
+      const double minVal,
+      const double maxVal,
+      const bool use_normal_color_system)
     {
-      //Scale the found grey value to an ASCII art character
-      const double greyValueDouble = ( (*col) - minVal) / (maxVal - minVal);
-      assert(greyValueDouble >= 0.0 && greyValueDouble <= 1.0);
-      const int greyValueInt = greyValueDouble * nAsciiArtGradientChars;
-      const int greyValue
-        = ( greyValueInt < 0
-        ? 0 : (greyValueInt > nAsciiArtGradientChars - 1
-          ? nAsciiArtGradientChars - 1: greyValueInt) );
-      assert(greyValue >= 0 && greyValue < nAsciiArtGradientChars);
-      std::cout << asciiArtGradient[greyValue];
+      //Iterate through each row's columns
+      const std::vector<double>::const_iterator colEnd = row.end();
+      for (std::vector<double>::const_iterator col = row.begin();
+        col != colEnd;
+        ++col)
+      {
+        //Scale the found grey value to an ASCII art character
+        const double greyValueDouble = ( (*col) - minVal) / (maxVal - minVal);
+        assert(greyValueDouble >= 0.0 && greyValueDouble <= 1.0);
+        const int greyValueInt
+          = (use_normal_color_system
+          ? greyValueDouble
+          : 1.0 - greyValueDouble
+          ) * nAsciiArtGradientChars;
+        const int greyValue
+          = ( greyValueInt < 0
+          ? 0 : (greyValueInt > nAsciiArtGradientChars - 1
+            ? nAsciiArtGradientChars - 1: greyValueInt) );
+        assert(greyValue >= 0 && greyValue < nAsciiArtGradientChars);
+        os << asciiArtGradient[greyValue];
+      }
+      os << std::endl;
+
     }
-    std::cout << std::endl;
+  );
+
+  //Iterator through all rows
+  if (as_screen_coordinat_system)
+  {
+    for (const auto row: v)
+    {
+      row_function(row,os,minVal,maxVal,use_normal_color_system);
+    }
+  }
+  else
+  {
+    const auto rowEnd = v.rend();
+    for (auto row = v.rbegin(); row != rowEnd; ++row)
+    {
+      row_function(*row,os,minVal,maxVal,use_normal_color_system);
+    }
   }
 }
 
