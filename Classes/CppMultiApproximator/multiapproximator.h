@@ -73,6 +73,10 @@ struct MultiApproximator
   ///Test this class
   static void Test();
   #endif
+
+  template <class AnyKey, class AnyValue, class AnyContainer>
+  friend void MultiApproximator<AnyKey,AnyValue,AnyContainer>::Test();
+
 };
 
 template <class Key, class Value>

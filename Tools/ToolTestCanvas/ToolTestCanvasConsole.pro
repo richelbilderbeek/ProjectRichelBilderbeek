@@ -12,7 +12,6 @@ SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppCanvas/canvas.cpp \
     main.cpp
-    main.cpp \
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \

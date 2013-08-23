@@ -1,12 +1,6 @@
-win32 {
-  #Add the line below when cross-compiling
-  CONFIG += static
-}
-
 QT += core gui
-TEMPLATE = app
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+TEMPLATE = app
 
 # undefined reference to `_imp___ZNK8QWebView8settingsEv'
 # :-1: error: Unknown module(s) in QT: location sensors

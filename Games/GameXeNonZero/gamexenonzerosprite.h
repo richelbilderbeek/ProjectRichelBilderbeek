@@ -55,8 +55,8 @@ struct Sprite
   private:
   int mX;
   int mY;
-  int mHealth;
   Graphic mGraphic;
+  int mHealth;
 
 };
 
@@ -100,8 +100,8 @@ struct SpriteEnemySmall : public Sprite
 
   private:
   const Sprite::Graphic GetSpriteEnemySmallGraphic() const;
-  int mTimer;
   int mDx;
+  int mTimer;
   const int mTimeShoot;
 
 };

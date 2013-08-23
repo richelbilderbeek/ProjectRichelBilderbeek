@@ -188,9 +188,9 @@ void SpriteMissile::Move()
 
 SpriteEnemySmall::SpriteEnemySmall(const int x, const int y)
   : Sprite(x,y,GetSpriteEnemySmallGraphic(),1),
+    mDx(1),
     mTimer(0),
-    mTimeShoot(10),
-    mDx(1)
+    mTimeShoot(10)
 {
 
 }
