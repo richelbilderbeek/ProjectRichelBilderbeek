@@ -1,11 +1,5 @@
-win32 {
-  #Add the line below when cross-compiling
-  #CONFIG += static
-}
-
 QT += core gui #webkit
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 CONFIG   += console
 CONFIG   -= app_bundle

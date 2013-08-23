@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "exercise.h"
 
 #include <fstream>
+#include <stdexcept>
 
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>

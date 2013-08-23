@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "openquestiondialog.h"
 #include "question.h"
 #include "questiondialog.h"
-//#include "trace.h"
+#include "trace.h"
 
 #include <QFile>
 
