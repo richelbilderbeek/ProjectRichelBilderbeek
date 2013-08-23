@@ -32,36 +32,24 @@ struct Approximator
   typedef Key key_type;
   typedef Value value_type;
 
-  Approximator()
-  {
+  Approximator();
 
-    static_assert(!std::is_integral<Key>(),
-      "Approximator will not work on integer keys");
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
-
-  void Add(const Key& key, const Value& value)
-  {
-    assert( CanAdd(key,value)
-      && "Every key must be unique,"
-         "use MultiApproximator if you need non-unique keys");
-    m_m.insert(std::make_pair(key,value));
-    assert( !CanAdd(key,value) );
-  }
+  ///Add a key-value pair, where the key must be unique
+  void Add(const Key& key, const Value& value);
 
   ///Approximate a key its value
   const Value Approximate(const Key& key) const;
 
   ///Can only add a value if its key is not present
-  bool CanAdd(const Key& key, const Value& ) const
-  {
-    return m_m.find(key) == m_m.end();
-  }
+  bool CanAdd(const Key& key, const Value& ) const;
 
+  ///Obtain the container
   const Container& Get() const { return m_m; }
+
+  ///Obtain the lowest key value
   const Key GetMax() const { return (*m_m.rbegin()).first; }
+
+  ///Obtain the heighest key value
   const Key GetMin() const { return (*m_m.begin()).first; }
 
   ///Obtain the version of this class
@@ -71,13 +59,36 @@ struct Approximator
   static const std::vector<std::string> GetVersionHistory();
 
   private:
+  ///The container used
   Container m_m;
 
   #ifndef NDEBUG
+  ///Test this class
   static void Test();
   #endif
 
 };
+
+
+template <class Key, class Value, class Container>
+Approximator<Key,Value,Container>::Approximator()
+{
+  static_assert(!std::is_integral<Key>(),
+    "Approximator will not work on integer keys");
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+template <class Key, class Value, class Container>
+void Approximator<Key,Value,Container>::Add(const Key& key, const Value& value)
+{
+  assert( CanAdd(key,value)
+    && "Every key must be unique,"
+       "use MultiApproximator if you need non-unique keys");
+  m_m.insert(std::make_pair(key,value));
+  assert( !CanAdd(key,value) );
+}
 
 template <class Key, class Value, class Container>
 const Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
@@ -113,6 +124,12 @@ const Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
   const Value h_low  = (*m_m.find(d_low)).second;
   const Value h_high = (*m_m.find(d_high)).second;
   return ((1.0 - fraction)) * h_low + ((0.0 + fraction) * h_high);
+}
+
+template <class Key, class Value, class Container>
+bool Approximator<Key,Value,Container>::CanAdd(const Key& key, const Value& ) const
+{
+  return m_m.find(key) == m_m.end();
 }
 
 template <class Key, class Value, class Container>

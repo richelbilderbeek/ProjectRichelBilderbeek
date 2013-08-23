@@ -14,7 +14,7 @@ int main()
 
   const int max_x = 78;
   const int max_y = 20;
-  Canvas c(max_x,max_y);
+  Canvas c(max_x,max_y,Canvas::ColorSystem::invert,Canvas::CoordinatSystem::graph);
   c.DrawLine(0.0,0.0,max_x,0.0);
   c.DrawLine(0.0,0.0,0.0,max_y);
 
@@ -47,36 +47,37 @@ int main()
       }
     }
   }
-  c.Cout();
+  std::cout << c << std::endl;
 }
 
 /* Screen output
 
-TRACE '"Starting Approximator::Test"' line 144 in file '../../Classes/CppApproxi
+TRACE '"Starting Approximator::Test"' line 161 in file '../../Classes/CppApproxi
 mator/approximator.h': 'Starting Approximator::Test'
-TRACE '"Completed Approximator::Test successfully"' line 155 in file '../../Clas
+TRACE '"Completed Approximator::Test successfully"' line 172 in file '../../Clas
 ses/CppApproximator/approximator.h': 'Completed Approximator::Test successfully'
 
- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooood
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMooMMMMMMMMMMMMMMMMMd-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMo-dMMMMMMMMMMMMMMMdo--dMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMdoodMMMMMMMMMMMMMddMdoodMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMdodMMMMMMMMMMMMddMMMdodMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMddMMMMMMMMMMdodMMMMMddMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMdoodMMMMMMdoodMMMMMMdoodMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMdoodMMMMMdodMMMMMMMMdoodMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMddMMMdodMMMMMMMMMMMMddMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMddMdoodMMMMMMMMMMMMMddMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMdodddMMMMMMMMMMMMMMMdodMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMd-oMMMMMMMMMMMMMMMMMd-oMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMooMMMMMMMMMMMMMMMMMMooMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-dMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+-
+o
+o
+o
+o                            oo                  oo
+o                           -do                 -do
+o                          -o---               -o-
+o                          -- -oo-             --
+o                         --   -o-            --
+o                       -oo-     -o-        -oo-
+o                      -oo-      -oo-      -oo-
+o                      --          -o-     --
+o                    -o-            --   -o-
+o                   -oo-             -- -oo-
+o                  od-               -odd-
+o                  oo                 -do
+o
+o
+o
+Moooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo-
+
 Press <RETURN> to close this window...
 
 */

@@ -5,22 +5,27 @@ CONFIG -= qt
 
 INCLUDEPATH += \
     ../../Classes/CppApproximator \
+    ../../Classes/CppCanvas \
     ../../Classes/CppMultiApproximator \
     ../../Classes/CppTrace
 
 SOURCES += main.cpp \
     ../../Classes/CppApproximator/approximator.cpp \
     ../../Classes/CppApproximator/exceptionnoextrapolation.cpp \
+    ../../Classes/CppCanvas/canvas.cpp \
     ../../Classes/CppMultiApproximator/multiapproximator.cpp
 
 HEADERS += \
     ../../Classes/CppApproximator/approximator.h \
     ../../Classes/CppApproximator/exceptionnoextrapolation.h \
+    ../../Classes/CppCanvas/canvas.h \
     ../../Classes/CppMultiApproximator/multiapproximator.h \
-    ../../Classes/CppTrace/trace.h \
+    ../../Classes/CppTrace/trace.h
 
 OTHER_FILES += \
-    ../../Classes/CppApproximator/Licence.txt
+    ../../Classes/CppApproximator/Licence.txt \
+    ../../Classes/CppCanvas/Licence.txt \
+    ../../Classes/CppTrace/Licence.txt \
     ../../Classes/CppMultiApproximator/Licence.txt
 
 #
