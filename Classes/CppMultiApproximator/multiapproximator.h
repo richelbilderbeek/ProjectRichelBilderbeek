@@ -10,11 +10,13 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/container/flat_map.hpp>
+//#include <boost/container/flat_map.hpp>
 
+#pragma GCC diagnostic pop
+
+#include "approximator.h"
 #include "exceptionnoextrapolation.h"
 #include "trace.h"
-#pragma GCC diagnostic pop
 
 ///MultiApproximator can estimate a value between (non-unique) keys.
 ///For example, supply Approximator<X,Y> with (1.0,10) and (2.0,20)
@@ -39,7 +41,7 @@ struct MultiApproximator
   typedef typename Container::const_iterator Iterator;
   typedef typename std::pair<Iterator,Iterator> Range;
 
-  MultiApproximator();
+  MultiApproximator(const Container& container = Container());
 
   void Add(const Key& key, const Value& value);
 
@@ -49,10 +51,10 @@ struct MultiApproximator
   const Container& GetContainer() const { return m_m; }
 
   ///Get the heighest key value
-  const Key GetMax() const { return (*m_m.rbegin()).first; }
+  const Key GetMax() const;
 
   ///Get the lowest key value
-  const Key GetMin() const { return (*m_m.begin()).first; }
+  const Key GetMin() const;
 
   ///Obtain the version of this class
   static const std::string GetVersion();
@@ -73,8 +75,25 @@ struct MultiApproximator
   #endif
 };
 
+template <class Key, class Value>
+const std::map<Key,Value> MultimapToMap(
+  const std::multimap<Key,Value> m);
+
+///Convert to a (non-multi)Approximator
+///This probably gain runtime speed, when will no data added anymore
+template <
+  class Key,
+  class Value,
+  class MultiContainer,
+  class Container
+  >
+const Approximator<Key,Value,Container> ToApproximator(
+  const MultiApproximator<Key,Value,MultiContainer>& m);
+
+
 template <class Key, class Value, class Container>
-MultiApproximator<Key,Value,Container>::MultiApproximator()
+MultiApproximator<Key,Value,Container>::MultiApproximator(const Container& container)
+  : m_m(container)
 {
   static_assert(!std::is_integral<Key>(),
     "MultiApproximator will not work on integer keys");
@@ -92,6 +111,8 @@ void MultiApproximator<Key,Value,Container>::Add(const Key& key, const Value& va
 template <class Key, class Value, class Container>
 const Value MultiApproximator<Key,Value,Container>::Approximate(const Key& key) const
 {
+  assert(!m_m.empty() && "Cannot approximate without data");
+
   //Must the average be calculated?
   if (m_m.find(key) != m_m.end()) return GetValue(key);
 
@@ -121,6 +142,20 @@ const Value MultiApproximator<Key,Value,Container>::Approximate(const Key& key) 
   const Value h_low  = GetValue(d_low);
   const Value h_high = GetValue(d_high);
   return ((1.0 - fraction)) * h_low + ((0.0 + fraction) * h_high);
+}
+
+template <class Key, class Value, class Container>
+const Key MultiApproximator<Key,Value,Container>::GetMax() const
+{
+  assert(!m_m.empty());
+  return (*m_m.rbegin()).first;
+}
+
+template <class Key, class Value, class Container>
+const Key MultiApproximator<Key,Value,Container>::GetMin() const
+{
+  assert(!m_m.empty());
+  return (*m_m.begin()).first;
 }
 
 template <class Key, class Value, class Container>
@@ -157,7 +192,7 @@ const Value MultiApproximator<Key,Value,Container>::GetValue(const Key& key) con
 template <class Key, class Value, class Container>
 const std::string MultiApproximator<Key,Value,Container>::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 ///Obtain the version history of this class
@@ -166,7 +201,46 @@ const std::vector<std::string> MultiApproximator<Key,Value,Container>::GetVersio
 {
   std::vector<std::string> v;
   v.push_back("2013-08-23: version 1.0: initial version");
+  v.push_back("2013-08-23: version 1.0: add conversion to an Approximator");
   return v;
+}
+
+template <class Key, class Value>
+const std::map<Key,Value> MultimapToMap(
+  const std::multimap<Key,Value> m)
+{
+  std::map<Key,Value> n;
+  const auto end = m.end();
+  for (auto begin = m.begin(); begin != end; )
+  {
+    assert(begin != m.end());
+    const auto key = (*begin).first;
+    assert(m.find(key) != m.end());
+
+    //Must the average be calculated?
+    const auto r = m.equal_range(key);
+    assert(r.first != m.end());
+
+    if (r.first != r.second )
+    {
+      Value sum(0.0);
+      int cnt = 0;
+      for (auto i = r.first; i!=r.second; ++i)
+      {
+        sum += (*i).second;
+        ++cnt;
+      }
+      const Value result( sum / static_cast<double>(cnt));
+      n[ key ] = result;
+    }
+    else
+    {
+      const Value result((*r.first).second);
+      n[ key ] = result;
+    }
+    begin = r.second;
+  }
+  return n;
 }
 
 #ifndef NDEBUG
@@ -179,6 +253,72 @@ void MultiApproximator<Key,Value,Container>::Test()
     is_tested = true;
   }
   TRACE("Starting MultiApproximator::Test");
+  //GetMin and GetMax
+  {
+    MultiApproximator<double,double,std::multimap<double,double> > m;
+    m.Add(1.0,0.0);
+    assert(m.GetMin() == 1.0);
+    assert(m.GetMax() == 1.0);
+    m.Add(2.0,0.0);
+    assert(m.GetMin() == 1.0);
+    assert(m.GetMax() == 2.0);
+    m.Add(0.0,0.0);
+    assert(m.GetMin() == 0.0);
+    assert(m.GetMax() == 2.0);
+    m.Add(0.5,0.0);
+    assert(m.GetMin() == 0.0);
+    assert(m.GetMax() == 2.0);
+  }
+  //GetValue
+  {
+    MultiApproximator<double,double,std::multimap<double,double> > m;
+    const double key = 1.0;
+    const double value1 = 1.0;
+    m.Add(key,value1);
+    assert(m.GetValue(key) == value1);
+    const double value2 = 2.0;
+    m.Add(key,value2);
+    assert(m.GetValue(key) == (value1 + value2) / 2.0);
+    const double value3 = 4.0;
+    m.Add(key,value3);
+    assert(m.GetValue(key) == (value1 + value2 + value3) / 3.0);
+  }
+  //MultimapToMap
+  {
+    {
+      const std::multimap<int,double> m ( { { 1, 1.0} } );
+      const std::map<int,double> n(MultimapToMap(m));
+      assert(n.size() == 1);
+    }
+    {
+      const std::multimap<int,double> m ( { { 1, 1.0}, { 1, 1.0} } );
+      const std::map<int,double> n(MultimapToMap(m));
+      const std::map<int,double> e( { { 1, 1.0 } } );
+      assert(n.size() == 1);
+      assert(n == e);
+    }
+    {
+      const std::multimap<int,double> m ( { { 1, 1.0}, { 1, 2.0} } );
+      const std::map<int,double> n(MultimapToMap(m));
+      const std::map<int,double> e( { { 1, 1.5 } } );
+      assert(n.size() == 1);
+      assert(n == e);
+    }
+    {
+      const std::multimap<int,double> m ( { {0, 0.0}, { 1, 1.0}, { 1, 1.0}, {2, 2.0} } );
+      const std::map<int,double> n(MultimapToMap(m));
+      const std::map<int,double> e( { {0, 0.0}, { 1, 1.0 }, {2, 2.0} } );
+      assert(n.size() == 3);
+      assert(n == e);
+    }
+    {
+      const std::multimap<int,double> m ( { {0, 0.0}, { 1, 1.0}, { 1, 2.0}, {2, 2.0} } );
+      const std::map<int,double> n(MultimapToMap(m));
+      const std::map<int,double> e( { {0, 0.0}, { 1, 1.5 }, {2, 2.0} } );
+      assert(n.size() == 3);
+      assert(n == e);
+    }
+  }
   //Test approximation
   {
     MultiApproximator<double,double,std::multimap<double,double> > m;
@@ -192,12 +332,25 @@ void MultiApproximator<Key,Value,Container>::Test()
     assert(m.Approximate(3.0) == 35);
     m.Add(3.0,45);
     assert(m.Approximate(3.0) == 40);
-    assert(m.GetMin() == 1.0);
-    assert(m.GetMax() == 4.0);
   }
   TRACE("Completed MultiApproximator::Test successfully");
 }
 #endif
+
+template <
+  class Key,
+  class Value,
+  class MultiContainer,
+  class Container
+  >
+const Approximator<Key,Value,Container> ToApproximator(
+  const MultiApproximator<Key,Value,MultiContainer>& multi_approximator)
+{
+  const MultiContainer m = multi_approximator.GetContainer();
+  const Container n = MultimapToMap(m);
+  const Approximator<Key,Value,Container> a(n);
+  return a;
+}
 
 
 #endif // MULTIAPPROXIMATOR_H

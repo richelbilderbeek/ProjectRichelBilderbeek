@@ -32,7 +32,7 @@ struct Approximator
   typedef Key key_type;
   typedef Value value_type;
 
-  Approximator();
+  Approximator(const Container& m = Container());
 
   ///Add a key-value pair, where the key must be unique
   void Add(const Key& key, const Value& value);
@@ -47,10 +47,10 @@ struct Approximator
   const Container& Get() const { return m_m; }
 
   ///Obtain the lowest key value
-  const Key GetMax() const { return (*m_m.rbegin()).first; }
+  const Key GetMax() const { assert(!m_m.empty()); return (*m_m.rbegin()).first; }
 
   ///Obtain the heighest key value
-  const Key GetMin() const { return (*m_m.begin()).first; }
+  const Key GetMin() const { assert(!m_m.empty()); return (*m_m.begin()).first; }
 
   ///Obtain the version of this class
   static const std::string GetVersion();
@@ -71,7 +71,8 @@ struct Approximator
 
 
 template <class Key, class Value, class Container>
-Approximator<Key,Value,Container>::Approximator()
+Approximator<Key,Value,Container>::Approximator(const Container& m)
+  : m_m(m)
 {
   static_assert(!std::is_integral<Key>(),
     "Approximator will not work on integer keys");
@@ -94,6 +95,9 @@ template <class Key, class Value, class Container>
 const Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
 {
   typedef typename Container::const_iterator Iterator;
+
+  assert(!m_m.empty() && "Cannot approximate without data");
+
   {
     const Iterator i = m_m.find(key);
     if (i!=m_m.end()) return (*i).second;

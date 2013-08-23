@@ -28,17 +28,35 @@ private slots:
 
 private:
   Ui::QtToolTestMultiApproximatorMainDialog *ui;
-  typedef MultiApproximator<double,double> MultiApproximator_t;
-  MultiApproximator_t m_approximator;
+  typedef double Key;
+  typedef double Value;
+  typedef std::map<Key,Value> Container;
+  typedef std::multimap<Key,Value> MultiContainer;
+  typedef MultiApproximator<Key,Value,MultiContainer> MultiApproximator_t;
+  typedef Approximator<Key,Value,Container> Approximator_t;
+  MultiApproximator_t m_multi_approximator;
 
-  //const boost::shared_ptr<QwtPlotCurve> m_curve_approximation;
-  //const boost::shared_ptr<QwtPlotCurve> m_curve_values;
+  ///The curve of the approximation of the (non-Multi)Approximator
   QwtPlotCurve * const m_curve_approximation;
+  //const boost::shared_ptr<QwtPlotCurve> m_curve_approximation; //DONT!
+
+  ///The curve of the approximation of the MultiApproximator
+  QwtPlotCurve * const m_curve_multi_approximation;
+  //const boost::shared_ptr<QwtPlotCurve> m_curve_multi_approximation; //DONT!
+
+  ///The curve of the raw values of the MultiApproximator
+  QwtPlotCurve * const m_curve_multi_values;
+  //const boost::shared_ptr<QwtPlotCurve> m_curve_multi_values; //DONT!
+
+  ///The curve of the raw values of the (non-Multi)Approximator
   QwtPlotCurve * const m_curve_values;
+  //const boost::shared_ptr<QwtPlotCurve> m_curve_values; //DONT!
 
-  ///Contains the plot
+  ///Contains the plot of the MultiApproximator
+  const boost::shared_ptr<QwtPlot> m_multi_plot;
+
+  ///Contains the plot of the (non-Multi)Approximator
   const boost::shared_ptr<QwtPlot> m_plot;
-
 
   void Plot();
 };
