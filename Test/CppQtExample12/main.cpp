@@ -1,6 +1,6 @@
 #include <boost/scoped_ptr.hpp>
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QDialog>
 #include <QPushButton>
 #include <QVBoxLayout>

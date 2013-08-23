@@ -18,7 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "qtperfectelasticcollisionmenudialog.h"
 
 int main(int argc, char *argv[])

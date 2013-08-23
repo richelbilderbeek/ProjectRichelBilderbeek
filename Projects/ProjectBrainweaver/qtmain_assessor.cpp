@@ -11,7 +11,7 @@
 #include <QApplication>
 #else
 #include <QApplication>
-//#include <QtGui/QApplication>
+//#include <QApplication>
 #endif
 
 #include <QIcon>

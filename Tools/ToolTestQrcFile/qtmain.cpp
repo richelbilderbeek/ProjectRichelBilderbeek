@@ -18,7 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQrcFile.htm
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "qttestqrcfilemenudialog.h"
 #include "testqrcfilemenudialog.h"
 #include "trace.h"

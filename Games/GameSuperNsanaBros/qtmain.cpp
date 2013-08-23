@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "qtnsanabrosmenudialog.h"
 #include "trace.h"
 //---------------------------------------------------------------------------

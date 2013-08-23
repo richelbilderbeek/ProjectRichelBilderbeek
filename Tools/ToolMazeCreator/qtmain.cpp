@@ -19,7 +19,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolMazeCreator.htm
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "qtmazecreatormenudialog.h"
 //---------------------------------------------------------------------------
 int main(int argc, char *argv[])

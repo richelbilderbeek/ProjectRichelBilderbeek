@@ -1,4 +1,4 @@
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "qtknokfightermaindialog.h"
 #include "trace.h"
 

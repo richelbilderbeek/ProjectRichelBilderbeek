@@ -1,4 +1,4 @@
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QIcon>
 #include "pvdbfile.h"
 #include "qtpvdbconceptmapdialog.h"

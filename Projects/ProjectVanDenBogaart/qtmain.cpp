@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QIcon>
 #include <QVBoxLayout>
 

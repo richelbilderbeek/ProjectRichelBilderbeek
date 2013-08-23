@@ -1,6 +1,6 @@
 
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "qtvisualabcmenudialog.h"
 #include "checkprerequisites.h"
 //---------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 #include <thread>
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "qtsearchanddestroychessmenudialog.h"
 
 ///Graphics used from

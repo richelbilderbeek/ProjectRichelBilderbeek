@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <ctime>
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 //---------------------------------------------------------------------------
 #include "qtmenudialog.h"
 #include "trace.h"

@@ -4,7 +4,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/program_options.hpp>
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 //---------------------------------------------------------------------------
 #include "newick.h"
 #include "qttestnewickdialog.h"

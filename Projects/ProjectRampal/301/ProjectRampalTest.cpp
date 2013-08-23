@@ -32,7 +32,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/shared_ptr.hpp>
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 //---------------------------------------------------------------------------
 #include "binarynewickvector.h"
 #include "dialogrampaltest.h"

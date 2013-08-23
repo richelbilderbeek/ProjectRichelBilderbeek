@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "dialogmain.h"
 //---------------------------------------------------------------------------
 int main(int argc, char *argv[])
