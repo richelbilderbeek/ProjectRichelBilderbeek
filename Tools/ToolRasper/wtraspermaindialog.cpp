@@ -86,7 +86,7 @@ WtMainDialog::WtMainDialog()
   //ui.m_buttons[ 4-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick4);
   ui.m_buttons[ 5-1]->setText("5");
   ui.m_buttons[ 5-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick5);
-  ui.m_buttons[ 6-1]->setText("DNC");
+  ui.m_buttons[ 6-1]->setText("GND");
   //ui.m_buttons[ 6-1]->setText("6");
   //ui.m_buttons[ 6-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick6);
   ui.m_buttons[ 7-1]->setText("7");

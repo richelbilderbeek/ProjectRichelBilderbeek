@@ -29,6 +29,7 @@ autosave2.cmp
 /.directory
 Examples/
 Libraries/.directory
+Libraries/Arduino/
 Libraries/bigint-2010.04.30/
 Libraries/boost_1_53_0/
 Libraries/boost_*
