@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <qglobal.h>
 #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-  #include <QtWidgets/QApplication>
+  #include <QApplication>
 #else
   #include <QApplication>
 #endif
