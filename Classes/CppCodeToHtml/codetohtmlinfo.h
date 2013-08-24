@@ -37,6 +37,10 @@ struct Info
 
   private:
   const std::string m_page_name;
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 };
 
 } //~namespace CodeToHtml

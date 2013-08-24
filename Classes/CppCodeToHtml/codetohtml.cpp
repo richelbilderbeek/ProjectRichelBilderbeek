@@ -404,7 +404,7 @@ const std::string GetFileBasename(const std::string& filename)
 {
   const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
-      "((.*)(/|\\\\))?([A-Za-z]*)((\\.)([A-Za-z]*))?" );
+      "((.*)(/|\\\\))?([A-Za-z0-9]*)((\\.)([A-Za-z0-9]*))?" );
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what, rex ) )

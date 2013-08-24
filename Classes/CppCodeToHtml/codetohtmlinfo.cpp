@@ -32,15 +32,40 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-//#include "trace.h"
+#include "trace.h"
 
 namespace c2h {
 
 Info::Info(const std::string& source)
   : m_page_name(GetFileBasename(source))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+#ifndef NDEBUG
+void Info::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting c2h::Info::Test");
+  assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameConnectThree")
+    == std::string("GameConnectThree"));
+
+  assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameAminoAcidFighter")
+    == std::string("GameAminoAcidFighter"));
+
+
+  assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameK3OpEenRij")
+    == std::string("GameK3OpEenRij"));
+  TRACE("Finished c2h::Info::Test successfully");
 
 }
+#endif
 
 const std::vector<std::string> Info::ToHtml() const
 {

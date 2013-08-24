@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmldialog.h"
 #include "codetohtmlmenudialog.h"
 #include "codetohtmltechinfotype.h"
+#include "codetohtml.h"
 #include "trace.h"
 
 //From http://www.richelbilderbeek.nl/CppGetPath.htm
@@ -196,20 +197,18 @@ int main(int argc, char* argv[])
     return 0;
   }
   //std::cout << "Source exists: yes\n";
-  if (boost::filesystem::is_directory(source))
+  if (c2h::IsFolder(source))
   {
-    //std::cout << "Source is directory: yes\n";
+    std::cout << "Source is directory: yes\n";
   }
   else
   {
-    //std::cout << "Source is directory: no\n";
+    assert(c2h::IsRegularFile(source));
+    std::cout << "Source is directory: no\n";
   }
 
-  if (boost::filesystem::basename(source) == "CppNewickRavindran")
-  {
-    std::cout << "Source is allowed to be converted: no\n";
-    return 0;
-  }
+  assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
+    && "Source can be a file or a path");
 
   const c2h::PageType page_type = c2h::StrToPageType(page_type_str);
   const c2h::ContentType content_type = c2h::StrToContentType(content_type_str);
@@ -219,6 +218,10 @@ int main(int argc, char* argv[])
   if (GetFoldersInFolder(source).empty())
   {
     std::cout << "Non-recursive conversion\n";
+
+    assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
+      && "Source can be a file or a path");
+
     c2h::Dialog c(page_type,source,content_type,tech_info);
     const std::vector<std::string> v = c.ToHtml();
     const std::string output_filename = boost::filesystem::basename(source) + ".htm";
@@ -228,6 +231,10 @@ int main(int argc, char* argv[])
   else
   {
     std::cout << "Recursive conversion\n";
+
+    assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
+      && "Source can be a file or a path");
+
     const std::vector<std::string> folders = GetFoldersInFolder(source);
     for(const std::string& folder: folders)
     {
@@ -241,4 +248,5 @@ int main(int argc, char* argv[])
       std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     }
   }
+  std::cout << "CodeToHtml succeeded" << std::endl;
 }
