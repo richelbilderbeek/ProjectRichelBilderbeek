@@ -30,6 +30,7 @@ autosave2.cmp
 Examples/
 Libraries/.directory
 Libraries/Arduino/
+Libraries/avr-libc-user-manual-1.8.0
 Libraries/bigint-2010.04.30/
 Libraries/boost_1_53_0/
 Libraries/boost_*
@@ -202,3 +203,4 @@ Tools/ToolTestQtModels/ToolTestQtModels
 Tools/ToolTestQtOcrWidget/ToolTestQtOcrWidget
 Tools/ToolTestQuestion/ToolTestQuestionWebsite
 Tools/ToolTestSelectFileDialog/ToolTestSelectFileDialogWebsite
+Libraries/avr-libc-1.8.0/
