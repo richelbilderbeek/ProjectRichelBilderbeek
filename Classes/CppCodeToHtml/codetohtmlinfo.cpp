@@ -3028,6 +3028,28 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"CppRichelBilderbeekProgram.htm\">RichelBilderbeekProgram</a> is a");
     v.push_back("<a href=\"CppClass.htm\">class</a> for a ProjectRichelBilderbeek class.</p>");
   }
+  else if (m_page_name == "CppRpiExample1")
+  {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicRaspbian.png\" alt=\"Raspbian\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppRpiExample1.htm\">Raspberry Pi example 1: toggle all GPIO pins on and off</a> is a");
+    v.push_back("<a href=\"CppRpi.htm\">Raspberry Pi</a> example to toggle all GPIO pins on and off.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppRpiExample1.zip\">Download the Qt Creator project 'CppRpiExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppRpiExample2")
+  {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicRaspbian.png\" alt=\"Raspbian\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppRpiExample2.htm\">Raspberry Pi example 2: turn GPIO pins on and off</a> is a <a href=\"CppRpi.htm\">Raspberry Pi</a>");
+    v.push_back("example to turn the GPIO pins on and off from command line.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppRpiExample2.zip\">Download the Qt Creator project 'CppRpiExample2' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppRubiksClock")
   {
     v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
