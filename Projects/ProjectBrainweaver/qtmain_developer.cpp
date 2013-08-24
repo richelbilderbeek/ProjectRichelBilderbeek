@@ -11,6 +11,7 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <QApplication>
 #include <QIcon>
 #include <QVBoxLayout>
 

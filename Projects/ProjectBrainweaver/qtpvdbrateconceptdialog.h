@@ -42,9 +42,9 @@ private slots:
 
   void on_button_tally_relevancies_clicked();
 
-  void on_box_complexity_currentTextChanged(const QString &arg1);
-  void on_box_concreteness_currentTextChanged(const QString &arg1);
-  void on_box_specificity_currentTextChanged(const QString &arg1);
+  void on_box_complexity_currentIndexChanged(int index);
+  void on_box_concreteness_currentIndexChanged(int index);
+  void on_box_specificity_currentIndexChanged(int index);
 
 private:
   Ui::QtPvdbRateConceptDialog *ui;

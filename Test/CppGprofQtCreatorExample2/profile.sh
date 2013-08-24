@@ -2,8 +2,12 @@
 echo "Removing user file"
 rm *.pro.user
 
-echo "Creating profile executable"
-qmake -config debug
+#echo "Creating profile executable (debug mode)"
+#qmake -config debug
+
+echo "Creating profile executable (release mode)"
+qmake -config release
+
 make clean
 make
 
@@ -21,3 +25,5 @@ gprof CppGprofQtCreatorExample2 > gprof.txt
 
 echo "Remove temporary gprof file"
 rm gmon.out
+
+

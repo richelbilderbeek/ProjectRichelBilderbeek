@@ -1,5 +1,4 @@
 #!/bin/bash
-
 for file in `find ./ -type d`
 do
   if [ $file = "./" ] 

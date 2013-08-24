@@ -237,19 +237,21 @@ void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
   ui->box_specificity->setCurrentIndex(d.GetSuggestedSpecificity());
 }
 
-void QtPvdbRateConceptDialog::on_box_complexity_currentTextChanged(const QString &)
+void QtPvdbRateConceptDialog::on_box_complexity_currentIndexChanged(int)
 {
   assert(m_concept);
   m_concept->SetRatingComplexity(ui->box_complexity->currentIndex());
+
 }
 
-void QtPvdbRateConceptDialog::on_box_concreteness_currentTextChanged(const QString &)
+void QtPvdbRateConceptDialog::on_box_concreteness_currentIndexChanged(int)
 {
   assert(m_concept);
   m_concept->SetRatingConcreteness(ui->box_concreteness->currentIndex());
+
 }
 
-void QtPvdbRateConceptDialog::on_box_specificity_currentTextChanged(const QString &)
+void QtPvdbRateConceptDialog::on_box_specificity_currentIndexChanged(int)
 {
   assert(m_concept);
   m_concept->SetRatingSpecificity(ui->box_specificity->currentIndex());

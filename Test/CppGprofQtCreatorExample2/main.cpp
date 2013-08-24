@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cassert>
+#include <iostream>
 #include <vector>
 #include <boost/foreach.hpp>
 
@@ -69,7 +70,7 @@ const std::vector<int> CreateShuffledVector(const std::size_t sz)
   std::vector<int> v(sz);
 
   int value = 0;
-  BOOST_FOREACH(int i,v)
+  BOOST_FOREACH(int& i,v)
   {
     i = value;
     ++value;
@@ -96,4 +97,10 @@ int main()
   assert(v1==v2);
   assert(v2==v3);
   assert(v3==v4);
+
+  #ifndef NDEBUG
+  std::cout << "Finished debug mode" << std::endl;
+  #else
+  std::cout << "Finished release mode" << std::endl;
+  #endif
 }

@@ -1,5 +1,5 @@
 #!/bin/bash
-qmake -config debug ProjectBrainweaverDeveloper.pro
+qmake -config release ProjectBrainweaverDeveloper.pro
 make clean
 make
 ./ProjectBrainweaverDeveloper

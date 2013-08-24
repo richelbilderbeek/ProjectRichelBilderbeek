@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>HostClassExample2</title>
+  <meta name="description" content="C++ HostClassExample2"/>
+  <meta name="keywords" content="C++ HostClassExample2 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHostClassExample2.htm">HostClassExample2</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppHostClassExample2-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHostClassExample2.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppHostClassExample2.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= app_bundle<br/>
+CONFIG -= qt<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> OutputPolicy&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppTrace.htm">Trace</a>r : <b><a href="CppPublic.htm">public</a></b> OutputPolicy<br/>
+{<br/>
+<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> OutputPolicyCout<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppTrace.htm">Trace</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;~OutputPolicyCout()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> The <a href="CppDestructor.htm">destructor</a> of a policy <b><a href="CppClass.htm">class</a></b> should be <b><a href="CppProtected.htm">protected</a></b> and non-<b><a href="CppVirtual.htm">virtual</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. <a href="Cpp.htm">C++</a> coding standards: 101 rules,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; guidelines, and best practices. ISBN: 0-32-111358-6. Item 50: 'Make<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; <a href="CppBaseClass.htm">base class</a> <a href="CppDestructor.htm">destructor</a>s <b><a href="CppPublic.htm">public</a></b> and <b><a href="CppVirtual.htm">virtual</a></b>, or <b><a href="CppProtected.htm">protected</a></b> and non<b><a href="CppVirtual.htm">virtual</a></b>'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. Modern <a href="Cpp.htm">C++</a> Design. 2001. ISBN: 0201704315.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; Page 13. Section 1.7: 'The lightweight, effective solution that<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; policies should use is to define a non<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppProtected.htm">protected</a></b> <a href="CppDestructor.htm">destructor</a>'<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> OutputPolicyFile<br/>
+{<br/>
+&nbsp;&nbsp;OutputPolicyFile() : m_file("<a href="CppTrace.htm">Trace</a>.txt")<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppTrace.htm">Trace</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_file <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> m_file;<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;~OutputPolicyFile()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> The <a href="CppDestructor.htm">destructor</a> of a policy <b><a href="CppClass.htm">class</a></b> should be <b><a href="CppProtected.htm">protected</a></b> and non-<b><a href="CppVirtual.htm">virtual</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. <a href="Cpp.htm">C++</a> coding standards: 101 rules,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; guidelines, and best practices. ISBN: 0-32-111358-6. Item 50: 'Make<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; <a href="CppBaseClass.htm">base class</a> <a href="CppDestructor.htm">destructor</a>s <b><a href="CppPublic.htm">public</a></b> and <b><a href="CppVirtual.htm">virtual</a></b>, or <b><a href="CppProtected.htm">protected</a></b> and non<b><a href="CppVirtual.htm">virtual</a></b>'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. Modern <a href="Cpp.htm">C++</a> Design. 2001. ISBN: 0201704315.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; Page 13. Section 1.7: 'The lightweight, effective solution that<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; policies should use is to define a non<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppProtected.htm">protected</a></b> <a href="CppDestructor.htm">destructor</a>'<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTrace.htm">Trace</a>r&lt;OutputPolicyCout&gt; p1;<br/>
+&nbsp;&nbsp;<a href="CppTrace.htm">Trace</a>r&lt;OutputPolicyFile&gt; p2;<br/>
+&nbsp;&nbsp;p1.<a href="CppTrace.htm">Trace</a>("x");<br/>
+&nbsp;&nbsp;p2.<a href="CppTrace.htm">Trace</a>("x");<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

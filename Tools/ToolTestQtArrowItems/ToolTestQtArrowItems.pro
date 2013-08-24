@@ -2,6 +2,12 @@ QT       += core gui
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 TEMPLATE = app
 
+#For gprof
+QMAKE_CXXFLAGS_DEBUG += -pg
+QMAKE_LFLAGS_DEBUG += -pg
+QMAKE_CXXFLAGS += -pg
+QMAKE_LFLAGS += -pg
+
 INCLUDEPATH += \
   ../../Classes/CppAbout \
   ../../Classes/CppQtAboutDialog \
