@@ -66,6 +66,32 @@ QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<pvdb::Conce
 
 }
 
+
+QtPvdbRateConceptItem::~QtPvdbRateConceptItem()
+{
+  //2013-08-25
+  GetConcept()->m_signal_rating_complexity_changed.disconnect(
+      boost::bind(
+        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        this
+      )
+    );
+  //2013-08-25
+  GetConcept()->m_signal_rating_concreteness_changed.disconnect(
+      boost::bind(
+        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        this
+      )
+    );
+  //2013-08-25
+  GetConcept()->m_signal_rating_specificity_changed.disconnect(
+      boost::bind(
+        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        this
+      )
+    );
+}
+
 void QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
 {
 

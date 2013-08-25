@@ -68,6 +68,28 @@ QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb:
 
 QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
 {
+  //2013-08-25
+  GetConcept()->m_signal_rating_complexity_changed.disconnect(
+      boost::bind(
+        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        this
+      )
+    );
+  //2013-08-25
+  GetConcept()->m_signal_rating_concreteness_changed.disconnect(
+      boost::bind(
+        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        this
+      )
+    );
+  //2013-08-25
+  GetConcept()->m_signal_rating_specificity_changed.disconnect(
+      boost::bind(
+        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        this
+      )
+    );
+
   std::stringstream s;
   s << "QtPvdbDisplayConceptItem destructor: " << this << '\n';
   TRACE(s.str());
@@ -75,7 +97,7 @@ QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
 
 void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
 {
-  TRACE("Start of void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
+  //TRACE("Start of void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
 
@@ -165,5 +187,5 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
     this->m_signal_item_has_updated(this); //Obligatory
     this->m_signal_request_scene_update(); //Obligatory
   }
-  TRACE("End of void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
+  //TRACE("End of void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
 }

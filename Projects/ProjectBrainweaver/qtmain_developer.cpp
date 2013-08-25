@@ -187,4 +187,5 @@ int main(int argc, char *argv[])
 /// - Use the default operator== for pointer comparison of smart pointers
 /// - Instead of overloading operator== to compare the content for all combinations of smart pointers,
 ///   use IsEqual(const T&,const T&)
-///
+/// - If a class connects its signals to some other class with a different lifetime,
+///   disconnect these signals in its destructor
