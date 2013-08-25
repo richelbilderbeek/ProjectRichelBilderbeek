@@ -11,6 +11,7 @@ rm ui_*.h
 rm qrc_*.cpp
 rm moc_*.cpp
 rm object_script*.*
+rm *_plugin_import.cpp
  
 for myprofile in `ls | egrep ".pro\>"`
 do
@@ -42,5 +43,6 @@ do
   rm qrc_*.cpp
   rm moc_*.cpp
   rm object_script*.*
- 
+  rm *_plugin_import.cpp
+
 done #next .pro file
