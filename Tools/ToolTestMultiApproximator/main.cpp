@@ -1,11 +1,33 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
+//static assertion failed: Source type is neither std::ostream`able nor std::wostream`able
+#include <boost/units/io.hpp>
+
+#include <boost/units/systems/si.hpp>
+#include <boost/units/unit.hpp>
+
 #include "multiapproximator.h"
 #include "canvas.h"
+
+
 #pragma GCC diagnostic pop
 
 int main()
 {
+  //Use Boost.Units to thoroughly check if Approximation is a good template:
+  //If it even compiles with Boost.Units, it probably is
+  {
+    typedef boost::units::quantity<boost::units::si::time> Time;
+    typedef boost::units::quantity<boost::units::si::velocity> Velocity;
+    Approximator<Time,Velocity> a;
+    a.Add(0.0 * boost::units::si::second,0.0 * boost::units::si::meters_per_second);
+    a.Add(2.0 * boost::units::si::second,2.0 * boost::units::si::meters_per_second);
+    const Velocity v = a.Approximate(1.0 * boost::units::si::second);
+    assert(v >= 0.99 * boost::units::si::meters_per_second
+        && v <= 1.01 * boost::units::si::meters_per_second);
+  }
+
   typedef MultiApproximator<double,int> MultiApproximator_t;
 
   MultiApproximator_t a;

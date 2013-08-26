@@ -25,12 +25,13 @@ const About ToolTestMultiApproximatorMenuDialog::GetAbout()
 
 const std::string ToolTestMultiApproximatorMenuDialog::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> ToolTestMultiApproximatorMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-08-23: version 1.0: initial version");
+  v.push_back("2013-08-23: version 1.1: display conversion from MultiApproximator to Approximator");
   return v;
 }

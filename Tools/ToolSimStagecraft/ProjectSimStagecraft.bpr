@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="ProjectSimStagecraft.exe"/>
+    <OBJFILES value="ProjectSimStagecraft.obj UnitAmplifier.obj UnitAux.obj UnitCdPlayer.obj 
+      UnitChannel.obj UnitCommand.obj UnitConnector.obj UnitConnectorControl.obj 
+      UnitController.obj UnitControllerControl.obj UnitCreateMachines.obj 
+      UnitDimmerpack.obj UnitDisplay.obj UnitDisplayControl.obj 
+      UnitEnumDisplayMode.obj UnitFormCdPlayer.obj UnitFormDimblockV3.obj 
+      UnitFormEasyAmp.obj UnitFormMachine.obj UnitFormMdPlayer.obj 
+      UnitFormOctlet.obj UnitFormPar64.obj UnitFormRcf322A.obj 
+      UnitFormRcfEvent3000.obj UnitFormShureSm58.obj UnitFormSimpleShine1.obj 
+      UnitFormSimpleShine2.obj UnitFormSimpleSound1.obj UnitFormSimpleSound2.obj 
+      UnitFormSimpleSound3.obj UnitFormSimpleSound4.obj 
+      UnitFormSimStagecraftAbout.obj UnitFormSimStagecraftMain.obj 
+      UnitFormSimStagecraftMenu.obj UnitFormSimStagecraftOtherLicences.obj 
+      UnitFormSimStagecraftSelect.obj UnitFormSimStagecraftWhatsNew.obj 
+      UnitFormSprites.obj UnitFormTransitionPieceJackMaleTwoCinchFemale.obj 
+      UnitFormTriplet.obj UnitFormWallSocket220.obj UnitFormWallSocketPower.obj 
+      UnitFunctions.obj UnitLamp.obj UnitLightTable.obj UnitMachine.obj 
+      UnitMdPlayer.obj UnitMemFunCommand.obj UnitMicrophone.obj UnitOctlet.obj 
+      UnitSimpleSound1.obj UnitSimpleSound2.obj UnitSimpleSound3.obj 
+      UnitSimpleSound4.obj UnitSoundTable.obj UnitSpeaker.obj UnitTapButton.obj 
+      UnitTapButtonControl.obj UnitTransitionPiece.obj UnitTriplet.obj 
+      UnitVcl.obj UnitWallSocket220.obj UnitWallSocketPower.obj"/>
+    <RESFILES value="ProjectSimStagecraft.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) UnitFormCdPlayer.dfm UnitFormDimblockV3.dfm 
+      UnitFormEasyAmp.dfm UnitFormMachine.dfm UnitFormMdPlayer.dfm 
+      UnitFormOctlet.dfm UnitFormPar64.dfm UnitFormRcf322A.dfm 
+      UnitFormRcfEvent3000.dfm UnitFormShureSm58.dfm UnitFormSimpleShine1.dfm 
+      UnitFormSimpleShine2.dfm UnitFormSimpleSound1.dfm UnitFormSimpleSound2.dfm 
+      UnitFormSimpleSound3.dfm UnitFormSimpleSound4.dfm 
+      UnitFormSimStagecraftAbout.dfm UnitFormSimStagecraftMain.dfm 
+      UnitFormSimStagecraftMenu.dfm UnitFormSimStagecraftOtherLicences.dfm 
+      UnitFormSimStagecraftSelect.dfm UnitFormSimStagecraftWhatsNew.dfm 
+      UnitFormSprites.dfm UnitFormTransitionPieceJackMaleTwoCinchFemale.dfm 
+      UnitFormTriplet.dfm UnitFormWallSocket220.dfm UnitFormWallSocketPower.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi bcb2kaxserver.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="ProjectSimStagecraft.cpp"/>
+    <INCLUDEPATH value="..\..;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\..;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\.. -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="ProjectSimStagecraft.res" FORMNAME="" UNITNAME="ProjectSimStagecraft.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ProjectSimStagecraft.cpp" FORMNAME="" UNITNAME="ProjectSimStagecraft" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitAmplifier.cpp" FORMNAME="" UNITNAME="UnitAmplifier" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitAux.cpp" FORMNAME="" UNITNAME="UnitAux.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitCdPlayer.cpp" FORMNAME="" UNITNAME="UnitCdPlayer.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitChannel.cpp" FORMNAME="" UNITNAME="UnitChannel.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitCommand.cpp" FORMNAME="" UNITNAME="UnitCommand.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitConnector.cpp" FORMNAME="" UNITNAME="UnitConnector.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitConnectorControl.cpp" FORMNAME="" UNITNAME="UnitConnectorControl.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitController.cpp" FORMNAME="" UNITNAME="UnitController.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitControllerControl.cpp" FORMNAME="" UNITNAME="UnitControllerControl.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitCreateMachines.cpp" FORMNAME="" UNITNAME="UnitCreateMachines.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitDimmerpack.cpp" FORMNAME="" UNITNAME="UnitDimmerpack.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitDisplay.cpp" FORMNAME="" UNITNAME="UnitDisplay.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitDisplayControl.cpp" FORMNAME="" UNITNAME="UnitDisplayControl.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumDisplayMode.cpp" FORMNAME="" UNITNAME="UnitEnumDisplayMode.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormCdPlayer.cpp" FORMNAME="FormCdPlayer" UNITNAME="UnitFormCdPlayer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormDimblockV3.cpp" FORMNAME="FormDimblockV3" UNITNAME="UnitFormDimblockV3" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormEasyAmp.cpp" FORMNAME="FormEasyAmp" UNITNAME="UnitFormEasyAmp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormMachine.cpp" FORMNAME="FormMachine" UNITNAME="UnitFormMachine" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormMdPlayer.cpp" FORMNAME="FormMdPlayer" UNITNAME="UnitFormMdPlayer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormOctlet.cpp" FORMNAME="FormOctlet" UNITNAME="UnitFormOctlet" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormPar64.cpp" FORMNAME="FormPar64" UNITNAME="UnitFormPar64" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormRcf322A.cpp" FORMNAME="FormRcf322A" UNITNAME="UnitFormRcf322A" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormRcfEvent3000.cpp" FORMNAME="FormRcfEvent3000" UNITNAME="UnitFormRcfEvent3000" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormShureSm58.cpp" FORMNAME="FormShureSm58" UNITNAME="UnitFormShureSm58" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimpleShine1.cpp" FORMNAME="FormSimpleShine1" UNITNAME="UnitFormSimpleShine1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimpleShine2.cpp" FORMNAME="FormSimpleShine2" UNITNAME="UnitFormSimpleShine2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimpleSound1.cpp" FORMNAME="FormSimpleSound1" UNITNAME="UnitFormSimpleSound1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimpleSound2.cpp" FORMNAME="FormSimpleSound2" UNITNAME="UnitFormSimpleSound2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimpleSound3.cpp" FORMNAME="FormSimpleSound3" UNITNAME="UnitFormSimpleSound3" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimpleSound4.cpp" FORMNAME="FormSimpleSound4" UNITNAME="UnitFormSimpleSound4" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimStagecraftAbout.cpp" FORMNAME="FormSimStagecraftAbout" UNITNAME="UnitFormSimStagecraftAbout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimStagecraftMain.cpp" FORMNAME="FormSimStagecraftMain" UNITNAME="UnitFormSimStagecraftMain" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimStagecraftMenu.cpp" FORMNAME="FormSimStagecraftMenu" UNITNAME="UnitFormSimStagecraftMenu" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimStagecraftOtherLicences.cpp" FORMNAME="FormSimStagecraftOtherLicences" UNITNAME="UnitFormSimStagecraftOtherLicences" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimStagecraftSelect.cpp" FORMNAME="FormSimStagecraftSelect" UNITNAME="UnitFormSimStagecraftSelect" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSimStagecraftWhatsNew.cpp" FORMNAME="FormSimStagecraftWhatsNew" UNITNAME="UnitFormSimStagecraftWhatsNew" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSprites.cpp" FORMNAME="FormSprites" UNITNAME="UnitFormSprites" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormTransitionPieceJackMaleTwoCinchFemale.cpp" FORMNAME="FormTransitionPieceJackMaleTwoCinchFemale" UNITNAME="UnitFormTransitionPieceJackMaleTwoCinchFemale" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormTriplet.cpp" FORMNAME="FormTriplet" UNITNAME="UnitFormTriplet" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormWallSocket220.cpp" FORMNAME="FormWallSocket220" UNITNAME="UnitFormWallSocket220" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormWallSocketPower.cpp" FORMNAME="FormWallSocketPower" UNITNAME="UnitFormWallSocketPower" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFunctions.cpp" FORMNAME="" UNITNAME="UnitFunctions.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitLamp.cpp" FORMNAME="" UNITNAME="UnitLamp.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitLightTable.cpp" FORMNAME="" UNITNAME="UnitLightTable" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMachine.cpp" FORMNAME="" UNITNAME="UnitMachine.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMdPlayer.cpp" FORMNAME="" UNITNAME="UnitMdPlayer.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMemFunCommand.cpp" FORMNAME="" UNITNAME="UnitMemFunCommand.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitMicrophone.cpp" FORMNAME="" UNITNAME="UnitMicrophone.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitOctlet.cpp" FORMNAME="" UNITNAME="UnitOctlet.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimpleSound1.cpp" FORMNAME="" UNITNAME="UnitSimpleSound1.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimpleSound2.cpp" FORMNAME="" UNITNAME="UnitSimpleSound2.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimpleSound3.cpp" FORMNAME="" UNITNAME="UnitSimpleSound3.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSimpleSound4.cpp" FORMNAME="" UNITNAME="UnitSimpleSound4.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSoundTable.cpp" FORMNAME="" UNITNAME="UnitSoundTable.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitSpeaker.cpp" FORMNAME="" UNITNAME="UnitSpeaker.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTapButton.cpp" FORMNAME="" UNITNAME="UnitTapButton.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTapButtonControl.cpp" FORMNAME="" UNITNAME="UnitTapButtonControl.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTransitionPiece.cpp" FORMNAME="" UNITNAME="UnitTransitionPiece.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitTriplet.cpp" FORMNAME="" UNITNAME="UnitTriplet.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitVcl.cpp" FORMNAME="" UNITNAME="UnitVcl.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitWallSocket220.cpp" FORMNAME="" UNITNAME="UnitWallSocket220.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitWallSocketPower.cpp" FORMNAME="" UNITNAME="UnitWallSocketPower.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=1
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Richel Bilderbeek
+FileDescription=SimStagecraft
+FileVersion=1.1.0.0
+InternalName=SimStagecraft
+LegalCopyright=Richel Bilderbeek
+LegalTrademarks=Richel Bilderbeek
+OriginalFilename=SimStagecraft
+ProductName=SimStagecraft
+ProductVersion=1.0.0.0
+Comments=Licenced under GPL 3.0
+Website=http://www.richelbilderbeek.nl
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

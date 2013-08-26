@@ -121,21 +121,6 @@ struct ProgramTool: public RichelBilderbeek::Program
   const std::string GetTypeName() const { return "tool"; }
 };
 
-struct ProgramGnuplotInterface: public RichelBilderbeek::ProgramClass
-{
-  const std::string GetFilenameConsole() const { return "CppGnuplotInterface.png"; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "GnuplotInterface"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::gnuplotInterface; }
-  const std::string GetUrl() const { return "CppGnuplotInterface.htm"; }
-};
-
 struct ProgramGrayCoder: public RichelBilderbeek::ProgramTool
 {
   const std::string GetFilenameConsole() const { return ""; }

@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>XXX</title>
-  <meta name="description" content="C++ XXX"/>
-  <meta name="keywords" content="C++ XXX"/>
+  <title>Create a DLL using g++</title>
+  <meta name="description" content="C++ Create a DLL using g++"/>
+  <meta name="keywords" content="C++ Create a DLL using g++"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,15 +18,15 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a> using G++) <a href="CppGppCreateDll.htm">Create a DLL</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGppCreateDll.htm">Create a DLL using g++</a></h1>
 <p>&nbsp;</p>
-<p>Before being able to   <a href="CppGppCallDll.htm">call a DLL</a>, one has to <a href="CppGppCreateDll.htm">create a DLL</a> first.</p>
+<p>Before being able to <a href="CppGppCallDll.htm">call a DLL</a>, one has to <a href="CppGppCreateDll.htm">create a DLL using g++</a> first.</p>
 <p>&nbsp;</p>
-<p>To create a <a href="CppGppDll.htm">DLL</a> using G++, do the following steps:</p>
+<p>To create a <a href="CppGppDll.htm">DLL</a> using <a href="CppGpp.htm">g++</a>, do the following steps:</p>
 <ul>
-  <li>Create a DLL entry point with a WinMain</li>
-  <li>Create a unit with the functions you want to put in a DLL</li>
-  <li>Build the DLL</li>
+  <li>Create a <a href="CppDll.htm">DLL</a> entry point with a WinMain</li>
+  <li>Create a unit with the functions you want to put in a <a href="CppDll.htm">DLL</a></li>
+  <li>Build the <a href="CppDll.htm">DLL</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -36,7 +36,7 @@
 <h2>UnitEntryPoint.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="s2l0.a.cpp" border = "1"><tr><td><code>
+<table summary="UnitEntryPoint.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;windows.h&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -64,7 +64,7 @@
 <h2>UnitFunctions.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="s2l0.b.cpp" border = "1"><tr><td><code>
+<table summary="UnitFunctions.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> Unit<a href="CppFunction.htm">Function</a>sH<br/>
 <a href="CppDefine.htm">#define</a> Unit<a href="CppFunction.htm">Function</a>sH<br/>
@@ -99,7 +99,7 @@ it, the code looks like below</p>
 <h2>UnitFunctions.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="s2l0.c.cpp" border = "1"><tr><td><code>
+<table summary="UnitFunctions.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "Unit<a href="CppFunction.htm">Function</a>s.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -117,19 +117,19 @@ it, the code looks like below</p>
 <p>&nbsp;</p>
 <h2>Building the DLL</h2>
 <p>&nbsp;</p>
-<p>Use the following G++ commands:</p>
+<p>Use the following <a href="CppGpp.htm">g++</a> commands:</p>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="s2l0.e.txt" border = "1"><tr><td><code>
-g++ -c UnitFunctions.cpp<br/>
-g++ -c UnitEntryPoint.cpp<br/>
-g++ -o Functions.dll UnitEntryPoint.o UnitFunctions.o<br/>
+<table summary="Building the DLL with g++ commands" border = "1"><tr><td><code>
+<a href="CppGpp.htm">g++</a> -c UnitFunctions.cpp<br/>
+<a href="CppGpp.htm">g++</a> -c UnitEntryPoint.cpp<br/>
+<a href="CppGpp.htm">g++</a> -o Functions.dll UnitEntryPoint.o UnitFunctions.o<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>This should yield your first DLL!</p>
+<p>This should yield your first <a href="CppDll.htm">DLL</a>.</p>
 <p>&nbsp;</p>
-<p>Perhaps you now want to <a href="CppGppCallDll.htm">go to the calling a DLL page</a>.</p>
+<p>Perhaps you now want to <a href="CppGppCallDll.htm">go to the calling a DLL page using g++</a>.</p>
 <p>&nbsp;</p>
 <p><a href="CppGppCreateDll.zip">Or download all source code of this page at once</a>.</p>
 <p>&nbsp;</p>
