@@ -573,6 +573,42 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"CppGetTxtFilesInFolder.zip\">Download the Qt Creator project 'CppGetTxtFilesInFolder' (zip)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "CppGnuplotInterface")
+  {
+    v.push_back("<p><a href=\"CppGnuplotInterface.htm\">GnuplotInterface</a> is a <a href=\"CppClass.htm\">class</a> ");
+    v.push_back("that enables the user to easily plot values in <a href=\"CppGnuplot.htm\">Gnuplot</a>. It handles ");
+    v.push_back("both the connection to <a href=\"CppGnuplot.htm\">Gnuplot</a> and performs the window management as well. ");
+    v.push_back("It creates a text-file in which the location of the <a href=\"CppGnuplot.htm\">Gnuplot</a> executable can ");
+    v.push_back("be entered (without recompiling the program).</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestGnuplotInterface.htm\">TestGnuplotInterface</a> tests ");
+    v.push_back("the <a href=\"CppGnuplotInterface.htm\">GnuplotInterface</a> <a href=\"CppClass.htm\">class</a>.");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<!-- start of code -->");
+    v.push_back("<table summary=\"Note: only tested under MacOS\" border = \"1\"><tr><td><code>");
+    v.push_back("I only got this interface to work under MacOS<br/>");
+    v.push_back("</code></td></tr></table>");
+    v.push_back("<!-- end of the code -->");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The one function that this <a href=\"CppClass.htm\">class</a> is built around is the popen function. This is a non-standard function to open a pipe. If this function is unknown under your programming environment, try either std::popen, std::_popen, std::__popen, popen, _popen or __popen.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppGnuplotInterface.png\">View a screenshot of a graph created with Gnuplot interface</a>. Thanks to Roger Wehage for submitting this image and allowing me to use it.</li>");
+    v.push_back("  <li><a href=\"CppGnuplotInterfaceSource.zip\">Download the 'Gnuplot Interface' source code (zip)</a>.</li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Known <a href=\"CppCompileError.htm\">compile errors</a></h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppCompileError_popenIsNotAmemberOfStd.htm\">_popen is not a member of std</a></li>");
+    v.push_back("  <li><a href=\"CppCompileErrorCLK_TCKwasNotDeclaredInThisScope.htm\">CLK_TCK was not declared in this scope</a></li>");
+    v.push_back("  <li><a href=\"CppCompileErrorDuplicateSymbol.htm\">Duplicate symbol Gnuplot::SetLineStyles()</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "CppGprofQtCreatorExample1")
   {
     v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
@@ -6105,17 +6141,24 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"http://en.wikipedia.org/wiki/Gabor_filter\">Wikipedia page about Gabor filters</a></li>");
     v.push_back("</ul>");
   }
-  else if (m_page_name == "ToolGnuplotInterface" || m_page_name == "CppGnuplotInterface")
+  else if (m_page_name == "ToolTestGnuplotInterface")
   {
-    v.push_back("<p><a href=\"CppGnuplotInterface.htm\">GnuplotInterface</a> is a <a href=\"CppClass.htm\">class</a> that enables the user to easily plot values in Gnuplot. It handles both the connection to Gnuplot and performs the window management as well. It creates a text-file in which the location of the Gnuplot executable can be entered (without recompiling the program).</p>");
+    v.push_back("<p><a href=\"CppGnuplotInterface.htm\">GnuplotInterface</a> is a <a href=\"CppClass.htm\">class</a> ");
+    v.push_back("that enables the user to easily plot values in <a href=\"CppGnuplot.htm\">Gnuplot</a>. It handles ");
+    v.push_back("both the connection to <a href=\"CppGnuplot.htm\">Gnuplot</a> and performs the window management as well. ");
+    v.push_back("It creates a text-file in which the location of the <a href=\"CppGnuplot.htm\">Gnuplot</a> executable can ");
+    v.push_back("be entered (without recompiling the program).</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestGnuplotInterface.htm\">TestGnuplotInterface</a> tests ");
+    v.push_back("the <a href=\"CppGnuplotInterface.htm\">GnuplotInterface</a> <a href=\"CppClass.htm\">class</a>.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<!-- start of code -->");
-    v.push_back("<table border = \"1\"><tr><td><code>");
+    v.push_back("<table summary=\"Note: only tested under MacOS\" border = \"1\"><tr><td><code>");
     v.push_back("I only got this interface to work under MacOS<br/>");
     v.push_back("</code></td></tr></table>");
     v.push_back("<!-- end of the code -->");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>The one function that this class is built around is the popen function. This is a non-standard function to open a pipe. If this function is unknown under your programming environment, try either std::popen, std::_popen, std::__popen, popen, _popen or __popen.</p>");
+    v.push_back("<p>The one function that this <a href=\"CppClass.htm\">class</a> is built around is the popen function. This is a non-standard function to open a pipe. If this function is unknown under your programming environment, try either std::popen, std::_popen, std::__popen, popen, _popen or __popen.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppGnuplotInterface.png\">View a screenshot of a graph created with Gnuplot interface</a>. Thanks to Roger Wehage for submitting this image and allowing me to use it.</li>");
