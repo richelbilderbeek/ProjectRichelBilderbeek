@@ -95,6 +95,34 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppClass.htm\">class</a> to do a linear");
     v.push_back("interpolation.</p>");
   }
+  else if (m_page_name == "CppArrayExample1")
+  {
+    v.push_back("<h1>(<a href=\"Cpp.htm\">C++</a>) <a href=\"CppArrayExample1.htm\">array/std::array/boost::array example 1: comparison</a></h1>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"CppArrayExample1.htm\">array/std::array/boost::array example 1: comparison</a> is a comparison between");
+    v.push_back("a plain <a href=\"CppArray.htm\">array</a>, <a href=\"CppStdArray.htm\">std::array</a>, <a href=\"CppTr1Array.htm\">std::tr1::array</a> ");
+    v.push_back("and <a href=\"CppBoostArray.htm\">boost::array</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppArrayExample1.zip\">Download the Qt Creator project 'CppArrayExample1' (zip)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><a href=\"CppArrayExample1Exe.zip\">Download the Windows executable of 'CppArrayExample1' (zip)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The conclusions draws are (note that every 'Yes' is 'a good thing'):</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<table summary=\"Comparison\" border = \"1\">");
+    v.push_back("  <tr><td>Property tested</td><td>Statically allocated plain array</td><td>Dynamically allocated plain array</td><td>std::tr1::array</td><td>std::array</td><td>boost::array</td></tr>");
+    v.push_back("  <tr><td>Initialization at creation</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>");
+    v.push_back("  <tr><td>Initialization at creation checked against too few elements</td><td>No</td><td>N/A</td><td>No</td><td>No</td><td>No</td></tr>");
+    v.push_back("  <tr><td>Initialization at creation checked against too many elements</td><td>Yes</td><td>N/A</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>");
+    v.push_back("  <tr><td>Size requestable at compile-time</td><td>Yes</td><td>No</td><td>No</td><td>Yes</td><td>No</td></tr>");
+    v.push_back("  <tr><td>Size requestable at run-time</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>");
+    v.push_back("</table>");
+
+  }
+
+
+
   else if (m_page_name == "CppAsciiArter")
   {
     v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");

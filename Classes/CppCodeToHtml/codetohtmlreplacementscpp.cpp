@@ -569,7 +569,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "std::replace_if","<a href=\"CppR$eplace_i$f.htm\">st$d::r$eplace_i$f</a>" },
     { "std::scientific","<a href=\"CppS$cienti$fic.htm\">st$d::s$cienti$fic</a>" },
     { "std::shared_ptr","<a href=\"CppS$hared_p$tr.htm\">s$td::s$hared_p$tr</a>" },
-    { "std::tr1::array","<a href=\"CppA$rr$ay.htm\">s$td::t$r1::a$rr$ay</a>" },
+    { "std::tr1::array","<a href=\"CppT$r1A$rr$ay.htm\">s$td::t$r1::a$rr$ay</a>" },
     { "std::unique_ptr","<a href=\"CppU$nique_p$tr.htm\">st$d::u$nique_p$tr</a>" },
     { "web application","<a href=\"CppW$ebA$pplication.htm\">w$eb a$pplication</a>" },
   //14
@@ -1233,7 +1233,6 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "std::stack","<a href=\"CppS$tack.htm\">s$td::sta$ck</a>" },
     { "std::tuple","<a href=\"CppS$tdT$uple.htm\">s$td::t$uple</a>" },
     { "std::timer","<a href=\"CppS$tdT$imer.htm\">s$td::t$imer</a>" },
-
     { "std::wcout","<a href=\"CppW$c$out.htm\">s$td::w$c$out</a>" },
     { "std::wcsca","<a href=\"CppW$csca.htm\">s$td::w$csca</a>" },
     { "std::wcsch","<a href=\"CppW$csch.htm\">s$td::w$csch</a>" },
@@ -1246,6 +1245,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "std::wctom","<a href=\"CppW$ctom.htm\">s$td::w$ctom</a>" },
     { "std::wctyp","<a href=\"CppW$ctyp.htm\">s$td::w$ctyp</a>" },
     { "std::wscan","<a href=\"CppW$s$can.htm\">s$td::w$scan</a>" },
+    { "tr1::array","<a href=\"CppT$r1A$rr$ay.htm\">t$r1::a$rr$ay</a>" },
     { "unassigned","unass$igned" },
     { "unregister","unr$egister" },
   //9
@@ -2008,6 +2008,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "zshort","zs$hort" },
   //5
     { "#else","<a href=\"CppPreElse.htm\">#el$se</a>" },
+    { "Array","<a href=\"C$ppA$rray.htm\">A$rray</a>" },
     { "Avoid","Av$oid" },
     { "Boost","<a href=\"CppB$oost.htm\">Bo$ost</a>" },
     { "C++0x","<a href=\"Cpp0x.htm\">C$+$+0x</a>" },
@@ -2153,6 +2154,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "aemit","ae$mit" },
     { "along","al$ong" },
     { "amain","am$ain" },
+    { "array","<a href=\"C$ppA$rray.htm\">a$rray</a>" },
     { "avoid","av$oid" },
     { "bDial","bD$ial" },
     { "bdial","bd$ial" },
