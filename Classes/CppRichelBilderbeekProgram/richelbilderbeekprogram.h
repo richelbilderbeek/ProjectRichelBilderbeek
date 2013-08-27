@@ -376,9 +376,80 @@ struct ProgramEverythingToPiecesShooter: public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const { return "GameEverythingToPiecesShooter.htm"; }
 };
 
+struct ProgramFakeEvy: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "GrayFakeEvy"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::fakeEvy; }
+  const std::string GetUrl() const { return "ToolFakeEvy.htm"; }
+};
 
+struct ProgramFilterOperationer: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolFilterOperationer_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "FilterOperationer"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::filterOperationer; }
+  const std::string GetUrl() const { return "ToolFilterOperationer.htm"; }
+};
 
+struct ProgramFryskLeareLieder: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolFryskLeareLieder_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "FryskLeareLieder"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::fryskLeareLieder; }
+  const std::string GetUrl() const { return "ToolFryskLeareLieder.htm"; }
+};
 
+struct ProgramFunctionPlotter: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolFunctionPlotter_1_1.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "FunctionPlotter"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::functionPlotter; }
+  const std::string GetUrl() const { return "ToolFunctionPlotter.htm"; }
+};
+
+struct ProgramGaborFilter: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolGaborFilter_2_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolGaborFilter_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "GaborFilter"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::gaborFilter; }
+  const std::string GetUrl() const { return "ToolGaborFilter.htm"; }
+};
 
 struct ProgramGrayCoder: public RichelBilderbeek::ProgramTool
 {
@@ -387,12 +458,357 @@ struct ProgramGrayCoder: public RichelBilderbeek::ProgramTool
   const std::string GetFilenameDesktopWindowsOnly() const { return "ToolGrayCoder_1_0.png"; }
   const std::string GetFilenameWeb() const { return ""; }
   const std::string GetName() const { return "GrayCoder"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
   ProgramType GetType() const { return ProgramType::grayCoder; }
   const std::string GetUrl() const { return "GrayCoder.htm"; }
+};
+
+struct ProgramGtst: public RichelBilderbeek::ProgramProject
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return "ProjectGtst_1_2.png"; }
+  const std::string GetName() const { return "GTST"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::gtst; }
+  const std::string GetUrl() const { return "ProjectGtst.htm"; }
+};
+
+struct ProgramHistogramEqualizationer: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolHistogramEqualizationer_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "HistogramEqualizationer"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::unk; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::histogramEqualizationer; }
+  const std::string GetUrl() const { return "ToolHistogramEqualizationer.htm"; }
+};
+
+struct ProgramHometrainer: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolHometrainer_1_8.png"; }
+  const std::string GetFilenameWeb() const { return "ToolHometrainer_2_0.png"; }
+  const std::string GetName() const { return "Hometrainer"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::hometrainer; }
+  const std::string GetUrl() const { return "ToolHometrainer.htm"; }
+};
+
+struct ProgramImageRotaterClx: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolImageRotaterClx_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "ImageRotater"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::imageRotaterClx; }
+  const std::string GetUrl() const { return "ToolImageRotater.htm"; }
+};
+
+struct ProgramImageRotaterVcl: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolImageRotaterVcl_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "ImageRotater"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::imageRotaterClx; }
+  const std::string GetUrl() const { return "ToolImageRotater.htm"; }
+};
+
+struct ProgramK3OpEenRij: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "GameK3OpEenRij_6_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameK3OpEenRij_4_0.png"; }
+  const std::string GetFilenameWeb() const { return "GameK3OpEenRij_5_0.png"; }
+  const std::string GetName() const { return "K3 Op Een Rij"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::k3OpEenRij; }
+  const std::string GetUrl() const { return "GameK3OpEenRij.htm"; }
+};
+
+struct ProgramKalmanFilterer: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolKalmanFilterer_1_11.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolKalmanFilterer_1_4.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "KalmanFilterer"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::kalmanFilterer; }
+  const std::string GetUrl() const { return "ToolKalmanFilterer.htm"; }
+};
+
+struct ProgramKeySender : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolKeySender_1_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "KeySender"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::keySender; }
+  const std::string GetUrl() const { return "ToolKeySender.htm"; }
+};
+
+struct ProgramKnokfighter: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameKnokfighter_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Knokfighter"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::knokfighter; }
+  const std::string GetUrl() const { return "GameKnokfighter.htm"; }
+};
+
+struct ProgramKTouchLectureCreator : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "KTouchLectureCreator"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::kTouchLectureCreator; }
+  const std::string GetUrl() const { return "ToolKTouchLectureCreator.htm"; }
+};
+
+struct ProgramLambdaBot : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "LambdaBot"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::lambdaBot; }
+  const std::string GetUrl() const { return "ToolLambdaBot.htm"; }
+};
+
+struct ProgramLearyCircumplex : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolLearyCircumplex_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "LearyCircumplex"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::learyCircumplex; }
+  const std::string GetUrl() const { return "ToolLearyCircumplex.htm"; }
+};
+
+struct ProgramLogisticGrowthSimulator : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolLogisticGrowthSimulator_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "LogisticGrowthSimulator"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::logisticGrowthSimulator; }
+  const std::string GetUrl() const { return "ToolLogisticGrowthSimulator.htm"; }
+};
+
+struct ProgramLoose : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return "ToolLoose_2_0.png"; }
+  const std::string GetName() const { return "Loose"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::loose; }
+  const std::string GetUrl() const { return "ToolLoose.htm"; }
+};
+
+struct ProgramMartianCafeTuinemaTycoon: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameMartianCafeTuinemaTycoon_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "MartianCafeTuinemaTycoon"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::martianCafeTuinemaTycoon; }
+  const std::string GetUrl() const { return "GameMartianCafeTuinemaTycoon.htm"; }
+};
+
+struct ProgramMazeCreator: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolMazeCreator_2_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolMazeCreator_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "MazeCreator"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::mazeCreator; }
+  const std::string GetUrl() const { return "ToolMazeCreator.htm"; }
+};
+
+struct ProgramMaziak: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "GameMaziak_1_3.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameMaziak_2_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Maziak"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::maziak; }
+  const std::string GetUrl() const { return "GameMaziak.htm"; }
+};
+
+struct ProgramMaziak: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameMetZnDrieen_1_3.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "MetZnDrieen"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::metZnDrieen; }
+  const std::string GetUrl() const { return "GameMetZnDrieen.htm"; }
+};
+
+struct ProgramMazeCreator: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "MidiLessonCreator"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::midiLessonCreator; }
+  const std::string GetUrl() const { return "ToolMidiLessonCreator.htm"; }
+};
+
+struct ProgramMorpher : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolMorpher_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Morpher"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::morpher; }
+  const std::string GetUrl() const { return "ToolMorpher.htm"; }
+};
+
+struct ProgramMultiEncranger: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolMultiEncranger_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "MultiEncranger"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::multiEncranger; }
+  const std::string GetUrl() const { return "ToolMultiEncranger.htm"; }
+};
+
+struct ProgramMuscaDomestica: public RichelBilderbeek::ProgramProject
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ProjectMuscaDomestica_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Project Musca Domestica"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::muscaDomestica; }
+  const std::string GetUrl() const { return "ProjectMuscaDomestica.htm"; }
+};
+
+struct ProgramMusicTheory : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolMusicTheory_1_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "MusicTheory"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::musicTheory; }
+  const std::string GetUrl() const { return "ToolMusicTheory.htm"; }
 };
 
 struct ProgramNdsmake: public RichelBilderbeek::ProgramClass
@@ -409,6 +825,444 @@ struct ProgramNdsmake: public RichelBilderbeek::ProgramClass
   ProgramType GetType() const { return ProgramType::ndsmake; }
   const std::string GetUrl() const { return "CppNdsmake.htm"; }
 };
+
+struct ProgramNdspaint: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Ndspaint"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::ndspaint; }
+  const std::string GetUrl() const { return "CppNdspaint.htm"; }
+};
+
+struct ProgramPaperRockScissors : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolPaperRockScissors_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "PaperRockScissors"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::paperRockScissors; }
+  const std::string GetUrl() const { return "ToolPaperRockScissors.htm"; }
+};
+
+struct ProgramPause : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Pause"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::pause; }
+  const std::string GetUrl() const { return "ToolPause.htm"; }
+};
+
+struct ProgramPerfectElasticCollision: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolPerfectElasticCollision_1_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "PerfectElasticCollision"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::perfectElasticCollision; }
+  const std::string GetUrl() const { return "ToolPerfectElasticCollision.htm"; }
+};
+
+struct ProgramPicToCode: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolPicToCode_1_2.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return "ToolPicToCode_1_3.png"; }
+  const std::string GetName() const { return "PicToCode"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::picToCode; }
+  const std::string GetUrl() const { return "ToolPicToCode.htm"; }
+};
+
+struct ProgramPixelator: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolPixelator_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Pixelator"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::pixelator; }
+  const std::string GetUrl() const { return "ToolPixelator.htm"; }
+};
+
+struct ProgramPokeVolley: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GamePokeVolley_2_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "PokeVolley"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::pokeVolley; }
+  const std::string GetUrl() const { return "GamePokeVolley.htm"; }
+};
+
+struct ProgramPong: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Pong"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::pong; }
+  const std::string GetUrl() const { return "GamePong.htm"; }
+};
+
+struct ProgramPrimeExpert: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "PrimeExpert"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::primeExpert; }
+  const std::string GetUrl() const { return "ToolPrimeExpert.htm"; }
+};
+
+struct ProgramPylos: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "GamePylos_1_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Pylos"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::pylos; }
+  const std::string GetUrl() const { return "GamePylos.htm"; }
+};
+
+struct ProgramQmakeWatcher : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "QmakeWatcher"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::qmakeWatcher; }
+  const std::string GetUrl() const { return "ToolQmakeWatcher.htm"; }
+};
+
+struct ProgramQuadraticSolver: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return "ToolQuadraticSolver_1_0.png"; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "QuadraticSolver"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::quadraticSolver; }
+  const std::string GetUrl() const { return "ToolQuadraticSolver.htm"; }
+};
+
+struct ProgramRampal: public RichelBilderbeek::ProgramProject
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "ProjectRampal"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::rampal; }
+  const std::string GetUrl() const { return "ProjectRampal.htm"; }
+};
+
+struct ProgramRandomCode: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolRandomCode_4_2.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolRandomCode_1_0.png"; }
+  const std::string GetFilenameWeb() const { return "ToolRandomCode_3_0.png"; }
+  const std::string GetName() const { return "RandomCode"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::randomCode; }
+  const std::string GetUrl() const { return "ToolRandomCode.htm"; }
+};
+
+struct ProgramRasper: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return "ToolRasper_0_3.png"; }
+  const std::string GetName() const { return "Rasper"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::rasper; }
+  const std::string GetUrl() const { return "ToolRasper.htm"; }
+};
+
+struct ProgramRefrigeratorPuzzleSolver: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolRefrigeratorPuzzleSolver_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "RefrigeratorPuzzleSolver"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::refrigeratorPuzzleSolver; }
+  const std::string GetUrl() const { return "ToolRefrigeratorPuzzleSolver.htm"; }
+};
+
+struct ProgramRegexTester: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolRegexTester_1_1.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "RegexTester"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::regexTester; }
+  const std::string GetUrl() const { return "ToolRegexTester.htm"; }
+};
+
+struct ProgramReversi: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameReversi_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Reversi"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::reversi; }
+  const std::string GetUrl() const { return "GameReversi.htm"; }
+};
+
+struct ProgramRichelBilderbeekGallery : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolRichelBilderbeekGallery_1_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "RichelBilderbeekGallery"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::richelBilderbeekGallery; }
+  const std::string GetUrl() const { return "ToolRichelBilderbeekGallery.htm"; }
+};
+
+struct ProgramRichelBilderbeekNlSitemapGenerator : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "RichelBilderbeekNlSitemapGenerator"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::richelbilderbeekNlSitemapGenerator; }
+  const std::string GetUrl() const { return "ToolRichelBilderbeekNlSitemapGenerator.htm"; }
+};
+
+struct ProgramRubiksClock: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "GameRubiksClockDesktop_2_2.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameRubiksClock_1_0.png"; }
+  const std::string GetFilenameWeb() const { return "GameRubiksClock_2_1.png"; }
+  const std::string GetName() const { return "Rubik's Clock"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::rubiksClock; }
+  const std::string GetUrl() const { return "GameRubiksClock.htm"; }
+};
+
+struct ProgramSearchAndDestroyChess: public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return "GameSearchAndDestroyChessConsole_1_0.png"; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameSearchAndDestroyChess_2_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "Search And Destroy Chess"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::searchAndDestroyChess; }
+  const std::string GetUrl() const { return "GameSearchAndDestroyChess.htm"; }
+};
+
+struct ProgramSecretMessage: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolSecretMessage_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "SecretMessage"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::secretMessage; }
+  const std::string GetUrl() const { return "ToolSecretMessage.htm"; }
+};
+
+struct ProgramSimBrainiac: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolSimBrainiac_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "SimBrainiac"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::simBrainiac; }
+  const std::string GetUrl() const { return "ToolSimBrainiac.htm"; }
+};
+
+struct ProgramSimImmuneResponse: public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolSimImmuneResponse_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "SimImmuneResponse"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::simImmuneResponse; }
+  const std::string GetUrl() const { return "ToolSimImmuneResponse.htm"; }
+};
+
+struct ProgramSimMysteryMachine : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolSimMysteryMachine_1_2.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return "ToolSimMysteryMachine_1_1_web.png"; }
+  const std::string GetName() const { return "SimMysteryMachine"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
+  ProgramType GetType() const { return ProgramType::simMysteryMachine; }
+  const std::string GetUrl() const { return "ToolSimMysteryMachine.htm"; }
+};
+
+struct ProgramSimplifyNewick : public RichelBilderbeek::ProgramTool
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return "ToolSimplifyNewick_1_2.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "SimplifyNewick"; }
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::simplifyNewick; }
+  const std::string GetUrl() const { return "ToolSimplifyNewick.htm"; }
+};
+
+struct ProgramSimPredator : public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const { return ""; }
+  const std::string GetFilenameDesktop() const { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const { return "GameSimPredator_1_0.png"; }
+  const std::string GetFilenameWeb() const { return ""; }
+  const std::string GetName() const { return "SimPredator"; }
+
+  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
+  ProgramType GetType() const { return ProgramType::simPredator; }
+  const std::string GetUrl() const { return "ToolSimPredator.htm"; }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 struct ProgramTestBroadcastServer: public RichelBilderbeek::ProgramClass
 {
@@ -890,265 +1744,6 @@ struct ProgramTestTwoDigitNewick : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const { return "ToolTestTwoDigitNewick.htm"; }
 };
 
-
-
-
-
-struct ProgramK3OpEenRij: public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "GameK3OpEenRij_4_0.png"; }
-  const std::string GetFilenameWeb() const { return "GameK3OpEenRij_5_0.png"; }
-  const std::string GetName() const { return "K3 Op Een Rij"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::k3OpEenRij; }
-  const std::string GetUrl() const { return "GameK3OpEenRij.htm"; }
-};
-
-struct ProgramKalmanFilterer: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolKalmanFilterer_1_6.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolKalmanFilterer_1_4.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "KalmanFilterer"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::kalmanFilterer; }
-  const std::string GetUrl() const { return "ToolKalmanFilterer.htm"; }
-};
-
-struct ProgramKeySender : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolKeySender_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "KeySender"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::keySender; }
-  const std::string GetUrl() const { return "ToolKeySender.htm"; }
-};
-
-struct ProgramKnokfighter: public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "GameKnokfighter_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Knokfighter"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::knokfighter; }
-  const std::string GetUrl() const { return "GameKnokfighter.htm"; }
-};
-
-struct ProgramKTouchLectureCreator : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "KTouchLectureCreator"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::kTouchLectureCreator; }
-  const std::string GetUrl() const { return "ToolKTouchLectureCreator.htm"; }
-};
-
-struct ProgramLearyCircumplex : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolLearyCircumplex_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "LearyCircumplex"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::learyCircumplex; }
-  const std::string GetUrl() const { return "ToolLearyCircumplex.htm"; }
-};
-
-struct ProgramLogisticGrowthSimulator : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolLogisticGrowthSimulator_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "LogisticGrowthSimulator"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::logisticGrowthSimulator; }
-  const std::string GetUrl() const { return "ToolLogisticGrowthSimulator.htm"; }
-};
-
-struct ProgramLoose : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return "ToolLoose_2_0.png"; }
-  const std::string GetName() const { return "LogisticGrowthSimulator"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::loose; }
-  const std::string GetUrl() const { return "ToolLoose.htm"; }
-};
-
-struct ProgramMaziak: public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "GameMaziak_1_3.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "GameMaziak_2_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Maziak"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::maziak; }
-  const std::string GetUrl() const { return "GameMaziak.htm"; }
-};
-
-struct ProgramMorpher : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolMorpher_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Morpher"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::morpher; }
-  const std::string GetUrl() const { return "ToolMorpher.htm"; }
-};
-
-struct ProgramPokeVolley: public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "GamePokeVolley_2_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "PokeVolley"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::pokeVolley; }
-  const std::string GetUrl() const { return "GamePokeVolley.htm"; }
-};
-
-struct ProgramPylos: public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "GamePylos_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Pylos"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::pylos; }
-  const std::string GetUrl() const { return "GamePylos.htm"; }
-};
-
-struct ProgramQmakeWatcher : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "QmakeWatcher"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::qmakeWatcher; }
-  const std::string GetUrl() const { return "ToolQmakeWatcher.htm"; }
-};
-
-struct ProgramQuadraticSolver: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return "ToolQuadraticSolver_1_0.png"; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "QuadraticSolver"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::quadraticSolver; }
-  const std::string GetUrl() const { return "ToolQuadraticSolver..htm"; }
-};
-
-struct ProgramReversi: public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "GameReversi_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Reversi"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::reversi; }
-  const std::string GetUrl() const { return "GameReversi.htm"; }
-};
-
-struct ProgramRubiksClock: public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "GameRubiksClockDesktop_2_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "GameRubiksClock_1_0.png"; }
-  const std::string GetFilenameWeb() const { return "GameRubiksClock_2_1.png"; }
-  const std::string GetName() const { return "Rubik's Clock"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::rubiksClock; }
-  const std::string GetUrl() const { return "GameRubiksClock.htm"; }
-};
-
-struct ProgramSearchAndDestroyChess: public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const { return "GameSearchAndDestroyChessConsole_1_0.png"; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "GameSearchAndDestroyChess_2_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Search And Destroy Chess"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::searchAndDestroyChess; }
-  const std::string GetUrl() const { return "GameSearchAndDestroyChess.htm"; }
-};
-
 struct ProgramSpaceHarry : public RichelBilderbeek::ProgramGame
 {
   const std::string GetFilenameConsole() const { return ""; }
@@ -1270,35 +1865,6 @@ struct ProgramCrossPoll: public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const { return "ProjectCrossPoll.htm"; }
 };
 
-struct ProgramGtst: public RichelBilderbeek::ProgramProject
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return "ProjectGtst_1_2.png"; }
-  const std::string GetName() const { return "GTST"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::gtst; }
-  const std::string GetUrl() const { return "ProjectGtst.htm"; }
-};
-
-struct ProgramMuscaDomestica: public RichelBilderbeek::ProgramProject
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ProjectMuscaDomestica_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Project Musca Domestica"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::muscaDomestica; }
-  const std::string GetUrl() const { return "ProjectMuscaDomestica.htm"; }
-};
 
 struct ProgramNewickVector: public RichelBilderbeek::ProgramProject
 {
@@ -1396,309 +1962,6 @@ struct ProgramEncranger: public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const { return "ToolEncranger.htm"; }
 };
 
-struct ProgramFilterOperationer: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolFilterOperationer_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "FilterOperationer"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::filterOperationer; }
-  const std::string GetUrl() const { return "ToolFilterOperationer.htm"; }
-};
-
-struct ProgramFryskLeareLieder: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolFryskLeareLieder_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "FryskLeareLieder"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::fryskLeareLieder; }
-  const std::string GetUrl() const { return "ToolFryskLeareLieder.htm"; }
-};
-
-struct ProgramFunctionPlotter: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolFunctionPlotter_1_1.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "FunctionPlotter"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::functionPlotter; }
-  const std::string GetUrl() const { return "ToolFunctionPlotter.htm"; }
-};
-
-struct ProgramGaborFilter: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolGaborFilter_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolGaborFilter_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "GaborFilter"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::gaborFilter; }
-  const std::string GetUrl() const { return "ToolGaborFilter.htm"; }
-};
-
-struct ProgramHistogramEqualizationer: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolHistogramEqualizationer_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "HistogramEqualizationer"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::unk; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::histogramEqualizationer; }
-  const std::string GetUrl() const { return "ToolHistogramEqualizationer.htm"; }
-};
-
-struct ProgramHometrainer: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolHometrainer_1_8.png"; }
-  const std::string GetFilenameWeb() const { return "ToolHometrainer_2_0.png"; }
-  const std::string GetName() const { return "Hometrainer"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::hometrainer; }
-  const std::string GetUrl() const { return "ToolHometrainer.htm"; }
-};
-
-struct ProgramImageRotater: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolImageRotaterClx_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "ImageRotater"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::imageRotater; }
-  const std::string GetUrl() const { return "ToolImageRotater.htm"; }
-};
-
-struct ProgramMazeCreator: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolMazeCreator_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolMazeCreator_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "MazeCreator"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::mazeCreator; }
-  const std::string GetUrl() const { return "ToolMazeCreator.htm"; }
-};
-
-struct ProgramMultiEncranger: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolMultiEncranger_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "MultiEncranger"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::multiEncranger; }
-  const std::string GetUrl() const { return "ToolMultiEncranger.htm"; }
-};
-
-struct ProgramMusicTheory : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolMusicTheory_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "MusicTheory"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::musicTheory; }
-  const std::string GetUrl() const { return "ToolMusicTheory.htm"; }
-};
-
-struct ProgramPaperRockScissors : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolPaperRockScissors_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "PaperRockScissors"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::paperRockScissors; }
-  const std::string GetUrl() const { return "ToolPaperRockScissors.htm"; }
-};
-
-struct ProgramPause : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Pause"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::pause; }
-  const std::string GetUrl() const { return "ToolPause.htm"; }
-};
-
-struct ProgramPerfectElasticCollision: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolPerfectElasticCollision_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "PerfectElasticCollision"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::perfectElasticCollision; }
-  const std::string GetUrl() const { return "ToolPerfectElasticCollision.htm"; }
-};
-
-struct ProgramPicToCode: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolPicToCode_1_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return "ToolPicToCode_1_3.png"; }
-  const std::string GetName() const { return "PicToCode"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::picToCode; }
-  const std::string GetUrl() const { return "ToolPicToCode.htm"; }
-};
-
-struct ProgramPixelator: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolPixelator_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "Pixelator"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::pixelator; }
-  const std::string GetUrl() const { return "ToolPixelator.htm"; }
-};
-
-struct ProgramRandomCode: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolRandomCode_4_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolRandomCode_1_0.png"; }
-  const std::string GetFilenameWeb() const { return "ToolRandomCode_3_0.png"; }
-  const std::string GetName() const { return "RandomCode"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::randomCode; }
-  const std::string GetUrl() const { return "ToolRandomCode.htm"; }
-};
-
-struct ProgramRasper: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return "ToolRasper_0_3.png"; }
-  const std::string GetName() const { return "Rasper"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::rasper; }
-  const std::string GetUrl() const { return "ToolRasper.htm"; }
-};
-
-struct ProgramRefrigeratorPuzzleSolver: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolRefrigeratorPuzzleSolver_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "RefrigeratorPuzzleSolver"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::refrigeratorPuzzleSolver; }
-  const std::string GetUrl() const { return "ToolRefrigeratorPuzzleSolver.htm"; }
-};
-
-
-
-struct ProgramRegexTester: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolRegexTester_1_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "RegexTester"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::regexTester; }
-  const std::string GetUrl() const { return "ToolRegexTester.htm"; }
-};
-
-struct ProgramRichelBilderbeekGallery : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolRichelBilderbeekGallery_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "RichelBilderbeekGallery"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::richelBilderbeekGallery; }
-  const std::string GetUrl() const { return "ToolRichelBilderbeekGallery.htm"; }
-};
-
-
 struct ProgramRichelBilderbeekNlSitemapGenerator : public RichelBilderbeek::ProgramTool
 {
   const std::string GetFilenameConsole() const { return ""; }
@@ -1713,83 +1976,6 @@ struct ProgramRichelBilderbeekNlSitemapGenerator : public RichelBilderbeek::Prog
   ProgramType GetType() const { return ProgramType::richelBilderbeekNlSitemapGenerator; }
   const std::string GetUrl() const { return "ToolRichelBilderbeekNlSitemapGenerator.htm"; }
 };
-
-struct ProgramSecretMessage: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolSecretMessage_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "SecretMessage"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::secretMessage; }
-  const std::string GetUrl() const { return "ToolSecretMessage.htm"; }
-};
-
-struct ProgramSimBrainiac: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolSimBrainiac_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "SimBrainiac"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::simBrainiac; }
-  const std::string GetUrl() const { return "ToolSimBrainiac.htm"; }
-};
-
-struct ProgramSimImmuneResponse: public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return "ToolSimImmuneResponse_1_0.png"; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "SimImmuneResponse"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::simImmuneResponse; }
-  const std::string GetUrl() const { return "ToolSimImmuneResponse.htm"; }
-};
-
-struct ProgramSimMysteryMachine : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolSimMysteryMachine_1_1_desktop.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return "ToolSimMysteryMachine_1_1_web.png"; }
-  const std::string GetName() const { return "SimMysteryMachine"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::yes; }
-  ProgramType GetType() const { return ProgramType::simMysteryMachine; }
-  const std::string GetUrl() const { return "ToolSimMysteryMachine.htm"; }
-};
-
-struct ProgramSimplifyNewick : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ToolSimplifyNewick_1_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
-  const std::string GetFilenameWeb() const { return ""; }
-  const std::string GetName() const { return "SimplifyNewick"; }
-  ProgramStatus GetStatusConsole() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const { return ProgramStatus::no; }
-  ProgramType GetType() const { return ProgramType::simplifyNewick; }
-  const std::string GetUrl() const { return "ToolSimplifyNewick.htm"; }
-};
-
-
 
 struct ProgramSimStagecraft: public RichelBilderbeek::ProgramTool
 {
