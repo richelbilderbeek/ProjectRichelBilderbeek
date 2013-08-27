@@ -67,4 +67,4 @@ HEADERS  += \
     testquestionmaindialog.h
 
 RESOURCES += \
-    ToolTestQuestion.qrc
+    ToolTestMultipleChoiceQuestion.qrc
