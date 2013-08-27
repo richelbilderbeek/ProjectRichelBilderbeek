@@ -204,3 +204,4 @@ Tools/ToolTestQtOcrWidget/ToolTestQtOcrWidget
 Tools/ToolTestQuestion/ToolTestQuestionWebsite
 Tools/ToolTestSelectFileDialog/ToolTestSelectFileDialogWebsite
 Libraries/avr-libc-1.8.0/
+/Libraries/gsl-1.16

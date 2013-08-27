@@ -81,7 +81,7 @@ const boost::shared_ptr<Program> Program::CreateProgram(const ProgramType type)
     case ProgramType::multiEncranger: p.reset(new ProgramMultiEncranger); break;
     case ProgramType::muscaDomestica: p.reset(new ProgramMuscaDomestica); break;
     case ProgramType::musicTheory: p.reset(new ProgramMusicTheory); break;
-    case ProgramType::ndsMake: p.reset(new ProgramNdsMake); break;
+    case ProgramType::ndsMake: p.reset(new ProgramNdsmake); break;
     case ProgramType::newickVector: p.reset(new ProgramNewickVector); break;
     case ProgramType::paperRockScissors: p.reset(new ProgramPaperRockScissors); break;
     case ProgramType::pause: p.reset(new ProgramPause); break;
