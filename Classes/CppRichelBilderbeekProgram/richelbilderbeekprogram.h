@@ -2360,7 +2360,7 @@ struct ProgramUbuntuOneWatcher : public RichelBilderbeek::ProgramTool
 struct ProgramVanDenBogaart : public RichelBilderbeek::ProgramProject
 {
   const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ProjectVanDenBogaart_0_27.png"; }
+  const std::string GetFilenameDesktop() const { return ""; }
   const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
   const std::string GetFilenameWeb() const { return ""; }
   const std::string GetName() const { return "VanDenBogaart"; }

@@ -25,13 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-
-
 struct Canvas
 {
   ///The color system used:
-  ///- normal: black is displayed by M (assumes white background, black characters)
-  ///- invert: white is displayed by M
+  ///- normal: full/drawn is displayed by M
+  ///- invert: empty/non-drawn is displayed by M
   enum class ColorSystem { normal, invert };
 
   ///The coordinat system used in displayal:
@@ -48,10 +46,21 @@ struct Canvas
     const ColorSystem colorSystem = ColorSystem::normal,
     const CoordinatSystem coordinatSystem = CoordinatSystem::screen);
 
+  ///Draw (or actually: add) a dot on the canvas at (x,y), where
+  ///(x,y) is the center of a dot with radius 1.0. It is not checked that
+  ///(x,y) is in ( [0.0,GetWidth()>, [0.0,GetHeight()> )
   void DrawDot(const double x, const double y);
+
+  ///Draw (or actually: add) a line on the canvas from (x1,y1) to (x2,y2),
+  ///where (x1,y1) and (x2,y2) are the centers of a dot with radius 1.0 at
+  ///the edges of the line
   void DrawLine(const double x1, const double y1, const double x2, const double y2);
+
+  ///Draw (or actually: add) a circle on the canvas at (xMid,yMid),
+  ///with radius ray
   void DrawCircle(const double xMid, const double yMid, const double ray);
 
+  ///Obtain the height of the canvas is characters
   int GetHeight() const { return mCanvas.size(); }
 
   ///Obtain the version of this class
@@ -60,22 +69,27 @@ struct Canvas
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 
+  ///Obtain the width of the canvas is characters
   int GetWidth() const { return (GetHeight()==0 ? 0 : mCanvas[0].size() ); }
 
   private:
-  bool IsInRange(const int x, const int y) const;
-
+  ///The Canvas its internal data: a 2D y-x-ordered std::vector
+  ///of doubles, where 0.0 denotes empty/non-drawn
+  ///and 1.0 denotes full/drawn.
   std::vector<std::vector<double> > mCanvas;
 
   ///The color system used:
-  ///- normal: black is displayed by M (assumes white background, black characters)
-  ///- invert: white is displayed by M
+  ///- normal: full/drawn is displayed by M
+  ///- invert: empty/non-drawn is displayed by M
   const ColorSystem mColorSystem;
 
   ///The coordinat system used in displayal:
   ///- screen: origin is at top-left of the screen
   ///- graph: origin is at bottom-left of the screen
   const CoordinatSystem mCoordinatSystem;
+
+  ///Check if a coordinat is in the range of the Canvas
+  bool IsInRange(const int x, const int y) const;
 
   //From http://www.richelbilderbeek.nl/CppMinElement.htm
   template <class Container>

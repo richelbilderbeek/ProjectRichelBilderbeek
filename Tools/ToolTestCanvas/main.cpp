@@ -60,7 +60,7 @@ int main()
   //Specify the dimensions of the canvas equal to the screen
   //Coordinat (0,0) is the top-left coordinat
   //Coordinat (79,23) is the bottom-right coordinat
-  const int maxx = 49;
+  const int maxx = 79;
   const int maxy = 23;
 
   for (int i=0; i!=4; ++i)
