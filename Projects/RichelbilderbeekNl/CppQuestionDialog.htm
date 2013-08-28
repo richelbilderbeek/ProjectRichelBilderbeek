@@ -163,8 +163,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQuestionDialog.htm">questiondialog</a>.h"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestion.htm">multiplechoicequestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestionDialog.htm">multiplechoicequestiondialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQuestion.htm">question</a>.h"<br/>
 <br/>
 <a href="CppQuestionDialog.htm">QuestionDialog</a>::<a href="CppQuestionDialog.htm">QuestionDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt;&amp; <a href="CppQuestion.htm">question</a>)<br/>
 &nbsp;&nbsp;: m_has_submitted(<b><a href="CppFalse.htm">false</a></b>),<br/>

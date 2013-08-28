@@ -65,7 +65,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -82,7 +82,7 @@
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
   <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
 </ul>
 <p>&nbsp;</p>
@@ -930,13 +930,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Clear all plots<br/>
 &nbsp;&nbsp;<a href="CppPreIf.htm">#if</a> (QWT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0x060000)<br/>
-&nbsp;&nbsp;m_curve_outputs_alpha-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(0,0,0));<br/>
-&nbsp;&nbsp;m_curve_outputs_alpha_beta-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(0,0,0));<br/>
-&nbsp;&nbsp;m_curve_outputs_alpha_beta_gamma-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(0,0,0));<br/>
-&nbsp;&nbsp;m_curve_outputs_lsq-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(0,0,0));<br/>
-&nbsp;&nbsp;m_curve_outputs_slsq-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(0,0,0));<br/>
-&nbsp;&nbsp;m_curve_outputs_ma-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(0,0,0));<br/>
-&nbsp;&nbsp;m_curve_outputs_miso-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(0,0,0));<br/>
+&nbsp;&nbsp;m_curve_outputs_alpha-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(0,0,0));<br/>
+&nbsp;&nbsp;m_curve_outputs_alpha_beta-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(0,0,0));<br/>
+&nbsp;&nbsp;m_curve_outputs_alpha_beta_gamma-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(0,0,0));<br/>
+&nbsp;&nbsp;m_curve_outputs_lsq-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(0,0,0));<br/>
+&nbsp;&nbsp;m_curve_outputs_slsq-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(0,0,0));<br/>
+&nbsp;&nbsp;m_curve_outputs_ma-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(0,0,0));<br/>
+&nbsp;&nbsp;m_curve_outputs_miso-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(0,0,0));<br/>
 &nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
 &nbsp;&nbsp;m_curve_outputs_alpha-&gt;setData(0,0,0);<br/>
 &nbsp;&nbsp;m_curve_outputs_alpha_beta-&gt;setData(0,0,0);<br/>
@@ -954,34 +954,34 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a>series.push_back(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreIf.htm">#if</a> (QWT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0x060000)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_curve_inputs-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;inputs[0],inputs.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_curve_inputs-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>series[0],&amp;inputs[0],inputs.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;groupbox_alpha-&gt;isChecked())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_alpha-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_alpha[0],outputs_alpha.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_alpha-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_alpha[0],outputs_alpha.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;groupbox_beta-&gt;isChecked())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_alpha_beta-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_alpha_beta[0],outputs_alpha_beta.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_alpha_beta-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_alpha_beta[0],outputs_alpha_beta.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;groupbox_abg-&gt;isChecked())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_alpha_beta_gamma-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_alpha_beta_gamma[0],outputs_alpha_beta_gamma.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_alpha_beta_gamma-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_alpha_beta_gamma[0],outputs_alpha_beta_gamma.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;groupbox_lsq-&gt;isChecked())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_lsq-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_lsq[0],outputs_lsq.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_lsq-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_lsq[0],outputs_lsq.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;groupBox_slsq-&gt;isChecked())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_slsq-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_slsq[0],outputs_slsq.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_slsq-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_slsq[0],outputs_slsq.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;groupBox_ma-&gt;isChecked())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_ma-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_ma[0],outputs_ma.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_ma-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_ma[0],outputs_ma.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;groupBox_miso-&gt;isChecked())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_miso-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_miso[0],outputs_miso.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_curve_outputs_miso-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>series[0],&amp;outputs_miso[0],outputs_miso.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_curve_inputs-&gt;setData(&amp;<a href="CppTime.htm">time</a>series[0],&amp;inputs[0],inputs.size());<br/>

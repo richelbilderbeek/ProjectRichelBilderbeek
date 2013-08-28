@@ -56,7 +56,7 @@ and <a href="CppStl.htm">STL</a> <a href="CppLibrary.htm">libraries</a>.</p>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -72,7 +72,7 @@ and <a href="CppStl.htm">STL</a> <a href="CppLibrary.htm">libraries</a>.</p>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
 </ul>
 <p>&nbsp;</p>
@@ -424,7 +424,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestNeuralNet.htm">ToolTestNeuralNet</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "dialogmain.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
@@ -469,7 +469,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> NEURALNET_H<br/>
 <a href="CppDefine.htm">#define</a> NEURALNET_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;Array/Array.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppArray.htm">Array</a>/<a href="CppArray.htm">Array</a>.h&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;ReClaM/FFNet.h&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a><a href="CppNeuralNet.htm">NeuralNet</a> is a derived <b><a href="CppClass.htm">class</a></b> of FFNet<br/>
@@ -505,7 +505,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Wrapper method due to clumsy createConnection<a href="CppMatrix.htm">Matrix</a> behavior<br/>
-&nbsp;&nbsp;Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; CreateConnection<a href="CppMatrix.htm">Matrix</a>(<br/>
+&nbsp;&nbsp;<a href="CppArray.htm">Array</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; CreateConnection<a href="CppMatrix.htm">Matrix</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_inputs,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_hidden_neurons,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_outputs) <b><a href="CppConst.htm">const</a></b>;<br/>
@@ -515,10 +515,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Activate uses <b><a href="CppDefault.htm">default</a></b> FFNet::activate method<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Use Propagate instead<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Activate(<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Activate(<b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Use Propagate instead<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; PropagateArray(<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Propagate<a href="CppArray.htm">Array</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read the output from the output layer from <b><a href="CppThis.htm">this</a></b> neural network<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Use Propagate instead<br/>
@@ -536,15 +536,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>();<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<a href="CppVector.htm">std::vector</a>&lt;T&gt; <a href="CppConvert.htm">Convert</a>ToVector(<b><a href="CppConst.htm">const</a></b> Array&lt;T&gt; a)<br/>
+<a href="CppVector.htm">std::vector</a>&lt;T&gt; <a href="CppConvert.htm">Convert</a>ToVector(<b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;T&gt; a)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;(a.begin(),a.end());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-Array&lt;T&gt; <a href="CppConvert.htm">Convert</a>ToArray(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+<a href="CppArray.htm">Array</a>&lt;T&gt; <a href="CppConvert.htm">Convert</a>To<a href="CppArray.htm">Array</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
 {<br/>
-&nbsp;&nbsp;Array&lt;T&gt; a;<br/>
+&nbsp;&nbsp;<a href="CppArray.htm">Array</a>&lt;T&gt; a;<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt; v_copy(v); <a href="CppComment.htm">//</a>This is terrible!<br/>
 &nbsp;&nbsp;a.append_elems(v_copy);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
@@ -644,12 +644,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(weight<a href="CppMatrix.htm">Matrix</a>,other.weight<a href="CppMatrix.htm">Matrix</a>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNeuralNet.htm">NeuralNet</a>::CreateConnection<a href="CppMatrix.htm">Matrix</a>(<br/>
+<a href="CppArray.htm">Array</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNeuralNet.htm">NeuralNet</a>::CreateConnection<a href="CppMatrix.htm">Matrix</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_inputs,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_hidden,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_outputs) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
+&nbsp;&nbsp;<a href="CppArray.htm">Array</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
 &nbsp;&nbsp;createConnection<a href="CppMatrix.htm">Matrix</a>(m,n_inputs, n_hidden, n_outputs);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
 }<br/>
@@ -659,7 +659,7 @@ Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNeuralNet.htm">Neur
 <a href="CppComment.htm">///</a>The code below proofs that the FFNet is not<br/>
 <a href="CppComment.htm">///</a>changed, so <b><a href="CppThis.htm">this</a></b> method could have been a <b><a href="CppConst.htm">const</a></b>-method.<br/>
 <a href="CppComment.htm">///</a>Prefer to use the <b><a href="CppConst.htm">const</a></b>-correct Propagate method<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppNeuralNet.htm">NeuralNet</a>::Activate(<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppNeuralNet.htm">NeuralNet</a>::Activate(<b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>I promise not to change <a href="CppAny.htm">any</a>thing<br/>
 &nbsp;&nbsp;<a href="CppNeuralNet.htm">NeuralNet</a> * <b><a href="CppConst.htm">const</a></b> n <a href="CppOperatorAssign.htm">=</a> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppNeuralNet.htm">NeuralNet</a>*&gt;(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -684,10 +684,10 @@ Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNeuralNet.htm">Neur
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a>&nbsp;&nbsp;CHECK_ARCHITECTURE_165254<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read the original connection <a href="CppMatrix.htm">matrix</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; a_copy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;connection<a href="CppMatrix.htm">Matrix</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; a_copy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;connection<a href="CppMatrix.htm">Matrix</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>I promise not to change <b><a href="CppThis.htm">this</a></b> <a href="CppNeuralNet.htm">NeuralNet</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNeuralNet.htm">NeuralNet</a> * n <a href="CppOperatorAssign.htm">=</a> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppNeuralNet.htm">NeuralNet</a>*&gt;(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; a <a href="CppOperatorAssign.htm">=</a> n-&gt;getConnections();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; a <a href="CppOperatorAssign.htm">=</a> n-&gt;getConnections();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> a_copy);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
@@ -754,11 +754,11 @@ Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNeuralNet.htm">Neur
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>Due to funny Array behavior, it is needed<br/>
+<a href="CppComment.htm">///</a>Due to funny <a href="CppArray.htm">Array</a> behavior, it is needed<br/>
 <a href="CppComment.htm">///</a>to implement Mutate a bit clumsily<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppNeuralNet.htm">NeuralNet</a>::Mutate(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m)<br/>
 {<br/>
-&nbsp;&nbsp;Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; weights <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;getWeights();<br/>
+&nbsp;&nbsp;<a href="CppArray.htm">Array</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; weights <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;getWeights();<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppDouble.htm">double</a></b>&amp; x,weights)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;x<a href="CppOperatorPlusAssign.htm">+=</a> (<a href="CppGetRandomUniform.htm">GetRandomUniform</a>() * (2.0 * m)) <a href="CppOperatorMinus.htm">-</a> m;<br/>
@@ -767,7 +767,7 @@ Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNeuralNet.htm">Neur
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>Propagate creates the output of a neural network <b><a href="CppFor.htm">for</a></b> certain inputs<br/>
-<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppNeuralNet.htm">NeuralNet</a>::PropagateArray(<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppNeuralNet.htm">NeuralNet</a>::Propagate<a href="CppArray.htm">Array</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>I promise not to change <a href="CppAny.htm">any</a>thing<br/>
 &nbsp;&nbsp;<a href="CppNeuralNet.htm">NeuralNet</a> * <b><a href="CppConst.htm">const</a></b> n <a href="CppOperatorAssign.htm">=</a> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppNeuralNet.htm">NeuralNet</a>*&gt;(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -782,8 +782,8 @@ Array&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNeuralNet.htm">Neur
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppNeuralNet.htm">NeuralNet</a>::Propagate(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &amp;inputs) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Array&lt;<b><a href="CppDouble.htm">double</a></b>&gt; a <a href="CppOperatorAssign.htm">=</a> <a href="CppConvert.htm">Convert</a>ToArray(inputs);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;PropagateArray(a);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; a <a href="CppOperatorAssign.htm">=</a> <a href="CppConvert.htm">Convert</a>To<a href="CppArray.htm">Array</a>(inputs);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;Propagate<a href="CppArray.htm">Array</a>(a);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>Cannot call methods, because it causes<br/>

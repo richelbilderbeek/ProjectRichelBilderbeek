@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Original</title>
+  <meta name="description" content="C++ Original"/>
+  <meta name="keywords" content="C++ Original code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="Original.htm">Original</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name Original-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary=".sh" border = "1"><tr><td><code>
+convert wood_l.xpm ../ls.png<br/>
+convert wood_d.xpm ../ds.png<br/>
+convert question_mark.xpm ../question_mark.png<br/>
+<br/>
+convert -colorize 0,80,80 ../ls.png ../lsr.png<br/>
+convert -colorize 0,80,80 ../ds.png ../dsr.png<br/>
+convert -colorize 80,0,80 ../ls.png ../lsg.png<br/>
+convert -colorize 80,0,80 ../ds.png ../dsg.png<br/>
+convert -colorize 80,80,0 ../ls.png ../lsb.png<br/>
+convert -colorize 80,80,0 ../ds.png ../dsb.png<br/>
+<br/>
+#Put pieces on ls and ds<br/>
+<br/>
+#Bishop<br/>
+convert -transparent green -composite ../ls.png bld129.xpm ../wbls.png<br/>
+convert -transparent green -composite ../ds.png bld129.xpm ../wbds.png<br/>
+convert -transparent green -composite ../ls.png bdd129.xpm ../bbls.png<br/>
+convert -transparent green -composite ../ds.png bdd129.xpm ../bbds.png<br/>
+#King<br/>
+convert -transparent green -composite ../ls.png kld129.xpm ../wkls.png<br/>
+convert -transparent green -composite ../ds.png kld129.xpm ../wkds.png<br/>
+convert -transparent green -composite ../ls.png kdd129.xpm ../bkls.png<br/>
+convert -transparent green -composite ../ds.png kdd129.xpm ../bkds.png<br/>
+#Knight<br/>
+convert -transparent green -composite ../ls.png nld129.xpm ../wnls.png<br/>
+convert -transparent green -composite ../ds.png nld129.xpm ../wnds.png<br/>
+convert -transparent green -composite ../ls.png ndd129.xpm ../bnls.png<br/>
+convert -transparent green -composite ../ds.png ndd129.xpm ../bnds.png<br/>
+#Pawn<br/>
+convert -transparent green -composite ../ls.png pld129.xpm ../wpls.png<br/>
+convert -transparent green -composite ../ds.png pld129.xpm ../wpds.png<br/>
+convert -transparent green -composite ../ls.png pdd129.xpm ../bpls.png<br/>
+convert -transparent green -composite ../ds.png pdd129.xpm ../bpds.png<br/>
+#Queen<br/>
+convert -transparent green -composite ../ls.png qld129.xpm ../wqls.png<br/>
+convert -transparent green -composite ../ds.png qld129.xpm ../wqds.png<br/>
+convert -transparent green -composite ../ls.png qdd129.xpm ../bqls.png<br/>
+convert -transparent green -composite ../ds.png qdd129.xpm ../bqds.png<br/>
+#Rook<br/>
+convert -transparent green -composite ../ls.png rld129.xpm ../wrls.png<br/>
+convert -transparent green -composite ../ds.png rld129.xpm ../wrds.png<br/>
+convert -transparent green -composite ../ls.png rdd129.xpm ../brls.png<br/>
+convert -transparent green -composite ../ds.png rdd129.xpm ../brds.png<br/>
+<br/>
+#Put pieces on lsr and dsr<br/>
+<br/>
+#Bishop<br/>
+convert -transparent green -composite ../lsr.png bld129.xpm ../wblsr.png<br/>
+convert -transparent green -composite ../dsr.png bld129.xpm ../wbdsr.png<br/>
+convert -transparent green -composite ../lsr.png bdd129.xpm ../bblsr.png<br/>
+convert -transparent green -composite ../dsr.png bdd129.xpm ../bbdsr.png<br/>
+#King<br/>
+convert -transparent green -composite ../lsr.png kld129.xpm ../wklsr.png<br/>
+convert -transparent green -composite ../dsr.png kld129.xpm ../wkdsr.png<br/>
+convert -transparent green -composite ../lsr.png kdd129.xpm ../bklsr.png<br/>
+convert -transparent green -composite ../dsr.png kdd129.xpm ../bkdsr.png<br/>
+#Knight<br/>
+convert -transparent green -composite ../lsr.png nld129.xpm ../wnlsr.png<br/>
+convert -transparent green -composite ../dsr.png nld129.xpm ../wndsr.png<br/>
+convert -transparent green -composite ../lsr.png ndd129.xpm ../bnlsr.png<br/>
+convert -transparent green -composite ../dsr.png ndd129.xpm ../bndsr.png<br/>
+#Pawn<br/>
+convert -transparent green -composite ../lsr.png pld129.xpm ../wplsr.png<br/>
+convert -transparent green -composite ../dsr.png pld129.xpm ../wpdsr.png<br/>
+convert -transparent green -composite ../lsr.png pdd129.xpm ../bplsr.png<br/>
+convert -transparent green -composite ../dsr.png pdd129.xpm ../bpdsr.png<br/>
+#Queen<br/>
+convert -transparent green -composite ../lsr.png qld129.xpm ../wqlsr.png<br/>
+convert -transparent green -composite ../dsr.png qld129.xpm ../wqdsr.png<br/>
+convert -transparent green -composite ../lsr.png qdd129.xpm ../bqlsr.png<br/>
+convert -transparent green -composite ../dsr.png qdd129.xpm ../bqdsr.png<br/>
+#Rook<br/>
+convert -transparent green -composite ../lsr.png rld129.xpm ../wrlsr.png<br/>
+convert -transparent green -composite ../dsr.png rld129.xpm ../wrdsr.png<br/>
+convert -transparent green -composite ../lsr.png rdd129.xpm ../brlsr.png<br/>
+convert -transparent green -composite ../dsr.png rdd129.xpm ../brdsr.png<br/>
+<br/>
+#Put pieces on lsg and dsg<br/>
+<br/>
+#Bishop<br/>
+convert -transparent green -composite ../lsg.png bld129.xpm ../wblsg.png<br/>
+convert -transparent green -composite ../dsg.png bld129.xpm ../wbdsg.png<br/>
+convert -transparent green -composite ../lsg.png bdd129.xpm ../bblsg.png<br/>
+convert -transparent green -composite ../dsg.png bdd129.xpm ../bbdsg.png<br/>
+#King<br/>
+convert -transparent green -composite ../lsg.png kld129.xpm ../wklsg.png<br/>
+convert -transparent green -composite ../dsg.png kld129.xpm ../wkdsg.png<br/>
+convert -transparent green -composite ../lsg.png kdd129.xpm ../bklsg.png<br/>
+convert -transparent green -composite ../dsg.png kdd129.xpm ../bkdsg.png<br/>
+#Knight<br/>
+convert -transparent green -composite ../lsg.png nld129.xpm ../wnlsg.png<br/>
+convert -transparent green -composite ../dsg.png nld129.xpm ../wndsg.png<br/>
+convert -transparent green -composite ../lsg.png ndd129.xpm ../bnlsg.png<br/>
+convert -transparent green -composite ../dsg.png ndd129.xpm ../bndsg.png<br/>
+#Pawn<br/>
+convert -transparent green -composite ../lsg.png pld129.xpm ../wplsg.png<br/>
+convert -transparent green -composite ../dsg.png pld129.xpm ../wpdsg.png<br/>
+convert -transparent green -composite ../lsg.png pdd129.xpm ../bplsg.png<br/>
+convert -transparent green -composite ../dsg.png pdd129.xpm ../bpdsg.png<br/>
+#Queen<br/>
+convert -transparent green -composite ../lsg.png qld129.xpm ../wqlsg.png<br/>
+convert -transparent green -composite ../dsg.png qld129.xpm ../wqdsg.png<br/>
+convert -transparent green -composite ../lsg.png qdd129.xpm ../bqlsg.png<br/>
+convert -transparent green -composite ../dsg.png qdd129.xpm ../bqdsg.png<br/>
+#Rook<br/>
+convert -transparent green -composite ../lsg.png rld129.xpm ../wrlsg.png<br/>
+convert -transparent green -composite ../dsg.png rld129.xpm ../wrdsg.png<br/>
+convert -transparent green -composite ../lsg.png rdd129.xpm ../brlsg.png<br/>
+convert -transparent green -composite ../dsg.png rdd129.xpm ../brdsg.png<br/>
+<br/>
+#Put pieces on lsg and dsg<br/>
+<br/>
+#Bishop<br/>
+convert -transparent green -composite ../lsb.png bld129.xpm ../wblsb.png<br/>
+convert -transparent green -composite ../dsb.png bld129.xpm ../wbdsb.png<br/>
+convert -transparent green -composite ../lsb.png bdd129.xpm ../bblsb.png<br/>
+convert -transparent green -composite ../dsb.png bdd129.xpm ../bbdsb.png<br/>
+#King<br/>
+convert -transparent green -composite ../lsb.png kld129.xpm ../wklsb.png<br/>
+convert -transparent green -composite ../dsb.png kld129.xpm ../wkdsb.png<br/>
+convert -transparent green -composite ../lsb.png kdd129.xpm ../bklsb.png<br/>
+convert -transparent green -composite ../dsb.png kdd129.xpm ../bkdsb.png<br/>
+#Knight<br/>
+convert -transparent green -composite ../lsb.png nld129.xpm ../wnlsb.png<br/>
+convert -transparent green -composite ../dsb.png nld129.xpm ../wndsb.png<br/>
+convert -transparent green -composite ../lsb.png ndd129.xpm ../bnlsb.png<br/>
+convert -transparent green -composite ../dsb.png ndd129.xpm ../bndsb.png<br/>
+#Pawn<br/>
+convert -transparent green -composite ../lsb.png pld129.xpm ../wplsb.png<br/>
+convert -transparent green -composite ../dsb.png pld129.xpm ../wpdsb.png<br/>
+convert -transparent green -composite ../lsb.png pdd129.xpm ../bplsb.png<br/>
+convert -transparent green -composite ../dsb.png pdd129.xpm ../bpdsb.png<br/>
+#Queen<br/>
+convert -transparent green -composite ../lsb.png qld129.xpm ../wqlsb.png<br/>
+convert -transparent green -composite ../dsb.png qld129.xpm ../wqdsb.png<br/>
+convert -transparent green -composite ../lsb.png qdd129.xpm ../bqlsb.png<br/>
+convert -transparent green -composite ../dsb.png qdd129.xpm ../bqdsb.png<br/>
+#Rook<br/>
+convert -transparent green -composite ../lsb.png rld129.xpm ../wrlsb.png<br/>
+convert -transparent green -composite ../dsb.png rld129.xpm ../wrdsb.png<br/>
+convert -transparent green -composite ../lsb.png rdd129.xpm ../brlsb.png<br/>
+convert -transparent green -composite ../dsb.png rdd129.xpm ../brdsb.png<br/>
+<br/>
+<br/>
+#Bigger images<br/>
+convert ../wbls.png -resize +110% ../wbls_big.png<br/>
+convert ../wbds.png -resize +110% ../wbds_big.png<br/>
+convert ../bbls.png -resize +110% ../bbls_big.png<br/>
+convert ../bbds.png -resize +110% ../bbds_big.png<br/>
+convert ../wkls.png -resize +110% ../wkls_big.png<br/>
+convert ../wkds.png -resize +110% ../wkds_big.png<br/>
+convert ../bkls.png -resize +110% ../bkls_big.png<br/>
+convert ../bkds.png -resize +110% ../bkds_big.png<br/>
+convert ../wnls.png -resize +110% ../wnls_big.png<br/>
+convert ../wnds.png -resize +110% ../wnds_big.png<br/>
+convert ../bnls.png -resize +110% ../bnls_big.png<br/>
+convert ../bnds.png -resize +110% ../bnds_big.png<br/>
+convert ../wpls.png -resize +110% ../wpls_big.png<br/>
+convert ../wpds.png -resize +110% ../wpds_big.png<br/>
+convert ../bpls.png -resize +110% ../bpls_big.png<br/>
+convert ../bpds.png -resize +110% ../bpds_big.png<br/>
+convert ../wqls.png -resize +110% ../wqls_big.png<br/>
+convert ../wqds.png -resize +110% ../wqds_big.png<br/>
+convert ../bqls.png -resize +110% ../bqls_big.png<br/>
+convert ../bqds.png -resize +110% ../bqds_big.png<br/>
+convert ../wrls.png -resize +110% ../wrls_big.png<br/>
+convert ../wrds.png -resize +110% ../wrds_big.png<br/>
+convert ../brls.png -resize +110% ../brls_big.png<br/>
+convert ../brds.png -resize +110% ../brds_big.png<br/>
+<br/>
+#Bigger images on red squares<br/>
+convert ../wblsr.png -resize +110% ../wblsr_big.png<br/>
+convert ../wbdsr.png -resize +110% ../wbdsr_big.png<br/>
+convert ../bblsr.png -resize +110% ../bblsr_big.png<br/>
+convert ../bbdsr.png -resize +110% ../bbdsr_big.png<br/>
+convert ../wklsr.png -resize +110% ../wklsr_big.png<br/>
+convert ../wkdsr.png -resize +110% ../wkdsr_big.png<br/>
+convert ../bklsr.png -resize +110% ../bklsr_big.png<br/>
+convert ../bkdsr.png -resize +110% ../bkdsr_big.png<br/>
+convert ../wnlsr.png -resize +110% ../wnlsr_big.png<br/>
+convert ../wndsr.png -resize +110% ../wndsr_big.png<br/>
+convert ../bnlsr.png -resize +110% ../bnlsr_big.png<br/>
+convert ../bndsr.png -resize +110% ../bndsr_big.png<br/>
+convert ../wplsr.png -resize +110% ../wplsr_big.png<br/>
+convert ../wpdsr.png -resize +110% ../wpdsr_big.png<br/>
+convert ../bplsr.png -resize +110% ../bplsr_big.png<br/>
+convert ../bpdsr.png -resize +110% ../bpdsr_big.png<br/>
+convert ../wqlsr.png -resize +110% ../wqlsr_big.png<br/>
+convert ../wqdsr.png -resize +110% ../wqdsr_big.png<br/>
+convert ../bqlsr.png -resize +110% ../bqlsr_big.png<br/>
+convert ../bqdsr.png -resize +110% ../bqdsr_big.png<br/>
+convert ../wrlsr.png -resize +110% ../wrlsr_big.png<br/>
+convert ../wrdsr.png -resize +110% ../wrdsr_big.png<br/>
+convert ../brlsr.png -resize +110% ../brlsr_big.png<br/>
+convert ../brdsr.png -resize +110% ../brdsr_big.png<br/>
+<br/>
+#Bigger images on green squares<br/>
+convert ../wblsg.png -resize +110% ../wblsg_big.png<br/>
+convert ../wbdsg.png -resize +110% ../wbdsg_big.png<br/>
+convert ../bblsg.png -resize +110% ../bblsg_big.png<br/>
+convert ../bbdsg.png -resize +110% ../bbdsg_big.png<br/>
+convert ../wklsg.png -resize +110% ../wklsg_big.png<br/>
+convert ../wkdsg.png -resize +110% ../wkdsg_big.png<br/>
+convert ../bklsg.png -resize +110% ../bklsg_big.png<br/>
+convert ../bkdsg.png -resize +110% ../bkdsg_big.png<br/>
+convert ../wnlsg.png -resize +110% ../wnlsg_big.png<br/>
+convert ../wndsg.png -resize +110% ../wndsg_big.png<br/>
+convert ../bnlsg.png -resize +110% ../bnlsg_big.png<br/>
+convert ../bndsg.png -resize +110% ../bndsg_big.png<br/>
+convert ../wplsg.png -resize +110% ../wplsg_big.png<br/>
+convert ../wpdsg.png -resize +110% ../wpdsg_big.png<br/>
+convert ../bplsg.png -resize +110% ../bplsg_big.png<br/>
+convert ../bpdsg.png -resize +110% ../bpdsg_big.png<br/>
+convert ../wqlsg.png -resize +110% ../wqlsg_big.png<br/>
+convert ../wqdsg.png -resize +110% ../wqdsg_big.png<br/>
+convert ../bqlsg.png -resize +110% ../bqlsg_big.png<br/>
+convert ../bqdsg.png -resize +110% ../bqdsg_big.png<br/>
+convert ../wrlsg.png -resize +110% ../wrlsg_big.png<br/>
+convert ../wrdsg.png -resize +110% ../wrdsg_big.png<br/>
+convert ../brlsg.png -resize +110% ../brlsg_big.png<br/>
+convert ../brdsg.png -resize +110% ../brdsg_big.png<br/>
+<br/>
+#Bigger images on blue squares<br/>
+convert ../wblsb.png -resize +110% ../wblsb_big.png<br/>
+convert ../wbdsb.png -resize +110% ../wbdsb_big.png<br/>
+convert ../bblsb.png -resize +110% ../bblsb_big.png<br/>
+convert ../bbdsb.png -resize +110% ../bbdsb_big.png<br/>
+convert ../wklsb.png -resize +110% ../wklsb_big.png<br/>
+convert ../wkdsb.png -resize +110% ../wkdsb_big.png<br/>
+convert ../bklsb.png -resize +110% ../bklsb_big.png<br/>
+convert ../bkdsb.png -resize +110% ../bkdsb_big.png<br/>
+convert ../wnlsb.png -resize +110% ../wnlsb_big.png<br/>
+convert ../wndsb.png -resize +110% ../wndsb_big.png<br/>
+convert ../bnlsb.png -resize +110% ../bnlsb_big.png<br/>
+convert ../bndsb.png -resize +110% ../bndsb_big.png<br/>
+convert ../wplsb.png -resize +110% ../wplsb_big.png<br/>
+convert ../wpdsb.png -resize +110% ../wpdsb_big.png<br/>
+convert ../bplsb.png -resize +110% ../bplsb_big.png<br/>
+convert ../bpdsb.png -resize +110% ../bpdsb_big.png<br/>
+convert ../wqlsb.png -resize +110% ../wqlsb_big.png<br/>
+convert ../wqdsb.png -resize +110% ../wqdsb_big.png<br/>
+convert ../bqlsb.png -resize +110% ../bqlsb_big.png<br/>
+convert ../bqdsb.png -resize +110% ../bqdsb_big.png<br/>
+convert ../wrlsb.png -resize +110% ../wrlsb_big.png<br/>
+convert ../wrdsb.png -resize +110% ../wrdsb_big.png<br/>
+convert ../brlsb.png -resize +110% ../brlsb_big.png<br/>
+convert ../brdsb.png -resize +110% ../brdsb_big.png<br/>
+<br/>
+<br/>
+#Cropping those bigger images<br/>
+convert ../wbls_big.png -gravity center -crop 129x129+0+0 +repage ../wbls_big.png<br/>
+convert ../wbds_big.png -gravity center -crop 129x129+0+0 +repage ../wbds_big.png<br/>
+convert ../bbls_big.png -gravity center -crop 129x129+0+0 +repage ../bbls_big.png<br/>
+convert ../bbds_big.png -gravity center -crop 129x129+0+0 +repage ../bbds_big.png<br/>
+convert ../wkls_big.png -gravity center -crop 129x129+0+0 +repage ../wkls_big.png<br/>
+convert ../wkds_big.png -gravity center -crop 129x129+0+0 +repage ../wkds_big.png<br/>
+convert ../bkls_big.png -gravity center -crop 129x129+0+0 +repage ../bkls_big.png<br/>
+convert ../bkds_big.png -gravity center -crop 129x129+0+0 +repage ../bkds_big.png<br/>
+convert ../wnls_big.png -gravity center -crop 129x129+0+0 +repage ../wnls_big.png<br/>
+convert ../wnds_big.png -gravity center -crop 129x129+0+0 +repage ../wnds_big.png<br/>
+convert ../bnls_big.png -gravity center -crop 129x129+0+0 +repage ../bnls_big.png<br/>
+convert ../bnds_big.png -gravity center -crop 129x129+0+0 +repage ../bnds_big.png<br/>
+convert ../wpls_big.png -gravity center -crop 129x129+0+0 +repage ../wpls_big.png<br/>
+convert ../wpds_big.png -gravity center -crop 129x129+0+0 +repage ../wpds_big.png<br/>
+convert ../bpls_big.png -gravity center -crop 129x129+0+0 +repage ../bpls_big.png<br/>
+convert ../bpds_big.png -gravity center -crop 129x129+0+0 +repage ../bpds_big.png<br/>
+convert ../wqls_big.png -gravity center -crop 129x129+0+0 +repage ../wqls_big.png<br/>
+convert ../wqds_big.png -gravity center -crop 129x129+0+0 +repage ../wqds_big.png<br/>
+convert ../bqls_big.png -gravity center -crop 129x129+0+0 +repage ../bqls_big.png<br/>
+convert ../bqds_big.png -gravity center -crop 129x129+0+0 +repage ../bqds_big.png<br/>
+convert ../wrls_big.png -gravity center -crop 129x129+0+0 +repage ../wrls_big.png<br/>
+convert ../wrds_big.png -gravity center -crop 129x129+0+0 +repage ../wrds_big.png<br/>
+convert ../brls_big.png -gravity center -crop 129x129+0+0 +repage ../brls_big.png<br/>
+convert ../brds_big.png -gravity center -crop 129x129+0+0 +repage ../brds_big.png<br/>
+<br/>
+#Cropping those bigger red images<br/>
+convert ../wblsr_big.png -gravity center -crop 129x129+0+0 +repage ../wblsr_big.png<br/>
+convert ../wbdsr_big.png -gravity center -crop 129x129+0+0 +repage ../wbdsr_big.png<br/>
+convert ../bblsr_big.png -gravity center -crop 129x129+0+0 +repage ../bblsr_big.png<br/>
+convert ../bbdsr_big.png -gravity center -crop 129x129+0+0 +repage ../bbdsr_big.png<br/>
+convert ../wklsr_big.png -gravity center -crop 129x129+0+0 +repage ../wklsr_big.png<br/>
+convert ../wkdsr_big.png -gravity center -crop 129x129+0+0 +repage ../wkdsr_big.png<br/>
+convert ../bklsr_big.png -gravity center -crop 129x129+0+0 +repage ../bklsr_big.png<br/>
+convert ../bkdsr_big.png -gravity center -crop 129x129+0+0 +repage ../bkdsr_big.png<br/>
+convert ../wnlsr_big.png -gravity center -crop 129x129+0+0 +repage ../wnlsr_big.png<br/>
+convert ../wndsr_big.png -gravity center -crop 129x129+0+0 +repage ../wndsr_big.png<br/>
+convert ../bnlsr_big.png -gravity center -crop 129x129+0+0 +repage ../bnlsr_big.png<br/>
+convert ../bndsr_big.png -gravity center -crop 129x129+0+0 +repage ../bndsr_big.png<br/>
+convert ../wplsr_big.png -gravity center -crop 129x129+0+0 +repage ../wplsr_big.png<br/>
+convert ../wpdsr_big.png -gravity center -crop 129x129+0+0 +repage ../wpdsr_big.png<br/>
+convert ../bplsr_big.png -gravity center -crop 129x129+0+0 +repage ../bplsr_big.png<br/>
+convert ../bpdsr_big.png -gravity center -crop 129x129+0+0 +repage ../bpdsr_big.png<br/>
+convert ../wqlsr_big.png -gravity center -crop 129x129+0+0 +repage ../wqlsr_big.png<br/>
+convert ../wqdsr_big.png -gravity center -crop 129x129+0+0 +repage ../wqdsr_big.png<br/>
+convert ../bqlsr_big.png -gravity center -crop 129x129+0+0 +repage ../bqlsr_big.png<br/>
+convert ../bqdsr_big.png -gravity center -crop 129x129+0+0 +repage ../bqdsr_big.png<br/>
+convert ../wrlsr_big.png -gravity center -crop 129x129+0+0 +repage ../wrlsr_big.png<br/>
+convert ../wrdsr_big.png -gravity center -crop 129x129+0+0 +repage ../wrdsr_big.png<br/>
+convert ../brlsr_big.png -gravity center -crop 129x129+0+0 +repage ../brlsr_big.png<br/>
+convert ../brdsr_big.png -gravity center -crop 129x129+0+0 +repage ../brdsr_big.png<br/>
+<br/>
+<br/>
+#Cropping those bigger green images<br/>
+convert ../wblsg_big.png -gravity center -crop 129x129+0+0 +repage ../wblsg_big.png<br/>
+convert ../wbdsg_big.png -gravity center -crop 129x129+0+0 +repage ../wbdsg_big.png<br/>
+convert ../bblsg_big.png -gravity center -crop 129x129+0+0 +repage ../bblsg_big.png<br/>
+convert ../bbdsg_big.png -gravity center -crop 129x129+0+0 +repage ../bbdsg_big.png<br/>
+convert ../wklsg_big.png -gravity center -crop 129x129+0+0 +repage ../wklsg_big.png<br/>
+convert ../wkdsg_big.png -gravity center -crop 129x129+0+0 +repage ../wkdsg_big.png<br/>
+convert ../bklsg_big.png -gravity center -crop 129x129+0+0 +repage ../bklsg_big.png<br/>
+convert ../bkdsg_big.png -gravity center -crop 129x129+0+0 +repage ../bkdsg_big.png<br/>
+convert ../wnlsg_big.png -gravity center -crop 129x129+0+0 +repage ../wnlsg_big.png<br/>
+convert ../wndsg_big.png -gravity center -crop 129x129+0+0 +repage ../wndsg_big.png<br/>
+convert ../bnlsg_big.png -gravity center -crop 129x129+0+0 +repage ../bnlsg_big.png<br/>
+convert ../bndsg_big.png -gravity center -crop 129x129+0+0 +repage ../bndsg_big.png<br/>
+convert ../wplsg_big.png -gravity center -crop 129x129+0+0 +repage ../wplsg_big.png<br/>
+convert ../wpdsg_big.png -gravity center -crop 129x129+0+0 +repage ../wpdsg_big.png<br/>
+convert ../bplsg_big.png -gravity center -crop 129x129+0+0 +repage ../bplsg_big.png<br/>
+convert ../bpdsg_big.png -gravity center -crop 129x129+0+0 +repage ../bpdsg_big.png<br/>
+convert ../wqlsg_big.png -gravity center -crop 129x129+0+0 +repage ../wqlsg_big.png<br/>
+convert ../wqdsg_big.png -gravity center -crop 129x129+0+0 +repage ../wqdsg_big.png<br/>
+convert ../bqlsg_big.png -gravity center -crop 129x129+0+0 +repage ../bqlsg_big.png<br/>
+convert ../bqdsg_big.png -gravity center -crop 129x129+0+0 +repage ../bqdsg_big.png<br/>
+convert ../wrlsg_big.png -gravity center -crop 129x129+0+0 +repage ../wrlsg_big.png<br/>
+convert ../wrdsg_big.png -gravity center -crop 129x129+0+0 +repage ../wrdsg_big.png<br/>
+convert ../brlsg_big.png -gravity center -crop 129x129+0+0 +repage ../brlsg_big.png<br/>
+convert ../brdsg_big.png -gravity center -crop 129x129+0+0 +repage ../brdsg_big.png<br/>
+<br/>
+#Cropping those bigger blue images<br/>
+convert ../wblsb_big.png -gravity center -crop 129x129+0+0 +repage ../wblsb_big.png<br/>
+convert ../wbdsb_big.png -gravity center -crop 129x129+0+0 +repage ../wbdsb_big.png<br/>
+convert ../bblsb_big.png -gravity center -crop 129x129+0+0 +repage ../bblsb_big.png<br/>
+convert ../bbdsb_big.png -gravity center -crop 129x129+0+0 +repage ../bbdsb_big.png<br/>
+convert ../wklsb_big.png -gravity center -crop 129x129+0+0 +repage ../wklsb_big.png<br/>
+convert ../wkdsb_big.png -gravity center -crop 129x129+0+0 +repage ../wkdsb_big.png<br/>
+convert ../bklsb_big.png -gravity center -crop 129x129+0+0 +repage ../bklsb_big.png<br/>
+convert ../bkdsb_big.png -gravity center -crop 129x129+0+0 +repage ../bkdsb_big.png<br/>
+convert ../wnlsb_big.png -gravity center -crop 129x129+0+0 +repage ../wnlsb_big.png<br/>
+convert ../wndsb_big.png -gravity center -crop 129x129+0+0 +repage ../wndsb_big.png<br/>
+convert ../bnlsb_big.png -gravity center -crop 129x129+0+0 +repage ../bnlsb_big.png<br/>
+convert ../bndsb_big.png -gravity center -crop 129x129+0+0 +repage ../bndsb_big.png<br/>
+convert ../wplsb_big.png -gravity center -crop 129x129+0+0 +repage ../wplsb_big.png<br/>
+convert ../wpdsb_big.png -gravity center -crop 129x129+0+0 +repage ../wpdsb_big.png<br/>
+convert ../bplsb_big.png -gravity center -crop 129x129+0+0 +repage ../bplsb_big.png<br/>
+convert ../bpdsb_big.png -gravity center -crop 129x129+0+0 +repage ../bpdsb_big.png<br/>
+convert ../wqlsb_big.png -gravity center -crop 129x129+0+0 +repage ../wqlsb_big.png<br/>
+convert ../wqdsb_big.png -gravity center -crop 129x129+0+0 +repage ../wqdsb_big.png<br/>
+convert ../bqlsb_big.png -gravity center -crop 129x129+0+0 +repage ../bqlsb_big.png<br/>
+convert ../bqdsb_big.png -gravity center -crop 129x129+0+0 +repage ../bqdsb_big.png<br/>
+convert ../wrlsb_big.png -gravity center -crop 129x129+0+0 +repage ../wrlsb_big.png<br/>
+convert ../wrdsb_big.png -gravity center -crop 129x129+0+0 +repage ../wrdsb_big.png<br/>
+convert ../brlsb_big.png -gravity center -crop 129x129+0+0 +repage ../brlsb_big.png<br/>
+convert ../brdsb_big.png -gravity center -crop 129x129+0+0 +repage ../brdsb_big.png<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

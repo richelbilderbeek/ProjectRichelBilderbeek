@@ -68,7 +68,7 @@ and <a href="CppShapeWidget.htm">ShapeWidget</a> <a href="CppClass.htm">classes<
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -86,7 +86,7 @@ and <a href="CppShapeWidget.htm">ShapeWidget</a> <a href="CppClass.htm">classes<
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
   <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
   <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.2.2</li>
 </ul>
@@ -218,6 +218,385 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary=".h" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a>*******************************************************************************<br/>
+** Form generated from reading UI file '<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui'<br/>
+**<br/>
+** Created: Sun Aug 25 06:33:50 2013<br/>
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by: <a href="CppQt.htm">Qt</a> User <a href="CppInterface.htm">Interface</a> <a href="CppCompiler.htm">Compiler</a> <a href="CppVersion.htm">version</a> 4.8.4<br/>
+**<br/>
+** WARNING! All changes made in <b><a href="CppThis.htm">this</a></b> file will be lost when recompiling UI file!<br/>
+*******************************************************************************<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> UI_QTABOUTDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> UI_QTABOUTDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Core/QVariant&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QAction&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QButtonGroup&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QHeaderView&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQLineEdit.htm">QLineEdit</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQPlainTextEdit.htm">QPlainTextEdit</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<br/>
+QT_BEGIN_NAMESPACE<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> Ui_<a href="CppQtAboutDialog.htm">QtAboutDialog</a><br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> *verticalLayout;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_title;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_copyright;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_author;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_date;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_download;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLineEdit.htm">QLineEdit</a> *edit_url;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_licence;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPlainTextEdit.htm">QPlainTextEdit</a> *text_libraries;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPlainTextEdit.htm">QPlainTextEdit</a> *text_whatsnew;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPlainTextEdit.htm">QPlainTextEdit</a> *text_licence;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_build_date_<a href="CppTime.htm">time</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_build_type;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setupUi(<a href="CppQDialog.htm">QDialog</a> *<a href="CppQtAboutDialog.htm">QtAboutDialog</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQtAboutDialog.htm">QtAboutDialog</a>-&gt;objectName().isEmpty())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a>-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a>-&gt;resize(935, 563);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFont.htm">QFont</a> font;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font.setFamily(<a href="CppQString.htm">QString</a>::fromUtf8("Courier New"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font.set<a href="CppPoint.htm">Point</a>Size(12);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a>-&gt;setFont(font);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("verticalLayout"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_title"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFont.htm">QFont</a> font1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font1.set<a href="CppPoint.htm">Point</a>Size(14);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font1.setBold(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font1.setWeight(75);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title-&gt;setFont(font1);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_title);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_copyright <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_copyright-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_copyright"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_copyright);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_author <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_author-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_author"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_author);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_date <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_date-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_date"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_date);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_download <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_download-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_download"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_download);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edit_url <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLineEdit.htm">QLineEdit</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edit_url-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("edit_url"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edit_url-&gt;setReadOnly(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(edit_url);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_licence <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_licence-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_licence"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_licence);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_libraries <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQPlainTextEdit.htm">QPlainTextEdit</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_libraries-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("text_libraries"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_libraries-&gt;setReadOnly(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(text_libraries);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_whatsnew <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQPlainTextEdit.htm">QPlainTextEdit</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_whatsnew-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("text_whatsnew"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_whatsnew-&gt;setReadOnly(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(text_whatsnew);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_licence <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQPlainTextEdit.htm">QPlainTextEdit</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_licence-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("text_licence"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_licence-&gt;setReadOnly(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(text_licence);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_build_date_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_build_date_<a href="CppTime.htm">time</a>-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_build_date_<a href="CppTime.htm">time</a>"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_build_date_<a href="CppTime.htm">time</a>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_build_type <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_build_type-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_build_type"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_build_type);<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;retranslateUi(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QMetaObject::connectSlotsByName(<a href="CppQtAboutDialog.htm">QtAboutDialog</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <a href="CppComment.htm">//</a> setupUi<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> retranslateUi(<a href="CppQDialog.htm">QDialog</a> *<a href="CppQtAboutDialog.htm">QtAboutDialog</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a>-&gt;setWindowTitle(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "<a href="CppAbout.htm">About</a>", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "[file_info] <a href="CppVersion.htm">version</a> [<a href="CppVersion.htm">version</a>]", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_copyright-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "Copyright (C) [years] [author]", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_author-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "Programmed by [author]", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_date-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "[date]", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_download-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "[file_info] can be downloaded from", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_licence-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "Licenced under GPL 3.0", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text_licence-&gt;setPlainText(<a href="CppQString.htm">QString</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_build_date_<a href="CppTime.htm">time</a>-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "Source code built at [date][<a href="CppTime.htm">time</a>]", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_build_type-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQtAboutDialog.htm">QtAboutDialog</a>", "[<a href="CppDebug.htm">debug</a>|release] build", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <a href="CppComment.htm">//</a> retranslateUi<br/>
+<br/>
+};<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a>: <b><a href="CppPublic.htm">public</a></b> Ui_<a href="CppQtAboutDialog.htm">QtAboutDialog</a> {};<br/>
+} <a href="CppComment.htm">//</a> <b><a href="CppNamespace.htm">namespace</a></b> Ui<br/>
+<br/>
+QT_END_NAMESPACE<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> UI_QTABOUTDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary=".h" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a>*******************************************************************************<br/>
+** Form generated from reading UI file 'qt<a href="ToolTestShape.htm">testshape</a>maindialog.ui'<br/>
+**<br/>
+** Created: Sun Aug 25 06:33:50 2013<br/>
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by: <a href="CppQt.htm">Qt</a> User <a href="CppInterface.htm">Interface</a> <a href="CppCompiler.htm">Compiler</a> <a href="CppVersion.htm">version</a> 4.8.4<br/>
+**<br/>
+** WARNING! All changes made in <b><a href="CppThis.htm">this</a></b> file will be lost when recompiling UI file!<br/>
+*******************************************************************************<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> UI_QTTESTSHAPEMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> UI_QTTESTSHAPEMAINDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Core/QVariant&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QAction&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QButtonGroup&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QGridLayout&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QHeaderView&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QScrollArea&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<br/>
+QT_BEGIN_NAMESPACE<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> Ui_<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> *verticalLayout;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QScrollArea *scrollArea;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *scrollArea<a href="CppWidget.htm">Widget</a>Contents;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> *verticalLayout_3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QGridLayout *my_layout;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setupUi(<a href="CppQDialog.htm">QDialog</a> *<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog-&gt;objectName().isEmpty())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog-&gt;resize(500, 607);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;setSpacing(6);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;setContentsMargins(11, 11, 11, 11);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("verticalLayout"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scrollArea <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QScrollArea(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scrollArea-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("scrollArea"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scrollArea-&gt;set<a href="CppWidget.htm">Widget</a>Resizable(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scrollArea<a href="CppWidget.htm">Widget</a>Contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQWidget.htm">QWidget</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scrollArea<a href="CppWidget.htm">Widget</a>Contents-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("scrollArea<a href="CppWidget.htm">Widget</a>Contents"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scrollArea<a href="CppWidget.htm">Widget</a>Contents-&gt;setGeometry(<a href="CppQRect.htm">QRect</a>(0, 0, 478, 585));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout_3 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>(scrollArea<a href="CppWidget.htm">Widget</a>Contents);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout_3-&gt;setSpacing(6);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout_3-&gt;setContentsMargins(11, 11, 11, 11);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout_3-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("verticalLayout_3"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QGridLayout();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_layout-&gt;setSpacing(6);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_layout-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("my_layout"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout_3-&gt;addLayout(my_layout);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scrollArea-&gt;set<a href="CppWidget.htm">Widget</a>(scrollArea<a href="CppWidget.htm">Widget</a>Contents);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(scrollArea);<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;retranslateUi(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QMetaObject::connectSlotsByName(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <a href="CppComment.htm">//</a> setupUi<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> retranslateUi(<a href="CppQDialog.htm">QDialog</a> *<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog-&gt;setWindowTitle(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog", "<a href="ToolTestShape.htm">TestShape</a>", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <a href="CppComment.htm">//</a> retranslateUi<br/>
+<br/>
+};<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog: <b><a href="CppPublic.htm">public</a></b> Ui_<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MainDialog {};<br/>
+} <a href="CppComment.htm">//</a> <b><a href="CppNamespace.htm">namespace</a></b> Ui<br/>
+<br/>
+QT_END_NAMESPACE<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> UI_QTTESTSHAPEMAINDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary=".h" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a>*******************************************************************************<br/>
+** Form generated from reading UI file 'qt<a href="ToolTestShape.htm">testshape</a>menudialog.ui'<br/>
+**<br/>
+** Created: Sun Aug 25 06:33:50 2013<br/>
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by: <a href="CppQt.htm">Qt</a> User <a href="CppInterface.htm">Interface</a> <a href="CppCompiler.htm">Compiler</a> <a href="CppVersion.htm">version</a> 4.8.4<br/>
+**<br/>
+** WARNING! All changes made in <b><a href="CppThis.htm">this</a></b> file will be lost when recompiling UI file!<br/>
+*******************************************************************************<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> UI_QTTESTSHAPEMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> UI_QTTESTSHAPEMENUDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Core/QVariant&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QAction&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QButtonGroup&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/QHeaderView&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQPushButton.htm">QPushButton</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<br/>
+QT_BEGIN_NAMESPACE<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> Ui_<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> *verticalLayout;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_title;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label_subtitle;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> *label;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPushButton.htm">QPushButton</a> *button_start;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPushButton.htm">QPushButton</a> *button_about;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPushButton.htm">QPushButton</a> *button_quit;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setupUi(<a href="CppQDialog.htm">QDialog</a> *<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog-&gt;objectName().isEmpty())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog-&gt;resize(649, 666);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFont.htm">QFont</a> font;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font.set<a href="CppPoint.htm">Point</a>Size(24);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog-&gt;setFont(font);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("verticalLayout"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_title"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFont.htm">QFont</a> font1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font1.set<a href="CppPoint.htm">Point</a>Size(36);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font1.setBold(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font1.setWeight(75);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title-&gt;setFont(font1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title-&gt;setAlignment(<a href="CppQt.htm">Qt</a>::AlignCenter);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_title);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_subtitle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_subtitle-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label_subtitle"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFont.htm">QFont</a> font2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font2.set<a href="CppPoint.htm">Point</a>Size(12);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_subtitle-&gt;setFont(font2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_subtitle-&gt;setAlignment(<a href="CppQt.htm">Qt</a>::AlignCenter);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label_subtitle);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("label"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(<a href="CppQString.htm">QString</a>::fromUtf8(":/images/<a href="ToolTestShape.htm">ToolTestShape</a>Welcome.png")));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(label);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_start <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.htm">QPushButton</a>(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_start-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("button_start"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(button_start);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_about <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.htm">QPushButton</a>(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_about-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("button_about"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(button_about);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_quit <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.htm">QPushButton</a>(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_quit-&gt;setObjectName(<a href="CppQString.htm">QString</a>::fromUtf8("button_quit"));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verticalLayout-&gt;addWidget(button_quit);<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;retranslateUi(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QMetaObject::connectSlotsByName(<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <a href="CppComment.htm">//</a> setupUi<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> retranslateUi(<a href="CppQDialog.htm">QDialog</a> *<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog-&gt;setWindowTitle(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog", "<a href="ToolTestShape.htm">TestShape</a>", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_title-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog", "<a href="ToolTestShape.htm">TestShape</a>", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_subtitle-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog", "<a href="Tools.htm">Tool</a> to test the <a href="CppShapeWidget.htm">ShapeWidget</a> <b><a href="CppClass.htm">class</a></b>", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label-&gt;setText(<a href="CppQString.htm">QString</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_start-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog", "Start", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_about-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog", "<a href="CppAbout.htm">About</a>", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_quit-&gt;setText(<a href="CppQApplication.htm">QApplication</a>::translate("<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog", "Quit", 0, <a href="CppQApplication.htm">QApplication</a>::UnicodeUTF8));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <a href="CppComment.htm">//</a> retranslateUi<br/>
+<br/>
+};<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog: <b><a href="CppPublic.htm">public</a></b> Ui_<a href="CppQt.htm">Qt</a><a href="ToolTestShape.htm">TestShape</a>MenuDialog {};<br/>
+} <a href="CppComment.htm">//</a> <b><a href="CppNamespace.htm">namespace</a></b> Ui<br/>
+<br/>
+QT_END_NAMESPACE<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> UI_QTTESTSHAPEMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>qtmain.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
@@ -246,7 +625,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestShape.htm">testshape</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>

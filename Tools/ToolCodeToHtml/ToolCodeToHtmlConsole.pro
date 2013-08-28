@@ -1,7 +1,6 @@
 QT += core
 QT -= gui
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \

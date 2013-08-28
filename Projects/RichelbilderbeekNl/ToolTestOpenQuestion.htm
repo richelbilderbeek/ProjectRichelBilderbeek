@@ -39,7 +39,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -57,7 +57,7 @@
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
   <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
   <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.2.2</li>
 </ul>
@@ -70,7 +70,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="ToolTestOpenQuestionDesktop.pro" border = "1"><tr><td><code>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui <a href="CppWidget.htm">widget</a>s<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
 TEMPLATE = app<br/>
 <br/>
@@ -158,9 +159,9 @@ CONFIG(release, debug|release) {<br/>
 #<br/>
 <a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
-#unix {<br/>
+unix {<br/>
 &nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-#}<br/>
+}<br/>
 <br/>
 #<br/>
 #<br/>
@@ -264,7 +265,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestQuestion.htm">testquestion</a><a href="CppMain.htm">main</a>dialog.h<br/>
 <br/>
 <a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestQuestion.htm">ToolTestQuestion</a>.qrc<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ToolTestOpenQuestion.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

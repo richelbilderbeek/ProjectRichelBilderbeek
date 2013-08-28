@@ -63,7 +63,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -80,7 +80,7 @@
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
   <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
   <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.2.2</li>
 </ul>
@@ -93,13 +93,15 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="ToolRasper.pro" border = "1"><tr><td><code>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += gui<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+#greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
 <a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a> <a href="CppRegex.htm">-lboost_regex</a> <a href="CppSystem.htm">-lboost_system</a> <a href="CppFilesystem.htm">-lboost_filesystem</a> <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 CONFIG&nbsp;&nbsp; += console<br/>
 CONFIG&nbsp;&nbsp; -= app_bundle<br/>
 TEMPLATE = app<br/>
+<br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi \<br/>
@@ -107,26 +109,27 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += wt<a href="CppMain.htm">main</a>.cpp \<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypigpiopin.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;raspermenudialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wtraspermenudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wtrasper<a href="CppMain.htm">main</a>dialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypigpiopin.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wtraspermenudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wtrasperresources.cpp<br/>
 <br/>
 <a href="CppHEADERS.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypifwd.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypigpiopin.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;raspermenudialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wtraspermenudialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wtrasper<a href="CppMain.htm">main</a>dialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypigpiopin.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypifwd.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wtraspermenudialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wtrasperresources.h<br/>
 <br/>
 OTHER_FILES += \<br/>
@@ -523,7 +526,7 @@ WtMainDialog::WtMainDialog()<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>ui.m_buttons[ 4-1]-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="Tools.htm">Tool</a>Rasper::WtMainDialog::OnClick4);<br/>
 &nbsp;&nbsp;ui.m_buttons[ 5-1]-&gt;setText("5");<br/>
 &nbsp;&nbsp;ui.m_buttons[ 5-1]-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="Tools.htm">Tool</a>Rasper::WtMainDialog::OnClick5);<br/>
-&nbsp;&nbsp;ui.m_buttons[ 6-1]-&gt;setText("DNC");<br/>
+&nbsp;&nbsp;ui.m_buttons[ 6-1]-&gt;setText("GND");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>ui.m_buttons[ 6-1]-&gt;setText("6");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>ui.m_buttons[ 6-1]-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="Tools.htm">Tool</a>Rasper::WtMainDialog::OnClick6);<br/>
 &nbsp;&nbsp;ui.m_buttons[ 7-1]-&gt;setText("7");<br/>

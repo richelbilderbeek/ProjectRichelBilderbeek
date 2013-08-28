@@ -20,47 +20,436 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppCanvas.htm">Canvas</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppAsciiArt.htm">ASCII art</a> painting surface <a href="CppClass.htm">class</a>.</p>
-<p>&nbsp;</p>
-<p>With it, you can draw dots, lines and circles on a surface.</p>
-<p>&nbsp;</p>
-<p>The example below shows a smiley created using it.</p>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="CppCanvas.zip">Download Canvas source code (zip)</a></li>
-</ul>
+<!-- No CodeToHtmlInfo about this class with page name CppCanvas-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example</h2>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>canvas.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="fileUf27Uk.cpp" border = "1"><tr><td><code>
-MMMMMMMMMMMMMMMMMMMh/:osM-o:/hMMMMMMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMMMMm:+mMMMMMMMm+:mMMMMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMMMh/mMMMMMMMMMMMm/hMMMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMMh:NMMMMMMMMMMMMMN:hMMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMm/NMMmdNMMMMMNdmMMN/mMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMM:mMM+:o:oMMMo:o:+MMm:MMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMh+MM/yMMMs+M+sMMMy/MM+hMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMM/mMd+MMMMM/h/MMMMM+dMm/MMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMN:MMysMM/MMs+sMM/MMsyMM:NMMMMMMMMMMMM<br/>
-MMMMMMMMMMMM<b><a href="CppDo.htm">do</a></b>MMd+MMNMM+s+MMNMM+dMModMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMysMMN/mMMMm/N/mMMMm/NMMsyMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMyyMMMm-oyo-mMm-oyo-mMMMyyMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMysMMMMMyshMMMMMhsyMMMMMsyMMMMMMMMMMMM<br/>
-MMMMMMMMMMMM<b><a href="CppDo.htm">do</a></b>MMo+ooooooooooooo/+MModMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMN:MMy`sddddddddddds`sMM:NMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMM/mMMm/oMMMMMMMMMo/mMMm/MMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMh+MMMMy:mMMMMMm:sMMMM+hMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMM:mMMMMd/hMMMy/dMMMMm:MMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMm/NMMMMN<a href="CppOperatorIncrement.htm">++</a>m<a href="CppOperatorIncrement.htm">++</a>NMMMMN/mMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMMh:NMMMMMhm MMMMMN:hMMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMMMh/mMMMMMMMMMMMm/hMMMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMMMMm:+mMMMMMMMm+:mMMMMMMMMMMMMMMMMM<br/>
-MMMMMMMMMMMMMMMMMMMh/:osyso:/hMMMMMMMMMMMMMMMMMMM<br/>
+<table summary="canvas.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+Canvas, ASCII art painting surface <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2008-2013&nbsp;&nbsp;Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/CppCanvas.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> CANVAS_H<br/>
+<a href="CppDefine.htm">#define</a> CANVAS_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Canvas<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The color system used:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> normal: full/drawn is displayed by M<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> invert: empty/non-drawn is displayed by M<br/>
+&nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> ColorSystem { normal, invert };<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The coordinat system used in displayal:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> screen: origin is at top-left of the screen<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> graph: origin is at bottom-left of the screen<br/>
+&nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> CoordinatSystem { screen, graph };<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of <a href="CppChar.htm">character</a>s the Canvas is heigh and wide<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/but also the maximum x and y coordinat. The minimum<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/x and y coordinats are 0.0 and 0.0<br/>
+&nbsp;&nbsp;Canvas(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ColorSystem colorSystem <a href="CppOperatorAssign.htm">=</a> ColorSystem::normal,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CoordinatSystem coordinatSystem <a href="CppOperatorAssign.htm">=</a> CoordinatSystem::screen);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw (or actually: add) a dot on the canvas at (x,y), where<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/(x,y) is the center of a dot with radius 1.0. It is not checked that<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/(x,y) is in ( [0.0,GetWidth()&gt;, [0.0,GetHeight()&gt; )<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawDot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw (or actually: add) a line on the canvas from (x1,y1) to (x2,y2),<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/where (x1,y1) and (x2,y2) are the centers of a dot with radius 1.0 at<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/the edges of the line<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawLine(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw (or actually: add) a circle on the canvas at (xMid,yMid),<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/with radius ray<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawCircle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xMid, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yMid, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the height of the canvas is <a href="CppChar.htm">character</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHeight() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mCanvas.size(); }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the width of the canvas is <a href="CppChar.htm">character</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetWidth() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> (GetHeight()<a href="CppOperatorEqual.htm">==</a>0 ? 0 : mCanvas[0].size() ); }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The Canvas its internal data: a 2D y-x-ordered <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/of <b><a href="CppDouble.htm">double</a></b>s, where 0.0 denotes empty/non-drawn<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/and 1.0 denotes full/drawn.<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; mCanvas;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The color system used:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> normal: full/drawn is displayed by M<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> invert: empty/non-drawn is displayed by M<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ColorSystem mColorSystem;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The coordinat system used in displayal:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> screen: origin is at top-left of the screen<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> graph: origin is at bottom-left of the screen<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CoordinatSystem mCoordinatSystem;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Check <b><a href="CppIf.htm">if</a></b> a coordinat is in the range of the Canvas<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsInRange(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppMinElement.htm">MinElement</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::value_type::value_type <a href="CppMinElement.htm">MinElement</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; v);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppMaxElement.htm">MaxElement</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::value_type::value_type <a href="CppMaxElement.htm">MaxElement</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; v);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Plot a surface on screen<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<b><a href="CppIf.htm">if</a></b> as_screen_coordinat_system is <b><a href="CppTrue.htm">true</a></b>, the origin is in the top left<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/corner of the screen, <b><a href="CppElse.htm">else</a></b> it is in the bottom left of the screen,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/as is usual in graphs<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppPlotSurface.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> PlotSurface(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream.htm">std::ostream</a>&amp; os,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> use_normal_color_system,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> as_screen_coordinat_system);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; GetAsciiArtGradient();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Canvas&amp; canvas);<br/>
+<br/>
+};<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Canvas&amp; canvas);<br/>
+<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>canvas.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="canvas.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+Canvas, ASCII art painting surface <b><a href="CppClass.htm">class</a></b><br/>
+Copyright (C) 2008-2013&nbsp;&nbsp;Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/CppCanvas.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "canvas.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+Canvas::Canvas(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ColorSystem colorSystem,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CoordinatSystem coordinatSystem)<br/>
+&nbsp;&nbsp;: mCanvas(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;(height,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width,0.0))),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mColorSystem(colorSystem),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mCoordinatSystem(coordinatSystem)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(width&nbsp;&nbsp;&gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(height &gt; 0);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Canvas::DrawDot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume a dot has dimensions 1.0 x 1.0<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>and x and y are exactly in the middle of <b><a href="CppThis.htm">this</a></b> dot<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xBegin <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorMinus.htm">-</a> 0.5;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yBegin <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorMinus.htm">-</a> 0.5;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fracLeft <a href="CppOperatorAssign.htm">=</a> <a href="CppCeil.htm">std::ceil</a>(xBegin) <a href="CppOperatorMinus.htm">-</a> xBegin;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fracTop&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppCeil.htm">std::ceil</a>(yBegin) <a href="CppOperatorMinus.htm">-</a> yBegin;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> indexLeft <a href="CppOperatorAssign.htm">=</a> <a href="CppFloor.htm">std::floor</a>(xBegin);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> indexTop&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppFloor.htm">std::floor</a>(yBegin);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsInRange(indexLeft&nbsp;&nbsp;,indexTop&nbsp;&nbsp;))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mCanvas[indexTop&nbsp;&nbsp;][indexLeft&nbsp;&nbsp;] <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (fracLeft * fracTop);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsInRange(indexLeft+1,indexTop&nbsp;&nbsp;))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mCanvas[indexTop&nbsp;&nbsp;][indexLeft+1] <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> ((1.0-fracLeft) * fracTop);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsInRange(indexLeft&nbsp;&nbsp;,indexTop+1))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mCanvas[indexTop+1][indexLeft&nbsp;&nbsp;] <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (fracLeft * (1.0-fracTop));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsInRange(indexLeft+1,indexTop+1))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mCanvas[indexTop+1][indexLeft+1] <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> ((1.0-fracLeft) * (1.0-fracTop));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Canvas::DrawLine(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2)<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX <a href="CppOperatorAssign.htm">=</a> x2 <a href="CppOperatorMinus.htm">-</a> x1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY <a href="CppOperatorAssign.htm">=</a> y2 <a href="CppOperatorMinus.htm">-</a> y1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dist <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( (dX * dX) <a href="CppOperatorPlus.htm">+</a> (dY * dY) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stepX <a href="CppOperatorAssign.htm">=</a> dX <a href="CppOperatorDivide.htm">/</a> dist;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stepY <a href="CppOperatorAssign.htm">=</a> dY <a href="CppOperatorDivide.htm">/</a> dist;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(dist <a href="CppOperatorPlus.htm">+</a> 0.5);<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> x1;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> y1;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>nSteps; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DrawDot(x,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x<a href="CppOperatorPlusAssign.htm">+=</a>stepX;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;y<a href="CppOperatorPlusAssign.htm">+=</a>stepY;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Canvas::DrawCircle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xMid, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yMid, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> circumference <a href="CppOperatorAssign.htm">=</a> ray * pi * 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(circumference <a href="CppOperatorPlus.htm">+</a> 0.5);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dAngle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nSteps);<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>nSteps; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> xMid <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> yMid <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DrawDot(x,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;angle <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> dAngle;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> Canvas::IsInRange(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (&nbsp;&nbsp; x &lt; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> y &lt; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mCanvas.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mCanvas[y].size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+}<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Canvas&amp; canvas)<br/>
+{<br/>
+&nbsp;&nbsp;Canvas::PlotSurface(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas.mCanvas,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas.mColorSystem <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Canvas::ColorSystem::normal,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas.mCoordinatSystem <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Canvas::CoordinatSystem::screen);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Canvas::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.1";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Canvas::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2008-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppBuilder.htm">C++ Builder</a> <a href="CppVersion.htm">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2013-08-21: <a href="CppVersion.htm">version</a> 2.0: port to <a href="Cpp11.htm">C++11</a> under <a href="CppQtCreator.htm">Qt Creator</a>");<br/>
+&nbsp;&nbsp;v.push_back("2013-08-22: <a href="CppVersion.htm">version</a> 2.1: allow two color and coordinat systems");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>The 2D <a href="CppVector.htm">std::vector</a> must be y-x-ordered<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppPlotSurface.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> Canvas::PlotSurface(<br/>
+&nbsp;&nbsp;<a href="CppOstream.htm">std::ostream</a>&amp; os,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> use_normal_color_system,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> as_screen_coordinat_system)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.empty() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Surface must have a size");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0].size() &gt; 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Surface must have a two-dimensional size");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain the ASCII art gradient and its size<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; asciiArtGradient <a href="CppOperatorAssign.htm">=</a> GetAsciiArtGradient();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nAsciiArtGradientChars <a href="CppOperatorAssign.htm">=</a> asciiArtGradient.size();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Minimum and maximum are not given, so these need to be calculated<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> minVal <a href="CppOperatorAssign.htm">=</a> <a href="CppMinElement.htm">MinElement</a>(v);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxVal <a href="CppOperatorAssign.htm">=</a> <a href="CppMaxElement.htm">MaxElement</a>(v);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(minVal <a href="CppOperatorNotEqual.htm">!=</a> maxVal);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the pixels<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> row_function(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; row,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream.htm">std::ostream</a>&amp; os,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> minVal,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxVal,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> use_normal_color_system)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppIterator.htm">Iterate</a> through each row's columns<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::const_iterator colEnd <a href="CppOperatorAssign.htm">=</a> row.end();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::const_iterator col <a href="CppOperatorAssign.htm">=</a> row.begin();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;col <a href="CppOperatorNotEqual.htm">!=</a> colEnd;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+col)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Scale the found grey value to an ASCII art <a href="CppChar.htm">character</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> greyValue<a href="CppDouble.htm">Double</a> <a href="CppOperatorAssign.htm">=</a> ( (*col) <a href="CppOperatorMinus.htm">-</a> minVal) <a href="CppOperatorDivide.htm">/</a> (maxVal <a href="CppOperatorMinus.htm">-</a> minVal);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(greyValue<a href="CppDouble.htm">Double</a> <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> greyValue<a href="CppDouble.htm">Double</a> <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> greyValueInt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (use_normal_color_system<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? greyValue<a href="CppDouble.htm">Double</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 1.0 <a href="CppOperatorMinus.htm">-</a> greyValue<a href="CppDouble.htm">Double</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) * nAsciiArtGradientChars;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> greyValue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ( greyValueInt &lt; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? 0 : (greyValueInt &gt; nAsciiArtGradientChars <a href="CppOperatorMinus.htm">-</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? nAsciiArtGradientChars <a href="CppOperatorMinus.htm">-</a> 1: greyValueInt) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(greyValue <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> greyValue &lt; nAsciiArtGradientChars);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> asciiArtGradient[greyValue];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppIterator.htm">Iterator</a> through all rows<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (as_screen_coordinat_system)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> row: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row_function(row,os,minVal,maxVal,use_normal_color_system);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> rowEnd <a href="CppOperatorAssign.htm">=</a> v.rend();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> row <a href="CppOperatorAssign.htm">=</a> v.rbegin(); row <a href="CppOperatorNotEqual.htm">!=</a> rowEnd; <a href="CppOperatorPlus.htm">+</a>+row)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row_function(*row,os,minVal,maxVal,use_normal_color_system);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; Canvas::GetAsciiArtGradient()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; <b><a href="CppChar.htm">char</a></b>s;<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('M');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('N');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('m');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('d');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('h');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('y');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('s');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('o');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('+');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('/');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back(':');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('-');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('.');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back('`');<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>s.push_back(' ');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppChar.htm">char</a></b>s;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Obtains the minimum element of a 2D <a href="CppContainer.htm">container</a><br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppMinElement.htm">MinElement</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::value_type::value_type Canvas::<a href="CppMinElement.htm">MinElement</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.empty() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppContainer.htm">Container</a> must have a size");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain an initial lowest value<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::value_type::value_type minValue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> *(<a href="CppMin_element.htm">std::min_element</a>(v[0].begin(),v[0].end()));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the <a href="CppIterator.htm">iterator</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::const_iterator rowEnd <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::const_iterator row <a href="CppOperatorAssign.htm">=</a> v.begin();<br/>
+&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+row; <a href="CppComment.htm">//</a>Move to the next position, as index 0 is already read from<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( ; row <a href="CppOperatorNotEqual.htm">!=</a> rowEnd; <a href="CppOperatorPlus.htm">+</a>+row) <a href="CppComment.htm">//</a>row is already initialized<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::value_type::value_type localMinVal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> *(<a href="CppMin_element.htm">std::min_element</a>(row-&gt;begin(),row-&gt;end()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (localMinVal &lt; minValue) minValue <a href="CppOperatorAssign.htm">=</a> localMinVal;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> minValue;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Obtains the maximal element of a 2D <a href="CppContainer.htm">container</a><br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppMaxElement.htm">MaxElement</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::value_type::value_type Canvas::<a href="CppMaxElement.htm">MaxElement</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.empty() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppContainer.htm">Container</a> must have a size");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain an initial heighest value<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::value_type::value_type maxValue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> *(<a href="CppMax_element.htm">std::max_element</a>(v[0].begin(),v[0].end()));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the <a href="CppIterator.htm">iterator</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::const_iterator rowEnd <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::const_iterator row <a href="CppOperatorAssign.htm">=</a> v.begin();<br/>
+&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+row; <a href="CppComment.htm">//</a>Move to the next position, as index 0 is already read from<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( ; row <a href="CppOperatorNotEqual.htm">!=</a> rowEnd; <a href="CppOperatorPlus.htm">+</a>+row) <a href="CppComment.htm">//</a>row is already initialized<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::value_type::value_type localMaxVal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> *(<a href="CppMax_element.htm">std::max_element</a>(row-&gt;begin(),row-&gt;end()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (localMaxVal &gt; maxValue) maxValue <a href="CppOperatorAssign.htm">=</a> localMaxVal;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> maxValue;<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -75,8 +464,3 @@ MMMMMMMMMMMMMMMMMMMh/:osyso:/hMMMMMMMMMMMMMMMMMMM<br/>
 <p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
 </html>
-
-
-
- 
-

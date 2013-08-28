@@ -38,7 +38,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -54,7 +54,7 @@
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
 </ul>
 <p>&nbsp;</p>
@@ -67,18 +67,21 @@
 <!-- start of code -->
 <table summary="ToolTestBoucingRectsWidget.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
 TEMPLATE = app<br/>
 <br/>
 <br/>
 <a href="CppSOURCES.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qttooltestbouncingrects<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtbouncingrect.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtbouncingrects<a href="CppWidget.htm">widget</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qtbouncingrect.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttooltestbouncingrects<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= qttooltestbouncingrects<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.h \<br/>
+<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtbouncingrect.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtbouncingrects<a href="CppWidget.htm">widget</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qtbouncingrect.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttooltestbouncingrects<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.h<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= qttooltestbouncingrects<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.ui<br/>
 </code></td></tr></table>
@@ -147,13 +150,14 @@ TEMPLATE = app<br/>
 <a href="CppInclude.htm">#include</a> "qtbouncingrect.h"<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>BouncingRect::<a href="CppQt.htm">Qt</a>BouncingRect(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene)<br/>
- : <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent,scene),<br/>
+ : <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent),<br/>
 &nbsp;&nbsp; m_dx(1.0), m_dy(1.0), m_scene(scene)<br/>
 {<br/>
+&nbsp;&nbsp;m_scene-&gt;addItem(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_scene <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An initialized <a href="CppQGraphicsScene.htm">QGraphicsScene</a> must be supplied");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>BouncingRect::advance(<b><a href="CppInt.htm">int</a></b> phase)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>BouncingRect::advance(<b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* phase <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x() <a href="CppOperatorPlus.htm">+</a> m_dx <a href="CppOperatorPlus.htm">+</a> (boundingRect().width() * 0.5) &gt; m_scene-&gt;width()) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.htm">std::abs</a>(m_dx);<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (x() <a href="CppOperatorPlus.htm">+</a> m_dx <a href="CppOperatorMinus.htm">-</a> (boundingRect().width() * 0.5) &lt; 0.0) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(m_dx);<br/>
@@ -179,7 +183,10 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQRect.htm">QRect</a>F(-16.0,-16.0,32.0,32.0);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>BouncingRect::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *option, <a href="CppQWidget.htm">QWidget</a> *<a href="CppWidget.htm">widget</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>BouncingRect::paint(<br/>
+&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> *painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> * <a href="CppOperatorDivide.htm">/</a>* option <a href="CppComment.htm">*/</a>,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> * <a href="CppOperatorDivide.htm">/</a>* <a href="CppWidget.htm">widget</a> <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;painter-&gt;drawRect(<b><a href="CppThis.htm">this</a></b>-&gt;boundingRect());<br/>
 }<br/>
@@ -273,7 +280,7 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testbouncingrects<a href="CppWidget.htm">widget</a>maindialog.h"<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>

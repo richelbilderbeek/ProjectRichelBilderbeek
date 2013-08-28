@@ -1,4 +1,5 @@
 #!/bin/sh
+
 if [ ! -d mxe ]
 then
   git clone https://github.com/mxe/mxe.git

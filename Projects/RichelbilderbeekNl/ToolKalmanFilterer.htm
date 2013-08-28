@@ -91,7 +91,7 @@ with <a href="CppKalmanFilter.htm">Kalman filters</a>.</p>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -107,7 +107,7 @@ with <a href="CppKalmanFilter.htm">Kalman filters</a>.</p>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.1 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
 </ul>
 <p>&nbsp;</p>
@@ -120,9 +120,7 @@ with <a href="CppKalmanFilter.htm">Kalman filters</a>.</p>
 <!-- start of code -->
 <table summary="ToolKalmanFiltererDesktop.pro" border = "1"><tr><td><code>
 QT += core gui<br/>
-#QT += webkit<br/>
-<br/>
-greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s webkit<a href="CppWidget.htm">widget</a>s<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
 # undefined reference to `_imp___ZNK8QWebView8settingsEv'<br/>
 #greaterThan(QT_MAJOR_VERSION, 4): QT += webkit<a href="CppWidget.htm">widget</a>s<br/>
@@ -664,18 +662,18 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;selectAll();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;model()-&gt;rowCount();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;model()-&gt;columnCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QByteArray byte_array;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QByte<a href="CppArray.htm">Array</a> byte_<a href="CppArray.htm">array</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Header<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(" \t"); <a href="CppComment.htm">//</a>Topleft header cell<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(" \t"); <a href="CppComment.htm">//</a>Topleft header cell<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> 0; col<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+col)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;model()-&gt;headerData(col,<a href="CppQt.htm">Qt</a>::Horizontal).toString();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> text <a href="CppOperatorAssign.htm">=</a> s.isEmpty()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppQString.htm">QString</a>(" ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(col &lt; n_cols <a href="CppOperatorMinus.htm">-</a> 1 ? '\t' : '\n');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(col &lt; n_cols <a href="CppOperatorMinus.htm">-</a> 1 ? '\t' : '\n');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> 0; row<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+row)<br/>
@@ -686,8 +684,8 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> text <a href="CppOperatorAssign.htm">=</a> s.isEmpty()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppQString.htm">QString</a>(" ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append('\t');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append('\t');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Normal items<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> 0; col<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+col)<br/>
@@ -696,12 +694,12 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> text <a href="CppOperatorAssign.htm">=</a> s.isEmpty()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppQString.htm">QString</a>(" ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(col &lt; n_cols <a href="CppOperatorMinus.htm">-</a> 1 ? '\t' : '\n');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(col &lt; n_cols <a href="CppOperatorMinus.htm">-</a> 1 ? '\t' : '\n');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QMimeData * mimeData <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QMimeData();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mimeData-&gt;setData("text/plain",byte_array);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mimeData-&gt;setData("text/plain",byte_<a href="CppArray.htm">array</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a>::clipboard()-&gt;setMimeData(mimeData);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (event-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ControlModifier <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_V)<br/>
@@ -842,18 +840,18 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;selectAll();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;rowCount();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;columnCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QByteArray byte_array;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QByte<a href="CppArray.htm">Array</a> byte_<a href="CppArray.htm">array</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Header<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(" \t"); <a href="CppComment.htm">//</a>Topleft header cell<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(" \t"); <a href="CppComment.htm">//</a>Topleft header cell<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> 0; col<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+col)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;horizontalHeaderItem(col);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> text <a href="CppOperatorAssign.htm">=</a> item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? item-&gt;text()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQString.htm">QString</a>(" ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(col &lt; n_cols <a href="CppOperatorMinus.htm">-</a> 1 ? '\t' : '\n');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(col &lt; n_cols <a href="CppOperatorMinus.htm">-</a> 1 ? '\t' : '\n');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> 0; row<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+row)<br/>
@@ -864,8 +862,8 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> text <a href="CppOperatorAssign.htm">=</a> item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? item-&gt;text()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQString.htm">QString</a>(" ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append('\t');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append('\t');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Normal items<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> 0; col<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+col)<br/>
@@ -874,12 +872,12 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> text <a href="CppOperatorAssign.htm">=</a> item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? item-&gt;text()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQString.htm">QString</a>(" ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_array.append(col &lt; n_cols <a href="CppOperatorMinus.htm">-</a> 1 ? '\t' : '\n');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(text);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte_<a href="CppArray.htm">array</a>.append(col &lt; n_cols <a href="CppOperatorMinus.htm">-</a> 1 ? '\t' : '\n');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QMimeData * mimeData <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QMimeData();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mimeData-&gt;setData("text/plain",byte_array);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mimeData-&gt;setData("text/plain",byte_<a href="CppArray.htm">array</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a>::clipboard()-&gt;setMimeData(mimeData);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (event-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ControlModifier <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_V)<br/>
@@ -1878,7 +1876,7 @@ win32 {<br/>
 <a href="CppInclude.htm">#include</a> &lt;qwt_plot_curve.h&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;qwt_plot_zoomer.h&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;qwt_plot_grid.h&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;qwt_plot_seriesitem.h&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;qwt_plot_seriesitem.h&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;qwt_legend.h&gt;<br/>
 <br/>
 <a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
@@ -2354,7 +2352,7 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> vs[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_<a href="CppTime.htm">time</a>steps <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreIf.htm">#if</a> QWT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0x060000<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;curves[i]-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a>ArrayData(&amp;<a href="CppTime.htm">time</a>_series[0],&amp;v[0],<a href="CppTime.htm">time</a>_series.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;curves[i]-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;<a href="CppTime.htm">time</a>_series[0],&amp;v[0],<a href="CppTime.htm">time</a>_series.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;curves[i]-&gt;setData(&amp;<a href="CppTime.htm">time</a>_series[0],&amp;v[0],<a href="CppTime.htm">time</a>_series.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
@@ -5804,9 +5802,9 @@ QAbstractTableModel * <a href="CppQt.htm">Qt</a><a href="CppKalmanFilter.htm">Ka
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;qglobal.h&gt;<br/>
 <a href="CppPreIf.htm">#if</a> (QT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> QT_VERSION_CHECK(5,0,0))<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a><a href="CppWidget.htm">Widget</a>s/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Gui/<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <br/>
@@ -7261,10 +7259,57 @@ WhiteNoiseSystemType <a href="CppQt.htm">Qt</a>WhiteNoiseSystemParametersDialog:
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>.sh</h2>
+<h2>ToolKalmanFiltererQt4LubuntuToWindows.sh</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary=".sh" border = "1"><tr><td><code>
+<table summary="ToolKalmanFiltererQt4LubuntuToWindows.sh" border = "1"><tr><td><code>
+#!/bin/bash<br/>
+myfile="i686-pc-mingw32-qmake"<br/>
+mytarget="ToolKalmanFiltererDesktop"<br/>
+myprofile=$mytarget.pro<br/>
+myexe=$mytarget.exe<br/>
+<br/>
+if [ ! -e $myprofile ]<br/>
+then<br/>
+&nbsp;&nbsp;echo $mytarget": FAIL (Qt Creator project "$myprofile" not found)"<br/>
+&nbsp;&nbsp;exit<br/>
+fi<br/>
+<br/>
+$myfile $myprofile<br/>
+<br/>
+if [ ! -e Makefile ]<br/>
+then<br/>
+&nbsp;&nbsp;echo $mytarget": FAIL (makefile not found)"<br/>
+&nbsp;&nbsp;exit<br/>
+fi<br/>
+<br/>
+make<br/>
+<br/>
+if [ -e ./release/$myexe ]<br/>
+then<br/>
+&nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
+else<br/>
+&nbsp;&nbsp;echo $mytarget": FAIL (executable not found)"<br/>
+fi<br/>
+<br/>
+<br/>
+#Cleaning up<br/>
+rm -r release<br/>
+rm -r debug<br/>
+rm Makefile<br/>
+rm Makefile.*<br/>
+rm ui_*<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>ToolKalmanFiltererQt5LubuntuToWindows.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ToolKalmanFiltererQt5LubuntuToWindows.sh" border = "1"><tr><td><code>
 #!/bin/bash<br/>
 myfile="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"<br/>
 mytarget="ToolKalmanFiltererDesktop"<br/>
@@ -7299,53 +7344,6 @@ fi<br/>
 #Cleaning up<br/>
 rm *.o<br/>
 rm object_script.*<br/>
-rm -r release<br/>
-rm -r debug<br/>
-rm Makefile<br/>
-rm Makefile.*<br/>
-rm ui_*<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>.sh</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary=".sh" border = "1"><tr><td><code>
-#!/bin/bash<br/>
-myfile="i686-pc-mingw32-qmake"<br/>
-mytarget="ToolKalmanFiltererDesktop"<br/>
-myprofile=$mytarget.pro<br/>
-myexe=$mytarget.exe<br/>
-<br/>
-if [ ! -e $myprofile ]<br/>
-then<br/>
-&nbsp;&nbsp;echo $mytarget": FAIL (Qt Creator project "$myprofile" not found)"<br/>
-&nbsp;&nbsp;exit<br/>
-fi<br/>
-<br/>
-$myfile $myprofile<br/>
-<br/>
-if [ ! -e Makefile ]<br/>
-then<br/>
-&nbsp;&nbsp;echo $mytarget": FAIL (makefile not found)"<br/>
-&nbsp;&nbsp;exit<br/>
-fi<br/>
-<br/>
-make<br/>
-<br/>
-if [ -e ./release/$myexe ]<br/>
-then<br/>
-&nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
-else<br/>
-&nbsp;&nbsp;echo $mytarget": FAIL (executable not found)"<br/>
-fi<br/>
-<br/>
-<br/>
-#Cleaning up<br/>
 rm -r release<br/>
 rm -r debug<br/>
 rm Makefile<br/>
