@@ -173,5 +173,9 @@
         <file>ToolTestApproximator_1_0.png</file>
         <file>ToolTestBouncingBallsWidget_1_0.png</file>
         <file>ToolTestBouncingRectsWidget_1_0.png</file>
+        <file>ToolTestMultiApproximator_1_0.png</file>
+        <file>ProjectVanDenBogaart_0_27.png</file>
+        <file>GameXeNonZero_0_1.png</file>
+        <file>GameZork.png</file>
     </qresource>
 </RCC>
