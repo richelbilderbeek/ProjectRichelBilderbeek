@@ -118,11 +118,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <tr><td>Size requestable at compile-time</td><td>Yes</td><td>No</td><td>No</td><td>Yes</td><td>No</td></tr>");
     v.push_back("  <tr><td>Size requestable at run-time</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>");
     v.push_back("</table>");
-
   }
-
-
-
   else if (m_page_name == "CppAsciiArter")
   {
     v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
@@ -1539,6 +1535,10 @@ const std::vector<std::string> Info::ToHtml() const
   else if (m_page_name == "CppIsRegularFile")
   {
     v.push_back("<p><a href=\"CppIsRegularFile.htm\">IsRegularFile</a> is a <a href=\"CppFileIo.htm\">file I/O</a>  <a href=\"CppCodeSnippets.htm\">code snippet</a> to determine if a filename is a regular file.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppIsRegularFile.zip\">Download the Qt Creator project 'CppIsRegularFile' (zip)</a></li>");
+    v.push_back("</ul>");
   }
   else if (m_page_name == "CppLibcvautomationExample1")
   {
@@ -2717,8 +2717,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableViewExample1.png\">View a screenshot of 'QTableViewExample1' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableViewExample1.zip\">Download the Qt Creator project 'QTableViewExample1' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample1.png\">View a screenshot of 'QTableViewExample1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample1.zip\">Download the Qt Creator project 'QTableViewExample1' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableViewExample2")
@@ -2729,8 +2729,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableViewExample2.png\">View a screenshot of 'QTableViewExample2' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableViewExample2.zip\">Download the Qt Creator project 'QTableViewExample2' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample2.png\">View a screenshot of 'QTableViewExample2' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample2.zip\">Download the Qt Creator project 'QTableViewExample2' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableViewExample3")
@@ -2741,8 +2741,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableViewExample3.png\">View a screenshot of 'QTableViewExample3' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableViewExample3.zip\">Download the Qt Creator project 'QTableViewExample3' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample3.png\">View a screenshot of 'QTableViewExample3' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample3.zip\">Download the Qt Creator project 'QTableViewExample3' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableViewExample4")
@@ -2753,8 +2753,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableViewExample4.png\">View a screenshot of 'QTableViewExample4' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableViewExample4.zip\">Download the Qt Creator project 'QTableViewExample4' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample4.png\">View a screenshot of 'QTableViewExample4' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample4.zip\">Download the Qt Creator project 'QTableViewExample4' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableViewExample5")
@@ -2765,8 +2765,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableViewExample5.png\">View a screenshot of 'QTableViewExample5' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableViewExample5.zip\">Download the Qt Creator project 'QTableViewExample5' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample5.png\">View a screenshot of 'QTableViewExample5' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample5.zip\">Download the Qt Creator project 'QTableViewExample5' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableViewExample6")
@@ -2780,8 +2780,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("the two views work on the same model, they cannot be different.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableViewExample6.png\">View a screenshot of 'QTableViewExample6' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableViewExample6.zip\">Download the Qt Creator project 'QTableViewExample6' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample6.png\">View a screenshot of 'QTableViewExample6' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample6.zip\">Download the Qt Creator project 'QTableViewExample6' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableViewExample7")
@@ -2792,8 +2792,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableViewExample7.png\">View a screenshot of 'QTableViewExample7' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableViewExample7.zip\">Download the Qt Creator project 'QTableViewExample7' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample7.png\">View a screenshot of 'QTableViewExample7' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample7.zip\">Download the Qt Creator project 'QTableViewExample7' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableViewExample8")
@@ -2804,8 +2804,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableViewExample8.png\">View a screenshot of 'QTableViewExample8' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableViewExample8.zip\">Download the Qt Creator project 'QTableViewExample8' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample8.png\">View a screenshot of 'QTableViewExample8' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableViewExample8.zip\">Download the Qt Creator project 'QTableViewExample8' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableViewExample9")
@@ -2840,8 +2840,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableWidget.htm\">QTableWidget</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableWidgetExample2")
@@ -2852,8 +2852,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableWidget.htm\">QTableWidget</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQTableWidgetExample3")
@@ -2864,8 +2864,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQTableView.htm\">QTableView</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"CppQTableWidgetExample3.png\">View a screenshot of 'QTableWidgetExample3' (png)</a></li>");
-    v.push_back("<li><a href=\"CppQTableWidgetExample3.zip\">Download the Qt Creator project 'QTableWidgetExample3' (zip)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableWidgetExample3.png\">View a screenshot of 'QTableWidgetExample3' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQTableWidgetExample3.zip\">Download the Qt Creator project 'QTableWidgetExample3' (zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "CppQtAboutDialog")
