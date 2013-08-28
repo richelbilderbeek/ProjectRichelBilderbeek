@@ -13,7 +13,7 @@
 #include <qwt_point_data.h>
 #endif
 
-#include "tooltestsimplelinearregressionmaindialog.h"
+#include "simplelinearregression.h"
 #include "ui_qttooltestsimplelinearregressionmaindialog.h"
 
 QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressionMainDialog(QWidget *parent) :
@@ -133,7 +133,7 @@ void QtToolTestSimpleLinearRegressionMainDialog::Plot()
   //Plot approximation
   {
     const std::pair<double,double> p
-      = ToolTestSimpleLinearRegressionMainDialog::CalculateSimpleLinearRegression(m_xs,m_ys);
+      = SimpleLinearRegression::CalculateBestFit(m_xs,m_ys);
     const double slope = p.first;
     const double intercept = p.second;
     {

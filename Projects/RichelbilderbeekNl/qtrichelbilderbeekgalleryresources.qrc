@@ -169,5 +169,9 @@
         <file>GameMartianCafeTuinemaTycoon_1_0.png</file>
         <file>GameMetZnDrieen_1_3.png</file>
         <file>GameSimPredator_1_0.png</file>
+        <file>ToolTestAbout_1_1.png</file>
+        <file>ToolTestApproximator_1_0.png</file>
+        <file>ToolTestBouncingBallsWidget_1_0.png</file>
+        <file>ToolTestBouncingRectsWidget_1_0.png</file>
     </qresource>
 </RCC>

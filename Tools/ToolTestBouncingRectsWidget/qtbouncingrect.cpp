@@ -7,13 +7,14 @@
 #include "qtbouncingrect.h"
 
 QtBouncingRect::QtBouncingRect(QGraphicsItem *parent, QGraphicsScene *scene)
- : QGraphicsItem(parent,scene),
+ : QGraphicsItem(parent),
    m_dx(1.0), m_dy(1.0), m_scene(scene)
 {
+  m_scene->addItem(this);
   assert(m_scene && "An initialized QGraphicsScene must be supplied");
 }
 
-void QtBouncingRect::advance(int phase)
+void QtBouncingRect::advance(int /* phase */)
 {
   if (x() + m_dx + (boundingRect().width() * 0.5) > m_scene->width()) m_dx = -std::abs(m_dx);
   else if (x() + m_dx - (boundingRect().width() * 0.5) < 0.0) m_dx = std::abs(m_dx);
@@ -39,7 +40,10 @@ QRectF QtBouncingRect::boundingRect() const
   return QRectF(-16.0,-16.0,32.0,32.0);
 }
 
-void QtBouncingRect::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void QtBouncingRect::paint(
+  QPainter *painter,
+  const QStyleOptionGraphicsItem * /* option */,
+  QWidget * /* widget */)
 {
   painter->drawRect(this->boundingRect());
 }

@@ -7,6 +7,7 @@ INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppApproximator \
     ../../Classes/CppCanvas \
+    ../../Classes/CppSimpleLinearRegression \
     ../../Classes/CppTrace
 
 SOURCES += \
@@ -15,8 +16,8 @@ SOURCES += \
     ../../Classes/CppApproximator/exceptionnoextrapolation.cpp \
     ../../Classes/CppCanvas/canvas.cpp \
     tooltestsimplelinearregressionmenudialog.cpp \
-    tooltestsimplelinearregressionmaindialog.cpp \
-    ../../Classes/CppAbout/about.cpp
+    ../../Classes/CppAbout/about.cpp \
+    ../../Classes/CppSimpleLinearRegression/simplelinearregression.cpp
 
 HEADERS += \
     ../../Classes/CppApproximator/approximator.h \
@@ -24,8 +25,8 @@ HEADERS += \
     ../../Classes/CppTrace/trace.h \
     ../../Classes/CppCanvas/canvas.h \
     tooltestsimplelinearregressionmenudialog.h \
-    tooltestsimplelinearregressionmaindialog.h \
-    ../../Classes/CppAbout/about.h
+    ../../Classes/CppAbout/about.h \
+    ../../Classes/CppSimpleLinearRegression/simplelinearregression.h
 
 OTHER_FILES += \
     ../../Classes/CppApproximator/Licence.txt \

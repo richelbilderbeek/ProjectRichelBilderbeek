@@ -1,4 +1,4 @@
-#include "tooltestsimplelinearregressionmaindialog.h"
+#include "simplelinearregression.h"
 
 #include <cassert>
 #include <iostream>
@@ -8,7 +8,7 @@
 
 #include "trace.h"
 
-double ToolTestSimpleLinearRegressionMainDialog::CalculateCovariance(
+double SimpleLinearRegression::CalculateCovariance(
   const std::vector<double>& xs,
   const std::vector<double>& ys)
 {
@@ -26,55 +26,7 @@ double ToolTestSimpleLinearRegressionMainDialog::CalculateCovariance(
   return mean_p - (mean_x * mean_y);
 }
 
-double ToolTestSimpleLinearRegressionMainDialog::CalculateMean(
-  const std::vector<double>& v)
-{
-  assert(!v.empty());
-  return std::accumulate(v.begin(),v.end(),0.0) / static_cast<double>(v.size());
-}
-
-const std::pair<double,double>
-  ToolTestSimpleLinearRegressionMainDialog::CalculateSimpleLinearRegression(
-    const std::vector<double>& xs,
-    const std::vector<double>& ys)
-{
-  #ifndef NDEBUG
-  Test();
-  #endif
-
-  assert(xs.size() == ys.size()
-    && "Every coordinat must have exactly one x and one y value");
-  const double mean_x = CalculateMean(xs);
-  const double mean_y = CalculateMean(ys);
-  //const double covariance_xy = CalculateCovariance(xs,ys);
-  //const double variance_x = CalculateVariance(xs);
-  //const double slope = covariance_xy / variance_x;
-  const double slope = CalculateSlope(xs,ys);
-  const double intercept = mean_y - (slope * mean_x);
-  return std::make_pair(slope,intercept);
-}
-
-double ToolTestSimpleLinearRegressionMainDialog::CalculateSlope(
-  const std::vector<double>& xs,
-  const std::vector<double>& ys)
-{
-  assert(xs.size() == ys.size());
-  double numerator = 0.0;
-  double denominator = 0.0;
-  const double x_mean = CalculateMean(xs);
-  const double y_mean = CalculateMean(ys);
-  const std::size_t sz = xs.size();
-  for (std::size_t i=0; i!=sz; ++i)
-  {
-    const double x = xs[i];
-    const double y = ys[i];
-    numerator   += ((x - x_mean) * (y - y_mean));
-    denominator += ((x - x_mean) * (x - x_mean));
-  }
-  return numerator / denominator;
-}
-
-double ToolTestSimpleLinearRegressionMainDialog::CalculateVariance(
+double SimpleLinearRegression::CalculateVariance(
   const std::vector<double>& v)
 {
   assert(!v.empty());
@@ -93,7 +45,7 @@ double ToolTestSimpleLinearRegressionMainDialog::CalculateVariance(
 }
 
 const std::vector<double>
-  ToolTestSimpleLinearRegressionMainDialog::GetAnscombesQuartetX(const int index)
+  SimpleLinearRegression::GetAnscombesQuartetX(const int index)
 {
   switch (index)
   {
@@ -118,7 +70,7 @@ const std::vector<double>
 }
 
 const std::vector<double>
-  ToolTestSimpleLinearRegressionMainDialog::GetAnscombesQuartetY(const int index)
+  SimpleLinearRegression::GetAnscombesQuartetY(const int index)
 {
   switch (index)
   {
@@ -144,15 +96,28 @@ const std::vector<double>
   }
 }
 
+const std::string SimpleLinearRegression::GetVersion()
+{
+  return "1.1";
+}
+
+const std::vector<std::string> SimpleLinearRegression::GetVersionHistory()
+{
+  std::vector<std::string> v;
+  v.push_back("2013-08-27: version 1.0: initial version, as ToolTestSimpleLinearRegressionMainDialog");
+  v.push_back("2013-08-28: version 1.1: renamed to SimpleLinearRegression, templated CalculateBestFit");
+  return v;
+}
+
 #ifndef NDEBUG
-void ToolTestSimpleLinearRegressionMainDialog::Test()
+void SimpleLinearRegression::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ToolTestSimpleLinearRegressionMainDialog::Test");
+  TRACE("Starting SimpleLinearRegression::Test");
   {
     const std::vector<double> v { 75.0, 83.0, 96.0, 100.0, 121.0, 125.0 };
     const double variance = CalculateVariance(v);
@@ -169,7 +134,7 @@ void ToolTestSimpleLinearRegressionMainDialog::Test()
   {
     const std::vector<double> xs = GetAnscombesQuartetX(i);
     const std::vector<double> ys = GetAnscombesQuartetY(i);
-    const std::pair<double,double> p = CalculateSimpleLinearRegression(xs,ys);
+    const std::pair<double,double> p = CalculateBestFit(xs,ys);
 
     const double mean_x = CalculateMean(xs);
     const double mean_y = CalculateMean(ys);
@@ -197,6 +162,6 @@ void ToolTestSimpleLinearRegressionMainDialog::Test()
     assert(std::abs(expected_slope - slope) < e);
     assert(std::abs(expected_intercept - intercept) < e);
   }
-  TRACE("Finished ToolTestSimpleLinearRegressionMainDialog::Test successfully");
+  TRACE("Finished SimpleLinearRegression::Test successfully");
 }
 #endif

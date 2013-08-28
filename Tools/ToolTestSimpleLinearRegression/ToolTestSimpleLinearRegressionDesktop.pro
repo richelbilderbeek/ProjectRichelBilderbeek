@@ -17,6 +17,7 @@ INCLUDEPATH += \
     ../../Classes/CppApproximator \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtHideAndShowDialog \
+    ../../Classes/CppSimpleLinearRegression \
     ../../Classes/CppTrace
 
 SOURCES += \
@@ -26,9 +27,9 @@ SOURCES += \
     qtmain.cpp \
     qttooltestsimplelinearregressionmaindialog.cpp \
     tooltestsimplelinearregressionmenudialog.cpp \
-    tooltestsimplelinearregressionmaindialog.cpp \
     qttooltestsimplelinearregressionmenudialog.cpp \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.cpp
+    ../../Classes/CppApproximator/exceptionnoextrapolation.cpp \
+    ../../Classes/CppSimpleLinearRegression/simplelinearregression.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -38,8 +39,8 @@ HEADERS += \
     qttooltestsimplelinearregressionmaindialog.h \
     qttooltestsimplelinearregressionmenudialog.h \
     tooltestsimplelinearregressionmenudialog.h \
-    tooltestsimplelinearregressionmaindialog.h \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.h
+    ../../Classes/CppApproximator/exceptionnoextrapolation.h \
+    ../../Classes/CppSimpleLinearRegression/simplelinearregression.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -49,7 +50,8 @@ FORMS += \
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppApproximator/Licence.txt \
-    Licence.txt
+    Licence.txt \
+    ../../Classes/CppSimpleLinearRegression/Licence.txt
 
 RESOURCES += \
     ToolTestSimpleLinearRegression.qrc

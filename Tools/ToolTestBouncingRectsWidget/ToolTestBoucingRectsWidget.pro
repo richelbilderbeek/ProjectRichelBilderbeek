@@ -1,15 +1,18 @@
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 TEMPLATE = app
 
 
 SOURCES += \
-    qttooltestbouncingrectswidgetmaindialog.cpp \
-    qtmain.cpp \
+    qtbouncingrect.cpp \
     qtbouncingrectswidget.cpp \
-    qtbouncingrect.cpp
+    qtmain.cpp \
+    qttooltestbouncingrectswidgetmaindialog.cpp
 
-HEADERS  += qttooltestbouncingrectswidgetmaindialog.h \
+HEADERS  += \
+    qtbouncingrect.h \
     qtbouncingrectswidget.h \
-    qtbouncingrect.h
+    qttooltestbouncingrectswidgetmaindialog.h
 
 FORMS    += qttooltestbouncingrectswidgetmaindialog.ui
