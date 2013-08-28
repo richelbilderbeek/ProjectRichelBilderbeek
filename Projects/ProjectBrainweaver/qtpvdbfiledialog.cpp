@@ -50,16 +50,12 @@ const boost::shared_ptr<QFileDialog> QtFileDialog::GetSaveFileDialog()
   d->setAcceptDrops(QFileDialog::AcceptSave);
 
   //enum Option { ShowDirsOnly, DontResolveSymlinks, DontConfirmOverwrite, DontUseSheet, DontUseNativeDialog, ReadOnly, HideNameFilterDetails }
-  d->setOptions(QFileDialog::ReadOnly);
+  d->setOptions( QFileDialog::DontUseNativeDialog ); //Workaround for https://bugreports.qt-project.org/browse/QTBUG-29248
 
   const std::string namefile = std::string("Brainweaver concept map (*.")
     + pvdb::File::GetFilenameExtension() + std::string(")");
 
   d->setNameFilter(namefile.c_str());
-
-  //Put the dialog in the screen center
-  //const QRect screen = QApplication::desktop()->screenGeometry();
-  //d->move( screen.center() - d->rect().center() );
 
   return d;
 }
