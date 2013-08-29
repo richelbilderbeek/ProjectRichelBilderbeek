@@ -1705,7 +1705,7 @@ const std::vector<std::string> Info::ToHtml() const
   {
     v.push_back("<p><a href=\"CppLed.htm\">Led</a> is a <a href=\"CppClass.htm\">class</a> for an LED light.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"CppLed.htm\">Led</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>");
+     v.push_back("<p><a href=\"CppLed.htm\">Led</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>");
   }
   else if (m_page_name == "CppLedWidget")
   {
@@ -4205,9 +4205,9 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameAminoAcidFighter")
   {
-    v.push_back("<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> started as a Quickbasic game in 2000. Later I ported it to C++, but have not yet finished it and lost the code as well!</p>");
+    v.push_back("<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> started as a Quickbasic <a href=\"Games.htm\">game</a> in 2000. Later I ported it to C++, but have not yet finished it and lost the code as well!</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> is a game in which amino acids do battle to a maximum of four players.</p>");
+    v.push_back("<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> is a <a href=\"Games.htm\">game</a> in which amino acids do battle to a maximum of four players.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4225,7 +4225,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameBeerGetter")
   {
-    v.push_back("<p><a href=\"GameBeerGetter.htm\">BeerGetter</a> is a simple game. Work in progress..</p>");
+    v.push_back("<p><a href=\"GameBeerGetter.htm\">BeerGetter</a> is a simple <a href=\"Games.htm\">game</a>. Work in progress..</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"GameBeerGetterScreenshot.PNG\">View a screenshot of 'BeerGetter'</a></li>");
     v.push_back("</ul>");
@@ -4234,7 +4234,7 @@ const std::vector<std::string> Info::ToHtml() const
   {
     v.push_back("<img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameBeerWanter.htm\">BeerWanter</a> is a very simple game in which the player must click on the beer.</p>");
+    v.push_back("<p><a href=\"GameBeerWanter.htm\">BeerWanter</a> is a very simple <a href=\"Games.htm\">game</a> in which the player must click on the beer.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBeerWanter.htm\">BeerWanter</a> has been built for <a href=\"CppNds.htm\">NDS</a>, ");
     v.push_back("<a href=\"CppUbuntu.htm\">Ubuntu</a> and <a href=\"CppWindows.htm\">Windows</a>.");
@@ -4370,7 +4370,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameBillysGarden")
   {
-    v.push_back("<p><a href=\"GameBillysGarden.htm\">Billy's Garden</a> is a PC clone of the MSX game 'Athletic Land'. It is not finished yet.</p>");
+    v.push_back("<p><a href=\"GameBillysGarden.htm\">Billy's Garden</a> is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'. It is not finished yet.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBillysGarden.htm\">Billy's Garden</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4399,7 +4399,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameBinnenVolley")
   {
-    v.push_back("<p><a href=\"GameBinnenVolley.htm\">BinnenVolley</a> is a two-player Dutch game similar to <a href=\"http://en.wikipedia.org/wiki/Arcade_Volleyball\">Arcade Volleyball</a>.</p>");
+    v.push_back("<p><a href=\"GameBinnenVolley.htm\">BinnenVolley</a> is a two-player Dutch <a href=\"Games.htm\">game</a> similar to <a href=\"http://en.wikipedia.org/wiki/Arcade_Volleyball\">Arcade Volleyball</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBinnenVolley.htm\">BinnenVolley</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library. The beta version (0.9) is released at the 18th of February of 2010.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4422,16 +4422,16 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameBoenken")
   {
-    v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> is a crossing-over between soccer and billiards and can be played with twenty players. The game's name is Dutch, translating it to English would yield something like 'Bonking' (but if I would call the game like that, my website would attract other people). 'Boenk' is the phonetic word of the sound two colliding Dutch snooker balls make.</p>");
+    v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> is a crossing-over between soccer and billiards and can be played with twenty players. The <a href=\"Games.htm\">game</a>'s name is Dutch, translating it to English would yield something like 'Bonking' (but if I would call the <a href=\"Games.htm\">game</a> like that, my website would attract other people). 'Boenk' is the phonetic word of the sound two colliding Dutch snooker balls make.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> can be played with twenty players at the same time (on the same single keyboard). Who said that video games could not be cosy?</p>");
+    v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> can be played with twenty players at the same time (on the same single keyboard). Who said that video <a href=\"Games.htm\">games</a> could not be cosy?</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>At first, <a href=\"GameBoenken.htm\">Boenken</a> was programmed in <a href=\"Cpp.htm\">C++</a> using the IDE ");
     v.push_back("<a href=\"CppBuilder.htm\">C++ Builder</a> 6.0, with use of the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>.");
     v.push_back("At version 3.0, <a href=\"GameBoenken.htm\">Boenken</a> was ported to <a href=\"CppQtCreator.htm\">Qt Creator</a> to make use of the cross-platform");
     v.push_back("<a href=\"CppQt.htm\">Qt</a> <a href=\"CppLibrary.htm\">library</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>The game relies heavily on the function <a href=\"CppDoPerfectElasticCollision.htm\">DoPerfectElasticCollision</a>.</p>");
+    v.push_back("<p>The <a href=\"Games.htm\">game</a> relies heavily on the function <a href=\"CppDoPerfectElasticCollision.htm\">DoPerfectElasticCollision</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4481,11 +4481,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"GameConnectThree.htm\">ConnectThree</a> is a turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. ");
     v.push_back("It can be played by one, two or three players.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<!--");
-    v.push_back("<p><a href=\"GameConnectThree.htm\">ConnectThree</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("-->");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4530,7 +4525,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameCorridor")
   {
-    v.push_back("<p><a href=\"GameCorridor.htm\">Corridor</a> is a game written by Or Dvory (also known as gnudles) in 2007 ");
+    v.push_back("<p><a href=\"GameCorridor.htm\">Corridor</a> is a <a href=\"Games.htm\">game</a> written by Or Dvory (also known as gnudles) in 2007 ");
     v.push_back("and ported by me to a <a href=\"CppQtCreator.htm\">Qt Creator</a> project on the 17th September 2010.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4547,8 +4542,8 @@ const std::vector<std::string> Info::ToHtml() const
   else if (m_page_name == "GameDasWahreSchlagerfest")
   {
     v.push_back("<p><a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> was programmed on the 30th September 2003 during a 'Spass programmieren' session. ");
-    v.push_back("It is the one game that can be played on a theme party with theme 'Germany', or as a substitute for the Oktoberfest. ");
-    v.push_back("If you want a beer or bratwurst, you can just go fetching one without fear of losing the game!</p>");
+    v.push_back("It is the one <a href=\"Games.htm\">game</a> that can be played on a theme party with theme 'Germany', or as a substitute for the Oktoberfest. ");
+    v.push_back("If you want a beer or bratwurst, you can just go fetching one without fear of losing the <a href=\"Games.htm\">game</a>!</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Initially, <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> was programmed ");
     v.push_back("in <a href=\"Cpp.htm\">C++</a> using the <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 <a href=\"CppIde.htm\">IDE</a>, for a Windows-only version, but");
@@ -4587,25 +4582,42 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameEukaryote")
   {
-    v.push_back("<p><a href=\"GameEukaryote.htm\">Eukaryote</a> is a top-view strategy game in which the ");
+    v.push_back("<p><a href=\"GameEukaryote.htm\">Eukaryote</a> is a top-view strategy <a href=\"Games.htm\">game</a> in which the ");
     v.push_back("units are cells and organelles. Check out the presentation...</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"GameEukaryote.ppt\">View the powerpoint presentation of 'Eukaryote'</a></li>");
     v.push_back("</ul>");
   }
+
+  else if (m_page_name == "GameEverythingToPiecesShooter")
+  {
+    v.push_back("<p><a href=\"GameEverythingToPiecesShooter.htm\">EverythingToPiecesShooter</a> is a <a href=\"Games.htm\">game</a> made by Joost van den Bogaart in the year 2005, released under the GPL 3.0.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameEverythingToPiecesShooter.htm\">EverythingToPiecesShooter</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>...</li>");
+    v.push_back("</ul>");
+  }
+
   else if (m_page_name == "GameK3OpEenRij")
   {
     v.push_back("<p><a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a> is a tribute to the Flemisch girlyband K3. ");
     v.push_back("<a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a> is a turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. ");
-    v.push_back("It can be played by one, two or three players. The game is designed for this band's typical audience.</p>");
+    v.push_back("It can be played by one, two or three players. The <a href=\"Games.htm\">game</a> is designed for this band's typical audience.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Thanks to Mark Wiering, for reviving my interest in Kathleen: thanks to him you can choose both girls since version 5.0.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>Mark Wiering notified me of two variants to play the game:</p>");
+    v.push_back("<p>Mark Wiering notified me of two variants to play the <a href=\"Games.htm\">game</a>:</p>");
     v.push_back("<ul>");
-    v.push_back("  <li>Classic: win the game by getting three-in-a-row</li>");
-    v.push_back("  <li>Survivor: Win the game by filling the screen without anyone getting three-in-a-row</li>");
+    v.push_back("  <li>Classic: win the <a href=\"Games.htm\">game</a> by getting three-in-a-row</li>");
+    v.push_back("  <li>Survivor: Win the <a href=\"Games.htm\">game</a> by filling the screen without anyone getting three-in-a-row</li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Currently, only the 'Classic' mode is supported.</p>");
@@ -4685,7 +4697,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameMartianCafeTuinemaTycoon")
   {
-    v.push_back("<p><a href=\"GameMartianCafeTuinemaTycoon.htm\">Martian Cafe Tuinema Tycoon</a> is a game made by Joost van den Bogaart in the year 2005, released under the GPL 3.0.</p>");
+    v.push_back("<p><a href=\"GameMartianCafeTuinemaTycoon.htm\">Martian Cafe Tuinema Tycoon</a> is a <a href=\"Games.htm\">game</a> made by Joost van den Bogaart in the year 2005, released under the GPL 3.0.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameMartianCafeTuinemaTycoon.htm\">Martian Cafe Tuinema Tycoon</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4703,7 +4715,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameMaziak")
   {
-    v.push_back("<p>Maziak is a simple maze retro game (and a clone of the Sinclair ZX Spectrum/MSX game Maziak/Maziacs/Mazoggs), in which you have to find a maze's exit. But there are also enemies in the maze that can be beaten by a sword. There are also prisoners, that temporarily show the way to the exit upon freeing them.</p>");
+    v.push_back("<p>Maziak is a simple maze retro <a href=\"Games.htm\">game</a> (and a clone of the Sinclair ZX Spectrum/MSX <a href=\"Games.htm\">game</a> Maziak/Maziacs/Mazoggs), in which you have to find a maze's exit. But there are also enemies in the maze that can be beaten by a sword. There are also prisoners, that temporarily show the way to the exit upon freeing them.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4728,7 +4740,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>Version 1.0 of the game relies heavily on the function <a href=\"CppDrawGlobe.htm\">DrawGlobe</a>.</p>");
+    v.push_back("<p>Version 1.0 of the <a href=\"Games.htm\">game</a> relies heavily on the function <a href=\"CppDrawGlobe.htm\">DrawGlobe</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ol>");
     v.push_back("  <li><a href=\"GameMaziakExe_1_4.zip\">Download the 'Maziak' Windows executable (v.1.4)(zip)</a></li>");
@@ -4803,7 +4815,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameMetZnDrieen")
   {
-    v.push_back("<p><a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a> is a Dutch turn-based tic-tac-toe-like game. It can be played by one, two or three players. The game is in the Dutch language.</p>");
+    v.push_back("<p><a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a> is a Dutch turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. It can be played by one, two or three players. The <a href=\"Games.htm\">game</a> is in the Dutch language.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library. The current version number is 1.3.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4845,7 +4857,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GamePokeVolley")
   {
-    v.push_back("<p><a href=\"GamePokeVolley.htm\">PokeVolley</a> is a game similar to <a href=\"http://en.wikipedia.org/wiki/Arcade_Volleyball\">Arcade Volleyball</a> with Pokemon graphics. It was born and its first version programmed at the 24th of September of 2005 during a session of 'Fun Programming' with Joost van den Bogaart.</p>");
+    v.push_back("<p><a href=\"GamePokeVolley.htm\">PokeVolley</a> is a <a href=\"Games.htm\">game</a> similar to <a href=\"http://en.wikipedia.org/wiki/Arcade_Volleyball\">Arcade Volleyball</a> with Pokemon graphics. It was born and its first version programmed at the 24th of September of 2005 during a session of 'Fun Programming' with Joost van den Bogaart.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GamePokeVolley.htm\">PokeVolley</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4893,7 +4905,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GamePublicToiletManager5")
   {
-    v.push_back("<p><a href=\"GamePublicToiletManager5.htm\">Public Toilet Manager 5 - The New Art Project</a> is a game made by Joost van den Bogaart, released under the GPL 3.0.</p>");
+    v.push_back("<p><a href=\"GamePublicToiletManager5.htm\">Public Toilet Manager 5 - The New Art Project</a> is a <a href=\"Games.htm\">game</a> made by Joost van den Bogaart, released under the GPL 3.0.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GamePublicToiletManager5.htm\">Public Toilet Manager 5 - The New Art Project</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> library.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4912,7 +4924,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GamePylos")
   {
-    v.push_back("<p><a href=\"GamePylos.htm\">Pylos</a> is the computer <a href=\"Games.htm\">game</a> of the board game called 'Pylos' or 'Pyraos'.");
+    v.push_back("<p><a href=\"GamePylos.htm\">Pylos</a> is the computer <a href=\"Games.htm\">game</a> of the board <a href=\"Games.htm\">game</a> called 'Pylos' or 'Pyraos'.");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GamePylos.htm\">Pylos</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the ");
     v.push_back("<a href=\"CppQtCreator.htm\">Qt Creator</a> <a href=\"CppIde.htm\">IDE</a> and uses the ");
@@ -4939,8 +4951,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<h2>Bugs to fix</h2>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>If a player places his/her last marble, he/she has lost the game. This is true, except when this last marble ");
-    v.push_back("enables the player to remove one or two marbles. The game does not allow the player to remove these marbles,");
+    v.push_back("<p>If a player places his/her last marble, he/she has lost the <a href=\"Games.htm\">game</a>. This is true, except when this last marble ");
+    v.push_back("enables the player to remove one or two marbles. The <a href=\"Games.htm\">game</a> does not allow the player to remove these marbles,");
     v.push_back("but states the victory of the other player.</p>");
   }
   else if (m_page_name == "GameReversi")
@@ -4985,12 +4997,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameRubiksClock")
   {
-    v.push_back("<p>Simulates a Rubik's Clock. Nothing more, nothing less</p>");
-    v.push_back("<!--");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameRubiksClock.htm\">Rubik's Clock</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("-->");
+    v.push_back("<p>Simulates a Rubik's Clock.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -5082,7 +5089,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameSearchAndDestroyChessConsole")
   {
-    v.push_back("<p><a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChessConsole</a> is a special kind of chess game. The difference with a regular chess game is, that is <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChessConsole</a> you can only view that part of the board that is 'seen' by your pieces.</p>");
+    v.push_back("<p><a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChessConsole</a> is a special kind of chess <a href=\"Games.htm\">game</a>. The difference with a regular chess <a href=\"Games.htm\">game</a> is, that is <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChessConsole</a> you can only view that part of the board that is 'seen' by your pieces.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>There is also a graphical/Windows version of <a href=\"GameSearchAndDestroyChessConsole.htm\">SearchAndDestroyChessConsole</a> called <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChess</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -5175,9 +5182,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameTicTacToe")
   {
-    v.push_back("<p><a href=\"GameTicTacToe.htm\">TicTacToe</a> is a simple tic-tac-toe game.</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameTicTacToe.htm\">TicTacToe</a> can be played on <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
+    v.push_back("<p><a href=\"GameTicTacToe.htm\">TicTacToe</a> is a simple tic-tac-toe <a href=\"Games.htm\">game</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -5224,7 +5229,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameTronCollection")
   {
-    v.push_back("<p>'Tron' was one of my first cool QBASIC games I've had programmed around 1995. It took twelve years of itching before I ported it to C++.</p>");
+    v.push_back("<p>'Tron' was one of my first cool QBASIC <a href=\"Games.htm\">games</a> I've had programmed around 1995. It took twelve years of itching before I ported it to C++.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameTronCollection.htm\">The Tron Collection</a> consists out of three parts:</p>");
     v.push_back("<ul>");
@@ -5255,7 +5260,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameWizardBattle")
   {
-    v.push_back("<p><a href=\"GameWizardBattle.htm\">Wizard Battle</a> is the first game made by Joost van den Bogaart, released under the GPL 3.0.</p>");
+    v.push_back("<p><a href=\"GameWizardBattle.htm\">Wizard Battle</a> is the first <a href=\"Games.htm\">game</a> made by Joost van den Bogaart, released under the GPL 3.0.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameWizardBattle.htm\">Wizard Battle</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -5274,7 +5279,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "GameZork")
   {
-    v.push_back("<p><a href=\"GameZork.htm\">Zork</a> (also named as 'Dungeon') is a text adventure game written by ");
+    v.push_back("<p><a href=\"GameZork.htm\">Zork</a> (also named as 'Dungeon') is a text adventure <a href=\"Games.htm\">game</a> written by ");
     v.push_back("Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling in 1980.");
     v.push_back("I ported its C source code (without any modification) to be used under <a href=\"CppQtCreator.htm\">Qt Creator</a>. ");
     v.push_back("Note that because the C standard has changed considerably and because I left the original code unmodified, ");
@@ -7198,11 +7203,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"ToolAsciiArter.htm\">AsciiArter</a> demonstrates the <a href=\"CppClass.htm\">class</a> ");
     v.push_back("<a href=\"CppAsciiArter.htm\">AsciiArter</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<!--");
-    v.push_back("<p><a href=\"ToolAsciiArter.htm\">AsciiArter</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("-->");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -7553,6 +7553,11 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolCoutChildWindowsExe.zip\">Download the 'CoutChildWindows' Windows executable (zip)</a></li>");
     v.push_back("  <li><a href=\"ToolCoutChildWindowsSource.zip\">Download the 'CoutChildWindows' source code (zip)</a></li>");
     v.push_back("</ul>");
+  }
+  else if (m_page_name == "ToolCreateGlossary")
+  {
+    v.push_back("<p><a href=\"ToolCreateGlossary.htm\">CreateGlossary</a> is a <a href=\"Tools.htm\">tool</a> to generate");
+    v.push_back("the glossaries of this website.");
   }
   else if (m_page_name == "ToolCreateQtProjectZipFile")
   {
@@ -8111,9 +8116,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("with or without images. The exercises can created by use of a simple text editor (Notepad, for example). ");
     v.push_back("<a href=\"ToolHometrainer.htm\">Hometrainer</a> can also be used for examination.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolHometrainer.htm\">Hometrainer</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -8465,7 +8467,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolLoose_2_0.png\">View a 'Loose' screenshot (version 2.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"http://www.richelbilderbeek.changeip.net\">View my dynamic website, where Loose is a menu-item of</a></li>");
     v.push_back("  <li><a href=\"ToolLooseSource_2_0.zip\">Download the 'Loose' Qt Creator project (version 2.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolLooseSource_2_0.htm\">View the 'Loose' source code as a web page (version 2.0)(htm)</a></li>");
     v.push_back("</ul>");
@@ -8764,9 +8765,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("somebody was begging for code ('Coult u pleaz gimme code 4 peer2peer programm?'), I");
     v.push_back("posted a piece of random generated code with the comment 'Here it is, it just");
     v.push_back("needs to have some bugs fixed!'. Programmers' humor is great, isn't it?</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolRandomCode.htm\">Random Code</a> can be used on <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9107,9 +9105,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>If you think you know what this machine does, order me a drink, guess and I will tell you if your answer was");
     v.push_back("correct or not.</p> ");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolSimMysteryMachine.htm\">SimMysteryMachine</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9434,8 +9429,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("the <a href=\"CppDial.htm\">Dial</a>, <a href=\"CppQtDialWidget.htm\">QtDialWidget</a> ");
     v.push_back("and <a href=\"CppWtDialWidget.htm\">WtDialWidget</a> <a href=\"CppClass.htm\">classes</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestDial.htm\">TestDial</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9477,9 +9470,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("single-line text messages.   <a");
     v.push_back("href=\"ToolMultiEncranger.htm\">MultiEncranger</a> is the multi-line version");
     v.push_back("of <a href=\"ToolTestEncranger.htm\">Encranger</a>.</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestEncranger.htm\">TestEncranger</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9567,10 +9557,6 @@ const std::vector<std::string> Info::ToHtml() const
   {
     v.push_back("<p><a href=\"ToolTestEntrance.htm\">TestEntrance</a> is a <a href=\"Tools.htm\">tool</a> to test the <a href=\"CppWtEntrance.htm\">WtEntrance</a>");
     v.push_back("<a href=\"CppClass.htm\">class</a>.</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestEntrance.htm\">TestEntrance</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9675,9 +9661,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"ToolTestLed.htm\">TestLed</a> is a <a href=\"Tools.htm\">tool</a> to test ");
     v.push_back("the <a href=\"CppLed.htm\">Led</a>, <a href=\"CppQtLedWidget.htm\">QtLedWidget</a> ");
     v.push_back("and <a href=\"CppWtLedWidget.htm\">WtLedWidget</a> <a href=\"CppClass.htm\">classes</a>.</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestLed.htm\">TestLed</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9929,9 +9912,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p><a href=\"ToolTestQuestion.htm\">TestQuestion</a> is a <a href=\"Tools.htm\">tool</a> to test ");
     v.push_back("many <a href=\"CppClass.htm\">classes</a> related to questions.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestQuestion.htm\">TestQuestion</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9968,9 +9948,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("the <a href=\"CppWtSelectFileDialog.htm\">WtSelectFileDialog</a> <a href=\"CppClass.htm\">class</a>.</p>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestSelectFileDialog.htm\">TestSelectFileDialog</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10002,9 +9979,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("to test the <a href=\"CppWtServerPusher.htm\">WtServerPusher</a> and <a href=\"CppWtServerPusherClient.htm\">WtServerPusherClient</a>");
     v.push_back("in the form of an edit widget, that can be viewed and edited by multiple visitors at the same time.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestServerPusher.htm\">TestServerPusher</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10021,9 +9995,6 @@ const std::vector<std::string> Info::ToHtml() const
   {
     v.push_back("<p><a href=\"ToolTestShape.htm\">TestShape</a> is a <a href=\"Tools.htm\">tool</a> to tool to test the <a href=\"CppShape.htm\">Shape</a> ");
     v.push_back("and <a href=\"CppShapeWidget.htm\">ShapeWidget</a> <a href=\"CppClass.htm\">classes</a>.</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestShape.htm\">TestShape</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p> ");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10055,8 +10026,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("the <a href=\"CppShinyButton.htm\">ShinyButton</a>, <a href=\"CppShinyButtonWidget.htm\">ShinyButtonWidget</a>, ");
     v.push_back("and <a href=\"CppWtShinyButtonWidget.htm\">WtShinyButtonWidget</a> <a href=\"CppClass.htm\">classes</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestShinyButton.htm\">TestShinyButton</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10145,9 +10114,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("to test the <a href=\"CppWtTimedServerPusher.htm\">WtTimedServerPusher</a> and <a href=\"CppWtTimedServerPusherClient.htm\">WtTimedServerPusherClient</a>");
     v.push_back("in the form of an edit widget, that can be viewed and edited by multiple visitors at the same time.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestTimedServerPusher.htm\">TestTimedServerPusher</a> can be used on <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10167,8 +10133,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<a href=\"CppQtToggleButtonWidget.htm\">QtToggleButtonWidget</a> ");
     v.push_back("and <a href=\"CppWtToggleButtonWidget.htm\">WtToggleButtonWidget</a> <a href=\"CppClass.htm\">classes</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"ToolTestToggleButton.htm\">TestToggleButton</a> can be used at <a href=\"http://www.richelbilderbeek.changeip.net\">my interactive website</a>.</p>");
-    v.push_back("<p><img src=\"PicTo.png\" alt=\"To\"/> <a href=\"http://www.richelbilderbeek.changeip.net\">Go to my interactive website</a></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
