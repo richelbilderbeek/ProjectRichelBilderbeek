@@ -1,4 +1,4 @@
-#include "qttooltestapproximatormaindialog.h"
+#include "qttooltestapproximatorxyzmaindialog.h"
 
 #include <cassert>
 
@@ -12,28 +12,37 @@
 #include <qwt_point_data.h>
 #endif
 
-#include "ui_qttooltestapproximatormaindialog.h"
+#include "ui_qttooltestapproximatorxyzmaindialog.h"
 
-QtToolTestApproximatorMainDialog::QtToolTestApproximatorMainDialog(QWidget *parent) :
+QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtToolTestApproximatorMainDialog),
+  ui(new Ui::QtToolTestApproximatorXyzMainDialog),
   m_approximator(),
   m_curve_approximation(new QwtPlotCurve),
   m_curve_values(new QwtPlotCurve),
-  m_plot(new QwtPlot)
+  m_plot_z_high(new QwtPlot),
+  m_plot_z_low(new QwtPlot),
+  m_plot_z_mid(new QwtPlot)
 {
   ui->setupUi(this);
 
   //Set up the plot
-  assert(m_plot);
-  m_plot->setTitle("Approximator");
-  m_plot->setAxisTitle(QwtPlot::xBottom,"Key");
-  m_plot->setAxisTitle(QwtPlot::yLeft,"Value");
-  #ifdef _WIN32
-  m_plot->setCanvasBackground(QBrush(QColor(255,255,255)));
-  #else
-  plot->setCanvasBackground(QColor(255,255,255));
-  #endif
+  assert(m_plot_z_low);
+  assert(m_plot_z_mid);
+  assert(m_plot_z_high);
+  m_plot_z_low->setTitle("Approximator, for z = 0.0");
+  m_plot_z_mid->setTitle("Approximator, for z = 0.5");
+  m_plot_z_high->setTitle("Approximator, for z = 1.0");
+  for (QwtPlot * const plot: { m_plot_z_low, m_plot_z_mid, m_plot_z_high } )
+  {
+    plot->setAxisTitle(QwtPlot::xBottom,"X");
+    plot->setAxisTitle(QwtPlot::yLeft,"Y");
+    #ifdef _WIN32
+    plot->setCanvasBackground(QBrush(QColor(255,255,255)));
+    #else
+    plot->setCanvasBackground(QColor(255,255,255));
+    #endif
+  }
 
   //Create plots
   assert(m_curve_values);
@@ -97,16 +106,14 @@ QtToolTestApproximatorMainDialog::QtToolTestApproximatorMainDialog(QWidget *pare
 
   ui->box_int_x->setValue(0);
   ui->box_double_y->setValue(0.0);
-
-  TRACE_FUNC();
 }
 
-QtToolTestApproximatorMainDialog::~QtToolTestApproximatorMainDialog()
+QtToolTestApproximatorXyzMainDialog::~QtToolTestApproximatorXyzMainDialog()
 {
   delete ui;
 }
 
-void QtToolTestApproximatorMainDialog::on_button_clicked()
+void QtToolTestApproximatorXyzMainDialog::on_button_clicked()
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
@@ -117,21 +124,21 @@ void QtToolTestApproximatorMainDialog::on_button_clicked()
   Plot();
 }
 
-void QtToolTestApproximatorMainDialog::on_box_int_x_valueChanged(int)
+void QtToolTestApproximatorXyzMainDialog::on_box_int_x_valueChanged(int)
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
   ui->button->setEnabled( m_approximator.CanAdd(x,y) );
 }
 
-void QtToolTestApproximatorMainDialog::on_box_double_y_valueChanged(double)
+void QtToolTestApproximatorXyzMainDialog::on_box_double_y_valueChanged(double)
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
   ui->button->setEnabled( m_approximator.CanAdd(x,y) );
 }
 
-void QtToolTestApproximatorMainDialog::Plot()
+void QtToolTestApproximatorXyzMainDialog::Plot()
 {
   //Plot approximation
   {

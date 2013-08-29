@@ -7,7 +7,7 @@
 
 #include "tooltestapproximatormenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttooltestapproximatormaindialog.h"
+#include "qttooltestapproximatorxymaindialog.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
 #include "ui_qttooltestapproximatormenudialog.h"
@@ -49,10 +49,16 @@ void QtToolTestApproximatorMenuDialog::on_button_quit_clicked()
   close();
 }
 
-void QtToolTestApproximatorMenuDialog::on_button_start_clicked()
+void QtToolTestApproximatorMenuDialog::on_button_start_xy_clicked()
 {
-  QtToolTestApproximatorMainDialog d;
+  QtToolTestApproximatorXyMainDialog d;
   ShowChild(&d);
+}
+
+void QtToolTestApproximatorMenuDialog::on_button_start_xyz_clicked()
+{
+  //QtToolTestApproximatorXyzMainDialog d;
+  //ShowChild(&d);
 }
 
 #ifndef NDEBUG
@@ -64,7 +70,8 @@ void QtToolTestApproximatorMenuDialog::Test()
     is_tested = true;
   }
   TRACE("Starting QtToolTestApproximatorMenuDialog::Test");
-  QtToolTestApproximatorMainDialog();
+  QtToolTestApproximatorXyMainDialog();
+  //QtToolTestApproximatorMainXyzDialog();
   TRACE("Finished QtToolTestApproximatorMenuDialog::Test successfully");
 }
 #endif

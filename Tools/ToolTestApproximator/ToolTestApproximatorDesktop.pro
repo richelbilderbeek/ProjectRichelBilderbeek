@@ -1,9 +1,6 @@
 QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-# undefined reference to `_imp___ZNK8QWebView8settingsEv'
-#greaterThan(QT_MAJOR_VERSION, 4): QT += webkitwidgets
-
 TEMPLATE = app
 
 #
@@ -25,10 +22,11 @@ SOURCES += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     qtmain.cpp \
-    qttooltestapproximatormaindialog.cpp \
     tooltestapproximatormenudialog.cpp \
     qttooltestapproximatormenudialog.cpp \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.cpp
+    ../../Classes/CppApproximator/exceptionnoextrapolation.cpp \
+    qttooltestapproximatorxymaindialog.cpp \
+    qttooltestapproximatorxyzmaindialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -36,15 +34,17 @@ HEADERS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppTrace/trace.h \
-    qttooltestapproximatormaindialog.h \
     qttooltestapproximatormenudialog.h \
     tooltestapproximatormenudialog.h \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.h
+    ../../Classes/CppApproximator/exceptionnoextrapolation.h \
+    qttooltestapproximatorxymaindialog.h \
+    qttooltestapproximatorxyzmaindialog.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttooltestapproximatormaindialog.ui \
-    qttooltestapproximatormenudialog.ui
+    qttooltestapproximatormenudialog.ui \
+    qttooltestapproximatorxymaindialog.ui \
+    qttooltestapproximatorxyzmaindialog.ui
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
