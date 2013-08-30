@@ -126,9 +126,8 @@ TEMPLATE = app<br/>
 <b><a href="CppStruct.htm">struct</a></b> PongBackground : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a><br/>
 {<br/>
 &nbsp;&nbsp;PongBackground(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * scene <a href="CppOperatorAssign.htm">=</a> 0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent,scene)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent)<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
@@ -151,9 +150,8 @@ TEMPLATE = app<br/>
 <b><a href="CppStruct.htm">struct</a></b> PongPlayer : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a><br/>
 {<br/>
 &nbsp;&nbsp;PongPlayer(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * scene <a href="CppOperatorAssign.htm">=</a> 0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>(parent,scene),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_dy(0.0)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setBrush(QBrush(<a href="CppQColor.htm">QColor</a>(0,0,0)));<br/>
@@ -188,10 +186,9 @@ TEMPLATE = app<br/>
 {<br/>
 &nbsp;&nbsp;PongBall(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * scene <a href="CppOperatorAssign.htm">=</a> 0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 32,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 32)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent,scene),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_dx(1.0), m_dy(1.0), m_maxx(0.0), m_maxy(0.0)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> i(width,height,<a href="CppQImage.htm">QImage</a>::Format_ARGB32);<br/>

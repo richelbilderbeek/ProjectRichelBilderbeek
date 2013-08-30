@@ -1,13 +1,9 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-19T15:10:48
-#
-#-------------------------------------------------
 QT       += core gui
 CONFIG   += console
 CONFIG   -= app_bundle
-#Use C++0x standard
-QMAKE_CXXFLAGS += -std=c++0x
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 #Use 64 bit
 #QMAKE_CXXFLAGS += -m64
 

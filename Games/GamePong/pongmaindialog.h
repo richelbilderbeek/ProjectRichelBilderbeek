@@ -12,9 +12,8 @@
 struct PongBackground : public QGraphicsPixmapItem
 {
   PongBackground(
-    QGraphicsItem * parent = 0,
-    QGraphicsScene * scene = 0)
-    : QGraphicsPixmapItem(parent,scene)
+    QGraphicsItem * parent = 0)
+    : QGraphicsPixmapItem(parent)
   {
 
   }
@@ -37,9 +36,8 @@ struct PongBackground : public QGraphicsPixmapItem
 struct PongPlayer : public QGraphicsRectItem
 {
   PongPlayer(
-    QGraphicsItem * parent = 0,
-    QGraphicsScene * scene = 0)
-    : QGraphicsRectItem(parent,scene),
+    QGraphicsItem * parent = 0)
+    : QGraphicsRectItem(parent),
       m_dy(0.0)
   {
     this->setBrush(QBrush(QColor(0,0,0)));
@@ -74,10 +72,9 @@ struct PongBall : public QGraphicsPixmapItem
 {
   PongBall(
     QGraphicsItem * parent = 0,
-    QGraphicsScene * scene = 0,
     const int width = 32,
     const int height = 32)
-    : QGraphicsPixmapItem(parent,scene),
+    : QGraphicsPixmapItem(parent),
       m_dx(1.0), m_dy(1.0), m_maxx(0.0), m_maxy(0.0)
   {
     QImage i(width,height,QImage::Format_ARGB32);

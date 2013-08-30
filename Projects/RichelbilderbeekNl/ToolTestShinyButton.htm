@@ -25,8 +25,6 @@
 the <a href="CppShinyButton.htm">ShinyButton</a>, <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>, 
 and <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a> <a href="CppClass.htm">classes</a>.</p>
 <p>&nbsp;</p>
-<p><a href="ToolTestShinyButton.htm">TestShinyButton</a> can be used at <a href="http://www.richelbilderbeek.changeip.net">my interactive website</a>.</p>
-<p><img src="PicTo.png" alt="To"/> <a href="http://www.richelbilderbeek.changeip.net">Go to my interactive website</a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -152,11 +150,16 @@ TEMPLATE = app<br/>
 <!-- start of code -->
 <table summary="ToolTestShinyButtonDesktop.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+#<a href="CppLIBS.htm">LIBS</a> += <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
+<br/>
 CONFIG&nbsp;&nbsp; += console<br/>
 CONFIG&nbsp;&nbsp; -= app_bundle<br/>
 TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<br/>
 <br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>

@@ -1,12 +1,6 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-02-08T14:39:39
-#
-#-------------------------------------------------
-
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CppQtExample22
 TEMPLATE = app
 
 
@@ -17,12 +11,11 @@ HEADERS  += transparentdialog.h
 
 FORMS    += transparentdialog.ui
 
-CONFIG += mobility
-MOBILITY = 
-
-symbian {
-    TARGET.UID3 = 0xec5641b7
-    # TARGET.CAPABILITY += 
-    TARGET.EPOCSTACKSIZE = 0x14000
-    TARGET.EPOCHEAPSIZE = 0x020000 0x800000
-}
+#CONFIG += mobility
+#MOBILITY =
+#symbian {
+#    TARGET.UID3 = 0xec5641b7
+#    # TARGET.CAPABILITY +=
+#    TARGET.EPOCSTACKSIZE = 0x14000
+#    TARGET.EPOCHEAPSIZE = 0x020000 0x800000
+#}

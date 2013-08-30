@@ -1,7 +1,11 @@
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
 CONFIG   += console
 CONFIG   -= app_bundle
-QMAKE_CXXFLAGS += -std=c++0x
+
 INCLUDEPATH += \
   ../../Classes/CppAbout \
   ../../Classes/CppBinaryNewickVector \

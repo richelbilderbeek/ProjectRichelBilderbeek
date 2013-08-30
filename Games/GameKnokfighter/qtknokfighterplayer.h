@@ -9,15 +9,17 @@ struct QtKnokfighterPlayer : public QGraphicsPixmapItem
 
   QtKnokfighterPlayer(
     const Name name,
-    QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+    QGraphicsItem *parent = 0);
 
   void advance(int);
 
   private:
-  int m_z;
-
   ///The fighter his/her name
   const std::string m_name;
+
+  ///The fighter his/her Z-order
+  int m_z;
+
 
   void DrawPixmap();
 };

@@ -46,7 +46,7 @@
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
@@ -67,10 +67,14 @@
 <!-- start of code -->
 <table summary="ToolTestGravityWidget.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
 TEMPLATE = app<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tooltestgravity<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtgravity<a href="CppWidget.htm">widget</a>item.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtgravity<a href="CppWidget.htm">widget</a>.cpp<br/>
@@ -215,7 +219,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F m_rect;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read-only <a href="CppPointer.htm">pointer</a> to the <a href="CppQGraphicsScene.htm">QGraphicsScene</a> <b><a href="CppThis.htm">this</a></b> <a href="CppQt.htm">Qt</a>Gravity<a href="CppWidget.htm">Widget</a>Item is part of<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
 <br/>
 };<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTGRAVITYWIDGETITEM_H<br/>
@@ -230,6 +234,7 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtgravitywidgetitem.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
@@ -238,12 +243,13 @@ TEMPLATE = app<br/>
 <a href="CppQt.htm">Qt</a>Gravity<a href="CppWidget.htm">Widget</a>Item::<a href="CppQt.htm">Qt</a>Gravity<a href="CppWidget.htm">Widget</a>Item(<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent,<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * scene)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent,scene),<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dy(0.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_rect(-16.0,-16.0,32.0,32.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_scene(scene)<br/>
 {<br/>
-<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_scene);<br/>
+&nbsp;&nbsp;m_scene-&gt;addItem(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Gravity<a href="CppWidget.htm">Widget</a>Item::advance(<b><a href="CppInt.htm">int</a></b>)<br/>

@@ -1,14 +1,7 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-07-22T15:14:55
-#
-#-------------------------------------------------
-
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CppQtExample14
 TEMPLATE = app
-
 
 SOURCES += main.cpp\
         mydialog.cpp

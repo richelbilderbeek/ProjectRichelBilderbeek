@@ -100,7 +100,7 @@ void QtTestDialMainDialog::DisplayDialValue()
   ui->label_angle->setText(s.c_str());
 }
 
-void QtTestDialMainDialog::on_dial_color_dialMoved(int)
+void QtTestDialMainDialog::on_dial_color_valueChanged(int value)
 {
   //Set the color
   const double min = boost::numeric_cast<double>(ui->dial_color->minimum());
@@ -117,5 +117,5 @@ void QtTestDialMainDialog::on_dial_color_dialMoved(int)
     boost::numeric_cast<int>(r * 255.0),
     boost::numeric_cast<int>(g * 255.0),
     boost::numeric_cast<int>(b * 255.0));
-}
 
+}

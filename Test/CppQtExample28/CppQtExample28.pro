@@ -1,7 +1,9 @@
 QT       += core gui
-TARGET = ToolTestBoucingRectsWidget
-TEMPLATE = app
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QMAKE_CXXFLAGS += -Wall -Wextra -Werror
+
+TEMPLATE = app
 
 SOURCES += \
     qttooltestbouncingrectswidgetmaindialog.cpp \

@@ -26,8 +26,6 @@ the <a href="CppToggleButton.htm">ToggleButton</a>, <a href="CppToggleButtonWidg
 <a href="CppQtToggleButtonWidget.htm">QtToggleButtonWidget</a> 
 and <a href="CppWtToggleButtonWidget.htm">WtToggleButtonWidget</a> <a href="CppClass.htm">classes</a>.</p>
 <p>&nbsp;</p>
-<p><a href="ToolTestToggleButton.htm">TestToggleButton</a> can be used at <a href="http://www.richelbilderbeek.changeip.net">my interactive website</a>.</p>
-<p><img src="PicTo.png" alt="To"/> <a href="http://www.richelbilderbeek.changeip.net">Go to my interactive website</a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -99,16 +97,12 @@ and <a href="CppWtToggleButtonWidget.htm">WtToggleButtonWidget</a> <a href="CppC
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="ToolTestToggleButtonDesktop.pro" border = "1"><tr><td><code>
-#-------------------------------------------------<br/>
-#<br/>
-# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2011-04-11T09:14:30<br/>
-#<br/>
-#-------------------------------------------------<br/>
-<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
 <br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>

@@ -6,12 +6,12 @@
 QtGravityWidgetItem::QtGravityWidgetItem(
   QGraphicsItem * parent,
   QGraphicsScene * scene)
-  : QGraphicsItem(parent,scene),
+  : QGraphicsItem(parent),
     m_dy(0.0),
     m_rect(-16.0,-16.0,32.0,32.0),
     m_scene(scene)
 {
-
+  scene->addItem(this);
 }
 
 void QtGravityWidgetItem::advance(int)

@@ -8,6 +8,7 @@
 #include "qtpvdbrateconcepttallydialog.h"
 
 #include <cassert>
+#include <sstream>
 #include <numeric>
 
 #include <vector>
@@ -147,13 +148,17 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
 
   ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-  #ifndef NDEBUG
   ui->label_debug->setVisible(true);
-  #else
-  ui->label_debug->setVisible(false);
-  #endif
-
   QObject::connect(ui->table,SIGNAL(cellChanged(int,int)),this,SLOT(OnCellChanged(int,int)));
+
+  {
+    const int x = GetSuggestedComplexity();
+    const int c = GetSuggestedConcreteness();
+    const int s = GetSuggestedSpecificity();
+    std::stringstream m;
+    m << "Complexiteit: " << x << ", concreetheid: " << c << ", specificiteit: " << s;
+    ui->label_debug->setText(m.str().c_str());
+  }
 }
 
 QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog()
@@ -359,17 +364,14 @@ void QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
     }
   }
 
-  #ifndef NDEBUG
   {
     const int x = GetSuggestedComplexity();
     const int c = GetSuggestedConcreteness();
     const int s = GetSuggestedSpecificity();
     std::stringstream m;
-    m << "DEBUG ONLY: X: " << x << ", C: " << c << ", S: " << s;
+    m << "Complexiteit: " << x << ", concreetheid: " << c << ", specificiteit: " << s;
     ui->label_debug->setText(m.str().c_str());
-
   }
-  #endif
 }
 
 void QtPvdbRateConceptTallyDialog::resizeEvent(QResizeEvent *)

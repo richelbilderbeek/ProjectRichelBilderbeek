@@ -46,7 +46,7 @@
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
@@ -66,19 +66,17 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="ToolTestGraphicsProxyWidget.pro" border = "1"><tr><td><code>
-#-------------------------------------------------<br/>
-#<br/>
-# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2012-08-09T15:41:14<br/>
-#<br/>
-#-------------------------------------------------<br/>
-<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 TEMPLATE = app<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tooltestgraphicsproxy<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tooltestgraphicsproxy<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttestgraphicsproxy<a href="CppWidget.htm">widget</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttestgraphicsproxyitem.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;somedialog.cpp<br/>
@@ -302,7 +300,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_scene-&gt;addItem(proxy);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(proxy);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setPos((i+1) * 100, (i+1)* 100);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;rotate((i+1) * 10.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setRotation( proxy-&gt;rotation() <a href="CppOperatorPlus.htm">+</a> ((<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i)+1.0) * 10.0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_proxies.push_back(proxy);<br/>
 <br/>
 <br/>

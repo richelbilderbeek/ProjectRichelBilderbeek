@@ -14,8 +14,7 @@ struct QtArrowItem : public QGraphicsItem
     const bool head,
     const double head_x,
     const double head_y,
-    QGraphicsItem *parent = 0,
-    QGraphicsScene *scene = 0);
+    QGraphicsItem *parent = 0);
 
   ///Respond to key presses
   void keyPressEvent(QKeyEvent *event);

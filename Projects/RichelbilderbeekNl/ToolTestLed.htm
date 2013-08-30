@@ -25,9 +25,6 @@
 the <a href="CppLed.htm">Led</a>, <a href="CppQtLedWidget.htm">QtLedWidget</a> 
 and <a href="CppWtLedWidget.htm">WtLedWidget</a> <a href="CppClass.htm">classes</a>.</p>
 <p>&nbsp;</p>
-<p><a href="ToolTestLed.htm">TestLed</a> can be used at <a href="http://www.richelbilderbeek.changeip.net">my interactive website</a>.</p>
-<p><img src="PicTo.png" alt="To"/> <a href="http://www.richelbilderbeek.changeip.net">Go to my interactive website</a></p>
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -111,7 +108,10 @@ and <a href="CppWtLedWidget.htm">WtLedWidget</a> <a href="CppClass.htm">classes<
 <!-- start of code -->
 <table summary="ToolTestLedDesktop.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
 TEMPLATE = app<br/>
 <br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>

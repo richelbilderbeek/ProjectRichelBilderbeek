@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 #include <QCursor>
 #include <QFont>
@@ -7,8 +8,8 @@
 
 QtTextPositionItem::QtTextPositionItem(
   const std::string& text,
-  QGraphicsItem *parent, QGraphicsScene *scene)
-  : QGraphicsItem(parent,scene),
+  QGraphicsItem *parent)
+  : QGraphicsItem(parent),
     m_text(text),
     //Add a margin of 2 pixels at the edges
     m_rect(

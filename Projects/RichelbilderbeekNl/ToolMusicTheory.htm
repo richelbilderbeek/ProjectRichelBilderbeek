@@ -92,31 +92,33 @@
 <!-- start of code -->
 <table summary="ToolMusicTheoryDesktop.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 TEMPLATE = app<br/>
 <br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> +=&nbsp;&nbsp;\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>bbb \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
 <a href="CppSOURCES.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a>/<a href="CppMusic.htm">music</a>note.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a>/<a href="CppMusic.htm">music</a>chord.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a>/<a href="CppMusic.htm">music</a>scale.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qtchordrelations<a href="CppWidget.htm">widget</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qtchordedge.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolMusicTheory.htm">musictheory</a>menudialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolMusicTheory.htm">musictheory</a>menudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a>/<a href="CppMusic.htm">music</a>chord.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a>/<a href="CppMusic.htm">music</a>note.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a>/<a href="CppMusic.htm">music</a>scale.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolMusicTheory.htm">musictheory</a>menudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtchordedge.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtchordrelations<a href="CppWidget.htm">widget</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtchordvertex.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtmultiscalechordrelations<a href="CppWidget.htm">widget</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolMusicTheory.htm">musictheory</a>singlesca<a href="CppLed.htm">led</a>ialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolMusicTheory.htm">musictheory</a>multisca<a href="CppLed.htm">led</a>ialog.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolMusicTheory.htm">musictheory</a>menudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolMusicTheory.htm">musictheory</a>multisca<a href="CppLed.htm">led</a>ialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolMusicTheory.htm">musictheory</a>singlesca<a href="CppLed.htm">led</a>ialog.cpp<br/>
 <br/>
 <a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a>/<a href="CppMusic.htm">music</a>note.h \<br/>

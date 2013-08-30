@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>AlglibExample1</title>
+  <meta name="description" content="C++ AlglibExample1"/>
+  <meta name="keywords" content="C++ AlglibExample1 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppAlglibExample1.htm">AlglibExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppAlglibExample1-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppAlglibExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppAlglibExample1.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= app_bundle<br/>
+CONFIG -= qt<br/>
+<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppHEADERS.htm">HEADERS</a> +=<br/>
+<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+CONFIG(debug, debug|release) {<br/>
+&nbsp;&nbsp;message(Debug mode)<br/>
+}<br/>
+<br/>
+CONFIG(release, debug|release) {<br/>
+&nbsp;&nbsp;message(Release mode)<br/>
+<br/>
+&nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
+&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Platform specific<br/>
+#<br/>
+#<br/>
+<br/>
+#<br/>
+#<br/>
+# Compiler flags<br/>
+#<br/>
+#<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;message(Unix: Boost already in include path)<br/>
+}<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;message(Windows: add Boost to include path)<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;E:/<a href="Projects.htm">Projects</a>/<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# alglib<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;message(Lubuntu: alglib not tested)<br/>
+<br/>
+}<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;message(Windows: alglib: include path)<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/statistics.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/specialfunctions.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/solvers.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/optimization.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/linalg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/interpolation.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/integration.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/fasttransforms.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/diffequations.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/dataanalysis.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/ap.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/alglibmisc.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/alglibinternal.cpp<br/>
+<br/>
+<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/statistics.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/specialfunctions.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/solvers.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/optimization.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/linalg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/interpolation.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/integration.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/fasttransforms.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/diffequations.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/dataanalysis.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/ap.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/alglibmisc.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/alglibinternal.h<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">///</a>Adapted from http://www.alglib.net/translator/man/manual.cpp.html#lsfit_d_lin%20example<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "interpolation.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> In <b><a href="CppThis.htm">this</a></b> example we demonstrate linear fitting by f(x|a) <a href="CppOperatorAssign.htm">=</a> a*exp(0.5*x).<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> We have:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> * y <a href="CppOperatorMinus.htm">-</a> vector of experimental data<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> * f<a href="CppMatrix.htm">matrix</a> <a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;<a href="CppMatrix.htm">matrix</a> of basis <a href="CppFunction.htm">function</a>s calculated at sample <a href="CppPointer.htm">point</a>s<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actually, we have only one basis <a href="CppFunction.htm">function</a> F0 <a href="CppOperatorAssign.htm">=</a> exp(0.5*x).<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> alglib::real_2d_<a href="CppArray.htm">array</a> f<a href="CppMatrix.htm">matrix</a> <a href="CppOperatorAssign.htm">=</a> "[[0.606531],[0.670320],[0.740818],[0.818731],[0.904837],[1.000000],[1.105171],[1.221403],[1.349859],[1.491825],[1.648721]]";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> alglib::real_1d_<a href="CppArray.htm">array</a> y <a href="CppOperatorAssign.htm">=</a> "[1.133719, 1.306522, 1.504604, 1.554663, 1.884638, 2.072436, 2.257285, 2.534068, 2.622017, 2.897713, 3.219371]";<br/>
+&nbsp;&nbsp;alglib::ae_int_t info;<br/>
+&nbsp;&nbsp;alglib::real_1d_<a href="CppArray.htm">array</a> c;<br/>
+&nbsp;&nbsp;alglib::lsfitreport rep;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> Linear fitting without weights<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
+<br/>
+&nbsp;&nbsp;alglib::lsfitlinear(y, f<a href="CppMatrix.htm">matrix</a>, info, c, rep);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(info <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c.tostring(4) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("[1.9865]"));<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

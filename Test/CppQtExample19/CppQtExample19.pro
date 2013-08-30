@@ -1,10 +1,6 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-06T12:45:13
-#
-#-------------------------------------------------
 QT       += core gui
-TARGET = GameAminoAcidFighter
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 TEMPLATE = app
 SOURCES += main.cpp\
         dialogmain.cpp

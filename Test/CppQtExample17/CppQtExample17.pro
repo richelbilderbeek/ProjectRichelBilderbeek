@@ -1,20 +1,15 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-07-24T20:42:38
-#
-#-------------------------------------------------
-
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CppQtExample17
 TEMPLATE = app
 
-
-SOURCES += main.cpp\
-        trafficlightdialog.cpp \
+SOURCES += \
+    main.cpp \
+    trafficlightdialog.cpp \
     image.cpp
 
-HEADERS  += trafficlightdialog.h \
+HEADERS  += \
+    trafficlightdialog.h \
     image.h
 
 FORMS    += trafficlightdialog.ui

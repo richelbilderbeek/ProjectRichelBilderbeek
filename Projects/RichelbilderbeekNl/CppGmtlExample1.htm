@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>GmtlExample1</title>
+  <meta name="description" content="C++ GmtlExample1"/>
+  <meta name="keywords" content="C++ GmtlExample1 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGmtlExample1.htm">GmtlExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppGmtlExample1-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppGmtlExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppGmtlExample1.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= app_bundle<br/>
+CONFIG -= qt<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+CONFIG(debug, debug|release) {<br/>
+&nbsp;&nbsp;message(Debug mode)<br/>
+}<br/>
+<br/>
+CONFIG(release, debug|release) {<br/>
+&nbsp;&nbsp;message(Release mode)<br/>
+<br/>
+&nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
+&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Platform specific<br/>
+#<br/>
+#<br/>
+<br/>
+#<br/>
+#<br/>
+# Compiler flags<br/>
+#<br/>
+#<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;message(Unix: Boost already in include path)<br/>
+}<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;message(Windows: add Boost to include path)<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
+<br/>
+<br/>
+#<br/>
+#<br/>
+# gmtl<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;message(Unix: gmtl: not tested)<br/>
+}<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;message(Windows: gmtl: include path)<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>+= ../../<a href="CppLibrary.htm">Libraries</a>/gmtl-0.6.1<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;gmtl/gmtl.h&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> gmtl::Vec3f a { 1.0, 2.0,&nbsp;&nbsp;3.0 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> gmtl::Vec3f b { 4.0, 8.0, 12.0 };<br/>
+&nbsp;&nbsp;gmtl::Vec3f result;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppFloat.htm">float</a></b> w <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the weighted vector between a and b, closest to a:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> a[1] <a href="CppOperatorAssign.htm">=</a> 2.0<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> b[1] <a href="CppOperatorAssign.htm">=</a> 8.0<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> w&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> 3.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>weight<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> d&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> b[1] <a href="CppOperatorMinus.htm">-</a> a[1] <a href="CppOperatorAssign.htm">=</a> 6.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>distance between a[1] and b[1]<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> d_a&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> w * d <a href="CppOperatorAssign.htm">=</a> (1.0 <a href="CppOperatorDivide.htm">/</a> 3.0) * 6.0 <a href="CppOperatorAssign.htm">=</a> 2.0 <a href="CppComment.htm">//</a>distance from a[1]<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> r[1] <a href="CppOperatorAssign.htm">=</a> a[1] <a href="CppOperatorPlus.htm">+</a> d_a <a href="CppOperatorAssign.htm">=</a> 2.0 <a href="CppOperatorPlus.htm">+</a> 2.0 <a href="CppOperatorAssign.htm">=</a> 4;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>resulting value<br/>
+&nbsp;&nbsp;gmtl::lerp( result, w, a, b );<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> e <a href="CppOperatorAssign.htm">=</a> 0.000001;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(result[0] &gt; 2.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> result[0] &lt; 2.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(result[1] &gt; 4.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> result[1] &lt; 4.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(result[2] &gt; 6.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> result[2] &lt; 6.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

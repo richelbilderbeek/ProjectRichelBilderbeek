@@ -9,9 +9,8 @@ QtArrowItem::QtArrowItem(
   const double x2,
   const double y2,
   const bool head,
-  QGraphicsItem *parent,
-  QGraphicsScene *scene)
-  : QGraphicsLineItem(x1,y1,x2,y2,parent,scene),
+  QGraphicsItem *parent)
+  : QGraphicsLineItem(x1,y1,x2,y2,parent),
     m_head(head),
     m_tail(tail)
 {

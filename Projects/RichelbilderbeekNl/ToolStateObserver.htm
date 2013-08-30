@@ -94,11 +94,6 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="ToolStateObserverDesktop.pro" border = "1"><tr><td><code>
-#Use static when crosscompiling from Lubuntu to Windows<br/>
-win32 {<br/>
-&nbsp;&nbsp;#CONFIG += static<br/>
-}<br/>
-<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
@@ -295,8 +290,8 @@ win32 {<br/>
 #<br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /usr/include/qwt-qt4<br/>
-&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += <a href="CppQwt.htm">-lqwt-qt4</a><br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /usr/include/qwt<br/>
+&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -L/usr/lib -lqwt<br/>
 }<br/>
 <br/>
 win32 {<br/>

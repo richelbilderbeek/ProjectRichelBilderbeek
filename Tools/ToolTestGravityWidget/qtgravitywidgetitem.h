@@ -24,7 +24,7 @@ struct QtGravityWidgetItem : public QGraphicsItem
   const QRectF m_rect;
 
   ///Read-only pointer to the QGraphicsScene this QtGravityWidgetItem is part of
-  const QGraphicsScene * const m_scene;
+  QGraphicsScene * const m_scene;
 
 };
 #endif // QTGRAVITYWIDGETITEM_H

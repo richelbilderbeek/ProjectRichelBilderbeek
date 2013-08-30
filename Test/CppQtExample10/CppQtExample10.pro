@@ -1,12 +1,6 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-07-21T18:20:21
-#
-#-------------------------------------------------
-
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CppQtExample10
 TEMPLATE = app
 
 

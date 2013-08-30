@@ -1,8 +1,3 @@
-#Use static when crosscompiling from Lubuntu to Windows
-win32 {
-  #CONFIG += static
-}
-
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -199,8 +194,8 @@ win32 {
 #
 
 unix {
-  INCLUDEPATH += /usr/include/qwt-qt4
-  LIBS += -lqwt-qt4
+  INCLUDEPATH += /usr/include/qwt
+  LIBS += -L/usr/lib -lqwt
 }
 
 win32 {

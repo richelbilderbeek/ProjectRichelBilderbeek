@@ -1,9 +1,8 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-02-26T16:50:16
-#
-#-------------------------------------------------
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
 TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \

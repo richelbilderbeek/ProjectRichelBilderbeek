@@ -7,8 +7,8 @@
 
 QtTextPositionItem::QtTextPositionItem(
   const std::string& text,
-  QGraphicsItem *parent, QGraphicsScene *scene)
-  : QGraphicsItem(parent,scene),
+  QGraphicsItem *parent)
+  : QGraphicsItem(parent),
     m_text(text),
     //Add a margin of 2 pixels at the edges
     m_rect(
@@ -28,7 +28,10 @@ QRectF QtTextPositionItem::boundingRect() const
   return m_rect;
 }
 
-void QtTextPositionItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void QtTextPositionItem::paint(
+  QPainter *painter,
+  const QStyleOptionGraphicsItem * /* option */ ,
+  QWidget * /* widget */ )
 {
   QFont font;
   font.setFamily("monospace");

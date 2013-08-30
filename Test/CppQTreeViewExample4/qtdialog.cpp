@@ -24,7 +24,7 @@ QtDialog::QtDialog(QWidget *parent) :
   view->setModel(model);
   view->header()->setSortIndicator(0, Qt::AscendingOrder);
   view->header()->setSortIndicatorShown(true);
-  view->header()->setClickable(true);
+  //view->header()->setClickable(true);
 
   const QModelIndex index = model->index(QDir::currentPath());
   view->expand(index);

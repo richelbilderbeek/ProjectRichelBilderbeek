@@ -29,7 +29,7 @@ QtTestGraphicsProxyWidget::QtTestGraphicsProxyWidget(QWidget *parent)
     m_scene->addItem(proxy);
     assert(proxy);
     proxy->setPos((i+1) * 100, (i+1)* 100);
-    proxy->rotate((i+1) * 10.0);
+    proxy->setRotation( proxy->rotation() + ((static_cast<double>(i)+1.0) * 10.0));
     //m_proxies.push_back(proxy);
 
 

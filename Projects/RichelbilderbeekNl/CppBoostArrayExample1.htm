@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>BoostArrayExample1</title>
+  <meta name="description" content="C++ BoostArrayExample1"/>
+  <meta name="keywords" content="C++ BoostArrayExample1 code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBoostArrayExample1.htm">BoostArrayExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppBoostArrayExample1-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppBoostArrayExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppBoostArrayExample1.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+CONFIG(debug, debug|release) {<br/>
+&nbsp;&nbsp;message(Debug mode)<br/>
+}<br/>
+<br/>
+CONFIG(release, debug|release) {<br/>
+&nbsp;&nbsp;message(Release mode)<br/>
+<br/>
+&nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
+&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Platform specific<br/>
+#<br/>
+#<br/>
+<br/>
+#<br/>
+#<br/>
+# Compiler flags<br/>
+#<br/>
+#<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;message(Unix: Boost already in include path)<br/>
+}<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;message(Windows: add Boost to include path)<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;E:/<a href="Projects.htm">Projects</a>/<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppArray.htm">array</a>.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.htm">compile</a>: too few elements is not checked in assignment<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note: at around 2013-05-01, v needed to be initialized with <b><a href="CppDouble.htm">double</a></b> braces:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v <a href="CppOperatorAssign.htm">=</a> {{ 0,1,2 }};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v <a href="CppOperatorAssign.htm">=</a> { 0,1,2 };<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic_assert.htm">static_assert</a></b>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,""); <a href="CppComment.htm">//</a>Not allowed, v.size() is not a <b><a href="CppConstexpr.htm">constexpr</a></b><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>crosscompile.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="crosscompile.sh" border = "1"><tr><td><code>
+#!/bin/bash<br/>
+myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"<br/>
+ <br/>
+#Cleaning up<br/>
+rm *.pro.user<br/>
+rm Makefile<br/>
+rm Makefile.*<br/>
+rm -r release<br/>
+rm -r debug<br/>
+rm ui_*.h<br/>
+rm qrc_*.cpp<br/>
+rm moc_*.cpp<br/>
+rm object_script*.*<br/>
+rm *_plugin_import.cpp<br/>
+ <br/>
+for myprofile in `ls | egrep ".pro\&gt;"`<br/>
+do<br/>
+&nbsp;&nbsp;mytarget=`echo $myprofile | sed "s/\.pro//"`<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;$myqmake $myprofile<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;if [ ! -e Makefile ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL: $myqmake $myprofile"<br/>
+&nbsp;&nbsp;fi<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;make<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;if [ -e ./release/$mytarget".exe" ]<br/>
+&nbsp;&nbsp;then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cp ./release/$mytarget".exe" ~/bin/<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": FAIL"<br/>
+&nbsp;&nbsp;fi<br/>
+&nbsp;&nbsp; <br/>
+&nbsp;&nbsp;#Cleaning up<br/>
+&nbsp;&nbsp;rm Makefile<br/>
+&nbsp;&nbsp;rm Makefile.*<br/>
+&nbsp;&nbsp;rm -r release<br/>
+&nbsp;&nbsp;rm -r debug<br/>
+&nbsp;&nbsp;rm ui_*.h<br/>
+&nbsp;&nbsp;rm qrc_*.cpp<br/>
+&nbsp;&nbsp;rm moc_*.cpp<br/>
+&nbsp;&nbsp;rm object_script*.*<br/>
+&nbsp;&nbsp;rm *_plugin_import.cpp<br/>
+<br/>
+done #next .pro file<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -8,8 +8,8 @@
 
 QtKnokfighterPlayer::QtKnokfighterPlayer(
   const Name name,
-  QGraphicsItem *parent, QGraphicsScene *scene)
-  : QGraphicsPixmapItem(parent,scene),
+  QGraphicsItem *parent)
+  : QGraphicsPixmapItem(parent),
     m_name(name == Name::richel ? "Richel" : "Joost"),
     m_z(0)
 {

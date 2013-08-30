@@ -1,29 +1,31 @@
 QT       += core gui
-QMAKE_CXXFLAGS += -std=c++0x
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 TEMPLATE = app
 
 INCLUDEPATH +=  \
     ../../Classes/CppAbout \
     ../../Classes/CppMusic \
-    ../../Classes/CppQtCreatorProFilebbb \
+    ../../Classes/CppQtCreatorProFile \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppTrace
 
 SOURCES += \
-     ../../Classes/CppMusic/musicnote.cpp \
-     ../../Classes/CppMusic/musicchord.cpp \
-     ../../Classes/CppMusic/musicscale.cpp \
-    qtmain.cpp \
-    qtchordrelationswidget.cpp \
-    qtchordedge.cpp \
-    qtmusictheorymenudialog.cpp \
-    musictheorymenudialog.cpp \
     ../../Classes/CppAbout/about.cpp \
+    ../../Classes/CppMusic/musicchord.cpp \
+    ../../Classes/CppMusic/musicnote.cpp \
+    ../../Classes/CppMusic/musicscale.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    musictheorymenudialog.cpp \
+    qtchordedge.cpp \
+    qtchordrelationswidget.cpp \
     qtchordvertex.cpp \
+    qtmain.cpp \
     qtmultiscalechordrelationswidget.cpp \
-    qtmusictheorysinglescaledialog.cpp \
-    qtmusictheorymultiscaledialog.cpp
+    qtmusictheorymenudialog.cpp \
+    qtmusictheorymultiscaledialog.cpp \
+    qtmusictheorysinglescaledialog.cpp
 
 HEADERS  += \
     ../../Classes/CppMusic/musicnote.h \

@@ -67,7 +67,10 @@
 <!-- start of code -->
 <table summary="ToolTestTextPositionWidget.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<br/>
 TEMPLATE = app<br/>
 <br/>
 <a href="CppSOURCES.htm">SOURCES</a> += \<br/>
@@ -124,8 +127,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConstructor.htm">Constructor</a> of <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TextPositionItem(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.htm">Paint</a> a <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
@@ -161,8 +163,8 @@ TEMPLATE = app<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>TextPositionItem::<a href="CppQt.htm">Qt</a>TextPositionItem(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text,<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent,scene),<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_text(text),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> a margin of 2 pixels at the edges<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_rect(<br/>
@@ -182,7 +184,10 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_rect;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TextPositionItem::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *option, <a href="CppQWidget.htm">QWidget</a> *<a href="CppWidget.htm">widget</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TextPositionItem::paint(<br/>
+&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> *painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> * <a href="CppOperatorDivide.htm">/</a>* option <a href="CppComment.htm">*/</a> ,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> * <a href="CppOperatorDivide.htm">/</a>* <a href="CppWidget.htm">widget</a> <a href="CppComment.htm">*/</a> )<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQFont.htm">QFont</a> font;<br/>
 &nbsp;&nbsp;font.setFamily("monospace");<br/>

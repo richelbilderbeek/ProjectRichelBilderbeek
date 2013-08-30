@@ -6,8 +6,8 @@
 
 QtKnokfighterBackground::QtKnokfighterBackground(
   const int width, const int height,
-  QGraphicsItem *parent, QGraphicsScene *scene)
-  : QGraphicsPixmapItem(parent,scene),
+  QGraphicsItem *parent)
+  : QGraphicsPixmapItem(parent),
     z(0)
 {
   this->setPixmap(QPixmap(width,height));

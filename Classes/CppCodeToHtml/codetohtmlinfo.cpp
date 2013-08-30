@@ -2626,7 +2626,7 @@ const std::vector<std::string> Info::ToHtml() const
   }
   else if (m_page_name == "CppQFileDialogExample1")
   {
-    v.push_back("<p><a href=\"CppQFileDialogExample1.htm\">QFileDialog example 1: crafting a QFileDialog</a> is a");
+    v.push_back("<p><a href=\"CppQFileDialogExample1.htm\">QFileDialog example 1: crafting a QFileDialog to select a file</a> is a");
     v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
@@ -2652,6 +2652,16 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppQFileDialogExample3.png\">View a screenshot of 'CppQFileDialogExample3' (png)</a></li>");
     v.push_back("  <li><a href=\"CppQFileDialogExample3.zip\">Download the Qt Creator project 'CppQFileDialogExample3' (zip)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "CppQFileDialogExample4")
+  {
+    v.push_back("<p><a href=\"CppQFileDialogExample4.htm\">QFileDialog example 4: crafting a QFileDialog to save a file</a> is a");
+    v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"CppQFileDialogExample4.png\">View a screenshot of 'CppQFileDialogExample4' (png)</a></li>");
+    v.push_back("  <li><a href=\"CppQFileDialogExample4.zip\">Download the Qt Creator project 'CppQFileDialogExample4' (zip)</a></li>");
     v.push_back("</ul>");
   }
 

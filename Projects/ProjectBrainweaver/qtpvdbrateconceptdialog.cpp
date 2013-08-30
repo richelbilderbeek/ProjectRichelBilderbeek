@@ -62,7 +62,6 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   Test();
   #endif
   if (!m_sub_concept_map) return;
-
   assert(m_sub_concept_map);
   assert(!m_sub_concept_map->GetNodes().empty());
   assert(m_sub_concept_map->GetNodes()[0]);
@@ -102,6 +101,15 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
     this->setGeometry(screen.adjusted(64,64,-64,-64));
     this->move( screen.center() - this->rect().center() );
   }
+  //The rating by the Tally dialog must be visible as of 2013-08-30
+  //so let this dialog follow the ratings done by the tally dialog
+  //DOES NOT WORK
+  //m_concept->m_signal_rating_complexity_changed.connect(
+  //  boost::bind(&QtPvdbRateConceptDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
+  //m_concept->m_signal_rating_concreteness_changed.connect(
+  //  boost::bind(&QtPvdbRateConceptDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
+  //m_concept->m_signal_rating_specificity_changed.connect(
+  //  boost::bind(&QtPvdbRateConceptDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
 }
 
 
@@ -116,7 +124,16 @@ QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog()
     m_concept->SetRatingConcreteness(m_initial_concreteness);
     m_concept->SetRatingSpecificity(m_initial_specificity);
   }
-
+  //if (m_concept)
+  //{
+  //  //Just to be sure
+  //  m_concept->m_signal_rating_complexity_changed.disconnect(
+  //    boost::bind(&QtPvdbRateConceptDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
+  //  m_concept->m_signal_rating_concreteness_changed.disconnect(
+  //    boost::bind(&QtPvdbRateConceptDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
+  //  m_concept->m_signal_rating_specificity_changed.disconnect(
+  //    boost::bind(&QtPvdbRateConceptDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
+  //}
   delete ui;
 }
 
@@ -131,6 +148,33 @@ void QtPvdbRateConceptDialog::on_button_ok_clicked()
   //Ratings already set by comboboxes
   m_button_ok_clicked = true;
   close();
+}
+
+void QtPvdbRateConceptDialog::OnRatingComplexityChanged(const pvdb::Concept* concept)
+{
+  assert(concept);
+  if (ui->box_complexity->currentIndex() != concept->GetRatingComplexity())
+  {
+    ui->box_complexity->setCurrentIndex(concept->GetRatingComplexity());
+  }
+}
+
+void QtPvdbRateConceptDialog::OnRatingConcretenessChanged(const pvdb::Concept* concept)
+{
+  assert(concept);
+  if (ui->box_concreteness->currentIndex() != concept->GetRatingConcreteness())
+  {
+    ui->box_concreteness->setCurrentIndex(concept->GetRatingConcreteness());
+  }
+}
+
+void QtPvdbRateConceptDialog::OnRatingSpecificityChanged(const pvdb::Concept* concept)
+{
+  assert(concept);
+  if (ui->box_specificity->currentIndex() != concept->GetRatingSpecificity())
+  {
+    ui->box_specificity->setCurrentIndex(concept->GetRatingSpecificity());
+  }
 }
 
 #ifndef NDEBUG
@@ -230,7 +274,7 @@ void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
   const bool has_concept_map = m_sub_concept_map.get(); //.get() needed for crosscompiler
   #endif
   QtPvdbRateConceptTallyDialog d(m_sub_concept_map);
-  this->ShowChild(&d);
+  d.exec(); //Keep this dialog visible, as of 2013-08-30
   assert(has_concept_map == static_cast<bool>(m_sub_concept_map.get()));
   ui->box_complexity->setCurrentIndex(d.GetSuggestedComplexity());
   ui->box_concreteness->setCurrentIndex(d.GetSuggestedConcreteness());
@@ -240,19 +284,26 @@ void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
 void QtPvdbRateConceptDialog::on_box_complexity_currentIndexChanged(int)
 {
   assert(m_concept);
-  m_concept->SetRatingComplexity(ui->box_complexity->currentIndex());
-
+  if (m_concept->GetRatingComplexity() != ui->box_complexity->currentIndex())
+  {
+    m_concept->SetRatingComplexity(ui->box_complexity->currentIndex());
+  }
 }
 
 void QtPvdbRateConceptDialog::on_box_concreteness_currentIndexChanged(int)
 {
   assert(m_concept);
-  m_concept->SetRatingConcreteness(ui->box_concreteness->currentIndex());
-
+  if (m_concept->GetRatingConcreteness() != ui->box_concreteness->currentIndex())
+  {
+    m_concept->SetRatingConcreteness(ui->box_concreteness->currentIndex());
+  }
 }
 
 void QtPvdbRateConceptDialog::on_box_specificity_currentIndexChanged(int)
 {
   assert(m_concept);
-  m_concept->SetRatingSpecificity(ui->box_specificity->currentIndex());
+  if (m_concept->GetRatingSpecificity() != ui->box_specificity->currentIndex())
+  {
+    m_concept->SetRatingSpecificity(ui->box_specificity->currentIndex());
+  }
 }

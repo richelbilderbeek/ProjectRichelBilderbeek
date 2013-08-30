@@ -66,6 +66,10 @@ private:
   const boost::shared_ptr<QtPvdbConceptMapRateWidget> m_widget;
   //QtPvdbConceptMapRateWidget * const m_widget; //WHY DID I DO THIS???
 
+  void OnRatingComplexityChanged(const pvdb::Concept* concept);
+  void OnRatingConcretenessChanged(const pvdb::Concept* concept);
+  void OnRatingSpecificityChanged(const pvdb::Concept* concept);
+
   #ifndef NDEBUG
   ///Test this class
   static void Test();

@@ -8,7 +8,7 @@ struct QtKnokfighterBackground : public QGraphicsPixmapItem
 
   QtKnokfighterBackground(
     const int width, const int height,
-    QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+    QGraphicsItem *parent = 0);
 
 
   void advance(int);

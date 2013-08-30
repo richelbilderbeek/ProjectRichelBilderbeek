@@ -1,9 +1,14 @@
 QT       += core gui
-LIBS += -lboost_program_options
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
+#LIBS += -lboost_program_options
+
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++0x
+
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \

@@ -35,7 +35,7 @@ do
     # (2: crosscompile using Qt5)
     #Execute script, write results to temp file in Projects folder
     #./$shfile | egrep "SUCCESS|FAIL" >> ../$mytempfile
-    for type in 0 1 2
+    for type in 0 1
     do
       myqmake=""
       mytypestr=""
@@ -53,9 +53,8 @@ do
       rm *_plugin_import.cpp
 
       case $type in
-      0) myqmake="qmake" mytypestr="Lubuntu" ;;
-      1) myqmake="i686-pc-mingw32-qmake" mytypestr="Qt4LubuntuToWindows" ;; 
-      2) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;; 
+      0) myqmake="../../../Qt/5.1.1/gcc/bin/qmake" mytypestr="Lubuntu" ;;
+      1) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="LubuntuToWindows" ;; 
       esac
 
       

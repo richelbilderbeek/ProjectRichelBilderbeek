@@ -39,7 +39,7 @@ protected:
   void changeEvent(QEvent *e);
 
 private slots:
-  void on_dial_color_dialMoved(int value);
+  void on_dial_color_valueChanged(int value);
 
 private:
   Ui::QtTestDialMainDialog *ui;

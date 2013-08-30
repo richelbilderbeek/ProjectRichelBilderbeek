@@ -1,17 +1,12 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2012-08-07T16:53:42
-#
-#-------------------------------------------------
-
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = ToolTestGravityWidget
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        tooltestgravitywidgetmaindialog.cpp \
+SOURCES += \
+    main.cpp \
+    tooltestgravitywidgetmaindialog.cpp \
     qtgravitywidgetitem.cpp \
     qtgravitywidget.cpp
 

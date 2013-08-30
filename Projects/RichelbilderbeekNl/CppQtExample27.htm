@@ -54,7 +54,7 @@ in which the item (a ball) is responding as if there is gravity, bouncing perfec
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -70,7 +70,7 @@ in which the item (a ball) is responding as if there is gravity, bouncing perfec
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
 </ul>
 <p>&nbsp;</p>
@@ -82,20 +82,15 @@ in which the item (a ball) is responding as if there is gravity, bouncing perfec
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppQtExample27.pro" border = "1"><tr><td><code>
-#-------------------------------------------------<br/>
-#<br/>
-# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2012-08-07T16:53:42<br/>
-#<br/>
-#-------------------------------------------------<br/>
-<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TARGET = ToolTestGravity<a href="CppWidget.htm">Widget</a><br/>
 TEMPLATE = app<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tooltestgravity<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tooltestgravity<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtgravity<a href="CppWidget.htm">widget</a>item.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtgravity<a href="CppWidget.htm">widget</a>.cpp<br/>
 <br/>
@@ -262,12 +257,12 @@ TEMPLATE = app<br/>
 <a href="CppQt.htm">Qt</a>Gravity<a href="CppWidget.htm">Widget</a>Item::<a href="CppQt.htm">Qt</a>Gravity<a href="CppWidget.htm">Widget</a>Item(<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent,<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * scene)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent,scene),<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dy(0.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_rect(-16.0,-16.0,32.0,32.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_scene(scene)<br/>
 {<br/>
-<br/>
+&nbsp;&nbsp;scene-&gt;addItem(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Gravity<a href="CppWidget.htm">Widget</a>Item::advance(<b><a href="CppInt.htm">int</a></b>)<br/>

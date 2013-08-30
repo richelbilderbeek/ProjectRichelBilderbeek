@@ -27,9 +27,6 @@ single-line text messages.   <a
 href="ToolMultiEncranger.htm">MultiEncranger</a> is the multi-line version
 of <a href="ToolTestEncranger.htm">Encranger</a>.</p>
 <p>&nbsp;</p>
-<p><a href="ToolTestEncranger.htm">TestEncranger</a> can be used at <a href="http://www.richelbilderbeek.changeip.net">my interactive website</a>.</p>
-<p><img src="PicTo.png" alt="To"/> <a href="http://www.richelbilderbeek.changeip.net">Go to my interactive website</a></p>
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -139,6 +136,7 @@ keys, instead of the highest possible, which would be the factorial of <em>n</em
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
   <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
@@ -160,12 +158,11 @@ keys, instead of the highest possible, which would be the factorial of <em>n</em
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="ToolTestEncrangerDesktop.pro" border = "1"><tr><td><code>
-#-------------------------------------------------<br/>
-#<br/>
-# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2011-03-06T10:58:35<br/>
-#<br/>
-#-------------------------------------------------<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
 TEMPLATE = app<br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>

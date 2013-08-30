@@ -1,5 +1,6 @@
 QT       += core gui
-TARGET = ToolTestBoucingBallsWidget
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 TEMPLATE = app
 SOURCES += \
     qttooltestbouncingballswidgetmaindialog.cpp \

@@ -16,9 +16,8 @@ QtArrowItem::QtArrowItem(
   const bool head,
   const double head_x,
   const double head_y,
-  QGraphicsItem *parent,
-  QGraphicsScene *scene)
-  : QGraphicsItem(parent,scene),
+  QGraphicsItem *parent)
+  : QGraphicsItem(parent),
     m_head(head),
     m_head_x(head_x),
     m_head_y(head_y),

@@ -8,8 +8,7 @@ struct QtTextPositionItem : public QGraphicsItem
   ///Constructor of QtTextPositionItem
   QtTextPositionItem(
     const std::string& text,
-    QGraphicsItem *parent = 0,
-    QGraphicsScene *scene = 0);
+    QGraphicsItem *parent = 0);
 
   protected:
   ///Paint a QtTextPositionItem

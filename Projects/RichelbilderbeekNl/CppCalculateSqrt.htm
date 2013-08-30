@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CalculateSqrt</title>
+  <meta name="description" content="C++ CalculateSqrt"/>
+  <meta name="keywords" content="C++ CalculateSqrt code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCalculateSqrt.htm">CalculateSqrt</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppCalculateSqrt-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppCalculateSqrt.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppCalculateSqrt.pro" border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= app_bundle<br/>
+CONFIG -= qt<br/>
+<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+CONFIG(debug, debug|release) {<br/>
+&nbsp;&nbsp;message(Debug mode)<br/>
+}<br/>
+<br/>
+CONFIG(release, debug|release) {<br/>
+&nbsp;&nbsp;message(Release mode)<br/>
+<br/>
+&nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
+&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Platform specific<br/>
+#<br/>
+#<br/>
+<br/>
+#<br/>
+#<br/>
+# Compiler flags<br/>
+#<br/>
+#<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;message(Unix: Boost already in includepath)<br/>
+}<br/>
+<br/>
+win32 {<br/>
+<br/>
+&nbsp;&nbsp;message(Windows: add Boost to includepath)<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIomanipH.htm">iomanip</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/unit.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/io.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt; T CalculateSqrt(<b><a href="CppConst.htm">const</a></b> T&amp; x);<br/>
+<br/>
+<a href="CppComment.htm">///</a>Simple approximation <a href="CppAlgorithm.htm">algorithm</a> to calculate the square root,<br/>
+<a href="CppComment.htm">///</a>instead of <b><a href="CppUsing.htm">using</a></b> <a href="CppSqrt.htm">std::sqrt</a><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt;<br/>
+<b><a href="CppDouble.htm">double</a></b> CalculateSqrt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; x)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0) <b><a href="CppReturn.htm">return</a></b> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> precision <a href="CppOperatorAssign.htm">=</a> 6;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 0.5*x;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>precision; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;y<a href="CppOperatorPlusAssign.htm">+=</a>(x/y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;y<a href="CppOperatorMultiplyAssign.htm">*=</a>0.5;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> y;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt;<br/>
+<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; CalculateSqrt(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt;&amp; x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> CalculateSqrt(x.value()) * <a href="CppUnits.htm">boost::units</a>::si::meter;<br/>
+}<br/>
+<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetprecision.htm">std::setprecision</a>(35) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFixed.htm">std::fixed</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSqrt.htm">std::sqrt</a>(x) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> CalculateSqrt(x) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) * <a href="CppUnits.htm">boost::units</a>::si::meter;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSqrt.htm">std::sqrt</a>(x.value()) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> CalculateSqrt(x) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a> Screen output:<br/>
+<br/>
+0.00000000000000000000000000000000000&nbsp;&nbsp; 0.00000000000000000000000000000000000<br/>
+1.00000000000000000000000000000000000&nbsp;&nbsp; 1.00000000000000000000000000000000000<br/>
+1.41421356237309514547462185873882845&nbsp;&nbsp; 1.41421356237309514547462185873882845<br/>
+1.73205080756887719317660412343684584&nbsp;&nbsp; 1.73205080756887719317660412343684584<br/>
+2.00000000000000000000000000000000000&nbsp;&nbsp; 2.00000000000000000000000000000000000<br/>
+2.23606797749978980505147774238139391&nbsp;&nbsp; 2.23606797749978980505147774238139391<br/>
+2.44948974278317788133563226438127458&nbsp;&nbsp; 2.44948974278317788133563226438127458<br/>
+2.64575131106459071617109657381661236&nbsp;&nbsp; 2.64575131106459071617109657381661236<br/>
+2.82842712474619029094924371747765690&nbsp;&nbsp; 2.82842712474619029094924371747765690<br/>
+3.00000000000000000000000000000000000&nbsp;&nbsp; 3.00000000000000000000000000000000000<br/>
+<br/>
+0.00000000000000000000000000000000000&nbsp;&nbsp; 0.00000000000000000000000000000000000 m<br/>
+1.00000000000000000000000000000000000&nbsp;&nbsp; 1.00000000000000000000000000000000000 m<br/>
+1.41421356237309514547462185873882845&nbsp;&nbsp; 1.41421356237309514547462185873882845 m<br/>
+1.73205080756887719317660412343684584&nbsp;&nbsp; 1.73205080756887719317660412343684584 m<br/>
+2.00000000000000000000000000000000000&nbsp;&nbsp; 2.00000000000000000000000000000000000 m<br/>
+2.23606797749978980505147774238139391&nbsp;&nbsp; 2.23606797749978980505147774238139391 m<br/>
+2.44948974278317788133563226438127458&nbsp;&nbsp; 2.44948974278317788133563226438127458 m<br/>
+2.64575131106459071617109657381661236&nbsp;&nbsp; 2.64575131106459071617109657381661236 m<br/>
+2.82842712474619029094924371747765690&nbsp;&nbsp; 2.82842712474619029094924371747765690 m<br/>
+3.00000000000000000000000000000000000&nbsp;&nbsp; 3.00000000000000000000000000000000000 m<br/>
+Press &lt;RETURN&gt; to close <b><a href="CppThis.htm">this</a></b> window...<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

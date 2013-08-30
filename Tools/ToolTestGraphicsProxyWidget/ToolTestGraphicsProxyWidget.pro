@@ -1,16 +1,14 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2012-08-09T15:41:14
-#
-#-------------------------------------------------
-
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        tooltestgraphicsproxywidgetmaindialog.cpp \
+SOURCES += \
+    main.cpp \
+    tooltestgraphicsproxywidgetmaindialog.cpp \
     qttestgraphicsproxywidget.cpp \
     qttestgraphicsproxyitem.cpp \
     somedialog.cpp

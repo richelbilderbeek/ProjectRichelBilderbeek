@@ -517,7 +517,7 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>KnokfighterBackground(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b>);<br/>
@@ -548,8 +548,8 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <br/>
 <a href="CppQt.htm">Qt</a>KnokfighterBackground::<a href="CppQt.htm">Qt</a>KnokfighterBackground(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent,scene),<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;z(0)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(width,height));<br/>
@@ -762,15 +762,17 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>KnokfighterPlayer(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Name name,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_z;<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The fighter his/her name<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_name;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The fighter his/her Z-order<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_z;<br/>
+<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawPixmap();<br/>
 };<br/>
@@ -797,8 +799,8 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <br/>
 <a href="CppQt.htm">Qt</a>KnokfighterPlayer::<a href="CppQt.htm">Qt</a>KnokfighterPlayer(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Name name,<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent, <a href="CppQGraphicsScene.htm">QGraphicsScene</a> *scene)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent,scene),<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_name(name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Name::richel ? "Richel" : "Joost"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_z(0)<br/>
 {<br/>

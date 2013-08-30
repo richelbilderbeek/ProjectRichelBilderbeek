@@ -194,16 +194,12 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="ToolTestTwoDigitNewickDesktop.pro" border = "1"><tr><td><code>
-#-------------------------------------------------<br/>
-#<br/>
-# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2010-08-19T15:10:48<br/>
-#<br/>
-#-------------------------------------------------<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 CONFIG&nbsp;&nbsp; += console<br/>
 CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-#Use C++0x standard<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 #Use 64 bit<br/>
 #<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -m64<br/>
 <br/>
