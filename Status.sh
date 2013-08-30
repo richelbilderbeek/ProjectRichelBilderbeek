@@ -57,7 +57,8 @@ do
         rm *_plugin_import.cpp
 
         case $type in
-        0) myqmake="qmake" mytypestr="Lubuntu" ;;
+        0) myqmake="../../../Qt/5.1.1/gcc/bin/qmake" mytypestr="Lubuntu" ;;
+
         1) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;; 
         esac
 
