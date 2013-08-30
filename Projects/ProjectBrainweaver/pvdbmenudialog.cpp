@@ -25,7 +25,7 @@ const About pvdb::MenuDialog::GetAbout()
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
     "Brainweaver",
     "program to create and assess concept maps",
-    "the 18th of August 2013",
+    "the 30th of August 2013",
     "2012-2013",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
     GetVersion(),
@@ -37,7 +37,7 @@ const About pvdb::MenuDialog::GetAbout()
 
 const std::string pvdb::MenuDialog::GetVersion()
 {
-  return "0.34";
+  return "0.35";
 }
 
 const std::vector<std::string> pvdb::MenuDialog::GetVersionHistory()
@@ -77,6 +77,7 @@ const std::vector<std::string> pvdb::MenuDialog::GetVersionHistory()
   v.push_back("2013-07-27: Version 0.32: first step in semi-automated rating mechanism");
   v.push_back("2013-08-06: Version 0.33: added icons and artwork");
   v.push_back("2013-08-18: Version 0.34: fixed file dialog");
+  v.push_back("2013-08-30: Version 0.35: fixed segmentation faults, replaced print dialogs by save file dialogs");
   return v;
 }
 
