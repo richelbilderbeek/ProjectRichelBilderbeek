@@ -14,18 +14,14 @@
 
 #include <QKeyEvent>
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
-#include <QtPrintSupport/QPrintDialog>
-#include <QtPrintSupport/QPrinter>
-#else
-#include <QPrintDialog>
+#include <QFileDialog>
 #include <QPrinter>
-#endif
 
 #include "pvdbfile.h"
 #include "pvdbconceptmap.h"
 #include "pvdbconceptmapfactory.h"
 #include "qtpvdbratedconceptwidget.h"
+#include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbconceptmapdisplaywidget.h"
 
@@ -84,49 +80,45 @@ const std::vector<QWidget *> QtPvdbPrintConceptMapDialog::CollectWidgets() const
 void QtPvdbPrintConceptMapDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
-  if (event->key() == Qt::Key_Question)
-  {
-    std::stringstream s;
-    s << "Nodes: " << m_widget->GetConceptMap()->GetNodes().size() << '\n'
-      << "QGraphicsSceneItems: " << m_widget->GetScene()->items().count() << '\n';
-    ui->lineEdit->setText(s.str().c_str());
-
-
-  }
 }
 
 void QtPvdbPrintConceptMapDialog::on_button_print_clicked()
 {
-  ui->lineEdit->setText("Start");
   Print();
 }
 
 void QtPvdbPrintConceptMapDialog::Print()
 {
+  //Start save dialog
+  const boost::shared_ptr<QFileDialog> print_dialog(
+    pvdb::QtFileDialog::GetSaveFileDialog(
+      pvdb::QtFileDialog::FileType::pdf));
+  print_dialog->setWindowTitle("Exporteer document naar PDF");
+  if (print_dialog->exec() != QDialog::Accepted
+    || print_dialog->selectedFiles().empty() )
+  {
+    return;
+  }
+  assert(!print_dialog->selectedFiles().empty());
+  assert(print_dialog->selectedFiles().size() == 1);
+  const std::string filename = print_dialog->selectedFiles()[0].toStdString();
+
+
   QPrinter printer;
   printer.setOrientation(QPrinter::Portrait);
   printer.setPaperSize(QPrinter::A4);
   printer.setOutputFormat(QPrinter::PdfFormat); //Student exports to PDF
   printer.setFullPage(false);
-
-  //Start printer dialog
-  const boost::shared_ptr<QPrintDialog> print_dialog(new QPrintDialog(&printer));
-  print_dialog->setWindowTitle(tr("Print document"));
-  if (print_dialog->exec() != QDialog::Accepted)
-  {
-    ui->lineEdit->setText("Cancelled print");
-    return;
-  }
-
-
-  //Collect widgets to print
-  const std::vector<QWidget *> widgets = CollectWidgets();
+  printer.setOutputFileName(filename.c_str());
 
   //Draw the image to painter to printer (?must be done before printing)
   QPainter painter;
 
   painter.begin(&printer);
   {
+    //Collect widgets to print
+    const std::vector<QWidget *> widgets = CollectWidgets();
+
     int y = 0;
     for (QWidget * const widget: widgets)
     {
@@ -141,7 +133,6 @@ void QtPvdbPrintConceptMapDialog::Print()
     }
   }
   painter.end();
-  ui->lineEdit->setText("Printed");
 }
 
 void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)

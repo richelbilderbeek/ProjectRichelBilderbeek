@@ -175,10 +175,10 @@ void QtPvdbRateConceptMapDialog::Save()
 {
   this->hide(); //Obligatory, otherwise program will freeze
 
-  const auto d = pvdb::QtFileDialog::GetSaveFileDialog();
+  const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla het assessment invoer-bestand op");
   const int status = d->exec();
-  if (status == QDialog::Rejected)
+  if (status == QDialog::Rejected || d->selectedFiles().empty())
   {
     this->show();
     return;

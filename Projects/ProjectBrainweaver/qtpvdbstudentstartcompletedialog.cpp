@@ -81,7 +81,7 @@ void QtPvdbStudentStartCompleteDialog::on_button_start_construct_clicked()
 
 void QtPvdbStudentStartCompleteDialog::Save()
 {
-  const auto d = pvdb::QtFileDialog::GetSaveFileDialog();
+  const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla de concept map op");
   const int status = d->exec();
   if (status == QDialog::Rejected)

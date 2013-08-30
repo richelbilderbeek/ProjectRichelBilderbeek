@@ -87,7 +87,7 @@ void QtPvdbStudentMenuDialog::on_edit_name_textChanged(const QString &arg1)
 
 void QtPvdbStudentMenuDialog::on_button_save_clicked()
 {
-  const auto d = pvdb::QtFileDialog::GetSaveFileDialog();
+  const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla de concept map op");
   const int status = d->exec();
   if (status == QDialog::Rejected)

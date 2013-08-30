@@ -25,11 +25,6 @@ QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb:
 {
   #ifndef NDEBUG
   Test();
-  {
-    std::stringstream s;
-    s << "QtPvdbDisplayConceptItem constructor: " << this << '\n';
-    TRACE(s.str());
-  }
   assert(concept);
   assert(GetConcept());
   #endif
@@ -46,6 +41,7 @@ QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb:
         this
       )
     );
+
   GetConcept()->m_signal_rating_complexity_changed.connect(
       boost::bind(
         &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
@@ -68,7 +64,16 @@ QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb:
 
 QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
 {
-  //2013-08-25
+  GetConcept()->m_signal_examples_changed.disconnect(
+      boost::bind(
+        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        this
+      )
+    );
+
+  //Obligatory: because concepts live longer than DisplayConceptItems,
+  //these Concepts will signal Items when the Item is destroyed,
+  //which results in a segmentation fault
   GetConcept()->m_signal_rating_complexity_changed.disconnect(
       boost::bind(
         &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
@@ -89,10 +94,6 @@ QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
         this
       )
     );
-
-  std::stringstream s;
-  s << "QtPvdbDisplayConceptItem destructor: " << this << '\n';
-  TRACE(s.str());
 }
 
 void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()

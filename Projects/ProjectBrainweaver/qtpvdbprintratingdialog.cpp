@@ -12,19 +12,14 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <QFileDialog>
 #include <QKeyEvent>
 #include <QScrollBar>
-
-#if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
-#include <QtPrintSupport/QPrintDialog>
-#include <QtPrintSupport/QPrinter>
-#else
-#include <QPrintDialog>
 #include <QPrinter>
-#endif
 
 #include "pvdbfile.h"
 #include "pvdbconcept.h"
+#include "qtpvdbfiledialog.h"
 #include "pvdbnode.h"
 #include "pvdbedge.h"
 #include "pvdbconceptmapfactory.h"
@@ -125,25 +120,34 @@ void QtPvdbPrintRatingDialog::on_button_print_clicked()
 
 void QtPvdbPrintRatingDialog::Print()
 {
+  //Start save dialog
+  const boost::shared_ptr<QFileDialog> print_dialog(
+    pvdb::QtFileDialog::GetSaveFileDialog(
+      pvdb::QtFileDialog::FileType::pdf));
+  print_dialog->setWindowTitle("Exporteer document naar PDF");
+  if (print_dialog->exec() != QDialog::Accepted
+    || print_dialog->selectedFiles().empty() )
+  {
+    return;
+  }
+  assert(!print_dialog->selectedFiles().empty());
+  assert(print_dialog->selectedFiles().size() == 1);
+  const std::string filename = print_dialog->selectedFiles()[0].toStdString();
+
   QPrinter printer;
   printer.setOrientation(QPrinter::Portrait);
   printer.setPaperSize(QPrinter::A4);
   printer.setFullPage(false);
-
-  //Start printer dialog
-  const boost::shared_ptr<QPrintDialog> print_dialog(new QPrintDialog(&printer));
-  print_dialog->setWindowTitle(tr("Print document"));
-  if (print_dialog->exec() != QDialog::Accepted) return;
-
-
-  //Collect widgets to print
-  const std::vector<QWidget *> widgets = CollectWidgets();
+  printer.setOutputFileName(filename.c_str());
 
   //Draw the image to painter to printer (?must be done before printing)
   QPainter painter;
 
   painter.begin(&printer);
   {
+    //Collect widgets to print
+    const std::vector<QWidget *> widgets = CollectWidgets();
+
     int y = 0;
     for (QWidget * const widget: widgets)
     {

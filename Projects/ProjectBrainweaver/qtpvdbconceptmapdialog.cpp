@@ -18,14 +18,6 @@
 #include <QLabel>
 #include <QMessageBox>
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
-#include <QtPrintSupport/QPrintDialog>
-#include <QtPrintSupport/QPrinter>
-#else
-#include <QPrintDialog>
-#include <QPrinter>
-#endif
-
 #include "pvdbcenternode.h"
 #include "pvdbcluster.h"
 #include "pvdbconcept.h"
@@ -260,7 +252,7 @@ void QtPvdbConceptMapDialog::on_button_save_clicked()
   const QtScopedDisable<QtPvdbConceptMapDialog> scoped_disable2(this);
   this->hide();
 
-  const auto d = pvdb::QtFileDialog::GetSaveFileDialog();
+  const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla de concept map op");
   const int status = d->exec();
   if (status == QDialog::Rejected)

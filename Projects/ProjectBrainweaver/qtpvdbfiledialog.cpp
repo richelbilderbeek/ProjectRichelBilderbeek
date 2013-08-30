@@ -36,7 +36,7 @@ const boost::shared_ptr<QFileDialog> QtFileDialog::GetOpenFileDialog()
   return d;
 }
 
-const boost::shared_ptr<QFileDialog> QtFileDialog::GetSaveFileDialog()
+const boost::shared_ptr<QFileDialog> QtFileDialog::GetSaveFileDialog(const FileType type)
 {
   boost::shared_ptr<QFileDialog> d(new QFileDialog);
 
@@ -52,8 +52,17 @@ const boost::shared_ptr<QFileDialog> QtFileDialog::GetSaveFileDialog()
   //enum Option { ShowDirsOnly, DontResolveSymlinks, DontConfirmOverwrite, DontUseSheet, DontUseNativeDialog, ReadOnly, HideNameFilterDetails }
   d->setOptions( QFileDialog::DontUseNativeDialog ); //Workaround for https://bugreports.qt-project.org/browse/QTBUG-29248
 
-  const std::string namefile = std::string("Brainweaver concept map (*.")
-    + pvdb::File::GetFilenameExtension() + std::string(")");
+  std::string namefile;
+  switch (type)
+  {
+    case FileType::cmp:
+      namefile = std::string("Brainweaver concept map (*.")
+      + pvdb::File::GetFilenameExtension() + std::string(")");
+    break;
+    case FileType::pdf:
+      namefile = std::string("Portable document format (*.pdf)");
+    break;
+  }
 
   d->setNameFilter(namefile.c_str());
 

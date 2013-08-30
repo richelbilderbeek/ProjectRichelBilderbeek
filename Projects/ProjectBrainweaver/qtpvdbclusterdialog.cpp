@@ -468,7 +468,7 @@ void QtPvdbClusterDialog::on_edit_textChanged(const QString &arg1)
 
 void QtPvdbClusterDialog::Save()
 {
-  const auto d = pvdb::QtFileDialog::GetSaveFileDialog();
+  const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla de clustering op");
   const int status = d->exec();
   if (status == QDialog::Rejected) return;

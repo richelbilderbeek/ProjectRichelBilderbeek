@@ -17,10 +17,10 @@
 #include <QPainter>
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5,5,0))
-#include <QtPrintSupport/QPrintDialog>
-#include <QtPrintSupport/QPrinter>
+
+#include <QPrinter>
 #else
-#include <QPrintDialog>
+
 #include <QPrinter>
 #endif
 
@@ -93,7 +93,7 @@ void QtPvdbRatingDialog::on_button_save_clicked()
   //Temporarily disable to widget, otherwise saving cannot succeed
   this->hide();
 
-  const auto d = pvdb::QtFileDialog::GetSaveFileDialog();
+  const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla het assessment invoer-bestand op");
   const int status = d->exec();
   if (status == QDialog::Rejected)
