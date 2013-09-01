@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtrichelbilderbeekgallerymenudialog.h"
 
 #include <fstream>
-#include <boost/filesystem.hpp>
+
 #include <QApplication>
 #include <QKeyEvent>
 #include <QMessageBox>
@@ -57,6 +57,16 @@ QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(QWidget
 QtRichelBilderbeekGalleryMenuDialog::~QtRichelBilderbeekGalleryMenuDialog()
 {
   delete ui;
+}
+
+
+const std::string QtRichelBilderbeekGalleryMenuDialog::GetPath(const std::string& filename)
+{
+  const int a = filename.rfind("\\",filename.size());
+  const int b = filename.rfind("/",filename.size());
+  const int i = std::max(a,b);
+  assert(i < static_cast<int>(filename.size()));
+  return filename.substr(0,i);
 }
 
 void QtRichelBilderbeekGalleryMenuDialog::keyPressEvent(QKeyEvent* e)
@@ -120,11 +130,7 @@ void QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
   QMessageBox box;
   box.setWindowIcon(this->windowIcon());
   box.setStyleSheet(this->styleSheet());
-  #if (QT_VERSION < 0x050000)
-  const std::string s = boost::filesystem::path( qApp->argv()[0]).parent_path().string();
-  #else
-  const std::string s = boost::filesystem::path( qApp->arguments()[0].toStdString() ).parent_path().string();
-  #endif
+  const std::string s = GetPath( qApp->arguments()[0].toStdString() );
   box.setWindowTitle( this->windowTitle() );
   box.setText( (std::string("HTML pages have been created in folder ") + s).c_str());
   box.exec();

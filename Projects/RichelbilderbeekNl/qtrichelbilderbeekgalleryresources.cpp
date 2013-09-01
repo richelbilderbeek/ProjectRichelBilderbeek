@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/filesystem.hpp>
+
 
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
@@ -70,16 +70,16 @@ QtResources::QtResources()
     std::for_each(files.begin(),files.end(),
       [](const std::string& s)
       {
-        if (!boost::filesystem::exists(s))
+        if (!QFile::exists(s.c_str()))
         {
           const std::string filename = ":/images/" + s;
           QFile f(filename.c_str());
           f.copy(s.c_str());
-          if (!boost::filesystem::exists(s)) { TRACE(s); }
-          assert(boost::filesystem::exists(s));
+          if (!QFile::exists(s.c_str())) { TRACE(s); }
+          assert(QFile::exists(s.c_str()));
         }
-        if (!boost::filesystem::exists(s)) { TRACE(s); }
-        assert(boost::filesystem::exists(s));
+        if (!QFile::exists(s.c_str())) { TRACE(s); }
+        assert(QFile::exists(s.c_str()));
       }
     );
   }
@@ -99,19 +99,19 @@ QtResources::QtResources()
     );
 
     std::for_each(files.begin(),files.end(),
-      [](const std::string& s)
+      [this](const std::string& s)
       {
-        if (!boost::filesystem::exists(s))
+        if (!QFile::exists(s.c_str()))
         {
           const std::string filename = ":/images/" + s;
           QFile f(filename.c_str());
           f.copy(s.c_str());
-          if (!boost::filesystem::is_regular_file(s)) { TRACE(s); }
-          assert(boost::filesystem::is_regular_file(s)
+          if (!IsRegularFile(s)) { TRACE(s); }
+          assert(IsRegularFile(s)
             && "Must add the traced resource to Projects/RichelBilderbeekNl/qtrichelbildeekgalleryresources.qrc");
         }
-        if (!boost::filesystem::is_regular_file(s)) { TRACE(s); }
-        assert(boost::filesystem::is_regular_file(s));
+        if (!IsRegularFile(s)) { TRACE(s); }
+        assert(IsRegularFile(s));
       }
     );
   }
@@ -128,6 +128,14 @@ const std::vector<std::string> QtResources::GetVersionHistory()
   v.push_back("2012-02-19: Version 1.0: initial version");
   return v;
 }
+
+bool QtResources::IsRegularFile(const std::string& filename)
+{
+  std::fstream f;
+  f.open(filename.c_str(),std::ios::in);
+  return f.is_open();
+}
+
 
 } //~namespace RichelBilderbeek
 

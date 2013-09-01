@@ -59,6 +59,11 @@ struct QtResources
   const std::string GetWeb() const { return "PicWeb.png"; }
   const std::string GetWindows() const { return "PicWindows.png"; }
   const std::vector<std::string> GetFilenames() const;
+
+  ///Determines if a filename is a regular file
+  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
+  static bool IsRegularFile(const std::string& filename);
+
 };
 
 } //~namespace RichelBilderbeek

@@ -2,11 +2,6 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 
-#LIBS += \
-#    -lboost_filesystem \
-#    -lboost_regex \
-#    -lboost_system
-
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppCodeToHtml \
