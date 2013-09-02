@@ -20,18 +20,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTSPRITES_H
 #define QTSPRITES_H
-//---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
 
+//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #include <QPixmap>
-//---------------------------------------------------------------------------
+
 ///QtSprites creates images by hand
 struct QtSprites
 {
   static QPixmap DrawR();
 };
-//---------------------------------------------------------------------------
+
 #endif // QTSPRITES_H

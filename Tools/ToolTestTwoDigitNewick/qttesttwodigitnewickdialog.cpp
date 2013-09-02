@@ -18,26 +18,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qttesttwodigitnewickdialog.h"
 
 #include <algorithm>
 #include <string>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QDesktopWidget>
-//---------------------------------------------------------------------------
+
 #include "BigInteger.hh"
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "binarynewickvector.h"
 #include "newick.h"
@@ -46,7 +44,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "twodigitnewick.h"
 #include "twodigitnewickindexer.h"
 #include "ui_qttesttwodigitnewickdialog.h"
-//---------------------------------------------------------------------------
+
 QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent) :
     QDialog(parent,Qt::Window),
     ui(new Ui::QtTestTwoDigitNewickDialog)
@@ -83,12 +81,12 @@ QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent) :
   #endif
   OnAnyChange();
 }
-//---------------------------------------------------------------------------
+
 QtTestTwoDigitNewickDialog::~QtTestTwoDigitNewickDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtTestTwoDigitNewickDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -100,12 +98,12 @@ void QtTestTwoDigitNewickDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 const std::string QtTestTwoDigitNewickDialog::GetVersion()
 {
   return "2.2";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtTestTwoDigitNewickDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -129,7 +127,7 @@ const std::vector<std::string> QtTestTwoDigitNewickDialog::GetVersionHistory()
   v.push_back("2011-03-08: version 2.2: minor changes in Newick namespace");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtTestTwoDigitNewickDialog::OnAnyChange()
 {
   ui->edit_text->clear();
@@ -285,7 +283,7 @@ void QtTestTwoDigitNewickDialog::OnAnyChange()
       + QString(bigIntegerToString(n_c).c_str()));
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestTwoDigitNewickDialog::OnAboutClick()
 {
   About about(
@@ -305,10 +303,10 @@ void QtTestTwoDigitNewickDialog::OnAboutClick()
   QtAboutDialog d(about);
   d.exec();
 }
-//---------------------------------------------------------------------------
+
 void QtTestTwoDigitNewickDialog::on_button_help_clicked()
 {
   //
 }
-//---------------------------------------------------------------------------
+
 

@@ -18,14 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "testshinybuttonmenudialog.h"
@@ -35,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 const About TestShinyButtonMenuDialog::GetAbout()
 {
   About a(
@@ -55,12 +47,12 @@ const About TestShinyButtonMenuDialog::GetAbout()
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string TestShinyButtonMenuDialog::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> TestShinyButtonMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -69,4 +61,4 @@ const std::vector<std::string> TestShinyButtonMenuDialog::GetVersionHistory()
   v.push_back("2012-02-13: Version 2.0: created a desktop version of TestShinyButton");
   return v;
 }
-//---------------------------------------------------------------------------
+

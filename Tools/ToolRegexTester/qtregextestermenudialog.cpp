@@ -18,11 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtregextestermenudialog.h"
@@ -109,10 +104,14 @@ void QtRegexTesterMenuDialog::on_button_qt_clicked()
 
 void QtRegexTesterMenuDialog::on_button_boost_regex_clicked()
 {
+  #ifdef TOOLREGEXTESTER_ADD_BOOST_REGEX
   boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterBoostRegexMainDialog);
   QtRegexTesterMainDialog qd(d);
   qd.setWindowIcon(QIcon(QPixmap(":/images/PicBoost.png")));
   this->ShowChild(&qd);
+  #else
+  ui->button_boost_regex->setText("Boost.Regex omitted from (cross)compile");
+  #endif
 }
 
 void QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
@@ -142,11 +141,13 @@ void QtRegexTesterMenuDialog::Test()
       new RegexTesterQtMainDialog);
     assert(d);
   }
+  #ifdef TOOLREGEXTESTER_ADD_BOOST_REGEX
   {
     boost::shared_ptr<RegexTesterMainDialog> d(
       new RegexTesterBoostRegexMainDialog);
     assert(d);
   }
+  #endif
   {
     boost::shared_ptr<RegexTesterMainDialog> d(
       new RegexTesterBoostXpressiveMainDialog);

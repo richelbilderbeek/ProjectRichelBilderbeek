@@ -21,15 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTRUBIKSCLOCKWIDGET_H
 #define QTRUBIKSCLOCKWIDGET_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
 
 #include <QWidget>
 

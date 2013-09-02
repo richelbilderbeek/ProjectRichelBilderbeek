@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 CreateGlossary, tool to create my glossaries
 Copyright (C) 2011-2012 Richel Bilderbeek
@@ -15,17 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateGlossary.htm
-
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
+//---------------------------------------------------------------------------
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "createglossarymaindialog.h"
@@ -36,12 +28,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <vector>
 
-#include <boost/filesystem.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/function.hpp>
-#include <boost/regex.hpp>
+#include <boost/xpressive/xpressive.hpp>
+
+#include <QDir>
 
 #include "htmlpage.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 {
@@ -61,25 +58,17 @@ CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 
 const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(const std::string& folder)
 {
+  QDir dir(folder.c_str());
+  dir.setFilter(QDir::Files);
+  const QFileInfoList list = dir.entryInfoList();
+
+  //Convert QFileInfoList to std::vector<std::string> of filenames
   std::vector<std::string> v;
-
-  const boost::filesystem::path my_folder
-    = boost::filesystem::system_complete(
-        boost::filesystem::path(folder));
-
-  if (!boost::filesystem::is_directory(my_folder)) return v;
-
-  const boost::filesystem::directory_iterator j;
-  for ( boost::filesystem::directory_iterator i(my_folder);
-        i != j;
-        ++i)
+  const int size = list.size();
+  for (int i = 0; i != size; ++i)
   {
-    if ( boost::filesystem::is_regular_file( i->status() ) )
-    {
-      const std::string filename = i->path().filename().string();
-      //const std::string full_filename = folder + "/" + filename;
-      v.push_back(filename);
-    }
+    const std::string file_name = list.at(i).fileName().toStdString();
+    v.push_back(file_name);
   }
   return v;
 }
@@ -92,7 +81,8 @@ const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(
   const std::vector<std::string> v = GetFilesInFolder(folder);
 
   //Create the regex for a correct C++ filename
-  const boost::regex regex(regex_str);
+  const boost::xpressive::sregex regex
+    = boost::xpressive::sregex::compile(regex_str);
 
   //Create the resulting std::vector
   std::vector<std::string> w;
@@ -101,11 +91,20 @@ const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(
   std::for_each(v.begin(), v.end(),
     [&w,regex](const std::string& s)
     {
-      if (boost::regex_match(s,regex)) w.push_back(s);
+      if (boost::xpressive::regex_match(s,regex)) w.push_back(s);
     }
   );
 
   return w;
+}
+
+const std::string CreateGlossaryMainDialog::GetPath(const std::string& filename)
+{
+  const int a = filename.rfind("\\",filename.size());
+  const int b = filename.rfind("/",filename.size());
+  const int i = std::max(a,b);
+  assert(i < static_cast<int>(filename.size()));
+  return filename.substr(0,i);
 }
 
 void CreateGlossaryMainDialog::CreatePage(
@@ -169,7 +168,7 @@ void CreateGlossaryMainDialog::CreatePage(
       {
         std::string s
           = "  <li><a href=\""
-          + boost::filesystem::path(p.GetFilename()).filename().string()
+          + GetPath(p.GetFilename())
           + "\">"
           + p.GetTitle()
           + "</a></li>";

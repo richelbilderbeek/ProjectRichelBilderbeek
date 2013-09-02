@@ -1,13 +1,8 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtroundedtextrectitem.h"
 
 #include <cassert>
@@ -21,6 +16,7 @@
 #include <QPainter>
 
 //#include "trace.h"
+#pragma GCC diagnostic pop
 
 const QtRoundedTextRectItem::Padding QtRoundedTextRectItem::m_text_padding(3.0,0.0,0.0,3.0);
 
@@ -119,6 +115,8 @@ void QtRoundedTextRectItem::paint(QPainter* painter, const QStyleOptionGraphicsI
   painter->drawText(GetTextRect(),m_text.c_str());
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 void QtRoundedTextRectItem::SetFont(const QFont& font)
 {
   if (m_font != font)
@@ -129,6 +127,7 @@ void QtRoundedTextRectItem::SetFont(const QFont& font)
     m_signal_request_scene_update();
   }
 }
+#pragma GCC diagnostic pop
 
 void QtRoundedTextRectItem::SetPadding(const Padding& padding)
 {

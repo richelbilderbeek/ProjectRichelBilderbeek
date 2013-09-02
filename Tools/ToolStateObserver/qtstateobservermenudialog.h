@@ -1,11 +1,6 @@
 #ifndef QTSTATEOBSERVERMENUDIALOG_H
 #define QTSTATEOBSERVERMENUDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include "qthideandshowdialog.h"
 
 namespace Ui {

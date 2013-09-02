@@ -1,19 +1,10 @@
 #ifndef QTFIXEDLAGSMOOTHERKALMANFILTERCALCULATIONDIALOG_H
 #define QTFIXEDLAGSMOOTHERKALMANFILTERCALCULATIONDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDialog>
 
@@ -22,6 +13,7 @@
 #include "kalmanfilterexperiment.h"
 #include "qtkalmanfiltercalculationdialog.h"
 #include "fixedlagsmootherkalmanfiltercalculationelements.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtFixedLagSmootherKalmanFilterCalculationDialog;

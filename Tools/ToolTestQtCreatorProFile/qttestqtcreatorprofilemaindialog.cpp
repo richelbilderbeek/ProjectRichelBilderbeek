@@ -18,19 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtCreatorProFile.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qttestqtcreatorprofilemaindialog.h"
 
 #include <sstream>
 
-#include <boost/filesystem.hpp>
-
+#include <QFile>
 #include <QFileDialog>
 
 #include "qtcreatorprofile.h"
@@ -38,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestqtcreatorprofilemaindialog.h"
 
 QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestQtCreatorProFileMainDialog)
 {
   ui->setupUi(this);
@@ -58,7 +52,7 @@ void QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
       "Qt Project files (*.pro)"
       ).toStdString();
 
-  if (!boost::filesystem::exists(filename))
+  if (!QFile::exists(filename.c_str()))
   {
     ui->text_result->clear();
     const std::string text = std::string("File '") + filename + std::string("' does not exist.");
@@ -74,4 +68,3 @@ void QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
   ui->text_result->clear();
   ui->text_result->setPlainText(s.str().c_str());
 }
-

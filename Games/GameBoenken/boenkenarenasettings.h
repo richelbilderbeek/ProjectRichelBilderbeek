@@ -23,9 +23,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define BOENKENARENASETTINGS_H
 
 #include <utility>
-//---------------------------------------------------------------------------
+
 namespace Boenken {
-//---------------------------------------------------------------------------
+
 enum Formation
 {
   straight_line,
@@ -44,7 +44,7 @@ struct ArenaSettings
   Formation formation;
   double friction;
 };
-//---------------------------------------------------------------------------
+
 } //~namespace Boenken
-//---------------------------------------------------------------------------
+
 #endif // BOENKENARENASETTINGS_H

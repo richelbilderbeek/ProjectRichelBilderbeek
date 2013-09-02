@@ -2,7 +2,12 @@
 #define QTLABELEDQUADBEZIERARROWITEM_H
 
 #include <string>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
+
 #include <QFont>
 #include "qtroundedtextrectitem.h"
 #include "qtquadbezierarrowitem.h"

@@ -21,8 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTREGEXTESTERMAINDIALOG_H
 #define QTREGEXTESTERMAINDIALOG_H
 
-#include <boost/regex.hpp>
+#include <boost/shared_ptr.hpp>
+
 #include "qthideandshowdialog.h"
+
 struct RegexTesterMainDialog;
 
 namespace Ui {

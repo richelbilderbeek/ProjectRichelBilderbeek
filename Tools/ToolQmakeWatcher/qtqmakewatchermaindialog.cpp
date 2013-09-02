@@ -18,6 +18,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolQmakeWatcher.htm
 //---------------------------------------------------------------------------
+//#include own header file as first substantive line of code, from:
+// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#include "qtqmakewatchermaindialog.h"
+
 #include <cassert>
 #include <cstdlib>
 #include <fstream>
@@ -25,12 +29,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
+#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QFile>
 
-#include "qtqmakewatchermaindialog.h"
 #include "ui_qtqmakewatchermaindialog.h"
 
 QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent) :

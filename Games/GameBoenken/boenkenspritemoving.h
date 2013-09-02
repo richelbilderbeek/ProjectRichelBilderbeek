@@ -21,11 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef BOENKENSPRITEMOVING_H
 #define BOENKENSPRITEMOVING_H
-//---------------------------------------------------------------------------
+
 #include "boenkensprite.h"
-//---------------------------------------------------------------------------
+
 namespace Boenken {
-//---------------------------------------------------------------------------
+
 ///SpriteMoving is an abstract base class,
 ///thanks to dummy_make_me_abstract
 struct SpriteMoving : public Sprite
@@ -66,7 +66,7 @@ struct SpriteMoving : public Sprite
   //friend void boost::checked_delete<>(SpriteMoving* x);
 
 };
-//---------------------------------------------------------------------------
+
 } //~namespace Boenken
-//---------------------------------------------------------------------------
+
 #endif // BOENKENSPRITEMOVING_H

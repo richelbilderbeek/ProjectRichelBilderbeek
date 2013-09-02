@@ -21,11 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTRICHELBILDERBEEKGALLERYDIALOG_H
 #define QTRICHELBILDERBEEKGALLERYDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <vector>
 
 #include <boost/shared_ptr.hpp>

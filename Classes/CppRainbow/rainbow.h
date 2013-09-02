@@ -20,10 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef RAINBOW_H
 #define RAINBOW_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 struct Rainbow
 {
   ///Obtain the RGB values from a relative position
@@ -39,5 +39,5 @@ struct Rainbow
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 #endif // RAINBOW_H

@@ -19,14 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppRandomCode.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "randomcode.h"
@@ -51,7 +43,7 @@ const std::vector<std::string> RandomCode::CreateRandomCode()
   v.push_back("}");
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::string RandomCode::CreateRandomLine(const unsigned int length)
 {
   std::string s = "  ";
@@ -62,7 +54,7 @@ const std::string RandomCode::CreateRandomLine(const unsigned int length)
   s+=";";
   return s;
 }
-//---------------------------------------------------------------------------
+
 const std::string RandomCode::CreateRandomString()
 {
   switch (std::rand()%70)
@@ -130,7 +122,7 @@ const std::string RandomCode::CreateRandomString()
   }
   return " ";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> RandomCode::GetAbout()
 {
   std::vector<std::string> v;
@@ -145,7 +137,7 @@ const std::vector<std::string> RandomCode::GetAbout()
   v.push_back("Licenced under GPL 3.0");
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> RandomCode::GetLicence()
 {
   std::vector<std::string> v;
@@ -166,12 +158,12 @@ const std::vector<std::string> RandomCode::GetLicence()
   v.push_back("along with this program.  If not, see <http://www.gnu.org/licenses/>.");
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::string RandomCode::GetVersion()
 {
   return "3.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> RandomCode::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -181,4 +173,4 @@ const std::vector<std::string> RandomCode::GetVersionHistory()
   v.push_back("2011-01-07: Version 3.0: RandomCode can be used as desktop and web application");
   return v;
 }
-//---------------------------------------------------------------------------
+

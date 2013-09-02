@@ -18,19 +18,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppBinaryNewickVector.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "binarynewickvector.h"
 
-//---------------------------------------------------------------------------
+
 #include <algorithm>
 #include <cassert>
 #include <deque>
@@ -42,40 +34,40 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <sstream>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "BigIntegerLibrary.hh"
-//---------------------------------------------------------------------------
+
 #include "newick.h"
-//---------------------------------------------------------------------------
+
 BinaryNewickVector::BinaryNewickVector(const std::string& s)
 {
   assert(Newick::IsUnaryNewick(Newick::StringToNewick(s))
       || Newick::IsBinaryNewick(Newick::StringToNewick(s)));
   m_v = Newick::StringToNewick(s);
 }
-//---------------------------------------------------------------------------
+
 BinaryNewickVector::BinaryNewickVector(const std::vector<int>& v)
 {
   assert(Newick::IsUnaryNewick(v) || Newick::IsBinaryNewick(v));
   assert(v.empty() || Newick::IsNewick(v));
   m_v = v;
 }
-//---------------------------------------------------------------------------
+
 double BinaryNewickVector::CalcDenominator(const double theta) const
 {
   return Newick::CalcDenominator(Peek(),theta);
 }
-//---------------------------------------------------------------------------
+
 const BigInteger BinaryNewickVector::CalcNumOfCombinations() const
 {
   assert(Newick::IsNewick(m_v));
   return Newick::CalcNumOfCombinationsBinary(m_v);
 }
-//---------------------------------------------------------------------------
+
 //#ifndef WIN32
 //const cln::cl_I BinaryNewickVector::CalcNumOfCombinationsCln() const
 //{
@@ -83,20 +75,20 @@ const BigInteger BinaryNewickVector::CalcNumOfCombinations() const
 //  return Newick::CalcNumOfCombinationsCln(m_v);
 //}
 //#endif
-//---------------------------------------------------------------------------
+
 const BigInteger BinaryNewickVector::CalcNumOfSymmetries() const
 {
   assert(Newick::IsNewick(m_v));
   return Newick::CalcNumOfSymmetriesBinary(m_v);
 }
-//---------------------------------------------------------------------------
+
 double BinaryNewickVector::CalcProbabilitySimpleNewick(const double theta) const
 {
   assert(Newick::IsSimple(m_v));
   assert(theta > 0.0);
   return Newick::CalcProbabilitySimpleNewick(m_v,theta);
 }
-//---------------------------------------------------------------------------
+
 double BinaryNewickVector::CalculateProbability(
   const std::string& newick_str,
   const double theta)
@@ -113,7 +105,7 @@ double BinaryNewickVector::CalculateProbability(
     storage);
 
 }
-//---------------------------------------------------------------------------
+
 double BinaryNewickVector::CalculateProbabilityInternal(
   const BinaryNewickVector& n,
   const double theta,
@@ -210,7 +202,7 @@ double BinaryNewickVector::CalculateProbabilityInternal(
     }
   }
 }
-//---------------------------------------------------------------------------
+
 const std::vector<BinaryNewickVector> BinaryNewickVector::GetSimplerNewicks() const
 {
   assert(Newick::IsNewick(m_v));
@@ -218,7 +210,7 @@ const std::vector<BinaryNewickVector> BinaryNewickVector::GetSimplerNewicks() co
   std::vector<BinaryNewickVector> w(v.begin(),v.end());
   return w;
 }
-//---------------------------------------------------------------------------
+
 const std::pair<BinaryNewickVector,BinaryNewickVector> BinaryNewickVector::GetRootBranches() const
 {
   assert(Newick::IsNewick(m_v));
@@ -226,12 +218,12 @@ const std::pair<BinaryNewickVector,BinaryNewickVector> BinaryNewickVector::GetRo
     = Newick::GetRootBranchesBinary(m_v);
   return p;
 }
-//---------------------------------------------------------------------------
+
 const std::string BinaryNewickVector::GetVersion()
 {
   return "3.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> BinaryNewickVector::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -243,7 +235,7 @@ const std::vector<std::string> BinaryNewickVector::GetVersionHistory()
   v.push_back("2011-04-08: Version 3.1: fixed error forgiven by G++, but fatal for i686-pc-mingw32-qmake");
   return v;
 }
-//---------------------------------------------------------------------------
+
  bool BinaryNewickVector::IsCloseBracketRight(const int pos) const
 {
   const int sz = m_v.size();
@@ -262,7 +254,7 @@ const std::vector<std::string> BinaryNewickVector::GetVersionHistory()
   // that is not stored in a SortedBinaryNewickVector's std::vector
   return true;
 }
-//---------------------------------------------------------------------------
+
 bool BinaryNewickVector::IsOpenBracketLeft(const int pos) const
 {
   assert(pos >= 0);
@@ -279,18 +271,18 @@ bool BinaryNewickVector::IsOpenBracketLeft(const int pos) const
   // that is not stored in a SortedBinaryNewickVector's std::vector
   return true;
 }
-//---------------------------------------------------------------------------
+
 bool BinaryNewickVector::IsSimple() const
 {
   return Newick::IsSimple(m_v);
 }
-//---------------------------------------------------------------------------
+
 //void BinaryNewickVector::SetTheta(const double theta)
 //{
 //  assert(theta > 0.0);
 //  m_theta = theta;
 //}
-//---------------------------------------------------------------------------
+
 //Does the following conversions:
 // (5,(5,1)) -> (5,6)
 // (4,(5,1)) -> (4,6)
@@ -331,7 +323,7 @@ const BinaryNewickVector BinaryNewickVector::LoseBrackets(const int x, const int
 
   return BinaryNewickVector(v_copy);
 }
-//---------------------------------------------------------------------------
+
 bool BinaryNewickVector::NewickCompare(
   const std::vector<int>& lhs,
   const std::vector<int>& rhs)
@@ -355,12 +347,12 @@ bool BinaryNewickVector::NewickCompare(
   }
   return false;
 }
-//---------------------------------------------------------------------------
+
 int BinaryNewickVector::Size() const
 {
   return boost::numeric_cast<int>(m_v.size());
 }
-//---------------------------------------------------------------------------
+
 const BinaryNewickVector BinaryNewickVector::TermIsNotOne(const int i) const
 {
   assert(m_v[i]>1);
@@ -368,7 +360,7 @@ const BinaryNewickVector BinaryNewickVector::TermIsNotOne(const int i) const
   --v[i];
   return BinaryNewickVector(v);
 }
-//---------------------------------------------------------------------------
+
 //TermIsOne is called whenever a '1' is found in a newick structure
 //string_pos has the index of the character after this '1'
 // (when a string has multiple 1's, TermIsOne is called for each '1',
@@ -430,7 +422,7 @@ const BinaryNewickVector BinaryNewickVector::TermIsOne(const int i) const
   //Return an empty SortedBinaryNewickVector
   return BinaryNewickVector(std::vector<int>());
 }
-//---------------------------------------------------------------------------
+
 void BinaryNewickVector::Test()
 {
 
@@ -516,16 +508,16 @@ void BinaryNewickVector::Test()
     }
   }
 }
-//---------------------------------------------------------------------------
+
 const std::string BinaryNewickVector::ToStr() const
 {
   assert(Newick::IsNewick(m_v));
   return Newick::NewickToString(m_v);
 }
-//---------------------------------------------------------------------------
+
 bool operator<(const BinaryNewickVector& lhs, const BinaryNewickVector& rhs)
 {
   //return lhs.v < rhs.v;
   return BinaryNewickVector::NewickCompare(lhs.Peek(),rhs.Peek());
 }
-//---------------------------------------------------------------------------
+

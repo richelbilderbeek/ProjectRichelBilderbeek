@@ -22,13 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QUESTION_H
 #define QUESTION_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-#include <vector>
 #include <string>
+#include <vector>
 #include <boost/checked_delete.hpp>
 
 ///Class for a question

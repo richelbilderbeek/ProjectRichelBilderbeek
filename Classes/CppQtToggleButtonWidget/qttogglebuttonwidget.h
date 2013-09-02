@@ -21,11 +21,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTOGGLEBUTTONWIDGET_H
 #define QTTOGGLEBUTTONWIDGET_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include <vector>
 

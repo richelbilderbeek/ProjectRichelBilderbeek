@@ -18,14 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtHideAndShowDialog.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qthideandshowdialog.h"
@@ -64,7 +56,7 @@ const std::vector<std::string> QtHideAndShowDialog::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2012-11-13: version 1.0: initial version");
   v.push_back("2012-11-18: version 1.1: added ShowModal member function");
-  v.push_back("2012-11-18: version 1.2: added #undef __STRICT_ANSI__");
+  v.push_back("2012-11-18: version 1.2: added ");
   v.push_back("2012-12-31: version 1.3: added keyPressEvent to close on escape");
   return v;
 }

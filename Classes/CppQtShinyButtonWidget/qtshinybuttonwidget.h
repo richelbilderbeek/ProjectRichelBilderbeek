@@ -20,24 +20,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTSHINYBUTTONWIDGET_H
 #define QTSHINYBUTTONWIDGET_H
-//---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
 
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "shinybutton.h" //For MOC
 #include "shinybuttonwidget.h" //For MOC
-//---------------------------------------------------------------------------
+
 struct QtToggleButtonWidget;
-//---------------------------------------------------------------------------
+
 ///QtShinyButtonWidget displays a ShinyButton
 struct QtShinyButtonWidget : public QWidget
 {
@@ -102,5 +101,5 @@ struct QtShinyButtonWidget : public QWidget
   ///Respond to mouse click
   //void OnClicked(const Wt::WMouseEvent& e);
 };
-//---------------------------------------------------------------------------
+
 #endif // WTSHINYBUTTONWIDGET_H

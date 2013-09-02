@@ -21,11 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTPYLOSGAMEWIDGET_H
 #define QTPYLOSGAMEWIDGET_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <vector>
 
 #pragma GCC diagnostic push

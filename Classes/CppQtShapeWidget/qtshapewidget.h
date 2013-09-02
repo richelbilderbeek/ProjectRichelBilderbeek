@@ -20,23 +20,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTSHAPEWIDGET_H
 #define QTSHAPEWIDGET_H
-//---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
 
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 #include "shape.h" //For MOC
 #include "shapewidget.h" //For MOC
-//---------------------------------------------------------------------------
+
 ///QtShapeWidget manages and displays a Shape
 class QtShapeWidget : public QWidget
 {
@@ -73,6 +71,6 @@ public:
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 #endif // QTSHAPEWIDGET_H
-//---------------------------------------------------------------------------
+

@@ -1,4 +1,4 @@
-QT += core gui #webkit
+QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 CONFIG   += console
@@ -1650,33 +1650,13 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 
 unix {
   message(Unix)
   #Strict error handling
   QMAKE_CXXFLAGS += -Werror
-}
-
-win32 {
-  !static {
-    message(Native Windows)
-    #Allow native Windows to emit warnings without terminating
-    QMAKE_CXXFLAGS += -Werror
-
-  }
-
-  static {
-    message(Crosscompiling from Lubuntu to Windows)
-    #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++0x #-Werror
-  }
-
-
-  #Prevents error:
-  #/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"
-  #DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED
 }
 
 #
@@ -1688,32 +1668,29 @@ win32 {
 unix {
   message(Unix dynamic link to Boost)
 
-  LIBS += \
-  -lboost_date_time \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_regex \
-  -lboost_signals \
-  -lboost_system
+  #LIBS += \
+  #-lboost_date_time \
+  #-lboost_program_options \
+  #-lboost_signals
 }
 
 win32 {
 
-  message(Windows dynamic link to Boost)
+  message(Windows: add Boost to includepath)
 
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 
-  debug {
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
-  }
-  release {
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
-  }
+  #debug {
+  #  LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
+  #  LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
+  #  LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
+  #}
+  #release {
+  #  LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
+  #  LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
+  #  LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
+  #}
 }
 
 #

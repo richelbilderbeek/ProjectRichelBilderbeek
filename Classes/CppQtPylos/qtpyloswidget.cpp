@@ -18,14 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpyloswidget.h"
@@ -34,7 +28,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <iostream>
 
+#ifdef __STRICT_ANSI__
 #include <boost/math/constants/constants.hpp>
+#else
+#include <cmath>
+#endif
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QMouseEvent>
@@ -46,12 +45,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmustremovestate.h"
 #include "pylosplayer.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 QtPylosWidget::QtPylosWidget() :
     QWidget(0),
     m_select(0,0,0),
     m_sprites(this->width(),this->height(),Pylos::GetRedBlueColors()),
-    m_tilt(30.0 * 2.0 * boost::math::constants::pi<double>() / 360.0)
+    m_tilt(30.0 * 2.0
+      #ifdef __STRICT_ANSI__
+      * boost::math::constants::pi<double>()
+      #else
+      * M_PI
+      #endif
+      / 360.0)
 {
   //Allows this widget to respond to mouse moving over it
   this->setMouseTracking(true);

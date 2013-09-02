@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 HtmlPage, HTML page class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,17 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppHtmlPage.htm
-
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
+//---------------------------------------------------------------------------
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "htmlpage.h"
@@ -35,24 +27,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-  #include <boost/filesystem.hpp>
-  #include <boost/regex.hpp>
-  #include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/xpressive/xpressive.hpp>
 #pragma GCC diagnostic pop
+
+#include <QFile>
 
 HtmlPage::HtmlPage(const std::string& filename)
   : m_filename(filename)
 {
-  assert(boost::filesystem::exists(filename));
+  assert(QFile::exists(filename.c_str()));
 
-  const boost::regex title_regex("<title>.*</title>");
+  const boost::xpressive::sregex title_regex
+    = boost::xpressive::sregex::compile("<title>.*</title>");
 
   //Copy all filenames matching the regex in the resulting std::vector
   const std::vector<std::string> v = FileToVector(filename);
   std::for_each(v.begin(),v.end(),
     [this,title_regex](const std::string& s)
     {
-      if (boost::regex_search(s,title_regex))
+      if (boost::xpressive::regex_search(s,title_regex))
       {
         std::string t = s;
         //Trim leading whitespace
@@ -72,7 +66,7 @@ HtmlPage::HtmlPage(const std::string& filename)
 
 const std::vector<std::string> HtmlPage::FileToVector(const std::string& filename)
 {
-  assert(boost::filesystem::exists(filename));
+  assert(QFile::exists(filename.c_str()));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
@@ -86,7 +80,7 @@ const std::vector<std::string> HtmlPage::FileToVector(const std::string& filenam
 
 const std::string HtmlPage::GetVersion()
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> HtmlPage::GetVersionHistory()
@@ -94,6 +88,7 @@ const std::vector<std::string> HtmlPage::GetVersionHistory()
   std::vector<std::string> v;
   v.push_back("2011-xx-xx: version 1.0: initial version");
   v.push_back("2012-08-12: version 1.1: started versioning this class");
+  v.push_back("2013-09-02: version 1.2: replaced Boost.Regex by Boost.Xpressive");
   return v;
 }
 

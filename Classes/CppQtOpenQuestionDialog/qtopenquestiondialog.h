@@ -21,11 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTOPENQUESTIONDIALOG_H
 #define QTOPENQUESTIONDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 

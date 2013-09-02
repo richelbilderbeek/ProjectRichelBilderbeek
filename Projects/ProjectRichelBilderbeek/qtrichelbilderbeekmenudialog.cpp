@@ -18,14 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtrichelbilderbeekmenudialog.h"
@@ -34,11 +26,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/function.hpp>
 #include <boost/lambda/lambda.hpp>
-#include <boost/filesystem.hpp>
 
 #include <QFile>
 #include <QKeyEvent>
@@ -89,6 +81,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tooltestqtmodelsmenudialog.h"
 #include "trace.h"
 #include "ui_qtrichelbilderbeekmenudialog.h"
+
+#pragma GCC diagnostic pop
 
 QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

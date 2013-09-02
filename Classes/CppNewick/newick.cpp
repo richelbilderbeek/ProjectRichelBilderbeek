@@ -18,14 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppNewick.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "newick.h"
@@ -1899,7 +1891,7 @@ std::string SortNewick(const std::string& newick)
   std::string n = "";
   //Find initial leaf and replace it with x
   {
-    const boost::regex r("\\(\\d+,\\d+\\)");
+    const boost::xpressive::sregex r("\\(\\d+,\\d+\\)");
     std::string::const_iterator start = s.begin();
     const std::string::const_iterator end = s.end();
     boost::match_results<std::string::const_iterator> what;
@@ -1911,7 +1903,7 @@ std::string SortNewick(const std::string& newick)
   while (s!="x")
   {
     //Obtain leaf with x
-    const boost::regex r("(\\(x,\\d+\\))|(\\(\\d+,x\\))");
+    const boost::xpressive::sregex r("(\\(x,\\d+\\))|(\\(\\d+,x\\))");
     std::string::const_iterator start = s.begin();
     const std::string::const_iterator end = s.end();
     boost::match_results<std::string::const_iterator> what;

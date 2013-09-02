@@ -21,11 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTNEWICKVECTORDIALOG_H
 #define TESTNEWICKVECTORDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include <vector>
 #include <boost/scoped_ptr.hpp>

@@ -20,11 +20,11 @@
 //---------------------------------------------------------------------------
 #ifndef SORTEDBINARYNEWICKVECTOR_H
 #define SORTEDBINARYNEWICKVECTOR_H
-//---------------------------------------------------------------------------
+
 #include <vector>
 #include "binarynewickvector.h"
 #include "newick.h"
-//---------------------------------------------------------------------------
+
 //A SortedBinaryNewickVector is a ShortNewick with its internal storage hided
 //All functions that needed a ShortNewick's internals
 //  are members of SortedBinaryNewickVector
@@ -75,10 +75,10 @@ struct SortedBinaryNewickVector
     const std::vector<int>& rhs);
 
 };
-//---------------------------------------------------------------------------
+
 bool operator<(const SortedBinaryNewickVector& lhs, const SortedBinaryNewickVector& rhs);
-//---------------------------------------------------------------------------
+
 //const std::string ToString(const SortedBinaryNewickVector& n,
 //  const bool add_brackets = true);
-//---------------------------------------------------------------------------
+
 #endif //SORTEDBINARYNEWICKVECTOR_H

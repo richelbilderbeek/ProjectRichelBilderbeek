@@ -1,6 +1,6 @@
-
+//---------------------------------------------------------------------------
 /*
-GaborFilter, GABORFILTER class
+GaborFilter, Gabor filter class
 Copyright (C) 2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppGaborFilter.htm
-
+//---------------------------------------------------------------------------
 #ifndef GABORFILTER_H
 #define GABORFILTER_H
 

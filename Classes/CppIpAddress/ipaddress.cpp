@@ -18,21 +18,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppIpAddress.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "ipaddress.h"
 
 #include <stdexcept>
 
-#include <boost/regex.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/xpressive/xpressive.hpp>
+#pragma GCC diagnostic pop
 
 IpAddress::IpAddress(const std::string& ip_address)
 {
@@ -41,20 +36,22 @@ IpAddress::IpAddress(const std::string& ip_address)
 
 const std::string IpAddress::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> IpAddress::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-08: version 1.0: initial version");
+  v.push_back("2013-09-02: version 1.1: replaced Boost.Regex by Boost.Xpressive");
   return v;
 }
 
 void IpAddress::Set(const std::string& ip_address)
 {
-  const boost::regex regex_ip_address("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");
-  if(!boost::regex_match(ip_address,regex_ip_address))
+  const boost::xpressive::sregex regex_ip_address
+    = boost::xpressive::sregex::compile("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");
+  if(!boost::xpressive::regex_match(ip_address,regex_ip_address))
   {
     throw std::logic_error("Invalid IP address");
   }

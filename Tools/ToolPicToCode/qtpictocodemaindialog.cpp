@@ -18,30 +18,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolPicToCode.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtpictocodemaindialog.h"
 
 #include <cassert>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include <QBitmap>
 #include <QDesktopWidget>
 #include <QFileDialog>
-//---------------------------------------------------------------------------
+
 #include "pictocodemaindialog.h"
 #include "pictocodemenudialog.h"
 #include "qtsprites.h"
 #include "ui_qtpictocodemaindialog.h"
-//---------------------------------------------------------------------------
+
 QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent) :
   QDialog(parent,Qt::Window),
   ui(new Ui::QtPicToCodeMainDialog)
@@ -55,24 +53,12 @@ QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent) :
   this->setGeometry(0,0,screen.width() * 8 / 10,screen.height() * 8 / 10);
   this->move( screen.center() - this->rect().center() );
 }
-//---------------------------------------------------------------------------
+
 QtPicToCodeMainDialog::~QtPicToCodeMainDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtPicToCodeMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
+
 const PicToCodeMainDialog::YxImage QtPicToCodeMainDialog::ImageToImage(const QImage& qt_image)
 {
   const int width  = qt_image.width();
@@ -95,7 +81,7 @@ const PicToCodeMainDialog::YxImage QtPicToCodeMainDialog::ImageToImage(const QIm
   }
   return image;
 }
-//---------------------------------------------------------------------------
+
 void QtPicToCodeMainDialog::on_button_select_file_clicked()
 {
   QFileDialog d;
@@ -114,7 +100,7 @@ void QtPicToCodeMainDialog::on_button_select_file_clicked()
   const QString filename = d.selectedFiles().operator[](0);
   ui->label_picture->setPixmap(QPixmap(filename));
 }
-//---------------------------------------------------------------------------
+
 void QtPicToCodeMainDialog::on_button_convert_clicked()
 {
   const std::vector<std::string> v
@@ -130,7 +116,7 @@ void QtPicToCodeMainDialog::on_button_convert_clicked()
   }
 
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string>
   QtPicToCodeMainDialog::PicToNdsCode(const QImage& image) const
 {
@@ -189,7 +175,7 @@ const std::vector<std::string>
   v.push_back("};");
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string>
   QtPicToCodeMainDialog::PicToQtCode(const QImage& qt_image) const
 {
@@ -253,4 +239,4 @@ const std::vector<std::string>
   return v;
   */
 }
-//---------------------------------------------------------------------------
+

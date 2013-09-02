@@ -21,13 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef BOENKENSPRITENONMOVING_H
 #define BOENKENSPRITENONMOVING_H
-//---------------------------------------------------------------------------
+
 #include <boost/checked_delete.hpp>
-//---------------------------------------------------------------------------
+
 #include "boenkensprite.h"
-//---------------------------------------------------------------------------
+
 namespace Boenken {
-//---------------------------------------------------------------------------
+
 struct SpriteMoving;
 
 ///SpriteNonMoving are obstacles.
@@ -60,7 +60,7 @@ struct SpriteNonMoving : public Sprite
   virtual ~SpriteNonMoving() {}
   friend void boost::checked_delete<>(SpriteNonMoving* x);
 };
-//---------------------------------------------------------------------------
+
 } //~namespace Boenken
-//---------------------------------------------------------------------------
+
 #endif // BOENKENSPRITENONMOVING_H

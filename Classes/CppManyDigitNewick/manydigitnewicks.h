@@ -20,11 +20,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef MANYDIGITNEWICKS_H
 #define MANYDIGITNEWICKS_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "manydigitnewick.h"
-//---------------------------------------------------------------------------
+
 ///ManyDigitNewicks manages ManyDigitManyDigitNewicks.
 ///ManyDigitManyDigitNewicks manage F'(index) -> { indices }
 struct ManyDigitNewicks
@@ -58,5 +58,5 @@ private:
   ///its derived indexed ManyDigitNewicks
   std::vector<ManyDigitNewick> m_v;
 };
-//---------------------------------------------------------------------------
+
 #endif // MANYDIGITNEWICKS_H

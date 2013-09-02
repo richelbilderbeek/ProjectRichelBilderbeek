@@ -21,18 +21,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTQTCREATORPROFILEMENUDIALOG_H
 #define QTTESTQTCREATORPROFILEMENUDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 namespace Ui {
 class QtTestQtCreatorProFileMenuDialog;
 }
 
-class QtTestQtCreatorProFileMenuDialog : public QDialog
+class QtTestQtCreatorProFileMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

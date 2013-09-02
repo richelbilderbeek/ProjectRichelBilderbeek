@@ -24,9 +24,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/checked_delete.hpp>
 #include "boenkenspritemoving.h"
-//---------------------------------------------------------------------------
+
 namespace Boenken {
-//---------------------------------------------------------------------------
+
 ///SpritePlayer is a MovingSprite that can respond to input
 ///and can only be deleted by boost::checked_delete
 struct SpritePlayer : public Boenken::SpriteMoving
@@ -61,7 +61,7 @@ struct SpritePlayer : public Boenken::SpriteMoving
   static const double m_turnspeed;
   static int ms_n_players;
 };
-//---------------------------------------------------------------------------
+
 } //~namespace Boenken
-//---------------------------------------------------------------------------
+
 #endif // BOENKENSPRITEPLAYER_H

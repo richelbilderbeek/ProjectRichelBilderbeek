@@ -8,6 +8,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
+#include <boost/units/quantity.hpp>
+#include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
 #include "is_about_equal.h"
 #include "trace.h"
@@ -51,6 +53,28 @@ struct PolarCoordinat
 
 };
 
+namespace PolarCoordinatHelper
+{
+  template <class T, class U>
+  T CalculateSqrt(const U& x);
+
+  template <>
+  double CalculateSqrt<double,double>(const double& x)
+  {
+    return std::sqrt(x);
+  }
+  template <>
+  boost::units::quantity<boost::units::si::length>
+    CalculateSqrt<
+      boost::units::quantity<boost::units::si::length>,
+      boost::units::quantity<boost::units::si::area>
+    >(
+    const boost::units::quantity<boost::units::si::area>& x)
+  {
+    return std::sqrt(x.value()) * boost::units::si::meter;
+  }
+}
+
 template <class Angle,class Length>
 Coordinat<Length> ToCoordinat(const PolarCoordinat<Angle,Length>& c)
 {
@@ -87,22 +111,16 @@ const Angle PolarCoordinat<Angle,Length>::CalcAngle(const Length& dx, const Leng
     * boost::units::si::radian);
 }
 
-template <class T, class U> T CalculateSqrt(const U& x);
-template <> double CalculateSqrt(const double& x) { return std::sqrt(x); }
-template <> boost::units::quantity<boost::units::si::length> CalculateSqrt(
-  const boost::units::quantity<boost::units::si::area>& x)
-{
-  return CalculateSqrt(x.value()) * boost::units::si::meter;
-}
-
-
 
 template <class Angle, class Length>
 const Length PolarCoordinat<Angle,Length>::CalcLength(const Length& dx, const Length& dy)
 {
-
   //return Length(std::sqrt(((dx*dx)+(dy*dy)).value()) * meter);
-  return Length(CalculateSqrt((dx*dx)+(dy*dy)));
+  return Length(
+    PolarCoordinatHelper::CalculateSqrt<boost::units::quantity<boost::units::si::length> >(
+      (dx*dx)+(dy*dy)
+    )
+  );
 }
 
 template <class Angle, class Length>

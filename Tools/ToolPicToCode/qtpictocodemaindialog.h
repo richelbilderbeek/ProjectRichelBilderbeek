@@ -20,18 +20,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTPICTOCODEDIALOG_H
 #define QTPICTOCODEDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtPicToCodeMainDialog;
 }
-//---------------------------------------------------------------------------
+
 struct QImage;
 #include "pictocodemaindialog.h"
-//---------------------------------------------------------------------------
+
 class QtPicToCodeMainDialog : public QDialog
 {
   Q_OBJECT
@@ -39,9 +39,6 @@ class QtPicToCodeMainDialog : public QDialog
 public:
   explicit QtPicToCodeMainDialog(QWidget *parent = 0);
   ~QtPicToCodeMainDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtPicToCodeMainDialog *ui;
@@ -58,6 +55,6 @@ public:
   const std::vector<std::string>
     PicToQtCode(const QImage& image) const;
 };
-//---------------------------------------------------------------------------
+
 
 #endif // QTPICTOCODEDIALOG_H

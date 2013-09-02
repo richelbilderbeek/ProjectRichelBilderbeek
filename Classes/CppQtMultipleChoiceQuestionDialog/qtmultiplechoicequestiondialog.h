@@ -21,11 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMULTIPLECHOICEQUESTIONDIALOG_H
 #define QTMULTIPLECHOICEQUESTIONDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>

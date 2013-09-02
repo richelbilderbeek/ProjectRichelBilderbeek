@@ -40,6 +40,11 @@ private slots:
 
 private:
   Ui::QtTestQrcFileMainDialog *ui;
+
+  ///Determines if a filename is a regular file
+  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
+  static bool IsRegularFile(const std::string& filename);
+
 };
 
 #endif // QTTESTQRCFILEMAINDIALOG_H

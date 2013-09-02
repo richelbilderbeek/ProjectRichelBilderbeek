@@ -18,14 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "manydigitnewickindextable.h"
@@ -35,16 +27,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <iostream>
 #include <sstream>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 ///CanGetData returns is GetData can be called with success
 bool ManyDigitIndexTable::CanGetIndex(const Coordinat& coordinat) const
 {
   return m_v.CanRetrieve(coordinat.ToVector());
 }
-//---------------------------------------------------------------------------
+
 ///Find returns the x-y-coordinats of the Newick with index i
 ///This is a linear (in this case, relatively time-intensive) method.
 const ManyDigitNewickCoordinat ManyDigitIndexTable::Find(
@@ -87,7 +79,7 @@ const ManyDigitNewickCoordinat ManyDigitIndexTable::Find(
   s << "Value " << value << " not found in ManyDigitIndexTable::Find";
   throw std::logic_error(s.str());
 }
-//---------------------------------------------------------------------------
+
 const std::vector<int> ManyDigitIndexTable::FindInternal(
   const std::vector<int>& indices,
   const MultiVector<int>& v,
@@ -123,14 +115,14 @@ const std::vector<int> ManyDigitIndexTable::FindInternal(
   }
   return std::vector<int>();
 }
-//---------------------------------------------------------------------------
+
 ///GetIndex returns m_index_table[x][y]
 int ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices) const
 {
   assert(CanGetIndex(indices));
   return m_v.Retrieve(indices.ToVector());
 }
-//---------------------------------------------------------------------------
+
 ///GetNumAllocated calculates the number of indices allocated
 //int ManyDigitIndexTable::GetNumAllocated() const
 //{
@@ -141,7 +133,7 @@ int ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices) const
 //  }
 //  return n_allocated;
 //}
-//---------------------------------------------------------------------------
+
 ///GetNumUsed calculates the number of indices used
 //int ManyDigitIndexTable::GetNumUsed() const
 //{
@@ -156,7 +148,7 @@ int ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices) const
 //  }
 //  return n_non_zero;
 //}
-//---------------------------------------------------------------------------
+
 ///SetIndex sets m_index_table[x][y] == z
 ///and resized the m_index_table is necessary
 void ManyDigitIndexTable::SetIndex(
@@ -170,4 +162,4 @@ void ManyDigitIndexTable::SetIndex(
   m_v.Store(indices.ToVector(),value);
   assert(m_v.Retrieve(indices.ToVector()) == value);
 }
-//---------------------------------------------------------------------------
+

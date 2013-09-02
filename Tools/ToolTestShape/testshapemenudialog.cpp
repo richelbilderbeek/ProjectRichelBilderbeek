@@ -18,26 +18,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShape.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "testshapemenudialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "shape.h"
 #include "shapewidget.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
+
 TestShapeMenuDialog::TestShapeMenuDialog()
 {
   const std::vector<std::string> files =
@@ -54,7 +49,7 @@ TestShapeMenuDialog::TestShapeMenuDialog()
     assert(QFile::exists(filename.c_str()));
   }
 }
-//---------------------------------------------------------------------------
+
 const About TestShapeMenuDialog::GetAbout() const
 {
   About a(
@@ -73,12 +68,12 @@ const About TestShapeMenuDialog::GetAbout() const
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string TestShapeMenuDialog::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> TestShapeMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -86,4 +81,4 @@ const std::vector<std::string> TestShapeMenuDialog::GetVersionHistory()
   v.push_back("2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget");
   return v;
 }
-//---------------------------------------------------------------------------
+

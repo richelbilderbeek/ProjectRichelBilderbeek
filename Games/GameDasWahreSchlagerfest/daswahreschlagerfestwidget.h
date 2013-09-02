@@ -22,7 +22,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define DASWAHRESCHLAGERFESTWIDGET_H
 
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
 
 ///DasWahreSchlagerfestWidget contains the game logic of Das Wahre Schlagerfest
 struct DasWahreSchlagerfestWidget

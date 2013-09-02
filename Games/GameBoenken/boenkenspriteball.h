@@ -24,9 +24,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/checked_delete.hpp>
 #include "boenkenspritemoving.h"
-//---------------------------------------------------------------------------
+
 namespace Boenken {
-//---------------------------------------------------------------------------
+
 ///SpriteBall is green per default
 ///and keeps track of the score
 ///and can only be deleted by boost::checked_delete
@@ -63,7 +63,7 @@ struct SpriteBall : public SpriteMoving
 
 
 };
-//---------------------------------------------------------------------------
+
 } //~namespace Boenken {
-//---------------------------------------------------------------------------
+
 #endif // BOENKENSPRITEBALL_H

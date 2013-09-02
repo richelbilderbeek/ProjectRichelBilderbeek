@@ -20,17 +20,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TWODIGITNEWICK_H
 #define TWODIGITNEWICK_H
-//---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "twodigitnewickderivative.h"
-//---------------------------------------------------------------------------
+
 ///TwoDigitNewick contains all
 ///TwoDigitNewickDerivative that can be
 ///constructed from a phylogeny. For example,
@@ -102,6 +97,6 @@ struct TwoDigitNewick
   static void Test();
 
 };
-//---------------------------------------------------------------------------
+
 #endif // TWODIGITNEWICK_H
 

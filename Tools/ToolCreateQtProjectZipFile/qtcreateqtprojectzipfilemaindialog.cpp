@@ -18,22 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtcreateqtprojectzipfilemaindialog.h"
 
-#include <boost/filesystem.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#include <boost/regex.hpp>
 
+#include <QFile>
 #include <QFileDialog>
 #include <QKeyEvent>
 #include <QListWidgetItem>
@@ -43,6 +36,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreatorprofilezipscript.h"
 #include "trace.h"
 #include "ui_qtcreateqtprojectzipfilemaindialog.h"
+
+#pragma GCC diagnostic pop
 
 QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
@@ -99,6 +94,12 @@ void QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_f
   ui->text->setPlainText(QtCreatorProFileZipScript::CreateScript(source_folder).c_str());
 }
 
+bool QtCreateQtProjectZipFileMainDialog::IsRegularFile(const std::string& filename)
+{
+  std::fstream f;
+  f.open(filename.c_str(),std::ios::in);
+  return f.is_open();
+}
 
 void QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event)
 {
@@ -109,7 +110,7 @@ void QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QString &
 {
   const std::string source_folder = "../../" + arg1.toStdString();
 
-  if (!boost::filesystem::exists(source_folder))
+  if (!QFile::exists(source_folder.c_str()))
   {
     const std::string text = "Folder '" + source_folder + std::string("' does not exist.");
     ui->text->setPlainText(text.c_str());
@@ -138,7 +139,7 @@ void QtCreateQtProjectZipFileMainDialog::Test()
   const int n_tests = std::count_if(
     pro_filenames.begin(), pro_filenames.end(),
       [](const std::string& filename)
-      { return boost::filesystem::is_regular_file(filename); }
+      { return IsRegularFile(filename); }
     );
   const std::string s = "Testing "
     + boost::lexical_cast<std::string>(n_tests)
@@ -148,7 +149,7 @@ void QtCreateQtProjectZipFileMainDialog::Test()
 
   for (const std::string& pro_filename: pro_filenames)
   {
-    if (!boost::filesystem::is_regular_file(pro_filename)) continue;
+    if (!IsRegularFile(pro_filename)) continue;
     const boost::shared_ptr<const QtCreatorProFile> pro_file(
       new QtCreatorProFile(pro_filename));
     assert(pro_file);

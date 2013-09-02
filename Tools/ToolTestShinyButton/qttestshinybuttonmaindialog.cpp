@@ -18,24 +18,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qttestshinybuttonmaindialog.h"
 
 #include <iostream>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "qtshinybuttonwidget.h"
 #include "ui_qttestshinybuttonmaindialog.h"
-//---------------------------------------------------------------------------
+
 QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
  : QDialog(parent),
    ui(new Ui::QtTestShinyButtonMainDialog),
@@ -57,12 +55,12 @@ QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
 
   on_edit_text_textChanged(QString());
 }
-//---------------------------------------------------------------------------
+
 QtTestShinyButtonMainDialog::~QtTestShinyButtonMainDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtTestShinyButtonMainDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -74,7 +72,7 @@ void QtTestShinyButtonMainDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestShinyButtonMainDialog::OnChanged()
 {
   const double color
@@ -92,18 +90,18 @@ void QtTestShinyButtonMainDialog::OnChanged()
 
   ui->label_color->setText(s.c_str());
 }
-//---------------------------------------------------------------------------
+
 void QtTestShinyButtonMainDialog::OnClicked()
 {
   this->m_shiny_button->GetWidget()->GetShinyButton()->SetColor(0.5,0.5);
 }
-//---------------------------------------------------------------------------
+
 void QtTestShinyButtonMainDialog::on_edit_text_textChanged(const QString&)
 {
   this->m_shiny_button->GetWidget()->GetShinyButton()->SetText(
     ui->edit_text->text().toStdString());
 }
-//---------------------------------------------------------------------------
+
 void QtTestShinyButtonMainDialog::on_dial_main_color_sliderMoved(int)
 {
   const double color
@@ -115,7 +113,7 @@ void QtTestShinyButtonMainDialog::on_dial_main_color_sliderMoved(int)
 
   m_shiny_button->GetWidget()->GetShinyButton()->SetColor(color,gradient);
 }
-//---------------------------------------------------------------------------
+
 void QtTestShinyButtonMainDialog::on_dial_gradient_sliderMoved(int)
 {
   const double color
@@ -127,4 +125,4 @@ void QtTestShinyButtonMainDialog::on_dial_gradient_sliderMoved(int)
 
   m_shiny_button->GetWidget()->GetShinyButton()->SetColor(color,gradient);
 }
-//---------------------------------------------------------------------------
+

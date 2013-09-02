@@ -21,7 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef REGEXTESTERBOOSTREGEXMAINDIALOG_H
 #define REGEXTESTERBOOSTREGEXMAINDIALOG_H
 
-
+#ifdef TOOLREGEXTESTER_ADD_BOOST_REGEX
 #include <string>
 #include <vector>
 
@@ -72,5 +72,6 @@ struct RegexTesterBoostRegexMainDialog : public RegexTesterMainDialog
     const boost::regex& r);
 
 };
+#endif
 
 #endif // REGEXTESTERBOOSTREGEXMAINDIALOG_H

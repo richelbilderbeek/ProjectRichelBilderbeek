@@ -45,6 +45,9 @@ struct CreateGlossaryMainDialog
     const std::string& folder,
     const std::string& regex_str);
 
+  ///Returns the path of a filename
+  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
+  static const std::string GetPath(const std::string& filename);
 };
 
 #endif // CREATEGLOSSARYMAINDIALOG_H

@@ -20,9 +20,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TWODIGITNEWICKINDEXERTABLE_H
 #define TWODIGITNEWICKINDEXERTABLE_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
 ///TwoDigitNewickIndexTable manages (X,Y) -> index
 struct TwoDigitNewickIndexTable
 {
@@ -45,5 +45,5 @@ struct TwoDigitNewickIndexTable
   ///so that m_index_table[x][y] equals that value
   std::vector<std::vector<int> > m_v;
 };
-//---------------------------------------------------------------------------
+
 #endif // TWODIGITNEWICKINDEXERTABLE_H

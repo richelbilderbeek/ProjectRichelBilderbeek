@@ -20,15 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TWODIGITNEWICKINDEXER_H
 #define TWODIGITNEWICKINDEXER_H
-//---------------------------------------------------------------------------
+
 #include <cassert>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "twodigitnewickindextable.h"
 #include "twodigitnewicks.h"
 #include "twodigitnewick.h"
 #include "binarynewickvector.h"
-//---------------------------------------------------------------------------
+
 ///NewickIndex converts any newick to (X,Y)
 struct TwoDigitNewickIndexer
 {
@@ -149,9 +149,9 @@ struct TwoDigitNewickIndexer
   void TryToCalculateNewNewick(const int i);
 
 };
-//---------------------------------------------------------------------------
+
 ///IsSimple determines if a binary Newick is simple,
 //that is in the form '(X,Y)', where both X and Y are values
 //bool IsSimple(const BinaryNewickVector& n);
-//---------------------------------------------------------------------------
+
 #endif // TWODIGITNEWICKINDEXER_H

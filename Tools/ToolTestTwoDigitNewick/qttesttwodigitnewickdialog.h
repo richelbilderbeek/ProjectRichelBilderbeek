@@ -20,13 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTTWODIGITNEWICKDIALOG_H
 #define QTTESTTWODIGITNEWICKDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtTestTwoDigitNewickDialog;
 }
-//---------------------------------------------------------------------------
+
 class QtTestTwoDigitNewickDialog : public QDialog
 {
   Q_OBJECT
@@ -48,5 +48,5 @@ private slots:
   void OnAnyChange();
   void OnAboutClick();
 };
-//---------------------------------------------------------------------------
+
 #endif // QTTESTTWODIGITNEWICKDIALOG_H

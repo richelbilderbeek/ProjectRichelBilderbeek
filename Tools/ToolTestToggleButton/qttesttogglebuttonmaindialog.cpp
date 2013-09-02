@@ -18,29 +18,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestToggleButton.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qttesttogglebuttonmaindialog.h"
 
-
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #include "qtaboutdialog.h"
 #include "rainbow.h"
 #include "testtogglebuttonmenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "ui_qttesttogglebuttonmaindialog.h"
-//---------------------------------------------------------------------------
-QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::QtTestToggleButtonMainDialog)
+
+QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent)
+ : QDialog(parent),
+   ui(new Ui::QtTestToggleButtonMainDialog)
 {
   ui->setupUi(this);
 
@@ -50,12 +46,12 @@ QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent) :
       this));
   ui->toggle_button->GetWidget()->Click(1,1);
 }
-//---------------------------------------------------------------------------
+
 QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void QtTestToggleButtonMainDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -67,7 +63,7 @@ void QtTestToggleButtonMainDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
+
 void QtTestToggleButtonMainDialog::DisplayToggleButtonValue()
 {
   ui->label_is_pressed->setText(
@@ -85,12 +81,12 @@ void QtTestToggleButtonMainDialog::DisplayToggleButtonValue()
     + std::string(") (RGB)")).c_str());
 
 }
-//---------------------------------------------------------------------------
+
 void QtTestToggleButtonMainDialog::on_dial_dialMoved(int)
 {
   OnDial();
 }
-//---------------------------------------------------------------------------
+
 void QtTestToggleButtonMainDialog::OnDial()
 {
   const double x
@@ -105,9 +101,9 @@ void QtTestToggleButtonMainDialog::OnDial()
     static_cast<unsigned char>(b * 255.0));
 
 }
-//---------------------------------------------------------------------------
+
 void QtTestToggleButtonMainDialog::on_dial_sliderPressed()
 {
   OnDial();
 }
-//---------------------------------------------------------------------------
+

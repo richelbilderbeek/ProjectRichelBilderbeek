@@ -20,11 +20,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef STOPWATCH_H
 #define STOPWATCH_H
-//---------------------------------------------------------------------------
+
 #include <ctime>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 struct Stopwatch
 {
   Stopwatch() : m_time_start(std::time(0)) {}
@@ -45,5 +45,5 @@ struct Stopwatch
     return v;
   }
 };
-//---------------------------------------------------------------------------
+
 #endif // STOPWATCH_H

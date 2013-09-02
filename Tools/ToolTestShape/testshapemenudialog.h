@@ -20,9 +20,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TESTSHAPEMENUDIALOG_H
 #define TESTSHAPEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
 ///The logic behind the menu dialog
 struct TestShapeMenuDialog
 {
@@ -50,5 +50,5 @@ struct TestShapeMenuDialog
   ///Obtain the version history
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 #endif // TESTSHAPEMENUDIALOG_H

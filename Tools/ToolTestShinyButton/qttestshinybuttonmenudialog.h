@@ -20,17 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTSHINYBUTTONMENUDIALOG_H
 #define QTTESTSHINYBUTTONMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtTestShinyButtonMenuDialog;
 }
-//---------------------------------------------------------------------------
+
 struct QtShinyButtonWidget;
-//---------------------------------------------------------------------------
+
 class QtTestShinyButtonMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -56,5 +56,5 @@ private:
 private slots:
 
 };
-//---------------------------------------------------------------------------
+
 #endif // QTTESTSHINYBUTTONMENUDIALOG_H

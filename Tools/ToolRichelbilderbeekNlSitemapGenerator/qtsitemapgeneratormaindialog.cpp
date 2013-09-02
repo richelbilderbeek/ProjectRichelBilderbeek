@@ -18,11 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelbilderbeekNlSitemapGenerator.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtsitemapgeneratormaindialog.h"
@@ -34,12 +29,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/date_time/gregorian/gregorian.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
-#include <boost/regex.hpp>
+#include <boost/xpressive/xpressive.hpp>
+#pragma GCC diagnostic pop
 
+#include <QDir>
 #include <QFile>
 #include <QKeyEvent>
 
@@ -57,18 +55,6 @@ QtSitemapGeneratorMainDialog::~QtSitemapGeneratorMainDialog()
   delete ui;
 }
 
-void QtSitemapGeneratorMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 void QtSitemapGeneratorMainDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
@@ -77,25 +63,17 @@ void QtSitemapGeneratorMainDialog::keyPressEvent(QKeyEvent * e)
 
 const std::vector<std::string> QtSitemapGeneratorMainDialog::GetFilesInFolder(const std::string& folder)
 {
+  QDir dir(folder.c_str());
+  dir.setFilter(QDir::Files);
+  const QFileInfoList list = dir.entryInfoList();
+
+  //Convert QFileInfoList to std::vector<std::string> of filenames
   std::vector<std::string> v;
-
-  const boost::filesystem::path my_folder
-    = boost::filesystem::system_complete(
-        boost::filesystem::path(folder));
-
-  if (!boost::filesystem::is_directory(my_folder)) return v;
-
-  const boost::filesystem::directory_iterator j;
-  for ( boost::filesystem::directory_iterator i(my_folder);
-        i != j;
-        ++i)
+  const int size = list.size();
+  for (int i = 0; i != size; ++i)
   {
-    if ( boost::filesystem::is_regular_file( i->status() ) )
-    {
-      const std::string filename = i->path().filename().string();
-      //const std::string full_filename = folder + "/" + filename;
-      v.push_back(filename);
-    }
+    const std::string file_name = list.at(i).fileName().toStdString();
+    v.push_back(file_name);
   }
   return v;
 }
@@ -106,7 +84,8 @@ const std::vector<std::string> QtSitemapGeneratorMainDialog::GetHtmlFilesInFolde
   const std::vector<std::string> v = GetFilesInFolder(folder);
 
   //Create the regex for a correct HTML filename
-  const boost::regex cpp_file_regex(".*\\.(html|htm)\\z");
+  const boost::xpressive::sregex cpp_file_regex
+    = boost::xpressive::sregex::compile(".*\\.(html|htm)\\z");
 
   //Create the resulting std::vector
   std::vector<std::string> w;
@@ -114,7 +93,7 @@ const std::vector<std::string> QtSitemapGeneratorMainDialog::GetHtmlFilesInFolde
   //Copy all filenames matching the regex in the resulting std::vector
   BOOST_FOREACH(const std::string& s, v)
   {
-    if (boost::regex_match(s,cpp_file_regex)) w.push_back(s);
+    if (boost::xpressive::regex_match(s,cpp_file_regex)) w.push_back(s);
   }
   return w;
 }
@@ -143,7 +122,11 @@ const std::vector<std::string> QtSitemapGeneratorMainDialog::AddHeader(const std
 
 const std::string QtSitemapGeneratorMainDialog::GetPath(const std::string& filename)
 {
-  return boost::filesystem::path(filename).parent_path().string();
+  const int a = filename.rfind("\\",filename.size());
+  const int b = filename.rfind("/",filename.size());
+  const int i = std::max(a,b);
+  assert(i < static_cast<int>(filename.size()));
+  return filename.substr(0,i);
 }
 
 const std::string QtSitemapGeneratorMainDialog::GetCurrentFolder(const std::string& s)
@@ -347,7 +330,7 @@ const std::string QtSitemapGeneratorMainDialog::GetDateIso8601()
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> QtSitemapGeneratorMainDialog::FileToVector(const std::string& fileName)
 {
-  assert(boost::filesystem::exists(fileName)==true);
+  assert(QFile::exists(fileName.c_str()));
   std::vector<std::string> myVector;
   std::ifstream in(fileName.c_str());
   std::string myString;
@@ -441,7 +424,7 @@ void QtSitemapGeneratorMainDialog::on_button_start_clicked()
     ui->text_output->appendPlainText("* Check for sitemap_gen.py in this app's folder");
     const std::string sitemap_file
       = sitemapgen_location + std::string("/sitemap_gen.py");
-    if (boost::filesystem::exists(sitemap_file))
+    if (QFile::exists(sitemap_file.c_str()))
     {
       ui->text_output->appendPlainText("* sitemap_gen.py present");
     }
@@ -457,7 +440,7 @@ void QtSitemapGeneratorMainDialog::on_button_start_clicked()
       //f_out << f_in.rdbuf();
 
       //Assume file does exist now
-      assert(boost::filesystem::exists(sitemap_file));
+      assert(QFile::exists(sitemap_file.c_str()));
       ui->text_output->appendPlainText("* sitemap_py created successfully");
     }
   }

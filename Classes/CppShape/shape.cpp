@@ -18,14 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppShape.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #pragma GCC diagnostic push
@@ -34,7 +26,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shape.h"
 
 #include <cassert>
+
+#ifdef __STRICT_ANSI__
+#include <boost/math/constants/constants.hpp>
+#else
 #include <cmath>
+#endif
 
 //#include "trace.h"
 
@@ -88,10 +85,14 @@ void Shape::SetRotation(const double rotation)
 
 double Shape::GetAngle(const double dx, const double dy)
 {
-  return M_PI - std::atan2(dx,dy);
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+  return pi - std::atan2(dx,dy);
 }
 
-//From www.richelbilderbeek.nl/CppGetDistance.htm
 double Shape::GetDistance(const double dX, const double dY)
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
@@ -106,44 +107,50 @@ void Shape::Test()
     is_tested = true;
   }
   //Test GetAngle
+  #ifdef __STRICT_ANSI__
+  const double pi = boost::math::constants::pi<double>();
+  #else
+  const double pi = M_PI;
+  #endif
+
   {
     const double angle =  GetAngle(0.0,-1.0); //North
-    const double expected = 0.0 * M_PI;
+    const double expected = 0.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,-1.0); //North-East
-    const double expected = 0.25 * M_PI;
+    const double expected = 0.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,0.0); //East
-    const double expected = 0.5 * M_PI;
+    const double expected = 0.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(1.0,1.0); //South-East
-    const double expected = 0.75 * M_PI;
+    const double expected = 0.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(0.0,1.0); //South
-    const double expected = 1.0 * M_PI;
+    const double expected = 1.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,1.0); //South-West
-    const double expected = 1.25 * M_PI;
+    const double expected = 1.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,0.0); //West
-    const double expected = 1.5 * M_PI;
+    const double expected = 1.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
     const double angle =  GetAngle(-1.0,-1.0); //North-West
-    const double expected = 1.75 * M_PI;
+    const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   //GetDistance

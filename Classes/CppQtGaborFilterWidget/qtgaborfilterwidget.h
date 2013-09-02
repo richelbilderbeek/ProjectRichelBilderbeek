@@ -20,19 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTGABORFILTERWIDGET_H
 #define QTGABORFILTERWIDGET_H
-//---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
 
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "gaborfilter.h"         //Needed by MOC
 #include "gaborfilterwidget.h"   //Needed by MOC
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 class QtGaborFilterWidget : public QWidget
 {
   Q_OBJECT
@@ -73,5 +71,5 @@ public:
   static const std::vector<std::string> GetVersionHistory();
 
 };
-//---------------------------------------------------------------------------
+
 #endif // QTGABORFILTERWIDGET_H

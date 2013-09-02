@@ -18,17 +18,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolMusicTheory.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtmultiscalechordrelationswidget.h"
 
-
+#ifdef __STRICT_ANSI__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/math/constants/constants.hpp>
+#pragma GCC diagnostic pop
+#else
 #include <cmath>
+#endif
 
 #include <QGraphicsScene>
 #include <QPainterPath>
@@ -126,7 +127,12 @@ void QtMultiScaleChordRelationsWidget::SetChords(
     const std::size_t sz = qt_chords.size();
     //const double ray = 2.0 * 64.0 * std::sqrt(2.0) * static_cast<double>(sz) / (2.0 * M_PI);
     const double ray = 0.4 * static_cast<double>(std::min(this->width(),this->height()));
-    const double d_angle = 2.0 * M_PI / static_cast<double>(sz);
+    #ifdef __STRICT_ANSI__
+    const double pi = boost::math::constants::pi<double>();
+    #else
+    const double pi = M_PI;
+    #endif
+    const double d_angle = 2.0 * pi / static_cast<double>(sz);
     for (std::size_t i = 0; i!=sz; ++i)
     {
       const double angle = static_cast<double>(i) * d_angle;

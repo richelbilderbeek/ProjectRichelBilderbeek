@@ -20,17 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTSHINYBUTTONDIALOG_H
 #define QTTESTSHINYBUTTONDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtTestShinyButtonMainDialog;
 }
-//---------------------------------------------------------------------------
+
 struct QtShinyButtonWidget;
-//---------------------------------------------------------------------------
+
 class QtTestShinyButtonMainDialog : public QDialog
 {
   Q_OBJECT
@@ -53,5 +53,5 @@ private slots:
   void on_dial_main_color_sliderMoved(int position);
   void on_dial_gradient_sliderMoved(int position);
 };
-//---------------------------------------------------------------------------
+
 #endif // QTTESTSHINYBUTTONDIALOG_H

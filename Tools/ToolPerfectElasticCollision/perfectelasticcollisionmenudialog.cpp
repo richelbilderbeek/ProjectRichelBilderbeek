@@ -18,11 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "perfectelasticcollisionmenudialog.h"
@@ -31,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 const About PerfectElasticCollisionMenuDialog::GetAbout()
 {
   About a(
@@ -46,12 +41,12 @@ const About PerfectElasticCollisionMenuDialog::GetAbout()
   //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string PerfectElasticCollisionMenuDialog::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> PerfectElasticCollisionMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -59,4 +54,4 @@ const std::vector<std::string> PerfectElasticCollisionMenuDialog::GetVersionHist
   v.push_back("2012-03-07: version 1.1: added versioning. Added menu screen.");
   return v;
 }
-//---------------------------------------------------------------------------
+

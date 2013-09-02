@@ -18,27 +18,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
 //#include own header file as first substantive line of code, from:
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "manydigitnewicks.h"
 
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "newick.h"
 #include "manydigitnewickderivative.h"
 #include "newickvector.h"
-//---------------------------------------------------------------------------
+
 ManyDigitNewicks::ManyDigitNewicks(const int n_reserved, const double theta)
 {
   //Create derivatives of simplest and reserved ManyDigitNewicks
@@ -78,7 +70,7 @@ ManyDigitNewicks::ManyDigitNewicks(const int n_reserved, const double theta)
 
   assert(Empty(1));
 }
-//---------------------------------------------------------------------------
+
 ///Empty returns if an index is empty
 bool ManyDigitNewicks::Empty(const int i) const
 {
@@ -86,7 +78,7 @@ bool ManyDigitNewicks::Empty(const int i) const
   assert(i < this->Size());
   return m_v[i].Empty();
 }
-//---------------------------------------------------------------------------
+
 const ManyDigitNewick& ManyDigitNewicks::GetNewick(
     const int i) const
 {
@@ -104,7 +96,7 @@ const ManyDigitNewick& ManyDigitNewicks::GetNewick(
   #endif
   return m_v[i];
 }
-//---------------------------------------------------------------------------
+
 void ManyDigitNewicks::SetNewick(const int i, const ManyDigitNewick& v)
 {
   TRACE_FUNC();
@@ -131,7 +123,7 @@ void ManyDigitNewicks::SetNewick(const int i, const ManyDigitNewick& v)
 
   m_v[i] = v;
 }
-//---------------------------------------------------------------------------
+
 void ManyDigitNewicks::SetNewickProbability(
   const int i,const double p)
 {
@@ -141,9 +133,9 @@ void ManyDigitNewicks::SetNewickProbability(
   assert(p <= 1.0);
   m_v[i].SetProbability(p);
 }
-//---------------------------------------------------------------------------
+
 int ManyDigitNewicks::Size() const
 {
   return boost::numeric_cast<int>(m_v.size());
 }
-//---------------------------------------------------------------------------
+

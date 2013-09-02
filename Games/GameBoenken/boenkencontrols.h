@@ -24,9 +24,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 namespace Boenken {
-//---------------------------------------------------------------------------
+
 ///Controls contains the control keys
 ///and the players' names
 ///Controls is created by DialogControls
@@ -36,7 +36,7 @@ struct Controls
   std::vector<int> m_keys_turn;
   std::vector<std::string> m_names;
 };
-//---------------------------------------------------------------------------
+
 } //~namespace Boenken
-//---------------------------------------------------------------------------
+
 #endif // BOENKENCONTROLS_H

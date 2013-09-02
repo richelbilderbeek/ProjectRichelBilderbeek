@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef RANDOMCODE_H
 #define RANDOMCODE_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 struct RandomCode
 {
   static const std::vector<std::string> CreateRandomCode();

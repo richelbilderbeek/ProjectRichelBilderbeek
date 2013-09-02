@@ -20,18 +20,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TESTSHAPEMAINDIALOG_H
 #define TESTSHAPEMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 struct MultipleChoiceShape;
 struct MultipleChoiceShapeDialog;
 struct OpenShape;
 struct OpenShapeDialog;
 struct ShapeWidget;
-//---------------------------------------------------------------------------
+
 ///The GUI independent TestShape main dialog
 struct TestShapeMainDialog
 {
@@ -46,5 +46,5 @@ struct TestShapeMainDialog
 
   static std::vector<boost::shared_ptr<ShapeWidget> > CreateShapes();
 };
-//---------------------------------------------------------------------------
+
 #endif // TESTSHAPEMAINDIALOG_H

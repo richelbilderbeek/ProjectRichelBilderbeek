@@ -109,6 +109,7 @@ struct Shape
   //From www.richelbilderbeek.nl/CppGetAngle.htm
   static double GetAngle(const double dx, const double dy);
 
+  //From www.richelbilderbeek.nl/CppGetDistance.htm
   static double GetDistance(const double dX, const double dY);
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();

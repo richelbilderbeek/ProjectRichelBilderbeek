@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
-
 #ifndef CREATEQTPROJECTZIPFILEPATH_H
 #define CREATEQTPROJECTZIPFILEPATH_H
 
@@ -73,6 +71,10 @@ struct Path
 
   ///Test if this Path can be found at ../../[main folder]/[sub folder]/[filename]
   bool IsPresent() const;
+
+  ///Determines if a filename is a regular file
+  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
+  static bool IsRegularFile(const std::string& filename);
 
   ///Set the main folder, e.g. 'Projects', 'Tools'
   void SetMainFolder(const std::string& s);

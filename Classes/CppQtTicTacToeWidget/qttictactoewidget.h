@@ -20,20 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTICTACTOEWIDGET_H
 #define QTTICTACTOEWIDGET_H
-//---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
 
 #include <string>
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QWidget>
-//---------------------------------------------------------------------------
+
 struct TicTacToe;
-//---------------------------------------------------------------------------
+
 class QtTicTacToeWidget : public QWidget
 {
   Q_OBJECT
@@ -61,5 +56,5 @@ signals:
 public slots:
 
 };
-//---------------------------------------------------------------------------
+
 #endif // QTTICTACTOEWIDGET_H

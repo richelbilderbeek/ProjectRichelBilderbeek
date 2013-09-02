@@ -20,11 +20,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TWODIGITNEWICKS_H
 #define TWODIGITNEWICKS_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "twodigitnewick.h"
-//---------------------------------------------------------------------------
+
 ///TwoDigitNewicks manages TwoDigitTwoDigitNewicks.
 ///TwoDigitTwoDigitNewicks manage F'(index) -> { indices }
 struct TwoDigitNewicks
@@ -56,5 +56,5 @@ private:
   ///its derived indexed TwoDigitNewicks
   std::vector<TwoDigitNewick> m_v;
 };
-//---------------------------------------------------------------------------
+
 #endif // TWODIGITNEWICKS_H

@@ -21,11 +21,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTOOLTESTQTMODELSMAINDIALOG_H
 #define QTTOOLTESTQTMODELSMAINDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include "qthideandshowdialog.h"
 
 namespace Ui {
