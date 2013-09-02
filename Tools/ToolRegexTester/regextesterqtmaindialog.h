@@ -23,8 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
-
-//#include <boost/regex.hpp>
+#include <boost/shared_ptr.hpp>
 #include "regextestermaindialog.h"
 
 struct QRegExp;

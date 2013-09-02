@@ -86,3 +86,4 @@ bool RegexTesterQtMainDialog::GetRegexValid(
   catch (boost::regex_error& e) { return false; }
   return true;
 }
+*/
