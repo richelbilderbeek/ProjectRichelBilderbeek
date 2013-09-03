@@ -80,14 +80,14 @@ auto SimpleLinearRegression::CalculateBestFit(
 
   assert(xs.size() == ys.size()
     && "Every coordinat must have exactly one x and one y value");
-  const X mean_x = CalculateMean(xs);
-  const Y mean_y = CalculateMean(ys);
+  const X mean_x { CalculateMean(xs) };
+  const Y mean_y { CalculateMean(ys) };
   //const double covariance_xy = CalculateCovariance(xs,ys);
   //const double variance_x = CalculateVariance(xs);
   //const double slope = covariance_xy / variance_x;
   typedef decltype(ys[0]/xs[0]) Slope;
-  const Slope slope = CalculateSlope(xs,ys);
-  const Y intercept = mean_y - (slope * mean_x);
+  const Slope slope { CalculateSlope(xs,ys) };
+  const Y intercept { mean_y - (slope * mean_x) };
   return std::make_pair(slope,intercept);
 }
 
@@ -108,15 +108,15 @@ auto SimpleLinearRegression::CalculateSlope(
   assert(xs.size() == ys.size());
   typedef decltype(xs[0] * ys[0]) Numerator;
   typedef decltype(xs[0] * xs[0]) Denominator;
-  Numerator numerator = GetZero<X>() * GetZero<Y>();
-  Denominator denominator = GetZero<X>() * GetZero<X>();
-  const X x_mean = CalculateMean(xs);
-  const Y y_mean = CalculateMean(ys);
-  const std::size_t sz = xs.size();
+  Numerator numerator { GetZero<X>() * GetZero<Y>() };
+  Denominator denominator { GetZero<X>() * GetZero<X>() };
+  const X x_mean { CalculateMean(xs) };
+  const Y y_mean { CalculateMean(ys) };
+  const std::size_t sz { xs.size() };
   for (std::size_t i=0; i!=sz; ++i)
   {
-    const X x = xs[i];
-    const Y y = ys[i];
+    const X x { xs[i] };
+    const Y y { ys[i] };
     numerator   += ((x - x_mean) * (y - y_mean));
     denominator += ((x - x_mean) * (x - x_mean));
   }

@@ -176,5 +176,6 @@
         <file>ToolTestMultiApproximator_1_0.png</file>
         <file>GameXeNonZero_0_1.png</file>
         <file>GameZork.png</file>
+        <file>GameCorridor.png</file>
     </qresource>
 </RCC>

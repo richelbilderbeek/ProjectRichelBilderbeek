@@ -13,16 +13,16 @@ double SimpleLinearRegression::CalculateCovariance(
   const std::vector<double>& ys)
 {
   assert(xs.size() == ys.size());
-  const std::size_t sz = xs.size();
+  const std::size_t sz { xs.size() };
   std::vector<double> ps(sz);
   for (std::size_t i=0; i!=sz; ++i)
   {
     ps[i] = xs[i] * ys[i];
   }
 
-  const double mean_x = CalculateMean(xs);
-  const double mean_y = CalculateMean(ys);
-  const double mean_p = CalculateMean(ps);
+  const double mean_x { CalculateMean(xs) };
+  const double mean_y { CalculateMean(ys) };
+  const double mean_p { CalculateMean(ps) };
   return mean_p - (mean_x * mean_y);
 }
 
@@ -30,16 +30,17 @@ double SimpleLinearRegression::CalculateVariance(
   const std::vector<double>& v)
 {
   assert(!v.empty());
-  const double mean = CalculateMean(v);
+  const double mean { CalculateMean(v) };
 
 
-  const double mean_of_squares
-    = std::accumulate(v.begin(),v.end(),0.0,
+  const double mean_of_squares {
+    std::accumulate(v.begin(),v.end(),0.0,
       [](const double init, const double x)
       {
         return init + (x * x);
       }
-    ) / static_cast<double>(v.size());
+    ) / static_cast<double>(v.size())
+  };
 
   return mean_of_squares - (mean * mean);
 }
@@ -103,9 +104,10 @@ const std::string SimpleLinearRegression::GetVersion()
 
 const std::vector<std::string> SimpleLinearRegression::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-08-27: version 1.0: initial version, as ToolTestSimpleLinearRegressionMainDialog");
-  v.push_back("2013-08-28: version 1.1: renamed to SimpleLinearRegression, templated CalculateBestFit");
+  std::vector<std::string> v {
+    "2013-08-27: version 1.0: initial version, as ToolTestSimpleLinearRegressionMainDialog",
+    "2013-08-28: version 1.1: renamed to SimpleLinearRegression, templated CalculateBestFit",
+  };
   return v;
 }
 
@@ -113,44 +115,44 @@ const std::vector<std::string> SimpleLinearRegression::GetVersionHistory()
 void SimpleLinearRegression::Test()
 {
   {
-    static bool is_tested = false;
+    static bool is_tested { false };
     if (is_tested) return;
     is_tested = true;
   }
   TRACE("Starting SimpleLinearRegression::Test");
   {
     const std::vector<double> v { 75.0, 83.0, 96.0, 100.0, 121.0, 125.0 };
-    const double variance = CalculateVariance(v);
-    const double expected = 332.666667;
+    const double variance { CalculateVariance(v) };
+    const double expected { 332.666667 };
     assert(std::abs(variance - expected) < 0.0001);
   }
   {
     const std::vector<double> v { 0.23, 0.37, 0.45, 0.49, 0.56, 0.63, 0.63, 0.70, 0.72, 0.82 };
-    const double variance = CalculateVariance(v);
-    const double expected = 0.02846;
+    const double variance { CalculateVariance(v) };
+    const double expected { 0.02846 };
     assert(std::abs(variance - expected) < 0.0001);
   }
   for (int i=1; i!=5; ++i) //Human-based counting, following the Ansombe's Quartet indices
   {
-    const std::vector<double> xs = GetAnscombesQuartetX(i);
-    const std::vector<double> ys = GetAnscombesQuartetY(i);
-    const std::pair<double,double> p = CalculateBestFit(xs,ys);
+    const std::vector<double> xs { GetAnscombesQuartetX(i) };
+    const std::vector<double> ys { GetAnscombesQuartetY(i) };
+    const std::pair<double,double> p { CalculateBestFit(xs,ys) };
 
-    const double mean_x = CalculateMean(xs);
-    const double mean_y = CalculateMean(ys);
-    const double slope = p.first;
-    const double intercept = p.second;
+    const double mean_x { CalculateMean(xs) };
+    const double mean_y { CalculateMean(ys) };
+    const double slope { p.first };
+    const double intercept { p.second };
 
     //const double variance_x = CalculateVariance(xs);
     //const double variance_y = CalculateVariance(ys);
 
 
-    const double expected_mean_x = 9.0;
-    const double expected_mean_y = 7.5;              //to 2 decimal places
-    const double expected_slope = 0.500; //to 3 decimal places
-    const double expected_intercept = 3.00;  //to 2 decimal places
+    const double expected_mean_x { 9.0 };
+    const double expected_mean_y { 7.5 };     //to 2 decimal places
+    const double expected_slope  { 0.500 };   //to 3 decimal places
+    const double expected_intercept { 3.00 }; //to 2 decimal places
 
-    const double e = 0.01;
+    const double e { 0.01 };
     assert(std::abs(expected_mean_x - mean_x) < e);
     assert(std::abs(expected_mean_y - mean_y) < e);
 

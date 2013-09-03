@@ -56,6 +56,9 @@ struct MultiApproximator
   ///Get the lowest key value
   const Key GetMin() const;
 
+  ///Obtain the true or averaged value at the key when the key is present
+  const Value GetValue(const Key& key) const;
+
   ///Obtain the version of this class
   static const std::string GetVersion();
 
@@ -66,16 +69,15 @@ struct MultiApproximator
   ///The container to store the std::pair<Key,Value> in
   Container m_m;
 
-  ///Obtain the true or averaged value at the key when the key is present
-  const Value GetValue(const Key& key) const;
-
   #ifndef NDEBUG
   ///Test this class
   static void Test();
   #endif
 
-  template <class AnyKey, class AnyValue, class AnyContainer>
-  friend void MultiApproximator<AnyKey,AnyValue,AnyContainer>::Test();
+  //template <class AnyKey, class AnyValue, class AnyContainer>
+  //friend void MultiApproximator<AnyKey,AnyValue,AnyContainer>::Test();
+  //friend void MultiApproximator<Key,Value,Container>::Test();
+
 
 };
 
@@ -97,7 +99,7 @@ const Approximator<Key,Value,Container> ToApproximator(
 
 template <class Key, class Value, class Container>
 MultiApproximator<Key,Value,Container>::MultiApproximator(const Container& container)
-  : m_m(container)
+  : m_m { container }
 {
   static_assert(!std::is_integral<Key>(),
     "MultiApproximator will not work on integer keys");
@@ -120,31 +122,29 @@ const Value MultiApproximator<Key,Value,Container>::Approximate(const Key& key) 
   //Must the average be calculated?
   if (m_m.find(key) != m_m.end()) return GetValue(key);
 
-  const Iterator high = m_m.lower_bound(key);
+  const Iterator high { m_m.lower_bound(key) };
 
   if (high == m_m.begin() || high == m_m.end())
   {
     assert(!m_m.empty());
-    const Key lowest  = (*m_m.begin()).first;
-    const Key highest = (*m_m.rbegin()).first;
+    const Key lowest  { (*m_m.begin()).first  };
+    const Key highest { (*m_m.rbegin()).first };
     throw ExceptionNoExtrapolation<Key>(key, lowest, highest);
   }
-  const Iterator low = --Iterator(high);
+  const Iterator low { --Iterator(high) };
   assert(low != m_m.end());
   assert(high != m_m.end());
-  const Key d_low = (*low).first;
-  const Key d_high = (*high).first;
+  const Key d_low  { (*low).first  };
+  const Key d_high { (*high).first };
   assert(d_low < key);
   assert(d_high > key);
-  const double fraction
-    = (key - d_low)
-    / (d_high - d_low);
+  const double fraction { (key - d_low) / (d_high - d_low) };
   assert(fraction >= 0.0);
   assert(fraction <= 1.0);
   assert(m_m.find(d_low)  != m_m.end());
   assert(m_m.find(d_high) != m_m.end());
-  const Value h_low  = GetValue(d_low);
-  const Value h_high = GetValue(d_high);
+  const Value h_low  { GetValue(d_low)  };
+  const Value h_high { GetValue(d_high) };
   return ((1.0 - fraction)) * h_low + ((0.0 + fraction) * h_high);
 }
 
@@ -168,7 +168,7 @@ const Value MultiApproximator<Key,Value,Container>::GetValue(const Key& key) con
   assert(m_m.find(key) != m_m.end());
 
   //Must the average be calculated?
-  const Range r = m_m.equal_range(key);
+  const Range r { m_m.equal_range(key) };
   assert(r.first != m_m.end());
 
   if (r.first != r.second )
@@ -176,19 +176,19 @@ const Value MultiApproximator<Key,Value,Container>::GetValue(const Key& key) con
     //const Value result = std::accumulate(r.first,r.second,Value(0.0), [] )
     //  / static_cast<double>( std::distance(r.first,r.second) );
 
-    Value sum(0.0);
-    int cnt = 0;
-    for (Iterator i = r.first; i!=r.second; ++i)
+    Value sum { 0.0 };
+    int cnt { 0 };
+    for (Iterator i { r.first }; i!=r.second; ++i)
     {
       sum += (*i).second;
       ++cnt;
     }
-    const Value result( sum / static_cast<double>(cnt));
+    const Value result { sum / static_cast<double>(cnt) };
     return result;
   }
   else
   {
-    const Value result((*r.first).second);
+    const Value result { (*r.first).second };
     return result;
   }
 }
@@ -203,9 +203,10 @@ const std::string MultiApproximator<Key,Value,Container>::GetVersion()
 template <class Key, class Value, class Container>
 const std::vector<std::string> MultiApproximator<Key,Value,Container>::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-08-23: version 1.0: initial version");
-  v.push_back("2013-08-23: version 1.0: add conversion to an Approximator");
+  const std::vector<std::string> v {
+    "2013-08-23: version 1.0: initial version",
+    "2013-08-23: version 1.1: add conversion to an Approximator"
+  };
   return v;
 }
 

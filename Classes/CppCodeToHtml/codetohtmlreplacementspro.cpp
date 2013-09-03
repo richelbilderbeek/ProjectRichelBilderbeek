@@ -187,7 +187,6 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateProReplace
     { "TestBroadcastServer","<a href=\"T$oolT$estB$roadc$astS$erver.htm\">T$estB$roadcastS$erver</a>" },
     { "ToolTestGroupWidget","<a href=\"T$oolT$estG$roupW$idget.htm\">T$oolT$estG$roupW$idget</a>" },
     { "ToolTestShinyButton","<a href=\"T$oolT$estS$hinyB$utton.htm\">T$oolT$estS$hinyB$utton</a>" },
-    { "QGraphicsPixmapItem","<a href=\"CppQGra$phicsP$ixmapI$tem.htm\">Q$G$ra$phicsP$ixmapI$tem</a>" },
     { "QtRubiksClockWidget","<a href=\"C$ppQ$tR$ubiksC$lockW$idget.htm\">Q$tR$ubiksC$lockW$idget</a>" },
     { "qthideandshowdialog","<a href=\"CppQ$tH$ideA$ndS$howD$ialog.htm\">q$t$h$idea$nds$howd$ialog</a>" },
     { "qtleftrightrectitem","<a href=\"C$ppQ$tL$eftR$ightR$ectI$tem.htm\">q$tl$eftr$ightr$ecti$tem</a>" },

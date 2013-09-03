@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent)
   : QDialog(parent),
-    m_show_child(false)
+    m_show_child { false }
 {
 
 }
@@ -53,11 +53,12 @@ const std::string QtHideAndShowDialog::GetVersion()
 
 const std::vector<std::string> QtHideAndShowDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-11-13: version 1.0: initial version");
-  v.push_back("2012-11-18: version 1.1: added ShowModal member function");
-  v.push_back("2012-11-18: version 1.2: added ");
-  v.push_back("2012-12-31: version 1.3: added keyPressEvent to close on escape");
+  std::vector<std::string> v {
+    "2012-11-13: version 1.0: initial version",
+    "2012-11-18: version 1.1: added ShowModal member function",
+    "2012-11-18: version 1.2: added ",
+    "2012-12-31: version 1.3: added keyPressEvent to close on escape"
+  };
   return v;
 }
 

@@ -9,6 +9,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
 #include <boost/units/quantity.hpp>
+#include <boost/units/systems/si/area.hpp>
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
 #include "is_about_equal.h"
@@ -53,27 +54,8 @@ struct PolarCoordinat
 
 };
 
-namespace PolarCoordinatHelper
-{
-  template <class T, class U>
-  T CalculateSqrt(const U& x);
-
-  template <>
-  double CalculateSqrt<double,double>(const double& x)
-  {
-    return std::sqrt(x);
-  }
-  template <>
-  boost::units::quantity<boost::units::si::length>
-    CalculateSqrt<
-      boost::units::quantity<boost::units::si::length>,
-      boost::units::quantity<boost::units::si::area>
-    >(
-    const boost::units::quantity<boost::units::si::area>& x)
-  {
-    return std::sqrt(x.value()) * boost::units::si::meter;
-  }
-}
+template <class T, class U>
+T CalculateSqrt(const U& x);
 
 template <class Angle,class Length>
 Coordinat<Length> ToCoordinat(const PolarCoordinat<Angle,Length>& c)
@@ -117,7 +99,7 @@ const Length PolarCoordinat<Angle,Length>::CalcLength(const Length& dx, const Le
 {
   //return Length(std::sqrt(((dx*dx)+(dy*dy)).value()) * meter);
   return Length(
-    PolarCoordinatHelper::CalculateSqrt<boost::units::quantity<boost::units::si::length> >(
+    CalculateSqrt<boost::units::quantity<boost::units::si::length> >(
       (dx*dx)+(dy*dy)
     )
   );
@@ -127,7 +109,7 @@ template <class Angle, class Length>
 void PolarCoordinat<Angle,Length>::Test()
 {
   {
-    static bool is_tested = false;
+    static bool is_tested { false };
     if (is_tested) return;
     is_tested = true;
   }

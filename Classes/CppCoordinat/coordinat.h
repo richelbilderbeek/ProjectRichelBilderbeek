@@ -25,7 +25,8 @@ struct Coordinat
 
 template <class Length>
 Coordinat<Length>::Coordinat(const Length& x, const Length& y)
-  : m_x(x), m_y(y)
+  : m_x { x },
+    m_y { y }
 {
   #ifndef NDEBUG
   Test();
@@ -36,7 +37,7 @@ template <class Length>
 void Coordinat<Length>::Test()
 {
   {
-    static bool is_tested = false;
+    static bool is_tested { false };
     if (is_tested) return;
     is_tested = true;
   }
