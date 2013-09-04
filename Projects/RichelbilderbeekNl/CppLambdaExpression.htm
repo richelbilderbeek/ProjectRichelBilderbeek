@@ -33,9 +33,12 @@ that can be used, depending on the <a href="CppStandard.htm">standard</a> used:<
   </li>
 </ul>
 <p>&nbsp;</p>
-<p>The speed of <a href="Cpp98.htm">C++98</a> <a href="CppLambda.htm">Boost.Lambda</a> and
-<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expressions</a> are compared and <a href="CppProfiling.htm">profiled</a> 
-(for only one simple <a href="CppFunction.htm">function</a>) in <a href="CppExerciseAddOneAnswer.htm">Answer of exercise #7: AddOne</a>.</p>
+<p>
+  The speed of <a href="Cpp98.htm">C++98</a> <a href="CppLambda.htm">Boost.Lambda</a> and
+  <a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expressions</a> are compared 
+  and <a href="CppProfiling.htm">profiled</a> (for only one simple <a href="CppFunction.htm">function</a>) in 
+  <a href="CppExerciseAddOneAnswer.htm">Answer of exercise #7: AddOne</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -86,6 +89,14 @@ that can be used, depending on the <a href="CppStandard.htm">standard</a> used:<
   <img src="PicCpp11.png" alt="C++11"/> 
   <a href="CppLambdaExpression.htm">lambda expression</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
 </h2>
+<p>&nbsp;</p>
+<p>
+  Prefer a named function object to a <a href="CppLambdaExpression.htm">lambda expression</a> if the operation requires <a href="CppComment.htm">comments</a> [3].
+  Prefer a named function object to a <a href="CppLambdaExpression.htm">lambda expression</a> if the operation is generally useful [4].
+  Keep <a href="CppLambdaExpression.htm">lambda expressions</a> short [5].
+  For maintainability and correctness, be careful about capture by reference in a <a href="CppLambdaExpression.htm">lambda expression</a> [6].
+  Let the <a href="CppCompiler.htm">compiler</a> deduce the <a href="CppReturnType.htm">return type</a> of a <a href="CppLambdaExpression.htm">lambda expression</a> [7].
+</p>
 <p>&nbsp;</p>
 <ul>
   <li><a href="CppLambdaExpression.zip">Download the Qt Creator project 'CppLambdaExpression' (zip)</a></li>
@@ -231,8 +242,13 @@ FOUND!<br/>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="http://gcc.gnu.org/projects/cxx0x.html">GCC page about C++0x support</a></li>
-  <li><a href="http://blog.aaronballman.com/tag/c0x">Aaron Ballman's blog about C++0x</a></li>
+  <li><!--  1 --><a href="http://gcc.gnu.org/projects/cxx0x.html">GCC page about C++0x support</a></li>
+  <li><!--  2 --><a href="http://blog.aaronballman.com/tag/c0x">Aaron Ballman's blog about C++0x</a></li>
+  <li><!--  3 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 11.6. Advice. page 303: '[6] Prefer a named function object to a lambda if the operation requires comments'</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 11.6. Advice. page 303: '[7] Prefer a named function object to a lambda if the operation is generally useful'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 11.6. Advice. page 303: '[8] Keep lambdas short'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 11.6. Advice. page 303: '[9] For maintainability and correctness, be careful about capture by reference'</li>
+  <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 11.6. Advice. page 303: '[10] Let the compiler deduce the return type of a lambda'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
