@@ -44,10 +44,14 @@ the <a href="CppInt.htm">int</a> <a href="CppDataType.htm">data type</a> and the
 <p>Some (of many) suggestions:</p>
 <p>&nbsp;</p>
 <ul>
-  <li>Be consistent about <a href="CppIdentifier.htm">identifier</a> names [1]</li>
+  <li>Keep common and local names short, and keep uncommon and nonlocal names longer [4]</li>
+  <li>Avoid similar-looking names [5]</li>
+  <li>Be consistent about <a href="CppIdentifier.htm">identifier</a> names [1,7]</li>
   <li>Use either uppercase or underscore but not both to delimit words [1]<li>
   <li>Use meaningful names [2]</li>
   <li>Consider not letting <a href="CppIdentifier.htm">identifier</a> start with a leading underscore [3], as it might cause name collision [3]</li>
+  <li>Name an object to reflect its meaning rather than its type [6], avoid using <a href="CppHungarianNotation.htm">Hungarian notation</a> [9-10]</li>
+  <li>Avoid ALL_CAPS names [8]</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -57,9 +61,17 @@ the <a href="CppInt.htm">int</a> <a href="CppDataType.htm">data type</a> and the
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><!-- [1] --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.7: 'Be consistent about identifier names; use either uppercase or underscore but not both to delimit words in identifiers'</li>
-  <li><!-- [2] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Chapter 5.9.1: 'Use meaningful names'</li>
-  <li><!-- [3] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 47: 'Identifiers will not begin with the underscore character '_'. Rationale: '_' is often used as the first character in the name of library functions (e.g. _main, _exit, etc.) In order to avoid name collisions, identifiers should not begin with '_'.'</li>
+  <li><!--  1 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.7: 'Be consistent about identifier names; use either uppercase or underscore but not both to delimit words in identifiers'</li>
+  <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Chapter 5.9.1: 'Use meaningful names'</li>
+  <li><!--  3 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 47: 'Identifiers will not begin with the underscore character '_'. Rationale: '_' is often used as the first character in the name of library functions (e.g. _main, _exit, etc.) In order to avoid name collisions, identifiers should not begin with '_'.'</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 6.6. Advice. page 169: '[12] Keep common and local names short, and keep uncommon and nonlocal names longer'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 6.6. Advice. page 169: '[13] Avoid similar-looking names'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 6.6. Advice. page 169: '[14] Name an object to reflect its meaning rather than its type'</li>
+  <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 6.6. Advice. page 169: '[15] Maintain a consistent naming style'</li>
+  <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 6.6. Advice. page 169: '[16] Avoid ALL_CAPS names'</li>
+  <li><!--  9 --><a href="http://www.stroustrup.com/glossary.html">Bjarne Stroustrup's C++ glossary</a>: 'Hungarian notation - a coding convention that encodes type information in variable names. Its main use is to compensate for lack of type checking in weakly-typed or untyped languages. It is totally unsuitable for C++ where it complicates maintenance and gets in the way of abstraction'</li>
+  <li><!-- 10 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 0, example 3: 'Therefore, no C++ coding standard should require Hungarian notation, though a C++ coding standard might legitimately choose to ban it</li>
+
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

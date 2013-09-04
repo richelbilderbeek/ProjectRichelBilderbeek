@@ -22,8 +22,14 @@
 <p>&nbsp;</p>
 <p><a href="CppFor.htm">for</a> is a <a href="CppKeyword.htm">keyword</a> to start a for-loop.</p>
 <p>&nbsp;</p>
-<p>Prefer <a href="CppAlgorithm.htm">algorithms</a> over loops [1][2]. See 
+<p>Prefer <a href="CppAlgorithm.htm">algorithms</a> over loops [1,2]. See 
 <a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a> to learn how to do so.</p>
+<p>&nbsp;</p>
+<p>
+  Prefer a <a href="CppFor.htm">for</a>-<a href="CppStatement.htm">statement</a> to a <a href="CppWhile.htm">while</a>-<a href="CppStatement.htm">statement</a> when there is an obvious loop <a href="CppVariable.htm">variable</a> [5].
+  Prefer a <a href="CppWhile.htm">while</a>-<a href="CppStatement.htm">statement</a> to a <a href="CppFor.htm">for</a>-<a href="CppStatement.htm">statement</a> when there is no obvious loop <a href="CppVariable.htm">variable</a> [6].
+  In <a href="Cpp11.htm">C++11</a>, prefer a range-for-statement to a for-statement when there is a choice [4].
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -102,6 +108,7 @@
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 <p>Note that the example initializes the <a href="CppVector.htm">std::vector</a> with an
 <a href="CppInitializerList.htm">initializer list</a>.</p>
 <p>&nbsp;</p>
@@ -117,9 +124,12 @@ but is expected to <a href="CppCompile.htm">compile</a> in <a href="CppGpp.htm">
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 18.12.1 : 'Prefer algorithms over loops'</li>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 84: 'Prefer algorithm calls to handwritten loops'</li>
-  <li><a href="http://gcc.gnu.org/projects/cxx0x.html">GCC page about C++0x support</a></li>
+  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 18.12.1 : 'Prefer algorithms over loops'</li>
+  <li><!--  2 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 84: 'Prefer algorithm calls to handwritten loops'</li>
+  <li><!--  3 --><a href="http://gcc.gnu.org/projects/cxx0x.html">GCC page about C++0x support</a></li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 9.8. Advice. page 240: '[3] Prefer a range-for-statement to a for-statement when there is a choice'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 9.8. Advice. page 240: '[4] Prefer a for-statement to a while-statement when there is an obvious loop variable'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 9.8. Advice. page 240: '[5] Prefer a while-statement to a for-statement when there is no obvious loop variable'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

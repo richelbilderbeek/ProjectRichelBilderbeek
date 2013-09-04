@@ -23,7 +23,8 @@
 <p><a href="CppUnsigned.htm">unsigned</a> is a <a href="CppKeyword.htm">keyword</a> that modifies a 
 <a href="CppDataType.htm">data type</a> to hold only positive values.</p>
 <p>&nbsp;</p>
-<p>Avoid using <a href="CppUnsigned.htm">unsigned</a> in a <a href="CppClass.htm">class</a> 
+<p>Prefer plain <a href="CppChar.htm">char</a> over <a href="CppSigned.htm">signed</a> <a href="CppChar.htm">char</a> and <a href="CppUnsigned.htm">unsigned</a> 
+<a href="CppChar.htm">char</a> [8]. Avoid using <a href="CppUnsigned.htm">unsigned</a> in a <a href="CppClass.htm">class</a> 
 <a href="CppInterface.htm">interface</a>; use <a href="CppInt.htm">int</a> instead [1].
 Consider avoiding <a href="CppUnsigned.htm">unsigned</a> [2] or <a href="CppUnsigned.htm">unsigned</a> arithmetic [3]
 as using an <a href="CppUnsigned.htm">unsigned</a> instead of an <a href="CppInt.htm">int</a> to gain one more 
@@ -32,7 +33,7 @@ as using an <a href="CppUnsigned.htm">unsigned</a> instead of an <a href="CppInt
 using <a href="CppUnsigned.htm">unsigned</a>).
 View <a href="CppSigned.htm">signed</a> to <a href="CppUnsigned.htm">unsigned</a> 
 and <a href="CppUnsigned.htm">unsigned</a> to <a href="CppSigned.htm">signed</a> <a href="CppConvert.htm">conversions</a> 
-with suspicion [5,7].</p>
+with suspicion [5,7,9].</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
@@ -57,6 +58,8 @@ with suspicion [5,7].</p>
   <li><!-- [5] --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 4.10 'Advice', item 19: 'View signed to unsigned and unsigned to signed conversions with suspicion'</li>
   <li><!-- [6] --><a href="http://www.parashift.com/c++-faq/numeric-literal-suffixes.html">C++ FAQ Lite</a>. [29.12] What's the point of the L, U and f suffixes on numeric literals?</a>: 'It's probably a good idea to use unsigned integers for variables that are always >= 0. [...] at least if you are careful to check your ranges'</li>
   <li><!-- [7] --><a href="http://www.parashift.com/c++-faq/numeric-literal-suffixes.html">C++ FAQ Lite</a>. [29.12] What's the point of the L, U and f suffixes on numeric literals?</a>: 'If you end up using unsigned variables, it is generally a good idea to force your numeric literals to also be unsigned'</li>
+  <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 6.6. Advice. page 169: '[9] Prefer plain char over signed char and unsigned char'</li>
+  <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 6.6. Advice. page 169: '[10] Beware of conversions between signed and unsigned types'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
