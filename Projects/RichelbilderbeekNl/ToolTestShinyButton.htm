@@ -428,17 +428,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTTESTSHINYBUTTONDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTTESTSHINYBUTTONDIALOG_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -461,7 +461,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_dial_main_color_sliderMoved(<b><a href="CppInt.htm">int</a></b> position);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_dial_gradient_sliderMoved(<b><a href="CppInt.htm">int</a></b> position);<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTSHINYBUTTONDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -494,24 +494,22 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestShinyButton.htm">ToolTestShinyButton</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
 <a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestShinyButton.htm">testshinybutton</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppShinyButton.htm">shinybutton</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestShinyButton.htm">testshinybutton</a>maindialog.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
  : <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp; ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog),<br/>
@@ -533,12 +531,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;on_edit_text_textChanged(<a href="CppQString.htm">QString</a>());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
@@ -550,7 +548,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog::OnChanged()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color<br/>
@@ -568,18 +566,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;label_color-&gt;setText(s.c_str());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog::OnClicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_shiny_button-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;SetColor(0.5,0.5);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog::on_edit_text_textChanged(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a>&amp;)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_shiny_button-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;SetText(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;text().toStdString());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog::on_dial_main_color_sliderMoved(<b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color<br/>
@@ -591,7 +589,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;m_shiny_button-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;SetColor(color,gradient);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MainDialog::on_dial_gradient_sliderMoved(<b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color<br/>
@@ -603,7 +601,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;m_shiny_button-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;SetColor(color,gradient);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -637,17 +634,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTTESTSHINYBUTTONMENUDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTTESTSHINYBUTTONMENUDIALOG_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -673,7 +670,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 <br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTSHINYBUTTONMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -706,11 +703,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestShinyButton.htm">ToolTestShinyButton</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
 <a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestShinyButton.htm">testshinybutton</a>menudialog.h"<br/>
@@ -720,7 +712,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestShinyButton.htm">testshinybutton</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTestShinyButton.htm">testshinybutton</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestShinyButton.htm">testshinybutton</a>menudialog.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog),<br/>
@@ -740,12 +732,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_button_quit-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;m_signal_clicked.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::OnButtonQuitClicked,<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
@@ -757,7 +749,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::OnButtonStartClicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -765,7 +757,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::OnButton<a href="CppAbout.htm">About</a>Clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -775,12 +767,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::OnButtonQuitClicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;close();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -856,14 +847,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestShinyButton.htm">ToolTestShinyButton</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
 <a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTestShinyButton.htm">testshinybutton</a>menudialog.h"<br/>
@@ -873,7 +856,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppShinyButton.htm">shinybutton</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
@@ -893,12 +876,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWidget.htm">Widget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestShinyButton.htm">TestShinyButton</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
@@ -907,7 +890,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("2012-02-13: <a href="CppVersion.htm">Version</a> 2.0: created a desktop <a href="CppVersion.htm">version</a> of <a href="ToolTestShinyButton.htm">TestShinyButton</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

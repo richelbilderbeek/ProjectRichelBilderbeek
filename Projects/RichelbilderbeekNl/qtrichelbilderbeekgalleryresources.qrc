@@ -177,5 +177,8 @@
         <file>GameXeNonZero_0_1.png</file>
         <file>GameZork.png</file>
         <file>GameCorridor.png</file>
+        <file>ToolImageRotaterVcl_1_0.png</file>
+        <file>ToolSimMysteryMachine_1_2.png</file>
+        <file>ToolTestSimpleLinearRegression_1_0.png</file>
     </qresource>
 </RCC>
