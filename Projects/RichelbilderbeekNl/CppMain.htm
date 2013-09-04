@@ -20,8 +20,14 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppMain.htm">main</a></h1>
 <p>&nbsp;</p>
-<p>The <a href="CppMain.htm">main</a> <a href="CppFunction.htm">function</a> is the entry point of your program. 
-The C++ Standard [1] states that it has one of the following syntaxes:</p>
+<p>
+  The <a href="CppMain.htm">main</a> <a href="CppFunction.htm">function</a> is the entry point of your program. 
+  Have <a href="CppMain.htm">main</a> <a href="CppCatch.htm">catch</a> and report every exception [7].
+</p>
+<p>&nbsp;</p>
+<p>
+  The C++ Standard [1] states that it has one of the following syntaxes:
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main function without arguments" border = "1"><tr><td><code>
@@ -109,11 +115,14 @@ a <a href="CppFunction.htm">function</a> has no arguments, nothing is written be
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>Note that the standard states that the closing bracket of <a href="CppMain.htm">main</a>() must have the same
-effect of returning zero [6]. Therefore, return zero can be omitted, but many people like to keep it in.</p>
+<p>
+  Note that the standard states that the closing bracket of <a href="CppMain.htm">main</a>() must have the same
+  effect of returning zero [6]. Therefore, return zero can be omitted, but many people like to keep it in.
+  </p>
 <p>&nbsp;</p>
-<p>Incorrect/non-standard
-is [1-5] (although with some <a href="CppCompiler.htm">compilers</a> it might <a href="CppCompile.htm">compile</a>):</p>
+<p>
+  Incorrect/non-standard is [1-5] (although with some <a href="CppCompiler.htm">compilers</a> it might <a href="CppCompile.htm">compile</a>):
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
@@ -183,8 +192,9 @@ testMain <a href="CppHelloWorld.htm">Hello World</a><br/>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li>C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 3.6.1.2</li>
-  <li>From http://www.parashift.com/c++-faq-lite/newbie.html#faq-29.3:<br/>&nbsp;<br/>
+  <li><!--  1 -->C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 3.6.1.2</li>
+  <li>
+    <!--  2 -->From http://www.parashift.com/c++-faq-lite/newbie.html#faq-29.3:<br/>&nbsp;<br/>
     <!-- start of code -->
     <table border = "1"><tr><td><code>
     <a href="CppMain.htm">main</a>() must <b><a href="CppReturn.htm">return</a></b> <b><a href="CppInt.htm">int</a></b>. Not <b><a href="CppVoid.htm">void</a></b>, not <b><a href="CppBool.htm">bool</a></b>, not <b><a href="CppFloat.htm">float</a></b>. <b><a href="CppInt.htm">int</a></b>. Just <b><a href="CppInt.htm">int</a></b>, nothing but <b><a href="CppInt.htm">int</a></b>, only<br/>
@@ -194,8 +204,13 @@ testMain <a href="CppHelloWorld.htm">Hello World</a><br/>
     <!-- end of the code -->
     &nbsp;
   </li>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN:0-201-61562-2. Item 21: void main() is nonstandard and nonportable.</li>
-  <li>From <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>'s homepage (http://www.research.att.com/~bs/bs_faq2.html#void-main):<br/>&nbsp;<br/>
+  <li>
+    <!--  3 -->
+    <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN:0-201-61562-2. Item 21: void main() is nonstandard and nonportable.
+  </li>
+  <li>
+    <!--  4 -->
+    From <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>'s homepage (http://www.research.att.com/~bs/bs_faq2.html#void-main):<br/>&nbsp;<br/>
     <!-- start of code -->
     <table border = "1"><tr><td><code>
     The <a href="CppDefinition.htm">definition</a><br/>
@@ -207,7 +222,9 @@ testMain <a href="CppHelloWorld.htm">Hello World</a><br/>
     <!-- end of the code -->
     &nbsp;
   </li>
-  <li>From the The alt.comp.lang.learn.c-c++ FAQ: http://ma.rtij.nl/acllc-c++.FAQ.html#q3.4: 3.4: Why does everyone make so much fuss about &quot;void main()&quot;?<br/>&nbsp;<br/>
+  <li>
+    <!--  5 -->
+    From the The alt.comp.lang.learn.c-c++ FAQ: http://ma.rtij.nl/acllc-c++.FAQ.html#q3.4: 3.4: Why does everyone make so much fuss about &quot;void main()&quot;?<br/>&nbsp;<br/>
     <!-- start of code -->
     <table border = "1"><tr><td><code>
     Because the <a href="CppReturnType.htm">return type</a> of the <a href="CppMain.htm">main</a>() <a href="CppFunction.htm">function</a> must be <b><a href="CppInt.htm">int</a></b> in both C and <a href="Cpp.htm">C++</a>. Anything <b><a href="CppElse.htm">else</a></b> is undefined. Bottom line - don't <b><a href="CppTry.htm">try</a></b> to start a thread about <b><a href="CppThis.htm">this</a></b> in alt.comp.lang.learn.c-c++ as it has already been discussed many, many times and generates more flamage than any other topic.<br/>
@@ -215,7 +232,8 @@ testMain <a href="CppHelloWorld.htm">Hello World</a><br/>
     <!-- end of the code -->
     &nbsp;
   </li>
-  <li>C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 3.6.1.5</li>
+  <li><!--  6 -->C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 3.6.1.5</li>
+  <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 13.7. Advice. page 387: '[27] 'Have main() catch and report every exception'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

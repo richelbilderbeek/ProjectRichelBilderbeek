@@ -23,22 +23,39 @@
 <p><a href="CppNamespace.htm">namespace</a> is a <a href="CppKeyword.htm">keyword</a> to 
 group <a href="CppFunction.htm">functions</a> and <a href="CppClass.htm">classes</a>.</p>
 <p>&nbsp;</p>
-<p>To
-call something from a certain <a href="CppNamespace.htm">namespace</a>, write
-the <a href="CppNamespace.htm">namespace</a>'s name in front, followed by the <a
-href="CppOperatorScope.htm">scope operator, ::</a>.</p>
+<p>
+  To call something from a certain <a href="CppNamespace.htm">namespace</a>, write
+  the <a href="CppNamespace.htm">namespace</a>'s name in front, followed by the <a
+  href="CppOperatorScope.htm">scope operator, ::</a>.
+</p>
 <p>&nbsp;</p>
-<p><a href="CppFunction.htm">Functions</a> and <a href="CppClass.htm">classes</a>
-that are not put into a <a href="CppNamespace.htm">namespace</a> reside in the <a
-href="CppGlobal.htm">global</a> <a href="CppNamespace.htm">namespace</a>.</p>
+<p>
+  <a href="CppFunction.htm">Functions</a> and <a href="CppClass.htm">classes</a>
+  that are not put into a <a href="CppNamespace.htm">namespace</a> reside in the <a
+  href="CppGlobal.htm">global</a> <a href="CppNamespace.htm">namespace</a>.
+</p>
 <p>&nbsp;</p>
-<p>The default <a href="CppNamespace.htm">namespace</a> used is the <a href="CppGlobal.htm">global</a> <a href="CppNamespace.htm">namespace</a>. You
-can change this by using the <a href="CppKeyword.htm">keyword</a> <a
-href="CppUsing.htm">using</a>.</p>
+<p>
+  The default <a href="CppNamespace.htm">namespace</a> used is the <a href="CppGlobal.htm">global</a> <a href="CppNamespace.htm">namespace</a>. 
+  You can change this by using the <a href="CppKeyword.htm">keyword</a> <a href="CppUsing.htm">using</a>.
+</p>
 <p>&nbsp;</p>
-<p>All <a href="CppStl.htm">STL</a> <a href="CppFunction.htm">functions</a> and 
-<a href="CppClass.htm">classes</a> are in the <a href="CppNamespace.htm">namespace</a>
-<a href="CppStd.htm">std</a>.</p>
+<p>
+  All <a href="CppStl.htm">STL</a> <a href="CppFunction.htm">functions</a> and 
+  <a href="CppClass.htm">classes</a> are in the <a href="CppNamespace.htm">namespace</a>
+  <a href="CppStd.htm">std</a>.
+</p>
+<p>&nbsp;</p>
+<p>
+  Use <a href="CppNamespace.htm">namespaces</a> to express logical structure [1].
+  Place every nonlocal name, except <a href="CppMain.htm">main</a>, in some <a href="CppNamespace.htm">namespace</a> [2].
+  Design a <a href="CppNamespace.htm">namespace</a> so that you can conveniently us it without accidentally gaining access to unrelated <a href="CppNamespace.htm">namespaces</a> [3].
+  Avoid very short names for <a href="CppNamespace.htm">namespaces</a> [4].
+  If necessary, use <a href="CppNamespace.htm">namespace</a> aliases to abbreviate long <a href="CppNamespace.htm">namespace</a> names [5].
+  Avoid placing heavy notational burdens on users of your <a href="CppNamespace.htm">namespaces</a> [6].
+  Use seperate <a href="CppNamespace.htm">namespaces</a> for <a href="CppInterface.htm">interfaces</a> and <a href="CppImplementation.htm">implementations</a> [7].
+  Use the Namespace::member notation when <a href="CppDefinition.htm">defining</a> <a href="CppNamespace.htm">namespace</a> members [8].
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -90,6 +107,23 @@ H.e.l.l.o w.o.r.l.d...<br/>
 H.e.l.l.o w.o.r.l.d...<br/>
 </code></td></tr></table>
 <!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">Reference</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[1] Use namespaces to express logical structure'</li>
+  <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[2] Place every nonlocal name, except main(), in some namespace'</li>
+  <li><!--  3 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[3] Design a namespace so that you can conveniently us it without accidentally gaining access to unrelated namespaces'</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[4] Avoid very short names for namespaces'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[5] If necessary, use namespace aliases to abbreviate long namespace names'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[6] Avoid placing heavy notational burdens on users of your namespaces'</li>
+  <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[7] Use seperate namespaces for interfaces and implementations'</li>
+  <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[8] Use the Namespace::member notation when defining namespace members'</li>
+</ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
