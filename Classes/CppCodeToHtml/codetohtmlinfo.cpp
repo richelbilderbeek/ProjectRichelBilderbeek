@@ -4497,7 +4497,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"GameConnectThreeArchitecture_6_2.dia\">View the architecture of 'ConnectThree' (version 6.2)(dia)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameConnectThreeExeWindows_5_2.zip\">Download the 'ConnectThree' Windows executable (version 5.2)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_6_2.zip\">Download the 'ConnectThree' source code (version 6.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_6_2.htm\">View the 'ConnectThree' source code as a web page (version 6.2)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 5.2 is created following <a href=\"CppQtCrosscompileToWindowsExample15.htm\">how to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 15: MinGW cross-compiling environment</a>.</p>");
@@ -4510,19 +4509,14 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_6_1.zip\">Download the 'ConnectThree' source code (version 6.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_6_1.htm\">View the 'ConnectThree' source code as a web page (version 6.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_6_0.zip\">Download the 'ConnectThree' source code (version 6.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_6_0.htm\">View the 'ConnectThree' source code as a web page (version 6.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"GameConnectThreeArchitecture_6_0.png\">View the architecture of 'ConnectThree' (version 6.0)(png)</a></li>");
     v.push_back("  <li><a href=\"GameConnectThreeArchitecture_6_0.dia\">View the architecture of 'ConnectThree' (version 6.0)(dia)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_5_2.zip\">Download the 'ConnectThree' source code (version 5.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_5_2.htm\">View the 'ConnectThree' source code as a web page (version 5.2)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThree_5_0.png\">View a screenshot of 'ConnectThree' (version 5.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeMenu_5_0.png\">View a screenshot of the 'ConnectThree' menu (version 5.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_5_1.zip\">Download the 'ConnectThree' source code (version 5.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_5_1.htm\">View the 'ConnectThree' source code as a web page (version 5.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_5_0.zip\">Download the 'ConnectThree' source code (version 5.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_5_0.htm\">View the 'ConnectThree' source code as a web page (version 5.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "GameCorridor")
@@ -4562,7 +4556,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfest_2_2_menu.png\">View a screenshot of 'Das Wahre Schlagerfest' its menu screen (version 2.2)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfestExe_2_2.zip\">Download a windows executable of 'Das Wahre Schlagerfest' (version 2.2)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfestSource_2_2.zip\">Download the source code of 'Das Wahre Schlagerfest' (version 2.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfestSource_2_0.htm\">View the Qt Creator source code of 'Das Wahre Schlagerfest' as a web page (version 2.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4637,7 +4630,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijDesktopExe_6_0.zip\">Download the 'K3-Op-Een-Rij' Windows executable (version 6.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameK3OpEenRijSource_6_0.zip\">Download the 'K3-Op-Een-Rij' source code (version 6.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijSource_4_0.zip\">Download the 'K3-Op-Een-Rij' source code (version 4.0)(zip)</a></li> ");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameK3OpEenRijSource_5_0.htm\">View the 'K3-Op-Een-Rij' source code as a web page (version 5.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijSource_4_0.htm\">View the 'K3-Op-Een-Rij' source code as a web page (desktop application)(version 4.0)(htm)</a></li> ");
     v.push_back("</ol>");
     v.push_back("<p>&nbsp;</p>");
@@ -4731,7 +4723,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"GameMaziakInstructions_2_0.png\">View a screenshot of the 'Maziak' instructions screen (v.2.0)(png)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakExe_1_4.zip\">Download the 'Maziak' Windows executable (v.1.4)(zip)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakSource_2_0.zip\">Download the 'Maziak' source code (v.2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_2_0.htm\">View the Qt Creator source code of 'Maziak' as a web page (v.2.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakSource_1_4.htm\">View the C++ Builder source code of 'Maziak' as a web page (v.1.4)(htm)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakSprites_2_0.zip\">Download the 'Maziak' (png) sprites (v.2.0)(zip)</a></li>");
     v.push_back("</ol>");
@@ -4800,7 +4791,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ol>");
     v.push_back("  <li><a href=\"GameMaziakSource_1_4.htm\">View the C++ Builder source code of Maziak version 1.4 as a web page</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_2_0.htm\">View the Qt Creator source code of Maziak version 2.0 as a web page</a></li>");
     v.push_back("</ol>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4944,7 +4934,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"GamePylosMenu_1_0.png\">View a screenshot of the Pylos menu screen (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"GamePylosInstructions_1_0.png\">View a screenshot of the Pylos instructions screen (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"GamePylosSource_1_0.zip\">Download the source code of 'Pylos' (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GamePylosSource_1_0.htm\">View the Qt Creator source code of 'Pylos' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -5012,7 +5001,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClock_2_1.png\">View a screenshot of 'Rubik's Clock' (version 2.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockDesktopExe_2_2.zip\">Download a Windows executable of 'Rubik's Clock' (version 2.2)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_2.zip\">Download the source code of 'Rubik's Clock' (version 2.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_2.htm\">View the Qt Creator source code of 'Rubik's Clock' as a web page (version 2.2)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -5023,11 +5011,9 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_1.zip\">Download the source code of 'Rubik's Clock' (version 2.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_1.htm\">View the Qt Creator source code of 'Rubik's Clock' as a web page (version 2.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClock_1_0.png\">View a screenshot of 'Rubik's Clock' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockExe_1_0.zip\">Download a Windows executable of 'Rubik's Clock' (version 1.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_0.zip\">Download the source code of 'Rubik's Clock' (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_0.htm\">View the Qt Creator source code of 'Rubik's Clock' as a web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockSource_1_0.zip\">Download the source code of 'Rubik's Clock' (version 1.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockSource_1_0.htm\">View the C++ Builder source code of 'Rubik's Clock' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
@@ -5199,7 +5185,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"GameTicTacToeArchitecture_1_5.dia\">View the 'TicTacToe' class architecture (version 1.5)(dia)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameTicTacToeDesktopExeWindows_1_4.zip\">Download the Windows executable of 'TicTacToe' (version 1.4)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeSource_1_5.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.5)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeSource_1_5.htm\">View the Qt Creator source code of 'TicTacToe' as a web page (version 1.5)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.4 is created following ");
@@ -5215,18 +5200,13 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"GameTicTacToeArchitecture_1_4.png\">View the 'TicTacToe' class architecture (version 1.4)(png)</a></li>");
     v.push_back("  <li><a href=\"GameTicTacToeArchitecture_1_4.dia\">View the 'TicTacToe' class architecture (version 1.4)(dia)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeSource_1_4.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.4)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeSource_1_4.htm\">View the Qt Creator source code of 'TicTacToe' as a web page (version 1.4)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeSource_1_3.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.3)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToeSource_1_3.htm\">View the Qt Creator source code of 'TicTacToe' as a web page (version 1.3)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameTicTacToe_1_2.png\">View a screenshot of 'TicTacToe' (web application)(version 1.2)(png)</a></li>");
     v.push_back("  <li><a href=\"GameTicTacToeSource_1_2.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameTicTacToeSource_1_2.htm\">View the Qt Creator source code of 'TicTacToe' as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><a href=\"GameTicTacToeSource_1_1.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameTicTacToeSource_1_1.htm\">View the Qt Creator source code of 'TicTacToe' as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"GameTicTacToe_1_0.png\">View a screenshot of 'TicTacToe' (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"GameTicTacToeMenu_1_0.png\">View a screenshot of the menu of 'TicTacToe' (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"GameTicTacToeSource_1_0.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameTicTacToeSource_1_0.htm\">View the Qt Creator source code of 'TicTacToe' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "GameTronCollection")
@@ -5413,7 +5393,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicWine.png\" alt=\"Wine\"/> <a href=\"ProjectBrainweaver_0_28Wine.png\">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ProjectBrainweaverExe_0_35.zip\">Download the 'Brainweaver' windows executable (version 0.35)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectBrainweaverSource_0_32.zip\">Download the source code of 'Brainweaver' (version 0.32)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectBrainweaverSource_0_32.htm\">View the source code of 'Brainweaver' as a web page (version 0.32)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver20130725.mp4\">View Brainweaver being tested by libcvautomation (mp4)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
@@ -5580,7 +5559,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ProjectGtst_1_2.png\">View a screenshot of GTST (version 1.2)(png)</a></li>");
     v.push_back("  <li><a href=\"ProjectGtstSource_1_2.zip\">Download the GTST source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectGtstSource_1_2.htm\">View the GTST source code as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><a href=\"ProjectGtstArchitectureMenuDialog.png\">View the GTST MenuDialog architecture (version 1.2)(png)</a></li>");
     v.push_back("  <li><a href=\"ProjectGtstArchitectureMenuDialog.dia\">View the GTST MenuDialog architecture (version 1.2)(dia)</a></li>");
     v.push_back("  <li><a href=\"ProjectGtstArchitectureServer.png\">View the GTST Server architecture (version 1.2)(png)</a></li>");
@@ -5597,15 +5575,10 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ProjectGtstSource_1_1.zip\">Download the GTST source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectGtstSource_1_1.htm\">View the GTST source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ProjectGtstSource_1_0.zip\">Download the GTST source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectGtstSource_1_0.htm\">View the GTST source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ProjectGtstSource_0_59.zip\">Download the GTST source code (version 0.58)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectGtstSource_0_59.htm\">View the GTST source code as a web page (version 0.59)(htm)</a></li>");
     v.push_back("  <li><a href=\"ProjectGtstSource_0_58.zip\">Download the GTST source code (version 0.58)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectGtstSource_0_58.htm\">View the GTST source code as a web page (version 0.58)(htm)</a></li>");
     v.push_back("  <li><a href=\"ProjectGtstSource_0_57.zip\">Download the GTST source code (version 0.57)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectGtstSource_0_57.htm\">View the GTST source code as a web page (version 0.57)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -6497,7 +6470,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ProjectWtWebsite_0_38.png\">View a screenshot of 'ProjectRichelBilderbeek' (at that time called 'ProjectWtWebsite')(version 0.38)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_8.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.8)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_8.zip\">Download the Qt creator project 'ProjectRichelBilderbeek' (version 1.8)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSource_1_8.htm\">View the 'ProjectRichelBilderbeek' source code as a web page (version 1.8)(htm)</a></li>");
     v.push_back("  <li><a href=\"ProjectRichelBilderbeekSloccount_1_8.txt\">View the SLOCcount of 'ProjectRichelBilderbeek' (version 1.8)(txt)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
@@ -6510,23 +6482,16 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_7.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.7)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_7.zip\">Download the Qt creator project 'ProjectRichelBilderbeek' (version 1.7)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSource_1_7.htm\">View the 'ProjectRichelBilderbeek' source code as a web page (version 1.7)(htm)</a></li>");
     v.push_back("  <li><a href=\"ProjectRichelBilderbeekSloccount_1_7.txt\">View the SLOCcount of 'ProjectRichelBilderbeek' (version 1.7)(txt)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_6.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.6)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_6.zip\">Download the Qt creator project 'ProjectRichelBilderbeek' (version 1.6)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSource_1_6.htm\">View the 'ProjectRichelBilderbeek' source code as a web page (version 1.6)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeek_1_1.png\">View a screenshot of 'ProjectRichelBilderbeek' (version 1.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_5.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.5)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSource_1_5.htm\">View the 'ProjectRichelBilderbeek' source code as a web page (version 1.5)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_5.zip\">Download the Qt creator project 'ProjectRichelBilderbeek' (version 1.5)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSource_1_4.htm\">View the 'ProjectRichelBilderbeek' source code as a web page (version 1.4)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_4.zip\">Download the 'ProjectRichelBilderbeek' source code (version 1.4)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_3.zip\">Download the 'ProjectRichelBilderbeek' source code (version 1.3)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSource_1_3.htm\">View the 'ProjectRichelBilderbeek' source code as a web page (version 1.3)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_2.zip\">Download the 'ProjectRichelBilderbeek' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSource_1_2.htm\">View the 'ProjectRichelBilderbeek' source code as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_1.zip\">Download the 'ProjectRichelBilderbeek' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSource_1_1.htm\">View the 'ProjectRichelBilderbeek' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_0.zip\">Download the 'ProjectRichelBilderbeek' source code (version 1.0)(zip)</a></li>");
     v.push_back("</ul>");
 
@@ -7240,11 +7205,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("    <img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
     v.push_back("    <a href=\"ToolTestAsciiArterSource_1_0.zip\">Download the 'AsciiArter' source code (version 1.0)(zip)</a>");
     v.push_back("  </li>");
-    v.push_back("");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> ");
-    v.push_back("    <a href=\"ToolAsciiArterSource_5_1.htm\">View the 'AsciiArter' source code as a web page (version 5.1)(htm)</a>");
-    v.push_back("  </li>");
     v.push_back("  <li>");
     v.push_back("    <img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
     v.push_back("    <a href=\"ToolTestAsciiArterSource_1_0.htm\">View the 'AsciiArter' source code as a web page (version 1.0)(htm)</a>");
@@ -7260,10 +7220,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> ");
-    v.push_back("    <a href=\"ToolTestAsciiArterSource_4_4.htm\">View the 'AsciiArter' source code as a web page (version 4.4)(htm)</a>");
-    v.push_back("  </li>");
     v.push_back("  <li>");
     v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> ");
     v.push_back("    <a href=\"ToolTestAsciiArterSource_4_4.zip\">Download the 'AsciiArter' source code (version 4.4)(zip)</a>");
@@ -7282,23 +7238,12 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  </li>");
     v.push_back("  <li>");
     v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> ");
-    v.push_back("    <a href=\"ToolTestAsciiArterSource_4_3.htm\">View the 'AsciiArter' source code as a web page (version 4.3)(htm)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> ");
     v.push_back("    <a href=\"ToolTestAsciiArterSource_4_2.zip\">Download the 'AsciiArter' source code (version 4.2)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> ");
-    v.push_back("    <a href=\"ToolTestAsciiArterSource_4_2.htm\">View the 'AsciiArter' source code as a web page (version 4.2)(htm)</a>");
     v.push_back("  </li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestAsciiArterSource_4_1.zip\">Download the 'AsciiArter' source code (version 4.1)(zip)</a>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestAsciiArterSource_4_1.zip\">Download the 'AsciiArter' source code (version 4.1)(zip)</a>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestAsciiArterSource_4_1.htm\">View the 'AsciiArter' source code as a web page (version 4.1)(htm)</a>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestAsciiArterSource_4_0.zip\">Download the 'AsciiArter' source code (version 4.0)(zip)</a>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestAsciiArterSource_4_0.zip\">Download the 'AsciiArter' source code (version 4.0)(zip)</a>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestAsciiArterSource_4_0.htm\">View the 'AsciiArter' source code as a web page (version 4.0)(htm)</a>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolBarbaImage")
@@ -7327,7 +7272,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolBarbaImageExe_1_2.zip\">Download the 'BarbaImage' Windows executable (version 1.2)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolBarbaImageSource_1_2.zip\">Download the 'BarbaImage' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolBarbaImageSource_1_2.htm\">View the 'BarbaImage' C++ Builder source code as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolBarbaImageExe_1_0.zip\">Download the 'BarbaImage' Windows executable (version 1.0)(zip)</a></li>");
     v.push_back("</ul>");
   }
@@ -7345,7 +7289,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolCallstackCounterSource_1_1.zip\">Download the 'CallstackCounter' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolCallstackCounterSource_1_1.htm\">View the Qt Creator source code of 'CallstackCounter' as a web page (version 1.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -8163,7 +8106,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolHometrainerSource_2_0.zip\">Download the 'Hometrainer' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolHometrainerSource_2_0.htm\">View the 'Hometrainer' source code as a web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolHometrainerExe_1_8.zip\">Download the 'Hometrainer' executable (version 1.8)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"ToolHometrainerSource_1_8.zip\">Download the 'Hometrainer' source code (version 1.8)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"ToolHometrainerSource_1_8.htm\">View the 'Hometrainer' source code as a web page (version 1.8)(htm)</a></li>");
@@ -8470,7 +8412,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolLoose_2_0.png\">View a 'Loose' screenshot (version 2.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolLooseSource_2_0.zip\">Download the 'Loose' Qt Creator project (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolLooseSource_2_0.htm\">View the 'Loose' source code as a web page (version 2.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -8483,9 +8424,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolLoose_1_0.png\">View a 'Loose' screenshot (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolLoose.ogv\">View a 'Loose' demonstration (version 1.0)(ogv (works in Google Chrome))</a></li>");
     v.push_back("  <li><a href=\"ToolLooseSource_1_1.zip\">Download the 'Loose' Qt Creator project (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolLooseSource_1_1.htm\">View the 'Loose' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolLooseSource_1_0.zip\">Download the 'Loose' Qt Creator project (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolLooseSource_1_0.htm\">View the 'Loose' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolMazeCreator")
@@ -8495,7 +8434,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"ToolMazeCreator_2_0.png\">View a screenshot of 'Maze Creator' (v. 2.0)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolMazeCreatorSource_2_0.zip\">Download the 'Maze Creator' source code (v. 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolMazeCreatorSource_2_0.htm\">View the 'Maze Creator' source code as a web page (v. 2.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolMazeCreator_1_0.png\">View a screenshot of 'Maze Creator' (v. 1.0)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolMazeCreatorExe_1_0.zip\">Download the 'Maze Creator' Windows executable (v. 1.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"ToolMazeCreatorSource_1_0.zip\">Download the C++ Builder 'Maze Creator' source code (v. 1.0)(zip)</a></li>");
@@ -8575,7 +8513,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolNdsmakeUse_1_0.png\">Where to call ndsmake in Qt Creator (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolNdsmakeSource_1_2.zip\">Download the Qt Creator project 'ndsmake' (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolNdsmakeSource_1_2.htm\">View the 'ndsmake' source code as a web page (version 1.2)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -8586,12 +8523,9 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolNdsmakeSource_1_1.zip\">Download the Qt Creator project 'ndsmake' (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolNdsmakeSource_1_1.htm\">View the 'ndsmake' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolNdsmakeSource_1_0.zip\">Download the Qt Creator project 'ndsmake' (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolNdsmakeSource_1_0.htm\">View the 'ndsmake' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolNdsmakeQtCreator.png\">Where to call ndsmake in Qt Creator (png)</a></li>");
     v.push_back("  <li><a href=\"ToolNdsmakeSource_0_1.zip\">Download the Qt Creator project 'Ndsmake' (version 0.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolNdsmakeSource_0_1.htm\">View the 'Ndsmake' source code as a web page (version 0.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -8681,7 +8615,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolPerfectElasticCollision_1_0.png\">View a 'PerfectElasticCollision' screenshot (v.1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolPerfectElasticCollisionSource_1_0.zip\">Download the 'PerfectElasticCollision' source code (v.1.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolPerfectElasticCollisionSourceExeWindows_1_0.zip\">Download the 'PerfectElasticCollision' Windows executable (v.1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolPerfectElasticCollisionSource_1_0.htm\">View the Qt Creator source code of 'PerfectElasticCollision' as a web page (v.1.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ");
@@ -8702,7 +8635,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPicToCode_1_3.png\">View a 'PicToCode' screenshot (version 1.3)(png)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCode_1_2.png\">View a 'PicToCode' screenshot (version 1.2)(png)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPicToCodeSource_1_3.zip\">Download the 'PicToCode' source code (version 1.3)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPicToCodeSource_1_3.htm\">View the 'PicToCode' source code as a web page (version 1.3)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -8713,12 +8645,9 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCodeSource_1_2.zip\">Download the 'PicToCode' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCodeSource_1_2.htm\">View the 'PicToCode' source code as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCode_1_0.png\">View a 'PicToCode' screenshot (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCodeSource_1_1.zip\">Download the 'PicToCode' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCodeSource_1_1.htm\">View the 'PicToCode' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCodeSource_1_0.zip\">Download the 'PicToCode' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCodeSource_1_0.htm\">View the 'PicToCode' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolPixelator")
@@ -8780,7 +8709,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolRandomCode_1_0.png\">View a screenshot of 'Random Code' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolRandomCodeExeWindows_3_0.zip\">Download the 'Random Code' Windows executable (version 3.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_4_1.zip\">Download the 'Random Code' source code (version 4.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_4_1.htm\">View the 'Random Code' source code as a web page (version 4.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 3.0 is created following ");
@@ -8793,18 +8721,14 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_4_0.zip\">Download the 'Random Code' source code (version 4.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_4_0.htm\">View the 'Random Code' source code as a web page (version 4.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_3_0.zip\">Download the 'Random Code' source code (version 3.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_3_0.htm\">View the 'Random Code' source code as a web page (version 3.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolRandomCode_wtarchitecture.png\">View the Wt architecture of 'Random Code' (version 3.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCode_2_1.png\">View a screenshot of 'Random Code' (Web application)(version 2.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolRandomCodeSource_2_1.zip\">Download the 'Random Code' source code (version 2.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolRandomCodeSource_2_1.htm\">View the 'Random Code' source code as a web page (version 2.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolRandomCodeSource_2_0.zip\">Download the 'Random Code' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolRandomCodeSource_2_0.htm\">View the 'Random Code' source code as a web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolRandomCodeExeWindows_1_0.zip\">Download the 'Random Code' Windows executable (version 1.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolRandomCodeSource_1_0.zip\">Download the 'Random Code' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolRandomCodeSource_1_0.htm\">View the 'Random Code' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolRasper")
@@ -8938,10 +8862,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/> ");
     v.push_back("    <a href=\"ToolRegexTesterSource_1_6.zip\">Download the 'RegexTester' source code (version 1.6)(zip)</a>");
     v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/> ");
-    v.push_back("    <a href=\"ToolRegexTesterSource_1_7.htm\">View the 'RegexTester' source code as a web page (version 1.7)(htm)</a>");
-    v.push_back("  </li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -8950,18 +8870,13 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<ul>");
-    v.push_back("  <li><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/> <a href=\"ToolRegexTesterSource_1_6.htm\">View the 'RegexTester' source code as a web page (version 1.6)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/> <a href=\"ToolRegexTester_1_5.png\">View a screenshot of 'RegexTester' (version 1.5)(png)</a></li>");
     v.push_back("  <li><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/> <a href=\"ToolRegexTesterSource_1_5.zip\">Download the 'RegexTester' source code (version 1.5)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/> <a href=\"ToolRegexTesterSource_1_5.htm\">View the 'RegexTester' source code as a web page (version 1.5)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"ToolRegexTester_1_1.png\">View a screenshot of 'RegexTester' (version 1.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"ToolRegexTesterSource_1_2.zip\">Download the 'RegexTester' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"ToolRegexTesterSource_1_2.htm\">View the 'RegexTester' source code as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolRegexTesterSource_1_1.zip\">Download the 'RegexTester' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolRegexTesterSource_1_1.htm\">View the 'RegexTester' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolRegexTester_1_0.png\">View a screenshot of 'RegexTester' (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolRegexTesterSource_1_0.zip\">Download the 'RegexTester' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolRegexTesterSource_1_0.htm\">View the 'RegexTester' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolRichelbilderbeekNlSitemapGenerator")
@@ -8981,7 +8896,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolRichelbilderbeekNlSitemapGenerator_2_0.png\">View a screenshot of RichelbilderbeekNlSitemapGenerator' (v. 2.0)</a></li>");
     v.push_back("  <li><a href=\"ToolRichelbilderbeekNlSitemapGeneratorSource_2_0.zip\">Download the 'RichelbilderbeekNlSitemapGenerator' source code (v. 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolRichelbilderbeekNlSitemapGeneratorSource_2_0.htm\">View the 'RichelbilderbeekNlSitemapGenerator' source code as a web page (v. 2.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9005,7 +8919,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolRichelbilderbeekNlSitemapGeneratorExe_1_0.zip\">Download the 'RichelbilderbeekNlSitemapGenerator' Windows executable (v. 1.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolRichelbilderbeekNlSitemapGeneratorSource_1_0.zip\">Download the 'RichelbilderbeekNlSitemapGenerator' source code (v. 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolRichelbilderbeekNlSitemapGeneratorSource_1_0.htm\">View the 'RichelbilderbeekNlSitemapGenerator' source code as a web page (v. 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolSecretMessage")
@@ -9023,7 +8936,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolSecretMessageExample.png\">View an example image with a secret message (version 1.1)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolSecretMessageExe_1_0.zip\">Download the 'SecretMessage' Windows executable (version 1.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolSecretMessageSource_1_1.zip\">Download the 'SecretMessage' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolSecretMessageSource_1_1.htm\">View the 'SecretMessage' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9034,7 +8946,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolSecretMessageSource_1_0.zip\">Download the 'SecretMessage' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolSecretMessageSource_1_0.htm\">View the 'SecretMessage' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
 
   }
@@ -9123,7 +9034,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolSimMysteryMachineArchitecture_1_0.dia\">View the architecture of 'SimMysteryMachine' (version 1.0)(dia)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSimMysteryMachineDesktopExeWindows_1_0.zip\">Download the Windows executable of 'SimMysteryMachine' (version 1.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolSimMysteryMachineSource_1_2.zip\">Download the 'SimMysteryMachine' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolSimMysteryMachineSource_1_1.htm\">View the Qt Creator source code of 'SimMysteryMachine' as a web page (version 1.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ");
@@ -9139,7 +9049,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSimMysteryMachine_1_1_desktop.png\">View a screenshot of 'SimMysteryMachine' (version 1.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSimMysteryMachine_1_0.png\">View a screenshot of 'SimMysteryMachine' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSimMysteryMachineSource_1_0.zip\">Download the 'SimMysteryMachine' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolSimMysteryMachineSource_1_0.htm\">View the Qt Creator source code of 'SimMysteryMachine' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ");
@@ -9162,8 +9071,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolSimplifyNewick_1_2.png\">View a screenshot of 'SimplifyNewick' (version 1.2)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolSimplifyNewickSource_2_0.zip\">Download the 'SimplifyNewick' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolSimplifyNewickSource_2_0.htm\">View the Qt Creator 'SimplifyNewick' source code as a web page (version 2.0)(htm)</a></li>");
-    v.push_back("  <li><a href=\"ToolSimplifyNewickScript_1_0.htm\">View a shell script for 'SimplifyNewick' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9174,13 +9081,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolSimplifyNewickSource_1_2.zip\">Download the 'SimplifyNewick' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolSimplifyNewickSource_1_2.htm\">View the Qt Creator 'SimplifyNewick' source code as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolSimplifyNewick_1_1.png\">View a screenshot of 'SimplifyNewick' (version 1.1)(png)</a></li>");
-    v.push_back("  <li><a href=\"ToolSimplifyNewickSource_1_1.zip\">Download the 'SimplifyNewick' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolSimplifyNewickSource_1_1.htm\">View the Qt Creator 'SimplifyNewick' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolSimplifyNewick_1_0.png\">View a screenshot of 'SimplifyNewick' (version 1.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"ToolSimplifyNewickSource_1_0.zip\">Download the 'SimplifyNewick' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolSimplifyNewickSource_1_0.htm\">View the Qt Creator 'SimplifyNewick' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolSimStagecraft")
@@ -9205,15 +9107,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolSimStagecraftSource.zip\">Download the 'SimStagecraft' source code (version 1.1)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolSimStagecraftExe.zip\">Download the 'SimStagecraft' Windows executable (version 1.1)(zip)</a></li>");
     v.push_back("</ul>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<h2>Post your feedback</h2>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>Feedback can be posted at ");
-    v.push_back("<a href=\"http://www.programmersheaven.com/download/55977/download.aspx\">SimStagecraft's Programmer's Heaven page</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9275,7 +9168,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolStateObserver_1_0.png\">View a screenshot of 'StateObserver' (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolStateObserverExe_1_0.zip\">Download the 'StateObserver' Windows executable (version 1.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolStateObserverSource_1_0.zip\">Download the 'StateObserver' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolStateObserverSource_1_0.htm\">View the 'StateObserver' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("      <math xmlns=\"http://www.w3.org/1998/Math/MathML\">");
@@ -9356,7 +9248,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVector_1_5.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.5)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_3_1.zip\">Download the 'TestBinaryNewickVector' source code (version 3.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_3_1.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 3.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9367,27 +9258,18 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_3_0.zip\">Download the 'TestBinaryNewickVector' source code (version 3.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_3_0.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 3.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_2_0.zip\">Download the 'TestBinaryNewickVector' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_2_0.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_6.zip\">Download the 'TestBinaryNewickVector' source code (version 1.6)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_6.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 1.6)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_5.zip\">Download the 'TestBinaryNewickVector' source code (version 1.5)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_5.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 1.5)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVector_1_3.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.3)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_4.zip\">Download the 'TestBinaryNewickVector' source code (version 1.4)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_4.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 1.4)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_3.zip\">Download the 'TestBinaryNewickVector' source code (version 1.3)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_3.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 1.3)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVector_1_2.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.2)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_2.zip\">Download the 'TestBinaryNewickVector' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_2.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVector_1_1.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.1)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_1.zip\">Download the 'TestBinaryNewickVector' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_1.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVector_1_0.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_0.zip\">Download the 'TestBinaryNewickVector' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestBinaryNewickVectorSource_1_0.htm\">View the Qt Creator source code of 'TestBinaryNewickVector' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestBroadcastServer")
@@ -9444,7 +9326,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolTestDialArchitecture.dia\">View the architecture of 'TestDial' (version 2.1)(dia)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDialDesktopExeWindows_1_0.zip\">Download the Windows executable of 'TestDial' (version 1.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_2_1.zip\">Download the 'TestDial' source code (version 2.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_2_1.htm\">View the Qt Creator source code of 'TestDial' as a web page (version 2.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ");
@@ -9457,11 +9338,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_2_0.zip\">Download the 'TestDial' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_2_0.htm\">View the Qt Creator source code of 'TestDial' as a web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_1_2.zip\">Download the 'TestDial' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_1_2.htm\">View the Qt Creator source code of 'TestDial' as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_1_1.zip\">Download the 'TestDial' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDialSource_1_0.htm\">View the Qt Creator source code of 'TestDial' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDialSource_1_0.zip\">Download the 'TestDial' source code (version 1.0)(zip)</a></li>");
     v.push_back("</ul>");
   }
@@ -9485,7 +9363,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestEncranger_1_0.png\">View a screenshot of 'TestEncranger' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestEncrangerExe_1_0.zip\">Download the 'TestEncranger' Windows executable (version 1.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEncrangerSource_2_4.zip\">Download the 'TestEncranger' source code (version 2.4)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEncrangerSource_2_4.htm\">View the 'TestEncranger' source code as a webpage (version 2.4)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9496,14 +9373,10 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEncrangerSource_2_3.zip\">Download the 'TestEncranger' source code (version 2.3)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEncrangerSource_2_3.htm\">View the 'TestEncranger' source code as a webpage (version 2.3)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEncrangerSource_2_2.zip\">Download the 'TestEncranger' source code (version 2.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEncrangerSource_2_1.htm\">View the 'TestEncranger' source code as a webpage (version 2.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestEncrangerSource_2_1.zip\">Download the 'TestEncranger' source code (version 2.1)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestEncrangerSource_2_0.zip\">Download the 'TestEncranger' source code (version 2.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestEncrangerSource_1_0.zip\">Download the 'TestEncranger' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestEncrangerSource_2_0.htm\">View the 'TestEncranger' source code as a webpage (version 2.0)(htm)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestEncrangerSource_1_0.htm\">View the 'TestEncranger' source code as a webpage (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9593,7 +9466,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParser_2_3.png\">View a screenshot of 'FunctionParser (version 2.3)(png)'</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParserExe_2_3.zip\">Download the 'FunctionParser' Windows executable (version 2.3)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParserSource_2_3.zip\">Download the 'FunctionParser' source code (version 2.3)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParserSource_2_3.htm\">View the 'FunctionParser' source code as a web page (version 2.3)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9606,14 +9478,10 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParserExe_1_0.zip\">Download the 'FunctionParser' Windows executable (version 1.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParser_1_0.png\">View a screenshot of 'FunctionParser (version 1.0)(png)'</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParserSource_2_2.zip\">Download the 'FunctionParser' source code (version 2.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParserSource_2_2.htm\">View the 'FunctionParser' source code as a web page (version 2.2)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParserSource_2_1.zip\">Download the 'FunctionParser' source code (version 2.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestFunctionParserSource_2_1.htm\">View the 'FunctionParser' source code as a web page (version 2.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParser_2_0.png\">View a screenshot of 'FunctionParser (version 2.0)(png)'</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParserSource_2_0.zip\">Download the 'FunctionParser' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParserSource_2_0.htm\">View the 'FunctionParser' source code as a web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParserSource_1_0.zip\">Download the 'FunctionParser' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestFunctionParserSource_1_0.htm\">View the 'FunctionParser' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9640,7 +9508,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidget_1_0.png\">View a screenshot of 'TestGroupWidget' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_3.zip\">Download the 'TestGroupWidget' source code (version 1.3)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_3.htm\">View the Qt Creator source code of 'TestGroupWidget' as a web page (version 1.3)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9651,11 +9518,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_2.zip\">Download the 'TestGroupWidget' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_2.htm\">View the Qt Creator source code of 'TestGroupWidget' as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_1.zip\">Download the 'TestGroupWidget' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_1.htm\">View the Qt Creator source code of 'TestGroupWidget' as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_0.zip\">Download the 'TestGroupWidget' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_0.htm\">View the Qt Creator source code of 'TestGroupWidget' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestLed")
@@ -9677,7 +9541,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolTestLedArchitecture.dia\">View the architecture of 'TestLed' (version 1.2)(dia)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestLedExeWindows_1_0.zip\">Download the Windows executable of 'TestLed' (version 1.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLedSource_1_3.zip\">Download the 'TestLed' source code (version 1.3)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLedSource_1_3.htm\">View the Qt Creator source code of 'TestLed' as a web page (version 1.3)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ");
@@ -9690,11 +9553,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLedSource_1_2.zip\">Download the 'TestLed' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLedSource_1_2.htm\">View the Qt Creator source code of 'TestLed' as a web page (version 1.2)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLedSource_1_1.zip\">Download the 'TestLed' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestLedSource_1_1.htm\">View the Qt Creator source code of 'TestLed' as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestLedSource_1_0.zip\">Download the 'TestLed' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestLedSource_1_0.htm\">View the Qt Creator source code of 'TestLed' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestMultiVector")
@@ -9710,7 +9570,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestMultiVectorSource_1_0.zip\">Download the 'TestMultiVector' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestMultiVectorSource_1_0.htm\">View the Qt Creator source code of 'TestMultiVector' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9741,7 +9600,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolTestNdsmake_1_0.png\">View a screenshot of 'TestNdsmake' (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestNdsmakeUse_1_0.png\">View how TestNdsmake uses ndsmake (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestNdsmakeSource_1_0.zip\">Download the source code of 'TestNdsmake' (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestNdsmakeSource_1_0.htm\">View the 'TestNdsmake' source code as a web page (version 1.0)(zip)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9777,7 +9635,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestNeuralNet_0_1.png\">View a screenshot of 'TestNeuralNet' (version 0.1)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestNeuralNetSource_0_1.zip\">Download the 'TestNeuralNet' source code (version 0.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestNeuralNetSource_0_1.htm\">View the Qt Creator 'TestNeuralNet' source code as a web page (version 0.1)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestPrimeExpert")
@@ -9794,7 +9651,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestPrimeExpert_1_0.png\">View a screenshot of 'TestPrimeExpert' (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestPrimeExpertSource_2_0.zip\">Download the 'TestPrimeExpert' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPrimeExpertSource_2_0.htm\">View the Qt Creator source code of 'TestPrimeExpert' as a web page (version 2.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9805,7 +9661,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestPrimeExpertSource_1_0.zip\">Download the 'TestPrimeExpert' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPrimeExpertSource_1_0.htm\">View the C++ Builder source code of 'TestPrimeExpert' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestProFile")
@@ -9821,7 +9676,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestProFileSource_1_0.zip\">Download the 'TestProFile' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestProFileSource_1_0.htm\">View the 'TestProFile' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestPylos")
@@ -9846,7 +9700,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestPylos_1_0.png\">View a screenshot of 'TestPylos' (version 1.0)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestPylosSource_1_2.zip\">Download the 'TestPylos' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_1_2.htm\">View the Qt Creator 'TestPylos' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9856,19 +9709,9 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_1_1.zip\">Download the 'TestPylos' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_1_1.htm\">View the Qt Creator 'TestPylos' source code as a web page (version 1.1)(htm)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_1_0.zip\">Download the 'TestPylos' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_1_0.htm\">View the Qt Creator 'TestPylos' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestPylos_0_3.png\">View a screenshot of 'TestPylos' (version 0.3)(png)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_0_3.zip\">Download the 'TestPylos' source code (version 0.3)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_0_3.htm\">View the Qt Creator 'TestPylos' source code as a web page (version 0.3)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestPylos_0_2.png\">View a screenshot of 'TestPylos' (version 0.2)(png)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_0_2.zip\">Download the 'TestPylos' source code (version 0.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_0_2.htm\">View the Qt Creator 'TestPylos' source code as a web page (version 0.2)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestPylos_0_1.png\">View a screenshot of 'TestPylos' (version 0.1)(png)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_0_1.zip\">Download the 'TestPylos' source code (version 0.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestPylosSource_0_1.htm\">View the Qt Creator 'TestPylos' source code as a web page (version 0.1)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestQtKeyboardFriendlyGraphicsView")
@@ -9926,7 +9769,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionArchitecture.png\">View the architecture of TestQuestion (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionArchitecture.dia\">View the architecture of TestQuestion (version 1.0)(dia)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionSource_2_1.zip\">Download the TestQuestion source code (version 2.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionSource_2_1.htm\">View the TestQuestion source code as a web page (version 2.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolTestQuestionDesktopExe_2_1.zip\">Download a Windows executable of TestQuestion (version 2.1)(zip)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
@@ -9937,11 +9779,7 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionSource_2_0.zip\">Download the TestQuestion source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionSource_2_0.htm\">View the TestQuestion source code as a web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQuestion_0_9.png\">View a screenshot of TestQuestion (version 0.9)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionSource_1_0.zip\">Download the TestQuestion source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestQuestionSource_1_0.htm\">View the TestQuestion source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestSelectFileDialog")
@@ -9959,7 +9797,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialog_1_1.png\">View a screenshot of TestSelectFileDialog (version 1.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialogSource_1_1.zip\">Download the TestSelectFileDialog source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialogSource_1_1.htm\">View the TestSelectFileDialog source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -9971,7 +9808,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialog_1_0.png\">View a screenshot of TestSelectFileDialog (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialogSource_1_0.zip\">Download the TestSelectFileDialog source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialogSource_1_0.htm\">View the TestSelectFileDialog source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestServerPusher")
@@ -10008,7 +9844,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShape_1_0_web.png\">View a screenshot of 'TestShape' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestShape_1_0_desktop.png\">View a screenshot of 'TestShape' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShapeSource_2_0.zip\">Download the 'TestShape' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShapeSource_2_0.htm\">View the 'TestShape' source code as a webpage (version 2.0)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10019,7 +9854,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShapeSource_1_0.zip\">Download the 'TestShape' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShapeSource_1_0.htm\">View the 'TestShape' source code as a webpage (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestShinyButton")
@@ -10038,7 +9872,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestShinyButton_2_0_desktop.png\">View a screenshot of 'TestShinyButton' (version 2.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShinyButtonSource_2_0_web.png\">View a screenshot of 'TestShinyButton' (version 2.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShinyButtonSource_1_0.zip\">Download the 'TestShinyButton' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShinyButtonSource_1_0.htm\">View the Qt Creator source code of 'TestShinyButton' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestStopwatch")
@@ -10058,7 +9891,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"ToolTestStopwatchSource_1_1.zip\">Download the 'TestStopwatch' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestStopwatchSource_1_1.htm\">View the Qt Creator 'TestStopwatch' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10068,8 +9900,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolTestStopwatchSource_1_0.zip\">Download the 'TestStopwatch' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestStopwatchSource_1_0.htm\">View the Qt Creator 'TestStopwatch' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestTicTacToe")
@@ -10087,7 +9917,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("  <li><a href=\"ToolTestTicTacToe_1_1.png\">View a screenshot of 'TestTicTacToe' (desktop application)(version 1.1)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTicTacToe_1_2.png\">View a screenshot of 'TestTicTacToe' (web application)(version 1.2)(png)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTicTacToeSource_1_3.zip\">Download the 'TestTicTacToe' source code (version 1.3)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_1_3.htm\">View the Qt Creator 'TestTicTacToe' source code as a web page (version 1.3)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10097,16 +9926,8 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_1_2.zip\">Download the 'TestTicTacToe' source code (version 1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_1_2.htm\">View the Qt Creator 'TestTicTacToe' source code as a web page (version 1.2)(htm)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_1_1.zip\">Download the 'TestTicTacToe' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_1_1.htm\">View the Qt Creator 'TestTicTacToe' source code as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTicTacToe_1_0.png\">View a screenshot of 'TestTicTacToe' (version 1.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_1_0.zip\">Download the 'TestTicTacToe' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_1_0.htm\">View the Qt Creator 'TestTicTacToe' source code as a web page (version 1.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTicTacToe_0_1.png\">View a screenshot of 'TestTicTacToe' (version 0.1)(png)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_0_1.zip\">Download the 'TestTicTacToe' source code (version 0.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTicTacToeSource_0_1.htm\">View the Qt Creator 'TestTicTacToe' source code as a web page (version 0.1)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestTimedServerPusher")
@@ -10143,7 +9964,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestToggleButtonSource_1_1.zip\">Download the 'TestToggleButton' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestToggleButtonSource_1_1.htm\">View the Qt Creator source code of 'TestToggleButton' as a web page (version 1.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -10154,7 +9974,6 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> Download the 'TestToggleButton' source code (version 1.0)(zip)(lost)</li>");
-    v.push_back("  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> View the Qt Creator source code of 'TestToggleButton' as a web page (version 1.0)(htm)(lost)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ToolTestTwoDigitNewick")
@@ -10172,20 +9991,13 @@ const std::vector<std::string> Info::ToHtml() const
     v.push_back("<!--");
     v.push_back("  <li><a href=\"CppTwoDigitNewickAlgorithm.htm\">Read the TwoDigitNewick algorithm</a></li>");
     v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_2_3.zip\">Download the 'TestTwoDigitNewick' source code (version 2.3)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_2_3.htm\">View the Qt Creator source code of 'TestTwoDigitNewick' as a web page (version 2.3)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_2_2.zip\">Download the 'TestTwoDigitNewick' source code (version 2.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_2_2.htm\">View the Qt Creator source code of 'TestTwoDigitNewick' as a web page (version 2.2)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_2_1.zip\">Download the 'TestTwoDigitNewick' source code (version 2.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_2_1.htm\">View the Qt Creator source code of 'TestTwoDigitNewick' as a web page (version 2.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_2_0.zip\">Download the 'TestTwoDigitNewick' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_2_0.htm\">View the Qt Creator source code of 'TestTwoDigitNewick' as a web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_1_1.zip\">Download the 'TestTwoDigitNewick' source code (version 1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_1_1.htm\">View the Qt Creator source code of 'TestTwoDigitNewick' as a web page (version 1.1)(htm)</a></li>");
     v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_1_0.zip\">Download the 'TestTwoDigitNewick' source code (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_1_0.htm\">View the Qt Creator source code of 'TestTwoDigitNewick' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("-->");
     v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_0_6.zip\">Download the 'TestTwoDigitNewick' source code (version 0.6)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ToolTestTwoDigitNewickSource_0_6.htm\">View the Qt Creator source code of 'TestTwoDigitNewick' as a web page (version 0.6)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
