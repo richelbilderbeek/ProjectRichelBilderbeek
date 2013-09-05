@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthreeresources.h"
 
+namespace ribi {
+
 ///QtConnectThreeResources is a class containing
 ///all filenames to be used by the program
 ///Its base class, ConnectThreeResources,
@@ -32,5 +34,7 @@ struct QtConnectThreeResources
 {
   QtConnectThreeResources();
 };
+
+} //~namespace ribi
 
 #endif // QTCONNECTTHREERESOURCES_H

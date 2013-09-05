@@ -25,13 +25,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-
-
-namespace c2h {
-
 ///CreateProFileReplacements creates the replacements when
 ///a Qt project file is converted to HTML
-const std::vector<std::pair<std::string,std::string> > Content::CreateProReplacements()
+const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProReplacements()
 {
   //C++11 initializer list
   return
@@ -565,8 +561,3 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateProReplace
     { "led","<a href=\"C$ppL$ed.htm\">l$ed</a>" }
   };
 }
-
-} //~namespace CodeToHtml
-
-
-

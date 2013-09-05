@@ -11,6 +11,8 @@
 
 #include "whitenoisesystemtype.h"
 
+namespace ribi {
+
 struct WhiteNoiseSystemTypes
 {
   static const std::vector<WhiteNoiseSystemType> GetAllTypes();
@@ -26,5 +28,7 @@ struct WhiteNoiseSystemTypes
   #endif
 
 };
+
+} //~namespace ribi
 
 #endif // WHITENOISESYSTEMTYPES_H

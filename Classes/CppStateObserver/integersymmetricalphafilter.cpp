@@ -1,11 +1,9 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "integersymmetricalphafilter.h"
 
 #include <cassert>
 #include <cstdlib>
 
-IntegerSymmetricalAlphaFilter::IntegerSymmetricalAlphaFilter(
+ribi::IntegerSymmetricalAlphaFilter::IntegerSymmetricalAlphaFilter(
   const int alpha,
   const int64_t value_active)
   : m_alpha(alpha),
@@ -15,18 +13,18 @@ IntegerSymmetricalAlphaFilter::IntegerSymmetricalAlphaFilter(
   assert(m_alpha <= 63 && "An int64_t can maximally be shifted 63 bits to the right");
 }
 
-void IntegerSymmetricalAlphaFilter::Update(const int64_t measurement)
+void ribi::IntegerSymmetricalAlphaFilter::Update(const int64_t measurement)
 {
   const int64_t delta = ((measurement  - m_value_active) >> m_alpha);
   m_value_active += delta + (delta == 0 && measurement - m_value_active > 0 ? 1 : 0);
 }
 
-const std::string IntegerSymmetricalAlphaFilter::GetVersion()
+const std::string ribi::IntegerSymmetricalAlphaFilter::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> IntegerSymmetricalAlphaFilter::GetVersionHistory()
+const std::vector<std::string> ribi::IntegerSymmetricalAlphaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-06-04: version 1.0: initial version");

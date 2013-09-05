@@ -10,13 +10,13 @@
 #include "whitenoisesystemparameter.h"
 #include "trace.h"
 
-const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> >
-  KalmanFilterExperimentParameter::m_map_kalman_filter = CreateMapKalmanFilter();
+const std::vector<std::pair<ribi::KalmanFilterParameterType,ribi::KalmanFilterExperimentParameterType> >
+  ribi::KalmanFilterExperimentParameter::m_map_kalman_filter = CreateMapKalmanFilter();
 
-const std::vector<std::pair<WhiteNoiseSystemParameterType,KalmanFilterExperimentParameterType> >
-  KalmanFilterExperimentParameter::m_map_white_noise_system = CreateMapWhiteNoiseSystem();
+const std::vector<std::pair<ribi::WhiteNoiseSystemParameterType,ribi::KalmanFilterExperimentParameterType> >
+  ribi::KalmanFilterExperimentParameter::m_map_white_noise_system = CreateMapWhiteNoiseSystem();
 
-bool KalmanFilterExperimentParameter::CanConvertToKalmanFilterParameter(
+bool ribi::KalmanFilterExperimentParameter::CanConvertToKalmanFilterParameter(
   const KalmanFilterExperimentParameterType parameter)
 {
   const auto j = m_map_kalman_filter.end();
@@ -28,7 +28,7 @@ bool KalmanFilterExperimentParameter::CanConvertToKalmanFilterParameter(
 }
 
 
-bool KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystemParameter(
+bool ribi::KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystemParameter(
   const KalmanFilterExperimentParameterType parameter)
 {
   const auto j = m_map_white_noise_system.end();
@@ -39,7 +39,7 @@ bool KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystemParameter(
   return false;
 }
 
-KalmanFilterExperimentParameterType KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(
+ribi::KalmanFilterExperimentParameterType ribi::KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(
   const KalmanFilterParameterType parameter)
 {
   const auto j = m_map_kalman_filter.end();
@@ -50,10 +50,10 @@ KalmanFilterExperimentParameterType KalmanFilterExperimentParameter::ConvertToKa
   assert(!"Should never get here");
   throw std::logic_error(__func__);
   //throw std::logic_error(
-  //  "KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(const KalmanFilterParameterType parameter)");
+  //  "ribi::KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(const KalmanFilterParameterType parameter)");
 }
 
-KalmanFilterExperimentParameterType KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(
+ribi::KalmanFilterExperimentParameterType ribi::KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(
   const WhiteNoiseSystemParameterType parameter)
 {
   const auto j = m_map_white_noise_system.end();
@@ -63,10 +63,10 @@ KalmanFilterExperimentParameterType KalmanFilterExperimentParameter::ConvertToKa
   }
   assert(!"Should never get here");
   throw std::logic_error(
-    "KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(const WhiteNoiseSystemParameterType parameter)");
+    "ribi::KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(const WhiteNoiseSystemParameterType parameter)");
 }
 
-KalmanFilterParameterType KalmanFilterExperimentParameter::ConvertToKalmanFilterParameter(
+ribi::KalmanFilterParameterType ribi::KalmanFilterExperimentParameter::ConvertToKalmanFilterParameter(
   const KalmanFilterExperimentParameterType parameter)
 {
   assert(CanConvertToKalmanFilterParameter(parameter));
@@ -77,10 +77,10 @@ KalmanFilterParameterType KalmanFilterExperimentParameter::ConvertToKalmanFilter
   }
   assert(!"Should never get here");
   throw std::logic_error(
-    "KalmanFilterExperimentParameter::ConvertToKalmanFilterParameter");
+    "ribi::KalmanFilterExperimentParameter::ConvertToKalmanFilterParameter");
 }
 
-WhiteNoiseSystemParameterType KalmanFilterExperimentParameter::ConvertToWhiteNoiseSystemParameter(
+ribi::WhiteNoiseSystemParameterType ribi::KalmanFilterExperimentParameter::ConvertToWhiteNoiseSystemParameter(
   const KalmanFilterExperimentParameterType parameter)
 {
   assert(CanConvertToWhiteNoiseSystemParameter(parameter));
@@ -91,11 +91,11 @@ WhiteNoiseSystemParameterType KalmanFilterExperimentParameter::ConvertToWhiteNoi
   }
   assert(!"Should never get here");
   throw std::logic_error(
-    "KalmanFilterExperimentParameter::ConvertToWhiteNoiseSystemParameter");
+    "ribi::KalmanFilterExperimentParameter::ConvertToWhiteNoiseSystemParameter");
 }
 
-const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> >
-  KalmanFilterExperimentParameter::CreateMapKalmanFilter()
+const std::vector<std::pair<ribi::KalmanFilterParameterType,ribi::KalmanFilterExperimentParameterType> >
+  ribi::KalmanFilterExperimentParameter::CreateMapKalmanFilter()
 {
   #ifndef NDEBUG
   Test();
@@ -138,8 +138,8 @@ const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentPara
   return v;
 }
 
-const std::vector<std::pair<WhiteNoiseSystemParameterType,KalmanFilterExperimentParameterType> >
-  KalmanFilterExperimentParameter::CreateMapWhiteNoiseSystem()
+const std::vector<std::pair<ribi::WhiteNoiseSystemParameterType,ribi::KalmanFilterExperimentParameterType> >
+  ribi::KalmanFilterExperimentParameter::CreateMapWhiteNoiseSystem()
 {
   #ifndef NDEBUG
   Test();
@@ -173,7 +173,7 @@ const std::vector<std::pair<WhiteNoiseSystemParameterType,KalmanFilterExperiment
   return v;
 }
 
-const std::vector<KalmanFilterExperimentParameterType> KalmanFilterExperimentParameter::GetAll()
+const std::vector<ribi::KalmanFilterExperimentParameterType> ribi::KalmanFilterExperimentParameter::GetAll()
 {
   const std::vector<KalmanFilterExperimentParameterType> v
     =
@@ -198,7 +198,7 @@ const std::vector<KalmanFilterExperimentParameterType> KalmanFilterExperimentPar
     && "All parameters must be in");
   return v;
 }
-bool KalmanFilterExperimentParameter::IsDouble(const KalmanFilterExperimentParameterType type)
+bool ribi::KalmanFilterExperimentParameter::IsDouble(const KalmanFilterExperimentParameterType type)
 {
   switch (type)
   {
@@ -218,13 +218,13 @@ bool KalmanFilterExperimentParameter::IsDouble(const KalmanFilterExperimentParam
     case KalmanFilterExperimentParameterType::state_transition:                   return true;
     case KalmanFilterExperimentParameterType::n_parameters:
       assert(!"n_parameters is not implemented to be used");
-      throw std::logic_error("KalmanFilterExperimentParameter::IsDouble: use of n_parameters");
+      throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsDouble: use of n_parameters");
   }
   assert(!"Unimplemented type");
-  throw std::logic_error("KalmanFilterExperimentParameter::IsDouble: use of unimplemented type");
+  throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsDouble: use of unimplemented type");
 }
 
-bool KalmanFilterExperimentParameter::IsFunction(const KalmanFilterExperimentParameterType type)
+bool ribi::KalmanFilterExperimentParameter::IsFunction(const KalmanFilterExperimentParameterType type)
 {
   switch (type)
   {
@@ -244,13 +244,13 @@ bool KalmanFilterExperimentParameter::IsFunction(const KalmanFilterExperimentPar
     case KalmanFilterExperimentParameterType::state_transition:                   return false;
     case KalmanFilterExperimentParameterType::n_parameters:
       assert(!"n_parameters is not implemented to be used");
-      throw std::logic_error("KalmanFilterExperimentParameter::IsFunction: use of n_parameters");
+      throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsFunction: use of n_parameters");
   }
   assert(!"Unimplemented type");
-  throw std::logic_error("KalmanFilterExperimentParameter::IsFunction: use of unimplemented type");
+  throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsFunction: use of unimplemented type");
 }
 
-bool KalmanFilterExperimentParameter::IsInt(const KalmanFilterExperimentParameterType type)
+bool ribi::KalmanFilterExperimentParameter::IsInt(const KalmanFilterExperimentParameterType type)
 {
   switch (type)
   {
@@ -270,13 +270,13 @@ bool KalmanFilterExperimentParameter::IsInt(const KalmanFilterExperimentParamete
     case KalmanFilterExperimentParameterType::state_transition:                   return false;
     case KalmanFilterExperimentParameterType::n_parameters:
       assert(!"n_parameters is not implemented to be used");
-      throw std::logic_error("KalmanFilterExperimentParameter::IsInt: use of n_parameters");
+      throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsInt: use of n_parameters");
   }
   assert(!"Unimplemented type");
-  throw std::logic_error("KalmanFilterExperimentParameter::IsInt: use of unimplemented type");
+  throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsInt: use of unimplemented type");
 }
 
-bool KalmanFilterExperimentParameter::IsString(const KalmanFilterExperimentParameterType type)
+bool ribi::KalmanFilterExperimentParameter::IsString(const KalmanFilterExperimentParameterType type)
 {
   switch (type)
   {
@@ -296,18 +296,18 @@ bool KalmanFilterExperimentParameter::IsString(const KalmanFilterExperimentParam
     case KalmanFilterExperimentParameterType::state_transition:                   return false;
     case KalmanFilterExperimentParameterType::n_parameters:
       assert(!"n_parameters is not implemented to be used");
-      throw std::logic_error("KalmanFilterExperimentParameter::IsString: use of n_parameters");
+      throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsString: use of n_parameters");
   }
   assert(!"Unimplemented type");
-  throw std::logic_error("KalmanFilterExperimentParameter::IsString: use of unimplemented type");
+  throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsString: use of unimplemented type");
 }
 
-bool KalmanFilterExperimentParameter::IsMatrix(const KalmanFilterExperimentParameterType type)
+bool ribi::KalmanFilterExperimentParameter::IsMatrix(const KalmanFilterExperimentParameterType type)
 {
-  return !KalmanFilterExperimentParameter::IsVector(type);
+  return !ribi::KalmanFilterExperimentParameter::IsVector(type);
 }
 
-bool KalmanFilterExperimentParameter::IsVector(const KalmanFilterExperimentParameterType type)
+bool ribi::KalmanFilterExperimentParameter::IsVector(const KalmanFilterExperimentParameterType type)
 {
   switch (type)
   {
@@ -327,21 +327,21 @@ bool KalmanFilterExperimentParameter::IsVector(const KalmanFilterExperimentParam
     case KalmanFilterExperimentParameterType::state_transition:                   return false;
     case KalmanFilterExperimentParameterType::n_parameters:
       assert(!"n_parameters is not implemented to be used");
-      throw std::logic_error("KalmanFilterExperimentParameter::IsVector: use of n_parameters");
+      throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsVector: use of n_parameters");
   }
   assert(!"Unimplemented type");
-  throw std::logic_error("KalmanFilterExperimentParameter::IsVector: use of unimplemented type");
+  throw std::logic_error("ribi::KalmanFilterExperimentParameter::IsVector: use of unimplemented type");
 }
 
 #ifndef NDEBUG
-void KalmanFilterExperimentParameter::Test()
+void ribi::KalmanFilterExperimentParameter::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started KalmanFilterExperimentParameter::Test");
+  TRACE("Started ribi::KalmanFilterExperimentParameter::Test");
   assert( IsMatrix(KalmanFilterExperimentParameterType::control));
   assert( IsMatrix(KalmanFilterExperimentParameterType::estimated_measurement_noise));
   assert( IsMatrix(KalmanFilterExperimentParameterType::estimated_optimal_kalman_gain));
@@ -432,11 +432,11 @@ void KalmanFilterExperimentParameter::Test()
   assert(!IsInt(KalmanFilterExperimentParameterType::state_names));
   assert(!IsInt(KalmanFilterExperimentParameterType::state_transition));
 
-  TRACE("Finished KalmanFilterExperimentParameter::Test");
+  TRACE("Finished ribi::KalmanFilterExperimentParameter::Test");
 }
 #endif
 
-const std::string KalmanFilterExperimentParameter::ToDescription(const KalmanFilterExperimentParameterType type)
+const std::string ribi::KalmanFilterExperimentParameter::ToDescription(const KalmanFilterExperimentParameterType type)
 {
   //Check for the subset
   if (CanConvertToKalmanFilterParameter(type))
@@ -461,7 +461,7 @@ const std::string KalmanFilterExperimentParameter::ToDescription(const KalmanFil
   }
 }
 
-const std::string KalmanFilterExperimentParameter::ToName(const KalmanFilterExperimentParameterType type)
+const std::string ribi::KalmanFilterExperimentParameter::ToName(const KalmanFilterExperimentParameterType type)
 {
   //Check for the subset
   if (CanConvertToKalmanFilterParameter(type))
@@ -486,7 +486,7 @@ const std::string KalmanFilterExperimentParameter::ToName(const KalmanFilterExpe
   }
 }
 
-const std::string KalmanFilterExperimentParameter::ToSymbol(const KalmanFilterExperimentParameterType type)
+const std::string ribi::KalmanFilterExperimentParameter::ToSymbol(const KalmanFilterExperimentParameterType type)
 {
   //Check for the subset
   if (CanConvertToKalmanFilterParameter(type))

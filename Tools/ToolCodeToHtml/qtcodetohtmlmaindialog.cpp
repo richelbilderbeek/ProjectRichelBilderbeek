@@ -51,7 +51,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qtcodetohtmlmaindialog.h"
 
-QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
+ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtCodeToHtmlMainDialog)
 {
@@ -67,24 +67,12 @@ QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
   on_tab_source_currentChanged(0);
 }
 
-QtCodeToHtmlMainDialog::~QtCodeToHtmlMainDialog()
+ribi::QtCodeToHtmlMainDialog::~QtCodeToHtmlMainDialog()
 {
   delete ui;
 }
 
-void QtCodeToHtmlMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-const std::vector<std::string> QtCodeToHtmlMainDialog::EditToVector(
+const std::vector<std::string> ribi::QtCodeToHtmlMainDialog::EditToVector(
   const QPlainTextEdit * const edit)
 {
   std::vector<std::string> v;
@@ -112,7 +100,7 @@ const std::vector<std::string> QtCodeToHtmlMainDialog::EditToVector(
   return v;
 }
 
-c2h::PageType QtCodeToHtmlMainDialog::GetPageType() const
+c2h::PageType ribi::QtCodeToHtmlMainDialog::GetPageType() const
 {
   const std::string s = ui->box_header->currentText().toStdString();
   if (s == "C++") return c2h::PageType::cpp;
@@ -123,7 +111,7 @@ c2h::PageType QtCodeToHtmlMainDialog::GetPageType() const
   throw std::logic_error("QtCodeToHtmlMainDialog::GetPageType");
 }
 
-c2h::ContentType QtCodeToHtmlMainDialog::GetContentType() const
+c2h::ContentType ribi::QtCodeToHtmlMainDialog::GetContentType() const
 {
   const std::string s = ui->box_source->currentText().toStdString();
   if (s == "C++") return c2h::ContentType::cpp;
@@ -133,7 +121,7 @@ c2h::ContentType QtCodeToHtmlMainDialog::GetContentType() const
   throw std::logic_error("QtCodeToHtmlMainDialog::GetContentType");
 }
 
-c2h::TechInfoType QtCodeToHtmlMainDialog::GetTechInfo() const
+c2h::TechInfoType ribi::QtCodeToHtmlMainDialog::GetTechInfo() const
 {
   const std::string s = ui->box_tech_info->currentText().toStdString();
   if (s == "Auto") return c2h::TechInfoType::automatic;
@@ -143,12 +131,12 @@ c2h::TechInfoType QtCodeToHtmlMainDialog::GetTechInfo() const
   throw std::logic_error("QtCodeToHtmlMainDialog::GetTechInfo");
 }
 
-void QtCodeToHtmlMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCodeToHtmlMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtCodeToHtmlMainDialog::on_button_convert_clicked()
+void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked()
 {
   if (ui->tab_source->currentIndex() == 0)
   {
@@ -190,7 +178,7 @@ void QtCodeToHtmlMainDialog::on_button_convert_clicked()
   }
 }
 
-void QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v)
+void ribi::QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v)
 {
   QString text;
   std::for_each(v.begin(),v.end(),
@@ -206,7 +194,7 @@ void QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v)
   ui->edit_html->setPlainText(text);
 }
 
-void QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
+void ribi::QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
 {
   if (index == 0)
   {
@@ -229,7 +217,7 @@ void QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
   }
 }
 
-void QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
+void ribi::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
 {
   const std::string source = ui->edit_source->text().toStdString();
 
@@ -264,7 +252,7 @@ void QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
 }
 
 #ifndef NDEBUG
-void QtCodeToHtmlMainDialog::Test()
+void ribi::QtCodeToHtmlMainDialog::Test()
 {
   {
     static bool is_tested = false;

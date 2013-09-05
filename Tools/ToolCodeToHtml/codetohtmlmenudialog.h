@@ -26,12 +26,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///GUI independent CodeToHtml menu dialog
 struct CodeToHtmlMenuDialog
 {
-  static const About GetAbout();
+  static const ribi::About GetAbout();
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // CODETOHTMLMENUDIALOG_H

@@ -5,15 +5,15 @@
 #include <cassert>
 #include "trace.h"
 
-KalmanFilterParameters::KalmanFilterParameters(
+ribi::KalmanFilterParameters::KalmanFilterParameters(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state_estimate,
   const boost::numeric::ublas::matrix<double>& observation,
   const boost::numeric::ublas::matrix<double>& state_transition)
-  : m_control(control),
-    m_initial_state_estimate(initial_state_estimate),
-    m_observation(observation),
-    m_state_transition(state_transition)
+  : m_control{control},
+    m_initial_state_estimate{initial_state_estimate},
+    m_observation{observation},
+    m_state_transition{state_transition}
 {
   #ifndef NDEBUG
   //Check for correct dimensionality
@@ -29,7 +29,7 @@ KalmanFilterParameters::KalmanFilterParameters(
   #endif
 }
 
-bool KalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
+bool ribi::KalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
 {
   return
        type == KalmanFilterParameterType::control

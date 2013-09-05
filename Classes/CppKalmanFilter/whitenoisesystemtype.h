@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace ribi {
+
 enum class WhiteNoiseSystemType
 {
   gaps_filled,
@@ -15,5 +17,6 @@ bool operator==(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
 bool operator!=(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
 bool operator<(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
 
+} //~namespace ribi
 
 #endif // WHITENOISESYSTEMTYPE_H

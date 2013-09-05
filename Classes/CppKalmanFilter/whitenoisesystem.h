@@ -11,6 +11,8 @@
 #include "whitenoisesystemparameters.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct WhiteNoiseSystem : public boost::noncopyable
 {
   WhiteNoiseSystem(const WhiteNoiseSystem&) = delete;
@@ -43,7 +45,7 @@ struct WhiteNoiseSystem : public boost::noncopyable
 
   protected:
   ///An ABC can only be constructed by derived classes
-  WhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters);
+  explicit WhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters);
 
   ///Obtain a random number from a normal distribution
   ///From http://www.richelbilderbeek.nl/CppGetRandomNormal.htm
@@ -62,5 +64,7 @@ struct WhiteNoiseSystem : public boost::noncopyable
   ///The parameters
   const boost::shared_ptr<const WhiteNoiseSystemParameters> m_parameters;
 };
+
+} //~namespace ribi
 
 #endif // WHITENOISESYSTEM_H

@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qtcodetohtmlmenudialog.h"
 
-QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) :
+ribi::QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtCodeToHtmlMenuDialog)
 {
@@ -42,21 +42,21 @@ QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-QtCodeToHtmlMenuDialog::~QtCodeToHtmlMenuDialog()
+ribi::QtCodeToHtmlMenuDialog::~QtCodeToHtmlMenuDialog()
 {
   delete ui;
 }
 
-void QtCodeToHtmlMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCodeToHtmlMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtCodeToHtmlMenuDialog::on_button_about_clicked()
+void ribi::QtCodeToHtmlMenuDialog::on_button_about_clicked()
 {
-  About a = CodeToHtmlMenuDialog::GetAbout();
+  ribi::About a = ribi::CodeToHtmlMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
-  QtAboutDialog d(a);
+  ribi::QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
   this->hide();
@@ -64,19 +64,19 @@ void QtCodeToHtmlMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtCodeToHtmlMenuDialog::on_button_quit_clicked()
+void ribi::QtCodeToHtmlMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtCodeToHtmlMenuDialog::on_button_start_clicked()
+void ribi::QtCodeToHtmlMenuDialog::on_button_start_clicked()
 {
   QtCodeToHtmlMainDialog d;
   ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void QtCodeToHtmlMenuDialog::Test()
+void ribi::QtCodeToHtmlMenuDialog::Test()
 {
   {
     static bool is_tested = false;

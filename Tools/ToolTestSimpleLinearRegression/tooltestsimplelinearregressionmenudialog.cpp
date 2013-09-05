@@ -1,10 +1,8 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "tooltestsimplelinearregressionmenudialog.h"
 
 #include "trace.h"
 
-const About ToolTestSimpleLinearRegressionMenuDialog::GetAbout()
+const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -19,12 +17,12 @@ const About ToolTestSimpleLinearRegressionMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ToolTestSimpleLinearRegressionMenuDialog::GetVersion()
+const std::string ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ToolTestSimpleLinearRegressionMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-08-27: version 1.0: initial version");

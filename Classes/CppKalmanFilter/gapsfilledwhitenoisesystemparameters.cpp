@@ -7,7 +7,7 @@
 #include "standardwhitenoisesystemparameters.h"
 #include "trace.h"
 
-GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemParameters(
+ribi::GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const boost::numeric::ublas::vector<int>& measurement_frequency,
@@ -21,7 +21,7 @@ GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemParameters(
       real_process_noise,
       state_transition
     ),
-    m_measurement_frequency(measurement_frequency)
+    m_measurement_frequency{measurement_frequency}
 {
   #ifndef NDEBUG
   Test();
@@ -45,7 +45,7 @@ GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemParameters(
 }
 
 #ifndef NDEBUG
-void GapsFilledWhiteNoiseSystemParameters::Test()
+void ribi::GapsFilledWhiteNoiseSystemParameters::Test()
 {
   {
     static bool is_tested = false;

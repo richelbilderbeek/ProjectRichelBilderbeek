@@ -19,18 +19,25 @@
 template <class Angle, class Length>
 struct PolarCoordinat
 {
-  PolarCoordinat(const Angle& angle, const Length& length);
-  PolarCoordinat(const Length& x, const Length& y);
+  explicit PolarCoordinat(const Angle& angle, const Length& length);
+  explicit PolarCoordinat(const Length& x, const Length& y);
 
-  ///Add a polar coordinat
+  ///Add a polar coordinat by putting the second's tail on the
+  ///head of this PolarCoordinat
   PolarCoordinat& operator+=(const PolarCoordinat& pc);
 
   static const Angle CalcAngle(const Length& dx, const Length& dy);
 
   static const Length CalcLength(const Length& dx, const Length& dy);
 
+  ///Get the angle of this polar coordinat
+  ///0.0 pi rad = 12 o'clock
+  ///0.5 pi rad =  3 o'clock
+  ///1.0 pi rad =  6 o'clock
+  ///1.5 pi rad =  9 o'clock
   const Angle& GetAngle() const { return m_angle; }
 
+  ///Get the length of this coordinat, which equals its distance to the origin
   const Length& GetLength() const { return m_length; }
 
   void SetAngle(const Angle& angle) { m_angle = angle; }

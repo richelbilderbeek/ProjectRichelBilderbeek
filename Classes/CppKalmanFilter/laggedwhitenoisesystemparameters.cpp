@@ -5,7 +5,7 @@
 #include <cassert>
 #include "standardwhitenoisesystemparameters.h"
 
-LaggedWhiteNoiseSystemParameters::LaggedWhiteNoiseSystemParameters(
+ribi::LaggedWhiteNoiseSystemParameters::LaggedWhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const int lag,
@@ -19,7 +19,7 @@ LaggedWhiteNoiseSystemParameters::LaggedWhiteNoiseSystemParameters(
       real_process_noise,
       state_transition
     ),
-    m_lag(lag)
+    m_lag{lag}
 {
   assert(lag >= 0);
 }

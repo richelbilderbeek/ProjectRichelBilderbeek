@@ -19,6 +19,8 @@ namespace Ui {
   class QtKalmanFiltererParameterDialog;
 }
 
+namespace ribi {
+
 ///Dialog for a parameter, stores a QtKalmanFiltererParameterDialog::ValueType
 class QtKalmanFiltererParameterDialog : public QDialog
 {
@@ -49,5 +51,7 @@ private:
 private slots:
   void OnModelSizeChanged();
 };
+
+} //~namespace ribi
 
 #endif // QTKALMANFILTERERPARAMETERDIALOG

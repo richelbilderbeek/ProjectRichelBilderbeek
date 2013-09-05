@@ -18,19 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestAbout.htm
 //---------------------------------------------------------------------------
-#include <QtGlobal>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QApplication>
-#else
-#include <QApplication>
-#endif
-
 #include "qttestaboutmaindialog.h"
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtTestAboutMainDialog w;
+  ribi::QtTestAboutMainDialog w;
   w.show();
   return a.exec();
 }

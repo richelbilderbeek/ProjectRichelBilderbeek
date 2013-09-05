@@ -9,6 +9,8 @@
 #include "laggedwhitenoisesystemparameters.h"
 #include "standardwhitenoisesystem.h"
 
+namespace ribi {
+
 ///A lagged white noise system is a system that can be measured only after a certain number
 ///of periods.
 struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
@@ -37,7 +39,7 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
 
   private:
   ///LaggedWhiteNoiseSystem must be created with a LaggedWhiteNoiseSystemFactory
-  LaggedWhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& white_noise_system_parameters);
+  explicit LaggedWhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& white_noise_system_parameters);
   friend class LaggedWhiteNoiseSystemFactory;
 
   ///Can only be deleted by boost::checked_delete
@@ -59,5 +61,7 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // LAGGEDWHITENOISESYSTEM_H

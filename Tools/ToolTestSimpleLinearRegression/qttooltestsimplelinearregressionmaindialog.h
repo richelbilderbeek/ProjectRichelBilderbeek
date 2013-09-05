@@ -12,6 +12,8 @@ namespace Ui {
   class QtToolTestSimpleLinearRegressionMainDialog;
 }
 
+namespace ribi {
+
 class QtToolTestSimpleLinearRegressionMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -40,5 +42,7 @@ private:
 
   void Plot();
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLTESTAPPROXIMATORMAINDIALOG_H

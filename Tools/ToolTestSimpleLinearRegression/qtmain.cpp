@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   START_TRACE();
-  QtToolTestSimpleLinearRegressionMenuDialog d;
+  ribi::QtToolTestSimpleLinearRegressionMenuDialog d;
   d.show();
   return a.exec();
 }

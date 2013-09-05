@@ -10,14 +10,14 @@
 
 #include "ui_qtkalmanfiltercalculationdialog.h"
 
-QtKalmanFilterCalculationDialog::QtKalmanFilterCalculationDialog(QWidget *parent) :
+ribi::QtKalmanFilterCalculationDialog::QtKalmanFilterCalculationDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtKalmanFilterCalculationDialog)
 {
   ui->setupUi(this);
 }
 
-QtKalmanFilterCalculationDialog::~QtKalmanFilterCalculationDialog()
+ribi::QtKalmanFilterCalculationDialog::~QtKalmanFilterCalculationDialog()
 {
   delete ui;
 }

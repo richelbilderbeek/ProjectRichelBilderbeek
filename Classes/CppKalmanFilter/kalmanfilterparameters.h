@@ -11,6 +11,8 @@
 #include "kalmanfiltertype.h"
 #include "kalmanfilterparametertype.h"
 
+namespace ribi {
+
 ///ABC for the parameters every Kalman filter needs at least
 struct KalmanFilterParameters : public boost::noncopyable
 {
@@ -42,7 +44,7 @@ struct KalmanFilterParameters : public boost::noncopyable
 
   protected:
   ///An ABC can only be constructed by derived classes
-  KalmanFilterParameters(
+  explicit KalmanFilterParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state_estimate,
     const boost::numeric::ublas::matrix<double>& observation,
@@ -63,5 +65,7 @@ struct KalmanFilterParameters : public boost::noncopyable
   const boost::numeric::ublas::matrix<double> m_state_transition;
 
 };
+
+} //~namespace ribi
 
 #endif // KALMANFILTERPARAMETERS_H

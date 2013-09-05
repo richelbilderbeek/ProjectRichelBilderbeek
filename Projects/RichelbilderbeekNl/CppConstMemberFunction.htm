@@ -20,15 +20,15 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppConstMemberFunction.htm">const member function</a></h1>
 <p>&nbsp;</p>
-<p>A <a href="CppConstMemberFunction.htm">const member function</a> is a <a href="CppMemberFunction.htm">member function</a> that is <a href="CppConst.htm">const</a> will not change the value of its <a href="CppClass.htm">class</a> <a href="CppMember.htm">members</a> when called.</p>
+<p>
+  A <a href="CppConstMemberFunction.htm">const member function</a> is a type of <a href="CppMemberFunction.htm">member function</a> 
+  that will not change the value of its <a href="CppClass.htm">class</a> <a href="CppMember.htm">members</a> when called.
+</p>
 <p>&nbsp;</p>
 <p>In <a href="CppClassDesign.htm">class design</a>, a <a href="CppConstMemberFunction.htm">const member function</a> reflects a read-only method.</p>
 <p>&nbsp;</p>
-<p>Consider making all getters const methods.</p>
-<p>&nbsp;</p>
 <p><a href="CppExerciseTheManyTypesOfConst.htm">Exercise 5: the many types of const</a> is an exercise about the many types of <a href="CppConst.htm">const</a>.</p>
 <p>&nbsp;</p>
-<p><a href="CppAvoidDuplicationInConstAndNonConstMemberFunctions.htm">Avoid duplication in const and non-const member functions</a> [7][8].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -81,7 +81,23 @@
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>Use const whenever possible [1-5].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Use <a href="CppConst.htm">const</a> whenever possible [1-5]
+  </li>
+  <li>
+    Declare a <a href="CppMemberFunction.htm">member function</a> that does not modify the state of its object a <a href="CppConstMemberFunction.htm">const member function</a> [9,10]
+  </li>
+  <li>
+    <a href="CppAvoidDuplicationInConstAndNonConstMemberFunctions.htm">Avoid duplication in const and non-const member functions</a> [7,8]
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -90,14 +106,16 @@
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 7.9.3: 'Use const extensively and consistently'</li>
-  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 3: 'Use const whenever possible'</li>
-  <li><a href="CppJarrodHollingworth.htm">Jarrod Hollingworth</a>, <a href="CppBobSwart.htm">Bob Swart</a>, <a href="CppMarkCashman.htm">Mark Cashman</a>, <a href="CppPaulGustavson.htm">Paul Gustavson</a>. Sams C++ Builder 6 Developer's Guide. ISBN: 0-672-32480-6. Chapter 3: 'Understand and use const in your code'</li>
-  <li><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. 2001. ISBN: 0-672-32224-2. Hour 8, chapter 'Const member functions': 'Use const whenever possible.'</li>
-  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 2: 'Prefer consts, enums and inlines to #defines'</li>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 15: 'Use const proactively'</li>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 94: 'Avoid casting away const', item 'Exceptions'</li>
-  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 3, paragraph 'Avoid duplication in const and non-const member functions'</li>
+  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 7.9.3: 'Use const extensively and consistently'</li>
+  <li><!--  2 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 3: 'Use const whenever possible'</li>
+  <li><!--  3 --><a href="CppJarrodHollingworth.htm">Jarrod Hollingworth</a>, <a href="CppBobSwart.htm">Bob Swart</a>, <a href="CppMarkCashman.htm">Mark Cashman</a>, <a href="CppPaulGustavson.htm">Paul Gustavson</a>. Sams C++ Builder 6 Developer's Guide. ISBN: 0-672-32480-6. Chapter 3: 'Understand and use const in your code'</li>
+  <li><!--  4 --><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. 2001. ISBN: 0-672-32224-2. Hour 8, chapter 'Const member functions': 'Use const whenever possible.'</li>
+  <li><!--  5 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 2: 'Prefer consts, enums and inlines to #defines'</li>
+  <li><!--  6 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 15: 'Use const proactively'</li>
+  <li><!--  7 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 94: 'Avoid casting away const', item 'Exceptions'</li>
+  <li><!--  8 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 3, paragraph 'Avoid duplication in const and non-const member functions'</li>
+  <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[6] Declare a member function that does not modify the state of its object const'</li>
+  <li><!-- 10 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[10] Make a member function that doesn't modify the value of an object a const member function'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

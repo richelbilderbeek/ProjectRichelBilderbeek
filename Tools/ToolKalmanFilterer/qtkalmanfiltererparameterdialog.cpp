@@ -34,7 +34,7 @@
 #include "trace.h"
 #include "ui_qtkalmanfiltererparameterdialog.h"
 
-QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
+ribi::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
   const std::string& parameter_name,
   const std::string& parameter_description,
   QAbstractTableModel * const model,
@@ -60,18 +60,18 @@ QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
     this,SLOT(OnModelSizeChanged()));
 }
 
-QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
+ribi::QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
 {
   delete ui;
 }
 
-void QtKalmanFiltererParameterDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtKalmanFiltererParameterDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
   QDialog::keyPressEvent(event);
 }
 
-const std::string QtKalmanFiltererParameterDialog::ToHtml() const
+const std::string ribi::QtKalmanFiltererParameterDialog::ToHtml() const
 {
   std::string s;
   s+="<table summary=\"" + ui->label->text().toStdString() + "\" border=\"1\">";
@@ -94,7 +94,7 @@ const std::string QtKalmanFiltererParameterDialog::ToHtml() const
   return s;
 }
 
-void QtKalmanFiltererParameterDialog::OnModelSizeChanged()
+void ribi::QtKalmanFiltererParameterDialog::OnModelSizeChanged()
 {
   ui->table->resizeColumnsToContents();
   ui->table->resizeRowsToContents();

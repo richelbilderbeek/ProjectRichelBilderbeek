@@ -2,11 +2,11 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "kalmanfilter.h"
 
-KalmanFilter::KalmanFilter(
+ribi::KalmanFilter::KalmanFilter(
   const boost::shared_ptr<KalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
-  : m_last_calculation(calculation),
-    m_parameters(parameters)
+  : m_last_calculation{calculation},
+    m_parameters{parameters}
 {
   assert(m_last_calculation);
   assert(m_parameters);
@@ -17,12 +17,12 @@ KalmanFilter::KalmanFilter(
   //  && "Initialize each Kalman filter type with the right type of parameters");
 }
 
-const std::string KalmanFilter::GetVersion()
+const std::string ribi::KalmanFilter::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> KalmanFilter::GetVersionHistory()
+const std::vector<std::string> ribi::KalmanFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-06: version 1.0: initial version");

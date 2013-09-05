@@ -5,7 +5,7 @@
 template <class Length>
 struct Coordinat
 {
-  Coordinat(const Length& x, const Length& y);
+  explicit Coordinat(const Length& x, const Length& y);
 
   const Length& GetX() const { return m_x; }
   const Length& GetY() const { return m_y; }

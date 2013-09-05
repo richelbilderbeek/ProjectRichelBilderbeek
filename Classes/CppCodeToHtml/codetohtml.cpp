@@ -46,10 +46,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-namespace c2h {
-
 #ifndef _WIN32
-bool IsCleanHtml(const std::vector<std::string>& html)
+bool c2h::IsCleanHtml(const std::vector<std::string>& html)
 {
   assert(IsTidyInstalled());
 
@@ -109,7 +107,7 @@ bool IsCleanHtml(const std::vector<std::string>& html)
 #endif
 
 #ifndef _WIN32
-bool IsTidyInstalled()
+bool c2h::IsTidyInstalled()
 {
   const std::string temp_filename_tidy = "tmp_tidy_output.txt";
 
@@ -131,7 +129,7 @@ bool IsTidyInstalled()
 #endif
 
 #ifndef NDEBUG
-void Test()
+void c2h::Test()
 {
   {
     static bool is_tested = false;
@@ -238,7 +236,7 @@ void Test()
 }
 #endif
 
-const std::vector<std::string> ConvertCodeSnippet(
+const std::vector<std::string> c2h::ConvertCodeSnippet(
   const std::vector<std::string>& code,
   const ContentType content_type)
 {
@@ -247,7 +245,7 @@ const std::vector<std::string> ConvertCodeSnippet(
   return content->ToHtml();
 }
 
-const std::vector<std::string> ConvertFile(
+const std::vector<std::string> c2h::ConvertFile(
   const std::string& filename,
   const ContentType content_type)
 {
@@ -256,7 +254,7 @@ const std::vector<std::string> ConvertFile(
   return content->ToHtml();
 }
 
-const std::vector<std::string> ConvertFiles(const std::string& foldername)
+const std::vector<std::string> c2h::ConvertFiles(const std::string& foldername)
 {
   std::vector<std::string> v;
   {
@@ -274,7 +272,7 @@ const std::vector<std::string> ConvertFiles(const std::string& foldername)
   return v;
 }
 
-const std::vector<std::string> ConvertFolder(
+const std::vector<std::string> c2h::ConvertFolder(
   const std::string& foldername,
   const PageType page_type)
 {
@@ -314,10 +312,10 @@ const std::vector<std::string> ConvertFolder(
   return v;
 }
 
-const std::vector<std::string> ConvertProject(const std::string& filename)
+const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
 {
   assert(GetExtension(filename) == ".pro");
-  boost::shared_ptr<QtCreatorProFile> pro_file(new QtCreatorProFile(filename));
+  boost::shared_ptr<ribi::QtCreatorProFile> pro_file(new ribi::QtCreatorProFile(filename));
 
   std::vector<std::string> v;
   {
@@ -333,8 +331,8 @@ const std::vector<std::string> ConvertProject(const std::string& filename)
   }
   //Obtain all files with a full path
   {
-    const boost::shared_ptr<QtCreatorProFileZipScript> script(
-      new QtCreatorProFileZipScript(pro_file));
+    const boost::shared_ptr<ribi::QtCreatorProFileZipScript> script(
+      new ribi::QtCreatorProFileZipScript(pro_file));
 
     const auto files = script->GetFilenames();
     std::for_each(files.begin(),files.end(),
@@ -353,7 +351,7 @@ const std::vector<std::string> ConvertProject(const std::string& filename)
   return v;
 }
 
-const std::vector<std::string> FileToVector(const std::string& filename)
+const std::vector<std::string> c2h::FileToVector(const std::string& filename)
 {
   TRACE_FUNC();
   TRACE(filename);
@@ -377,7 +375,7 @@ const std::vector<std::string> FileToVector(const std::string& filename)
   return v;
 }
 
-const std::string GetExtension(const std::string& filename)
+const std::string c2h::GetExtension(const std::string& filename)
 {
   const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
@@ -392,7 +390,7 @@ const std::string GetExtension(const std::string& filename)
   return "";
 }
 
-const std::string GetFileBasename(const std::string& filename)
+const std::string c2h::GetFileBasename(const std::string& filename)
 {
   const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
@@ -407,7 +405,7 @@ const std::string GetFileBasename(const std::string& filename)
   return "";
 }
 
-const std::vector<std::string> GetFilesInFolder(const std::string& folder)
+const std::vector<std::string> c2h::GetFilesInFolder(const std::string& folder)
 {
   QDir dir(folder.c_str());
   dir.setFilter(QDir::Files);
@@ -424,7 +422,7 @@ const std::vector<std::string> GetFilesInFolder(const std::string& folder)
   return v;
 }
 
-const std::vector<std::string> GetFilesInFolderByRegex(
+const std::vector<std::string> c2h::GetFilesInFolderByRegex(
   const std::string& folder,
   const std::string& regex_str)
 {
@@ -449,7 +447,7 @@ const std::vector<std::string> GetFilesInFolderByRegex(
   return w;
 }
 
-const std::string GetPath(const std::string& filename)
+const std::string c2h::GetPath(const std::string& filename)
 {
   const int a = filename.rfind("\\",filename.size());
   const int b = filename.rfind("/",filename.size());
@@ -458,20 +456,20 @@ const std::string GetPath(const std::string& filename)
   return filename.substr(0,i);
 }
 
-const std::vector<std::string> GetProFilesInFolder(
+const std::vector<std::string> c2h::GetProFilesInFolder(
   const std::string& folder)
 {
   return GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
 }
 
-const std::vector<std::string> GetSortedFilesInFolder(const std::string& folder)
+const std::vector<std::string> c2h::GetSortedFilesInFolder(const std::string& folder)
 {
   std::vector<std::string> files = FilterFiles(GetFilesInFolder(folder));
   files = SortFiles(files);
   return files;
 }
 
-const std::vector<std::string> FilterFiles(const std::vector<std::string>& files)
+const std::vector<std::string> c2h::FilterFiles(const std::vector<std::string>& files)
 {
   std::vector<std::string> v;
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
@@ -491,18 +489,18 @@ const std::vector<std::string> FilterFiles(const std::vector<std::string>& files
   return v;
 }
 
-bool IsFolder(const std::string& filename)
+bool c2h::IsFolder(const std::string& filename)
 {
   return QDir(filename.c_str()).exists();
 }
 
-bool IsRegularFile(const std::string& filename)
+bool c2h::IsRegularFile(const std::string& filename)
 {
   return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }
 
 
-const std::vector<std::string> SortFiles(std::vector<std::string> files)
+const std::vector<std::string> c2h::SortFiles(std::vector<std::string> files)
 {
   std::sort(files.begin(), files.end(),
     [](const std::string& lhs,const std::string& rhs)
@@ -582,8 +580,5 @@ const std::vector<std::string> SortFiles(std::vector<std::string> files)
       return false;
     }
   );
-
   return files;
 }
-
-} //~namespace c2h

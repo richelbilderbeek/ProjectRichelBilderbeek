@@ -15,6 +15,8 @@ namespace Ui {
   class QtStateObserverMainDialog;
 }
 
+namespace ribi {
+
 class QtStateObserverMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -50,5 +52,7 @@ private:
   QwtPlotCurve * const m_curve_outputs_ma;
   QwtPlotCurve * const m_curve_outputs_miso;
 };
+
+} //~namespace ribi
 
 #endif // QTSTATEOBSERVERMAINDIALOG_H

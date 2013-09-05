@@ -11,6 +11,8 @@
 
 struct QTableWidget;
 
+namespace ribi {
+
 ///Helper class for matrix operations
 struct QtMatrix
 {
@@ -44,5 +46,7 @@ struct QtMatrix
   ///Write a uBLAS vector of doubles to a QTableWidget
   static void UblasVectorDoubleToTable(const boost::numeric::ublas::vector<double>& v, QTableWidget * const table);
 };
+
+} //~namespace ribi
 
 #endif // QTMATRIX_H

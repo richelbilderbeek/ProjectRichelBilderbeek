@@ -31,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent)
+ribi::QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent)
   : QAbstractTableModel(parent)
 {
   #ifndef NDEBUG
@@ -39,12 +39,12 @@ QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent)
   #endif
 }
 
-int QtUblasVectorDoubleModel::columnCount(const QModelIndex &) const
+int ribi::QtUblasVectorDoubleModel::columnCount(const QModelIndex &) const
 {
   return rowCount() > 0 ? 1 : 0;
 }
 
-QVariant QtUblasVectorDoubleModel::data(const QModelIndex &index, int role) const
+QVariant ribi::QtUblasVectorDoubleModel::data(const QModelIndex &index, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole && role != Qt::DisplayRole) return QVariant();
@@ -72,7 +72,7 @@ QVariant QtUblasVectorDoubleModel::data(const QModelIndex &index, int role) cons
 
 }
 
-Qt::ItemFlags QtUblasVectorDoubleModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtUblasVectorDoubleModel::flags(const QModelIndex &) const
 {
   return
     Qt::ItemIsSelectable
@@ -82,12 +82,12 @@ Qt::ItemFlags QtUblasVectorDoubleModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string QtUblasVectorDoubleModel::GetVersion()
+const std::string ribi::QtUblasVectorDoubleModel::GetVersion()
 {
   return "1.5";
 }
 
-const std::vector<std::string> QtUblasVectorDoubleModel::GetVersionHistory()
+const std::vector<std::string> ribi::QtUblasVectorDoubleModel::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-15: version 1.0: initial version");
@@ -99,7 +99,7 @@ const std::vector<std::string> QtUblasVectorDoubleModel::GetVersionHistory()
   return v;
 }
 
-QVariant QtUblasVectorDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ribi::QtUblasVectorDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole && role != Qt::DisplayRole) return QVariant();
@@ -123,7 +123,7 @@ QVariant QtUblasVectorDoubleModel::headerData(int section, Qt::Orientation orien
   }
 }
 
-bool QtUblasVectorDoubleModel::insertRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtUblasVectorDoubleModel::insertRows(int row, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginInsertRows(parent,row,row+count-1);
@@ -148,7 +148,7 @@ bool QtUblasVectorDoubleModel::insertRows(int row, int count, const QModelIndex 
   return true;
 }
 
-bool QtUblasVectorDoubleModel::removeRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtUblasVectorDoubleModel::removeRows(int row, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginRemoveRows(parent,row,row+count-1);
@@ -169,14 +169,14 @@ bool QtUblasVectorDoubleModel::removeRows(int row, int count, const QModelIndex 
   return true;
 }
 
-int QtUblasVectorDoubleModel::rowCount(const QModelIndex &) const
+int ribi::QtUblasVectorDoubleModel::rowCount(const QModelIndex &) const
 {
   assert(m_data.size() == m_header_vertical_text.size());
   return boost::numeric_cast<int>(m_data.size());
 }
 
 
-bool QtUblasVectorDoubleModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
+bool ribi::QtUblasVectorDoubleModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
 {
   const int row = index.row();
 
@@ -195,7 +195,7 @@ bool QtUblasVectorDoubleModel::setData(const QModelIndex &index, const QVariant 
   return true;
 }
 
-bool QtUblasVectorDoubleModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
+bool ribi::QtUblasVectorDoubleModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
 {
   if (orientation == Qt::Horizontal)
   {
@@ -220,7 +220,7 @@ bool QtUblasVectorDoubleModel::setHeaderData(int section, Qt::Orientation orient
   }
 }
 
-void QtUblasVectorDoubleModel::SetHeaderData(
+void ribi::QtUblasVectorDoubleModel::SetHeaderData(
   const std::string& horizontal_header_text, const std::vector<std::string>& vertical_header_text)
 {
   if (m_header_horizontal_text != horizontal_header_text)
@@ -263,7 +263,7 @@ void QtUblasVectorDoubleModel::SetHeaderData(
   assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
 }
 
-void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<double>& data)
+void ribi::QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<double>& data)
 {
   if (!Matrix::VectorsDoubleAreEqual(m_data,data))
   {
@@ -299,14 +299,14 @@ void QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector<do
 }
 
 #ifndef NDEBUG
-void QtUblasVectorDoubleModel::Test()
+void ribi::QtUblasVectorDoubleModel::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started QtUblasVectorDoubleModel::Test");
+  TRACE("Started ribi::QtUblasVectorDoubleModel::Test");
   {
     QtUblasVectorDoubleModel model;
     assert(model.rowCount()    == 0);
@@ -318,6 +318,6 @@ void QtUblasVectorDoubleModel::Test()
     assert(model.rowCount()    == 0);
     assert(model.columnCount() == 0);
   }
-  TRACE("Finished QtUblasVectorDoubleModel::Test successfully");
+  TRACE("Finished ribi::QtUblasVectorDoubleModel::Test successfully");
 }
 #endif

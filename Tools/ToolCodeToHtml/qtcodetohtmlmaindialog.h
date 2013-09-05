@@ -38,6 +38,8 @@ namespace Ui {
   class QtCodeToHtmlMainDialog;
 }
 
+namespace ribi {
+
 class QtCodeToHtmlMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -47,7 +49,6 @@ public:
   ~QtCodeToHtmlMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
   void keyPressEvent(QKeyEvent *);
 
 private:
@@ -73,7 +74,6 @@ private slots:
   ///Respond to click on Convert button
   void on_button_convert_clicked();
 
-
   void on_tab_source_currentChanged(int index);
 
   ///Respond to a change in the edit containing the source file or source folder
@@ -84,5 +84,7 @@ private slots:
   #endif
 
 };
+
+} //~namespace ribi
 
 #endif // QTCODETOHTMLMAINDIALOG_H

@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtconnectthreegamedialog.h"
@@ -36,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreewidget.h"
 #include "qtshowwinnerdialog.h"
 
-QtConnectThreeGameDialog::QtConnectThreeGameDialog(
+ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   const boost::shared_ptr<const ConnectThreeResources> resources,
   QWidget *parent,
   const std::bitset<3>& is_player_human)
@@ -64,7 +62,7 @@ QtConnectThreeGameDialog::QtConnectThreeGameDialog(
 
   m_board->m_signal_valid_move.connect(
     boost::bind(
-      &QtConnectThreeGameDialog::OnValidMove,
+      &ribi::QtConnectThreeGameDialog::OnValidMove,
       this));
 
   //Put the dialog in the screen center
@@ -76,12 +74,12 @@ QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   OnValidMove(); //Draw screen
 }
 
-QtConnectThreeGameDialog::~QtConnectThreeGameDialog()
+ribi::QtConnectThreeGameDialog::~QtConnectThreeGameDialog()
 {
   delete ui;
 }
 
-void QtConnectThreeGameDialog::DoComputerTurn()
+void ribi::QtConnectThreeGameDialog::DoComputerTurn()
 {
   this->m_board->DoComputerTurn();
   OnValidMove();
@@ -90,7 +88,7 @@ void QtConnectThreeGameDialog::DoComputerTurn()
 ///OnValidMove is called after a valid move. The game
 ///is either terminated, or the next player can do
 ///his/her move.
-void QtConnectThreeGameDialog::OnValidMove()
+void ribi::QtConnectThreeGameDialog::OnValidMove()
 {
   if (m_board->GetWinner() == ConnectThree::no_player)
   {

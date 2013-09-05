@@ -4,10 +4,12 @@
 #include <boost/checked_delete.hpp>
 #include "kalmanfilterparameters.h"
 
+namespace ribi {
+
 ///Parameters for the standard Kalman filter
 struct SteadyStateKalmanFilterParameters : public KalmanFilterParameters
 {
-  SteadyStateKalmanFilterParameters(
+  explicit SteadyStateKalmanFilterParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::matrix<double>& estimated_optimal_kalman_gain,
     const boost::numeric::ublas::vector<double>& initial_state_estimate,
@@ -50,5 +52,7 @@ struct SteadyStateKalmanFilterParameters : public KalmanFilterParameters
   ///K: Estimated optimal Kalman gain
   const boost::numeric::ublas::matrix<double> m_estimated_optimal_kalman_gain;
 };
+
+} //~namespace ribi
 
 #endif // STEADYSTATEKALMANFILTERPARAMETERS_H

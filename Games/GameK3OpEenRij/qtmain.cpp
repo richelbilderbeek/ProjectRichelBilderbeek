@@ -18,12 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
-#include <qglobal.h>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-  #include <QApplication>
-#else
-  #include <QApplication>
-#endif
+#include <QApplication>
 
 #include <boost/shared_ptr.hpp>
 
@@ -79,11 +74,11 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
   START_TRACE();
-  const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
-  QtK3OpEenRijMenuDialog w(resources);
+  const boost::shared_ptr<const ribi::QtK3OpEenRijResources> resources(new ribi::QtK3OpEenRijResources);
+  ribi::QtK3OpEenRijMenuDialog w(resources);
 
   {
-    const QtK3OpEenRijResources resources2;
+    const ribi::QtK3OpEenRijResources resources2;
     const std::string icon_filename = resources2.GetIconFilename();
     assert(QFile::exists(icon_filename.c_str()));
     qApp->setWindowIcon(QIcon(QPixmap(icon_filename.c_str())));

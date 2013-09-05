@@ -14,27 +14,32 @@
 
 #include "ui_qttooltestapproximatorxyzmaindialog.h"
 
-QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(QWidget *parent) :
+ribi::QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestApproximatorXyzMainDialog),
   m_approximator(),
-  m_curve_approximation(new QwtPlotCurve),
-  m_curve_values(new QwtPlotCurve),
+  m_data(CreateData())
+/*
+  m_curve_approximation_z_high(new QwtPlotCurve),
+  m_curve_approximation_z_low(new QwtPlotCurve),
+  m_curve_approximation_z_mid(new QwtPlotCurve),
+  m_curve_values_z_high(new QwtPlotCurve),
+  m_curve_values_z_low(new QwtPlotCurve),
+  m_curve_values_z_mid(new QwtPlotCurve),
   m_plot_z_high(new QwtPlot),
   m_plot_z_low(new QwtPlot),
   m_plot_z_mid(new QwtPlot)
+*/
 {
   ui->setupUi(this);
 
-  //Set up the plot
-  assert(m_plot_z_low);
-  assert(m_plot_z_mid);
-  assert(m_plot_z_high);
-  m_plot_z_low->setTitle("Approximator, for z = 0.0");
-  m_plot_z_mid->setTitle("Approximator, for z = 0.5");
-  m_plot_z_high->setTitle("Approximator, for z = 1.0");
-  for (QwtPlot * const plot: { m_plot_z_low, m_plot_z_mid, m_plot_z_high } )
+  //Set up the plots and curves
+  GetPlot(0)->setTitle("Approximator, for z = 0.0");
+  GetPlot(1)->setTitle("Approximator, for z = 0.5");
+  GetPlot(2)->setTitle("Approximator, for z = 1.0");
+  for (auto i=0; i!=m_n_curves; ++i)
   {
+    const auto plot = GetPlot(i);
     plot->setAxisTitle(QwtPlot::xBottom,"X");
     plot->setAxisTitle(QwtPlot::yLeft,"Y");
     #ifdef _WIN32
@@ -42,50 +47,56 @@ QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(QWidget
     #else
     plot->setCanvasBackground(QColor(255,255,255));
     #endif
+
+    const auto curve_values = GetCurveValues(i);
+    assert(curve_values);
+    curve_values->setTitle("Points");
+    curve_values->attach(plot.get());
+    curve_values->setStyle(QwtPlotCurve::Dots);
+    curve_values->setPen(QPen(QColor(255,0,0),5));
+
+    const auto curve_approximation = GetCurveApproximation(i);
+    assert(curve_approximation);
+    curve_approximation->setTitle("Approximation");
+    curve_approximation->attach(plot.get());
+    curve_approximation->setStyle(QwtPlotCurve::Dots);
+    curve_approximation->setPen(QPen(QColor(0,0,255),3));
+
+    //Add grid
+    {
+      QwtPlotGrid * const grid = new QwtPlotGrid;
+      grid->setPen(QPen(QColor(128,128,128)));
+      grid->attach(plot.get());
+    }
+    //Add zoomer
+    {
+      new QwtPlotZoomer(plot->canvas());
+    }
+    //Add legend
+    {
+      QwtLegend * const legend = new QwtLegend;
+      legend->setFrameStyle(QFrame::Box|QFrame::Sunken);
+      plot->insertLegend(legend, QwtPlot::RightLegend);
+    }
+
+    plot->setAxisScale(
+      QwtPlot::xBottom,
+      static_cast<double>(ui->box_int_x->minimum()),
+      static_cast<double>(ui->box_int_x->maximum())
+    );
+    plot->setAxisScale(
+      QwtPlot::yLeft,
+      static_cast<double>(ui->box_double_y->minimum()),
+      static_cast<double>(ui->box_double_y->maximum())
+    );
+
+    //Add to QDialog
+    assert(ui->verticalLayout->layout());
+    ui->verticalLayout->layout()->addWidget(plot.get());
   }
 
-  //Create plots
-  assert(m_curve_values);
-  m_curve_values->setTitle("Points");
-  m_curve_values->attach(m_plot.get());
-  m_curve_values->setStyle(QwtPlotCurve::Dots);
-  m_curve_values->setPen(QPen(QColor(255,0,0),5));
 
-  assert(m_curve_approximation);
-  m_curve_approximation->setTitle("Approximation");
-  m_curve_approximation->attach(m_plot.get());
-  m_curve_approximation->setStyle(QwtPlotCurve::Dots);
-  m_curve_approximation->setPen(QPen(QColor(0,0,255),3));
 
-  //Add grid
-  {
-    QwtPlotGrid * const grid = new QwtPlotGrid;
-    grid->setPen(QPen(QColor(128,128,128)));
-    grid->attach(m_plot.get());
-  }
-  //Add zoomer
-  {
-    new QwtPlotZoomer(m_plot->canvas());
-  }
-  {
-    // legend
-    QwtLegend * const legend = new QwtLegend;
-    legend->setFrameStyle(QFrame::Box|QFrame::Sunken);
-    m_plot->insertLegend(legend, QwtPlot::RightLegend);
-  }
-  assert(ui->verticalLayout->layout());
-  ui->verticalLayout->layout()->addWidget(m_plot.get());
-
-  m_plot->setAxisScale(
-    QwtPlot::xBottom,
-    static_cast<double>(ui->box_int_x->minimum()),
-    static_cast<double>(ui->box_int_x->maximum())
-  );
-  m_plot->setAxisScale(
-    QwtPlot::yLeft,
-    static_cast<double>(ui->box_double_y->minimum()),
-    static_cast<double>(ui->box_double_y->maximum())
-  );
 
   //Add some nice testing values
   ui->box_int_x->setValue(ui->box_int_x->minimum() / 2);
@@ -108,38 +119,98 @@ QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(QWidget
   ui->box_double_y->setValue(0.0);
 }
 
-QtToolTestApproximatorXyzMainDialog::~QtToolTestApproximatorXyzMainDialog()
+ribi::QtToolTestApproximatorXyzMainDialog::~QtToolTestApproximatorXyzMainDialog()
 {
   delete ui;
 }
 
-void QtToolTestApproximatorXyzMainDialog::on_button_clicked()
+ribi::QtToolTestApproximatorXyzMainDialog::Data
+  ribi::QtToolTestApproximatorXyzMainDialog::CreateData()
 {
-  const int x = ui->box_int_x->value();
+  Data d;
+  for (auto i=0; i!=m_n_curves; ++i)
+  {
+    QwtPlotCurve * const curve_approx { new QwtPlotCurve };
+    QwtPlotCurve * const curve_values { new QwtPlotCurve };
+    boost::shared_ptr<QwtPlot> plot { new QwtPlot };
+    assert(curve_approx);
+    assert(curve_values);
+    assert(plot);
+    d[i] = std::make_tuple(curve_approx,curve_values,plot);
+  }
+  return d;
+}
+
+QwtPlotCurve * ribi::QtToolTestApproximatorXyzMainDialog::GetCurveApproximation(const int i)
+{
+  assert(i >= 0);
+  assert(i < static_cast<int>(m_data.size()));
+  return std::get<0>(m_data[i]);
+}
+
+QwtPlotCurve * ribi::QtToolTestApproximatorXyzMainDialog::GetCurveValues(const int i)
+{
+  assert(i >= 0);
+  assert(i < static_cast<int>(m_data.size()));
+  return std::get<1>(m_data[i]);
+}
+
+const boost::shared_ptr<QwtPlot> ribi::QtToolTestApproximatorXyzMainDialog::GetPlot(const int i)
+{
+  assert(i >= 0);
+  assert(i < static_cast<int>(m_data.size()));
+  const auto p = std::get<2>(m_data[i]);
+  assert(p);
+  return p;
+}
+
+void ribi::QtToolTestApproximatorXyzMainDialog::on_button_clicked()
+{
+  #ifdef TODO_723468346509350397
+  const double x = static_cast<double>(ui->box_int_x->value());
   const double y = ui->box_double_y->value();
-  assert(m_approximator.CanAdd(x,y)
+  const double z = static_cast<double>(ui->box_int_z->value());
+  assert(m_approximator.CanAdd(y, {x,z})
     && "Can only click the button when the pair can be added");
 
   m_approximator.Add(x,y);
   Plot();
+  #endif
 }
 
-void QtToolTestApproximatorXyzMainDialog::on_box_int_x_valueChanged(int)
+void ribi::QtToolTestApproximatorXyzMainDialog::on_box_int_x_valueChanged(int)
 {
+  #ifdef TODO_723468346509350397
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
+  const double z = static_cast<double>(ui->box_int_z->value());
   ui->button->setEnabled( m_approximator.CanAdd(x,y) );
+  #endif
 }
 
-void QtToolTestApproximatorXyzMainDialog::on_box_double_y_valueChanged(double)
+void ribi::QtToolTestApproximatorXyzMainDialog::on_box_double_y_valueChanged(double)
 {
+  #ifdef TODO_723468346509350397
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
+  const double z = static_cast<double>(ui->box_int_z->value());
   ui->button->setEnabled( m_approximator.CanAdd(x,y) );
+  #endif
 }
 
-void QtToolTestApproximatorXyzMainDialog::Plot()
+void ribi::QtToolTestApproximatorXyzMainDialog::on_box_int_z_valueChanged(int)
 {
+  #ifdef TODO_723468346509350397
+  const int x = ui->box_int_x->value();
+  const double y = ui->box_double_y->value();
+  const double z = static_cast<double>(ui->box_int_z->value());
+  ui->button->setEnabled( m_approximator.CanAdd(x,y) );
+  #endif
+}
+
+void ribi::QtToolTestApproximatorXyzMainDialog::Plot()
+{
+  #ifdef TODO_723468346509350397
   //Plot approximation
   {
     std::vector<double> xs;
@@ -187,4 +258,5 @@ void QtToolTestApproximatorXyzMainDialog::Plot()
   }
   assert(m_plot);
   m_plot->replot();
+  #endif
 }

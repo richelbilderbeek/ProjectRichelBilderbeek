@@ -2,29 +2,36 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "standardwhitenoisesystemfactory.h"
 
-const boost::shared_ptr<StandardWhiteNoiseSystem> StandardWhiteNoiseSystemFactory::Create(
-  const boost::numeric::ublas::matrix<double>& control,
-  const boost::numeric::ublas::vector<double>& initial_state,
-  const boost::numeric::ublas::vector<double>& real_measurement_noise,
-  const boost::numeric::ublas::vector<double>& real_process_noise,
-  const boost::numeric::ublas::matrix<double>& state_transition)
+const boost::shared_ptr<ribi::StandardWhiteNoiseSystem>
+  ribi::StandardWhiteNoiseSystemFactory::Create(
+    const boost::numeric::ublas::matrix<double>& control,
+    const boost::numeric::ublas::vector<double>& initial_state,
+    const boost::numeric::ublas::vector<double>& real_measurement_noise,
+    const boost::numeric::ublas::vector<double>& real_process_noise,
+    const boost::numeric::ublas::matrix<double>& state_transition
+  )
 {
-  boost::shared_ptr<const StandardWhiteNoiseSystemParameters> parameters(
+  boost::shared_ptr<const ribi::StandardWhiteNoiseSystemParameters> parameters{
     new StandardWhiteNoiseSystemParameters(
       control,
       initial_state,
       real_measurement_noise,
       real_process_noise,
-      state_transition));
+      state_transition
+    )
+  };
   assert(parameters);
-  const boost::shared_ptr<StandardWhiteNoiseSystem> system(
-    new StandardWhiteNoiseSystem(parameters));
+  const boost::shared_ptr<StandardWhiteNoiseSystem> system{
+    new StandardWhiteNoiseSystem(parameters)
+  };
   assert(system);
   return system;
 }
 
-const boost::shared_ptr<StandardWhiteNoiseSystem> StandardWhiteNoiseSystemFactory::Create(
-  const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters)
+const boost::shared_ptr<ribi::StandardWhiteNoiseSystem>
+  ribi::StandardWhiteNoiseSystemFactory::Create(
+    const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters
+  )
 {
   assert(parameters);
   assert(parameters->GetType() == WhiteNoiseSystemType::standard);

@@ -12,7 +12,7 @@
 #include "trace.h"
 #include "ui_qttooltestapproximatormenudialog.h"
 
-QtToolTestApproximatorMenuDialog::QtToolTestApproximatorMenuDialog(QWidget *parent) :
+ribi::QtToolTestApproximatorMenuDialog::QtToolTestApproximatorMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestApproximatorMenuDialog)
 {
@@ -22,17 +22,17 @@ QtToolTestApproximatorMenuDialog::QtToolTestApproximatorMenuDialog(QWidget *pare
   ui->setupUi(this);
 }
 
-QtToolTestApproximatorMenuDialog::~QtToolTestApproximatorMenuDialog()
+ribi::QtToolTestApproximatorMenuDialog::~QtToolTestApproximatorMenuDialog()
 {
   delete ui;
 }
 
-void QtToolTestApproximatorMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtToolTestApproximatorMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtToolTestApproximatorMenuDialog::on_button_about_clicked()
+void ribi::QtToolTestApproximatorMenuDialog::on_button_about_clicked()
 {
   About a = ToolTestApproximatorMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -44,34 +44,34 @@ void QtToolTestApproximatorMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtToolTestApproximatorMenuDialog::on_button_quit_clicked()
+void ribi::QtToolTestApproximatorMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtToolTestApproximatorMenuDialog::on_button_start_xy_clicked()
+void ribi::QtToolTestApproximatorMenuDialog::on_button_start_xy_clicked()
 {
   QtToolTestApproximatorXyMainDialog d;
   ShowChild(&d);
 }
 
-void QtToolTestApproximatorMenuDialog::on_button_start_xyz_clicked()
+void ribi::QtToolTestApproximatorMenuDialog::on_button_start_xyz_clicked()
 {
   //QtToolTestApproximatorXyzMainDialog d;
   //ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void QtToolTestApproximatorMenuDialog::Test()
+void ribi::QtToolTestApproximatorMenuDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtToolTestApproximatorMenuDialog::Test");
+  TRACE("Starting ribi::QtToolTestApproximatorMenuDialog::Test");
   QtToolTestApproximatorXyMainDialog();
   //QtToolTestApproximatorMainXyzDialog();
-  TRACE("Finished QtToolTestApproximatorMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtToolTestApproximatorMenuDialog::Test successfully");
 }
 #endif

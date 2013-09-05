@@ -7,13 +7,13 @@
 #include "matrix.h"
 #include "trace.h"
 
-StandardKalmanFilter::StandardKalmanFilter(
+ribi::StandardKalmanFilter::StandardKalmanFilter(
   const boost::shared_ptr<StandardKalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters
   )
-  : KalmanFilter(calculation,parameters),
-    m_last_standard_calculation(boost::dynamic_pointer_cast<StandardKalmanFilterCalculationElements>(calculation)),
-    m_standard_parameters(boost::dynamic_pointer_cast<const StandardKalmanFilterParameters>(parameters))
+  : KalmanFilter{calculation,parameters},
+    m_last_standard_calculation{boost::dynamic_pointer_cast<StandardKalmanFilterCalculationElements>(calculation)},
+    m_standard_parameters{boost::dynamic_pointer_cast<const StandardKalmanFilterParameters>(parameters)}
 {
   assert(m_last_standard_calculation);
   assert(m_standard_parameters);
@@ -49,25 +49,25 @@ StandardKalmanFilter::StandardKalmanFilter(
   #endif
 }
 
-int StandardKalmanFilter::GetStateSize() const
+int ribi::StandardKalmanFilter::GetStateSize() const
 {
   const int sz = boost::numeric_cast<int>(m_state_estimate.size());
   return sz;
 }
 
-const std::string StandardKalmanFilter::GetVersion()
+const std::string ribi::StandardKalmanFilter::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> StandardKalmanFilter::GetVersionHistory()
+const std::vector<std::string> ribi::StandardKalmanFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
   return v;
 }
 
-const boost::numeric::ublas::vector<double> StandardKalmanFilter::PredictState(
+const boost::numeric::ublas::vector<double> ribi::StandardKalmanFilter::PredictState(
   const boost::numeric::ublas::vector<double>& input) const
 {
   const boost::numeric::ublas::vector<double> state_prediction
@@ -76,7 +76,7 @@ const boost::numeric::ublas::vector<double> StandardKalmanFilter::PredictState(
   return state_prediction;
 }
 
-const boost::numeric::ublas::matrix<double> StandardKalmanFilter::PredictCovariance() const
+const boost::numeric::ublas::matrix<double> ribi::StandardKalmanFilter::PredictCovariance() const
 {
   const boost::numeric::ublas::matrix<double> covariance_prediction
     = Matrix::MultiProd(
@@ -89,7 +89,7 @@ const boost::numeric::ublas::matrix<double> StandardKalmanFilter::PredictCovaria
 }
 
 
-void StandardKalmanFilter::SupplyMeasurementAndInput(
+void ribi::StandardKalmanFilter::SupplyMeasurementAndInput(
   const boost::numeric::ublas::vector<double>& measurements,
   const boost::numeric::ublas::vector<double>& input)
 {

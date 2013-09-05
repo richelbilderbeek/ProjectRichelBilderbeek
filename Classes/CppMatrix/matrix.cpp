@@ -36,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-double Matrix::CalcDeterminant(boost::numeric::ublas::matrix<double> m)
+double ribi::Matrix::CalcDeterminant(boost::numeric::ublas::matrix<double> m)
 {
   assert(m.size1() == m.size2() && "Can only calculate the determinant of square matrices");
   boost::numeric::ublas::permutation_matrix<std::size_t> pivots(m.size1() );
@@ -58,7 +58,7 @@ double Matrix::CalcDeterminant(boost::numeric::ublas::matrix<double> m)
   return d;
 }
 
-const std::vector<boost::numeric::ublas::matrix<double> > Matrix::Chop(
+const std::vector<boost::numeric::ublas::matrix<double> > ribi::Matrix::Chop(
   const boost::numeric::ublas::matrix<double>& m)
 {
   using boost::numeric::ublas::range;
@@ -79,7 +79,7 @@ const std::vector<boost::numeric::ublas::matrix<double> > Matrix::Chop(
   return v;
 }
 
-const boost::numeric::ublas::matrix<double> Matrix::CreateMatrix(
+const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
   const std::size_t n_rows,
   const std::size_t n_cols,
   const std::vector<double>& v)
@@ -96,7 +96,7 @@ const boost::numeric::ublas::matrix<double> Matrix::CreateMatrix(
   return m;
 }
 
-const boost::numeric::ublas::matrix<double> Matrix::CreateRandomMatrix(const std::size_t n_rows, const std::size_t n_cols)
+const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(const std::size_t n_rows, const std::size_t n_cols)
 {
   boost::numeric::ublas::matrix<double> m(n_rows,n_cols);
   for (std::size_t row=0; row!=n_rows; ++row)
@@ -109,26 +109,26 @@ const boost::numeric::ublas::matrix<double> Matrix::CreateRandomMatrix(const std
   return m;
 }
 
-const boost::numeric::ublas::vector<double> Matrix::CreateVector(const std::vector<double>& v)
+const boost::numeric::ublas::vector<double> ribi::Matrix::CreateVector(const std::vector<double>& v)
 {
   boost::numeric::ublas::vector<double> w(v.size());
   std::copy(v.begin(),v.end(),w.begin());
   return w;
 }
 
-const boost::numeric::ublas::vector<int> Matrix::CreateVectorInt(const std::vector<int>& v)
+const boost::numeric::ublas::vector<int> ribi::Matrix::CreateVectorInt(const std::vector<int>& v)
 {
   boost::numeric::ublas::vector<int> w(v.size());
   std::copy(v.begin(),v.end(),w.begin());
   return w;
 }
 
-const std::string Matrix::GetVersion()
+const std::string ribi::Matrix::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> Matrix::GetVersionHistory()
+const std::vector<std::string> ribi::Matrix::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
@@ -138,7 +138,7 @@ const std::vector<std::string> Matrix::GetVersionHistory()
   return v;
 }
 
-const boost::numeric::ublas::matrix<double> Matrix::Inverse(
+const boost::numeric::ublas::matrix<double> ribi::Matrix::Inverse(
   const boost::numeric::ublas::matrix<double>& m)
 {
   assert(m.size1() == m.size2() && "Can only calculate the inverse of square matrices");
@@ -213,7 +213,7 @@ const boost::numeric::ublas::matrix<double> Matrix::Inverse(
     default:
     {
       //Use blockwise inversion
-      //Matrix::Chop returns a std::vector
+      //ribi::Matrix::Chop returns a std::vector
       //[ A at [0]   B at [1] ]
       //[ C at [2]   D at [4] ]
       assert(m.size1() > 3);
@@ -227,18 +227,18 @@ const boost::numeric::ublas::matrix<double> Matrix::Inverse(
       const boost::numeric::ublas::matrix<double>& d = v[3];
       const boost::numeric::ublas::matrix<double> term
         = d
-        - Matrix::Prod(
-            boost::numeric::ublas::matrix<double>(Matrix::Prod(c,a_inv)),
+        - ribi::Matrix::Prod(
+            boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(c,a_inv)),
             b
           );
       assert(term.size1() == term.size2());
       const boost::numeric::ublas::matrix<double> term_inv = Inverse(term);
       const boost::numeric::ublas::matrix<double> new_a
         = a_inv
-        + boost::numeric::ublas::matrix<double>(Matrix::Prod(
-            boost::numeric::ublas::matrix<double>(Matrix::Prod(
-              boost::numeric::ublas::matrix<double>(Matrix::Prod(
-                boost::numeric::ublas::matrix<double>(Matrix::Prod(
+        + boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(
+            boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(
+              boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(
+                boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(
                   a_inv,
                   b)),
                 term_inv)),
@@ -247,16 +247,16 @@ const boost::numeric::ublas::matrix<double> Matrix::Inverse(
 
       const boost::numeric::ublas::matrix<double> new_b
         =
-        - boost::numeric::ublas::matrix<double>(Matrix::Prod(
-            boost::numeric::ublas::matrix<double>(Matrix::Prod(
+        - boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(
+            boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(
               a_inv,
               b)),
             term_inv));
 
       const boost::numeric::ublas::matrix<double> new_c
         =
-        - boost::numeric::ublas::matrix<double>(Matrix::Prod(
-            boost::numeric::ublas::matrix<double>(Matrix::Prod(
+        - boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(
+            boost::numeric::ublas::matrix<double>(ribi::Matrix::Prod(
               term_inv,
               c)),
             a_inv));
@@ -270,13 +270,13 @@ const boost::numeric::ublas::matrix<double> Matrix::Inverse(
 }
 
 
-bool Matrix::IsAboutEqual(const double a, const double b)
+bool ribi::Matrix::IsAboutEqual(const double a, const double b)
 {
   const double epsilon = 0.000001; //Rounding error
   return a - epsilon < b && a + epsilon > b;
 }
 
-const boost::numeric::ublas::matrix<double> Matrix::Power(
+const boost::numeric::ublas::matrix<double> ribi::Matrix::Power(
   const boost::numeric::ublas::matrix<double>& m,
   const int exponent)
 {
@@ -288,18 +288,18 @@ const boost::numeric::ublas::matrix<double> Matrix::Power(
   boost::numeric::ublas::matrix<double> n(m);
   for (int i=1; i!=exponent; ++i)
   {
-    n = Matrix::Prod(n,m);
+    n = ribi::Matrix::Prod(n,m);
   }
   return n;
 }
 
-bool Matrix::MatricesAreAboutEqual(
+bool ribi::Matrix::MatricesAreAboutEqual(
   const boost::numeric::ublas::matrix<double>& a,
   const boost::numeric::ublas::matrix<double>& b)
 {
   if (a.size1() != b.size1()) return false;
   if (a.size2() != b.size2()) return false;
-  //return std::equal(a.begin1(),a.end1(),b.begin1(),&Matrix::IsAboutEqual); //DON'T USE STD::EQUAL!
+  //return std::equal(a.begin1(),a.end1(),b.begin1(),&ribi::Matrix::IsAboutEqual); //DON'T USE STD::EQUAL!
 
   assert(a.size1() == b.size1());
   assert(a.size2() == b.size2());
@@ -316,7 +316,7 @@ bool Matrix::MatricesAreAboutEqual(
   return true;
 }
 
-bool Matrix::MatricesAreEqual(
+bool ribi::Matrix::MatricesAreEqual(
   const boost::numeric::ublas::matrix<double>& a,
   const boost::numeric::ublas::matrix<double>& b)
 {
@@ -339,7 +339,7 @@ bool Matrix::MatricesAreEqual(
   return true;
 }
 
-bool Matrix::MatrixIsAboutEqual(
+bool ribi::Matrix::MatrixIsAboutEqual(
   const boost::numeric::ublas::matrix<double>& a,
   const boost::numeric::ublas::matrix<double>& b)
 {
@@ -347,7 +347,7 @@ bool Matrix::MatrixIsAboutEqual(
   return MatricesAreAboutEqual(a,b);
 }
 
-const boost::numeric::ublas::matrix<double> Matrix::MultiProd(
+const boost::numeric::ublas::matrix<double> ribi::Matrix::MultiProd(
   const boost::numeric::ublas::matrix<double>& a,
   const boost::numeric::ublas::matrix<double>& b,
   const boost::numeric::ublas::matrix<double>& c)
@@ -355,7 +355,7 @@ const boost::numeric::ublas::matrix<double> Matrix::MultiProd(
   return Prod(Prod(a,b),c);
 }
 
-const boost::numeric::ublas::matrix<double> Matrix::Prod(
+const boost::numeric::ublas::matrix<double> ribi::Matrix::Prod(
   const boost::numeric::ublas::matrix<double>& a,
   const boost::numeric::ublas::matrix<double>& b
   )
@@ -364,7 +364,7 @@ const boost::numeric::ublas::matrix<double> Matrix::Prod(
   return boost::numeric::ublas::prod(a,b);
 }
 
-const boost::numeric::ublas::vector<double> Matrix::Prod(
+const boost::numeric::ublas::vector<double> ribi::Matrix::Prod(
   const boost::numeric::ublas::matrix<double>& a,
   const boost::numeric::ublas::vector<double>& b
   )
@@ -373,7 +373,7 @@ const boost::numeric::ublas::vector<double> Matrix::Prod(
   return boost::numeric::ublas::prod(a,b);
 }
 
-const boost::numeric::ublas::matrix<double> Matrix::SimplifyMatrixOfMatrix(
+const boost::numeric::ublas::matrix<double> ribi::Matrix::SimplifyMatrixOfMatrix(
   const boost::numeric::ublas::matrix<boost::numeric::ublas::matrix<double> >& m)
 {
   // [ [A B]  [I J] ]
@@ -416,7 +416,7 @@ const boost::numeric::ublas::matrix<double> Matrix::SimplifyMatrixOfMatrix(
 }
 
 
-const boost::numeric::ublas::matrix<double> Matrix::SimplifyVectorOfMatrix(
+const boost::numeric::ublas::matrix<double> ribi::Matrix::SimplifyVectorOfMatrix(
   const boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double> >& m)
 {
   // [ [A B] ]
@@ -452,7 +452,7 @@ const boost::numeric::ublas::matrix<double> Matrix::SimplifyVectorOfMatrix(
 }
 
 
-const boost::numeric::ublas::vector<double> Matrix::SimplifyVectorOfVector(
+const boost::numeric::ublas::vector<double> ribi::Matrix::SimplifyVectorOfVector(
   const boost::numeric::ublas::vector<boost::numeric::ublas::vector<double> >& m)
 {
   // [ [A] ]
@@ -476,7 +476,7 @@ const boost::numeric::ublas::vector<double> Matrix::SimplifyVectorOfVector(
 
 
 #ifndef NDEBUG
-void Matrix::Test()
+void ribi::Matrix::Test()
 {
   {
     static bool is_tested = false;
@@ -484,7 +484,7 @@ void Matrix::Test()
     is_tested = true;
   }
   //
-  TRACE("Starting Matrix::Test()")
+  TRACE("Starting ribi::Matrix::Test()")
   using boost::numeric::ublas::detail::equals;
   using boost::numeric::ublas::matrix;
   using boost::numeric::ublas::vector;
@@ -644,10 +644,10 @@ void Matrix::Test()
     const matrix<double> expected_0 = boost::numeric::ublas::identity_matrix<double>(sz);
     const matrix<double> expected_1 = m;
     const matrix<double> expected_2 = CreateMatrix(sz,sz, {7.0,15.0,10.0,22.0} );
-    assert(Matrix::MatricesAreAboutEqual(m,m));
-    assert(Matrix::MatricesAreAboutEqual(Power(m,0),expected_0));
-    assert(Matrix::MatricesAreAboutEqual(Power(m,1),expected_1));
-    assert(Matrix::MatricesAreAboutEqual(Power(m,2),expected_2));
+    assert(ribi::Matrix::MatricesAreAboutEqual(m,m));
+    assert(ribi::Matrix::MatricesAreAboutEqual(Power(m,0),expected_0));
+    assert(ribi::Matrix::MatricesAreAboutEqual(Power(m,1),expected_1));
+    assert(ribi::Matrix::MatricesAreAboutEqual(Power(m,2),expected_2));
   }
   //Test Unchop
   {
@@ -660,13 +660,13 @@ void Matrix::Test()
         const double epsilon = std::numeric_limits<double>::epsilon();
 
         //Create a random matrix
-        const matrix<double> m = Matrix::CreateRandomMatrix(n_rows,n_cols);
+        const matrix<double> m = ribi::Matrix::CreateRandomMatrix(n_rows,n_cols);
 
         //Assume it is found identical to itself
         assert(equals(m,m,epsilon,epsilon));
 
         //Chop and unchop the input matrix
-        const matrix<double> n = Matrix::Unchop(Chop(m));
+        const matrix<double> n = ribi::Matrix::Unchop(Chop(m));
 
         //Assume input matrix and result are identical
         assert(equals(m,n,epsilon,epsilon));
@@ -677,21 +677,21 @@ void Matrix::Test()
   {
     // [ 1.0 2.0 ] -1    [ -2.0   1.0 ]
     // [ 3.0 4.0 ]     = [  1.5  -0.5 ]
-    const matrix<double> m = Matrix::CreateMatrix(2,2, {1.0,3.0,2.0,4.0} );
+    const matrix<double> m = ribi::Matrix::CreateMatrix(2,2, {1.0,3.0,2.0,4.0} );
     assert(m(0,0) == 1.0);
     assert(m(1,0) == 3.0);
     assert(m(0,1) == 2.0);
     assert(m(1,1) == 4.0);
-    const matrix<double> n = Matrix::Inverse(m);
+    const matrix<double> n = ribi::Matrix::Inverse(m);
     const double epsilon = 0.0000001; //Rounding error
     assert(n(0,0) > -2.0 - epsilon && n(0,0) < -2.0 + epsilon);
     assert(n(1,0) >  1.5 - epsilon && n(1,0) <  1.5 + epsilon);
     assert(n(0,1) >  1.0 - epsilon && n(0,1) <  1.0 + epsilon);
     assert(n(1,1) > -0.5 - epsilon && n(1,1) < -0.5 + epsilon);
-    assert(Matrix::Prod(m,n)(0,0) > 1.0 - epsilon && Matrix::Prod(m,n)(0,0) < 1.0 + epsilon);
-    assert(Matrix::Prod(m,n)(1,0) > 0.0 - epsilon && Matrix::Prod(m,n)(1,0) < 0.0 + epsilon);
-    assert(Matrix::Prod(m,n)(0,1) > 0.0 - epsilon && Matrix::Prod(m,n)(0,1) < 0.0 + epsilon);
-    assert(Matrix::Prod(m,n)(1,1) > 1.0 - epsilon && Matrix::Prod(m,n)(1,1) < 1.0 + epsilon);
+    assert(ribi::Matrix::Prod(m,n)(0,0) > 1.0 - epsilon && ribi::Matrix::Prod(m,n)(0,0) < 1.0 + epsilon);
+    assert(ribi::Matrix::Prod(m,n)(1,0) > 0.0 - epsilon && ribi::Matrix::Prod(m,n)(1,0) < 0.0 + epsilon);
+    assert(ribi::Matrix::Prod(m,n)(0,1) > 0.0 - epsilon && ribi::Matrix::Prod(m,n)(0,1) < 0.0 + epsilon);
+    assert(ribi::Matrix::Prod(m,n)(1,1) > 1.0 - epsilon && ribi::Matrix::Prod(m,n)(1,1) < 1.0 + epsilon);
   }
 
 
@@ -699,11 +699,11 @@ void Matrix::Test()
     // [ 1.0 2.0 3.0] -1    [ -24.0   18.0   5.0]
     // [ 0.0 1.0 4.0]       [  20.0  -15.0  -4.0]
     // [ 5.0 6.0 0.0]     = [ - 5.0    4.0   1.0]
-    const matrix<double> m = Matrix::CreateMatrix(3,3, {1.0,0.0,5.0,2.0,1.0,6.0,3.0,4.0,0.0} );
+    const matrix<double> m = ribi::Matrix::CreateMatrix(3,3, {1.0,0.0,5.0,2.0,1.0,6.0,3.0,4.0,0.0} );
     assert(m(0,0) == 1.0); assert(m(0,1) == 2.0); assert(m(0,2) == 3.0);
     assert(m(1,0) == 0.0); assert(m(1,1) == 1.0); assert(m(1,2) == 4.0);
     assert(m(2,0) == 5.0); assert(m(2,1) == 6.0); assert(m(2,2) == 0.0);
-    const matrix<double> n = Matrix::Inverse(m);
+    const matrix<double> n = ribi::Matrix::Inverse(m);
     const double epsilon = 0.0001; //Rounding error
     assert(n(0,0) > -24.0 - epsilon && n(0,0) < -24.0 + epsilon);
     assert(n(1,0) >  20.0 - epsilon && n(1,0) <  20.0 + epsilon);
@@ -714,7 +714,7 @@ void Matrix::Test()
     assert(n(0,2) >   5.0 - epsilon && n(0,2) <   5.0 + epsilon);
     assert(n(1,2) >  -4.0 - epsilon && n(1,2) < - 4.0 + epsilon);
     assert(n(2,2) >   1.0 - epsilon && n(2,2) <   1.0 + epsilon);
-    const matrix<double> i = Matrix::Prod(m,n);
+    const matrix<double> i = ribi::Matrix::Prod(m,n);
     assert(i(0,0) > 1.0 - epsilon && i(0,0) < 1.0 + epsilon);
     assert(i(1,0) > 0.0 - epsilon && i(1,0) < 0.0 + epsilon);
     assert(i(2,0) > 0.0 - epsilon && i(2,0) < 0.0 + epsilon);
@@ -732,13 +732,13 @@ void Matrix::Test()
     // [ 7.0 8.0 9.0]
     // Note: cannot make the center value equal to 5.0, as this makes
     // the matrix un-invertible (the determinant becomes equal to zero)
-    const matrix<double> m = Matrix::CreateMatrix(3,3, {1.0,4.0,7.0,2.0,4.0,8.0,3.0,6.0,9.0} );
+    const matrix<double> m = ribi::Matrix::CreateMatrix(3,3, {1.0,4.0,7.0,2.0,4.0,8.0,3.0,6.0,9.0} );
     assert(m(0,0) == 1.0); assert(m(0,1) == 2.0); assert(m(0,2) == 3.0);
     assert(m(1,0) == 4.0); assert(m(1,1) == 4.0); assert(m(1,2) == 6.0);
     assert(m(2,0) == 7.0); assert(m(2,1) == 8.0); assert(m(2,2) == 9.0);
-    const matrix<double> n = Matrix::Inverse(m);
+    const matrix<double> n = ribi::Matrix::Inverse(m);
     const double epsilon = 0.00001; //Rounding error
-    const matrix<double> i = Matrix::Prod(m,n);
+    const matrix<double> i = ribi::Matrix::Prod(m,n);
     assert(i(0,0) > 1.0 - epsilon && i(0,0) < 1.0 + epsilon);
     assert(i(1,0) > 0.0 - epsilon && i(1,0) < 0.0 + epsilon);
     assert(i(2,0) > 0.0 - epsilon && i(2,0) < 0.0 + epsilon);
@@ -751,10 +751,10 @@ void Matrix::Test()
   }
   //Test Inverse on 4x4 matrix
   {
-    const matrix<double> m = Matrix::CreateRandomMatrix(4,4);
-    const matrix<double> n = Matrix::Inverse(m);
+    const matrix<double> m = ribi::Matrix::CreateRandomMatrix(4,4);
+    const matrix<double> n = ribi::Matrix::Inverse(m);
     const double epsilon = 0.00001; //Rounding error
-    const matrix<double> i = Matrix::Prod(m,n);
+    const matrix<double> i = ribi::Matrix::Prod(m,n);
     //Test if i is identity matrix
     assert(i(0,0) > 1.0 - epsilon && i(0,0) < 1.0 + epsilon);
     assert(i(1,0) > 0.0 - epsilon && i(1,0) < 0.0 + epsilon);
@@ -776,10 +776,10 @@ void Matrix::Test()
   //TRACE("Test Inverse on bigger matrices");
   for (std::size_t sz = 5; sz!=20; ++sz)
   {
-    const matrix<double> m = Matrix::CreateRandomMatrix(sz,sz);
-    const matrix<double> n = Matrix::Inverse(m);
+    const matrix<double> m = ribi::Matrix::CreateRandomMatrix(sz,sz);
+    const matrix<double> n = ribi::Matrix::Inverse(m);
     const double epsilon = 0.00001; //Rounding error
-    const matrix<double> i = Matrix::Prod(m,n);
+    const matrix<double> i = ribi::Matrix::Prod(m,n);
     //Test if i is identity matrix
     for (std::size_t y = 0; y!=sz; ++y)
     {
@@ -875,11 +875,11 @@ void Matrix::Test()
       assert(VectorsAreAboutEqual(a,b));
     }
   }
-  TRACE("Finished Matrix::Test()")
+  TRACE("Finished ribi::Matrix::Test()")
 }
 #endif
 
-const boost::numeric::ublas::matrix<double> Matrix::Unchop(
+const boost::numeric::ublas::matrix<double> ribi::Matrix::Unchop(
   const std::vector<boost::numeric::ublas::matrix<double> >& v)
 {
   //Chop returns a std::vector of sub-matrices
@@ -918,7 +918,7 @@ const boost::numeric::ublas::matrix<double> Matrix::Unchop(
   return m;
 }
 
-bool Matrix::VectorIsAboutEqual(
+bool ribi::Matrix::VectorIsAboutEqual(
   const boost::numeric::ublas::vector<double>& a,
   const boost::numeric::ublas::vector<double>& b)
 {
@@ -926,15 +926,15 @@ bool Matrix::VectorIsAboutEqual(
   return VectorsAreAboutEqual(a,b);
 }
 
-bool Matrix::VectorsAreAboutEqual(
+bool ribi::Matrix::VectorsAreAboutEqual(
   const boost::numeric::ublas::vector<double>& a,
   const boost::numeric::ublas::vector<double>& b)
 {
   if (a.size() != b.size()) return false;
-  return std::equal(a.begin(),a.end(),b.begin(),&Matrix::IsAboutEqual);
+  return std::equal(a.begin(),a.end(),b.begin(),&ribi::Matrix::IsAboutEqual);
 }
 
-bool Matrix::VectorsDoubleAreEqual(
+bool ribi::Matrix::VectorsDoubleAreEqual(
   const boost::numeric::ublas::vector<double>& a,
   const boost::numeric::ublas::vector<double>& b)
 {
@@ -942,7 +942,7 @@ bool Matrix::VectorsDoubleAreEqual(
   return std::equal(a.begin(),a.end(),b.begin());
 }
 
-bool Matrix::VectorsIntAreEqual(
+bool ribi::Matrix::VectorsIntAreEqual(
   const boost::numeric::ublas::vector<int>& a,
   const boost::numeric::ublas::vector<int>& b)
 {

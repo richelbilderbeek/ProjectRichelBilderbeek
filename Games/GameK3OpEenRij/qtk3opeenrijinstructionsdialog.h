@@ -7,6 +7,8 @@ namespace Ui {
   class QtK3OpEenRijInstructionsDialog;
 }
 
+namespace ribi {
+
 class QtK3OpEenRijInstructionsDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -18,5 +20,7 @@ public:
 private:
   Ui::QtK3OpEenRijInstructionsDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTK3OPEENRIJINSTRUCTIONSDIALOG_H

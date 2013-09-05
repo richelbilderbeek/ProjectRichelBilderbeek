@@ -45,10 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtml.h"
 
-namespace Version
-{
-
-const std::vector<std::string> FileToVector(const std::string& filename)
+const std::vector<std::string> Version::FileToVector(const std::string& filename)
 {
   assert(c2h::IsRegularFile(filename));
   std::vector<std::string> v;
@@ -62,14 +59,14 @@ const std::vector<std::string> FileToVector(const std::string& filename)
   return v;
 }
 
-const std::string GetBoostVersion()
+const std::string Version::GetBoostVersion()
 {
   std::string s = BOOST_LIB_VERSION;
   std::replace(s.begin(),s.end(),'_','.');
   return s;
 }
 
-const std::string GetGccVersion()
+const std::string Version::GetGccVersion()
 {
   return
       boost::lexical_cast<std::string>(__GNUC__)
@@ -80,7 +77,7 @@ const std::string GetGccVersion()
 }
 
 #ifndef _WIN32
-const std::string GetLubuntuVersion()
+const std::string Version::GetLubuntuVersion()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary filename
@@ -118,7 +115,7 @@ const std::string GetLubuntuVersion()
 #endif
 
 #ifndef _WIN32
-const std::string GetLubuntuVersionCodename()
+const std::string Version::GetLubuntuVersionCodename()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary filename
@@ -155,13 +152,13 @@ const std::string GetLubuntuVersionCodename()
 }
 #endif
 
-const std::string GetQtVersion()
+const std::string Version::GetQtVersion()
 {
   return QT_VERSION_STR;
 }
 
 #ifndef _WIN32
-const std::string GetQtCreatorVersion()
+const std::string Version::GetQtCreatorVersion()
 {
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
   const int error = std::system("qtcreator -version 2> tmp.txt");
@@ -189,13 +186,13 @@ const std::string GetQtCreatorVersion()
 }
 #endif
 
-const std::string GetStlVersion()
+const std::string Version::GetStlVersion()
 {
   return __VERSION__;
 }
 
 #ifndef _WIN32
-const std::string GetUbuntuVersion()
+const std::string Version::GetUbuntuVersion()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary filename
@@ -233,7 +230,7 @@ const std::string GetUbuntuVersion()
 #endif
 
 #ifndef _WIN32
-const std::string GetUbuntuVersionCodename()
+const std::string Version::GetUbuntuVersionCodename()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary filename
@@ -268,7 +265,7 @@ const std::string GetUbuntuVersionCodename()
 }
 #endif
 
-const std::string GetVirtualBoxVersion()
+const std::string Version::GetVirtualBoxVersion()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary file
@@ -290,7 +287,7 @@ const std::string GetVirtualBoxVersion()
   return "unknown";
 }
 
-const std::string GetWineVersion()
+const std::string Version::GetWineVersion()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary file
@@ -315,7 +312,7 @@ const std::string GetWineVersion()
   return "unknown";
 }
 
-const std::string GetWtVersion()
+const std::string Version::GetWtVersion()
 {
   #ifndef _WIN32
   return WT_VERSION_STR;
@@ -323,6 +320,3 @@ const std::string GetWtVersion()
   return "?.?.?";
   #endif
 }
-
-} //~namespace Version
-

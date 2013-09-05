@@ -1,10 +1,8 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "alphafilter.h"
 
 #include <cassert>
 
-AlphaFilter::AlphaFilter(
+ribi::AlphaFilter::AlphaFilter(
   const double alpha,
   const double dt)
   : m_alpha(alpha),
@@ -18,18 +16,18 @@ AlphaFilter::AlphaFilter(
 }
 
 
-void AlphaFilter::Update(const double measurement)
+void ribi::AlphaFilter::Update(const double measurement)
 {
   const double difference = measurement - m_output;
   m_output += m_alpha * difference;
 }
 
-const std::string AlphaFilter::GetVersion()
+const std::string ribi::AlphaFilter::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> AlphaFilter::GetVersionHistory()
+const std::vector<std::string> ribi::AlphaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");

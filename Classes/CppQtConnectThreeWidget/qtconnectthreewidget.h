@@ -12,6 +12,9 @@
 #include <QWidget>
 
 #include "connectthreewidget.h" //thanks to MOC :-(
+
+namespace ribi {
+
 //#include "connectthree.h"       //thanks to MOC :-(
 //struct ConnectThreeWidget;
 struct ConnectThreeResources;
@@ -62,5 +65,8 @@ protected:
   static const int m_sprite_height;
 
 };
+
+} //~namespace ribi
+
 
 #endif // QTCONNECTTHREEWIDGET_H

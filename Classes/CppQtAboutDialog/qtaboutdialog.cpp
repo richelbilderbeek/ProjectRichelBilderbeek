@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtAboutDialog.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtaboutdialog.h"
 
 #include <cassert>
@@ -31,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtaboutdialog.h"
 
 
-QtAboutDialog::QtAboutDialog(const About& about)
+ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about)
   : ui(new Ui::QtAboutDialog)
 {
   ui->setupUi(this);
@@ -56,7 +54,7 @@ QtAboutDialog::QtAboutDialog(const About& about)
     + QString(" can be downloaded from:"));
   ui->edit_url->setText(about.GetUrl().c_str());
 
-  About about_copy = about;
+  auto about_copy = about;
   about_copy.AddLibrary("Qt version: " + std::string(QT_VERSION_STR));
   about_copy.AddLibrary("QtAboutDialog version: " + GetVersion());
 
@@ -110,25 +108,27 @@ QtAboutDialog::QtAboutDialog(const About& about)
   ui->text_whatsnew->moveCursor(QTextCursor::Start);
 }
 
-QtAboutDialog::~QtAboutDialog()
+ribi::QtAboutDialog::~QtAboutDialog()
 {
   delete ui;
 }
 
-const std::string QtAboutDialog::GetVersion()
+const std::string ribi::QtAboutDialog::GetVersion()
 {
   return "1.5";
 }
 
-const std::vector<std::string> QtAboutDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-01-11: version 1.0: initial version of QtAboutDialog");
-  v.push_back("2011-04-11: version 1.1: minor changes");
-  v.push_back("2011-06-27: version 1.2: added date and time when source code is built");
-  v.push_back("2011-09-11: version 1.3: display the type of build");
-  v.push_back("2012-01-12: version 1.4: fixed grammatical error");
-  v.push_back("2012-01-27: version 1.5: abandoned use of BOOST_FOREACH, due to run-time errors");
+  const std::vector<std::string> v {
+    "2011-01-11: version 1.0: initial version of QtAboutDialog",
+    "2011-04-11: version 1.1: minor changes",
+    "2011-06-27: version 1.2: added date and time when source code is built",
+    "2011-09-11: version 1.3: display the type of build",
+    "2012-01-12: version 1.4: fixed grammatical error",
+    "2012-01-27: version 1.5: abandoned use of BOOST_FOREACH, due to run-time errors",
+    "2013-09-05: version 1.6: transition to namespace ribi"
+  };
   return v;
 }
 

@@ -2,11 +2,14 @@
 #define FIXEDLAGSMOOTHERKALMANFILTERCALCULATIONELEMENTS_H
 
 #include "kalmanfiltercalculationelements.h"
+
+namespace ribi {
+
 struct StandardKalmanFilterCalculationElements;
 
 struct FixedLagSmootherKalmanFilterCalculationElements : public KalmanFilterCalculationElements
 {
-  FixedLagSmootherKalmanFilterCalculationElements(
+  explicit FixedLagSmootherKalmanFilterCalculationElements(
     const boost::numeric::ublas::vector<double>& measurement = boost::numeric::ublas::vector<double>(),
     const boost::numeric::ublas::vector<double>& predicted_state = boost::numeric::ublas::vector<double>(),
     const boost::numeric::ublas::vector<double>& previous_state_estimate = boost::numeric::ublas::vector<double>(),
@@ -24,7 +27,8 @@ struct FixedLagSmootherKalmanFilterCalculationElements : public KalmanFilterCalc
   ///Checks if the state is complete and valid
   bool IsComplete() const;
 
-  void SetStandardCalculationElement(const boost::shared_ptr<StandardKalmanFilterCalculationElements>& standard_calculation);
+  void SetStandardCalculationElement(
+    const boost::shared_ptr<StandardKalmanFilterCalculationElements>& standard_calculation);
 
   private:
   boost::shared_ptr<const StandardKalmanFilterCalculationElements> m_standard_calculation;
@@ -34,5 +38,7 @@ struct FixedLagSmootherKalmanFilterCalculationElements : public KalmanFilterCalc
   friend void boost::checked_delete<>(FixedLagSmootherKalmanFilterCalculationElements*);
 
 };
+
+} //~namespace ribi
 
 #endif // FIXEDLAGSMOOTHERKALMANFILTERCALCULATIONELEMENTS_H

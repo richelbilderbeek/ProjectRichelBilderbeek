@@ -1,5 +1,3 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtstateobservermenudialog.h"
 
 #include "qtaboutdialog.h"
@@ -8,19 +6,19 @@
 #include "stateobservermenudialog.h"
 #include "ui_qtstateobservermenudialog.h"
 
-QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) :
+ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtStateObserverMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtStateObserverMenuDialog::~QtStateObserverMenuDialog()
+ribi::QtStateObserverMenuDialog::~QtStateObserverMenuDialog()
 {
   delete ui;
 }
 
-void QtStateObserverMenuDialog::on_button_start_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_start_clicked()
 {
   QtStateObserverMainDialog d;
   d.setStyleSheet(this->styleSheet());
@@ -28,7 +26,7 @@ void QtStateObserverMenuDialog::on_button_start_clicked()
   this->ShowChild(&d);
 }
 
-void QtStateObserverMenuDialog::on_button_about_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_about_clicked()
 {
   this->hide();
   About a = StateObserverMenuDialog::GetAbout();
@@ -40,7 +38,7 @@ void QtStateObserverMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtStateObserverMenuDialog::on_button_quit_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_quit_clicked()
 {
   close();
 }

@@ -9,6 +9,8 @@ namespace Ui {
   class QtKalmanFiltererMenuDialog;
 }
 
+namespace ribi {
+
 class QtKalmanFiltererMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -34,5 +36,7 @@ private slots:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTKALMANFILTERERMENUDIALOG_H

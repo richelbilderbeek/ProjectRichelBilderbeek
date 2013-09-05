@@ -5,7 +5,7 @@
 #include <cassert>
 #include <boost/numeric/conversion/cast.hpp>
 
-bool operator<(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs)
+bool ribi::operator<(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs)
 {
   //Must cast enum class to integer, because of a bug
   //in GCC version 4.4.0:
@@ -13,7 +13,7 @@ bool operator<(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemPa
   return static_cast<int>(lhs) < static_cast<int>(rhs);
 }
 
-bool operator==(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs)
+bool ribi::operator==(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs)
 {
   //Must cast enum class to integer, because of a bug
   //in GCC version 4.4.0:
@@ -21,7 +21,7 @@ bool operator==(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemP
   return static_cast<int>(lhs) == static_cast<int>(rhs);
 }
 
-bool operator!=(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs)
+bool ribi::operator!=(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs)
 {
   return !(lhs == rhs);
 }

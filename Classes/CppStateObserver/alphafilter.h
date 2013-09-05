@@ -6,6 +6,8 @@
 
 #include "floatingpointstateobserver.h"
 
+namespace ribi {
+
 ///An alpha filter as described on [1]
 ///An alpha filter is equivalant to a low-pass filter (also called high-cut filter, or treble cut filter) [2]
 /// [1] http://en.wikipedia.org/wiki/Alpha_beta_filter#The_alpha_filter
@@ -66,5 +68,7 @@ struct AlphaFilter : public FloatingPointStateObserver
 ///#6: The process noise vector
 ///
 ///The alpha filter is supplied as an example in the tool KalmanFilterer
+
+} //~namespace ribi
 
 #endif // ALPHAFILTER_H

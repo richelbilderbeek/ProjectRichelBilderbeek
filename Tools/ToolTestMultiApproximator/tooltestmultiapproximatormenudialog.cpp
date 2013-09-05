@@ -1,12 +1,10 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "tooltestmultiapproximatormenudialog.h"
 
 #include "approximator.h"
 #include "multiapproximator.h"
 #include "trace.h"
 
-const About ToolTestMultiApproximatorMenuDialog::GetAbout()
+const ribi::About ribi::ToolTestMultiApproximatorMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -23,12 +21,12 @@ const About ToolTestMultiApproximatorMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ToolTestMultiApproximatorMenuDialog::GetVersion()
+const std::string ribi::ToolTestMultiApproximatorMenuDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ToolTestMultiApproximatorMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolTestMultiApproximatorMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-08-23: version 1.0: initial version");

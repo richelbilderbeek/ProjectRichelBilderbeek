@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///QrcFile parses Qt resource (.qrc) files
 struct QrcFile
 {
@@ -35,7 +37,7 @@ struct QrcFile
   explicit QrcFile(const std::string& filename);
 
   ///Obtain this class its About information
-  static const About GetAbout();
+  static const ribi::About GetAbout();
 
   ///Obtain the items between <file> and </file>
   const std::set<std::string>& GetFiles() const { return m_files; }
@@ -71,5 +73,7 @@ struct QrcFile
 };
 
 std::ostream& operator<<(std::ostream& os, const QrcFile& f);
+
+} //~namespace ribi
 
 #endif // QRCFILE_H

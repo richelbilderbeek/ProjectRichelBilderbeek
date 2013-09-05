@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolStateObserver.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "stateobservermenudialog.h"
 
 #include "trace.h"
@@ -32,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multialphafilter.h"
 #include "multiintegerstateobserver.h"
 
-const About StateObserverMenuDialog::GetAbout()
+const ribi::About ribi::StateObserverMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -55,12 +53,12 @@ const About StateObserverMenuDialog::GetAbout()
   return a;
 }
 
-const std::string StateObserverMenuDialog::GetVersion()
+const std::string ribi::StateObserverMenuDialog::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> StateObserverMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::StateObserverMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");

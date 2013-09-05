@@ -4,17 +4,16 @@ TEMPLATE = app
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
-unix {
+#unix {
   QMAKE_CXXFLAGS += -Werror
-}
+#}
 
 win32 {
-  LIBS += -L../../Libraries/mxe/usr/i686-pc-mingw32/lib
+  #LIBS += -L../../Libraries/mxe/usr/i686-pc-mingw32/lib
+
+  INCLUDEPATH += \
+    e:/Projects/Libraries/boost_1_54_0
 }
-
-#Don't link to these for cross-compiler
-#LIBS += -lboost_system -lboost_filesystem
-
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \

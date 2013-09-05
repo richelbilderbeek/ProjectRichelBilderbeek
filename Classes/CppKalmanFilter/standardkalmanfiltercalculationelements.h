@@ -4,10 +4,12 @@
 #include "kalmanfiltertype.h"
 #include "kalmanfiltercalculationelements.h"
 
+namespace ribi {
+
 ///The elements of a standard Kalman filter calculation
 struct StandardKalmanFilterCalculationElements : public KalmanFilterCalculationElements
 {
-  StandardKalmanFilterCalculationElements(
+  explicit StandardKalmanFilterCalculationElements(
     //Base
     const boost::numeric::ublas::vector<double>& measurement = boost::numeric::ublas::vector<double>(),
     const boost::numeric::ublas::vector<double>& predicted_state = boost::numeric::ublas::vector<double>(),
@@ -116,5 +118,7 @@ struct StandardKalmanFilterCalculationElements : public KalmanFilterCalculationE
   ///2) P_n = [...] P_predicted
   boost::numeric::ublas::matrix<double> m_updated_covariance;
 };
+
+} //~namespace ribi
 
 #endif // STANDARDKALMANFILTERCALCULATIONELEMENTS_H

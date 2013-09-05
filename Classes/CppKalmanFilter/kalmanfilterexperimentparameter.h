@@ -8,6 +8,8 @@
 #include "kalmanfilterexperimentparametertype.h"
 #include "whitenoisesystemparametertype.h"
 
+namespace ribi {
+
 ///A parameter used in a KalmanFilterExperiment
 ///Note that a KalmanFilterExperiment uses a KalmanFilter,
 ///which has its own parameter type called KalmanFilterParameter, which is
@@ -77,5 +79,7 @@ struct KalmanFilterExperimentParameter
   static const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> > CreateMapKalmanFilter();
   static const std::vector<std::pair<WhiteNoiseSystemParameterType,KalmanFilterExperimentParameterType> > CreateMapWhiteNoiseSystem();
 };
+
+} //~namespace ribi
 
 #endif // KALMANFILTEREXPERIMENTPARAMETER_H

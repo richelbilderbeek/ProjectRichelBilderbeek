@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 ConnectThreeWidget. GUI independent ConnectThree widget.
 Copyright (C) 2010 Richel Bilderbeek
@@ -16,9 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConnectThreeWidget.htm
-
+//---------------------------------------------------------------------------
 #ifndef CONNECTTHREEWIDGET_H
 #define CONNECTTHREEWIDGET_H
 
@@ -33,6 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 #include "connectthree.h"
+
+namespace ribi {
+
 struct ConnectThree;
 
 ///ConnectThreeWidget embodies the interaction with a user
@@ -65,5 +68,7 @@ struct ConnectThreeWidget
   static const std::vector<std::string> GetVersionHistory();
 
 };
+
+} //~namespace ribi
 
 #endif // CONNECTTHREEWIDGET_H

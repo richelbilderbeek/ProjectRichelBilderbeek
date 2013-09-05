@@ -20,10 +20,12 @@
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///A KalmanFilterExperiment
 struct KalmanFilterExperiment : public boost::noncopyable
 {
-  KalmanFilterExperiment(
+  explicit KalmanFilterExperiment(
     const int time,
     const std::vector<std::string>& input,
     const boost::shared_ptr<KalmanFilter> kalman_filter,
@@ -107,5 +109,6 @@ struct KalmanFilterExperiment : public boost::noncopyable
   const boost::shared_ptr<WhiteNoiseSystem> m_white_noise_system;
 };
 
+} //~namespace ribi
 
 #endif // KALMANFILTEREXPERIMENT_H

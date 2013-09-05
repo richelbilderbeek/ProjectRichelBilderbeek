@@ -3,10 +3,12 @@
 
 #include "kalmanfiltercalculationelements.h"
 
+namespace ribi {
+
 ///The elements of a steady-state Kalman filter calculation
 struct SteadyStateKalmanFilterCalculationElements : public KalmanFilterCalculationElements
 {
-  SteadyStateKalmanFilterCalculationElements(
+  explicit SteadyStateKalmanFilterCalculationElements(
     const boost::numeric::ublas::vector<double>& measurement = boost::numeric::ublas::vector<double>(),
     const boost::numeric::ublas::vector<double>& predicted_state = boost::numeric::ublas::vector<double>(),
     const boost::numeric::ublas::vector<double>& previous_state_estimate = boost::numeric::ublas::vector<double>(),
@@ -27,5 +29,7 @@ struct SteadyStateKalmanFilterCalculationElements : public KalmanFilterCalculati
   friend void boost::checked_delete<>(SteadyStateKalmanFilterCalculationElements*);
 
 };
+
+} //~namespace ribi
 
 #endif // STEADYSTATEKALMANFILTERCALCULATIONELEMENTS_H

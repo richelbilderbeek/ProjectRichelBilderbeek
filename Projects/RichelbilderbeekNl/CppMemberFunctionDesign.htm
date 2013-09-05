@@ -20,30 +20,62 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppMemberFunctionDesign.htm">member function design</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppMemberFunctionDesign.htm">member function design</a> is the design of 'good' <a href="CppMemberFunction.htm">member functions</a>. From [1]:</p>
+<p><a href="CppMemberFunctionDesign.htm">member function design</a> is the design of 'good' <a href="CppMemberFunction.htm">member functions</a>.</p>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-The standard requires that <a href="CppOperator.htm">operators</a> <a href="CppOperatorAssign.htm">=</a> () [] and <a href="CppOperatorMinus.htm">-</a>&gt; must be methods.<br/>
-For all other <a href="CppFunction.htm">function</a>s:<br/>
-IF the <a href="CppFunction.htm">function</a> is <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> or <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b> <b><a href="CppFor.htm">for</a></b> File I/O,<br/>
-OR IF it needs type con<a href="CppVersion.htm">version</a>s on its leftmost argument,<br/>
-OR IF it can be implemented <b><a href="CppUsing.htm">using</a></b> the <b><a href="CppClass.htm">class</a></b>'s <b><a href="CppPublic.htm">public</a></b> <a href="CppInterface.htm">interface</a> alone,<br/>
-&nbsp;&nbsp;Make it a non-member (and <b><a href="CppFriend.htm">friend</a></b> in the first two <b><a href="CppCase.htm">case</a></b>s).<br/>
-IF it needs to behave <b><a href="CppVirtual.htm">virtual</a></b>ly,<br/>
-&nbsp;&nbsp;add a <b><a href="CppVirtual.htm">virtual</a></b> member <a href="CppFunction.htm">function</a> to provide the <b><a href="CppVirtual.htm">virtual</a></b> behaviour and implement it in terms of that.<br/>
-ELSE <a href="CppMake.htm">make</a> it a member<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>Other design guidelines:</p>
 <ul>
-  <li><a href="CppAvoidDuplicationInConstAndNonConstMemberFunctions.htm">Avoid duplication in const and non-const member functions</a> [2]</li>
-  <li>Prefer writing short <a href="CppMemberFunction.htm">member functions</a> [3]</li>
+  <li>
+    Follow a good <a href="CppFunctionDesign.htm">function design</a>. Note: many points of <a href="CppAdvice.htm">advice</a>!
+  </li>
+<!-- Free or not ? -->
+  <li>
+    Prefer non-member non-<a href="CppFriend.htm">friend </a><a href="CppFunction.htm">functions</a> to <a href="CppMemberFunction.htm">member functions</a> [4,5]
+  </li>
+  <li>
+    Make <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> and <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a><br/>
+      a non-member <a href="CppFriend.htm">friend</a> [1]
+  </li>
+  <li>
+    Make a <a href="CppFunction.htm">function</a> that needs type conversions on its leftmost argument, a non-member <a href="CppFriend.htm">friend</a> [1]
+  </li>
+  <li>
+    Make <a href="CppFunction.htm">functions</a> that can be implemented using the (<a href="CppPublic.htm">public</a>) <a href="CppInterface.htm">interface</a> a non-member [1]
+  </li>
+<!-- Member function -->
+  <li>
+    Make a <a href="CppFunction.htm">function</a> a <a href="CppMemberFunction.htm">member function</a> only if it needs direct access to the representation of a <a href="CppClass.htm">class</a> [10]
+  </li>
+  <li>
+    Prefer writing short <a href="CppMemberFunction.htm">member functions</a> [3]
+  </li>
+  <li>
+    <a href="CppAvoidDuplicationInConstAndNonConstMemberFunctions.htm">Avoid duplication in const and non-const member functions</a> [2]
+  </li>
+  <li>
+    The <a href="CppOperator.htm">operators</a> = () [] and -&gt; must be <a href="CppMemberFunction.htm">member functions</a> [1]
+  </li>
+<!-- Virtual member functions -->
+  <li>
+    Make <a href="CppFunction.htm">functions</a> that should behave virtually a virtual <a href="CppMemberFunction.htm">member functions</a> [1]
+  </li>
+<!-- Const member functions -->
+  <li>
+    Declare a <a href="CppMemberFunction.htm">member function</a> that does not modify the state of its object a <a href="CppConstMemberFunction.htm">const member function</a> [9,11]
+  </li>
+<!-- Static member functions -->
+  <li>
+    Make a function that needs access to the representation of a class but needn't be called for a specific object a <a href="CppStaticMemberFunction.htm">static member function</a> [12]
+  </li>
+<!-- The Big Four -->
+  <li>
+    Design <a href="CppContructor.htm">constructors</a>, assignments, and the <a href="CppDestructor.htm">destructor</a> as a matched set of operations [13]
+  </li>
+  <li>
+    Define a <a href="CppConstructor.htm">constructor</a> to handle initialization of objects [6]
+  </li>
+  <li>
+    By default declare single-<a href="CppArgument.htm">argument</a> <a href="CppConstructor.htm">constructors</a> <a href="CppExplicit.htm">explicit</a> [7]
+    Make <a href="CppConstructor.htm">constructors</a> <a href="CppExplicit.htm">explicit</a> whenever possible [8]
+  </li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -53,9 +85,19 @@ ELSE <a href="CppMake.htm">make</a> it a member<br/>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN: 0-201-61562-2. Item 20: Class mechanics.</li>
-  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN:0-321-33487-6. Item 3, paragraph 'Avoid duplication in const and non-const member functions'.</li>
-  <li>Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 1: 'Any one function (or method) will contain no more than 200 logical source lines of code.'</li>
+  <li><!--  1 --><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN: 0-201-61562-2. Item 20: Class mechanics.</li>
+  <li><!--  2 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN:0-321-33487-6. Item 3, paragraph 'Avoid duplication in const and non-const member functions'.</li>
+  <li><!--  3 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 1: 'Any one function (or method) will contain no more than 200 logical source lines of code.'</li>
+  <li><!--  4 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 23: Prefer non-member non-friend functions to member functions.</li>
+  <li><!--  5 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 44: 'Prefer writing nonmember nonfriend functions'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[4] Define a constructor to handle initialization of objects'</li>
+  <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[5] By default declare single-argument constructors explicit'</li>
+  <li><!--  8 --><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN: 0-201-61562-2. Item 20, page 71, top guideline :'Watch out for hidden temporaries created by implicit conversions. One good way to avoid this is to make constructors explicit when possible, and avoiding writing conversion operators'</li>
+  <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[6] Declare a member function that does not modify the state of its object const'</li>
+  <li><!-- 10 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[8] Make a function a member only if it needs direct access to the representation of a class'</li>
+  <li><!-- 11 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[10] Make a member function that doesn't modify the value of an object a const member function'</li>
+  <li><!-- 12 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[11] Make a function that needs access to the representation of a class but needn't be called for a specific object a static member function'</li>
+  <li><!-- 13 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[1] Design constructors, assignments, and the destructor as a matched set of operations'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

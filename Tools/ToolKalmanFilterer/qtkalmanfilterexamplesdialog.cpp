@@ -27,7 +27,7 @@
 
 #pragma GCC diagnostic pop
 
-QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
+ribi::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
   : QDialog(parent),
     ui(new Ui::QtKalmanFilterExamplesDialog)
 {
@@ -48,12 +48,12 @@ QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
   }
 }
 
-QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
+ribi::QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
 {
   delete ui;
 }
 
-void QtKalmanFilterExamplesDialog::EmitExample(const int index) const
+void ribi::QtKalmanFilterExamplesDialog::EmitExample(const int index) const
 {
   std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(index);
   assert(example);
@@ -62,14 +62,14 @@ void QtKalmanFilterExamplesDialog::EmitExample(const int index) const
   m_signal_example(p);
 }
 
-void QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
   QDialog::keyPressEvent(event);
 }
 
 #ifndef NDEBUG
-void QtKalmanFilterExamplesDialog::Test()
+void ribi::QtKalmanFilterExamplesDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -84,19 +84,19 @@ void QtKalmanFilterExamplesDialog::Test()
 }
 #endif
 
-void QtKalmanFilterExamplesDialog::on_button_clicked()
+void ribi::QtKalmanFilterExamplesDialog::on_button_clicked()
 {
   assert(ui->box->currentIndex() != -1);
   const int index = ui->box->currentIndex();
   EmitExample(index);
 }
 
-void QtKalmanFilterExamplesDialog::on_box_currentIndexChanged(int index)
+void ribi::QtKalmanFilterExamplesDialog::on_box_currentIndexChanged(int index)
 {
   ui->button->setEnabled(index != -1);
 }
 
-void QtKalmanFilterExamplesDialog::SetShowNoExample()
+void ribi::QtKalmanFilterExamplesDialog::SetShowNoExample()
 {
   ui->box->setCurrentIndex(-1);
 }

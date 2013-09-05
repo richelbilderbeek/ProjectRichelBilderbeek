@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 struct Canvas
 {
   ///The color system used:
@@ -119,5 +121,6 @@ struct Canvas
 
 std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
 
+} //~namespace ribi
 
 #endif

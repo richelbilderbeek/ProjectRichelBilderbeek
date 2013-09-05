@@ -7,6 +7,8 @@
 #include "qtstdvectorfunctionmodel.h"
 #include "qtstdvectorstringmodel.h"
 
+namespace ribi {
+
 //struct QtUblasMatrixDoubleModel;
 typedef QtUblasMatrixDoubleModel ControlModel;
 typedef QtUblasMatrixDoubleModel EstimatedMeasurementNoiseModel;
@@ -31,5 +33,6 @@ typedef QtStdVectorFunctionModel InputModel;
 //struct QtStdVectorStringModel;
 typedef QtStdVectorStringModel StateNamesModel;
 
+} //~namespace ribi
 
 #endif // QTKALMANFILTERERMODEL_H

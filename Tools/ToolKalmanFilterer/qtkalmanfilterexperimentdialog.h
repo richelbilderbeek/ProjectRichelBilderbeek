@@ -27,6 +27,8 @@ namespace Ui {
   class QtKalmanFilterExperimentDialog;
 }
 
+namespace ribi {
+
 ///QtKalmanFilterExperimentDialog is a Facade for
 ///the KalmanFilterExperiment parameters
 class QtKalmanFilterExperimentDialog : public QDialog
@@ -133,5 +135,7 @@ private:
 // Additionally, #include the KalmanFilterExample header file in the dialog its header file:
 // I have the hypothesis that
 //
+
+} //~namespace ribi
 
 #endif // QTKALMANFILTEREXPERIMENTDIALOG_H

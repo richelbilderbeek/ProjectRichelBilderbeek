@@ -33,11 +33,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtUblasVectorIntModel::QtUblasVectorIntModel(QObject *parent)
+ribi::QtUblasVectorIntModel::QtUblasVectorIntModel(QObject *parent)
   : QAbstractTableModel(parent),
-    m_range_default(0),
-    m_range_max(std::numeric_limits<int>::max()),
-    m_range_min(std::numeric_limits<int>::min())
+    m_range_default{0},
+    m_range_max{std::numeric_limits<int>::max()},
+    m_range_min{std::numeric_limits<int>::min()}
 {
   #ifndef NDEBUG
   Test();
@@ -47,12 +47,12 @@ QtUblasVectorIntModel::QtUblasVectorIntModel(QObject *parent)
   assert(this->IsValid());
 }
 
-int QtUblasVectorIntModel::columnCount(const QModelIndex &) const
+int ribi::QtUblasVectorIntModel::columnCount(const QModelIndex &) const
 {
   return rowCount() > 0 ? 1 : 0;
 }
 
-QVariant QtUblasVectorIntModel::data(const QModelIndex &index, int role) const
+QVariant ribi::QtUblasVectorIntModel::data(const QModelIndex &index, int role) const
 {
   assert(this->IsValid());
 
@@ -86,7 +86,7 @@ QVariant QtUblasVectorIntModel::data(const QModelIndex &index, int role) const
   return QString(s.c_str());
 }
 
-Qt::ItemFlags QtUblasVectorIntModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtUblasVectorIntModel::flags(const QModelIndex &) const
 {
   return
     Qt::ItemIsSelectable
@@ -96,12 +96,12 @@ Qt::ItemFlags QtUblasVectorIntModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string QtUblasVectorIntModel::GetVersion()
+const std::string ribi::QtUblasVectorIntModel::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> QtUblasVectorIntModel::GetVersionHistory()
+const std::vector<std::string> ribi::QtUblasVectorIntModel::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-06-27: version 1.0: initial version");
@@ -110,7 +110,7 @@ const std::vector<std::string> QtUblasVectorIntModel::GetVersionHistory()
   return v;
 }
 
-QVariant QtUblasVectorIntModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ribi::QtUblasVectorIntModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole && role != Qt::DisplayRole) return QVariant();
@@ -135,7 +135,7 @@ QVariant QtUblasVectorIntModel::headerData(int section, Qt::Orientation orientat
 }
 
 #ifndef NDEBUG
-bool QtUblasVectorIntModel::IsValid() const
+bool ribi::QtUblasVectorIntModel::IsValid() const
 {
   if (m_range_min >= m_range_max)
   {
@@ -161,7 +161,7 @@ bool QtUblasVectorIntModel::IsValid() const
 }
 #endif
 
-bool QtUblasVectorIntModel::insertRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtUblasVectorIntModel::insertRows(int row, int count, const QModelIndex &parent)
 {
   assert(this->IsValid());
 
@@ -190,7 +190,7 @@ bool QtUblasVectorIntModel::insertRows(int row, int count, const QModelIndex &pa
   return true;
 }
 
-bool QtUblasVectorIntModel::removeRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtUblasVectorIntModel::removeRows(int row, int count, const QModelIndex &parent)
 {
   assert(this->IsValid());
 
@@ -215,14 +215,14 @@ bool QtUblasVectorIntModel::removeRows(int row, int count, const QModelIndex &pa
   return true;
 }
 
-int QtUblasVectorIntModel::rowCount(const QModelIndex &) const
+int ribi::QtUblasVectorIntModel::rowCount(const QModelIndex &) const
 {
   assert(m_data.size() == m_header_vertical_text.size());
   return boost::numeric_cast<int>(m_data.size());
 }
 
 
-bool QtUblasVectorIntModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
+bool ribi::QtUblasVectorIntModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
 {
   assert(this->IsValid());
 
@@ -265,7 +265,7 @@ bool QtUblasVectorIntModel::setData(const QModelIndex &index, const QVariant &va
   }
 }
 
-bool QtUblasVectorIntModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
+bool ribi::QtUblasVectorIntModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
 {
   assert(this->IsValid());
 
@@ -296,7 +296,7 @@ bool QtUblasVectorIntModel::setHeaderData(int section, Qt::Orientation orientati
   }
 }
 
-void QtUblasVectorIntModel::SetHeaderData(
+void ribi::QtUblasVectorIntModel::SetHeaderData(
   const std::string& horizontal_header_text, const std::vector<std::string>& vertical_header_text)
 {
   assert(this->IsValid());
@@ -344,7 +344,7 @@ void QtUblasVectorIntModel::SetHeaderData(
   assert(this->IsValid());
 }
 
-void QtUblasVectorIntModel::SetRange(const int from, const int to, const int default_value)
+void ribi::QtUblasVectorIntModel::SetRange(const int from, const int to, const int default_value)
 {
   assert(this->IsValid());
   assert(from < to);
@@ -368,7 +368,7 @@ void QtUblasVectorIntModel::SetRange(const int from, const int to, const int def
   #endif
 }
 
-void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>& data)
+void ribi::QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>& data)
 {
   //Check if all data is in range
   #ifndef NDEBUG
@@ -420,7 +420,7 @@ void QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector<int>&
 }
 
 #ifndef NDEBUG
-void QtUblasVectorIntModel::Test()
+void ribi::QtUblasVectorIntModel::Test()
 {
   {
     static bool is_tested = false;

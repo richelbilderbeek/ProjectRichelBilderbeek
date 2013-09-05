@@ -5,9 +5,11 @@
 #include "whitenoisesystemparameters.h"
 #include "standardwhitenoisesystemparameters.h"
 
+namespace ribi {
+
 struct LaggedWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
 {
-  LaggedWhiteNoiseSystemParameters(
+  explicit LaggedWhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const int lag,
@@ -33,5 +35,7 @@ struct LaggedWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
   ///The lag (in timesteps) the lagged white noise system has
   const int m_lag;
 };
+
+} //~namespace ribi
 
 #endif // LAGGEDWHITENOISESYSTEMPARAMETERS_H

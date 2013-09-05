@@ -4,9 +4,11 @@
 #include <boost/checked_delete.hpp>
 #include "whitenoisesystemparameters.h"
 
+namespace ribi {
+
 struct StandardWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
 {
-  StandardWhiteNoiseSystemParameters(
+  explicit StandardWhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const boost::numeric::ublas::vector<double>& real_measurement_noise,
@@ -30,5 +32,7 @@ struct StandardWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
   ~StandardWhiteNoiseSystemParameters() {}
   friend void boost::checked_delete<>(StandardWhiteNoiseSystemParameters*);
 };
+
+} //~namespace ribi
 
 #endif // STANDARDWHITENOISESYSTEMPARAMETERS_H

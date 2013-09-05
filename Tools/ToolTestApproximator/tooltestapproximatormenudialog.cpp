@@ -5,7 +5,7 @@
 #include "approximator.h"
 #include "trace.h"
 
-const About ToolTestApproximatorMenuDialog::GetAbout()
+const ribi::About ribi::ToolTestApproximatorMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -21,14 +21,17 @@ const About ToolTestApproximatorMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ToolTestApproximatorMenuDialog::GetVersion()
+const std::string ribi::ToolTestApproximatorMenuDialog::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
-const std::vector<std::string> ToolTestApproximatorMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolTestApproximatorMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-08-28: version 1.0: initial version");
+  const std::vector<std::string> v {
+    "2013-08-28: version 1.0: initial version",
+    "2013-09-05: version 1.1: transition to namespace ribi"
+  };
+
   return v;
 }

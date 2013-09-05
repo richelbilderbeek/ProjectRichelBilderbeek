@@ -33,22 +33,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtStdVectorFunctionModel::QtStdVectorFunctionModel(
+ribi::QtStdVectorFunctionModel::QtStdVectorFunctionModel(
   const std::string& variable,
   QObject *parent)
   : QAbstractTableModel(parent),
-    m_variable(variable)
+    m_variable{variable}
 {
   assert(!variable.empty());
 }
 
-int QtStdVectorFunctionModel::columnCount(const QModelIndex &) const
+int ribi::QtStdVectorFunctionModel::columnCount(const QModelIndex &) const
 {
   //return 1;
   return rowCount() > 0 ? 1 : 0;
 }
 
-QVariant QtStdVectorFunctionModel::data(const QModelIndex &index, int role) const
+QVariant ribi::QtStdVectorFunctionModel::data(const QModelIndex &index, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole &&  role != Qt::DisplayRole) return QVariant();
@@ -67,7 +67,7 @@ QVariant QtStdVectorFunctionModel::data(const QModelIndex &index, int role) cons
   return QString(m_data[row].c_str());
 }
 
-Qt::ItemFlags QtStdVectorFunctionModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtStdVectorFunctionModel::flags(const QModelIndex &) const
 {
   return
     Qt::ItemIsSelectable
@@ -77,12 +77,12 @@ Qt::ItemFlags QtStdVectorFunctionModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string QtStdVectorFunctionModel::GetVersion()
+const std::string ribi::QtStdVectorFunctionModel::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> QtStdVectorFunctionModel::GetVersionHistory()
+const std::vector<std::string> ribi::QtStdVectorFunctionModel::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-15: version 1.0: initial version");
@@ -91,7 +91,7 @@ const std::vector<std::string> QtStdVectorFunctionModel::GetVersionHistory()
   return v;
 }
 
-QVariant QtStdVectorFunctionModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ribi::QtStdVectorFunctionModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole && role != Qt::DisplayRole) return QVariant();
@@ -115,7 +115,7 @@ QVariant QtStdVectorFunctionModel::headerData(int section, Qt::Orientation orien
   }
 }
 
-bool QtStdVectorFunctionModel::insertRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtStdVectorFunctionModel::insertRows(int row, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginInsertRows(parent,row,row+count-1);
@@ -136,7 +136,7 @@ bool QtStdVectorFunctionModel::insertRows(int row, int count, const QModelIndex 
   return true;
 }
 
-bool QtStdVectorFunctionModel::removeRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtStdVectorFunctionModel::removeRows(int row, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginRemoveRows(parent,row,row+count-1);
@@ -157,12 +157,12 @@ bool QtStdVectorFunctionModel::removeRows(int row, int count, const QModelIndex 
   return true;
 }
 
-int QtStdVectorFunctionModel::rowCount(const QModelIndex &) const
+int ribi::QtStdVectorFunctionModel::rowCount(const QModelIndex &) const
 {
   return boost::numeric_cast<int>(m_data.size());
 }
 
-bool QtStdVectorFunctionModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
+bool ribi::QtStdVectorFunctionModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
 {
   const int row = index.row();
   #ifndef NDEBUG
@@ -193,7 +193,7 @@ bool QtStdVectorFunctionModel::setData(const QModelIndex &index, const QVariant 
   return true;
 }
 
-void QtStdVectorFunctionModel::SetHeaderData(
+void ribi::QtStdVectorFunctionModel::SetHeaderData(
   const std::string& horizontal_header_text, const std::vector<std::string>& vertical_header_text)
 {
   if (m_header_horizontal_text != horizontal_header_text)
@@ -235,7 +235,7 @@ void QtStdVectorFunctionModel::SetHeaderData(
   assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
 }
 
-bool QtStdVectorFunctionModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
+bool ribi::QtStdVectorFunctionModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
 {
   if (orientation == Qt::Horizontal)
   {
@@ -260,7 +260,7 @@ bool QtStdVectorFunctionModel::setHeaderData(int section, Qt::Orientation orient
   }
 }
 
-void QtStdVectorFunctionModel::SetRawData(const std::vector<std::string>& data)
+void ribi::QtStdVectorFunctionModel::SetRawData(const std::vector<std::string>& data)
 {
   if (m_data != data)
   {

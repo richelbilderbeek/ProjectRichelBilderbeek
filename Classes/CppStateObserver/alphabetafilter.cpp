@@ -1,10 +1,8 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "alphabetafilter.h"
 
 #include <cassert>
 
-AlphaBetaFilter::AlphaBetaFilter(
+ribi::AlphaBetaFilter::AlphaBetaFilter(
   const double alpha,
   const double beta,
   const double dt)
@@ -21,7 +19,7 @@ AlphaBetaFilter::AlphaBetaFilter(
 }
 
 
-void AlphaBetaFilter::Update(const double measurement)
+void ribi::AlphaBetaFilter::Update(const double measurement)
 {
   const double output_predicted = m_output + ( m_slope * m_dt );
   const double prediction_error = measurement - output_predicted;
@@ -30,12 +28,12 @@ void AlphaBetaFilter::Update(const double measurement)
   m_slope += (m_beta * prediction_error / m_dt);
 }
 
-const std::string AlphaBetaFilter::GetVersion()
+const std::string ribi::AlphaBetaFilter::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> AlphaBetaFilter::GetVersionHistory()
+const std::vector<std::string> ribi::AlphaBetaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");

@@ -7,6 +7,8 @@
 #include "fixedlagsmootherkalmanfilterparameters.h"
 #include "fixedlagsmootherkalmanfiltercalculationelements.h"
 
+namespace ribi {
+
 struct FixedLagSmootherKalmanFilter : public KalmanFilter
 {
   ///The augmented estimation error covariances, that is the estimation error covariance for each lag timestep
@@ -85,7 +87,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
 
   private:
   ///Only a FixedLagSmootherKalmanFilterFactory can create a FixedLagSmootherKalmanFilter
-  FixedLagSmootherKalmanFilter(
+  explicit FixedLagSmootherKalmanFilter(
     const boost::shared_ptr<FixedLagSmootherKalmanFilterCalculationElements>& calculation,
     const boost::shared_ptr<const KalmanFilterParameters>& parameters);
   friend class FixedLagSmootherKalmanFilterFactory;
@@ -240,5 +242,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // FIXEDLAGSMOOTHERKALMANFILTER_H

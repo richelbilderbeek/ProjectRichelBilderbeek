@@ -33,24 +33,26 @@
 </code></td></tr></table>
 <!-- end of the code --><p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>The first, without the .h extension, means that this <a href="CppHeaderFile.htm">header
-file</a> is from the <a href="CppStl.htm">Standard Template Library</a>. The
-second <a href="CppInclude.htm">#include</a> means that the <a
-href="CppHeaderFile.htm">header</a> is not from the <a href="CppStl.htm">STL</a>
-but in the standard <a href="CppHeaderFile.htm">header file</a> directory. The
-third <a href="CppInclude.htm">#include</a> means that the file is local, that
-is in the same directory as the program. If the local <a href="CppInclude.htm">#include</a>
-fails, the standard header file directory is checked for this <a
-href="CppHeaderFile.htm">header file</a>.</p>
+<p>
+  The first, without the .h extension, means that this <a href="CppHeaderFile.htm">header
+  file</a> is from the <a href="CppStl.htm">Standard Template Library</a>. The
+  second <a href="CppInclude.htm">#include</a> means that the <a href="CppHeaderFile.htm">header</a> 
+  is not from the <a href="CppStl.htm">STL</a>
+  but in the standard <a href="CppHeaderFile.htm">header file</a> directory. The
+  third <a href="CppInclude.htm">#include</a> means that the file is local, that
+  is in the same directory as the program. If the local <a href="CppInclude.htm">#include</a>
+  fails, the standard header file directory is checked for this <a href="CppHeaderFile.htm">header file</a>.
+</p>
 <p>&nbsp;</p>
-<p>Never <a href="CppInclude.htm">#include</a> unnecessary header files [1]. Prefer
-to <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;
-when a <a href="CppForwardDeclaration.htm">forward declaration</a> of a 
-<a href="CppStream.htm">stream</a> will suffice [2]. Never
-<a href="CppInclude.htm">#include</a> a header when a <a
-href="CppForwardDeclaration.htm">forward declaration</a> will suffice [3].
-The <a href="CppImplementationFile.htm">implementation (.cpp) file</a> of every component should <a href="CppInclude.htm">#include</a> its 
-own <a href="CppHeaderFile.htm">header (.h) file</a> as the first substantive line of code [7].</p>
+<p>
+  Use <a href="CppInclude.htm">#include</a> only at <a href="CppGlobal.htm">global</a> <a href="CppScope.htm">scope</a> and in <a href="CppNamespace.htm">namespaces</a> [9].
+  <a href="CppInclude.htm">#include</a> only complete <a href="CppDeclaration.htm">declarations</a> [10]
+  Never <a href="CppInclude.htm">#include</a> unnecessary header files [1]. 
+  Prefer to <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt; when a <a href="CppForwardDeclaration.htm">forward declaration</a> 
+  of a <a href="CppStream.htm">stream</a> will suffice [2]. 
+  Never <a href="CppInclude.htm">#include</a> a header when a <a href="CppForwardDeclaration.htm">forward declaration</a> will suffice [3].
+  The <a href="CppImplementationFile.htm">implementation (.cpp) file</a> of every component should <a href="CppInclude.htm">#include</a> its 
+  own <a href="CppHeaderFile.htm">header (.h) file</a> as the first substantive line of code [7].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -113,14 +115,16 @@ example, in <a href="CppBuilder.htm">C++ Builder</a>, select 'Project | Add to P
 <h2><a href="CppReference.htm"> References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><!-- [1] --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. 2000. ISBN: 0-201-61562-2. Item 26: 'Never #include unnecessary header files'.</li>
-  <li><!-- [2] --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. 2000. ISBN: 0-201-61562-2. Item 26: 'Prefer to #include &lt;iosfwd&gt; when a forward declaration of a stream will suffice'.</li>
-  <li><!-- [3] --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. 2000. ISBN: 0-201-61562-2. Item 26: 'Never #include a header when a forward declaration will suffice'.</li>
-  <li><!-- [4] --> C++ FAQ Lite: <a href="http://www.parashift.com/c++-faq-lite/coding-standards.html#faq-27.5">http://www.parashift.com/c++-faq-lite/coding-standards.html#faq-27.5</a>. Item 27.5: 'Should I use using namespace std in my code? Probably not.'</li>
-  <li><!-- [5] --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter C.14.15: 'Don't pollute the global namespace'</li>
-  <li><!-- [6] --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup </a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 8.2.9.1: 'Namespaces and C'.</li>
-  <li><!-- [7] --> <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110: 'The .c file of every component should include its own .h file as the first substantive line of code'</li>
-  <li><!-- [8] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 32: 'The #include pre-processor directive will only be used to include header (*.h) files.'</li>
+  <li><!--  1 --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. 2000. ISBN: 0-201-61562-2. Item 26: 'Never #include unnecessary header files'.</li>
+  <li><!--  2 --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. 2000. ISBN: 0-201-61562-2. Item 26: 'Prefer to #include &lt;iosfwd&gt; when a forward declaration of a stream will suffice'.</li>
+  <li><!--  3 --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. 2000. ISBN: 0-201-61562-2. Item 26: 'Never #include a header when a forward declaration will suffice'.</li>
+  <li><!--  4 --> C++ FAQ Lite: <a href="http://www.parashift.com/c++-faq-lite/coding-standards.html#faq-27.5">http://www.parashift.com/c++-faq-lite/coding-standards.html#faq-27.5</a>. Item 27.5: 'Should I use using namespace std in my code? Probably not.'</li>
+  <li><!--  5 --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter C.14.15: 'Don't pollute the global namespace'</li>
+  <li><!--  6 --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup </a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 8.2.9.1: 'Namespaces and C'.</li>
+  <li><!--  7 --> <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110: 'The .c file of every component should include its own .h file as the first substantive line of code'</li>
+  <li><!--  8 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 32: 'The #include pre-processor directive will only be used to include header (*.h) files.'</li>
+  <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 15.5. Advice. page 444: '[5] Use #include only at global scope and in namespaces'</li>
+  <li><!-- 10 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 15.5. Advice. page 444: '[6] #include only complete declarations'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

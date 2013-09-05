@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "connectthreeresources.h"
 
 #include <cassert>
@@ -30,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-ConnectThreeResources::ConnectThreeResources(
+ribi::ConnectThreeResources::ConnectThreeResources(
   const std::vector<std::string>& computers_filenames,
   const std::string& computer_grey_filename,
   const std::string& css,
@@ -58,7 +56,7 @@ ConnectThreeResources::ConnectThreeResources(
   Create();
 }
 
-ConnectThreeResources::~ConnectThreeResources()
+ribi::ConnectThreeResources::~ConnectThreeResources()
 {
   for (const std::string filename: m_computers_filenames) { std::remove(filename.c_str()); }
   for (const std::string filename: m_players_filenames) { std::remove(filename.c_str()); }
@@ -71,7 +69,7 @@ ConnectThreeResources::~ConnectThreeResources()
   std::remove(m_instructions_wrong_filename.c_str());
 }
 
-void ConnectThreeResources::Create()
+void ribi::ConnectThreeResources::Create()
 {
   //CheckFile(m_background_filename);
   for (const std::string filename: m_computers_filenames) { CreateFile(filename); }
@@ -86,7 +84,7 @@ void ConnectThreeResources::Create()
   CreateFile(m_instructions_wrong_filename);
 }
 
-void ConnectThreeResources::CreateFile(const std::string& s)
+void ribi::ConnectThreeResources::CreateFile(const std::string& s)
 {
   if (!QFile::exists(s.c_str()))
   {

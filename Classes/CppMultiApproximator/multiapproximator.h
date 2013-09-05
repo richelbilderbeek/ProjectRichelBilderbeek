@@ -18,6 +18,8 @@
 #include "exceptionnoextrapolation.h"
 #include "trace.h"
 
+namespace ribi {
+
 ///MultiApproximator can estimate a value between (non-unique) keys.
 ///For example, supply Approximator<X,Y> with (1.0,10) and (2.0,20)
 ///and it will estimate an X if 1.5 to have a Y of 15.
@@ -41,7 +43,7 @@ struct MultiApproximator
   typedef typename Container::const_iterator Iterator;
   typedef typename std::pair<Iterator,Iterator> Range;
 
-  MultiApproximator(const Container& container = Container());
+  explicit MultiApproximator(const Container& container = Container());
 
   void Add(const Key& key, const Value& value);
 
@@ -357,5 +359,6 @@ const Approximator<Key,Value,Container> ToApproximator(
   return a;
 }
 
+} //~namespace ribi
 
 #endif // MULTIAPPROXIMATOR_H

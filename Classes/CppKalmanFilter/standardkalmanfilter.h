@@ -12,6 +12,8 @@
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///A discrete time Kalman filter
 struct StandardKalmanFilter : public KalmanFilter
 {
@@ -57,7 +59,7 @@ struct StandardKalmanFilter : public KalmanFilter
 
   private:
   ///Initialize the filter with a first measurent
-  StandardKalmanFilter(
+  explicit StandardKalmanFilter(
     const boost::shared_ptr<StandardKalmanFilterCalculationElements>& calculation,
     const boost::shared_ptr<const KalmanFilterParameters>& parameters
   );
@@ -78,8 +80,8 @@ struct StandardKalmanFilter : public KalmanFilter
 
   ///x: The (current prediction of the) state
   boost::numeric::ublas::vector<double> m_state_estimate;
-
-
 };
+
+} //~namespace ribi
 
 #endif // STANDARDKALMANFILTER_H

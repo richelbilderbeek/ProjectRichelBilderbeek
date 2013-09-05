@@ -40,7 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-QrcFile::QrcFile(const std::string& filename)
+ribi::QrcFile::QrcFile(const std::string& filename)
   : m_qrc_filename(filename)
 {
   #ifndef NDEBUG
@@ -71,14 +71,14 @@ QrcFile::QrcFile(const std::string& filename)
   }
 }
 
-bool QrcFile::FileExists(const std::string& filename)
+bool ribi::QrcFile::FileExists(const std::string& filename)
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);
   return f.is_open();
 }
 
-const std::vector<std::string> QrcFile::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::QrcFile::FileToVector(const std::string& filename)
 {
   assert(FileExists(filename));
   std::vector<std::string> v;
@@ -92,7 +92,7 @@ const std::vector<std::string> QrcFile::FileToVector(const std::string& filename
   return v;
 }
 
-const About QrcFile::GetAbout()
+const ribi::About ribi::QrcFile::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -106,12 +106,12 @@ const About QrcFile::GetAbout()
   return a;
 }
 
-const std::string QrcFile::GetVersion()
+const std::string ribi::QrcFile::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> QrcFile::GetVersionHistory()
+const std::vector<std::string> ribi::QrcFile::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-06-13: version 1.0: initial version");
@@ -119,7 +119,7 @@ const std::vector<std::string> QrcFile::GetVersionHistory()
   return v;
 }
 
-void QrcFile::Test()
+void ribi::QrcFile::Test()
 {
   ///Test exactly once
   {
@@ -161,7 +161,7 @@ void QrcFile::Test()
   }
 }
 
-std::ostream& operator<<(std::ostream& os,const QrcFile& f)
+std::ostream& ribi::operator<<(std::ostream& os,const QrcFile& f)
 {
   std::for_each(f.m_files.begin(),f.m_files.end(),
     [&os](const std::string& s)
@@ -171,4 +171,3 @@ std::ostream& operator<<(std::ostream& os,const QrcFile& f)
   );
   return os;
 }
-

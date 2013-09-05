@@ -6,6 +6,8 @@
 
 #include "floatingpointstateobserver.h"
 
+namespace ribi {
+
 ///An alpha beta gamma filter
 struct AlphaBetaGammaFilter : public FloatingPointStateObserver
 {
@@ -37,5 +39,7 @@ struct AlphaBetaGammaFilter : public FloatingPointStateObserver
   double m_position;
   double m_velocity;
 };
+
+} //~namespace ribi
 
 #endif // ALPHABETAGAMMAFILTER_H

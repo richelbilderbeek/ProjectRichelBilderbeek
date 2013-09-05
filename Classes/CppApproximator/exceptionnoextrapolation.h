@@ -4,8 +4,10 @@
 #include <stdexcept>
 #include <boost/lexical_cast.hpp>
 
+namespace ribi {
+
 template <class T>
-struct ExceptionNoExtrapolation
+struct ExceptionNoExtrapolation : public std::exception
 {
   ExceptionNoExtrapolation(
     const T& value)
@@ -47,6 +49,7 @@ struct ExceptionNoExtrapolation
   const std::string m_what;
 };
 
+} //~namespace ribi
 
 
 #endif // EXCEPTIONNOEXTRAPOLATION_H

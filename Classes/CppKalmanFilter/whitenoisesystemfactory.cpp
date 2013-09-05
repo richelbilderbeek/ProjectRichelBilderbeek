@@ -7,7 +7,7 @@
 #include "laggedwhitenoisesystemfactory.h"
 #include "standardwhitenoisesystemfactory.h"
 
-const boost::shared_ptr<WhiteNoiseSystem> WhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::WhiteNoiseSystem> ribi::WhiteNoiseSystemFactory::Create(
   const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters)
 {
   boost::shared_ptr<WhiteNoiseSystem> p;

@@ -1,10 +1,8 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "kalmanfiltertypes.h"
 
-boost::bimap<KalmanFilterType,std::string> KalmanFilterTypes::m_map;
+boost::bimap<ribi::KalmanFilterType,std::string> ribi::KalmanFilterTypes::m_map;
 
-const boost::bimap<KalmanFilterType,std::string> KalmanFilterTypes::CreateMap()
+const boost::bimap<ribi::KalmanFilterType,std::string> ribi::KalmanFilterTypes::CreateMap()
 {
   #ifndef NDEBUG
   Test();
@@ -20,7 +18,7 @@ const boost::bimap<KalmanFilterType,std::string> KalmanFilterTypes::CreateMap()
   return m;
 }
 
-const std::vector<KalmanFilterType> KalmanFilterTypes::GetAllTypes()
+const std::vector<ribi::KalmanFilterType> ribi::KalmanFilterTypes::GetAllTypes()
 {
   const std::vector<KalmanFilterType> v
   =
@@ -34,7 +32,7 @@ const std::vector<KalmanFilterType> KalmanFilterTypes::GetAllTypes()
 }
 
 #ifndef NDEBUG
-void KalmanFilterTypes::Test()
+void ribi::KalmanFilterTypes::Test()
 {
   {
     static bool is_tested = false;
@@ -55,7 +53,7 @@ void KalmanFilterTypes::Test()
 }
 #endif
 
-const std::string KalmanFilterTypes::ToStr(const KalmanFilterType type)
+const std::string ribi::KalmanFilterTypes::ToStr(const KalmanFilterType type)
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());
@@ -64,7 +62,7 @@ const std::string KalmanFilterTypes::ToStr(const KalmanFilterType type)
   return s;
 }
 
-KalmanFilterType KalmanFilterTypes::ToType(const std::string& s)
+ribi::KalmanFilterType ribi::KalmanFilterTypes::ToType(const std::string& s)
 {
   if (m_map.right.empty()) m_map = CreateMap();
   assert(!m_map.right.empty());

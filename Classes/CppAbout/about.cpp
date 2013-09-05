@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppAbout.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "about.h"
 
 #include <algorithm>
@@ -42,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //#include "trace.h"
 
-About::About(
+ribi::About::About(
     const std::string author,
     const std::string file_title,
     const std::string file_description,
@@ -73,13 +71,13 @@ About::About(
     + std::string(" (GNU ISO C++ library)"));
 }
 
-void About::AddLibrary(const std::string& s)
+void ribi::About::AddLibrary(const std::string& s)
 {
   m_libraries.push_back(s);
   std::sort(m_libraries.begin(),m_libraries.end());
 }
 
-const std::vector<std::string> About::CreateAboutText() const
+const std::vector<std::string> ribi::About::CreateAboutText() const
 {
   const std::vector<std::string> v
   {
@@ -94,7 +92,7 @@ const std::vector<std::string> About::CreateAboutText() const
   return v;
 }
 
-const std::vector<std::string> About::CreateLibrariesUsedText() const
+const std::vector<std::string> ribi::About::CreateLibrariesUsedText() const
 {
   std::vector<std::string> v;
   v.push_back("Libraries and classes used: ");
@@ -115,7 +113,7 @@ const std::vector<std::string> About::CreateLibrariesUsedText() const
   return v;
 }
 
-const std::vector<std::string> About::CreateLicenceText() const
+const std::vector<std::string> ribi::About::CreateLicenceText() const
 {
   std::vector<std::string> v {
     m_file_title + std::string(", ") + m_file_description,
@@ -136,7 +134,7 @@ const std::vector<std::string> About::CreateLicenceText() const
   return v;
 }
 
-const std::vector<std::string> About::CreateVersionHistory() const
+const std::vector<std::string> ribi::About::CreateVersionHistory() const
 {
   std::vector<std::string> v;
   v.push_back("Version history:");
@@ -157,12 +155,12 @@ const std::vector<std::string> About::CreateVersionHistory() const
   return v;
 }
 
-const std::string About::GetAboutVersion()
+const std::string ribi::About::GetAboutVersion()
 {
   return "1.5";
 }
 
-const std::vector<std::string> About::GetAboutVersionHistory()
+const std::vector<std::string> ribi::About::GetAboutVersionHistory()
 {
   const std::vector<std::string> v {
     "2011-01-07: version 1.0: initial version",
@@ -171,23 +169,24 @@ const std::vector<std::string> About::GetAboutVersionHistory()
     "2012-01-08: version 1.3: fixed grammatical error",
     "2012-01-26: version 1.4: removed BOOST_FOREACH",
     "2013-04-29: version 1.5: added #ifdefs for GCC 4.4.0"
+    "2013-09-05: version 1.6: transition to namespace ribi"
   };
   return v;
 }
 
-const std::string About::GetBoostVersion()
+const std::string ribi::About::GetBoostVersion()
 {
   std::string s = BOOST_LIB_VERSION;
   std::replace(s.begin(),s.end(),'_','.');
   return s;
 }
 
-const std::string About::GetStlVersion()
+const std::string ribi::About::GetStlVersion()
 {
   return boost::lexical_cast<std::string>(__VERSION__);
 }
 
-std::ostream& operator<<(std::ostream& os,const About& a)
+std::ostream& ribi::operator<<(std::ostream& os,const About& a)
 {
   {
     const std::vector<std::string> v = a.CreateAboutText();

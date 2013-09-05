@@ -53,19 +53,19 @@ struct PathOrdering
 };
 
 
-QtCreatorProFileZipScript::QtCreatorProFileZipScript(
+ribi::QtCreatorProFileZipScript::QtCreatorProFileZipScript(
   const boost::shared_ptr<const QtCreatorProFile> pro_file)
   : m_filenames(ExtractFilenames(pro_file)),
     m_pro_file_name(pro_file->GetQtCreatorProFilename())
 
 {
   #ifndef NDEBUG
-  QtCreatorProFileZipScript::Test();
+  ribi::QtCreatorProFileZipScript::Test();
   #endif
   assert(pro_file);
 }
 
-QtCreatorProFileZipScript::QtCreatorProFileZipScript(
+ribi::QtCreatorProFileZipScript::QtCreatorProFileZipScript(
   const std::set<std::string>& filenames,
   const std::string& pro_file_name)
   : m_filenames(filenames),
@@ -74,21 +74,21 @@ QtCreatorProFileZipScript::QtCreatorProFileZipScript(
 
 }
 
-const std::vector<boost::shared_ptr<QtCreatorProFile> > QtCreatorProFileZipScript::CreateProFiles(
+const std::vector<boost::shared_ptr<ribi::QtCreatorProFile> > ribi::QtCreatorProFileZipScript::CreateProFiles(
   const std::vector<std::string>& filenames)
 {
-  std::vector<boost::shared_ptr<QtCreatorProFile> > pro_files;
+  std::vector<boost::shared_ptr<ribi::QtCreatorProFile> > pro_files;
   for (const std::string& filename: filenames)
   {
     assert(IsRegularFile(filename));
-    const boost::shared_ptr<QtCreatorProFile> pro_file(new QtCreatorProFile(filename));
+    const boost::shared_ptr<ribi::QtCreatorProFile> pro_file(new ribi::QtCreatorProFile(filename));
     assert(pro_file);
     pro_files.push_back(pro_file);
   }
   return pro_files;
 }
 
-const std::string QtCreatorProFileZipScript::CreateScript(const std::string& source_folder)
+const std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::string& source_folder)
 {
 
   const std::vector<std::string> pro_filenames = GetProFilesInFolder(source_folder);
@@ -110,7 +110,7 @@ const std::string QtCreatorProFileZipScript::CreateScript(const std::string& sou
 
 
   const boost::shared_ptr<QtCreatorProFileZipScript> merged_script
-    = QtCreatorProFileZipScript::Merge(scripts);
+    = ribi::QtCreatorProFileZipScript::Merge(scripts);
   if (!merged_script)
   {
     return "Folder does not contain any .pro files";
@@ -124,7 +124,7 @@ const std::string QtCreatorProFileZipScript::CreateScript(const std::string& sou
 }
 
 
-const std::set<std::string> QtCreatorProFileZipScript::ExtractFilenames(
+const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
   const boost::shared_ptr<const QtCreatorProFile>& pro_file) const
 {
   assert(pro_file);
@@ -201,9 +201,9 @@ const std::set<std::string> QtCreatorProFileZipScript::ExtractFilenames(
   return filenames;
 }
 
-const About QtCreatorProFileZipScript::GetAbout()
+const ribi::About ribi::QtCreatorProFileZipScript::GetAbout()
 {
-  About a(
+  ribi::About a(
     "Richel Bilderbeek",
     "QtCreatorProFileZipScript",
     "class to create a zip file from a .pro file",
@@ -218,7 +218,7 @@ const About QtCreatorProFileZipScript::GetAbout()
   return a;
 }
 
-const std::vector<std::string> QtCreatorProFileZipScript::GetFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetFilesInFolder(const std::string& folder)
 {
   QDir dir(folder.c_str());
   dir.setFilter(QDir::Files);
@@ -235,7 +235,7 @@ const std::vector<std::string> QtCreatorProFileZipScript::GetFilesInFolder(const
   return v;
 }
 
-const std::string QtCreatorProFileZipScript::GetPath(const std::string& filename)
+const std::string ribi::QtCreatorProFileZipScript::GetPath(const std::string& filename)
 {
   const int a = filename.rfind("\\",filename.size());
   const int b = filename.rfind("/",filename.size());
@@ -244,7 +244,7 @@ const std::string QtCreatorProFileZipScript::GetPath(const std::string& filename
   return filename.substr(0,i);
 }
 
-const std::vector<std::string> QtCreatorProFileZipScript::GetProFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProFilesInFolder(const std::string& folder)
 {
   //Get all filenames
   const std::vector<std::string> v = GetFilesInFolder(folder);
@@ -266,12 +266,12 @@ const std::vector<std::string> QtCreatorProFileZipScript::GetProFilesInFolder(co
   return w;
 }
 
-const std::string QtCreatorProFileZipScript::GetVersion()
+const std::string ribi::QtCreatorProFileZipScript::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtCreatorProFileZipScript::GetVersionHistory()
+const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-19: version 1.0: initial version");
@@ -279,17 +279,17 @@ const std::vector<std::string> QtCreatorProFileZipScript::GetVersionHistory()
   return v;
 }
 
-bool QtCreatorProFileZipScript::IsRegularFile(const std::string& filename)
+bool ribi::QtCreatorProFileZipScript::IsRegularFile(const std::string& filename)
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);
   return f.is_open();
 }
 
-const boost::shared_ptr<QtCreatorProFileZipScript> QtCreatorProFileZipScript::Merge(
+const boost::shared_ptr<ribi::QtCreatorProFileZipScript> ribi::QtCreatorProFileZipScript::Merge(
   const std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> >& scripts)
 {
-  boost::shared_ptr<QtCreatorProFileZipScript> p;
+  boost::shared_ptr<ribi::QtCreatorProFileZipScript> p;
   if (scripts.empty()) return p;
 
   std::set<std::string> all_filenames;
@@ -308,14 +308,14 @@ const boost::shared_ptr<QtCreatorProFileZipScript> QtCreatorProFileZipScript::Me
 
 
 #ifndef NDEBUG
-void QtCreatorProFileZipScript::Test()
+void ribi::QtCreatorProFileZipScript::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCreatorProFileZipScript::Test");
+  TRACE("Starting ribi::QtCreatorProFileZipScript::Test");
   //Test basic functions on this project with going two folders down
   const std::vector<std::string> pro_file_names
     =
@@ -360,13 +360,13 @@ void QtCreatorProFileZipScript::Test()
     const std::size_t q = GetProFilesInFolder("").size();
     assert(n == q);
   }
-  TRACE("Finished QtCreatorProFileZipScript::Test successfully");
+  TRACE("Finished ribi::QtCreatorProFileZipScript::Test successfully");
 }
 #endif
 
-std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script)
+std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript& script)
 {
-  //using QtCreatorProFileZipScript::GetPath;
+  //using ribi::QtCreatorProFileZipScript::GetPath;
   assert(script.GetProFileName().size() > 6);
   assert(script.GetProFileName().substr(0,6) == std::string("../../"));
 
@@ -409,12 +409,12 @@ std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& scrip
   //Add the folders added by the .pro file
   for (const std::string filename: file_names)
   {
-    std::string s = QtCreatorProFileZipScript::GetPath(filename);
+    std::string s = ribi::QtCreatorProFileZipScript::GetPath(filename);
     //std::string s = boost::filesystem::path(filename).parent_path().string();
     while (!s.empty())
     {
       folder_names.insert(s);
-      s = QtCreatorProFileZipScript::GetPath(s);
+      s = ribi::QtCreatorProFileZipScript::GetPath(s);
       //s = boost::filesystem::path(s).parent_path().string();
     }
   }
@@ -443,7 +443,7 @@ std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& scrip
       //A file in the .pro file its folder
       os << "cp " << s << " Projects/"
         //<< boost::filesystem::path(script.GetProFileName()).parent_path().string()
-        << QtCreatorProFileZipScript::GetPath(script.GetProFileName())
+        << ribi::QtCreatorProFileZipScript::GetPath(script.GetProFileName())
         << s
         << '\n';
     }
@@ -451,7 +451,7 @@ std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& scrip
 
   os << '\n';
   os << "FILENAME=\""
-     << QtCreatorProFileZipScript::GetPath( script.GetProFileName() )
+     << ribi::QtCreatorProFileZipScript::GetPath( script.GetProFileName() )
      //<< boost::filesystem::path( script.GetProFileName() ).parent_path().string()
      << "Source\"" << '\n';
   os << "ZIP_FILENAME=$FILENAME\".zip\"" << '\n';
@@ -492,7 +492,7 @@ std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& scrip
   os << '\n';
   {
     const std::vector<std::string> w
-      = QtCreatorProFileZipScript::GetAbout().CreateAboutText();
+      = ribi::QtCreatorProFileZipScript::GetAbout().CreateAboutText();
     std::transform(w.begin(),w.end(),
     std::ostream_iterator<std::string>(os,"\n"),
       [](const std::string& s)

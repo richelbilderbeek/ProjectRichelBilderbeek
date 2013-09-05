@@ -4,6 +4,8 @@
 #include <boost/shared_ptr.hpp>
 #include "steadystatekalmanfilter.h"
 
+namespace ribi {
+
 ///Factory for SteadyStateKalmanFilter
 struct SteadyStateKalmanFilterFactory
 {
@@ -11,5 +13,7 @@ struct SteadyStateKalmanFilterFactory
     const boost::shared_ptr<const KalmanFilterParameters>& parameters);
 
 };
+
+} //~namespace ribi
 
 #endif // STEADYSTATEKALMANFILTERFACTORY_H

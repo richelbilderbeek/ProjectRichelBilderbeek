@@ -45,7 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-QtCreatorProFile::QtCreatorProFile(const std::string& filename)
+ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   : m_pro_filename(filename)
 {
   #ifndef NDEBUG
@@ -65,7 +65,7 @@ QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   Parse(v);
 }
 
-const std::vector<std::string> QtCreatorProFile::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::QtCreatorProFile::FileToVector(const std::string& filename)
 {
   assert(IsRegularFile(filename.c_str()));
   std::vector<std::string> v;
@@ -79,9 +79,9 @@ const std::vector<std::string> QtCreatorProFile::FileToVector(const std::string&
   return v;
 }
 
-const About QtCreatorProFile::GetAbout()
+const ribi::About ribi::QtCreatorProFile::GetAbout()
 {
-  About a(
+  ribi::About a(
     "Richel Bilderbeek",
     "QtCreatorProFile",
     "class to parse Qt Project files",
@@ -93,12 +93,12 @@ const About QtCreatorProFile::GetAbout()
   return a;
 }
 
-const std::string QtCreatorProFile::GetVersion()
+const std::string ribi::QtCreatorProFile::GetVersion()
 {
   return "2.1";
 }
 
-const std::vector<std::string> QtCreatorProFile::GetVersionHistory()
+const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-12-19: version 1.0: initial version");
@@ -116,13 +116,13 @@ const std::vector<std::string> QtCreatorProFile::GetVersionHistory()
 }
 
 #ifndef NDEBUG
-bool QtCreatorProFile::IsRegularFile(const std::string& filename)
+bool ribi::QtCreatorProFile::IsRegularFile(const std::string& filename)
 {
   return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }
 #endif
 
-void QtCreatorProFile::Parse(const std::vector<std::string> &v)
+void ribi::QtCreatorProFile::Parse(const std::vector<std::string> &v)
 {
   std::set<std::string> * p = nullptr; //A set to write to
   enum class Prefix { none, plus, minus };
@@ -224,7 +224,7 @@ void QtCreatorProFile::Parse(const std::vector<std::string> &v)
   }
 }
 
-const std::vector<std::string> QtCreatorProFile::SeperateString(
+const std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
   const std::string& input,
   const char seperator)
 {
@@ -241,7 +241,7 @@ const std::vector<std::string> QtCreatorProFile::SeperateString(
 }
 
 #ifndef NDEBUG
-void QtCreatorProFile::Test()
+void ribi::QtCreatorProFile::Test()
 {
   //Test exactly once
   {
@@ -424,21 +424,21 @@ void QtCreatorProFile::Test()
   }
 }
 #endif
-std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p)
+std::ostream& ribi::operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p)
 {
   assert(p);
   os << (*p);
   return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<const QtCreatorProFile>& p)
+std::ostream& ribi::operator<<(std::ostream& os, const boost::shared_ptr<const QtCreatorProFile>& p)
 {
   assert(p);
   os << (*p);
   return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const QtCreatorProFile& p)
+std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
 {
   os << "\n";
 
@@ -502,7 +502,7 @@ std::ostream& operator<<(std::ostream& os, const QtCreatorProFile& p)
   return os;
 }
 
-bool operator==(const QtCreatorProFile& lhs, const QtCreatorProFile& rhs)
+bool ribi::operator==(const QtCreatorProFile& lhs, const QtCreatorProFile& rhs)
 {
   return
        lhs.m_config == rhs.m_config

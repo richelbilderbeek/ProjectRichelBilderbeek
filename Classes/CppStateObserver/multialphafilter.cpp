@@ -1,10 +1,8 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "multialphafilter.h"
 
 #include <cassert>
 #include <boost/foreach.hpp>
-MultiAlphaFilter::MultiAlphaFilter(
+ribi::MultiAlphaFilter::MultiAlphaFilter(
   const std::vector<double> alphas,
   const double dt)
   : m_filters(CreateFilters(alphas,dt))
@@ -12,7 +10,7 @@ MultiAlphaFilter::MultiAlphaFilter(
 
 }
 
-const std::vector<boost::shared_ptr<AlphaFilter> > MultiAlphaFilter::CreateFilters(
+const std::vector<boost::shared_ptr<ribi::AlphaFilter> > ribi::MultiAlphaFilter::CreateFilters(
   const std::vector<double> alphas,
   const double dt)
 {
@@ -27,12 +25,12 @@ const std::vector<boost::shared_ptr<AlphaFilter> > MultiAlphaFilter::CreateFilte
   return v;
 }
 
-double MultiAlphaFilter::GetEstimate() const
+double ribi::MultiAlphaFilter::GetEstimate() const
 {
   return m_filters.back()->GetEstimate();
 }
 
-void MultiAlphaFilter::Update(double measurement)
+void ribi::MultiAlphaFilter::Update(double measurement)
 {
   const std::size_t sz = m_filters.size();
   for (std::size_t i = 0; i!=sz; ++i)
@@ -44,12 +42,12 @@ void MultiAlphaFilter::Update(double measurement)
   }
 }
 
-const std::string MultiAlphaFilter::GetVersion()
+const std::string ribi::MultiAlphaFilter::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> MultiAlphaFilter::GetVersionHistory()
+const std::vector<std::string> ribi::MultiAlphaFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");

@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 ConnectThree. A connect-three class.
 Copyright (C) 2010 Richel Bilderbeek
@@ -16,9 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConnectThree.htm
-
+//---------------------------------------------------------------------------
 #ifndef CONNECTTHREE_H
 #define CONNECTTHREE_H
 
@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/tuple/tuple.hpp>
 #pragma GCC diagnostic pop
+
+namespace ribi {
 
 struct ConnectThree
 {
@@ -84,5 +86,7 @@ private:
   const Move MakeRandomMove() const;
 
 };
+
+} //~namespace ribi
 
 #endif // CONNECTTHREE_H

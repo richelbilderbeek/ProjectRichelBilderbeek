@@ -11,6 +11,8 @@
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///ABC of the parameters of a white noise system
 struct WhiteNoiseSystemParameters : public boost::noncopyable
 {
@@ -56,7 +58,7 @@ struct WhiteNoiseSystemParameters : public boost::noncopyable
 
   protected:
   ///An ABC can only be constructed by derived classes
-  WhiteNoiseSystemParameters(
+  explicit WhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const boost::numeric::ublas::vector<double>& real_measurement_noise,
@@ -81,5 +83,7 @@ struct WhiteNoiseSystemParameters : public boost::noncopyable
   const boost::numeric::ublas::matrix<double> m_state_transition;
 
 };
+
+} //~namespace ribi
 
 #endif // WHITENOISESYSTEMPARAMETERS_H

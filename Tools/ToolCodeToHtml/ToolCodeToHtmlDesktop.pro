@@ -108,31 +108,12 @@ QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
 unix {
   message(Unix)
-  #Strict error handling
   QMAKE_CXXFLAGS += -Werror
 }
 
 win32 {
-  !static {
-    message(Native Windows)
-    #Allow native Windows to emit warnings without terminating
-    QMAKE_CXXFLAGS += -Werror
-
-  }
-
-  static {
-    message(Crosscompiling from Lubuntu to Windows)
-    #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++0x #-Werror
-
-    #See http://www.richelbilderbeek.nl/CppCompileErrorParseErrorAtBOOST_JOIN.htm
-    #Prevents error:
-    #/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"
-    DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED
-
-  }
-
-
+  message(Native Windows)
+  QMAKE_CXXFLAGS += -Werror
 }
 
 #

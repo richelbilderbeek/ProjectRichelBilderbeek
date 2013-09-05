@@ -27,6 +27,8 @@ namespace Ui {
   class QtKalmanFilterDialog;
 }
 
+namespace ribi {
+
 ///QtKalmanFilterDialog is a Facade of multiple QtKalmanFiltererParameterDialog instances
 ///with the KalmanFilterType as its primary State
 class QtKalmanFilterDialog : public QDialog
@@ -69,5 +71,7 @@ private slots:
   void on_box_filter_type_currentIndexChanged(int index);
 
 };
+
+} //~namespace ribi
 
 #endif // QTKALMANFILTERDIALOG

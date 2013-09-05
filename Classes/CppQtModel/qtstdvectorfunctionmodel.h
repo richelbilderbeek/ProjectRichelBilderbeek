@@ -30,13 +30,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct QtStdVectorFunctionModel: public QAbstractTableModel
 {
   ///The variable is the variable used in a function
   ///Examples:
   /// - in the equation 'y = 3 * x', the variable used is 'x'
   /// - in the equation 'u = cos(t)', the variable used is 't'
-  QtStdVectorFunctionModel(
+  explicit QtStdVectorFunctionModel(
     const std::string& variable,
     QObject *parent = 0);
 
@@ -98,5 +100,7 @@ struct QtStdVectorFunctionModel: public QAbstractTableModel
   ///Redefined from ABC
   bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role);
 };
+
+} //~namespace ribi
 
 #endif // QTSTDVECTORFUNCTIONMODEL_H

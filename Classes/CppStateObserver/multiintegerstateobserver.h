@@ -6,6 +6,8 @@
 #include "integeralphafilter.h"
 #include "integerstateobserver.h"
 
+namespace ribi {
+
 struct MultiIntegerStateObserver : public IntegerStateObserver
 {
   MultiIntegerStateObserver(
@@ -27,5 +29,7 @@ struct MultiIntegerStateObserver : public IntegerStateObserver
   private:
   std::vector<boost::shared_ptr<IntegerStateObserver> > m_filters;
 };
+
+} //~namespace ribi
 
 #endif // MULTIINTEGERSTATEOBSERVER_H

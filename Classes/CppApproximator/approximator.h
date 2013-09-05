@@ -13,6 +13,8 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///Approximator can estimate a value between unique keys.
 ///For example, supply Approximator<X,Y> with (1.0,10.0) and (2.0,20.0)
 ///and it will estimate an X if 1.5 to have a Y of 15.0.
@@ -32,7 +34,7 @@ struct Approximator
   typedef Key key_type;
   typedef Value value_type;
 
-  Approximator(const Container& m = Container() );
+  explicit Approximator(const Container& m = Container() );
 
   ///Add a key-value pair, where the key must be unique
   void Add(const Key& key, const Value& value);
@@ -176,5 +178,7 @@ void Approximator<Key,Value,Container>::Test()
   }
 }
 #endif
+
+} //~namespace ribi
 
 #endif // APPROXIMATOR_H

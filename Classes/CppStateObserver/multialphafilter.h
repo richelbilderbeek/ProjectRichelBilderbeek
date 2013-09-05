@@ -6,6 +6,8 @@
 #include "alphafilter.h"
 #include "floatingpointstateobserver.h"
 
+namespace ribi {
+
 struct MultiAlphaFilter : public FloatingPointStateObserver
 {
   MultiAlphaFilter(
@@ -32,5 +34,7 @@ struct MultiAlphaFilter : public FloatingPointStateObserver
     const std::vector<double> alphas,
     const double dt);
 };
+
+} //~namespace ribi
 
 #endif // MULTIALPHAFILTER_H

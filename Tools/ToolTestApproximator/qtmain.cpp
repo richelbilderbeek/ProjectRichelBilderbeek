@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   START_TRACE();
   //a.setStyleSheet(CreateStyleSheet().c_str());
-  QtToolTestApproximatorMenuDialog d;
+  ribi::QtToolTestApproximatorMenuDialog d;
   d.show();
   return a.exec();
 }

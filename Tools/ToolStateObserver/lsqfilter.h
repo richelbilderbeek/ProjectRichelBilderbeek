@@ -3,6 +3,8 @@
 
 #include <cinttypes>
 
+namespace ribi {
+
 struct LsqFilter
 {
   LsqFilter(
@@ -17,5 +19,7 @@ struct LsqFilter
   int64_t m_value_active;
   int64_t m_value_hidden;
 };
+
+} //~namespace ribi
 
 #endif // LSQFILTER_H

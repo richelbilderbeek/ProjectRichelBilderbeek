@@ -18,15 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtshowwinnerdialog.h"
 
 #include <QKeyEvent>
 
 #include "ui_qtshowwinnerdialog.h"
 
-QtShowWinnerDialog::QtShowWinnerDialog(
+ribi::QtShowWinnerDialog::QtShowWinnerDialog(
   const std::string& filename,
   const std::string& winner_text,
   QWidget *parent)
@@ -40,12 +38,12 @@ QtShowWinnerDialog::QtShowWinnerDialog(
   this->setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
-QtShowWinnerDialog::~QtShowWinnerDialog()
+ribi::QtShowWinnerDialog::~QtShowWinnerDialog()
 {
   delete ui;
 }
 
-void QtShowWinnerDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtShowWinnerDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Escape) { close(); return; }
 }

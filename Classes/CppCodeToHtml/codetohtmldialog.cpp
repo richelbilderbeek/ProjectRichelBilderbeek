@@ -39,9 +39,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlversion.h"
 #include "trace.h"
 
-namespace c2h {
 
-Dialog::Dialog(
+c2h::Dialog::Dialog(
   const PageType page_type,
   const std::string& source,
   const ContentType content_type,
@@ -61,7 +60,7 @@ Dialog::Dialog(
 }
 
 #ifndef NDEBUG
-void Dialog::Test()
+void c2h::Dialog::Test()
 {
   {
     static bool is_tested = false;
@@ -111,7 +110,7 @@ void Dialog::Test()
 }
 #endif
 
-const std::vector<std::string> Dialog::ToHtml() const
+const std::vector<std::string> c2h::Dialog::ToHtml() const
 {
   std::vector<std::string> v;
 
@@ -183,5 +182,3 @@ const std::vector<std::string> Dialog::ToHtml() const
   #endif
   return v;
 }
-
-} //~namespace CodeToHtml

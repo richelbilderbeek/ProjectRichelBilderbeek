@@ -2,9 +2,9 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "whitenoisesystemtypes.h"
 
-boost::bimap<WhiteNoiseSystemType,std::string> WhiteNoiseSystemTypes::m_map;
+boost::bimap<ribi::WhiteNoiseSystemType,std::string> ribi::WhiteNoiseSystemTypes::m_map;
 
-const boost::bimap<WhiteNoiseSystemType,std::string> WhiteNoiseSystemTypes::CreateMap()
+const boost::bimap<ribi::WhiteNoiseSystemType,std::string> ribi::WhiteNoiseSystemTypes::CreateMap()
 {
   #ifndef NDEBUG
   Test();
@@ -20,11 +20,9 @@ const boost::bimap<WhiteNoiseSystemType,std::string> WhiteNoiseSystemTypes::Crea
   return m;
 }
 
-const std::vector<WhiteNoiseSystemType> WhiteNoiseSystemTypes::GetAllTypes()
+const std::vector<ribi::WhiteNoiseSystemType> ribi::WhiteNoiseSystemTypes::GetAllTypes()
 {
-  const std::vector<WhiteNoiseSystemType> v
-  =
-  {
+  const std::vector<WhiteNoiseSystemType> v {
     WhiteNoiseSystemType::gaps_filled,
     WhiteNoiseSystemType::lagged,
     WhiteNoiseSystemType::standard
@@ -34,7 +32,7 @@ const std::vector<WhiteNoiseSystemType> WhiteNoiseSystemTypes::GetAllTypes()
 }
 
 #ifndef NDEBUG
-void WhiteNoiseSystemTypes::Test()
+void ribi::WhiteNoiseSystemTypes::Test()
 {
   {
     static bool is_tested = false;
@@ -55,7 +53,7 @@ void WhiteNoiseSystemTypes::Test()
 }
 #endif
 
-const std::string WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type)
+const std::string ribi::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type)
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());
@@ -64,7 +62,7 @@ const std::string WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type)
   return s;
 }
 
-WhiteNoiseSystemType WhiteNoiseSystemTypes::ToType(const std::string& s)
+ribi::WhiteNoiseSystemType ribi::WhiteNoiseSystemTypes::ToType(const std::string& s)
 {
   if (m_map.right.empty()) m_map = CreateMap();
   assert(!m_map.right.empty());

@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 ///About is a class to contain 'about' information
 struct About
 {
@@ -121,5 +123,7 @@ struct About
 };
 
 std::ostream& operator<<(std::ostream& os,const About& a);
+
+} //~namespace ribi
 
 #endif // ABOUT_H

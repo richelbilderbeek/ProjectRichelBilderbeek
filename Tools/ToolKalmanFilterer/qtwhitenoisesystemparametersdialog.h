@@ -27,6 +27,8 @@ namespace Ui {
   class QtWhiteNoiseSystemParametersDialog;
 }
 
+namespace ribi {
+
 class QtWhiteNoiseSystemParametersDialog : public QDialog
 {
   Q_OBJECT
@@ -80,5 +82,7 @@ private slots:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTWHITENOISESYSTEMPARAMETERSDIALOG

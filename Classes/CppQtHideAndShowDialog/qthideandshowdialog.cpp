@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtHideAndShowDialog.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qthideandshowdialog.h"
 
 #include <cassert>
@@ -27,31 +25,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 //#include "trace.h"
 
-QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent)
+ribi::QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent)
   : QDialog(parent),
     m_show_child { false }
 {
 
 }
 
-void QtHideAndShowDialog::close_child()
+void ribi::QtHideAndShowDialog::close_child()
 {
   m_show_child = false;
 }
 
-void QtHideAndShowDialog::closeEvent(QCloseEvent*)
+void ribi::QtHideAndShowDialog::closeEvent(QCloseEvent*)
 {
   //QDialog::closeEvent(event); //Not needed
   emit close_me();
   //QDialog::closeEvent(event); //Not needed
 }
 
-const std::string QtHideAndShowDialog::GetVersion()
+const std::string ribi::QtHideAndShowDialog::GetVersion()
 {
   return "1.3";
 }
 
-const std::vector<std::string> QtHideAndShowDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtHideAndShowDialog::GetVersionHistory()
 {
   std::vector<std::string> v {
     "2012-11-13: version 1.0: initial version",
@@ -62,13 +60,13 @@ const std::vector<std::string> QtHideAndShowDialog::GetVersionHistory()
   return v;
 }
 
-void QtHideAndShowDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtHideAndShowDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
   QDialog::keyPressEvent(event);
 }
 
-void QtHideAndShowDialog::ShowChild(QtHideAndShowDialog * const dialog)
+void ribi::QtHideAndShowDialog::ShowChild(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->hide();
@@ -81,7 +79,7 @@ void QtHideAndShowDialog::ShowChild(QtHideAndShowDialog * const dialog)
   this->show();
 }
 
-void QtHideAndShowDialog::ShowModal(QtHideAndShowDialog * const dialog)
+void ribi::QtHideAndShowDialog::ShowModal(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->setEnabled(false);

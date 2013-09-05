@@ -1,5 +1,3 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "noisefunctionparser.h"
 
 #include <cassert>
@@ -8,7 +6,7 @@
 //Warp's function parser
 #include "fparser.hh"
 
-NoiseFunctionParser::NoiseFunctionParser(
+ribi::NoiseFunctionParser::NoiseFunctionParser(
   const std::string& my_function,
   const std::string& variable_name)
   : m_parser(new FunctionParser)
@@ -29,14 +27,14 @@ NoiseFunctionParser::NoiseFunctionParser(
   }
 }
 
-double NoiseFunctionParser::Evaluate(const double x) const
+double ribi::NoiseFunctionParser::Evaluate(const double x) const
 {
   const double xs[1] = { x };
   const double y = m_parser->Eval(xs);
   return y;
 }
 
-double NoiseFunctionParser::MyRand(const double * const max)
+double ribi::NoiseFunctionParser::MyRand(const double * const max)
 {
   assert(max);
   return (*max) * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX);

@@ -2,7 +2,7 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "gapsfilledwhitenoisesystemfactory.h"
 
-const boost::shared_ptr<GapsFilledWhiteNoiseSystem> GapsFilledWhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::GapsFilledWhiteNoiseSystem> ribi::GapsFilledWhiteNoiseSystemFactory::Create(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state,
   const boost::numeric::ublas::vector<int>& measurement_frequency,
@@ -28,7 +28,7 @@ const boost::shared_ptr<GapsFilledWhiteNoiseSystem> GapsFilledWhiteNoiseSystemFa
   return system;
 }
 
-const boost::shared_ptr<GapsFilledWhiteNoiseSystem> GapsFilledWhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::GapsFilledWhiteNoiseSystem> ribi::GapsFilledWhiteNoiseSystemFactory::Create(
   const boost::shared_ptr<WhiteNoiseSystemParameters>& general_parameters)
 {
   assert(general_parameters);

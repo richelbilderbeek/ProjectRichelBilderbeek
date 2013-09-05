@@ -32,12 +32,12 @@
 
 #pragma GCC diagnostic pop
 
-QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
+ribi::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
   : QDialog(parent),
     ui(new Ui::QtWhiteNoiseSystemParametersDialog),
-    m_model(model)
+    m_model{model}
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -89,12 +89,12 @@ QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
   assert(m_model->CreateWhiteNoiseSystem() && "Obtain an empty white noise system (all components have size zero)");
 }
 
-QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog()
+ribi::QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog()
 {
   delete ui;
 }
 
-QtKalmanFiltererParameterDialog * QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type)
+QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type)
 {
   //Calls the const version of Find
   //To avoid duplication in const and non-const member functions
@@ -103,7 +103,7 @@ QtKalmanFiltererParameterDialog * QtWhiteNoiseSystemParametersDialog::Find(const
   return const_cast<QtKalmanFiltererParameterDialog *>(const_cast<const QtWhiteNoiseSystemParametersDialog&>(*this).Find(type));
 }
 
-const QtKalmanFiltererParameterDialog * QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type) const
+const QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type) const
 {
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
   assert(m_parameters.find(type) != m_parameters.end());
@@ -112,13 +112,13 @@ const QtKalmanFiltererParameterDialog * QtWhiteNoiseSystemParametersDialog::Find
   return table;
 }
 
-int QtWhiteNoiseSystemParametersDialog::GetLag() const
+int ribi::QtWhiteNoiseSystemParametersDialog::GetLag() const
 {
   assert(ui->box_lag->value() >= 0);
   return ui->box_lag->value();
 }
 
-WhiteNoiseSystemType QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType() const
+WhiteNoiseSystemType ribi::QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType() const
 {
   switch (ui->box_white_noise_system_type->currentIndex())
   {
@@ -126,7 +126,7 @@ WhiteNoiseSystemType QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType
     case 1: return WhiteNoiseSystemType::lagged;
     case 2: return WhiteNoiseSystemType::gaps_filled;
     case -1:
-      assert(!"QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType: box_white_noise_system_type must be initialized");
+      assert(!"ribi::QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType: box_white_noise_system_type must be initialized");
       throw std::logic_error(__func__);
     default:
       assert(!"Unimplemented index of box_white_noise_system_type");
@@ -134,13 +134,13 @@ WhiteNoiseSystemType QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType
   }
 }
 
-void QtWhiteNoiseSystemParametersDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtWhiteNoiseSystemParametersDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
   QDialog::keyPressEvent(event);
 }
 
-void QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_currentIndexChanged(int)
+void ribi::QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_currentIndexChanged(int)
 {
   //Notify the model
   m_model->SetWhiteNoiseSystemType(GetWhiteNoiseSystemType());
@@ -176,13 +176,13 @@ void QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_currentI
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
 }
 
-void QtWhiteNoiseSystemParametersDialog::on_box_lag_valueChanged(int arg1)
+void ribi::QtWhiteNoiseSystemParametersDialog::on_box_lag_valueChanged(int arg1)
 {
   m_model->SetLagReal(arg1);
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
 }
 
-void QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const WhiteNoiseSystemType type)
+void ribi::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const WhiteNoiseSystemType type)
 {
   switch (type)
   {
@@ -196,8 +196,8 @@ void QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const WhiteNois
       ui->box_white_noise_system_type->setCurrentIndex(0);
       break;
     case WhiteNoiseSystemType::n_types:
-      assert(!"QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
-      throw std::logic_error("QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
+      assert(!"ribi::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
+      throw std::logic_error("ribi::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
   }
   assert(this->GetWhiteNoiseSystemType() == type);
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == type);
@@ -205,14 +205,14 @@ void QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const WhiteNois
 
 
 #ifndef NDEBUG
-void QtWhiteNoiseSystemParametersDialog::Test()
+void ribi::QtWhiteNoiseSystemParametersDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtWhiteNoiseSystemParametersDialog::Test");
+  TRACE("Starting ribi::QtWhiteNoiseSystemParametersDialog::Test");
   {
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model(new QtKalmanFilterExperimentModel);
     assert(model);
@@ -240,6 +240,6 @@ void QtWhiteNoiseSystemParametersDialog::Test()
     assert(model->CreateWhiteNoiseSystemParameters());
     assert(model->CreateWhiteNoiseSystemParameters()->GetType() == WhiteNoiseSystemType::gaps_filled);
   }
-  TRACE("Finished QtWhiteNoiseSystemParametersDialog::Test successfully");
+  TRACE("Finished ribi::QtWhiteNoiseSystemParametersDialog::Test successfully");
 }
 #endif

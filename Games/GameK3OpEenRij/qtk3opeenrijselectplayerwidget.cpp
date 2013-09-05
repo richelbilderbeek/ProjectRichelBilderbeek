@@ -1,13 +1,3 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorPperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtk3opeenrijselectplayerwidget.h"
 
 #include <QMouseEvent>
@@ -15,10 +5,10 @@
 
 #include "qtk3opeenrijresources.h"
 
-const int QtK3OpEenRijSelectPlayerWidget::m_sprite_height = 50;
-const int QtK3OpEenRijSelectPlayerWidget::m_sprite_width  = 50;
+const int ribi::QtK3OpEenRijSelectPlayerWidget::m_sprite_height = 50;
+const int ribi::QtK3OpEenRijSelectPlayerWidget::m_sprite_width  = 50;
 
-QtK3OpEenRijSelectPlayerWidget::QtK3OpEenRijSelectPlayerWidget(
+ribi::QtK3OpEenRijSelectPlayerWidget::QtK3OpEenRijSelectPlayerWidget(
   const boost::shared_ptr<const QtK3OpEenRijResources> resources,
   QWidget *parent)
   : QWidget(parent),
@@ -47,7 +37,7 @@ QtK3OpEenRijSelectPlayerWidget::QtK3OpEenRijSelectPlayerWidget(
   this->setMaximumHeight(3 * m_sprite_height);
 }
 
-void QtK3OpEenRijSelectPlayerWidget::mousePressEvent(QMouseEvent * e)
+void ribi::QtK3OpEenRijSelectPlayerWidget::mousePressEvent(QMouseEvent * e)
 {
   const int mouse_x = e->x();
   const int mouse_y = e->y();
@@ -60,7 +50,7 @@ void QtK3OpEenRijSelectPlayerWidget::mousePressEvent(QMouseEvent * e)
   this->repaint();
 }
 
-void QtK3OpEenRijSelectPlayerWidget::paintEvent(QPaintEvent *)
+void ribi::QtK3OpEenRijSelectPlayerWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   painter.drawImage(0 * m_sprite_width,0 * m_sprite_height,m_is_player_human[0] ? m_karen : m_karen_grey);

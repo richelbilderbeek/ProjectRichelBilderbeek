@@ -8,7 +8,7 @@
 
 #include "trace.h"
 
-double SimpleLinearRegression::CalculateCovariance(
+double ribi::SimpleLinearRegression::CalculateCovariance(
   const std::vector<double>& xs,
   const std::vector<double>& ys)
 {
@@ -26,7 +26,7 @@ double SimpleLinearRegression::CalculateCovariance(
   return mean_p - (mean_x * mean_y);
 }
 
-double SimpleLinearRegression::CalculateVariance(
+double ribi::SimpleLinearRegression::CalculateVariance(
   const std::vector<double>& v)
 {
   assert(!v.empty());
@@ -46,7 +46,7 @@ double SimpleLinearRegression::CalculateVariance(
 }
 
 const std::vector<double>
-  SimpleLinearRegression::GetAnscombesQuartetX(const int index)
+  ribi::SimpleLinearRegression::GetAnscombesQuartetX(const int index)
 {
   switch (index)
   {
@@ -71,7 +71,7 @@ const std::vector<double>
 }
 
 const std::vector<double>
-  SimpleLinearRegression::GetAnscombesQuartetY(const int index)
+  ribi::SimpleLinearRegression::GetAnscombesQuartetY(const int index)
 {
   switch (index)
   {
@@ -97,12 +97,12 @@ const std::vector<double>
   }
 }
 
-const std::string SimpleLinearRegression::GetVersion()
+const std::string ribi::SimpleLinearRegression::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> SimpleLinearRegression::GetVersionHistory()
+const std::vector<std::string> ribi::SimpleLinearRegression::GetVersionHistory()
 {
   std::vector<std::string> v {
     "2013-08-27: version 1.0: initial version, as ToolTestSimpleLinearRegressionMainDialog",
@@ -112,14 +112,14 @@ const std::vector<std::string> SimpleLinearRegression::GetVersionHistory()
 }
 
 #ifndef NDEBUG
-void SimpleLinearRegression::Test()
+void ribi::SimpleLinearRegression::Test()
 {
   {
     static bool is_tested { false };
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting SimpleLinearRegression::Test");
+  TRACE("Starting ribi::SimpleLinearRegression::Test");
   {
     const std::vector<double> v { 75.0, 83.0, 96.0, 100.0, 121.0, 125.0 };
     const double variance { CalculateVariance(v) };
@@ -164,6 +164,6 @@ void SimpleLinearRegression::Test()
     assert(std::abs(expected_slope - slope) < e);
     assert(std::abs(expected_intercept - intercept) < e);
   }
-  TRACE("Finished SimpleLinearRegression::Test successfully");
+  TRACE("Finished ribi::SimpleLinearRegression::Test successfully");
 }
 #endif

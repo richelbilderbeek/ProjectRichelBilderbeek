@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 ///An observer for integer values:
 ///The measurements it works must be int,
 ///The estimates it gives will be int
@@ -28,6 +30,6 @@ struct IntegerStateObserver
   static const std::vector<std::string> GetVersionHistory();
 };
 
-
+} //~namespace ribi
 
 #endif // INTEGERSTATEOBSERVER_H

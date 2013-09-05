@@ -10,7 +10,7 @@
 #include "matrix.h"
 #include "trace.h"
 
-KalmanFilterExperiment::KalmanFilterExperiment(
+ribi::KalmanFilterExperiment::KalmanFilterExperiment(
   const int time,
   const std::vector<std::string>& input_functions,
   const boost::shared_ptr<KalmanFilter> m_kalman_filter,
@@ -18,11 +18,11 @@ KalmanFilterExperiment::KalmanFilterExperiment(
   const boost::shared_ptr<WhiteNoiseSystem>& m_white_noise_system,
   const std::string& context
   )
-  : m_context(context),
-    m_inputs(KalmanFilterExperiment::ParseInput(input_functions,time)),
-    m_kalman_filter(m_kalman_filter),
-    m_state_names(state_names),
-    m_white_noise_system(m_white_noise_system)
+  : m_context{context},
+    m_inputs{ribi::KalmanFilterExperiment::ParseInput(input_functions,time)},
+    m_kalman_filter{m_kalman_filter},
+    m_state_names{state_names},
+    m_white_noise_system{m_white_noise_system}
 {
   assert(m_kalman_filter);
   assert(this->GetKalmanFilter());
@@ -108,12 +108,12 @@ KalmanFilterExperiment::KalmanFilterExperiment(
   assert(this->IsValid() && "The experiment must end in a valid state");
 }
 
-void KalmanFilterExperiment::AppendRealState(const boost::numeric::ublas::vector<double>& real_state)
+void ribi::KalmanFilterExperiment::AppendRealState(const boost::numeric::ublas::vector<double>& real_state)
 {
   this->m_real_states.push_back(real_state);
 }
 
-const std::vector<boost::numeric::ublas::vector<double> > KalmanFilterExperiment::GetMeasuredStates() const
+const std::vector<boost::numeric::ublas::vector<double> > ribi::KalmanFilterExperiment::GetMeasuredStates() const
 {
   std::vector<boost::numeric::ublas::vector<double> > v;
   v.reserve(m_calculation_elements.size());
@@ -125,7 +125,7 @@ const std::vector<boost::numeric::ublas::vector<double> > KalmanFilterExperiment
   return v;
 }
 
-const std::vector<boost::numeric::ublas::vector<double> > KalmanFilterExperiment::GetPredictedStates() const
+const std::vector<boost::numeric::ublas::vector<double> > ribi::KalmanFilterExperiment::GetPredictedStates() const
 {
   std::vector<boost::numeric::ublas::vector<double> > v;
   v.reserve(m_calculation_elements.size());
@@ -138,7 +138,7 @@ const std::vector<boost::numeric::ublas::vector<double> > KalmanFilterExperiment
   return v;
 }
 
-bool KalmanFilterExperiment::IsValid() const
+bool ribi::KalmanFilterExperiment::IsValid() const
 {
   //Do not count the inputs: these are created at startup of the experiment
   //and always have the maximum size (of n_timesteps)
@@ -151,7 +151,7 @@ bool KalmanFilterExperiment::IsValid() const
       && n_real_states == n_measured_states;
 }
 
-const std::vector<boost::numeric::ublas::vector<double> > KalmanFilterExperiment::ParseInput(
+const std::vector<boost::numeric::ublas::vector<double> > ribi::KalmanFilterExperiment::ParseInput(
   const std::vector<std::string>& input,
   const int n_timesteps)
 {

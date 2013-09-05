@@ -19,6 +19,8 @@ namespace Ui {
   class QtSteadyStateKalmanFilterCalculationDialog;
 }
 
+namespace ribi {
+
 class QtSteadyStateKalmanFilterCalculationDialog : public QtKalmanFilterCalculationDialog
 {
   Q_OBJECT
@@ -56,5 +58,7 @@ private:
   const std::vector<QTableWidget *> CollectVectors() const;
 
 };
+
+} //~namespace ribi
 
 #endif // QTSTEADYSTATEKALMANFILTERCALCULATIONDIALOG_H

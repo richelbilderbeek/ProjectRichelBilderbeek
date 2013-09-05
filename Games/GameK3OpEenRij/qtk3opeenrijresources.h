@@ -5,6 +5,8 @@
 
 #include "connectthreeresources.h"
 
+namespace ribi {
+
 ///QtK3OpEenRijResources is a class containing
 ///all filenames to be used by the program
 ///Its base class, ConnectThreeResources,
@@ -20,5 +22,7 @@ struct QtK3OpEenRijResources
   const std::vector<std::string> CreatePlayerNames(const boost::logic::tribool is_player3_kathleen);
   const std::vector<std::string> CreatePlayerGreyNames(const boost::logic::tribool is_player3_kathleen);
 };
+
+} //~namespace ribi
 
 #endif // QTK3OPEENRIJRESOURCES_H

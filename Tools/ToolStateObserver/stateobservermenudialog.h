@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 struct StateObserverMenuDialog
 {
 
@@ -35,5 +37,7 @@ struct StateObserverMenuDialog
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // TESTSTATEOBSERVERMENUDIALOG_H

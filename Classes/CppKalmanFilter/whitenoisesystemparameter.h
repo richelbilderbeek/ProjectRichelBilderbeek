@@ -5,6 +5,8 @@
 #include <vector>
 #include "whitenoisesystemparametertype.h"
 
+namespace ribi {
+
 ///A single WhiteNoiseSystemParameter
 ///for example, the state transition matrix
 /// - is a matrix
@@ -32,5 +34,7 @@ struct WhiteNoiseSystemParameter
   ///Obtain the symbol of a type, e.g. 'A'
   static const std::string ToSymbol(const WhiteNoiseSystemParameterType type);
 };
+
+} //~namespace ribi
 
 #endif // WHITENOISESYSTEMPARAMETER_H

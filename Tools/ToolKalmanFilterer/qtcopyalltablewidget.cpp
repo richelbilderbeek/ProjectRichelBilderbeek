@@ -18,12 +18,13 @@
 
 #pragma GCC diagnostic pop
 
-QtCopyAllTableWidget::QtCopyAllTableWidget(QWidget *parent)
+ribi::QtCopyAllTableWidget::QtCopyAllTableWidget(QWidget *parent)
   : QTableWidget(parent)
 {
+
 }
 
-void QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
 {
   if(event->key() == Qt::Key_A
     && event->modifiers() & Qt::ControlModifier)
@@ -114,7 +115,7 @@ void QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
   }
 }
 
-const std::vector<std::string> QtCopyAllTableWidget::SeperateString(
+const std::vector<std::string> ribi::QtCopyAllTableWidget::SeperateString(
   const std::string& input,
   const char seperator)
 {

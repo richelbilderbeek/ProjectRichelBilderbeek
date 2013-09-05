@@ -5,10 +5,14 @@
 #include "whitenoisesystem.h"
 #include "whitenoisesystemparameters.h"
 
+namespace ribi {
+
 struct WhiteNoiseSystemFactory
 {
   static const boost::shared_ptr<WhiteNoiseSystem> Create(
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
 };
+
+} //~namespace ribi
 
 #endif // WHITENOISESYSTEMFACTORY_H

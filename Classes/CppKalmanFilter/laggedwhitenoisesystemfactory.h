@@ -11,6 +11,8 @@
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///Factory for LaggedWhiteNoiseSystem
 struct LaggedWhiteNoiseSystemFactory
 {
@@ -27,5 +29,7 @@ struct LaggedWhiteNoiseSystemFactory
   static const boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
 };
+
+} //~namespace ribi
 
 #endif // LAGGEDWHITENOISESYSTEMFACTORY_H

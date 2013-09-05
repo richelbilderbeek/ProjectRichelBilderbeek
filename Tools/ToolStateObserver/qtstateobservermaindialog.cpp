@@ -1,5 +1,3 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtstateobservermaindialog.h"
 
 #include <cassert>
@@ -27,7 +25,7 @@
 #include "qwt_point_data.h"
 #endif
 
-QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
+ribi::QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtStateObserverMainDialog),
   m_curve_inputs(new QwtPlotCurve("Inputs")),
@@ -158,12 +156,12 @@ QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
   Run();
 }
 
-QtStateObserverMainDialog::~QtStateObserverMainDialog()
+ribi::QtStateObserverMainDialog::~QtStateObserverMainDialog()
 {
   delete ui;
 }
 
-const boost::shared_ptr<AlphaFilter> QtStateObserverMainDialog::CreateAlphaFilter() const
+const boost::shared_ptr<ribi::AlphaFilter> ribi::QtStateObserverMainDialog::CreateAlphaFilter() const
 {
   const double alpha  = ui->box_alpha_a->value();
   const double dt = CreateDt();
@@ -172,7 +170,7 @@ const boost::shared_ptr<AlphaFilter> QtStateObserverMainDialog::CreateAlphaFilte
   return filter;
 }
 
-const boost::shared_ptr<AlphaBetaFilter> QtStateObserverMainDialog::CreateAlphaBetaFilter() const
+const boost::shared_ptr<ribi::AlphaBetaFilter> ribi::QtStateObserverMainDialog::CreateAlphaBetaFilter() const
 {
   const double alpha = ui->box_alpha_ab->value();
   const double beta = ui->box_beta_ab->value();
@@ -182,7 +180,7 @@ const boost::shared_ptr<AlphaBetaFilter> QtStateObserverMainDialog::CreateAlphaB
   return filter;
 }
 
-const boost::shared_ptr<AlphaBetaGammaFilter> QtStateObserverMainDialog::CreateAlphaBetaGammaFilter() const
+const boost::shared_ptr<ribi::AlphaBetaGammaFilter> ribi::QtStateObserverMainDialog::CreateAlphaBetaGammaFilter() const
 {
   const double alpha = ui->box_alpha_abg->value();
   const double beta = ui->box_beta_abg->value();
@@ -193,7 +191,7 @@ const boost::shared_ptr<AlphaBetaGammaFilter> QtStateObserverMainDialog::CreateA
   return filter;
 }
 
-const boost::shared_ptr<IntegerAlphaFilter> QtStateObserverMainDialog::CreateLsqFilter() const
+const boost::shared_ptr<ribi::IntegerAlphaFilter> ribi::QtStateObserverMainDialog::CreateLsqFilter() const
 {
   const int shift_lsq = ui->box_lsq_shift->value();
   const boost::shared_ptr<IntegerAlphaFilter> filter(new IntegerAlphaFilter(shift_lsq));
@@ -201,7 +199,7 @@ const boost::shared_ptr<IntegerAlphaFilter> QtStateObserverMainDialog::CreateLsq
   return filter;
 }
 
-const boost::shared_ptr<IntegerSymmetricalAlphaFilter> QtStateObserverMainDialog::CreateSlsqFilter() const
+const boost::shared_ptr<ribi::IntegerSymmetricalAlphaFilter> ribi::QtStateObserverMainDialog::CreateSlsqFilter() const
 {
   const int shift_slsq = ui->box_slsq_shift->value();
   const boost::shared_ptr<IntegerSymmetricalAlphaFilter> filter(new IntegerSymmetricalAlphaFilter(shift_slsq));
@@ -210,7 +208,7 @@ const boost::shared_ptr<IntegerSymmetricalAlphaFilter> QtStateObserverMainDialog
 }
 
 
-const boost::shared_ptr<MultiAlphaFilter> QtStateObserverMainDialog::CreateMultiAlphaFilter() const
+const boost::shared_ptr<ribi::MultiAlphaFilter> ribi::QtStateObserverMainDialog::CreateMultiAlphaFilter() const
 {
   const double ma_1 = ui->box_ma_1->value();
   const double ma_2 = ui->box_ma_2->value();
@@ -220,7 +218,7 @@ const boost::shared_ptr<MultiAlphaFilter> QtStateObserverMainDialog::CreateMulti
   return filter;
 }
 
-const boost::shared_ptr<MultiIntegerStateObserver> QtStateObserverMainDialog::CreateMiso() const
+const boost::shared_ptr<ribi::MultiIntegerStateObserver> ribi::QtStateObserverMainDialog::CreateMiso() const
 {
   std::vector<boost::shared_ptr<IntegerStateObserver> > state_observers;
   {
@@ -247,7 +245,7 @@ const boost::shared_ptr<MultiIntegerStateObserver> QtStateObserverMainDialog::Cr
   return filter;
 }
 
-void QtStateObserverMainDialog::Run()
+void ribi::QtStateObserverMainDialog::Run()
 {
   const int timesteps = ui->box_timesteps->value();
   const std::string noise_function_str = ui->edit_noise->text().toStdString();
@@ -401,7 +399,7 @@ void QtStateObserverMainDialog::Run()
   }
 }
 
-void QtStateObserverMainDialog::on_button_rerun_clicked()
+void ribi::QtStateObserverMainDialog::on_button_rerun_clicked()
 {
   this->Run();
 }

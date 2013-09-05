@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 ///ConnectThreeResources contains all resources' filenames
 ///and checks that these are present
 struct ConnectThreeResources
@@ -77,5 +79,7 @@ struct ConnectThreeResources
   void Create();
   void CreateFile(const std::string& s);
 };
+
+} //~namespace ribi
 
 #endif // CONNECTTHREERESOURCES_H

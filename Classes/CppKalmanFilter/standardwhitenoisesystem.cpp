@@ -11,27 +11,27 @@
 #include "trace.h"
 #include "standardwhitenoisesystemparameters.h"
 
-StandardWhiteNoiseSystem::StandardWhiteNoiseSystem(
+ribi::StandardWhiteNoiseSystem::StandardWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
-  : WhiteNoiseSystem(parameters),
-    m_parameters(boost::dynamic_pointer_cast<const StandardWhiteNoiseSystemParameters>(parameters))
+  : WhiteNoiseSystem{parameters},
+    m_parameters{boost::dynamic_pointer_cast<const StandardWhiteNoiseSystemParameters>(parameters)}
 {
   assert(m_parameters);
 }
 
-const std::string StandardWhiteNoiseSystem::GetVersion()
+const std::string ribi::StandardWhiteNoiseSystem::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> StandardWhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::StandardWhiteNoiseSystem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
   return v;
 }
 
-void StandardWhiteNoiseSystem::GoToNextState()
+void ribi::StandardWhiteNoiseSystem::GoToNextState()
 {
   //Create a no-input vector
   const auto sz = GetCurrentState().size();
@@ -39,7 +39,7 @@ void StandardWhiteNoiseSystem::GoToNextState()
   return GoToNextState(input);
 }
 
-void StandardWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
+void ribi::StandardWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
 {
   //First do a perfect transition
   assert(input.size() == GetCurrentState().size());
@@ -61,7 +61,7 @@ void StandardWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector
   SetNewCurrentState(new_state);
 }
 
-const boost::numeric::ublas::vector<double> StandardWhiteNoiseSystem::Measure() const
+const boost::numeric::ublas::vector<double> ribi::StandardWhiteNoiseSystem::Measure() const
 {
   const auto sz = GetCurrentState().size();
   assert(GetCurrentState().size() == m_parameters->GetMeasurementNoise().size());

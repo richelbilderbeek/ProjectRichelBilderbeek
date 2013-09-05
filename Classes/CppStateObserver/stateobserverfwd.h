@@ -1,6 +1,8 @@
 #ifndef STATEOBSERVERFWD_H
 #define STATEOBSERVERFWD_H
 
+namespace ribi {
+
 struct AlphaFilter;
 struct AlphaBetaFilter;
 struct AlphaBetaGammaFilter;
@@ -11,5 +13,7 @@ struct IntegerSmartAlphaFilter;
 struct IntegerSymmetricalAlphaFilter;
 struct MultiIntegerStateObserver;
 struct MultiAlphaFilter;
+
+} //~namespace ribi
 
 #endif // STATEOBSERVERFWD_H

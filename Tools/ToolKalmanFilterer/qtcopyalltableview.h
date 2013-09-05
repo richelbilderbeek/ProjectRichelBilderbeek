@@ -6,10 +6,12 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 class QtCopyAllTableView : public QTableView
 {
   public:
-  QtCopyAllTableView(QWidget *parent = 0);
+  explicit QtCopyAllTableView(QWidget *parent = 0);
 
   protected:
   void keyPressEvent(QKeyEvent *event);
@@ -21,5 +23,7 @@ class QtCopyAllTableView : public QTableView
     const std::string& input,
     const char seperator);
 };
+
+} //~namespace ribi
 
 #endif // QTCOPYALLTABLEVIEW_H

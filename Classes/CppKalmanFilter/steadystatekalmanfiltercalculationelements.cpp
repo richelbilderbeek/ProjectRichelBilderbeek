@@ -5,7 +5,7 @@
 #include <cassert>
 #include "kalmanfiltercalculationelementsfactory.h"
 
-SteadyStateKalmanFilterCalculationElements::SteadyStateKalmanFilterCalculationElements(
+ribi::SteadyStateKalmanFilterCalculationElements::SteadyStateKalmanFilterCalculationElements(
   const boost::numeric::ublas::vector<double>& measurement,
   const boost::numeric::ublas::vector<double>& predicted_state,
   const boost::numeric::ublas::vector<double>& previous_state_estimate,
@@ -20,9 +20,9 @@ SteadyStateKalmanFilterCalculationElements::SteadyStateKalmanFilterCalculationEl
   //... nothing to check
 }
 
-const boost::shared_ptr<KalmanFilterCalculationElements> SteadyStateKalmanFilterCalculationElements::Clone() const
+const boost::shared_ptr<ribi::KalmanFilterCalculationElements> ribi::SteadyStateKalmanFilterCalculationElements::Clone() const
 {
-  const boost::shared_ptr<KalmanFilterCalculationElements> p(
+  const boost::shared_ptr<KalmanFilterCalculationElements> p {
     new SteadyStateKalmanFilterCalculationElements(
       //Base
       this->GetMeasurement(),
@@ -32,13 +32,13 @@ const boost::shared_ptr<KalmanFilterCalculationElements> SteadyStateKalmanFilter
       //Derived class
       //... no additional data members
     )
-  );
+  };
   assert(p);
   assert(p->GetType() == this->GetType());
   return p;
 }
 
-bool SteadyStateKalmanFilterCalculationElements::IsComplete() const
+bool ribi::SteadyStateKalmanFilterCalculationElements::IsComplete() const
 {
   const std::size_t sz = GetMeasurement().size();
   return

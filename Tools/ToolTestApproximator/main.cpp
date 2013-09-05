@@ -1,13 +1,15 @@
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "approximator.h"
 #include "canvas.h"
-
 
 //static assertion failed: Source type is neither std::ostream`able nor std::wostream`able
 #include <boost/units/io.hpp>
 
 #include <boost/units/systems/si.hpp>
 #include <boost/units/unit.hpp>
+
+#pragma GCC diagnostic pop
 
 int main()
 {
@@ -16,7 +18,7 @@ int main()
   {
     typedef boost::units::quantity<boost::units::si::time> Time;
     typedef boost::units::quantity<boost::units::si::velocity> Velocity;
-    Approximator<Time,Velocity> a;
+    ribi::Approximator<Time,Velocity> a;
     a.Add(0.0 * boost::units::si::second,0.0 * boost::units::si::meters_per_second);
     a.Add(2.0 * boost::units::si::second,2.0 * boost::units::si::meters_per_second);
     const Velocity v = a.Approximate(1.0 * boost::units::si::second);
@@ -24,7 +26,7 @@ int main()
         && v <= 1.01 * boost::units::si::meters_per_second);
   }
 
-  typedef Approximator<double,int> Approximator_t;
+  typedef ribi::Approximator<double,int> Approximator_t;
   Approximator_t a;
   a.Add(20, 5);
   a.Add(30,15);
@@ -33,7 +35,7 @@ int main()
 
   const int max_x = 78;
   const int max_y = 20;
-  Canvas c(max_x,max_y,Canvas::ColorSystem::invert,Canvas::CoordinatSystem::graph);
+  ribi::Canvas c(max_x,max_y,ribi::Canvas::ColorSystem::invert,ribi::Canvas::CoordinatSystem::graph);
   c.DrawLine(0.0,0.0,max_x,0.0);
   c.DrawLine(0.0,0.0,0.0,max_y);
 
@@ -60,9 +62,9 @@ int main()
         const double y = a.Approximate(x);
         c.DrawDot(x,y);
       }
-      catch (ExceptionNoExtrapolation<Approximator_t::key_type>& e)
+      catch (ribi::ExceptionNoExtrapolation<Approximator_t::key_type>& e)
       {
-
+        //X value not in range. OK not to plot then...
       }
     }
   }

@@ -39,16 +39,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #define PROGRAM_HANGS
 
-namespace c2h {
-
-const CodeToHtmlReplacements Content::m_replacements_cpp
-  = Content::CreateCppReplacements();
-const CodeToHtmlReplacements Content::m_replacements_pro
-  = Content::CreateProReplacements();
-const CodeToHtmlReplacements Content::m_replacements_txt
+const CodeToHtmlReplacements c2h::Content::m_replacements_cpp
+  = c2h::Content::CreateCppReplacements();
+const CodeToHtmlReplacements c2h::Content::m_replacements_pro
+  = c2h::Content::CreateProReplacements();
+const CodeToHtmlReplacements c2h::Content::m_replacements_txt
   = CodeToHtmlReplacements(std::vector<std::pair<std::string,std::string> >());
 
-Content::Content(
+c2h::Content::Content(
   const std::string& filename,
   const std::vector<std::string>& content)
     : m_content_type(DeduceContentType(filename)),
@@ -60,7 +58,7 @@ Content::Content(
   #endif
 }
 
-Content::Content(
+c2h::Content::Content(
   const std::string& filename,
   const std::vector<std::string>& content,
   const ContentType content_type)
@@ -73,7 +71,7 @@ Content::Content(
   #endif
 }
 
-ContentType Content::DeduceContentType(const std::string& filename)
+c2h::ContentType c2h::Content::DeduceContentType(const std::string& filename)
 {
   boost::xpressive::smatch what;
 
@@ -105,7 +103,7 @@ ContentType Content::DeduceContentType(const std::string& filename)
   return ContentType::other;
 }
 
-const std::vector<std::string> Content::ToHtml() const
+const std::vector<std::string> c2h::Content::ToHtml() const
 {
   std::vector<std::string> v;
   switch(m_content_type)
@@ -124,7 +122,7 @@ const std::vector<std::string> Content::ToHtml() const
         std::back_inserter(v),
         [this,r](const std::string& s)
         {
-          return Content::MultiReplace(s,r) + "<br/>";
+          return c2h::Content::MultiReplace(s,r) + "<br/>";
         }
       );
       //const std::vector<std::string> w = MultiReplace(m_contents,m_replacements_cpp.m_all_replacements);
@@ -146,7 +144,7 @@ const std::vector<std::string> Content::ToHtml() const
         std::back_inserter(v),
         [this,r](const std::string& s)
         {
-          return Content::MultiReplace(s,r) + "<br/>";
+          return c2h::Content::MultiReplace(s,r) + "<br/>";
         }
       );
       //const std::vector<std::string> w = MultiReplace(m_contents,m_replacements_pro.m_all_replacements);
@@ -169,7 +167,7 @@ const std::vector<std::string> Content::ToHtml() const
         std::back_inserter(v),
         [this,r](const std::string& s)
         {
-          return Content::MultiReplace(s,r) + "<br/>";
+          return c2h::Content::MultiReplace(s,r) + "<br/>";
         }
       );
       //const std::vector<std::string> w = MultiReplace(m_contents,m_replacements_txt.m_all_replacements);
@@ -192,7 +190,7 @@ const std::vector<std::string> Content::ToHtml() const
   return v;
 }
 
-const std::string Content::MultiReplace(const std::string& line, const std::vector<std::pair<std::string,std::string> >& replacements)
+const std::string c2h::Content::MultiReplace(const std::string& line, const std::vector<std::pair<std::string,std::string> >& replacements)
 {
   std::string s(line);
   #ifdef DEBUG_PROGRAM_HANGS
@@ -210,7 +208,7 @@ const std::string Content::MultiReplace(const std::string& line, const std::vect
 }
 
 //From http://www.richelbilderbeek.nl/CppReplaceAll.htm
-const std::string Content::ReplaceAll(
+const std::string c2h::Content::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
   const std::string& replaceWithWhat)
@@ -225,14 +223,14 @@ const std::string Content::ReplaceAll(
 }
 
 #ifndef NDEBUG
-void Content::Test()
+void c2h::Content::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting Content::Test");
+  TRACE("Starting c2h::Content::Test");
   //Be gentle
   assert(DeduceContentType("tmp.pro") == ContentType::pro);
   assert(DeduceContentType("tmp.c"  ) == ContentType::cpp);
@@ -255,10 +253,6 @@ void Content::Test()
   assert(DeduceContentType("c.xyz"  ) == ContentType::other);
 
 
-  TRACE("Finished Content::Test successfully");
+  TRACE("Finished c2h::Content::Test successfully");
 }
 #endif
-
-
-} //~namespace CodeToHtml
-

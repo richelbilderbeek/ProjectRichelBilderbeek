@@ -7,6 +7,8 @@ namespace Ui {
   class QtToolTestSimpleLinearRegressionMenuDialog;
 }
 
+namespace ribi {
+
 class QtToolTestSimpleLinearRegressionMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -30,5 +32,7 @@ private slots:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLTESTAPPROXIMATORMENUDIALOG_H

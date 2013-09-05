@@ -15,6 +15,8 @@ namespace Ui {
   class QtKalmanFilterExamplesDialog;
 }
 
+namespace ribi {
+
 class QtKalmanFilterExamplesDialog : public QDialog
 {
   Q_OBJECT
@@ -65,5 +67,6 @@ private slots:
 //     }
 // }
 
+} //~namespace ribi
 
 #endif // QTKALMANFILTERERPARAMETERSDIALOG

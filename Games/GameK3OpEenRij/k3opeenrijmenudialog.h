@@ -6,6 +6,8 @@
 #include <vector>
 #include "about.h"
 
+namespace ribi {
+
 ///
 struct K3OpEenRijMenuDialog
 {
@@ -13,5 +15,7 @@ struct K3OpEenRijMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // K3OPEENRIJMENUDIALOG_H

@@ -6,6 +6,8 @@
 
 #include "about.h"
 
+namespace ribi {
+
 ///GUI independent ToolTestSimpleLinearRegression menu dialog
 struct ToolTestSimpleLinearRegressionMenuDialog
 {
@@ -13,5 +15,7 @@ struct ToolTestSimpleLinearRegressionMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // TOOLTESTAPPROXIMATORMENUDIALOG_H

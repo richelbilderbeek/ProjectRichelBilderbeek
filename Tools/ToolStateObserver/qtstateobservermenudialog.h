@@ -7,6 +7,8 @@ namespace Ui {
 class QtStateObserverMenuDialog;
 }
 
+namespace ribi {
+
 class QtStateObserverMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -23,5 +25,7 @@ private slots:
 private:
   Ui::QtStateObserverMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTSTATEOBSERVERMENUDIALOG_H

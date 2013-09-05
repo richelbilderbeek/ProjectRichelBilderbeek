@@ -7,17 +7,17 @@
 template <class T>
 struct EuclideanVector
 {
-  EuclideanVector(const T& any_x, const T& any_y)
+  explicit EuclideanVector(const T& any_x, const T& any_y)
     : x { any_x }, y { any_y }
   {
 
   }
-  EuclideanVector(const std::pair<T,T>& p)
+  explicit EuclideanVector(const std::pair<T,T>& p)
     : x { p.first }, y { p.second }
   {
 
   }
-  EuclideanVector(const EuclideanVector<T>& rhs)
+  explicit EuclideanVector(const EuclideanVector<T>& rhs)
     : x { rhs.x }, y { rhs.y }
   {
 

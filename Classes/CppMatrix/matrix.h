@@ -27,6 +27,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/ublas/vector.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///Helper class for matrix operations
 struct Matrix
 {
@@ -182,5 +184,7 @@ struct Matrix
     const boost::numeric::ublas::vector<int>& a,
     const boost::numeric::ublas::vector<int>& b);
 };
+
+} //~namespace ribi
 
 #endif // MATRIX_H

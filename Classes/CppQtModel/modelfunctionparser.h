@@ -6,13 +6,15 @@
 
 struct FunctionParser;
 
+namespace ribi {
+
 ///Uses Warp's function parser and adds a random function
 struct ModelFunctionParser : public boost::noncopyable
 {
   ///For example:
   ///my_function = 'x * x * sin(x) * rand(x)'
   ///variable_name = 'x'
-  ModelFunctionParser(const std::string& my_function, const std::string& variable_name);
+  explicit ModelFunctionParser(const std::string& my_function, const std::string& variable_name);
 
   ///Calculate the y for 'y = f(x)'
   double Evaluate(const double x) const;
@@ -23,5 +25,7 @@ struct ModelFunctionParser : public boost::noncopyable
   static double MyRand(const double * const max);
 
 };
+
+} //~namespace ribi
 
 #endif // MODELFUNCTIONPARSER_H

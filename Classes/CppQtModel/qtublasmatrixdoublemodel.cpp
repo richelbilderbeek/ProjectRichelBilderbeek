@@ -33,18 +33,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent)
+ribi::QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent)
   : QAbstractTableModel(parent)
 {
 
 }
 
-int QtUblasMatrixDoubleModel::columnCount(const QModelIndex &) const
+int ribi::QtUblasMatrixDoubleModel::columnCount(const QModelIndex &) const
 {
   return m_data.size2();
 }
 
-QVariant QtUblasMatrixDoubleModel::data(const QModelIndex &index, int role) const
+QVariant ribi::QtUblasMatrixDoubleModel::data(const QModelIndex &index, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole && role != Qt::DisplayRole) return QVariant();
@@ -66,7 +66,7 @@ QVariant QtUblasMatrixDoubleModel::data(const QModelIndex &index, int role) cons
   #endif
 }
 
-Qt::ItemFlags QtUblasMatrixDoubleModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtUblasMatrixDoubleModel::flags(const QModelIndex &) const
 {
   return
     Qt::ItemIsSelectable
@@ -76,12 +76,12 @@ Qt::ItemFlags QtUblasMatrixDoubleModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string QtUblasMatrixDoubleModel::GetVersion()
+const std::string ribi::QtUblasMatrixDoubleModel::GetVersion()
 {
   return "1.3";
 }
 
-const std::vector<std::string> QtUblasMatrixDoubleModel::GetVersionHistory()
+const std::vector<std::string> ribi::QtUblasMatrixDoubleModel::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-15: version 1.0: initial version");
@@ -91,7 +91,7 @@ const std::vector<std::string> QtUblasMatrixDoubleModel::GetVersionHistory()
   return v;
 }
 
-QVariant QtUblasMatrixDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ribi::QtUblasMatrixDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole && role != Qt::DisplayRole) return QVariant();
@@ -121,7 +121,7 @@ QVariant QtUblasMatrixDoubleModel::headerData(int section, Qt::Orientation orien
   }
 }
 
-bool QtUblasMatrixDoubleModel::insertColumns(int col, int count, const QModelIndex &parent)
+bool ribi::QtUblasMatrixDoubleModel::insertColumns(int col, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginInsertColumns(parent,col,col+count-1);
@@ -158,7 +158,7 @@ bool QtUblasMatrixDoubleModel::insertColumns(int col, int count, const QModelInd
   return true;
 }
 
-bool QtUblasMatrixDoubleModel::insertRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtUblasMatrixDoubleModel::insertRows(int row, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginInsertRows(parent,row,row+count-1);
@@ -195,7 +195,7 @@ bool QtUblasMatrixDoubleModel::insertRows(int row, int count, const QModelIndex 
   return true;
 }
 
-bool QtUblasMatrixDoubleModel::removeColumns(int col, int count, const QModelIndex &parent)
+bool ribi::QtUblasMatrixDoubleModel::removeColumns(int col, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginRemoveColumns(parent,col,col+count-1);
@@ -216,7 +216,7 @@ bool QtUblasMatrixDoubleModel::removeColumns(int col, int count, const QModelInd
   return true;
 }
 
-bool QtUblasMatrixDoubleModel::removeRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtUblasMatrixDoubleModel::removeRows(int row, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginRemoveRows(parent,row,row+count-1);
@@ -237,12 +237,12 @@ bool QtUblasMatrixDoubleModel::removeRows(int row, int count, const QModelIndex 
   return true;
 }
 
-int QtUblasMatrixDoubleModel::rowCount(const QModelIndex &) const
+int ribi::QtUblasMatrixDoubleModel::rowCount(const QModelIndex &) const
 {
   return m_data.size1();
 }
 
-bool QtUblasMatrixDoubleModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
+bool ribi::QtUblasMatrixDoubleModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
 {
   const int row = index.row();
   const int col = index.column();
@@ -257,7 +257,7 @@ bool QtUblasMatrixDoubleModel::setData(const QModelIndex &index, const QVariant 
   return true;
 }
 
-void QtUblasMatrixDoubleModel::SetHeaderData(
+void ribi::QtUblasMatrixDoubleModel::SetHeaderData(
   const std::vector<std::string>& horizontal_header_text,
   const std::vector<std::string>& vertical_header_text)
 {
@@ -321,7 +321,7 @@ void QtUblasMatrixDoubleModel::SetHeaderData(
   assert(this->rowCount() == boost::numeric_cast<int>(m_header_vertical_text.size()));
 }
 
-bool QtUblasMatrixDoubleModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
+bool ribi::QtUblasMatrixDoubleModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
 {
   if (orientation == Qt::Horizontal)
   {
@@ -346,7 +346,7 @@ bool QtUblasMatrixDoubleModel::setHeaderData(int section, Qt::Orientation orient
   }
 }
 
-void QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<double>& data)
+void ribi::QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix<double>& data)
 {
   if (!Matrix::MatricesAreEqual(m_data,data))
   {

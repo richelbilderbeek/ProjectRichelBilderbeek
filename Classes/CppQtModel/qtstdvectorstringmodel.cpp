@@ -31,19 +31,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtStdVectorStringModel::QtStdVectorStringModel(QObject *parent)
+ribi::QtStdVectorStringModel::QtStdVectorStringModel(QObject *parent)
   : QAbstractTableModel(parent)
 {
 
 }
 
-int QtStdVectorStringModel::columnCount(const QModelIndex &) const
+int ribi::QtStdVectorStringModel::columnCount(const QModelIndex &) const
 {
   //return 1;
   return rowCount() > 0 ? 1 : 0;
 }
 
-QVariant QtStdVectorStringModel::data(const QModelIndex &index, int role) const
+QVariant ribi::QtStdVectorStringModel::data(const QModelIndex &index, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole &&  role != Qt::DisplayRole) return QVariant();
@@ -63,7 +63,7 @@ QVariant QtStdVectorStringModel::data(const QModelIndex &index, int role) const
   return QString(m_data[row].c_str());
 }
 
-Qt::ItemFlags QtStdVectorStringModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtStdVectorStringModel::flags(const QModelIndex &) const
 {
   return
     Qt::ItemIsSelectable
@@ -73,12 +73,12 @@ Qt::ItemFlags QtStdVectorStringModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string QtStdVectorStringModel::GetVersion()
+const std::string ribi::QtStdVectorStringModel::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> QtStdVectorStringModel::GetVersionHistory()
+const std::vector<std::string> ribi::QtStdVectorStringModel::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-15: version 1.0: initial version");
@@ -87,7 +87,7 @@ const std::vector<std::string> QtStdVectorStringModel::GetVersionHistory()
   return v;
 }
 
-QVariant QtStdVectorStringModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant ribi::QtStdVectorStringModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   //Removing this line will cause checkboxes to appear
   if (role != Qt::EditRole && role != Qt::DisplayRole) return QVariant();
@@ -111,7 +111,7 @@ QVariant QtStdVectorStringModel::headerData(int section, Qt::Orientation orienta
   }
 }
 
-bool QtStdVectorStringModel::insertRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtStdVectorStringModel::insertRows(int row, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginInsertRows(parent,row,row+count-1);
@@ -132,7 +132,7 @@ bool QtStdVectorStringModel::insertRows(int row, int count, const QModelIndex &p
   return true;
 }
 
-bool QtStdVectorStringModel::removeRows(int row, int count, const QModelIndex &parent)
+bool ribi::QtStdVectorStringModel::removeRows(int row, int count, const QModelIndex &parent)
 {
   //Must be called before the real operation
   this->beginRemoveRows(parent,row,row+count-1);
@@ -153,12 +153,12 @@ bool QtStdVectorStringModel::removeRows(int row, int count, const QModelIndex &p
   return true;
 }
 
-int QtStdVectorStringModel::rowCount(const QModelIndex &) const
+int ribi::QtStdVectorStringModel::rowCount(const QModelIndex &) const
 {
   return boost::numeric_cast<int>(m_data.size());
 }
 
-bool QtStdVectorStringModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
+bool ribi::QtStdVectorStringModel::setData(const QModelIndex &index, const QVariant &value, int /* role */)
 {
   const int row = index.row();
 
@@ -177,7 +177,7 @@ bool QtStdVectorStringModel::setData(const QModelIndex &index, const QVariant &v
   return true;
 }
 
-void QtStdVectorStringModel::SetHeaderData(
+void ribi::QtStdVectorStringModel::SetHeaderData(
   const std::string& horizontal_header_text, const std::vector<std::string>& vertical_header_text)
 {
   if (m_header_horizontal_text != horizontal_header_text)
@@ -219,7 +219,7 @@ void QtStdVectorStringModel::SetHeaderData(
   assert(this->columnCount() == (this->rowCount() == 0 ? 0 : 1));
 }
 
-bool QtStdVectorStringModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
+bool ribi::QtStdVectorStringModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int /*role*/)
 {
   if (orientation == Qt::Horizontal)
   {
@@ -245,7 +245,7 @@ bool QtStdVectorStringModel::setHeaderData(int section, Qt::Orientation orientat
 }
 
 
-void QtStdVectorStringModel::SetRawData(const std::vector<std::string>& data)
+void ribi::QtStdVectorStringModel::SetRawData(const std::vector<std::string>& data)
 {
   if (m_data != data)
   {

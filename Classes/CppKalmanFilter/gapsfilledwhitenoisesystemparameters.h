@@ -4,9 +4,11 @@
 #include <boost/shared_ptr.hpp>
 #include "whitenoisesystemparameters.h"
 
+namespace ribi {
+
 struct GapsFilledWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
 {
-  GapsFilledWhiteNoiseSystemParameters(
+  explicit GapsFilledWhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const boost::numeric::ublas::vector<int>& measurement_frequency,
@@ -32,5 +34,7 @@ struct GapsFilledWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // GAPSFILLEDWHITENOISESYSTEMPARAMETERS_H

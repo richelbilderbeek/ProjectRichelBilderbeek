@@ -33,7 +33,7 @@ int main()
     const Distance expected_offset(1.0 * boost::units::si::meter);
 
     const std::pair<Velocity,Distance> p
-      = SimpleLinearRegression::CalculateBestFit(xs,ys);
+      = ribi::SimpleLinearRegression::CalculateBestFit(xs,ys);
     const Velocity slope(p.first);
     const Distance offset(p.second);
     assert(std::abs( Velocity(slope - expected_slope).value() )
@@ -45,12 +45,12 @@ int main()
   for (int i=1; i!=5; ++i) //Human-based counting, following the Ansombe's Quartet indices
   {
     const std::vector<double> xs
-      = SimpleLinearRegression::GetAnscombesQuartetX(i);
+      = ribi::SimpleLinearRegression::GetAnscombesQuartetX(i);
     const std::vector<double> ys
-      = SimpleLinearRegression::GetAnscombesQuartetY(i);
+      = ribi::SimpleLinearRegression::GetAnscombesQuartetY(i);
 
     const std::pair<double,double> p
-      = SimpleLinearRegression::CalculateBestFit(xs,ys);
+      = ribi::SimpleLinearRegression::CalculateBestFit(xs,ys);
 
     const double expected_regression_line_a = 0.500; //to 3 decimal places
     const double expected_regression_line_b = 3.00;  //to 2 decimal places
@@ -62,7 +62,7 @@ int main()
     //Plot the values
     const int max_x = 78;
     const int max_y = 20;
-    Canvas c(max_x,max_y,Canvas::ColorSystem::invert,Canvas::CoordinatSystem::graph);
+    ribi::Canvas c(max_x,max_y,ribi::Canvas::ColorSystem::invert,ribi::Canvas::CoordinatSystem::graph);
     c.DrawLine(0.0,0.0,max_x,0.0);
     c.DrawLine(0.0,0.0,0.0,max_y);
     assert(xs.size() == ys.size());

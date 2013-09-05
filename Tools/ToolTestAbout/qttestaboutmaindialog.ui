@@ -35,14 +35,14 @@ QPushButton { font: 24px, &quot;monospace&quot; }
    <item>
     <widget class="QPushButton" name="button_about">
      <property name="text">
-      <string>About</string>
+      <string>&amp;About</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_quit">
      <property name="text">
-      <string>Quit</string>
+      <string>&amp;Quit</string>
      </property>
     </widget>
    </item>

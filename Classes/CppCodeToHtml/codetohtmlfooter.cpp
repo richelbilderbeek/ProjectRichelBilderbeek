@@ -24,16 +24,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-
-namespace c2h {
-
-Footer::Footer(const PageType page_type)
+c2h::Footer::Footer(const PageType page_type)
   : m_page_type(page_type)
 {
 
 }
 
-const std::vector<std::string> Footer::ToHtml() const
+const std::vector<std::string> c2h::Footer::ToHtml() const
 {
   std::vector<std::string> v;
   switch (m_page_type)
@@ -60,6 +57,3 @@ const std::vector<std::string> Footer::ToHtml() const
   v.push_back("</html>");
   return v;
 }
-
-} //~namespace CodeToHtml
-

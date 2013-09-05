@@ -11,6 +11,8 @@
 
 #include "kalmanfiltertype.h"
 
+namespace ribi {
+
 ///The elements of a steady-state Kalman filter calculation
 struct KalmanFilterCalculationElements : public boost::noncopyable
 {
@@ -66,7 +68,7 @@ struct KalmanFilterCalculationElements : public boost::noncopyable
 
   protected:
   ///An ABC can only be constructed by derived classes
-  KalmanFilterCalculationElements(
+  explicit KalmanFilterCalculationElements(
     const boost::numeric::ublas::vector<double>& measurement,
     const boost::numeric::ublas::vector<double>& predicted_state,
     const boost::numeric::ublas::vector<double>& previous_state_estimate,
@@ -90,5 +92,7 @@ struct KalmanFilterCalculationElements : public boost::noncopyable
   ///The updated state ('x_n')
   boost::numeric::ublas::vector<double> m_updated_state;
 };
+
+} //~namespace ribi
 
 #endif // KALMANFILTERCALCULATIONELEMENTS_H

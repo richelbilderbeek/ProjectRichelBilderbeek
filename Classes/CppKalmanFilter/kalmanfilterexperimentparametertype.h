@@ -1,6 +1,8 @@
 #ifndef KALMANFILTEREXPERIMENTPARAMETERTYPE_H
 #define KALMANFILTEREXPERIMENTPARAMETERTYPE_H
 
+namespace ribi {
+
 //#include <vector>
 
 ///These parameters overlap
@@ -30,5 +32,6 @@ bool operator<(const KalmanFilterExperimentParameterType lhs, const KalmanFilter
 bool operator==(const KalmanFilterExperimentParameterType lhs, const KalmanFilterExperimentParameterType rhs);
 bool operator!=(const KalmanFilterExperimentParameterType lhs, const KalmanFilterExperimentParameterType rhs);
 
+} //~namespace ribi
 
 #endif // KALMANFILTEREXPERIMENTPARAMETERTYPE_H

@@ -30,6 +30,8 @@ namespace Ui {
   class QtKalmanFiltererMainDialog;
 }
 
+namespace ribi {
+
 class QtKalmanFiltererMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -119,5 +121,7 @@ private slots:
   void on_tab_context_currentChanged(int index);
   void on_edit_context_textChanged();
 };
+
+} //~namespace ribi
 
 #endif // QTKALMANFILTERERMAINDIALOG_H

@@ -19,8 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConnectThree.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "connectthree.h"
@@ -33,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/foreach.hpp>
 #include <boost/scoped_ptr.hpp>
 
-ConnectThree::ConnectThree(
+ribi::ConnectThree::ConnectThree(
   const int n_cols,
   const int n_rows)
   : m_area(n_cols, std::vector<int>(n_rows,no_player)),
@@ -48,7 +46,7 @@ ConnectThree::ConnectThree(
   assert(GetRows() == n_rows);
 }
 
-bool ConnectThree::CanDoMove(const int x, const int y) const
+bool ribi::ConnectThree::CanDoMove(const int x, const int y) const
 {
   return (
        x >= 0
@@ -58,14 +56,14 @@ bool ConnectThree::CanDoMove(const int x, const int y) const
     && m_area[x][y] == no_player);
 }
 
-bool ConnectThree::CanDoMove(const Move& p) const
+bool ribi::ConnectThree::CanDoMove(const Move& p) const
 {
   return CanDoMove(
     boost::tuples::get<0>(p),
     boost::tuples::get<1>(p));
 }
 
-void ConnectThree::DoMove(const int x, const int y)
+void ribi::ConnectThree::DoMove(const int x, const int y)
 {
   assert(
     (CreateInvalidMove().get<0>() == x
@@ -80,19 +78,19 @@ void ConnectThree::DoMove(const int x, const int y)
   m_player = GetNextPlayer();
 }
 
-void ConnectThree::DoMove(const Move& p)
+void ribi::ConnectThree::DoMove(const Move& p)
 {
   DoMove(
     boost::tuples::get<0>(p),
     boost::tuples::get<1>(p));
 }
 
-const std::string ConnectThree::GetVersion()
+const std::string ribi::ConnectThree::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ConnectThree::GetVersionHistory()
+const std::vector<std::string> ribi::ConnectThree::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-12-28: version 0.1: initial seperation of game logic from GUI");
@@ -103,7 +101,7 @@ const std::vector<std::string> ConnectThree::GetVersionHistory()
 }
 
 ///GetWinner returns the index of the winner.
-int ConnectThree::GetWinner() const
+int ribi::ConnectThree::GetWinner() const
 {
   const int n_rows = GetRows();
   for (int y=0; y!=n_rows; ++y)
@@ -142,12 +140,12 @@ int ConnectThree::GetWinner() const
   return no_player;
 }
 
-//bool ConnectThree::IsComputerTurn() const
+//bool ribi::ConnectThree::IsComputerTurn() const
 //{
 //  return !IsHuman(GetActivePlayer());
 //}
 
-bool ConnectThree::IsInvalidMove(const Move& p) const
+bool ribi::ConnectThree::IsInvalidMove(const Move& p) const
 {
   const Move q = CreateInvalidMove();
   return
@@ -158,7 +156,7 @@ bool ConnectThree::IsInvalidMove(const Move& p) const
 
 ///SuggestMove suggests a good move. If the game is a draw,
 ///it returns an invalid move.
-const ConnectThree::Move ConnectThree::SuggestMove(const std::bitset<3>& is_player_human) const
+const ribi::ConnectThree::Move ribi::ConnectThree::SuggestMove(const std::bitset<3>& is_player_human) const
 {
   if (CanDoMove(CheckTwoHorizontalOwn())) return CheckTwoHorizontalOwn();
   if (CanDoMove(CheckTwoVerticalOwn()  )) return CheckTwoVerticalOwn();
@@ -168,7 +166,7 @@ const ConnectThree::Move ConnectThree::SuggestMove(const std::bitset<3>& is_play
   return MakeRandomMove();
 }
 
-const ConnectThree::Move ConnectThree::CheckTwoHorizontalOwn() const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoHorizontalOwn() const
 {
   const int n_rows = GetRows();
   for (int y=0; y!=n_rows; ++y)
@@ -210,7 +208,7 @@ const ConnectThree::Move ConnectThree::CheckTwoHorizontalOwn() const
   return CreateInvalidMove();
 }
 
-const ConnectThree::Move ConnectThree::CheckTwoVerticalOwn() const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoVerticalOwn() const
 {
   const int n_rows = GetRows();
   for (int y=0; y!=n_rows-1; ++y) //-1 to prevent out of range
@@ -255,7 +253,7 @@ const ConnectThree::Move ConnectThree::CheckTwoVerticalOwn() const
   return CreateInvalidMove();
 }
 
-const ConnectThree::Move ConnectThree::CheckTwoOther(const std::bitset<3>& is_player_human) const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoOther(const std::bitset<3>& is_player_human) const
 {
   const Moves moves(GetAllPossibleMoves());
 
@@ -317,9 +315,9 @@ const ConnectThree::Move ConnectThree::CheckTwoOther(const std::bitset<3>& is_pl
   }
 }
 
-const ConnectThree::Move ConnectThree::CreateInvalidMove() const
+const ribi::ConnectThree::Move ribi::ConnectThree::CreateInvalidMove() const
 {
-  ConnectThree::Move p(-1,-1,ConnectThree::no_player);
+  ribi::ConnectThree::Move p(-1,-1,ConnectThree::no_player);
   assert(!CanDoMove(p));
   return p;
 }
@@ -328,16 +326,16 @@ const ConnectThree::Move ConnectThree::CreateInvalidMove() const
 ///* boost::get<0>: x coordinat
 ///* boost::get<1>: y coordinat
 ///* boost::get<2>: player that would dislike this move
-const ConnectThree::Moves
-  ConnectThree::GetAllPossibleMoves() const
+const ribi::ConnectThree::Moves
+  ribi::ConnectThree::GetAllPossibleMoves() const
 {
-  ConnectThree::Moves v(GetTwoHorizontalOtherMoves());
-  const ConnectThree::Moves w(GetTwoVerticalOtherMoves());
+  ribi::ConnectThree::Moves v(GetTwoHorizontalOtherMoves());
+  const ribi::ConnectThree::Moves w(GetTwoVerticalOtherMoves());
   std::copy(w.begin(),w.end(),std::back_inserter(v));
   return v;
 }
 
-const ConnectThree::Moves ConnectThree::GetTwoHorizontalOtherMoves() const
+const ribi::ConnectThree::Moves ribi::ConnectThree::GetTwoHorizontalOtherMoves() const
 {
   const int n_rows = GetRows();
   Moves moves;
@@ -381,10 +379,10 @@ const ConnectThree::Moves ConnectThree::GetTwoHorizontalOtherMoves() const
 }
 
 //A X B C (x is focus of for loop)
-const ConnectThree::Moves ConnectThree::GetTwoVerticalOtherMoves() const
+const ribi::ConnectThree::Moves ribi::ConnectThree::GetTwoVerticalOtherMoves() const
 {
   const int n_rows = GetRows();
-  ConnectThree::Moves v;
+  ribi::ConnectThree::Moves v;
 
   for (int y=0; y!=n_rows-1; ++y) //-1 to prevent out of range
   {
@@ -421,9 +419,9 @@ const ConnectThree::Moves ConnectThree::GetTwoVerticalOtherMoves() const
   return v;
 }
 
-const ConnectThree::Move ConnectThree::CheckTwoDiagonally() const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoDiagonally() const
 {
-  ConnectThree::Moves v;
+  ribi::ConnectThree::Moves v;
 
   const int n_rows = GetRows();
   for (int y=0; y!=n_rows-1; ++y) //-1 To prevent out of range
@@ -454,9 +452,9 @@ const ConnectThree::Move ConnectThree::CheckTwoDiagonally() const
   return m;
 }
 
-const ConnectThree::Move ConnectThree::CheckOneOther(const std::bitset<3>& is_player_human) const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckOneOther(const std::bitset<3>& is_player_human) const
 {
-  ConnectThree::Moves v;
+  ribi::ConnectThree::Moves v;
 
   const int n_rows = GetRows();
 
@@ -561,7 +559,7 @@ const ConnectThree::Move ConnectThree::CheckOneOther(const std::bitset<3>& is_pl
   }
 }
 
-const ConnectThree::Move ConnectThree::MakeRandomMove() const
+const ribi::ConnectThree::Move ribi::ConnectThree::MakeRandomMove() const
 {
   std::vector<boost::tuple<int,int,int> > v;
   const int n_cols = GetCols();
@@ -588,12 +586,12 @@ const ConnectThree::Move ConnectThree::MakeRandomMove() const
   return v[index];
 }
 
-int ConnectThree::GetCols() const
+int ribi::ConnectThree::GetCols() const
 {
   return m_area.size();
 }
 
-int ConnectThree::GetNextPlayer(const int player) const
+int ribi::ConnectThree::GetNextPlayer(const int player) const
 {
   assert(player!=no_player);
   switch (player)
@@ -606,27 +604,27 @@ int ConnectThree::GetNextPlayer(const int player) const
   return no_player;
 }
 
-int ConnectThree::GetNextPlayer() const
+int ribi::ConnectThree::GetNextPlayer() const
 {
   return GetNextPlayer(m_player);
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double ConnectThree::GetRandomUniform()
+double ribi::ConnectThree::GetRandomUniform()
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
 
-int ConnectThree::GetRows() const
+int ribi::ConnectThree::GetRows() const
 {
   assert(!m_area.empty());
   return m_area[0].size();
 }
 
-void ConnectThree::Restart()
+void ribi::ConnectThree::Restart()
 {
   m_area = std::vector<std::vector<int> >(GetCols(),
     std::vector<int>(GetRows(),no_player));
-  m_player = ConnectThree::player1;
+  m_player = ribi::ConnectThree::player1;
 }
 

@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 #pragma GCC diagnostic pop
 
-Canvas::Canvas(
+ribi::Canvas::Canvas(
   const int width,
   const int height,
   const ColorSystem colorSystem,
@@ -45,7 +45,7 @@ Canvas::Canvas(
   assert(height > 0);
 }
 
-void Canvas::DrawDot(const double x, const double y)
+void ribi::Canvas::DrawDot(const double x, const double y)
 {
   //Assume a dot has dimensions 1.0 x 1.0
   //and x and y are exactly in the middle of this dot
@@ -65,7 +65,7 @@ void Canvas::DrawDot(const double x, const double y)
     mCanvas[indexTop+1][indexLeft+1] += ((1.0-fracLeft) * (1.0-fracTop));
 }
 
-void Canvas::DrawLine(const double x1, const double y1, const double x2, const double y2)
+void ribi::Canvas::DrawLine(const double x1, const double y1, const double x2, const double y2)
 {
 
   const double dX = x2 - x1;
@@ -84,7 +84,7 @@ void Canvas::DrawLine(const double x1, const double y1, const double x2, const d
   }
 }
 
-void Canvas::DrawCircle(const double xMid, const double yMid, const double ray)
+void ribi::Canvas::DrawCircle(const double xMid, const double yMid, const double ray)
 {
   const double pi = boost::math::constants::pi<double>();
   const double circumference = ray * pi * 2.0;
@@ -100,7 +100,7 @@ void Canvas::DrawCircle(const double xMid, const double yMid, const double ray)
   }
 }
 
-bool Canvas::IsInRange(const int x, const int y) const
+bool ribi::Canvas::IsInRange(const int x, const int y) const
 {
   if (   x < 0
       || y < 0
@@ -111,22 +111,22 @@ bool Canvas::IsInRange(const int x, const int y) const
   return true;
 }
 
-std::ostream& operator<<(std::ostream& os, const Canvas& canvas)
+std::ostream& ribi::operator<<(std::ostream& os, const Canvas& canvas)
 {
-  Canvas::PlotSurface(
+  ribi::Canvas::PlotSurface(
     os,
     canvas.mCanvas,
-    canvas.mColorSystem == Canvas::ColorSystem::normal,
-    canvas.mCoordinatSystem == Canvas::CoordinatSystem::screen);
+    canvas.mColorSystem == ribi::Canvas::ColorSystem::normal,
+    canvas.mCoordinatSystem == ribi::Canvas::CoordinatSystem::screen);
   return os;
 }
 
-const std::string Canvas::GetVersion()
+const std::string ribi::Canvas::GetVersion()
 {
   return "2.1";
 }
 
-const std::vector<std::string> Canvas::GetVersionHistory()
+const std::vector<std::string> ribi::Canvas::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2008-xx-xx: version 1.0: initial C++ Builder version");
@@ -137,7 +137,7 @@ const std::vector<std::string> Canvas::GetVersionHistory()
 
 //The 2D std::vector must be y-x-ordered
 //From http://www.richelbilderbeek.nl/CppPlotSurface.htm
-void Canvas::PlotSurface(
+void ribi::Canvas::PlotSurface(
   std::ostream& os,
   const std::vector<std::vector<double> >& v,
   const bool use_normal_color_system,
@@ -209,7 +209,7 @@ void Canvas::PlotSurface(
 }
 
 //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-const std::vector<char> Canvas::GetAsciiArtGradient()
+const std::vector<char> ribi::Canvas::GetAsciiArtGradient()
 {
   std::vector<char> chars;
   chars.push_back('M');
@@ -233,7 +233,7 @@ const std::vector<char> Canvas::GetAsciiArtGradient()
 //Obtains the minimum element of a 2D container
 //From http://www.richelbilderbeek.nl/CppMinElement.htm
 template <class Container>
-const typename Container::value_type::value_type Canvas::MinElement(const Container& v)
+const typename Container::value_type::value_type ribi::Canvas::MinElement(const Container& v)
 {
   assert(v.empty() == false && "Container must have a size");
   //Obtain an initial lowest value
@@ -257,7 +257,7 @@ const typename Container::value_type::value_type Canvas::MinElement(const Contai
 //Obtains the maximal element of a 2D container
 //From http://www.richelbilderbeek.nl/CppMaxElement.htm
 template <class Container>
-const typename Container::value_type::value_type Canvas::MaxElement(const Container& v)
+const typename Container::value_type::value_type ribi::Canvas::MaxElement(const Container& v)
 {
   assert(v.empty() == false && "Container must have a size");
 

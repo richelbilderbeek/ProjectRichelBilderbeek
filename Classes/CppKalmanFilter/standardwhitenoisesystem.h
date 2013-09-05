@@ -10,6 +10,8 @@
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
 {
   ///Obtain the type as an enum
@@ -33,7 +35,7 @@ struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
 
   private:
   ///StandardWhiteNoiseSystem can only be created by a StandardWhiteNoiseSystemFactory
-  StandardWhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters);
+  explicit StandardWhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters);
   friend class StandardWhiteNoiseSystemFactory;
 
   ///Can only be deleted by boost::checked_delete
@@ -43,5 +45,7 @@ struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
   ///The parameters for the white noise system
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters> m_parameters;
 };
+
+} //~namespace ribi
 
 #endif // STANDARDWHITENOISESYSTEM_H

@@ -26,9 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreatorprofile.h"
 #include "trace.h"
 
-const About CodeToHtmlMenuDialog::GetAbout()
+const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout()
 {
-  About a {
+  ribi::About a {
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
@@ -44,12 +44,12 @@ const About CodeToHtmlMenuDialog::GetAbout()
   return a;
 }
 
-const std::string CodeToHtmlMenuDialog::GetVersion()
+const std::string ribi::CodeToHtmlMenuDialog::GetVersion()
 {
-  return "2.6";
+  return "2.7";
 }
 
-const std::vector<std::string> CodeToHtmlMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory()
 {
   const std::vector<std::string> v {
     "2010-03-14: version 1.0: programmed initial console version of CodeToHtml. Due to my switch from Windows to Ubuntu, I had to abandon MS Word as my favorite HTML editor. Then I had to write my webpages in plain HTML, but adding links to all my code snippets was tiresome. CodeToHtml automated this for me",
@@ -83,7 +83,9 @@ const std::vector<std::string> CodeToHtmlMenuDialog::GetVersionHistory()
     "2012-10-30: version 2.3: replaced C++0x by C++11, obtain the Qt Creator version automatically",
     "2012-12-22: version 2.4: HTML produced is checked by 'tidy', many minor improvements",
     "2013-05-19: version 2.5: +3400 replacements, following architectural changes in QtCreatorProFile and QtCreatorProFileZipScript",
-    "2013-08-19: version 2.6: replaced Boost.Filesystem and Boost.Regex by Qt and Boost.Xpressive, added tests, added +5000 lines of CodeToHtml info"
+    "2013-08-19: version 2.6: replaced Boost.Filesystem and Boost.Regex by Qt and Boost.Xpressive, added tests, added +5000 lines of CodeToHtml info",
+    "2013-09-05: version 2.7: transition to namespace ribi"
+
   };
   return v;
 }

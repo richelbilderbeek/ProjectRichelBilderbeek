@@ -54,7 +54,8 @@ group <a href="CppFunction.htm">functions</a> and <a href="CppClass.htm">classes
   If necessary, use <a href="CppNamespace.htm">namespace</a> aliases to abbreviate long <a href="CppNamespace.htm">namespace</a> names [5].
   Avoid placing heavy notational burdens on users of your <a href="CppNamespace.htm">namespaces</a> [6].
   Use seperate <a href="CppNamespace.htm">namespaces</a> for <a href="CppInterface.htm">interfaces</a> and <a href="CppImplementation.htm">implementations</a> [7].
-  Use the Namespace::member notation when <a href="CppDefinition.htm">defining</a> <a href="CppNamespace.htm">namespace</a> members [8].
+  Use the Namespace::member notation when <a href="CppDefinition.htm">defining</a> <a href="CppNamespace.htm">namespace</a> members [8], as this
+    avoids the possibility to accidentally add new members to the namespace
 </p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -123,6 +124,10 @@ H.e.l.l.o w.o.r.l.d...<br/>
   <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[6] Avoid placing heavy notational burdens on users of your namespaces'</li>
   <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[7] Use seperate namespaces for interfaces and implementations'</li>
   <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 14.5. Advice. page 417: '[8] Use the Namespace::member notation when defining namespace members'</li>
+  <li><!--  9 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 57: 'Keep a type and its nonmember function interface in the same namespace'</li>
+  <li><!-- 10 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 58: 'Keep types and functions in seperate namespaces unless they're specifically intended to work together'</li>
+  <li><!-- 11 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 59: 'Don't write namespace usings in a header file or before an #include'</li>
+
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

@@ -31,11 +31,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtcreatorprofile.h"
 
+namespace ribi {
+
 ///Create a shell script to zip a Qt Creator .pro file
 struct QtCreatorProFileZipScript : public boost::noncopyable
 {
   QtCreatorProFileZipScript(
-    const boost::shared_ptr<const QtCreatorProFile> pro_file);
+    const boost::shared_ptr<const ribi::QtCreatorProFile> pro_file);
 
   ///Create a script to zip all .pro files (and all they refer to) in a folder
   static const std::string CreateScript(const std::string& source_folder);
@@ -111,5 +113,7 @@ struct QtCreatorProFileZipScript : public boost::noncopyable
 
 ///Write the script to a stream
 std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script);
+
+} //~namespace ribi
 
 #endif // QTCREATORPROFILEZIPSCRIPT

@@ -1,11 +1,6 @@
 #ifndef QTALPHAFILTERDIALOG_H
 #define QTALPHAFILTERDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include <QDialog>
 #include "stateobserverfwd.h"
@@ -13,6 +8,8 @@
 namespace Ui {
   class QtAlphaFilterDialog;
 }
+
+namespace ribi {
 
 ///Dialog to create an alpha filter
 class QtAlphaFilterDialog : public QDialog
@@ -29,5 +26,7 @@ public:
 private:
   Ui::QtAlphaFilterDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTALPHAFILTERDIALOG_H

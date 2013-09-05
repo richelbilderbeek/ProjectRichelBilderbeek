@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QDialog>
 
+namespace ribi {
+
 ///Dialog that lets parent dialog display children dialogs while being hidden
 ///from http://richelbilderbeek.nl/CppQtHideAndShowDialog.htm
 class QtHideAndShowDialog : public QDialog
@@ -66,5 +68,7 @@ protected slots:
   void close_child();
 
 };
+
+} //~namespace ribi
 
 #endif // QTHIDEANDSHOWDIALOG_H

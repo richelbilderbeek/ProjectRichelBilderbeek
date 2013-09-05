@@ -6,7 +6,7 @@
 
 #include "standardkalmanfiltercalculationelements.h"
 
-FixedLagSmootherKalmanFilterCalculationElements::FixedLagSmootherKalmanFilterCalculationElements(
+ribi::FixedLagSmootherKalmanFilterCalculationElements::FixedLagSmootherKalmanFilterCalculationElements(
   const boost::numeric::ublas::vector<double>& measurement,
   const boost::numeric::ublas::vector<double>& predicted_state,
   const boost::numeric::ublas::vector<double>& previous_state_estimate,
@@ -21,7 +21,7 @@ FixedLagSmootherKalmanFilterCalculationElements::FixedLagSmootherKalmanFilterCal
   //... nothing to check left
 }
 
-void FixedLagSmootherKalmanFilterCalculationElements::Clear()
+void ribi::FixedLagSmootherKalmanFilterCalculationElements::Clear()
 {
   KalmanFilterCalculationElements::Clear();
 
@@ -29,7 +29,7 @@ void FixedLagSmootherKalmanFilterCalculationElements::Clear()
   //m_updated_covariance = boost::numeric::ublas::matrix<double>();
 }
 
-const boost::shared_ptr<KalmanFilterCalculationElements> FixedLagSmootherKalmanFilterCalculationElements::Clone() const
+const boost::shared_ptr<ribi::KalmanFilterCalculationElements> ribi::FixedLagSmootherKalmanFilterCalculationElements::Clone() const
 {
   boost::shared_ptr<KalmanFilterCalculationElements> p;
   assert(p);
@@ -37,7 +37,7 @@ const boost::shared_ptr<KalmanFilterCalculationElements> FixedLagSmootherKalmanF
 }
 
 
-bool FixedLagSmootherKalmanFilterCalculationElements::IsComplete() const
+bool ribi::FixedLagSmootherKalmanFilterCalculationElements::IsComplete() const
 {
   const std::size_t sz = GetMeasurement().size();
   return
@@ -52,7 +52,8 @@ bool FixedLagSmootherKalmanFilterCalculationElements::IsComplete() const
     && sz == GetPreviousState().size();
 }
 
-void FixedLagSmootherKalmanFilterCalculationElements::SetStandardCalculationElement(const boost::shared_ptr<StandardKalmanFilterCalculationElements>& standard_calculation)
+void ribi::FixedLagSmootherKalmanFilterCalculationElements::SetStandardCalculationElement(
+  const boost::shared_ptr<StandardKalmanFilterCalculationElements>& standard_calculation)
 {
   assert(!m_standard_calculation);
   assert(standard_calculation);

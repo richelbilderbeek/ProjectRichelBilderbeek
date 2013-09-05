@@ -33,13 +33,15 @@ namespace Ui {
   class QtAboutDialog;
 }
 
+namespace ribi {
+
 ///An About dialog
 class QtAboutDialog : public QDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtAboutDialog(const About& about);
+  explicit QtAboutDialog(const ribi::About& about);
   ~QtAboutDialog();
 
   ///Obtain the version of this class
@@ -52,5 +54,6 @@ private:
   Ui::QtAboutDialog *ui;
 };
 
+} //~namespace ribi
 
 #endif // QTABOUTDIALOG_H

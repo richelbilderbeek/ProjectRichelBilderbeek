@@ -8,6 +8,8 @@
 #include <QImage>
 #include <QWidget>
 
+namespace ribi {
+
 struct QtK3OpEenRijResources;
 
 class QtK3OpEenRijSelectPlayerWidget : public QWidget
@@ -43,5 +45,7 @@ private:
   static const int m_sprite_height;
   static const int m_sprite_width;
 };
+
+} //~namespace ribi
 
 #endif // QTK3OPEENRIJSELECTPLAYERWIDGET_H

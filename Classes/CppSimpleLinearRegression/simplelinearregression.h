@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 template <typename T>
 T GetZero() { return T{}; }
 
@@ -126,5 +128,6 @@ auto SimpleLinearRegression::CalculateSlope(
 //template <> double SimpleLinearRegression::GetZero() { return 0.0; }
 //template <class T> T SimpleLinearRegression::GetZero() { return T(); }
 
+} //~namespace ribi
 
 #endif // SIMPLELINEARREGRESSION_H

@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 ///An observer for floating point values:
 ///The measurements it works must be floating point,
 ///The estimates it gives will be floating point
@@ -26,5 +28,7 @@ struct FloatingPointStateObserver
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // FLOATINGPOINTSTATEOBSERVER_H

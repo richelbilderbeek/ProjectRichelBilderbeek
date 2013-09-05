@@ -20,14 +20,14 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppMemberFunction.htm">member function</a></h1>
 <p>&nbsp;</p>
-<p>A <a href="CppMemberFunction.htm">member function</a> is a 
-<a href="CppFunction.htm">function</a> working on a <a href="CppClass.htm">class</a>.</p>
+<p>A <a href="CppMemberFunction.htm">member function</a> is a <a href="CppFunction.htm">function</a> working on a <a href="CppClass.htm">class</a>.</p>
 <p>&nbsp;</p>
-<p><a href="CppConst.htm">Const</a> methods do not change the (non-<a href="CppMutable.htm">mutable</a>) member variables.</p>
+<p>There are multiple types of member functions:</p>
+<ul>
+  <li><a href="CppConstMemberFunction.htm">const member functions</a>: these do not change the (non-<a href="CppMutable.htm">mutable</a>) member variables</li>
+  <li><a href="CppStaticMemberFunction.htm">static member functions</a>: these do not have access to an object</li>
+</ul>
 <p>&nbsp;</p>
-<p>Follow a standard <a href="CppMemberFunctionDesign.htm">member function design</a>.</p>
-<p>&nbsp;</p>
-<p>Prefer writing short <a href="CppMemberFunction.htm">member functions</a> [3]. Calling a <a href="CppMemberFunction.htm">member function</a> a 'method' is wrong [2].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -50,14 +50,25 @@
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>The class 'HelloWorld' has a single <a href="CppConst.htm">const</a> method called
-'SayHelloWorld'. It is called in <a href="CppMain.htm">main</a>, producing the
-same output as a <a href="CppHelloWorld.htm">Hello World program</a>.</p>
+<p>
+  The class 'HelloWorld' has a single <a href="CppConstMemberFunction.htm">const member function</a> called
+  'SayHelloWorld'. It is called in <a href="CppMain.htm">main</a>, producing the same output as a <a href="CppHelloWorld.htm">Hello World program</a>.
+</p>
 <p>&nbsp;</p>
-<p>Avoid calling <a href="CppVirtual.htm">virtual</a> <a href="CppMemberFunction.htm">member functions</a> in 
-<a href="CppConstructor.htm">constructors</a> and <a href="CppDestructor.htm">destructors</a> [1].
-Avoid <a href="CppPublic.htm">public</a> <a href="CppVirtual.htm">virtual</a> <a href="CppMemberFunction.htm">member functions</a>; 
-prefer using the <a href="CppDesignPatternTemplateMethod.htm">Template Method Design Pattern</a> instead [4].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Follow a standard <a href="CppMemberFunctionDesign.htm">member function design</a>. Note: many points of <a href="CppAdvice.htm">advice</a>!
+  </li>
+  <li>
+    Calling a <a href="CppMemberFunction.htm">member function</a> a 'method' is wrong [1]
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -66,10 +77,7 @@ prefer using the <a href="CppDesignPatternTemplateMethod.htm">Template Method De
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><!-- 1 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 49: 'Avoid calling virtual functions in constructors and destructors'</li>
-  <li><!-- 2 -->Stephen C. Dewhurst. C++ Gotchas. 2003. ISBN: 0-321-12518-5. Gotcha #9: 'Wrong: method, right: member function'</li>
-  <li><!-- 3 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 1: 'Any one function (or method) will contain no more than 200 logical source lines of code.'</li>
-  <li><!-- 4 --><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppExceptionalCpp.htm">Exceptional C++</a>. ISBN: 0-201-61562-2. Item 23, page 84, guideline: 'Avoid public virtual functions; prefer using the Template Method pattern instead'</li>
+  <li><!-- 1 -->Stephen C. Dewhurst. C++ Gotchas. 2003. ISBN: 0-321-12518-5. Gotcha #9: 'Wrong: method, right: member function'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

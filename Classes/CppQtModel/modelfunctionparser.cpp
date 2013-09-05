@@ -17,10 +17,10 @@
 //Warp's function parser
 #include "fparser.hh"
 
-ModelFunctionParser::ModelFunctionParser(
+ribi::ModelFunctionParser::ModelFunctionParser(
   const std::string& my_function,
   const std::string& variable_name)
-  : m_parser(new FunctionParser)
+  : m_parser{new FunctionParser}
 {
   assert(m_parser);
 
@@ -47,14 +47,14 @@ ModelFunctionParser::ModelFunctionParser(
   }
 }
 
-double ModelFunctionParser::Evaluate(const double x) const
+double ribi::ModelFunctionParser::Evaluate(const double x) const
 {
   const double xs[1] = { x };
   const double y = m_parser->Eval(xs);
   return y;
 }
 
-double ModelFunctionParser::MyRand(const double * const max)
+double ribi::ModelFunctionParser::MyRand(const double * const max)
 {
   assert(max);
   return (*max) * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX);

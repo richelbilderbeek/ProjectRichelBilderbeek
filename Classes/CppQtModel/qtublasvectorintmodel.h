@@ -31,13 +31,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct QtUblasVectorIntModel: public QAbstractTableModel
 {
   ///Create a QtUblasVectorIntModel
   ///with range
   ///- from = std::numeric_limits<int>::min()
   ///- to   = std::numeric_limits<int>::max()
-  QtUblasVectorIntModel(QObject *parent = 0);
+  explicit QtUblasVectorIntModel(QObject *parent = 0);
 
   ///Working with the raw data
   const boost::numeric::ublas::vector<int>& GetRawData() const { return m_data; }
@@ -114,5 +116,7 @@ struct QtUblasVectorIntModel: public QAbstractTableModel
   #endif
 
 };
+
+} //~namespace ribi
 
 #endif // QTUBLASVECTORINTMODEL_H

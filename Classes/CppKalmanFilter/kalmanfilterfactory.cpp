@@ -9,7 +9,7 @@
 #include "fixedlagsmootherkalmanfilterfactory.h"
 
 
-const boost::shared_ptr<KalmanFilter> KalmanFilterFactory::Create(
+const boost::shared_ptr<ribi::KalmanFilter> ribi::KalmanFilterFactory::Create(
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
 {
   assert(parameters);

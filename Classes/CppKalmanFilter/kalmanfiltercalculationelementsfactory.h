@@ -4,6 +4,8 @@
 #include <boost/shared_ptr.hpp>
 #include "kalmanfiltercalculationelements.h"
 
+namespace ribi {
+
 struct KalmanFilterCalculationElementsFactory
 {
   ///Create a KalmanFilterCalculationElements of a certain type
@@ -13,8 +15,8 @@ struct KalmanFilterCalculationElementsFactory
   ///Deep copy
   static const boost::shared_ptr<KalmanFilterCalculationElements> DeepCopy(
     const boost::shared_ptr<KalmanFilterCalculationElements>& elements);
-
-
 };
+
+} //~namespace ribi
 
 #endif // KALMANFILTERCALCULATIONELEMENTSFACTORY_H

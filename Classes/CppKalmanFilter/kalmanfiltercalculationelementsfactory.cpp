@@ -9,7 +9,8 @@
 #include "fixedlagsmootherkalmanfiltercalculationelements.h"
 
 
-const boost::shared_ptr<KalmanFilterCalculationElements> KalmanFilterCalculationElementsFactory::Create(
+const boost::shared_ptr<ribi::KalmanFilterCalculationElements>
+  ribi::KalmanFilterCalculationElementsFactory::Create(
   const KalmanFilterType type)
 {
   boost::shared_ptr<KalmanFilterCalculationElements> p;
@@ -32,7 +33,7 @@ const boost::shared_ptr<KalmanFilterCalculationElements> KalmanFilterCalculation
   return p;
 }
 
-const boost::shared_ptr<KalmanFilterCalculationElements> KalmanFilterCalculationElementsFactory::DeepCopy(
+const boost::shared_ptr<ribi::KalmanFilterCalculationElements> ribi::KalmanFilterCalculationElementsFactory::DeepCopy(
   const boost::shared_ptr<KalmanFilterCalculationElements>& original)
 {
   assert(original);

@@ -1,22 +1,11 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "k3opeenrijmenudialog.h"
 
+#include <cassert>
 
 #include "connectthree.h"
 #include "connectthreewidget.h"
 
-#include <cassert>
-
-const About K3OpEenRijMenuDialog::GetAbout()
+const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -33,19 +22,19 @@ const About K3OpEenRijMenuDialog::GetAbout()
   return a;
 }
 
-const std::string K3OpEenRijMenuDialog::GetVersion()
+const std::string ribi::K3OpEenRijMenuDialog::GetVersion()
 {
   return "6.0";
 }
 
-const std::vector<std::string> K3OpEenRijMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-
-  v.push_back("2007-01-03: version 3.0: initial C++ Builder verion, ");
-  v.push_back("2009-12-31: version 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs");
-  v.push_back("2013-08-06: version 5.0: port to Qt Creator");
-  v.push_back("2013-08-06: version 5.1: allow selection of both Kathleen and Josje");
-  v.push_back("2013-08-09: version 6.0: implemented suggestions and bugfixes from Mark Wiering's report");
+  const std::vector<std::string> v {
+    "2007-01-03: version 3.0: initial C++ Builder verion",
+    "2009-12-31: version 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs",
+    "2013-08-06: version 5.0: port to Qt Creator",
+    "2013-08-06: version 5.1: allow selection of both Kathleen and Josje",
+    "2013-08-09: version 6.0: implemented suggestions and bugfixes from Mark Wiering's report"
+  };
   return v;
 }

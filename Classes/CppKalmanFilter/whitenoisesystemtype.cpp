@@ -2,7 +2,7 @@
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "whitenoisesystemtype.h"
 
-bool operator==(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs)
+bool ribi::operator==(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs)
 {
   //Must cast enum class to integer, because of a bug
   //in GCC version 4.4.0:
@@ -10,7 +10,7 @@ bool operator==(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs)
   return static_cast<int>(lhs) == static_cast<int>(rhs);
 }
 
-bool operator!=(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs)
+bool ribi::operator!=(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs)
 {
   //Must cast enum class to integer, because of a bug
   //in GCC version 4.4.0:
@@ -18,7 +18,7 @@ bool operator!=(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs)
   return static_cast<int>(lhs) != static_cast<int>(rhs);
 }
 
-bool operator<(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs)
+bool ribi::operator<(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs)
 {
   //Must cast enum class to integer, because of a bug
   //in GCC version 4.4.0:

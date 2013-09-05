@@ -1,11 +1,9 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "lsqfilter.h"
 
 #include <cassert>
 #include <cstdlib>
 
-LsqFilter::LsqFilter(
+ribi::LsqFilter::LsqFilter(
   const int filter_shift,
   const int64_t value_active,
   const int64_t value_hidden)
@@ -17,7 +15,7 @@ LsqFilter::LsqFilter(
   assert(m_filter_shift <= 63 && "An int can maximally be shifted 63 bits to the right");
 }
 
-int64_t LsqFilter::Estimate(const int64_t measurement)
+int64_t ribi::LsqFilter::Estimate(const int64_t measurement)
 {
   m_value_hidden += ((measurement    - m_value_hidden) >> m_filter_shift);
   m_value_active += ((m_value_hidden - m_value_active) >> m_filter_shift);

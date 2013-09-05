@@ -15,6 +15,8 @@ namespace Ui {
   class QtToolTestMultiApproximatorMainDialog;
 }
 
+namespace ribi {
+
 class QtToolTestMultiApproximatorMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -60,5 +62,7 @@ private:
 
   void Plot();
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLTESTMULTIAPPROXIMATORMAINDIALOG_H

@@ -27,9 +27,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QAbstractTableModel>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct QtStdVectorStringModel: public QAbstractTableModel
 {
-  QtStdVectorStringModel(QObject *parent = 0);
+  explicit QtStdVectorStringModel(QObject *parent = 0);
 
   ///Reading the raw data
   const std::vector<std::string>& GetRawData() const { return m_data; }
@@ -83,5 +85,7 @@ struct QtStdVectorStringModel: public QAbstractTableModel
   ///Redefined from ABC
   bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role);
 };
+
+} //~namespace ribi
 
 #endif // QTSTDVECTORSTRINGMODEL_H

@@ -18,6 +18,8 @@ namespace Ui {
   class QtStandardKalmanFilterCalculationDialog;
 }
 
+namespace ribi {
+
 class QtStandardKalmanFilterCalculationDialog : public QtKalmanFilterCalculationDialog
 {
   Q_OBJECT
@@ -68,5 +70,7 @@ private:
 
 
 };
+
+} //~namespace ribi
 
 #endif // QTSTANDARDKALMANFILTERERALGORITHMDIALOG_H

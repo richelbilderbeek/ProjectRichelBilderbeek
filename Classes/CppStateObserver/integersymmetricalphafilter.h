@@ -6,6 +6,8 @@
 
 #include "integerstateobserver.h"
 
+namespace ribi {
+
 struct IntegerSymmetricalAlphaFilter : public IntegerStateObserver
 {
   IntegerSymmetricalAlphaFilter(
@@ -29,5 +31,7 @@ struct IntegerSymmetricalAlphaFilter : public IntegerStateObserver
   int m_alpha;
   int64_t m_value_active;
 };
+
+} //~namespace ribi
 
 #endif // INTEGERSYMMETRICALPHAFILTER_H

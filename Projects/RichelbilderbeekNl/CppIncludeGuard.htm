@@ -39,12 +39,20 @@ a <a href="CppHeaderFile.htm">header file</a> to be <a href="CppCompile.htm">com
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>An <a href="CppImplementationFile.htm">implementation (.cpp) file</a> does not have an
-<a href="CppIncludeGuard.htm">#include guard</a>, because they do not get 
-<a href="CppInclude.htm">#included</a>, but 'Added to Project' instead.</p>
+<p>
+  An <a href="CppImplementationFile.htm">implementation (.cpp) file</a> does not have an
+  <a href="CppIncludeGuard.htm">#include guard</a>, because they do not get 
+  <a href="CppInclude.htm">#included</a>, but 'Added to Project' instead.
+</p>
 <p>&nbsp;</p>
-<p>Always write internal <a href="CppIncludeGuard.htm"> #include guards</a> [1-4]. Never write external 
-<a href="CppIncludeGuard.htm">#include guards</a> [1,4]. Use a unique and predictable name [3].</p>
+<p>
+  Always write <a href="CppIncludeGuard.htm">#include guards</a> [1-5].
+  Always write internal <a href="CppIncludeGuard.htm">#include guards</a> [1-4]. 
+  Never write external <a href="CppIncludeGuard.htm">#include guards</a> [1,4]. 
+  Do write external <a href="CppIncludeGuard.htm">#include guards</a> [6].
+  Use a unique and predictable name for the <a href="CppIncludeGuard.htm">#include guard</a> [3].
+
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -53,10 +61,12 @@ a <a href="CppHeaderFile.htm">header file</a> to be <a href="CppCompile.htm">com
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a> and <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 24: 'Always write internal #include guards. Never write external #include guards'</li>
-  <li><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN:0-672-32224-2. Hour 21, chapter 'Inclusion and inclusion guards': 'It never hurts to use inclusion guards. Often they will save you hours of debugging time'. Also: hour 24, chapter 'include guards': 'All header files should use inclusion guards'</li>
-  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.4: 'Place a unique and predicatable (internal) include guard around the contents of each header file'</li>
-  <li>Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 27: '#ifndef, #define and #endif will be used to prevent multiple inclusions of the same header file. Other techniques to prevent the multiple inclusions of header files will not be used.'</li>
+  <li><!-- 1 --><a href="CppHerbSutter.htm">Herb Sutter</a> and <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. ISBN: 0-32-111358-6. Chapter 24: 'Always write internal #include guards. Never write external #include guards'</li>
+  <li><!-- 2 --><a href="CppJesseLiberty.htm">Jesse Liberty</a>. Sams teach yourself C++ in 24 hours. ISBN:0-672-32224-2. Hour 21, chapter 'Inclusion and inclusion guards': 'It never hurts to use inclusion guards. Often they will save you hours of debugging time'. Also: hour 24, chapter 'include guards': 'All header files should use inclusion guards'</li>
+  <li><!-- 3 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.4: 'Place a unique and predicatable (internal) include guard around the contents of each header file'</li>
+  <li><!-- 4 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 27: '#ifndef, #define and #endif will be used to prevent multiple inclusions of the same header file. Other techniques to prevent the multiple inclusions of header files will not be used.'</li>
+  <li><!-- 5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 15.5. Advice. page 444: '[7] Use include guards'</li>
+  <li><!-- 6 --> <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 2.5, page 85: 'Place a redundant (external) include guard around each preprocessor include directive in every header file'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

@@ -24,9 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-namespace c2h {
-
-const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplacements()
+const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppReplacements()
 {
   std::vector<std::pair<std::string,std::string> > v { Content::CreateProReplacements() };
   const std::vector<std::pair<std::string,std::string> > w
@@ -189,12 +187,16 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "boost::compressed_pair","<a href=\"C$ppC$ompressed_p$air.htm\">b$oost::c$ompressed_p$air</a>" },
     { "boost::program_options","<a href=\"C$ppP$rogram_o$ptions.htm\">b$oost::p$rogram_o$ptions</a>" },
     { "boost::signals::signal","<a href=\"C$ppB$oostS$ignal.htm\">b$oost::s$ignals::s$ignal</a>" },
+    { "static member function",R"(<a href="CppS$taticM$emberF$unction.htm">s$tatic m$ember f$unction</a>)" },
     { "std::partial_sort_copy","<a href=\"C$ppP$artial_s$ort_c$opy.htm\">st$d::p$artial_s$ort_c$opy</a>" },
     { "Das Wahre Schlagerfest","<a href=\"G$ameD$asW$ahreS$chlagerf$est.htm\">D$as W$ahre S$chlagerf$est</a>" },
     { "GetLongestStringLength","<a href=\"C$ppG$etL$ongestS$tringL$ength.htm\">G$etL$ongestS$tringL$ength</a>" },
     { "MultipleChoiceQuestion","<a href=\"C$ppM$ultipleC$hoiceQ$uestion.htm\">M$ultipleC$hoiceQ$uestion</a>" },
     { "QGraphicsItemAnimation","<a href=\"C$ppQ$G$raphicsI$temA$nimation.htm\">Q$G$raphicsI$temA$nimation</a>" },
     { "SetReadOnlyTableWidget","<a href=\"C$ppS$etR$eadO$nlyT$ableW$idget.htm\">S$etR$eadO$nlyT$ableW$idget</a>" },
+    { "Static member function",R"(<a href="CppS$taticM$emberF$unction.htm">S$tatic m$ember f$unction</a>)" },
+    { "Static Member function",R"(<a href="CppS$taticM$emberF$unction.htm">S$tatic M$ember f$unction</a>)" },
+    { "Static Member Function",R"(<a href="CppS$taticM$emberF$unction.htm">S$tatic M$ember F$unction</a>)" },
     { "TestBinaryNewickVector","<a href=\"T$oolT$estB$inaryN$ewickV$ector.htm\">T$estB$inaryN$ewickV$ector</a>" },
     { "Wt::WStandardItemModel","<a href=\"CppW$S$tandardI$temM$odel.htm\">W$t::W$S$tandardI$temM$odel</a>" },
     { "Wt::WCanvasPaintDevice","<a href=\"CppW$C$anvasP$ai$ntD$evice.htm\">W$t::W$C$anvasP$ai$ntD$evice</a>" },
@@ -207,7 +209,8 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "boost::dynamic_bitset","<a href=\"C$ppD$yn$amic_b$its$et.htm\">b$o$ost::d$yn$amic_b$its$et</a>" },
     { "boost::logic::tribool","<a href=\"C$ppT$rib$ool.htm\">b$oost::l$ogic::t$rib$ool</a>" },
     { "boost::numeric::ublas","<a href=\"CppU$b$las.htm\">b$oost::n$umeric::u$b$las</a>" },
-    { "boost::write_graphviz","<a href=\"CppWrite_graphviz.htm\">b$oost::write_graphviz</a>" },
+    { "boost::write_graphviz",R"(<a href="CppWrite_graphviz.htm">b$oost::write_graphviz</a>)" },
+    { "const member function",R"(<a href="CppC$onstM$emberF$unction.htm">c$onst m$ember f$unction</a>)" },
     { "i686-pc-mingw32-qmake","<a href=\"CppI$686-p$c-m$ingw32-q$m$ake.htm\">i$686-p$c-m$ingw32-q$m$ake</a>" },
     { "rubiksclockmaindialog","<a href=\"G$ameR$ubiksC$lock.htm\">r$ubiksc$lockm$aind$ialog</a>" },
     { "std::invalid_argument","<a href=\"CppInvalid_argument.htm\">st$d::invalid_argument</a>" },
@@ -219,6 +222,9 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "std::prev_permutation","<a href=\"CppPrev_permutation.htm\">st$d::prev_permutation</a>" },
     { "std::next_permutation","<a href=\"CppNext_permutation.htm\">st$d::next_permutation</a>" },
     { "CalcNumOfCombinations","<a href=\"CppC$alcNumOfCombinations.htm\">C$alcNumOfCombinations</a>" },
+    { "Const member function",R"(<a href="CppC$onstM$emberF$unction.htm">C$onst m$ember f$unction</a>)" },
+    { "Const Member function",R"(<a href="CppC$onstM$emberF$unction.htm">C$onst M$ember f$unction</a>)" },
+    { "Const Member Function",R"(<a href="CppC$onstM$emberF$unction.htm">C$onst M$ember F$unction</a>)" },
     { "CountNonZeroPositives","<a href=\"CppCo$untNonZeroPositives.htm\">Co$untNonZeroPositives</a>" },
     { "QGraphicsAnchorLayout","<a href=\"CppQ$G$raphicsA$nchorL$ayout.htm\">Q$G$raphicsA$nchorL$ayout</a>" },
     { "QGraphicsLinearLayout","<a href=\"CppQ$G$raphicsL$inearL$ayout.htm\">Q$G$raphicsL$inearL$ayout</a>" },
@@ -1281,6 +1287,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "GetStdDev","<a href=\"CppGe$tStdDev.htm\">Ge$tStdDev</a>" },
     { "GrayToInt","<a href=\"CppGr$ayT$oInt.htm\">GrayT$oI$nt</a>" },
     { "Interface","<a href=\"CppI$nterface.htm\">In$terface</a>" },
+    { "Invariant",R"(<a href="CppI$nv$ariant.htm">I$nv$ariant</a>)" },
     { "IpAddress","<a href=\"C$ppI$pA$ddress.htm\">I$pA$ddress</a>" },
     { "Maemo SDK","<a href=\"CppM$aemoS$dk.htm\">M$aemo S$D$K</a>" },
     { "NeuralNet","<a href=\"CppN$euralNet.htm\">N$euralNet</a>" },
@@ -1340,6 +1347,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "exception","<a href=\"CppE$xception.htm\">e$xception</a>" },
     { "instances","<a href=\"CppIn$stance.htm\">in$stances</a>" },
     { "interface","<a href=\"CppI$nterface.htm\">in$terface</a>" },
+    { "invariant",R"(<a href="CppI$nvariant.htm">i$nv$ariant</a>)" },
     { "namespace","<b><a href=\"CppNa$mespace.htm\">name$space</a></b>" },
     { "numeric.h","<a href=\"CppNu$mericH.htm\">nu$meric.h</a>" },
     { "operator%","<b><a href=\"CppOp$eratorMo$dulus.htm\">op$erato$r%</a></b>" },
@@ -1431,7 +1439,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "In_regex","<a href=\"CppI$n_r$egex.htm\">I$n_r$egex</a>" },
     { "Increase","<a href=\"CppIn$crease.htm\">In$crease</a>" },
     { "IntPower","<a href=\"CppIn$tPo$wer.htm\">In$tPo$wer</a>" },
-    { "IntToStr","<a href=\"CppIn$tToS$tr.htm\">In$tToS$tr</a>" },
+    { "IntToStr",R"(<a href="CppIn$tToS$tr.htm">In$tToS$tr</a>)" },
     { "Iterates","<a href=\"CppI$terator.htm\">I$terates</a>" },
     { "Iterator","<a href=\"CppI$terator.htm\">I$terator</a>" },
     { "IsDouble","<a href=\"CppI$sD$ouble.htm\">I$sD$ouble</a>" },
@@ -1788,7 +1796,8 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "Inform","Inf$orm" },
     { "Linker","<a href=\"CppL$inker.htm\">L$inker</a>" },
     { "Matrix","<a href=\"CppM$atrix.htm\">M$atrix</a>" },
-    { "Memory","<a href=\"CppMe$mory.htm\">Me$mory</a>" },
+    { "Method",R"(<a href="CppM$emberF$unction.htm">M$ember f$unction</a>)" },
+    { "Memory",R"(<a href="CppM$emory.htm">M$emory</a>)" },
     { "Modify","Modi$fy" },
     { "NDEBUG","<a href=\"CppND$EBUG.htm\">ND$EBUG</a>" },
     { "Newick","<a href=\"CppN$ewick.htm\">N$ewick</a>" },
@@ -1930,6 +1939,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "mconst","mc$onst" },
     { "memcpy","<a href=\"CppM$emcpy.htm\">m$emcpy</a>" },
     { "memory","<a href=\"CppMe$mory.htm\">me$mory</a>" },
+    { "method",R"(<a href="CppM$emberF$unction.htm">m$ember f$unction</a>)" },
     { "mfloat","mf$loat" },
     { "modify","modi$fy" },
     { "mshort","ms$hort" },
@@ -2734,6 +2744,7 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
     { "qtry","qt$ry" },
     { "rasm","ra$sm" },
     { "rfor","rf$or" },
+    { "ribi",R"(<a href="CppR$ibi.htm\">r$ibi</a>)" },
     { "rint","ri$nt" },
     { "rled","rl$ed" },
     { "rnew","rn$ew" },
@@ -3055,5 +3066,3 @@ const std::vector<std::pair<std::string,std::string> > Content::CreateCppReplace
  }
  return v;
 }
-
-} //~namespace CodeToHtml

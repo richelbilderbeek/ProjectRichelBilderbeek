@@ -5,17 +5,17 @@
 #include <cassert>
 #include "matrix.h"
 
-WhiteNoiseSystemParameters::WhiteNoiseSystemParameters(
+ribi::WhiteNoiseSystemParameters::WhiteNoiseSystemParameters(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state,
   const boost::numeric::ublas::vector<double>& real_measurement_noise,
   const boost::numeric::ublas::vector<double>& real_process_noise,
   const boost::numeric::ublas::matrix<double>& state_transition)
-  : m_control(control),
-    m_initial_state(initial_state),
-    m_real_measurement_noise(real_measurement_noise),
-    m_real_process_noise(real_process_noise),
-    m_state_transition(state_transition)
+  : m_control{control},
+    m_initial_state{initial_state},
+    m_real_measurement_noise{real_measurement_noise},
+    m_real_process_noise{real_process_noise},
+    m_state_transition{state_transition}
 {
   #ifndef NDEBUG
   //Check for correct dimensionality
@@ -31,19 +31,19 @@ WhiteNoiseSystemParameters::WhiteNoiseSystemParameters(
   #endif
 }
 
-const std::string WhiteNoiseSystemParameters::GetVersion()
+const std::string ribi::WhiteNoiseSystemParameters::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> WhiteNoiseSystemParameters::GetVersionHistory()
+const std::vector<std::string> ribi::WhiteNoiseSystemParameters::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
   return v;
 }
 
-bool WhiteNoiseSystemParameters::IsAboutEqual(
+bool ribi::WhiteNoiseSystemParameters::IsAboutEqual(
   const WhiteNoiseSystemParameters& lhs, const WhiteNoiseSystemParameters& rhs)
 {
   return

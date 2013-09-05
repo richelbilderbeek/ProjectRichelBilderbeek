@@ -27,9 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtml.h"
 
-namespace c2h {
-
-Header::Header(
+c2h::Header::Header(
   const PageType page_type,
   const std::string& filename)
   : m_filename(CreateFilename(page_type,filename)),
@@ -39,7 +37,7 @@ Header::Header(
 
 }
 
-const std::string Header::CreateFilename(
+const std::string c2h::Header::CreateFilename(
   const PageType page_type,
   const std::string& filename_original)
 {
@@ -62,7 +60,7 @@ const std::string Header::CreateFilename(
   }
 }
 
-const std::string Header::CreateTitle(
+const std::string c2h::Header::CreateTitle(
   const PageType page_type,
   const std::string& filename)
 {
@@ -92,7 +90,7 @@ const std::string Header::CreateTitle(
   }
 }
 
-const std::vector<std::string> Header::ToHtml() const
+const std::vector<std::string> c2h::Header::ToHtml() const
 {
   std::vector<std::string> v;
   v.push_back("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"");
@@ -169,6 +167,3 @@ const std::vector<std::string> Header::ToHtml() const
   v.push_back("<p>&nbsp;</p>");
   return v;
 }
-
-} //~namespace CodeToHtml
-

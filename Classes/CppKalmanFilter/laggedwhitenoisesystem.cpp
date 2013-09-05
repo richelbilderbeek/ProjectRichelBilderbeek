@@ -1,5 +1,3 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "laggedwhitenoisesystem.h"
 
 #include <cassert>
@@ -14,16 +12,17 @@
 #include "standardwhitenoisesystemparameters.h"
 #include "standardwhitenoisesystemfactory.h"
 
-LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
+ribi::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
-  : WhiteNoiseSystem(parameters),
-    m_parameters(boost::dynamic_pointer_cast<const LaggedWhiteNoiseSystemParameters>(parameters)),
-    m_system(StandardWhiteNoiseSystemFactory::Create(
+  : WhiteNoiseSystem{parameters},
+    m_parameters{boost::dynamic_pointer_cast<const LaggedWhiteNoiseSystemParameters>(parameters)},
+    m_system{StandardWhiteNoiseSystemFactory::Create(
       parameters->GetControl(),
       parameters->GetInitialState(),
       parameters->GetMeasurementNoise(),
       parameters->GetProcessNoise(),
-      parameters->GetStateTransition()))
+      parameters->GetStateTransition())
+    }
 {
   #ifndef NDEBUG
   Test();
@@ -41,24 +40,24 @@ LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   assert(lag == boost::numeric_cast<int>(m_measuments.size()));
 }
 
-const std::string LaggedWhiteNoiseSystem::GetVersion()
+const std::string ribi::LaggedWhiteNoiseSystem::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> LaggedWhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::LaggedWhiteNoiseSystem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-03: version 1.0: initial version");
   return v;
 }
 
-void LaggedWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
+void ribi::LaggedWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
 {
   m_system->GoToNextState(input);
 }
 
-const boost::numeric::ublas::vector<double> LaggedWhiteNoiseSystem::Measure() const
+const boost::numeric::ublas::vector<double> ribi::LaggedWhiteNoiseSystem::Measure() const
 {
   assert(m_parameters->GetLag() == boost::numeric_cast<int>(m_measuments.size()));
   m_measuments.push(m_system->Measure());
@@ -71,20 +70,20 @@ const boost::numeric::ublas::vector<double> LaggedWhiteNoiseSystem::Measure() co
   return result;
 }
 
-const boost::numeric::ublas::vector<double>& LaggedWhiteNoiseSystem::PeekAtRealState() const
+const boost::numeric::ublas::vector<double>& ribi::LaggedWhiteNoiseSystem::PeekAtRealState() const
 {
   return m_system->PeekAtRealState();
 }
 
 #ifndef NDEBUG
-void LaggedWhiteNoiseSystem::Test()
+void ribi::LaggedWhiteNoiseSystem::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting LaggedWhiteNoiseSystem::Test()")
+  TRACE("Starting ribi::LaggedWhiteNoiseSystem::Test()")
   //Check if measurements are indeed lagged:
   //The system's real value should update immediatly, but this fresh measurement
   //must only be accessible after lag timesteps
@@ -116,6 +115,6 @@ void LaggedWhiteNoiseSystem::Test()
       my_system->GoToNextState(input);
     }
   }
-  TRACE("Finished LaggedWhiteNoiseSystem::Test()")
+  TRACE("Finished ribi::LaggedWhiteNoiseSystem::Test()")
 }
 #endif

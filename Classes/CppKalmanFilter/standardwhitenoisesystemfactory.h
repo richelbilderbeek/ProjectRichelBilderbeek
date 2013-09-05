@@ -9,6 +9,8 @@
 #include "standardwhitenoisesystem.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct StandardWhiteNoiseSystemFactory
 {
   static const boost::shared_ptr<StandardWhiteNoiseSystem> Create(
@@ -22,5 +24,7 @@ struct StandardWhiteNoiseSystemFactory
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
 
 };
+
+} //~namespace ribi
 
 #endif // STANDARDWHITENOISESYSTEMFACTORY_H

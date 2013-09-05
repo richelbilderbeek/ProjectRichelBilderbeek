@@ -7,25 +7,23 @@
 #include <stdexcept>
 #include <boost/numeric/conversion/cast.hpp>
 
-const std::vector<WhiteNoiseSystemParameterType> WhiteNoiseSystemParameter::GetAll()
+const std::vector<ribi::WhiteNoiseSystemParameterType> ribi::WhiteNoiseSystemParameter::GetAll()
 {
-  const std::vector<WhiteNoiseSystemParameterType> v
-    =
-    {
-      WhiteNoiseSystemParameterType::control,
-      WhiteNoiseSystemParameterType::initial_state_real,
-      WhiteNoiseSystemParameterType::measurement_frequency,
-      WhiteNoiseSystemParameterType::real_measurement_noise,
-      WhiteNoiseSystemParameterType::real_process_noise,
-      WhiteNoiseSystemParameterType::state_transition,
-    };
+  const std::vector<WhiteNoiseSystemParameterType> v {
+    WhiteNoiseSystemParameterType::control,
+    WhiteNoiseSystemParameterType::initial_state_real,
+    WhiteNoiseSystemParameterType::measurement_frequency,
+    WhiteNoiseSystemParameterType::real_measurement_noise,
+    WhiteNoiseSystemParameterType::real_process_noise,
+    WhiteNoiseSystemParameterType::state_transition,
+  };
 
   assert(boost::numeric_cast<int>(v.size()) == static_cast<int>(WhiteNoiseSystemParameterType::n_parameters)
     && "All parameters must be in");
   return v;
 }
 
-bool WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type)
+bool ribi::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {
@@ -43,12 +41,12 @@ bool WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType typ
   throw std::logic_error(__func__);
 }
 
-bool WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type)
+bool ribi::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type)
 {
-  return !WhiteNoiseSystemParameter::IsMatrix(type);
+  return !ribi::WhiteNoiseSystemParameter::IsMatrix(type);
 }
 
-const std::string WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type)
+const std::string ribi::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {
@@ -72,7 +70,7 @@ const std::string WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSyste
   throw std::logic_error(__func__);
 }
 
-const std::string WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type)
+const std::string ribi::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {
@@ -96,7 +94,7 @@ const std::string WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParame
   throw std::logic_error(__func__);
 }
 
-const std::string WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type)
+const std::string ribi::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {

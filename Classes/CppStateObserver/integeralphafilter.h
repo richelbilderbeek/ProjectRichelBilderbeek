@@ -5,6 +5,8 @@
 #include <vector>
 #include "integerstateobserver.h"
 
+namespace ribi {
+
 struct IntegerAlphaFilter : public IntegerStateObserver
 {
   IntegerAlphaFilter(
@@ -30,5 +32,7 @@ struct IntegerAlphaFilter : public IntegerStateObserver
 
   int64_t m_value_active;
 };
+
+} //~namespace ribi
 
 #endif // INTEGERALPHAFILTER_H

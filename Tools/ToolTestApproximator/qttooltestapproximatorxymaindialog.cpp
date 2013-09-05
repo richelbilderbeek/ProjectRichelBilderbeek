@@ -14,7 +14,7 @@
 
 #include "ui_qttooltestapproximatorxymaindialog.h"
 
-QtToolTestApproximatorXyMainDialog::QtToolTestApproximatorXyMainDialog(QWidget *parent) :
+ribi::QtToolTestApproximatorXyMainDialog::QtToolTestApproximatorXyMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestApproximatorXyMainDialog),
   m_approximator(),
@@ -99,12 +99,12 @@ QtToolTestApproximatorXyMainDialog::QtToolTestApproximatorXyMainDialog(QWidget *
   ui->box_double_y->setValue(0.0);
 }
 
-QtToolTestApproximatorXyMainDialog::~QtToolTestApproximatorXyMainDialog()
+ribi::QtToolTestApproximatorXyMainDialog::~QtToolTestApproximatorXyMainDialog()
 {
   delete ui;
 }
 
-void QtToolTestApproximatorXyMainDialog::on_button_clicked()
+void ribi::QtToolTestApproximatorXyMainDialog::on_button_clicked()
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
@@ -115,21 +115,21 @@ void QtToolTestApproximatorXyMainDialog::on_button_clicked()
   Plot();
 }
 
-void QtToolTestApproximatorXyMainDialog::on_box_int_x_valueChanged(int)
+void ribi::QtToolTestApproximatorXyMainDialog::on_box_int_x_valueChanged(int)
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
   ui->button->setEnabled( m_approximator.CanAdd(x,y) );
 }
 
-void QtToolTestApproximatorXyMainDialog::on_box_double_y_valueChanged(double)
+void ribi::QtToolTestApproximatorXyMainDialog::on_box_double_y_valueChanged(double)
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
   ui->button->setEnabled( m_approximator.CanAdd(x,y) );
 }
 
-void QtToolTestApproximatorXyMainDialog::Plot()
+void ribi::QtToolTestApproximatorXyMainDialog::Plot()
 {
   //Plot approximation
   {

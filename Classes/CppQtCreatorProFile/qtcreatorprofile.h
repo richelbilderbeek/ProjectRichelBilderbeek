@@ -32,6 +32,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///QtCreatorProFile parses .pro files
 struct QtCreatorProFile : public boost::noncopyable
 {
@@ -39,7 +41,7 @@ struct QtCreatorProFile : public boost::noncopyable
   explicit QtCreatorProFile(const std::string& filename);
 
   ///Obtain this class its About information
-  static const About GetAbout();
+  static const ribi::About GetAbout();
 
   ///Obtain the CONFIG
   const std::set<std::string>& GetConfig() const { return m_config; }
@@ -209,5 +211,7 @@ std::ostream& operator<<(std::ostream& os, const QtCreatorProFile& p);
 std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p);
 std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<const QtCreatorProFile>& p);
 bool operator==(const QtCreatorProFile& lhs, const QtCreatorProFile& rhs);
+
+} //~namespace ribi
 
 #endif // QTCREATORPROFILE_H

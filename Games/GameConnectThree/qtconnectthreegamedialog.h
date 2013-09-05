@@ -30,12 +30,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QDialog>
 
-struct ConnectThreeResources;
 
 namespace Ui {
   class QtConnectThreeGameDialog;
 }
+
+namespace ribi {
+
 struct QtConnectThreeWidget;
+struct ConnectThreeResources;
 
 class QtConnectThreeGameDialog : public QDialog
 {
@@ -63,5 +66,7 @@ private:
   const boost::shared_ptr<const ConnectThreeResources> m_resources;
   void OnValidMove();
 };
+
+} //~namespace ribi
 
 #endif // QTCONNECTTHREEGAMEDIALOG_H

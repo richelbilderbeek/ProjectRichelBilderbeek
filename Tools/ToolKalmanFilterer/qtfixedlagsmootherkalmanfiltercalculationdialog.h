@@ -19,6 +19,8 @@ namespace Ui {
   class QtFixedLagSmootherKalmanFilterCalculationDialog;
 }
 
+namespace ribi {
+
 class QtFixedLagSmootherKalmanFilterCalculationDialog : public QtKalmanFilterCalculationDialog
 {
   Q_OBJECT
@@ -56,5 +58,7 @@ private:
   const std::vector<QTableWidget *> CollectVectors() const;
 
 };
+
+} //~namespace ribi
 
 #endif // QTFIXEDLAGSMOOTHERKALMANFILTERCALCULATIONDIALOG_H

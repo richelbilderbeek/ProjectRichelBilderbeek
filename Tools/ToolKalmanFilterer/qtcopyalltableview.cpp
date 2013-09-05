@@ -18,12 +18,13 @@
 
 #include "trace.h"
 
-QtCopyAllTableView::QtCopyAllTableView(QWidget *parent)
+ribi::QtCopyAllTableView::QtCopyAllTableView(QWidget *parent)
   : QTableView(parent)
 {
+
 }
 
-void QtCopyAllTableView::keyPressEvent(QKeyEvent *event)
+void ribi::QtCopyAllTableView::keyPressEvent(QKeyEvent *event)
 {
   if(event->key() == Qt::Key_A
     && event->modifiers() & Qt::ControlModifier)
@@ -113,7 +114,7 @@ void QtCopyAllTableView::keyPressEvent(QKeyEvent *event)
   }
 }
 
-const std::vector<std::string> QtCopyAllTableView::SeperateString(
+const std::vector<std::string> ribi::QtCopyAllTableView::SeperateString(
   const std::string& input,
   const char seperator)
 {

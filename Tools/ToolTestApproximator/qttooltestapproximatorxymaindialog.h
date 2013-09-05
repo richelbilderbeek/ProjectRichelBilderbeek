@@ -12,6 +12,8 @@ namespace Ui {
   class QtToolTestApproximatorXyMainDialog;
 }
 
+namespace ribi {
+
 class QtToolTestApproximatorXyMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -30,6 +32,7 @@ private slots:
 private:
   Ui::QtToolTestApproximatorXyMainDialog *ui;
   typedef Approximator<double,double> Approximator_t;
+
   Approximator_t m_approximator;
 
   //const boost::shared_ptr<QwtPlotCurve> m_curve_approximation;
@@ -43,5 +46,7 @@ private:
 
   void Plot();
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLTESTAPPROXIMATORMAINDIALOG_H

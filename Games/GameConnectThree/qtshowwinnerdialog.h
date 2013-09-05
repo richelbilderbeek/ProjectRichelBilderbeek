@@ -29,6 +29,8 @@ namespace Ui {
   class QtShowWinnerDialog;
 }
 
+namespace ribi {
+
 class QtShowWinnerDialog : public QDialog
 {
   Q_OBJECT
@@ -47,5 +49,7 @@ protected:
 private:
   Ui::QtShowWinnerDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTSHOWWINNERDIALOG_H

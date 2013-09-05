@@ -9,6 +9,8 @@
 #include "kalmanfilterparameters.h"
 #include "kalmanfiltercalculationelements.h"
 
+namespace ribi {
+
 ///Kalman filter base class
 struct KalmanFilter : public boost::noncopyable
 {
@@ -40,7 +42,7 @@ struct KalmanFilter : public boost::noncopyable
 
   protected:
   ///An ABC can only be constructed by derived classes
-  KalmanFilter(
+  explicit KalmanFilter(
     const boost::shared_ptr<KalmanFilterCalculationElements>& calculation,
     const boost::shared_ptr<const KalmanFilterParameters>& parameters
   );
@@ -53,5 +55,7 @@ struct KalmanFilter : public boost::noncopyable
   ///The Kalman filter parameters
   const boost::shared_ptr<const KalmanFilterParameters> m_parameters;
 };
+
+} //~namespace ribi
 
 #endif // KALMANFILTER_H

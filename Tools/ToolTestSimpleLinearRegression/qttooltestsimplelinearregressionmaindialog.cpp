@@ -16,7 +16,7 @@
 #include "simplelinearregression.h"
 #include "ui_qttooltestsimplelinearregressionmaindialog.h"
 
-QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressionMainDialog(QWidget *parent) :
+ribi::QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressionMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestSimpleLinearRegressionMainDialog),
   m_curve_approximation(new QwtPlotCurve),
@@ -102,12 +102,12 @@ QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressionMain
   TRACE_FUNC();
 }
 
-QtToolTestSimpleLinearRegressionMainDialog::~QtToolTestSimpleLinearRegressionMainDialog()
+ribi::QtToolTestSimpleLinearRegressionMainDialog::~QtToolTestSimpleLinearRegressionMainDialog()
 {
   delete ui;
 }
 
-void QtToolTestSimpleLinearRegressionMainDialog::on_button_clicked()
+void ribi::QtToolTestSimpleLinearRegressionMainDialog::on_button_clicked()
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
@@ -116,7 +116,7 @@ void QtToolTestSimpleLinearRegressionMainDialog::on_button_clicked()
   Plot();
 }
 
-void QtToolTestSimpleLinearRegressionMainDialog::Plot()
+void ribi::QtToolTestSimpleLinearRegressionMainDialog::Plot()
 {
   //Plot values
   {

@@ -21,11 +21,16 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppInline.htm">inline</a></h1>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p><a href="CppInline.htm">inline</a> is a <a href="CppKeyword.htm">keyword</a> 
-to suggest to the compiler to perhaps put that <a href="CppFunction.htm">function</a>'s body at the call site and
-thus preventing a <a href="CppFunction.htm">function</a> call.</p>
+<p>
+  <a href="CppInline.htm">inline</a> is a <a href="CppKeyword.htm">keyword</a> 
+  to suggest to the compiler to perhaps put that <a href="CppFunction.htm">function</a>'s body at the call site and
+  thus preventing a <a href="CppFunction.htm">function</a> call. 
+  To select a default <a href="CppNamespace.htm">namespace</a>, use <a href="CppInlineNamespace.htm">inline namespace</a>.
+</p>
 <p>&nbsp;</p>
-<p>Prefer <a href="CppInline.htm">inline</a> over <a href="CppDefine.htm">#define</a> [1,22].</p>
+<p>
+  Prefer <a href="CppInline.htm">inline</a> over <a href="CppDefine.htm">#define</a> [1,22].
+</p>
 <p>&nbsp;</p>
 <p>Understand the ins and outs of <a href="CppInline.htm">inlining</a> [2,19]. 
 The criteria for inlining are complex, subtle and platform-dependent [15]. 
@@ -67,9 +72,9 @@ Do not inline by default [11].</p>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><!-- [1] --> <a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 2: 'Prefer consts, enums, and inlines to defines'</li>
-  <li><!-- [2] --> <a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 30: 'Understand the ins and outs of inlining'</li>
-  <li><!-- [3] --> 
+  <li><!-- 1 --> <a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 2: 'Prefer consts, enums, and inlines to defines'</li>
+  <li><!-- 2 --> <a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 30: 'Understand the ins and outs of inlining'</li>
+  <li><!-- 3 --> 
     <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 7.7, page 530: 'In general, avoid
     granting one component license that, if also taken by other components, would adversely impact the system as a whole.' and  
     'Excessive use of inline functions is just one kind of behavior that can lead to subtle integration problems down the road. 
@@ -77,43 +82,42 @@ Do not inline by default [11].</p>
     object in isolation or within a small subsystem. However, this runtime improvement is obtained at the cost of repeated code and increased executable size' 
     and 'The end result of this selfishness is a net decrease in overall system performance.'
   </li>
-  <li><!-- [4] --> 
+  <li><!-- 4 --> 
     <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.4. Guidelines, 
     Chapter 9, page 823: 'Avoid declaring a function inline whose body object code is larger than the object code produced by the equivalent non-inline
     function call itself'
   </li>
-  <li><!-- [5] --> 
+  <li><!-- 5 --> 
     <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.4. Guidelines, 
     Chapter 9, page 823: 'Avoid declaring a function inline that your compiler will not generate inline'
   </li>
-  <li><!-- [6] --> 
+  <li><!-- 6 --> 
     <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 9.1.14, 
     page 631: 'For functions that merely get and set data members, it is often reasonable to use an inline function without first acquiring performance data'
   </li>
-  <li><!-- [7] --> 
+  <li><!-- 7 --> 
     <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 9.1.14, 
     page 631: 'For function bodies that generate more object code than the corresponding non-inline function call, performance analysis at the system level
     should precede the decision to define the function inline'
   </li>
-  <li><!-- [ 8] --> Benjy Weinberger, Craig Silverstein, Gregory Eitzmann, Mark Mentovai, Tashana Landray. Google C++ Style Guide. Revision 3.199. Section 'Inline functions': 'Define functions inline only when they are small, say, 10 lines or less'</li>
-  <li><!-- [ 9] --> Benjy Weinberger, Craig Silverstein, Gregory Eitzmann, Mark Mentovai, Tashana Landray. Google C++ Style Guide. Revision 3.199. Section 'Inline functions': 'Another useful rule of thumb: it's typically not cost effective to inline functions with loops or switch statements (unless, in the common case, the loop or switch statement is never executed)'</li>
-  <li><!-- [10] --> <a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 30: 'Understand the ins and outs of inlining', page 139: 'Limit most inlining to small, frequenctly called functions'</li>
-  <li><!-- [11] --> <a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 8: 'Too many programmers 'inline by default' in the name of optimization, nearly always trading higher coupling for at best dubious benefit'</li>
-  <li><!-- [12] --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Paragraph 9.4.4, page 312: 'The obvious rule of thumb is: Don't put member function bodies in the class declaration unless you know that you need the performance boost from inlining tiny functions'</li>
-  <li><!-- [13] --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Paragraph 9.4.4, page 312: 'Large functions, say five lines of code, don't benefit from inlining'</li>
-  <li><!-- [14] --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Paragraph 9.4.4, page 312: 'We rarely inline a function that consists of more than one or two expressions'</li>
-  <li><!-- [15] --> <a href="CppScottMeyers.htm">Scott Meyers</a>. More Effective C++. ISBN: 020163371X. Introduction, page 7: 'However, the criteria for determining whether a function should be inlined can be complex, subtle, and platform-dependent'</li>
-  <li><!-- [16] --> <a href="CppHerbertSchildt.htm">Herbert Schildt</a>. C++: The Complete Reference, fourth edition. ISBN: 0-07-222680-3. Chapter 12, paragraph 'Inline functions', page 304: 'For this reason, it is best to inline only very small functions'</li>
-  <li><!-- [17] --> <a href="CppHerbertSchildt.htm">Herbert Schildt</a>. C++: The Complete Reference, fourth edition. ISBN: 0-07-222680-3. Chapter 12, paragraph 'Inline functions', page 304: 'Further, it is also a good idea to inline only those functions that will have significant impact on the performance of your program'</li>
-  <li><!-- [18] --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 25, page 193: 'Avoid writing inline or other attempted optimizations until performance measurements show the need'</li>
-  <li><!-- [19] --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 25, page 198: 'There's more to inlining than the inline keyword alone'</li>
-  <li><!-- [20] --> <a href="CppMarshallCline.htm">Marshall Cline</a>, <a href="CppGregLomow.htm">Greg Lomow</a> and <a href="CppMikeGirou.htm">Mike Girou</a>. C++ FAQs. ISBN: 0-201-3098301. FAQ 13.08, page 188: 'Except for trivial access member functions, the information for making intelligent inlining decisions usually comes from profiling actual code, not from developer's intuition'</li>
-  <li><!-- [21] --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN: 0-201-61562-2. Item 46, page 193: 'Avoid inlining or detailed tuning until performance profiles prove the need'</li>
-  <li><!-- [22] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 29: 'The #define pre-processor directive shall not be used to create inline macros. Inline functions shall be used instead.'</li>
-  <li><!-- [23] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 121: 'Only functions with 1 or 2 statements should be considered candidates for inline functions.'</li>
-  <li><!-- [24] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 122: 'Trivial accessor and mutator functions should be inlined.'</li>
-  <li><!-- [25] -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 124: 'Trivial forwarding functions should be inlined.'</li>
-
+  <li><!--  8 --> Benjy Weinberger, Craig Silverstein, Gregory Eitzmann, Mark Mentovai, Tashana Landray. Google C++ Style Guide. Revision 3.199. Section 'Inline functions': 'Define functions inline only when they are small, say, 10 lines or less'</li>
+  <li><!--  9 --> Benjy Weinberger, Craig Silverstein, Gregory Eitzmann, Mark Mentovai, Tashana Landray. Google C++ Style Guide. Revision 3.199. Section 'Inline functions': 'Another useful rule of thumb: it's typically not cost effective to inline functions with loops or switch statements (unless, in the common case, the loop or switch statement is never executed)'</li>
+  <li><!-- 10 --> <a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 30: 'Understand the ins and outs of inlining', page 139: 'Limit most inlining to small, frequenctly called functions'</li>
+  <li><!-- 11 --> <a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 8: 'Too many programmers 'inline by default' in the name of optimization, nearly always trading higher coupling for at best dubious benefit'</li>
+  <li><!-- 12 --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Paragraph 9.4.4, page 312: 'The obvious rule of thumb is: Don't put member function bodies in the class declaration unless you know that you need the performance boost from inlining tiny functions'</li>
+  <li><!-- 13 --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Paragraph 9.4.4, page 312: 'Large functions, say five lines of code, don't benefit from inlining'</li>
+  <li><!-- 14 --> <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Paragraph 9.4.4, page 312: 'We rarely inline a function that consists of more than one or two expressions'</li>
+  <li><!-- 15 --> <a href="CppScottMeyers.htm">Scott Meyers</a>. More Effective C++. ISBN: 020163371X. Introduction, page 7: 'However, the criteria for determining whether a function should be inlined can be complex, subtle, and platform-dependent'</li>
+  <li><!-- 16 --> <a href="CppHerbertSchildt.htm">Herbert Schildt</a>. C++: The Complete Reference, fourth edition. ISBN: 0-07-222680-3. Chapter 12, paragraph 'Inline functions', page 304: 'For this reason, it is best to inline only very small functions'</li>
+  <li><!-- 17 --> <a href="CppHerbertSchildt.htm">Herbert Schildt</a>. C++: The Complete Reference, fourth edition. ISBN: 0-07-222680-3. Chapter 12, paragraph 'Inline functions', page 304: 'Further, it is also a good idea to inline only those functions that will have significant impact on the performance of your program'</li>
+  <li><!-- 18 --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 25, page 193: 'Avoid writing inline or other attempted optimizations until performance measurements show the need'</li>
+  <li><!-- 19 --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 25, page 198: 'There's more to inlining than the inline keyword alone'</li>
+  <li><!-- 20 --> <a href="CppMarshallCline.htm">Marshall Cline</a>, <a href="CppGregLomow.htm">Greg Lomow</a> and <a href="CppMikeGirou.htm">Mike Girou</a>. C++ FAQs. ISBN: 0-201-3098301. FAQ 13.08, page 188: 'Except for trivial access member functions, the information for making intelligent inlining decisions usually comes from profiling actual code, not from developer's intuition'</li>
+  <li><!-- 21 --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. ISBN: 0-201-61562-2. Item 46, page 193: 'Avoid inlining or detailed tuning until performance profiles prove the need'</li>
+  <li><!-- 22 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 29: 'The #define pre-processor directive shall not be used to create inline macros. Inline functions shall be used instead.'</li>
+  <li><!-- 23 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 121: 'Only functions with 1 or 2 statements should be considered candidates for inline functions.'</li>
+  <li><!-- 24 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 122: 'Trivial accessor and mutator functions should be inlined.'</li>
+  <li><!-- 25 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 124: 'Trivial forwarding functions should be inlined.'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

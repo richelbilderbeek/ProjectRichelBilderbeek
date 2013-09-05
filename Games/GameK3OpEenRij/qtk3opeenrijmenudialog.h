@@ -11,10 +11,13 @@
 namespace Ui {
   class QtK3OpEenRijMenuDialog;
 }
+
+namespace ribi {
+
 struct QtK3OpEenRijSelectPlayerWidget;
 struct QtK3OpEenRijResources;
 
-class QtK3OpEenRijMenuDialog : public QtHideAndShowDialog
+class QtK3OpEenRijMenuDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -41,5 +44,7 @@ private slots:
 
   void on_button_instructions_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTK3OPEENRIJMENUDIALOG_H

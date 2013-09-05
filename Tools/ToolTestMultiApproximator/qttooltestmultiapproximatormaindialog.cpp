@@ -17,7 +17,7 @@
 #include "ui_qttooltestmultiapproximatormaindialog.h"
 #pragma GCC diagnostic pop
 
-QtToolTestMultiApproximatorMainDialog::QtToolTestMultiApproximatorMainDialog(QWidget *parent) :
+ribi::QtToolTestMultiApproximatorMainDialog::QtToolTestMultiApproximatorMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestMultiApproximatorMainDialog),
   m_multi_approximator(),
@@ -165,12 +165,12 @@ QtToolTestMultiApproximatorMainDialog::QtToolTestMultiApproximatorMainDialog(QWi
   ui->box_double_y->setValue(0.0);
 }
 
-QtToolTestMultiApproximatorMainDialog::~QtToolTestMultiApproximatorMainDialog()
+ribi::QtToolTestMultiApproximatorMainDialog::~QtToolTestMultiApproximatorMainDialog()
 {
   delete ui;
 }
 
-void QtToolTestMultiApproximatorMainDialog::on_button_clicked()
+void ribi::QtToolTestMultiApproximatorMainDialog::on_button_clicked()
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
@@ -178,7 +178,7 @@ void QtToolTestMultiApproximatorMainDialog::on_button_clicked()
   Plot();
 }
 
-void QtToolTestMultiApproximatorMainDialog::Plot()
+void ribi::QtToolTestMultiApproximatorMainDialog::Plot()
 {
   //Plot multi approximation
   {

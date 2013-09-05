@@ -24,8 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QDialog>
 
 namespace Ui {
-class QtTestAboutMainDialog;
+  class QtTestAboutMainDialog;
 }
+
+namespace ribi {
 
 class QtTestAboutMainDialog : public QDialog
 {
@@ -49,5 +51,7 @@ private:
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTABOUTMAINDIALOG_H

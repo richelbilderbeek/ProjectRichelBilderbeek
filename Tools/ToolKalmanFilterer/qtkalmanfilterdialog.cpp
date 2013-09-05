@@ -29,11 +29,11 @@
 
 #pragma GCC diagnostic pop
 
-QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
+ribi::QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
   : QDialog(parent),
     ui(new Ui::QtKalmanFilterDialog),
-    m_model(model)
+    m_model{model}
 {
 
   assert(m_model);
@@ -74,15 +74,15 @@ QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr<QtKalmanFilte
   //assert(this->GetKalmanFilter() && "Can get an empty Kalman filter, with all sizes equal to zero");
 
   m_model->m_signal_kalman_filter_type_changed.connect(
-    boost::bind(&QtKalmanFilterDialog::SetKalmanFilterType,this,boost::lambda::_1));
+    boost::bind(&ribi::QtKalmanFilterDialog::SetKalmanFilterType,this,boost::lambda::_1));
 }
 
-QtKalmanFilterDialog::~QtKalmanFilterDialog()
+ribi::QtKalmanFilterDialog::~QtKalmanFilterDialog()
 {
   delete ui;
 }
 
-KalmanFilterType QtKalmanFilterDialog::GetKalmanFilterType() const
+ribi::KalmanFilterType ribi::QtKalmanFilterDialog::GetKalmanFilterType() const
 {
   switch (ui->box_filter_type->currentIndex())
   {
@@ -97,7 +97,7 @@ KalmanFilterType QtKalmanFilterDialog::GetKalmanFilterType() const
 }
 
 
-const std::vector<KalmanFilterParameterType> QtKalmanFilterDialog::GetParameterTypes() const
+const std::vector<ribi::KalmanFilterParameterType> ribi::QtKalmanFilterDialog::GetParameterTypes() const
 {
   const std::vector<KalmanFilterParameterType> v
     =
@@ -115,14 +115,14 @@ const std::vector<KalmanFilterParameterType> QtKalmanFilterDialog::GetParameterT
   return v;
 }
 
-void QtKalmanFilterDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtKalmanFilterDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
   QDialog::keyPressEvent(event);
 }
 
 
-void QtKalmanFilterDialog::SetKalmanFilterType(const KalmanFilterType new_type)
+void ribi::QtKalmanFilterDialog::SetKalmanFilterType(const KalmanFilterType new_type)
 {
   if (this->GetKalmanFilterType() != new_type)
   {
@@ -150,12 +150,12 @@ void QtKalmanFilterDialog::SetKalmanFilterType(const KalmanFilterType new_type)
   assert(this->GetKalmanFilterType() == new_type);
 }
 
-void QtKalmanFilterDialog::on_button_calculate_optimal_kalman_gain_steady_state_clicked()
+void ribi::QtKalmanFilterDialog::on_button_calculate_optimal_kalman_gain_steady_state_clicked()
 {
   m_model->CalculateOptimalEstimatedKalmanGain();
 }
 
-void QtKalmanFilterDialog::on_box_filter_type_currentIndexChanged(int)
+void ribi::QtKalmanFilterDialog::on_box_filter_type_currentIndexChanged(int)
 {
   //Update the GUI
   switch (this->GetKalmanFilterType())

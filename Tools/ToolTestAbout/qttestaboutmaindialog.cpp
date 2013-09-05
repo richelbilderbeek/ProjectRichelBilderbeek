@@ -22,34 +22,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttestaboutmaindialog.h"
 #include "ui_qttestaboutmaindialog.h"
 
-QtTestAboutMainDialog::QtTestAboutMainDialog(QWidget *parent) :
+ribi::QtTestAboutMainDialog::QtTestAboutMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestAboutMainDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestAboutMainDialog::~QtTestAboutMainDialog()
+ribi::QtTestAboutMainDialog::~QtTestAboutMainDialog()
 {
   delete ui;
 }
 
-const std::string QtTestAboutMainDialog::GetVersion()
+const std::string ribi::QtTestAboutMainDialog::GetVersion()
 {
-  return "1.1";
+  return "1.2";
 }
 
-const std::vector<std::string> QtTestAboutMainDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtTestAboutMainDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: Version 1.0: initial version in Qt4 and C++98");
-  v.push_back("2013-07-12: Version 1.1: transitioned to Qt5 and C++11");
+  const std::vector<std::string> v {
+    "2012-01-25: Version 1.0: initial version in Qt4 and C++98",
+    "2013-07-12: Version 1.1: transitioned to Qt5 and C++11"
+    "2013-09-05: version 1.2: transition to namespace ribi"
+  };
   return v;
 }
 
-void QtTestAboutMainDialog::on_button_about_clicked()
+void ribi::QtTestAboutMainDialog::on_button_about_clicked()
 {
-  About a(
+  ribi::About a(
     "Richel Bilderbeek",
     "TestAbout",
     "test the About classes",
@@ -59,7 +61,7 @@ void QtTestAboutMainDialog::on_button_about_clicked()
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("SomeLibrary version: X.Y");
-  QtAboutDialog d(a);
+  ribi::QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
   this->hide();
@@ -67,7 +69,7 @@ void QtTestAboutMainDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtTestAboutMainDialog::on_button_quit_clicked()
+void ribi::QtTestAboutMainDialog::on_button_quit_clicked()
 {
   close();
 }

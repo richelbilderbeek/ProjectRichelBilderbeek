@@ -10,10 +10,12 @@
 
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///Parameters for the standard Kalman filter
 struct StandardKalmanFilterParameters : public KalmanFilterParameters
 {
-  StandardKalmanFilterParameters(
+  explicit StandardKalmanFilterParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::matrix<double>& estimated_measurement_noise,
     const boost::numeric::ublas::matrix<double>& estimated_process_noise_covariance,
@@ -64,5 +66,7 @@ struct StandardKalmanFilterParameters : public KalmanFilterParameters
   ///P: The initial estimation error covariance estimate
   const boost::numeric::ublas::matrix<double> m_initial_covariance_estimate;
 };
+
+} //~namespace ribi
 
 #endif // STANDARDKALMANFILTERPARAMETERS_H

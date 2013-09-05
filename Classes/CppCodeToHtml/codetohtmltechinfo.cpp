@@ -28,22 +28,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreatorprofile.h"
 #include "trace.h"
 
-namespace c2h {
-
-TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
+c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
 {
   //Obtain the QtCreatorProFile
-  std::vector<boost::shared_ptr<const QtCreatorProFile> > profiles;
+  std::vector<boost::shared_ptr<const ribi::QtCreatorProFile> > profiles;
   std::transform(profile_filenames.begin(),profile_filenames.end(),
     std::back_inserter(profiles),
     [](const std::string& s)
     {
       assert(IsRegularFile(s));
-      boost::shared_ptr<const QtCreatorProFile> p(new QtCreatorProFile(s));
+      boost::shared_ptr<const ribi::QtCreatorProFile> p(new ribi::QtCreatorProFile(s));
       return p;
     }
   );
-  for (const boost::shared_ptr<const QtCreatorProFile>& profile: profiles)
+  for (const boost::shared_ptr<const ribi::QtCreatorProFile>& profile: profiles)
   {
     if (profile->GetQt().count("gui"))
     {
@@ -113,7 +111,7 @@ TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
 
 }
 
-const std::vector<std::string> TechInfo::ToHtml() const
+const std::vector<std::string> c2h::TechInfo::ToHtml() const
 {
   std::vector<std::string> v;
   v.push_back("<h2>Technical facts</h2>");
@@ -311,6 +309,3 @@ const std::vector<std::string> TechInfo::ToHtml() const
   v.push_back("<p>&nbsp;</p>");
   return v;
 }
-
-} //~namespace CodeToHtml
-

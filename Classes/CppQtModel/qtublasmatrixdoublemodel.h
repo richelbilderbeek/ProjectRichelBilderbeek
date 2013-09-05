@@ -29,9 +29,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 #include <QAbstractTableModel>
 
+namespace ribi {
+
 struct QtUblasMatrixDoubleModel : public QAbstractTableModel
 {
-  QtUblasMatrixDoubleModel(QObject *parent = 0);
+  explicit QtUblasMatrixDoubleModel(QObject *parent = 0);
 
   ///Obtain the raw data
   const boost::numeric::ublas::matrix<double>& GetRawData() const { return m_data; }
@@ -91,5 +93,7 @@ struct QtUblasMatrixDoubleModel : public QAbstractTableModel
   ///Redefined from ABC
   bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role);
 };
+
+} //~namespace ribi
 
 #endif // QTMATRIXDOUBLEMODEL_H

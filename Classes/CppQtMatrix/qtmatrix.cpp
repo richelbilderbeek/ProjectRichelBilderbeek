@@ -13,12 +13,12 @@
 
 #pragma GCC diagnostic pop
 
-const std::string QtMatrix::GetVersion()
+const std::string ribi::QtMatrix::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> QtMatrix::GetVersionHistory()
+const std::vector<std::string> ribi::QtMatrix::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
@@ -26,7 +26,7 @@ const std::vector<std::string> QtMatrix::GetVersionHistory()
   return v;
 }
 
-void QtMatrix::MatrixToTable(const boost::numeric::ublas::matrix<double>& m, QTableWidget * const table)
+void ribi::QtMatrix::MatrixToTable(const boost::numeric::ublas::matrix<double>& m, QTableWidget * const table)
 {
   //
   assert(table);
@@ -54,7 +54,7 @@ void QtMatrix::MatrixToTable(const boost::numeric::ublas::matrix<double>& m, QTa
     || boost::numeric::ublas::detail::equals(ToMatrix(table),m,0.00001,0.00001));
 }
 
-void QtMatrix::StrVectorToTable(const std::vector<std::string>& v, QTableWidget * const table)
+void ribi::QtMatrix::StrVectorToTable(const std::vector<std::string>& v, QTableWidget * const table)
 {
   assert(table);
   if (v.empty())
@@ -84,11 +84,11 @@ void QtMatrix::StrVectorToTable(const std::vector<std::string>& v, QTableWidget 
     assert(table->rowCount() == sz); //FAILS???
   }
   assert(table->rowCount() == sz);
-  assert(QtMatrix::ToStrVector(table) == v);
+  assert(ribi::QtMatrix::ToStrVector(table) == v);
 }
 
 
-void QtMatrix::StdVectorDoubleToTable(const std::vector<double>& v, QTableWidget * const table)
+void ribi::QtMatrix::StdVectorDoubleToTable(const std::vector<double>& v, QTableWidget * const table)
 {
   
   boost::numeric::ublas::vector<double> w(v.size());
@@ -102,7 +102,7 @@ void QtMatrix::StdVectorDoubleToTable(const std::vector<double>& v, QTableWidget
   UblasVectorDoubleToTable(w,table);
 }
 
-void QtMatrix::Test()
+void ribi::QtMatrix::Test()
 {
   {
     static bool is_tested = false;
@@ -141,7 +141,7 @@ void QtMatrix::Test()
   #endif
 }
 
-const boost::numeric::ublas::matrix<double> QtMatrix::ToMatrix(const QTableWidget * const table)
+const boost::numeric::ublas::matrix<double> ribi::QtMatrix::ToMatrix(const QTableWidget * const table)
 {
   assert(table);
   const int n_rows = table->rowCount();    //n_rows can be zero
@@ -171,7 +171,7 @@ const boost::numeric::ublas::matrix<double> QtMatrix::ToMatrix(const QTableWidge
   return v;
 }
 
-const std::vector<std::string> QtMatrix::ToStrVector(const QTableWidget * const table)
+const std::vector<std::string> ribi::QtMatrix::ToStrVector(const QTableWidget * const table)
 {
   assert(table);
   if (table->rowCount() == 0) { return std::vector<std::string>(); }
@@ -189,7 +189,7 @@ const std::vector<std::string> QtMatrix::ToStrVector(const QTableWidget * const 
   return v;
 }
 
-const boost::numeric::ublas::vector<double> QtMatrix::ToVector(const QTableWidget * const table)
+const boost::numeric::ublas::vector<double> ribi::QtMatrix::ToVector(const QTableWidget * const table)
 {
   
   assert(table);
@@ -214,7 +214,7 @@ const boost::numeric::ublas::vector<double> QtMatrix::ToVector(const QTableWidge
   return v;
 }
 
-void QtMatrix::UblasVectorDoubleToTable(const boost::numeric::ublas::vector<double>& v, QTableWidget * const table)
+void ribi::QtMatrix::UblasVectorDoubleToTable(const boost::numeric::ublas::vector<double>& v, QTableWidget * const table)
 {
 
   assert(table);

@@ -4,6 +4,8 @@
 #include <string>
 #include "kalmanfilterparametertype.h"
 
+namespace ribi {
+
 ///A single KalmanFilterParameter
 ///for example, the state transition matrix
 /// - is a matrix
@@ -31,5 +33,7 @@ struct KalmanFilterParameter
   ///Obtain the symbol of a type, e.g. 'A'
   static const std::string ToSymbol(const KalmanFilterParameterType type);
 };
+
+} //~namespace ribi
 
 #endif // KALMANFILTERPARAMETER_H

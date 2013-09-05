@@ -1,6 +1,8 @@
 #ifndef WHITENOISESYSTEMPARAMETERTYPE_H
 #define WHITENOISESYSTEMPARAMETERTYPE_H
 
+namespace ribi {
+
 enum class WhiteNoiseSystemParameterType
 {
   control,
@@ -15,5 +17,7 @@ enum class WhiteNoiseSystemParameterType
 bool operator<(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs);
 bool operator==(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs);
 bool operator!=(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs);
+
+} //~namespace ribi
 
 #endif // WHITENOISESYSTEMPARAMETERTYPE_H

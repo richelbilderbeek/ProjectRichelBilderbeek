@@ -10,6 +10,8 @@
 
 #include "gapsfilledwhitenoisesystem.h"
 
+namespace ribi {
+
 ///Factory for GapsFilledWhiteNoiseSystem
 struct GapsFilledWhiteNoiseSystemFactory
 {
@@ -26,5 +28,7 @@ struct GapsFilledWhiteNoiseSystemFactory
   static const boost::shared_ptr<GapsFilledWhiteNoiseSystem> Create(
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
 };
+
+} //~namespace ribi
 
 #endif // GAPSFILLEDWHITENOISESYSTEMFACTORY_H

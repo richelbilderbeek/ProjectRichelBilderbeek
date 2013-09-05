@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     c2h::Test();
     #endif
 
-    QtCodeToHtmlMenuDialog w;
+    ribi::QtCodeToHtmlMenuDialog w;
     w.show();
     return a.exec();
   }

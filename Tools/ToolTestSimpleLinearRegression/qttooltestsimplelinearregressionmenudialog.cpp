@@ -1,5 +1,3 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qttooltestsimplelinearregressionmenudialog.h"
 
 #include <boost/units/systems/si.hpp>
@@ -15,7 +13,7 @@
 #include "trace.h"
 #include "ui_qttooltestsimplelinearregressionmenudialog.h"
 
-QtToolTestSimpleLinearRegressionMenuDialog::QtToolTestSimpleLinearRegressionMenuDialog(QWidget *parent) :
+ribi::QtToolTestSimpleLinearRegressionMenuDialog::QtToolTestSimpleLinearRegressionMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestSimpleLinearRegressionMenuDialog)
 {
@@ -25,17 +23,17 @@ QtToolTestSimpleLinearRegressionMenuDialog::QtToolTestSimpleLinearRegressionMenu
   ui->setupUi(this);
 }
 
-QtToolTestSimpleLinearRegressionMenuDialog::~QtToolTestSimpleLinearRegressionMenuDialog()
+ribi::QtToolTestSimpleLinearRegressionMenuDialog::~QtToolTestSimpleLinearRegressionMenuDialog()
 {
   delete ui;
 }
 
-void QtToolTestSimpleLinearRegressionMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtToolTestSimpleLinearRegressionMenuDialog::on_button_about_clicked()
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_about_clicked()
 {
   About a = ToolTestSimpleLinearRegressionMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -47,12 +45,12 @@ void QtToolTestSimpleLinearRegressionMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtToolTestSimpleLinearRegressionMenuDialog::on_button_quit_clicked()
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtToolTestSimpleLinearRegressionMenuDialog::on_button_start_clicked()
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_start_clicked()
 {
   QtToolTestSimpleLinearRegressionMainDialog d;
   d.setWindowIcon(this->windowIcon());
@@ -61,14 +59,14 @@ void QtToolTestSimpleLinearRegressionMenuDialog::on_button_start_clicked()
 }
 
 #ifndef NDEBUG
-void QtToolTestSimpleLinearRegressionMenuDialog::Test()
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtToolTestSimpleLinearRegressionMenuDialog::Test");
+  TRACE("Starting ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test");
   QtToolTestSimpleLinearRegressionMainDialog();
   //Let Boost.Units check for compiling
   {
@@ -104,6 +102,6 @@ void QtToolTestSimpleLinearRegressionMenuDialog::Test()
 
   }
 
-  TRACE("Finished QtToolTestSimpleLinearRegressionMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test successfully");
 }
 #endif

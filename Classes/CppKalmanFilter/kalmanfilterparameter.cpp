@@ -6,37 +6,35 @@
 #include <stdexcept>
 #include <boost/numeric/conversion/cast.hpp>
 
-const std::vector<KalmanFilterParameterType> KalmanFilterParameter::GetAll()
+const std::vector<ribi::KalmanFilterParameterType> ribi::KalmanFilterParameter::GetAll()
 {
-  const std::vector<KalmanFilterParameterType> v
-    =
-    {
-      KalmanFilterParameterType::control,
-      KalmanFilterParameterType::estimated_measurement_noise,
-      KalmanFilterParameterType::estimated_optimal_kalman_gain,
-      KalmanFilterParameterType::estimated_process_noise_covariance,
-      KalmanFilterParameterType::initial_covariance_estimate,
-      KalmanFilterParameterType::initial_state_estimate,
-      KalmanFilterParameterType::observation,
-      KalmanFilterParameterType::state_transition
-    };
+  const std::vector<KalmanFilterParameterType> v {
+    KalmanFilterParameterType::control,
+    KalmanFilterParameterType::estimated_measurement_noise,
+    KalmanFilterParameterType::estimated_optimal_kalman_gain,
+    KalmanFilterParameterType::estimated_process_noise_covariance,
+    KalmanFilterParameterType::initial_covariance_estimate,
+    KalmanFilterParameterType::initial_state_estimate,
+    KalmanFilterParameterType::observation,
+    KalmanFilterParameterType::state_transition
+  };
 
   assert(boost::numeric_cast<int>(v.size()) == static_cast<int>(KalmanFilterParameterType::n_parameters)
     && "All parameters must be in");
   return v;
 }
 
-bool KalmanFilterParameter::IsMatrix(const KalmanFilterParameterType type)
+bool ribi::KalmanFilterParameter::IsMatrix(const KalmanFilterParameterType type)
 {
-  return !KalmanFilterParameter::IsVector(type);
+  return !ribi::KalmanFilterParameter::IsVector(type);
 }
 
-bool KalmanFilterParameter::IsVector(const KalmanFilterParameterType type)
+bool ribi::KalmanFilterParameter::IsVector(const KalmanFilterParameterType type)
 {
   return type == KalmanFilterParameterType::initial_state_estimate;
 }
 
-const std::string KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type)
+const std::string ribi::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type)
 {
   switch (type)
   {
@@ -64,7 +62,7 @@ const std::string KalmanFilterParameter::ToDescription(const KalmanFilterParamet
   throw std::logic_error(__func__);
 }
 
-const std::string KalmanFilterParameter::ToName(const KalmanFilterParameterType type)
+const std::string ribi::KalmanFilterParameter::ToName(const KalmanFilterParameterType type)
 {
   switch (type)
   {
@@ -92,7 +90,7 @@ const std::string KalmanFilterParameter::ToName(const KalmanFilterParameterType 
   throw std::logic_error(__func__);
 }
 
-const std::string KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type)
+const std::string ribi::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type)
 {
   switch (type)
   {

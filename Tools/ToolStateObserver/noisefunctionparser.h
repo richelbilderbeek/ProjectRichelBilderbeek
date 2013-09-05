@@ -6,6 +6,8 @@
 
 struct FunctionParser;
 
+namespace ribi {
+
 ///Uses Warp's function parser and adds a random function
 struct NoiseFunctionParser : public boost::noncopyable
 {
@@ -23,5 +25,7 @@ struct NoiseFunctionParser : public boost::noncopyable
   static double MyRand(const double * const max);
 
 };
+
+} //~namespace ribi
 
 #endif // NOISEFUNCTIONPARSER_H

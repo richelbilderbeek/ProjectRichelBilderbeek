@@ -7,12 +7,12 @@
 #include "matrix.h"
 #include "trace.h"
 
-SteadyStateKalmanFilter::SteadyStateKalmanFilter(
+ribi::SteadyStateKalmanFilter::SteadyStateKalmanFilter(
   const boost::shared_ptr<KalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
-  : KalmanFilter(calculation,parameters),
-    m_last_calculation(boost::dynamic_pointer_cast<SteadyStateKalmanFilterCalculationElements>(calculation)),
-    m_parameters(dynamic_cast<const SteadyStateKalmanFilterParameters*>(parameters.get()))
+  : KalmanFilter{calculation,parameters},
+    m_last_calculation{boost::dynamic_pointer_cast<SteadyStateKalmanFilterCalculationElements>(calculation)},
+    m_parameters{dynamic_cast<const SteadyStateKalmanFilterParameters*>(parameters.get())}
 {
   assert(m_last_calculation);
   assert(m_parameters);
@@ -45,18 +45,18 @@ SteadyStateKalmanFilter::SteadyStateKalmanFilter(
   //m_last_calculation->SetUpdatedState(m_parameters->GetInitialStateEstimate());
 }
 
-int SteadyStateKalmanFilter::GetStateSize() const
+int ribi::SteadyStateKalmanFilter::GetStateSize() const
 {
   const int sz = boost::numeric_cast<int>(m_state_estimate.size());
   return sz;
 }
 
-const std::string SteadyStateKalmanFilter::GetVersion()
+const std::string ribi::SteadyStateKalmanFilter::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> SteadyStateKalmanFilter::GetVersionHistory()
+const std::vector<std::string> ribi::SteadyStateKalmanFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-01: version 1.0: initial version");
@@ -64,7 +64,7 @@ const std::vector<std::string> SteadyStateKalmanFilter::GetVersionHistory()
   return v;
 }
 
-const boost::numeric::ublas::vector<double> SteadyStateKalmanFilter::PredictState(
+const boost::numeric::ublas::vector<double> ribi::SteadyStateKalmanFilter::PredictState(
   const boost::numeric::ublas::vector<double>& input) const
 {
   const boost::numeric::ublas::matrix<double> term_a
@@ -84,7 +84,7 @@ const boost::numeric::ublas::vector<double> SteadyStateKalmanFilter::PredictStat
   return state_prediction;
 }
 
-void SteadyStateKalmanFilter::SupplyMeasurementAndInput(
+void ribi::SteadyStateKalmanFilter::SupplyMeasurementAndInput(
   const boost::numeric::ublas::vector<double>& measurements,
   const boost::numeric::ublas::vector<double>& input)
 {

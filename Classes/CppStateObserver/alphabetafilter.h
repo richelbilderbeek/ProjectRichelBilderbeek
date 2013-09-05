@@ -6,6 +6,8 @@
 
 #include "floatingpointstateobserver.h"
 
+namespace ribi {
+
 ///An alpha beta filter
 struct AlphaBetaFilter : public FloatingPointStateObserver
 {
@@ -35,5 +37,7 @@ struct AlphaBetaFilter : public FloatingPointStateObserver
   double m_slope;
   double m_output;
 };
+
+} //~namespace ribi
 
 #endif // ALPHABETAFILTER_H

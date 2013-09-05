@@ -8,6 +8,8 @@
 #include "whitenoisesystemparameters.h"
 #include "gapsfilledwhitenoisesystemparameters.h"
 
+namespace ribi {
+
 ///A gaps-filled white noise system is a system that does not have a measurement every timestep.
 ///Instead, it has for example 1 measurement and then 4 non-measurements (which is a gap of 5)
 ///During the 4 non-measurements the 1 measurement is repeated
@@ -37,7 +39,7 @@ struct GapsFilledWhiteNoiseSystem : public WhiteNoiseSystem
 
   private:
   ///GapsFilledWhiteNoiseSystem must be created with a GapsFilledWhiteNoiseSystemFactory
-  GapsFilledWhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& white_noise_system_parameters);
+  explicit GapsFilledWhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& white_noise_system_parameters);
   friend class GapsFilledWhiteNoiseSystemFactory;
 
   ///Can only be deleted by boost::checked_delete
@@ -59,5 +61,6 @@ struct GapsFilledWhiteNoiseSystem : public WhiteNoiseSystem
   #endif
 };
 
+} //~namespace ribi
 
 #endif // GAPSFILLEDWHITENOISESYSTEM_H
