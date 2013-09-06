@@ -31,13 +31,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shape.h"
 #include "shapewidget.h"
 
-TestShapeMainDialog::TestShapeMainDialog()
+ribi::TestShapeMainDialog::TestShapeMainDialog()
   : m_shapes(CreateShapes())
 {
 
 }
 
-std::vector<boost::shared_ptr<ShapeWidget> > TestShapeMainDialog::CreateShapes()
+std::vector<boost::shared_ptr<ribi::ShapeWidget> > ribi::TestShapeMainDialog::CreateShapes()
 {
   std::vector<boost::shared_ptr<ShapeWidget> > v;
   for (int n_corners=0; n_corners!=8; ++n_corners)
@@ -65,8 +65,3 @@ std::vector<boost::shared_ptr<ShapeWidget> > TestShapeMainDialog::CreateShapes()
   //std::random_shuffle(v.begin(),v.end());
   return v;
 }
-
-
-
-
-

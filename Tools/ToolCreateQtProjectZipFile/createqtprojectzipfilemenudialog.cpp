@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
-
-
 #include "createqtprojectzipfilemenudialog.h"
 
 #include "qrcfile.h"
@@ -27,9 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreatorprofilezipscript.h"
 #include "trace.h"
 
-namespace CreateQtProjectZipFile {
-
-const About MenuDialog::GetAbout()
+const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -47,21 +43,18 @@ const About MenuDialog::GetAbout()
   return a;
 }
 
-const std::string MenuDialog::GetVersion()
+const std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-02-25: version 1.0: initial version");
-  v.push_back("2012-05-29: version 1.1: small fix due to new boost::filesystem");
-  v.push_back("2012-05-30: version 1.2: added Test method");
-  v.push_back("2012-06-10: version 1.3: added Path class for cleaner code");
-  v.push_back("2013-05-19: version 2.0: support for any depth of folder tree");
-  return v;
+  return {
+    "2012-02-25: version 1.0: initial version",
+    "2012-05-29: version 1.1: small fix due to new boost::filesystem",
+    "2012-05-30: version 1.2: added Test method",
+    "2012-06-10: version 1.3: added Path class for cleaner code",
+    "2013-05-19: version 2.0: support for any depth of folder tree"
+  };
 }
-
-} //~namespace CreateQtProjectZipFile
-

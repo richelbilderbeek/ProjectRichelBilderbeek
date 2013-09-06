@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+namespace ribi {
+
 namespace RichelBilderbeek {
 
 enum class ProgramType
@@ -188,5 +190,7 @@ enum class ProgramType
 std::vector<ProgramType> GetAllProgramTypes();
 
 } //~namespace RichelBilderbeek {
+
+} //~namespace ribi
 
 #endif // RICHELBILDERBEEKPROGRAMTYPE_H

@@ -28,14 +28,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <tr1/regex>
 #include "trace.h"
 
-const boost::shared_ptr<RegexTesterMainDialog> RegexTesterTr1MainDialog::Clone() const
+const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterTr1MainDialog::Clone() const
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
     new RegexTesterTr1MainDialog);
   return d;
 }
 
-const std::vector<std::string> RegexTesterTr1MainDialog::GetRegexMatches(
+const std::vector<std::string> ribi::RegexTesterTr1MainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
 {
@@ -44,7 +44,7 @@ const std::vector<std::string> RegexTesterTr1MainDialog::GetRegexMatches(
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> RegexTesterTr1MainDialog::GetRegexMatches(
+const std::vector<std::string> ribi::RegexTesterTr1MainDialog::GetRegexMatches(
   const std::string&,
   const std::tr1::regex&)
 {
@@ -54,14 +54,14 @@ const std::vector<std::string> RegexTesterTr1MainDialog::GetRegexMatches(
 }
 
 
-bool RegexTesterTr1MainDialog::GetRegexMatchLine(const std::string &line, const std::string &regex_str) const
+bool ribi::RegexTesterTr1MainDialog::GetRegexMatchLine(const std::string &line, const std::string &regex_str) const
 {
   if (!GetRegexValid(regex_str)) return false;
   const std::tr1::regex r(regex_str, std::tr1::regex_constants::basic);
   return std::tr1::regex_match(line,r);
 }
 
-bool RegexTesterTr1MainDialog::GetRegexValid(const std::string &regex_str) const
+bool ribi::RegexTesterTr1MainDialog::GetRegexValid(const std::string &regex_str) const
 {
   try { const std::tr1::regex regex_temp( regex_str, std::tr1::regex_constants::basic ); }
   catch (std::tr1::regex_error& e) { return false; }

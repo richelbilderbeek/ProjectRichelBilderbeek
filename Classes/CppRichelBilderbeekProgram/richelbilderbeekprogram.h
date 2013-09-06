@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogramstatus.h"
 #include "richelbilderbeekprogramtype.h"
 
+namespace ribi {
+
 namespace RichelBilderbeek {
 
 ///RichelBilderbeek::Program is the base class for program information
@@ -2521,12 +2523,11 @@ struct ProgramRichelBilderbeekNlSitemapGenerator : public RichelBilderbeek::Prog
 
 */
 
-
-
-
 std::ostream& operator<<(std::ostream& os, const Program * const p);
 bool operator<(const Program& lhs, const Program& rhs);
 
 } //~namespace RichelBilderbeek
+
+} //~namespace ribi
 
 #endif // RICHELBILDERBEEKPROGRAM_H

@@ -245,7 +245,7 @@ SOURCES += \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilepath.cpp \
     ../../Tools/ToolHometrainer/hometrainermenudialog.cpp \
     ../../Tools/ToolHometrainer/hometrainerresources.cpp \
-    ../../Tools/ToolRegexTester/regextesterboostmaindialog.cpp \
+#    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.cpp \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.cpp \
     ../../Tools/ToolRegexTester/regextestermaindialog.cpp \
     ../../Tools/ToolRegexTester/regextestermenudialog.cpp \
@@ -604,4 +604,3 @@ win32 {
     LIBS += -lqwtd
   }
 }
-

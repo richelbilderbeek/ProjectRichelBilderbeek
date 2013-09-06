@@ -18,13 +18,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // ---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtArrowItems.htm
 // ---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "testqtarrowitemsmenudialog.h"
 
 #include "trace.h"
 
-const About TestQtArrowItemsMenuDialog::GetAbout()
+const ribi::About ribi::TestQtArrowItemsMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -40,16 +38,15 @@ const About TestQtArrowItemsMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestQtArrowItemsMenuDialog::GetVersion()
+const std::string ribi::TestQtArrowItemsMenuDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> TestQtArrowItemsMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-07: version 0.1: initial version");
-  v.push_back("2013-01-01: version 1.0: added menu");
-  return v;
+  return {
+    "2012-12-07: version 0.1: initial version",
+    "2013-01-01: version 1.0: added menu"
+  };
 }
-

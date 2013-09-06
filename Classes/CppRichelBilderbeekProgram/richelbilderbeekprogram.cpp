@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeekProgram.htm
 //---------------------------------------------------------------------------
-
-
 #include "richelbilderbeekprogram.h"
 
 #include <iostream>
@@ -27,9 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "richelbilderbeekprogramstatus.h"
 
-namespace RichelBilderbeek {
-
-const boost::shared_ptr<Program> Program::CreateProgram(const ProgramType type)
+const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek::Program::CreateProgram(const ProgramType type)
 {
   boost::shared_ptr<Program> p;
   switch (type)
@@ -196,7 +192,7 @@ const boost::shared_ptr<Program> Program::CreateProgram(const ProgramType type)
   return p;
 }
 
-const std::vector<boost::shared_ptr<Program> > Program::GetAllPrograms()
+const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> > ribi::RichelBilderbeek::Program::GetAllPrograms()
 {
   const std::vector<ProgramType> types = GetAllProgramTypes();
   std::vector<boost::shared_ptr<Program> > v;
@@ -214,46 +210,46 @@ const std::vector<boost::shared_ptr<Program> > Program::GetAllPrograms()
   return v;
 }
 
-const std::string Program::GetFilenameBase() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameBase() const
 {
   std::string s = this->GetTypeName();
   s[0] = std::toupper(s[0]);
   return s + GetName();
 }
 
-const std::string Program::GetFilenameConsole() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameConsole() const
 {
   return GetFilenameBase() + "Console.png";
 }
 
-const std::string Program::GetFilenameDesktop() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameDesktop() const
 {
   return GetFilenameBase() + "Desktop.png";
 }
 
-const std::string Program::GetFilenameDesktopWindowsOnly() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameDesktopWindowsOnly() const
 {
   return GetFilenameBase() + "DesktopWindowsOnly.png";
 }
 
-const std::string Program::GetFilenameWeb() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameWeb() const
 {
   return GetFilenameBase() + "Web.png";
 }
 
-const std::string Program::GetVersion()
+const std::string ribi::RichelBilderbeek::Program::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Program::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::Program::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-02-19: Version 1.0: initial version");
-  return v;
+  return {
+    "2012-02-19: Version 1.0: initial version"
+  };
 }
 
-std::ostream& operator<<(std::ostream& os, const Program * const p)
+std::ostream& ribi::RichelBilderbeek::operator<<(std::ostream& os, const Program * const p)
 {
   const std::string name = p->GetName();
 
@@ -270,12 +266,9 @@ std::ostream& operator<<(std::ostream& os, const Program * const p)
    return os;
 }
 
-bool operator<(const Program& lhs, const Program& rhs)
+bool ribi::RichelBilderbeek::operator<(const Program& lhs, const Program& rhs)
 {
   if (lhs.GetTypeName() < rhs.GetTypeName()) return true;
   if (lhs.GetTypeName() > rhs.GetTypeName()) return false;
   return lhs.GetName() < rhs.GetName();
 }
-
-} //namespace RichelBilderbeek
-

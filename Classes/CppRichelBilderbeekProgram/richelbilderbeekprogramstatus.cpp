@@ -18,17 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeekProgramStatus.htm
 //---------------------------------------------------------------------------
-
-
 #include "richelbilderbeekprogramstatus.h"
 
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
 
-namespace RichelBilderbeek {
-
-const std::string ProgramStatusToStr(const ProgramStatus c)
+const std::string ribi::RichelBilderbeek::ProgramStatusToStr(const ProgramStatus c)
 {
   switch (c)
   {
@@ -44,23 +40,20 @@ const std::string ProgramStatusToStr(const ProgramStatus c)
   throw std::logic_error("RichelBilderbeek::ProgramStatusToStr");
 }
 
-const std::string ProgramStatusVersion::GetVersion()
+const std::string ribi::RichelBilderbeek::ProgramStatusVersion::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ProgramStatusVersion::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::ProgramStatusVersion::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-02-19: Version 1.0: initial version");
-  return v;
+  return {
+    "2012-02-19: Version 1.0: initial version"
+  };
 }
 
-std::ostream& operator<<(std::ostream& os, const ProgramStatus c)
+std::ostream& ribi::RichelBilderbeek::operator<<(std::ostream& os, const ProgramStatus c)
 {
   os << ProgramStatusToStr(c);
   return os;
 }
-
-} //namespace RichelBilderbeek
-

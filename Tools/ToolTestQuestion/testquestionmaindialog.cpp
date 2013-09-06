@@ -27,13 +27,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "openquestion.h"
 #include "openquestiondialog.h"
 
-TestQuestionMainDialog::TestQuestionMainDialog()
+ribi::TestQuestionMainDialog::TestQuestionMainDialog()
   : m_questions(CreateQuestions())
 {
 
 }
 
-std::vector<boost::shared_ptr<QuestionDialog> > TestQuestionMainDialog::CreateQuestions()
+std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestQuestionMainDialog::CreateQuestions()
 {
   std::vector<boost::shared_ptr<QuestionDialog> > v;
 
@@ -92,9 +92,6 @@ std::vector<boost::shared_ptr<QuestionDialog> > TestQuestionMainDialog::CreateQu
     )
   );
   std::random_shuffle(v.begin(),v.end());
-
-
-
   return v;
 }
 

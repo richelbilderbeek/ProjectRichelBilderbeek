@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebuttonwidget.h"
 #include "trace.h"
 
-const About TestToggleButtonMenuDialog::GetAbout()
+const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -46,17 +46,16 @@ const About TestToggleButtonMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestToggleButtonMenuDialog::GetVersion()
+const std::string ribi::TestToggleButtonMenuDialog::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> TestToggleButtonMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-16: Version 1.0: initial version, desktop version not yet working");
-  v.push_back("2011-06-31: Version 1.1: added more tests and an image to the Welcome screen in website version");
-  v.push_back("2012-06-21: Version 1.2: added desktop version");
-  return v;
+  return {
+    "2011-06-16: Version 1.0: initial version, desktop version not yet working",
+    "2011-06-31: Version 1.1: added more tests and an image to the Welcome screen in website version",
+    "2012-06-21: Version 1.2: added desktop version"
+  };
 }
-

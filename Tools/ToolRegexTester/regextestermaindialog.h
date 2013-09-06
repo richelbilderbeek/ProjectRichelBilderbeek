@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include <boost/shared_ptr.hpp>
 #include <boost/logic/tribool.hpp>
 
 namespace ribi {
@@ -49,7 +50,6 @@ struct RegexTesterMainDialog
 
   ///Get an example regex
   virtual const std::string GetExampleRegex() const = 0;
-
 
   ///Is the regex valid?
   virtual bool GetRegexValid(const std::string& regex_str) const = 0;

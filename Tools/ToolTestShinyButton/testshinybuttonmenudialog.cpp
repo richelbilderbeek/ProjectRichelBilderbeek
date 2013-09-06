@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
-
-
 #include "testshinybuttonmenudialog.h"
 
 #include "rainbow.h"
@@ -28,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shinybuttonwidget.h"
 #include "trace.h"
 
-const About TestShinyButtonMenuDialog::GetAbout()
+const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -48,17 +46,16 @@ const About TestShinyButtonMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestShinyButtonMenuDialog::GetVersion()
+const std::string ribi::TestShinyButtonMenuDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> TestShinyButtonMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-16: Version 1.0: initial version, desktop version not yet working");
-  v.push_back("2011-06-31: Version 1.1: added more tests and an image to the Welcome screen in website version");
-  v.push_back("2012-02-13: Version 2.0: created a desktop version of TestShinyButton");
-  return v;
+  return {
+    "2011-06-16: Version 1.0: initial version, desktop version not yet working",
+    "2011-06-31: Version 1.1: added more tests and an image to the Welcome screen in website version",
+    "2012-02-13: Version 2.0: created a desktop version of TestShinyButton",
+  };
 }
-

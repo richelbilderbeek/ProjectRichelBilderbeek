@@ -28,8 +28,6 @@ namespace ribi {
 ///The logic behind the menu dialog
 struct TestExerciseMenuDialog
 {
-  ///Creates the resources needed
-  TestExerciseMenuDialog();
 
   ///Obtain the about information
   ///

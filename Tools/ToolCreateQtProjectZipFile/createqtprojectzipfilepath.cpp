@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
-
-
 #include "createqtprojectzipfilepath.h"
 
 #pragma GCC diagnostic push
@@ -32,29 +30,27 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-namespace CreateQtProjectZipFile {
-
-Path::Path(const std::string& s)
+ribi::CreateQtProjectZipFile::Path::Path(const std::string& s)
   : m_filename(ExtractFilename(s)),
     m_main_folder(ExtractMainFolder(s)),
     m_sub_folder(ExtractSubFolder(s))
 {
   #ifndef NDEBUG
-  Path::Test();
+  ribi::CreateQtProjectZipFile::Path::Test();
   #endif
 }
 
-Path::Path(const std::string& main_folder,const std::string& sub_folder, const std::string& filename)
+ribi::CreateQtProjectZipFile::Path::Path(const std::string& main_folder,const std::string& sub_folder, const std::string& filename)
   : m_filename(filename),
     m_main_folder(main_folder),
     m_sub_folder(sub_folder)
 {
   #ifndef NDEBUG
-  Path::Test();
+  ribi::CreateQtProjectZipFile::Path::Test();
   #endif
 }
 
-const std::string Path::ExtractFilename(const std::string& filename)
+const std::string ribi::CreateQtProjectZipFile::Path::ExtractFilename(const std::string& filename)
 {
   std::vector<std::string> v;
   boost::algorithm::split(v,filename,
@@ -64,7 +60,7 @@ const std::string Path::ExtractFilename(const std::string& filename)
   else return std::string();
 }
 
-const std::string Path::ExtractMainFolder(const std::string& filename)
+const std::string ribi::CreateQtProjectZipFile::Path::ExtractMainFolder(const std::string& filename)
 {
   std::vector<std::string> v;
   boost::algorithm::split(v,filename,
@@ -80,7 +76,7 @@ const std::string Path::ExtractMainFolder(const std::string& filename)
   return t;
 }
 
-const std::string Path::ExtractSubFolder(const std::string& filename)
+const std::string ribi::CreateQtProjectZipFile::Path::ExtractSubFolder(const std::string& filename)
 {
   std::vector<std::string> v;
   boost::algorithm::split(v,filename,
@@ -95,36 +91,36 @@ const std::string Path::ExtractSubFolder(const std::string& filename)
   return t;
 }
 
-bool Path::IsComplete() const
+bool ribi::CreateQtProjectZipFile::Path::IsComplete() const
 {
   return !m_main_folder.empty()
       && !m_sub_folder.empty()
       && !m_filename.empty();
 }
 
-bool Path::IsPresent() const
+bool ribi::CreateQtProjectZipFile::Path::IsPresent() const
 {
   const std::string path = std::string("../../") + ToStr();
   //TRACE(path);
   return IsRegularFile(path);
 }
 
-bool Path::IsRegularFile(const std::string& filename)
+bool ribi::CreateQtProjectZipFile::Path::IsRegularFile(const std::string& filename)
 {
   return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }
 
-void Path::SetMainFolder(const std::string& s)
+void ribi::CreateQtProjectZipFile::Path::SetMainFolder(const std::string& s)
 {
   m_main_folder = s;
 }
 
-void Path::SetSubFolder(const std::string& s)
+void ribi::CreateQtProjectZipFile::Path::SetSubFolder(const std::string& s)
 {
   m_sub_folder = s;
 }
 
-void Path::Test()
+void ribi::CreateQtProjectZipFile::Path::Test()
 {
   //Test exactly once
   {
@@ -148,10 +144,7 @@ void Path::Test()
   }
 }
 
-const std::string Path::ToStr() const
+const std::string ribi::CreateQtProjectZipFile::Path::ToStr() const
 {
   return m_main_folder + "/" + m_sub_folder + "/" + m_filename;
 }
-
-} //~namespace CreateQtProjectZipFile
-

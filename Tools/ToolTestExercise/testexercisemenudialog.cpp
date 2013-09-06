@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestExercise.htm
 //---------------------------------------------------------------------------
-
-
 #include "testexercisemenudialog.h"
 
 #include "exercise.h"
@@ -30,13 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "question.h"
 #include "questiondialog.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
-TestExerciseMenuDialog::TestExerciseMenuDialog()
-{
 
-}
-//---------------------------------------------------------------------------
-const About TestExerciseMenuDialog::GetAbout() const
+const ribi::About ribi::TestExerciseMenuDialog::GetAbout() const
 {
   About a(
     "Richel Bilderbeek",
@@ -57,16 +50,15 @@ const About TestExerciseMenuDialog::GetAbout() const
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
-const std::string TestExerciseMenuDialog::GetVersion()
+
+const std::string ribi::TestExerciseMenuDialog::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestExerciseMenuDialog::GetVersionHistory()
+
+const std::vector<std::string> ribi::TestExerciseMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-26: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-09-26: Version 1.0: initial version"
+  };
 }
-//---------------------------------------------------------------------------

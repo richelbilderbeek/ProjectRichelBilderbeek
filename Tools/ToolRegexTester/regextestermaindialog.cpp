@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "regextestermaindialog.h"
 
-const std::vector<std::string> RegexTesterMainDialog::GetTestRegexes()
+const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes()
 {
   return
   {
@@ -34,7 +34,7 @@ const std::vector<std::string> RegexTesterMainDialog::GetTestRegexes()
   };
 }
 
-const std::vector<std::string> RegexTesterMainDialog::GetTestStrings()
+const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestStrings()
 {
   return
   {

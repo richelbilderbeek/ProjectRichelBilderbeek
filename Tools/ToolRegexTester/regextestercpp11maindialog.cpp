@@ -18,21 +18,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
 #include "regextestercpp11maindialog.h"
 
 #include <regex>
 #include "trace.h"
 
-const boost::shared_ptr<RegexTesterMainDialog> RegexTesterCpp11MainDialog::Clone() const
+const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterCpp11MainDialog::Clone() const
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
     new RegexTesterCpp11MainDialog);
   return d;
 }
 
-const std::vector<std::string> RegexTesterCpp11MainDialog::GetRegexMatches(
+const std::vector<std::string> ribi::RegexTesterCpp11MainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
 {
@@ -41,7 +39,7 @@ const std::vector<std::string> RegexTesterCpp11MainDialog::GetRegexMatches(
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> RegexTesterCpp11MainDialog::GetRegexMatches(
+const std::vector<std::string> ribi::RegexTesterCpp11MainDialog::GetRegexMatches(
   const std::string& /* s */,
   const std::regex& /* r */) const
 {
@@ -67,14 +65,14 @@ const std::vector<std::string> RegexTesterCpp11MainDialog::GetRegexMatches(
 }
 
 
-bool RegexTesterCpp11MainDialog::GetRegexMatchLine(const std::string &line, const std::string &regex_str) const
+bool ribi::RegexTesterCpp11MainDialog::GetRegexMatchLine(const std::string &line, const std::string &regex_str) const
 {
   if (!GetRegexValid(regex_str)) return false;
   const std::regex r(regex_str, std::regex_constants::basic);
   return std::regex_match(line,r);
 }
 
-const std::string RegexTesterCpp11MainDialog::GetRegexReplace(
+const std::string ribi::RegexTesterCpp11MainDialog::GetRegexReplace(
   const std::string& str,
   const std::string& regex_str,
   const std::string& format_str) const
@@ -92,7 +90,7 @@ const std::string RegexTesterCpp11MainDialog::GetRegexReplace(
   }
 }
 
-bool RegexTesterCpp11MainDialog::GetRegexValid(const std::string &regex_str) const
+bool ribi::RegexTesterCpp11MainDialog::GetRegexValid(const std::string &regex_str) const
 {
   try { const std::regex regex_temp( regex_str, std::regex_constants::basic ); }
   catch (std::regex_error& e) { return false; }

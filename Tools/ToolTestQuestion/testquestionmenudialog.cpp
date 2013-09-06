@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-TestQuestionMenuDialog::TestQuestionMenuDialog()
+ribi::TestQuestionMenuDialog::TestQuestionMenuDialog()
 {
   const std::vector<std::string> files = { "question.png" };
   BOOST_FOREACH(const std::string& filename,files)
@@ -51,7 +51,7 @@ TestQuestionMenuDialog::TestQuestionMenuDialog()
   }
 }
 
-const About TestQuestionMenuDialog::GetAbout() const
+const ribi::About ribi::TestQuestionMenuDialog::GetAbout() const
 {
   About a(
     "Richel Bilderbeek",
@@ -72,12 +72,12 @@ const About TestQuestionMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string TestQuestionMenuDialog::GetVersion()
+const std::string ribi::TestQuestionMenuDialog::GetVersion()
 {
   return "3.0";
 }
 
-const std::vector<std::string> TestQuestionMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQuestionMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-28: Version 1.0: initial version");

@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newickvector.h"
 #include "twodigitnewick.h"
 
-TestNewickVectorDialog::TestNewickVectorDialog()
+ribi::TestNewickVectorDialog::TestNewickVectorDialog()
   : m_analyse_calculation(false)
 {
   #ifndef NDEBUG
@@ -42,7 +42,7 @@ TestNewickVectorDialog::TestNewickVectorDialog()
   #endif
 }
 
-void TestNewickVectorDialog::Analyse()
+void ribi::TestNewickVectorDialog::Analyse()
 {
   //Store the data
   m_newick.reset(new NewickVector(m_newick_str));
@@ -74,7 +74,7 @@ void TestNewickVectorDialog::Analyse()
   m_text.push_back(std::string("Denominator: ") + boost::lexical_cast<std::string>(m_denominator));
 }
 
-void TestNewickVectorDialog::AnalyseArity()
+void ribi::TestNewickVectorDialog::AnalyseArity()
 {
   //Check if simple Newick
   if (Newick::IsSimple(m_newick->Peek()))
@@ -107,7 +107,7 @@ void TestNewickVectorDialog::AnalyseArity()
   }
 }
 
-void TestNewickVectorDialog::AnalyseCalculation()
+void ribi::TestNewickVectorDialog::AnalyseCalculation()
 {
   if (!m_analyse_calculation) return;
 
@@ -239,7 +239,7 @@ void TestNewickVectorDialog::AnalyseCalculation()
   m_text.push_back(std::string(80,'-'));
 }
 
-void TestNewickVectorDialog::AnalyseRootBranches()
+void ribi::TestNewickVectorDialog::AnalyseRootBranches()
 {
   if(!Newick::IsUnaryNewick(m_newick->Peek()))
   {
@@ -263,7 +263,7 @@ void TestNewickVectorDialog::AnalyseRootBranches()
   }
 }
 
-void TestNewickVectorDialog::AnalyseSimplerNewicks()
+void ribi::TestNewickVectorDialog::AnalyseSimplerNewicks()
 {
   typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
   const std::vector<NewickFrequencyPair> simpler
@@ -295,7 +295,7 @@ void TestNewickVectorDialog::AnalyseSimplerNewicks()
   m_text.push_back(text.c_str());
 }
 
-void TestNewickVectorDialog::AutoCalculate()
+void ribi::TestNewickVectorDialog::AutoCalculate()
 {
   m_text.resize(0);
 
@@ -314,7 +314,7 @@ void TestNewickVectorDialog::AutoCalculate()
   Analyse();
 }
 
-void TestNewickVectorDialog::Calculate()
+void ribi::TestNewickVectorDialog::Calculate()
 {
   m_text.resize(0);
   if (!CheckNewick()) return;
@@ -323,7 +323,7 @@ void TestNewickVectorDialog::Calculate()
 
 }
 
-bool TestNewickVectorDialog::CheckMaxComplexity()
+bool ribi::TestNewickVectorDialog::CheckMaxComplexity()
 {
   try
   {
@@ -338,7 +338,7 @@ bool TestNewickVectorDialog::CheckMaxComplexity()
   return true;
 }
 
-bool TestNewickVectorDialog::CheckNewick()
+bool ribi::TestNewickVectorDialog::CheckNewick()
 {
   if (!Newick::IsNewick(m_newick_str))
   {
@@ -359,7 +359,7 @@ bool TestNewickVectorDialog::CheckNewick()
   return true;
 }
 
-bool TestNewickVectorDialog::CheckTheta()
+bool ribi::TestNewickVectorDialog::CheckTheta()
 {
   //Check if theta is valid
   try
@@ -375,7 +375,7 @@ bool TestNewickVectorDialog::CheckTheta()
   return true;
 }
 
-const About TestNewickVectorDialog::GetAbout()
+const ribi::About ribi::TestNewickVectorDialog::GetAbout()
 {
   About about(
     "Richel Bilderbeek",
@@ -392,44 +392,43 @@ const About TestNewickVectorDialog::GetAbout()
   return about;
 }
 
-const std::string TestNewickVectorDialog::GetVersion()
+const std::string ribi::TestNewickVectorDialog::GetVersion()
 {
   return "3.2";
 }
 
-const std::vector<std::string> TestNewickVectorDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestNewickVectorDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-02-20: Version 1.0: initial version");
-  v.push_back("2011-03-09: Version 2.0: calculates Newick probabilities");
-  v.push_back("2011-03-26: Version 3.0: seperated GUI from logic, added web version");
-  v.push_back("2011-04-25: Version 3.1: removed web version\'s Close button");
-  v.push_back("2011-06-07: Version 3.2: added command-line call");
-  return v;
+  return {
+    "2011-02-20: Version 1.0: initial version",
+    "2011-03-09: Version 2.0: calculates Newick probabilities",
+    "2011-03-26: Version 3.0: seperated GUI from logic, added web version",
+    "2011-04-25: Version 3.1: removed web version\'s Close button",
+    "2011-06-07: Version 3.2: added command-line call"
+  };
 }
 
-void TestNewickVectorDialog::SetAnalyseCalculation(const bool b)
+void ribi::TestNewickVectorDialog::SetAnalyseCalculation(const bool b)
 {
   m_analyse_calculation = b;
 }
 
-void TestNewickVectorDialog::SetCompareToTwoDigitNewick(const bool b)
+void ribi::TestNewickVectorDialog::SetCompareToTwoDigitNewick(const bool b)
 {
   m_compare = b;
 }
 
-void TestNewickVectorDialog::SetMaxComplexity(const std::string& s)
+void ribi::TestNewickVectorDialog::SetMaxComplexity(const std::string& s)
 {
   m_max_complexity_str = s;
 }
 
-void TestNewickVectorDialog::SetNewick(const std::string& s)
+void ribi::TestNewickVectorDialog::SetNewick(const std::string& s)
 {
   m_newick_str = s;
 }
 
-void TestNewickVectorDialog::SetTheta(const std::string& s)
+void ribi::TestNewickVectorDialog::SetTheta(const std::string& s)
 {
   m_theta_str = s;
 }
-

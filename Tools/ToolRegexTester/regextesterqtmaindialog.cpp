@@ -25,14 +25,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QRegExp>
 #include "trace.h"
 
-const boost::shared_ptr<RegexTesterMainDialog> RegexTesterQtMainDialog::Clone() const
+const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterQtMainDialog::Clone() const
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
     new RegexTesterQtMainDialog);
   return d;
 }
 
-const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatches(
+const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
 {
@@ -43,7 +43,7 @@ const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatches(
 
 ///Obtain all regex matches in a std::string
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatches(
+const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -62,15 +62,17 @@ const std::vector<std::string> RegexTesterQtMainDialog::GetRegexMatches(
   return v;
 }
 
-bool RegexTesterQtMainDialog::GetRegexMatchLine(
+bool ribi::RegexTesterQtMainDialog::GetRegexMatchLine(
   const std::string& line, const std::string& regex_str) const
 {
   if (!GetRegexValid(regex_str)) return false;
-  const boost::regex r(regex_str);
-  return boost::regex_match(line,r);
+
+  return "Qt does not have a regex match algorithm";
+  //const QRegExp(regex_str);
+  //return boost::regex_match(line,r);
 }
 
-const std::string RegexTesterQtMainDialog::GetRegexReplace(
+const std::string ribi::RegexTesterQtMainDialog::GetRegexReplace(
   const std::string& /* str */,
   const std::string& /* regex_str */,
   const std::string& /* format_str */) const
@@ -79,11 +81,11 @@ const std::string RegexTesterQtMainDialog::GetRegexReplace(
 }
 
 
-bool RegexTesterQtMainDialog::GetRegexValid(
+bool ribi::RegexTesterQtMainDialog::GetRegexValid(
   const std::string& regex_str) const
 {
-  try { const boost::regex regex_temp(regex_str); }
-  catch (boost::regex_error& e) { return false; }
-  return true;
+  assert(!"TODO");
+  //try { const boost::regex regex_temp(regex_str); }
+  //catch (boost::regex_error& e) { return false; }
+  //return true;
 }
-*/

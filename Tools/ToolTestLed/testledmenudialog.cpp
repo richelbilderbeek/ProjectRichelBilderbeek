@@ -18,14 +18,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestLed.htm
 //---------------------------------------------------------------------------
-
-
 #include "testledmenudialog.h"
 
 #include "led.h"
 #include "ledwidget.h"
 
-const About TestLedMenuDialog::GetAbout()
+const ribi::About ribi::TestLedMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -41,18 +39,18 @@ const About TestLedMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestLedMenuDialog::GetVersion()
+const std::string ribi::TestLedMenuDialog::GetVersion()
 {
   return "1.3";
 }
 
-const std::vector<std::string> TestLedMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-10: Version 1.0: initial version, web version not yet working");
-  v.push_back("2011-04-11: Version 1.1: got web version to work, added more About info");
-  v.push_back("2011-07-02: Version 1.2: added menu");
-  v.push_back("2011-09-08: Version 1.3: added Welcome screen picture and increased testing in website version");
-  return v;
+  return {
+    "2011-04-10: Version 1.0: initial version, web version not yet working",
+    "2011-04-11: Version 1.1: got web version to work, added more About info",
+    "2011-07-02: Version 1.2: added menu",
+    "2011-09-08: Version 1.3: added Welcome screen picture and increased testing in website version"
+  };
 }
 

@@ -18,14 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestDial.htm
 //---------------------------------------------------------------------------
-
-
 #include "testdialmenudialog.h"
-
 
 #include "dial.h"
 
-const About TestDialMenuDialog::GetAbout()
+const ribi::About ribi::TestDialMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -40,20 +37,20 @@ const About TestDialMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestDialMenuDialog::GetVersion()
+const std::string ribi::TestDialMenuDialog::GetVersion()
 {
   return "2.1";
 }
 
-const std::vector<std::string> TestDialMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-11: Version 1.0: initial version, web version not yet working");
-  v.push_back("2011-04-11: Version 1.1: got the web version working");
-  v.push_back("2011-06-27: Version 1.2: split up logic and graphics of user interfaces");
-  v.push_back("2011-07-16: Version 1.3: updated to new Dial version");
-  v.push_back("2011-08-07: Version 2.0: conformized architure for MysteryMachine");
-  v.push_back("2011-08-31: Version 2.1: added more testing option, added image to Welcome page of website version");
-  return v;
+  return {
+    "2011-04-11: Version 1.0: initial version, web version not yet working",
+    "2011-04-11: Version 1.1: got the web version working",
+    "2011-06-27: Version 1.2: split up logic and graphics of user interfaces",
+    "2011-07-16: Version 1.3: updated to new Dial version",
+    "2011-08-07: Version 2.0: conformized architure for MysteryMachine",
+    "2011-08-31: Version 2.1: added more testing option, added image to Welcome page of website version"
+  };
 }
 

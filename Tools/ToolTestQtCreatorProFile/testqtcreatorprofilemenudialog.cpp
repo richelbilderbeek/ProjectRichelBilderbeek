@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "qtcreatorprofile.h"
 
-const About TestQtCreatorProFileMenuDialog::GetAbout()
+const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -41,17 +41,17 @@ const About TestQtCreatorProFileMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestQtCreatorProFileMenuDialog::GetVersion()
+const std::string ribi::TestQtCreatorProFileMenuDialog::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> TestQtCreatorProFileMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2010-xx-xx: version 1.0: initial version, called TestProFile");
-  v.push_back("2012-02-27: version 1.1: initial version with About information");
-  v.push_back("2013-05-18: version 1.2: renamed this tool to TestQtCreatorProFile");
-  return v;
+  return {
+    "2010-xx-xx: version 1.0: initial version, called TestProFile",
+    "2012-02-27: version 1.1: initial version with About information",
+    "2013-05-18: version 1.2: renamed this tool to TestQtCreatorProFile"
+  };
 }
 

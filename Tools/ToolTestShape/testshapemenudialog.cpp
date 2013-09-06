@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-TestShapeMenuDialog::TestShapeMenuDialog()
+ribi::TestShapeMenuDialog::TestShapeMenuDialog()
 {
   const std::vector<std::string> files =
   {
@@ -50,7 +50,7 @@ TestShapeMenuDialog::TestShapeMenuDialog()
   }
 }
 
-const About TestShapeMenuDialog::GetAbout() const
+const ribi::About ribi::TestShapeMenuDialog::GetAbout() const
 {
   About a(
     "Richel Bilderbeek",
@@ -69,16 +69,16 @@ const About TestShapeMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string TestShapeMenuDialog::GetVersion()
+const std::string ribi::TestShapeMenuDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> TestShapeMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestShapeMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-28: Version 1.0: initial version");
-  v.push_back("2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget");
-  return v;
+  return {
+    "2011-06-28: Version 1.0: initial version",
+    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget"
+  };
 }
 

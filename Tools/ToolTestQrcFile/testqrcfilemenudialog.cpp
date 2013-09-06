@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQrcFile.htm
 //---------------------------------------------------------------------------
-
-
 #include "testqrcfilemenudialog.h"
 
 #include <cassert>
@@ -29,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "qrcfile.h"
 
-const About TestQrcFileMenuDialog::GetAbout()
+const ribi::About ribi::TestQrcFileMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -46,20 +44,20 @@ const About TestQrcFileMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestQrcFileMenuDialog::GetVersion()
+const std::string ribi::TestQrcFileMenuDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> TestQrcFileMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-06-13: version 1.0: initial version");
-  v.push_back("2013-05-20: version 1.1: some GUI modifications");
-  return v;
+  return {
+    "2012-06-13: version 1.0: initial version",
+    "2013-05-20: version 1.1: some GUI modifications"
+  };
 }
 
-void TestQrcFileMenuDialog::Test()
+void ribi::TestQrcFileMenuDialog::Test()
 {
   //Test exactly once
   {
