@@ -15,7 +15,7 @@
 
 #pragma GCC diagnostic pop
 
-ShapeWidget::ShapeWidget(
+ribi::ShapeWidget::ShapeWidget(
   const int n_corners,
   const double rotation,
   const int x,
@@ -30,8 +30,7 @@ ShapeWidget::ShapeWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-///Make a deep copy of ShapeWidget
-ShapeWidget * ShapeWidget::Clone() const
+ribi::ShapeWidget * ribi::ShapeWidget::Clone() const
 {
   ShapeWidget * const w = new ShapeWidget(
     this->GetShape()->GetNumberOfCorners(),
@@ -47,21 +46,21 @@ ShapeWidget * ShapeWidget::Clone() const
   return w;
 }
 
-const std::string ShapeWidget::GetVersion()
+const std::string ribi::ShapeWidget::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> ShapeWidget::GetVersionHistory()
+const std::vector<std::string> ribi::ShapeWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-07-13: Version 1.0: initial version");
-  v.push_back("2011-07-18: Version 1.1: removed useless methods");
-  v.push_back("2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget");
-  return v;
+  return {
+    "2011-07-13: Version 1.0: initial version",
+    "2011-07-18: Version 1.1: removed useless methods",
+    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget"
+  };
 }
 
-bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs)
+bool ribi::operator==(const ShapeWidget& lhs,const ShapeWidget& rhs)
 {
   return  lhs.GetGeometry() ==  rhs.GetGeometry()
     &&   *lhs.GetShape()    == *rhs.GetShape();

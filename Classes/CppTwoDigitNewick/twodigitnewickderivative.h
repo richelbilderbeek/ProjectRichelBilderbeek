@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TWODIGITDERIVATIVE_H
 #define TWODIGITDERIVATIVE_H
 
+namespace ribi {
+
 ///TwoDigitNewickDerivative contains
 ///the index of the derived phylogeny
 ///and the value that must be changed
@@ -57,5 +59,7 @@ struct TwoDigitNewickDerivative
   int m_value_changed;
   int m_other_value_changed;
 };
+
+} //~namespace ribi
 
 #endif // TWODIGITDERIVATIVE_H

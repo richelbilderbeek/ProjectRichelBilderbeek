@@ -29,6 +29,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "twodigitnewick.h"
 #include "binarynewickvector.h"
 
+namespace ribi {
+
 ///NewickIndex converts any newick to (X,Y)
 struct TwoDigitNewickIndexer
 {
@@ -153,5 +155,7 @@ struct TwoDigitNewickIndexer
 ///IsSimple determines if a binary Newick is simple,
 //that is in the form '(X,Y)', where both X and Y are values
 //bool IsSimple(const BinaryNewickVector& n);
+
+} //namespace ribi
 
 #endif // TWODIGITNEWICKINDEXER_H

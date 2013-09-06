@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-// From http://www.richelbilderbeek.nl
+// From http://www.richelbilderbeek.nl/GameReversi.htm
 //---------------------------------------------------------------------------
 #include <vector>
 #include <numeric>
@@ -28,7 +28,7 @@
 #include <memory>
 #include <sstream>
 #include "UnitReversi.h"
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const Square s)
 {
   switch (s)
@@ -40,7 +40,7 @@ std::ostream& operator<<(std::ostream& os, const Square s)
   }
   return os;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const Reversi& r)
 {
   { //Show the indices horizontally
@@ -79,7 +79,7 @@ std::ostream& operator<<(std::ostream& os, const Reversi& r)
   }
   return os;
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppStrIsInt.htm
 //Checks whether a std::string can be converted to an integer.
 //Returns true if possible, also returning this integer by referencing.
@@ -94,14 +94,14 @@ const bool IsInt(const std::string& s, int& rInt)
   }
   return true;
 }
-//---------------------------------------------------------------------------
+
 const std::string GetInput()
 {
   std::string s;
   std::getline(std::cin,s,'\n');
   return s;
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
 const std::vector<std::string> SeperateString(std::string input, const char seperator)
 {
@@ -125,7 +125,7 @@ const std::vector<std::string> SeperateString(std::string input, const char sepe
   result.push_back(input);
   return result;
 }
-//---------------------------------------------------------------------------
+
 const bool IsCoordinat(const std::string& input, std::pair<int,int>& coordinat)
 {
   if ( std::count(input.begin(), input.end(), ',') != 1) return false;
@@ -140,7 +140,7 @@ const bool IsCoordinat(const std::string& input, std::pair<int,int>& coordinat)
  return true;
 
 }
-//---------------------------------------------------------------------------
+
 const int AskUserForBoardSize()
 {
   //Get the board's size
@@ -167,7 +167,7 @@ const int AskUserForBoardSize()
     return size;
   }
 }
-//---------------------------------------------------------------------------
+
 int main()
 {
   std::cout
@@ -252,4 +252,4 @@ int main()
     player = (player == player1 ? player2 : player1);
   }
 }
-//---------------------------------------------------------------------------
+

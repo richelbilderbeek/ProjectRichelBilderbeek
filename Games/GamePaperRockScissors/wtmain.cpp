@@ -20,7 +20,7 @@ WtPaperRockScissorsApplication::WtPaperRockScissorsApplication(
 {
   setTitle("PaperRockScissors");
   this->useStyleSheet("wt.css");
-  root()->addWidget(new WtPaperRockScissorsDialog);
+  root()->addWidget(new ribi::WtPaperRockScissorsDialog);
 }
 //---------------------------------------------------------------------------
 Wt::WApplication *createApplication(const Wt::WEnvironment& env)

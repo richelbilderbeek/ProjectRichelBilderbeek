@@ -26,6 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "twodigitnewickderivative.h"
 
+namespace ribi {
+
 ///TwoDigitNewick contains all
 ///TwoDigitNewickDerivative that can be
 ///constructed from a phylogeny. For example,
@@ -97,6 +99,8 @@ struct TwoDigitNewick
   static void Test();
 
 };
+
+} //~namespace ribi
 
 #endif // TWODIGITNEWICK_H
 

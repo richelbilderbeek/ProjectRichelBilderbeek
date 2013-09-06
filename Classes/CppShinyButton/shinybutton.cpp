@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ShinyButton::ShinyButton(
+ribi::ShinyButton::ShinyButton(
   const double color,
   const double gradient,
   const std::string& text)
@@ -43,19 +43,19 @@ ShinyButton::ShinyButton(
 
 }
 
-const std::string ShinyButton::GetVersion()
+const std::string ribi::ShinyButton::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ShinyButton::GetVersionHistory()
+const std::vector<std::string> ribi::ShinyButton::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-21: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-09-21: Version 1.0: initial version"
+  };
 }
 
-void ShinyButton::SetColor(
+void ribi::ShinyButton::SetColor(
   const double color,
   const double gradient)
 {
@@ -67,7 +67,7 @@ void ShinyButton::SetColor(
   }
 }
 
-void ShinyButton::SetText(
+void ribi::ShinyButton::SetText(
   const std::string& text)
 {
   if (text != m_text)
@@ -77,7 +77,7 @@ void ShinyButton::SetText(
   }
 }
 
-std::ostream& operator<<(std::ostream& os, const ShinyButton& button)
+std::ostream& ribi::operator<<(std::ostream& os, const ShinyButton& button)
 {
   os
     << "<ShinyButton>"

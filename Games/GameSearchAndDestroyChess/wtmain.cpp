@@ -13,9 +13,9 @@ struct WtChessBoardDialog : public Wt::WContainerWidget
 {
   WtChessBoardDialog()
   {
-    this->addWidget(new Chess::WtBoardWidget);
+    this->addWidget(new ribi::Chess::WtBoardWidget);
     this->addWidget(new Wt::WBreak);
-    this->addWidget(new Chess::WtKriegspielWidget);
+    this->addWidget(new ribi::Chess::WtKriegspielWidget);
   }
 };
 //---------------------------------------------------------------------------
@@ -37,7 +37,7 @@ Wt::WApplication *createApplication(
 //---------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
-  { START_TRACE(); }
+  START_TRACE();
   WtAutoConfig a(argc,argv,createApplication);
   WtAutoConfig::SaveDefaultStylesheet();
   return a.Run();

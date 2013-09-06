@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "twodigitnewick.h"
 
+namespace ribi {
+
 ///TwoDigitNewicks manages TwoDigitTwoDigitNewicks.
 ///TwoDigitTwoDigitNewicks manage F'(index) -> { indices }
 struct TwoDigitNewicks
@@ -56,5 +58,7 @@ private:
   ///its derived indexed TwoDigitNewicks
   std::vector<TwoDigitNewick> m_v;
 };
+
+} //~namespace ribi
 
 #endif // TWODIGITNEWICKS_H

@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///ShinyButton is a class for a toggle button
 struct ShinyButton
 {
@@ -94,6 +96,8 @@ struct ShinyButton
 };
 
 std::ostream& operator<<(std::ostream& os, const ShinyButton& button);
+
+} //~namespace ribi
 
 #endif // SHINYBUTTON_H
 

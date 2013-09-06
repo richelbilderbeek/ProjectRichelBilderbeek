@@ -25,6 +25,8 @@
 #include "binarynewickvector.h"
 #include "newick.h"
 
+namespace ribi {
+
 //A SortedBinaryNewickVector is a ShortNewick with its internal storage hided
 //All functions that needed a ShortNewick's internals
 //  are members of SortedBinaryNewickVector
@@ -80,5 +82,7 @@ bool operator<(const SortedBinaryNewickVector& lhs, const SortedBinaryNewickVect
 
 //const std::string ToString(const SortedBinaryNewickVector& n,
 //  const bool add_brackets = true);
+
+} //~namespace ribi
 
 #endif //SORTEDBINARYNEWICKVECTOR_H

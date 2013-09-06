@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "widget.h"
 
+namespace ribi {
+
 struct Shape;
 
 ///ShapeWidget is a class to display a Shape
@@ -70,5 +72,7 @@ struct ShapeWidget : public Widget
 };
 
 bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs);
+
+} //~namespace ribi
 
 #endif // SHAPEWIDGET_H

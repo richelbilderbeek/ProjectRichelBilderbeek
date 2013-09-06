@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///Shape is a class for a regular polygonal shape
 ///
 ///A Shape can be a circle, ellipse, triange, square, rhombus, rectangle
@@ -117,6 +119,8 @@ struct Shape
 };
 
 bool operator==(const Shape& lhs, const Shape& rhs);
+
+} //~namespace ribi
 
 #endif // SHAPE_H
 

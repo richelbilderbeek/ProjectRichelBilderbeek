@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 struct Stopwatch
 {
   Stopwatch() : m_time_start(std::time(0)) {}
@@ -45,5 +47,7 @@ struct Stopwatch
     return v;
   }
 };
+
+} //~namespace ribi
 
 #endif // STOPWATCH_H

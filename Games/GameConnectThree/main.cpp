@@ -20,9 +20,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #include <iostream>
-//---------------------------------------------------------------------------
-#include "../../Classes/CppConnectThree/connectthree.h"
-//---------------------------------------------------------------------------
+
+#include "connectthree.h"
+
 void PlayRandomMatch()
 {
   ConnectThree c(std::bitset<3>(),15,5);
@@ -31,7 +31,7 @@ void PlayRandomMatch()
     c.DoMove(c.SuggestMove());
   }
 }
-//---------------------------------------------------------------------------
+
 void TestConnectThree()
 {
   for (int i=0; i!=1000; ++i)
@@ -39,10 +39,10 @@ void TestConnectThree()
     PlayRandomMatch();
   }
 }
-//---------------------------------------------------------------------------
+
 ///main only tests the ConnectThree class.
 int main()
 {
-  TestConnectThree();
+  ribi::TestConnectThree();
 }
-//---------------------------------------------------------------------------
+

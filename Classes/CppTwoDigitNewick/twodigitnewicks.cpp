@@ -18,20 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick.htm
 //---------------------------------------------------------------------------
-
-
 #include "twodigitnewicks.h"
 
-//---------------------------------------------------------------------------
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "newick.h"
 #include "binarynewickvector.h"
-//---------------------------------------------------------------------------
-TwoDigitNewicks::TwoDigitNewicks(const int n_reserved, const double theta)
+
+ribi::TwoDigitNewicks::TwoDigitNewicks(const int n_reserved, const double theta)
 {
   //Create derivatives of simplest and reserved TwoDigitNewicks
 
@@ -69,17 +66,17 @@ TwoDigitNewicks::TwoDigitNewicks(const int n_reserved, const double theta)
      && "All newick with index >= 2 must be complete");
   }
 }
-//---------------------------------------------------------------------------
+
 ///Empty returns if an index is empty
-bool TwoDigitNewicks::Empty(const int i) const
+bool ribi::TwoDigitNewicks::Empty(const int i) const
 {
   assert(i >= 0);
   assert(i < this->Size());
   return m_v[i].Empty();
 }
-//---------------------------------------------------------------------------
-const TwoDigitNewick& TwoDigitNewicks::GetNewick(
-    const int i) const
+
+const ribi::TwoDigitNewick& ribi::TwoDigitNewicks::GetNewick(
+  const int i) const
 {
   //Check if i is in range
   assert(i>=0);
@@ -95,8 +92,8 @@ const TwoDigitNewick& TwoDigitNewicks::GetNewick(
   #endif
   return m_v[i];
 }
-//---------------------------------------------------------------------------
-void TwoDigitNewicks::SetNewick(const int i, const TwoDigitNewick& v)
+
+void ribi::TwoDigitNewicks::SetNewick(const int i, const TwoDigitNewick& v)
 {
   //std::clog << __LINE__ << " - " << i << '\n';
   //Allocate storage
@@ -122,8 +119,8 @@ void TwoDigitNewicks::SetNewick(const int i, const TwoDigitNewick& v)
 
   m_v[i] = v;
 }
-//---------------------------------------------------------------------------
-void TwoDigitNewicks::SetNewickProbability(
+
+void ribi::TwoDigitNewicks::SetNewickProbability(
   const int i,const double p)
 {
   assert(i >= 0);
@@ -132,9 +129,8 @@ void TwoDigitNewicks::SetNewickProbability(
   assert(p <= 1.0);
   m_v[i].SetProbability(p);
 }
-//---------------------------------------------------------------------------
-int TwoDigitNewicks::Size() const
+
+int ribi::TwoDigitNewicks::Size() const
 {
   return boost::numeric_cast<int>(m_v.size());
 }
-//---------------------------------------------------------------------------

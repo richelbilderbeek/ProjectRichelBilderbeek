@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
     {
       FTRACE("Testing in main");
       //SearchAndDestroyChess::MenuDialog::Test();
-      Chess::Game::Test();
+      ribi::Chess::Game::Test();
     }
   #ifdef SADC_USE_THREADS
   );
@@ -119,7 +119,7 @@ int main(int argc, char* argv[])
   if (!boost::filesystem::exists(filename))
   {
     std::cout << "Filename '" + filename + "' does not exist.\n";
-    const auto v = Chess::Moves::GetGameKasparovVersusTheWorld();
+    const auto v = ribi::Chess::Moves::GetGameKasparovVersusTheWorld();
     std::ofstream file(filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(file,"\n"));
     std::cout << "Filename '" + filename + "' created with example game.\n";
@@ -127,14 +127,14 @@ int main(int argc, char* argv[])
   assert(boost::filesystem::exists(filename));
   const std::vector<std::string> v = FileToVector(filename);
 
-  if (Chess::Game::CanDoGame(v))
+  if (ribi::Chess::Game::CanDoGame(v))
   {
     std::cout << "Y" << std::endl;
   }
   else
   {
     std::cout << "N" << std::endl;
-    const int n = Chess::Game::CanDoGameUntil(v);
+    const int n = ribi::Chess::Game::CanDoGameUntil(v);
     std::cout << n << std::endl;
     std::copy(v.begin(),v.begin() + n + 1,std::ostream_iterator<std::string>(std::cout,"\n"));
     std::cout << std::flush;

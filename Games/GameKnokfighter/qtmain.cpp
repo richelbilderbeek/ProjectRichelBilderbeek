@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   START_TRACE();
-  QtKnokfighterMainDialog w;
+  ribi::QtKnokfighterMainDialog w;
   w.show();
   return a.exec();
 }

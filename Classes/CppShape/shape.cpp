@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-Shape::Shape(
+ribi::Shape::Shape(
   const int n_corners,
   const double rotation,
   const unsigned char red,
@@ -54,12 +54,12 @@ Shape::Shape(
   SetRotation(rotation);
 }
 
-const std::string Shape::GetVersion()
+const std::string ribi::Shape::GetVersion()
 {
   return "2.1";
 }
 
-const std::vector<std::string> Shape::GetVersionHistory()
+const std::vector<std::string> ribi::Shape::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-07-13: Version 1.0: initial version");
@@ -68,13 +68,13 @@ const std::vector<std::string> Shape::GetVersionHistory()
   return v;
 }
 
-void Shape::SetNumberOfCorners(const int n_corners)
+void ribi::Shape::SetNumberOfCorners(const int n_corners)
 {
   assert(n_corners >= 0);
   m_n_corners = n_corners;
 }
 
-void Shape::SetRotation(const double rotation)
+void ribi::Shape::SetRotation(const double rotation)
 {
   if (m_rotation != rotation)
   {
@@ -83,7 +83,7 @@ void Shape::SetRotation(const double rotation)
   }
 }
 
-double Shape::GetAngle(const double dx, const double dy)
+double ribi::Shape::GetAngle(const double dx, const double dy)
 {
   #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
@@ -93,13 +93,13 @@ double Shape::GetAngle(const double dx, const double dy)
   return pi - std::atan2(dx,dy);
 }
 
-double Shape::GetDistance(const double dX, const double dY)
+double ribi::Shape::GetDistance(const double dX, const double dY)
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
 #ifndef NDEBUG
-void Shape::Test()
+void ribi::Shape::Test()
 {
   {
     static bool is_tested = false;
@@ -177,7 +177,7 @@ void Shape::Test()
 }
 #endif
 
-bool operator==(const Shape& lhs, const Shape& rhs)
+bool ribi::operator==(const Shape& lhs, const Shape& rhs)
 {
   return lhs.m_blue == rhs.m_blue
     &&   lhs.m_green == rhs.m_green

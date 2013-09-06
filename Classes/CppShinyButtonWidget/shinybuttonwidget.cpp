@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ShinyButtonWidget::ShinyButtonWidget(
+ribi::ShinyButtonWidget::ShinyButtonWidget(
   const double color,
   const double gradient,
   const std::string& text,
@@ -42,25 +42,25 @@ ShinyButtonWidget::ShinyButtonWidget(
   this->SetGeometry(rect);
 }
 
-void ShinyButtonWidget::Click()
+void ribi::ShinyButtonWidget::Click()
 {
   m_signal_clicked(this);
 }
 
-const std::string ShinyButtonWidget::GetVersion()
+const std::string ribi::ShinyButtonWidget::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ShinyButtonWidget::GetVersionHistory()
+const std::vector<std::string> ribi::ShinyButtonWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-21: version 1.0: initial version");
-  v.push_back("2011-10-29: version 1.1: added Click method and m_signal_clicked");
-  return v;
+  return {
+    "2011-09-21: version 1.0: initial version",
+    "2011-10-29: version 1.1: added Click method and m_signal_clicked"
+  };
 }
 
-std::ostream& operator<<(std::ostream& os, const ShinyButtonWidget& button)
+std::ostream& ribi::operator<<(std::ostream& os, const ShinyButtonWidget& button)
 {
   os
     << "<ShinyButtonWidget>"

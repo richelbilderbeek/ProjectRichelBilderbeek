@@ -22,25 +22,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "twodigitnewickindextable.h"
 
-//---------------------------------------------------------------------------
+
 #include <algorithm>
 #include <cassert>
 #include <stdexcept>
 #include <iostream>
 #include <sstream>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 ///CanGetData returns is GetData can be called with success
-bool TwoDigitNewickIndexTable::CanGetIndex(const int x, const int y) const
+bool ribi::TwoDigitNewickIndexTable::CanGetIndex(const int x, const int y) const
 {
   return x < boost::numeric_cast<int>(m_v.size())
       && y < boost::numeric_cast<int>(m_v[x].size());
 }
-//---------------------------------------------------------------------------
+
 ///Find returns the x-y-coordinats of the Newick with index i
-const std::pair<int,int> TwoDigitNewickIndexTable::Find(const int i) const
+const std::pair<int,int> ribi::TwoDigitNewickIndexTable::Find(const int i) const
 {
   const int maxx = boost::numeric_cast<int>(m_v.size());
   for (int x=0; x!=maxx; ++x)
@@ -51,22 +51,22 @@ const std::pair<int,int> TwoDigitNewickIndexTable::Find(const int i) const
       if (m_v[x][y]==i) return std::make_pair(x,y);
     }
   }
-  std::cerr << "Index " << i << " not found in TwoDigitNewickIndexTable::Find\n";
+  std::cerr << "Index " << i << " not found in ribi::TwoDigitNewickIndexTable::Find\n";
   assert(!"Should not get here");
   std::stringstream s;
-  s << "Index " << i << " not found in TwoDigitNewickIndexTable::Find";
+  s << "Index " << i << " not found in ribi::TwoDigitNewickIndexTable::Find";
   throw std::logic_error(s.str());
 }
-//---------------------------------------------------------------------------
+
 ///GetIndex returns m_index_table[x][y]
-int TwoDigitNewickIndexTable::GetIndex(const int x, const int y) const
+int ribi::TwoDigitNewickIndexTable::GetIndex(const int x, const int y) const
 {
   assert(CanGetIndex(x,y));
   return m_v[x][y];
 }
-//---------------------------------------------------------------------------
+
 ///GetNumAllocated calculates the number of indices allocated
-int TwoDigitNewickIndexTable::GetNumAllocated() const
+int ribi::TwoDigitNewickIndexTable::GetNumAllocated() const
 {
   int n_allocated = 0;
   BOOST_FOREACH(const std::vector<int>& v,m_v)
@@ -75,9 +75,9 @@ int TwoDigitNewickIndexTable::GetNumAllocated() const
   }
   return n_allocated;
 }
-//---------------------------------------------------------------------------
+
 ///GetNumUsed calculates the number of indices used
-int TwoDigitNewickIndexTable::GetNumUsed() const
+int ribi::TwoDigitNewickIndexTable::GetNumUsed() const
 {
   int n_non_zero = 0;
   BOOST_FOREACH(const std::vector<int>& v,m_v)
@@ -87,10 +87,10 @@ int TwoDigitNewickIndexTable::GetNumUsed() const
   }
   return n_non_zero;
 }
-//---------------------------------------------------------------------------
+
 ///SetIndex sets m_index_table[x][y] == z
 ///and resized the m_index_table is necessary
-void TwoDigitNewickIndexTable::SetIndex(
+void ribi::TwoDigitNewickIndexTable::SetIndex(
   const int x,
   const int y,
   const int z)
@@ -109,4 +109,4 @@ void TwoDigitNewickIndexTable::SetIndex(
   m_v[x][y] = z;
   assert(m_v[x][y] > 0);
 }
-//---------------------------------------------------------------------------
+

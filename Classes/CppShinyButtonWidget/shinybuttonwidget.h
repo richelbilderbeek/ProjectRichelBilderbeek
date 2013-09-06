@@ -29,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "widget.h"
 
+namespace ribi {
+
 struct ShinyButton;
 
 struct ShinyButtonWidget : public Widget
@@ -67,5 +69,7 @@ struct ShinyButtonWidget : public Widget
 };
 
 std::ostream& operator<<(std::ostream& os, const ShinyButtonWidget& button);
+
+} //~namespace ribi
 
 #endif // SHINYBUTTONWIDGET_H

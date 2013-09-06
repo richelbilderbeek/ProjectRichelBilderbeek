@@ -11,11 +11,11 @@ int main(int argc, char *argv[])
   std::thread t(
     []
     {
-      QtSearchAndDestroyChessMenuDialog::Test();
+      ribi::QtSearchAndDestroyChessMenuDialog::Test();
     }
   );
 
-  QtSearchAndDestroyChessMenuDialog w;
+  ribi::QtSearchAndDestroyChessMenuDialog w;
   w.show();
   t.detach();
   return a.exec();

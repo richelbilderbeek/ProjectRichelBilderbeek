@@ -18,12 +18,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick.htm
 //---------------------------------------------------------------------------
-
-
 #include "twodigitnewickderivative.h"
 
 #include <cassert>
-TwoDigitNewickDerivative::TwoDigitNewickDerivative(
+
+ribi::TwoDigitNewickDerivative::TwoDigitNewickDerivative(
   const int derived_index,
   const int value_changed,
   const int other_value_changed)

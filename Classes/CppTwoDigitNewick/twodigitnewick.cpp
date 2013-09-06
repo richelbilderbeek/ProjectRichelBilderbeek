@@ -18,24 +18,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick.htm
 //---------------------------------------------------------------------------
-
-
 #include "twodigitnewick.h"
 
-//---------------------------------------------------------------------------
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "binarynewickvector.h"
 #include "newick.h"
 #include "twodigitnewickindexer.h"
-//---------------------------------------------------------------------------
-double TwoDigitNewick::sm_theta = -1.0;
-//---------------------------------------------------------------------------
-TwoDigitNewick::TwoDigitNewick()
+
+double ribi::TwoDigitNewick::sm_theta = -1.0;
+
+ribi::TwoDigitNewick::TwoDigitNewick()
   : m_probability(-1.0),
     m_denominator(-1.0),
     m_sum_terms_above_zero(-1),
@@ -43,8 +40,8 @@ TwoDigitNewick::TwoDigitNewick()
 {
   assert(this->Empty());
 }
-//---------------------------------------------------------------------------
-TwoDigitNewick::TwoDigitNewick(
+
+ribi::TwoDigitNewick::TwoDigitNewick(
   const std::vector<TwoDigitNewickDerivative>& derivatives,
   const int sum_above_zero,
   const int sum_above_one)
@@ -57,8 +54,8 @@ TwoDigitNewick::TwoDigitNewick(
 {
 
 }
-//---------------------------------------------------------------------------
-double TwoDigitNewick::CalculateDenominator(
+
+double ribi::TwoDigitNewick::CalculateDenominator(
   const int sum_above_zero,
   const int sum_above_one) const
 {
@@ -79,80 +76,80 @@ double TwoDigitNewick::CalculateDenominator(
 
   return d;
 }
-//---------------------------------------------------------------------------
-double TwoDigitNewick::CalculateProbability(
+
+double ribi::TwoDigitNewick::CalculateProbability(
   const std::string& newick_str,
   const double theta)
 {
   assert(Newick::IsUnaryNewick(Newick::StringToNewick(newick_str))
       || Newick::IsBinaryNewick(Newick::StringToNewick(newick_str)));
-  TwoDigitNewick::SetTheta(theta);
+  ribi::TwoDigitNewick::SetTheta(theta);
   const BinaryNewickVector n(newick_str);
   const TwoDigitNewickIndexer i(n,theta);
 
   return i.GetProbability();
 }
-//---------------------------------------------------------------------------
-bool TwoDigitNewick::Empty() const
+
+bool ribi::TwoDigitNewick::Empty() const
 {
   return m_derivatives.empty();
 }
-//---------------------------------------------------------------------------
-double TwoDigitNewick::GetDenominator() const
+
+double ribi::TwoDigitNewick::GetDenominator() const
 {
   assert(IsComplete());
   return m_denominator;
 }
-//---------------------------------------------------------------------------
-const std::vector<TwoDigitNewickDerivative>& TwoDigitNewick::GetDerivatives() const
+
+const std::vector<ribi::TwoDigitNewickDerivative>& ribi::TwoDigitNewick::GetDerivatives() const
 {
   return m_derivatives;
 }
-//---------------------------------------------------------------------------
-double TwoDigitNewick::GetProbability() const
+
+double ribi::TwoDigitNewick::GetProbability() const
 {
   assert(IsProbabilityKnown());
   return m_probability;
 }
-//---------------------------------------------------------------------------
-int TwoDigitNewick::GetSumTermsAboveOne() const
+
+int ribi::TwoDigitNewick::GetSumTermsAboveOne() const
 {
   assert(m_sum_terms_above_one >= 0);
   return m_sum_terms_above_one;
 }
-//---------------------------------------------------------------------------
-int TwoDigitNewick::GetSumTermsAboveZero() const
+
+int ribi::TwoDigitNewick::GetSumTermsAboveZero() const
 {
   assert(m_sum_terms_above_zero >= 0);
   return m_sum_terms_above_zero;
 }
-//---------------------------------------------------------------------------
-const std::string TwoDigitNewick::GetVersion()
+
+const std::string ribi::TwoDigitNewick::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TwoDigitNewick::GetVersionHistory()
+
+const std::vector<std::string> ribi::TwoDigitNewick::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-08-22: version 1.0: initial version");
   v.push_back("2011-02-20: version 1.1: added version history");
   return v;
 }
-//---------------------------------------------------------------------------
-bool TwoDigitNewick::IsComplete() const
+
+bool ribi::TwoDigitNewick::IsComplete() const
 {
   return (!m_derivatives.empty()
     && m_sum_terms_above_zero >= 0
     && m_sum_terms_above_one  >= 0);
 }
-//---------------------------------------------------------------------------
-bool TwoDigitNewick::IsProbabilityKnown() const
+
+bool ribi::TwoDigitNewick::IsProbabilityKnown() const
 {
   return m_probability >= 0.0;
 }
-//---------------------------------------------------------------------------
-void TwoDigitNewick::SetProbability(const double p)
+
+void ribi::TwoDigitNewick::SetProbability(const double p)
 {
   //if (p < 0.0 || p > 1.0)
   //{
@@ -162,16 +159,16 @@ void TwoDigitNewick::SetProbability(const double p)
   assert(p <= 1.00001);
   m_probability = p;
 }
-//---------------------------------------------------------------------------
-void TwoDigitNewick::SetTheta(const double theta)
+
+void ribi::TwoDigitNewick::SetTheta(const double theta)
 {
   assert(theta >= 0.0);
   sm_theta = theta;
 }
-//---------------------------------------------------------------------------
-void TwoDigitNewick::Test()
+
+void ribi::TwoDigitNewick::Test()
 {
-  TwoDigitNewick::SetTheta(10.0);
+  ribi::TwoDigitNewick::SetTheta(10.0);
   const std::vector<std::string> v = Newick::CreateValidNewicks();
   BOOST_FOREACH(const std::string& s,v)
   {
@@ -187,4 +184,3 @@ void TwoDigitNewick::Test()
     }
   }
 }
-//---------------------------------------------------------------------------

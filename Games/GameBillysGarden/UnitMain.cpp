@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+
 #include <iostream>
 #include <boost/shared_ptr.hpp>
 #include <Types.hpp>
@@ -6,9 +6,8 @@
 #include "UnitMovementPattern.h"
 #pragma hdrstop
 
-//---------------------------------------------------------------------------
 
-#pragma argsused
+
 
 void TestUnitMovement()
 {
@@ -70,7 +69,7 @@ void TestUnitMovement()
     assert( y == static_cast<double>(cnt)*dy);
   }
 }
-//---------------------------------------------------------------------------
+
 void TestUnitMovementPattern()
 {
   ComplexMovePattern p;
@@ -87,7 +86,7 @@ void TestUnitMovementPattern()
   }
 
 }
-//---------------------------------------------------------------------------
+
 const bool DoCollide(const Types::TRect& a, const Types::TRect& b)
 {
   const int a_x1 = a.Left;
@@ -110,12 +109,10 @@ const bool DoCollide(const Types::TRect& a, const Types::TRect& b)
   || (a_x2 > b_x1 && a_x2 < b_x2 && a_y2 > b_y1 && a_y2 < b_y2) );
 
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char* argv[])
 {
   TestUnitMovement();
   TestUnitMovementPattern();
 
 }
-//---------------------------------------------------------------------------
- 
