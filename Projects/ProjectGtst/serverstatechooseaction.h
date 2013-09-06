@@ -24,6 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "serverstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Server is in the choose-action state
 struct ServerStateChooseAction : public ServerState, StateChooseAction
@@ -74,5 +78,8 @@ struct ServerStateChooseAction : public ServerState, StateChooseAction
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ServerStateChooseAction& s);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ServerSTATECHOOSEACTION_H

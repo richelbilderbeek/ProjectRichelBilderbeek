@@ -16,7 +16,9 @@
 //---------------------------------------------------------------------------
 #include "about.h"
 #include "testnewickvectordialog.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtTestNewickVectorDialog : public Wt::WContainerWidget
 {
   WtTestNewickVectorDialog();
@@ -34,5 +36,7 @@ struct WtTestNewickVectorDialog : public Wt::WContainerWidget
   void OnAbout();
   void OnCalculate();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTNEWICKVECTORDIALOG_H

@@ -29,6 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace Ui {
   class QtTestShapeMainDialog;
 }
+
+namespace ribi {
+
 struct TestShapeMainDialog;
 struct QtShapeWidget;
 
@@ -41,7 +44,7 @@ public:
   ~QtTestShapeMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestShapeMainDialog *ui;
@@ -51,5 +54,7 @@ private:
   ///Test this class
   static void Test();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTSHAPEMAINDIALOG_H

@@ -29,11 +29,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 namespace Ui { class QtRichelBilderbeekGalleryDialog; }
+struct QModelIndex;
 
 namespace ribi {
 
 namespace RichelBilderbeek { struct Program; }
-struct QModelIndex;
 
 
 class QtRichelBilderbeekGalleryDialog : public QtHideAndShowDialog

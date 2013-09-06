@@ -39,17 +39,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtShapeWidget::QtShapeWidget(QWidget *parent)
+ribi::QtShapeWidget::QtShapeWidget(QWidget *parent)
   : QWidget(parent),
     m_widget(new ShapeWidget(0,0.0))
 {
   //m_widget->m_signal_position_changed.connect(
   //  boost::bind(
-  //    &QtShapeWidget::repaint,
+  //    &ribi::QtShapeWidget::repaint,
   //    this));
 }
 
-QtShapeWidget::QtShapeWidget(
+ribi::QtShapeWidget::QtShapeWidget(
   boost::shared_ptr<ShapeWidget> widget,
   QWidget *parent)
   : QWidget(parent),
@@ -57,11 +57,11 @@ QtShapeWidget::QtShapeWidget(
 {
   //m_widget->m_signal_position_changed.connect(
   //  boost::bind(
-  //    &QtShapeWidget::repaint,
+  //    &ribi::QtShapeWidget::repaint,
   //    this));
 }
 
-void QtShapeWidget::DrawShape(
+void ribi::QtShapeWidget::DrawShape(
   QPainter& painter,
   const ShapeWidget * const widget)
 {
@@ -74,17 +74,13 @@ void QtShapeWidget::DrawShape(
     widget->GetShape());
 }
 
-void QtShapeWidget::DrawShape(
+void ribi::QtShapeWidget::DrawShape(
   QPainter& painter,
   const int left, const int top,
   const int width, const int height,
   const Shape * const shape)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
 
   const unsigned char red = shape->GetRed();
   const unsigned char green = shape->GetGreen();
@@ -136,12 +132,12 @@ void QtShapeWidget::DrawShape(
   painter.drawConvexPolygon(polygon);
 }
 
-const std::string QtShapeWidget::GetVersion()
+const std::string ribi::QtShapeWidget::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> QtShapeWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtShapeWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-07-13: Version 1.0: initial version");
@@ -149,7 +145,7 @@ const std::vector<std::string> QtShapeWidget::GetVersionHistory()
   return v;
 }
 
-void QtShapeWidget::paintEvent(QPaintEvent *)
+void ribi::QtShapeWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawShape(

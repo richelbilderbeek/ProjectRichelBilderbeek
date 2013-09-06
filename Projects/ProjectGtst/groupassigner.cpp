@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 #include "stopwatch.h"
 //---------------------------------------------------------------------------
-boost::shared_ptr<GroupAssigner> GroupAssigner::CreateAssigner(
+boost::shared_ptr<ribi::gtst::GroupAssigner> ribi::gtst::GroupAssigner::CreateAssigner(
   const std::string& s)
 {
   if (s == "?")
@@ -57,29 +57,9 @@ boost::shared_ptr<GroupAssigner> GroupAssigner::CreateAssigner(
   return a;
 }
 //---------------------------------------------------------------------------
-GroupAssignerDeterminedByServer::GroupAssignerDeterminedByServer()
+ribi::gtst::GroupAssignerDeterminedByServer::GroupAssignerDeterminedByServer()
   //const Server * const server)
   //: m_server(server)
 {
 
 }
-//---------------------------------------------------------------------------
-/*
-int GroupAssignerDeterminedByServer::Assign(
-  const int ) const
-{
-  if (m_server->GetStateGroupDynamics()->HasFreePlaces())
-  {
-    return m_server->GetStateGroupDynamics()->OccupyFreePlace();
-  }
-  return -1; //Do not assign or unassign
-}
-*/
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------

@@ -20,16 +20,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTAUTOCONFIG_H
 #define WTAUTOCONFIG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WApplication;
   struct WEnvironment;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///WtAutoConfig is a class to automatically start a Wt
 ///server in a default configuration.
 struct WtAutoConfig
@@ -55,5 +57,7 @@ struct WtAutoConfig
   static void SaveDefaultStylesheet();
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTAUTOCONFIG_H

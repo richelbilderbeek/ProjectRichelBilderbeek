@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
   a.setStyleSheet(CreateStyleSheet().c_str());
   a.setWindowIcon(QIcon(":/images/R.png"));
 
-  QtPvdbAssessorMenuDialog d;
+  ribi::pvdb::QtPvdbAssessorMenuDialog d;
   d.show();
   a.exec();
 }

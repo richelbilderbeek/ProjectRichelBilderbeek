@@ -15,7 +15,7 @@
 #include "pvdbconcept.h"
 #include "pvdbexamples.h"
 
-int pvdb::Rating::SuggestComplexity(const int n_edges, const int n_examples)
+int ribi::pvdb::Rating::SuggestComplexity(const int n_edges, const int n_examples)
 {
   const int complexity
     = n_edges == 0  || (n_edges == 1 && n_examples == 0)
@@ -26,7 +26,7 @@ int pvdb::Rating::SuggestComplexity(const int n_edges, const int n_examples)
   return complexity;
 }
 
-int pvdb::Rating::SuggestComplexity(const boost::shared_ptr<const pvdb::ConceptMap> sub_concept_map)
+int ribi::pvdb::Rating::SuggestComplexity(const boost::shared_ptr<const ribi::pvdb::ConceptMap> sub_concept_map)
 {
   assert(sub_concept_map);
   const int n_edges = boost::numeric_cast<int>(sub_concept_map->GetEdges().size());
@@ -40,7 +40,7 @@ int pvdb::Rating::SuggestComplexity(const boost::shared_ptr<const pvdb::ConceptM
   return SuggestComplexity(n_edges,n_examples);
 }
 
-int pvdb::Rating::SuggestConcreteness(const int n_examples)
+int ribi::pvdb::Rating::SuggestConcreteness(const int n_examples)
 {
   const int concreteness
     = n_examples < 2
@@ -51,7 +51,7 @@ int pvdb::Rating::SuggestConcreteness(const int n_examples)
   return concreteness;
 }
 
-int pvdb::Rating::SuggestConcreteness(const boost::shared_ptr<const pvdb::ConceptMap> sub_concept_map)
+int ribi::pvdb::Rating::SuggestConcreteness(const boost::shared_ptr<const ribi::pvdb::ConceptMap> sub_concept_map)
 {
   assert(sub_concept_map);
   assert(!sub_concept_map->GetNodes().empty());
@@ -64,13 +64,13 @@ int pvdb::Rating::SuggestConcreteness(const boost::shared_ptr<const pvdb::Concep
   return SuggestConcreteness(n_examples);
 }
 
-int pvdb::Rating::SuggestSpecificity(const int n_examples)
+int ribi::pvdb::Rating::SuggestSpecificity(const int n_examples)
 {
   const int specificity = SuggestConcreteness(n_examples);
   return specificity;
 }
 
-int pvdb::Rating::SuggestSpecificity(const boost::shared_ptr<const pvdb::ConceptMap> sub_concept_map)
+int ribi::pvdb::Rating::SuggestSpecificity(const boost::shared_ptr<const ribi::pvdb::ConceptMap> sub_concept_map)
 {
   assert(sub_concept_map);
   assert(!sub_concept_map->GetNodes().empty());

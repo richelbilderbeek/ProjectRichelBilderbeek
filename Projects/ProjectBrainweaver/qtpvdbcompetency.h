@@ -1,21 +1,14 @@
 #ifndef QTPVDBCOMPETENCY_H
 #define QTPVDBCOMPETENCY_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <map>
 #include <QColor>
 #include <QIcon>
 #include "pvdbcompetency.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
 
-#endif
+namespace ribi {
 
 namespace pvdb {
 
@@ -54,5 +47,7 @@ struct QtCompetency
 };
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCOMPETENCY_H

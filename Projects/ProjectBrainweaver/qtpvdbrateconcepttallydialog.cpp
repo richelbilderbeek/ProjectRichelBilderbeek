@@ -34,8 +34,8 @@
 #include "trace.h"
 #include "ui_qtpvdbrateconcepttallydialog.h"
 
-QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
-  const boost::shared_ptr</* const */ pvdb::ConceptMap> sub_concept_map,
+ribi::pvdb::QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
+  const boost::shared_ptr</* const */ ribi::pvdb::ConceptMap> sub_concept_map,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbRateConceptTallyDialog),
@@ -52,7 +52,7 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   for (int row_index=0; row_index!=n_rows; ++row_index)
   {
     const Row& row = m_data[row_index];
-    const boost::shared_ptr<pvdb::Concept> concept = row.first;
+    const boost::shared_ptr<ribi::pvdb::Concept> concept = row.first;
     const int example_index = row.second;
 
     assert(concept);
@@ -136,7 +136,7 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   if (sub_concept_map)
   {
     assert(!sub_concept_map->GetNodes().empty());
-    const boost::shared_ptr<const pvdb::Concept> focal_concept = sub_concept_map->GetNodes().at(0)->GetConcept();
+    const boost::shared_ptr<const ribi::pvdb::Concept> focal_concept = sub_concept_map->GetNodes().at(0)->GetConcept();
     assert(focal_concept);
     ui->label_concept_name->setText(
       (std::string("Voorbeelden/toelichting bij concept: ") + focal_concept->GetName()).c_str() );
@@ -161,13 +161,13 @@ QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   }
 }
 
-QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog()
+ribi::pvdb::QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog()
 {
   delete ui;
 }
 
-const std::vector<QtPvdbRateConceptTallyDialog::Row>
-  QtPvdbRateConceptTallyDialog::CreateData(const boost::shared_ptr</* const */ pvdb::ConceptMap> map)
+const std::vector<ribi::pvdb::QtPvdbRateConceptTallyDialog::Row>
+  ribi::pvdb::QtPvdbRateConceptTallyDialog::CreateData(const boost::shared_ptr</* const */ ribi::pvdb::ConceptMap> map)
 {
   std::vector<Row> data;
 
@@ -179,7 +179,7 @@ const std::vector<QtPvdbRateConceptTallyDialog::Row>
 
   //Add the focal concept its examples (not its name: this cannot be judged)
   {
-    const boost::shared_ptr<pvdb::Concept> focal_concept = map->GetNodes().at(0)->GetConcept();
+    const boost::shared_ptr<ribi::pvdb::Concept> focal_concept = map->GetNodes().at(0)->GetConcept();
     assert(focal_concept);
     const int n_examples = boost::numeric_cast<int>(focal_concept->GetExamples()->Get().size());
     for (int i=0; i!=n_examples; ++i)
@@ -189,7 +189,7 @@ const std::vector<QtPvdbRateConceptTallyDialog::Row>
   }
 
   //Collect all relations of the focal node of this sub concept map
-  for(const boost::shared_ptr<pvdb::Edge> edge: map->GetEdges())
+  for(const boost::shared_ptr<ribi::pvdb::Edge> edge: map->GetEdges())
   {
     //But skip the connections to the focal question
     if (boost::dynamic_pointer_cast<pvdb::CenterNode>(edge->GetTo())
@@ -200,7 +200,7 @@ const std::vector<QtPvdbRateConceptTallyDialog::Row>
     }
 
 
-    const boost::shared_ptr<pvdb::Concept> concept = edge->GetConcept();
+    const boost::shared_ptr<ribi::pvdb::Concept> concept = edge->GetConcept();
     data.push_back(std::make_pair(concept,-1));
     const int n_examples = boost::numeric_cast<int>(concept->GetExamples()->Get().size());
     for (int i=0; i!=n_examples; ++i)
@@ -211,34 +211,34 @@ const std::vector<QtPvdbRateConceptTallyDialog::Row>
   return data;
 }
 
-const boost::shared_ptr<pvdb::ConceptMap> QtPvdbRateConceptTallyDialog::CreateTestConceptMap()
+const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::QtPvdbRateConceptTallyDialog::CreateTestConceptMap()
 {
   //Create a subconcept map for testing:
   // - node with a concept with (1) text 'TextNode' (2) one example with text 'TextExampleNode'
   // - edge with a concept with (1) text 'TextEdge' (2) one example with text 'TextExampleEdge'
   // - node with a concept with (1) text 'TextDontCare'
 
-  const boost::shared_ptr<pvdb::Concept> concept_node_focal(pvdb::ConceptFactory::Create("TextNode",
+  const boost::shared_ptr<ribi::pvdb::Concept> concept_node_focal(pvdb::ConceptFactory::Create("TextNode",
     {
       {"TextExampleNode",pvdb::Competency::misc}
     },
     0,1,2));
-  const boost::shared_ptr<pvdb::Concept> concept_node_other(pvdb::ConceptFactory::Create("TextDontCare",
+  const boost::shared_ptr<ribi::pvdb::Concept> concept_node_other(pvdb::ConceptFactory::Create("TextDontCare",
     {
       { }
     },
     0,1,2));
 
-  const boost::shared_ptr<pvdb::Concept> concept_edge(pvdb::ConceptFactory::Create("TextEdge",
+  const boost::shared_ptr<ribi::pvdb::Concept> concept_edge(pvdb::ConceptFactory::Create("TextEdge",
     {
       {"TextExampleEdge",pvdb::Competency::misc}
     },
     2,1,0));
-  const boost::shared_ptr<pvdb::Node> node_focal(pvdb::NodeFactory::Create(concept_node_focal));
-  const boost::shared_ptr<pvdb::Node> node_other(pvdb::NodeFactory::Create(concept_node_other));
+  const boost::shared_ptr<ribi::pvdb::Node> node_focal(pvdb::NodeFactory::Create(concept_node_focal));
+  const boost::shared_ptr<ribi::pvdb::Node> node_other(pvdb::NodeFactory::Create(concept_node_other));
 
-  const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map(
-    pvdb::ConceptMapFactory::Create(
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> sub_concept_map(
+    ribi::pvdb::ConceptMapFactory::Create(
       {
         node_focal,
         node_other
@@ -254,7 +254,7 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbRateConceptTallyDialog::CreateTe
   return sub_concept_map;
 }
 
-int QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
+int ribi::pvdb::QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
 {
   //Tally the edges that contribute to complexity
   const int n_edges = std::accumulate(m_data.begin(),m_data.end(),0,
@@ -282,7 +282,7 @@ int QtPvdbRateConceptTallyDialog::GetSuggestedComplexity() const
   return 2;
 }
 
-int QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
+int ribi::pvdb::QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
 {
   //Tally the examples that contribute to concreteness
   const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
@@ -302,7 +302,7 @@ int QtPvdbRateConceptTallyDialog::GetSuggestedConcreteness() const
   return 2;
 }
 
-int QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
+int ribi::pvdb::QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
 {
   //Tally the examples that contribute to specificity
   const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
@@ -322,12 +322,12 @@ int QtPvdbRateConceptTallyDialog::GetSuggestedSpecificity() const
   return 2;
 }
 
-void QtPvdbRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)
+void ribi::pvdb::QtPvdbRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
+void ribi::pvdb::QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
 {
   assert(row_index >= 0);
   assert(row_index < static_cast<int>(m_data.size()));
@@ -336,7 +336,7 @@ void QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
   const QTableWidgetItem * const item = ui->table->item(row_index,col);
   assert(item);
   const Row& row = m_data[row_index];
-  boost::shared_ptr<pvdb::Concept> concept = row.first;
+  boost::shared_ptr<ribi::pvdb::Concept> concept = row.first;
   const int index = row.second;
 
   if (index == -1)
@@ -374,7 +374,7 @@ void QtPvdbRateConceptTallyDialog::OnCellChanged(int row_index, int col)
   }
 }
 
-void QtPvdbRateConceptTallyDialog::resizeEvent(QResizeEvent *)
+void ribi::pvdb::QtPvdbRateConceptTallyDialog::resizeEvent(QResizeEvent *)
 {
   const int small_col_width = 20;
   ui->table->setColumnWidth(0, small_col_width);
@@ -384,28 +384,28 @@ void QtPvdbRateConceptTallyDialog::resizeEvent(QResizeEvent *)
   ui->table->setColumnWidth(3,ui->table->width() - (3 * small_col_width) - (3 * extra_space));
 }
 
-void QtPvdbRateConceptTallyDialog::on_button_ok_clicked()
+void ribi::pvdb::QtPvdbRateConceptTallyDialog::on_button_ok_clicked()
 {
   close();
 }
 
 #ifndef NDEBUG
-void QtPvdbRateConceptTallyDialog::Test()
+void ribi::pvdb::QtPvdbRateConceptTallyDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started QtPvdbRateConceptTallyDialog::Test");
+  TRACE("Started ribi::pvdb::QtPvdbRateConceptTallyDialog::Test");
   //Empty table
   {
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map;
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map;
     assert(!concept_map);
     QtPvdbRateConceptTallyDialog d(concept_map);
   }
 
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map = CreateTestConceptMap();
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = CreateTestConceptMap();
   assert(concept_map);
 
 
@@ -421,9 +421,9 @@ void QtPvdbRateConceptTallyDialog::Test()
   assert(d.ui->table->rowCount() == 3);
   assert(concept_map->GetNodes().size() == 2);
   assert(concept_map->GetEdges().size() == 1);
-  const boost::shared_ptr<pvdb::Node> focal_node = concept_map->GetNodes()[0];
-  //const boost::shared_ptr<pvdb::Node> other_node = concept_map->GetNodes()[1]; //Don't care
-  const boost::shared_ptr<pvdb::Edge> edge = concept_map->GetEdges()[0];
+  const boost::shared_ptr<ribi::pvdb::Node> focal_node = concept_map->GetNodes()[0];
+  //const boost::shared_ptr<ribi::pvdb::Node> other_node = concept_map->GetNodes()[1]; //Don't care
+  const boost::shared_ptr<ribi::pvdb::Edge> edge = concept_map->GetEdges()[0];
 
   assert(d.ui->table->item(0,0)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
   assert(d.ui->table->item(0,1)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
@@ -488,6 +488,6 @@ void QtPvdbRateConceptTallyDialog::Test()
   assert(d.ui->table->item(2,2)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(2,3)->text() == QString(edge->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
-  TRACE("Finished QtPvdbRateConceptTallyDialog::Test successfully");
+  TRACE("Finished ribi::pvdb::QtPvdbRateConceptTallyDialog::Test successfully");
 }
 #endif

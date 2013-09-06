@@ -24,6 +24,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 #include <QGraphicsView>
 struct QGraphicsScene;
+
+namespace ribi {
+
 namespace Music { struct ChordVertex; struct Chord; }
 
 struct QtMultiScaleChordRelationsWidget : public QGraphicsView
@@ -46,5 +49,7 @@ struct QtMultiScaleChordRelationsWidget : public QGraphicsView
   private:
   QGraphicsScene * const m_scene;
 };
+
+} //~namespace ribi
 
 #endif // QTMULTISCALECHORDRELATIONSWIDGET_H

@@ -31,9 +31,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 //---------------------------------------------------------------------------
 ///The path this dialog starts at
-std::string WtSelectFileDialog::m_path = "";
+std::string ribi::WtSelectFileDialog::m_path = "";
 //---------------------------------------------------------------------------
-WtSelectFileDialog::Ui::Ui()
+ribi::WtSelectFileDialog::Ui::Ui()
  : m_edit_filter(new Wt::WLineEdit(".*")),
    m_label_filter(new Wt::WLabel("File filter: ")),
    m_selection_box(new Wt::WSelectionBox)
@@ -42,11 +42,11 @@ WtSelectFileDialog::Ui::Ui()
 
 }
 //---------------------------------------------------------------------------
-WtSelectFileDialog::WtSelectFileDialog()
+ribi::WtSelectFileDialog::WtSelectFileDialog()
 {
   assert(!m_path.empty()
     && "Path must be set from argv[0]:"
-    && "WtSelectFileDialog::SetPath(boost::filesystem::path(argv[0]).parent_path().string());");
+    && "ribi::WtSelectFileDialog::SetPath(boost::filesystem::path(argv[0]).parent_path().string());");
   clear();
   setContentAlignment(Wt::AlignCenter);
 
@@ -56,28 +56,28 @@ WtSelectFileDialog::WtSelectFileDialog()
   this->addWidget(ui.m_edit_filter);
 
   ui.m_edit_filter->changed().connect(this,
-    &WtSelectFileDialog::OnUpdateDialog);
+    &ribi::WtSelectFileDialog::OnUpdateDialog);
   ui.m_edit_filter->enterPressed().connect(this,
-    &WtSelectFileDialog::OnUpdateDialog);
+    &ribi::WtSelectFileDialog::OnUpdateDialog);
   ui.m_edit_filter->keyWentUp().connect(this,
-    &WtSelectFileDialog::OnUpdateDialog);
+    &ribi::WtSelectFileDialog::OnUpdateDialog);
   ui.m_selection_box->activated().connect(this,
-    &WtSelectFileDialog::OnSelect);
+    &ribi::WtSelectFileDialog::OnSelect);
   ui.m_selection_box->clicked().connect(this,
-    &WtSelectFileDialog::OnSelect);
+    &ribi::WtSelectFileDialog::OnSelect);
   ui.m_selection_box->doubleClicked().connect(this,
-    &WtSelectFileDialog::OnSelect);
+    &ribi::WtSelectFileDialog::OnSelect);
   ui.m_selection_box->setSelectionMode(Wt::SingleSelection);
   ui.m_selection_box->resize(400,Wt::WLength::Auto);
   OnUpdateDialog();
 }
 //---------------------------------------------------------------------------
-void WtSelectFileDialog::DoRefresh()
+void ribi::WtSelectFileDialog::DoRefresh()
 {
   OnUpdateDialog();
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtSelectFileDialog::GetFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::WtSelectFileDialog::GetFilesInFolder(const std::string& folder)
 {
   assert(!m_path.empty() && "Path must be set from argv[0]");
   std::vector<std::string> v;
@@ -103,18 +103,18 @@ const std::vector<std::string> WtSelectFileDialog::GetFilesInFolder(const std::s
   return v;
 }
 //---------------------------------------------------------------------------
-const std::string WtSelectFileDialog::GetSelectedFile() const
+const std::string ribi::WtSelectFileDialog::GetSelectedFile() const
 {
   if (ui.m_selection_box->currentIndex() == -1) return std::string();
   return ui.m_selection_box->itemText(ui.m_selection_box->currentIndex()).toUTF8();
 }
 //---------------------------------------------------------------------------
-const std::string WtSelectFileDialog::GetVersion()
+const std::string ribi::WtSelectFileDialog::GetVersion()
 {
   return "1.5";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtSelectFileDialog::GetVersionHistory()
+const std::vector<std::string> ribi::WtSelectFileDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-07-01: version 1.0: initial version");
@@ -126,7 +126,7 @@ const std::vector<std::string> WtSelectFileDialog::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtSelectFileDialog::OnUpdateDialog()
+void ribi::WtSelectFileDialog::OnUpdateDialog()
 {
   ui.m_selection_box->clear();
 
@@ -138,13 +138,13 @@ void WtSelectFileDialog::OnUpdateDialog()
   }
 }
 //---------------------------------------------------------------------------
-void WtSelectFileDialog::OnSelect()
+void ribi::WtSelectFileDialog::OnSelect()
 {
   if (ui.m_selection_box->currentIndex() == -1) return;
   m_signal_selected();
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtSelectFileDialog::SelectFiles() const
+const std::vector<std::string> ribi::WtSelectFileDialog::SelectFiles() const
 {
   try
   {
@@ -179,18 +179,18 @@ const std::vector<std::string> WtSelectFileDialog::SelectFiles() const
   return w;
 }
 //---------------------------------------------------------------------------
-void WtSelectFileDialog::SetFilter(const std::string& filename_filter)
+void ribi::WtSelectFileDialog::SetFilter(const std::string& filename_filter)
 {
   ui.m_edit_filter->setText(filename_filter.c_str());
   OnUpdateDialog();
 }
 //---------------------------------------------------------------------------
-void WtSelectFileDialog::SetFilterReadOnly(const bool readonly)
+void ribi::WtSelectFileDialog::SetFilterReadOnly(const bool readonly)
 {
   ui.m_edit_filter->setReadOnly(readonly);
 }
 //---------------------------------------------------------------------------
-void WtSelectFileDialog::SetPath(const std::string& path)
+void ribi::WtSelectFileDialog::SetPath(const std::string& path)
 {
   m_path = path;
 }

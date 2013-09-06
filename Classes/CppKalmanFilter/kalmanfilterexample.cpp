@@ -6,11 +6,7 @@
 
 #include <cassert>
 
-#ifdef __STRICT_ANSI__
 #include <boost/math/constants/constants.hpp>
-#else
-#include <cmath>
-#endif
 
 #include <memory>
 
@@ -302,11 +298,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   const double dt = 0.1; //Timestep
   const double g = 9.81; //Gravity
 
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   const double angle = pi / 4.0; //Radians. 45 degrees = pi / 4.0 radians
 
 
@@ -816,11 +808,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   const double gamma = -std::log(0.1)/1000.0;
   //Reach a 10% value after 1000 timesteps with the recurrence equation
 
-  #ifdef __STRICT_ANSI__
   const double e = boost::math::constants::e<double>();
-  #else
-  const double e = M_E;
-  #endif
   const double tau = std::pow(e,std::log(0.1) / 1000.0);
 
   const int number_of_timesteps = 1000;
@@ -975,12 +963,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   const double e = 0.00000000001;
   //Period of 100 timesteps
 
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   const double angular_frequency = 2.0 * pi / 100.0;
 
   //Correct for floating point rounding errors that will increase the amplitude.
@@ -1146,12 +1129,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   const double e = 0.00000000001;
   //Period of 100 timesteps
 
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   const double angular_frequency = 2.0 * pi / 100.0;
   //Correct for floating point rounding errors that will increase the amplitude.
   //This value is found by experimenting

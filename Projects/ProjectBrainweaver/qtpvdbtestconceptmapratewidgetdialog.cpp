@@ -38,12 +38,12 @@
 #include "trace.h"
 #include "ui_qtpvdbtestconceptmapratewidgetdialog.h"
 
-QtPvdbTestConceptMapRateWidgetDialog::QtPvdbTestConceptMapRateWidgetDialog(QWidget *parent) :
+ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::QtPvdbTestConceptMapRateWidgetDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestConceptMapRateWidgetDialog),
   m_concept_map(
     new QtPvdbConceptMapRateWidget(
-      pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+      ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
     )
   )
 
@@ -56,12 +56,12 @@ QtPvdbTestConceptMapRateWidgetDialog::QtPvdbTestConceptMapRateWidgetDialog(QWidg
   ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
-QtPvdbTestConceptMapRateWidgetDialog::~QtPvdbTestConceptMapRateWidgetDialog()
+ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::~QtPvdbTestConceptMapRateWidgetDialog()
 {
   delete ui;
 }
 
-void QtPvdbTestConceptMapRateWidgetDialog::DoSomethingRandom()
+void ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::DoSomethingRandom()
 {
 
   const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();
@@ -102,7 +102,7 @@ void QtPvdbTestConceptMapRateWidgetDialog::DoSomethingRandom()
   m_concept_map->GetScene()->update();
 }
 
-void QtPvdbTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
+void ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
 {
   if (e->key() == Qt::Key_Escape) { close(); return; }
   if (e->modifiers() & Qt::AltModifier && e->key() == Qt::Key_1)
@@ -112,7 +112,7 @@ void QtPvdbTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
   }
 }
 
-void QtPvdbTestConceptMapRateWidgetDialog::Test()
+void ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -124,13 +124,13 @@ void QtPvdbTestConceptMapRateWidgetDialog::Test()
     []
     {
   #endif
-  TRACE("QtPvdbTestConceptMapRateWidgetDialog::Test started");
+  TRACE("ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::Test started");
   //Doing random stuff
   {
     QtPvdbTestConceptMapRateWidgetDialog d;
     for (int i=0; i!=100; ++i) d.DoSomethingRandom();
   }
-  TRACE("QtPvdbTestConceptMapRateWidgetDialog::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

@@ -31,36 +31,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 #include "ui_qttestqtarrowitemsmenudialog.h"
 
-QtTestQtArrowItemsMenuDialog::QtTestQtArrowItemsMenuDialog(QWidget *parent) :
+ribi::QtTestQtArrowItemsMenuDialog::QtTestQtArrowItemsMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtArrowItemsMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestQtArrowItemsMenuDialog::~QtTestQtArrowItemsMenuDialog()
+ribi::QtTestQtArrowItemsMenuDialog::~QtTestQtArrowItemsMenuDialog()
 {
   delete ui;
 }
 
-void QtTestQtArrowItemsMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestQtArrowItemsMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtArrowItemsMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtTestQtArrowItemsMenuDialog::on_button_about_clicked()
+void ribi::QtTestQtArrowItemsMenuDialog::on_button_about_clicked()
 {
   About a = TestQtArrowItemsMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -72,12 +60,12 @@ void QtTestQtArrowItemsMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtTestQtArrowItemsMenuDialog::on_button_quit_clicked()
+void ribi::QtTestQtArrowItemsMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtTestQtArrowItemsMenuDialog::on_button_start_clicked()
+void ribi::QtTestQtArrowItemsMenuDialog::on_button_start_clicked()
 {
   QtTestQtArrowItemsMainDialog d;
   ShowChild(&d);

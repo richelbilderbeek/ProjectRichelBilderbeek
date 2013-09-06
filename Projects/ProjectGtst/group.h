@@ -28,6 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "participant.h"
 //---------------------------------------------------------------------------
+namespace ribi {
+namespace gtst {
+
 ///Group is a Participant group
 struct Group
 {
@@ -118,5 +121,8 @@ struct Group
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os, const Group& group);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // GROUP_H

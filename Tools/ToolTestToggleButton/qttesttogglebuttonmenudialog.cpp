@@ -30,19 +30,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testtogglebuttonmenudialog.h"
 #include "ui_qttesttogglebuttonmenudialog.h"
 
-QtTestToggleButtonMenuDialog::QtTestToggleButtonMenuDialog(QWidget *parent) :
+ribi::QtTestToggleButtonMenuDialog::QtTestToggleButtonMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestToggleButtonMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestToggleButtonMenuDialog::~QtTestToggleButtonMenuDialog()
+ribi::QtTestToggleButtonMenuDialog::~QtTestToggleButtonMenuDialog()
 {
   delete ui;
 }
 
-void QtTestToggleButtonMenuDialog::on_button_start_clicked()
+void ribi::QtTestToggleButtonMenuDialog::on_button_start_clicked()
 {
   QtTestToggleButtonMainDialog d;
   hide();
@@ -50,7 +50,7 @@ void QtTestToggleButtonMenuDialog::on_button_start_clicked()
   show();
 }
 
-void QtTestToggleButtonMenuDialog::on_button_about_clicked()
+void ribi::QtTestToggleButtonMenuDialog::on_button_about_clicked()
 {
   hide();
   About a = TestToggleButtonMenuDialog::GetAbout();
@@ -61,7 +61,7 @@ void QtTestToggleButtonMenuDialog::on_button_about_clicked()
   show();
 }
 
-void QtTestToggleButtonMenuDialog::on_button_quit_clicked()
+void ribi::QtTestToggleButtonMenuDialog::on_button_quit_clicked()
 {
   close();
 }

@@ -26,35 +26,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "payoffs.h"
 #include "trace.h"
 //---------------------------------------------------------------------------
-Payoffs::Payoffs()
+ribi::gtst::Payoffs::Payoffs()
 {
 
 }
 //---------------------------------------------------------------------------
-void Payoffs::Add(boost::shared_ptr<Payoff> payoff)
+void ribi::gtst::Payoffs::Add(boost::shared_ptr<Payoff> payoff)
 {
   assert(payoff);
   m_v.push_back(payoff);
 }
 //---------------------------------------------------------------------------
-int Payoffs::GetSize() const
+int ribi::gtst::Payoffs::GetSize() const
 {
   return boost::numeric_cast<int>(m_v.size());
 }
 //---------------------------------------------------------------------------
-bool Payoffs::IsEmpty() const
+bool ribi::gtst::Payoffs::IsEmpty() const
 {
   return m_v.empty();
 }
 //---------------------------------------------------------------------------
-const boost::shared_ptr<const Payoff> Payoffs::GetLast() const
+const boost::shared_ptr<const ribi::gtst::Payoff> ribi::gtst::Payoffs::GetLast() const
 {
   assert(!m_v.empty());
   return m_v.back();
 }
 //---------------------------------------------------------------------------
 ///Get the sum of the last n obtained payoffs
-double Payoffs::GetLast(const int n) const
+double ribi::gtst::Payoffs::GetLast(const int n) const
 {
   #define DEBUG_TEMP_732487276655432842
   #ifdef  DEBUG_TEMP_732487276655432842
@@ -76,7 +76,7 @@ double Payoffs::GetLast(const int n) const
   );
 }
 //---------------------------------------------------------------------------
-double Payoffs::GetTotal() const
+double ribi::gtst::Payoffs::GetTotal() const
 {
   return std::accumulate(
     m_v.begin(),m_v.end(),0.0,

@@ -39,22 +39,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtshapegroupwidget.h"
 #include "wtshapewidget.h"
 //---------------------------------------------------------------------------
-WtShapeGroupWidget::WtShapeGroupWidget()
+ribi::WtShapeGroupWidget::WtShapeGroupWidget()
 {
   this->resize(100,100);
 }
 //---------------------------------------------------------------------------
-void WtShapeGroupWidget::DoRepaint()
+void ribi::WtShapeGroupWidget::DoRepaint()
 {
   this->update();
 }
 //---------------------------------------------------------------------------
-const std::string WtShapeGroupWidget::GetVersion()
+const std::string ribi::WtShapeGroupWidget::GetVersion()
 {
   return "1.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtShapeGroupWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtShapeGroupWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -62,7 +62,7 @@ const std::vector<std::string> WtShapeGroupWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtShapeGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtShapeGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   const int width  = this->width().toPixels();
@@ -137,7 +137,7 @@ void WtShapeGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 }
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppRainbow.htm
-void WtShapeGroupWidget::Rainbow(
+void ribi::WtShapeGroupWidget::Rainbow(
   const double x,
   double& r,
   double& g,
@@ -158,7 +158,7 @@ void WtShapeGroupWidget::Rainbow(
   b = f_b / max;
 }
 //---------------------------------------------------------------------------
-void WtShapeGroupWidget::SetShapes(const std::vector<std::vector<const Shape*> >& v)
+void ribi::WtShapeGroupWidget::SetShapes(const std::vector<std::vector<const Shape*> >& v)
 {
   m_v = v;
   update();

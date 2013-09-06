@@ -12,7 +12,7 @@
 #include <QGraphicsScene>
 #include <QPainter>
 
-QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
+ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   : QGraphicsRectItem(parent), //New since Qt5
    m_contour_pen(QPen(QColor(0,0,0))),
    m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine))
@@ -24,12 +24,12 @@ QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   this->SetRoundedRect(QRectF(-16.0,-16.0,32.0,32.0),4.0,4.0);
 }
 
-const std::string QtRoundedRectItem::GetVersion()
+const std::string ribi::QtRoundedRectItem::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> QtRoundedRectItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-13: version 1.0: initial version");
@@ -40,14 +40,14 @@ const std::vector<std::string> QtRoundedRectItem::GetVersionHistory()
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
   QGraphicsRectItem::mouseMoveEvent(event);
   m_signal_request_scene_update();
 }
 #pragma GCC diagnostic pop
 
-void QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
   painter->setBrush(brush());
   //The item can be selected by clicking on it, or can have focus by moving towards it
@@ -63,7 +63,7 @@ void QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem 
   }
 }
 
-void QtRoundedRectItem::SetContourPen(const QPen& pen)
+void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen)
 {
   if (m_contour_pen != pen)
   {
@@ -73,7 +73,7 @@ void QtRoundedRectItem::SetContourPen(const QPen& pen)
   }
 }
 
-void QtRoundedRectItem::SetFocusPen(const QPen& pen)
+void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen)
 {
   if (m_focus_pen != pen)
   {
@@ -83,7 +83,7 @@ void QtRoundedRectItem::SetFocusPen(const QPen& pen)
   }
 }
 
-void QtRoundedRectItem::SetRadiusX(const double radius_x)
+void ribi::QtRoundedRectItem::SetRadiusX(const double radius_x)
 {
   if (m_radius_x != radius_x)
   {
@@ -93,7 +93,7 @@ void QtRoundedRectItem::SetRadiusX(const double radius_x)
   }
 }
 
-void QtRoundedRectItem::SetRadiusY(const double radius_y)
+void ribi::QtRoundedRectItem::SetRadiusY(const double radius_y)
 {
   if (m_radius_y != radius_y)
   {
@@ -104,7 +104,7 @@ void QtRoundedRectItem::SetRadiusY(const double radius_y)
 }
 
 
-void QtRoundedRectItem::SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y)
+void ribi::QtRoundedRectItem::SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y)
 {
   this->setRect(rect);
   this->SetRadiusX(radius_x);

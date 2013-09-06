@@ -48,7 +48,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #error Pylos::Game must not be used by a QtPylosTestBoard
 #endif
 
-QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
+ribi::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestPylosTestBoardDialog),
   m_widget(new QtPylosBoardWidget),
@@ -79,25 +79,13 @@ QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
   UpdateLog();
 }
 
-QtTestPylosTestBoardDialog::~QtTestPylosTestBoardDialog()
+ribi::QtTestPylosTestBoardDialog::~QtTestPylosTestBoardDialog()
 {
   m_timer->stop();
   delete ui;
 }
 
-void QtTestPylosTestBoardDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
+void ribi::QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
 {
   if (m_timer->isActive())
   {
@@ -123,7 +111,7 @@ void QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
   }
 }
 
-void QtTestPylosTestBoardDialog::OnTimer()
+void ribi::QtTestPylosTestBoardDialog::OnTimer()
 {
   //Click player
   if ((rand() >> 4) % 2) { ui->radio_set_player1->click(); } else { ui->radio_set_player2->click(); }
@@ -166,7 +154,7 @@ void QtTestPylosTestBoardDialog::OnTimer()
   }
 }
 
-void QtTestPylosTestBoardDialog::on_radio_set_player1_clicked()
+void ribi::QtTestPylosTestBoardDialog::on_radio_set_player1_clicked()
 {
   if (m_widget->CanSetPlayer(Pylos::Player::player1))
   {
@@ -178,7 +166,7 @@ void QtTestPylosTestBoardDialog::on_radio_set_player1_clicked()
   }
 }
 
-void QtTestPylosTestBoardDialog::on_radio_set_player2_clicked()
+void ribi::QtTestPylosTestBoardDialog::on_radio_set_player2_clicked()
 {
   if (m_widget->CanSetPlayer(Pylos::Player::player2))
   {
@@ -190,27 +178,27 @@ void QtTestPylosTestBoardDialog::on_radio_set_player2_clicked()
   }
 }
 
-void QtTestPylosTestBoardDialog::on_radio_advanced_clicked()
+void ribi::QtTestPylosTestBoardDialog::on_radio_advanced_clicked()
 {
   m_widget->StartAdvanced();
 }
 
-void QtTestPylosTestBoardDialog::on_radio_basic_clicked()
+void ribi::QtTestPylosTestBoardDialog::on_radio_basic_clicked()
 {
   m_widget->StartBasic();
 }
 
-void QtTestPylosTestBoardDialog::on_radio_bw_clicked()
+void ribi::QtTestPylosTestBoardDialog::on_radio_bw_clicked()
 {
   m_widget->SetColorSchemeBlackWhite();
 }
 
-void QtTestPylosTestBoardDialog::on_radio_rb_clicked()
+void ribi::QtTestPylosTestBoardDialog::on_radio_rb_clicked()
 {
   m_widget->SetColorSchemeRedBlue();
 }
 
-void QtTestPylosTestBoardDialog::UpdateLog()
+void ribi::QtTestPylosTestBoardDialog::UpdateLog()
 {
   ui->text_log->clear();
 
@@ -257,14 +245,9 @@ void QtTestPylosTestBoardDialog::UpdateLog()
   }
 }
 
-void QtTestPylosTestBoardDialog::on_slider_tilt_sliderMoved(int position)
+void ribi::QtTestPylosTestBoardDialog::on_slider_tilt_sliderMoved(int position)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   const double radians = (static_cast<double>(position) * 2.0 * pi) / 360.0;
   this->m_widget->SetTilt(radians);
   {

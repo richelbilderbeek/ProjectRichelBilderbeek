@@ -27,6 +27,9 @@ namespace Ui {
 class QtTestPylosRandomPlayDialog;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 class QtTestPylosRandomPlayDialog : public QDialog
 {
   Q_OBJECT
@@ -45,5 +48,7 @@ private slots:
 private:
   Ui::QtTestPylosRandomPlayDialog *ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTPYLOSRANDOMPLAYDIALOG_H

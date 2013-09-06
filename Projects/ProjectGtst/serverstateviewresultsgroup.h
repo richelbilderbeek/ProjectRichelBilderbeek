@@ -29,6 +29,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "serverstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Server in the state when each Participant can view
 ///the results of his/her group.
@@ -86,5 +90,8 @@ struct ServerStateViewResultsGroup : public ServerState, StateViewResultsGroup
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ServerStateViewResultsGroup& s);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ServerSTATEVIEWRESULTSGROUP_H

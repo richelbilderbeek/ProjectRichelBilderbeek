@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "repeatassignerrandomuniform.h"
 //---------------------------------------------------------------------------
-RepeatAssignerRandomUniform::RepeatAssignerRandomUniform(const int from, const int to)
+ribi::gtst::RepeatAssignerRandomUniform::RepeatAssignerRandomUniform(const int from, const int to)
   : m_from(from),
     m_to(to)
 {
@@ -34,7 +34,7 @@ RepeatAssignerRandomUniform::RepeatAssignerRandomUniform(const int from, const i
   assert(m_from < m_to && "A range must start with the lower number");
 }
 //---------------------------------------------------------------------------
-int RepeatAssignerRandomUniform::Assign() const
+int ribi::gtst::RepeatAssignerRandomUniform::Assign() const
 {
   const int value
     = m_from + (std::rand() % (m_from - m_to));
@@ -49,7 +49,7 @@ int RepeatAssignerRandomUniform::Assign() const
 }
 //---------------------------------------------------------------------------
 ///Converts RepeatAssignerRandomUniform to std::string
-const std::string RepeatAssignerRandomUniform::ToStr() const
+const std::string ribi::gtst::RepeatAssignerRandomUniform::ToStr() const
 {
   return
       std::string("<repeatassigner_random_uniform>")

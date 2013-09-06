@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "server.h"
 //---------------------------------------------------------------------------
-ServerStateWaiting::ServerStateWaiting(
+ribi::gtst::ServerStateWaiting::ServerStateWaiting(
   Server * const server, const int period, const int cycle)
   : ServerState(server,period,cycle)
 {
@@ -40,24 +40,24 @@ ServerStateWaiting::ServerStateWaiting(
 }
 //---------------------------------------------------------------------------
 ///Check if this state can go to the next state.
-bool ServerStateWaiting::CanGoToNextState() const
+bool ribi::gtst::ServerStateWaiting::CanGoToNextState() const
 {
   return true;
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateWaiting::GetStateDuration() const
+int ribi::gtst::ServerStateWaiting::GetStateDuration() const
 {
   return boost::numeric::bounds<int>::highest();
 }
 //---------------------------------------------------------------------------
-void ServerStateWaiting::OnTimer()
+void ribi::gtst::ServerStateWaiting::OnTimer()
 {
   //if (CanGoToNextState()) GoToNextState();
   //Do NOT go to the next state by a timer, but by uploading Parameters
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateWaiting& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateWaiting& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

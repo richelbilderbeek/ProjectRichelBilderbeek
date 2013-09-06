@@ -34,10 +34,15 @@ namespace Wt
 }
 //---------------------------------------------------------------------------
 #include "connectthreeresources.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtSelectPlayerWidget : public Wt::WPaintedWidget
 {
-  WtSelectPlayerWidget();
+  WtSelectPlayerWidget(
+    const boost::shared_ptr<const ConnectThreeResources> resources
+  );
+
   const std::bitset<3>& GetIsPlayerHuman() const { return m_is_player_human; }
   boost::signals2::signal<void ()> m_signal_on_clicked;
 
@@ -51,5 +56,7 @@ struct WtSelectPlayerWidget : public Wt::WPaintedWidget
   const std::vector<const Wt::WPainter::Image *> m_players;
   const std::vector<const Wt::WPainter::Image *> m_players_grey;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTSELECTPLAYERWIDGET_H

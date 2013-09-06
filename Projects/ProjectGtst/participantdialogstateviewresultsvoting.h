@@ -24,6 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "forward_declarations.h"
 #include "participantdialogstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The ParticipantDialog is in its view results group state.
 struct ParticipantDialogStateViewResultsVoting
@@ -75,5 +79,8 @@ struct ParticipantDialogStateViewResultsVoting
     Wt::WLabel * m_label_time_left;
   } ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTDIALOGSTATEVIEWRESULTSVOTING_H

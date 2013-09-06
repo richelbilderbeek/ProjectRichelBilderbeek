@@ -24,6 +24,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosfwd.h"
 //#include "pylosplayer.h"
 
+namespace ribi {
+
 namespace Pylos {
 
 enum class PositionState { player1, player2, empty };
@@ -35,5 +37,7 @@ bool operator!=(const PositionState state, const Player& player);
 //bool operator!(const PositionState& state);
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // PYLOSPOSITIONSTATE_H

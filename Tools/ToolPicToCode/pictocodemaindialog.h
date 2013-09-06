@@ -26,8 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "about.h"
 //---------------------------------------------------------------------------
-///TicTacToeMenuDialog embodies the logic
-///behind the TicTacToe menu
+
+namespace ribi {
+
 struct PicToCodeMainDialog
 {
   struct Pixel
@@ -46,5 +47,7 @@ struct PicToCodeMainDialog
   static const std::vector<std::string>
     PicToQtCode(const YxImage& image);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // PICTOCODEMAINDIALOG_H

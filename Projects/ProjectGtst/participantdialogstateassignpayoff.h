@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "participantdialogstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///ParticipantDialogStateAssignPayoff is the state the ParticipantDialog is
 ///in when the experiment has finished.
@@ -81,5 +85,8 @@ struct ParticipantDialogStateAssignPayoff
   bool GetAllParticipantsHaveAssignedPayoff() const;
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTDIALOGSTATEASSIGNPAYOFF_H

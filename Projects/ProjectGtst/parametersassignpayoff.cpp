@@ -26,14 +26,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "parametersassignpayoff.h"
 //---------------------------------------------------------------------------
-ParametersAssignPayoff::ParametersAssignPayoff()
+ribi::gtst::ParametersAssignPayoff::ParametersAssignPayoff()
   : m_message("Assigning payoffs...")
 {
 
 }
 //---------------------------------------------------------------------------
 ///Parse a line
-void ParametersAssignPayoff::Parse(const std::string& s)
+void ribi::gtst::ParametersAssignPayoff::Parse(const std::string& s)
 {
   if (s.size() > 27 && s.substr(0,27) == "individual_cost_contribute=")
   {
@@ -54,13 +54,13 @@ void ParametersAssignPayoff::Parse(const std::string& s)
 }
 //---------------------------------------------------------------------------
 ///Set the message displayed in the ParticipantDialogStateAssignPayoff
-void ParametersAssignPayoff::SetMessage(const std::string& message)
+void ribi::gtst::ParametersAssignPayoff::SetMessage(const std::string& message)
 {
   assert(!message.empty());
   m_message = message;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ParametersAssignPayoff& parameters)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersAssignPayoff& parameters)
 {
   os
     << "<parametersassignpayoff>"

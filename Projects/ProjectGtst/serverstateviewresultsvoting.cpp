@@ -46,7 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "vote.h"
 #include "votingoption.h"
 
-ServerStateViewResultsVoting::ServerStateViewResultsVoting(
+ribi::gtst::ServerStateViewResultsVoting::ServerStateViewResultsVoting(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersViewResultsVoting>& parameters)
   : ServerState(server,period,cycle),
@@ -55,13 +55,13 @@ ServerStateViewResultsVoting::ServerStateViewResultsVoting(
   assert(m_parameters);
 }
 
-///Check if this state can go to the next state.
-bool ServerStateViewResultsVoting::CanGoToNextState() const
+///Check if this state can go to the next state.1
+bool ribi::gtst::ServerStateViewResultsVoting::CanGoToNextState() const
 {
   return GetTimeLeft() < 0;
 }
 
-const std::vector<boost::shared_ptr<Vote> > ServerStateViewResultsVoting::GetGroupResults(
+const std::vector<boost::shared_ptr<ribi::gtst::Vote> > ribi::gtst::ServerStateViewResultsVoting::GetGroupResults(
   const boost::shared_ptr<const Participant>& participant) const
 {
   assert(participant);
@@ -90,19 +90,19 @@ const std::vector<boost::shared_ptr<Vote> > ServerStateViewResultsVoting::GetGro
 }
 
 ///Obtain the duration of the state in seconds
-int ServerStateViewResultsVoting::GetStateDuration() const
+int ribi::gtst::ServerStateViewResultsVoting::GetStateDuration() const
 {
   assert(m_parameters);
   return m_parameters->GetDuration();
 }
 
-void ServerStateViewResultsVoting::OnTimer()
+void ribi::gtst::ServerStateViewResultsVoting::OnTimer()
 {
   if (CanGoToNextState()) GoToNextState();
 }
 
 /*
-void ServerStateViewResultsVoting::SetParameters(
+void ribi::gtst::ServerStateViewResultsVoting::SetParameters(
   const boost::shared_ptr<const ParametersViewResultsVoting>& parameters)
 {
   assert(parameters);
@@ -113,7 +113,7 @@ void ServerStateViewResultsVoting::SetParameters(
 */
 
 ///Start or restart the state
-void ServerStateViewResultsVoting::Start()
+void ribi::gtst::ServerStateViewResultsVoting::Start()
 {
   ///Setting the group its vote
   m_voted_concensus.clear();
@@ -210,7 +210,7 @@ void ServerStateViewResultsVoting::Start()
   }
 }
 
-std::ostream& operator<<(std::ostream& os,const ServerStateViewResultsVoting& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateViewResultsVoting& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

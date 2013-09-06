@@ -30,6 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintedWidget>
 //---------------------------------------------------------------------------
 namespace Wt { struct WMouseEventEvent; }
+
+namespace ribi {
+
 struct RubiksClock;
 struct RubiksClockWidget;
 //---------------------------------------------------------------------------
@@ -142,5 +145,7 @@ void PaintVcl(TImage * const image,
   const unsigned char blue  );
 
 */
+
+} //~namespace ribi
 
 #endif // WTRUBIKSCLOCKWIDGET_H

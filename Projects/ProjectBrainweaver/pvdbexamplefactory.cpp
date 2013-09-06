@@ -9,11 +9,7 @@
 
 #include "pvdbexample.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-const boost::shared_ptr<pvdb::Example> pvdb::ExampleFactory::Create(
+const boost::shared_ptr<ribi::pvdb::Example> ribi::pvdb::ExampleFactory::Create(
   const std::string& text,
   const pvdb::Competency& competency,
   const bool is_complex,
@@ -33,7 +29,7 @@ const boost::shared_ptr<pvdb::Example> pvdb::ExampleFactory::Create(
   return example;
 }
 
-const std::vector<boost::shared_ptr<pvdb::Example> > pvdb::ExampleFactory::GetTests()
+const std::vector<boost::shared_ptr<ribi::pvdb::Example> > ribi::pvdb::ExampleFactory::GetTests()
 {
   return
   {
@@ -47,7 +43,3 @@ const std::vector<boost::shared_ptr<pvdb::Example> > pvdb::ExampleFactory::GetTe
     Create("",Competency::uninitialized),
   };
 }
-
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-} //~namespace pvdb
-#endif

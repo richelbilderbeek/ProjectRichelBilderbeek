@@ -14,24 +14,24 @@
    <string>TestQtRoundedEditRectItem</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolTestQtRoundedEditRectItem.qrc">
+   <iconset resource="../../Projects/ProjectBrainweaver/Brainweaver.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QtTestQtRoundedEditRectItemWidget" name="view"/>
+    <widget class="ribi::QtTestQtRoundedEditRectItemWidget" name="view"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtTestQtRoundedEditRectItemWidget</class>
+   <class>ribi::QtTestQtRoundedEditRectItemWidget</class>
    <extends>QGraphicsView</extends>
    <header>qttestqtroundededitrectitemwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="ToolTestQtRoundedEditRectItem.qrc"/>
+  <include location="../../Projects/ProjectBrainweaver/Brainweaver.qrc"/>
  </resources>
  <connections/>
 </ui>

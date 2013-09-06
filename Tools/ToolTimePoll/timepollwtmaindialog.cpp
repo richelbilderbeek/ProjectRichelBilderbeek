@@ -34,16 +34,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 #include "timepollwtmaindialog.h"
 //---------------------------------------------------------------------------
-namespace ToolTimePoll {
 //---------------------------------------------------------------------------
-WtTimePollMainDialog::WtTimePollMainDialog()
+ribi::ToolTimePoll::WtTimePollMainDialog::WtTimePollMainDialog()
 {
   ShowMain();
   OnServerPush();
   OnTimedServerPush();
 }
 //---------------------------------------------------------------------------
-void WtTimePollMainDialog::ShowMain()
+void ribi::ToolTimePoll::WtTimePollMainDialog::ShowMain()
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);
@@ -69,7 +68,7 @@ void WtTimePollMainDialog::ShowMain()
     }
 
     ui.m_group->checkedChanged().connect(
-      this,&WtTimePollMainDialog::OnChangeIndex);
+      this,&ribi::ToolTimePoll::WtTimePollMainDialog::OnChangeIndex);
   }
   //Faked chart
   {
@@ -95,20 +94,20 @@ void WtTimePollMainDialog::ShowMain()
 }
 //---------------------------------------------------------------------------
 ///Send the new selected radio button's index
-void WtTimePollMainDialog::OnChangeIndex()
+void ribi::ToolTimePoll::WtTimePollMainDialog::OnChangeIndex()
 {
   ToolTimePoll::Data::GetInstance()->SetIndex(ui.m_group->selectedButtonIndex());
   WtServerPusher::GetInstance()->Post();
 }
 //---------------------------------------------------------------------------
-void WtTimePollMainDialog::OnServerPush()
+void ribi::ToolTimePoll::WtTimePollMainDialog::OnServerPush()
 {
   //Only index has changed
   Data * const data = ToolTimePoll::Data::GetInstance();
   ui.m_group->setSelectedButtonIndex(data->GetIndex());
 }
 //---------------------------------------------------------------------------
-void WtTimePollMainDialog::OnTimedServerPush()
+void ribi::ToolTimePoll::WtTimePollMainDialog::OnTimedServerPush()
 {
   Data * const data = ToolTimePoll::Data::GetInstance();
   //Times have changed
@@ -156,6 +155,4 @@ void WtTimePollMainDialog::OnTimedServerPush()
     + "%"
     );
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTimePoll
 //---------------------------------------------------------------------------

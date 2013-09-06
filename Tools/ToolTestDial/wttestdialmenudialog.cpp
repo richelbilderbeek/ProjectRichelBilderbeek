@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestDialMenuDialog::WtTestDialMenuDialog()
+ribi::WtTestDialMenuDialog::WtTestDialMenuDialog()
 {
   //Create resources
   {
@@ -102,7 +102,7 @@ WtTestDialMenuDialog::WtTestDialMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestDialMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestDialMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestDialMenuDialog::GetAbout();
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
@@ -113,14 +113,14 @@ Wt::WWidget * WtTestDialMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestDialMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestDialMenuDialog::CreateNewMainDialog() const
 {
   WtTestDialMainDialog * const d = new WtTestDialMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestDialMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestDialMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

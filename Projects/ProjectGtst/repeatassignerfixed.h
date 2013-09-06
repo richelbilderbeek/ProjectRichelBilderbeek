@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "repeatassigner.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///A RepeatAssigner that always assigns the IPGG to be repeated a fixed
 ///amount of times
@@ -56,7 +60,8 @@ struct RepeatAssignerFixed : public RepeatAssigner
   const int m_value;
 
 };
-//---------------------------------------------------------------------------
 
+} //~namespace gtst
+} //~namespace ribi
 
 #endif // REPEATASSIGNERFIXED_H

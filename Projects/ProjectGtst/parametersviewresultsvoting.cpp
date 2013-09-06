@@ -26,19 +26,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "parametersviewresultsvoting.h"
 //---------------------------------------------------------------------------
-ParametersViewResultsVoting::ParametersViewResultsVoting()
+ribi::gtst::ParametersViewResultsVoting::ParametersViewResultsVoting()
   : m_duration(5)
 {
 }
 //---------------------------------------------------------------------------
-int ParametersViewResultsVoting::GetDuration() const
+int ribi::gtst::ParametersViewResultsVoting::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
 //---------------------------------------------------------------------------
 ///Parse a line
-void ParametersViewResultsVoting::Parse(const std::string& s)
+void ribi::gtst::ParametersViewResultsVoting::Parse(const std::string& s)
 {
   //View results time in the same group, in the IPGG phase
   if (s.size() > 9 && s.substr(0,9) == "duration=")
@@ -56,13 +56,13 @@ void ParametersViewResultsVoting::Parse(const std::string& s)
   }
 }
 //---------------------------------------------------------------------------
-void ParametersViewResultsVoting::SetDuration(const int time)
+void ribi::gtst::ParametersViewResultsVoting::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ParametersViewResultsVoting& parameters)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersViewResultsVoting& parameters)
 {
   os
     << "<parametersviewresultsvoting>"

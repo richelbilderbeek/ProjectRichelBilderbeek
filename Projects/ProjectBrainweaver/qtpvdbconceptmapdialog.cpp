@@ -57,7 +57,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
+ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   const boost::shared_ptr<pvdb::File> file,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
@@ -95,16 +95,16 @@ QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
 
   m_widget->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit,
+      &ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit,
       this,boost::lambda::_1));
 }
 
-QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog()
+ribi::pvdb::QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog()
 {
   delete ui;
 }
 
-QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
+ribi::pvdb::QtPvdbConceptMapEditWidget * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
 
@@ -114,8 +114,8 @@ QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::s
   if (!had_cluster && !had_concept_map)
   {
     TRACE("User starts building a concept map from scratch");
-    boost::shared_ptr<pvdb::ConceptMap> concept_map
-      = pvdb::ConceptMapFactory::Create(file->GetQuestion());
+    boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
+      = ribi::pvdb::ConceptMapFactory::Create(file->GetQuestion());
     file->SetConceptMap(concept_map);
   }
   else if ( had_cluster && !had_concept_map)
@@ -123,7 +123,7 @@ QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::s
     TRACE("User supplied a filled-in cluster");
     assert(file->GetCluster());
 
-    boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::CreateFromCluster(
+    boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::CreateFromCluster(
         file->GetQuestion(),
         file->GetCluster()
       );
@@ -162,7 +162,7 @@ QtPvdbConceptMapEditWidget * QtPvdbConceptMapDialog::CreateWidget(const boost::s
 }
 
 #ifndef NDEBUG
-void QtPvdbConceptMapDialog::DoRandomStuff()
+void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
 {
   //Do random stuff
   assert(m_file);
@@ -181,13 +181,13 @@ void QtPvdbConceptMapDialog::DoRandomStuff()
 }
 #endif
 
-const QtPvdbConceptMapWidget * QtPvdbConceptMapDialog::GetWidget() const
+const ribi::pvdb::QtPvdbConceptMapWidget * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget() const
 {
   assert(m_widget);
   return m_widget;
 }
 
-QtPvdbConceptMapWidget * QtPvdbConceptMapDialog::GetWidget()
+ribi::pvdb::QtPvdbConceptMapWidget * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
@@ -197,7 +197,7 @@ QtPvdbConceptMapWidget * QtPvdbConceptMapDialog::GetWidget()
     const_cast<const QtPvdbConceptMapDialog*>(this)->GetWidget());
 }
 
-void QtPvdbConceptMapDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbConceptMapDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   if ((e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_S) { on_button_save_clicked(); return; }
@@ -223,14 +223,14 @@ void QtPvdbConceptMapDialog::keyPressEvent(QKeyEvent* e)
   QDialog::keyPressEvent(e);
 }
 
-void QtPvdbConceptMapDialog::on_button_print_clicked()
+void ribi::pvdb::QtPvdbConceptMapDialog::on_button_print_clicked()
 {
   Save();
   QtPvdbPrintConceptMapDialog d(this->m_file);
   this->ShowChild(&d);
 }
 
-void QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item)
+void ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item)
 {
   assert(item);
   {
@@ -245,7 +245,7 @@ void QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* 
   item->update();
 }
 
-void QtPvdbConceptMapDialog::on_button_save_clicked()
+void ribi::pvdb::QtPvdbConceptMapDialog::on_button_save_clicked()
 {
   //Temporarily disable to widget, otherwise saving cannot succeed
   const QtScopedDisable<QtPvdbConceptMapWidget> scoped_disable1(GetWidget());
@@ -275,15 +275,15 @@ void QtPvdbConceptMapDialog::on_button_save_clicked()
   //close(); //2013-04-19 Request by client
 }
 
-void QtPvdbConceptMapDialog::Save() const
+void ribi::pvdb::QtPvdbConceptMapDialog::Save() const
 {
-  //const boost::shared_ptr<pvdb::ConceptMap> concept_map = GetWidget()->GetConceptMap();
+  //const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = GetWidget()->GetConceptMap();
   //assert(concept_map);
   assert(m_file->GetConceptMap() == GetWidget()->GetConceptMap());
   //m_file->SetConceptMap(concept_map);
 }
 
-void QtPvdbConceptMapDialog::Save(const std::string& filename) const
+void ribi::pvdb::QtPvdbConceptMapDialog::Save(const std::string& filename) const
 {
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
@@ -293,7 +293,7 @@ void QtPvdbConceptMapDialog::Save(const std::string& filename) const
 }
 
 #ifndef NDEBUG
-void QtPvdbConceptMapDialog::Shuffle()
+void ribi::pvdb::QtPvdbConceptMapDialog::Shuffle()
 {
   this->GetWidget()->Shuffle();
 }

@@ -69,29 +69,31 @@ const std::vector<T> Sort(const std::vector<T>& v)
 }
 
 template <>
-const std::vector<QtPvdbNodeItem*> Sort(const std::vector<QtPvdbNodeItem*>& v)
+const std::vector<ribi::pvdb::QtPvdbNodeItem*>
+  Sort(
+    const std::vector<ribi::pvdb::QtPvdbNodeItem*>& v)
 {
-  typedef std::vector<QtPvdbNodeItem*>::iterator Iterator;
-  std::vector<QtPvdbNodeItem*> w(v);
+  typedef std::vector<ribi::pvdb::QtPvdbNodeItem*>::iterator Iterator;
+  std::vector<ribi::pvdb::QtPvdbNodeItem*> w(v);
   std::sort(w.begin(),w.end());
   const Iterator i = std::find_if(w.begin(),w.end(),
-    [](const QtPvdbNodeItem* const node)
+    [](const ribi::pvdb::QtPvdbNodeItem* const node)
     {
-      return dynamic_cast<const QtPvdbCenterNodeItem*>(node);
+      return dynamic_cast<const ribi::pvdb::QtPvdbCenterNodeItem*>(node);
     }
   );
   if (i != w.end())
   {
     std::swap(*i,*w.begin());
-    assert(dynamic_cast<const QtPvdbCenterNodeItem*>(*w.begin()));
+    assert(dynamic_cast<const ribi::pvdb::QtPvdbCenterNodeItem*>(*w.begin()));
   }
   return w;
 }
 
 
 
-QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+ribi::pvdb::QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
   QWidget* parent)
   : QtKeyboardFriendlyGraphicsView(parent),
     m_concept_map(concept_map),
@@ -128,13 +130,13 @@ QtPvdbConceptMapWidget::QtPvdbConceptMapWidget(
 }
 
 
-QtPvdbConceptMapWidget::~QtPvdbConceptMapWidget()
+ribi::pvdb::QtPvdbConceptMapWidget::~QtPvdbConceptMapWidget()
 {
   delete m_examples_item; //Why did I forget this?
   m_examples_item = nullptr;
 }
 
-void QtPvdbConceptMapWidget::BuildQtConceptMap()
+void ribi::pvdb::QtPvdbConceptMapWidget::BuildQtConceptMap()
 {
 
   CleanMe();
@@ -150,7 +152,7 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   //Add the nodes to the scene
   {
     //Add the main question as the first node
-    const boost::shared_ptr<pvdb::Node> node = m_concept_map->GetNodes()[0];
+    const boost::shared_ptr<ribi::pvdb::Node> node = m_concept_map->GetNodes()[0];
     QtPvdbNodeItem* const qtnode = new QtPvdbCenterNodeItem(node);
     #ifdef USE_NEW_STYLE
     QtPvdbNodeItem* qtnode = nullptr;
@@ -169,9 +171,9 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
     assert(qtnode);
     //Let the center node respond to mouse clicks
     qtnode->m_signal_request_scene_update.connect(
-      boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
+      boost::bind(&ribi::pvdb::QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
     qtnode->m_signal_item_has_updated.connect(
-      boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+      boost::bind(&ribi::pvdb::QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
     //Add the center node to scene
     assert(!qtnode->scene());
     this->scene()->addItem(qtnode);
@@ -179,14 +181,14 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
     assert(Collect<QtPvdbNodeItem>(scene()).size() == 1);
 
     //Add the regular nodes to the scene
-    const std::vector<boost::shared_ptr<pvdb::Node> > nodes = m_concept_map->GetNodes();
+    const std::vector<boost::shared_ptr<ribi::pvdb::Node> > nodes = m_concept_map->GetNodes();
     const std::size_t n_nodes = nodes.size();
     assert(n_nodes >= 1);
     for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip center node
     {
       assert(Collect<QtPvdbNodeItem>(scene()).size() == i && "Node not yet added to scene");
       assert(i < nodes.size());
-      boost::shared_ptr<pvdb::Node> node = nodes[i];
+      boost::shared_ptr<ribi::pvdb::Node> node = nodes[i];
       assert(node);
       QtPvdbNodeItem * const qtnode = AddNode(node);
       qtnodes.push_back(qtnode);
@@ -206,9 +208,9 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   #endif
   //Add the Concepts on the Edges
   {
-    const std::vector<boost::shared_ptr<pvdb::Edge> > edges = m_concept_map->GetEdges();
+    const std::vector<boost::shared_ptr<ribi::pvdb::Edge> > edges = m_concept_map->GetEdges();
     std::for_each(edges.begin(),edges.end(),
-      [this,qtnodes](const boost::shared_ptr<pvdb::Edge> edge)
+      [this,qtnodes](const boost::shared_ptr<ribi::pvdb::Edge> edge)
       {
         assert(edge->GetFrom());
         assert(edge->GetTo());
@@ -253,7 +255,7 @@ void QtPvdbConceptMapWidget::BuildQtConceptMap()
   #endif
 }
 
-const std::vector<QtPvdbEdgeItem*> QtPvdbConceptMapWidget::FindEdges(
+const std::vector<ribi::pvdb::QtPvdbEdgeItem*> ribi::pvdb::QtPvdbConceptMapWidget::FindEdges(
   const QtPvdbNodeItem* const from) const
 {
   assert(from);
@@ -268,7 +270,7 @@ const std::vector<QtPvdbEdgeItem*> QtPvdbConceptMapWidget::FindEdges(
   return w;
 }
 
-const QtPvdbEdgeItem * QtPvdbConceptMapWidget::FindQtEdge(
+const ribi::pvdb::QtPvdbEdgeItem * ribi::pvdb::QtPvdbConceptMapWidget::FindQtEdge(
   const QtPvdbNodeItem* const from,
   const QtPvdbNodeItem* const to) const
 {
@@ -289,7 +291,7 @@ const QtPvdbEdgeItem * QtPvdbConceptMapWidget::FindQtEdge(
   return * iter;
 }
 
-QtPvdbNodeItem * QtPvdbConceptMapWidget::FindQtNode(const boost::shared_ptr<pvdb::Node> node) const
+ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapWidget::FindQtNode(const boost::shared_ptr<ribi::pvdb::Node> node) const
 {
   const std::vector<QtPvdbNodeItem *> qtnodes = Collect<QtPvdbNodeItem>(scene());
   for (QtPvdbNodeItem * qtnode: qtnodes)
@@ -297,10 +299,10 @@ QtPvdbNodeItem * QtPvdbConceptMapWidget::FindQtNode(const boost::shared_ptr<pvdb
     if (qtnode->GetNode() == node) return qtnode;
   }
   assert(!"Should always find QtNode");
-  throw std::logic_error("QtPvdbConceptMapWidget::FindQtNode");
+  throw std::logic_error("ribi::pvdb::QtPvdbConceptMapWidget::FindQtNode");
 }
 
-const QtPvdbNodeItem * QtPvdbConceptMapWidget::GetCenterNode() const
+const ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapWidget::GetCenterNode() const
 {
 
   assert(scene());
@@ -319,13 +321,13 @@ const QtPvdbNodeItem * QtPvdbConceptMapWidget::GetCenterNode() const
   return center_node;
 }
 
-const QtPvdbExamplesItem * QtPvdbConceptMapWidget::GetExamplesItem() const
+const ribi::pvdb::QtPvdbExamplesItem * ribi::pvdb::QtPvdbConceptMapWidget::GetExamplesItem() const
 {
   assert(m_examples_item || !m_examples_item);
   return m_examples_item;
 }
 
-QtPvdbExamplesItem * QtPvdbConceptMapWidget::GetExamplesItem()
+ribi::pvdb::QtPvdbExamplesItem * ribi::pvdb::QtPvdbConceptMapWidget::GetExamplesItem()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
@@ -335,7 +337,7 @@ QtPvdbExamplesItem * QtPvdbConceptMapWidget::GetExamplesItem()
     const_cast<const QtPvdbConceptMapWidget*>(this)->GetExamplesItem());
 }
 
-QtPvdbNodeItem* QtPvdbConceptMapWidget::GetItemBelowCursor(const QPointF& pos) const
+ribi::pvdb::QtPvdbNodeItem* ribi::pvdb::QtPvdbConceptMapWidget::GetItemBelowCursor(const QPointF& pos) const
 {
   #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
   const QList<QGraphicsItem*> v = this->scene()->items(pos.x(),pos.y(),2.0,2.0,Qt::IntersectsItemShape,Qt::AscendingOrder);
@@ -360,7 +362,7 @@ QtPvdbNodeItem* QtPvdbConceptMapWidget::GetItemBelowCursor(const QPointF& pos) c
   return nullptr;
 }
 
-const std::vector<const QtPvdbEdgeItem *> QtPvdbConceptMapWidget::GetQtEdges() const
+const std::vector<const ribi::pvdb::QtPvdbEdgeItem *> ribi::pvdb::QtPvdbConceptMapWidget::GetQtEdges() const
 {
   const std::vector<const QtPvdbEdgeItem *> qtedges
     = Collect<const QtPvdbEdgeItem>(this->scene());
@@ -369,7 +371,7 @@ const std::vector<const QtPvdbEdgeItem *> QtPvdbConceptMapWidget::GetQtEdges() c
   return qtedges;
 }
 
-const std::vector<const QtPvdbNodeItem *> QtPvdbConceptMapWidget::GetQtNodes() const
+const std::vector<const ribi::pvdb::QtPvdbNodeItem *> ribi::pvdb::QtPvdbConceptMapWidget::GetQtNodes() const
 {
   const std::vector<const QtPvdbNodeItem *> qtnodes
     = Collect<const QtPvdbNodeItem>(this->scene());
@@ -378,20 +380,20 @@ const std::vector<const QtPvdbNodeItem *> QtPvdbConceptMapWidget::GetQtNodes() c
   return qtnodes;
 }
 
-QGraphicsScene* QtPvdbConceptMapWidget::GetScene() const
+QGraphicsScene* ribi::pvdb::QtPvdbConceptMapWidget::GetScene() const
 {
 
   return this->scene();
 }
 
-bool QtPvdbConceptMapWidget::IsCenterNode(const QGraphicsItem* const item)
+bool ribi::pvdb::QtPvdbConceptMapWidget::IsCenterNode(const QGraphicsItem* const item)
 {
 
   const QtPvdbNodeItem * const qtnode = dynamic_cast<const QtPvdbNodeItem*>(item);
   return qtnode && !(item->flags() & QGraphicsItem::ItemIsMovable);
 }
 
-void QtPvdbConceptMapWidget::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbConceptMapWidget::keyPressEvent(QKeyEvent *event)
 {
 
   switch (event->key())
@@ -408,7 +410,7 @@ void QtPvdbConceptMapWidget::keyPressEvent(QKeyEvent *event)
   scene()->update();
 }
 
-bool QtPvdbConceptMapWidget::MustReposition(const std::vector<boost::shared_ptr<const pvdb::Node> >& nodes) const
+bool ribi::pvdb::QtPvdbConceptMapWidget::MustReposition(const std::vector<boost::shared_ptr<const pvdb::Node> >& nodes) const
 {
   //If all are at the origin, the nodes must be (re)positioned
   return std::count_if(nodes.begin(),nodes.end(),
@@ -419,18 +421,18 @@ bool QtPvdbConceptMapWidget::MustReposition(const std::vector<boost::shared_ptr<
   ) == static_cast<int>(nodes.size());
 }
 
-void QtPvdbConceptMapWidget::OnItemRequestsUpdate(const QGraphicsItem* const item)
+void ribi::pvdb::QtPvdbConceptMapWidget::OnItemRequestsUpdate(const QGraphicsItem* const item)
 {
   OnItemRequestUpdateImpl(item);
 }
 
-void QtPvdbConceptMapWidget::OnRequestSceneUpdate()
+void ribi::pvdb::QtPvdbConceptMapWidget::OnRequestSceneUpdate()
 {
   scene()->update();
 }
 
 
-void QtPvdbConceptMapWidget::RepositionItems()
+void ribi::pvdb::QtPvdbConceptMapWidget::RepositionItems()
 {
   {
     //The ray of the upcoming circle of nodes, is the larger of
@@ -557,14 +559,14 @@ void QtPvdbConceptMapWidget::RepositionItems()
   }
 }
 
-void QtPvdbConceptMapWidget::SetExamplesItem(QtPvdbExamplesItem * const item)
+void ribi::pvdb::QtPvdbConceptMapWidget::SetExamplesItem(QtPvdbExamplesItem * const item)
 {
   assert((item || !item) && "Can be both");
   m_examples_item = item;
 }
 
 #ifndef NDEBUG
-void QtPvdbConceptMapWidget::Shuffle()
+void ribi::pvdb::QtPvdbConceptMapWidget::Shuffle()
 {
   const std::vector<QtPvdbNodeItem*> nodes = Collect<QtPvdbNodeItem>(scene());
   std::for_each(nodes.begin(),nodes.end(),
@@ -593,7 +595,7 @@ void QtPvdbConceptMapWidget::Shuffle()
 #endif
 
 #ifndef NDEBUG
-void QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const pvdb::ConceptMap> map) const
+void ribi::pvdb::QtPvdbConceptMapWidget::TestMe(const boost::shared_ptr<const ribi::pvdb::ConceptMap> map) const
 {
   {
     std::set<const pvdb::Node*> w;

@@ -25,36 +25,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wttimedserverpusher.h"
 #include "wttimedserverpusherclient.h"
 //---------------------------------------------------------------------------
-WtTimedServerPusherClient::WtTimedServerPusherClient()
+ribi::WtTimedServerPusherClient::WtTimedServerPusherClient()
 {
   Wt::WApplication::instance()->enableUpdates(true);
-  WtTimedServerPusher::GetInstance()->Connect(
-    this,boost::bind(&WtTimedServerPusherClient::OnServer,this));
+  ribi::WtTimedServerPusher::GetInstance()->Connect(
+    this,boost::bind(&ribi::WtTimedServerPusherClient::OnServer,this));
 
   //Never call virtual functions during construction or destruction
   //Scott Meyers, Effective C++, item 9
   //OnServer();
 }
 //---------------------------------------------------------------------------
-WtTimedServerPusherClient::~WtTimedServerPusherClient()
+ribi::WtTimedServerPusherClient::~WtTimedServerPusherClient()
 {
   Wt::WApplication::instance()->enableUpdates(false);
-  WtTimedServerPusher::GetInstance()->Disconnect(this);
+  ribi::WtTimedServerPusher::GetInstance()->Disconnect(this);
 }
 //---------------------------------------------------------------------------
-const std::string WtTimedServerPusherClient::GetVersion()
+const std::string ribi::WtTimedServerPusherClient::GetVersion()
 {
   return "1.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtTimedServerPusherClient::GetVersionHistory()
+const std::vector<std::string> ribi::WtTimedServerPusherClient::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-08-05: version 1.0: initial version");
   return v;
 }
 //---------------------------------------------------------------------------
-void WtTimedServerPusherClient::OnServer()
+void ribi::WtTimedServerPusherClient::OnServer()
 {
   OnTimedServerPush();
   Wt::WApplication::instance()->triggerUpdate();

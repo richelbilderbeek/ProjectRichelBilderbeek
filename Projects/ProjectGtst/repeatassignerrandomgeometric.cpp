@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "repeatassignerrandomgeometric.h"
 //---------------------------------------------------------------------------
-RepeatAssignerRandomGeometric::RepeatAssignerRandomGeometric(const double w)
+ribi::gtst::RepeatAssignerRandomGeometric::RepeatAssignerRandomGeometric(const double w)
   : m_w(w)
 {
   assert(m_w >= 0.0 && "w must be at least zero");
@@ -32,7 +32,7 @@ RepeatAssignerRandomGeometric::RepeatAssignerRandomGeometric(const double w)
 }
 //---------------------------------------------------------------------------
 ///Assign the number of round that there will be played beforehand by Monte Carlo
-int RepeatAssignerRandomGeometric::Assign() const
+int ribi::gtst::RepeatAssignerRandomGeometric::Assign() const
 {
   int value = 1;
   //Monte Carlo
@@ -49,14 +49,14 @@ int RepeatAssignerRandomGeometric::Assign() const
 //---------------------------------------------------------------------------
 ///Get a random number from 0.0 to 1.0 in a uniform distribution
 //From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double RepeatAssignerRandomGeometric::GetRandomUniform()
+double ribi::gtst::RepeatAssignerRandomGeometric::GetRandomUniform()
 {
   return static_cast<double>(std::rand())
     / static_cast<double>(RAND_MAX);
 }
 //---------------------------------------------------------------------------
 ///Converts RepeatAssignerRandomGeometric to std::string
-const std::string RepeatAssignerRandomGeometric::ToStr() const
+const std::string ribi::gtst::RepeatAssignerRandomGeometric::ToStr() const
 {
   return
       std::string("<repeatassigner_random_geometric>")

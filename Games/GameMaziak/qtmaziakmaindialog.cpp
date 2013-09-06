@@ -173,18 +173,6 @@ ribi::QtMaziakMainDialog::~QtMaziakMainDialog()
   delete ui;
 }
 
-void ribi::QtMaziakMainDialog::changeEvent(QEvent *e)
-{
-  QWidget::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 void ribi::QtMaziakMainDialog::resizeEvent(QResizeEvent*)
 {
   this->repaint();

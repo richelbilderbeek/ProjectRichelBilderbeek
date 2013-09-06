@@ -18,9 +18,9 @@
 //#include "trace.h"
 #pragma GCC diagnostic pop
 
-const QtRoundedTextRectItem::Padding QtRoundedTextRectItem::m_text_padding(3.0,0.0,0.0,3.0);
+const ribi::QtRoundedTextRectItem::Padding ribi::QtRoundedTextRectItem::m_text_padding(3.0,0.0,0.0,3.0);
 
-QtRoundedTextRectItem::QtRoundedTextRectItem(
+ribi::QtRoundedTextRectItem::QtRoundedTextRectItem(
   const std::string& text,
   const Padding& padding,
   const QFont& font,
@@ -45,7 +45,7 @@ QtRoundedTextRectItem::QtRoundedTextRectItem(
 
 }
 
-const QRectF QtRoundedTextRectItem::GetPaddedTextRect() const
+const QRectF ribi::QtRoundedTextRectItem::GetPaddedTextRect() const
 {
   return GetTextRect().adjusted(
     -m_text_padding.left,
@@ -54,7 +54,7 @@ const QRectF QtRoundedTextRectItem::GetPaddedTextRect() const
      m_text_padding.bottom);
 }
 
-const QRectF QtRoundedTextRectItem::GetTextRect() const
+const QRectF ribi::QtRoundedTextRectItem::GetTextRect() const
 {
   const double h = QFontMetricsF(m_font).height();
   const double w = QFontMetricsF(m_font).width(m_text.c_str());
@@ -70,12 +70,12 @@ const QRectF QtRoundedTextRectItem::GetTextRect() const
   #endif
 }
 
-const std::string QtRoundedTextRectItem::GetVersion()
+const std::string ribi::QtRoundedTextRectItem::GetVersion()
 {
   return "1.3";
 }
 
-const std::vector<std::string> QtRoundedTextRectItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtRoundedTextRectItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-19: version 1.0: initial version");
@@ -85,7 +85,7 @@ const std::vector<std::string> QtRoundedTextRectItem::GetVersionHistory()
   return v;
 }
 
-void QtRoundedTextRectItem::keyPressEvent(QKeyEvent* event)
+void ribi::QtRoundedTextRectItem::keyPressEvent(QKeyEvent* event)
 {
   switch (event->key())
   {
@@ -100,7 +100,7 @@ void QtRoundedTextRectItem::keyPressEvent(QKeyEvent* event)
   QtRoundedRectItem::keyPressEvent(event);
 }
 
-void QtRoundedTextRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::QtRoundedTextRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   QtRoundedRectItem::paint(painter,option,widget);
   painter->setFont(m_font);
@@ -117,7 +117,7 @@ void QtRoundedTextRectItem::paint(QPainter* painter, const QStyleOptionGraphicsI
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void QtRoundedTextRectItem::SetFont(const QFont& font)
+void ribi::QtRoundedTextRectItem::SetFont(const QFont& font)
 {
   if (m_font != font)
   {
@@ -129,7 +129,7 @@ void QtRoundedTextRectItem::SetFont(const QFont& font)
 }
 #pragma GCC diagnostic pop
 
-void QtRoundedTextRectItem::SetPadding(const Padding& padding)
+void ribi::QtRoundedTextRectItem::SetPadding(const Padding& padding)
 {
   if ( padding.bottom != m_padding.bottom
     || padding.left   != m_padding.left
@@ -154,7 +154,7 @@ void QtRoundedTextRectItem::SetPadding(const Padding& padding)
   }
 }
 
-void QtRoundedTextRectItem::SetText(const std::string& text)
+void ribi::QtRoundedTextRectItem::SetText(const std::string& text)
 {
   if (text != m_text)
   {
@@ -175,7 +175,7 @@ void QtRoundedTextRectItem::SetText(const std::string& text)
   }
 }
 
-void QtRoundedTextRectItem::SetTextPen(const QPen& pen)
+void ribi::QtRoundedTextRectItem::SetTextPen(const QPen& pen)
 {
   if (m_text_pen != pen)
   {

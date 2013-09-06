@@ -32,6 +32,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The WtAdministratorDialog its state.
 struct AdministratorDialogState : public boost::noncopyable, Wt::WObject
@@ -77,5 +81,8 @@ struct AdministratorDialogState : public boost::noncopyable, Wt::WObject
   ///Get all .txt files in a folder
   static const std::vector<std::string> GetTextFilesInFolder(const std::string& folder);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PROJECTGTSTADMINISTRATORDIALOGSTATE_H

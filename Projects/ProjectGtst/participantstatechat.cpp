@@ -22,14 +22,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participant.h"
 #include "participantstatechat.h"
 //---------------------------------------------------------------------------
-ParticipantStateChat::ParticipantStateChat(
+ribi::gtst::ParticipantStateChat::ParticipantStateChat(
   Participant * const participant,Server * const server)
   : ParticipantState(participant,server)
 {
 
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantStateChat::ToAdminStr() const
+const std::string ribi::gtst::ParticipantStateChat::ToAdminStr() const
 {
   const Participant * const participant = GetParticipant();
   std::string s = std::to_string(participant->GetId())

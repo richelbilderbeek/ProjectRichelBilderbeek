@@ -27,6 +27,8 @@ namespace Ui {
 class QtTestDialMenuDialog;
 }
 
+namespace ribi {
+
 class QtTestDialMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -46,5 +48,7 @@ private:
   ///Test this class
   void Test();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTDIALMENUDIALOG_H

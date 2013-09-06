@@ -44,7 +44,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestExerciseMenuDialog::WtTestExerciseMenuDialog()
+ribi::WtTestExerciseMenuDialog::WtTestExerciseMenuDialog()
   : m_dialog(new TestExerciseMenuDialog)
 {
  {
@@ -104,7 +104,7 @@ WtTestExerciseMenuDialog::WtTestExerciseMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestExerciseMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestExerciseMenuDialog::CreateNewAboutDialog() const
 {
   About a = m_dialog->GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -117,14 +117,14 @@ Wt::WWidget * WtTestExerciseMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestExerciseMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestExerciseMenuDialog::CreateNewMainDialog() const
 {
   WtTestExerciseMainDialog * const d = new WtTestExerciseMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestExerciseMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestExerciseMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

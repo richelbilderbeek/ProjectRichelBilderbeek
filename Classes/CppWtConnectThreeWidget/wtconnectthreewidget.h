@@ -41,13 +41,17 @@ namespace Wt
   struct WTimer;
 }
 //---------------------------------------------------------------------------
+namespace ribi {
+
 struct ConnectThreeWidget;
-//---------------------------------------------------------------------------
+struct ConnectThreeResources;
+
 ///WtConnectThreeWidget is a Wt widget to display
 ///the area/board of the ConnectThree class.
 struct WtConnectThreeWidget : public Wt::WPaintedWidget
 {
   explicit WtConnectThreeWidget(
+    const boost::shared_ptr<const ConnectThreeResources> resources,
     const std::bitset<3>& is_player_human = std::bitset<3>(true),
     const int n_cols = 16,
     const int n_rows = 12);
@@ -77,5 +81,7 @@ struct WtConnectThreeWidget : public Wt::WPaintedWidget
   const boost::scoped_ptr<Wt::WTimer> m_timer;
   const Wt::WPainter::Image& GetImage(const int sprite) const;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTCONNECTTHREEWIDGET_H

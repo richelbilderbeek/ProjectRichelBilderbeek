@@ -1,13 +1,10 @@
 #ifndef PVDBCOMPETENCY_H
 #define PVDBCOMPETENCY_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include <vector>
+
+namespace ribi {
 
 namespace pvdb {
 
@@ -28,5 +25,7 @@ const std::vector<Competency> GetAllCompetencies();
 const std::string CompetencyToDutchStr(const Competency competency);
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // PVDBCOMPETENCY_H

@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 #include <Wt/WLineEdit>
 //---------------------------------------------------------------------------
+namespace ribi {
+
 struct TestEncrangerDialog;
 //---------------------------------------------------------------------------
 struct WtTestEncrangerMainDialog : public Wt::WContainerWidget
@@ -41,5 +43,7 @@ struct WtTestEncrangerMainDialog : public Wt::WContainerWidget
   void OnEncryptClick();
   void ShowMain();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTENCRANGERDIALOG_H

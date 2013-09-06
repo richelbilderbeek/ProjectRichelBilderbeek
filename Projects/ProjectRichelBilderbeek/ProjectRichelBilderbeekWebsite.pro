@@ -475,12 +475,12 @@ SOURCES += \
     ../../Classes/CppPylos/pylosboard.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
+    ../../Games/GameConnectThree/qtconnectthreeresources.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppAsciiArter/asciiarter.h \
-    ../../Classes/CppAssert/assert.h \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.h \
@@ -839,7 +839,8 @@ HEADERS += \
     ../../Classes/CppPylos/pylosboard.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
+    ../../Games/GameConnectThree/qtconnectthreeresources.h
 
 RESOURCES += \
     ../../Games/GameConnectThree/GameConnectThree.qrc \
@@ -1096,33 +1097,6 @@ SOURCES += \
     ../../Libraries/bigint-2010.04.30/BigUnsigned.cc \
     ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc
 
-
-#
-#
-# Qwt
-#
-#
-
-unix {
-  INCLUDEPATH += /usr/include/qwt-qt4
-  LIBS += -lqwt-qt4
-}
-
-win32 {
-  message(Windows: Qwt: link dynamically)
-  INCLUDEPATH+= ../../Libraries/qwt-6.1.0/src
-  LIBS+= -L../../Libraries/qwt-6.1.0/lib
-
-  CONFIG(release, debug|release) {
-    message(Windows: Qwt: Linking to qwt)
-    LIBS += -lqwt
-  }
-
-  CONFIG(debug, debug|release) {
-    message(Windows: Qwt: Linking to qwtd)
-    LIBS += -lqwtd
-  }
-}
 
 #
 #

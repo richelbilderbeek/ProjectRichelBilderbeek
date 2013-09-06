@@ -25,7 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <mutex>
 //---------------------------------------------------------------------------
 #include <boost/checked_delete.hpp>
-//---------------------------------------------------------------------------
+
+namespace ribi {
 namespace ToolTestTimedServerPusher {
 //---------------------------------------------------------------------------
 ///Data is a Singleton
@@ -58,7 +59,9 @@ struct Data
   ///The number of times the data has been requested
   mutable int m_requested;
 };
+
 //---------------------------------------------------------------------------
 } //~namespace ToolTestTimedServerPusher
-//---------------------------------------------------------------------------
+} //~namespace ribi
+
 #endif // TOOLTESTTIMEDSERVERPUSHERDATA_H

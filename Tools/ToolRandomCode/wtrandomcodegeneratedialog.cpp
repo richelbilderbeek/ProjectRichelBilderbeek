@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "wtrandomcodegeneratedialog.h"
 #include "randomcode.h"
 //---------------------------------------------------------------------------
-WtRandomCodeGenerateDialog::WtRandomCodeGenerateDialog()
+ribi::WtRandomCodeGenerateDialog::WtRandomCodeGenerateDialog()
   : m_button_generate(new Wt::WPushButton),
     m_text_area(new Wt::WTextArea)
 {
@@ -41,12 +41,12 @@ WtRandomCodeGenerateDialog::WtRandomCodeGenerateDialog()
   m_button_generate->setText("Generate");
 
   m_button_generate->clicked().connect(
-    this, &WtRandomCodeGenerateDialog::OnGenerateClick);
+    this, &ribi::WtRandomCodeGenerateDialog::OnGenerateClick);
 
   OnGenerateClick();
 }
 //---------------------------------------------------------------------------
-void WtRandomCodeGenerateDialog::OnGenerateClick()
+void ribi::WtRandomCodeGenerateDialog::OnGenerateClick()
 {
   const std::vector<std::string> v = RandomCode::CreateRandomCode();
   std::string s;

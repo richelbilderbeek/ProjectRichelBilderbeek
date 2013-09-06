@@ -29,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <Wt/WContainerWidget>
 
+namespace ribi {
+
 struct WtSelectHometrainerFileDialog;
 
 struct WtHometrainerLoadExerciseDialog : public Wt::WContainerWidget
@@ -53,5 +55,7 @@ struct WtHometrainerLoadExerciseDialog : public Wt::WContainerWidget
   ///and emits m_signal_selected_file with the filename
   void OnSelectedFile() const;
 };
+
+} //~namespace ribi
 
 #endif // WTHOMETRAINERLOADEXERCISEDIALOG_H

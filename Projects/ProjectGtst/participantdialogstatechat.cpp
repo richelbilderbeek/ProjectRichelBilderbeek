@@ -57,7 +57,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 #include "wtshapewidget.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateChat::ParticipantDialogStateChat(
+ribi::gtst::ParticipantDialogStateChat::ParticipantDialogStateChat(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
@@ -65,7 +65,7 @@ ParticipantDialogStateChat::ParticipantDialogStateChat(
 }
 //---------------------------------------------------------------------------
 ///Do something random with the UI, used by DebugDialog
-void ParticipantDialogStateChat::DoSomethingRandom()
+void ribi::gtst::ParticipantDialogStateChat::DoSomethingRandom()
 {
   switch (std::rand() % 10)
   {
@@ -75,7 +75,7 @@ void ParticipantDialogStateChat::DoSomethingRandom()
   }
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantDialogStateChat::GetRandomDebugString() const
+const std::string ribi::gtst::ParticipantDialogStateChat::GetRandomDebugString() const
 {
   static std::vector<std::string> v;
   if (v.empty())
@@ -258,7 +258,7 @@ const std::string ParticipantDialogStateChat::GetRandomDebugString() const
   return s;
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateChat::RespondToServerPush()
+void ribi::gtst::ParticipantDialogStateChat::RespondToServerPush()
 {
   ServerStateChat * const server_state
     = dynamic_cast<ServerStateChat*>(m_server->GetStates()->GetCurrentState());
@@ -294,7 +294,7 @@ void ParticipantDialogStateChat::RespondToServerPush()
   RespondToParticipant();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateChat::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateChat::RespondToTimedServerPush()
 {
   const int time_left = m_server->GetStates()->GetCurrentState()->GetTimeLeft();
 
@@ -309,7 +309,7 @@ void ParticipantDialogStateChat::RespondToTimedServerPush()
   }
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateChat::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateChat::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
   assert(GetDialog()->CanGetParticipant()
@@ -380,10 +380,10 @@ void ParticipantDialogStateChat::ShowPage(ParticipantDialog * const dialog)
   ui.m_edit_chat->setMinimumSize(600,Wt::WLength::Auto);
   ui.m_table->setMinimumSize(600,600);
   ui.m_edit_chat->enterPressed().connect(
-    this,&ParticipantDialogStateChat::SubmitChatText);
+    this,&ribi::gtst::ParticipantDialogStateChat::SubmitChatText);
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateChat::SubmitChatText()
+void ribi::gtst::ParticipantDialogStateChat::SubmitChatText()
 {
   assert(ui.m_edit_chat);
   assert(GetDialog()->CanGetParticipant()

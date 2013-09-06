@@ -19,7 +19,7 @@
 #include "qtpvdbbrushfactory.h"
 #include "trace.h"
 
-QtPvdbExamplesItem::QtPvdbExamplesItem(
+ribi::pvdb::QtPvdbExamplesItem::QtPvdbExamplesItem(
   QGraphicsItem* parent)
   : QtRoundedEditRectItem(
       { "..." },
@@ -37,13 +37,13 @@ QtPvdbExamplesItem::QtPvdbExamplesItem(
   //this->SetBuddyItem(concept);
 }
 
-void QtPvdbExamplesItem::OnItemUpdated()
+void ribi::pvdb::QtPvdbExamplesItem::OnItemUpdated()
 {
   this->update();
   this->m_signal_request_scene_update();
 }
 
-void QtPvdbExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ribi::pvdb::QtPvdbExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
   this->SetExamples(this->m_item->GetConcept()->GetExamples());
 
@@ -57,7 +57,7 @@ void QtPvdbExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
   QtRoundedEditRectItem::paint(painter,option,widget);
 }
 
-void QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* const item)
+void ribi::pvdb::QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* const item)
 {
   if (m_item != item)
   {
@@ -66,7 +66,7 @@ void QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* const item)
     {
       m_item->m_signal_item_has_updated.connect(
         boost::bind(
-          &QtPvdbExamplesItem::OnItemUpdated,this
+          &ribi::pvdb::QtPvdbExamplesItem::OnItemUpdated,this
         )
       );
       this->SetExamples(item->GetConcept()->GetExamples());
@@ -84,7 +84,7 @@ void QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* const item)
   }
 }
 
-void QtPvdbExamplesItem::SetExamples(const boost::shared_ptr<const pvdb::Examples>& examples)
+void ribi::pvdb::QtPvdbExamplesItem::SetExamples(const boost::shared_ptr<const pvdb::Examples>& examples)
 {
   const std::vector<boost::shared_ptr<const pvdb::Example> >& v = examples->Get();
   std::vector<std::string> w;

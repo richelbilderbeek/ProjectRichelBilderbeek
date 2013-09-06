@@ -25,6 +25,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "participantstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///The Participant is in the StateChooseAction ParticipantState
 struct ParticipantStateChooseAction
   : public ParticipantState, StateChooseAction
@@ -41,5 +45,8 @@ struct ParticipantStateChooseAction
   ///Only let a smart pointer delete this ParticipantState
   friend void boost::checked_delete<>(ParticipantStateChooseAction*);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTSTATECHOOSEACTION_H

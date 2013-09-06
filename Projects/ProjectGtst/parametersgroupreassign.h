@@ -30,6 +30,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "forward_declarations.h"
 #include "state.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Parameters for the group dynamics state
 struct ParametersGroupReAssign : public StateGroupReAssign
@@ -105,5 +109,8 @@ struct ParametersGroupReAssign : public StateGroupReAssign
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ParametersGroupReAssign& parameters);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARAMETERSGROUPREASSIGN_H

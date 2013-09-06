@@ -43,10 +43,6 @@ public:
   //From http://www.richelbilderbeek.nl/CppCreateMaze.htm
   static const std::vector<std::vector<int> > CreateMaze(const int size);
 
-
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtMazeCreatorMainDialog *ui;
   boost::shared_ptr<QGraphicsScene> m_scene;

@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "parametersvoting.h"
 #include "votingoption.h"
 //---------------------------------------------------------------------------
-ParametersVoting::ParametersVoting()
+ribi::gtst::ParametersVoting::ParametersVoting()
   : m_duration(10),
     //m_options(CreateDefaultOptions()),
     m_wait(true)
@@ -37,8 +37,8 @@ ParametersVoting::ParametersVoting()
 
 }
 //---------------------------------------------------------------------------
-const std::vector<boost::shared_ptr<VotingOption> >
-  ParametersVoting::CreateDefaultOptions()
+const std::vector<boost::shared_ptr<ribi::gtst::VotingOption> >
+  ribi::gtst::ParametersVoting::CreateDefaultOptions()
 {
   std::vector<boost::shared_ptr<VotingOption> > v;
   {
@@ -56,14 +56,14 @@ const std::vector<boost::shared_ptr<VotingOption> >
   return v;
 }
 //---------------------------------------------------------------------------
-int ParametersVoting::GetDuration() const
+int ribi::gtst::ParametersVoting::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
 //---------------------------------------------------------------------------
 ///Get the descriptions of the options to vote for only
-const std::vector<std::string> ParametersVoting::GetVoteDescriptions() const
+const std::vector<std::string> ribi::gtst::ParametersVoting::GetVoteDescriptions() const
 {
   std::vector<std::string> w;
 
@@ -81,7 +81,7 @@ const std::vector<std::string> ParametersVoting::GetVoteDescriptions() const
 }
 //---------------------------------------------------------------------------
 ///Parse a line
-void ParametersVoting::Parse(const std::string& s)
+void ribi::gtst::ParametersVoting::Parse(const std::string& s)
 {
   if (s.size() > 9 && s.substr(0,9) == "duration=")
   {
@@ -183,7 +183,7 @@ void ParametersVoting::Parse(const std::string& s)
 //---------------------------------------------------------------------------
 ///SeperateString splits a std::string
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> ParametersVoting::SeperateString(
+const std::vector<std::string> ribi::gtst::ParametersVoting::SeperateString(
   const std::string& input,
   const char seperator)
 {
@@ -199,13 +199,13 @@ const std::vector<std::string> ParametersVoting::SeperateString(
   return v;
 }
 //---------------------------------------------------------------------------
-void ParametersVoting::SetDuration(const int time)
+void ribi::gtst::ParametersVoting::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
 //---------------------------------------------------------------------------
-void ParametersVoting::SetOptions(
+void ribi::gtst::ParametersVoting::SetOptions(
   const std::vector<boost::shared_ptr<VotingOption> >& options)
 {
   assert(options.size() >= 2
@@ -214,12 +214,12 @@ void ParametersVoting::SetOptions(
 }
 //---------------------------------------------------------------------------
 ///Set if there is waited for all before going on
-void ParametersVoting::SetWait(const bool wait)
+void ribi::gtst::ParametersVoting::SetWait(const bool wait)
 {
   m_wait = wait;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ParametersVoting& parameters)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersVoting& parameters)
 {
   os
     << "<parametersvoting>"

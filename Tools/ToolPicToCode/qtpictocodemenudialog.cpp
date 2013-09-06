@@ -29,31 +29,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpictocodemaindialog.h"
 #include "ui_qtpictocodemenudialog.h"
 //---------------------------------------------------------------------------
-QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
+ribi::QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtPicToCodeMenuDialog)
 {
   ui->setupUi(this);
 }
 //---------------------------------------------------------------------------
-QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog()
+ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtPicToCodeMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
-void QtPicToCodeMenuDialog::on_button_start_clicked()
+
+void ribi::QtPicToCodeMenuDialog::on_button_start_clicked()
 {
   QtPicToCodeMainDialog d;
   this->hide();
@@ -61,7 +49,7 @@ void QtPicToCodeMenuDialog::on_button_start_clicked()
   this->show();
 }
 //---------------------------------------------------------------------------
-void QtPicToCodeMenuDialog::on_button_about_clicked()
+void ribi::QtPicToCodeMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(PicToCodeMenuDialog::GetAbout());
   this->hide();
@@ -69,7 +57,7 @@ void QtPicToCodeMenuDialog::on_button_about_clicked()
   this->show();
 }
 //---------------------------------------------------------------------------
-void QtPicToCodeMenuDialog::on_button_quit_clicked()
+void ribi::QtPicToCodeMenuDialog::on_button_quit_clicked()
 {
   close();
 }

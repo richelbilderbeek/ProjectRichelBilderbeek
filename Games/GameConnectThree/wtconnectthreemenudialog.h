@@ -34,6 +34,8 @@ namespace Wt
   struct WWidget;
 }
 //---------------------------------------------------------------------------
+namespace ribi {
+
 struct WtSelectPlayerWidget;
 struct WtAboutDialog;
 struct WtConnectThreeGameDialog;
@@ -42,16 +44,23 @@ struct WtConnectThreeMenuDialog : public Wt::WContainerWidget
 {
   WtConnectThreeMenuDialog();
   private:
+  WtConnectThreeMenuDialog(
+    const boost::shared_ptr<const ConnectThreeResources> resources
+  );
   WtConnectThreeGameDialog * m_game;
   Wt::WMenu * m_menu;
   WtSelectPlayerWidget * m_select;
   WtConnectThreeGameDialog * CreateNewGameDialog();
   Wt::WWidget * CreateNewWelcomeDialog() const;
   Wt::WWidget * CreateNewSelectPlayersDialog();
+  static const boost::shared_ptr<const ConnectThreeResources> CreateResources();
   void OnMenuItemChanged();
   void OnSelectClicked();
   public:
   static WtAboutDialog * CreateNewAboutDialog();
+  const boost::shared_ptr<const ConnectThreeResources> m_resources;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTCONNECTTHREEMENUDIALOG_H

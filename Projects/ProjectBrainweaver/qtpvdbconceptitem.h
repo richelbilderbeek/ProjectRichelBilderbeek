@@ -1,11 +1,6 @@
 #ifndef QTPVDBCONCEPT_H
 #define QTPVDBCONCEPT_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include <vector>
 
@@ -16,14 +11,12 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbconcept.h"
-#include "pvdbnode.h"
-#endif
 
 #include "qtroundedtextrectitem.h"
+
+namespace ribi {
+namespace pvdb {
 
 ///A QtPvdbConceptItem shows a Concept
 ///A Concept can be shown in multiple different ways, which is performed by its derived classes.
@@ -32,14 +25,14 @@ struct QtPvdbConceptItem : public QtRoundedTextRectItem
   typedef QtRoundedTextRectItem Base;
 
   ///concept cannot be const, the user might edit it (in derived classes for example)
-  explicit QtPvdbConceptItem(const boost::shared_ptr<pvdb::Concept>& concept);
+  explicit QtPvdbConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept);
   QtPvdbConceptItem(const QtPvdbConceptItem& other) = delete;
   QtPvdbConceptItem& operator=(const QtPvdbConceptItem& other) = delete;
   virtual ~QtPvdbConceptItem() {}
 
   ///Read the Concept
-  const boost::shared_ptr<const pvdb::Concept>  GetConcept() const;
-  const boost::shared_ptr<      pvdb::Concept>& GetConcept() { return m_concept; }
+  const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const;
+  const boost::shared_ptr<      ribi::pvdb::Concept>& GetConcept() { return m_concept; }
 
   ///Get he brush by which the indicator is filled
   const QBrush& GetIndicatorBrush() const { return m_indicator_brush; }
@@ -97,7 +90,7 @@ private:
 
   ///The concept on the node
   ///m_concept cannot be const: the user might edit it
-  const boost::shared_ptr<pvdb::Concept> m_concept;
+  const boost::shared_ptr<ribi::pvdb::Concept> m_concept;
 
   ///The brush by which the indicator is filled
   QBrush m_indicator_brush;
@@ -109,5 +102,9 @@ private:
 
 
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCONCEPT_H

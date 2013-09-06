@@ -22,14 +22,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "grouploggedin.h"
 //---------------------------------------------------------------------------
-GroupLoggedIn::GroupLoggedIn(Server * const server)
+ribi::gtst::GroupLoggedIn::GroupLoggedIn(Server * const server)
   : Group(server)
 {
 
 }
 //---------------------------------------------------------------------------
 ///GroupLoggedIn its ID is the highest maximum int minus one
-int GroupLoggedIn::GetId() const
+int ribi::gtst::GroupLoggedIn::GetId() const
 {
   return boost::numeric::bounds<int>::highest() - 1;
 }

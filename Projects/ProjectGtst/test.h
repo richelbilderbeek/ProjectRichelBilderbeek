@@ -25,6 +25,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/noncopyable.hpp>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Class to test the non-Wt classes
 struct Test : public boost::noncopyable
@@ -85,5 +89,8 @@ struct Test : public boost::noncopyable
 
   Server * const m_server;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // TEST_H

@@ -35,15 +35,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtaboutdialog.h"
 #include "wtrichelbilderbeekgallerydialog.h"
 //---------------------------------------------------------------------------
-namespace RichelBilderbeek {
-//---------------------------------------------------------------------------
-WtGalleryDialog::Ui::Ui()
+
+ribi::RichelBilderbeek::WtGalleryDialog::Ui::Ui()
   : m_table(new Wt::WTable)
 {
 
 }
 //---------------------------------------------------------------------------
-WtGalleryDialog::WtGalleryDialog()
+ribi::RichelBilderbeek::WtGalleryDialog::WtGalleryDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   new Wt::WBreak(this);
@@ -106,14 +105,12 @@ WtGalleryDialog::WtGalleryDialog()
       //ui.m_table->rowAt(i)->elementAt(0)->set
     }
   }
-  ui.m_table->clicked().connect(this,&WtGalleryDialog::OnClick);
+  ui.m_table->clicked().connect(this,&ribi::RichelBilderbeek::WtGalleryDialog::OnClick);
 }
 //---------------------------------------------------------------------------
-void WtGalleryDialog::OnClick(const Wt::WMouseEvent&)
+void ribi::RichelBilderbeek::WtGalleryDialog::OnClick(const Wt::WMouseEvent&)
 {
   //const int x = event.widget().x;
   //const int y = event.widget().y;
 }
-//---------------------------------------------------------------------------
-} //~namespace RichelBilderbeek
 //---------------------------------------------------------------------------

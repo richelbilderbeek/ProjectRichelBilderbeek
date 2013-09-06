@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <Wt/WContainerWidget>
 
+namespace ribi {
+
 struct IpAddress;
 
 namespace ToolTestEntrance {
@@ -39,5 +41,7 @@ struct WtMenuDialog : public Wt::WContainerWidget
 };
 
 } //~namespace ToolTestEntrance
+
+} //~namespace ribi
 
 #endif // WTTESTENTRANCEMENUDIALOG_H

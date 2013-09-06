@@ -31,6 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Parameters for the voting state
 struct ParametersVoting
@@ -103,5 +107,8 @@ struct ParametersVoting
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ParametersVoting& parameters);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARAMETERSVOTING_H

@@ -34,31 +34,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtmusictheorymultiscaledialog.h"
 #include "ui_qtmusictheorymenudialog.h"
 
-QtMusicTheoryMenuDialog::QtMusicTheoryMenuDialog(QWidget *parent) :
+ribi::QtMusicTheoryMenuDialog::QtMusicTheoryMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtMusicTheoryMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtMusicTheoryMenuDialog::~QtMusicTheoryMenuDialog()
+ribi::QtMusicTheoryMenuDialog::~QtMusicTheoryMenuDialog()
 {
   delete ui;
 }
 
-void QtMusicTheoryMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtMusicTheoryMenuDialog::on_button_about_clicked()
+void ribi::QtMusicTheoryMenuDialog::on_button_about_clicked()
 {
   About a = MusicTheoryMenuDialog::GetAbout();
   a.AddLibrary("QtChordEdge version: " + QtChordEdge::GetVersion());
@@ -74,12 +62,12 @@ void QtMusicTheoryMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtMusicTheoryMenuDialog::on_button_quit_clicked()
+void ribi::QtMusicTheoryMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtMusicTheoryMenuDialog::on_button_start_singlescale_clicked()
+void ribi::QtMusicTheoryMenuDialog::on_button_start_singlescale_clicked()
 {
   //Make a screenshot
   QPixmap::grabWidget(this,this->window()->rect()).save("ToolMusicTheoryMenuDialog.png");
@@ -91,7 +79,7 @@ void QtMusicTheoryMenuDialog::on_button_start_singlescale_clicked()
 }
 
 
-void QtMusicTheoryMenuDialog::on_button_start_multiscale_clicked()
+void ribi::QtMusicTheoryMenuDialog::on_button_start_multiscale_clicked()
 {
   QtMusicTheoryMultiScaleDialog d;
   this->hide();

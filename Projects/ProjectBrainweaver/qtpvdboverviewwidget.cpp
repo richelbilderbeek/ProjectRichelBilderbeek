@@ -46,7 +46,7 @@
 #include "qtpvdbstudentstartcompletedialog.h"
 #include "trace.h"
 
-QtPvdbOverviewWidget::QtPvdbOverviewWidget(QWidget* parent)
+ribi::pvdb::QtPvdbOverviewWidget::QtPvdbOverviewWidget(QWidget* parent)
   : QGraphicsView(new QGraphicsScene,parent),
     m_dialogs(GetAllDialogs())
 {
@@ -86,7 +86,7 @@ QtPvdbOverviewWidget::QtPvdbOverviewWidget(QWidget* parent)
 }
 
 
-const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
+const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget::GetAllDialogs()
 {
   std::vector<QtHideAndShowDialog* > v;
   {
@@ -142,14 +142,14 @@ const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
     assert(concept_map);
     QtHideAndShowDialog* p(new QtPvdbRateConceptDialog(concept_map));
     assert(p);
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
     assert(concept_map);
     QtHideAndShowDialog* p(new QtPvdbRateConceptTallyDialog(concept_map));
     assert(p);
@@ -225,7 +225,7 @@ const std::vector<QtHideAndShowDialog* > QtPvdbOverviewWidget::GetAllDialogs()
   return v;
 }
 
-void QtPvdbOverviewWidget::mouseDoubleClickEvent(QMouseEvent *)
+void ribi::pvdb::QtPvdbOverviewWidget::mouseDoubleClickEvent(QMouseEvent *)
 {
   QImage image(scene()->sceneRect().size().toSize(), QImage::Format_ARGB32); // Create the image with the exact size of the shrunk scene
   image.fill(Qt::transparent);                                               // Start all pixels transparent

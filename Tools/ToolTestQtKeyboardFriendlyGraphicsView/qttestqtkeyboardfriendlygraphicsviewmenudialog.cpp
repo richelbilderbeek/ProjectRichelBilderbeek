@@ -40,7 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestqtkeyboardfriendlygraphicsviewmenudialog.h"
 #pragma GCC diagnostic pop
 
-QtTestKeyboardFriendlyGraphicsViewMenuDialog::QtTestKeyboardFriendlyGraphicsViewMenuDialog(QWidget *parent) :
+ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::QtTestKeyboardFriendlyGraphicsViewMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestKeyboardFriendlyGraphicsViewMenuDialog)
 {
@@ -49,9 +49,9 @@ QtTestKeyboardFriendlyGraphicsViewMenuDialog::QtTestKeyboardFriendlyGraphicsView
     typedef QtTestKeyboardFriendlyGraphicsViewWidget Widget;
     Widget * const widget = new Widget;
     widget->m_signal_request_about.connect(
-      boost::bind(&QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout,this));
+      boost::bind(&ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout,this));
     widget->m_signal_request_quit.connect(
-      boost::bind(&QtTestKeyboardFriendlyGraphicsViewMenuDialog::Quit,this));
+      boost::bind(&ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Quit,this));
     ui->layout->addWidget(widget,0,0);
   }
   //Make this dialog big and centered
@@ -61,17 +61,17 @@ QtTestKeyboardFriendlyGraphicsViewMenuDialog::QtTestKeyboardFriendlyGraphicsView
   }
 }
 
-QtTestKeyboardFriendlyGraphicsViewMenuDialog::~QtTestKeyboardFriendlyGraphicsViewMenuDialog()
+ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::~QtTestKeyboardFriendlyGraphicsViewMenuDialog()
 {
   delete ui;
 }
 
-void QtTestKeyboardFriendlyGraphicsViewMenuDialog::keyPressEvent(QKeyEvent* e)
+void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout()
+void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout()
 {
   About about = TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout();
   about.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
@@ -90,7 +90,7 @@ void QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout()
   this->show();
 }
 
-void QtTestKeyboardFriendlyGraphicsViewMenuDialog::Quit()
+void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Quit()
 {
   close();
 }

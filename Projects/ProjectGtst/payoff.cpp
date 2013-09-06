@@ -25,19 +25,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "payoff.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-Payoff::Payoff(const int period, const double payoff)
+ribi::gtst::Payoff::Payoff(const int period, const double payoff)
   : m_payoff(payoff), m_period(period)
 {
   assert(m_period >= 0);
 }
 //---------------------------------------------------------------------------
-PayoffAssign::PayoffAssign(const int period, const double payoff)
+ribi::gtst::PayoffAssign::PayoffAssign(const int period, const double payoff)
   : Payoff(period,payoff)
 {
 
 }
 //---------------------------------------------------------------------------
-const std::string PayoffAssign::ToXml() const
+const std::string ribi::gtst::PayoffAssign::ToXml() const
 {
   std::stringstream s;
   s
@@ -52,7 +52,7 @@ const std::string PayoffAssign::ToXml() const
   return s.str();
 }
 //---------------------------------------------------------------------------
-PayoffIpgg::PayoffIpgg(
+ribi::gtst::PayoffIpgg::PayoffIpgg(
     const int period,
     const int ipgg_round,
     const double payoff,
@@ -66,7 +66,7 @@ PayoffIpgg::PayoffIpgg(
   assert(m_ipgg_round >= 0);
 }
 //---------------------------------------------------------------------------
-const std::string PayoffIpgg::ToXml() const
+const std::string ribi::gtst::PayoffIpgg::ToXml() const
 {
   std::stringstream s;
   s
@@ -90,13 +90,13 @@ const std::string PayoffIpgg::ToXml() const
   return s.str();
 }
 //---------------------------------------------------------------------------
-PayoffReAssign::PayoffReAssign(const int period, const double payoff)
+ribi::gtst::PayoffReAssign::PayoffReAssign(const int period, const double payoff)
   : Payoff(period,payoff)
 {
 
 }
 //---------------------------------------------------------------------------
-const std::string PayoffReAssign::ToXml() const
+const std::string ribi::gtst::PayoffReAssign::ToXml() const
 {
   std::stringstream s;
   s
@@ -111,7 +111,7 @@ const std::string PayoffReAssign::ToXml() const
   return s.str();
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const Payoff& p)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const Payoff& p)
 {
   os << p.ToXml();
   return os;

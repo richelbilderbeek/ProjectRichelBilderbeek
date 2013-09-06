@@ -17,37 +17,37 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtGroupWidget.htm
-//---------------------------------------------------------------------------
+
 #include <algorithm>
 #include <iostream>
 #include <numeric>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
 //#include <boost/numeric/conversion/bounds.hpp>
 //#include <boost/bind.hpp>
 //#include <boost/lambda/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBrush>
 #include <Wt/WEvent>
 #include <Wt/WPaintDevice>
 #include <Wt/WPainter>
 #include <Wt/WPen>
-//---------------------------------------------------------------------------
+
 #include "rainbow.h"
 #include "wtgroupwidget.h"
-//---------------------------------------------------------------------------
-WtGroupWidget::WtGroupWidget()
+
+ribi::WtGroupWidget::WtGroupWidget()
 {
   this->resize(100,100);
 }
-//---------------------------------------------------------------------------
-void WtGroupWidget::DoRepaint()
+
+void ribi::WtGroupWidget::DoRepaint()
 {
   this->update();
 }
-//---------------------------------------------------------------------------
-int WtGroupWidget::GetMax(const std::vector<std::vector<int> >& v)
+
+int ribi::WtGroupWidget::GetMax(const std::vector<std::vector<int> >& v)
 {
   assert(!v.empty());
   int max = 0;
@@ -59,13 +59,13 @@ int WtGroupWidget::GetMax(const std::vector<std::vector<int> >& v)
   }
   return max;
 }
-//---------------------------------------------------------------------------
-const std::string WtGroupWidget::GetVersion()
+
+const std::string ribi::WtGroupWidget::GetVersion()
 {
   return "1.2";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> WtGroupWidget::GetVersionHistory()
+
+const std::vector<std::string> ribi::WtGroupWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -74,8 +74,8 @@ const std::vector<std::string> WtGroupWidget::GetVersionHistory()
   v.push_back("2011-06-22: version 1.2: allow display of zero groups");
   return v;
 }
-//---------------------------------------------------------------------------
-void WtGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+
+void ribi::WtGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter p(paintDevice);
   const int width  = this->width().toPixels();
@@ -160,10 +160,10 @@ void WtGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
     }
   }
 }
-//---------------------------------------------------------------------------
-void WtGroupWidget::SetIds(const std::vector<std::vector<int> >& v)
+
+void ribi::WtGroupWidget::SetIds(const std::vector<std::vector<int> >& v)
 {
   m_v = v;
   update();
 }
-//---------------------------------------------------------------------------
+

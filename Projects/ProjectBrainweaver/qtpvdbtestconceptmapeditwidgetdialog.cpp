@@ -33,12 +33,12 @@
 #include "trace.h"
 #include "ui_qtpvdbtestconceptmapeditwidgetdialog.h"
 
-QtPvdbTestConceptMapEditWidgetDialog::QtPvdbTestConceptMapEditWidgetDialog(QWidget *parent) :
+ribi::pvdb::QtPvdbTestConceptMapEditWidgetDialog::QtPvdbTestConceptMapEditWidgetDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestConceptMapEditWidgetDialog),
   m_concept_map(
     new QtPvdbConceptMapEditWidget(
-      pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+      ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
     )
   )
 
@@ -51,12 +51,12 @@ QtPvdbTestConceptMapEditWidgetDialog::QtPvdbTestConceptMapEditWidgetDialog(QWidg
   ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
-QtPvdbTestConceptMapEditWidgetDialog::~QtPvdbTestConceptMapEditWidgetDialog()
+ribi::pvdb::QtPvdbTestConceptMapEditWidgetDialog::~QtPvdbTestConceptMapEditWidgetDialog()
 {
   delete ui;
 }
 
-void QtPvdbTestConceptMapEditWidgetDialog::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbTestConceptMapEditWidgetDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
   if (event->key() == Qt::Key_1
@@ -66,7 +66,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::keyPressEvent(QKeyEvent *event)
   }
 }
 
-void QtPvdbTestConceptMapEditWidgetDialog::Test()
+void ribi::pvdb::QtPvdbTestConceptMapEditWidgetDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -78,7 +78,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::Test()
     []
     {
   #endif
-  TRACE("QtPvdbTestConceptMapEditWidgetDialog::Test started");
+  TRACE("ribi::pvdb::QtPvdbTestConceptMapEditWidgetDialog::Test started");
   QtPvdbTestConceptMapEditWidgetDialog d;
   d.DoSomethingRandom();
   TRACE("TODO");
@@ -118,7 +118,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::Test()
   {
     TRACE("TODO");
     /*
-    const boost::shared_ptr<pvdb::Concept> concept = d.m_concept_map->GetConcept();
+    const boost::shared_ptr<ribi::pvdb::Concept> concept = d.m_concept_map->GetConcept();
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);
@@ -141,7 +141,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::Test()
     assert(d.m_rate_node->brush()    == QtPvdbBrushFactory::CreateGreenGradientBrush());
     */
   }
-  TRACE("QtPvdbTestConceptMapEditWidgetDialog::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbTestConceptMapEditWidgetDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -149,7 +149,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::Test()
   #endif
 }
 
-void QtPvdbTestConceptMapEditWidgetDialog::DoSomethingRandom()
+void ribi::pvdb::QtPvdbTestConceptMapEditWidgetDialog::DoSomethingRandom()
 {
 
   const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();
@@ -162,7 +162,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::DoSomethingRandom()
         assert(!qtitem->GetConcept()->GetName().empty());
         assert(qtitem->GetConcept()->GetExamples());
         qtitem->SetName(qtitem->GetConcept()->GetName() + "N");
-        const std::vector<boost::shared_ptr<pvdb::Examples> > v = pvdb::ExamplesFactory::GetTests();
+        const std::vector<boost::shared_ptr<ribi::pvdb::Examples> > v = pvdb::ExamplesFactory::GetTests();
         qtitem->GetConcept()->SetExamples(v [ std::rand() % v.size() ] );
         qtitem->update();
       }
@@ -172,7 +172,7 @@ void QtPvdbTestConceptMapEditWidgetDialog::DoSomethingRandom()
         assert(!qtitem->GetConcept()->GetName().empty());
         assert(qtitem->GetConcept()->GetExamples());
         qtitem->SetName(qtitem->GetConcept()->GetName() + "E");
-        const std::vector<boost::shared_ptr<pvdb::Examples> > v = pvdb::ExamplesFactory::GetTests();
+        const std::vector<boost::shared_ptr<ribi::pvdb::Examples> > v = pvdb::ExamplesFactory::GetTests();
         qtitem->GetConcept()->SetExamples(v [ std::rand() % v.size() ] );
         qtitem->update();
       }

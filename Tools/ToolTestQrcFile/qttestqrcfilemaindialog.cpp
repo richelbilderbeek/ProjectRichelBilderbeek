@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testqrcfilemenudialog.h"
 #include "ui_qttestqrcfilemaindialog.h"
 
-QtTestQrcFileMainDialog::QtTestQrcFileMainDialog(QWidget *parent) :
+ribi::QtTestQrcFileMainDialog::QtTestQrcFileMainDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestQrcFileMainDialog)
 {
@@ -42,12 +42,12 @@ QtTestQrcFileMainDialog::QtTestQrcFileMainDialog(QWidget *parent) :
   ui->edit->setText("Tools/ToolTestQrcFile/ToolTestQrcFile.qrc");
 }
 
-QtTestQrcFileMainDialog::~QtTestQrcFileMainDialog()
+ribi::QtTestQrcFileMainDialog::~QtTestQrcFileMainDialog()
 {
   delete ui;
 }
 
-bool QtTestQrcFileMainDialog::IsRegularFile(const std::string& filename)
+bool ribi::QtTestQrcFileMainDialog::IsRegularFile(const std::string& filename)
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);
@@ -55,7 +55,7 @@ bool QtTestQrcFileMainDialog::IsRegularFile(const std::string& filename)
 }
 
 
-void QtTestQrcFileMainDialog::on_edit_textChanged(const QString &arg1)
+void ribi::QtTestQrcFileMainDialog::on_edit_textChanged(const QString &arg1)
 {
   const std::string filename = std::string("../../") + arg1.toStdString();
   if (!IsRegularFile(filename))

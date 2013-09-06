@@ -1,29 +1,23 @@
 #ifndef QTPVDBCONCEPTMAPDIALOG_H
 #define QTPVDBCONCEPTMAPDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "qtpvdbconceptmapwidget.h"
-#include "pvdbfile.h"
-#endif
 
 namespace Ui { class QtPvdbConceptMapDialog; }
 
-class QtPvdbConceptMapDialog : public QtHideAndShowDialog
+namespace ribi {
+
+namespace pvdb {
+
+class QtPvdbConceptMapDialog : public ::ribi::QtHideAndShowDialog
 {
   Q_OBJECT
     
   public:
-  explicit QtPvdbConceptMapDialog(const boost::shared_ptr<pvdb::File> file, QWidget* parent = 0);
+  explicit QtPvdbConceptMapDialog(const boost::shared_ptr<File> file, QWidget* parent = 0);
 
   ~QtPvdbConceptMapDialog();
 
@@ -70,7 +64,7 @@ private:
   ///The concept map widget
   QtPvdbConceptMapEditWidget * const m_widget;
 
-  //static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::ConceptMap> concept_map);
+  //static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map);
   ///DON'T USE: puts a new ConceptMap in file
   static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::File> file);
 
@@ -83,5 +77,8 @@ private:
   #endif
 };
 
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCONCEPTMAPDIALOG_H

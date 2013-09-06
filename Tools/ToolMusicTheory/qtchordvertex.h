@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "musicchord.h"
 
+namespace ribi {
+
 ///QtChord displays a Music::Chord
 struct QtChordVertex : public QGraphicsItem
 {
@@ -56,5 +58,7 @@ struct QtChordVertex : public QGraphicsItem
   ///The color used to draw this vertex
   QColor m_color;
 };
+
+} //~namespace ribi
 
 #endif // QTCHORDVERTEX_H

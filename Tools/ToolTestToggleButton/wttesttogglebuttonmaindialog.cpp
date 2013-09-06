@@ -38,19 +38,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wttogglebuttonwidget.h"
 #include "wttesttogglebuttonmaindialog.h"
 //---------------------------------------------------------------------------
-WtTestToggleButtonMainDialog::WtTestToggleButtonMainDialog()
+ribi::WtTestToggleButtonMainDialog::WtTestToggleButtonMainDialog()
   : m_dialog(new TestToggleButtonMenuDialog)
 {
   this->setContentAlignment(Wt::AlignCenter);
   ShowMain();
 }
 //---------------------------------------------------------------------------
-void WtTestToggleButtonMainDialog::OnAboutClick()
+void ribi::WtTestToggleButtonMainDialog::OnAboutClick()
 {
   ShowAbout();
 }
 //---------------------------------------------------------------------------
-void WtTestToggleButtonMainDialog::OnDialChanged()
+void ribi::WtTestToggleButtonMainDialog::OnDialChanged()
 {
   const double x = ui.m_dial->GetWidget()->GetDial()->GetPosition();
 
@@ -63,7 +63,7 @@ void WtTestToggleButtonMainDialog::OnDialChanged()
     boost::numeric_cast<int>(b * 255.0));
 }
 //---------------------------------------------------------------------------
-void WtTestToggleButtonMainDialog::OnToggleButtonColorChanged()
+void ribi::WtTestToggleButtonMainDialog::OnToggleButtonColorChanged()
 {
   const unsigned char r = ui.m_toggle_button->GetWidget()->GetToggleButton()->GetRed();
   const unsigned char g = ui.m_toggle_button->GetWidget()->GetToggleButton()->GetGreen();
@@ -80,7 +80,7 @@ void WtTestToggleButtonMainDialog::OnToggleButtonColorChanged()
   ui.m_label_color->setText(text);
 }
 //---------------------------------------------------------------------------
-void WtTestToggleButtonMainDialog::OnToggleButtonToggled()
+void ribi::WtTestToggleButtonMainDialog::OnToggleButtonToggled()
 {
   ui.m_label_toggle->setText(
       (std::string("Is pressed: ")
@@ -88,19 +88,19 @@ void WtTestToggleButtonMainDialog::OnToggleButtonToggled()
       ? "yes" : "no")).c_str());
 }
 //---------------------------------------------------------------------------
-void WtTestToggleButtonMainDialog::ShowAbout()
+void ribi::WtTestToggleButtonMainDialog::ShowAbout()
 {
   About a = TestToggleButtonMenuDialog::GetAbout();
   WtAboutDialog * const d = new WtAboutDialog(a);
   d->m_signal_close.connect(
     boost::bind(
-    &WtTestToggleButtonMainDialog::ShowMain,
+    &ribi::WtTestToggleButtonMainDialog::ShowMain,
     this));
   this->clear();
   this->addWidget(d);
 }
 //---------------------------------------------------------------------------
-void WtTestToggleButtonMainDialog::ShowMain()
+void ribi::WtTestToggleButtonMainDialog::ShowMain()
 {
   this->clear();
   this->addWidget(new Wt::WBreak);
@@ -109,12 +109,12 @@ void WtTestToggleButtonMainDialog::ShowMain()
     this->addWidget(ui.m_toggle_button);
     ui.m_toggle_button->GetWidget()->GetToggleButton()->m_signal_color_changed.connect(
       boost::bind(
-        &WtTestToggleButtonMainDialog::OnToggleButtonColorChanged,
+        &ribi::WtTestToggleButtonMainDialog::OnToggleButtonColorChanged,
         this));
 
     ui.m_toggle_button->GetWidget()->GetToggleButton()->m_signal_toggled.connect(
       boost::bind(
-        &WtTestToggleButtonMainDialog::OnToggleButtonToggled,
+        &ribi::WtTestToggleButtonMainDialog::OnToggleButtonToggled,
       this));
     ui.m_toggle_button->GetWidget()->SetGeometry(Rect(0,0,200,100));
   }
@@ -138,7 +138,7 @@ void WtTestToggleButtonMainDialog::ShowMain()
     ui.m_dial= new WtDialWidget;
     ui.m_dial->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
-        &WtTestToggleButtonMainDialog::OnDialChanged,
+        &ribi::WtTestToggleButtonMainDialog::OnDialChanged,
         this));
     this->addWidget(ui.m_dial);
   }

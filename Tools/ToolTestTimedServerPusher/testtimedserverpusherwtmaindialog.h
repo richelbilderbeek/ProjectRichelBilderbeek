@@ -29,7 +29,8 @@ namespace Wt
 {
   struct WLineEdit;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
 namespace ToolTestTimedServerPusher {
 //---------------------------------------------------------------------------
 ///TestTimedServerPusher its main dialog
@@ -51,6 +52,8 @@ struct WtMainDialog : public Wt::WContainerWidget, WtTimedServerPusherClient
 };
 //---------------------------------------------------------------------------
 } //~namespace ToolTestTimedServerPusher
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 
 #endif // WTTESTTIMEDSERVERPUSHERMAINDIALOG_H

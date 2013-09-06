@@ -25,6 +25,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
 namespace Wt { struct WLabel; }
+
+namespace ribi {
+
 struct TestShinyButtonMenuDialog;
 struct WtDialWidget;
 struct WtShinyButtonWidget;
@@ -50,5 +53,7 @@ struct WtTestShinyButtonMainDialog : public Wt::WContainerWidget
   void OnEditChanged();
   void OnShinyButtonColorChanged();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTSHINYBUTTONDIALOG_H

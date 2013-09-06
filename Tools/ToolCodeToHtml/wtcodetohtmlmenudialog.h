@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <Wt/WContainerWidget>
 
+namespace ribi {
 namespace CodeToHtml {
 
 struct WtMenuDialog : public Wt::WContainerWidget
@@ -35,5 +36,6 @@ struct WtMenuDialog : public Wt::WContainerWidget
 };
 
 } //~namespace CodeToHtml
+} //~namespace ribi
 
 #endif // WTCODETOHTMLMENUDIALOG_H

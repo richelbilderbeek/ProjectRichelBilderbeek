@@ -47,7 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "wtshapewidget.h"
 //---------------------------------------------------------------------------
-Participant::Participant(
+ribi::gtst::Participant::Participant(
   boost::shared_ptr<GroupAssigner> group_assigner,
   Server * const server)
   : m_chat_shape(
@@ -77,12 +77,12 @@ Participant::Participant(
   assert(!CanGetId());
 }
 //---------------------------------------------------------------------------
-Participant::~Participant()
+ribi::gtst::Participant::~Participant()
 {
-  //std::clog << "Participant::~Participant() for #" << GetId() << '\n' ;
+  //std::clog << "ribi::gtst::Participant::~Participant() for #" << GetId() << '\n' ;
 }
 //---------------------------------------------------------------------------
-void Participant::AppendChat(const boost::shared_ptr<ChatMessage>& message)
+void ribi::gtst::Participant::AppendChat(const boost::shared_ptr<ChatMessage>& message)
 {
   assert(message);
   assert(!m_chat.empty());
@@ -91,33 +91,33 @@ void Participant::AppendChat(const boost::shared_ptr<ChatMessage>& message)
 }
 //---------------------------------------------------------------------------
 ///Assign the Participant an ID
-void Participant::AssignId(const int id)
+void ribi::gtst::Participant::AssignId(const int id)
 {
   assert(id > 0 && "ID\'s must be positive non-zero values");
   m_id = id;
 }
 //---------------------------------------------------------------------------
 ///Assign the payoff the Participant receives from the chosen action
-//void Participant::AssignPayoff(const double payoff)
+//void ribi::gtst::Participant::AssignPayoff(const double payoff)
 //{
 //  m_payoffs.push_back(payoff);
 //}
 //---------------------------------------------------------------------------
 ///Check if the Participant is assigned an ID already
 ///if m_id equals zero, the Participant is not assigned an ID yet
-bool Participant::CanGetId() const
+bool ribi::gtst::Participant::CanGetId() const
 {
   assert(m_id >= 0);
   return m_id != 0;
 }
 //---------------------------------------------------------------------------
-bool Participant::CanGetIpAddress() const
+bool ribi::gtst::Participant::CanGetIpAddress() const
 {
   return m_ip_address.get();
 }
 //---------------------------------------------------------------------------
 ///Lets the Participant choose an action
-void Participant::ChooseAction(const ChooseActionOption * const option)
+void ribi::gtst::Participant::ChooseAction(const ChooseActionOption * const option)
 {
   assert(option);
 
@@ -125,14 +125,14 @@ void Participant::ChooseAction(const ChooseActionOption * const option)
 }
 //---------------------------------------------------------------------------
 ///Get the Participant his/her unique ID
-int Participant::GetId() const
+int ribi::gtst::Participant::GetId() const
 {
   assert(m_id > 0 && "ID\'s must be positive non-zero values");
   return m_id;
 }
 //---------------------------------------------------------------------------
 ///Get the Participant's IP address
-const boost::shared_ptr<const SafeIpAddress> Participant::GetIpAddress() const
+const boost::shared_ptr<const ribi::SafeIpAddress> ribi::gtst::Participant::GetIpAddress() const
 {
   return m_ip_address;
 }
@@ -140,19 +140,19 @@ const boost::shared_ptr<const SafeIpAddress> Participant::GetIpAddress() const
 ///Avoiding duplication in const and non-const member functions.
 //Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 3,
 //paragraph 'Avoid duplication in const and non-const member functions'
-ParticipantState * Participant::GetState()
+ribi::gtst::ParticipantState * ribi::gtst::Participant::GetState()
 {
   return const_cast<ParticipantState*>(
     const_cast<const Participant&>(*this).GetState());
 }
 //---------------------------------------------------------------------------
-const ParticipantState * Participant::GetState() const
+const ribi::gtst::ParticipantState * ribi::gtst::Participant::GetState() const
 {
   assert(m_state);
   return m_state;
 }
 //---------------------------------------------------------------------------
-void Participant::SetIpAddress(const boost::shared_ptr<const SafeIpAddress>& ip_address)
+void ribi::gtst::Participant::SetIpAddress(const boost::shared_ptr<const SafeIpAddress>& ip_address)
 {
   assert(!CanGetIpAddress() && "Cannot change the IP address of a participant if it is valid already");
 
@@ -160,7 +160,7 @@ void Participant::SetIpAddress(const boost::shared_ptr<const SafeIpAddress>& ip_
 }
 //---------------------------------------------------------------------------
 ///SetState sets the ParticipantState of the Participant
-void Participant::SetState(const State * const state)
+void ribi::gtst::Participant::SetState(const State * const state)
 {
   if (dynamic_cast<const StateAssignPayoff*>(state))
   {
@@ -217,23 +217,23 @@ void Participant::SetState(const State * const state)
 }
 //---------------------------------------------------------------------------
 ///StartChat lets the Participant know that he/she starts a new chat phase
-void Participant::StartChat()
+void ribi::gtst::Participant::StartChat()
 {
   m_chat.push_back(std::vector<boost::shared_ptr<ChatMessage> >());
 }
 //---------------------------------------------------------------------------
 ///ToStr creates a one-line string viewed by an Administrator
-const std::string Participant::ToAdminStr() const
+const std::string ribi::gtst::Participant::ToAdminStr() const
 {
   return this->GetState()->ToAdminStr();
 }
 //---------------------------------------------------------------------------
-void Participant::Vote(const boost::shared_ptr<VotingOption>& vote)
+void ribi::gtst::Participant::Vote(const boost::shared_ptr<VotingOption>& vote)
 {
   m_votes.push_back(vote);
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const Participant& p)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const Participant& p)
 {
   os
     << "<participant>"
@@ -254,14 +254,14 @@ std::ostream& operator<<(std::ostream& os,const Participant& p)
   return os;
   }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const boost::shared_ptr<Participant>& p)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const boost::shared_ptr<Participant>& p)
 {
   assert(p);
   os << (*(p.get()));
   return os;
 }
 //---------------------------------------------------------------------------
-bool operator<(const Participant& lhs,const Participant& rhs)
+bool ribi::gtst::operator<(const Participant& lhs,const Participant& rhs)
 {
   assert(lhs.GetId() != rhs.GetId() && "Assume each participant has a unique ID");
   return lhs.GetId() < rhs.GetId();

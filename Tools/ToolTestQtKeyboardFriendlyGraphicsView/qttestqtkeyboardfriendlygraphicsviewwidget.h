@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtkeyboardfriendlygraphicsview.h"
 
+namespace ribi {
 
 ///QtTestKeyboardFriendlyGraphicsViewWidget displays my widgets and their relations
 struct QtTestKeyboardFriendlyGraphicsViewWidget : public QtKeyboardFriendlyGraphicsView
@@ -52,5 +53,7 @@ private:
   ///Update the view
   void DoUpdateScene();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWWIDGET_H

@@ -27,6 +27,8 @@ namespace Ui {
   class QtTestTwoDigitNewickDialog;
 }
 
+namespace ribi {
+
 class QtTestTwoDigitNewickDialog : public QDialog
 {
   Q_OBJECT
@@ -38,7 +40,7 @@ public:
   static const std::vector<std::string> GetVersionHistory();
 
 protected:
-  void changeEvent(QEvent *e);
+
 
 private:
   Ui::QtTestTwoDigitNewickDialog *ui;
@@ -48,5 +50,7 @@ private slots:
   void OnAnyChange();
   void OnAboutClick();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTTWODIGITNEWICKDIALOG_H

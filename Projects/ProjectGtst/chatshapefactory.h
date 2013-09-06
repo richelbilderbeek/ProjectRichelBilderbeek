@@ -30,6 +30,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ////brief
 ///ChatShapeFactory creates WtShapeWidgets used as chat shapes
 struct ChatShapeFactory : public boost::noncopyable
@@ -72,5 +76,8 @@ struct ChatShapeFactory : public boost::noncopyable
 
   static const std::vector<boost::shared_ptr<ShapeWidget> > CreateWidgets(const int n);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // CHATSHAPEFACTORY_H

@@ -75,18 +75,6 @@ QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog()
   delete ui;
 }
 
-void QtPerfectElasticCollisionMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 void QtPerfectElasticCollisionMainDialog::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
@@ -96,11 +84,7 @@ void QtPerfectElasticCollisionMainDialog::paintEvent(QPaintEvent*)
   assert(ui->slider_impulse_1->minimum() == 0);
   assert(ui->slider_impulse_2->minimum() == 0);
 
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
 
   const double angle
     = 2.0 * pi * boost::numeric_cast<double>(ui->dial_angle->sliderPosition())
@@ -360,12 +344,7 @@ void QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
   double& angle2,
   double& speed2)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   //The length of the impulse of player 1 (assumes both players have equal mass!)
   const double A = speed1;
   //The length of the impulse of player 2 (assumes both players have equal mass!)
@@ -416,11 +395,7 @@ void QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
 
 double QtPerfectElasticCollisionMainDialog::GetAngle(const double dx, const double dy)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   return pi - (std::atan2(dx,dy));
 }
 
@@ -432,11 +407,7 @@ void QtPerfectElasticCollisionMainDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   //Test GetAngle
   {
     const double angle =  GetAngle(0.0,-1.0); //North

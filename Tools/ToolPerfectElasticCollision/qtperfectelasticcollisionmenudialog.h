@@ -24,8 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDialog>
 
 namespace Ui {
-class QtPerfectElasticCollisionMenuDialog;
+  class QtPerfectElasticCollisionMenuDialog;
 }
+
+namespace ribi {
 
 class QtPerfectElasticCollisionMenuDialog : public QDialog
 {
@@ -49,5 +51,7 @@ private:
   ///Test this class
   static void Test();
 };
+
+} //~namespace ribi
 
 #endif // QTPERFECTELASTICCOLLISIONMENUDIALOG_H

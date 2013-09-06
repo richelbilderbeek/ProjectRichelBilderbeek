@@ -45,7 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtautoconfig.h"
 #include "wtasciiartermaindialog.h"
 //---------------------------------------------------------------------------
-WtAsciiArterMainDialog::Ui::Ui()
+ribi::WtAsciiArterMainDialog::Ui::Ui()
   : m_edit_width(new Wt::WLineEdit),
     m_fileupload(new Wt::WFileUpload),
     m_text(new Wt::WTextArea)
@@ -53,7 +53,7 @@ WtAsciiArterMainDialog::Ui::Ui()
 
 }
 //---------------------------------------------------------------------------
-WtAsciiArterMainDialog::WtAsciiArterMainDialog()
+ribi::WtAsciiArterMainDialog::WtAsciiArterMainDialog()
   : m_dialog(new AsciiArterMainDialog)
 {
   //Create resources
@@ -123,7 +123,7 @@ WtAsciiArterMainDialog::WtAsciiArterMainDialog()
   assert(ui.m_text);
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtAsciiArterMainDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewAboutDialog() const
 {
   About a = AsciiArterMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -131,7 +131,7 @@ Wt::WWidget * WtAsciiArterMainDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtAsciiArterMainDialog::CreateNewMainDialog()
+Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewMainDialog()
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   //File upload
@@ -146,7 +146,7 @@ Wt::WWidget * WtAsciiArterMainDialog::CreateNewMainDialog()
     //Call WtTextUploadDialog::on_upload_done when file is uploaded
     ui.m_fileupload->uploaded().connect(
       this,
-      &WtAsciiArterMainDialog::OnUploadDone);
+      &ribi::WtAsciiArterMainDialog::OnUploadDone);
     dialog->addWidget(ui.m_fileupload);
   }
   dialog->addWidget(new Wt::WBreak);
@@ -158,14 +158,14 @@ Wt::WWidget * WtAsciiArterMainDialog::CreateNewMainDialog()
       boost::lexical_cast<std::string>(m_dialog->GetWidth()));
     //Respond to if user presses enter
     ui.m_edit_width->enterPressed().connect(
-      this, &WtAsciiArterMainDialog::OnEditWidthChange);
+      this, &ribi::WtAsciiArterMainDialog::OnEditWidthChange);
     dialog->addWidget(ui.m_edit_width);
   }
   //Convert button
   {
     Wt::WPushButton * const button = new Wt::WPushButton("Convert");
     button->clicked().connect(
-      this, &WtAsciiArterMainDialog::OnConvertClick);
+      this, &ribi::WtAsciiArterMainDialog::OnConvertClick);
     dialog->addWidget(button);
   }
   dialog->addWidget(new Wt::WBreak);
@@ -179,7 +179,7 @@ Wt::WWidget * WtAsciiArterMainDialog::CreateNewMainDialog()
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtAsciiArterMainDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -195,7 +195,7 @@ Wt::WWidget * WtAsciiArterMainDialog::CreateNewWelcomeDialog() const
   return dialog;
 }
 //---------------------------------------------------------------------------
-void WtAsciiArterMainDialog::OnAnyChange()
+void ribi::WtAsciiArterMainDialog::OnAnyChange()
 {
   if (m_dialog->CanConvert())
   {
@@ -211,12 +211,12 @@ void WtAsciiArterMainDialog::OnAnyChange()
   }
 }
 //---------------------------------------------------------------------------
-void WtAsciiArterMainDialog::OnConvertClick()
+void ribi::WtAsciiArterMainDialog::OnConvertClick()
 {
   OnEditWidthChange();
 }
 //---------------------------------------------------------------------------
-void WtAsciiArterMainDialog::OnEditWidthChange()
+void ribi::WtAsciiArterMainDialog::OnEditWidthChange()
 {
   try
   {
@@ -232,7 +232,7 @@ void WtAsciiArterMainDialog::OnEditWidthChange()
   OnAnyChange();
 }
 //---------------------------------------------------------------------------
-void WtAsciiArterMainDialog::OnUploadDone()
+void ribi::WtAsciiArterMainDialog::OnUploadDone()
 {
   const std::string filename = ui.m_fileupload->spoolFileName();
   assert(boost::filesystem::exists(filename));
@@ -245,7 +245,7 @@ void WtAsciiArterMainDialog::OnUploadDone()
 //---------------------------------------------------------------------------
 //Returns a Y-X-ordered std::vector of greynesses.
 const std::vector<std::vector<double> >
-  WtAsciiArterMainDialog::ConvertToGreyYx(const std::string& filename)
+  ribi::WtAsciiArterMainDialog::ConvertToGreyYx(const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
   const QImage * const i = new QImage(filename.c_str());

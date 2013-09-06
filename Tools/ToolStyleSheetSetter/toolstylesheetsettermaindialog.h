@@ -8,7 +8,7 @@ namespace Ui {
 class ToolStyleSheetSetterMainDialog;
 }
 
-class ToolStyleSheetSetterMainDialog : public QtHideAndShowDialog
+class ToolStyleSheetSetterMainDialog : public ribi::QtHideAndShowDialog
 {
     Q_OBJECT
     

@@ -1,23 +1,15 @@
 #ifndef PVDBFILE_H
 #define PVDBFILE_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <regex>
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbcluster.h"
-#include "pvdbconceptmap.h"
-#endif
+
+namespace ribi {
 
 namespace pvdb {
 
@@ -32,7 +24,7 @@ struct File : public boost::noncopyable
     const std::string& about,
     const std::string& assessor_name,
     const boost::shared_ptr<pvdb::Cluster>& cluster,
-    const boost::shared_ptr<pvdb::ConceptMap>& concept_map,
+    const boost::shared_ptr<ribi::pvdb::ConceptMap>& concept_map,
     const std::string& question,
     const std::string& student_name,
     const std::string& version
@@ -58,7 +50,7 @@ struct File : public boost::noncopyable
   const boost::shared_ptr<      Cluster> GetCluster()       { return m_cluster; }
 
   ///Get the concept map
-  const boost::shared_ptr<const pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
+  const boost::shared_ptr<const ribi::pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
   const boost::shared_ptr<      ConceptMap> GetConceptMap()       { return m_concept_map; }
 
   ///Obtain the File filename extension
@@ -98,7 +90,7 @@ struct File : public boost::noncopyable
 
   ///Write a new ConceptMap from a Cluster
   ///Can only be done exactly once
-  void SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept_map);
+  void SetConceptMap(const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map);
 
   ///Set the question
   void SetQuestion(const std::string& question);
@@ -125,7 +117,7 @@ struct File : public boost::noncopyable
 
   ///The concept map
   ///Initially will be nullptr
-  boost::shared_ptr<pvdb::ConceptMap> m_concept_map;
+  boost::shared_ptr<ribi::pvdb::ConceptMap> m_concept_map;
 
   ///The file extension of a a File
   static const std::string m_filename_extension;
@@ -172,5 +164,6 @@ bool IsEqual(const pvdb::File& lhs, const pvdb::File& rhs);
 
 } //~namespace pvdb
 
+} //~namespace ribi
 
 #endif // PVDBFILE_H

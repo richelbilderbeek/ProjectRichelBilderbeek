@@ -32,21 +32,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtshapewidget.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-WtShapeWidget::WtShapeWidget(
+ribi::WtShapeWidget::WtShapeWidget(
   boost::shared_ptr<ShapeWidget> widget)
   : m_widget(widget)
 {
   assert(widget);
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &WtShapeWidget::OnResize,
+      &ribi::WtShapeWidget::OnResize,
       this));
 
   this->OnResize();
 }
 //---------------------------------------------------------------------------
 ///Create a deep copy of WtShapeWidget for use with Wt
-WtShapeWidget * WtShapeWidget::Clone() const
+ribi::WtShapeWidget * ribi::WtShapeWidget::Clone() const
 {
   assert(m_widget);
   boost::shared_ptr<ShapeWidget> widget(m_widget->Clone());
@@ -55,7 +55,7 @@ WtShapeWidget * WtShapeWidget::Clone() const
   return wtwidget;
 }
 //---------------------------------------------------------------------------
-void WtShapeWidget::DrawShape(
+void ribi::WtShapeWidget::DrawShape(
   Wt::WPainter& painter,
   const ShapeWidget * const widget)
 {
@@ -69,7 +69,7 @@ void WtShapeWidget::DrawShape(
     widget->GetShape());
 }
 //---------------------------------------------------------------------------
-void WtShapeWidget::DrawShape(
+void ribi::WtShapeWidget::DrawShape(
   Wt::WPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -126,12 +126,12 @@ void WtShapeWidget::DrawShape(
 
 }
 //---------------------------------------------------------------------------
-const std::string WtShapeWidget::GetVersion()
+const std::string ribi::WtShapeWidget::GetVersion()
 {
   return "2.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtShapeWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtShapeWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-07-15: Version 1.0: initial version");
@@ -139,12 +139,12 @@ const std::vector<std::string> WtShapeWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtShapeWidget::OnResize()
+void ribi::WtShapeWidget::OnResize()
 {
   resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
 //---------------------------------------------------------------------------
-void WtShapeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtShapeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawShape(
@@ -153,12 +153,12 @@ void WtShapeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
     this->m_widget->GetShape());
 }
 //---------------------------------------------------------------------------
-void WtShapeWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
+void ribi::WtShapeWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
 //---------------------------------------------------------------------------
-bool operator==(const WtShapeWidget& lhs, const WtShapeWidget& rhs)
+bool ribi::operator==(const WtShapeWidget& lhs, const WtShapeWidget& rhs)
 {
   return *lhs.m_widget == *rhs.m_widget;
 }

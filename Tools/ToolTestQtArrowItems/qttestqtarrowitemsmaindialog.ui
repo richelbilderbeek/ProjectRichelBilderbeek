@@ -23,7 +23,7 @@
    <string>TestQtArrowItems</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolTestQtArrowItems.qrc">
+   <iconset resource="../../Projects/ProjectBrainweaver/Brainweaver.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
@@ -40,20 +40,20 @@ QPlainTextEdit { font: 10px, &quot;monospace&quot; }
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
-    <widget class="QtKeyboardFriendlyGraphicsView" name="view"/>
+    <widget class="ribi::QtKeyboardFriendlyGraphicsView" name="view"/>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QtKeyboardFriendlyGraphicsView</class>
+   <class>ribi::QtKeyboardFriendlyGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header>qtkeyboardfriendlygraphicsview.h</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="ToolTestQtArrowItems.qrc"/>
+  <include location="../../Projects/ProjectBrainweaver/Brainweaver.qrc"/>
  </resources>
  <connections/>
 </ui>

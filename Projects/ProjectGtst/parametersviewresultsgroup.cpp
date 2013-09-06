@@ -31,20 +31,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "repeatassignerrandomgeometric.h"
 #include "repeatassignerrandomuniform.h"
 //---------------------------------------------------------------------------
-ParametersViewResultsGroup::ParametersViewResultsGroup()
+ribi::gtst::ParametersViewResultsGroup::ParametersViewResultsGroup()
   : m_repeat_assigner(new RepeatAssignerFixed(3)),
     m_duration(5)
 {
 }
 //---------------------------------------------------------------------------
-int ParametersViewResultsGroup::GetDuration() const
+int ribi::gtst::ParametersViewResultsGroup::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
 //---------------------------------------------------------------------------
 ///Parse a line
-void ParametersViewResultsGroup::Parse(const std::string& s)
+void ribi::gtst::ParametersViewResultsGroup::Parse(const std::string& s)
 {
   //View results time in the same group, in the IPGG phase
   if (s.size() > 9 && s.substr(0,9) == "duration=")
@@ -75,7 +75,7 @@ void ParametersViewResultsGroup::Parse(const std::string& s)
 }
 //---------------------------------------------------------------------------
 ///Parse a line starting with cycles=
-void ParametersViewResultsGroup::ParseCycles(const std::string& s)
+void ribi::gtst::ParametersViewResultsGroup::ParseCycles(const std::string& s)
 {
   if (s.empty()) throw std::runtime_error("Empty value. view_results_group_cycles must non-empty, for example \'2\' or \'[3,5>\'");
   if (s[0] == '[')
@@ -163,7 +163,7 @@ void ParametersViewResultsGroup::ParseCycles(const std::string& s)
 //---------------------------------------------------------------------------
 ///SeperateString splits a std::string
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> ParametersViewResultsGroup::SeperateString(
+const std::vector<std::string> ribi::gtst::ParametersViewResultsGroup::SeperateString(
   const std::string& input,
   const char seperator)
 {
@@ -179,19 +179,19 @@ const std::vector<std::string> ParametersViewResultsGroup::SeperateString(
   return v;
 }
 //---------------------------------------------------------------------------
-void ParametersViewResultsGroup::SetDuration(const int time)
+void ribi::gtst::ParametersViewResultsGroup::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
 //---------------------------------------------------------------------------
-void ParametersViewResultsGroup::SetRepeatAssigner(boost::shared_ptr<RepeatAssigner> assigner)
+void ribi::gtst::ParametersViewResultsGroup::SetRepeatAssigner(boost::shared_ptr<RepeatAssigner> assigner)
 {
   assert(assigner);
   m_repeat_assigner = assigner;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ParametersViewResultsGroup& parameters)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersViewResultsGroup& parameters)
 {
   os
     << "<parametersviewresultsgroup>"

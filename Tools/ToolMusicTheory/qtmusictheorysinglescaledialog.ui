@@ -14,7 +14,7 @@
    <string>MusicTheory</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolMusicTheory.qrc">
+   <iconset resource="../../Games/GameBoenken/GameBoenken.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
@@ -243,7 +243,7 @@ QCheckBox { font: 20px,  &quot;Courier&quot; }</string>
     </layout>
    </item>
    <item>
-    <widget class="QtChordRelationsWidget" name="widget" native="true">
+    <widget class="ribi::QtChordRelationsWidget" name="widget" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
        <horstretch>0</horstretch>
@@ -258,14 +258,14 @@ QCheckBox { font: 20px,  &quot;Courier&quot; }</string>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QtChordRelationsWidget</class>
+   <class>ribi::QtChordRelationsWidget</class>
    <extends>QWidget</extends>
    <header>qtchordrelationswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="ToolMusicTheory.qrc"/>
+  <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
  </resources>
  <connections/>
 </ui>

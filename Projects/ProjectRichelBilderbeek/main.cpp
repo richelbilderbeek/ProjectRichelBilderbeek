@@ -125,7 +125,7 @@ int main(int argc, char **argv)
 
   if (m.count("about"))
   {
-    const std::vector<std::string> v = RichelBilderbeek::MenuDialog::GetAbout().CreateAboutText();
+    const std::vector<std::string> v = ribi::RichelBilderbeek::MenuDialog::GetAbout().CreateAboutText();
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
   }
   else if (m.count("help"))
@@ -134,21 +134,21 @@ int main(int argc, char **argv)
   }
   else if (m.count("history"))
   {
-    const std::vector<std::string> v = RichelBilderbeek::MenuDialog::GetVersionHistory();
+    const std::vector<std::string> v = ribi::RichelBilderbeek::MenuDialog::GetVersionHistory();
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
   }
   else if (m.count("licence"))
   {
-    const std::vector<std::string> v = RichelBilderbeek::MenuDialog::GetAbout().CreateLicenceText();
+    const std::vector<std::string> v = ribi::RichelBilderbeek::MenuDialog::GetAbout().CreateLicenceText();
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
   }
   else if (m.count("status"))
   {
-    RichelBilderbeek::MenuDialog d;
-    const std::vector<boost::shared_ptr<RichelBilderbeek::Program> >& v = d.GetPrograms();
+    ribi::RichelBilderbeek::MenuDialog d;
+    const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> >& v = d.GetPrograms();
     std::for_each(
       v.begin(),v.end(),
-      [](const boost::shared_ptr<RichelBilderbeek::Program>& p)
+      [](const boost::shared_ptr<ribi::RichelBilderbeek::Program>& p)
       {
         std::cout << p.get() << '\n';
       }
@@ -156,7 +156,7 @@ int main(int argc, char **argv)
   }
   else if (m.count("version"))
   {
-    const std::vector<std::string> v = RichelBilderbeek::MenuDialog::GetAbout().CreateLibrariesUsedText();
+    const std::vector<std::string> v = ribi::RichelBilderbeek::MenuDialog::GetAbout().CreateLibrariesUsedText();
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
   }
   else

@@ -27,6 +27,8 @@ namespace Ui {
 class QtMusicTheoryMultiScaleDialog;
 }
 
+namespace ribi {
+
 class QtMusicTheoryMultiScaleDialog : public QDialog
 {
   Q_OBJECT
@@ -46,5 +48,7 @@ private slots:
 private:
   Ui::QtMusicTheoryMultiScaleDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTMUSICTHEORYMULTISCALEDIALOG_H

@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "vote.h"
 #include "votingoption.h"
 //---------------------------------------------------------------------------
-Vote::Vote(
+ribi::gtst::Vote::Vote(
   const boost::shared_ptr<const Participant>& sender,
   const VotingOption * const vote)
   : m_sender(sender), m_vote(vote)
@@ -33,7 +33,7 @@ Vote::Vote(
   assert(m_vote);
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const Vote& p)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const Vote& p)
 {
   os
     << "<chat_message>"

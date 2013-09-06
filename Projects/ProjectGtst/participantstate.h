@@ -26,6 +26,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "forward_declarations.h"
 #include "state.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The State the Participant is in.
 ///
@@ -75,5 +79,8 @@ struct ParticipantState : public boost::noncopyable, public State
   Server * const m_server;
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTSTATE_H

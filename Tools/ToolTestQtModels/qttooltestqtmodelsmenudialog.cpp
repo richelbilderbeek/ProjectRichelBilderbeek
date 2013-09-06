@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qttooltestqtmodelsmenudialog.h"
 
-QtToolTestQtModelsMenuDialog::QtToolTestQtModelsMenuDialog(QWidget *parent) :
+ribi::QtToolTestQtModelsMenuDialog::QtToolTestQtModelsMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtToolTestQtModelsMenuDialog)
 {
@@ -48,29 +48,17 @@ QtToolTestQtModelsMenuDialog::QtToolTestQtModelsMenuDialog(QWidget *parent) :
   #endif
 }
 
-QtToolTestQtModelsMenuDialog::~QtToolTestQtModelsMenuDialog()
+ribi::QtToolTestQtModelsMenuDialog::~QtToolTestQtModelsMenuDialog()
 {
   delete ui;
 }
 
-void QtToolTestQtModelsMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtToolTestQtModelsMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtToolTestQtModelsMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtToolTestQtModelsMenuDialog::on_button_about_clicked()
+void ribi::QtToolTestQtModelsMenuDialog::on_button_about_clicked()
 {
   About a = ToolTestQtModelsMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -87,29 +75,29 @@ void QtToolTestQtModelsMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtToolTestQtModelsMenuDialog::on_button_quit_clicked()
+void ribi::QtToolTestQtModelsMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtToolTestQtModelsMenuDialog::on_button_start_clicked()
+void ribi::QtToolTestQtModelsMenuDialog::on_button_start_clicked()
 {
   QtToolTestQtModelsMainDialog d;
   ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void QtToolTestQtModelsMenuDialog::Test()
+void ribi::QtToolTestQtModelsMenuDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Start of QtToolTestQtModelsMenuDialog::Test");
+  TRACE("Start of ribi::QtToolTestQtModelsMenuDialog::Test");
   {
     QtToolTestQtModelsMainDialog d;
   }
-  TRACE("Finished QtToolTestQtModelsMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtToolTestQtModelsMenuDialog::Test successfully");
 }
 #endif

@@ -25,7 +25,7 @@
 #include "trace.h"
 #include "ui_qtpvdbviewtestsdialog.h"
 
-QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
+ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbViewTestsDialog),
     m_c(pvdb::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
@@ -73,7 +73,7 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         mylayout->addWidget(label);
         assert(i < static_cast<int>(m_h.size()));
         assert(m_h[i]);
-        const boost::shared_ptr<pvdb::ConceptMap> concept_map(m_h[i]);
+        const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(m_h[i]);
         assert(concept_map);
         const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
@@ -99,7 +99,7 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         //widget->setMinimumHeight(minheight);
         assert(i < static_cast<int>(m_s.size()));
         assert(m_s[i]);
-        const boost::shared_ptr<pvdb::ConceptMap> concept_map = m_s[i];
+        const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = m_s[i];
         assert(concept_map);
         const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
@@ -123,7 +123,7 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         mylayout->addWidget(label);
         assert(i < static_cast<int>(m_c.size()));
         assert(m_c[i]);
-        const boost::shared_ptr<pvdb::ConceptMap> concept_map = m_c[i];
+        const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = m_c[i];
         assert(concept_map);
         const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
@@ -136,14 +136,14 @@ QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
   }
 }
 
-QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog()
+ribi::pvdb::QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog()
 {
   delete ui;
 }
 
-boost::shared_ptr<QtPvdbConceptMapWidget> QtPvdbViewTestsDialog::CreateWidget(
+boost::shared_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbViewTestsDialog::CreateWidget(
   const int type,
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map)
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map)
 {
   switch (type)
   {
@@ -167,25 +167,25 @@ boost::shared_ptr<QtPvdbConceptMapWidget> QtPvdbViewTestsDialog::CreateWidget(
     }
     default:
       assert(!"Should not get here");
-      throw std::logic_error("QtPvdbViewTestsDialog::CreateWidget: unimplemented type");
+      throw std::logic_error("ribi::pvdb::QtPvdbViewTestsDialog::CreateWidget: unimplemented type");
   }
 }
 
 
-void QtPvdbViewTestsDialog::keyPressEvent(QKeyEvent* event)
+void ribi::pvdb::QtPvdbViewTestsDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key()  == Qt::Key_Escape) { close(); return; }
 }
 
 #ifndef NDEBUG
-void QtPvdbViewTestsDialog::Test()
+void ribi::pvdb::QtPvdbViewTestsDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started QtPvdbViewTestsDialog::Test");
+  TRACE("Started ribi::pvdb::QtPvdbViewTestsDialog::Test");
   QtPvdbViewTestsDialog d;
   d.show();
   d.update();
@@ -196,6 +196,6 @@ void QtPvdbViewTestsDialog::Test()
   d.show();
   d.update();
   d.close();
-  TRACE("QtPvdbViewTestsDialog::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbViewTestsDialog::Test finished successfully");
 }
 #endif

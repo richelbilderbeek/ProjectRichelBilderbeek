@@ -20,24 +20,24 @@
 
 #include "pvdbfile.h"
 
-QtPvdbCreateAssessmentMenuDialog::QtPvdbCreateAssessmentMenuDialog(QWidget* parent)
+ribi::pvdb::QtPvdbCreateAssessmentMenuDialog::QtPvdbCreateAssessmentMenuDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbCreateAssessmentMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtPvdbCreateAssessmentMenuDialog::~QtPvdbCreateAssessmentMenuDialog()
+ribi::pvdb::QtPvdbCreateAssessmentMenuDialog::~QtPvdbCreateAssessmentMenuDialog()
 {
   delete ui;
 }
 
-void QtPvdbCreateAssessmentMenuDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbCreateAssessmentMenuDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void QtPvdbCreateAssessmentMenuDialog::on_button_create_assessment_complete_clicked()
+void ribi::pvdb::QtPvdbCreateAssessmentMenuDialog::on_button_create_assessment_complete_clicked()
 {
   QtPvdbCreateAssessmentCompleteDialog d;
   d.SetQuestion(m_question);

@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogramtype.h"
 #include "qthideandshowdialog.h"
 
+namespace ribi {
+
 struct QtRichelBilderbeekProgram
 {
   ///Create the menu dialog corresponding to the program type
@@ -38,5 +40,7 @@ struct QtRichelBilderbeekProgram
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
   static bool IsRegularFile(const std::string& filename);
 };
+
+} //~namespace rib
 
 #endif // QTRICHELBILDERBEEKPROGRAM_H

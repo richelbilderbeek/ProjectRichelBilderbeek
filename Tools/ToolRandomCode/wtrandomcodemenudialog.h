@@ -32,6 +32,9 @@ namespace Wt
   struct WWidget;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtAboutDialog;
 struct WtRandomCodeGenerateDialog;
 //---------------------------------------------------------------------------
@@ -44,5 +47,7 @@ struct WtRandomCodeMenuDialog : public Wt::WContainerWidget
   WtRandomCodeGenerateDialog * CreateNewGenerateDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTRANDOMCODEMENUDIALOG_H

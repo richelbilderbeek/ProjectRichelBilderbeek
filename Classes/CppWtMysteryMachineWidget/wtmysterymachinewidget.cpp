@@ -41,7 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtmysterymachinewidget.h"
 #include "wttogglebuttonwidget.h"
 //---------------------------------------------------------------------------
-WtMysteryMachineWidget::WtMysteryMachineWidget(
+ribi::WtMysteryMachineWidget::WtMysteryMachineWidget(
   const int width, const int height)
   : m_widget(new MysteryMachineWidget(
     Rect(0,0,width-1,height-1)))
@@ -49,38 +49,38 @@ WtMysteryMachineWidget::WtMysteryMachineWidget(
   assert(m_widget);
 
   m_widget->GetMachine()->GetDialBack()->GetDial()->m_signal_position_changed.connect(boost::bind(
-    &WtMysteryMachineWidget::DoRepaint,this));
+    &ribi::WtMysteryMachineWidget::DoRepaint,this));
   m_widget->GetMachine()->GetDialFront()->GetDial()->m_signal_position_changed.connect(boost::bind(
-    &WtMysteryMachineWidget::DoRepaint,this));
+    &ribi::WtMysteryMachineWidget::DoRepaint,this));
   m_widget->GetMachine()->GetToggleButton()->GetToggleButton()->m_signal_toggled.connect(boost::bind(
-    &WtMysteryMachineWidget::DoRepaint,this));
+    &ribi::WtMysteryMachineWidget::DoRepaint,this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &WtMysteryMachineWidget::OnResize,
+      &ribi::WtMysteryMachineWidget::OnResize,
       this));
 
-  this->clicked().connect(this,&WtMysteryMachineWidget::OnClicked);
+  this->clicked().connect(this,&ribi::WtMysteryMachineWidget::OnClicked);
 
   this->m_widget->SetGeometry(Rect(0,0,width,height));
 }
 //---------------------------------------------------------------------------
-void WtMysteryMachineWidget::DoRepaint()
+void ribi::WtMysteryMachineWidget::DoRepaint()
 {
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtMysteryMachineWidget::OnResize()
+void ribi::WtMysteryMachineWidget::OnResize()
 {
-  WtMysteryMachineWidget::resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+  ribi::WtMysteryMachineWidget::resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
 //---------------------------------------------------------------------------
-const std::string WtMysteryMachineWidget::GetVersion()
+const std::string ribi::WtMysteryMachineWidget::GetVersion()
 {
   return "1.1";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtMysteryMachineWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtMysteryMachineWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -89,14 +89,14 @@ const std::vector<std::string> WtMysteryMachineWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtMysteryMachineWidget::OnClicked(const Wt::WMouseEvent& e)
+void ribi::WtMysteryMachineWidget::OnClicked(const Wt::WMouseEvent& e)
 {
   const int x = e.widget().x;
   const int y = e.widget().y;
   m_widget->Click(x,y);
 }
 //---------------------------------------------------------------------------
-void WtMysteryMachineWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtMysteryMachineWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   painter.drawRect(0,0,width().toPixels(),height().toPixels());
@@ -114,12 +114,12 @@ void WtMysteryMachineWidget::paintEvent(Wt::WPaintDevice *paintDevice)
   WtToggleButtonWidget::DrawToggleButton(painter,GetWidget()->GetMachine()->GetToggleButton());
 }
 //---------------------------------------------------------------------------
-void WtMysteryMachineWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
+void ribi::WtMysteryMachineWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const WtMysteryMachineWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const WtMysteryMachineWidget& widget)
 {
   os
     << "<WtMysteryMachineWidget>"

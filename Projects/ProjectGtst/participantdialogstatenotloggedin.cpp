@@ -41,7 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateNotLoggedIn::ParticipantDialogStateNotLoggedIn(
+ribi::gtst::ParticipantDialogStateNotLoggedIn::ParticipantDialogStateNotLoggedIn(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
@@ -49,7 +49,7 @@ ParticipantDialogStateNotLoggedIn::ParticipantDialogStateNotLoggedIn(
 }
 //---------------------------------------------------------------------------
 ///Do something random with the UI, used by DebugDialog
-void ParticipantDialogStateNotLoggedIn::DoSomethingRandom()
+void ribi::gtst::ParticipantDialogStateNotLoggedIn::DoSomethingRandom()
 {
   //switch (std::rand() % 1)
   //{
@@ -60,7 +60,7 @@ void ParticipantDialogStateNotLoggedIn::DoSomethingRandom()
   //}
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateNotLoggedIn::Login()
+void ribi::gtst::ParticipantDialogStateNotLoggedIn::Login()
 {
   //Keep trying forever to log in!
   while (ui.m_check_participate->isChecked()
@@ -90,7 +90,7 @@ void ParticipantDialogStateNotLoggedIn::Login()
   ui.m_label_status->setText("Logged in... waiting for the experiment to start");
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateNotLoggedIn::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateNotLoggedIn::RespondToTimedServerPush()
 {
   if(!GetDialog()->CanGetParticipant())
   {
@@ -110,7 +110,7 @@ void ParticipantDialogStateNotLoggedIn::RespondToTimedServerPush()
   }
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateNotLoggedIn::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateNotLoggedIn::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
 

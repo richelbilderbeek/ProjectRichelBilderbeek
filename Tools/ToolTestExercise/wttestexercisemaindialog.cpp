@@ -44,7 +44,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtexercise.h"
 #include "wttestexercisemaindialog.h"
 //---------------------------------------------------------------------------
-WtTestExerciseMainDialog::Ui::Ui()
+ribi::WtTestExerciseMainDialog::Ui::Ui()
   : m_area_input(new Wt::WTextArea),
     m_button_submit(new Wt::WPushButton),
     m_edit_wait_correct(new Wt::WLineEdit),
@@ -55,7 +55,7 @@ WtTestExerciseMainDialog::Ui::Ui()
 
 }
 //---------------------------------------------------------------------------
-WtTestExerciseMainDialog::WtTestExerciseMainDialog()
+ribi::WtTestExerciseMainDialog::WtTestExerciseMainDialog()
 {
   this->addWidget(new Wt::WLabel("Waiting time correct (msecs)"));
   this->addWidget(ui.m_edit_wait_correct);
@@ -71,7 +71,7 @@ WtTestExerciseMainDialog::WtTestExerciseMainDialog()
   this->addWidget(ui.m_exercise_dialog);
 
   ui.m_button_submit->setText("Submit");
-  ui.m_button_submit->clicked().connect(this,&WtTestExerciseMainDialog::OnSubmit);
+  ui.m_button_submit->clicked().connect(this,&ribi::WtTestExerciseMainDialog::OnSubmit);
 
   ui.m_edit_wait_correct->setText("1000");
   ui.m_edit_wait_incorrect->setText("5000");
@@ -84,7 +84,7 @@ WtTestExerciseMainDialog::WtTestExerciseMainDialog()
     "ToolTestExerciseQuestion.png,The solution of this equation is:,2,1,3,4");
 }
 //---------------------------------------------------------------------------
-void WtTestExerciseMainDialog::OnSubmit()
+void ribi::WtTestExerciseMainDialog::OnSubmit()
 {
   //Test input
   {

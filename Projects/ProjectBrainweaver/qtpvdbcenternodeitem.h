@@ -1,19 +1,14 @@
 #ifndef QTPVDBCENTERNODEITEM_H
 #define QTPVDBCENTERNODEITEM_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qtpvdbnodeitem.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbnode.h"
-#endif
+
+namespace ribi {
+
+namespace pvdb {
 
 ///The center node
 struct QtPvdbCenterNodeItem : public QtPvdbNodeItem
@@ -23,10 +18,14 @@ struct QtPvdbCenterNodeItem : public QtPvdbNodeItem
   ///focal node needs to be rated)
   ///concept_item is the display Strategy
   explicit QtPvdbCenterNodeItem(
-    const boost::shared_ptr<pvdb::Node> node);
+    const boost::shared_ptr<ribi::pvdb::Node> node);
 
   private:
-  static const boost::shared_ptr<QtPvdbConceptItem> CreateConceptItem(const boost::shared_ptr<pvdb::Node> node);
+  static const boost::shared_ptr<QtPvdbConceptItem> CreateConceptItem(const boost::shared_ptr<ribi::pvdb::Node> node);
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCENTERNODEITEM_H

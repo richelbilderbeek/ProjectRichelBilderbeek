@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtopenquestiondialog.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-WtOpenQuestionDialog::Ui::Ui()
+ribi::WtOpenQuestionDialog::Ui::Ui()
   : m_button_submit(new Wt::WPushButton("Submit")),
     m_edit_answer(new Wt::WLineEdit),
     m_stacked_widget(new Wt::WStackedWidget)
@@ -40,7 +40,7 @@ WtOpenQuestionDialog::Ui::Ui()
 
 }
 //---------------------------------------------------------------------------
-WtOpenQuestionDialog::WtOpenQuestionDialog(const std::string& question)
+ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(const std::string& question)
   : WtQuestionDialog(
      boost::shared_ptr<QuestionDialog>(new OpenQuestionDialog(
        question)))
@@ -49,7 +49,7 @@ WtOpenQuestionDialog::WtOpenQuestionDialog(const std::string& question)
   SetQuestion(m_dialog->GetQuestion());
 }
 //---------------------------------------------------------------------------
-WtOpenQuestionDialog::WtOpenQuestionDialog(
+ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog)
   : WtQuestionDialog(dialog)
 {
@@ -58,12 +58,12 @@ WtOpenQuestionDialog::WtOpenQuestionDialog(
   SetQuestion(dialog->GetQuestion());
 }
 //---------------------------------------------------------------------------
-const std::string WtOpenQuestionDialog::GetVersion()
+const std::string ribi::WtOpenQuestionDialog::GetVersion()
 {
   return "1.1";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtOpenQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::WtOpenQuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-29: version 1.0: initial version");
@@ -72,7 +72,7 @@ const std::vector<std::string> WtOpenQuestionDialog::GetVersionHistory()
 }
 //---------------------------------------------------------------------------
 ///Set the Question
-void WtOpenQuestionDialog::SetQuestion(
+void ribi::WtOpenQuestionDialog::SetQuestion(
   const boost::shared_ptr<Question>& question)
 {
   assert(question);
@@ -106,7 +106,7 @@ void WtOpenQuestionDialog::SetQuestion(
     page->addWidget(ui.m_button_submit);
     page->addWidget(new Wt::WBreak);
     ui.m_button_submit->clicked().connect(
-      this,&WtOpenQuestionDialog::OnButtonSubmitClicked);
+      this,&ribi::WtOpenQuestionDialog::OnButtonSubmitClicked);
     ui.m_stacked_widget->addWidget(page);
   }
   //Create the correct page
@@ -131,7 +131,7 @@ void WtOpenQuestionDialog::SetQuestion(
 
 }
 //---------------------------------------------------------------------------
-void WtOpenQuestionDialog::OnButtonSubmitClicked()
+void ribi::WtOpenQuestionDialog::OnButtonSubmitClicked()
 {
   assert(m_dialog->CanSubmit());
 

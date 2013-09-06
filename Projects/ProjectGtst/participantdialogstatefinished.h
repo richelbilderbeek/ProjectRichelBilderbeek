@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "participantdialogstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///ParticipantDialogStateFinished is the state the ParticipantDialog is
 ///in when the experiment has finished.
@@ -68,5 +72,8 @@ struct ParticipantDialogStateFinished
   //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(ParticipantDialogStateFinished*);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTDIALOGSTATEFINISHED_H

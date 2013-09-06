@@ -26,26 +26,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "parameterschat.h"
 //---------------------------------------------------------------------------
-ParametersChat::ParametersChat()
+ribi::gtst::ParametersChat::ParametersChat()
   : m_duration(5)
 {
 
 }
 //---------------------------------------------------------------------------
-int ParametersChat::GetDuration() const
+int ribi::gtst::ParametersChat::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
 //---------------------------------------------------------------------------
-void ParametersChat::SetDuration(const int time)
+void ribi::gtst::ParametersChat::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
 //---------------------------------------------------------------------------
 ///Parse a line
-void ParametersChat::Parse(const std::string& s)
+void ribi::gtst::ParametersChat::Parse(const std::string& s)
 {
   //Chat time
   if (s.size() > 9 && s.substr(0,9) == "duration=")
@@ -68,7 +68,7 @@ void ParametersChat::Parse(const std::string& s)
   }
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ParametersChat& parameters)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersChat& parameters)
 {
   os
     << "<parameterschat>"

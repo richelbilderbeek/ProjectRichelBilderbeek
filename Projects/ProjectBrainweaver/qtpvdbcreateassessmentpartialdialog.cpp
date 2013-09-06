@@ -15,7 +15,7 @@
 #include "ui_qtpvdbcreateassessmentpartialdialog.h"
 
 
-QtPvdbCreateAssessmentPartialDialog::QtPvdbCreateAssessmentPartialDialog(
+ribi::pvdb::QtPvdbCreateAssessmentPartialDialog::QtPvdbCreateAssessmentPartialDialog(
   const boost::shared_ptr<pvdb::File> file, QWidget* parent)
   : QDialog(parent),
     ui(new Ui::QtPvdbCreateAssessmentPartialDialog),
@@ -48,7 +48,7 @@ QtPvdbCreateAssessmentPartialDialog::QtPvdbCreateAssessmentPartialDialog(
   QObject::connect(ui->edit_complete,SIGNAL(textChanged(QString)),this,SLOT(AnyEditChanged()));
 }
 
-void QtPvdbCreateAssessmentPartialDialog::AnyEditChanged()
+void ribi::pvdb::QtPvdbCreateAssessmentPartialDialog::AnyEditChanged()
 {
   /*
   m_file.SetQuestions(
@@ -62,16 +62,16 @@ void QtPvdbCreateAssessmentPartialDialog::AnyEditChanged()
   */
 }
 
-QtPvdbCreateAssessmentPartialDialog::~QtPvdbCreateAssessmentPartialDialog()
+ribi::pvdb::QtPvdbCreateAssessmentPartialDialog::~QtPvdbCreateAssessmentPartialDialog()
 {
   delete ui;
 }
 
-void QtPvdbCreateAssessmentPartialDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbCreateAssessmentPartialDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void QtPvdbCreateAssessmentPartialDialog::on_button_save_clicked()
+void ribi::pvdb::QtPvdbCreateAssessmentPartialDialog::on_button_save_clicked()
 {
 }

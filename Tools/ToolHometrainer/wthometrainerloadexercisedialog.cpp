@@ -46,29 +46,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtselecthometrainerfiledialog.h"
 
-WtHometrainerLoadExerciseDialog::Ui::Ui()
+ribi::WtHometrainerLoadExerciseDialog::Ui::Ui()
   : m_label_status(new Wt::WLabel("Please select a Hometrainer file")),
     m_select_file(new WtSelectHometrainerFileDialog)
 {
 
 }
 
-WtHometrainerLoadExerciseDialog::WtHometrainerLoadExerciseDialog()
+ribi::WtHometrainerLoadExerciseDialog::WtHometrainerLoadExerciseDialog()
 {
   this->addWidget(ui.m_select_file);
   this->addWidget(new Wt::WBreak);
   this->addWidget(ui.m_label_status);
   ui.m_select_file->m_signal_selected.connect(
-    boost::bind(&WtHometrainerLoadExerciseDialog::OnSelectedFile,this));
+    boost::bind(&ribi::WtHometrainerLoadExerciseDialog::OnSelectedFile,this));
 
 }
 
-void WtHometrainerLoadExerciseDialog::DoRefresh()
+void ribi::WtHometrainerLoadExerciseDialog::DoRefresh()
 {
   ui.m_select_file->DoRefresh();
 }
 
-void WtHometrainerLoadExerciseDialog::OnSelectedFile() const
+void ribi::WtHometrainerLoadExerciseDialog::OnSelectedFile() const
 {
   const std::string s = std::string("Selected file ") + ui.m_select_file->GetSelectedFile();
   ui.m_label_status->setText(s.c_str());

@@ -29,7 +29,7 @@
 #include "pvdbnode.h"
 #include "trace.h"
 
-QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
+ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestNodeItemDialog),
   m_node(pvdb::NodeFactory::GetTests().at(1)),
@@ -54,7 +54,7 @@ QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
     m_display_node = new QtPvdbNodeItem(m_node,item);
     m_display_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
         this));
   }
 
@@ -71,7 +71,7 @@ QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
     m_edit_node = new QtPvdbNodeItem(m_node,item);
     m_edit_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
         this));
   }
 
@@ -84,7 +84,7 @@ QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
     m_rate_node = new QtPvdbNodeItem(m_node,item);
     m_rate_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
         this));
   }
 
@@ -136,12 +136,12 @@ QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
 }
 
-QtPvdbTestNodeItemDialog::~QtPvdbTestNodeItemDialog()
+ribi::pvdb::QtPvdbTestNodeItemDialog::~QtPvdbTestNodeItemDialog()
 {
   delete ui;
 }
 
-const boost::shared_ptr<pvdb::Node> QtPvdbTestNodeItemDialog::GetNode()
+const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::GetNode()
 {
   switch(ui->box_edit->currentIndex())
   {
@@ -198,26 +198,26 @@ const boost::shared_ptr<pvdb::Node> QtPvdbTestNodeItemDialog::GetNode()
       assert(!"Should not get here");
   }
   assert(!"Should not get here");
-  throw std::logic_error("QtPvdbTestNodeItemDialog::GetNode: index unknown");
+  throw std::logic_error("ribi::pvdb::QtPvdbTestNodeItemDialog::GetNode: index unknown");
 }
 
-void QtPvdbTestNodeItemDialog::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbTestNodeItemDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbTestNodeItemDialog::on_box_competency_currentIndexChanged(int index)
+void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_competency_currentIndexChanged(int index)
 {
   const pvdb::Competency c = static_cast<pvdb::Competency>(index);
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
-void QtPvdbTestNodeItemDialog::on_edit_name_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestNodeItemDialog::on_edit_name_textChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetName(arg1.toStdString());
 }
 
-void QtPvdbTestNodeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
 {
   const int rating_complexity = boost::lexical_cast<int>(arg1.toStdString());
   assert(rating_complexity >= -1);
@@ -225,22 +225,22 @@ void QtPvdbTestNodeItemDialog::on_box_complexity_currentIndexChanged(const QStri
   this->GetNode()->GetConcept()->SetRatingComplexity(rating_complexity);
 }
 
-void QtPvdbTestNodeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void QtPvdbTestNodeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void QtPvdbTestNodeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestNodeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
 
-void QtPvdbTestNodeItemDialog::Test()
+void ribi::pvdb::QtPvdbTestNodeItemDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -252,7 +252,7 @@ void QtPvdbTestNodeItemDialog::Test()
     []
     {
   #endif
-  TRACE("QtPvdbTestNodeItemDialog::Test started");
+  TRACE("ribi::pvdb::QtPvdbTestNodeItemDialog::Test started");
   QtPvdbTestNodeItemDialog d;
   assert(d.m_node.get() == d.m_display_node->GetNode().get());
   assert(d.m_node.get() == d.m_edit_node->GetNode().get());
@@ -289,7 +289,7 @@ void QtPvdbTestNodeItemDialog::Test()
   {
     TRACE("TODO?");
     /*
-    const boost::shared_ptr<pvdb::Concept> concept = d.m_node->GetConcept();
+    const boost::shared_ptr<ribi::pvdb::Concept> concept = d.m_node->GetConcept();
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);
@@ -313,7 +313,7 @@ void QtPvdbTestNodeItemDialog::Test()
     */
   }
 
-  TRACE("QtPvdbTestNodeItemDialog::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbTestNodeItemDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -321,7 +321,7 @@ void QtPvdbTestNodeItemDialog::Test()
   #endif
 }
 
-void QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate()
+void ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate()
 {
   this->ui->view->scene()->update();
 }

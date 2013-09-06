@@ -1,20 +1,13 @@
 #ifndef PVDBNODE_H
 #define PVDBNODE_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/signals2.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbconcept.h"
-#endif
+
+namespace ribi {
 
 namespace pvdb {
 
@@ -25,11 +18,11 @@ struct Node : public boost::noncopyable
 {
 
   ///Obtain a Node from an XML std::string
-  static const boost::shared_ptr<pvdb::Node> FromXml(const std::string& s);
+  static const boost::shared_ptr<ribi::pvdb::Node> FromXml(const std::string& s);
 
   ///Get the Concept
-  const boost::shared_ptr<const pvdb::Concept>  GetConcept() const { return m_concept; }
-  const boost::shared_ptr<      pvdb::Concept>& GetConcept() { return m_concept; }
+  const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const { return m_concept; }
+  const boost::shared_ptr<      ribi::pvdb::Concept>& GetConcept() { return m_concept; }
 
   #ifndef NDEBUG
   ///Get boost::shared_ptr::use_count
@@ -37,7 +30,7 @@ struct Node : public boost::noncopyable
   #endif
 
   ///Get some test nodes
-  static const std::vector<boost::shared_ptr<pvdb::Node> > GetTests();
+  static const std::vector<boost::shared_ptr<ribi::pvdb::Node> > GetTests();
 
   ///Similar to operator==, except that GUI elements are not tested for equality
   static bool HasSameContent(const boost::shared_ptr<const pvdb::Node>& lhs, const boost::shared_ptr<const pvdb::Node>& rhs);
@@ -49,7 +42,7 @@ struct Node : public boost::noncopyable
   double GetY() const { return m_y; }
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept);
+  void SetConcept(const boost::shared_ptr<ribi::pvdb::Concept> concept);
 
   ///Set the position
   void SetPos(const double x, const double y) { SetX(x); SetY(y); }
@@ -71,7 +64,7 @@ struct Node : public boost::noncopyable
   friend NodeFactory;
 
   explicit Node(
-    const boost::shared_ptr<pvdb::Concept>& concept,
+    const boost::shared_ptr<ribi::pvdb::Concept>& concept,
     const double x = 0.0,
     const double y = 0.0);
 
@@ -82,7 +75,7 @@ struct Node : public boost::noncopyable
   private:
 
   ///The Concept
-  boost::shared_ptr<pvdb::Concept> m_concept;
+  boost::shared_ptr<ribi::pvdb::Concept> m_concept;
 
   ///The x-coordinat
   double m_x;
@@ -99,8 +92,6 @@ bool IsEqual(const pvdb::Node& lhs, const pvdb::Node& rhs);
 
 } //~namespace pvdb
 
-#ifndef PVDB_USE_FORWARD_DECLARATIONS_248738
-#include "pvdbnodefactory.h"
-#endif
+} //~namespace ribi
 
 #endif // PVDBNODE_H

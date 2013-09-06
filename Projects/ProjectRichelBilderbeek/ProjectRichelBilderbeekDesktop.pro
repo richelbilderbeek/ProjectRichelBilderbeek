@@ -529,7 +529,6 @@ SOURCES += \
 HEADERS += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppAsciiArter/asciiarter.h \
-    ../../Classes/CppAssert/assert.h \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.h \
@@ -1089,7 +1088,6 @@ FORMS += \
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppAsciiArter/Licence.txt \
-    ../../Classes/CppAssert/Licence.txt \
     ../../Classes/CppBinaryNewickVector/Licence.txt \
     ../../Classes/CppChess/Licence.txt \
     ../../Classes/CppChessResources/Licence.txt \
@@ -1668,8 +1666,8 @@ unix {
 unix {
   message(Unix dynamic link to Boost)
 
-  #LIBS += \
-  #-lboost_date_time \
+  LIBS += \
+    -lboost_date_time
   #-lboost_program_options \
   #-lboost_signals
 }

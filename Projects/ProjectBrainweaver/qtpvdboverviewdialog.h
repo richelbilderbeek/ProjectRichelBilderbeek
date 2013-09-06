@@ -1,26 +1,25 @@
 #ifndef QTPVDBOVERVIEWDIALOG_H
 #define QTPVDBOVERVIEWDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
 
-#endif
+namespace ribi {
 
-struct QtPvdbOverviewDialog : public QtHideAndShowDialog
+namespace pvdb {
+
+struct QtPvdbOverviewDialog : public ribi::QtHideAndShowDialog
 {
   explicit QtPvdbOverviewDialog(QWidget* parent = 0);
 
 protected:
   void keyPressEvent(QKeyEvent *);
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBOVERVIEWDIALOG_H

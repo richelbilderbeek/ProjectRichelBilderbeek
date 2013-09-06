@@ -31,6 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "serverstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Server is in the chat state
 struct ServerStateChat: public ServerState, StateChat
@@ -107,5 +111,8 @@ struct ServerStateChat: public ServerState, StateChat
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ServerStateChat& s);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ServerSTATECHAT_H

@@ -23,8 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #undef __STRICT_ANSI__
 #endif
 
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "wttogglebuttonwidget.h"
 
 #include <iostream>
@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 //---------------------------------------------------------------------------
-WtToggleButtonWidget::WtToggleButtonWidget(
+ribi::WtToggleButtonWidget::WtToggleButtonWidget(
   const bool toggled,
   const unsigned char red,
   const unsigned char green,
@@ -50,28 +50,28 @@ WtToggleButtonWidget::WtToggleButtonWidget(
 
   m_widget->GetToggleButton()->m_signal_color_changed.connect(
     boost::bind(
-      &WtToggleButtonWidget::DoRepaint,
+      &ribi::WtToggleButtonWidget::DoRepaint,
       this));
 
   m_widget->GetToggleButton()->m_signal_toggled.connect(
     boost::bind(
-      &WtToggleButtonWidget::DoRepaint,
+      &ribi::WtToggleButtonWidget::DoRepaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &WtToggleButtonWidget::OnResize,
+      &ribi::WtToggleButtonWidget::OnResize,
       this));
 
-  this->clicked().connect(this,&WtToggleButtonWidget::OnClicked);
+  this->clicked().connect(this,&ribi::WtToggleButtonWidget::OnClicked);
 }
 //---------------------------------------------------------------------------
-void WtToggleButtonWidget::DoRepaint()
+void ribi::WtToggleButtonWidget::DoRepaint()
 {
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtToggleButtonWidget::DrawToggleButton(
+void ribi::WtToggleButtonWidget::DrawToggleButton(
   Wt::WPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -113,7 +113,7 @@ void WtToggleButtonWidget::DrawToggleButton(
     top + (height * 2 / 3));
 }
 //---------------------------------------------------------------------------
-void WtToggleButtonWidget::DrawToggleButton(
+void ribi::WtToggleButtonWidget::DrawToggleButton(
   Wt::WPainter& painter,
   const ToggleButtonWidget * const widget)
 {
@@ -126,12 +126,12 @@ void WtToggleButtonWidget::DrawToggleButton(
     widget->GetToggleButton());
 }
 //---------------------------------------------------------------------------
-const std::string WtToggleButtonWidget::GetVersion()
+const std::string ribi::WtToggleButtonWidget::GetVersion()
 {
   return "1.1";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtToggleButtonWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtToggleButtonWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -140,23 +140,23 @@ const std::vector<std::string> WtToggleButtonWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtToggleButtonWidget::OnClicked(const Wt::WMouseEvent&)
+void ribi::WtToggleButtonWidget::OnClicked(const Wt::WMouseEvent&)
 {
   m_widget->GetToggleButton()->Toggle();
 }
 //---------------------------------------------------------------------------
-void WtToggleButtonWidget::OnResize()
+void ribi::WtToggleButtonWidget::OnResize()
 {
   resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
 //---------------------------------------------------------------------------
-void WtToggleButtonWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtToggleButtonWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawToggleButton(painter,m_widget.get());
 }
 //---------------------------------------------------------------------------
-void WtToggleButtonWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
+void ribi::WtToggleButtonWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }

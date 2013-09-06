@@ -48,14 +48,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-WtHometrainerMenuDialog::Ui::Ui()
+ribi::WtHometrainerMenuDialog::Ui::Ui()
   : m_load_exercise(new WtHometrainerLoadExerciseDialog),
     m_start_exercise(new WtHometrainerStartExerciseDialog)
 {
 
 }
 
-WtHometrainerMenuDialog::WtHometrainerMenuDialog()
+ribi::WtHometrainerMenuDialog::WtHometrainerMenuDialog()
 {
   HometrainerResources();
   ui.m_load_exercise->DoRefresh();
@@ -103,10 +103,10 @@ WtHometrainerMenuDialog::WtHometrainerMenuDialog()
   }
 
   ui.m_load_exercise->m_signal_selected_file.connect(
-    boost::bind(&WtHometrainerMenuDialog::OnSelectedFile,this,boost::lambda::_1));
+    boost::bind(&ribi::WtHometrainerMenuDialog::OnSelectedFile,this,boost::lambda::_1));
 }
 
-Wt::WWidget * WtHometrainerMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtHometrainerMenuDialog::CreateNewAboutDialog() const
 {
   HometrainerMenuDialog dialog;
   About a = dialog.GetAbout();
@@ -121,7 +121,7 @@ Wt::WWidget * WtHometrainerMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 
-Wt::WWidget * WtHometrainerMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtHometrainerMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -137,7 +137,7 @@ Wt::WWidget * WtHometrainerMenuDialog::CreateNewWelcomeDialog() const
   return dialog;
 }
 
-void WtHometrainerMenuDialog::OnSelectedFile(const std::string filename)
+void ribi::WtHometrainerMenuDialog::OnSelectedFile(const std::string filename)
 {
   ui.m_start_exercise->LoadExercise(filename);
 }

@@ -54,9 +54,6 @@ public:
 
   ~QtMaziakMainDialog();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtMaziakMainDialog *ui;
   //Floor sprites

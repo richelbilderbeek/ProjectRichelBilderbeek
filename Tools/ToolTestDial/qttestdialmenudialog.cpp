@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttestdialmenudialog.h"
 #include "ui_qttestdialmenudialog.h"
 
-QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) :
+ribi::QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestDialMenuDialog)
 {
@@ -39,12 +39,12 @@ QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) :
   #endif
 }
 
-QtTestDialMenuDialog::~QtTestDialMenuDialog()
+ribi::QtTestDialMenuDialog::~QtTestDialMenuDialog()
 {
   delete ui;
 }
 
-void QtTestDialMenuDialog::on_button_start_clicked()
+void ribi::QtTestDialMenuDialog::on_button_start_clicked()
 {
   hide();
   QtTestDialMainDialog d;
@@ -52,7 +52,7 @@ void QtTestDialMenuDialog::on_button_start_clicked()
   show();
 }
 
-void QtTestDialMenuDialog::on_button_about_clicked()
+void ribi::QtTestDialMenuDialog::on_button_about_clicked()
 {
   hide();
   About a = TestDialMenuDialog::GetAbout();
@@ -62,12 +62,12 @@ void QtTestDialMenuDialog::on_button_about_clicked()
   show();
 }
 
-void QtTestDialMenuDialog::on_button_quit_clicked()
+void ribi::QtTestDialMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtTestDialMenuDialog::Test()
+void ribi::QtTestDialMenuDialog::Test()
 {
   {
     static bool is_tested = false;

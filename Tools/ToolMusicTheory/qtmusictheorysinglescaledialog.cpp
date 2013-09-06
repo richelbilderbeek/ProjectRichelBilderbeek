@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qtmusictheorysinglescaledialog.h"
 
-QtMusicTheorySingleScaleDialog::QtMusicTheorySingleScaleDialog(QWidget *parent) :
+ribi::QtMusicTheorySingleScaleDialog::QtMusicTheorySingleScaleDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtMusicTheorySingleScaleDialog)
 {
@@ -71,12 +71,12 @@ QtMusicTheorySingleScaleDialog::QtMusicTheorySingleScaleDialog(QWidget *parent) 
   //any_change();
 }
 
-QtMusicTheorySingleScaleDialog::~QtMusicTheorySingleScaleDialog()
+ribi::QtMusicTheorySingleScaleDialog::~QtMusicTheorySingleScaleDialog()
 {
   delete ui;
 }
 
-void QtMusicTheorySingleScaleDialog::any_change()
+void ribi::QtMusicTheorySingleScaleDialog::any_change()
 {
   //this->setWindowTitle( QString::number( std::rand() ));  //Display the notes
   //Obtain the root
@@ -137,7 +137,7 @@ void QtMusicTheorySingleScaleDialog::any_change()
   ui->widget->SetChords(chords);
 }
 
-void QtMusicTheorySingleScaleDialog::resizeEvent(QResizeEvent *)
+void ribi::QtMusicTheorySingleScaleDialog::resizeEvent(QResizeEvent *)
 {
   any_change();
 }

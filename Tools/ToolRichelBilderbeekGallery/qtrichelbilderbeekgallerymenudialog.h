@@ -27,6 +27,8 @@ namespace Ui {
 class QtRichelBilderbeekGalleryMenuDialog;
 }
 
+namespace ribi {
+
 class QtRichelBilderbeekGalleryMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -53,5 +55,7 @@ private:
   ///From http://www.richelbilderbeek.nl/CppGetPath.htm
   static const std::string GetPath(const std::string& filename);
 };
+
+} //~namespace ribi
 
 #endif // QTRICHELBILDERBEEKGALLERYMENUDIALOG_H

@@ -13,7 +13,7 @@
 #include "qtpvdboverviewwidget.h"
 #include "trace.h"
 
-QtPvdbOverviewDialog::QtPvdbOverviewDialog(QWidget* parent)
+ribi::pvdb::QtPvdbOverviewDialog::QtPvdbOverviewDialog(QWidget* parent)
   : QtHideAndShowDialog(parent)
 {
   
@@ -23,7 +23,7 @@ QtPvdbOverviewDialog::QtPvdbOverviewDialog(QWidget* parent)
   layout->addWidget(widget);
 }
 
-void QtPvdbOverviewDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbOverviewDialog::keyPressEvent(QKeyEvent* e)
 {
   assert(e);
   if (e->key()  == Qt::Key_Escape) { close(); return; }

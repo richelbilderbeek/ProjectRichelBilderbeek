@@ -31,9 +31,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekprogramstatus.h"
 
-namespace RichelBilderbeek {
 
-const std::vector<std::string> GalleryMenuDialog::CreateHtmlClassGallery()
+
+const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlClassGallery()
 {
   std::vector<std::string> v;
 
@@ -77,7 +77,7 @@ const std::vector<std::string> GalleryMenuDialog::CreateHtmlClassGallery()
   return v;
 }
 
-const std::vector<std::string> GalleryMenuDialog::CreateHtmlGameGallery()
+const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlGameGallery()
 {
   std::vector<std::string> v;
 
@@ -121,7 +121,7 @@ const std::vector<std::string> GalleryMenuDialog::CreateHtmlGameGallery()
   return v;
 }
 
-const std::vector<std::string> GalleryMenuDialog::CreateHtmlProjectGallery()
+const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlProjectGallery()
 {
   std::vector<std::string> v;
 
@@ -166,7 +166,7 @@ const std::vector<std::string> GalleryMenuDialog::CreateHtmlProjectGallery()
   return v;
 }
 
-const std::vector<std::string> GalleryMenuDialog::CreateHtmlStatus()
+const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlStatus()
 {
   std::vector<std::string> v;
 
@@ -235,7 +235,7 @@ const std::vector<std::string> GalleryMenuDialog::CreateHtmlStatus()
   return v;
 }
 
-const std::vector<std::string> GalleryMenuDialog::CreateHtmlToolGallery()
+const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlToolGallery()
 {
   std::vector<std::string> v;
 
@@ -280,7 +280,7 @@ const std::vector<std::string> GalleryMenuDialog::CreateHtmlToolGallery()
   return v;
 }
 
-const About GalleryMenuDialog::GetAbout()
+const ribi::About ribi::RichelBilderbeek::GalleryMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -296,19 +296,19 @@ const About GalleryMenuDialog::GetAbout()
   return a;
 }
 
-const std::string GalleryMenuDialog::GetVersion()
+const std::string ribi::RichelBilderbeek::GalleryMenuDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> GalleryMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-02-20: Version 1.0: initial version");
   return v;
 }
 
-void GalleryMenuDialog::Test()
+void ribi::RichelBilderbeek::GalleryMenuDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -325,7 +325,7 @@ void GalleryMenuDialog::Test()
   }
 }
 
-const std::vector<std::string> GalleryMenuDialog::ToHtml(const RichelBilderbeek::Program& p)
+const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::ToHtml(const RichelBilderbeek::Program& p)
 {
   std::vector<std::string> v;
   {
@@ -376,6 +376,3 @@ const std::vector<std::string> GalleryMenuDialog::ToHtml(const RichelBilderbeek:
   for (int i=0; i!=5; ++i) v.push_back("<p>&nbsp;</p>");
   return v;
 }
-
-} //~namespace RichelBilderbeek
-

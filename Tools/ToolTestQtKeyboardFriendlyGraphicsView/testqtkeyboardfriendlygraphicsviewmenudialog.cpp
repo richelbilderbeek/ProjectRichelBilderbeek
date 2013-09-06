@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-const About TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout()
+const ribi::About ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -40,12 +40,12 @@ const About TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersion()
+const std::string ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersion()
 {
   return "0.3";
 }
 
-const std::vector<std::string> TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-13: version 0.1: initial version");

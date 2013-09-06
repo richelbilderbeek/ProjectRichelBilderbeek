@@ -27,6 +27,8 @@ namespace Ui {
     class QtTestPylosMenuDialog;
 }
 
+namespace ribi {
+
 class QtTestPylosMenuDialog : public QDialog
 {
     Q_OBJECT
@@ -51,5 +53,7 @@ private slots:
 private:
     Ui::QtTestPylosMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTTESTPYLOSMENUDIALOG_H

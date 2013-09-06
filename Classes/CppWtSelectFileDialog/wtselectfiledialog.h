@@ -32,6 +32,9 @@ namespace Wt
   struct WSelectionBox;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///WtSelectFileDialog is a Wt dialog to select a file
 struct WtSelectFileDialog : public Wt::WContainerWidget
 {
@@ -103,5 +106,7 @@ private:
   ///OnSelect is called when a client selected a file
   void OnSelect();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTSELECTFILEDIALOG_H

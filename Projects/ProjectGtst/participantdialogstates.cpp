@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "all_participantdialogstates.h"
 #include "participantdialogstates.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStates::ParticipantDialogStates(
+ribi::gtst::ParticipantDialogStates::ParticipantDialogStates(
   ParticipantDialog* const dialog,Server * const server)
   : m_state(0),
     m_state_assign_payoff(new ParticipantDialogStateAssignPayoff(dialog,server)),
@@ -40,93 +40,93 @@ ParticipantDialogStates::ParticipantDialogStates(
   m_state = m_state_not_logged_in.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogState * ParticipantDialogStates::GetCurrentState() const
+ribi::gtst::ParticipantDialogState * ribi::gtst::ParticipantDialogStates::GetCurrentState() const
 {
   assert(m_state);
   return m_state;
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateChat * ParticipantDialogStates::GetStateChat() const
+ribi::gtst::ParticipantDialogStateChat * ribi::gtst::ParticipantDialogStates::GetStateChat() const
 {
   assert(m_state_chat);
   return m_state_chat.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateAssignPayoff * ParticipantDialogStates::GetStateAssignPayoff() const
+ribi::gtst::ParticipantDialogStateAssignPayoff * ribi::gtst::ParticipantDialogStates::GetStateAssignPayoff() const
 {
   assert(m_state_assign_payoff);
   return m_state_assign_payoff.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateChooseAction * ParticipantDialogStates::GetStateChooseAction() const
+ribi::gtst::ParticipantDialogStateChooseAction * ribi::gtst::ParticipantDialogStates::GetStateChooseAction() const
 {
   assert(m_state_choose_action);
   return m_state_choose_action.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateFinished * ParticipantDialogStates::GetStateFinished() const
+ribi::gtst::ParticipantDialogStateFinished * ribi::gtst::ParticipantDialogStates::GetStateFinished() const
 {
   assert(m_state_finished);
   return m_state_finished.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateGroupAssign * ParticipantDialogStates::GetStateGroupAssign() const
+ribi::gtst::ParticipantDialogStateGroupAssign * ribi::gtst::ParticipantDialogStates::GetStateGroupAssign() const
 {
   assert(m_state_group_assign);
   return m_state_group_assign.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateGroupReAssign * ParticipantDialogStates::GetStateGroupReAssign() const
+ribi::gtst::ParticipantDialogStateGroupReAssign * ribi::gtst::ParticipantDialogStates::GetStateGroupReAssign() const
 {
   assert(m_state_group_reassign);
   return m_state_group_reassign.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateLoggedIn * ParticipantDialogStates::GetStateLoggedIn() const
+ribi::gtst::ParticipantDialogStateLoggedIn * ribi::gtst::ParticipantDialogStates::GetStateLoggedIn() const
 {
   assert(m_state_logged_in);
   return m_state_logged_in.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateQuiz * ParticipantDialogStates::GetStateQuiz() const
+ribi::gtst::ParticipantDialogStateQuiz * ribi::gtst::ParticipantDialogStates::GetStateQuiz() const
 {
   assert(m_state_quiz);
   return m_state_quiz.get();
 }
 //---------------------------------------------------------------------------
 /*
-ParticipantDialogStateViewResultsAll * ParticipantDialogStates::GetStateViewResultsAll() const
+ribi::gtst::ParticipantDialogStateViewResultsAll * ribi::gtst::ParticipantDialogStates::GetStateViewResultsAll() const
 {
   assert(m_state_view_results_all);
   return m_state_view_results_all.get();
 }
 */
 //---------------------------------------------------------------------------
-ParticipantDialogStateViewResultsGroup * ParticipantDialogStates::GetStateViewResultsGroup() const
+ribi::gtst::ParticipantDialogStateViewResultsGroup * ribi::gtst::ParticipantDialogStates::GetStateViewResultsGroup() const
 {
   assert(m_state_view_results_group);
   return m_state_view_results_group.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateViewResultsVoting * ParticipantDialogStates::GetStateViewResultsVoting() const
+ribi::gtst::ParticipantDialogStateViewResultsVoting * ribi::gtst::ParticipantDialogStates::GetStateViewResultsVoting() const
 {
   assert(m_state_view_results_voting);
   return m_state_view_results_voting.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateVoting * ParticipantDialogStates::GetStateVoting() const
+ribi::gtst::ParticipantDialogStateVoting * ribi::gtst::ParticipantDialogStates::GetStateVoting() const
 {
   assert(m_state_voting);
   return m_state_voting.get();
 }
 //---------------------------------------------------------------------------
-ParticipantDialogStateNotLoggedIn * ParticipantDialogStates::GetStateNotLoggedIn() const
+ribi::gtst::ParticipantDialogStateNotLoggedIn * ribi::gtst::ParticipantDialogStates::GetStateNotLoggedIn() const
 {
   assert(m_state_not_logged_in);
   return m_state_not_logged_in.get();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStates::SetState(ParticipantDialogState * const state)
+void ribi::gtst::ParticipantDialogStates::SetState(ParticipantDialogState * const state)
 {
   if (state == m_state) return;
   m_state = state;

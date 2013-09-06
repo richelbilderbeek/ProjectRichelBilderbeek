@@ -14,7 +14,7 @@
 #include "qtpvdbconceptitem.h"
 #include "trace.h"
 
-void QtPvdbConceptMapItem::OnConceptRequestsEdit()
+void ribi::pvdb::QtPvdbConceptMapItem::OnConceptRequestsEdit()
 {
   assert(this);
   assert(this->GetConcept());
@@ -23,7 +23,7 @@ void QtPvdbConceptMapItem::OnConceptRequestsEdit()
   m_signal_conceptmapitem_requests_edit(this);
 }
 
-void QtPvdbConceptMapItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::pvdb::QtPvdbConceptMapItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }

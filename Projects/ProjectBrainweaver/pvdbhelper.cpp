@@ -13,11 +13,7 @@
 #include <QRegExp>
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-const std::vector<std::string> pvdb::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::pvdb::FileToVector(const std::string& filename)
 {
   #ifndef NDEBUG
   pvdb::TestHelperFunctions();
@@ -35,7 +31,7 @@ const std::vector<std::string> pvdb::FileToVector(const std::string& filename)
   return v;
 }
 
-double pvdb::GetDistance(const double delta_x, const double delta_y)
+double ribi::pvdb::GetDistance(const double delta_x, const double delta_y)
 {
   #ifndef NDEBUG
   pvdb::TestHelperFunctions();
@@ -43,7 +39,7 @@ double pvdb::GetDistance(const double delta_x, const double delta_y)
   return std::sqrt( (delta_x * delta_x) + (delta_y * delta_y) );
 }
 
-double pvdb::GetDistance(const double x1, const double y1, const double x2, const double y2)
+double ribi::pvdb::GetDistance(const double x1, const double y1, const double x2, const double y2)
 {
   #ifndef NDEBUG
   pvdb::TestHelperFunctions();
@@ -51,7 +47,7 @@ double pvdb::GetDistance(const double x1, const double y1, const double x2, cons
   return GetDistance(x1-x2,y1-y2);
 }
 
-const std::vector<std::string> pvdb::GetRegexMatches(
+const std::vector<std::string> ribi::pvdb::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -73,14 +69,14 @@ const std::vector<std::string> pvdb::GetRegexMatches(
   return v;
 }
 
-const std::vector<std::string> pvdb::SafeFileToVector(const std::string& filename)
+const std::vector<std::string> ribi::pvdb::SafeFileToVector(const std::string& filename)
 {
   std::vector<std::string> v = pvdb::FileToVector(filename);
   if (!v.empty() && v.back().empty()) v.pop_back();
   return v;
 }
 
-const std::vector<std::string> pvdb::SplitXml(const std::string& s)
+const std::vector<std::string> ribi::pvdb::SplitXml(const std::string& s)
 {
   #ifndef NDEBUG
   pvdb::TestHelperFunctions();
@@ -106,7 +102,7 @@ const std::vector<std::string> pvdb::SplitXml(const std::string& s)
   return v;
 }
 
-const std::string pvdb::StripXmlTag(const std::string& s)
+const std::string ribi::pvdb::StripXmlTag(const std::string& s)
 {
   #ifndef NDEBUG
   pvdb::TestHelperFunctions();
@@ -138,7 +134,7 @@ const std::string pvdb::StripXmlTag(const std::string& s)
   return text;
 }
 
-void pvdb::TestHelperFunctions()
+void ribi::pvdb::TestHelperFunctions()
 {
   {
     static bool is_tested = false;
@@ -356,7 +352,7 @@ void pvdb::TestHelperFunctions()
 
 }
 
-const std::vector<std::string> pvdb::XmlToPretty(const std::string& s)
+const std::vector<std::string> ribi::pvdb::XmlToPretty(const std::string& s)
 {
   #ifndef NDEBUG
   pvdb::TestHelperFunctions();
@@ -380,7 +376,3 @@ const std::vector<std::string> pvdb::XmlToPretty(const std::string& s)
   );
   return v;
 }
-
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-} //~namespace pvdb
-#endif

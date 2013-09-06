@@ -44,19 +44,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtmultiplechoicequestiondialog.h"
 #include "wthometrainerstartexercisedialog.h"
 
-WtHometrainerStartExerciseDialog::Ui::Ui()
+ribi::WtHometrainerStartExerciseDialog::Ui::Ui()
   : m_box_exercise(new Wt::WGroupBox)
 {
 
 }
 
-WtHometrainerStartExerciseDialog::WtHometrainerStartExerciseDialog()
+ribi::WtHometrainerStartExerciseDialog::WtHometrainerStartExerciseDialog()
 {
   ui.m_box_exercise->addWidget(new Wt::WLabel("No exercise loaded: select a file from the 'Load Exercise' menu item"));
   this->addWidget(ui.m_box_exercise);
 }
 
-void WtHometrainerStartExerciseDialog::LoadExercise(const std::string& filename)
+void ribi::WtHometrainerStartExerciseDialog::LoadExercise(const std::string& filename)
 {
   WtExercise * const exercise = new WtExercise;
   ui.m_box_exercise->clear();

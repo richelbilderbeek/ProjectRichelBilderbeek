@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-const About TestQtRoundedTextRectItemMenuDialog::GetAbout()
+const ribi::About ribi::TestQtRoundedTextRectItemMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -40,12 +40,12 @@ const About TestQtRoundedTextRectItemMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestQtRoundedTextRectItemMenuDialog::GetVersion()
+const std::string ribi::TestQtRoundedTextRectItemMenuDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> TestQtRoundedTextRectItemMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQtRoundedTextRectItemMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-21: version 1.0: initial version");

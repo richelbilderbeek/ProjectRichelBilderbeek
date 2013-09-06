@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "participantdialogstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The ParticipantDialog is in its view results group state.
 struct ParticipantDialogStateVoting
@@ -85,5 +89,8 @@ struct ParticipantDialogStateVoting
 
   void OnVoteClick();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTDIALOGSTATEVOTING_H

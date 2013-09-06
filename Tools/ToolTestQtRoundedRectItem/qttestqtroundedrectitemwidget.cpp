@@ -18,15 +18,10 @@
 #include "qtroundedrectitem.h"
 #pragma GCC diagnostic pop
 
-QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *parent)
+ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *parent)
   : QGraphicsView(new QGraphicsScene,parent)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   const int n_items = 16;
   for (int i=0; i!=n_items; ++i)
   {

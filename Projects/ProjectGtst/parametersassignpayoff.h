@@ -29,6 +29,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Parameters in the assign-payoff state (in the smaller/IPGG cycle)
 struct ParametersAssignPayoff
@@ -64,5 +68,8 @@ struct ParametersAssignPayoff
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ParametersAssignPayoff& parameters);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARAMETERSASSIGNPAYOFF_H

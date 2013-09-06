@@ -26,6 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "about.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///PerfectElasticCollisionMenuDialog contains the PerfectElasticCollision menu dialog
 struct PerfectElasticCollisionMenuDialog
 {
@@ -36,5 +39,7 @@ struct PerfectElasticCollisionMenuDialog
 //---------------------------------------------------------------------------
 ///From http://www.richelbilderbeek.nl/CppIntToStr.htm
 const std::string IntToStr(const int x);
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // PERFECTELASTICCOLLISIONMENUDIALOG_H

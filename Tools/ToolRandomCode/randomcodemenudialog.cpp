@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "randomcodemenudialog.h"
 
-About RandomCodeMenuDialog::GetAbout()
+ribi::About ribi::RandomCodeMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -40,12 +40,12 @@ About RandomCodeMenuDialog::GetAbout()
   return a;
 }
 
-const std::string RandomCodeMenuDialog::GetVersion()
+const std::string ribi::RandomCodeMenuDialog::GetVersion()
 {
   return "4.2";
 }
 
-const std::vector<std::string> RandomCodeMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::RandomCodeMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2007-xx-xx: version 1.0: initial version in C++ Builder");

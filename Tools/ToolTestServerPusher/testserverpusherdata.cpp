@@ -20,24 +20,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "testserverpusherdata.h"
 //---------------------------------------------------------------------------
-namespace ToolTestServerPusher {
+
 //---------------------------------------------------------------------------
-Data * Data::m_instance = 0;
+ribi::ToolTestServerPusher::Data * ribi::ToolTestServerPusher::Data::m_instance = 0;
 //---------------------------------------------------------------------------
-std::mutex Data::m_mutex;
+std::mutex ribi::ToolTestServerPusher::Data::m_mutex;
 //---------------------------------------------------------------------------
-Data::Data()
+ribi::ToolTestServerPusher::Data::Data()
   : m_s("TestServerPusher")
 {
 
 }
 //---------------------------------------------------------------------------
-Data::~Data()
+ribi::ToolTestServerPusher::Data::~Data()
 {
 
 }
 //---------------------------------------------------------------------------
-void Data::SetData(const std::string& s)
+void ribi::ToolTestServerPusher::Data::SetData(const std::string& s)
 {
   if (s != m_s)
   {
@@ -50,7 +50,7 @@ void Data::SetData(const std::string& s)
   }
 }
 //---------------------------------------------------------------------------
-Data * Data::GetInstance()
+ribi::ToolTestServerPusher::Data * ribi::ToolTestServerPusher::Data::GetInstance()
 {
   if (!m_instance)
   {
@@ -64,11 +64,9 @@ Data * Data::GetInstance()
   return m_instance;
 }
 //---------------------------------------------------------------------------
-const std::string Data::GetData() const
+const std::string ribi::ToolTestServerPusher::Data::GetData() const
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   return m_s;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTestServerPusher
 //---------------------------------------------------------------------------

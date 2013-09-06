@@ -19,7 +19,7 @@
 
 #include "trace.h"
 
-QtPvdbCreateAssessmentCompleteDialog::QtPvdbCreateAssessmentCompleteDialog(QWidget* parent)
+ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::QtPvdbCreateAssessmentCompleteDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbCreateAssessmentCompleteDialog),
     m_back_to_menu(false)
@@ -27,22 +27,22 @@ QtPvdbCreateAssessmentCompleteDialog::QtPvdbCreateAssessmentCompleteDialog(QWidg
   ui->setupUi(this);
 }
 
-QtPvdbCreateAssessmentCompleteDialog::~QtPvdbCreateAssessmentCompleteDialog()
+ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::~QtPvdbCreateAssessmentCompleteDialog()
 {
   delete ui;
 }
 
-const std::string QtPvdbCreateAssessmentCompleteDialog::GetQuestion() const
+const std::string ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::GetQuestion() const
 {
   return ui->edit->text().toStdString();
 }
 
-void QtPvdbCreateAssessmentCompleteDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void QtPvdbCreateAssessmentCompleteDialog::on_button_save_clicked()
+void ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::on_button_save_clicked()
 {
   const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla het assessment invoer-bestand op");
@@ -70,7 +70,7 @@ void QtPvdbCreateAssessmentCompleteDialog::on_button_save_clicked()
   close();
 }
 
-void QtPvdbCreateAssessmentCompleteDialog::Save(const std::string& filename) const
+void ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::Save(const std::string& filename) const
 {
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
@@ -82,12 +82,12 @@ void QtPvdbCreateAssessmentCompleteDialog::Save(const std::string& filename) con
   file->Save(filename);
 }
 
-void QtPvdbCreateAssessmentCompleteDialog::SetQuestion(const std::string& question)
+void ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::SetQuestion(const std::string& question)
 {
   ui->edit->setText(question.c_str());
 }
 
-void QtPvdbCreateAssessmentCompleteDialog::on_edit_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::on_edit_textChanged(const QString &arg1)
 {
   assert(ui->edit->text() == arg1);
   ui->button_save->setEnabled(!arg1.isEmpty());

@@ -27,11 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "musicscale.h"
 //#include "qtcreatorprofile.h"
 
-MusicTheoryMenuDialog::MusicTheoryMenuDialog()
-{
-}
-
-const About MusicTheoryMenuDialog::GetAbout()
+const ribi::About ribi::MusicTheoryMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -48,12 +44,12 @@ const About MusicTheoryMenuDialog::GetAbout()
   return a;
 }
 
-const std::string MusicTheoryMenuDialog::GetVersion()
+const std::string ribi::MusicTheoryMenuDialog::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> MusicTheoryMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::MusicTheoryMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-08-10: version 1.0: initial version");

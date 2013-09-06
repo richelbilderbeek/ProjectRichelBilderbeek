@@ -45,7 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "twodigitnewickindexer.h"
 #include "ui_qttesttwodigitnewickdialog.h"
 
-QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent) :
+ribi::QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent) :
     QDialog(parent,Qt::Window),
     ui(new Ui::QtTestTwoDigitNewickDialog)
 {
@@ -82,29 +82,17 @@ QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent) :
   OnAnyChange();
 }
 
-QtTestTwoDigitNewickDialog::~QtTestTwoDigitNewickDialog()
+ribi::QtTestTwoDigitNewickDialog::~QtTestTwoDigitNewickDialog()
 {
   delete ui;
 }
 
-void QtTestTwoDigitNewickDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-const std::string QtTestTwoDigitNewickDialog::GetVersion()
+const std::string ribi::QtTestTwoDigitNewickDialog::GetVersion()
 {
   return "2.2";
 }
 
-const std::vector<std::string> QtTestTwoDigitNewickDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtTestTwoDigitNewickDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-08-22: version 0.1: initial version, only simple Newicks");
@@ -128,7 +116,7 @@ const std::vector<std::string> QtTestTwoDigitNewickDialog::GetVersionHistory()
   return v;
 }
 
-void QtTestTwoDigitNewickDialog::OnAnyChange()
+void ribi::QtTestTwoDigitNewickDialog::OnAnyChange()
 {
   ui->edit_text->clear();
   //Check Newicks
@@ -284,7 +272,7 @@ void QtTestTwoDigitNewickDialog::OnAnyChange()
   }
 }
 
-void QtTestTwoDigitNewickDialog::OnAboutClick()
+void ribi::QtTestTwoDigitNewickDialog::OnAboutClick()
 {
   About about(
     "Richel Bilderbeek",
@@ -304,7 +292,7 @@ void QtTestTwoDigitNewickDialog::OnAboutClick()
   d.exec();
 }
 
-void QtTestTwoDigitNewickDialog::on_button_help_clicked()
+void ribi::QtTestTwoDigitNewickDialog::on_button_help_clicked()
 {
   //
 }

@@ -33,6 +33,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylospositionstate.h"
 #include "pyloswinner.h"
 
+namespace ribi {
+
 namespace Pylos {
 
 ///Pylos is a class for storing a Pylos game.
@@ -193,5 +195,7 @@ const std::vector<std::string> FileToVector(const std::string& fileName);
 boost::shared_ptr<Game> LoadPylos(const std::string& filename);
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // PYLOSGAME_H

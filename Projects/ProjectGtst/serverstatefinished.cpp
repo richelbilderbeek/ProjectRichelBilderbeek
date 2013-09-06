@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "server.h"
 //---------------------------------------------------------------------------
-ServerStateFinished::ServerStateFinished(
+ribi::gtst::ServerStateFinished::ServerStateFinished(
   Server * const server, const int period, const int cycle)
   : ServerState(server,period,cycle)
 {
@@ -45,23 +45,23 @@ ServerStateFinished::ServerStateFinished(
 }
 //---------------------------------------------------------------------------
 ///Check if this state can go to the next state.
-bool ServerStateFinished::CanGoToNextState() const
+bool ribi::gtst::ServerStateFinished::CanGoToNextState() const
 {
   return false;
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateFinished::GetStateDuration() const
+int ribi::gtst::ServerStateFinished::GetStateDuration() const
 {
   return boost::numeric::bounds<int>::highest();
 }
 //---------------------------------------------------------------------------
-void ServerStateFinished::OnTimer()
+void ribi::gtst::ServerStateFinished::OnTimer()
 {
   //Do exactly nothing
 }
 //---------------------------------------------------------------------------
-void ServerStateFinished::Start()
+void ribi::gtst::ServerStateFinished::Start()
 {
   BOOST_FOREACH(
     const boost::shared_ptr<const Participant>& p,
@@ -73,7 +73,7 @@ void ServerStateFinished::Start()
   GetServer()->GetGroups()->MoveAllToFinished();
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateFinished& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateFinished& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

@@ -42,7 +42,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpylosboardwidget.h"
 #include "ui_qttestpylostestgamedialog.h"
 //---------------------------------------------------------------------------
-QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
+ribi::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestPylosTestGameDialog),
   m_widget(new QtPylosGameWidget),
@@ -73,25 +73,13 @@ QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
   UpdateLog();
 }
 //---------------------------------------------------------------------------
-QtTestPylosTestGameDialog::~QtTestPylosTestGameDialog()
+ribi::QtTestPylosTestGameDialog::~QtTestPylosTestGameDialog()
 {
   m_timer->stop();
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtTestPylosTestGameDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
-void QtTestPylosTestGameDialog::on_button_play_visual_clicked()
+
+void ribi::QtTestPylosTestGameDialog::on_button_play_visual_clicked()
 {
   if (m_timer->isActive())
   {
@@ -117,7 +105,7 @@ void QtTestPylosTestGameDialog::on_button_play_visual_clicked()
   }
 }
 //---------------------------------------------------------------------------
-void QtTestPylosTestGameDialog::OnTimer()
+void ribi::QtTestPylosTestGameDialog::OnTimer()
 {
   const QRect r = this->m_widget->geometry();
   const int x = r.left() + (std::rand() % r.width());
@@ -157,27 +145,27 @@ void QtTestPylosTestGameDialog::OnTimer()
   }
 }
 //---------------------------------------------------------------------------
-void QtTestPylosTestGameDialog::on_radio_advanced_clicked()
+void ribi::QtTestPylosTestGameDialog::on_radio_advanced_clicked()
 {
   m_widget->StartAdvanced();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosTestGameDialog::on_radio_basic_clicked()
+void ribi::QtTestPylosTestGameDialog::on_radio_basic_clicked()
 {
   m_widget->StartBasic();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosTestGameDialog::on_radio_bw_clicked()
+void ribi::QtTestPylosTestGameDialog::on_radio_bw_clicked()
 {
   m_widget->SetColorSchemeBlackWhite();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosTestGameDialog::on_radio_rb_clicked()
+void ribi::QtTestPylosTestGameDialog::on_radio_rb_clicked()
 {
   m_widget->SetColorSchemeRedBlue();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosTestGameDialog::UpdateLog()
+void ribi::QtTestPylosTestGameDialog::UpdateLog()
 {
   ui->text_log->clear();
 

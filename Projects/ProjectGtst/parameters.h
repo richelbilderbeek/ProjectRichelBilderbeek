@@ -30,6 +30,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Parameters for an experiment
 struct Parameters : public boost::noncopyable
@@ -157,5 +161,8 @@ struct Parameters : public boost::noncopyable
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const Parameters& parameters);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARAMETERS_H

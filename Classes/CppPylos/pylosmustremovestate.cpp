@@ -27,9 +27,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "pylosplayer.h"
 
-namespace Pylos {
 
-MustRemoveState ToMustRemoveState(const Player& player)
+
+ribi::Pylos::MustRemoveState ribi::Pylos::ToMustRemoveState(const Player& player)
 {
   switch (player)
   {
@@ -40,7 +40,7 @@ MustRemoveState ToMustRemoveState(const Player& player)
   throw std::logic_error("Unknown value for Player");
 }
 
-std::string ToStr(const MustRemoveState state)
+std::string ribi::Pylos::ToStr(const MustRemoveState state)
 {
   switch (state)
   {
@@ -52,10 +52,7 @@ std::string ToStr(const MustRemoveState state)
   throw std::logic_error("Unknown value for MustRemoveState");
 }
 
-bool operator!(const MustRemoveState& state)
+bool ribi::Pylos::operator!(const MustRemoveState& state)
 {
   return state == MustRemoveState::no;
 }
-
-} //~namespace Pylos
-

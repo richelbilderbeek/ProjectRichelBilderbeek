@@ -19,9 +19,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/bind.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WApplication>
 #include <Wt/WBreak>
 #include <Wt/WImage>
@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WTextArea>
 #include <Wt/WPainter>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "connectthreeresources.h"
 #include "connectthreemenudialog.h"
@@ -40,13 +40,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtconnectthreegamedialog.h"
 #include "wtconnectthreemenudialog.h"
 #include "wtconnectthreewidget.h"
-#include "wtconnectthreeresources.h"
+#include "qtconnectthreeresources.h"
 #include "wtselectplayerwidget.h"
-//---------------------------------------------------------------------------
-WtConnectThreeMenuDialog::WtConnectThreeMenuDialog()
-  : m_select(new WtSelectPlayerWidget)
+
+ribi::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog()
+  : ribi::WtConnectThreeMenuDialog(ribi::WtConnectThreeMenuDialog::CreateResources())
+{
+
+}
+
+ribi::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog(
+    const boost::shared_ptr<const ConnectThreeResources> resources
+  )
+  : m_select(new WtSelectPlayerWidget(resources)),
+    m_resources(resources)
 {
   assert(m_select);
+  assert(m_resources);
   this->setContentAlignment(Wt::AlignCenter);
   {
     Wt::WLabel * const title = new Wt::WLabel("ConnectThree");
@@ -90,15 +100,15 @@ WtConnectThreeMenuDialog::WtConnectThreeMenuDialog()
     //Display contents below menu
     this->addWidget(contents);
     m_menu->itemSelected().connect(
-      this,&WtConnectThreeMenuDialog::OnMenuItemChanged);
+      this,&ribi::WtConnectThreeMenuDialog::OnMenuItemChanged);
   }
   m_select->m_signal_on_clicked.connect(
     boost::bind(
-      &WtConnectThreeMenuDialog::OnSelectClicked,
+      &ribi::WtConnectThreeMenuDialog::OnSelectClicked,
       this));
 }
-//---------------------------------------------------------------------------
-WtAboutDialog * WtConnectThreeMenuDialog::CreateNewAboutDialog()
+
+ribi::WtAboutDialog * ribi::WtConnectThreeMenuDialog::CreateNewAboutDialog()
 {
   About a = ConnectThreeMenuDialog::GetAbout();
   a.AddLibrary("WtConnectThreeWidget version: " + WtConnectThreeWidget::GetVersion());
@@ -106,16 +116,16 @@ WtAboutDialog * WtConnectThreeMenuDialog::CreateNewAboutDialog()
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   return d;
 }
-//---------------------------------------------------------------------------
-WtConnectThreeGameDialog * WtConnectThreeMenuDialog::CreateNewGameDialog()
+
+ribi::WtConnectThreeGameDialog * ribi::WtConnectThreeMenuDialog::CreateNewGameDialog()
 {
   assert(m_select);
-  m_game = new WtConnectThreeGameDialog(m_select->GetIsPlayerHuman());
+  m_game = new WtConnectThreeGameDialog(m_resources,m_select->GetIsPlayerHuman());
   assert(m_game);
   return m_game;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtConnectThreeMenuDialog::CreateNewSelectPlayersDialog()
+
+Wt::WWidget * ribi::WtConnectThreeMenuDialog::CreateNewSelectPlayersDialog()
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -123,8 +133,8 @@ Wt::WWidget * WtConnectThreeMenuDialog::CreateNewSelectPlayersDialog()
   dialog->addWidget(m_select);
   return dialog;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtConnectThreeMenuDialog::CreateNewWelcomeDialog() const
+
+Wt::WWidget * ribi::WtConnectThreeMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -138,29 +148,34 @@ Wt::WWidget * WtConnectThreeMenuDialog::CreateNewWelcomeDialog() const
   new Wt::WLabel("Good #1",dialog);
   new Wt::WBreak(dialog);
   dialog->addWidget(new Wt::WImage(
-    WtConnectThreeResources::GetInstance()->
-     GetInstructionsGoodFilenames()[0],
-     "Good #1"));
+    m_resources->GetInstructionsGoodFilenames()[0],"Good #1"));
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
   new Wt::WLabel("Good #2",dialog);
   new Wt::WBreak(dialog);
   dialog->addWidget(new Wt::WImage(
-    WtConnectThreeResources::GetInstance()->
-     GetInstructionsGoodFilenames()[1],
-     "Good #2"));
+    m_resources->GetInstructionsGoodFilenames()[1],"Good #2"));
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
   new Wt::WLabel("Wrong",dialog);
   new Wt::WBreak(dialog);
   dialog->addWidget(new Wt::WImage(
-    WtConnectThreeResources::GetInstance()->
+    m_resources->
      GetInstructionsWrongFilename(),
      "Wrong"));
   return dialog;
 }
-//---------------------------------------------------------------------------
-void WtConnectThreeMenuDialog::OnMenuItemChanged()
+
+const boost::shared_ptr<const ribi::ConnectThreeResources> ribi::WtConnectThreeMenuDialog::CreateResources()
+{
+  boost::shared_ptr<const ConnectThreeResources> r {
+    new QtConnectThreeResources()
+  };
+  assert(r);
+  return r;
+}
+
+void ribi::WtConnectThreeMenuDialog::OnMenuItemChanged()
 {
   if (m_menu->currentItem()->text() == "Start")
   {
@@ -183,8 +198,8 @@ void WtConnectThreeMenuDialog::OnMenuItemChanged()
     m_game->PauseTimer();
   }
 }
-//---------------------------------------------------------------------------
-void WtConnectThreeMenuDialog::OnSelectClicked()
+
+void ribi::WtConnectThreeMenuDialog::OnSelectClicked()
 {
   assert(m_game);
   if (m_game->HasWinner())
@@ -198,4 +213,4 @@ void WtConnectThreeMenuDialog::OnSelectClicked()
     m_game->SetIsPlayerHuman(m_select->GetIsPlayerHuman());
   }
 }
-//---------------------------------------------------------------------------
+

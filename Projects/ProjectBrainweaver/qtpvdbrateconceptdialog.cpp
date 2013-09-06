@@ -35,15 +35,15 @@
 #include "trace.h"
 #include "ui_qtpvdbrateconceptdialog.h"
 
-QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
-  const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map,
+ribi::pvdb::QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> sub_concept_map,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbRateConceptDialog),
     m_button_ok_clicked(false),
     m_concept(sub_concept_map
       ? sub_concept_map->GetNodes().at(0)->GetConcept()
-      : boost::shared_ptr<pvdb::Concept>() ),
+      : boost::shared_ptr<ribi::pvdb::Concept>() ),
     m_initial_complexity(sub_concept_map
       ? sub_concept_map->GetNodes().at(0)->GetConcept()->GetRatingComplexity()
       : -1 ),
@@ -105,16 +105,16 @@ QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
   //so let this dialog follow the ratings done by the tally dialog
   //DOES NOT WORK
   //m_concept->m_signal_rating_complexity_changed.connect(
-  //  boost::bind(&QtPvdbRateConceptDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
+  //  boost::bind(&ribi::pvdb::QtPvdbRateConceptDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
   //m_concept->m_signal_rating_concreteness_changed.connect(
-  //  boost::bind(&QtPvdbRateConceptDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
+  //  boost::bind(&ribi::pvdb::QtPvdbRateConceptDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
   //m_concept->m_signal_rating_specificity_changed.connect(
-  //  boost::bind(&QtPvdbRateConceptDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
+  //  boost::bind(&ribi::pvdb::QtPvdbRateConceptDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
 }
 
 
 
-QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog()
+ribi::pvdb::QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog()
 {
   //If user clicked OK, keep the current ratings (which are updated by the comboboxes)
   //else the user cancelled, so put back the initial ratings
@@ -128,29 +128,29 @@ QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog()
   //{
   //  //Just to be sure
   //  m_concept->m_signal_rating_complexity_changed.disconnect(
-  //    boost::bind(&QtPvdbRateConceptDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
+  //    boost::bind(&ribi::pvdb::QtPvdbRateConceptDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
   //  m_concept->m_signal_rating_concreteness_changed.disconnect(
-  //    boost::bind(&QtPvdbRateConceptDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
+  //    boost::bind(&ribi::pvdb::QtPvdbRateConceptDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
   //  m_concept->m_signal_rating_specificity_changed.disconnect(
-  //    boost::bind(&QtPvdbRateConceptDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
+  //    boost::bind(&ribi::pvdb::QtPvdbRateConceptDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
   //}
   delete ui;
 }
 
-void QtPvdbRateConceptDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbRateConceptDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   //QDialog::keyPressEvent(e);
 }
 
-void QtPvdbRateConceptDialog::on_button_ok_clicked()
+void ribi::pvdb::QtPvdbRateConceptDialog::on_button_ok_clicked()
 {
   //Ratings already set by comboboxes
   m_button_ok_clicked = true;
   close();
 }
 
-void QtPvdbRateConceptDialog::OnRatingComplexityChanged(const pvdb::Concept* concept)
+void ribi::pvdb::QtPvdbRateConceptDialog::OnRatingComplexityChanged(const ribi::pvdb::Concept* concept)
 {
   assert(concept);
   if (ui->box_complexity->currentIndex() != concept->GetRatingComplexity())
@@ -159,7 +159,7 @@ void QtPvdbRateConceptDialog::OnRatingComplexityChanged(const pvdb::Concept* con
   }
 }
 
-void QtPvdbRateConceptDialog::OnRatingConcretenessChanged(const pvdb::Concept* concept)
+void ribi::pvdb::QtPvdbRateConceptDialog::OnRatingConcretenessChanged(const ribi::pvdb::Concept* concept)
 {
   assert(concept);
   if (ui->box_concreteness->currentIndex() != concept->GetRatingConcreteness())
@@ -168,7 +168,7 @@ void QtPvdbRateConceptDialog::OnRatingConcretenessChanged(const pvdb::Concept* c
   }
 }
 
-void QtPvdbRateConceptDialog::OnRatingSpecificityChanged(const pvdb::Concept* concept)
+void ribi::pvdb::QtPvdbRateConceptDialog::OnRatingSpecificityChanged(const ribi::pvdb::Concept* concept)
 {
   assert(concept);
   if (ui->box_specificity->currentIndex() != concept->GetRatingSpecificity())
@@ -178,7 +178,7 @@ void QtPvdbRateConceptDialog::OnRatingSpecificityChanged(const pvdb::Concept* co
 }
 
 #ifndef NDEBUG
-void QtPvdbRateConceptDialog::Test()
+void ribi::pvdb::QtPvdbRateConceptDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -190,24 +190,24 @@ void QtPvdbRateConceptDialog::Test()
     []
     {
   #endif
-  TRACE("Started QtPvdbRateConceptDialog::Test");
+  TRACE("Started ribi::pvdb::QtPvdbRateConceptDialog::Test");
 
   {
-    const std::vector<boost::shared_ptr<pvdb::ConceptMap> > concept_maps
-      = pvdb::ConceptMapFactory::GetAllTests();
+    const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > concept_maps
+      = ribi::pvdb::ConceptMapFactory::GetAllTests();
     const std::size_t n_concept_maps = concept_maps.size();
     for (std::size_t i=0; i!=n_concept_maps; ++i)
     {
-      const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[i];
+      const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = concept_maps[i];
       if (!concept_map)
       {
         QtPvdbRateConceptDialog d(concept_map);
         continue;
       }
       assert(concept_map);
-      const boost::shared_ptr<pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
+      const boost::shared_ptr<ribi::pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
       assert(concept);
-      const boost::shared_ptr<pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
+      const boost::shared_ptr<ribi::pvdb::Concept> old_concept = ribi::pvdb::ConceptFactory::DeepCopy(concept);
       assert(old_concept);
       assert(concept != old_concept);
       assert(IsEqual(*concept,*old_concept));
@@ -228,21 +228,21 @@ void QtPvdbRateConceptDialog::Test()
     }
   }
   {
-    const std::vector<boost::shared_ptr<pvdb::ConceptMap> > concept_maps
-      = pvdb::ConceptMapFactory::GetAllTests();
+    const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > concept_maps
+      = ribi::pvdb::ConceptMapFactory::GetAllTests();
     const std::size_t n_concept_maps = concept_maps.size();
     for (std::size_t i=0; i!=n_concept_maps; ++i)
     {
-      const boost::shared_ptr<pvdb::ConceptMap> concept_map = concept_maps[i];
+      const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = concept_maps[i];
       if (!concept_map)
       {
         QtPvdbRateConceptDialog d(concept_map);
         continue;
       }
       assert(concept_map);
-      const boost::shared_ptr<pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
+      const boost::shared_ptr<ribi::pvdb::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
       assert(concept);
-      const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
+      const boost::shared_ptr<const ribi::pvdb::Concept> old_concept = ribi::pvdb::ConceptFactory::DeepCopy(concept);
 
       assert(old_concept);
       assert(concept != old_concept);
@@ -264,11 +264,11 @@ void QtPvdbRateConceptDialog::Test()
   );
   t.detach();
   #endif
-  TRACE("Finished QtPvdbRateConceptDialog::Test successfully");
+  TRACE("Finished ribi::pvdb::QtPvdbRateConceptDialog::Test successfully");
 }
 #endif
 
-void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
+void ribi::pvdb::QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
 {
   #ifndef NDEBUG
   const bool has_concept_map = m_sub_concept_map.get(); //.get() needed for crosscompiler
@@ -281,7 +281,7 @@ void QtPvdbRateConceptDialog::on_button_tally_relevancies_clicked()
   ui->box_specificity->setCurrentIndex(d.GetSuggestedSpecificity());
 }
 
-void QtPvdbRateConceptDialog::on_box_complexity_currentIndexChanged(int)
+void ribi::pvdb::QtPvdbRateConceptDialog::on_box_complexity_currentIndexChanged(int)
 {
   assert(m_concept);
   if (m_concept->GetRatingComplexity() != ui->box_complexity->currentIndex())
@@ -290,7 +290,7 @@ void QtPvdbRateConceptDialog::on_box_complexity_currentIndexChanged(int)
   }
 }
 
-void QtPvdbRateConceptDialog::on_box_concreteness_currentIndexChanged(int)
+void ribi::pvdb::QtPvdbRateConceptDialog::on_box_concreteness_currentIndexChanged(int)
 {
   assert(m_concept);
   if (m_concept->GetRatingConcreteness() != ui->box_concreteness->currentIndex())
@@ -299,7 +299,7 @@ void QtPvdbRateConceptDialog::on_box_concreteness_currentIndexChanged(int)
   }
 }
 
-void QtPvdbRateConceptDialog::on_box_specificity_currentIndexChanged(int)
+void ribi::pvdb::QtPvdbRateConceptDialog::on_box_specificity_currentIndexChanged(int)
 {
   assert(m_concept);
   if (m_concept->GetRatingSpecificity() != ui->box_specificity->currentIndex())

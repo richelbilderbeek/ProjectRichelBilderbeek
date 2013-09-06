@@ -36,36 +36,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtTestQtRoundedRectItemMenuDialog::QtTestQtRoundedRectItemMenuDialog(QWidget *parent) :
+ribi::QtTestQtRoundedRectItemMenuDialog::QtTestQtRoundedRectItemMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedRectItemMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestQtRoundedRectItemMenuDialog::~QtTestQtRoundedRectItemMenuDialog()
+ribi::QtTestQtRoundedRectItemMenuDialog::~QtTestQtRoundedRectItemMenuDialog()
 {
   delete ui;
 }
 
-void QtTestQtRoundedRectItemMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestQtRoundedRectItemMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtRoundedRectItemMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtTestQtRoundedRectItemMenuDialog::on_button_about_clicked()
+void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_about_clicked()
 {
   About a = TestQtRoundedRectItemMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -79,12 +67,12 @@ void QtTestQtRoundedRectItemMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtTestQtRoundedRectItemMenuDialog::on_button_quit_clicked()
+void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtTestQtRoundedRectItemMenuDialog::on_button_start_clicked()
+void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_start_clicked()
 {
   QtTestQtRoundedRectItemMainDialog d;
   ShowChild(&d);

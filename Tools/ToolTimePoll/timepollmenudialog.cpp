@@ -22,9 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "timepollmenudialog.h"
 //---------------------------------------------------------------------------
-namespace ToolTimePoll {
-//---------------------------------------------------------------------------
-const About TimePollMenuDialog::GetAbout()
+const ribi::About ribi::ToolTimePoll::TimePollMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +37,12 @@ const About TimePollMenuDialog::GetAbout()
   return a;
 }
 //---------------------------------------------------------------------------
-const std::string TimePollMenuDialog::GetVersion()
+const std::string ribi::ToolTimePoll::TimePollMenuDialog::GetVersion()
 {
   return "4.2";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> TimePollMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolTimePoll::TimePollMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-04-13: Version 0.1: initial version, the as-simple-as-possible version");
@@ -61,6 +59,4 @@ const std::vector<std::string> TimePollMenuDialog::GetVersionHistory()
   v.push_back("2011-08-05: Version 5.0: use of WtServerPusher and WtTimedServerPusher");
   return v;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTimePoll
 //---------------------------------------------------------------------------

@@ -17,7 +17,7 @@
 #include "trace.h"
 
 #ifndef NDEBUG
-void QtPvdbConceptMapRateWidget::Test()
+void ribi::pvdb::QtPvdbConceptMapRateWidget::Test()
 {
   {
     static bool is_tested = false;
@@ -31,8 +31,8 @@ void QtPvdbConceptMapRateWidget::Test()
   #endif
   //Test base class
   {
-    const auto v = pvdb::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<pvdb::ConceptMap> concept_map: v)
+    const auto v = ribi::pvdb::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map: v)
     {
       boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
       assert(widget);
@@ -41,8 +41,8 @@ void QtPvdbConceptMapRateWidget::Test()
   }
   /*
   {
-    const auto v = pvdb::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<pvdb::ConceptMap> concept_map: v)
+    const auto v = ribi::pvdb::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map: v)
     {
       boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
       assert(widget);
@@ -54,7 +54,7 @@ void QtPvdbConceptMapRateWidget::Test()
     }
   }
   */
-  TRACE("QtPvdbConceptMapRateWidget::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbConceptMapRateWidget::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

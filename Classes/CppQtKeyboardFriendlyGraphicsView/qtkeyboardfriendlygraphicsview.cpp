@@ -29,13 +29,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QGraphicsSimpleTextItem>
 
-QtKeyboardFriendlyGraphicsView::QtKeyboardFriendlyGraphicsView(QWidget* parent)
+ribi::QtKeyboardFriendlyGraphicsView::QtKeyboardFriendlyGraphicsView(QWidget* parent)
   : QGraphicsView(new QGraphicsScene,parent)
 {
 
 }
 
-QGraphicsItem* QtKeyboardFriendlyGraphicsView::GetClosest(
+QGraphicsItem* ribi::QtKeyboardFriendlyGraphicsView::GetClosest(
   const QGraphicsItem* const focus_item,
   const std::vector<QGraphicsItem *>& items) const
 {
@@ -60,14 +60,14 @@ QGraphicsItem* QtKeyboardFriendlyGraphicsView::GetClosest(
   return best; //best can be nullptr
 }
 
-double QtKeyboardFriendlyGraphicsView::GetDistance(const QPointF& a, const QPointF& b)
+double ribi::QtKeyboardFriendlyGraphicsView::GetDistance(const QPointF& a, const QPointF& b)
 {
   const double dx = a.x() - b.x();
   const double dy = a.y() - b.y();
   return std::sqrt((dx * dx) + (dy * dy));
 }
 
-const std::vector<QGraphicsItem *> QtKeyboardFriendlyGraphicsView::GetItemsAbove(const QGraphicsItem* const focus_item) const
+const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsAbove(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -99,7 +99,7 @@ const std::vector<QGraphicsItem *> QtKeyboardFriendlyGraphicsView::GetItemsAbove
   return v;
 }
 
-const std::vector<QGraphicsItem *> QtKeyboardFriendlyGraphicsView::GetItemsBelow(const QGraphicsItem* const focus_item) const
+const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsBelow(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -131,7 +131,7 @@ const std::vector<QGraphicsItem *> QtKeyboardFriendlyGraphicsView::GetItemsBelow
   return v;
 }
 
-const std::vector<QGraphicsItem *> QtKeyboardFriendlyGraphicsView::GetItemsLeft(const QGraphicsItem* const focus_item) const
+const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsLeft(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -162,7 +162,7 @@ const std::vector<QGraphicsItem *> QtKeyboardFriendlyGraphicsView::GetItemsLeft(
   return v;
 }
 
-const std::vector<QGraphicsItem *> QtKeyboardFriendlyGraphicsView::GetItemsRight(const QGraphicsItem* const focus_item) const
+const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsRight(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -193,12 +193,12 @@ const std::vector<QGraphicsItem *> QtKeyboardFriendlyGraphicsView::GetItemsRight
   return v;
 }
 
-const std::string QtKeyboardFriendlyGraphicsView::GetVersion()
+const std::string ribi::QtKeyboardFriendlyGraphicsView::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> QtKeyboardFriendlyGraphicsView::GetVersionHistory()
+const std::vector<std::string> ribi::QtKeyboardFriendlyGraphicsView::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-13: version 1.0: initial version");
@@ -206,7 +206,7 @@ const std::vector<std::string> QtKeyboardFriendlyGraphicsView::GetVersionHistory
   return v;
 }
 
-void QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event)
+void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event)
 {
   if (event->modifiers() & Qt::ShiftModifier)
   {
@@ -342,7 +342,7 @@ void QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event)
   this->update();
 }
 
-void QtKeyboardFriendlyGraphicsView::SetRandomFocus()
+void ribi::QtKeyboardFriendlyGraphicsView::SetRandomFocus()
 {
   //Let existing item lose focus
   if (QGraphicsItem* const item = scene()->focusItem())

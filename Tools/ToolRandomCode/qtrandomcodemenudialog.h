@@ -28,6 +28,8 @@ namespace Ui {
   class QtRandomCodeMenuDialog;
 }
 
+namespace ribi {
+
 class QtRandomCodeMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -37,7 +39,7 @@ public:
   ~QtRandomCodeMenuDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
   void keyPressEvent(QKeyEvent *);
 
 private:
@@ -48,5 +50,7 @@ private slots:
   void on_button_quit_clicked();
   void on_button_start_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTRANDOMCODEMENUDIALOG_H

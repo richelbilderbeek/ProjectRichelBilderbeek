@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/signals2.hpp>
 
+namespace ribi {
+
 struct IpAddress;
 
 ///\brief
@@ -99,5 +101,7 @@ struct WtEntrance
     const std::string& input,
    const char seperator);
 };
+
+} //~namespace ribi
 
 #endif // WTENTRANCE_H

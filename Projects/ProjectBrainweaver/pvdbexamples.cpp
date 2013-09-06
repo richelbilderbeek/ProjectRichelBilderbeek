@@ -23,11 +23,7 @@
 #include "pvdbexamplesfactory.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-pvdb::Examples::Examples(const std::vector<boost::shared_ptr<pvdb::Example> >& v)
+ribi::pvdb::Examples::Examples(const std::vector<boost::shared_ptr<pvdb::Example> >& v)
   : m_v(v)
 {
   #ifndef NDEBUG
@@ -58,7 +54,7 @@ pvdb::Examples::Examples(const std::vector<boost::shared_ptr<pvdb::Example> >& v
     ) == 0 && "All Example instances must be initialized");
 }
 
-void pvdb::Examples::Add(const boost::shared_ptr<pvdb::Example>& example)
+void ribi::pvdb::Examples::Add(const boost::shared_ptr<pvdb::Example>& example)
 {
   assert(example);
   //Connect the example
@@ -79,7 +75,7 @@ void pvdb::Examples::Add(const boost::shared_ptr<pvdb::Example>& example)
   m_signal_examples_changed(this);
 }
 
-const boost::shared_ptr<pvdb::Examples> pvdb::Examples::FromXml(const std::string& s)
+const boost::shared_ptr<ribi::pvdb::Examples> ribi::pvdb::Examples::FromXml(const std::string& s)
 {
   assert(s.size() >= 20);
   assert(s.substr(0,10) == std::string("<examples>"));
@@ -99,17 +95,17 @@ const boost::shared_ptr<pvdb::Examples> pvdb::Examples::FromXml(const std::strin
   return ExamplesFactory::Create(examples);
 }
 
-const std::vector<boost::shared_ptr<const pvdb::Example> > pvdb::Examples::Get() const
+const std::vector<boost::shared_ptr<const ribi::pvdb::Example> > ribi::pvdb::Examples::Get() const
 {
   return AddConst(m_v);
 }
 
-void pvdb::Examples::OnExampleChanged()
+void ribi::pvdb::Examples::OnExampleChanged()
 {
   m_signal_examples_changed(this);
 }
 
-void pvdb::Examples::Test()
+void ribi::pvdb::Examples::Test()
 {
   {
     static bool is_tested = false;
@@ -121,7 +117,7 @@ void pvdb::Examples::Test()
     []
     {
   #endif
-  TRACE("Started pvdb::Examples::Test");
+  TRACE("Started ribi::pvdb::Examples::Test");
   //Test of operator== and operator!=
   {
     const int sz = static_cast<int>(ExamplesFactory::GetTests().size());
@@ -165,7 +161,7 @@ void pvdb::Examples::Test()
       [](const boost::shared_ptr<const pvdb::Examples>& e)
       {
         assert(e);
-        const std::string s = pvdb::Examples::ToXml(e);
+        const std::string s = ribi::pvdb::Examples::ToXml(e);
         const boost::shared_ptr<const pvdb::Examples> f(Examples::FromXml(s));
         assert(IsEqual(*e,*f));
       }
@@ -177,11 +173,11 @@ void pvdb::Examples::Test()
     for (int i=0; i!=sz; ++i)
     {
       const boost::shared_ptr<const pvdb::Examples>& e = v[i];
-      const std::string s = pvdb::Examples::ToXml(e);
+      const std::string s = ribi::pvdb::Examples::ToXml(e);
       for (int j=0; j!=sz; ++j)
       {
         const boost::shared_ptr<const pvdb::Examples>& f = v[j];
-        const std::string t = pvdb::Examples::ToXml(f);
+        const std::string t = ribi::pvdb::Examples::ToXml(f);
         if (i == j)
         {
           assert(IsEqual(*e,*f));
@@ -206,9 +202,9 @@ void pvdb::Examples::Test()
     std::vector<boost::shared_ptr<const pvdb::Example> > v; v.push_back(a);
     std::vector<boost::shared_ptr<const pvdb::Example> > w; w.push_back(b);
     std::vector<boost::shared_ptr<const pvdb::Example> > x; x.push_back(c);
-    const boost::shared_ptr<pvdb::Examples> d = ExamplesFactory::Create(v);
-    const boost::shared_ptr<pvdb::Examples> e = ExamplesFactory::Create(w);
-    const boost::shared_ptr<pvdb::Examples> f = ExamplesFactory::Create(x);
+    const boost::shared_ptr<ribi::pvdb::Examples> d = ExamplesFactory::Create(v);
+    const boost::shared_ptr<ribi::pvdb::Examples> e = ExamplesFactory::Create(w);
+    const boost::shared_ptr<ribi::pvdb::Examples> f = ExamplesFactory::Create(x);
     assert( IsEqual(*d,*d)); assert( IsEqual(*d,*e)); assert(!IsEqual(*d,*f));
     assert( IsEqual(*e,*d)); assert( IsEqual(*e,*e)); assert(!IsEqual(*e,*f));
     assert(!IsEqual(*f,*d)); assert(!IsEqual(*f,*e)); assert( IsEqual(*f,*f));
@@ -221,7 +217,7 @@ void pvdb::Examples::Test()
   #endif
 }
 
-const std::string pvdb::Examples::ToXml(const boost::shared_ptr<const pvdb::Examples> &c)
+const std::string ribi::pvdb::Examples::ToXml(const boost::shared_ptr<const pvdb::Examples> &c)
 {
   std::stringstream s;
   s << "<examples>";
@@ -243,11 +239,7 @@ const std::string pvdb::Examples::ToXml(const boost::shared_ptr<const pvdb::Exam
   return r;
 }
 
-#ifndef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-bool IsEqual(const pvdb::Examples& lhs, const pvdb::Examples& rhs)
+bool ribi::pvdb::IsEqual(const pvdb::Examples& lhs, const pvdb::Examples& rhs)
 {
   if (lhs.Get().size() != rhs.Get().size())
   {
@@ -264,7 +256,7 @@ bool IsEqual(const pvdb::Examples& lhs, const pvdb::Examples& rhs)
   );
 }
 
-bool operator<(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs)
+bool ribi::pvdb::operator<(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs)
 {
   assert(lhs && rhs);
   if (lhs->Get().size() < rhs->Get().size()) return true;
@@ -278,6 +270,3 @@ bool operator<(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::
   }
   return false;
 }
-
-} //~namespace pvdb
-

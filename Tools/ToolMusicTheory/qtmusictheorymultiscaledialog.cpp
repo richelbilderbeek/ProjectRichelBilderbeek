@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qtmusictheorymultiscaledialog.h"
 
-QtMusicTheoryMultiScaleDialog::QtMusicTheoryMultiScaleDialog(QWidget *parent) :
+ribi::QtMusicTheoryMultiScaleDialog::QtMusicTheoryMultiScaleDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtMusicTheoryMultiScaleDialog)
 {
@@ -75,12 +75,12 @@ QtMusicTheoryMultiScaleDialog::QtMusicTheoryMultiScaleDialog(QWidget *parent) :
   //any_change();
 }
 
-QtMusicTheoryMultiScaleDialog::~QtMusicTheoryMultiScaleDialog()
+ribi::QtMusicTheoryMultiScaleDialog::~QtMusicTheoryMultiScaleDialog()
 {
   delete ui;
 }
 
-void QtMusicTheoryMultiScaleDialog::any_change()
+void ribi::QtMusicTheoryMultiScaleDialog::any_change()
 {
   std::vector<boost::shared_ptr<Music::Chord> > chords_1 = Music::Chord::CreateAllChords();
   {
@@ -196,7 +196,7 @@ void QtMusicTheoryMultiScaleDialog::any_change()
   ui->widget->SetChords(chords_1,chords_2);
 }
 
-void QtMusicTheoryMultiScaleDialog::resizeEvent(QResizeEvent *)
+void ribi::QtMusicTheoryMultiScaleDialog::resizeEvent(QResizeEvent *)
 {
   any_change();
 }

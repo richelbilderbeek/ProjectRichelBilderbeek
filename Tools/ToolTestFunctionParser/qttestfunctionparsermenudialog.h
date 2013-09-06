@@ -24,8 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtTestFunctionParserMenuDialog;
+  class QtTestFunctionParserMenuDialog;
 }
+
+namespace ribi {
 
 class QtTestFunctionParserMenuDialog : public QtHideAndShowDialog
 {
@@ -43,5 +45,7 @@ private slots:
 private:
   Ui::QtTestFunctionParserMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTTESTFUNCTIONPARSERMENUDIALOG_H

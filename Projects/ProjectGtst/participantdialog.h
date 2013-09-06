@@ -33,6 +33,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusherclient.h"
 #include "wttimedserverpusherclient.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///ParticipantDialog handles the user interface for a Participant.
 ///
@@ -104,5 +108,8 @@ struct ParticipantDialog
   } ui;
   #endif
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTDIALOG_H

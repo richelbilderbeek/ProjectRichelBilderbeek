@@ -26,11 +26,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///GUI independent MusicTheory menu dialog
 struct MusicTheoryMenuDialog
 {
-  MusicTheoryMenuDialog();
-
   static const About GetAbout();
 
   ///Obtain this class its version number
@@ -39,5 +39,7 @@ struct MusicTheoryMenuDialog
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //namespace ribi
 
 #endif // MUSICTHEORYMENUDIALOG_H

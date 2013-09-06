@@ -35,6 +35,8 @@ namespace Ui {
   class QtTestPylosTestBoardDialog;
 }
 
+namespace ribi {
+
 class QtTestPylosTestBoardDialog : public QDialog
 {
   Q_OBJECT
@@ -44,7 +46,7 @@ public:
   ~QtTestPylosTestBoardDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestPylosTestBoardDialog *ui;
@@ -68,5 +70,7 @@ private slots:
 
   void on_slider_tilt_sliderMoved(int position);
 };
+
+} //~namespace ribi
 
 #endif // QTTESTPYLOSTESTBOARDDIALOG_H

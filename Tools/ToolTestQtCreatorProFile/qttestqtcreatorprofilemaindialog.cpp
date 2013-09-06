@@ -31,19 +31,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testqtcreatorprofilemenudialog.h"
 #include "ui_qttestqtcreatorprofilemaindialog.h"
 
-QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget *parent) :
+ribi::QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestQtCreatorProFileMainDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestQtCreatorProFileMainDialog::~QtTestQtCreatorProFileMainDialog()
+ribi::QtTestQtCreatorProFileMainDialog::~QtTestQtCreatorProFileMainDialog()
 {
   delete ui;
 }
 
-void QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
+void ribi::QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
 {
   const std::string filename
     = QFileDialog::getOpenFileName(

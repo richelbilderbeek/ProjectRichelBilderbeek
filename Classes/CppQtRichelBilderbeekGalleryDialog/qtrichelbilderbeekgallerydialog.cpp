@@ -56,7 +56,7 @@ struct QtGalleryItem : public QTableWidgetItem
 };
 
 
-QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *parent) :
+ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRichelBilderbeekGalleryDialog),
   m_programs(RichelBilderbeek::Program::GetAllPrograms())
@@ -159,17 +159,17 @@ QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *parent
   }
 }
 
-QtRichelBilderbeekGalleryDialog::~QtRichelBilderbeekGalleryDialog()
+ribi::QtRichelBilderbeekGalleryDialog::~QtRichelBilderbeekGalleryDialog()
 {
   delete ui;
 }
 
-const std::string QtRichelBilderbeekGalleryDialog::GetVersion()
+const std::string ribi::QtRichelBilderbeekGalleryDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> QtRichelBilderbeekGalleryDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtRichelBilderbeekGalleryDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-02-19: version 1.0: initial version of QtAboutDialog");
@@ -177,12 +177,12 @@ const std::vector<std::string> QtRichelBilderbeekGalleryDialog::GetVersionHistor
   return v;
 }
 
-void QtRichelBilderbeekGalleryDialog::keyPressEvent(QKeyEvent* e)
+void ribi::QtRichelBilderbeekGalleryDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &index)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &index)
 {
   const int row = index.row();
   if (row - 1 < 0 || row - 1 >= static_cast<int>(m_programs.size())) return;
@@ -191,12 +191,12 @@ void QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &index)
   ShowScreenshot(col,row);
 }
 
-void QtRichelBilderbeekGalleryDialog::on_table_cellEntered(int row, int column)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_cellEntered(int row, int column)
 {
   ShowScreenshot(column,row);
 }
 
-void QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const int row)
+void ribi::QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const int row)
 {
   const boost::shared_ptr<RichelBilderbeek::Program>& p = m_programs[row - 1];
   std::string filename;
@@ -215,7 +215,7 @@ void QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const int ro
   this->move( screen.center() - this->rect().center() );
 }
 
-void QtRichelBilderbeekGalleryDialog::on_table_entered(const QModelIndex &index)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_entered(const QModelIndex &index)
 {
   const int row = index.row();
   if (row - 1 < 0 || row - 1 >= static_cast<int>(m_programs.size())) return;

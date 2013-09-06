@@ -1,12 +1,9 @@
 #ifndef PVDBFILEFACTORY_H
 #define PVDBFILEFACTORY_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
+
+namespace ribi {
 
 namespace pvdb {
 
@@ -27,8 +24,6 @@ struct FileFactory
 
 } //~namespace pvdb
 
-#ifndef PVDB_USE_FORWARD_DECLARATIONS_248738
-#include "pvdbfile.h"
-#endif
+} //~namespace ribi
 
 #endif // PVDBFILEFACTORY_H

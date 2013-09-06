@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebuttonwidget.h"
 #include "ui_qttesttogglebuttonmaindialog.h"
 
-QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent)
+ribi::QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent)
  : QDialog(parent),
    ui(new Ui::QtTestToggleButtonMainDialog)
 {
@@ -42,29 +42,17 @@ QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent)
 
   ui->toggle_button->m_signal_toggled.connect(
     boost::bind(
-      &QtTestToggleButtonMainDialog::DisplayToggleButtonValue,
+      &ribi::QtTestToggleButtonMainDialog::DisplayToggleButtonValue,
       this));
   ui->toggle_button->GetWidget()->Click(1,1);
 }
 
-QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog()
+ribi::QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog()
 {
   delete ui;
 }
 
-void QtTestToggleButtonMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestToggleButtonMainDialog::DisplayToggleButtonValue()
+void ribi::QtTestToggleButtonMainDialog::DisplayToggleButtonValue()
 {
   ui->label_is_pressed->setText(
     (std::string("Is pressed: ")
@@ -82,12 +70,12 @@ void QtTestToggleButtonMainDialog::DisplayToggleButtonValue()
 
 }
 
-void QtTestToggleButtonMainDialog::on_dial_dialMoved(int)
+void ribi::QtTestToggleButtonMainDialog::on_dial_dialMoved(int)
 {
   OnDial();
 }
 
-void QtTestToggleButtonMainDialog::OnDial()
+void ribi::QtTestToggleButtonMainDialog::OnDial()
 {
   const double x
     = static_cast<double>(ui->dial->value())
@@ -102,7 +90,7 @@ void QtTestToggleButtonMainDialog::OnDial()
 
 }
 
-void QtTestToggleButtonMainDialog::on_dial_sliderPressed()
+void ribi::QtTestToggleButtonMainDialog::on_dial_sliderPressed()
 {
   OnDial();
 }

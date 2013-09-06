@@ -27,7 +27,7 @@ namespace Ui {
 class QtTestQtRoundedEditRectItemMainDialog;
 }
 
-class QtTestQtRoundedEditRectItemMainDialog : public QtHideAndShowDialog
+class QtTestQtRoundedEditRectItemMainDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
     

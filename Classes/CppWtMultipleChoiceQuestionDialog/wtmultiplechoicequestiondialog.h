@@ -26,6 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wtquestiondialog.h"
 //---------------------------------------------------------------------------
+namespace ribi {
+
 struct Question;
 struct MultipleChoiceQuestion;
 struct MultipleChoiceQuestionDialog;
@@ -60,5 +62,7 @@ private:
   ///Create the page
   void Show();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTMULTIPLECHOICEQUESTIONDIALOG_H

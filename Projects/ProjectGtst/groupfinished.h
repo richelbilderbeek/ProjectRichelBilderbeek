@@ -24,6 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "group.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///GroupFinished is a Participant Group that is finished
 struct GroupFinished : public Group, StateFinished
 {
@@ -54,7 +58,8 @@ struct GroupFinished : public Group, StateFinished
   //ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(GroupFinished*);
 };
-//---------------------------------------------------------------------------
 
+} //~namespace gtst
+} //~namespace ribi
 
 #endif // GROUPFINISHED_H

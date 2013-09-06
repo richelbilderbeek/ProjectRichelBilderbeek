@@ -43,14 +43,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateGroupAssign::ParticipantDialogStateGroupAssign(
+ribi::gtst::ParticipantDialogStateGroupAssign::ParticipantDialogStateGroupAssign(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
 
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateGroupAssign::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateGroupAssign::RespondToTimedServerPush()
 {
    
 
@@ -113,7 +113,7 @@ void ParticipantDialogStateGroupAssign::RespondToTimedServerPush()
   RespondToParticipant();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateGroupAssign::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateGroupAssign::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
   assert(GetDialog()->CanGetParticipant()

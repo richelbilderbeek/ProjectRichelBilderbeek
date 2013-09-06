@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <Wt/WContainerWidget>
 
+namespace ribi {
+
 struct Exercise;
 
 ///A WtExercise is the Wt dialog of Exercise
@@ -90,5 +92,7 @@ struct WtExercise : public Wt::WContainerWidget
   ///Respond to the client having viewed the answer of a question
   void OnViewedAnswer();
 };
+
+} //~namespace ribi
 
 #endif // WTEXERCISE_H

@@ -25,13 +25,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "repeatassignerfixed.h"
 //---------------------------------------------------------------------------
-RepeatAssignerFixed::RepeatAssignerFixed(const int value)
+ribi::gtst::RepeatAssignerFixed::RepeatAssignerFixed(const int value)
   : m_value(value)
 {
   assert(m_value > 0 && "An experimental state must be visited at least once");
 }
 //---------------------------------------------------------------------------
-int RepeatAssignerFixed::Assign() const
+int ribi::gtst::RepeatAssignerFixed::Assign() const
 {
   m_assigned_values.push_back(m_value);
 
@@ -41,7 +41,7 @@ int RepeatAssignerFixed::Assign() const
 }
 //---------------------------------------------------------------------------
 ///Converts RepeatAssignerFixed to std::string
-const std::string RepeatAssignerFixed::ToStr() const
+const std::string ribi::gtst::RepeatAssignerFixed::ToStr() const
 {
   return
       std::string("<repeatassigner_fixed>")

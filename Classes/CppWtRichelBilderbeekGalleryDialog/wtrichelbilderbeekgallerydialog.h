@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
+namespace ribi {
+
 namespace RichelBilderbeek {
 //---------------------------------------------------------------------------
 ///WtGalleryDialog displays a
@@ -42,5 +44,7 @@ struct WtGalleryDialog : public Wt::WContainerWidget
 };
 //---------------------------------------------------------------------------
 } //~namespace RichelBilderbeek
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTRICHELBILDERBEEKGALLERYDIALOG_H

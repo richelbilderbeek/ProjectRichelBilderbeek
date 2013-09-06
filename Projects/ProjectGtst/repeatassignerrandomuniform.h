@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "repeatassigner.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///A RepeatAssigner that assigns the IPGG to repeated a random number of times.
 ///
@@ -63,7 +67,8 @@ struct RepeatAssignerRandomUniform : public RepeatAssigner
   ///chooses from to determine the number of IPGG rounds
   const int m_to;
 };
-//---------------------------------------------------------------------------
 
+} //~namespace gtst
+} //~namespace ribi
 
 #endif // REPEATASSIGNERRANDOMUNIFORM_H

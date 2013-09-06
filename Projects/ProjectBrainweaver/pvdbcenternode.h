@@ -4,6 +4,8 @@
 #include "pvdbnode.h"
 #include "pvdbfwd.h"
 
+namespace ribi {
+
 namespace pvdb {
 
 struct CenterNodeFactory;
@@ -21,11 +23,13 @@ struct CenterNode : public pvdb::Node
   friend CenterNodeFactory;
   CenterNode() = delete;
   explicit CenterNode(
-    const boost::shared_ptr<pvdb::Concept>& concept,
+    const boost::shared_ptr<ribi::pvdb::Concept>& concept,
     const double x = 0.0,
     const double y = 0.0);
 };
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // PVDBCENTERNODE_H

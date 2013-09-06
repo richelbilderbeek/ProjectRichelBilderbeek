@@ -24,7 +24,7 @@
 #include "qtpvdbbrushfactory.h"
 #include "trace.h"
 
-QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<pvdb::Concept>& concept)
+ribi::pvdb::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept)
   : QtPvdbConceptItem(concept)
 {
   #ifndef NDEBUG
@@ -37,29 +37,29 @@ QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<pvdb::Conce
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&QtPvdbRateConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::pvdb::QtPvdbRateConceptItem::OnConceptNameChanged,this)); //Obligatory
 
   GetConcept()->m_signal_examples_changed.connect( //FIX 2013-01-06 22:32
       boost::bind(
-        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_complexity_changed.connect(
       boost::bind(
-        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_concreteness_changed.connect(
       boost::bind(
-        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_specificity_changed.connect(
       boost::bind(
-        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
@@ -67,32 +67,32 @@ QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<pvdb::Conce
 }
 
 
-QtPvdbRateConceptItem::~QtPvdbRateConceptItem()
+ribi::pvdb::QtPvdbRateConceptItem::~QtPvdbRateConceptItem()
 {
   //2013-08-25
   GetConcept()->m_signal_rating_complexity_changed.disconnect(
       boost::bind(
-        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_concreteness_changed.disconnect(
       boost::bind(
-        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_specificity_changed.disconnect(
       boost::bind(
-        &QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 }
 
-void QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
 {
 
   switch (event->key())
@@ -106,7 +106,7 @@ void QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
   }
 }
 
-void QtPvdbRateConceptItem::Test()
+void ribi::pvdb::QtPvdbRateConceptItem::Test()
 {
   {
     static bool is_tested = false;
@@ -118,14 +118,14 @@ void QtPvdbRateConceptItem::Test()
     []
     {
   #endif
-  TRACE("QtPvdbRateConceptItem::Test started");
+  TRACE("ribi::pvdb::QtPvdbRateConceptItem::Test started");
   //Check brush comparison
   {
     assert(QtPvdbBrushFactory::CreateRedGradientBrush() != QtPvdbBrushFactory::CreateYellowGradientBrush());
     assert(QtPvdbBrushFactory::CreateRedGradientBrush() != QtPvdbBrushFactory::CreateGreenGradientBrush());
   }
 
-  TRACE("QtPvdbRateConceptItem::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbRateConceptItem::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -133,7 +133,7 @@ void QtPvdbRateConceptItem::Test()
   #endif
 }
 
-void QtPvdbRateConceptItem::UpdateBrushesAndPens()
+void ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens()
 {
   assert(GetConcept());
   assert(GetConcept()->GetExamples());

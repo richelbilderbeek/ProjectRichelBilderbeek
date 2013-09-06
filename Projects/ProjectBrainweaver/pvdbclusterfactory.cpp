@@ -15,29 +15,25 @@
 #include "pvdbconceptfactory.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-const boost::shared_ptr<pvdb::Cluster> pvdb::ClusterFactory::Create(const std::vector<boost::shared_ptr<pvdb::Concept> >& v)
+const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::Create(const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v)
 {
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return p; } ));
+  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<ribi::pvdb::Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
+  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<ribi::pvdb::Concept>& p) { return p; } ));
   const boost::shared_ptr<pvdb::Cluster> p(new pvdb::Cluster(v));
   assert(p);
   return p;
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<pvdb::Cluster> pvdb::ClusterFactory::DeepCopy(const boost::shared_ptr<const pvdb::Cluster> cluster)
+const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::DeepCopy(const boost::shared_ptr<const pvdb::Cluster> cluster)
 {
-  const std::vector<boost::shared_ptr<const pvdb::Concept> > v = cluster->Get();
-  std::vector<boost::shared_ptr<pvdb::Concept> > w;
+  const std::vector<boost::shared_ptr<const ribi::pvdb::Concept> > v = cluster->Get();
+  std::vector<boost::shared_ptr<ribi::pvdb::Concept> > w;
   std::transform(v.begin(),v.end(),std::back_inserter(w),
-    [](const boost::shared_ptr<const pvdb::Concept>& c)
+    [](const boost::shared_ptr<const ribi::pvdb::Concept>& c)
     {
       assert(c);
-      const boost::shared_ptr<pvdb::Concept> d = pvdb::ConceptFactory::DeepCopy(c);
+      const boost::shared_ptr<ribi::pvdb::Concept> d = ribi::pvdb::ConceptFactory::DeepCopy(c);
       assert(d);
       assert(c != d);
       assert(IsEqual(*c,*d));
@@ -53,25 +49,25 @@ const boost::shared_ptr<pvdb::Cluster> pvdb::ClusterFactory::DeepCopy(const boos
 }
 #endif
 
-const boost::shared_ptr<pvdb::Cluster> pvdb::ClusterFactory::GetTest(const std::vector<int>& test_node_indices)
+const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::GetTest(const std::vector<int>& test_node_indices)
 {
-  std::vector<boost::shared_ptr<pvdb::Concept> > concepts;
+  std::vector<boost::shared_ptr<ribi::pvdb::Concept> > concepts;
   std::transform(test_node_indices.begin(),test_node_indices.end(),std::back_inserter(concepts),
     [](const int index)
     {
-      const std::vector<boost::shared_ptr<pvdb::Concept> > tmp = ConceptFactory::GetTests();
-      const boost::shared_ptr<pvdb::Concept> concept = tmp.at(index);
+      const std::vector<boost::shared_ptr<ribi::pvdb::Concept> > tmp = ConceptFactory::GetTests();
+      const boost::shared_ptr<ribi::pvdb::Concept> concept = tmp.at(index);
       assert(concept);
       return concept;
     }
   );
-  assert(std::count_if(concepts.begin(),concepts.end(),[](const boost::shared_ptr<pvdb::Concept>& p) { return !p; } ) == 0);
+  assert(std::count_if(concepts.begin(),concepts.end(),[](const boost::shared_ptr<ribi::pvdb::Concept>& p) { return !p; } ) == 0);
   boost::shared_ptr<pvdb::Cluster> cluster(new Cluster(concepts));
   assert(cluster);
   return cluster;
 }
 
-const std::vector<boost::shared_ptr<pvdb::Cluster> > pvdb::ClusterFactory::GetTests()
+const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > ribi::pvdb::ClusterFactory::GetTests()
 {
   std::vector<boost::shared_ptr<pvdb::Cluster> > v(6);
   {
@@ -119,6 +115,3 @@ const std::vector<boost::shared_ptr<pvdb::Cluster> > pvdb::ClusterFactory::GetTe
   return v;
 }
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-} //namespace pvdb
-#endif

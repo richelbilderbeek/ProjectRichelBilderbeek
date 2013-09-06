@@ -17,13 +17,12 @@
 #include <QPixmap>
 #include "trace.h"
 
-namespace pvdb {
 
-const std::map<pvdb::Competency,QColor> QtCompetency::m_color_map = QtCompetency::CreateColorMap();
-//const std::map<pvdb::Competency,QIcon > QtCompetency::m_icon_map  = QtCompetency::CreateIconMap();
-std::map<pvdb::Competency,QIcon > QtCompetency::m_icon_map;
+const std::map<ribi::pvdb::Competency,QColor> ribi::pvdb::QtCompetency::m_color_map = ribi::pvdb::QtCompetency::CreateColorMap();
+//const std::map<pvdb::Competency,QIcon > ribi::pvdb::QtCompetency::m_icon_map  = ribi::pvdb::QtCompetency::CreateIconMap();
+std::map<ribi::pvdb::Competency,QIcon > ribi::pvdb::QtCompetency::m_icon_map;
 
-pvdb::Competency QtCompetency::ColorToCompetency(const QColor& color)
+ribi::pvdb::Competency ribi::pvdb::QtCompetency::ColorToCompetency(const QColor& color)
 {
   #ifndef NDEBUG
   Test();
@@ -41,7 +40,7 @@ pvdb::Competency QtCompetency::ColorToCompetency(const QColor& color)
   return iter->first;
 }
 
-const QColor QtCompetency::CompetencyToColor(const pvdb::Competency competency)
+const QColor ribi::pvdb::QtCompetency::CompetencyToColor(const pvdb::Competency competency)
 {
   #ifndef NDEBUG
   Test();
@@ -51,7 +50,7 @@ const QColor QtCompetency::CompetencyToColor(const pvdb::Competency competency)
   return iter->second;
 }
 
-const QIcon QtCompetency::CompetencyToIcon(const pvdb::Competency competency)
+const QIcon ribi::pvdb::QtCompetency::CompetencyToIcon(const pvdb::Competency competency)
 {
   #ifndef NDEBUG
   Test();
@@ -65,7 +64,7 @@ const QIcon QtCompetency::CompetencyToIcon(const pvdb::Competency competency)
   return icon;
 }
 
-const std::map<pvdb::Competency,QColor> QtCompetency::CreateColorMap()
+const std::map<ribi::pvdb::Competency,QColor> ribi::pvdb::QtCompetency::CreateColorMap()
 {
   return
   {
@@ -80,7 +79,7 @@ const std::map<pvdb::Competency,QColor> QtCompetency::CreateColorMap()
   };
 }
 
-const std::map<pvdb::Competency,QIcon> QtCompetency::CreateIconMap()
+const std::map<ribi::pvdb::Competency,QIcon> ribi::pvdb::QtCompetency::CreateIconMap()
 {
   return
   {
@@ -105,7 +104,7 @@ const std::map<pvdb::Competency,QIcon> QtCompetency::CreateIconMap()
   };
 }
 
-pvdb::Competency QtCompetency::IconToCompetency(const QIcon& icon)
+ribi::pvdb::Competency ribi::pvdb::QtCompetency::IconToCompetency(const QIcon& icon)
 {
   #ifndef NDEBUG
   Test();
@@ -127,7 +126,7 @@ pvdb::Competency QtCompetency::IconToCompetency(const QIcon& icon)
 }
 
 #ifndef NDEBUG
-void QtCompetency::Test()
+void ribi::pvdb::QtCompetency::Test()
 {
   {
     static bool is_tested = false;
@@ -145,8 +144,8 @@ void QtCompetency::Test()
     std::for_each(v.begin(),v.end(),
       [](const pvdb::Competency& competency)
       {
-        QColor color = pvdb::QtCompetency::CompetencyToColor(competency);
-        assert(pvdb::QtCompetency::ColorToCompetency(color) == competency);
+        QColor color = ribi::pvdb::QtCompetency::CompetencyToColor(competency);
+        assert(ribi::pvdb::QtCompetency::ColorToCompetency(color) == competency);
       }
     );
   }
@@ -156,12 +155,12 @@ void QtCompetency::Test()
     std::for_each(v.begin(),v.end(),
       [](const pvdb::Competency& competency)
       {
-        QIcon icon = pvdb::QtCompetency::CompetencyToIcon(competency);
-        assert(pvdb::QtCompetency::IconToCompetency(icon) == competency);
+        QIcon icon = ribi::pvdb::QtCompetency::CompetencyToIcon(competency);
+        assert(ribi::pvdb::QtCompetency::IconToCompetency(icon) == competency);
       }
     );
   }
-  TRACE("QtCompetency::Test finished successfully");
+  TRACE("ribi::pvdb::QtCompetency::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -170,5 +169,3 @@ void QtCompetency::Test()
 
 }
 #endif
-
-} //~namespace pvdb

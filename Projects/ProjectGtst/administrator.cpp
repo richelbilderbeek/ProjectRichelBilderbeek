@@ -23,19 +23,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "administrator.h"
 //---------------------------------------------------------------------------
-Administrator::Administrator(const int id)
+ribi::gtst::Administrator::Administrator(const int id)
   : m_id(id)
 {
   assert(m_id > 0);
 }
 //---------------------------------------------------------------------------
-int Administrator::GetId() const
+int ribi::gtst::Administrator::GetId() const
 {
   assert(m_id > 0);
   return m_id;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const Administrator& administrator)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const Administrator& administrator)
 {
   os
     << "<administrator>"

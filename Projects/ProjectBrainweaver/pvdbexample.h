@@ -1,17 +1,13 @@
 #ifndef PVDBEXAMPLE_H
 #define PVDBEXAMPLE_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include "pvdbcompetency.h"
 
+namespace ribi {
 
 namespace pvdb {
 
@@ -120,8 +116,6 @@ bool operator>(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_p
 
 } //~namespace pvdb
 
-#ifndef PVDB_USE_FORWARD_DECLARATIONS_248738
-#include "pvdbexamplefactory.h"
-#endif
+} //~namespace ribi
 
 #endif // PVDBEXAMPLE_H

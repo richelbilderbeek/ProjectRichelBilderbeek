@@ -24,6 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///ParticipantDialogStates manages all ParticipantDialogState instances
 struct ParticipantDialogStates
 {
@@ -96,5 +100,8 @@ struct ParticipantDialogStates
   ///The ParticipantDialog its ParticipantDialogStateVoting
   boost::scoped_ptr<ParticipantDialogStateVoting> m_state_voting;
 };
+
+} //~namespace gtst
+} //~namespace ribi
 
 #endif // PARTICIPANTDIALOGSTATES_H

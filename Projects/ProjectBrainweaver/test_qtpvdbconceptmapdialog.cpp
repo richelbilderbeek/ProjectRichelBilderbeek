@@ -39,7 +39,7 @@
 #include "trace.h"
 
 #ifndef NDEBUG
-void QtPvdbConceptMapDialog::Test()
+void ribi::pvdb::QtPvdbConceptMapDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -52,8 +52,8 @@ void QtPvdbConceptMapDialog::Test()
     {
   #endif
 
-  typedef std::vector<boost::shared_ptr<pvdb::Edge> > Edges;
-  typedef std::vector<boost::shared_ptr<pvdb::Node> > Nodes;
+  typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
+  typedef std::vector<boost::shared_ptr<ribi::pvdb::Node> > Nodes;
 
   //If this dialog is fed with a file with only a focal question, it will create a one-node concept map
   {
@@ -62,7 +62,7 @@ void QtPvdbConceptMapDialog::Test()
     file->SetQuestion(question);
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(question));
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(question));
     assert(concept_map);
     file->SetConceptMap(concept_map);
     assert(file->GetQuestion() == question);
@@ -84,9 +84,9 @@ void QtPvdbConceptMapDialog::Test()
     assert(file->GetQuestion() == question);
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
-    const boost::shared_ptr<pvdb::Concept> concept_a(pvdb::ConceptFactory::Create("Concept A"));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_a(pvdb::ConceptFactory::Create("Concept A"));
     const boost::shared_ptr<pvdb::Cluster> cluster(pvdb::ClusterFactory::Create( { concept_a } ));
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::CreateFromCluster(question,cluster));
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::CreateFromCluster(question,cluster));
     assert(concept_map);
     file->SetCluster(cluster);
     file->SetConceptMap(concept_map);
@@ -113,7 +113,7 @@ void QtPvdbConceptMapDialog::Test()
     file->SetCluster(cluster);
     assert(cluster->Get().size() == 3);
 
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::CreateFromCluster(question,cluster));
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::CreateFromCluster(question,cluster));
     assert(concept_map);
     file->SetConceptMap(concept_map);
     assert(file->GetConceptMap());
@@ -141,21 +141,21 @@ void QtPvdbConceptMapDialog::Test()
     assert( file->GetCluster());
     assert(!file->GetConceptMap());
 
-    const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("Concept F"));
-    const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(3));
-    const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(4));
-    const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
-    const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(3));
-    const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(4));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("Concept F"));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(3));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(4));
+    const boost::shared_ptr<ribi::pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
+    const boost::shared_ptr<ribi::pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(3));
+    const boost::shared_ptr<ribi::pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(4));
 
     const Nodes nodes = { node_a, node_b, node_c };
 
-    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(
-      pvdb::ConceptMapFactory::Create(
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(
+      ribi::pvdb::ConceptMapFactory::Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -190,21 +190,21 @@ void QtPvdbConceptMapDialog::Test()
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
 
-    const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::GetTests().at(0));
-    const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(1));
-    const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(2));
-    const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
-    const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(1));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_d(pvdb::ConceptFactory::GetTests().at(0));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(1));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(2));
+    const boost::shared_ptr<ribi::pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
+    const boost::shared_ptr<ribi::pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
+    const boost::shared_ptr<ribi::pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(1));
 
     const Nodes nodes = { node_a, node_b, node_c };
 
-    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(
-      pvdb::ConceptMapFactory::Create(
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(
+      ribi::pvdb::ConceptMapFactory::Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -222,7 +222,7 @@ void QtPvdbConceptMapDialog::Test()
     const QtPvdbConceptMapDialog d(file);
     assert(file->GetConceptMap());
     assert(d.GetWidget()->GetConceptMap() == concept_map);
-    //const boost::shared_ptr<pvdb::ConceptMap> concept_map_out
+    //const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map_out
     //  = d.GetWidget()->GetConceptMap();
     //assert(concept_map_out->GetNodes().size()
     //  == concept_map->GetNodes().size() ); //+0 because focus question is node[0]
@@ -242,21 +242,21 @@ void QtPvdbConceptMapDialog::Test()
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
 
-    const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::GetTests().at(0));
-    const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(1));
-    const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(2));
-    const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
-    const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(1));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_d(pvdb::ConceptFactory::GetTests().at(0));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(1));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(2));
+    const boost::shared_ptr<ribi::pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
+    const boost::shared_ptr<ribi::pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
+    const boost::shared_ptr<ribi::pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(1));
 
     const Nodes nodes = { node_a, node_b, node_c };
 
-    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(
-      pvdb::ConceptMapFactory::Create(
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(
+      ribi::pvdb::ConceptMapFactory::Create(
         nodes,
         { edge_a, edge_b, edge_c }
       )
@@ -273,7 +273,7 @@ void QtPvdbConceptMapDialog::Test()
     const QtPvdbConceptMapDialog d(file);
     assert(file->GetConceptMap());
     assert(concept_map == d.GetWidget()->GetConceptMap());
-    //const boost::shared_ptr<pvdb::ConceptMap> concept_map_out
+    //const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map_out
     //  = d.GetWidget()->GetConceptMap();
 
     //assert(concept_map_out->GetNodes().size()
@@ -341,7 +341,7 @@ void QtPvdbConceptMapDialog::Test()
   //When putting in each of the heteromorphous concept maps, shuffling it, saving it, loading
   //it, the resulting concept map must be homomorphous with the input map
   {
-    const auto v = pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps();
+    const auto v = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps();
     const int sz = v.size();
     for (int i = 0; i!=sz; ++i)
     {
@@ -367,7 +367,7 @@ void QtPvdbConceptMapDialog::Test()
   {
     //Done with Shuffle above
   }
-  TRACE("QtPvdbConceptMapDialog::Test completed successfully");
+  TRACE("ribi::pvdb::QtPvdbConceptMapDialog::Test completed successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

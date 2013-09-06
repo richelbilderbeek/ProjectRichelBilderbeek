@@ -1,24 +1,19 @@
 #ifndef QTPVDBCREATEASSESSMENTMENUDIALOG_H
 #define QTPVDBCREATEASSESSMENTMENUDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-
-#endif
 
 namespace Ui { class QtPvdbCreateAssessmentMenuDialog; }
 
 
-class QtPvdbCreateAssessmentMenuDialog : public QtHideAndShowDialog
+namespace ribi {
+
+namespace pvdb {
+
+class QtPvdbCreateAssessmentMenuDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
     
@@ -48,5 +43,8 @@ private:
   std::string m_question;
 };
 
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCREATEASSESSMENTMENUDIALOG_H

@@ -25,7 +25,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
-struct AsciiArterMainDialog;
 namespace Wt
 {
   struct WFileUpload;
@@ -33,7 +32,11 @@ namespace Wt
   struct WTextArea;
   struct WWidget;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
+struct AsciiArterMainDialog;
+
 struct WtAsciiArterMainDialog : public Wt::WContainerWidget
 {
   WtAsciiArterMainDialog();
@@ -69,5 +72,7 @@ struct WtAsciiArterMainDialog : public Wt::WContainerWidget
     ConvertToGreyYx(const std::string& filename);
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTASCIIARTERMAINDIALOG_H

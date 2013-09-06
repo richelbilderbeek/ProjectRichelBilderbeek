@@ -45,7 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestLedMenuDialog::WtTestLedMenuDialog()
+ribi::WtTestLedMenuDialog::WtTestLedMenuDialog()
 {
   {
     std::vector<std::string> image_names;
@@ -103,7 +103,7 @@ WtTestLedMenuDialog::WtTestLedMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestLedMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestLedMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestLedMenuDialog::GetAbout();
   a.AddLibrary("Dial version: " + Dial::GetVersion());
@@ -117,14 +117,14 @@ Wt::WWidget * WtTestLedMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestLedMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestLedMenuDialog::CreateNewMainDialog() const
 {
   WtTestLedMainDialog * const d = new WtTestLedMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestLedMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestLedMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

@@ -26,9 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-namespace Pylos {
-
-CurrentMoveState::CurrentMoveState()
+ribi::Pylos::CurrentMoveState::CurrentMoveState()
   : m_must_remove(MustRemoveState::no)
 {
   #ifndef NDEBUG
@@ -39,49 +37,49 @@ CurrentMoveState::CurrentMoveState()
   //assert(IsRemoveUnknown());
 }
 
-const std::string CurrentMoveState::GetVersion()
+const std::string ribi::Pylos::CurrentMoveState::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> CurrentMoveState::GetVersionHistory()
+const std::vector<std::string> ribi::Pylos::CurrentMoveState::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-05-05: version 2.0: initial release version");
   return v;
 }
 
-bool CurrentMoveState::IsMoveMove() const
+bool ribi::Pylos::CurrentMoveState::IsMoveMove() const
 {
   assert(m_current_move.m_move.size() < 3);
   return m_current_move.m_move.size() == 2;
 }
 
-bool CurrentMoveState::IsMovePlace() const
+bool ribi::Pylos::CurrentMoveState::IsMovePlace() const
 {
   assert(m_current_move.m_move.size() < 3);
   return m_current_move.m_move.size() == 1;
 }
 
-bool CurrentMoveState::IsMoveUnknown() const
+bool ribi::Pylos::CurrentMoveState::IsMoveUnknown() const
 {
   assert(m_current_move.m_move.size() < 3);
   return m_current_move.m_move.size() == 0;
 }
 
-MustRemoveState CurrentMoveState::GetMustRemove() const
+ribi::Pylos::MustRemoveState ribi::Pylos::CurrentMoveState::GetMustRemove() const
 {
   return m_must_remove;
 }
 
-void CurrentMoveState::Restart()
+void ribi::Pylos::CurrentMoveState::Restart()
 {
   m_must_remove = MustRemoveState::no;
   m_current_move = Move();
   assert(IsMoveUnknown());
 }
 
-void CurrentMoveState::SetMove(const Move& move)
+void ribi::Pylos::CurrentMoveState::SetMove(const Move& move)
 {
   assert(m_current_move.m_move.empty());
   assert(m_current_move.m_remove.empty());
@@ -89,7 +87,7 @@ void CurrentMoveState::SetMove(const Move& move)
   m_must_remove = MustRemoveState::no;
 }
 
-void CurrentMoveState::SetMoveTransfer(const Coordinat& from, const Coordinat& to)
+void ribi::Pylos::CurrentMoveState::SetMoveTransfer(const Coordinat& from, const Coordinat& to)
 {
   assert(IsMoveUnknown());
   assert(m_current_move.m_move.empty());
@@ -97,14 +95,14 @@ void CurrentMoveState::SetMoveTransfer(const Coordinat& from, const Coordinat& t
   m_current_move.m_move.push_back(to);
 }
 
-void CurrentMoveState::SetMoveSet(const Coordinat& c)
+void ribi::Pylos::CurrentMoveState::SetMoveSet(const Coordinat& c)
 {
   assert(IsMoveUnknown());
   assert(m_current_move.m_move.empty());
   m_current_move.m_move.push_back(c);
 }
 
-void CurrentMoveState::SetMustRemove(const MustRemoveState must_remove)
+void ribi::Pylos::CurrentMoveState::SetMustRemove(const MustRemoveState must_remove)
 {
   assert(!(must_remove == MustRemoveState::player2
     &&   m_must_remove == MustRemoveState::player1)
@@ -115,14 +113,14 @@ void CurrentMoveState::SetMustRemove(const MustRemoveState must_remove)
   m_must_remove = must_remove;
 }
 
-void CurrentMoveState::SetRemove(const std::vector<Coordinat>& v)
+void ribi::Pylos::CurrentMoveState::SetRemove(const std::vector<Coordinat>& v)
 {
   assert(m_must_remove != MustRemoveState::no);
   m_current_move.m_remove = v;
 }
 
 #ifndef NDEBUG
-void CurrentMoveState::Test()
+void ribi::Pylos::CurrentMoveState::Test()
 {
   static bool tested = false;
   if (tested) return;
@@ -147,12 +145,8 @@ void CurrentMoveState::Test()
 }
 #endif
 
-bool operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs)
+bool ribi::Pylos::operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs)
 {
   return lhs.GetMustRemove() == rhs.GetMustRemove()
     && lhs.GetMove() == rhs.GetMove();
 }
-
-} //~namespace Pylos
-
-

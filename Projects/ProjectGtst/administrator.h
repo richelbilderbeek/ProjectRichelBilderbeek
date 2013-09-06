@@ -26,6 +26,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/noncopyable.hpp>
 //---------------------------------------------------------------------------
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Administrator is a user with all (administrator) rights.
 ///
@@ -61,4 +64,8 @@ struct Administrator : public boost::noncopyable
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const Administrator& administrator);
 //---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PROJECTGTSTADMINISTRATOR_H

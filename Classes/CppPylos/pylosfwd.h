@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef PYLOSFWD_H
 #define PYLOSFWD_H
 
+namespace ribi {
+
 namespace Pylos {
 
 /*
@@ -35,5 +37,7 @@ enum class PositionState;
 enum class MustRemoveState;
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // PYLOSFWD_H

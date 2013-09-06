@@ -23,9 +23,7 @@
 #include "pvdbnode.h"
 #include "qtpvdbcompetency.h"
 
-namespace pvdb {
-
-void QtDisplay::DisplayRatedConcepts(
+void ribi::pvdb::QtDisplay::DisplayRatedConcepts(
   const boost::shared_ptr<const pvdb::File> file,
   QTableWidget * const table)
 {
@@ -35,7 +33,7 @@ void QtDisplay::DisplayRatedConcepts(
   for (int i=1; i!=sz; ++i)
   {
     const int row = i-1; //-1 to skip focus question node at index 0
-    const boost::shared_ptr<const pvdb::Concept> concept = file->GetConceptMap()->GetNodes().at(i)->GetConcept();
+    const boost::shared_ptr<const ribi::pvdb::Concept> concept = file->GetConceptMap()->GetNodes().at(i)->GetConcept();
     //Name
     {
       QTableWidgetItem * const item = new QTableWidgetItem;
@@ -82,7 +80,7 @@ void QtDisplay::DisplayRatedConcepts(
 }
 
   //Examples' icons
-void QtDisplay::DisplayExamples(
+void ribi::pvdb::QtDisplay::DisplayExamples(
   const boost::shared_ptr<const pvdb::File> file,
   QTableWidget * const table)
 {
@@ -147,7 +145,7 @@ void QtDisplay::DisplayExamples(
   }
 }
 
-void QtDisplay::DisplayValues(
+void ribi::pvdb::QtDisplay::DisplayValues(
   const boost::shared_ptr<const pvdb::File> file,
   QTableWidget * const table)
 {
@@ -395,5 +393,3 @@ void QtDisplay::DisplayValues(
     + table->columnWidth(1)
   );
 }
-
-} //~namespace pvdb

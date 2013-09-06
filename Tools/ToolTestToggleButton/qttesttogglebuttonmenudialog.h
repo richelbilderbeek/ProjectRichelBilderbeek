@@ -6,7 +6,9 @@
 namespace Ui {
 class QtTestToggleButtonMenuDialog;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 class QtTestToggleButtonMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -23,5 +25,7 @@ private slots:
 private:
   Ui::QtTestToggleButtonMenuDialog *ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTTOGGLEBUTTONMENUDIALOG_H

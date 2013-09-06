@@ -25,8 +25,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDialog>
 
 namespace Ui {
-class QtMazeCreatorMenuDialog;
+  class QtMazeCreatorMenuDialog;
 }
+
+namespace ribi {
 
 class QtMazeCreatorMenuDialog : public QDialog
 {
@@ -47,5 +49,7 @@ private slots:
 private:
   Ui::QtMazeCreatorMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTMAZECREATORMENUDIALOG_H

@@ -30,6 +30,9 @@ namespace Wt
   struct WTextArea;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtRandomCodeGenerateDialog : public Wt::WContainerWidget
 {
   WtRandomCodeGenerateDialog();
@@ -38,5 +41,7 @@ struct WtRandomCodeGenerateDialog : public Wt::WContainerWidget
   Wt::WTextArea * const m_text_area;
   void OnGenerateClick();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTRANDOMCODEGENERATEDIALOG_H

@@ -25,19 +25,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include "ui_qttestqtroundedrectitemmaindialog.h"
 
-QtTestQtRoundedRectItemMainDialog::QtTestQtRoundedRectItemMainDialog(QWidget *parent) :
+ribi::QtTestQtRoundedRectItemMainDialog::QtTestQtRoundedRectItemMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedRectItemMainDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestQtRoundedRectItemMainDialog::~QtTestQtRoundedRectItemMainDialog()
+ribi::QtTestQtRoundedRectItemMainDialog::~QtTestQtRoundedRectItemMainDialog()
 {
   delete ui;
 }
 
-void QtTestQtRoundedRectItemMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtRoundedRectItemMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }

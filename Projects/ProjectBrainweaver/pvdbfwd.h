@@ -1,30 +1,23 @@
 #ifndef PVDBFWD_H
 #define PVDBFWD_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
-///Forward declarations
-namespace pvdb
-{
-  struct CenterNode;
-  struct Cluster;
-  struct Concept;
-  struct ConceptFactory;
-  struct ConceptMap;
-  struct Edge;
-  struct Example;
-  struct Examples;
-  struct File;
-  struct Node;
-};
-
 struct QRegExp;
-struct QtArrowItem;
 struct QTimer;
+
+namespace ribi {
+
+namespace pvdb {
+
+struct CenterNode;
+struct Cluster;
+struct Concept;
+struct ConceptFactory;
+struct ConceptMap;
+struct Edge;
+struct Example;
+struct Examples;
+struct File;
+struct Node;
 struct QtPvdbArrow;
 struct QtPvdbClusterDialog;
 struct QtPvdbClusterWidget;
@@ -54,8 +47,12 @@ struct QtPvdbTestConceptMapRateWidgetDialog;
 struct QtPvdbTestEdgeItemDialog;
 struct QtPvdbTestNodeItemDialog;
 struct QtPvdbToolsItem;
+
+} //~namespace pvdb
+
+struct QtArrowItem;
 struct QtQuadBezierArrowItem;
 
-#endif
+} //~namespace ribi
 
 #endif // PVDBFWD_H

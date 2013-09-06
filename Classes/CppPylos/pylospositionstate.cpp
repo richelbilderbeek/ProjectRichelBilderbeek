@@ -27,9 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "pylosplayer.h"
 
-namespace Pylos {
 
-char ToChar(const PositionState state)
+char ribi::Pylos::ToChar(const PositionState state)
 {
   switch (state)
   {
@@ -41,7 +40,7 @@ char ToChar(const PositionState state)
   throw std::logic_error("Unknown PositionState in ToChar");
 }
 
-PositionState ToPositionState(const Player& player)
+ribi::Pylos::PositionState ribi::Pylos::ToPositionState(const Player& player)
 {
   switch (player)
   {
@@ -53,15 +52,13 @@ PositionState ToPositionState(const Player& player)
   throw std::logic_error("Cannot convert this Player to a PositionState");
 }
 
-bool operator==(const PositionState state, const Player& player)
+bool ribi::Pylos::operator==(const PositionState state, const Player& player)
 {
   return player == state;
 }
 
-bool operator!=(const PositionState state, const Player& player)
+bool ribi::Pylos::operator!=(const PositionState state, const Player& player)
 {
   return player != state;
 }
-
-} //~namespace Pylos
 

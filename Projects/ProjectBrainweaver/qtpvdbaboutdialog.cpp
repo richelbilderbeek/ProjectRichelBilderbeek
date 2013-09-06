@@ -21,7 +21,7 @@
 #include "qtquadbezierarrowitem.h"
 #include "qtscopeddisable.h"
 
-const boost::shared_ptr<QtAboutDialog> QtPvdbAboutDialog::Get()
+const boost::shared_ptr<ribi::QtAboutDialog> ribi::pvdb::QtPvdbAboutDialog::Get()
 {
   About about = pvdb::MenuDialog::GetAbout();
   about.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());

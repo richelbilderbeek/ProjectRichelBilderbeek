@@ -42,7 +42,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qtregextestermenudialog.h"
 
-QtRegexTesterMenuDialog::QtRegexTesterMenuDialog(QWidget *parent) :
+ribi::QtRegexTesterMenuDialog::QtRegexTesterMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRegexTesterMenuDialog)
 {
@@ -53,24 +53,12 @@ QtRegexTesterMenuDialog::QtRegexTesterMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-QtRegexTesterMenuDialog::~QtRegexTesterMenuDialog()
+ribi::QtRegexTesterMenuDialog::~QtRegexTesterMenuDialog()
 {
   delete ui;
 }
 
-void QtRegexTesterMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtRegexTesterMenuDialog::on_button_about_clicked()
+void ribi::QtRegexTesterMenuDialog::on_button_about_clicked()
 {
   const About a = RegexTesterMenuDialog::GetAbout();
   this->hide();
@@ -80,13 +68,13 @@ void QtRegexTesterMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtRegexTesterMenuDialog::on_button_quit_clicked()
+void ribi::QtRegexTesterMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
 
-void QtRegexTesterMenuDialog::on_button_cpp11_clicked()
+void ribi::QtRegexTesterMenuDialog::on_button_cpp11_clicked()
 {
   boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterCpp11MainDialog);
   QtRegexTesterMainDialog qd(d);
@@ -94,7 +82,7 @@ void QtRegexTesterMenuDialog::on_button_cpp11_clicked()
   this->ShowChild(&qd);
 }
 
-void QtRegexTesterMenuDialog::on_button_qt_clicked()
+void ribi::QtRegexTesterMenuDialog::on_button_qt_clicked()
 {
   boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterQtMainDialog);
   QtRegexTesterMainDialog qd(d);
@@ -102,7 +90,7 @@ void QtRegexTesterMenuDialog::on_button_qt_clicked()
   this->ShowChild(&qd);
 }
 
-void QtRegexTesterMenuDialog::on_button_boost_regex_clicked()
+void ribi::QtRegexTesterMenuDialog::on_button_boost_regex_clicked()
 {
   #ifdef TOOLREGEXTESTER_ADD_BOOST_REGEX
   boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterBoostRegexMainDialog);
@@ -114,7 +102,7 @@ void QtRegexTesterMenuDialog::on_button_boost_regex_clicked()
   #endif
 }
 
-void QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
+void ribi::QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
 {
   boost::shared_ptr<RegexTesterMainDialog> d(new RegexTesterBoostXpressiveMainDialog);
   QtRegexTesterMainDialog qd(d);
@@ -123,14 +111,14 @@ void QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
 }
 
 #ifndef NDEBUG
-void QtRegexTesterMenuDialog::Test()
+void ribi::QtRegexTesterMenuDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtRegexTesterMenuDialog::Test");
+  TRACE("Starting ribi::QtRegexTesterMenuDialog::Test");
   {
     const boost::shared_ptr<RegexTesterMainDialog> d(
       new RegexTesterCpp11MainDialog);
@@ -153,6 +141,6 @@ void QtRegexTesterMenuDialog::Test()
       new RegexTesterBoostXpressiveMainDialog);
     assert(d);
   }
-  TRACE("Finished QtRegexTesterMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtRegexTesterMenuDialog::Test successfully");
 }
 #endif

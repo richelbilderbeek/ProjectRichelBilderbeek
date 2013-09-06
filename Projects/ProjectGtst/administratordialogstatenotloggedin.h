@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "administratordialogstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The WtAdministratorDialog its state for a not-(yet-)logged in Administrator
 struct AdministratorDialogStateNotLoggedIn : public AdministratorDialogState
@@ -62,5 +66,8 @@ struct AdministratorDialogStateNotLoggedIn : public AdministratorDialogState
   ///Respond to entering a password
   void OnPassword();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ADMINISTRATORDIALOGSTATENOTLOGGEDIN_H

@@ -49,7 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "testqtroundedtextrectitemmenudialog.h"
 
-QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget *parent)
+ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget *parent)
   : QtKeyboardFriendlyGraphicsView(parent)
 {
   assert(scene());
@@ -130,7 +130,7 @@ QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget *pare
   }
 }
 
-void QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event)
 {
 
   switch (event->key())

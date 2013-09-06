@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/xpressive/xpressive_fwd.hpp>
 #include "regextestermaindialog.h"
 
+namespace ribi {
 
 struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
 {
@@ -74,5 +75,7 @@ struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // REGEXTESTERBOOSTXPRESSIVEMAINDIALOG_H

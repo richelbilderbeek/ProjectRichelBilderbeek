@@ -1,28 +1,21 @@
 #ifndef QTPVDBCLUSTERDIALOG_H
 #define QTPVDBCLUSTERDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "qtpvdbclusterwidget.h"
-#include "pvdbfile.h"
-#endif
-
 
 namespace Ui { class QtPvdbClusterDialog; }
+
+namespace ribi {
+
+namespace pvdb {
 
 ///The Dialog in which the user clusters concepts and examples
 ///If the file supplied has no cluster, this dialog creates a cluster
 ///because the widget needs something to work on
-class QtPvdbClusterDialog : public QtHideAndShowDialog
+class QtPvdbClusterDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -82,5 +75,9 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCLUSTERDIALOG_H

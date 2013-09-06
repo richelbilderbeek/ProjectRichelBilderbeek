@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wttestshapemenudialog.h"
 #include "wtshapewidget.h"
 //---------------------------------------------------------------------------
-WtTestShapeMenuDialog::WtTestShapeMenuDialog()
+ribi::WtTestShapeMenuDialog::WtTestShapeMenuDialog()
   : m_dialog(new TestShapeMenuDialog)
 {
   this->setContentAlignment(Wt::AlignCenter);
@@ -75,7 +75,7 @@ WtTestShapeMenuDialog::WtTestShapeMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestShapeMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestShapeMenuDialog::CreateNewAboutDialog() const
 {
   About a = m_dialog->GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -85,14 +85,14 @@ Wt::WWidget * WtTestShapeMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestShapeMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestShapeMenuDialog::CreateNewMainDialog() const
 {
   WtTestShapeMainDialog * const d = new WtTestShapeMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestShapeMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestShapeMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

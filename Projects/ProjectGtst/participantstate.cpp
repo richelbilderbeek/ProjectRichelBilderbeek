@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "participantstate.h"
 //---------------------------------------------------------------------------
-ParticipantState::ParticipantState(Participant * const participant,
+ribi::gtst::ParticipantState::ParticipantState(Participant * const participant,
   Server * const server)
   : m_participant(participant),
     m_server(server)

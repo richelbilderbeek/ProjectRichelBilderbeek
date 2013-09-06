@@ -28,6 +28,8 @@ namespace Wt
   struct WLineEdit;
 }
 
+namespace ribi {
+
 struct IpAddress;
 
 namespace ToolTestEntrance {
@@ -63,5 +65,6 @@ struct WtMainDialog : public Wt::WContainerWidget
 
 } //~namespace ToolTestEntrance
 
+} //~namespace ribi
 
 #endif // WTTESTENTRANCEMAINDIALOG_H

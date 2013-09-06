@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "wtselectfiledialog.h"
 
+namespace ribi {
+
 struct WtSelectHometrainerFileDialog : public WtSelectFileDialog
 {
   WtSelectHometrainerFileDialog();
@@ -39,5 +41,7 @@ struct WtSelectHometrainerFileDialog : public WtSelectFileDialog
   static const std::string GetFirstLineFromFile(const std::string& filename);
 
 };
+
+} //~namespace ribi
 
 #endif // WTSELECTHOMETRAINERFILEDIALOG_H

@@ -27,6 +27,8 @@ namespace Ui {
 class QtTestQtRoundedRectItemMainDialog;
 }
 
+namespace ribi {
+
 class QtTestQtRoundedRectItemMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -41,5 +43,7 @@ protected:
 private:
   Ui::QtTestQtRoundedRectItemMainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTROUNDEDRECTITEMMAINDIALOG_H

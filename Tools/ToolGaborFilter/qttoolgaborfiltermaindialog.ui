@@ -14,12 +14,12 @@
    <string>GaborFilter</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolGaborFilter.qrc">
+   <iconset resource="../../Games/GameBoenken/GameBoenken.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QtGaborFilterWidget" name="gaborfilterwidget" native="true">
+    <widget class="ribi::QtGaborFilterWidget" name="gaborfilterwidget" native="true">
      <property name="minimumSize">
       <size>
        <width>256</width>
@@ -152,14 +152,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtGaborFilterWidget</class>
+   <class>ribi::QtGaborFilterWidget</class>
    <extends>QWidget</extends>
    <header>qtgaborfilterwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="ToolGaborFilter.qrc"/>
+  <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
  </resources>
  <connections/>
 </ui>

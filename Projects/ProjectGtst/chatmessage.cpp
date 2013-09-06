@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chatmessage.h"
 #include "participant.h"
 //---------------------------------------------------------------------------
-ChatMessage::ChatMessage(
+ribi::gtst::ChatMessage::ChatMessage(
   const boost::shared_ptr<const Participant>& sender,
   std::string message)
   : m_sender(sender), m_text(message)
@@ -31,7 +31,7 @@ ChatMessage::ChatMessage(
   assert(m_sender);
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ChatMessage& p)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ChatMessage& p)
 {
   os
     << "<chat_message>"

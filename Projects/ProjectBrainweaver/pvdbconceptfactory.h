@@ -1,11 +1,6 @@
 #ifndef PVDBCONCEPTFACTORY_H
 #define PVDBCONCEPTFACTORY_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <array>
 #include <vector>
 
@@ -14,28 +9,25 @@
 
 #include "pvdbcompetency.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbconcept.h"
-#endif
 
+namespace ribi {
 
-///Creates pvdb::Concepts
 namespace pvdb {
 
+///Creates ribi::pvdb::Concepts
 struct ConceptFactory
 {
   //Default and complete Create method
-  static const boost::shared_ptr<pvdb::Concept> Create(
+  static const boost::shared_ptr<ribi::pvdb::Concept> Create(
     const std::string& name,
-    const boost::shared_ptr<pvdb::Examples>& examples,
+    const boost::shared_ptr<ribi::pvdb::Examples>& examples,
     const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
     const int rating_specificity);
 
-  static const boost::shared_ptr<pvdb::Concept> Create(
+  static const boost::shared_ptr<ribi::pvdb::Concept> Create(
     const std::string& name = "",
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const bool is_complex = true,
@@ -47,14 +39,16 @@ struct ConceptFactory
   #ifndef NDEBUG
   ///Like a Concept deep-copy constructor
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<pvdb::Concept> DeepCopy(
-    const boost::shared_ptr<const pvdb::Concept>& concept);
+  static const boost::shared_ptr<ribi::pvdb::Concept> DeepCopy(
+    const boost::shared_ptr<const ribi::pvdb::Concept>& concept);
   #endif
 
   ///Obtain some testing concepts
-  static const std::vector<boost::shared_ptr<pvdb::Concept> > GetTests();
+  static const std::vector<boost::shared_ptr<ribi::pvdb::Concept> > GetTests();
 };
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // PVDBCONCEPTFACTORY_H

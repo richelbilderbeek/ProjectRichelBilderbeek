@@ -4,8 +4,10 @@
 #include <QDialog>
 
 namespace Ui {
-class QtToolGaborFilterMenuDialog;
+  class QtToolGaborFilterMenuDialog;
 }
+
+namespace ribi {
 
 class QtToolGaborFilterMenuDialog : public QDialog
 {
@@ -25,5 +27,7 @@ private slots:
 private:
     Ui::QtToolGaborFilterMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLGABORFILTERMENUDIALOG_H

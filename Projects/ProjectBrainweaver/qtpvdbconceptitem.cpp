@@ -31,8 +31,8 @@
 #include "trace.h"
 
 
-QtPvdbConceptItem::QtPvdbConceptItem(
-  const boost::shared_ptr<pvdb::Concept>& concept)
+ribi::pvdb::QtPvdbConceptItem::QtPvdbConceptItem(
+  const boost::shared_ptr<ribi::pvdb::Concept>& concept)
   : m_concept(concept),
     m_indicator_brush(QBrush(QColor(0,0,0,0))),
     m_indicator_pen(QPen(QColor(0,0,0)))
@@ -51,7 +51,7 @@ QtPvdbConceptItem::QtPvdbConceptItem(
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&QtPvdbConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::pvdb::QtPvdbConceptItem::OnConceptNameChanged,this)); //Obligatory
 
   //FIX? 2013-06-25
   //this->SetText("DUMMY TEXT");
@@ -60,40 +60,40 @@ QtPvdbConceptItem::QtPvdbConceptItem(
   this->SetText(m_concept->GetName());
 }
 
-const boost::shared_ptr<const pvdb::Concept> QtPvdbConceptItem::GetConcept() const
+const boost::shared_ptr<const ribi::pvdb::Concept> ribi::pvdb::QtPvdbConceptItem::GetConcept() const
 {
-  boost::shared_ptr<const pvdb::Concept> p(m_concept);
+  boost::shared_ptr<const ribi::pvdb::Concept> p(m_concept);
   assert(p);
   return p;
 }
 
-void QtPvdbConceptItem::hoverStartEvent(QGraphicsSceneHoverEvent *)
+void ribi::pvdb::QtPvdbConceptItem::hoverStartEvent(QGraphicsSceneHoverEvent *)
 {
   std::exit(1); //Never called
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void QtPvdbConceptItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::pvdb::QtPvdbConceptItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   //std::exit(2);
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void QtPvdbConceptItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void ribi::pvdb::QtPvdbConceptItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
   Base::mouseMoveEvent(event);
   //this->m_signal_item_has_updated(); //2013-06-25
   m_signal_request_scene_update();
 }
 
-void QtPvdbConceptItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
+void ribi::pvdb::QtPvdbConceptItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
   Base::mousePressEvent(event);
   //this->m_signal_item_has_updated(); //2013-06-25
   m_signal_request_scene_update();
 }
 
-void QtPvdbConceptItem::OnConceptNameChanged()
+void ribi::pvdb::QtPvdbConceptItem::OnConceptNameChanged()
 {
   assert(this);
   assert(m_concept);
@@ -102,7 +102,7 @@ void QtPvdbConceptItem::OnConceptNameChanged()
   //m_signal_item_changed(this); //Called by SetText
 }
 
-void QtPvdbConceptItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::pvdb::QtPvdbConceptItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   assert(m_concept);
   assert(m_concept->GetExamples());
@@ -126,7 +126,7 @@ void QtPvdbConceptItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
   }
 }
 
-void QtPvdbConceptItem::SetIndicatorBrush(const QBrush& brush)
+void ribi::pvdb::QtPvdbConceptItem::SetIndicatorBrush(const QBrush& brush)
 {
   if (m_indicator_brush != brush)
   {
@@ -135,7 +135,7 @@ void QtPvdbConceptItem::SetIndicatorBrush(const QBrush& brush)
   }
 }
 
-void QtPvdbConceptItem::SetIndicatorPen(const QPen& pen)
+void ribi::pvdb::QtPvdbConceptItem::SetIndicatorPen(const QPen& pen)
 {
   if (m_indicator_pen != pen)
   {
@@ -144,7 +144,7 @@ void QtPvdbConceptItem::SetIndicatorPen(const QPen& pen)
   }
 }
 
-void QtPvdbConceptItem::SetMainBrush(const QBrush& any_brush)
+void ribi::pvdb::QtPvdbConceptItem::SetMainBrush(const QBrush& any_brush)
 {
 
   if (this->brush() != any_brush)
@@ -155,7 +155,7 @@ void QtPvdbConceptItem::SetMainBrush(const QBrush& any_brush)
   assert(this->brush() == any_brush);
 }
 
-void QtPvdbConceptItem::SetPos(const double x, const double y)
+void ribi::pvdb::QtPvdbConceptItem::SetPos(const double x, const double y)
 {
   if (x != this->x() || y != this->y())
   {
@@ -165,7 +165,7 @@ void QtPvdbConceptItem::SetPos(const double x, const double y)
 }
 
 /*
-QPainterPath QtPvdbConceptItem::shape() const
+QPainterPath ribi::pvdb::QtPvdbConceptItem::shape() const
 {
   const int click_easy_width = 5;
   QPainterPath path;

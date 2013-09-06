@@ -29,6 +29,9 @@ namespace Ui {
   class QtTestNewickVectorDialog;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct TestNewickVectorDialog;
 //---------------------------------------------------------------------------
 class QtTestNewickVectorDialog : public QDialog
@@ -41,7 +44,7 @@ public:
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestNewickVectorDialog *ui;
@@ -61,5 +64,7 @@ private slots:
 
   //static bool Match(const std::vector<int>& lhs, const std::vector<int>& rhs);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTNEWICKVECTORDIALOG_H

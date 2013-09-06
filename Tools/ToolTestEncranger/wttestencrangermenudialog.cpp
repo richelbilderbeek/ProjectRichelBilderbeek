@@ -41,7 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestEncrangerMenuDialog::WtTestEncrangerMenuDialog()
+ribi::WtTestEncrangerMenuDialog::WtTestEncrangerMenuDialog()
 {
   //Create resources
   {
@@ -105,7 +105,7 @@ WtTestEncrangerMenuDialog::WtTestEncrangerMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestEncrangerMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestEncrangerMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestEncrangerDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -114,14 +114,14 @@ Wt::WWidget * WtTestEncrangerMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestEncrangerMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestEncrangerMenuDialog::CreateNewMainDialog() const
 {
   WtTestEncrangerMainDialog * const d = new WtTestEncrangerMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestEncrangerMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestEncrangerMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

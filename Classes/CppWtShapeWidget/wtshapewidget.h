@@ -30,6 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintedWidget>
 #include <Wt/WPaintDevice>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct Shape;
 struct ShapeWidget;
 //---------------------------------------------------------------------------
@@ -79,6 +82,9 @@ public:
 };
 //---------------------------------------------------------------------------
 bool operator==(const WtShapeWidget& lhs, const WtShapeWidget& rhs);
-//---------------------------------------------------------------------------
+
+
+} //~namespace ribi
+
 #endif // QTSHAPEWIDGET_H
 //---------------------------------------------------------------------------

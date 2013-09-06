@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtmultiplechoicequestiondialog.h"
 #include "wttestquestionmaindialog.h"
 
-WtTestQuestionMainDialog::Ui::Ui()
+ribi::WtTestQuestionMainDialog::Ui::Ui()
   : m_box(new Wt::WGroupBox),
     m_edit(new Wt::WLineEdit("[Question here]")),
     m_label(new Wt::WLabel("Status: ?"))
@@ -47,7 +47,7 @@ WtTestQuestionMainDialog::Ui::Ui()
 
 }
 
-WtTestQuestionMainDialog::WtTestQuestionMainDialog()
+ribi::WtTestQuestionMainDialog::WtTestQuestionMainDialog()
 {
   this->addWidget(ui.m_box);
   this->addWidget(new Wt::WBreak);
@@ -58,13 +58,13 @@ WtTestQuestionMainDialog::WtTestQuestionMainDialog()
   this->addWidget(ui.m_label);
 
   ui.m_edit->setMinimumSize(600,Wt::WLength::Auto);
-  ui.m_edit->enterPressed().connect(this,&WtTestQuestionMainDialog::OnEditChanged);
-  ui.m_edit->keyWentUp().connect(this,&WtTestQuestionMainDialog::OnEditChanged);
+  ui.m_edit->enterPressed().connect(this,&ribi::WtTestQuestionMainDialog::OnEditChanged);
+  ui.m_edit->keyWentUp().connect(this,&ribi::WtTestQuestionMainDialog::OnEditChanged);
   ui.m_edit->setText("-,Is this a multiple choice question?,yes,no,do not know");
   OnEditChanged();
 }
 
-void WtTestQuestionMainDialog::OnEditChanged()
+void ribi::WtTestQuestionMainDialog::OnEditChanged()
 {
   const std::string s = ui.m_edit->text().toUTF8();
 

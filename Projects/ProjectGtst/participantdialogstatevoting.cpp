@@ -44,7 +44,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "votingoption.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateVoting::ParticipantDialogStateVoting(
+ribi::gtst::ParticipantDialogStateVoting::ParticipantDialogStateVoting(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
@@ -52,7 +52,7 @@ ParticipantDialogStateVoting::ParticipantDialogStateVoting(
 }
 //---------------------------------------------------------------------------
 ///Do something random with the UI, used by DebugDialog
-void ParticipantDialogStateVoting::DoSomethingRandom()
+void ribi::gtst::ParticipantDialogStateVoting::DoSomethingRandom()
 {
   assert(ui.m_group);
   assert(ui.m_button_vote);
@@ -78,7 +78,7 @@ void ParticipantDialogStateVoting::DoSomethingRandom()
   }
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateVoting::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateVoting::RespondToTimedServerPush()
 {
   const int time_left = m_server->GetStates()->GetCurrentState()->GetTimeLeft();
 
@@ -141,7 +141,7 @@ void ParticipantDialogStateVoting::RespondToTimedServerPush()
   RespondToParticipant();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateVoting::OnVoteClick()
+void ribi::gtst::ParticipantDialogStateVoting::OnVoteClick()
 {
 
   const int vote = ui.m_group->selectedButtonIndex();
@@ -176,7 +176,7 @@ void ParticipantDialogStateVoting::OnVoteClick()
     [](Wt::WRadioButton * const r) { r->setEnabled(false); } );
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateVoting::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateVoting::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
   assert(GetDialog()->CanGetParticipant()
@@ -224,6 +224,6 @@ void ParticipantDialogStateVoting::ShowPage(ParticipantDialog * const dialog)
 
   ui.m_button_vote->clicked().connect(
     this,
-    &ParticipantDialogStateVoting::OnVoteClick);
+    &ribi::gtst::ParticipantDialogStateVoting::OnVoteClick);
 }
 //---------------------------------------------------------------------------

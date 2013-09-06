@@ -27,6 +27,8 @@ namespace Ui {
   class QtToolTestQtModelsMenuDialog;
 }
 
+namespace ribi {
+
 class QtToolTestQtModelsMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -36,7 +38,7 @@ public:
   ~QtToolTestQtModelsMenuDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
   void keyPressEvent(QKeyEvent * event);
 
 private:
@@ -51,5 +53,7 @@ private slots:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLTESTQTMODELSMENUDIALOG

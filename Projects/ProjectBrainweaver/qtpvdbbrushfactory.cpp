@@ -9,14 +9,14 @@
 
 #include <QLinearGradient>
 
-const int QtPvdbBrushFactory::sm_bottom = 10;
-const int QtPvdbBrushFactory::sm_left = -100;
-const int QtPvdbBrushFactory::sm_right = 100;
-const int QtPvdbBrushFactory::sm_top = -10;
-const int QtPvdbBrushFactory::sm_color_low_value  =  64;
-const int QtPvdbBrushFactory::sm_color_mid_value  = 128;
+const int ribi::pvdb::QtPvdbBrushFactory::sm_bottom = 10;
+const int ribi::pvdb::QtPvdbBrushFactory::sm_left = -100;
+const int ribi::pvdb::QtPvdbBrushFactory::sm_right = 100;
+const int ribi::pvdb::QtPvdbBrushFactory::sm_top = -10;
+const int ribi::pvdb::QtPvdbBrushFactory::sm_color_low_value  =  64;
+const int ribi::pvdb::QtPvdbBrushFactory::sm_color_mid_value  = 128;
 
-const std::string QtPvdbBrushFactory::BrushToStr(const QBrush& brush)
+const std::string ribi::pvdb::QtPvdbBrushFactory::BrushToStr(const QBrush& brush)
 {
   if (brush == CreateBlueGradientBrush()) return "blue";
   if (brush == CreateGoldGradientBrush()) return "gold";
@@ -29,7 +29,7 @@ const std::string QtPvdbBrushFactory::BrushToStr(const QBrush& brush)
 
 }
 
-const QBrush QtPvdbBrushFactory::CreateBlueGradientBrush()
+const QBrush ribi::pvdb::QtPvdbBrushFactory::CreateBlueGradientBrush()
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor( sm_color_mid_value, sm_color_mid_value,255));
@@ -37,7 +37,7 @@ const QBrush QtPvdbBrushFactory::CreateBlueGradientBrush()
   return linearGradient;
 }
 
-const QBrush QtPvdbBrushFactory::CreateGoldGradientBrush()
+const QBrush ribi::pvdb::QtPvdbBrushFactory::CreateGoldGradientBrush()
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor( sm_color_mid_value, sm_color_mid_value,sm_color_low_value));
@@ -45,7 +45,7 @@ const QBrush QtPvdbBrushFactory::CreateGoldGradientBrush()
   return linearGradient;
 }
 
-const QBrush QtPvdbBrushFactory::CreateGrayGradientBrush()
+const QBrush ribi::pvdb::QtPvdbBrushFactory::CreateGrayGradientBrush()
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor(196,196,196));
@@ -53,7 +53,7 @@ const QBrush QtPvdbBrushFactory::CreateGrayGradientBrush()
   return linearGradient;
 }
 
-const QBrush QtPvdbBrushFactory::CreateGreenGradientBrush()
+const QBrush ribi::pvdb::QtPvdbBrushFactory::CreateGreenGradientBrush()
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor( sm_color_mid_value,255, sm_color_mid_value));
@@ -61,7 +61,7 @@ const QBrush QtPvdbBrushFactory::CreateGreenGradientBrush()
   return linearGradient;
 }
 
-const QBrush QtPvdbBrushFactory::CreateRedGradientBrush()
+const QBrush ribi::pvdb::QtPvdbBrushFactory::CreateRedGradientBrush()
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor(255, sm_color_mid_value, sm_color_mid_value));
@@ -69,7 +69,7 @@ const QBrush QtPvdbBrushFactory::CreateRedGradientBrush()
   return linearGradient;
 }
 
-const QBrush QtPvdbBrushFactory::CreateYellowGradientBrush()
+const QBrush ribi::pvdb::QtPvdbBrushFactory::CreateYellowGradientBrush()
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor(255,255, sm_color_mid_value));
@@ -77,7 +77,7 @@ const QBrush QtPvdbBrushFactory::CreateYellowGradientBrush()
   return linearGradient;
 }
 
-const QBrush QtPvdbBrushFactory::CreateWhiteGradientBrush()
+const QBrush ribi::pvdb::QtPvdbBrushFactory::CreateWhiteGradientBrush()
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   const int low_value = 250;

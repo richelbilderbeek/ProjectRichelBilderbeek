@@ -29,7 +29,7 @@
 #include "pvdbconceptfactory.h"
 #include "trace.h"
 
-QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *parent) :
+ribi::pvdb::QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestConceptItemDialog),
   m_concept(pvdb::ConceptFactory::GetTests().at(1)),
@@ -109,12 +109,12 @@ QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *parent) :
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetChosenConcept()->GetExamples()->Get().at(0)->GetCompetency()));
 }
 
-QtPvdbTestConceptItemDialog::~QtPvdbTestConceptItemDialog()
+ribi::pvdb::QtPvdbTestConceptItemDialog::~QtPvdbTestConceptItemDialog()
 {
   delete ui;
 }
 
-const boost::shared_ptr<pvdb::Concept> QtPvdbTestConceptItemDialog::GetChosenConcept()
+const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::QtPvdbTestConceptItemDialog::GetChosenConcept()
 {
   switch(ui->box_edit->currentIndex())
   {
@@ -165,27 +165,27 @@ const boost::shared_ptr<pvdb::Concept> QtPvdbTestConceptItemDialog::GetChosenCon
       assert(!"Should not get here");
   }
   assert(!"Should not get here");
-  throw std::logic_error("QtPvdbTestConceptItemDialog::GetChosenConcept: chosen concept unknown");
+  throw std::logic_error("ribi::pvdb::QtPvdbTestConceptItemDialog::GetChosenConcept: chosen concept unknown");
 }
 
-void QtPvdbTestConceptItemDialog::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbTestConceptItemDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbTestConceptItemDialog::on_box_competency_currentIndexChanged(int index)
+void ribi::pvdb::QtPvdbTestConceptItemDialog::on_box_competency_currentIndexChanged(int index)
 {
   const pvdb::Competency c = static_cast<pvdb::Competency>(index);
   this->GetChosenConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
-void QtPvdbTestConceptItemDialog::on_edit_name_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestConceptItemDialog::on_edit_name_textChanged(const QString &arg1)
 {
   assert(GetChosenConcept());
   this->GetChosenConcept()->SetName(arg1.toStdString());
 }
 
-void QtPvdbTestConceptItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestConceptItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
 {
   const int rating_complexity = boost::lexical_cast<int>(arg1.toStdString());
   assert(rating_complexity >= -1);
@@ -193,23 +193,23 @@ void QtPvdbTestConceptItemDialog::on_box_complexity_currentIndexChanged(const QS
   this->GetChosenConcept()->SetRatingComplexity(rating_complexity);
 }
 
-void QtPvdbTestConceptItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestConceptItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
   this->GetChosenConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void QtPvdbTestConceptItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestConceptItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
   this->GetChosenConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void QtPvdbTestConceptItemDialog::on_edit_example_text_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestConceptItemDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
   this->GetChosenConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
 
 #ifndef NDEBUG
-void QtPvdbTestConceptItemDialog::Test()
+void ribi::pvdb::QtPvdbTestConceptItemDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -221,7 +221,7 @@ void QtPvdbTestConceptItemDialog::Test()
     []
     {
   #endif
-  TRACE("QtPvdbTestConceptItemDialog::Test started");
+  TRACE("ribi::pvdb::QtPvdbTestConceptItemDialog::Test started");
   QtPvdbTestConceptItemDialog d;
   assert(d.m_concept.get() == d.m_display_concept->GetConcept().get());
   assert(d.m_concept.get() == d.m_edit_concept->GetConcept().get());
@@ -240,7 +240,7 @@ void QtPvdbTestConceptItemDialog::Test()
   }
   //Test brushes being changed when ratings are given
   {
-    const boost::shared_ptr<pvdb::Concept> concept = d.m_concept;
+    const boost::shared_ptr<ribi::pvdb::Concept> concept = d.m_concept;
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);
@@ -261,7 +261,7 @@ void QtPvdbTestConceptItemDialog::Test()
     assert(d.m_display_concept->brush() == QtPvdbBrushFactory::CreateGreenGradientBrush());
     assert(d.m_rate_concept->brush()    == QtPvdbBrushFactory::CreateGreenGradientBrush());
   }
-  TRACE("QtPvdbTestConceptItemDialog::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbTestConceptItemDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

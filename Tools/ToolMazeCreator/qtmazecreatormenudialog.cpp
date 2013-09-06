@@ -28,19 +28,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtmazecreatormaindialog.h"
 #include "ui_qtmazecreatormenudialog.h"
 //---------------------------------------------------------------------------
-QtMazeCreatorMenuDialog::QtMazeCreatorMenuDialog(QWidget *parent) :
+ribi::QtMazeCreatorMenuDialog::QtMazeCreatorMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtMazeCreatorMenuDialog)
 {
   ui->setupUi(this);
 }
 //---------------------------------------------------------------------------
-QtMazeCreatorMenuDialog::~QtMazeCreatorMenuDialog()
+ribi::QtMazeCreatorMenuDialog::~QtMazeCreatorMenuDialog()
 {
   delete ui;
 }
 //---------------------------------------------------------------------------
-void QtMazeCreatorMenuDialog::on_button_start_clicked()
+void ribi::QtMazeCreatorMenuDialog::on_button_start_clicked()
 {
   this->hide();
   QtMazeCreatorMainDialog d;
@@ -48,7 +48,7 @@ void QtMazeCreatorMenuDialog::on_button_start_clicked()
   this->show();
 }
 //---------------------------------------------------------------------------
-void QtMazeCreatorMenuDialog::on_button_about_clicked()
+void ribi::QtMazeCreatorMenuDialog::on_button_about_clicked()
 {
   this->hide();
   About a = MazeCreatorMenuDialog::GetAbout();
@@ -58,7 +58,7 @@ void QtMazeCreatorMenuDialog::on_button_about_clicked()
   this->show();
 }
 //---------------------------------------------------------------------------
-void QtMazeCreatorMenuDialog::on_button_quit_clicked()
+void ribi::QtMazeCreatorMenuDialog::on_button_quit_clicked()
 {
   close();
 }

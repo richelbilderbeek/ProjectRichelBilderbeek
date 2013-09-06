@@ -38,6 +38,8 @@ namespace Wt
   struct WWidget;
 }
 
+namespace ribi {
+
 struct ShinyButtonWidget;
 
 namespace RichelBilderbeek {
@@ -149,5 +151,6 @@ struct WtMenuDialog : public Wt::WContainerWidget
 };
 
 } //~namespace RichelBilderbeek
+} //~namespace ribi
 
 #endif // WTRICHELBILDERBEEKMENUDIALOG_H

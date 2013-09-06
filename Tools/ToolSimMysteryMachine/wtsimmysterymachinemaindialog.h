@@ -8,6 +8,9 @@
 #include <Wt/WContainerWidget>
 #include <Wt/WLineEdit>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtMysteryMachineWidget;
 //---------------------------------------------------------------------------
 ///WtSimMysteryMachineMainDialog displays a
@@ -25,5 +28,7 @@ struct WtSimMysteryMachineMainDialog : public Wt::WContainerWidget
     WtMysteryMachineWidget * const m_machine;
   } ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTMYSTERYMACHINEDIALOG_H

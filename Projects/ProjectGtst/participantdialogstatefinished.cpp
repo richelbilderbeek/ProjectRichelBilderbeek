@@ -39,14 +39,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateFinished::ParticipantDialogStateFinished(
+ribi::gtst::ParticipantDialogStateFinished::ParticipantDialogStateFinished(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
 
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateFinished::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateFinished::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
   assert(GetDialog());

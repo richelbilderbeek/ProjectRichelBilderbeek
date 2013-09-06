@@ -5,6 +5,8 @@
 
 struct QFont;
 
+namespace ribi {
+
 ///The widget holding the items
 struct QtTestQtRoundedEditRectItemWidget : public QtKeyboardFriendlyGraphicsView
 {
@@ -16,5 +18,7 @@ private:
   ///Display a font
   void Display(const QFont& font);
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTROUNDEDEDITRECTITEMWIDGETWIDGET_H

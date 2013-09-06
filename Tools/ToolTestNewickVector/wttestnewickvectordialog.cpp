@@ -21,11 +21,9 @@
 #include "twodigitnewick.h"
 #include "wttestnewickvectordialog.h"
 //---------------------------------------------------------------------------
-//Enable debugging
-#undef NDEBUG
 #include <cassert>
 //---------------------------------------------------------------------------
-WtTestNewickVectorDialog::WtTestNewickVectorDialog()
+ribi::WtTestNewickVectorDialog::WtTestNewickVectorDialog()
   : m_box_show_calculation(new Wt::WCheckBox),
     m_box_compare(new Wt::WCheckBox),
     m_edit_newick(new Wt::WLineEdit("((2,2),2)")),
@@ -76,12 +74,12 @@ WtTestNewickVectorDialog::WtTestNewickVectorDialog()
   this->addWidget(new Wt::WBreak);
 
   button_calculate->clicked().connect(
-    this,&WtTestNewickVectorDialog::OnCalculate);
+    this,&ribi::WtTestNewickVectorDialog::OnCalculate);
   //button_about->clicked().connect(
-  //  this,&WtTestNewickVectorDialog::OnAbout);
+  //  this,&ribi::WtTestNewickVectorDialog::OnAbout);
 }
 //---------------------------------------------------------------------------
-void WtTestNewickVectorDialog::Display()
+void ribi::WtTestNewickVectorDialog::Display()
 {
   {
     const std::vector<std::string> v = m_dialog.GetText();
@@ -95,13 +93,13 @@ void WtTestNewickVectorDialog::Display()
   }
 }
 //---------------------------------------------------------------------------
-void WtTestNewickVectorDialog::OnAbout()
+void ribi::WtTestNewickVectorDialog::OnAbout()
 {
   //Emit that about is clicked
   m_signal_about();
 }
 //---------------------------------------------------------------------------
-void WtTestNewickVectorDialog::OnCalculate()
+void ribi::WtTestNewickVectorDialog::OnCalculate()
 {
   {
     const std::string s = m_edit_password->text().toUTF8();

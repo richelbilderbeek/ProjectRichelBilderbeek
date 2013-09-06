@@ -46,7 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-ServerStateGroupReAssign::ServerStateGroupReAssign(
+ribi::gtst::ServerStateGroupReAssign::ServerStateGroupReAssign(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersGroupReAssign>& parameters)
   : ServerState(server,period,cycle),
@@ -56,7 +56,7 @@ ServerStateGroupReAssign::ServerStateGroupReAssign(
 }
 //---------------------------------------------------------------------------
 ///Check if this state can go to the next state.
-void ServerStateGroupReAssign::AssignGroup(const boost::shared_ptr<const Participant>& participant) const
+void ribi::gtst::ServerStateGroupReAssign::AssignGroup(const boost::shared_ptr<const Participant>& participant) const
 {
   const GroupAssigner * const assigner = participant->GetGroupAssigner();
   assert(assigner);
@@ -87,19 +87,19 @@ void ServerStateGroupReAssign::AssignGroup(const boost::shared_ptr<const Partici
   }
 }
 //---------------------------------------------------------------------------
-bool ServerStateGroupReAssign::CanAssignGroup(
+bool ribi::gtst::ServerStateGroupReAssign::CanAssignGroup(
   const boost::shared_ptr<const Participant>& participant) const
 {
   //Sure, any logged-in Participant can be assigned to a group
   return GetServer()->GetGroups()->GetGroupLoggedIn()->IsMember(participant);
 }
 //---------------------------------------------------------------------------
-bool ServerStateGroupReAssign::CanGoToNextState() const
+bool ribi::gtst::ServerStateGroupReAssign::CanGoToNextState() const
 {
   return GetTimeLeft() < 0;
 }
 //---------------------------------------------------------------------------
-double ServerStateGroupReAssign::CalculateAveragePayoff() const
+double ribi::gtst::ServerStateGroupReAssign::CalculateAveragePayoff() const
 {
   const int n_ipgg_cycles = GetServer()->GetStates()->GetCycles(GetServer()->GetStates()->GetCurrentState()->GetPeriod());
 
@@ -128,13 +128,13 @@ double ServerStateGroupReAssign::CalculateAveragePayoff() const
   return average_payoff;
 }
 //---------------------------------------------------------------------------
-int ServerStateGroupReAssign::GetStateDuration() const
+int ribi::gtst::ServerStateGroupReAssign::GetStateDuration() const
 {
   return m_parameters->GetDuration();
 }
 //---------------------------------------------------------------------------
-const std::pair<const Group *,const Group *>
-  ServerStateGroupReAssign::CalculateWorstAndBestGroup() const
+const std::pair<const ribi::gtst::Group *,const ribi::gtst::Group *>
+  ribi::gtst::ServerStateGroupReAssign::CalculateWorstAndBestGroup() const
 {
   assert(m_group_payoffs.size() >= 2);
 
@@ -153,25 +153,25 @@ const std::pair<const Group *,const Group *>
 //---------------------------------------------------------------------------
 ///Let this one Group split from 3 Participants
 ///to 5 Participants
-void ServerStateGroupReAssign::NotifyGroupGrowth(const Group * const group) const
+void ribi::gtst::ServerStateGroupReAssign::NotifyGroupGrowth(const Group * const group) const
 {
   GetServer()->GetGroups()->GrowGroup(group);
 }
 //---------------------------------------------------------------------------
 ///Let this one Group split from 5 Participants
 ///to two Groups of 3 Participants
-void ServerStateGroupReAssign::NotifyGroupSplit(const Group * const group) const
+void ribi::gtst::ServerStateGroupReAssign::NotifyGroupSplit(const Group * const group) const
 {
   GetServer()->GetGroups()->SplitGroup(group);
 }
 //---------------------------------------------------------------------------
 ///Kill the Group
-void ServerStateGroupReAssign::NotifyKillGroup(const Group * const group) const
+void ribi::gtst::ServerStateGroupReAssign::NotifyKillGroup(const Group * const group) const
 {
   GetServer()->GetGroups()->KillGroup(group);
 }
 //---------------------------------------------------------------------------
-void ServerStateGroupReAssign::OnTimer()
+void ribi::gtst::ServerStateGroupReAssign::OnTimer()
 {
   if (CanGoToNextState())
   {
@@ -209,7 +209,7 @@ void ServerStateGroupReAssign::OnTimer()
 
 }
 //---------------------------------------------------------------------------
-void ServerStateGroupReAssign::Start()
+void ribi::gtst::ServerStateGroupReAssign::Start()
 {
   const double average_payoff = CalculateAveragePayoff();
 
@@ -331,7 +331,7 @@ void ServerStateGroupReAssign::Start()
   }
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateGroupReAssign& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateGroupReAssign& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

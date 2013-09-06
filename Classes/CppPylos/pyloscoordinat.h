@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 namespace Pylos {
 
 struct Coordinat
@@ -104,5 +106,7 @@ const std::vector<std::vector<Coordinat> > GetSquares(
   const Coordinat& c);
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // PYLOSCOORDINAT_H

@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 #include "pylosmustremovestate.h"
 
+namespace ribi {
+
 namespace Pylos {
 
 ///CurrentMoveState contains the state of the current Move.
@@ -83,5 +85,7 @@ struct CurrentMoveState
 bool operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs);
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // PYLOSCURRENTMOVESTATE_H

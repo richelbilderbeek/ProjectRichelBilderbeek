@@ -22,28 +22,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qttestpylosgametestsdialog.h"
 #include "ui_qttestpylosgametestsdialog.h"
-//---------------------------------------------------------------------------
+
 QtTestPylosGameTestsDialog::QtTestPylosGameTestsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestPylosGameTestsDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 QtTestPylosGameTestsDialog::~QtTestPylosGameTestsDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtTestPylosGameTestsDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------

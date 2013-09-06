@@ -43,7 +43,7 @@
 #include "trace.h"
 #include "ui_qtpvdbclusterdialog.h"
 
-QtPvdbClusterDialog::QtPvdbClusterDialog(
+ribi::pvdb::QtPvdbClusterDialog::QtPvdbClusterDialog(
   const boost::shared_ptr<pvdb::File> file,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
@@ -89,7 +89,7 @@ QtPvdbClusterDialog::QtPvdbClusterDialog(
 }
 
 
-QtPvdbClusterDialog::~QtPvdbClusterDialog()
+ribi::pvdb::QtPvdbClusterDialog::~QtPvdbClusterDialog()
 {
   ///WARNING: assume ui->widget is not available anymore
   //const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
@@ -97,7 +97,7 @@ QtPvdbClusterDialog::~QtPvdbClusterDialog()
   delete ui;
 }
 
-QtPvdbClusterWidget * QtPvdbClusterDialog::BuildWidget(const boost::shared_ptr<pvdb::File> file)
+ribi::pvdb::QtPvdbClusterWidget * ribi::pvdb::QtPvdbClusterDialog::BuildWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
   //Create a cluster a new cluster
@@ -119,7 +119,7 @@ QtPvdbClusterWidget * QtPvdbClusterDialog::BuildWidget(const boost::shared_ptr<p
   return nullptr;
 }
 
-void QtPvdbClusterDialog::DoRandomStuff()
+void ribi::pvdb::QtPvdbClusterDialog::DoRandomStuff()
 {
   #ifndef NDEBUG
   if (!GetWidget()) return;
@@ -152,13 +152,13 @@ void QtPvdbClusterDialog::DoRandomStuff()
 }
 
 
-const QtPvdbClusterWidget * QtPvdbClusterDialog::GetWidget() const
+const ribi::pvdb::QtPvdbClusterWidget * ribi::pvdb::QtPvdbClusterDialog::GetWidget() const
 {
   assert(m_widget || !m_widget);
   return m_widget;
 }
 
-QtPvdbClusterWidget * QtPvdbClusterDialog::GetWidget()
+ribi::pvdb::QtPvdbClusterWidget * ribi::pvdb::QtPvdbClusterDialog::GetWidget()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
@@ -168,7 +168,7 @@ QtPvdbClusterWidget * QtPvdbClusterDialog::GetWidget()
     const_cast<const QtPvdbClusterDialog*>(this)->GetWidget());
 }
 
-void QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape)
   {
@@ -212,7 +212,7 @@ void QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
   #endif
 }
 
-void QtPvdbClusterDialog::on_button_add_clicked()
+void ribi::pvdb::QtPvdbClusterDialog::on_button_add_clicked()
 {
   assert(m_widget && "This button can only be clicked when there is a widget");
 
@@ -238,7 +238,7 @@ void QtPvdbClusterDialog::on_button_add_clicked()
   #endif
 }
 
-void QtPvdbClusterDialog::on_button_next_clicked()
+void ribi::pvdb::QtPvdbClusterDialog::on_button_next_clicked()
 {
   assert(m_file);
   if (GetWidget() && GetWidget()->isEnabled()) //Save concept map, when user is all
@@ -282,7 +282,7 @@ void QtPvdbClusterDialog::on_button_next_clicked()
 }
 
 #ifndef NDEBUG
-void QtPvdbClusterDialog::Test()
+void ribi::pvdb::QtPvdbClusterDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -295,8 +295,8 @@ void QtPvdbClusterDialog::Test()
     {
   #endif
 
-  typedef std::vector<boost::shared_ptr<pvdb::Edge> > Edges;
-  typedef std::vector<boost::shared_ptr<pvdb::Node> > Nodes;
+  typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
+  typedef std::vector<boost::shared_ptr<ribi::pvdb::Node> > Nodes;
 
   //Regular tests
   {
@@ -428,20 +428,20 @@ void QtPvdbClusterDialog::Test()
 
     file->SetCluster(cluster);
 
-    const boost::shared_ptr<pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("Concept F"));
-    const boost::shared_ptr<pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(3));
-    const boost::shared_ptr<pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(4));
-    const boost::shared_ptr<pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
-    const boost::shared_ptr<pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(2));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("Concept F"));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(3));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(4));
+    const boost::shared_ptr<ribi::pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
+    const boost::shared_ptr<ribi::pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
+    const boost::shared_ptr<ribi::pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(2));
     const Nodes nodes = { node_a, node_b, node_c };
-    const boost::shared_ptr<pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<ribi::pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
     const Edges edges = { edge_a, edge_b, edge_c };
 
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(
-      pvdb::ConceptMapFactory::Create(nodes,edges));
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(
+      ribi::pvdb::ConceptMapFactory::Create(nodes,edges));
     assert(concept_map);
     file->SetConceptMap(concept_map);
 
@@ -460,13 +460,13 @@ void QtPvdbClusterDialog::Test()
 }
 #endif
 
-void QtPvdbClusterDialog::on_edit_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbClusterDialog::on_edit_textChanged(const QString &arg1)
 {
   assert(ui->edit->text() == arg1);
   ui->button_add->setEnabled(!m_file->GetConceptMap() && arg1.size() > 0);
 }
 
-void QtPvdbClusterDialog::Save()
+void ribi::pvdb::QtPvdbClusterDialog::Save()
 {
   const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla de clustering op");
@@ -488,7 +488,7 @@ void QtPvdbClusterDialog::Save()
   //close(); //2013-04-19 Request by client
 }
 
-void QtPvdbClusterDialog::Save(const std::string& filename)
+void ribi::pvdb::QtPvdbClusterDialog::Save(const std::string& filename)
 {
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
@@ -504,7 +504,7 @@ void QtPvdbClusterDialog::Save(const std::string& filename)
   m_file->Save(filename);
 }
 
-void QtPvdbClusterDialog::on_button_save_clicked()
+void ribi::pvdb::QtPvdbClusterDialog::on_button_save_clicked()
 {
   Save();
 }

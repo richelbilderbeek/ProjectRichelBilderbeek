@@ -72,6 +72,9 @@ struct RegexTesterBoostRegexMainDialog : public RegexTesterMainDialog
     const boost::regex& r);
 
 };
+
+} //~namespace ribi
+
 #endif
 
 #endif // REGEXTESTERBOOSTREGEXMAINDIALOG_H

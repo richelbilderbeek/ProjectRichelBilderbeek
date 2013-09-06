@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "pylosfwd.h"
 
+namespace ribi {
+
 namespace Pylos {
 
 ///After placing (Set) or moving (Transfer) a marble, the MustRemoveState
@@ -43,5 +45,7 @@ std::string ToStr(const MustRemoveState state);
 bool operator!(const MustRemoveState& state);
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // PYLOSMUSTREMOVESTATE_H

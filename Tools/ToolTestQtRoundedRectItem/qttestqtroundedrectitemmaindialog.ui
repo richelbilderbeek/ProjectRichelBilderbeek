@@ -14,24 +14,24 @@
    <string>TestQtRoundedRectItem</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolTestQtRoundedRectItem.qrc">
+   <iconset resource="../../Games/GameBoenken/GameBoenken.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QtTestQtRoundedRectItemWidget" name="view"/>
+    <widget class="ribi::QtTestQtRoundedRectItemWidget" name="view"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtTestQtRoundedRectItemWidget</class>
+   <class>ribi::QtTestQtRoundedRectItemWidget</class>
    <extends>QGraphicsView</extends>
    <header>qttestqtroundedrectitemwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="ToolTestQtRoundedRectItem.qrc"/>
+  <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
  </resources>
  <connections/>
 </ui>

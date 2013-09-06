@@ -20,7 +20,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QApplication>
 
-#include "createqtprojectzipfilemenudialog.h"
 #include "qtrichelbilderbeekmenudialog.h"
 #include "trace.h"
 
@@ -28,7 +27,7 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   START_TRACE();
-  QtRichelBilderbeekMenuDialog w;
+  ribi::QtRichelBilderbeekMenuDialog w;
   w.show();
   return a.exec();
 }

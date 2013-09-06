@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qttooltestqtmodelsmaindialog.h"
 
-QtToolTestQtModelsMainDialog::QtToolTestQtModelsMainDialog(QWidget *parent) :
+ribi::QtToolTestQtModelsMainDialog::QtToolTestQtModelsMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestQtModelsMainDialog)
 {
@@ -50,12 +50,12 @@ QtToolTestQtModelsMainDialog::QtToolTestQtModelsMainDialog(QWidget *parent) :
   #endif
 }
 
-QtToolTestQtModelsMainDialog::~QtToolTestQtModelsMainDialog()
+ribi::QtToolTestQtModelsMainDialog::~QtToolTestQtModelsMainDialog()
 {
   delete ui;
 }
 
-const std::string QtToolTestQtModelsMainDialog::CreateRandomText()
+const std::string ribi::QtToolTestQtModelsMainDialog::CreateRandomText()
 {
   const int sz = (std::rand() >> 4) % 10;
   std::string s;
@@ -67,7 +67,7 @@ const std::string QtToolTestQtModelsMainDialog::CreateRandomText()
   return s;
 }
 
-const std::vector<std::string> QtToolTestQtModelsMainDialog::CreateRandomTexts()
+const std::vector<std::string> ribi::QtToolTestQtModelsMainDialog::CreateRandomTexts()
 {
   const int sz = (std::rand() >> 4) % 10;
   std::vector<std::string> v;
@@ -79,12 +79,12 @@ const std::vector<std::string> QtToolTestQtModelsMainDialog::CreateRandomTexts()
   return v;
 }
 
-void QtToolTestQtModelsMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtToolTestQtModelsMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtToolTestQtModelsMainDialog::on_button_data_clicked()
+void ribi::QtToolTestQtModelsMainDialog::on_button_data_clicked()
 {
   const int index = ui->box_type->currentIndex();
   switch (index)
@@ -181,13 +181,13 @@ void QtToolTestQtModelsMainDialog::on_button_data_clicked()
     }
     break;
     default:
-      assert(!"QtToolTestQtModelsMainDialog::on_button_data_clicked: Unimplemented ui->box_type->currentIndex()");
-      throw std::logic_error("QtToolTestQtModelsMainDialog::on_button_data_clicked: Unimplemented ui->box_type->currentIndex()");
+      assert(!"ribi::QtToolTestQtModelsMainDialog::on_button_data_clicked: Unimplemented ui->box_type->currentIndex()");
+      throw std::logic_error("ribi::QtToolTestQtModelsMainDialog::on_button_data_clicked: Unimplemented ui->box_type->currentIndex()");
   }
 
 }
 
-void QtToolTestQtModelsMainDialog::on_button_headers_clicked()
+void ribi::QtToolTestQtModelsMainDialog::on_button_headers_clicked()
 {
 
   const int index = ui->box_type->currentIndex();
@@ -260,20 +260,20 @@ void QtToolTestQtModelsMainDialog::on_button_headers_clicked()
     }
     break;
     default:
-      assert(!"QtToolTestQtModelsMainDialog::on_button_headers_clicked: Unimplemented ui->box_type->currentIndex()");
-      throw std::logic_error("QtToolTestQtModelsMainDialog::on_button_headers_clicked: Unimplemented ui->box_type->currentIndex()");
+      assert(!"ribi::QtToolTestQtModelsMainDialog::on_button_headers_clicked: Unimplemented ui->box_type->currentIndex()");
+      throw std::logic_error("ribi::QtToolTestQtModelsMainDialog::on_button_headers_clicked: Unimplemented ui->box_type->currentIndex()");
   }
 }
 
 #ifndef NDEBUG
-void QtToolTestQtModelsMainDialog::Test()
+void ribi::QtToolTestQtModelsMainDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Start of QtToolTestQtModelsMainDialog::Test");
+  TRACE("Start of ribi::QtToolTestQtModelsMainDialog::Test");
   {
     QtUblasVectorDoubleModel * const model = new QtUblasVectorDoubleModel;
     assert(model);
@@ -313,6 +313,6 @@ void QtToolTestQtModelsMainDialog::Test()
       }
     }
   }
-  TRACE("Finished QtToolTestQtModelsMainDialog::Test successfully");
+  TRACE("Finished ribi::QtToolTestQtModelsMainDialog::Test successfully");
 }
 #endif

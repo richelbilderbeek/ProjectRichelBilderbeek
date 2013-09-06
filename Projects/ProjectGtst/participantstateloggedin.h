@@ -26,6 +26,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "participantstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///The Participant is in the StateLoggedIn ParticipantState
 struct ParticipantStateLoggedIn
   : public ParticipantState, StateLoggedIn
@@ -59,5 +63,8 @@ struct ParticipantStateLoggedIn
   ///shows how much payoff the Participant is given for waiting a period
   std::string m_message;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTSTATELOGGEDIN_H

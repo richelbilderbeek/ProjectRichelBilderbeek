@@ -181,9 +181,9 @@ GetLineRectIntersections(
   return points;
 }
 
-const double QtQuadBezierArrowItem::m_click_easy_width = 10.0;
+const double ribi::QtQuadBezierArrowItem::m_click_easy_width = 10.0;
 
-QtQuadBezierArrowItem::QtQuadBezierArrowItem(
+ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
   const QGraphicsItem* const from,
   const bool tail,
   const QGraphicsItem* const mid,
@@ -215,18 +215,18 @@ QtQuadBezierArrowItem::QtQuadBezierArrowItem(
   this->setZValue(mid->zValue() - 1.0);
 }
 
-QRectF QtQuadBezierArrowItem::boundingRect() const
+QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
 {
   return shape().boundingRect();
 }
 
-double QtQuadBezierArrowItem::GetAngle(const double dx, const double dy)
+double ribi::QtQuadBezierArrowItem::GetAngle(const double dx, const double dy)
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - (std::atan(dx/dy));
 }
 
-const QPointF QtQuadBezierArrowItem::GetBeyond() const
+const QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const
 {
   const QPointF center = GetCenter();
   const double dx_mid_center = m_mid->pos().x() - center.x();
@@ -235,13 +235,13 @@ const QPointF QtQuadBezierArrowItem::GetBeyond() const
   return beyond;
 }
 
-const QPointF QtQuadBezierArrowItem::GetCenter() const
+const QPointF ribi::QtQuadBezierArrowItem::GetCenter() const
 {
   const QPointF center((m_from->pos() + m_to->pos()) / 2.0);
   return center;
 }
 
-const QPointF QtQuadBezierArrowItem::GetHead() const
+const QPointF ribi::QtQuadBezierArrowItem::GetHead() const
 {
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Line;
@@ -297,7 +297,7 @@ const QPointF QtQuadBezierArrowItem::GetHead() const
   }
 }
 
-const QPointF QtQuadBezierArrowItem::GetTail() const
+const QPointF ribi::QtQuadBezierArrowItem::GetTail() const
 {
 
   typedef boost::geometry::model::d2::point_xy<double> Point;
@@ -353,12 +353,12 @@ const QPointF QtQuadBezierArrowItem::GetTail() const
   }
 }
 
-const std::string QtQuadBezierArrowItem::GetVersion()
+const std::string ribi::QtQuadBezierArrowItem::GetVersion()
 {
   return "1.4";
 }
 
-const std::vector<std::string> QtQuadBezierArrowItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-07: version 1.0: initial version");
@@ -369,12 +369,12 @@ const std::vector<std::string> QtQuadBezierArrowItem::GetVersionHistory()
   return v;
 }
 
-void QtQuadBezierArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
+void ribi::QtQuadBezierArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void QtQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
+void ribi::QtQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
 {
   switch (event->key())
   {
@@ -400,7 +400,7 @@ void QtQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
   QGraphicsItem::keyPressEvent(event);
 }
 
-void QtQuadBezierArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void ribi::QtQuadBezierArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
   if (event->modifiers() & Qt::ShiftModifier)
   {
@@ -421,7 +421,7 @@ void QtQuadBezierArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 }
 
 
-void QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *)
+void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
   painter->setRenderHint(QPainter::Antialiasing);
   painter->drawEllipse(this->GetMidItem()->pos(),1,1);
@@ -494,7 +494,7 @@ void QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsI
   }
 }
 
-void QtQuadBezierArrowItem::SetHasHead(const bool has_head)
+void ribi::QtQuadBezierArrowItem::SetHasHead(const bool has_head)
 {
 
   if (m_head != has_head)
@@ -505,7 +505,7 @@ void QtQuadBezierArrowItem::SetHasHead(const bool has_head)
   }
 }
 
-void QtQuadBezierArrowItem::SetHasTail(const bool has_tail)
+void ribi::QtQuadBezierArrowItem::SetHasTail(const bool has_tail)
 {
   if (m_tail != has_tail)
   {
@@ -516,7 +516,7 @@ void QtQuadBezierArrowItem::SetHasTail(const bool has_tail)
 }
 
 
-QPainterPath QtQuadBezierArrowItem::shape() const
+QPainterPath ribi::QtQuadBezierArrowItem::shape() const
 {
   const QPointF beyond = GetBeyond();
   const QPointF p_tail_end = GetTail();

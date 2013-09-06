@@ -42,14 +42,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 #include "votingoption.h"
 //---------------------------------------------------------------------------
-Group::Group(Server * const server)
+ribi::gtst::Group::Group(Server * const server)
   : m_server(server)
 {
   assert(m_server);
 }
 //---------------------------------------------------------------------------
 ///Add a Participant to the Group
-void Group::AddParticipant(boost::shared_ptr<Participant> participant)
+void ribi::gtst::Group::AddParticipant(boost::shared_ptr<Participant> participant)
 {
   assert(participant);
   this->m_participants.push_back(participant);
@@ -58,7 +58,7 @@ void Group::AddParticipant(boost::shared_ptr<Participant> participant)
 }
 //---------------------------------------------------------------------------
 ///Append the last IPGG's cycle(s) average payoff to m_payoffs
-void Group::AppendAveragePayoff(const double payoff)
+void ribi::gtst::Group::AppendAveragePayoff(const double payoff)
 {
   m_average_payoffs.push_back(payoff);
 }
@@ -67,7 +67,7 @@ void Group::AppendAveragePayoff(const double payoff)
 ///
 ///\note
 ///If option is null, no concensus is reached in voting
-void Group::AssignPayoff(
+void ribi::gtst::Group::AssignPayoff(
   const int period,
   const int round,
   const VotingOption * const option)
@@ -149,13 +149,13 @@ void Group::AssignPayoff(
 }
 //---------------------------------------------------------------------------
 ///Clear all Participants
-void Group::Clear()
+void ribi::gtst::Group::Clear()
 {
   m_participants.resize(0);
 }
 //---------------------------------------------------------------------------
 ///Collects all Participants in this Group as read-only pointers
-const std::vector<boost::shared_ptr<const Participant> > Group::CollectParticipants() const
+const std::vector<boost::shared_ptr<const ribi::gtst::Participant> > ribi::gtst::Group::CollectParticipants() const
 {
   //TRACE_FUNC();
   //TRACE(*this);
@@ -170,19 +170,19 @@ const std::vector<boost::shared_ptr<const Participant> > Group::CollectParticipa
 //---------------------------------------------------------------------------
 ///Obtain a random double in the range [0.0,1.0>
 //From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double Group::GetRandomUniform()
+double ribi::gtst::Group::GetRandomUniform()
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
 //---------------------------------------------------------------------------
 ///Get the Group its size
-int Group::GetSize() const
+int ribi::gtst::Group::GetSize() const
 {
   return boost::numeric_cast<int>(m_participants.size());
 }
 //---------------------------------------------------------------------------
 ///Checks if a Participant is present in this Group
-bool Group::IsMember(const boost::shared_ptr<const Participant>& participant) const
+bool ribi::gtst::Group::IsMember(const boost::shared_ptr<const Participant>& participant) const
 {
   return std::find_if(
     m_participants.begin(),
@@ -193,7 +193,7 @@ bool Group::IsMember(const boost::shared_ptr<const Participant>& participant) co
 }
 //---------------------------------------------------------------------------
 ///Remove a Participant from a Group
-boost::shared_ptr<Participant> Group::RemoveParticipant(const boost::shared_ptr<const Participant>& participant)
+boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Group::RemoveParticipant(const boost::shared_ptr<const Participant>& participant)
 {
   assert(IsMember(participant));
   assert(std::any_of(
@@ -242,7 +242,7 @@ boost::shared_ptr<Participant> Group::RemoveParticipant(const boost::shared_ptr<
   return q;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const Group& group)
+std::ostream& ribi::gtst::operator<<(std::ostream& os, const Group& group)
 {
   os << "<" << group.ToStr() << ">\n";
   std::for_each(group.m_participants.begin(),group.m_participants.end(),

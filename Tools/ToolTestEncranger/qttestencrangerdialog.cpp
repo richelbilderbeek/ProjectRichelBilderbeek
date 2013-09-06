@@ -34,31 +34,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "ui_qttestencrangerdialog.h"
 //---------------------------------------------------------------------------
-QtTestEncrangerDialog::QtTestEncrangerDialog(QWidget *parent) :
+ribi::QtTestEncrangerDialog::QtTestEncrangerDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestEncrangerDialog)
 {
   ui->setupUi(this);
 }
 //---------------------------------------------------------------------------
-QtTestEncrangerDialog::~QtTestEncrangerDialog()
+ribi::QtTestEncrangerDialog::~QtTestEncrangerDialog()
 {
   delete ui;
 }
 //---------------------------------------------------------------------------
-void QtTestEncrangerDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
-void QtTestEncrangerDialog::on_button_encrypt_clicked()
+
+void ribi::QtTestEncrangerDialog::on_button_encrypt_clicked()
 {
   try
   {
@@ -82,7 +71,7 @@ void QtTestEncrangerDialog::on_button_encrypt_clicked()
   ui->edit_encrypted_text->setText(m_dialog.GetEncryptedText().c_str());
 }
 //---------------------------------------------------------------------------
-void QtTestEncrangerDialog::on_button_deencrypt_clicked()
+void ribi::QtTestEncrangerDialog::on_button_deencrypt_clicked()
 {
   try
   {
@@ -106,7 +95,7 @@ void QtTestEncrangerDialog::on_button_deencrypt_clicked()
   ui->edit_plaintext->setText(m_dialog.GetPlainText().c_str());
 }
 //---------------------------------------------------------------------------
-void QtTestEncrangerDialog::on_button_about_clicked()
+void ribi::QtTestEncrangerDialog::on_button_about_clicked()
 {
   About a = TestEncrangerDialog::GetAbout();
   QtAboutDialog d(a);

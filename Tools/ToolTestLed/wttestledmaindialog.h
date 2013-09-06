@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 #include <Wt/WLineEdit>
 //---------------------------------------------------------------------------
+namespace ribi {
+
 struct WtDialWidget;
 struct WtLedWidget;
 //---------------------------------------------------------------------------
@@ -48,5 +50,7 @@ struct WtTestLedMainDialog : public Wt::WContainerWidget
   void OnDialSizeChange();
   void ShowMain();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTLEDMAINDIALOG_H

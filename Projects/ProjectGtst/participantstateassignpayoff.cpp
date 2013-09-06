@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "payoff.h"
 #include "payoffs.h"
 //---------------------------------------------------------------------------
-ParticipantStateAssignPayoff::ParticipantStateAssignPayoff(
+ribi::gtst::ParticipantStateAssignPayoff::ParticipantStateAssignPayoff(
   Participant * const participant,
   Server * const server)
   : ParticipantState(participant,server)
@@ -33,7 +33,7 @@ ParticipantStateAssignPayoff::ParticipantStateAssignPayoff(
 
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantStateAssignPayoff::ToAdminStr() const
+const std::string ribi::gtst::ParticipantStateAssignPayoff::ToAdminStr() const
 {
   const Participant * const participant = GetParticipant();
   std::string s

@@ -29,8 +29,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/function.hpp>
 #include <boost/scoped_ptr.hpp>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtTimedServerPusherClient;
-//---------------------------------------------------------------------------
+
 ///A Server that broadcasts its messages
 struct WtTimedServerPusher
 {
@@ -108,5 +111,7 @@ private:
   ///The method that is called every 100 msecs
   void Run();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTIMEDSERVERPUSHER_H

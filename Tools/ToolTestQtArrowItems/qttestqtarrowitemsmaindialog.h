@@ -29,14 +29,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "qthideandshowdialog.h"
 
-
 struct QPlainTextEdit;
 
 namespace Ui {
   class QtTestQtArrowItemsMainDialog;
 }
 
-class QtTestQtArrowItemsMainDialog : public QtHideAndShowDialog
+namespace ribi {
+
+class QtTestQtArrowItemsMainDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -56,5 +57,7 @@ private:
   void OnRequestSceneUpdate();
 
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTARROWITEMSMAINDIALOG_H

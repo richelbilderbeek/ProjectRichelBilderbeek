@@ -22,7 +22,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define WTTESTTIMEDSERVERPUSHERMENUDIALOG_H
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
+namespace ribi {
 namespace ToolTestTimedServerPusher {
 //---------------------------------------------------------------------------
 struct WtMenuDialog : public Wt::WContainerWidget
@@ -36,5 +37,7 @@ struct WtMenuDialog : public Wt::WContainerWidget
 };
 //---------------------------------------------------------------------------
 } //~namespace ToolTestTimedServerPusher
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTTIMEDSERVERPUSHERMENUDIALOG_H

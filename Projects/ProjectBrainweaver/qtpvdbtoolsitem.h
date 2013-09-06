@@ -1,11 +1,6 @@
 #ifndef QTPVDBTOOLSITEM_H
 #define QTPVDBTOOLSITEM_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include <vector>
 
@@ -17,11 +12,11 @@
 
 #include "pvdbnode.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "qtpvdbnodeitem.h"
-#endif
+
+namespace ribi {
+
+namespace pvdb {
 
 ///Tools item is a class that is displayed above a selected node or edge
 ///and displays clickable icons to perform actions, for example
@@ -63,5 +58,9 @@ struct QtPvdbToolsItem : public QGraphicsPixmapItem
 
   void setVisible(bool visible) { QGraphicsPixmapItem::setVisible(visible); }
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBTOOLSITEM_H

@@ -33,9 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 #include "wtserverpusherclient.h"
 //---------------------------------------------------------------------------
-namespace ToolTestServerPusher {
-//---------------------------------------------------------------------------
-WtMenuDialog::WtMenuDialog()
+ribi::ToolTestServerPusher::WtMenuDialog::WtMenuDialog()
 {
  this->setContentAlignment(Wt::AlignCenter);
   {
@@ -75,7 +73,7 @@ WtMenuDialog::WtMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
+Wt::WWidget * ribi::ToolTestServerPusher::WtMenuDialog::CreateNewAboutDialog()
 {
   About a = MenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -86,14 +84,14 @@ Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::ToolTestServerPusher::WtMenuDialog::CreateNewMainDialog() const
 {
   WtMainDialog * const d = new WtMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::ToolTestServerPusher::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -108,6 +106,4 @@ Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
   new Wt::WLabel("using the WtServerPusher and WtServerPusherClient classes",dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTestServerPusher
 //---------------------------------------------------------------------------

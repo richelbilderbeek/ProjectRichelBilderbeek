@@ -1,12 +1,11 @@
 #ifndef QTPVDBBRUSHFACTORY_H
 #define QTPVDBBRUSHFACTORY_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <QBrush>
+
+namespace ribi {
+
+namespace pvdb {
 
 ///Class for holding some QBrush instances
 struct QtPvdbBrushFactory
@@ -49,5 +48,9 @@ struct QtPvdbBrushFactory
   ///The middle color value: higher values return in lighter brushes
   static const int sm_color_mid_value;
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBBRUSHFACTORY_H

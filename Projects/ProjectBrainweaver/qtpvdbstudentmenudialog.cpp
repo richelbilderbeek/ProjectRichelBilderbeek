@@ -20,7 +20,7 @@
 #include "trace.h"
 #include "ui_qtpvdbstudentmenudialog.h"
 
-QtPvdbStudentMenuDialog::QtPvdbStudentMenuDialog(const boost::shared_ptr<pvdb::File> file, QWidget* parent)
+ribi::pvdb::QtPvdbStudentMenuDialog::QtPvdbStudentMenuDialog(const boost::shared_ptr<pvdb::File> file, QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbStudentMenuDialog),
     m_file(file)
@@ -34,24 +34,24 @@ QtPvdbStudentMenuDialog::QtPvdbStudentMenuDialog(const boost::shared_ptr<pvdb::F
   on_edit_name_textChanged(ui->edit_name->text());
 }
 
-QtPvdbStudentMenuDialog::~QtPvdbStudentMenuDialog()
+ribi::pvdb::QtPvdbStudentMenuDialog::~QtPvdbStudentMenuDialog()
 {
   delete ui;
 }
 
-const std::string QtPvdbStudentMenuDialog::GetName() const
+const std::string ribi::pvdb::QtPvdbStudentMenuDialog::GetName() const
 {
   return ui->edit_name->text().toStdString();
 }
 
-void QtPvdbStudentMenuDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbStudentMenuDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   if ((e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_S) { on_button_save_clicked(); return; }
   QDialog::keyPressEvent(e);
 }
 
-void QtPvdbStudentMenuDialog::on_button_about_clicked()
+void ribi::pvdb::QtPvdbStudentMenuDialog::on_button_about_clicked()
 {
   const auto d(QtPvdbAboutDialog::Get());
   this->hide();
@@ -59,19 +59,19 @@ void QtPvdbStudentMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtPvdbStudentMenuDialog::on_button_quit_clicked()
+void ribi::pvdb::QtPvdbStudentMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtPvdbStudentMenuDialog::on_button_start_clicked()
+void ribi::pvdb::QtPvdbStudentMenuDialog::on_button_start_clicked()
 {
   m_file->SetStudentName(ui->edit_name->text().toStdString());
   QtPvdbStudentStartCompleteDialog d(m_file);
   this->ShowChild(&d);
 }
 
-void QtPvdbStudentMenuDialog::on_edit_name_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbStudentMenuDialog::on_edit_name_textChanged(const QString &arg1)
 {
   //Enable start button when student has entered at least two characters
   assert(ui->edit_name->text() == arg1);
@@ -85,7 +85,7 @@ void QtPvdbStudentMenuDialog::on_edit_name_textChanged(const QString &arg1)
   }
 }
 
-void QtPvdbStudentMenuDialog::on_button_save_clicked()
+void ribi::pvdb::QtPvdbStudentMenuDialog::on_button_save_clicked()
 {
   const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla de concept map op");
@@ -109,7 +109,7 @@ void QtPvdbStudentMenuDialog::on_button_save_clicked()
   Save(filename);
 }
 
-void QtPvdbStudentMenuDialog::Save(const std::string& filename) const
+void ribi::pvdb::QtPvdbStudentMenuDialog::Save(const std::string& filename) const
 {
   m_file->SetStudentName(ui->edit_name->text().toStdString());
 
@@ -120,7 +120,7 @@ void QtPvdbStudentMenuDialog::Save(const std::string& filename) const
   //{ const std::string debug_str = "File saved as " + filename; TRACE(debug_str); }
 }
 
-void QtPvdbStudentMenuDialog::SetName(const std::string& name)
+void ribi::pvdb::QtPvdbStudentMenuDialog::SetName(const std::string& name)
 {
   ui->edit_name->setText(name.c_str());
 }

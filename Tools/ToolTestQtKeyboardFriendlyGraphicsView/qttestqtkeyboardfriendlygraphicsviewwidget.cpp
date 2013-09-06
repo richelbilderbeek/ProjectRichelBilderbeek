@@ -42,14 +42,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "qtquadbezierarrowitem.h"
 
-QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidget()
+ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidget()
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   {
     //Legend
     const double midx = 0.0;
@@ -315,14 +310,14 @@ QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidg
 
 }
 
-void QtTestKeyboardFriendlyGraphicsViewWidget::DoUpdateScene()
+void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::DoUpdateScene()
 {
   scene()->update();
 }
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *event)
 {
   switch (event->key())
   {

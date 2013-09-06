@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosplayer.h"
 #include "trace.h"
 
-QtPylosBoardWidget::QtPylosBoardWidget() :
+ribi::QtPylosBoardWidget::QtPylosBoardWidget() :
     m_board(new Pylos::BoardBasic),
     m_must_remove(Pylos::MustRemoveState::no),
     m_player(Pylos::Player::player1)
@@ -45,54 +45,54 @@ QtPylosBoardWidget::QtPylosBoardWidget() :
 
 }
 
-bool QtPylosBoardWidget::CanRemove(const std::vector<Pylos::Coordinat>& v) const
+bool ribi::QtPylosBoardWidget::CanRemove(const std::vector<Pylos::Coordinat>& v) const
 {
   return m_board->CanRemove(v,m_player);
 }
 
-bool QtPylosBoardWidget::CanSet(const Pylos::Coordinat& c) const
+bool ribi::QtPylosBoardWidget::CanSet(const Pylos::Coordinat& c) const
 {
   return m_board->CanSet(c,m_player);
 }
 
-bool QtPylosBoardWidget::CanSetPlayer(const Pylos::Player) const
+bool ribi::QtPylosBoardWidget::CanSetPlayer(const Pylos::Player) const
 {
   return m_must_remove == Pylos::MustRemoveState::no;
 }
 
-bool QtPylosBoardWidget::CanTransfer(const Pylos::Coordinat& c) const
+bool ribi::QtPylosBoardWidget::CanTransfer(const Pylos::Coordinat& c) const
 {
   return m_board->CanTransfer(c,m_player);
 }
 
-bool QtPylosBoardWidget::CanTransfer(
+bool ribi::QtPylosBoardWidget::CanTransfer(
   const Pylos::Coordinat& from,
   const Pylos::Coordinat& to) const
 {
   return m_board->CanTransfer(from,to,m_player);
 }
 
-Pylos::PositionState QtPylosBoardWidget::Get(const Pylos::Coordinat& c) const
+ribi::Pylos::PositionState ribi::QtPylosBoardWidget::Get(const Pylos::Coordinat& c) const
 {
   return m_board->Get(c);
 }
 
-Pylos::Player QtPylosBoardWidget::GetCurrentTurn() const
+ribi::Pylos::Player ribi::QtPylosBoardWidget::GetCurrentTurn() const
 {
   return m_player;
 }
 
-int QtPylosBoardWidget::GetLayerSize(const int layer) const
+int ribi::QtPylosBoardWidget::GetLayerSize(const int layer) const
 {
   return m_board->GetLayerSize(layer);
 }
 
-const std::string QtPylosBoardWidget::GetVersion()
+const std::string ribi::QtPylosBoardWidget::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> QtPylosBoardWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtPylosBoardWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-09-22: version 1.2: initial release version");
@@ -101,23 +101,23 @@ const std::vector<std::string> QtPylosBoardWidget::GetVersionHistory()
   return v;
 }
 
-Pylos::Winner QtPylosBoardWidget::GetWinner() const
+ribi::Pylos::Winner ribi::QtPylosBoardWidget::GetWinner() const
 {
   return m_board->GetWinner();
 }
 
-void QtPylosBoardWidget::Remove(const std::vector<Pylos::Coordinat>& v)
+void ribi::QtPylosBoardWidget::Remove(const std::vector<Pylos::Coordinat>& v)
 {
   m_board->Remove(v,m_player);
   m_must_remove = Pylos::MustRemoveState::no;
 }
 
-void QtPylosBoardWidget::Set(const Pylos::Coordinat& c)
+void ribi::QtPylosBoardWidget::Set(const Pylos::Coordinat& c)
 {
   m_board->Set(c,m_player,m_must_remove);
 }
 
-void QtPylosBoardWidget::SetPlayer(const Pylos::Player player)
+void ribi::QtPylosBoardWidget::SetPlayer(const Pylos::Player player)
 {
   assert(CanSetPlayer(player));
   if (m_player != player)
@@ -128,7 +128,7 @@ void QtPylosBoardWidget::SetPlayer(const Pylos::Player player)
   }
 }
 
-void QtPylosBoardWidget::StartAdvanced()
+void ribi::QtPylosBoardWidget::StartAdvanced()
 {
   m_board = Pylos::Board::CreateAdvancedBoard();
   m_select = Pylos::Coordinat(0,0,0);
@@ -136,7 +136,7 @@ void QtPylosBoardWidget::StartAdvanced()
   repaint();
 }
 
-void QtPylosBoardWidget::StartBasic()
+void ribi::QtPylosBoardWidget::StartBasic()
 {
   m_board = Pylos::Board::CreateBasicBoard();
   m_select = Pylos::Coordinat(0,0,0);
@@ -144,7 +144,7 @@ void QtPylosBoardWidget::StartBasic()
   repaint();
 }
 
-void QtPylosBoardWidget::Transfer(
+void ribi::QtPylosBoardWidget::Transfer(
   const Pylos::Coordinat& from,
   const Pylos::Coordinat& to)
 {

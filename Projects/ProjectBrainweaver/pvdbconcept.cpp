@@ -17,13 +17,9 @@
 #include "pvdbexamplesfactory.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-pvdb::Concept::Concept(
+ribi::pvdb::Concept::Concept(
   const std::string& name,
-  const boost::shared_ptr<pvdb::Examples>& examples,
+  const boost::shared_ptr<ribi::pvdb::Examples>& examples,
   const bool is_complex,
   const int rating_complexity,
   const int rating_concreteness,
@@ -48,14 +44,14 @@ pvdb::Concept::Concept(
   #endif
 }
 
-const boost::shared_ptr<pvdb::Concept> pvdb::Concept::FromXml(const std::string& s)
+const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::Concept::FromXml(const std::string& s)
 {
   assert(s.size() >= 19);
   assert(s.substr(0,9) == std::string("<concept>"));
   assert(s.substr(s.size() - 10,10) == std::string("</concept>"));
 
   std::string name;
-  boost::shared_ptr<pvdb::Examples> examples;
+  boost::shared_ptr<ribi::pvdb::Examples> examples;
   bool is_complex = false;
   int rating_complexity    = -2; //Not even unrated (which has -1 as its value)
   int rating_concreteness  = -2; //Not even unrated (which has -1 as its value)
@@ -103,7 +99,7 @@ const boost::shared_ptr<pvdb::Concept> pvdb::Concept::FromXml(const std::string&
   return ConceptFactory::Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity);
 }
 
-const boost::shared_ptr<const pvdb::Examples> pvdb::Concept::GetExamples() const
+const boost::shared_ptr<const ribi::pvdb::Examples> ribi::pvdb::Concept::GetExamples() const
 {
   assert(m_examples);
   const boost::shared_ptr<const pvdb::Examples> p(m_examples);
@@ -111,7 +107,7 @@ const boost::shared_ptr<const pvdb::Examples> pvdb::Concept::GetExamples() const
   return p;
 }
 
-void pvdb::Concept::SetExamples(const boost::shared_ptr<pvdb::Examples>& examples)
+void ribi::pvdb::Concept::SetExamples(const boost::shared_ptr<ribi::pvdb::Examples>& examples)
 {
   if (examples != m_examples)
   {
@@ -120,7 +116,7 @@ void pvdb::Concept::SetExamples(const boost::shared_ptr<pvdb::Examples>& example
   }
 }
 
-void pvdb::Concept::SetName(const std::string& name)
+void ribi::pvdb::Concept::SetName(const std::string& name)
 {
   assert(this);
   assert(this->GetExamples());
@@ -131,7 +127,7 @@ void pvdb::Concept::SetName(const std::string& name)
   }
 }
 
-void pvdb::Concept::SetRatingComplexity(const int rating_complexity)
+void ribi::pvdb::Concept::SetRatingComplexity(const int rating_complexity)
 {
   assert(rating_complexity >= -1);
   assert(rating_complexity <=  2);
@@ -145,7 +141,7 @@ void pvdb::Concept::SetRatingComplexity(const int rating_complexity)
   }
 }
 
-void pvdb::Concept::SetRatingConcreteness(const int rating_concreteness)
+void ribi::pvdb::Concept::SetRatingConcreteness(const int rating_concreteness)
 {
   if (m_rating_concreteness != rating_concreteness)
   {
@@ -156,7 +152,7 @@ void pvdb::Concept::SetRatingConcreteness(const int rating_concreteness)
   }
 }
 
-void pvdb::Concept::SetRatingSpecificity(const int rating_specificity)
+void ribi::pvdb::Concept::SetRatingSpecificity(const int rating_specificity)
 {
   if (m_rating_specificity != rating_specificity)
   {
@@ -167,7 +163,7 @@ void pvdb::Concept::SetRatingSpecificity(const int rating_specificity)
   }
 }
 
-const std::string pvdb::Concept::ToXml(const boost::shared_ptr<const pvdb::Concept> &c)
+const std::string ribi::pvdb::Concept::ToXml(const boost::shared_ptr<const ribi::pvdb::Concept> &c)
 {
   std::stringstream s;
   s << "<concept>";
@@ -196,11 +192,7 @@ const std::string pvdb::Concept::ToXml(const boost::shared_ptr<const pvdb::Conce
   return r;
 }
 
-#ifndef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-bool IsEqual(const pvdb::Concept& lhs, const pvdb::Concept& rhs)
+bool ribi::pvdb::IsEqual(const ribi::pvdb::Concept& lhs, const ribi::pvdb::Concept& rhs)
 {
   const boost::shared_ptr<const pvdb::Examples> lhs_examples = lhs.GetExamples();
   assert(lhs_examples);
@@ -214,7 +206,7 @@ bool IsEqual(const pvdb::Concept& lhs, const pvdb::Concept& rhs)
     && lhs.GetRatingSpecificity()  == rhs.GetRatingSpecificity();
 }
 
-bool operator<(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs)
+bool ribi::pvdb::operator<(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs)
 {
   assert(lhs); assert(rhs);
   if (lhs->GetName() < rhs->GetName()) return true;
@@ -229,23 +221,20 @@ bool operator<(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::s
   return lhs->GetRatingSpecificity() < rhs->GetRatingSpecificity();
 }
 
-bool operator<(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs)
+bool ribi::pvdb::operator<(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs)
 {
   assert(lhs); assert(rhs);
-  return boost::shared_ptr<const pvdb::Concept>(lhs) < boost::shared_ptr<const pvdb::Concept>(rhs);
+  return boost::shared_ptr<const ribi::pvdb::Concept>(lhs) < boost::shared_ptr<const ribi::pvdb::Concept>(rhs);
 }
 
-bool operator<(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs)
+bool ribi::pvdb::operator<(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs)
 {
   assert(lhs); assert(rhs);
-  return boost::shared_ptr<const pvdb::Concept>(lhs) < boost::shared_ptr<const pvdb::Concept>(rhs);
+  return boost::shared_ptr<const ribi::pvdb::Concept>(lhs) < boost::shared_ptr<const ribi::pvdb::Concept>(rhs);
 }
 
-bool operator<(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs)
+bool ribi::pvdb::operator<(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs)
 {
   assert(lhs); assert(rhs);
-  return boost::shared_ptr<const pvdb::Concept>(lhs) < boost::shared_ptr<const pvdb::Concept>(rhs);
+  return boost::shared_ptr<const ribi::pvdb::Concept>(lhs) < boost::shared_ptr<const ribi::pvdb::Concept>(rhs);
 }
-
-
-} //~namespace pvdb

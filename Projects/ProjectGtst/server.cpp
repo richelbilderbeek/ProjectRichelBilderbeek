@@ -50,12 +50,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
 ///The Server Singleton its only instance
-boost::scoped_ptr<Server> Server::m_instance;
+boost::scoped_ptr<ribi::gtst::Server> ribi::gtst::Server::m_instance;
 //---------------------------------------------------------------------------
 ///Mutex when writing to Server
-std::recursive_mutex Server::m_mutex;
+std::recursive_mutex ribi::gtst::Server::m_mutex;
 //---------------------------------------------------------------------------
-Server::Server()
+ribi::gtst::Server::Server()
   : m_administrators(new Administrators),
     m_groups(new Groups(this)),
     m_log(new LogFile),
@@ -74,7 +74,7 @@ Server::Server()
 //---------------------------------------------------------------------------
 ///Assignment operator
 /*
-Server& Server::operator=(const Server& rhs)
+Server& ribi::gtst::Server::operator=(const Server& rhs)
 {
   if (this == &rhs) return *this;
 
@@ -103,7 +103,7 @@ Server& Server::operator=(const Server& rhs)
 */
 //---------------------------------------------------------------------------
 ///Deletes all Participant instances
-void Server::DeleteParticipants()
+void ribi::gtst::Server::DeleteParticipants()
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -113,12 +113,12 @@ void Server::DeleteParticipants()
   m_parameters->DeleteParticipants();
 }
 //---------------------------------------------------------------------------
-Server * Server::Get()
+ribi::gtst::Server * ribi::gtst::Server::Get()
 {
   if (!m_instance)
   {
     //Double-checked lock
-    std::lock_guard<std::recursive_mutex> lock(Server::m_mutex);
+    std::lock_guard<std::recursive_mutex> lock(ribi::gtst::Server::m_mutex);
     if (!m_instance) m_instance.reset(new Server);
   }
   assert(m_instance);
@@ -126,7 +126,7 @@ Server * Server::Get()
 }
 //---------------------------------------------------------------------------
 ///Obtain a read-only pointer to Groups
-const Groups * Server::GetGroups() const
+const ribi::gtst::Groups * ribi::gtst::Server::GetGroups() const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -138,13 +138,13 @@ const Groups * Server::GetGroups() const
 //Avoiding duplication in const and non-const member functions.
 //Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 3,
 //paragraph 'Avoid duplication in const and non-const member functions'
-Groups * Server::GetGroups()
+ribi::gtst::Groups * ribi::gtst::Server::GetGroups()
 {
   return const_cast<Groups*>(
     const_cast<const Server&>(*this).GetGroups());
 }
 //---------------------------------------------------------------------------
-const LogFile * Server::GetLog() const
+const ribi::gtst::LogFile * ribi::gtst::Server::GetLog() const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -152,7 +152,7 @@ const LogFile * Server::GetLog() const
   return m_log.get();
 }
 //---------------------------------------------------------------------------
-LogFile * Server::GetLog()
+ribi::gtst::LogFile * ribi::gtst::Server::GetLog()
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -160,7 +160,7 @@ LogFile * Server::GetLog()
   return m_log.get();
 }
 //---------------------------------------------------------------------------
-const Parameters * Server::GetParameters() const
+const ribi::gtst::Parameters * ribi::gtst::Server::GetParameters() const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -168,7 +168,7 @@ const Parameters * Server::GetParameters() const
   return m_parameters.get();
 }
 //---------------------------------------------------------------------------
-const ServerStates * Server::GetStates() const
+const ribi::gtst::ServerStates * ribi::gtst::Server::GetStates() const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -176,7 +176,7 @@ const ServerStates * Server::GetStates() const
   return m_states.get();
 }
 //---------------------------------------------------------------------------
-ServerStates * Server::GetStates()
+ribi::gtst::ServerStates * ribi::gtst::Server::GetStates()
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -184,14 +184,14 @@ ServerStates * Server::GetStates()
   return m_states.get();
 }
 //---------------------------------------------------------------------------
-boost::weak_ptr<Administrator> Server::LoginAdministrator()
+boost::weak_ptr<ribi::gtst::Administrator> ribi::gtst::Server::LoginAdministrator()
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   return m_administrators->CreateNewAdministrator();
 }
 //---------------------------------------------------------------------------
-const boost::shared_ptr<const Participant> Server::LetLogin(const boost::shared_ptr<const SafeIpAddress>& ip_address)
+const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Server::LetLogin(const boost::shared_ptr<const SafeIpAddress>& ip_address)
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -214,7 +214,7 @@ const boost::shared_ptr<const Participant> Server::LetLogin(const boost::shared_
   return new_participant;
 }
 //---------------------------------------------------------------------------
-void Server::Reset()
+void ribi::gtst::Server::Reset()
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -223,7 +223,7 @@ void Server::Reset()
   this->SetParameters(m_parameters);
 }
 //---------------------------------------------------------------------------
-void Server::NotifyLogout(const boost::shared_ptr<const Participant>& participant)
+void ribi::gtst::Server::NotifyLogout(const boost::shared_ptr<const Participant>& participant)
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -236,7 +236,7 @@ void Server::NotifyLogout(const boost::shared_ptr<const Participant>& participan
   //refreshed his/her browser, so he/she can log in easily
 }
 //---------------------------------------------------------------------------
-void Server::OnTimedServerPush()
+void ribi::gtst::Server::OnTimedServerPush()
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
   //if (!m_states) return;
@@ -244,7 +244,7 @@ void Server::OnTimedServerPush()
   m_states->GetCurrentState()->OnTimer();
 }
 //---------------------------------------------------------------------------
-void Server::SetParameters(boost::shared_ptr<Parameters> parameters)
+void ribi::gtst::Server::SetParameters(boost::shared_ptr<Parameters> parameters)
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -260,7 +260,7 @@ void Server::SetParameters(boost::shared_ptr<Parameters> parameters)
   m_groups->SetParticipants(m_parameters->GetParticipants());
 }
 //---------------------------------------------------------------------------
-void Server::TestMe()
+void ribi::gtst::Server::TestMe()
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 

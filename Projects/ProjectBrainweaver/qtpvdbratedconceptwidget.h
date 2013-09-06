@@ -1,10 +1,6 @@
 #ifndef QTPVDBRATEDCONCEPTWIDGET_H
 #define QTPVDBRATEDCONCEPTWIDGET_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
 
 #include <string>
 #include <vector>
@@ -16,6 +12,10 @@ namespace Ui {
   class QtPvdbRatedConceptWidget;
 }
 
+namespace ribi {
+
+namespace pvdb {
+
 class QtPvdbRatedConceptWidget : public QDialog
 {
   Q_OBJECT
@@ -23,7 +23,7 @@ class QtPvdbRatedConceptWidget : public QDialog
 public:
 
   explicit QtPvdbRatedConceptWidget(
-    const boost::shared_ptr<const pvdb::ConceptMap> concept_map,
+    const boost::shared_ptr<const ribi::pvdb::ConceptMap> concept_map,
     const boost::shared_ptr<const pvdb::Node> node,
     QWidget *parent = 0);
   ~QtPvdbRatedConceptWidget();
@@ -35,5 +35,9 @@ public:
 private:
   Ui::QtPvdbRatedConceptWidget *ui;
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBRATEDCONCEPTWIDGET_H

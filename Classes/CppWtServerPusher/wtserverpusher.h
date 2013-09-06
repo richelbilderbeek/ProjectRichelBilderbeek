@@ -28,7 +28,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/function.hpp>
 #include <boost/scoped_ptr.hpp>
 //---------------------------------------------------------------------------
+namespace ribi {
+
 struct WtServerPusherClient;
+
 //---------------------------------------------------------------------------
 ///A Server that broadcasts its messages
 struct WtServerPusher
@@ -87,5 +90,7 @@ private:
   ///A mutex
   mutable std::mutex m_mutex;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTSERVERPUSHER_H

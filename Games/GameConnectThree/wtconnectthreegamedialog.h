@@ -33,14 +33,21 @@ namespace Wt
   struct WTimer;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtConnectThreeWidget;
-//---------------------------------------------------------------------------
+struct ConnectThreeResources;
+
 ///WtConnectThreeGameDialog contains the
 ///ConnectThree game.
 struct WtConnectThreeGameDialog : public Wt::WContainerWidget
 {
   enum State { state_playing, state_winner };
-  WtConnectThreeGameDialog(const std::bitset<3>& is_player_human = std::bitset<3>(true));
+  WtConnectThreeGameDialog(
+    const boost::shared_ptr<const ConnectThreeResources> resources,
+    const std::bitset<3>& is_player_human = std::bitset<3>(true)
+  );
 
   bool HasWinner() const { return m_state == state_winner; }
   void PauseTimer();
@@ -53,6 +60,7 @@ struct WtConnectThreeGameDialog : public Wt::WContainerWidget
   WtConnectThreeWidget * m_board;
   std::bitset<3> m_is_player_human;
   std::vector<Wt::WImage *> m_players;
+  const boost::shared_ptr<const ConnectThreeResources> m_resources;
   State m_state;
   Wt::WTimer * const m_timer;
 
@@ -62,5 +70,7 @@ struct WtConnectThreeGameDialog : public Wt::WContainerWidget
   void ShowWinner();
   void UpdatePlayersPanel();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTCONNECTTHREEGAMEDIALOG_H

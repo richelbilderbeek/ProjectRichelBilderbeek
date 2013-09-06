@@ -35,7 +35,7 @@
 #include "trace.h"
 #include "ui_qtpvdbratingdialog.h"
 
-QtPvdbRatingDialog::QtPvdbRatingDialog(
+ribi::pvdb::QtPvdbRatingDialog::QtPvdbRatingDialog(
   const boost::shared_ptr<pvdb::File> file,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
@@ -78,17 +78,17 @@ QtPvdbRatingDialog::QtPvdbRatingDialog(
   }
 }
 
-QtPvdbRatingDialog::~QtPvdbRatingDialog()
+ribi::pvdb::QtPvdbRatingDialog::~QtPvdbRatingDialog()
 {
   delete ui;
 }
 
-void QtPvdbRatingDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbRatingDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key() == Qt::Key_Escape) { close(); }
 }
 
-void QtPvdbRatingDialog::on_button_save_clicked()
+void ribi::pvdb::QtPvdbRatingDialog::on_button_save_clicked()
 {
   //Temporarily disable to widget, otherwise saving cannot succeed
   this->hide();
@@ -118,7 +118,7 @@ void QtPvdbRatingDialog::on_button_save_clicked()
   close();
 }
 
-void QtPvdbRatingDialog::Save(const std::string& filename) const
+void ribi::pvdb::QtPvdbRatingDialog::Save(const std::string& filename) const
 {
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
@@ -130,7 +130,7 @@ void QtPvdbRatingDialog::Save(const std::string& filename) const
 
 
 
-void QtPvdbRatingDialog::on_button_print_clicked()
+void ribi::pvdb::QtPvdbRatingDialog::on_button_print_clicked()
 {
   QtPvdbPrintRatingDialog d(this->m_file);
 
@@ -153,7 +153,7 @@ void QtPvdbRatingDialog::on_button_print_clicked()
   this->ShowChild(&d);
 }
 
-void QtPvdbRatingDialog::on_edit_name_textEdited(const QString &arg1)
+void ribi::pvdb::QtPvdbRatingDialog::on_edit_name_textEdited(const QString &arg1)
 {
   if (arg1.size() > 1)
   {

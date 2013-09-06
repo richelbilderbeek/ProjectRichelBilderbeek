@@ -23,11 +23,7 @@
 #include "pvdbedge.h"
 #include "pvdbcluster.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-pvdb::ConceptMap::ConceptMap(const std::string& question)
+ribi::pvdb::ConceptMap::ConceptMap(const std::string& question)
   : m_edges( {} ),
     m_nodes(CreateNodes(question, {} ))
 {
@@ -41,9 +37,9 @@ pvdb::ConceptMap::ConceptMap(const std::string& question)
   #endif
 }
 
-pvdb::ConceptMap::ConceptMap(
-    const std::vector<boost::shared_ptr<pvdb::Node> >& nodes,
-    const std::vector<boost::shared_ptr<pvdb::Edge> >& edges)
+ribi::pvdb::ConceptMap::ConceptMap(
+    const std::vector<boost::shared_ptr<ribi::pvdb::Node> >& nodes,
+    const std::vector<boost::shared_ptr<ribi::pvdb::Edge> >& edges)
   : m_edges(edges),
     m_nodes(nodes)
 {
@@ -76,7 +72,7 @@ pvdb::ConceptMap::ConceptMap(
   #endif
 }
 
-pvdb::ConceptMap::ConceptMap(
+ribi::pvdb::ConceptMap::ConceptMap(
   const std::string& question,
   const boost::shared_ptr<pvdb::Cluster>& cluster)
   : m_nodes(CreateNodes(question, {} ))
@@ -85,13 +81,13 @@ pvdb::ConceptMap::ConceptMap(
   Test();
   #endif
 
-  const std::vector<boost::shared_ptr<pvdb::Concept> >& v = cluster->Get();
+  const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v = cluster->Get();
   const int n = boost::numeric_cast<int>(v.size());
   for (int i=0; i!=n; ++i)
   {
     const int x = 0;
     const int y = 0;
-    const boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::Create(v[i],x,y);
+    const boost::shared_ptr<ribi::pvdb::Node> node = pvdb::NodeFactory::Create(v[i],x,y);
     assert(node);
     m_nodes.push_back(node);
   }
@@ -99,7 +95,7 @@ pvdb::ConceptMap::ConceptMap(
     && "Assume the ConceptMap has as much nodes as the cluster has concepts + one focal question");
 }
 
-void pvdb::ConceptMap::AddEdge(const boost::shared_ptr<pvdb::Edge> edge)
+void ribi::pvdb::ConceptMap::AddEdge(const boost::shared_ptr<ribi::pvdb::Edge> edge)
 {
   assert(edge);
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 1
@@ -109,16 +105,16 @@ void pvdb::ConceptMap::AddEdge(const boost::shared_ptr<pvdb::Edge> edge)
   m_edges.push_back(edge);
 }
 
-void pvdb::ConceptMap::AddNode(const boost::shared_ptr<pvdb::Node> node)
+void ribi::pvdb::ConceptMap::AddNode(const boost::shared_ptr<ribi::pvdb::Node> node)
 {
   assert(node);
   m_nodes.push_back(node);
 }
 
 
-bool pvdb::ConceptMap::CanConstruct(
-  const std::vector<boost::shared_ptr<pvdb::Node> >& nodes,
-  const std::vector<boost::shared_ptr<pvdb::Edge> >& edges)
+bool ribi::pvdb::ConceptMap::CanConstruct(
+  const std::vector<boost::shared_ptr<ribi::pvdb::Node> >& nodes,
+  const std::vector<boost::shared_ptr<ribi::pvdb::Edge> >& edges)
 {
   //if (question.empty() && "Cannot construct empty questions") return false;
   //Test if first node, which is the focal question, does not have examples
@@ -134,7 +130,7 @@ bool pvdb::ConceptMap::CanConstruct(
   {
     const int n_nodes = static_cast<int>(nodes.size());
     const int n_invalid = std::count_if(edges.begin(), edges.end(),
-      [n_nodes](const boost::shared_ptr<pvdb::Edge> & edge)
+      [n_nodes](const boost::shared_ptr<ribi::pvdb::Edge> & edge)
       {
         return edge->GetTo() >= n_nodes || edge->GetFrom() >= n_nodes;
       }
@@ -151,14 +147,14 @@ bool pvdb::ConceptMap::CanConstruct(
     const int n_edges = edges.size();
     for (int i=0; i!=n_edges; ++i)
     {
-      const boost::shared_ptr<pvdb::Edge> & a = edges[i];
+      const boost::shared_ptr<ribi::pvdb::Edge> & a = edges[i];
       const auto a_from = a->GetFrom();
       const auto a_to   = a->GetTo();
       for (int j=i+1; j!=n_edges; ++j)
       {
         assert(i != j);
         assert(j < n_edges);
-        const boost::shared_ptr<pvdb::Edge> & b = edges[j];
+        const boost::shared_ptr<ribi::pvdb::Edge> & b = edges[j];
         assert(a.get() != b.get() && "Assume different pointers");
         const auto b_from = b->GetFrom();
         const auto b_to   = b->GetTo();
@@ -179,13 +175,13 @@ bool pvdb::ConceptMap::CanConstruct(
   return true;
 }
 
-const std::vector<boost::shared_ptr<pvdb::Node> > pvdb::ConceptMap::CreateNodes(
+const std::vector<boost::shared_ptr<ribi::pvdb::Node> > ribi::pvdb::ConceptMap::CreateNodes(
   const std::string& question,
-  const std::vector<boost::shared_ptr<pvdb::Node> >& nodes)
+  const std::vector<boost::shared_ptr<ribi::pvdb::Node> >& nodes)
 {
-  std::vector<boost::shared_ptr<pvdb::Node> > v;
-  const boost::shared_ptr<pvdb::Concept> concept(
-    pvdb::ConceptFactory::Create(
+  std::vector<boost::shared_ptr<ribi::pvdb::Node> > v;
+  const boost::shared_ptr<ribi::pvdb::Concept> concept(
+    ribi::pvdb::ConceptFactory::Create(
       question,
       pvdb::ExamplesFactory::Create(), //No examples
       false, //Is not complex
@@ -202,23 +198,23 @@ const std::vector<boost::shared_ptr<pvdb::Node> > pvdb::ConceptMap::CreateNodes(
   return v;
 }
 
-const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMap::CreateSubs() const
+const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > ribi::pvdb::ConceptMap::CreateSubs() const
 {
   assert(m_nodes.size() >= 1 && "Concept map must have a focal question");
 
-  std::vector<boost::shared_ptr<pvdb::ConceptMap> > v;
-  for (const boost::shared_ptr<pvdb::Node> focal_node: m_nodes)
+  std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > v;
+  for (const boost::shared_ptr<ribi::pvdb::Node> focal_node: m_nodes)
   //for (int i=0; i!=n_nodes; ++i)
   {
     assert(focal_node);
 
     //Collect all edges connected top the focal node (which is m_nodes[i])
-    std::vector<boost::shared_ptr<pvdb::Node> > nodes;
-    std::vector<boost::shared_ptr<pvdb::Edge> > edges;
+    std::vector<boost::shared_ptr<ribi::pvdb::Node> > nodes;
+    std::vector<boost::shared_ptr<ribi::pvdb::Edge> > edges;
 
     nodes.push_back(focal_node);
 
-    for (const boost::shared_ptr<pvdb::Edge> focal_edge: m_edges)
+    for (const boost::shared_ptr<ribi::pvdb::Edge> focal_edge: m_edges)
     {
       if (focal_edge->GetFrom() == focal_node)
       {
@@ -234,14 +230,14 @@ const std::vector<boost::shared_ptr<pvdb::ConceptMap> > pvdb::ConceptMap::Create
       }
     }
     assert(!nodes.empty());
-    assert(pvdb::ConceptMap::CanConstruct(nodes,edges) && "Only construct valid concept maps");
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map(new pvdb::ConceptMap(nodes,edges));
+    assert(ribi::pvdb::ConceptMap::CanConstruct(nodes,edges) && "Only construct valid concept maps");
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(new ribi::pvdb::ConceptMap(nodes,edges));
     v.push_back(concept_map);
   }
   return v;
 }
 
-void pvdb::ConceptMap::DeleteEdge(const boost::shared_ptr<pvdb::Edge> edge)
+void ribi::pvdb::ConceptMap::DeleteEdge(const boost::shared_ptr<ribi::pvdb::Edge> edge)
 {
   #ifndef NDEBUG
   assert(edge);
@@ -261,7 +257,7 @@ void pvdb::ConceptMap::DeleteEdge(const boost::shared_ptr<pvdb::Edge> edge)
   #endif
 }
 
-void pvdb::ConceptMap::DeleteNode(const boost::shared_ptr<pvdb::Node> node)
+void ribi::pvdb::ConceptMap::DeleteNode(const boost::shared_ptr<ribi::pvdb::Node> node)
 {
   #ifndef NDEBUG
   assert(node);
@@ -271,14 +267,14 @@ void pvdb::ConceptMap::DeleteNode(const boost::shared_ptr<pvdb::Node> node)
   #endif
 
   //Delete all edges going to this node
-  std::vector<boost::shared_ptr<pvdb::Edge> > to_be_deleted;
+  std::vector<boost::shared_ptr<ribi::pvdb::Edge> > to_be_deleted;
   std::copy_if(m_edges.begin(),m_edges.end(),std::back_inserter(to_be_deleted),
-    [node](boost::shared_ptr<pvdb::Edge> edge)
+    [node](boost::shared_ptr<ribi::pvdb::Edge> edge)
     {
       return edge->GetFrom() == node || edge->GetTo() == node;
     }
   );
-  for (boost::shared_ptr<pvdb::Edge> edge: to_be_deleted)
+  for (boost::shared_ptr<ribi::pvdb::Edge> edge: to_be_deleted)
   {
     DeleteEdge(edge);
   }
@@ -294,23 +290,23 @@ void pvdb::ConceptMap::DeleteNode(const boost::shared_ptr<pvdb::Node> node)
 }
 
 
-bool pvdb::ConceptMap::Empty() const
+bool ribi::pvdb::ConceptMap::Empty() const
 {
   return m_nodes.empty() && m_edges.empty();
 }
 
 
-const std::vector<boost::shared_ptr<const pvdb::Edge> > pvdb::ConceptMap::GetEdges() const
+const std::vector<boost::shared_ptr<const ribi::pvdb::Edge> > ribi::pvdb::ConceptMap::GetEdges() const
 {
   return AddConst(m_edges);
 }
 
-const std::vector<boost::shared_ptr<const pvdb::Node> > pvdb::ConceptMap::GetNodes() const
+const std::vector<boost::shared_ptr<const ribi::pvdb::Node> > ribi::pvdb::ConceptMap::GetNodes() const
 {
   return AddConst(m_nodes);
 }
 
-const std::string pvdb::ConceptMap::GetQuestion() const
+const std::string ribi::pvdb::ConceptMap::GetQuestion() const
 {
   assert(!m_nodes.empty());
   assert(m_nodes[0]->GetConcept());
@@ -319,9 +315,9 @@ const std::string pvdb::ConceptMap::GetQuestion() const
   return m_nodes[0]->GetConcept()->GetName();
 }
 
-bool pvdb::ConceptMap::HasSameContent(
-  const pvdb::ConceptMap& lhs,
-  const pvdb::ConceptMap& rhs)
+bool ribi::pvdb::ConceptMap::HasSameContent(
+  const ribi::pvdb::ConceptMap& lhs,
+  const ribi::pvdb::ConceptMap& rhs)
 {
   if (lhs.GetQuestion() != rhs.GetQuestion())
   {
@@ -338,7 +334,7 @@ bool pvdb::ConceptMap::HasSameContent(
   //Same Concepts
   {
     const std::vector<boost::shared_ptr<const pvdb::Node> > nodes_lhs = lhs.GetNodes();
-    std::multiset<boost::shared_ptr<const pvdb::Concept> > concepts_lhs;
+    std::multiset<boost::shared_ptr<const ribi::pvdb::Concept> > concepts_lhs;
     std::transform(nodes_lhs.begin(),nodes_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
       [](const boost::shared_ptr<const pvdb::Node>& node)
@@ -351,7 +347,7 @@ bool pvdb::ConceptMap::HasSameContent(
 
     const std::vector<boost::shared_ptr<const pvdb::Node> > nodes_rhs = rhs.GetNodes();
 
-    std::multiset<boost::shared_ptr<const pvdb::Concept> > concepts_rhs;
+    std::multiset<boost::shared_ptr<const ribi::pvdb::Concept> > concepts_rhs;
     std::transform(nodes_rhs.begin(),nodes_rhs.end(),
       std::inserter(concepts_rhs,concepts_rhs.begin()),
       [](const boost::shared_ptr<const pvdb::Node>& node)
@@ -360,8 +356,8 @@ bool pvdb::ConceptMap::HasSameContent(
       }
     );
     if (std::mismatch(concepts_lhs.begin(),concepts_lhs.end(),concepts_rhs.begin(),
-      [](const boost::shared_ptr<const pvdb::Concept>& a,
-        const boost::shared_ptr<const pvdb::Concept>& b)
+      [](const boost::shared_ptr<const ribi::pvdb::Concept>& a,
+        const boost::shared_ptr<const ribi::pvdb::Concept>& b)
         {
           return IsEqual(*a,*b);
         }
@@ -374,7 +370,7 @@ bool pvdb::ConceptMap::HasSameContent(
   //Same Edges
   {
     const std::vector<boost::shared_ptr<const pvdb::Edge> > edges_lhs = lhs.GetEdges();
-    std::multiset<boost::shared_ptr<const pvdb::Concept> > concepts_lhs;
+    std::multiset<boost::shared_ptr<const ribi::pvdb::Concept> > concepts_lhs;
     std::transform(edges_lhs.begin(),edges_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
       [](const boost::shared_ptr<const pvdb::Edge>& edge)
@@ -387,7 +383,7 @@ bool pvdb::ConceptMap::HasSameContent(
 
     const std::vector<boost::shared_ptr<const pvdb::Edge> > edges_rhs = rhs.GetEdges();
 
-    std::multiset<boost::shared_ptr<const pvdb::Concept> > concepts_rhs;
+    std::multiset<boost::shared_ptr<const ribi::pvdb::Concept> > concepts_rhs;
     std::transform(edges_rhs.begin(),edges_rhs.end(),
       std::inserter(concepts_rhs,concepts_rhs.begin()),
       [](const boost::shared_ptr<const pvdb::Edge>& edge)
@@ -396,8 +392,8 @@ bool pvdb::ConceptMap::HasSameContent(
       }
     );
     if (std::mismatch(concepts_lhs.begin(),concepts_lhs.end(),concepts_rhs.begin(),
-      [](const boost::shared_ptr<const pvdb::Concept>& a,
-        const boost::shared_ptr<const pvdb::Concept>& b)
+      [](const boost::shared_ptr<const ribi::pvdb::Concept>& a,
+        const boost::shared_ptr<const ribi::pvdb::Concept>& b)
         {
           return IsEqual(*a,*b);
         }
@@ -500,9 +496,9 @@ bool pvdb::ConceptMap::HasSameContent(
 }
 
 #ifndef NDEBUG
-bool pvdb::ConceptMap::IsValid() const
+bool ribi::pvdb::ConceptMap::IsValid() const
 {
-  for (const boost::shared_ptr<pvdb::Node> node: m_nodes)
+  for (const boost::shared_ptr<ribi::pvdb::Node> node: m_nodes)
   {
     if (!node)
     {
@@ -510,7 +506,7 @@ bool pvdb::ConceptMap::IsValid() const
       return false;
     }
   }
-  for (const boost::shared_ptr<pvdb::Edge> edge: m_edges)
+  for (const boost::shared_ptr<ribi::pvdb::Edge> edge: m_edges)
   {
     if (!edge)
     {
@@ -548,7 +544,7 @@ bool pvdb::ConceptMap::IsValid() const
 }
 #endif
 
-const std::string pvdb::ConceptMap::ToXml(const boost::shared_ptr<const pvdb::ConceptMap> map)
+const std::string ribi::pvdb::ConceptMap::ToXml(const boost::shared_ptr<const ribi::pvdb::ConceptMap> map)
 {
   std::stringstream s;
   s << "<concept_map>";
@@ -576,11 +572,7 @@ const std::string pvdb::ConceptMap::ToXml(const boost::shared_ptr<const pvdb::Co
   return r;
 }
 
-#ifndef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-bool IsEqual(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs)
+bool ribi::pvdb::IsEqual(const ribi::pvdb::ConceptMap& lhs, const ribi::pvdb::ConceptMap& rhs)
 {
   //Compare nodes
   {
@@ -607,6 +599,3 @@ bool IsEqual(const pvdb::ConceptMap& lhs, const pvdb::ConceptMap& rhs)
   return true;
 
 }
-
-
-} //~namespace pvdb

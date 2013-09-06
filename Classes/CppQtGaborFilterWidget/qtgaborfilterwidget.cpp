@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #pragma GCC diagnostic pop
 
-QtGaborFilterWidget::QtGaborFilterWidget(
+ribi::QtGaborFilterWidget::QtGaborFilterWidget(
   QWidget *parent,
   const double intensity,
   const unsigned char red,
@@ -50,19 +50,15 @@ QtGaborFilterWidget::QtGaborFilterWidget(
   assert(m_widget);
   m_widget->GetGaborFilter()->m_signal_changed.connect(
     boost::bind(
-      &QtGaborFilterWidget::repaint,
+      &ribi::QtGaborFilterWidget::repaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtGaborFilterWidget::OnResize,
+      &ribi::QtGaborFilterWidget::OnResize,
       this));
 
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   this->GetWidget()->GetGaborFilter()->SetAngle(pi * 2.0 / 16.0);
   this->GetWidget()->GetGaborFilter()->SetFrequency(16.0);
   this->GetWidget()->GetGaborFilter()->SetSigma(this->GetWidget()->GetGaborFilter()->SuggestSigma(
@@ -70,7 +66,7 @@ QtGaborFilterWidget::QtGaborFilterWidget(
 
 }
 
-void QtGaborFilterWidget::DrawGaborFilter(
+void ribi::QtGaborFilterWidget::DrawGaborFilter(
     QPainter& painter,
     const int left, const int top,
     const int width, const int height,
@@ -97,7 +93,7 @@ void QtGaborFilterWidget::DrawGaborFilter(
   painter.drawPixmap(left,top,width,height,QPixmap::fromImage(image));
 }
 
-void QtGaborFilterWidget::DrawGaborFilter(
+void ribi::QtGaborFilterWidget::DrawGaborFilter(
   QPainter& painter,
   const GaborFilterWidget * const widget)
 {
@@ -110,12 +106,12 @@ void QtGaborFilterWidget::DrawGaborFilter(
     widget->GetGaborFilter());
 }
 
-const std::string QtGaborFilterWidget::GetVersion()
+const std::string ribi::QtGaborFilterWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtGaborFilterWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtGaborFilterWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-07-07: Version 1.0: initial version");
@@ -123,7 +119,7 @@ const std::vector<std::string> QtGaborFilterWidget::GetVersionHistory()
 }
 
 ///OnResize is calgaborfilter when the geometry of the GaborFilterWidget is changed
-void QtGaborFilterWidget::OnResize()
+void ribi::QtGaborFilterWidget::OnResize()
 {
   this->setGeometry(
     this->GetWidget()->GetGeometry().GetX(),
@@ -133,13 +129,13 @@ void QtGaborFilterWidget::OnResize()
   this->repaint();
 }
 
-void QtGaborFilterWidget::paintEvent(QPaintEvent *)
+void ribi::QtGaborFilterWidget::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
   DrawGaborFilter(p,m_widget.get());
 }
 
-void QtGaborFilterWidget::resizeEvent(QResizeEvent *)
+void ribi::QtGaborFilterWidget::resizeEvent(QResizeEvent *)
 {
   QRect r = this->geometry();
   this->GetWidget()->SetGeometry(Rect(r.x(),r.y(),r.width(),r.height()));

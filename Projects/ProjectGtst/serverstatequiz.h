@@ -25,6 +25,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "serverstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Server in the state when each Participant has to vote.
 struct ServerStateQuiz : public ServerState, StateQuiz
@@ -93,5 +97,8 @@ struct ServerStateQuiz : public ServerState, StateQuiz
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ServerStateQuiz& s);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // SERVERSTATEQUIZ_H

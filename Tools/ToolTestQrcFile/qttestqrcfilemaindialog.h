@@ -24,8 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDialog>
 
 namespace Ui {
-class QtTestQrcFileMainDialog;
+  class QtTestQrcFileMainDialog;
 }
+
+namespace ribi {
 
 class QtTestQrcFileMainDialog : public QDialog
 {
@@ -46,5 +48,7 @@ private:
   static bool IsRegularFile(const std::string& filename);
 
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQRCFILEMAINDIALOG_H

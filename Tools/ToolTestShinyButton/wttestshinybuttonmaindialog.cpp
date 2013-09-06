@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtshinybuttonwidget.h"
 #include "wttestshinybuttonmaindialog.h"
 //---------------------------------------------------------------------------
-WtTestShinyButtonMainDialog::Ui::Ui()
+ribi::WtTestShinyButtonMainDialog::Ui::Ui()
   : m_dial_color(new WtDialWidget),
     m_dial_gradient(new WtDialWidget),
     m_edit(new Wt::WLineEdit),
@@ -48,7 +48,7 @@ WtTestShinyButtonMainDialog::Ui::Ui()
 
 }
 //---------------------------------------------------------------------------
-WtTestShinyButtonMainDialog::WtTestShinyButtonMainDialog()
+ribi::WtTestShinyButtonMainDialog::WtTestShinyButtonMainDialog()
   : m_dialog(new TestShinyButtonMenuDialog)
 {
   this->setContentAlignment(Wt::AlignCenter);
@@ -68,21 +68,21 @@ WtTestShinyButtonMainDialog::WtTestShinyButtonMainDialog()
   this->addWidget(ui.m_dial_gradient);
 
   ui.m_edit->setMinimumSize(400,Wt::WLength::Auto);
-  ui.m_edit->keyWentUp().connect(this,&WtTestShinyButtonMainDialog::OnEditChanged);
+  ui.m_edit->keyWentUp().connect(this,&ribi::WtTestShinyButtonMainDialog::OnEditChanged);
   ui.m_shiny_button->GetWidget()->SetGeometry(Rect(0,0,200,100));
 
   ui.m_shiny_button->GetWidget()->GetShinyButton()->m_signal_color_changed.connect(
     boost::bind(
-      &WtTestShinyButtonMainDialog::OnShinyButtonColorChanged,
+      &ribi::WtTestShinyButtonMainDialog::OnShinyButtonColorChanged,
       this));
 
   ui.m_dial_color->GetWidget()->GetDial()->m_signal_position_changed.connect(
     boost::bind(
-      &WtTestShinyButtonMainDialog::OnDialChanged,
+      &ribi::WtTestShinyButtonMainDialog::OnDialChanged,
       this));
   ui.m_dial_gradient->GetWidget()->GetDial()->m_signal_position_changed.connect(
     boost::bind(
-      &WtTestShinyButtonMainDialog::OnDialChanged,
+      &ribi::WtTestShinyButtonMainDialog::OnDialChanged,
       this));
 
   ui.m_dial_color->GetWidget()->GetDial()->SetPosition(0.5);
@@ -91,7 +91,7 @@ WtTestShinyButtonMainDialog::WtTestShinyButtonMainDialog()
   OnEditChanged();
 }
 //---------------------------------------------------------------------------
-void WtTestShinyButtonMainDialog::OnDialChanged()
+void ribi::WtTestShinyButtonMainDialog::OnDialChanged()
 {
   const double c = ui.m_dial_color->GetWidget()->GetDial()->GetPosition();
   const double g = ui.m_dial_gradient->GetWidget()->GetDial()->GetPosition();
@@ -99,14 +99,14 @@ void WtTestShinyButtonMainDialog::OnDialChanged()
   ui.m_shiny_button->GetWidget()->GetShinyButton()->SetColor(c,g);
 }
 //---------------------------------------------------------------------------
-void WtTestShinyButtonMainDialog::OnEditChanged()
+void ribi::WtTestShinyButtonMainDialog::OnEditChanged()
 {
   const std::string s = ui.m_edit->text().toUTF8();
 
   ui.m_shiny_button->GetWidget()->GetShinyButton()->SetText(s);
 }
 //---------------------------------------------------------------------------
-void WtTestShinyButtonMainDialog::OnShinyButtonColorChanged()
+void ribi::WtTestShinyButtonMainDialog::OnShinyButtonColorChanged()
 {
   const double c = ui.m_shiny_button->GetWidget()->GetShinyButton()->GetColor();
   const double g = ui.m_shiny_button->GetWidget()->GetShinyButton()->GetGradient();

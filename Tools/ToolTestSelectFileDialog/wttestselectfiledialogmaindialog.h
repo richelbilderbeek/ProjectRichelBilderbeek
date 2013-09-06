@@ -27,6 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
 namespace Wt { struct WAnchor; }
+
+namespace ribi {
+
 struct WtSelectFileDialog;
 //---------------------------------------------------------------------------
 struct WtTestSelectFileDialogMainDialog : public Wt::WContainerWidget
@@ -49,5 +52,7 @@ struct WtTestSelectFileDialogMainDialog : public Wt::WContainerWidget
     WtSelectFileDialog * m_dialog;
   } ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTSELECTFILEDIALOGMAINDIALOG_H

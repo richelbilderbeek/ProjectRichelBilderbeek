@@ -26,6 +26,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/checked_delete.hpp>
 //---------------------------------------------------------------------------
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///State is a state and serves as a base class for all states.
 ///
@@ -209,5 +212,8 @@ struct StateWaiting : public State
   ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateWaiting*);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // STATE_H

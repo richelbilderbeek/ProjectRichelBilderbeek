@@ -26,14 +26,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participantstatevoting.h"
 #include "votingoption.h"
 //---------------------------------------------------------------------------
-ParticipantStateQuiz::ParticipantStateQuiz(
+ribi::gtst::ParticipantStateQuiz::ParticipantStateQuiz(
   Participant * const participant,Server * const server)
   : ParticipantState(participant,server)
 {
 
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantStateQuiz::ToAdminStr() const
+const std::string ribi::gtst::ParticipantStateQuiz::ToAdminStr() const
 {
  const Participant * const participant = GetParticipant();
 

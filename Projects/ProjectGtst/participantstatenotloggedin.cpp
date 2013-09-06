@@ -24,14 +24,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participant.h"
 #include "participantstatenotloggedin.h"
 //---------------------------------------------------------------------------
-ParticipantStateNotLoggedIn::ParticipantStateNotLoggedIn(
+ribi::gtst::ParticipantStateNotLoggedIn::ParticipantStateNotLoggedIn(
   Participant * const participant,Server * const server)
   : ParticipantState(participant,server)
 {
 
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantStateNotLoggedIn::ToAdminStr() const
+const std::string ribi::gtst::ParticipantStateNotLoggedIn::ToAdminStr() const
 {
   std::string s = ToStr();
   if (this->GetParticipant()->CanGetId())

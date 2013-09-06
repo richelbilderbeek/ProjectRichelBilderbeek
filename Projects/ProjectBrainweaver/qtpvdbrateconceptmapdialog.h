@@ -1,25 +1,20 @@
 #ifndef QTPVDBRATECONCEPTMAPDIALOG_H
 #define QTPVDBRATECONCEPTMAPDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbfile.h"
-#endif
 
 namespace Ui {
-class QtPvdbRateConceptMapDialog;
+  class QtPvdbRateConceptMapDialog;
 }
 
-class QtPvdbRateConceptMapDialog : public QtHideAndShowDialog
+namespace ribi {
+
+namespace pvdb {
+
+class QtPvdbRateConceptMapDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -50,9 +45,13 @@ private:
 
   ///The widget requested for a rating of the already supplied sub concept map,
   ///with the focal concept item as the central node
-  void OnRequestRateConceptDialog(const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map);
+  void OnRequestRateConceptDialog(const boost::shared_ptr<ribi::pvdb::ConceptMap> sub_concept_map);
 
   static void Test();
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBRATECONCEPTMAPDIALOG_H

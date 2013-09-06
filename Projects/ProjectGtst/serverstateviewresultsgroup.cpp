@@ -36,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "server.h"
 //---------------------------------------------------------------------------
-ServerStateViewResultsGroup::ServerStateViewResultsGroup(
+ribi::gtst::ServerStateViewResultsGroup::ServerStateViewResultsGroup(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersViewResultsGroup>& parameters)
   : ServerState(server,period,cycle),
@@ -46,24 +46,24 @@ ServerStateViewResultsGroup::ServerStateViewResultsGroup(
 }
 //---------------------------------------------------------------------------
 ///Check if this state can go to the next state.
-bool ServerStateViewResultsGroup::CanGoToNextState() const
+bool ribi::gtst::ServerStateViewResultsGroup::CanGoToNextState() const
 {
   return GetTimeLeft() < 0;
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateViewResultsGroup::GetStateDuration() const
+int ribi::gtst::ServerStateViewResultsGroup::GetStateDuration() const
 {
   return m_parameters->GetDuration();
 }
 //---------------------------------------------------------------------------
-void ServerStateViewResultsGroup::OnTimer()
+void ribi::gtst::ServerStateViewResultsGroup::OnTimer()
 {
   if (CanGoToNextState()) GoToNextState();
 }
 //---------------------------------------------------------------------------
 /*
-void ServerStateViewResultsGroup::SetParameters(const boost::shared_ptr<const ParametersViewResultsGroup>& parameters)
+void ribi::gtst::ServerStateViewResultsGroup::SetParameters(const boost::shared_ptr<const ParametersViewResultsGroup>& parameters)
 {
   assert(parameters);
   m_parameters = parameters;
@@ -74,7 +74,7 @@ void ServerStateViewResultsGroup::SetParameters(const boost::shared_ptr<const Pa
 */
 //---------------------------------------------------------------------------
 ///Start or restart the state
-void ServerStateViewResultsGroup::Start()
+void ribi::gtst::ServerStateViewResultsGroup::Start()
 {
   assert(m_parameters);
 
@@ -90,7 +90,7 @@ void ServerStateViewResultsGroup::Start()
   );
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateViewResultsGroup& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateViewResultsGroup& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 #include <QPixmap>
 
-QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(QWidget *parent) :
+ribi::QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRichelBilderbeekGalleryMenuDialog)
 {
@@ -49,13 +49,13 @@ QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(QWidget
   ui->setupUi(this);
 }
 
-QtRichelBilderbeekGalleryMenuDialog::~QtRichelBilderbeekGalleryMenuDialog()
+ribi::QtRichelBilderbeekGalleryMenuDialog::~QtRichelBilderbeekGalleryMenuDialog()
 {
   delete ui;
 }
 
 
-const std::string QtRichelBilderbeekGalleryMenuDialog::GetPath(const std::string& filename)
+const std::string ribi::QtRichelBilderbeekGalleryMenuDialog::GetPath(const std::string& filename)
 {
   const int a = filename.rfind("\\",filename.size());
   const int b = filename.rfind("/",filename.size());
@@ -64,12 +64,12 @@ const std::string QtRichelBilderbeekGalleryMenuDialog::GetPath(const std::string
   return filename.substr(0,i);
 }
 
-void QtRichelBilderbeekGalleryMenuDialog::keyPressEvent(QKeyEvent* e)
+void ribi::QtRichelBilderbeekGalleryMenuDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void QtRichelBilderbeekGalleryMenuDialog::on_button_about_clicked()
+void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_about_clicked()
 {
   this->hide();
   About a = RichelBilderbeek::GalleryMenuDialog::GetAbout();
@@ -82,12 +82,12 @@ void QtRichelBilderbeekGalleryMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtRichelBilderbeekGalleryMenuDialog::on_button_quit_clicked()
+void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtRichelBilderbeekGalleryMenuDialog::on_button_start_clicked()
+void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_start_clicked()
 {
   QtRichelBilderbeekGalleryDialog d;
   ShowChild(&d);
@@ -95,7 +95,7 @@ void QtRichelBilderbeekGalleryMenuDialog::on_button_start_clicked()
 
 
 
-void QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
+void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
 {
   {
     const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlClassGallery();

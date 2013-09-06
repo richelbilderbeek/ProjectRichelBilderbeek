@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ServerStateChat::ServerStateChat(
+ribi::gtst::ServerStateChat::ServerStateChat(
   Server * const server,
   const int period,
   const int cycle,
@@ -52,7 +52,7 @@ ServerStateChat::ServerStateChat(
 //---------------------------------------------------------------------------
 ///See if the Participant has pending chat messages,
 ///sent by him/herself or the others
-bool ServerStateChat::CanGetChatMessages(
+bool ribi::gtst::ServerStateChat::CanGetChatMessages(
   const boost::shared_ptr<const Participant>& participant) const
 {
   assert(participant);
@@ -60,14 +60,14 @@ bool ServerStateChat::CanGetChatMessages(
 }
 //---------------------------------------------------------------------------
 ///Check if this state can go to the next state.
-bool ServerStateChat::CanGoToNextState() const
+bool ribi::gtst::ServerStateChat::CanGoToNextState() const
 {
   return GetTimeLeft() < 0;
 }
 //---------------------------------------------------------------------------
 ///Obtain the Participant his/her pending chat messages,
 ///sent by him/herself or the others
-const std::vector<boost::shared_ptr<ChatMessage> > ServerStateChat::GetChatMessages(
+const std::vector<boost::shared_ptr<ribi::gtst::ChatMessage> > ribi::gtst::ServerStateChat::GetChatMessages(
   const boost::shared_ptr<const Participant>& participant)
 {
   assert(CanGetChatMessages(participant));
@@ -82,19 +82,19 @@ const std::vector<boost::shared_ptr<ChatMessage> > ServerStateChat::GetChatMessa
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateChat::GetStateDuration() const
+int ribi::gtst::ServerStateChat::GetStateDuration() const
 {
   return m_parameters->GetDuration();
 }
 //---------------------------------------------------------------------------
-void ServerStateChat::OnTimer()
+void ribi::gtst::ServerStateChat::OnTimer()
 {
   if (CanGoToNextState()) GoToNextState();
 }
 //---------------------------------------------------------------------------
 ///In the 'Chat' phase, any Participant can send a chat message that
 ///will be broadcasted to all group members
-void ServerStateChat::NotifyChatMessage(
+void ribi::gtst::ServerStateChat::NotifyChatMessage(
   const boost::shared_ptr<const Participant>& participant,
   const boost::shared_ptr<ChatMessage>& message)
 {
@@ -127,7 +127,7 @@ void ServerStateChat::NotifyChatMessage(
 }
 //---------------------------------------------------------------------------
 /*
-void ServerStateChat::SetParameters(const boost::shared_ptr<const ParametersChat>& parameters)
+void ribi::gtst::ServerStateChat::SetParameters(const boost::shared_ptr<const ParametersChat>& parameters)
 {
   assert(parameters);
   m_parameters = parameters;
@@ -139,7 +139,7 @@ void ServerStateChat::SetParameters(const boost::shared_ptr<const ParametersChat
 //---------------------------------------------------------------------------
 ///Start or restart the state. Just go to the next chat phase, because
 ///every Participant can have or have not chatted the last round
-void ServerStateChat::Start()
+void ribi::gtst::ServerStateChat::Start()
 {
   ResetTimeLeft();
   m_chat_messages.clear();
@@ -156,7 +156,7 @@ void ServerStateChat::Start()
   );
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateChat& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateChat& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

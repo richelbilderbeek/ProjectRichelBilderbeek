@@ -1,19 +1,10 @@
 #ifndef QTPVDBASSESSORMENUDIALOG_H
 #define QTPVDBASSESSORMENUDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-
-#endif
 
 #include "pvdbfile.h"
 
@@ -21,8 +12,11 @@ namespace Ui {
 class QtPvdbAssessorMenuDialog;
 }
 
+namespace ribi {
 
-class QtPvdbAssessorMenuDialog : public QtHideAndShowDialog
+namespace pvdb {
+
+class QtPvdbAssessorMenuDialog : public ribi::QtHideAndShowDialog
 {
     Q_OBJECT
     
@@ -44,6 +38,8 @@ private:
   Ui::QtPvdbAssessorMenuDialog *ui;
 };
 
+} //~namespace pvdb
 
+} //~namespace ribi
 
 #endif // QTPVDBASSESSORMENUDIALOG_H

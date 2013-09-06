@@ -28,19 +28,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttoolgaborfiltermaindialog.h"
 #include "ui_qttoolgaborfiltermenudialog.h"
 
-QtToolGaborFilterMenuDialog::QtToolGaborFilterMenuDialog(QWidget *parent) :
+ribi::QtToolGaborFilterMenuDialog::QtToolGaborFilterMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtToolGaborFilterMenuDialog)
 {
     ui->setupUi(this);
 }
 
-QtToolGaborFilterMenuDialog::~QtToolGaborFilterMenuDialog()
+ribi::QtToolGaborFilterMenuDialog::~QtToolGaborFilterMenuDialog()
 {
     delete ui;
 }
 
-void QtToolGaborFilterMenuDialog::on_button_start_clicked()
+void ribi::QtToolGaborFilterMenuDialog::on_button_start_clicked()
 {
   QtToolGaborFilterMainDialog d;
   this->hide();
@@ -48,7 +48,7 @@ void QtToolGaborFilterMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void QtToolGaborFilterMenuDialog::on_button_about_clicked()
+void ribi::QtToolGaborFilterMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(ToolGaborFilterMenuDialog::GetAbout());
   this->hide();
@@ -56,7 +56,7 @@ void QtToolGaborFilterMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtToolGaborFilterMenuDialog::on_button_quit_clicked()
+void ribi::QtToolGaborFilterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }

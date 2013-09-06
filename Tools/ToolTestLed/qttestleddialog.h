@@ -27,6 +27,9 @@ namespace Ui {
   class QtTestLedDialog;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 class QtTestLedDialog : public QDialog
 {
   Q_OBJECT
@@ -36,7 +39,7 @@ public:
   ~QtTestLedDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestLedDialog *ui;
@@ -45,5 +48,7 @@ private slots:
     void on_button_about_clicked();
     void on_slider_valueChanged(int value);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTLEDDIALOG_H

@@ -1,23 +1,16 @@
 #ifndef QTPVDBOVERVIEWWIDGET_H
 #define QTPVDBOVERVIEWWIDGET_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
-
 
 #include <QGraphicsView>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
 struct QtHideAndShowDialog;
-#else
-#include "qthideandshowdialog.h"
-#endif
 
+namespace ribi {
+
+namespace pvdb {
 
 class QtPvdbOverviewWidget : public QGraphicsView
 {
@@ -42,5 +35,9 @@ private:
   const std::vector<QtHideAndShowDialog* > m_dialogs;
 
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBOVERVIEWWIDGET_H

@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testencrangerdialog.h"
 #include "wttestencrangermaindialog.h"
 //---------------------------------------------------------------------------
-WtTestEncrangerMainDialog::WtTestEncrangerMainDialog()
+ribi::WtTestEncrangerMainDialog::WtTestEncrangerMainDialog()
   : m_dialog(new TestEncrangerDialog),
     m_edit_encrypted_text(0),
     m_edit_key(0),
@@ -40,7 +40,7 @@ WtTestEncrangerMainDialog::WtTestEncrangerMainDialog()
   ShowMain();
 }
 //---------------------------------------------------------------------------
-void WtTestEncrangerMainDialog::OnDeencryptClick()
+void ribi::WtTestEncrangerMainDialog::OnDeencryptClick()
 {
   m_dialog->SetEncryptedText(m_edit_encrypted_text->text().toUTF8());
   try
@@ -56,7 +56,7 @@ void WtTestEncrangerMainDialog::OnDeencryptClick()
   m_edit_plain_text->setText(m_dialog->GetPlainText().c_str());
 }
 //---------------------------------------------------------------------------
-void WtTestEncrangerMainDialog::OnEncryptClick()
+void ribi::WtTestEncrangerMainDialog::OnEncryptClick()
 {
   m_dialog->SetPlainText(m_edit_plain_text->text().toUTF8());
   try
@@ -72,7 +72,7 @@ void WtTestEncrangerMainDialog::OnEncryptClick()
   m_edit_encrypted_text->setText(m_dialog->GetEncryptedText().c_str());
 }
 //---------------------------------------------------------------------------
-void WtTestEncrangerMainDialog::ShowMain()
+void ribi::WtTestEncrangerMainDialog::ShowMain()
 {
   this->clear();
   this->addWidget(new Wt::WBreak);
@@ -91,7 +91,7 @@ void WtTestEncrangerMainDialog::ShowMain()
   {
     Wt::WPushButton * const button = new Wt::WPushButton("Encrypt");
     button->clicked().connect(
-      this, &WtTestEncrangerMainDialog::OnEncryptClick);
+      this, &ribi::WtTestEncrangerMainDialog::OnEncryptClick);
     this->addWidget(button);
   }
   //Arrow down
@@ -107,7 +107,7 @@ void WtTestEncrangerMainDialog::ShowMain()
   {
     Wt::WPushButton * const button = new Wt::WPushButton("Deencrypt");
     button->clicked().connect(
-      this, &WtTestEncrangerMainDialog::OnDeencryptClick);
+      this, &ribi::WtTestEncrangerMainDialog::OnDeencryptClick);
     this->addWidget(button);
   }
   //Arrow up

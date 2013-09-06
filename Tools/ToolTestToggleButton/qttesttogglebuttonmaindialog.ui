@@ -14,12 +14,12 @@
    <string>TestToggleButton</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolTestToggleButton.qrc">
+   <iconset resource="../../Games/GameBoenken/GameBoenken.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QtToggleButtonWidget" name="toggle_button" native="true"/>
+    <widget class="ribi::QtToggleButtonWidget" name="toggle_button" native="true"/>
    </item>
    <item>
     <widget class="QLabel" name="label_is_pressed">
@@ -75,14 +75,14 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QtToggleButtonWidget</class>
+   <class>ribi::QtToggleButtonWidget</class>
    <extends>QWidget</extends>
    <header>qttogglebuttonwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="ToolTestToggleButton.qrc"/>
+  <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
  </resources>
  <connections/>
 </ui>

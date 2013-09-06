@@ -43,7 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qttestqtarrowitemsmaindialog.h"
 
-QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
+ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtArrowItemsMainDialog)
 {
@@ -51,11 +51,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
 
   assert(this->ui->view->scene());
 
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
 
   //Add normal arrows
   {
@@ -137,7 +133,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
       rects.push_back(rect);
 
       rect->m_signal_request_scene_update.connect(
-        boost::bind(&QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+        boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
     }
     for (int i=0; i<n_items-2; i+=3)
     {
@@ -173,7 +169,7 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
       rect->m_signal_request_scene_update.connect(
-        boost::bind(&QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+        boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
     }
     for (int i=0; i<n_items-1; i+=2)
     {
@@ -191,24 +187,24 @@ QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
   }
 }
 
-QtTestQtArrowItemsMainDialog::~QtTestQtArrowItemsMainDialog()
+ribi::QtTestQtArrowItemsMainDialog::~QtTestQtArrowItemsMainDialog()
 {
   delete ui;
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double QtTestQtArrowItemsMainDialog::GetRandomUniform()
+double ribi::QtTestQtArrowItemsMainDialog::GetRandomUniform()
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
 
-void QtTestQtArrowItemsMainDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtTestQtArrowItemsMainDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 
-void QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate()
+void ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate()
 {
   this->ui->view->scene()->update();
 }

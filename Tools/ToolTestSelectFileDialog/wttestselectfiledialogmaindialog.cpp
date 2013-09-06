@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestSelectFileDialogMainDialog::WtTestSelectFileDialogMainDialog()
+ribi::WtTestSelectFileDialogMainDialog::WtTestSelectFileDialogMainDialog()
 {
   {
     std::vector<std::string> v;
@@ -57,13 +57,13 @@ WtTestSelectFileDialogMainDialog::WtTestSelectFileDialogMainDialog()
   Show();
 }
 //---------------------------------------------------------------------------
-void WtTestSelectFileDialogMainDialog::OnSelect()
+void ribi::WtTestSelectFileDialogMainDialog::OnSelect()
 {
   ui.m_anchor->setText((std::string("Download ") + ui.m_dialog->GetSelectedFile()).c_str() );
   ui.m_anchor->setResource(new Wt::WFileResource(ui.m_dialog->GetSelectedFile(),ui.m_dialog->GetSelectedFile()));
 }
 //---------------------------------------------------------------------------
-void WtTestSelectFileDialogMainDialog::Show()
+void ribi::WtTestSelectFileDialogMainDialog::Show()
 {
   clear();
   setContentAlignment(Wt::AlignCenter);
@@ -76,6 +76,6 @@ void WtTestSelectFileDialogMainDialog::Show()
   this->addWidget(ui.m_anchor);
 
   ui.m_dialog->m_signal_selected.connect(
-    boost::bind(&WtTestSelectFileDialogMainDialog::OnSelect,this));
+    boost::bind(&ribi::WtTestSelectFileDialogMainDialog::OnSelect,this));
 }
 //---------------------------------------------------------------------------

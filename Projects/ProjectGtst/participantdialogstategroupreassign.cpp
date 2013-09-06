@@ -48,14 +48,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateGroupReAssign::ParticipantDialogStateGroupReAssign(
+ribi::gtst::ParticipantDialogStateGroupReAssign::ParticipantDialogStateGroupReAssign(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
 
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateGroupReAssign::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateGroupReAssign::RespondToTimedServerPush()
 {
   assert(GetDialog()->CanGetParticipant()
     && "Assume that only existing participants can have their payoffs assigned");
@@ -75,7 +75,7 @@ void ParticipantDialogStateGroupReAssign::RespondToTimedServerPush()
   RespondToParticipant();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateGroupReAssign::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateGroupReAssign::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
   assert(GetDialog()->CanGetParticipant()

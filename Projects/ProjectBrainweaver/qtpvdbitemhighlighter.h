@@ -1,21 +1,14 @@
 #ifndef QTHIGHLIGHTER_H
 #define QTHIGHLIGHTER_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <QObject>
 #include <QTimer>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "qtpvdbconceptitem.h"
-#include <QTimer>
-#endif
 
+namespace ribi {
+
+namespace pvdb {
 
 class QtPvdbItemHighlighter : public QObject
 {
@@ -48,5 +41,9 @@ private:
 private slots:
   void OnTimer();
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTHIGHLIGHTER_H

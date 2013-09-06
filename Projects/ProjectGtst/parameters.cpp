@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #include "wtshapewidget.h"
 //---------------------------------------------------------------------------
-Parameters::Parameters(Server * const server)
+ribi::gtst::Parameters::Parameters(Server * const server)
   : m_assign_payoff(new ParametersAssignPayoff),
     m_chat(new ParametersChat),
     m_choose_action(new ParametersChooseAction),
@@ -58,7 +58,7 @@ Parameters::Parameters(Server * const server)
 }
 //---------------------------------------------------------------------------
 ///Add Participants to Parameters
-void Parameters::AddParticipant(boost::shared_ptr<Participant> participant)
+void ribi::gtst::Parameters::AddParticipant(boost::shared_ptr<Participant> participant)
 {
   std::clog << "Added participant " << participant << '\n';
   assert(participant);
@@ -66,7 +66,7 @@ void Parameters::AddParticipant(boost::shared_ptr<Participant> participant)
 }
 //---------------------------------------------------------------------------
 ///Create a default non-logged in Partipant
-boost::shared_ptr<Participant> Parameters::CreateDefaultParticipant()
+boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Parameters::CreateDefaultParticipant()
 {
   static int already_created = 0;
   //Create chat tag
@@ -103,13 +103,13 @@ boost::shared_ptr<Participant> Parameters::CreateDefaultParticipant()
 }
 //---------------------------------------------------------------------------
 ///Deletes all Participant instances
-void Parameters::DeleteParticipants()
+void ribi::gtst::Parameters::DeleteParticipants()
 {
   this->m_participants.clear();
   assert(m_participants.empty());
 }
 //---------------------------------------------------------------------------
-void Parameters::ReadFromFile(const std::string& filename)
+void ribi::gtst::Parameters::ReadFromFile(const std::string& filename)
 {
   if (!boost::filesystem::exists(filename))
   {
@@ -190,7 +190,7 @@ void Parameters::ReadFromFile(const std::string& filename)
 //---------------------------------------------------------------------------
 ///FileToVector reads a file and converts it to a std::vector<std::string>
 ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> Parameters::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::gtst::Parameters::FileToVector(const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
   std::vector<std::string> v;
@@ -205,7 +205,7 @@ const std::vector<std::string> Parameters::FileToVector(const std::string& filen
 }
 //---------------------------------------------------------------------------
 ///Parse a line in a Parameter file.
-void Parameters::Parse(const std::string& s)
+void ribi::gtst::Parameters::Parse(const std::string& s)
 {
   if (s.empty()) return;
   if (s.size() > 0 && s.substr(0,1) == "#") return;
@@ -328,7 +328,7 @@ void Parameters::Parse(const std::string& s)
 }
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> Parameters::SeperateString(
+const std::vector<std::string> ribi::gtst::Parameters::SeperateString(
   const std::string& input,
   const char seperator)
 {
@@ -344,7 +344,7 @@ const std::vector<std::string> Parameters::SeperateString(
   return v;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const Parameters& parameters)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const Parameters& parameters)
 {
   os
     << "<parameters>"

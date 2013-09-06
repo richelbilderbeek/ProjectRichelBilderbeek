@@ -1,23 +1,18 @@
 #ifndef QTPVDBSTUDENTSTARTCOMPLETEDIALOG_H
 #define QTPVDBSTUDENTSTARTCOMPLETEDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbfile.h"
-#endif
 
 namespace Ui { class QtPvdbStudentStartCompleteDialog; }
 
-class QtPvdbStudentStartCompleteDialog : public QtHideAndShowDialog
+namespace ribi {
+
+namespace pvdb {
+
+class QtPvdbStudentStartCompleteDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
     
@@ -46,5 +41,8 @@ class QtPvdbStudentStartCompleteDialog : public QtHideAndShowDialog
   void Save();
 };
 
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBSTUDENTSTARTCOMPLETEDIALOG_H

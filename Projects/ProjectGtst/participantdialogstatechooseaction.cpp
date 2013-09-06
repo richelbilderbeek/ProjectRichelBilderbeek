@@ -44,7 +44,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participantdialogstatechooseaction.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateChooseAction::ParticipantDialogStateChooseAction(
+ribi::gtst::ParticipantDialogStateChooseAction::ParticipantDialogStateChooseAction(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
@@ -52,7 +52,7 @@ ParticipantDialogStateChooseAction::ParticipantDialogStateChooseAction(
 }
 //---------------------------------------------------------------------------
 ///Do something random with the UI, used by DebugDialog
-void ParticipantDialogStateChooseAction::DoSomethingRandom()
+void ribi::gtst::ParticipantDialogStateChooseAction::DoSomethingRandom()
 {
   switch (std::rand() % 2)
   {
@@ -76,7 +76,7 @@ void ParticipantDialogStateChooseAction::DoSomethingRandom()
   }
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateChooseAction::OnChooseActionClick()
+void ribi::gtst::ParticipantDialogStateChooseAction::OnChooseActionClick()
 {
   const int action_index = ui.m_group->selectedButtonIndex();
 
@@ -110,7 +110,7 @@ void ParticipantDialogStateChooseAction::OnChooseActionClick()
     [](Wt::WRadioButton * const r) { r->setEnabled(false); } );
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateChooseAction::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateChooseAction::RespondToTimedServerPush()
 {
   const int time_left = m_server->GetStates()->GetCurrentState()->GetTimeLeft();
 
@@ -179,7 +179,7 @@ void ParticipantDialogStateChooseAction::RespondToTimedServerPush()
   RespondToParticipant();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateChooseAction::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateChooseAction::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
   assert(GetDialog()->CanGetParticipant()
@@ -225,6 +225,6 @@ void ParticipantDialogStateChooseAction::ShowPage(ParticipantDialog * const dial
 
   ui.m_button_choose_action->clicked().connect(
     this,
-    &ParticipantDialogStateChooseAction::OnChooseActionClick);
+    &ribi::gtst::ParticipantDialogStateChooseAction::OnChooseActionClick);
 }
 //---------------------------------------------------------------------------

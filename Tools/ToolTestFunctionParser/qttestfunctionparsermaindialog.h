@@ -27,6 +27,8 @@ namespace Ui {
 class QtTestFunctionParserMainDialog;
 }
 
+namespace ribi {
+
 class QtTestFunctionParserMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -43,5 +45,7 @@ private:
   Ui::QtTestFunctionParserMainDialog *ui;
   void Parse();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTFUNCTIONPARSERMAINDIALOG_H

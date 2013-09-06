@@ -35,9 +35,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "timepollwtmaindialog.h"
 #include "timepollwtmenudialog.h"
 //---------------------------------------------------------------------------
-namespace ToolTimePoll {
 //---------------------------------------------------------------------------
-WtTimePollMenuDialog::WtTimePollMenuDialog()
+ribi::ToolTimePoll::WtTimePollMenuDialog::WtTimePollMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -77,7 +76,7 @@ WtTimePollMenuDialog::WtTimePollMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTimePollMenuDialog::CreateNewAboutDialog()
+Wt::WWidget * ribi::ToolTimePoll::WtTimePollMenuDialog::CreateNewAboutDialog()
 {
   About a = TimePollMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -90,14 +89,14 @@ Wt::WWidget * WtTimePollMenuDialog::CreateNewAboutDialog()
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTimePollMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::ToolTimePoll::WtTimePollMenuDialog::CreateNewMainDialog() const
 {
   WtTimePollMainDialog * const d = new WtTimePollMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTimePollMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::ToolTimePoll::WtTimePollMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -110,6 +109,4 @@ Wt::WWidget * WtTimePollMenuDialog::CreateNewWelcomeDialog() const
   new Wt::WLabel("from different browsers and/or computers",dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTimePoll
 //---------------------------------------------------------------------------

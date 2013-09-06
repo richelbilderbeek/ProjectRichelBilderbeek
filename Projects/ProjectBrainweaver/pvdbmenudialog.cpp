@@ -10,16 +10,12 @@
 #include "fuzzy_equal_to.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-pvdb::MenuDialog::MenuDialog()
+ribi::pvdb::MenuDialog::MenuDialog()
 {
 
 }
 
-const About pvdb::MenuDialog::GetAbout()
+const ribi::About ribi::pvdb::MenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
@@ -35,12 +31,12 @@ const About pvdb::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string pvdb::MenuDialog::GetVersion()
+const std::string ribi::pvdb::MenuDialog::GetVersion()
 {
   return "0.35";
 }
 
-const std::vector<std::string> pvdb::MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-06-17: Version 0.01: concept version, using 'IronHide' style");
@@ -80,7 +76,3 @@ const std::vector<std::string> pvdb::MenuDialog::GetVersionHistory()
   v.push_back("2013-08-30: Version 0.35: fixed segmentation faults, replaced print dialogs by save file dialogs");
   return v;
 }
-
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-} //~namespace pvdb
-#endif

@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef PROJECTGTSTALL_GROUPS_H
 #define PROJECTGTSTALL_GROUPS_H
 //---------------------------------------------------------------------------
+
 #include "groupfinished.h"
 #include "grouploggedin.h"
 #include "groupnotloggedin.h"

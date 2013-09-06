@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "pyloscoordinat.h"
 
+namespace ribi {
+
 namespace Pylos {
 
 ///PylosMove encapsulates a Pylos move.
@@ -76,5 +78,7 @@ bool operator==(const Move& lhs, const Move& rhs);
 std::ostream& operator<<(std::ostream& os, const Move& m);
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // PYLOSMOVE_H

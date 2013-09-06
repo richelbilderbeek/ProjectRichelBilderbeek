@@ -1,10 +1,6 @@
 #ifndef QTPVDBCLUSTERWIDGET_H
 #define QTPVDBCLUSTERWIDGET_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
 
 #include <map>
 
@@ -15,12 +11,11 @@
 #include "pvdbcompetency.h"
 #include "pvdbcluster.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
 
-#endif
+namespace ribi {
 
+namespace pvdb {
 
 class QtPvdbClusterWidget : public QTreeWidget
 {
@@ -67,5 +62,9 @@ private:
   ///Write the widget its data to the cluster
   void WriteToCluster();
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCLUSTERWIDGET_H

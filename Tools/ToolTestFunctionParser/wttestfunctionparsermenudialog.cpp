@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestFunctionParserMenuDialog::WtTestFunctionParserMenuDialog()
+ribi::WtTestFunctionParserMenuDialog::WtTestFunctionParserMenuDialog()
 {
   {
     std::vector<std::string> image_names;
@@ -98,7 +98,7 @@ WtTestFunctionParserMenuDialog::WtTestFunctionParserMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestFunctionParserMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestFunctionParserMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestFunctionParserMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -107,14 +107,14 @@ Wt::WWidget * WtTestFunctionParserMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestFunctionParserMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestFunctionParserMenuDialog::CreateNewMainDialog() const
 {
   WtTestFunctionParserMainDialog * const d = new WtTestFunctionParserMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestFunctionParserMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestFunctionParserMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participant.h"
 #include "participantstateviewresultsvoting.h"
 //---------------------------------------------------------------------------
-ParticipantStateViewResultsVoting::ParticipantStateViewResultsVoting(
+ribi::gtst::ParticipantStateViewResultsVoting::ParticipantStateViewResultsVoting(
   Participant * const participant,
   Server * const server)
   : ParticipantState(participant,server)
@@ -31,7 +31,7 @@ ParticipantStateViewResultsVoting::ParticipantStateViewResultsVoting(
 
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantStateViewResultsVoting::ToAdminStr() const
+const std::string ribi::gtst::ParticipantStateViewResultsVoting::ToAdminStr() const
 {
   const Participant * const participant = GetParticipant();
   std::string s

@@ -76,7 +76,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttoolgaborfiltermenudialog.h"
 #include "qttooltestqtmodelsmenudialog.h"
 
-QDialog * QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilderbeek::ProgramType type)
+QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilderbeek::ProgramType type)
 {
   using namespace RichelBilderbeek;
   QDialog *  p = nullptr;
@@ -245,7 +245,7 @@ QDialog * QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilderbeek::
 }
 
 
-QtHideAndShowDialog * QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const RichelBilderbeek::ProgramType type)
+ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const RichelBilderbeek::ProgramType type)
 {
   QtHideAndShowDialog * const d = new QtHideAndShowDialog;
   assert(!d->layout());
@@ -296,7 +296,7 @@ QtHideAndShowDialog * QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const
 }
 
 
-bool QtRichelBilderbeekProgram::IsRegularFile(const std::string& filename)
+bool ribi::QtRichelBilderbeekProgram::IsRegularFile(const std::string& filename)
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);

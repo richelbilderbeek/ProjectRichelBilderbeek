@@ -32,6 +32,9 @@ namespace Wt
   struct WStackedWidget;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct Question;
 struct OpenQuestion;
 struct OpenQuestionDialog;
@@ -60,5 +63,7 @@ private:
 
   void OnButtonSubmitClicked();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTOPENQUESTIONDIALOG_H

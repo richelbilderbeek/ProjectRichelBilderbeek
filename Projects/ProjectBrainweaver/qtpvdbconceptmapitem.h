@@ -1,15 +1,14 @@
 #ifndef QTPVDBCONCEPTMAPITEM_H
 #define QTPVDBCONCEPTMAPITEM_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/signals2.hpp>
 
 #include "pvdbfwd.h"
 #include "qtroundedtextrectitem.h"
+
+namespace ribi {
+
+namespace pvdb {
 
 ///Either a Node or Edge of a ConceptMap
 struct QtPvdbConceptMapItem : public QtRoundedTextRectItem
@@ -23,8 +22,8 @@ struct QtPvdbConceptMapItem : public QtRoundedTextRectItem
   virtual void EnableAll() = 0;
 
   ///Obtain the Concept from either a Node or an Edge
-  virtual const boost::shared_ptr<const pvdb::Concept>  GetConcept() const = 0;
-  virtual const boost::shared_ptr<      pvdb::Concept>  GetConcept()       = 0;
+  virtual const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const = 0;
+  virtual const boost::shared_ptr<      ribi::pvdb::Concept>  GetConcept()       = 0;
 
   virtual const boost::shared_ptr<const QtPvdbConceptItem> GetConceptItem() const = 0;
   virtual const boost::shared_ptr<      QtPvdbConceptItem> GetConceptItem()       = 0;
@@ -58,8 +57,12 @@ struct QtPvdbConceptMapItem : public QtRoundedTextRectItem
   void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
 
   private:
-  virtual void SetConcept(const boost::shared_ptr<pvdb::Concept> concept) = 0;
+  virtual void SetConcept(const boost::shared_ptr<ribi::pvdb::Concept> concept) = 0;
 
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCONCEPTMAPITEM_H

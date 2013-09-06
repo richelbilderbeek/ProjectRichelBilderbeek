@@ -34,7 +34,8 @@ namespace Wt
   struct WButtonGroup;
   struct WLabel;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
 namespace ToolTimePoll {
 //---------------------------------------------------------------------------
 ///TimePoll its main dialog
@@ -72,5 +73,7 @@ struct WtTimePollMainDialog
 };
 //---------------------------------------------------------------------------
 } //~namespace ToolTimePoll
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TIMEPOLLWTMAINDIALOG_H

@@ -29,6 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace Ui {
   class QtTestQuestionMainDialog;
 }
+
+namespace ribi {
+
 struct TestQuestionMainDialog;
 struct QtQuestionDialog;
 
@@ -58,5 +61,7 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQUESTIONMAINDIALOG_H

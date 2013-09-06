@@ -22,12 +22,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "administrators.h"
 #include "counter.h"
 //---------------------------------------------------------------------------
-Administrators::Administrators()
+ribi::gtst::Administrators::Administrators()
   : m_last_id_administrator(new Counter(1))
 {
 }
 //---------------------------------------------------------------------------
-boost::weak_ptr<Administrator> Administrators::CreateNewAdministrator()
+boost::weak_ptr<ribi::gtst::Administrator> ribi::gtst::Administrators::CreateNewAdministrator()
 {
   #ifndef NDEBUG
   const int n_administrators_old = m_administrators.size();

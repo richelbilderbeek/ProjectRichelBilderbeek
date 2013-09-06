@@ -23,11 +23,7 @@
 #include "pvdbhelper.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-pvdb::Example::Example(
+ribi::pvdb::Example::Example(
   const std::string& text,
   const pvdb::Competency competency,
   const bool is_complex,
@@ -45,7 +41,7 @@ pvdb::Example::Example(
   #endif
 }
 
-const std::string pvdb::Example::CompetencyToStr(const pvdb::Competency competency)
+const std::string ribi::pvdb::Example::CompetencyToStr(const pvdb::Competency competency)
 {
   switch (competency)
   {
@@ -59,10 +55,10 @@ const std::string pvdb::Example::CompetencyToStr(const pvdb::Competency competen
     case pvdb::Competency::misc: return "misc";
   }
   assert(!"Should not get here");
-  throw std::logic_error("pvdb::Example::CompetencyToStr: unknown Competency");
+  throw std::logic_error("ribi::pvdb::Example::CompetencyToStr: unknown Competency");
 }
 
-const boost::shared_ptr<pvdb::Example> pvdb::Example::FromXml(const std::string& s)
+const boost::shared_ptr<ribi::pvdb::Example> ribi::pvdb::Example::FromXml(const std::string& s)
 {
   assert(s.size() >= 17);
   assert(s.substr(0,9) == std::string("<example>"));
@@ -108,7 +104,7 @@ const boost::shared_ptr<pvdb::Example> pvdb::Example::FromXml(const std::string&
   return pvdb::ExampleFactory::Create(text,competency,is_complex,is_concrete,is_specific);
 }
 
-void pvdb::Example::SetCompetency(const pvdb::Competency competency)
+void ribi::pvdb::Example::SetCompetency(const pvdb::Competency competency)
 {
   if (m_competency != competency)
   {
@@ -117,7 +113,7 @@ void pvdb::Example::SetCompetency(const pvdb::Competency competency)
   }
 }
 
-void pvdb::Example::SetText(const std::string& text)
+void ribi::pvdb::Example::SetText(const std::string& text)
 {
   if (m_text != text)
   {
@@ -126,7 +122,7 @@ void pvdb::Example::SetText(const std::string& text)
   }
 }
 
-pvdb::Competency pvdb::Example::StrToCompetency(const std::string& s)
+ribi::pvdb::Competency ribi::pvdb::Example::StrToCompetency(const std::string& s)
 {
   if (s == "uninitialized") return pvdb::Competency::uninitialized;
   if (s == "profession") return pvdb::Competency::profession;
@@ -137,10 +133,10 @@ pvdb::Competency pvdb::Example::StrToCompetency(const std::string& s)
   if (s == "prof_growth") return pvdb::Competency::prof_growth;
   if (s == "misc") return pvdb::Competency::misc;
   assert(!"Should not get here");
-  throw std::logic_error("pvdb::Example::StrToCompetency: unknown string");
+  throw std::logic_error("ribi::pvdb::Example::StrToCompetency: unknown string");
 }
 
-void pvdb::Example::Test()
+void ribi::pvdb::Example::Test()
 {
   {
     static bool is_tested = false;
@@ -153,7 +149,7 @@ void pvdb::Example::Test()
     {
   #endif
 
-  TRACE("Starting pvdb::Example::Test");
+  TRACE("Starting ribi::pvdb::Example::Test");
   //Test of operator== and operator!=
   {
     const int sz = static_cast<int>(pvdb::ExampleFactory::GetTests().size());
@@ -217,42 +213,42 @@ void pvdb::Example::Test()
     std::transform(v.begin(),v.end(),std::back_inserter(w),
       [](const pvdb::Competency& c)
       {
-        return pvdb::Example::CompetencyToStr(c);
+        return ribi::pvdb::Example::CompetencyToStr(c);
       }
     );
     std::vector<Competency> x;
     std::transform(w.begin(),w.end(),std::back_inserter(x),
       [](const std::string& s)
       {
-        return pvdb::Example::StrToCompetency(s);
+        return ribi::pvdb::Example::StrToCompetency(s);
       }
     );
     assert(v == x);
   }
   //Conversion between class and XML, test for equality
   {
-    const std::vector<boost::shared_ptr<const pvdb::Example> > v = AddConst( ::pvdb::ExampleFactory::GetTests());
+    const std::vector<boost::shared_ptr<const pvdb::Example> > v = AddConst(ribi::pvdb::ExampleFactory::GetTests());
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<const pvdb::Example>& e)
       {
         assert(e);
-        const std::string s = pvdb::Example::ToXml(e);
+        const std::string s = ribi::pvdb::Example::ToXml(e);
         const boost::shared_ptr<const pvdb::Example> f(Example::FromXml(s));
         assert(IsEqual(*e,*f));
       }
     );
   }
   {
-    const std::vector<boost::shared_ptr<const pvdb::Example> > v = AddConst( ::pvdb::ExampleFactory::GetTests());
+    const std::vector<boost::shared_ptr<const pvdb::Example> > v = AddConst(ribi::pvdb::ExampleFactory::GetTests());
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
       const boost::shared_ptr<const pvdb::Example>& e = v[i];
-      const std::string s = pvdb::Example::ToXml(e);
+      const std::string s = ribi::pvdb::Example::ToXml(e);
       for (int j=0; j!=sz; ++j)
       {
         const boost::shared_ptr<const pvdb::Example>& f = v[j];
-        const std::string t = pvdb::Example::ToXml(f);
+        const std::string t = ribi::pvdb::Example::ToXml(f);
         if (i == j)
         {
           assert(IsEqual(*e,*f));
@@ -274,7 +270,7 @@ void pvdb::Example::Test()
   #endif
 }
 
-const std::string pvdb::Example::ToXml(const boost::shared_ptr<const pvdb::Example>& c)
+const std::string ribi::pvdb::Example::ToXml(const boost::shared_ptr<const pvdb::Example>& c)
 {
   assert(c);
   std::stringstream s;
@@ -303,18 +299,14 @@ const std::string pvdb::Example::ToXml(const boost::shared_ptr<const pvdb::Examp
   return r;
 }
 
-#ifndef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-bool IsEqual(const pvdb::Example& lhs, const pvdb::Example& rhs)
+bool ribi::pvdb::IsEqual(const pvdb::Example& lhs, const pvdb::Example& rhs)
 {
   return
        lhs.GetText() == rhs.GetText()
     && lhs.GetCompetency() == rhs.GetCompetency();
 }
 
-bool operator<(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
+bool ribi::pvdb::operator<(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
 {
   assert(lhs && rhs);
   if (lhs->GetText() < rhs->GetText()) return true;
@@ -322,12 +314,10 @@ bool operator<(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::sh
   return lhs->GetCompetency() < rhs->GetCompetency();
 }
 
-bool operator>(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
+bool ribi::pvdb::operator>(const boost::shared_ptr<const pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs)
 {
   assert(lhs && rhs);
   if (lhs->GetText() > rhs->GetText()) return true;
   if (lhs->GetText() < rhs->GetText()) return false;
   return lhs->GetCompetency() > rhs->GetCompetency();
 }
-
-} //~namespace pvdb

@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///WtServerPusherClient is a client responding to WtServerPusher
 ///and to be used as a base class
 struct WtServerPusherClient
@@ -29,5 +32,7 @@ struct WtServerPusherClient
   ///Respond to the server
   void OnServer();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTSERVERPUSHERCLIENT_H

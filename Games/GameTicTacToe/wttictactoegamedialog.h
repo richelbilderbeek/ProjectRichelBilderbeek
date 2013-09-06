@@ -25,6 +25,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtTicTacToeWidget;
 //---------------------------------------------------------------------------
 struct WtTicTacToeGameDialog : public Wt::WContainerWidget
@@ -38,5 +41,7 @@ struct WtTicTacToeGameDialog : public Wt::WContainerWidget
   void OnRestart();
   void OnStateChanged();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTICTACTOEGAMEDIALOG_H

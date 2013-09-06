@@ -1,26 +1,20 @@
 #ifndef QTPVDBCREATEASSESSMENTCOMPLETEDIALOG_H
 #define QTPVDBCREATEASSESSMENTCOMPLETEDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-
-#endif
 
 namespace Ui {
   class QtPvdbCreateAssessmentCompleteDialog;
 }
 
+namespace ribi {
 
-class QtPvdbCreateAssessmentCompleteDialog : public QtHideAndShowDialog
+namespace pvdb {
+
+class QtPvdbCreateAssessmentCompleteDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
     
@@ -55,5 +49,8 @@ private:
   bool m_back_to_menu;
 };
 
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCREATEASSESSMENTCOMPLETEDIALOG_H

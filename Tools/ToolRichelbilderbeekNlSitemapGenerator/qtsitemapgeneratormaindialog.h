@@ -27,6 +27,8 @@ namespace Ui {
   class QtSitemapGeneratorMainDialog;
 }
 
+namespace ribi {
+
 class QtSitemapGeneratorMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -75,5 +77,7 @@ private slots:
   static const std::string GetPath(const std::string& filename);
 
 };
+
+} //~namespace ribi
 
 #endif // SITEMAPGENERATORMAINDIALOG_H

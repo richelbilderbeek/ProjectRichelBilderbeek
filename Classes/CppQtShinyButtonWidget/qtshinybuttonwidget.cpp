@@ -39,25 +39,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtShinyButtonWidget::QtShinyButtonWidget(QWidget *parent)
+ribi::QtShinyButtonWidget::QtShinyButtonWidget(QWidget *parent)
   : QWidget(parent),
     m_widget(new ShinyButtonWidget(0.5,0.5))
 {
   assert(m_widget);
 
   m_widget->GetShinyButton()->m_signal_color_changed.connect(boost::bind(
-    &QtShinyButtonWidget::DoRepaint,this));
+    &ribi::QtShinyButtonWidget::DoRepaint,this));
   m_widget->GetShinyButton()->m_signal_text_changed.connect(boost::bind(
-    &QtShinyButtonWidget::DoRepaint,this));
+    &ribi::QtShinyButtonWidget::DoRepaint,this));
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtShinyButtonWidget::DoRepaint,
+      &ribi::QtShinyButtonWidget::DoRepaint,
       this));
 
   resize(200,400);
 }
 
-QtShinyButtonWidget::QtShinyButtonWidget(
+ribi::QtShinyButtonWidget::QtShinyButtonWidget(
   const double color,
   const double gradient,
   const std::string& text,
@@ -69,18 +69,18 @@ QtShinyButtonWidget::QtShinyButtonWidget(
   assert(m_widget);
 
   m_widget->GetShinyButton()->m_signal_color_changed.connect(boost::bind(
-    &QtShinyButtonWidget::DoRepaint,this));
+    &ribi::QtShinyButtonWidget::DoRepaint,this));
   m_widget->GetShinyButton()->m_signal_text_changed.connect(boost::bind(
-    &QtShinyButtonWidget::DoRepaint,this));
+    &ribi::QtShinyButtonWidget::DoRepaint,this));
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtShinyButtonWidget::DoRepaint,
+      &ribi::QtShinyButtonWidget::DoRepaint,
       this));
 
   resize(rect.GetWidth(),rect.GetHeight());
 }
 
-void QtShinyButtonWidget::DrawShinyButton(
+void ribi::QtShinyButtonWidget::DrawShinyButton(
   QPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -116,7 +116,7 @@ void QtShinyButtonWidget::DrawShinyButton(
   painter.drawText(r,Qt::AlignCenter | Qt::AlignVCenter,button->GetText().c_str());
 }
 
-void QtShinyButtonWidget::DrawShinyButton(
+void ribi::QtShinyButtonWidget::DrawShinyButton(
   QPainter& painter,
   const ShinyButtonWidget * const widget)
 {
@@ -129,18 +129,18 @@ void QtShinyButtonWidget::DrawShinyButton(
     widget->GetShinyButton());
 }
 
-void QtShinyButtonWidget::DoRepaint()
+void ribi::QtShinyButtonWidget::DoRepaint()
 {
   this->repaint();
   m_signal_changed();
 }
 
-const std::string QtShinyButtonWidget::GetVersion()
+const std::string ribi::QtShinyButtonWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtShinyButtonWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtShinyButtonWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -149,18 +149,18 @@ const std::vector<std::string> QtShinyButtonWidget::GetVersionHistory()
   return v;
 }
 
-void QtShinyButtonWidget::mousePressEvent(QMouseEvent *)
+void ribi::QtShinyButtonWidget::mousePressEvent(QMouseEvent *)
 {
   m_widget->Click();
 }
 
-void QtShinyButtonWidget::paintEvent(QPaintEvent *)
+void ribi::QtShinyButtonWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawShinyButton(painter,m_widget.get());
 }
 
-void QtShinyButtonWidget::resizeEvent(QResizeEvent *)
+void ribi::QtShinyButtonWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }

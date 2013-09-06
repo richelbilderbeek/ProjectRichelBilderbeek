@@ -6,6 +6,8 @@
 
 #include "about.h"
 
+namespace ribi {
+
 ///GUI independent TestQtRoundedEditRectItemWidget menu dialog
 struct TestQtRoundedEditRectItemMenuDialog
 {
@@ -13,5 +15,7 @@ struct TestQtRoundedEditRectItemMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // TESTQTROUNDEDEDITRECTITEMWIDGETMENUDIALOG_H

@@ -27,6 +27,8 @@ namespace Ui {
   class QtMusicTheoryMenuDialog;
 }
 
+namespace ribi {
+
 class QtMusicTheoryMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -34,9 +36,6 @@ class QtMusicTheoryMenuDialog : public QDialog
 public:
   explicit QtMusicTheoryMenuDialog(QWidget *parent = 0);
   ~QtMusicTheoryMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtMusicTheoryMenuDialog *ui;
@@ -47,5 +46,7 @@ private slots:
   void on_button_start_singlescale_clicked();
   void on_button_start_multiscale_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTMUSICTHEORYMENUDIALOG_H

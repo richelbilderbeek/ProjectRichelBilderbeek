@@ -26,6 +26,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///GroupAssigner is the (abstract) base class to assign a group
 ///number to a Participant when the client logs in.
@@ -113,5 +117,8 @@ struct GroupAssignerDeterminedByServer: public GroupAssigner
   ///Read-only pointer to the Participant
   ///const Participant * m_participant;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // GROUPASSIGNER_H

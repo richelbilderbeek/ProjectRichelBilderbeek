@@ -21,13 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #include "testtimedserverpusherdata.h"
 //---------------------------------------------------------------------------
-namespace ToolTestTimedServerPusher {
+
 //---------------------------------------------------------------------------
-Data * Data::m_instance = 0;
+ribi::ToolTestTimedServerPusher::Data * ribi::ToolTestTimedServerPusher::Data::m_instance = 0;
 //---------------------------------------------------------------------------
-std::mutex Data::m_mutex;
+std::mutex ribi::ToolTestTimedServerPusher::Data::m_mutex;
 //---------------------------------------------------------------------------
-Data::Data()
+ribi::ToolTestTimedServerPusher::Data::Data()
   : m_time_start(std::time(0)),
   //m_s(std::chrono::system_clock::now()),
   m_requested(0)
@@ -36,12 +36,12 @@ Data::Data()
 
 }
 //---------------------------------------------------------------------------
-Data::~Data()
+ribi::ToolTestTimedServerPusher::Data::~Data()
 {
 
 }
 //---------------------------------------------------------------------------
-Data * Data::GetInstance()
+ribi::ToolTestTimedServerPusher::Data * ribi::ToolTestTimedServerPusher::Data::GetInstance()
 {
   if (!m_instance)
   {
@@ -55,7 +55,7 @@ Data * Data::GetInstance()
   return m_instance;
 }
 //---------------------------------------------------------------------------
-const std::string Data::GetData() const
+const std::string ribi::ToolTestTimedServerPusher::Data::GetData() const
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   //std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
@@ -69,6 +69,4 @@ const std::string Data::GetData() const
     + std::string(" requests ");
   return s;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTestTimedServerPusher
 //---------------------------------------------------------------------------

@@ -1,11 +1,6 @@
 #ifndef QTPVDBTESTCREATESUBCONCEPTMAPDIALOG_H
 #define QTPVDBTESTCREATESUBCONCEPTMAPDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 
 #include "pvdbfwd.h"
@@ -15,7 +10,11 @@ namespace Ui {
   class QtPvdbTestCreateSubConceptMapDialog;
 }
 
-class QtPvdbTestCreateSubConceptMapDialog : public QtHideAndShowDialog
+namespace ribi {
+
+namespace pvdb {
+
+class QtPvdbTestCreateSubConceptMapDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -40,6 +39,10 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBTESTCREATESUBCONCEPTMAPDIALOG_H
 

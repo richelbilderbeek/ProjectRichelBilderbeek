@@ -25,34 +25,32 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tictactoe.h"
 #include "wttictactoewidget.h"
 //---------------------------------------------------------------------------
-//Enable debugging
-#undef NDEBUG
 #include <cassert>
 //---------------------------------------------------------------------------
-WtTicTacToeWidget::WtTicTacToeWidget()
+ribi::WtTicTacToeWidget::WtTicTacToeWidget()
 {
   //Without resize, there is nothing to paint on
   this->resize(GetWidth(),GetHeight());
-  this->clicked().connect(this,&WtTicTacToeWidget::OnClicked);
+  this->clicked().connect(this,&ribi::WtTicTacToeWidget::OnClicked);
   this->update();
 }
 //---------------------------------------------------------------------------
-int WtTicTacToeWidget::GetState() const
+int ribi::WtTicTacToeWidget::GetState() const
 {
   return m_tictactoe.GetWinner();
 }
 //---------------------------------------------------------------------------
-int WtTicTacToeWidget::GetHeight() const
+int ribi::WtTicTacToeWidget::GetHeight() const
 {
   return 300.0;
 }
 //---------------------------------------------------------------------------
-const std::string WtTicTacToeWidget::GetVersion()
+const std::string ribi::WtTicTacToeWidget::GetVersion()
 {
   return "1.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtTicTacToeWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtTicTacToeWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -60,12 +58,12 @@ const std::vector<std::string> WtTicTacToeWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-int WtTicTacToeWidget::GetWidth() const
+int ribi::WtTicTacToeWidget::GetWidth() const
 {
   return 300.0;
 }
 //---------------------------------------------------------------------------
-void WtTicTacToeWidget::OnClicked(const Wt::WMouseEvent& e)
+void ribi::WtTicTacToeWidget::OnClicked(const Wt::WMouseEvent& e)
 {
   if (m_tictactoe.GetWinner() != TicTacToe::no_winner) return;
   const int x = 3 * e.widget().x / this->GetWidth();
@@ -86,7 +84,7 @@ void WtTicTacToeWidget::OnClicked(const Wt::WMouseEvent& e)
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtTicTacToeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtTicTacToeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   const int width  = GetWidth();
@@ -141,7 +139,7 @@ void WtTicTacToeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
   }
 }
 //---------------------------------------------------------------------------
-void WtTicTacToeWidget::Restart()
+void ribi::WtTicTacToeWidget::Restart()
 {
   m_tictactoe = TicTacToe();
   this->update();

@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "votingoption.h"
 //---------------------------------------------------------------------------
-VotingOption::VotingOption(
+ribi::gtst::VotingOption::VotingOption(
   const double chance,
   const double cost,
   const std::string& description)
@@ -34,25 +34,25 @@ VotingOption::VotingOption(
 }
 //---------------------------------------------------------------------------
 ///Get the chance of getting caught by a supervisor when not contributing
-double VotingOption::GetChance() const
+double ribi::gtst::VotingOption::GetChance() const
 {
   return m_chance;
 }
 //---------------------------------------------------------------------------
 ///Get the cost of this supervisor/option
-double VotingOption::GetCost() const
+double ribi::gtst::VotingOption::GetCost() const
 {
   return m_cost;
 }
 //---------------------------------------------------------------------------
 ///Get the description of this voting option
-const std::string& VotingOption::GetDescription() const
+const std::string& ribi::gtst::VotingOption::GetDescription() const
 {
   return m_description;
 }
 //---------------------------------------------------------------------------
 ///Set the chance of getting caught by a supervisor when not contributing
-void VotingOption::SetChance(const double p)
+void ribi::gtst::VotingOption::SetChance(const double p)
 {
   assert(p>=0.0 && "A chance must be zero at least");
   assert(p<=1.0 && "A chance must be one (that is: 100%) at most");
@@ -60,20 +60,20 @@ void VotingOption::SetChance(const double p)
 }
 //---------------------------------------------------------------------------
 ///Set the cost of this supervisor/option
-void VotingOption::SetCost(const double cost)
+void ribi::gtst::VotingOption::SetCost(const double cost)
 {
   assert(cost >= 0.0 && "Costs typically are positive values");
   m_cost = cost;
 }
 //---------------------------------------------------------------------------
 ///Set the description of this voting option
-void VotingOption::SetDescription(const std::string& description)
+void ribi::gtst::VotingOption::SetDescription(const std::string& description)
 {
   assert(!description.empty() && "A description must contain text");
   m_description = description;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const VotingOption& v)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const VotingOption& v)
 {
   os
     << "<chance>"

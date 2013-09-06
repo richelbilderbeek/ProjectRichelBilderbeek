@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 struct QFont;
 
+namespace ribi {
+
 ///The widget holding the items
 struct QtTestQtRoundedTextRectItemWidget : public QtKeyboardFriendlyGraphicsView
 {
@@ -36,5 +38,7 @@ private:
   ///Display a font
   void Display(const QFont& font);
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTROUNDEDTEXTRECTITEMWIDGETWIDGET_H

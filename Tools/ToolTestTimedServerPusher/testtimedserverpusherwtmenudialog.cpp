@@ -33,9 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wttimedserverpusher.h"
 #include "wttimedserverpusherclient.h"
 //---------------------------------------------------------------------------
-namespace ToolTestTimedServerPusher {
+
 //---------------------------------------------------------------------------
-WtMenuDialog::WtMenuDialog()
+ribi::ToolTestTimedServerPusher::WtMenuDialog::WtMenuDialog()
 {
  this->setContentAlignment(Wt::AlignCenter);
   {
@@ -75,7 +75,7 @@ WtMenuDialog::WtMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
+Wt::WWidget * ribi::ToolTestTimedServerPusher::WtMenuDialog::CreateNewAboutDialog()
 {
   About a = ToolTestTimedServerPusher::MenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -86,14 +86,14 @@ Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::ToolTestTimedServerPusher::WtMenuDialog::CreateNewMainDialog() const
 {
   WtMainDialog * const d = new WtMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::ToolTestTimedServerPusher::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -108,6 +108,4 @@ Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
   new Wt::WLabel("using the WtTimedServerPusher and WtTimedServerPusherClient classes",dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTestTimedServerPusher
 //---------------------------------------------------------------------------

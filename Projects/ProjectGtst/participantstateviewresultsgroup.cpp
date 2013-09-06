@@ -23,14 +23,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participant.h"
 #include "participantstateviewresultsgroup.h"
 //---------------------------------------------------------------------------
-ParticipantStateViewResultsGroup::ParticipantStateViewResultsGroup(
+ribi::gtst::ParticipantStateViewResultsGroup::ParticipantStateViewResultsGroup(
   Participant * const participant,Server * const server)
   : ParticipantState(participant,server)
 {
 
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantStateViewResultsGroup::ToAdminStr() const
+const std::string ribi::gtst::ParticipantStateViewResultsGroup::ToAdminStr() const
 {
   const Participant * const participant = GetParticipant();
   std::string s

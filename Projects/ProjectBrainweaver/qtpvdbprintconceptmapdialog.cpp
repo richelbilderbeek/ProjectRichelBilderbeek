@@ -25,7 +25,7 @@
 #include "ui_qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbconceptmapdisplaywidget.h"
 
-QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
+ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   const boost::shared_ptr<pvdb::File>& file,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
@@ -55,12 +55,12 @@ QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   }
 }
 
-QtPvdbPrintConceptMapDialog::~QtPvdbPrintConceptMapDialog()
+ribi::pvdb::QtPvdbPrintConceptMapDialog::~QtPvdbPrintConceptMapDialog()
 {
   delete ui;
 }
 
-const std::vector<QWidget *> QtPvdbPrintConceptMapDialog::CollectWidgets() const
+const std::vector<QWidget *> ribi::pvdb::QtPvdbPrintConceptMapDialog::CollectWidgets() const
 {
   std::vector<QWidget *> v;
   v.push_back(ui->frame_top);
@@ -77,17 +77,17 @@ const std::vector<QWidget *> QtPvdbPrintConceptMapDialog::CollectWidgets() const
 }
 
 
-void QtPvdbPrintConceptMapDialog::keyPressEvent(QKeyEvent * event)
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbPrintConceptMapDialog::on_button_print_clicked()
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::on_button_print_clicked()
 {
   Print();
 }
 
-void QtPvdbPrintConceptMapDialog::Print()
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::Print()
 {
   //Start save dialog
   const boost::shared_ptr<QFileDialog> print_dialog(
@@ -135,11 +135,11 @@ void QtPvdbPrintConceptMapDialog::Print()
   painter.end();
 }
 
-void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
 {
   //Concept map
   {
-    //const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
+    //const boost::shared_ptr<ribi::pvdb::ConceptMap> copy_concept_map
     //  = m_file->GetConceptMap();
     assert(m_widget);
     assert(m_widget->GetConceptMap());
@@ -165,7 +165,7 @@ void QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     const int n_nodes = static_cast<int>(m_file->GetConceptMap()->GetNodes().size());
     for (int node_index = 1; node_index != n_nodes; ++node_index) //1: skip center node
     {
-      const boost::shared_ptr<pvdb::Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
+      const boost::shared_ptr<ribi::pvdb::Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
       assert(node);
       QtPvdbRatedConceptWidget * const widget
         = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node);

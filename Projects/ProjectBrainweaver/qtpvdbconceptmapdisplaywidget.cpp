@@ -42,8 +42,8 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+ribi::pvdb::QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
   QWidget* parent)
   : QtPvdbConceptMapWidget(concept_map,parent)
 {
@@ -59,8 +59,8 @@ QtPvdbConceptMapDisplayWidget::QtPvdbConceptMapDisplayWidget(
 }
 
 
-void QtPvdbConceptMapDisplayWidget::AddEdge(
-  const boost::shared_ptr<pvdb::Edge> edge)
+void ribi::pvdb::QtPvdbConceptMapDisplayWidget::AddEdge(
+  const boost::shared_ptr<ribi::pvdb::Edge> edge)
 {
   assert(edge);
   const boost::shared_ptr<QtPvdbConceptItem> qtconcept(new QtPvdbDisplayConceptItem(edge->GetConcept()));
@@ -107,7 +107,7 @@ void QtPvdbConceptMapDisplayWidget::AddEdge(
   assert(qtedge->pos().y() == edge->GetY());
 }
 
-QtPvdbNodeItem * QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<pvdb::Node> node)
+ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<ribi::pvdb::Node> node)
 {
   assert(node);
   assert(node->GetConcept());
@@ -142,7 +142,7 @@ QtPvdbNodeItem * QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<
   return qtnode;
 }
 
-void QtPvdbConceptMapDisplayWidget::CleanMe()
+void ribi::pvdb::QtPvdbConceptMapDisplayWidget::CleanMe()
 {
   //Prepare clearing the scene
   assert(GetExamplesItem());
@@ -168,10 +168,10 @@ void QtPvdbConceptMapDisplayWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapDisplayWidget::CreateNewDerived() const
+std::unique_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbConceptMapDisplayWidget::CreateNewDerived() const
 {
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map
-    = pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
+    = ribi::pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtPvdbConceptMapWidget> p(new QtPvdbConceptMapDisplayWidget(concept_map));
   assert(p);
@@ -180,7 +180,7 @@ std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapDisplayWidget::CreateNew
 #endif
 
 #ifndef NDEBUG
-void QtPvdbConceptMapDisplayWidget::DoRandomStuff()
+void ribi::pvdb::QtPvdbConceptMapDisplayWidget::DoRandomStuff()
 {
   assert(this->GetConceptMap());
   const int n_edges_before = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
@@ -191,10 +191,10 @@ void QtPvdbConceptMapDisplayWidget::DoRandomStuff()
   assert(node_from != node_to);
   this->AddNode(node_from);
   this->AddNode(node_to  );
-  const auto edge_concept = pvdb::ConceptFactory::GetTests().at(0);
+  const auto edge_concept = ribi::pvdb::ConceptFactory::GetTests().at(0);
   const double node_x = 12.34; //Just some coordinat
   const double node_y = 45.67; //Just some coordinat
-  const boost::shared_ptr<pvdb::Edge> edge = pvdb::EdgeFactory::Create(
+  const boost::shared_ptr<ribi::pvdb::Edge> edge = pvdb::EdgeFactory::Create(
     edge_concept,node_x,node_y,node_from,true,node_to,true);
   this->AddEdge(edge);
   const int n_edges_after = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
@@ -204,7 +204,7 @@ void QtPvdbConceptMapDisplayWidget::DoRandomStuff()
 }
 #endif
 
-void QtPvdbConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
+void ribi::pvdb::QtPvdbConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   assert(GetExamplesItem());
   assert(item);

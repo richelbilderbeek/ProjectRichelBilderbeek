@@ -38,12 +38,12 @@
 #include "trace.h"
 #include "ui_qtpvdbtestconceptmapdisplaywidgetdialog.h"
 
-QtPvdbTestConceptMapDisplayWidgetDialog::QtPvdbTestConceptMapDisplayWidgetDialog(QWidget *parent) :
+ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::QtPvdbTestConceptMapDisplayWidgetDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestConceptMapDisplayWidgetDialog),
   m_concept_map(
     new QtPvdbConceptMapDisplayWidget(
-      pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+      ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
     )
   )
 {
@@ -55,17 +55,17 @@ QtPvdbTestConceptMapDisplayWidgetDialog::QtPvdbTestConceptMapDisplayWidgetDialog
   ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
-QtPvdbTestConceptMapDisplayWidgetDialog::~QtPvdbTestConceptMapDisplayWidgetDialog()
+ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::~QtPvdbTestConceptMapDisplayWidgetDialog()
 {
   delete ui;
 }
 
-void QtPvdbTestConceptMapDisplayWidgetDialog::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbTestConceptMapDisplayWidgetDialog::Test()
+void ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -77,10 +77,10 @@ void QtPvdbTestConceptMapDisplayWidgetDialog::Test()
     []
     {
   #endif
-  TRACE("QtPvdbTestConceptMapDisplayWidgetDialog::Test started");
+  TRACE("ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::Test started");
   QtPvdbTestConceptMapDisplayWidgetDialog d;
   for (int i=0; i!=100; ++i) d.on_button_test_modify_clicked();
-  TRACE("QtPvdbTestConceptMapDisplayWidgetDialog::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -88,7 +88,7 @@ void QtPvdbTestConceptMapDisplayWidgetDialog::Test()
   #endif
 }
 
-void QtPvdbTestConceptMapDisplayWidgetDialog::on_button_test_modify_clicked()
+void ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::on_button_test_modify_clicked()
 {
   const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();
   std::for_each(v.begin(),v.end(),

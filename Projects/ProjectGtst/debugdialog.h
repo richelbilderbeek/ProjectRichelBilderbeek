@@ -31,6 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "forward_declarations.h"
 #include "wttimedserverpusherclient.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///DebugDialog simulates an experiment visually from loading
 ///a parameter file
@@ -76,5 +80,8 @@ struct DebugDialog : public Wt::WContainerWidget, WtTimedServerPusherClient
   void Show();
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // DEBUGDIALOG_H

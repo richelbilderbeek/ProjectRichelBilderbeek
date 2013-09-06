@@ -28,6 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "serverstate.h"
 //---------------------------------------------------------------------------
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Server is in the assign-payoff state
 struct ServerStateAssignPayoff : public ServerState, StateAssignPayoff
@@ -77,5 +80,8 @@ struct ServerStateAssignPayoff : public ServerState, StateAssignPayoff
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ServerStateAssignPayoff& s);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ServerSTATEASSIGNPAYOFF_H

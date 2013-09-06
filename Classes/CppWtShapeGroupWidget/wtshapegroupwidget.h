@@ -27,6 +27,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
 //---------------------------------------------------------------------------
+namespace ribi {
+
 struct Shape;
 //---------------------------------------------------------------------------
 ///WtShapeGroupWidget displays a collection of Shape instances
@@ -48,5 +50,7 @@ struct WtShapeGroupWidget : public Wt::WPaintedWidget
 
   static void Rainbow(const double x,double& r,double& g,double& b);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTGROUPWIDGET_H

@@ -18,14 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
-
 #include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
 
@@ -55,9 +47,9 @@ struct WtApplication : public Wt::WApplication
     this->setTitle("Project Richel Bilderbeek");
     this->useStyleSheet("wt.css");
     this->enableUpdates(true);
-    boost::shared_ptr<const IpAddress> ip_address(new IpAddress(env.clientAddress()));
-    WtEntrance::Get()->Visit(ip_address.get());
-    root()->addWidget(new RichelBilderbeek::WtMenuDialog(ip_address->Get()));
+    boost::shared_ptr<const ribi::IpAddress> ip_address(new ribi::IpAddress(env.clientAddress()));
+    ribi::WtEntrance::Get()->Visit(ip_address.get());
+    root()->addWidget(new ribi::RichelBilderbeek::WtMenuDialog(ip_address->Get()));
   }
 };
 
@@ -70,9 +62,9 @@ Wt::WApplication *createApplication(
 int main(int argc, char **argv)
 {
   START_TRACE();
-  WtSelectFileDialog::SetPath(boost::filesystem::path(argv[0]).parent_path().string());
-  WtAutoConfig::SaveDefaultStylesheet();
-  WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtSelectFileDialog::SetPath(boost::filesystem::path(argv[0]).parent_path().string());
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
   return a.Run();
 }
 

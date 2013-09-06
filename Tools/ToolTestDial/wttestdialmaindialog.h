@@ -24,8 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
 namespace Wt { struct WLabel; }
+
+namespace ribi {
+
 struct WtDialWidget;
-//---------------------------------------------------------------------------
+
 struct WtTestDialMainDialog : public Wt::WContainerWidget
 {
   WtTestDialMainDialog();
@@ -45,5 +48,7 @@ struct WtTestDialMainDialog : public Wt::WContainerWidget
   void OnDialPositionChange();
   void Show();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTDIALMAINDIALOG_H

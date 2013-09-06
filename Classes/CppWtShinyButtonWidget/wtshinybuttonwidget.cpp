@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shinybuttonwidget.h"
 #include "wtshinybuttonwidget.h"
 //---------------------------------------------------------------------------
-WtShinyButtonWidget::WtShinyButtonWidget(
+ribi::WtShinyButtonWidget::WtShinyButtonWidget(
   const double color,
   const double gradient,
   const std::string& text)
@@ -43,28 +43,28 @@ WtShinyButtonWidget::WtShinyButtonWidget(
 
   m_widget->GetShinyButton()->m_signal_color_changed.connect(
     boost::bind(
-      &WtShinyButtonWidget::DoRepaint,
+      &ribi::WtShinyButtonWidget::DoRepaint,
       this));
 
   m_widget->GetShinyButton()->m_signal_text_changed.connect(
     boost::bind(
-      &WtShinyButtonWidget::DoRepaint,
+      &ribi::WtShinyButtonWidget::DoRepaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &WtShinyButtonWidget::OnResize,
+      &ribi::WtShinyButtonWidget::OnResize,
       this));
 
-  this->clicked().connect(this,&WtShinyButtonWidget::OnClicked);
+  this->clicked().connect(this,&ribi::WtShinyButtonWidget::OnClicked);
 }
 //---------------------------------------------------------------------------
-void WtShinyButtonWidget::DoRepaint()
+void ribi::WtShinyButtonWidget::DoRepaint()
 {
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtShinyButtonWidget::DrawShinyButton(
+void ribi::WtShinyButtonWidget::DrawShinyButton(
   Wt::WPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -100,7 +100,7 @@ void WtShinyButtonWidget::DrawShinyButton(
   painter.drawText(r,Wt::AlignCenter | Wt::AlignMiddle,button->GetText().c_str());
 }
 //---------------------------------------------------------------------------
-void WtShinyButtonWidget::DrawShinyButton(
+void ribi::WtShinyButtonWidget::DrawShinyButton(
   Wt::WPainter& painter,
   const ShinyButtonWidget * const widget)
 {
@@ -113,12 +113,12 @@ void WtShinyButtonWidget::DrawShinyButton(
     widget->GetShinyButton());
 }
 //---------------------------------------------------------------------------
-const std::string WtShinyButtonWidget::GetVersion()
+const std::string ribi::WtShinyButtonWidget::GetVersion()
 {
   return "1.1";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtShinyButtonWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtShinyButtonWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -127,23 +127,23 @@ const std::vector<std::string> WtShinyButtonWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtShinyButtonWidget::OnClicked(const Wt::WMouseEvent&)
+void ribi::WtShinyButtonWidget::OnClicked(const Wt::WMouseEvent&)
 {
   m_widget->Click();
 }
 //---------------------------------------------------------------------------
-void WtShinyButtonWidget::OnResize()
+void ribi::WtShinyButtonWidget::OnResize()
 {
   resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
 //---------------------------------------------------------------------------
-void WtShinyButtonWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtShinyButtonWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawShinyButton(painter,m_widget.get());
 }
 //---------------------------------------------------------------------------
-void WtShinyButtonWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
+void ribi::WtShinyButtonWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }

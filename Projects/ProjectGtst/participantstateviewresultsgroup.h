@@ -26,6 +26,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "participantstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///The Participant is in the StateViewResultsGroup ParticipantState
 struct ParticipantStateViewResultsGroup
   : public ParticipantState, StateViewResultsGroup
@@ -42,5 +46,8 @@ struct ParticipantStateViewResultsGroup
   ///Only let a smart pointer delete this ParticipantState
   friend void boost::checked_delete<>(ParticipantStateViewResultsGroup*);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTSTATEVIEWRESULTSGROUP_H

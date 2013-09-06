@@ -1,28 +1,21 @@
 #ifndef QTPVDBTESTEDGEITEMDIALOG_H
 #define QTPVDBTESTEDGEITEMDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbedge.h"
-#include "qtpvdbedgeitem.h"
-#endif
 
 namespace Ui { class QtPvdbTestEdgeItemDialog; }
+
+namespace ribi {
+
+namespace pvdb {
 
 ///Tests all QtPvdbConceptItem items when being a member of a QtPvdbNodeItem,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtPvdbTestEdgeItemDialog : public QtHideAndShowDialog
+class QtPvdbTestEdgeItemDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -49,19 +42,19 @@ private slots:
 private:
 
   Ui::QtPvdbTestEdgeItemDialog *ui;
-  boost::shared_ptr<pvdb::Edge> m_edge;
+  boost::shared_ptr<ribi::pvdb::Edge> m_edge;
   QtPvdbEdgeItem* m_edge_item;
-  const boost::shared_ptr<pvdb::Node> m_from;
-  const boost::shared_ptr<pvdb::Node> m_to;
+  const boost::shared_ptr<ribi::pvdb::Node> m_from;
+  const boost::shared_ptr<ribi::pvdb::Node> m_to;
 
-  static const boost::shared_ptr<pvdb::Node> CreateFrom();
-  static const boost::shared_ptr<pvdb::Node> CreateTo();
+  static const boost::shared_ptr<ribi::pvdb::Node> CreateFrom();
+  static const boost::shared_ptr<ribi::pvdb::Node> CreateTo();
 
   ///Get the Edge via the route chosen by box_edit
-  const boost::shared_ptr<pvdb::Edge> GetEdgeCurrentWay();
+  const boost::shared_ptr<ribi::pvdb::Edge> GetEdgeCurrentWay();
 
   ///Get the Edge from a route
-  const boost::shared_ptr<pvdb::Edge> GetEdge(const int index);
+  const boost::shared_ptr<ribi::pvdb::Edge> GetEdge(const int index);
 
   ///Called whenever an item requests a scene update
   void OnRequestSceneUpdate();
@@ -70,6 +63,10 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBTESTEDGEITEMDIALOG_H
 

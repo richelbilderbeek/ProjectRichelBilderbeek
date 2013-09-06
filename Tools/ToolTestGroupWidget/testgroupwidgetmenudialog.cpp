@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testgroupwidgetmenudialog.h"
 #include "about.h"
 //---------------------------------------------------------------------------
-const About TestGroupWidgetMenuDialog::GetAbout()
+const ribi::About ribi::TestGroupWidgetMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -35,12 +35,12 @@ const About TestGroupWidgetMenuDialog::GetAbout()
   return a;
 }
 //---------------------------------------------------------------------------
-const std::string TestGroupWidgetMenuDialog::GetVersion()
+const std::string ribi::TestGroupWidgetMenuDialog::GetVersion()
 {
   return "1.3";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> TestGroupWidgetMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestGroupWidgetMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-16: Version 1.0: initial version");

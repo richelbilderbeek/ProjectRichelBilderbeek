@@ -32,6 +32,8 @@ namespace Ui {
 struct QImage;
 #include "pictocodemaindialog.h"
 
+namespace ribi {
+
 class QtPicToCodeMainDialog : public QDialog
 {
   Q_OBJECT
@@ -56,5 +58,6 @@ public:
     PicToQtCode(const QImage& image) const;
 };
 
+} //~namespace ribi
 
 #endif // QTPICTOCODEDIALOG_H

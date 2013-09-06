@@ -27,6 +27,8 @@ namespace Ui {
   class QtToolTestQtModelsMainDialog;
 }
 
+namespace ribi {
+
 class QtToolTestQtModelsMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -51,5 +53,7 @@ private:
   #endif
 
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLTESTQTMODELSMAINDIALOG_H

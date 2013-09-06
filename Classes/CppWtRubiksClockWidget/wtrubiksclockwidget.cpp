@@ -23,8 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #undef __STRICT_ANSI__
 #endif
 
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "wtrubiksclockwidget.h"
 
 #include <iostream>
@@ -47,7 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wttogglebuttonwidget.h"
 //---------------------------------------------------------------------------
-WtRubiksClockWidget::WtRubiksClockWidget(
+ribi::WtRubiksClockWidget::WtRubiksClockWidget(
   const bool toggled,
   const unsigned char red,
   const unsigned char green,
@@ -58,30 +58,30 @@ WtRubiksClockWidget::WtRubiksClockWidget(
 
   m_widget->m_signal_widget_flipped.connect(
     boost::bind(
-      &WtRubiksClockWidget::DoRepaint,
+      &ribi::WtRubiksClockWidget::DoRepaint,
       this));
 
   m_widget->GetRubiksClock()->m_signal_clock_changed.connect(
     boost::bind(
-      &WtRubiksClockWidget::DoRepaint,
+      &ribi::WtRubiksClockWidget::DoRepaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &WtRubiksClockWidget::OnResize,
+      &ribi::WtRubiksClockWidget::OnResize,
       this));
 
-  this->clicked().connect(this,&WtRubiksClockWidget::OnClicked);
+  this->clicked().connect(this,&ribi::WtRubiksClockWidget::OnClicked);
 
   m_widget->SetGeometry(Rect(0,0,200,200));
 }
 //---------------------------------------------------------------------------
-void WtRubiksClockWidget::DoRepaint()
+void ribi::WtRubiksClockWidget::DoRepaint()
 {
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtRubiksClockWidget::DrawRubiksClock(
+void ribi::WtRubiksClockWidget::DrawRubiksClock(
   Wt::WPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -142,7 +142,7 @@ void WtRubiksClockWidget::DrawRubiksClock(
   }
 }
 //---------------------------------------------------------------------------
-void WtRubiksClockWidget::DrawRubiksClock(
+void ribi::WtRubiksClockWidget::DrawRubiksClock(
   Wt::WPainter& painter,
   const RubiksClockWidget * const widget)
 {
@@ -156,12 +156,12 @@ void WtRubiksClockWidget::DrawRubiksClock(
     widget->GetDisplayFront());
 }
 //---------------------------------------------------------------------------
-const std::string WtRubiksClockWidget::GetVersion()
+const std::string ribi::WtRubiksClockWidget::GetVersion()
 {
   return "1.1";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtRubiksClockWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtRubiksClockWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -170,7 +170,7 @@ const std::vector<std::string> WtRubiksClockWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtRubiksClockWidget::OnClicked(const Wt::WMouseEvent& e)
+void ribi::WtRubiksClockWidget::OnClicked(const Wt::WMouseEvent& e)
 {
   const int x = e.widget().x;
   const int y = e.widget().y;
@@ -180,18 +180,18 @@ void WtRubiksClockWidget::OnClicked(const Wt::WMouseEvent& e)
   m_widget->Click(x,y,is_left_button);
 }
 //---------------------------------------------------------------------------
-void WtRubiksClockWidget::OnResize()
+void ribi::WtRubiksClockWidget::OnResize()
 {
   resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
 //---------------------------------------------------------------------------
-void WtRubiksClockWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtRubiksClockWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawRubiksClock(painter,m_widget.get());
 }
 //---------------------------------------------------------------------------
-void WtRubiksClockWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
+void ribi::WtRubiksClockWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }

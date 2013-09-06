@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 struct SitemapGeneratorMenuDialog
 {
   ///Obtain the Abou information of this class
@@ -37,5 +39,7 @@ struct SitemapGeneratorMenuDialog
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // SITEMAPGENERATORMENUDIALOG_H

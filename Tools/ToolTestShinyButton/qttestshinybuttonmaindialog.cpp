@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtshinybuttonwidget.h"
 #include "ui_qttestshinybuttonmaindialog.h"
 
-QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
+ribi::QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
  : QDialog(parent),
    ui(new Ui::QtTestShinyButtonMainDialog),
    m_shiny_button(new QtShinyButtonWidget)
@@ -44,36 +44,24 @@ QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
   ui->my_layout->addWidget(m_shiny_button.get());
 
   m_shiny_button->m_signal_changed.connect(boost::bind(
-    &QtTestShinyButtonMainDialog::OnChanged,this));
+    &ribi::QtTestShinyButtonMainDialog::OnChanged,this));
   //m_shiny_button->GetWidget()->GetShinyButton()->m_signal_color_changed.connect(boost::bind(
-  //  &QtTestShinyButtonMainDialog::OnChanged,this));
+  //  &ribi::QtTestShinyButtonMainDialog::OnChanged,this));
   //m_shiny_button->GetWidget()->GetShinyButton()->m_signal_text_changed.connect(boost::bind(
-  //  &QtTestShinyButtonMainDialog::OnChanged,this));
+  //  &ribi::QtTestShinyButtonMainDialog::OnChanged,this));
 
   m_shiny_button->GetWidget()->m_signal_clicked.connect(boost::bind(
-    &QtTestShinyButtonMainDialog::OnClicked,this));
+    &ribi::QtTestShinyButtonMainDialog::OnClicked,this));
 
   on_edit_text_textChanged(QString());
 }
 
-QtTestShinyButtonMainDialog::~QtTestShinyButtonMainDialog()
+ribi::QtTestShinyButtonMainDialog::~QtTestShinyButtonMainDialog()
 {
   delete ui;
 }
 
-void QtTestShinyButtonMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestShinyButtonMainDialog::OnChanged()
+void ribi::QtTestShinyButtonMainDialog::OnChanged()
 {
   const double color
     = static_cast<double>(ui->dial_main_color->value())
@@ -91,18 +79,18 @@ void QtTestShinyButtonMainDialog::OnChanged()
   ui->label_color->setText(s.c_str());
 }
 
-void QtTestShinyButtonMainDialog::OnClicked()
+void ribi::QtTestShinyButtonMainDialog::OnClicked()
 {
   this->m_shiny_button->GetWidget()->GetShinyButton()->SetColor(0.5,0.5);
 }
 
-void QtTestShinyButtonMainDialog::on_edit_text_textChanged(const QString&)
+void ribi::QtTestShinyButtonMainDialog::on_edit_text_textChanged(const QString&)
 {
   this->m_shiny_button->GetWidget()->GetShinyButton()->SetText(
     ui->edit_text->text().toStdString());
 }
 
-void QtTestShinyButtonMainDialog::on_dial_main_color_sliderMoved(int)
+void ribi::QtTestShinyButtonMainDialog::on_dial_main_color_sliderMoved(int)
 {
   const double color
     = static_cast<double>(ui->dial_main_color->value())
@@ -114,7 +102,7 @@ void QtTestShinyButtonMainDialog::on_dial_main_color_sliderMoved(int)
   m_shiny_button->GetWidget()->GetShinyButton()->SetColor(color,gradient);
 }
 
-void QtTestShinyButtonMainDialog::on_dial_gradient_sliderMoved(int)
+void ribi::QtTestShinyButtonMainDialog::on_dial_gradient_sliderMoved(int)
 {
   const double color
     = static_cast<double>(ui->dial_main_color->value())

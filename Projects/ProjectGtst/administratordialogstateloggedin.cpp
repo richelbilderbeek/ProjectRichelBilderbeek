@@ -63,7 +63,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtshapegroupwidget.h"
 #include "wtshapewidget.h"
 //---------------------------------------------------------------------------
-AdministratorDialogStateLoggedIn::AdministratorDialogStateLoggedIn(
+ribi::gtst::AdministratorDialogStateLoggedIn::AdministratorDialogStateLoggedIn(
   Server * const server,
   AdministratorDialog * const dialog)
   : AdministratorDialogState(server,dialog)
@@ -72,7 +72,7 @@ AdministratorDialogStateLoggedIn::AdministratorDialogStateLoggedIn(
   m_safe_compile.m_select_file_dialog.reset(new WtSelectFileDialog);
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateStartExperimentDialog()
+Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateStartExperimentDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
@@ -102,11 +102,11 @@ Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateStartExperimentDi
   //Call WtTextUploadDialog::on_upload_done when file is uploaded
   ui.m_fileupload->uploaded().connect(
     this,
-    &AdministratorDialogStateLoggedIn::OnUploadDone);
+    &ribi::gtst::AdministratorDialogStateLoggedIn::OnUploadDone);
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewGroupsDialog()
+Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewGroupsDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
@@ -132,13 +132,13 @@ Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewGroupsDialog(
   ui.m_group_widget->resize(400,400);
 
   m_server->GetGroups()->m_signal_groups_changed.connect(
-    boost::bind(&AdministratorDialogStateLoggedIn::OnGroupsChanged,this));
+    boost::bind(&ribi::gtst::AdministratorDialogStateLoggedIn::OnGroupsChanged,this));
   ui.m_group_widget->SetShapes(ExtractShapes());
 
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewParametersDialog()
+Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewParametersDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
@@ -156,7 +156,7 @@ Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewParametersDia
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewParticipantsDialog()
+Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewParticipantsDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
@@ -174,7 +174,7 @@ Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewParticipantsD
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewServerDialog()
+Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewServerDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
@@ -198,7 +198,7 @@ Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewServerDialog(
   {
     Wt::WPushButton * const button = new Wt::WPushButton("Stop and update server");
     dialog->addWidget(button);
-    button->clicked().connect(this,&AdministratorDialogStateLoggedIn::OnStopServer);
+    button->clicked().connect(this,&ribi::gtst::AdministratorDialogStateLoggedIn::OnStopServer);
   }
 
   ui.m_label_state_server->setText("Server state: ... (updated automatically)");
@@ -207,12 +207,12 @@ Wt::WContainerWidget * AdministratorDialogStateLoggedIn::CreateViewServerDialog(
   ui.m_server_select_file_dialog->SetFilterReadOnly(true);
 
   ui.m_server_select_file_dialog->m_signal_selected.connect(
-    boost::bind(&AdministratorDialogStateLoggedIn::OnViewLogFile,this));
+    boost::bind(&ribi::gtst::AdministratorDialogStateLoggedIn::OnViewLogFile,this));
 
   return dialog;
 }
 //---------------------------------------------------------------------------
-const std::vector<std::vector<const Shape*> > AdministratorDialogStateLoggedIn::ExtractShapes() const
+const std::vector<std::vector<const ribi::Shape*> > ribi::gtst::AdministratorDialogStateLoggedIn::ExtractShapes() const
 {
 
   std::vector<std::vector<const Shape*> > v;
@@ -242,7 +242,7 @@ const std::vector<std::vector<const Shape*> > AdministratorDialogStateLoggedIn::
   return v;
 }
 //---------------------------------------------------------------------------
-const std::string AdministratorDialogStateLoggedIn::GetExtension(const std::string& filename)
+const std::string ribi::gtst::AdministratorDialogStateLoggedIn::GetExtension(const std::string& filename)
 {
   const size_t i = filename.rfind('.');
   assert(i != std::string::npos && "Filename must contain a dot");
@@ -252,7 +252,7 @@ const std::string AdministratorDialogStateLoggedIn::GetExtension(const std::stri
   return filename.substr(i+1,filename.size());
 }
 //---------------------------------------------------------------------------
-void AdministratorDialogStateLoggedIn::OnGroupsChanged()
+void ribi::gtst::AdministratorDialogStateLoggedIn::OnGroupsChanged()
 {
   TRACE_FUNC();
   ui.m_group_widget->SetShapes(ExtractShapes());
@@ -324,14 +324,14 @@ void AdministratorDialogStateLoggedIn::OnGroupsChanged()
 }
 //---------------------------------------------------------------------------
 ///Stops the server
-void AdministratorDialogStateLoggedIn::OnStopServer()
+void ribi::gtst::AdministratorDialogStateLoggedIn::OnStopServer()
 {
   Wt::WApplication::instance()->quit();
   std::exit(0);
 }
 //---------------------------------------------------------------------------
 ///Show all automatically
-void AdministratorDialogStateLoggedIn::OnTimer()
+void ribi::gtst::AdministratorDialogStateLoggedIn::OnTimer()
 {
    
   //server->Save("server.xml");
@@ -388,7 +388,7 @@ void AdministratorDialogStateLoggedIn::OnTimer()
   }
 }
 //---------------------------------------------------------------------------
-void AdministratorDialogStateLoggedIn::ShowPage(AdministratorDialog * const dialog)
+void ribi::gtst::AdministratorDialogStateLoggedIn::ShowPage(AdministratorDialog * const dialog)
 {
   assert(dialog);
   assert(IsLoggedIn() && "Assume a logged in administrator");
@@ -437,7 +437,7 @@ void AdministratorDialogStateLoggedIn::ShowPage(AdministratorDialog * const dial
   }
 }
 //---------------------------------------------------------------------------
-void AdministratorDialogStateLoggedIn::OnUploadDone()
+void ribi::gtst::AdministratorDialogStateLoggedIn::OnUploadDone()
 {
    
   assert(boost::filesystem::exists(ui.m_fileupload->spoolFileName()));
@@ -471,7 +471,7 @@ void AdministratorDialogStateLoggedIn::OnUploadDone()
   WtServerPusher::GetInstance()->Post();
 }
 //---------------------------------------------------------------------------
-void AdministratorDialogStateLoggedIn::OnViewLogFile()
+void ribi::gtst::AdministratorDialogStateLoggedIn::OnViewLogFile()
 {
   const std::string filename = ui.m_server_select_file_dialog->GetSelectedFile();
 
@@ -479,7 +479,7 @@ void AdministratorDialogStateLoggedIn::OnViewLogFile()
   ui.m_server_anchor->setResource(new Wt::WFileResource(ui.m_server_select_file_dialog->GetSelectedFile(),ui.m_server_select_file_dialog->GetSelectedFile()));
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> AdministratorDialogStateLoggedIn::SplitXml(const std::string& s)
+const std::vector<std::string> ribi::gtst::AdministratorDialogStateLoggedIn::SplitXml(const std::string& s)
 {
   std::vector<std::string> v;
   std::string::const_iterator i = s.begin();
@@ -504,7 +504,7 @@ const std::vector<std::string> AdministratorDialogStateLoggedIn::SplitXml(const 
 //---------------------------------------------------------------------------
 ///Pretty-print an XML std::string
 //From http://www.richelbilderbeek.nl/CppXmlToPretty.htm
-const std::vector<std::string> AdministratorDialogStateLoggedIn::XmlToPretty(const std::string& s)
+const std::vector<std::string> ribi::gtst::AdministratorDialogStateLoggedIn::XmlToPretty(const std::string& s)
 {
   std::vector<std::string> v = SplitXml(s);
   int n = -2;

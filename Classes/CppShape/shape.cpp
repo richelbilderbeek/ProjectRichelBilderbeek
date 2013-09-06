@@ -27,11 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#ifdef __STRICT_ANSI__
 #include <boost/math/constants/constants.hpp>
-#else
-#include <cmath>
-#endif
 
 //#include "trace.h"
 
@@ -85,11 +81,7 @@ void ribi::Shape::SetRotation(const double rotation)
 
 double ribi::Shape::GetAngle(const double dx, const double dy)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   return pi - std::atan2(dx,dy);
 }
 
@@ -107,11 +99,7 @@ void ribi::Shape::Test()
     is_tested = true;
   }
   //Test GetAngle
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
 
   {
     const double angle =  GetAngle(0.0,-1.0); //North

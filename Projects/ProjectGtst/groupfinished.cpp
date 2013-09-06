@@ -22,13 +22,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "groupfinished.h"
 //---------------------------------------------------------------------------
-GroupFinished::GroupFinished(Server * const server)
+ribi::gtst::GroupFinished::GroupFinished(Server * const server)
   : Group(server)
 {
 
 }
 //---------------------------------------------------------------------------
-void GroupFinished::AddFinishedParticipant(boost::shared_ptr<Participant> participant)
+void ribi::gtst::GroupFinished::AddFinishedParticipant(boost::shared_ptr<Participant> participant)
 {
   this->AddParticipant(participant);
   boost::shared_ptr<State> state(new StateFinished);
@@ -36,7 +36,7 @@ void GroupFinished::AddFinishedParticipant(boost::shared_ptr<Participant> partic
 }
 //---------------------------------------------------------------------------
 ///GroupFinished its ID is the highest maximum int
-int GroupFinished::GetId() const
+int ribi::gtst::GroupFinished::GetId() const
 {
   return boost::numeric::bounds<int>::highest();
 }

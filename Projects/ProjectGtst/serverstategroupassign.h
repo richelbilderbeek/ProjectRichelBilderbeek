@@ -27,6 +27,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "serverstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Server in the state when each Participant is assigned his/her group
 struct ServerStateGroupAssign : public ServerState, StateGroupAssign
@@ -80,5 +84,8 @@ struct ServerStateGroupAssign : public ServerState, StateGroupAssign
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ServerStateGroupAssign& s);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // SERVERSTATEGROUPASSIGN_H

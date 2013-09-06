@@ -49,13 +49,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtsimmysterymachinemaindialog.h"
 #include "wtmysterymachinewidget.h"
 //---------------------------------------------------------------------------
-WtSimMysteryMachineMainDialog::Ui::Ui()
+ribi::WtSimMysteryMachineMainDialog::Ui::Ui()
  : m_machine(new WtMysteryMachineWidget(300,600))
 {
 
 }
 //---------------------------------------------------------------------------
-WtSimMysteryMachineMainDialog::WtSimMysteryMachineMainDialog()
+ribi::WtSimMysteryMachineMainDialog::WtSimMysteryMachineMainDialog()
 {
   setContentAlignment(Wt::AlignCenter);
   addWidget(ui.m_machine);

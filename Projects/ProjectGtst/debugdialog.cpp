@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "wttimedserverpusher.h"
 //---------------------------------------------------------------------------
-DebugDialog::DebugDialog(Server * const server)
+ribi::gtst::DebugDialog::DebugDialog(Server * const server)
   : m_fileupload(0),
     m_label_state_upload(0),
     m_server(server)
@@ -49,20 +49,20 @@ DebugDialog::DebugDialog(Server * const server)
   Show();
 }
 //---------------------------------------------------------------------------
-DebugDialog::~DebugDialog()
+ribi::gtst::DebugDialog::~DebugDialog()
 {
 
 }
 //---------------------------------------------------------------------------
 ///Do something random to the dialog
-void DebugDialog::OnTimedServerPush()
+void ribi::gtst::DebugDialog::OnTimedServerPush()
 {
   std::for_each(m_dialogs.begin(),m_dialogs.end(),
     [](ParticipantDialog* dialog) { dialog->DoSomethingRandom(); }
   );
 }
 //---------------------------------------------------------------------------
-void DebugDialog::OnUploadDone()
+void ribi::gtst::DebugDialog::OnUploadDone()
 {
   boost::shared_ptr<Parameters> parameters(new Parameters(m_server));
   assert(parameters);
@@ -112,7 +112,7 @@ void DebugDialog::OnUploadDone()
   }
 }
 //---------------------------------------------------------------------------
-void DebugDialog::Show()
+void ribi::gtst::DebugDialog::Show()
 {
   this->clear();
 
@@ -139,6 +139,6 @@ void DebugDialog::Show()
   //Call OnUploadDone when file is uploaded
   m_fileupload->uploaded().connect(
     this,
-    &DebugDialog::OnUploadDone);
+    &ribi::gtst::DebugDialog::OnUploadDone);
 }
 //---------------------------------------------------------------------------

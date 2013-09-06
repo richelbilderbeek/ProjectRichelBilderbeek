@@ -22,7 +22,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define TIMEPOLLWTMENUDIALOG_H
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
+namespace ribi {
 namespace ToolTimePoll {
 //---------------------------------------------------------------------------
 struct WtTimePollMenuDialog : public Wt::WContainerWidget
@@ -36,5 +37,7 @@ struct WtTimePollMenuDialog : public Wt::WContainerWidget
 };
 //---------------------------------------------------------------------------
 } //~namespace ToolTimePoll
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TIMEPOLLWTMENUDIALOG_H

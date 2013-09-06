@@ -1,21 +1,16 @@
 #ifndef QTPVDBEXAMPLESITEM_H
 #define QTPVDBEXAMPLESITEM_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include "qtroundededitrectitem.h"
 #include "pvdbfwd.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "qtpvdbconceptitem.h"
-#endif
+
+namespace ribi {
+
+namespace pvdb {
 
 struct QtPvdbExamplesItem : public QtRoundedEditRectItem
 {
@@ -46,5 +41,9 @@ private:
 
   void SetExamples(const boost::shared_ptr<const pvdb::Examples>& examples);
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBEXAMPLESITEM_H

@@ -1,11 +1,6 @@
 #ifndef PVDBCONCEPT_H
 #define PVDBCONCEPT_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
@@ -13,13 +8,9 @@
 
 #include <QRegExp>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbcompetency.h"
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#endif
+
+namespace ribi {
 
 namespace pvdb {
 
@@ -29,15 +20,15 @@ struct ConceptFactory;
 struct Concept
 {
   ///Block copying, as signals cannot be copied
-  Concept(const pvdb::Concept& other) = delete;
-  Concept& operator=(const pvdb::Concept& other) = delete;
+  Concept(const ribi::pvdb::Concept& other) = delete;
+  Concept& operator=(const ribi::pvdb::Concept& other) = delete;
 
   ///Read concept from a std::string read from file
-  static const boost::shared_ptr<pvdb::Concept> FromXml(const std::string& s);
+  static const boost::shared_ptr<ribi::pvdb::Concept> FromXml(const std::string& s);
 
   ///Get the examples of the concept, e.g. 'Plato', 'Aristotle'
   const boost::shared_ptr<const pvdb::Examples> GetExamples() const;
-  const boost::shared_ptr<pvdb::Examples>& GetExamples() { return m_examples; }
+  const boost::shared_ptr<ribi::pvdb::Examples>& GetExamples() { return m_examples; }
 
   ///Has an assessor rated the name of this concept as being an addition to the complexity?
   ///This is something different than m_rating_complexity:
@@ -67,38 +58,38 @@ struct Concept
   void SetIsComplex(const bool is_complex) { m_is_complex = is_complex; }
 
   ///Emitted when the examples are changed
-  mutable boost::signals2::signal<void(const pvdb::Concept*)> m_signal_examples_changed;
+  mutable boost::signals2::signal<void(const ribi::pvdb::Concept*)> m_signal_examples_changed;
 
   ///Emitted when the name is changed
-  mutable boost::signals2::signal<void(const pvdb::Concept*)> m_signal_name_changed;
+  mutable boost::signals2::signal<void(const ribi::pvdb::Concept*)> m_signal_name_changed;
 
   ///Emitted when the rating of the complexity is changed
-  mutable boost::signals2::signal<void(const pvdb::Concept*)> m_signal_rating_complexity_changed;
+  mutable boost::signals2::signal<void(const ribi::pvdb::Concept*)> m_signal_rating_complexity_changed;
 
   ///Emitted when the rating of the complexity is changed
-  mutable boost::signals2::signal<void(const pvdb::Concept*)> m_signal_rating_concreteness_changed;
+  mutable boost::signals2::signal<void(const ribi::pvdb::Concept*)> m_signal_rating_concreteness_changed;
 
   ///Emitted when the rating of the specificity is changed
-  mutable boost::signals2::signal<void(const pvdb::Concept*)> m_signal_rating_specificity_changed;
+  mutable boost::signals2::signal<void(const ribi::pvdb::Concept*)> m_signal_rating_specificity_changed;
 
   ///Convert Concept to a std::string to write to file
-  static const std::string ToXml(const boost::shared_ptr<const pvdb::Concept>& t);
+  static const std::string ToXml(const boost::shared_ptr<const ribi::pvdb::Concept>& t);
 
   private:
-  friend class ::QtPvdbConceptMapDialog;
-  friend class ::QtPvdbStudentMenuDialog;
-  friend class ::QtPvdbTestConceptItemDialog;
-  friend class ::QtPvdbTestConceptMapEditWidgetDialog;
-  friend class ::QtPvdbTestConceptMapRateWidgetDialog;
-  friend class ::QtPvdbTestEdgeItemDialog;
-  friend class ::QtPvdbTestNodeItemDialog;
-  friend class ::QtPvdbEdgeItem;
-  friend class ::QtPvdbNodeItem;
-  friend class ::QtPvdbConceptEditDialog;
-  friend class ::QtPvdbRateConceptDialog;
-  friend class ::QtPvdbRateExamplesDialog;
+  friend class QtPvdbConceptMapDialog;
+  friend class QtPvdbStudentMenuDialog;
+  friend class QtPvdbTestConceptItemDialog;
+  friend class QtPvdbTestConceptMapEditWidgetDialog;
+  friend class QtPvdbTestConceptMapRateWidgetDialog;
+  friend class QtPvdbTestEdgeItemDialog;
+  friend class QtPvdbTestNodeItemDialog;
+  friend class QtPvdbEdgeItem;
+  friend class QtPvdbNodeItem;
+  friend class QtPvdbConceptEditDialog;
+  friend class QtPvdbRateConceptDialog;
+  friend class QtPvdbRateExamplesDialog;
   ///Set the examples
-  void SetExamples(const boost::shared_ptr<pvdb::Examples>& examples);
+  void SetExamples(const boost::shared_ptr<ribi::pvdb::Examples>& examples);
 
   ///Set the name
   void SetName(const std::string& name);
@@ -118,7 +109,7 @@ struct Concept
   private:
 
   ///Examples of the concept, e.g. 'Plato', 'Aristotle'
-  boost::shared_ptr<pvdb::Examples> m_examples;
+  boost::shared_ptr<ribi::pvdb::Examples> m_examples;
 
   ///Has an assessor rated the name of this concept as being an addition to the complexity?
   ///This is something different than m_rating_complexity:
@@ -146,12 +137,12 @@ struct Concept
 
   ///Use checked_delete for destructor
   ~Concept() {}
-  friend void boost::checked_delete<>(pvdb::Concept* x);
+  friend void boost::checked_delete<>(ribi::pvdb::Concept* x);
 
   ///Let only ConceptFactory construct Concepts
   Concept(
     const std::string& name,
-    const boost::shared_ptr<pvdb::Examples>& examples,
+    const boost::shared_ptr<ribi::pvdb::Examples>& examples,
     const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
@@ -161,33 +152,31 @@ struct Concept
 };
 
 
-bool IsEqual(const pvdb::Concept& lhs, const pvdb::Concept& rhs);
+bool IsEqual(const ribi::pvdb::Concept& lhs, const ribi::pvdb::Concept& rhs);
 
 ///Two Concept instances are ordered as follows:
 ///(1) Alphabetically on the name
 ///(2) (if the names are equal) On their Examples
-bool operator<(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs);
-bool operator<(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs);
-bool operator<(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs);
-bool operator<(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs);
+bool operator<(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs);
+bool operator<(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs);
+bool operator<(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs);
+bool operator<(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs);
 
-bool operator<=(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs) = delete;
-bool operator>(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs) = delete;
-bool operator>(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs) = delete;
-bool operator>(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs) = delete;
-bool operator>(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<const pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<const pvdb::Concept>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<pvdb::Concept>& lhs, const boost::shared_ptr<pvdb::Concept>& rhs) = delete;
+bool operator<=(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs) = delete;
+bool operator<=(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs) = delete;
+bool operator<=(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs) = delete;
+bool operator<=(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs) = delete;
+bool operator>(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs) = delete;
+bool operator>(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs) = delete;
+bool operator>(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs) = delete;
+bool operator>(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs) = delete;
+bool operator>=(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs) = delete;
+bool operator>=(const boost::shared_ptr<const ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs) = delete;
+bool operator>=(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<const ribi::pvdb::Concept>& rhs) = delete;
+bool operator>=(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs) = delete;
 
 } //~namespace pvdb
 
-#ifndef PVDB_USE_FORWARD_DECLARATIONS_248738
-#include "pvdbconceptfactory.h"
-#endif
+} //~namespace ribi
 
 #endif // PVDBCONCEPT_H

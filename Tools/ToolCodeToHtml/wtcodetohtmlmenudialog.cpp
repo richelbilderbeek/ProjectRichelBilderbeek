@@ -40,9 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-namespace CodeToHtml {
-
-WtMenuDialog::WtMenuDialog()
+ribi::CodeToHtml::WtMenuDialog::WtMenuDialog()
 {
   {
     std::vector<std::string> image_names;
@@ -100,7 +98,7 @@ WtMenuDialog::WtMenuDialog()
   }
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::CodeToHtml::WtMenuDialog::CreateNewAboutDialog() const
 {
   About a = CodeToHtmlMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -109,14 +107,14 @@ Wt::WWidget * WtMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::CodeToHtml::WtMenuDialog::CreateNewMainDialog() const
 {
   c2h::WtDialog * const d = new c2h::WtDialog;
   assert(d);
   return d;
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::CodeToHtml::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -128,6 +126,3 @@ Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolCodeToHtmlWelcome.png"));
   return dialog;
 }
-
-} //~namespace CodeToHtml
-

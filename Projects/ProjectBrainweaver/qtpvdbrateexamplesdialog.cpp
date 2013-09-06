@@ -24,16 +24,16 @@
 
 struct QtPvdbListWidgetItem : public QListWidgetItem
 {
-  QtPvdbListWidgetItem(const boost::shared_ptr<const pvdb::Example>& example)
+  QtPvdbListWidgetItem(const boost::shared_ptr<const ribi::pvdb::Example>& example)
   {
     this->setText(example->GetText().c_str());
-    this->setIcon(pvdb::QtCompetency::CompetencyToIcon(example->GetCompetency()));
+    this->setIcon(ribi::pvdb::QtCompetency::CompetencyToIcon(example->GetCompetency()));
   }
 };
 
 
-QtPvdbRateExamplesDialog::QtPvdbRateExamplesDialog(
-  const boost::shared_ptr<pvdb::Concept> concept,
+ribi::pvdb::QtPvdbRateExamplesDialog::QtPvdbRateExamplesDialog(
+  const boost::shared_ptr<ribi::pvdb::Concept> concept,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbRateExamplesDialog),
@@ -76,12 +76,12 @@ QtPvdbRateExamplesDialog::QtPvdbRateExamplesDialog(
   }
 }
 
-QtPvdbRateExamplesDialog::~QtPvdbRateExamplesDialog()
+ribi::pvdb::QtPvdbRateExamplesDialog::~QtPvdbRateExamplesDialog()
 {
   delete ui;
 }
 
-const boost::shared_ptr<pvdb::Examples> QtPvdbRateExamplesDialog::GetRatedExamples() const
+const boost::shared_ptr<ribi::pvdb::Examples> ribi::pvdb::QtPvdbRateExamplesDialog::GetRatedExamples() const
 {
   std::vector<boost::shared_ptr<pvdb::Example> > v;
 
@@ -101,19 +101,19 @@ const boost::shared_ptr<pvdb::Examples> QtPvdbRateExamplesDialog::GetRatedExampl
     v.push_back(example);
   }
 
-  const boost::shared_ptr<pvdb::Examples> examples
+  const boost::shared_ptr<ribi::pvdb::Examples> examples
     = pvdb::ExamplesFactory::Create(v);
   assert(examples);
   return examples;
 }
 
-void QtPvdbRateExamplesDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbRateExamplesDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   QDialog::keyPressEvent(e);
 }
 
-void QtPvdbRateExamplesDialog::Test()
+void ribi::pvdb::QtPvdbRateExamplesDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -125,10 +125,10 @@ void QtPvdbRateExamplesDialog::Test()
     []
     {
   #endif
-  TRACE("QtPvdbRateExamplesDialog::Test started");
+  TRACE("ribi::pvdb::QtPvdbRateExamplesDialog::Test started");
   ///Test conversion between reading and writing a concept
   {
-    const int sz = pvdb::ConceptFactory::GetTests().size();
+    const int sz = ribi::pvdb::ConceptFactory::GetTests().size();
     for (int i=0; i!=sz; ++i)
     {
       const auto a = QtPvdbRateExamplesDialog(pvdb::ConceptFactory::GetTests()[i]).GetRatedExamples();
@@ -149,7 +149,7 @@ void QtPvdbRateExamplesDialog::Test()
       }
     }
   }
-  TRACE("QtPvdbRateExamplesDialog::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbRateExamplesDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -157,7 +157,7 @@ void QtPvdbRateExamplesDialog::Test()
   #endif
 }
 
-void QtPvdbRateExamplesDialog::on_button_prof_clicked()
+void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_prof_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -166,7 +166,7 @@ void QtPvdbRateExamplesDialog::on_button_prof_clicked()
   }
 }
 
-void QtPvdbRateExamplesDialog::on_button_organisations_clicked()
+void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_organisations_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -175,7 +175,7 @@ void QtPvdbRateExamplesDialog::on_button_organisations_clicked()
   }
 }
 
-void QtPvdbRateExamplesDialog::on_button_social_clicked()
+void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_social_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -184,7 +184,7 @@ void QtPvdbRateExamplesDialog::on_button_social_clicked()
   }
 }
 
-void QtPvdbRateExamplesDialog::on_button_target_audience_clicked()
+void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_target_audience_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -193,7 +193,7 @@ void QtPvdbRateExamplesDialog::on_button_target_audience_clicked()
   }
 }
 
-void QtPvdbRateExamplesDialog::on_button_prof_development_clicked()
+void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_prof_development_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -202,7 +202,7 @@ void QtPvdbRateExamplesDialog::on_button_prof_development_clicked()
   }
 }
 
-void QtPvdbRateExamplesDialog::on_button_misc_clicked()
+void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_misc_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -211,7 +211,7 @@ void QtPvdbRateExamplesDialog::on_button_misc_clicked()
   }
 }
 
-void QtPvdbRateExamplesDialog::on_button_ti_knowledge_clicked()
+void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_ti_knowledge_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -220,9 +220,9 @@ void QtPvdbRateExamplesDialog::on_button_ti_knowledge_clicked()
   }
 }
 
-void QtPvdbRateExamplesDialog::on_button_ok_clicked()
+void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_ok_clicked()
 {
-  const boost::shared_ptr<pvdb::Examples> p = GetRatedExamples();
+  const boost::shared_ptr<ribi::pvdb::Examples> p = GetRatedExamples();
   assert(p);
   assert(m_concept);
   m_concept->SetExamples(p);

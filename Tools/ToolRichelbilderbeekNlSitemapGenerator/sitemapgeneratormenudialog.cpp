@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "sitemapgeneratormenudialog.h"
 
-const About SitemapGeneratorMenuDialog::GetAbout()
+const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +37,12 @@ const About SitemapGeneratorMenuDialog::GetAbout()
   return a;
 }
 
-const std::string SitemapGeneratorMenuDialog::GetVersion()
+const std::string ribi::SitemapGeneratorMenuDialog::GetVersion()
 {
   return "1.3";
 }
 
-const std::vector<std::string> SitemapGeneratorMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-08-08: version 1.0: initial version");

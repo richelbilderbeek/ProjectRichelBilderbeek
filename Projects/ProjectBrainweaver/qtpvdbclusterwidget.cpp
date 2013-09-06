@@ -29,7 +29,7 @@
 struct QtPvdbTreeWidgetItem : public QTreeWidgetItem
 {
   QtPvdbTreeWidgetItem(
-    const pvdb::Competency competency,
+    const ribi::pvdb::Competency competency,
     const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
@@ -44,14 +44,14 @@ struct QtPvdbTreeWidgetItem : public QTreeWidgetItem
     assert(rating_complexity >= -1);
     assert(rating_complexity <=  2);
   }
-  const pvdb::Competency m_competency;
+  const ribi::pvdb::Competency m_competency;
   const bool m_is_complex;
   const int m_rating_complexity;
   const int m_rating_concreteness;
   const int m_rating_specifity;
 };
 
-QtPvdbClusterWidget::QtPvdbClusterWidget(
+ribi::pvdb::QtPvdbClusterWidget::QtPvdbClusterWidget(
   boost::shared_ptr<pvdb::Cluster> cluster,
   QWidget* parent)
   : QTreeWidget(parent),
@@ -83,7 +83,7 @@ QtPvdbClusterWidget::QtPvdbClusterWidget(
     SLOT(RemoveEmptyItem(QTreeWidgetItem*,int)));
 }
 
-void QtPvdbClusterWidget::Add(const std::string& text)
+void ribi::pvdb::QtPvdbClusterWidget::Add(const std::string& text)
 {
   QtPvdbTreeWidgetItem * const item = new QtPvdbTreeWidgetItem(
     pvdb::Competency::uninitialized,true,-1,-1,-1);
@@ -91,7 +91,7 @@ void QtPvdbClusterWidget::Add(const std::string& text)
   this->addTopLevelItem(item);
 }
 
-void QtPvdbClusterWidget::DoRandomStuff()
+void ribi::pvdb::QtPvdbClusterWidget::DoRandomStuff()
 {
   QtPvdbTreeWidgetItem * const top = new QtPvdbTreeWidgetItem(
     pvdb::Competency::misc,true,0,1,2);
@@ -116,7 +116,7 @@ void QtPvdbClusterWidget::DoRandomStuff()
 }
 
 
-void QtPvdbClusterWidget::dropEvent(QDropEvent *event)
+void ribi::pvdb::QtPvdbClusterWidget::dropEvent(QDropEvent *event)
 {
   QTreeWidget::dropEvent(event);
   //Fix the possibility of dropping a tree with depth three
@@ -208,13 +208,13 @@ void QtPvdbClusterWidget::dropEvent(QDropEvent *event)
   }
 }
 
-const boost::shared_ptr<pvdb::Cluster> QtPvdbClusterWidget::GetCluster()
+const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::QtPvdbClusterWidget::GetCluster()
 {
   WriteToCluster();
   return m_cluster;
 }
 
-int QtPvdbClusterWidget::GetDepth(const QTreeWidgetItem * const item) const
+int ribi::pvdb::QtPvdbClusterWidget::GetDepth(const QTreeWidgetItem * const item) const
 {
   assert(item);
   int depth = 0;
@@ -227,14 +227,14 @@ int QtPvdbClusterWidget::GetDepth(const QTreeWidgetItem * const item) const
   return depth;
 }
 
-void QtPvdbClusterWidget::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbClusterWidget::keyPressEvent(QKeyEvent *event)
 {
   //Without this seemingly useless member function,
   //the widget cannot be edited
   QTreeWidget::keyPressEvent(event);
 }
 
-void QtPvdbClusterWidget::BuildCluster()
+void ribi::pvdb::QtPvdbClusterWidget::BuildCluster()
 {
   assert(m_cluster);
   assert(this->isHeaderHidden());
@@ -244,9 +244,9 @@ void QtPvdbClusterWidget::BuildCluster()
 
   this->clear();
   assert(m_cluster);
-  const std::vector<boost::shared_ptr<pvdb::Concept> >& v = m_cluster->Get();
+  const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v = m_cluster->Get();
   std::for_each(v.begin(),v.end(),
-    [this](const boost::shared_ptr<const pvdb::Concept>& concept)
+    [this](const boost::shared_ptr<const ribi::pvdb::Concept>& concept)
     {
       assert(concept);
       assert(concept->GetRatingComplexity() >= -1);
@@ -293,7 +293,7 @@ void QtPvdbClusterWidget::BuildCluster()
   );
 }
 
-void QtPvdbClusterWidget::RemoveEmptyItem(QTreeWidgetItem* item,int col)
+void ribi::pvdb::QtPvdbClusterWidget::RemoveEmptyItem(QTreeWidgetItem* item,int col)
 {
 
   if (item->text(col).isEmpty())
@@ -304,7 +304,7 @@ void QtPvdbClusterWidget::RemoveEmptyItem(QTreeWidgetItem* item,int col)
 }
 
 #ifndef NDEBUG
-void QtPvdbClusterWidget::Test()
+void ribi::pvdb::QtPvdbClusterWidget::Test()
 {
   {
     static bool is_tested = false;
@@ -316,7 +316,7 @@ void QtPvdbClusterWidget::Test()
     []
     {
   #endif
-  TRACE("Started QtPvdbClusterWidget::Test");
+  TRACE("Started ribi::pvdb::QtPvdbClusterWidget::Test");
   {
     //const std::vector<boost::shared_ptr<pvdb::Cluster> > v = pvdb::ClusterFactory::GetTests();
     for (const boost::shared_ptr<pvdb::Cluster>& c: pvdb::ClusterFactory::GetTests())
@@ -342,7 +342,7 @@ void QtPvdbClusterWidget::Test()
       }
     //);
   }
-  TRACE("QtPvdbClusterWidget::Test completed successfully");
+  TRACE("ribi::pvdb::QtPvdbClusterWidget::Test completed successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -351,9 +351,9 @@ void QtPvdbClusterWidget::Test()
 }
 #endif
 
-void QtPvdbClusterWidget::WriteToCluster()
+void ribi::pvdb::QtPvdbClusterWidget::WriteToCluster()
 {
-  std::vector<boost::shared_ptr<pvdb::Concept> > concepts;
+  std::vector<boost::shared_ptr<ribi::pvdb::Concept> > concepts;
   const int n_top = this->topLevelItemCount();
   for (int i=0; i!=n_top; ++i)
   {
@@ -382,7 +382,7 @@ void QtPvdbClusterWidget::WriteToCluster()
     QtPvdbTreeWidgetItem * const pvdb_top = dynamic_cast<QtPvdbTreeWidgetItem *>(this->topLevelItem(i)); //FIX 2012-12-30
 
     concepts.push_back(
-      pvdb::ConceptFactory::Create(
+      ribi::pvdb::ConceptFactory::Create(
         name,
         pvdb::ExamplesFactory::Create(examples),
         pvdb_top ? pvdb_top->m_is_complex : true,

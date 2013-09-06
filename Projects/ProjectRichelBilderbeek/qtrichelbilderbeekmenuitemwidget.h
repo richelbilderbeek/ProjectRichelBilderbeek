@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtkeyboardfriendlygraphicsview.h"
 
+namespace ribi {
+
 ///The widget holding the items
 struct QtRichelBilderbeekMenuItemWidget : public QtKeyboardFriendlyGraphicsView
 {
@@ -30,5 +32,7 @@ struct QtRichelBilderbeekMenuItemWidget : public QtKeyboardFriendlyGraphicsView
 
   void keyPressEvent(QKeyEvent *event);
 };
+
+} //~namespace ribi
 
 #endif // QTRICHELBILDERBEEKMENUITEMWIDGET_H

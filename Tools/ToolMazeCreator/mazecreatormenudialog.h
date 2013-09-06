@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "about.h"
 //---------------------------------------------------------------------------
+namespace ribi {
+
 ///MazeCreatorMenuDialog contains the MazeCreator menu dialog
 struct MazeCreatorMenuDialog
 {
@@ -37,5 +39,7 @@ struct MazeCreatorMenuDialog
 //---------------------------------------------------------------------------
 ///From http://www.richelbilderbeek.nl/CppIntToStr.htm
 const std::string IntToStr(const int x);
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // MAZECREATORMENUDIALOG_H

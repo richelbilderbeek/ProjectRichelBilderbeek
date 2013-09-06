@@ -41,7 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-void Test::CreateParameterFile1()
+void ribi::gtst::Test::CreateParameterFile1()
 {
   std::vector<std::string> v;
   v.push_back("///////////////////////////////////////////////////////////////////////////////");
@@ -208,7 +208,7 @@ void Test::CreateParameterFile1()
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(file,"\n"));
 }
 //---------------------------------------------------------------------------
-void Test::CreateParameterFile2()
+void ribi::gtst::Test::CreateParameterFile2()
 {
   std::vector<std::string> v;
   v.push_back("///////////////////////////////////////////////////////////////////////////////");
@@ -367,7 +367,7 @@ void Test::CreateParameterFile2()
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(file,"\n"));
 }
 //---------------------------------------------------------------------------
-void Test::CreateParameterFile3()
+void ribi::gtst::Test::CreateParameterFile3()
 {
   std::vector<std::string> v;
   v.push_back("///////////////////////////////////////////////////////////////////////////////");
@@ -527,7 +527,7 @@ void Test::CreateParameterFile3()
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(file,"\n"));
 }
 //---------------------------------------------------------------------------
-void Test::CreateParameterFile4()
+void ribi::gtst::Test::CreateParameterFile4()
 {
   std::vector<std::string> v;
   v.push_back("///////////////////////////////////////////////////////////////////////////////");
@@ -688,7 +688,7 @@ void Test::CreateParameterFile4()
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(file,"\n"));
 }
 //---------------------------------------------------------------------------
-void Test::CreateParameterFile5()
+void ribi::gtst::Test::CreateParameterFile5()
 {
   std::vector<std::string> v;
   v.push_back("///////////////////////////////////////////////////////////////////////////////");
@@ -855,7 +855,7 @@ void Test::CreateParameterFile5()
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(file,"\n"));
 }
 //---------------------------------------------------------------------------
-void Test::CreateParameterFile6()
+void ribi::gtst::Test::CreateParameterFile6()
 {
   std::vector<std::string> v;
   v.push_back("///////////////////////////////////////////////////////////////////////////////");
@@ -1017,7 +1017,7 @@ void Test::CreateParameterFile6()
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(file,"\n"));
 }
 //---------------------------------------------------------------------------
-void Test::CreateParameterFile7()
+void ribi::gtst::Test::CreateParameterFile7()
 {
   std::vector<std::string> v;
   v.push_back("///////////////////////////////////////////////////////////////////////////////");
@@ -1221,7 +1221,7 @@ void Test::CreateParameterFile7()
 }
 //---------------------------------------------------------------------------
 ///Tests the parsing of the parameter files
-void Test::TestParameterParsing()
+void ribi::gtst::Test::TestParameterParsing()
 {
   {
     CreateParameterFile1();

@@ -26,6 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "about.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct TestPylosMenuDialog
 {
   ///Obtain the About information of this class
@@ -38,5 +41,7 @@ struct TestPylosMenuDialog
   static const std::vector<std::string> GetVersionHistory();
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TESTPYLOSMAINDIALOG_H

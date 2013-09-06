@@ -40,9 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtaboutdialog.h"
 #include "wttestentrancemaindialog.h"
 
-namespace ToolTestEntrance {
-
-WtMainDialog::Ui::Ui()
+ribi::ToolTestEntrance::WtMainDialog::Ui::Ui()
   : m_edit(new Wt::WLineEdit),
     m_view_names_dialog(new Wt::WContainerWidget),
     m_view_visits_dialog(new Wt::WContainerWidget)
@@ -51,7 +49,7 @@ WtMainDialog::Ui::Ui()
   m_edit->setMinimumSize(400,Wt::WLength::Auto);
 }
 
-WtMainDialog::WtMainDialog(boost::shared_ptr<const IpAddress> ip_address)
+ribi::ToolTestEntrance::WtMainDialog::WtMainDialog(boost::shared_ptr<const IpAddress> ip_address)
  :  m_ip_address(ip_address)
 {
   assert(ip_address);
@@ -92,17 +90,17 @@ WtMainDialog::WtMainDialog(boost::shared_ptr<const IpAddress> ip_address)
   //When closing the page, and opening one again,
   //these signals connect to the old page!
   //WtEntrance::Get()->m_signal_name_changed.connect(boost::bind(
-  //  &WtMainDialog::OnNewName,this));
+  //  &ribi::ToolTestEntrance::WtMainDialog::OnNewName,this));
 
   //WtEntrance::Get()->m_signal_new_visit.connect(boost::bind(
-  //  &WtMainDialog::OnNewVisit,this));
+  //  &ribi::ToolTestEntrance::WtMainDialog::OnNewVisit,this));
 
   OnEditChanged();
   OnNewName();
   OnNewVisit();
 }
 
-void WtMainDialog::OnNewName()
+void ribi::ToolTestEntrance::WtMainDialog::OnNewName()
 {
   assert(ui.m_view_names_dialog);
   ui.m_view_names_dialog->clear();
@@ -122,7 +120,7 @@ void WtMainDialog::OnNewName()
   );
 }
 
-void WtMainDialog::OnNewVisit()
+void ribi::ToolTestEntrance::WtMainDialog::OnNewVisit()
 {
   assert(ui.m_view_visits_dialog);
   ui.m_view_visits_dialog->clear();
@@ -142,7 +140,7 @@ void WtMainDialog::OnNewVisit()
   );
 }
 
-Wt::WWidget * WtMainDialog::CreateNewWelcomeDialog()
+Wt::WWidget * ribi::ToolTestEntrance::WtMainDialog::CreateNewWelcomeDialog()
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -151,13 +149,13 @@ Wt::WWidget * WtMainDialog::CreateNewWelcomeDialog()
   {
     const std::string s = WtEntrance::Get()->GetName(m_ip_address.get());
     ui.m_edit->setText(s.c_str());
-    ui.m_edit->keyWentUp().connect(this,&WtMainDialog::OnEditChanged);
+    ui.m_edit->keyWentUp().connect(this,&ribi::ToolTestEntrance::WtMainDialog::OnEditChanged);
     dialog->addWidget(ui.m_edit);
   }
   return dialog;
 }
 
-void WtMainDialog::OnEditChanged()
+void ribi::ToolTestEntrance::WtMainDialog::OnEditChanged()
 {
   std::string s = ui.m_edit->text().toUTF8();
   std::replace(s.begin(),s.end(),',',' ');
@@ -166,6 +164,3 @@ void WtMainDialog::OnEditChanged()
   WtEntrance::Get()->SetName(m_ip_address.get(),s);
   OnNewName();
 }
-
-} //namespace ToolTestEntrance
-

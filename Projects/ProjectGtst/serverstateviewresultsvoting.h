@@ -25,6 +25,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "serverstate.h"
 
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Server in the state when each Participant can view the
 ///voting results of his/her group.
@@ -92,5 +95,8 @@ struct ServerStateViewResultsVoting : public ServerState, StateViewResultsVoting
 };
 
 std::ostream& operator<<(std::ostream& os,const ServerStateViewResultsVoting& s);
+
+} //~namespace gtst
+} //~namespace ribi
 
 #endif // ServerSTATEVIEWRESULTSVOTING_H

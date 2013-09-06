@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///#include Qt files after Wt files
 #include <QFile>
 //---------------------------------------------------------------------------
-Resources::Resources()
+ribi::gtst::Resources::Resources()
 {
   TRACE_FUNC();
   //Create the default parameters file
@@ -85,7 +85,7 @@ Resources::Resources()
 }
 //---------------------------------------------------------------------------
 ///Create the CSS for this application
-const std::vector<std::string> Resources::CreateStylesheet() const
+const std::vector<std::string> ribi::gtst::Resources::CreateStylesheet() const
 {
   std::vector<std::string> v;
 
@@ -163,7 +163,7 @@ const std::vector<std::string> Resources::CreateStylesheet() const
 }
 //---------------------------------------------------------------------------
 ///Save the stylesheet for this application to file
-void Resources::SaveStylesheet() const
+void ribi::gtst::Resources::SaveStylesheet() const
 {
   const std::vector<std::string> v = CreateStylesheet();
   std::ofstream f("wt.css");

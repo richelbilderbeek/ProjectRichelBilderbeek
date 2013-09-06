@@ -5,14 +5,10 @@
 #include <cassert>
 #include <stdexcept>
 
-#ifdef __STRICT_ANSI__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
 #pragma GCC diagnostic pop
-#else
-#include <cmath>
-#endif
 
 //Warp's function parser
 #include "fparser.hh"
@@ -24,12 +20,7 @@ ribi::ModelFunctionParser::ModelFunctionParser(
 {
   assert(m_parser);
 
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   m_parser->AddConstant("pi",pi);
   m_parser->AddConstant("tau",2.0*pi);
   m_parser->AddFunction("rand",MyRand,1);

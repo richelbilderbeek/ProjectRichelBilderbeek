@@ -16,11 +16,7 @@
 #include "pvdbfile.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-const boost::shared_ptr<pvdb::File> pvdb::FileFactory::Create()
+const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::Create()
 {
   boost::shared_ptr<pvdb::File> file(new pvdb::File);
   assert(file);
@@ -28,7 +24,7 @@ const boost::shared_ptr<pvdb::File> pvdb::FileFactory::Create()
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<pvdb::File> pvdb::FileFactory::DeepCopy(const boost::shared_ptr<const pvdb::File>& file)
+const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(const boost::shared_ptr<const pvdb::File>& file)
 {
   assert(file);
 
@@ -40,10 +36,10 @@ const boost::shared_ptr<pvdb::File> pvdb::FileFactory::DeepCopy(const boost::sha
     assert(IsEqual(*cluster,*file->GetCluster()));
   }
 
-  boost::shared_ptr<pvdb::ConceptMap> concept_map;
+  boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map;
   if (file->GetConceptMap())
   {
-    concept_map = pvdb::ConceptMapFactory::DeepCopy(file->GetConceptMap());
+    concept_map = ribi::pvdb::ConceptMapFactory::DeepCopy(file->GetConceptMap());
     assert(concept_map);
     assert(IsEqual(*concept_map,*file->GetConceptMap()));
   }
@@ -63,7 +59,7 @@ const boost::shared_ptr<pvdb::File> pvdb::FileFactory::DeepCopy(const boost::sha
   return p;
 }
 #endif
-const std::vector<boost::shared_ptr<pvdb::File> > pvdb::FileFactory::GetTests()
+const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory::GetTests()
 {
   std::vector<boost::shared_ptr<pvdb::File> > v;
   //[0]: empty file
@@ -74,7 +70,7 @@ const std::vector<boost::shared_ptr<pvdb::File> > pvdb::FileFactory::GetTests()
   {
     boost::shared_ptr<pvdb::File> f = Create();
     assert(f);
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
       = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(0);
     assert(concept_map);
     f->SetConceptMap(concept_map);
@@ -84,7 +80,7 @@ const std::vector<boost::shared_ptr<pvdb::File> > pvdb::FileFactory::GetTests()
   {
     boost::shared_ptr<pvdb::File> f = Create();
     assert(f);
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
       = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
     assert(concept_map);
     f->SetConceptMap(concept_map);
@@ -94,8 +90,8 @@ const std::vector<boost::shared_ptr<pvdb::File> > pvdb::FileFactory::GetTests()
   {
     boost::shared_ptr<pvdb::File> f = Create();
     assert(f);
-    f->SetStudentName("pvdb::FileFactory::GetTests()[3] name");
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map
+    f->SetStudentName("ribi::pvdb::FileFactory::GetTests()[3] name");
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
       = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
     assert(concept_map);
     f->SetConceptMap(concept_map);
@@ -109,8 +105,8 @@ const std::vector<boost::shared_ptr<pvdb::File> > pvdb::FileFactory::GetTests()
   {
     boost::shared_ptr<pvdb::File> f = Create();
     assert(f);
-    f->SetStudentName("pvdb::FileFactory::GetTests()[4] name");
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map
+    f->SetStudentName("ribi::pvdb::FileFactory::GetTests()[4] name");
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
       = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(16);
     assert(concept_map);
     f->SetConceptMap(concept_map);

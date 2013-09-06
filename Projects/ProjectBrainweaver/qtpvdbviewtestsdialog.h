@@ -1,25 +1,20 @@
 #ifndef QTPVDBVIEWTESTSDIALOG_H
 #define QTPVDBVIEWTESTSDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-
-#endif
 
 namespace Ui {
-class QtPvdbViewTestsDialog;
+  class QtPvdbViewTestsDialog;
 }
 
-class QtPvdbViewTestsDialog : public QtHideAndShowDialog
+namespace ribi {
+
+namespace pvdb {
+
+class QtPvdbViewTestsDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -34,13 +29,13 @@ private:
   Ui::QtPvdbViewTestsDialog *ui;
 
   /// ComplexHomomorphousTestConceptMaps
-  const std::vector<boost::shared_ptr<pvdb::ConceptMap> > m_c;
+  const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > m_c;
 
   /// HeteromorphousTestConceptMaps
-  const std::vector<boost::shared_ptr<pvdb::ConceptMap> > m_h;
+  const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > m_h;
 
   /// SimpleHomomorphousTestConceptMaps
-  const std::vector<boost::shared_ptr<pvdb::ConceptMap> > m_s;
+  const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > m_s;
 
   /// Tha widgets
   std::vector<boost::shared_ptr<QtPvdbConceptMapWidget> > m_widgets;
@@ -51,7 +46,11 @@ private:
 
   static boost::shared_ptr<QtPvdbConceptMapWidget> CreateWidget(
     const int type,
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map);
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map);
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBVIEWTESTSDIALOG_H

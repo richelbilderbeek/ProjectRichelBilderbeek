@@ -25,6 +25,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 
 #include <Wt/WContainerWidget>
+
+namespace ribi {
+
 struct Question;
 struct QuestionDialog;
 
@@ -52,6 +55,6 @@ struct WtQuestionDialog : public Wt::WContainerWidget
   boost::shared_ptr<QuestionDialog> m_dialog;
 };
 
-
+} //~namespace ribi
 
 #endif // WTQUESTIONDIALOG_H

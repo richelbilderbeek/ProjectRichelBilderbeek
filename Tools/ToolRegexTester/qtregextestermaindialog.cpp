@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "regextestermaindialog.h"
 #include "ui_qtregextestermaindialog.h"
 
-QtRegexTesterMainDialog::QtRegexTesterMainDialog(
+ribi::QtRegexTesterMainDialog::QtRegexTesterMainDialog(
   const boost::shared_ptr<RegexTesterMainDialog> dialog,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
@@ -47,24 +47,12 @@ QtRegexTesterMainDialog::QtRegexTesterMainDialog(
   this->onAnyChange();
 }
 
-QtRegexTesterMainDialog::~QtRegexTesterMainDialog()
+ribi::QtRegexTesterMainDialog::~QtRegexTesterMainDialog()
 {
   delete ui;
 }
 
-void QtRegexTesterMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtRegexTesterMainDialog::onAnyChange()
+void ribi::QtRegexTesterMainDialog::onAnyChange()
 {
   const std::string regex_str = ui->edit_regex->text().toStdString();
   const std::string line = ui->edit_line->text().toStdString();

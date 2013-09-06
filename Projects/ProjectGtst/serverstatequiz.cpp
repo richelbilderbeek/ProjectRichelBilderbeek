@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-ServerStateQuiz::ServerStateQuiz(
+ribi::gtst::ServerStateQuiz::ServerStateQuiz(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersQuiz>& parameters)
   : ServerState(server,period,cycle),
@@ -52,7 +52,7 @@ ServerStateQuiz::ServerStateQuiz(
 ///ServerStateQuiz goes to the next state if
 /// - all Participants are logged in
 /// - all Participants have voted
-bool ServerStateQuiz::CanGoToNextState() const
+bool ribi::gtst::ServerStateQuiz::CanGoToNextState() const
 {
   typedef std::pair<boost::shared_ptr<const Participant>,bool> Pair;
   BOOST_FOREACH(const Pair& p,m_has_voted)
@@ -74,7 +74,7 @@ bool ServerStateQuiz::CanGoToNextState() const
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateQuiz::GetStateDuration() const
+int ribi::gtst::ServerStateQuiz::GetStateDuration() const
 {
   //return m_parameters->GetDuration();
   return 123456;
@@ -82,7 +82,7 @@ int ServerStateQuiz::GetStateDuration() const
 //---------------------------------------------------------------------------
 ///ParticipantDialog notifies the Server of the
 ///Participant his/her vote
-void ServerStateQuiz::NotifyVote(
+void ribi::gtst::ServerStateQuiz::NotifyVote(
   const boost::shared_ptr<const Participant>& participant,
   const boost::shared_ptr<VotingOption>& vote)
 {
@@ -95,13 +95,13 @@ void ServerStateQuiz::NotifyVote(
   //WtBroadcastServer::GetInstance()->Post();
 }
 //---------------------------------------------------------------------------
-void ServerStateQuiz::OnTimer()
+void ribi::gtst::ServerStateQuiz::OnTimer()
 {
   if (CanGoToNextState()) GoToNextState();
 }
 //---------------------------------------------------------------------------
 /*
-void ServerStateQuiz::SetParameters(const ParametersQuiz* const parameters)
+void ribi::gtst::ServerStateQuiz::SetParameters(const ParametersQuiz* const parameters)
 {
   assert(parameters);
   m_parameters = parameters;
@@ -111,7 +111,7 @@ void ServerStateQuiz::SetParameters(const ParametersQuiz* const parameters)
 }
 */
 //---------------------------------------------------------------------------
-void ServerStateQuiz::Start()
+void ribi::gtst::ServerStateQuiz::Start()
 {
   ///Keeps track of Participants having voted
   m_has_voted.clear();
@@ -129,7 +129,7 @@ void ServerStateQuiz::Start()
   assert(!CanGoToNextState());
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateQuiz& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateQuiz& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

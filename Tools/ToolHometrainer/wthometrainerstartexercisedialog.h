@@ -27,6 +27,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <Wt/WContainerWidget>
 
+namespace ribi {
+
 struct WtExercise;
 
 struct WtHometrainerStartExerciseDialog : public Wt::WContainerWidget
@@ -42,5 +44,7 @@ struct WtHometrainerStartExerciseDialog : public Wt::WContainerWidget
     Wt::WGroupBox * const m_box_exercise;
   } ui;
 };
+
+} //~namespace ribi
 
 #endif // WTHOMETRAINERSTARTEXERCISEDIALOG_H

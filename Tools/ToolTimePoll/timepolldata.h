@@ -26,10 +26,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/shared_ptr.hpp>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct Stopwatch;
-//---------------------------------------------------------------------------
+
 namespace ToolTimePoll {
-//---------------------------------------------------------------------------
+
 ///\brief
 ///The data used by the WtBroadcastServer
 ///
@@ -71,7 +74,8 @@ struct Data
   boost::shared_ptr<Stopwatch> m_stopwatch;
 
 };
-//---------------------------------------------------------------------------
+
 } //~namespace ToolTimePoll
-//---------------------------------------------------------------------------
+} //~namespace ribi
+
 #endif // TIMEPOLLDATA_H

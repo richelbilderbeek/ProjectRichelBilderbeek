@@ -25,6 +25,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtAboutDialog;
 //---------------------------------------------------------------------------
 struct WtTicTacToeMenuDialog : public Wt::WContainerWidget
@@ -34,5 +37,7 @@ struct WtTicTacToeMenuDialog : public Wt::WContainerWidget
   private:
   WtAboutDialog * CreateNewAboutDialog() const;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTICTACTOEMENUDIALOG_H

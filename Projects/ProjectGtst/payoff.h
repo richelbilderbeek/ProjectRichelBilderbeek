@@ -27,6 +27,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/logic/tribool.hpp>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///Payoff is a class for the different types of payoff
 struct Payoff
 {
@@ -101,5 +105,8 @@ struct PayoffReAssign : public Payoff
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const Payoff& p);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PAYOFF_H

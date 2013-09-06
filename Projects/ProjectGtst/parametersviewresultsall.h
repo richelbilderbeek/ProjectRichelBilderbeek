@@ -28,6 +28,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Parameters for the view-results-all state
 struct ParametersViewResultsAll
@@ -76,5 +80,8 @@ struct ParametersViewResultsAll
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ParametersViewResultsAll& parameters);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARAMETERSVIEWRESULTSALL_H

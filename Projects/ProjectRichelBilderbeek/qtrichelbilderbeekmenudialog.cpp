@@ -84,7 +84,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent) :
+ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRichelBilderbeekMenuDialog)
 {
@@ -112,13 +112,13 @@ QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent) :
   }
 }
 
-QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog()
+ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog()
 {
   delete ui;
 }
 
 
-const About QtRichelBilderbeekMenuDialog::GetAbout()
+const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout()
 {
   About a = RichelBilderbeek::MenuDialog::GetAbout();
   a.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
@@ -160,12 +160,12 @@ const About QtRichelBilderbeekMenuDialog::GetAbout()
   return a;
 }
 
-void QtRichelBilderbeekMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtRichelBilderbeekMenuDialog::keyPressEvent(QKeyEvent * event)
 {
  if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtRichelBilderbeekMenuDialog::OnAbout()
+void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
 {
   QtAboutDialog d(this->GetAbout());
   d.setWindowIcon(this->windowIcon());
@@ -174,7 +174,7 @@ void QtRichelBilderbeekMenuDialog::OnAbout()
 }
 
 #ifndef NDEBUG
-void QtRichelBilderbeekMenuDialog::Test()
+void ribi::QtRichelBilderbeekMenuDialog::Test()
 {
   {
     static bool is_tested = false;

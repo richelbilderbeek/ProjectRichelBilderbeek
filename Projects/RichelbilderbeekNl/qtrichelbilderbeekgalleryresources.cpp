@@ -32,9 +32,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //Must be #included after Wt header files
 #include <QFile>
 
-namespace RichelBilderbeek {
 
-QtResources::QtResources()
+
+ribi::RichelBilderbeek::QtResources::QtResources()
 {
   //Create the obligatory resources
   {
@@ -109,25 +109,21 @@ QtResources::QtResources()
   }
 }
 
-const std::string QtResources::GetVersion()
+const std::string ribi::RichelBilderbeek::QtResources::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtResources::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::QtResources::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-02-19: Version 1.0: initial version");
   return v;
 }
 
-bool QtResources::IsRegularFile(const std::string& filename)
+bool ribi::RichelBilderbeek::QtResources::IsRegularFile(const std::string& filename)
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);
   return f.is_open();
 }
-
-
-} //~namespace RichelBilderbeek
-

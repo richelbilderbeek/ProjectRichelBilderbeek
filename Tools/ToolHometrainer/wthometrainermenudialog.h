@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <Wt/WContainerWidget>
 
+namespace ribi {
+
 struct WtHometrainerLoadExerciseDialog;
 struct WtHometrainerStartExerciseDialog;
 
@@ -47,6 +49,6 @@ private:
   void OnSelectedFile(const std::string filename);
 };
 
-
+} //namespace ribi
 
 #endif // WTHOMETRAINERMENUDIALOG_H

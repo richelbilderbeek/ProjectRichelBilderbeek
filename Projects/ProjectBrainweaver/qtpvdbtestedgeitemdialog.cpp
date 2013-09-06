@@ -33,7 +33,7 @@
 #include "trace.h"
 #include "ui_qtpvdbtestedgeitemdialog.h"
 
-QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
+ribi::pvdb::QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestEdgeItemDialog),
   m_edge_item(nullptr),
@@ -72,7 +72,7 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
     const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbDisplayConceptItem(m_from->GetConcept()));
     node1 = new QtPvdbNodeItem(m_from,item);
     node1->m_signal_request_scene_update.connect(
-      boost::bind(&QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate,this));
+      boost::bind(&ribi::pvdb::QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate,this));
   }
   QtPvdbNodeItem * node2 = nullptr;
   {
@@ -80,7 +80,7 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
     const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbEditConceptItem(m_to->GetConcept()));
     node2 = new QtPvdbNodeItem(m_to,item);
     node2->m_signal_request_scene_update.connect(
-      boost::bind(&QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate,this));
+      boost::bind(&ribi::pvdb::QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate,this));
   }
   assert(node1);
   assert(node2);
@@ -173,35 +173,35 @@ QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
 }
 
-QtPvdbTestEdgeItemDialog::~QtPvdbTestEdgeItemDialog()
+ribi::pvdb::QtPvdbTestEdgeItemDialog::~QtPvdbTestEdgeItemDialog()
 {
   delete ui;
 }
 
-const boost::shared_ptr<pvdb::Node> QtPvdbTestEdgeItemDialog::CreateFrom()
+const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::QtPvdbTestEdgeItemDialog::CreateFrom()
 {
   const std::size_t index = 2;
   assert(index < pvdb::NodeFactory::GetTests().size());
-  const boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::GetTests()[index];
+  const boost::shared_ptr<ribi::pvdb::Node> node = pvdb::NodeFactory::GetTests()[index];
   assert(node);
   return node;
 }
 
-const boost::shared_ptr<pvdb::Node> QtPvdbTestEdgeItemDialog::CreateTo()
+const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::QtPvdbTestEdgeItemDialog::CreateTo()
 {
   const std::size_t index = 3;
   assert(index < pvdb::NodeFactory::GetTests().size());
-  const boost::shared_ptr<pvdb::Node> node = pvdb::NodeFactory::GetTests()[index];
+  const boost::shared_ptr<ribi::pvdb::Node> node = pvdb::NodeFactory::GetTests()[index];
   assert(node);
   return node;
 }
 
-const boost::shared_ptr<pvdb::Edge> QtPvdbTestEdgeItemDialog::GetEdgeCurrentWay()
+const boost::shared_ptr<ribi::pvdb::Edge> ribi::pvdb::QtPvdbTestEdgeItemDialog::GetEdgeCurrentWay()
 {
   return GetEdge(ui->box_edit->currentIndex());
 }
 
-const boost::shared_ptr<pvdb::Edge> QtPvdbTestEdgeItemDialog::GetEdge(const int index)
+const boost::shared_ptr<ribi::pvdb::Edge> ribi::pvdb::QtPvdbTestEdgeItemDialog::GetEdge(const int index)
 {
   switch(index)
   {
@@ -226,15 +226,15 @@ const boost::shared_ptr<pvdb::Edge> QtPvdbTestEdgeItemDialog::GetEdge(const int 
       assert(!"Should not get here");
   }
   assert(!"Should not get here");
-  throw std::logic_error("QtPvdbTestEdgeItemDialog::GetEdge: current index unknown");
+  throw std::logic_error("ribi::pvdb::QtPvdbTestEdgeItemDialog::GetEdge: current index unknown");
 }
 
-void QtPvdbTestEdgeItemDialog::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbTestEdgeItemDialog::on_box_competency_currentIndexChanged(int index)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_box_competency_currentIndexChanged(int index)
 {
   const pvdb::Competency c = static_cast<pvdb::Competency>(index);
   assert(GetEdgeCurrentWay());
@@ -244,7 +244,7 @@ void QtPvdbTestEdgeItemDialog::on_box_competency_currentIndexChanged(int index)
   this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
-void QtPvdbTestEdgeItemDialog::on_edit_name_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_edit_name_textChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
@@ -252,7 +252,7 @@ void QtPvdbTestEdgeItemDialog::on_edit_name_textChanged(const QString &arg1)
   assert(this->GetEdgeCurrentWay()->GetConcept()->GetName() == arg1.toStdString());
 }
 
-void QtPvdbTestEdgeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
 {
   const int rating_complexity = boost::lexical_cast<int>(arg1.toStdString());
   assert(rating_complexity >= -1);
@@ -262,21 +262,21 @@ void QtPvdbTestEdgeItemDialog::on_box_complexity_currentIndexChanged(const QStri
   this->GetEdgeCurrentWay()->GetConcept()->SetRatingComplexity(rating_complexity);
 }
 
-void QtPvdbTestEdgeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
   this->GetEdgeCurrentWay()->GetConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void QtPvdbTestEdgeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
   this->GetEdgeCurrentWay()->GetConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void QtPvdbTestEdgeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
@@ -284,7 +284,7 @@ void QtPvdbTestEdgeItemDialog::on_edit_example_text_textChanged(const QString &a
   this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
 
-void QtPvdbTestEdgeItemDialog::on_box_arrow_head_currentIndexChanged(int index)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_box_arrow_head_currentIndexChanged(int index)
 {
   assert(GetEdgeCurrentWay());
   this->GetEdgeCurrentWay()->SetHeadArrow(index);
@@ -292,7 +292,7 @@ void QtPvdbTestEdgeItemDialog::on_box_arrow_head_currentIndexChanged(int index)
   assert(this->GetEdge(1)->HasHeadArrow() == static_cast<bool>(index));
 }
 
-void QtPvdbTestEdgeItemDialog::on_box_arrow_tail_currentIndexChanged(int index)
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_box_arrow_tail_currentIndexChanged(int index)
 {
   assert(GetEdgeCurrentWay());
   this->GetEdgeCurrentWay()->SetTailArrow(index);
@@ -300,7 +300,7 @@ void QtPvdbTestEdgeItemDialog::on_box_arrow_tail_currentIndexChanged(int index)
   assert(this->GetEdge(1)->HasTailArrow() == static_cast<bool>(index));
 }
 
-void QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate()
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate()
 {
   assert(ui);
   assert(ui->view);
@@ -309,7 +309,7 @@ void QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate()
 }
 
 #ifndef NDEBUG
-void QtPvdbTestEdgeItemDialog::Test()
+void ribi::pvdb::QtPvdbTestEdgeItemDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -321,7 +321,7 @@ void QtPvdbTestEdgeItemDialog::Test()
     []
     {
   #endif
-  TRACE("QtPvdbTestEdgeItemDialog::Test started");
+  TRACE("ribi::pvdb::QtPvdbTestEdgeItemDialog::Test started");
   //boost::shared_ptr<QtPvdbTestEdgeItemDialog> parent(new QtPvdbTestEdgeItemDialog);
   boost::shared_ptr<QtPvdbTestEdgeItemDialog> d(new QtPvdbTestEdgeItemDialog);
   //assert(parent);
@@ -410,7 +410,7 @@ void QtPvdbTestEdgeItemDialog::Test()
     }
   }
   d->close();
-  TRACE("QtPvdbTestEdgeItemDialog::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbTestEdgeItemDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

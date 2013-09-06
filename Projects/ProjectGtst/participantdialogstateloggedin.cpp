@@ -39,14 +39,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participantstate.h"
 #include "participantstateloggedin.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateLoggedIn::ParticipantDialogStateLoggedIn(
+ribi::gtst::ParticipantDialogStateLoggedIn::ParticipantDialogStateLoggedIn(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
 
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateLoggedIn::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateLoggedIn::RespondToTimedServerPush()
 {
   const auto participant = GetDialog()->GetParticipant();
   if (dynamic_cast<const ParticipantStateLoggedIn*>(participant->GetState()))
@@ -59,7 +59,7 @@ void ParticipantDialogStateLoggedIn::RespondToTimedServerPush()
   RespondToParticipant();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateLoggedIn::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateLoggedIn::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
   assert(GetDialog()->GetParticipant());

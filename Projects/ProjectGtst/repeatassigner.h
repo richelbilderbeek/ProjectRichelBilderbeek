@@ -27,6 +27,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/noncopyable.hpp>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///RepeatAssigner is a Strategy to determined
 ///how often a certain state is repeated
@@ -59,5 +63,9 @@ struct RepeatAssigner : public boost::noncopyable
   ///The log of all assigned values
   mutable std::vector<int> m_assigned_values;
 };
-//---------------------------------------------------------------------------
+
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // REPEATASSIGNER_H

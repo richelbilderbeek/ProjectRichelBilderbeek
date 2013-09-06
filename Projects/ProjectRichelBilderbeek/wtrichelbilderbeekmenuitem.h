@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace Wt { struct WStackedWidget; }
 namespace Wt { struct WWidget; }
 
+namespace ribi {
+
 namespace RichelBilderbeek {
 
 struct WtMenuDialog;
@@ -64,5 +66,6 @@ struct WtMenuItem
 };
 
 } //~namespace RichelBilderbeek
+} //~namespace ribi
 
 #endif // WTRICHELBILDERBEEKMENUITEM_H

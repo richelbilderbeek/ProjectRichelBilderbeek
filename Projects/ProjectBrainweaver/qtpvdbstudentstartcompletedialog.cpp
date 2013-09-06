@@ -21,7 +21,7 @@
 #include "trace.h"
 #include "ui_qtpvdbstudentstartcompletedialog.h"
 
-QtPvdbStudentStartCompleteDialog::QtPvdbStudentStartCompleteDialog(
+ribi::pvdb::QtPvdbStudentStartCompleteDialog::QtPvdbStudentStartCompleteDialog(
   const boost::shared_ptr<pvdb::File> file,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
@@ -34,19 +34,19 @@ QtPvdbStudentStartCompleteDialog::QtPvdbStudentStartCompleteDialog(
   assert(IsEqual(*file,*m_file));
 }
 
-QtPvdbStudentStartCompleteDialog::~QtPvdbStudentStartCompleteDialog()
+ribi::pvdb::QtPvdbStudentStartCompleteDialog::~QtPvdbStudentStartCompleteDialog()
 {
   delete ui;
 }
 
-void QtPvdbStudentStartCompleteDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbStudentStartCompleteDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   if ((e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_S) { Save(); return; }
   QDialog::keyPressEvent(e);
 }
 
-void QtPvdbStudentStartCompleteDialog::on_button_start_associate_clicked()
+void ribi::pvdb::QtPvdbStudentStartCompleteDialog::on_button_start_associate_clicked()
 {
   assert(m_file);
   assert((m_file->GetCluster() || !m_file->GetCluster())
@@ -68,7 +68,7 @@ void QtPvdbStudentStartCompleteDialog::on_button_start_associate_clicked()
   }
 }
 
-void QtPvdbStudentStartCompleteDialog::on_button_start_construct_clicked()
+void ribi::pvdb::QtPvdbStudentStartCompleteDialog::on_button_start_construct_clicked()
 {
   QtPvdbConceptMapDialog d(m_file);
   this->ShowChild(&d);
@@ -79,7 +79,7 @@ void QtPvdbStudentStartCompleteDialog::on_button_start_construct_clicked()
   }
 }
 
-void QtPvdbStudentStartCompleteDialog::Save()
+void ribi::pvdb::QtPvdbStudentStartCompleteDialog::Save()
 {
   const auto d = pvdb::QtFileDialog::GetSaveFileDialog(pvdb::QtFileDialog::FileType::cmp);
   d->setWindowTitle("Sla de concept map op");

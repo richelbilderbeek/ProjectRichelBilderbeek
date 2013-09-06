@@ -45,7 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "votingoption.h"
 #include "wtshapewidget.h"
 //---------------------------------------------------------------------------
-void Test::TestParticipant()
+void ribi::gtst::Test::TestParticipant()
 {
   //Create a GroupAssigner
   const int expected_group = 1 + (std::rand() % 256);

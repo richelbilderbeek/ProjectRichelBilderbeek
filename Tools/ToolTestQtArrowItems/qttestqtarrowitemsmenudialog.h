@@ -27,7 +27,9 @@ namespace Ui {
   class QtTestQtArrowItemsMenuDialog;
 }
 
-class QtTestQtArrowItemsMenuDialog : public QtHideAndShowDialog
+namespace ribi {
+
+class QtTestQtArrowItemsMenuDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -36,7 +38,7 @@ public:
   ~QtTestQtArrowItemsMenuDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
   void keyPressEvent(QKeyEvent * event);
 
 private:
@@ -47,5 +49,7 @@ private slots:
   void on_button_quit_clicked();
   void on_button_start_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTARROWITEMSMENUDIALOG_H

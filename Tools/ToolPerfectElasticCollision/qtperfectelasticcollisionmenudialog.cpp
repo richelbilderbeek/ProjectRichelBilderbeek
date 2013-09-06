@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtperfectelasticcollisionmaindialog.h"
 #include "ui_qtperfectelasticcollisionmenudialog.h"
 
-QtPerfectElasticCollisionMenuDialog::QtPerfectElasticCollisionMenuDialog(QWidget *parent) :
+ribi::QtPerfectElasticCollisionMenuDialog::QtPerfectElasticCollisionMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtPerfectElasticCollisionMenuDialog)
 {
@@ -37,12 +37,12 @@ QtPerfectElasticCollisionMenuDialog::QtPerfectElasticCollisionMenuDialog(QWidget
   #endif
 }
 
-QtPerfectElasticCollisionMenuDialog::~QtPerfectElasticCollisionMenuDialog()
+ribi::QtPerfectElasticCollisionMenuDialog::~QtPerfectElasticCollisionMenuDialog()
 {
   delete ui;
 }
 
-void QtPerfectElasticCollisionMenuDialog::on_button_start_clicked()
+void ribi::QtPerfectElasticCollisionMenuDialog::on_button_start_clicked()
 {
   this->hide();
   QtPerfectElasticCollisionMainDialog d;
@@ -50,7 +50,7 @@ void QtPerfectElasticCollisionMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void QtPerfectElasticCollisionMenuDialog::on_button_about_clicked()
+void ribi::QtPerfectElasticCollisionMenuDialog::on_button_about_clicked()
 {
   this->hide();
   About a = PerfectElasticCollisionMenuDialog::GetAbout();
@@ -60,12 +60,12 @@ void QtPerfectElasticCollisionMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtPerfectElasticCollisionMenuDialog::on_button_quit_clicked()
+void ribi::QtPerfectElasticCollisionMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtPerfectElasticCollisionMenuDialog::Test()
+void ribi::QtPerfectElasticCollisionMenuDialog::Test()
 {
   {
     static bool is_tested = false;

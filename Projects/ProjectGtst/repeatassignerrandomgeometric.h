@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "repeatassigner.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///A RepeatAssignerRandomGeometric that assigns the IPGG to be
 ///repeated a random number of times following a geometric distribution
@@ -62,5 +66,8 @@ struct RepeatAssignerRandomGeometric : public RepeatAssigner
   ///Get a random number from 0.0 to 1.0 in a uniform distribution
   static double GetRandomUniform();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // REPEATASSIGNERRANDOMGEOMETRIC_H

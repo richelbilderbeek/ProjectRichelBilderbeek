@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include "about.h"
 
+namespace ribi {
+
 struct ToolTestQtModelsMenuDialog
 {
   ///Obtain the About information
@@ -36,5 +38,7 @@ struct ToolTestQtModelsMenuDialog
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // TOOLTESTQTMODELSMENUDIALOG_H

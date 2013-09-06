@@ -27,6 +27,8 @@ namespace Ui {
 class QtSitemapGeneratorMenuDialog;
 }
 
+namespace ribi {
+
 class QtSitemapGeneratorMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -48,5 +50,7 @@ private slots:
 private:
   Ui::QtSitemapGeneratorMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTSITEMAPGENERATORMENUDIALOG_H

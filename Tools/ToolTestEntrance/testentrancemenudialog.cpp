@@ -22,9 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ipaddress.h"
 #include "testentrancemenudialog.h"
 
-namespace ToolTestEntrance {
-
-const About MenuDialog::GetAbout()
+const ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -40,17 +38,14 @@ const About MenuDialog::GetAbout()
   return a;
 }
 
-const std::string MenuDialog::GetVersion()
+const std::string ribi::ToolTestEntrance::MenuDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolTestEntrance::MenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-09-19: Version 1.0: initial version");
   return v;
 }
-
-} //~namespace ToolTestEntrance
-

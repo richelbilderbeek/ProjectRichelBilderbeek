@@ -43,11 +43,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "trace.h"
 //---------------------------------------------------------------------------
-std::recursive_mutex Groups::m_mutex;
+std::recursive_mutex ribi::gtst::Groups::m_mutex;
 //---------------------------------------------------------------------------
-boost::signals2::signal<void ()> Groups::m_signal_groups_changed;
+boost::signals2::signal<void ()> ribi::gtst::Groups::m_signal_groups_changed;
 //---------------------------------------------------------------------------
-Groups::Groups(Server * const server)
+ribi::gtst::Groups::Groups(Server * const server)
   : m_finished(new GroupFinished(server)),
     m_last_id_participant(0),
     m_logged_in(new GroupLoggedIn(server)),
@@ -59,7 +59,7 @@ Groups::Groups(Server * const server)
 }
 //---------------------------------------------------------------------------
 ///Check if a Participant can be from his/her non-wildcard IP address
-bool Groups::CanFind(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
+bool ribi::gtst::Groups::CanFind(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -86,7 +86,7 @@ bool Groups::CanFind(const boost::shared_ptr<const SafeIpAddress>& ip_address) c
 }
 //---------------------------------------------------------------------------
 ///Search the Group for a Participant with a certain IP address
-bool Groups::CanGetParticipantWithIpAddress(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
+bool ribi::gtst::Groups::CanGetParticipantWithIpAddress(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -108,7 +108,7 @@ bool Groups::CanGetParticipantWithIpAddress(const boost::shared_ptr<const SafeIp
 ///A Participant can log in, if
 ///- he/she reloaded the page by pressing F5, recovery of all actions
 ///- he/she started viewing the page, start of new actions
-bool Groups::CanLetLogin(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
+bool ribi::gtst::Groups::CanLetLogin(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -127,7 +127,7 @@ bool Groups::CanLetLogin(const boost::shared_ptr<const SafeIpAddress>& ip_addres
 }
 //---------------------------------------------------------------------------
 ///Collect all Groups as a read-only std::vector
-const std::vector<const Group *> Groups::CollectGroups(
+const std::vector<const ribi::gtst::Group *> ribi::gtst::Groups::CollectGroups(
   const bool not_logged_in,
   const bool logged_in,
   const bool participating,
@@ -156,7 +156,7 @@ const std::vector<const Group *> Groups::CollectGroups(
 }
 //---------------------------------------------------------------------------
 ///Collect all Participants as a read-only std::vector
-const std::vector<boost::shared_ptr<const Participant> > Groups::CollectParticipants(
+const std::vector<boost::shared_ptr<const ribi::gtst::Participant> > ribi::gtst::Groups::CollectParticipants(
   const bool not_logged_in,
   const bool logged_in,
   const bool participating,
@@ -180,7 +180,7 @@ const std::vector<boost::shared_ptr<const Participant> > Groups::CollectParticip
 }
 //---------------------------------------------------------------------------
 ///Find a Participant from his/her non-wildcard IP address
-const boost::shared_ptr<const Participant> Groups::Find(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
+const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::Find(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
 {
   assert(ip_address);
   assert(CanFind(ip_address));
@@ -220,7 +220,7 @@ const boost::shared_ptr<const Participant> Groups::Find(const boost::shared_ptr<
 ///Just checks if the Group really exists
 ///
 ///\note const_cast!
-Group * Groups::FindGroup(const Group * const group) const
+ribi::gtst::Group * ribi::gtst::Groups::FindGroup(const Group * const group) const
 {
   assert(group);
 
@@ -237,7 +237,7 @@ Group * Groups::FindGroup(const Group * const group) const
 }
 //---------------------------------------------------------------------------
 ///Finds the Group the Participant is in
-const Group * Groups::FindMyGroup(const boost::shared_ptr<const Participant>& participant) const
+const ribi::gtst::Group * ribi::gtst::Groups::FindMyGroup(const boost::shared_ptr<const Participant>& participant) const
 {
 
   const auto groups = CollectGroups();
@@ -257,7 +257,7 @@ const Group * Groups::FindMyGroup(const boost::shared_ptr<const Participant>& pa
 ///Just checks if the Participant really exists
 ///
 ///\note const_cast!
-boost::shared_ptr<Participant> Groups::FindParticipant(const boost::shared_ptr<const Participant>& participant) const
+boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Groups::FindParticipant(const boost::shared_ptr<const Participant>& participant) const
 {
   assert(participant);
   assert(FindMyGroup(participant)!=0
@@ -266,26 +266,26 @@ boost::shared_ptr<Participant> Groups::FindParticipant(const boost::shared_ptr<c
   return boost::const_pointer_cast<Participant>(participant);
 }
 //---------------------------------------------------------------------------
-const GroupFinished * Groups::GetGroupFinished() const
+const ribi::gtst::GroupFinished * ribi::gtst::Groups::GetGroupFinished() const
 {
   assert(m_finished);
   return m_finished.get();
 }
 //---------------------------------------------------------------------------
-const GroupLoggedIn * Groups::GetGroupLoggedIn() const
+const ribi::gtst::GroupLoggedIn * ribi::gtst::Groups::GetGroupLoggedIn() const
 {
   assert(m_logged_in);
   return m_logged_in.get();
 }
 //---------------------------------------------------------------------------
-const GroupNotLoggedIn * Groups::GetGroupNotLoggedIn() const
+const ribi::gtst::GroupNotLoggedIn * ribi::gtst::Groups::GetGroupNotLoggedIn() const
 {
   assert(m_not_logged_in);
   return m_not_logged_in.get();
 }
 //---------------------------------------------------------------------------
 ///Find the Group for the Participant with a certain IP address
-const boost::shared_ptr<const Participant> Groups::GetParticipantWithIpAddress(
+const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::GetParticipantWithIpAddress(
   const boost::shared_ptr<const SafeIpAddress>& ip_address) const
 {
   assert(CanGetParticipantWithIpAddress(ip_address));
@@ -302,7 +302,7 @@ const boost::shared_ptr<const Participant> Groups::GetParticipantWithIpAddress(
 }
 //---------------------------------------------------------------------------
 ///Let a Group grow from 3 to 5 Participants
-void Groups::GrowGroup(const Group * const group)
+void ribi::gtst::Groups::GrowGroup(const Group * const group)
 {
   GroupLoggedIn * const from_group = this->m_logged_in.get();
   Group * const to_group = FindGroup(group);
@@ -323,7 +323,7 @@ void Groups::GrowGroup(const Group * const group)
 }
 //---------------------------------------------------------------------------
 ///Relocate a GroupParticipating to GroupFinished
-void Groups::KillGroup(const Group * const group_to_move)
+void ribi::gtst::Groups::KillGroup(const Group * const group_to_move)
 {
   std::for_each(m_participating.begin(),m_participating.end(),
     [this,group_to_move](boost::shared_ptr<GroupParticipating> group)
@@ -366,7 +366,7 @@ void Groups::KillGroup(const Group * const group_to_move)
 }
 //---------------------------------------------------------------------------
 ///Move a Participant from the any Group to the GroupLoggedIn
-const boost::shared_ptr<const Participant> Groups::LetLogin(const boost::shared_ptr<const SafeIpAddress>& ip_address)
+const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::LetLogin(const boost::shared_ptr<const SafeIpAddress>& ip_address)
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
@@ -444,7 +444,7 @@ const boost::shared_ptr<const Participant> Groups::LetLogin(const boost::shared_
 }
 //---------------------------------------------------------------------------
 ///Split a Group of 5 Participants to 2 groups of 3
-void Groups::SplitGroup(const Group * const group)
+void ribi::gtst::Groups::SplitGroup(const Group * const group)
 {
   assert(group->GetSize() == 5);
   assert(m_logged_in->GetSize());
@@ -471,7 +471,7 @@ void Groups::SplitGroup(const Group * const group)
 }
 //---------------------------------------------------------------------------
 ///MoveAllToFinished moves all Participants to the Finished Group
-void Groups::MoveAllToFinished()
+void ribi::gtst::Groups::MoveAllToFinished()
 {
   {
     const std::vector<boost::shared_ptr<const Participant> > v
@@ -511,7 +511,7 @@ void Groups::MoveAllToFinished()
 }
 //---------------------------------------------------------------------------
 ///Moves all logged in Participants to the GroupPartipating
-void Groups::MoveLoggedInToParticipating()
+void ribi::gtst::Groups::MoveLoggedInToParticipating()
 {
   const std::vector<boost::shared_ptr<const Participant> > v
     = m_logged_in->CollectParticipants();
@@ -560,7 +560,7 @@ void Groups::MoveLoggedInToParticipating()
 }
 //---------------------------------------------------------------------------
 ///Remove all Participants
-void Groups::Reset()
+void ribi::gtst::Groups::Reset()
 {
   m_finished->Clear();
   m_last_id_participant = 0;
@@ -574,7 +574,7 @@ void Groups::Reset()
 }
 //---------------------------------------------------------------------------
 ///Set the Participants for the coming experiment
-void Groups::SetParticipants(std::vector<boost::shared_ptr<Participant> > participants)
+void ribi::gtst::Groups::SetParticipants(std::vector<boost::shared_ptr<Participant> > participants)
 {
   Reset();
   assert(m_not_logged_in->GetSize() == 0);
@@ -588,7 +588,7 @@ void Groups::SetParticipants(std::vector<boost::shared_ptr<Participant> > partic
   m_signal_groups_changed();
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const Groups& groups)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const Groups& groups)
 {
   os
     << "<groups>"

@@ -22,7 +22,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define WTTESTDIALMENUDIALOG_H
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtTestDialMenuDialog : public Wt::WContainerWidget
 {
   WtTestDialMenuDialog();
@@ -31,5 +33,7 @@ struct WtTestDialMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewMainDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTDIALMENUDIALOG_H

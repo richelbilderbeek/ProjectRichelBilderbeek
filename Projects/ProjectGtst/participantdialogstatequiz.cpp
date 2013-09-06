@@ -49,14 +49,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 #include "wtquestiondialog.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateQuiz::ParticipantDialogStateQuiz(
+ribi::gtst::ParticipantDialogStateQuiz::ParticipantDialogStateQuiz(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
 }
 //---------------------------------------------------------------------------
 ///Do something random with the UI, used by DebugDialog
-void ParticipantDialogStateQuiz::DoSomethingRandom()
+void ribi::gtst::ParticipantDialogStateQuiz::DoSomethingRandom()
 {
   /*
   switch (std::rand() % 5)
@@ -81,7 +81,7 @@ void ParticipantDialogStateQuiz::DoSomethingRandom()
   */
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateQuiz::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateQuiz::RespondToTimedServerPush()
 {
   const int time_left = m_server->GetStates()->GetCurrentState()->GetTimeLeft();
 
@@ -147,7 +147,7 @@ void ParticipantDialogStateQuiz::RespondToTimedServerPush()
   RespondToParticipant();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateQuiz::OnSubmitClick()
+void ribi::gtst::ParticipantDialogStateQuiz::OnSubmitClick()
 {
   /*
   ui.m_mc_dialog->GetDialog()->IsAnswerCorrect
@@ -170,7 +170,7 @@ void ParticipantDialogStateQuiz::OnSubmitClick()
   */
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateQuiz::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateQuiz::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
 
@@ -202,6 +202,6 @@ void ParticipantDialogStateQuiz::ShowPage(ParticipantDialog * const dialog)
   dialog->addWidget(ui.m_mc_dialog);
 
   //ui.m_mc_dialog->m_signal_submitted.connect(
-  //  this,&ParticipantDialogStateQuiz::OnSubmitClick);
+  //  this,&ribi::gtst::ParticipantDialogStateQuiz::OnSubmitClick);
 }
 //---------------------------------------------------------------------------

@@ -43,7 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
+ribi::WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
   : m_dialog(new TestQuestionMenuDialog)
 {
  {
@@ -101,7 +101,7 @@ WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestQuestionMenuDialog::CreateNewAboutDialog() const
 {
   About a = m_dialog->GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -113,14 +113,14 @@ Wt::WWidget * WtTestQuestionMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestQuestionMenuDialog::CreateNewMainDialog() const
 {
   WtTestQuestionMainDialog * const d = new WtTestQuestionMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestQuestionMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

@@ -245,7 +245,6 @@ SOURCES += \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilepath.cpp \
     ../../Tools/ToolHometrainer/hometrainermenudialog.cpp \
     ../../Tools/ToolHometrainer/hometrainerresources.cpp \
-#    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.cpp \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.cpp \
     ../../Tools/ToolRegexTester/regextestermaindialog.cpp \
     ../../Tools/ToolRegexTester/regextestermenudialog.cpp \
@@ -273,7 +272,6 @@ SOURCES += \
 HEADERS += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppAsciiArter/asciiarter.h \
-    ../../Classes/CppAssert/assert.h \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
     ../../Classes/CppCodeToHtml/codetohtml.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
@@ -426,7 +424,6 @@ HEADERS += \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilepath.h \
     ../../Tools/ToolHometrainer/hometrainermenudialog.h \
     ../../Tools/ToolHometrainer/hometrainerresources.h \
-    ../../Tools/ToolRegexTester/regextesterboostmaindialog.h \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.h \
     ../../Tools/ToolRegexTester/regextestermaindialog.h \
     ../../Tools/ToolRegexTester/regextestermenudialog.h \
@@ -577,30 +574,3 @@ SOURCES += \
 OTHER_FILES += \
   ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc \
   ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc
-
-#
-#
-# Qwt
-#
-#
-
-unix {
-  INCLUDEPATH += /usr/include/qwt-qt4
-  LIBS += -lqwt-qt4
-}
-
-win32 {
-  message(Windows: Qwt: link dynamically)
-  INCLUDEPATH+= ../../Libraries/qwt-6.1.0/src
-  LIBS+= -L../../Libraries/qwt-6.1.0/lib
-
-  CONFIG(release, debug|release) {
-    message(Windows: Qwt: Linking to qwt)
-    LIBS += -lqwt
-  }
-
-  CONFIG(debug, debug|release) {
-    message(Windows: Qwt: Linking to qwtd)
-    LIBS += -lqwtd
-  }
-}

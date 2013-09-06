@@ -19,8 +19,8 @@
 #include "pvdbnode.h"
 #include "ui_qtpvdbratedconceptwidget.h"
 
-QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
-  const boost::shared_ptr<const pvdb::ConceptMap> concept_map,
+ribi::pvdb::QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
+  const boost::shared_ptr<const ribi::pvdb::ConceptMap> concept_map,
   const boost::shared_ptr<const pvdb::Node> node,
   QWidget *parent)
   : QDialog(parent),
@@ -107,12 +107,12 @@ QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
   }
 }
 
-QtPvdbRatedConceptWidget::~QtPvdbRatedConceptWidget()
+ribi::pvdb::QtPvdbRatedConceptWidget::~QtPvdbRatedConceptWidget()
 {
   delete ui;
 }
 
-void QtPvdbRatedConceptWidget::HideRating()
+void ribi::pvdb::QtPvdbRatedConceptWidget::HideRating()
 {
   ui->label_complexity->hide();
   ui->label_concreteness->hide();

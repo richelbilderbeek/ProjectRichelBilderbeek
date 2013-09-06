@@ -29,6 +29,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///Facade for the multiple instances of Administrator
 struct Administrators
 {
@@ -45,5 +49,8 @@ struct Administrators
 
   std::set<boost::shared_ptr<Administrator> > m_administrators;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ADMINISTRATORS_H

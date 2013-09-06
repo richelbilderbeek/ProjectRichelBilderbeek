@@ -29,14 +29,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "parametersgroupassign.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-ParametersGroupAssign::ParametersGroupAssign()
+ribi::gtst::ParametersGroupAssign::ParametersGroupAssign()
   : m_message_assigned("Waiting for others. You have been assigned to group "),
     m_message_unassigned("Waiting for server to assign you to a group")
 {
   SetWaitingPayoffFunction("0.0");
 }
 //---------------------------------------------------------------------------
-double ParametersGroupAssign::CalculateWaitingPayoff(const double average_payoff) const
+double ribi::gtst::ParametersGroupAssign::CalculateWaitingPayoff(const double average_payoff) const
 {
   FunctionParser f;
   //Parse the formula
@@ -63,7 +63,7 @@ double ParametersGroupAssign::CalculateWaitingPayoff(const double average_payoff
 }
 //---------------------------------------------------------------------------
 ///Parse a line
-void ParametersGroupAssign::Parse(const std::string& s)
+void ribi::gtst::ParametersGroupAssign::Parse(const std::string& s)
 {
   if (s.size() > 19 && s.substr(0,19) == "message_unassigned=")
   {
@@ -98,20 +98,20 @@ void ParametersGroupAssign::Parse(const std::string& s)
 }
 //---------------------------------------------------------------------------
 ///Set the message shown to an assigned participant
-void ParametersGroupAssign::SetMessageAssigned(const std::string& message)
+void ribi::gtst::ParametersGroupAssign::SetMessageAssigned(const std::string& message)
 {
   assert(!message.empty());
   m_message_assigned = message;
 }
 //---------------------------------------------------------------------------
 ///Set the message shown to an unassigned participant
-void ParametersGroupAssign::SetMessageUnassigned(const std::string& message)
+void ribi::gtst::ParametersGroupAssign::SetMessageUnassigned(const std::string& message)
 {
   assert(!message.empty());
   m_message_unassigned = message;
 }
 //---------------------------------------------------------------------------
-void ParametersGroupAssign::SetWaitingPayoffFunction(const std::string& function)
+void ribi::gtst::ParametersGroupAssign::SetWaitingPayoffFunction(const std::string& function)
 {
   FunctionParser f;
   //Parse the formula
@@ -123,7 +123,7 @@ void ParametersGroupAssign::SetWaitingPayoffFunction(const std::string& function
   m_waiting_payoff_function = function;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ParametersGroupAssign& parameters)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersGroupAssign& parameters)
 {
   os
     << "<parameterschat>"

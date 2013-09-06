@@ -49,18 +49,6 @@ ribi::QtMaziakGameOverDialog::~QtMaziakGameOverDialog()
   delete ui;
 }
 
-void ribi::QtMaziakGameOverDialog::changeEvent(QEvent *e)
-{
-  QWidget::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 void ribi::QtMaziakGameOverDialog::onTimer()
 {
   m_allow_close = true;

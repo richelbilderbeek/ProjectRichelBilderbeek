@@ -30,17 +30,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 #pragma GCC diagnostic pop
 
-void Rainbow::GetRgb(
+void ribi::Rainbow::GetRgb(
   const double x,
   double& r,
   double& g,
   double& b)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
 
   if (x <= 0.0 || x >= 1.0) { r = g = b = 0.0; return; }
 
@@ -59,12 +55,12 @@ void Rainbow::GetRgb(
   b = f_b / max;
 }
 
-const std::string Rainbow::GetVersion()
+const std::string ribi::Rainbow::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> Rainbow::GetVersionHistory()
+const std::vector<std::string> ribi::Rainbow::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-08-31: Version 1.0: initial version");

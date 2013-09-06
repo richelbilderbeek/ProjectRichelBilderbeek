@@ -27,14 +27,14 @@
 #include "qtroundedtextrectitem.h"
 #endif
 
-QtTestQtRoundedEditRectItemWidget::QtTestQtRoundedEditRectItemWidget(QWidget *parent)
+ribi::QtTestQtRoundedEditRectItemWidget::QtTestQtRoundedEditRectItemWidget(QWidget *parent)
   : QtKeyboardFriendlyGraphicsView(parent)
 {
   //Display with default font
   this->Display(QtRoundedEditRectItem().GetFont());
 }
 
-void QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
+void ribi::QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
 {
   scene()->clear();
 
@@ -91,7 +91,7 @@ void QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
 
 }
 
-void QtTestQtRoundedEditRectItemWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtTestQtRoundedEditRectItemWidget::keyPressEvent(QKeyEvent *event)
 {
 
   switch (event->key())

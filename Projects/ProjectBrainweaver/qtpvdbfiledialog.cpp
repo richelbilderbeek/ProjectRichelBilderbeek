@@ -6,6 +6,8 @@
 
 #include "pvdbfile.h"
 
+namespace ribi {
+
 namespace pvdb {
 
 const boost::shared_ptr<QFileDialog> QtFileDialog::GetOpenFileDialog()
@@ -70,3 +72,5 @@ const boost::shared_ptr<QFileDialog> QtFileDialog::GetSaveFileDialog(const FileT
 }
 
 } //~namespace pvdb
+
+} //~namespace ribi

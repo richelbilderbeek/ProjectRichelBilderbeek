@@ -28,11 +28,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ipaddress.h"
 #include "wtentrance.h"
 
-const std::string WtEntrance::m_filename_names  = "wtentrance_names.txt";
-const std::string WtEntrance::m_filename_visits = "wtentrance_visits.txt";
-WtEntrance * WtEntrance::m_instance = 0;
+const std::string ribi::WtEntrance::m_filename_names  = "wtentrance_names.txt";
+const std::string ribi::WtEntrance::m_filename_visits = "wtentrance_visits.txt";
+ribi::WtEntrance * ribi::WtEntrance::m_instance = 0;
 
-WtEntrance::WtEntrance()
+ribi::WtEntrance::WtEntrance()
 {
   if (!boost::filesystem::exists(m_filename_names))
   {
@@ -47,7 +47,7 @@ WtEntrance::WtEntrance()
   assert(boost::filesystem::exists(m_filename_visits));
 }
 
-const std::vector<std::string> WtEntrance::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::WtEntrance::FileToVector(const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
   std::vector<std::string> v;
@@ -61,14 +61,14 @@ const std::vector<std::string> WtEntrance::FileToVector(const std::string& filen
   return v;
 }
 
-WtEntrance * WtEntrance::Get()
+ribi::WtEntrance * ribi::WtEntrance::Get()
 {
   if (!m_instance) m_instance = new WtEntrance();
   assert(m_instance);
   return m_instance;
 }
 
-const std::string WtEntrance::GetDateIso8601()
+const std::string ribi::WtEntrance::GetDateIso8601()
 {
   const boost::gregorian::date today
     = boost::gregorian::day_clock::local_day();
@@ -80,7 +80,7 @@ const std::string WtEntrance::GetDateIso8601()
   return s;
 }
 
-const std::string WtEntrance::GetName(const IpAddress * const ip_address) const
+const std::string ribi::WtEntrance::GetName(const IpAddress * const ip_address) const
 {
   const std::vector<std::pair<std::string,std::string> > v = GetNames();
   const std::string ip_address_str = ip_address->Get();
@@ -95,7 +95,7 @@ const std::string WtEntrance::GetName(const IpAddress * const ip_address) const
 
 }
 
-const std::vector<std::pair<std::string,std::string> > WtEntrance::GetNames() const
+const std::vector<std::pair<std::string,std::string> > ribi::WtEntrance::GetNames() const
 {
   const std::vector<std::string> v = FileToVector(m_filename_names);
   std::vector<std::pair<std::string,std::string> > x;
@@ -116,7 +116,7 @@ const std::vector<std::pair<std::string,std::string> > WtEntrance::GetNames() co
   return x;
 }
 
-const std::string WtEntrance::GetTime()
+const std::string ribi::WtEntrance::GetTime()
 {
   //Get the local time
   boost::posix_time::ptime now
@@ -128,7 +128,7 @@ const std::string WtEntrance::GetTime()
   return s.str();
 }
 
-const std::string WtEntrance::GetTimestamp()
+const std::string ribi::WtEntrance::GetTimestamp()
 {
   std::string s = GetDateIso8601() + '_' + GetTime();
   std::replace(s.begin(),s.end(),':','_');
@@ -136,19 +136,19 @@ const std::string WtEntrance::GetTimestamp()
   return s;
 }
 
-const std::string WtEntrance::GetVersion()
+const std::string ribi::WtEntrance::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> WtEntrance::GetVersionHistory()
+const std::vector<std::string> ribi::WtEntrance::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-09-19: version 1.0: initial version");
   return v;
 }
 
-const std::vector<std::pair<std::string,std::string> > WtEntrance::GetVisits() const
+const std::vector<std::pair<std::string,std::string> > ribi::WtEntrance::GetVisits() const
 {
   const std::vector<std::string> v = FileToVector(m_filename_visits);
   std::vector<std::pair<std::string,std::string> > x;
@@ -165,7 +165,7 @@ const std::vector<std::pair<std::string,std::string> > WtEntrance::GetVisits() c
   return x;
 }
 
-const std::vector<std::string> WtEntrance::SeperateString(
+const std::vector<std::string> ribi::WtEntrance::SeperateString(
   const std::string& input,
   const char seperator)
 {
@@ -181,7 +181,7 @@ const std::vector<std::string> WtEntrance::SeperateString(
   return v;
 }
 
-void WtEntrance::SetName(const IpAddress * const ip_address, const std::string& name) const
+void ribi::WtEntrance::SetName(const IpAddress * const ip_address, const std::string& name) const
 {
   std::vector<std::pair<std::string,std::string> > v = GetNames();
   const std::string ip_address_str = ip_address->Get();
@@ -212,7 +212,7 @@ void WtEntrance::SetName(const IpAddress * const ip_address, const std::string& 
   m_signal_name_changed();
 }
 
-void WtEntrance::Visit(const IpAddress * const ip_address)
+void ribi::WtEntrance::Visit(const IpAddress * const ip_address)
 {
   std::ofstream f(m_filename_visits,std::ios::app);
   f << ip_address->Get() << ',' << this->GetTimestamp() << '\n';

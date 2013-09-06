@@ -27,13 +27,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "repeatassigner.h"
 //---------------------------------------------------------------------------
 ///Returns the last assigned number of repeats
-bool RepeatAssigner::CanGetLastAssigned() const
+bool ribi::gtst::RepeatAssigner::CanGetLastAssigned() const
 {
   return !m_assigned_values.empty();
 }
 //---------------------------------------------------------------------------
 ///Returns if there already is a value assigned
-int RepeatAssigner::GetLastAssigned() const
+int ribi::gtst::RepeatAssigner::GetLastAssigned() const
 {
   if (!CanGetLastAssigned())
   {

@@ -1,21 +1,15 @@
 #ifndef QTPVDBNODEITEM_H
 #define QTPVDBNODEITEM_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qtroundedtextrectitem.h"
 #include "qtpvdbconceptmapitem.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbnode.h"
-#include "qtpvdbconceptitem.h"
-#endif
+
+namespace ribi {
+
+namespace pvdb {
 
 ///QtPvdbNodeItem displays a Node
 struct QtPvdbNodeItem : public QtPvdbConceptMapItem
@@ -28,7 +22,7 @@ struct QtPvdbNodeItem : public QtPvdbConceptMapItem
   ///Node cannot be const as it contains a Concept that the user might want to edit
   ///concept_item contains the Stategy to display (and respond to the concept)
   explicit QtPvdbNodeItem(
-    const boost::shared_ptr<pvdb::Node> node,
+    const boost::shared_ptr<ribi::pvdb::Node> node,
     const boost::shared_ptr<QtPvdbConceptItem> concept_item);
 
   virtual QRectF boundingRect() const;
@@ -38,8 +32,8 @@ struct QtPvdbNodeItem : public QtPvdbConceptMapItem
   void DisableAll();
   void EnableAll();
 
-  const boost::shared_ptr<const pvdb::Concept>  GetConcept() const;
-  const boost::shared_ptr<      pvdb::Concept>  GetConcept()      ;
+  const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const;
+  const boost::shared_ptr<      ribi::pvdb::Concept>  GetConcept()      ;
 
   const boost::shared_ptr<const QtPvdbConceptItem> GetConceptItem() const final { return m_concept_item; }
   const boost::shared_ptr<      QtPvdbConceptItem> GetConceptItem()       final { return m_concept_item; }
@@ -47,7 +41,7 @@ struct QtPvdbNodeItem : public QtPvdbConceptMapItem
   const boost::shared_ptr<const pvdb::Node>  GetNode() const { return m_node; }
   const boost::shared_ptr<      pvdb::Node>& GetNode()       { return m_node; }
 
-  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept);
+  void SetConcept(const boost::shared_ptr<ribi::pvdb::Concept> concept);
 
   void SetName(const std::string& name);
 
@@ -85,7 +79,7 @@ private:
   const QPen m_focus_pen;
 
   ///The node being edited, or displayed and not changed, or rated
-  const boost::shared_ptr<pvdb::Node> m_node;
+  const boost::shared_ptr<ribi::pvdb::Node> m_node;
 
   void OnItemHasUpdated();
 
@@ -101,5 +95,9 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBNODEITEM_H

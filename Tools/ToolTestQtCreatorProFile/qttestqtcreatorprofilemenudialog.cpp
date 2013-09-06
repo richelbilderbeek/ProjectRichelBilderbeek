@@ -27,19 +27,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testqtcreatorprofilemenudialog.h"
 #include "ui_qttestqtcreatorprofilemenudialog.h"
 
-QtTestQtCreatorProFileMenuDialog::QtTestQtCreatorProFileMenuDialog(QWidget *parent) :
+ribi::QtTestQtCreatorProFileMenuDialog::QtTestQtCreatorProFileMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestQtCreatorProFileMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestQtCreatorProFileMenuDialog::~QtTestQtCreatorProFileMenuDialog()
+ribi::QtTestQtCreatorProFileMenuDialog::~QtTestQtCreatorProFileMenuDialog()
 {
   delete ui;
 }
 
-void QtTestQtCreatorProFileMenuDialog::on_button_start_clicked()
+void ribi::QtTestQtCreatorProFileMenuDialog::on_button_start_clicked()
 {
   this->hide();
   QtTestQtCreatorProFileMainDialog d;
@@ -47,7 +47,7 @@ void QtTestQtCreatorProFileMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void QtTestQtCreatorProFileMenuDialog::on_button_about_clicked()
+void ribi::QtTestQtCreatorProFileMenuDialog::on_button_about_clicked()
 {
   this->hide();
   About a = TestQtCreatorProFileMenuDialog::GetAbout();
@@ -59,7 +59,7 @@ void QtTestQtCreatorProFileMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtTestQtCreatorProFileMenuDialog::on_button_quit_clicked()
+void ribi::QtTestQtCreatorProFileMenuDialog::on_button_quit_clicked()
 {
   close();
 }

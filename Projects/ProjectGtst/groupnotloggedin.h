@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "group.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///GroupNotLoggedIn is a Participant Group that is not logged in
 struct GroupNotLoggedIn : public Group
 {
@@ -53,5 +57,8 @@ struct GroupNotLoggedIn : public Group
   //ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(GroupNotLoggedIn*);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // GROUPNOTLOGGEDIN_H

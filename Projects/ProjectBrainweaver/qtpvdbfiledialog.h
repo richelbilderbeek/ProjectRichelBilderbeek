@@ -5,6 +5,8 @@
 
 struct QFileDialog;
 
+namespace ribi {
+
 namespace pvdb {
 
 struct QtFileDialog
@@ -18,5 +20,7 @@ struct QtFileDialog
 };
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBFILEDIALOG_H

@@ -1,24 +1,18 @@
 #ifndef QTPVDBVIEWFILESDIALOG_H
 #define QTPVDBVIEWFILESDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <string>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-
-#endif
-
 
 namespace Ui { class QtPvdbViewFilesDialog; }
 
-class QtPvdbViewFilesDialog : public QtHideAndShowDialog
+namespace ribi {
+
+namespace pvdb {
+
+class QtPvdbViewFilesDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -37,5 +31,9 @@ private slots:
 private:
   Ui::QtPvdbViewFilesDialog *ui;
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBVIEWFILESDIALOG_H

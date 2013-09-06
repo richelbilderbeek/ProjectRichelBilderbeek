@@ -1,25 +1,19 @@
 #ifndef QTPVDBCREATEASSESSMENTPARTIALDIALOG_H
 #define QTPVDBCREATEASSESSMENTPARTIALDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 
 #include <QDialog>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbfile.h"
-#endif
-
 
 namespace Ui {
-class QtPvdbCreateAssessmentPartialDialog;
+  class QtPvdbCreateAssessmentPartialDialog;
 }
+
+namespace ribi {
+
+namespace pvdb {
 
 class QtPvdbCreateAssessmentPartialDialog : public QDialog
 {
@@ -42,5 +36,8 @@ class QtPvdbCreateAssessmentPartialDialog : public QDialog
   boost::shared_ptr<pvdb::File> m_file;
 };
 
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCREATEASSESSMENTPARTIALDIALOG_H

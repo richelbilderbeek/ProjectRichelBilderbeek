@@ -27,6 +27,8 @@ namespace Ui {
 class QtTestKeyboardFriendlyGraphicsViewMenuDialog;
 }
 
+namespace ribi {
+
 class QtTestKeyboardFriendlyGraphicsViewMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -45,5 +47,7 @@ private slots:
 private:
   Ui::QtTestKeyboardFriendlyGraphicsViewMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H

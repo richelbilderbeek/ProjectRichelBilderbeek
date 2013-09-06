@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
-const About PerfectElasticCollisionMenuDialog::GetAbout()
+const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -42,12 +42,12 @@ const About PerfectElasticCollisionMenuDialog::GetAbout()
   return a;
 }
 
-const std::string PerfectElasticCollisionMenuDialog::GetVersion()
+const std::string ribi::PerfectElasticCollisionMenuDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> PerfectElasticCollisionMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::PerfectElasticCollisionMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-08-14: version 1.0: initial version.");

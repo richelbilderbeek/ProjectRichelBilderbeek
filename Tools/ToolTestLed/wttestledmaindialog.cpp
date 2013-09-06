@@ -37,12 +37,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtledwidget.h"
 #include "wttestledmaindialog.h"
 //---------------------------------------------------------------------------
-WtTestLedMainDialog::WtTestLedMainDialog()
+ribi::WtTestLedMainDialog::WtTestLedMainDialog()
 {
   ShowMain();
 }
 //---------------------------------------------------------------------------
-void WtTestLedMainDialog::OnDialColorChange()
+void ribi::WtTestLedMainDialog::OnDialColorChange()
 {
   double r_d,g_d,b_d;
   Rainbow::GetRgb(ui.m_dial_color->GetWidget()->GetDial()->GetPosition(),r_d,g_d,b_d);
@@ -64,7 +64,7 @@ void WtTestLedMainDialog::OnDialColorChange()
 
 }
 //---------------------------------------------------------------------------
-void WtTestLedMainDialog::OnDialIntensityChange()
+void ribi::WtTestLedMainDialog::OnDialIntensityChange()
 {
   const double intensity = ui.m_dial_intensity->GetWidget()->GetDial()->GetPosition();
   ui.m_led->GetWidget()->GetLed()->SetIntensity(intensity);
@@ -77,7 +77,7 @@ void WtTestLedMainDialog::OnDialIntensityChange()
   );
 }
 //---------------------------------------------------------------------------
-void WtTestLedMainDialog::OnDialSizeChange()
+void ribi::WtTestLedMainDialog::OnDialSizeChange()
 {
   const double intensity = ui.m_dial_size->GetWidget()->GetDial()->GetPosition();
   const int size = boost::numeric_cast<int>(500.0 * intensity);
@@ -93,7 +93,7 @@ void WtTestLedMainDialog::OnDialSizeChange()
   ui.m_led->GetWidget()->SetGeometry(Rect(0,0,size,size));
 }
 //---------------------------------------------------------------------------
-void WtTestLedMainDialog::ShowMain()
+void ribi::WtTestLedMainDialog::ShowMain()
 {
   setContentAlignment(Wt::AlignCenter);
   this->clear();
@@ -111,7 +111,7 @@ void WtTestLedMainDialog::ShowMain()
     ui.m_dial_color->GetWidget()->SetGeometry(Rect(0,0,100,100));
     ui.m_dial_color->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
-        &WtTestLedMainDialog::OnDialColorChange,
+        &ribi::WtTestLedMainDialog::OnDialColorChange,
         this));
     this->addWidget(ui.m_dial_color);
   }
@@ -124,7 +124,7 @@ void WtTestLedMainDialog::ShowMain()
     ui.m_dial_intensity->GetWidget()->SetGeometry(Rect(0,0,100,100));
     ui.m_dial_intensity->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
-        &WtTestLedMainDialog::OnDialIntensityChange,
+        &ribi::WtTestLedMainDialog::OnDialIntensityChange,
         this));
     this->addWidget(ui.m_dial_intensity);
   }
@@ -137,7 +137,7 @@ void WtTestLedMainDialog::ShowMain()
     ui.m_dial_size->GetWidget()->SetGeometry(Rect(0,0,100,100));
     ui.m_dial_size->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
-        &WtTestLedMainDialog::OnDialSizeChange,
+        &ribi::WtTestLedMainDialog::OnDialSizeChange,
         this));
     this->addWidget(ui.m_dial_size);
   }

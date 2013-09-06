@@ -27,6 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
 namespace Wt { struct WLabel; }
+
+namespace ribi {
+
 struct TestShapeMainDialog;
 struct WtShapeWidget;
 //---------------------------------------------------------------------------
@@ -42,5 +45,7 @@ struct WtTestShapeMainDialog : public Wt::WContainerWidget
   void OnSubmit();
   void Show();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTQUESTIONMAINDIALOG_H

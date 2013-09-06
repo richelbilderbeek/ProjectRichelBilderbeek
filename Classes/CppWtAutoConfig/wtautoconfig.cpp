@@ -21,20 +21,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
-//---------------------------------------------------------------------------
+
 #include "wtautoconfig.h"
-//---------------------------------------------------------------------------
-//Enable debugging
-#undef NDEBUG
+
 #include <cassert>
-//---------------------------------------------------------------------------
-WtAutoConfig::WtAutoConfig(
+
+ribi::WtAutoConfig::WtAutoConfig(
   const int argc, char ** const argv,const FunctionType function)
   : m_argc(argc),
     m_argv(argv),
@@ -42,21 +40,21 @@ WtAutoConfig::WtAutoConfig(
 {
 
 }
-//---------------------------------------------------------------------------
-const std::string WtAutoConfig::GetVersion()
+
+const std::string ribi::WtAutoConfig::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> WtAutoConfig::GetVersionHistory()
+
+const std::vector<std::string> ribi::WtAutoConfig::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-04-16: version 1.0: initial version");
   v.push_back("2011-04-18: version 1.1: added CreateDefaultStylesheet and SaveDefaultStylesheet methods");
   return v;
 }
-//---------------------------------------------------------------------------
-int WtAutoConfig::Run()
+
+int ribi::WtAutoConfig::Run()
 {
   // Declare the supported options.
   boost::program_options::options_description d(
@@ -108,8 +106,8 @@ int WtAutoConfig::Run()
   //Give Wt the modified parameters
   return WRun(w.size(), &w[0], m_function);
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> WtAutoConfig::CreateDefaultStylesheet()
+
+const std::vector<std::string> ribi::WtAutoConfig::CreateDefaultStylesheet()
 {
   std::vector<std::string> v;
 
@@ -172,11 +170,11 @@ const std::vector<std::string> WtAutoConfig::CreateDefaultStylesheet()
   v.push_back("}");
   return v;
 }
-//---------------------------------------------------------------------------
-void WtAutoConfig::SaveDefaultStylesheet()
+
+void ribi::WtAutoConfig::SaveDefaultStylesheet()
 {
   const std::vector<std::string> v = CreateDefaultStylesheet();
   std::ofstream f("wt.css");
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
 }
-//---------------------------------------------------------------------------
+

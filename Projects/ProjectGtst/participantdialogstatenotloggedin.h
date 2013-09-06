@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "participantdialogstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Participant is not logged in yet
 struct ParticipantDialogStateNotLoggedIn
@@ -75,5 +79,8 @@ struct ParticipantDialogStateNotLoggedIn
 
   void Login();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTDIALOGSTATENOTLOGGEDIN_H

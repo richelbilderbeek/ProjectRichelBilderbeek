@@ -45,7 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestquestionmaindialog.h"
 #pragma GCC diagnostic pop
 
-QtTestQuestionMainDialog::QtTestQuestionMainDialog(QWidget *parent) :
+ribi::QtTestQuestionMainDialog::QtTestQuestionMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQuestionMainDialog)
 {
@@ -56,12 +56,12 @@ QtTestQuestionMainDialog::QtTestQuestionMainDialog(QWidget *parent) :
   SetQuestion("-,1+1=,2,1,3");
 }
 
-QtTestQuestionMainDialog::~QtTestQuestionMainDialog()
+ribi::QtTestQuestionMainDialog::~QtTestQuestionMainDialog()
 {
   delete ui;
 }
 
-boost::shared_ptr<QtQuestionDialog> QtTestQuestionMainDialog::CreateQtQuestionDialog(const std::string& s)
+boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtTestQuestionMainDialog::CreateQtQuestionDialog(const std::string& s)
 {
   boost::shared_ptr<QtQuestionDialog> p;
 
@@ -91,12 +91,12 @@ boost::shared_ptr<QtQuestionDialog> QtTestQuestionMainDialog::CreateQtQuestionDi
 }
 
 
-void QtTestQuestionMainDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtTestQuestionMainDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtTestQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
+void ribi::QtTestQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
 {
   const std::string s = arg1.toStdString();
   m_dialog = CreateQtQuestionDialog(s);
@@ -118,20 +118,20 @@ void QtTestQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
   }
 }
 
-void QtTestQuestionMainDialog::SetQuestion(const std::string& s)
+void ribi::QtTestQuestionMainDialog::SetQuestion(const std::string& s)
 {
   this->ui->edit_question->setText(s.c_str());
 }
 
 #ifndef NDEBUG
-void QtTestQuestionMainDialog::Test()
+void ribi::QtTestQuestionMainDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTestQuestionMainDialog::Test");
+  TRACE("Starting ribi::QtTestQuestionMainDialog::Test");
   QtTestQuestionMainDialog d;
   d.SetQuestion("-,1+1=,2,1,3");
   assert(d.GetDialog());
@@ -141,6 +141,6 @@ void QtTestQuestionMainDialog::Test()
   assert(d.GetDialog());
   d.SetQuestion("again nonsense");
   assert(!d.GetDialog());
-  TRACE("Finished QtTestQuestionMainDialog::Test successfully");
+  TRACE("Finished ribi::QtTestQuestionMainDialog::Test successfully");
 }
 #endif

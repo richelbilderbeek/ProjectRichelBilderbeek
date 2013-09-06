@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pictocodemenudialog.h"
 //---------------------------------------------------------------------------
 const std::vector<std::string>
-  PicToCodeMainDialog::PicToQtCode(
+  ribi::PicToCodeMainDialog::PicToQtCode(
     const YxImage& image)
 {
   const int width  = image.width();

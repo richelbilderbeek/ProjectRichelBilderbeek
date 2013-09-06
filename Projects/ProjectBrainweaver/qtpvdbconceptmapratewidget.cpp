@@ -48,8 +48,8 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+ribi::pvdb::QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
   QWidget* parent)
   : QtPvdbConceptMapWidget(concept_map,parent)
 {
@@ -66,8 +66,8 @@ QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
   //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
-void QtPvdbConceptMapRateWidget::AddEdge(
-  const boost::shared_ptr<pvdb::Edge> edge)
+void ribi::pvdb::QtPvdbConceptMapRateWidget::AddEdge(
+  const boost::shared_ptr<ribi::pvdb::Edge> edge)
 {
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
@@ -126,7 +126,7 @@ void QtPvdbConceptMapRateWidget::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvdb::Node> node)
+ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<ribi::pvdb::Node> node)
 {
   const boost::shared_ptr<QtPvdbRateConceptItem> qtconcept(new QtPvdbRateConceptItem(node->GetConcept()));
   assert(qtconcept);
@@ -144,13 +144,13 @@ QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvd
   //Specific: inform an Observer that the Node requests its Concept being rated
   qtnode->m_signal_node_requests_rate_concept.connect(
     boost::bind(
-      &QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept,
+      &ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   //Specific: inform an Observer that the Node requests its Examples being rated
   qtnode->m_signal_node_requests_rate_examples.connect(
     boost::bind(
-      &QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples,
+      &ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtnode->scene());
@@ -171,7 +171,7 @@ QtPvdbNodeItem * QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<pvd
   return qtnode;
 }
 
-void QtPvdbConceptMapRateWidget::CleanMe()
+void ribi::pvdb::QtPvdbConceptMapRateWidget::CleanMe()
 {
   //Prepare cleaning the scene
   assert(GetExamplesItem());
@@ -190,7 +190,7 @@ void QtPvdbConceptMapRateWidget::CleanMe()
     SetExamplesItem(item);
     item->m_signal_request_scene_update.connect(
       boost::bind(
-        &QtPvdbConceptMapRateWidget::OnRequestSceneUpdate,this));
+        &ribi::pvdb::QtPvdbConceptMapRateWidget::OnRequestSceneUpdate,this));
     item->setVisible(false);
     assert(!item->scene());
     this->scene()->addItem(item);
@@ -199,30 +199,30 @@ void QtPvdbConceptMapRateWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapRateWidget::CreateNewDerived() const
+std::unique_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbConceptMapRateWidget::CreateNewDerived() const
 {
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map
-    = pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
+    = ribi::pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t(concept_map));
   return p;
 }
 #endif
 
-const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubConceptMap(QtPvdbNodeItem * const item)
+const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::QtPvdbConceptMapRateWidget::CreateSubConceptMap(QtPvdbNodeItem * const item)
 {
   assert(item);
   //Collect all nodes first
   const std::vector<QtPvdbEdgeItem*> qtedges = FindEdges(item);
-  std::vector<boost::shared_ptr<pvdb::Node> > nodes;
+  std::vector<boost::shared_ptr<ribi::pvdb::Node> > nodes;
   //assert(focal_concept);
-  const boost::shared_ptr<pvdb::Node> focal_node = item->GetNode(); //FIX?
+  const boost::shared_ptr<ribi::pvdb::Node> focal_node = item->GetNode(); //FIX?
   assert(focal_node);
   nodes.push_back(focal_node);
 
   assert(nodes[0]->GetConcept() == item->GetNode()->GetConcept());
 
-  std::vector<boost::shared_ptr<pvdb::Edge> > edges;
+  std::vector<boost::shared_ptr<ribi::pvdb::Edge> > edges;
 
   const int sz = static_cast<int>(qtedges.size());
   for (int i=0; i!=sz; ++i)
@@ -239,7 +239,7 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
     assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetToItem()));
     assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetToItem())->GetNode());
     assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetToItem())->GetNode()->GetConcept());
-    const boost::shared_ptr<pvdb::Node> other_node
+    const boost::shared_ptr<ribi::pvdb::Node> other_node
       = qtedge->GetFrom()->GetNode() == focal_node
       ? qtedge->GetTo()->GetNode()
       : qtedge->GetFrom()->GetNode();
@@ -248,7 +248,7 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
     nodes.push_back(other_node);
     assert(qtedge);
     assert(qtedge->GetEdge());
-    const boost::shared_ptr<pvdb::Edge> edge(pvdb::EdgeFactory::Create(
+    const boost::shared_ptr<ribi::pvdb::Edge> edge(pvdb::EdgeFactory::Create(
       qtedge->GetEdge()->GetConcept(),
       qtedge->GetEdge()->GetX(),
       qtedge->GetEdge()->GetY(),
@@ -261,7 +261,7 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
     assert(edge);
     edges.push_back(edge);
   }
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(nodes,edges));
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(nodes,edges));
   assert(concept_map);
   assert(focal_node == concept_map->GetNodes().at(0));
 
@@ -274,25 +274,25 @@ const boost::shared_ptr<pvdb::ConceptMap> QtPvdbConceptMapRateWidget::CreateSubC
 }
 
 #ifndef NDEBUG
-void QtPvdbConceptMapRateWidget::DoRandomStuff()
+void ribi::pvdb::QtPvdbConceptMapRateWidget::DoRandomStuff()
 {
   assert(!"TODO");
 }
 #endif
 
 
-void QtPvdbConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
+void ribi::pvdb::QtPvdbConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
   scene()->update();
 }
 
-void QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept(QtPvdbNodeItem * const item)
+void ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept(QtPvdbNodeItem * const item)
 {
   assert(item);
   assert(item->GetNode()->GetConcept());
   //Concept map must be edited, so item changes with it
-  const boost::shared_ptr<pvdb::ConceptMap> sub_concept_map = CreateSubConceptMap(item);
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> sub_concept_map = CreateSubConceptMap(item);
   assert(sub_concept_map);
   assert(sub_concept_map->GetNodes().at(0));
   assert(sub_concept_map->GetNodes().at(0)->GetConcept());
@@ -315,7 +315,7 @@ void QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept(QtPvdbNodeItem * cons
   this->OnItemRequestsUpdate(item);
 }
 
-void QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples(QtPvdbNodeItem * const item)
+void ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples(QtPvdbNodeItem * const item)
 {
   assert(item);
   if (item->GetConcept()->GetExamples()->Get().empty())
@@ -325,7 +325,7 @@ void QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples(QtPvdbNodeItem * con
   //Start edit
   {
     QtScopedDisable<QtPvdbConceptMapRateWidget> disable(this);
-    const boost::shared_ptr<pvdb::Concept> concept = item->GetConcept();
+    const boost::shared_ptr<ribi::pvdb::Concept> concept = item->GetConcept();
     assert(concept);
     assert(item->GetConcept().get() == concept.get());
     assert(item->GetConcept() == concept);

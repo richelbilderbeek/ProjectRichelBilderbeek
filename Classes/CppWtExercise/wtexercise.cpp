@@ -36,14 +36,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtquestiondialog.h"
 
 
-WtExercise::Ui::Ui()
+ribi::WtExercise::Ui::Ui()
   : m_box(new Wt::WGroupBox),
     m_label_score(new Wt::WLabel)
 {
 
 }
 
-WtExercise::WtExercise()
+ribi::WtExercise::WtExercise()
   : m_n_answered(0),
     m_n_correct(0),
     m_waiting_time_correct(1000),
@@ -58,14 +58,14 @@ WtExercise::WtExercise()
   this->addWidget(new Wt::WBreak);
   this->addWidget(ui.m_label_score);
 
-  TRACE("WtExercise::WtExercise #1");
+  TRACE("ribi::WtExercise::WtExercise #1");
 
   ui.m_label_score->setText("Score: 0/0");
 
-  TRACE("WtExercise::WtExercise end");
+  TRACE("ribi::WtExercise::WtExercise end");
 }
 
-void WtExercise::DisplayCurrentQuestion()
+void ribi::WtExercise::DisplayCurrentQuestion()
 {
   const std::string s = m_exercise->GetCurrentQuestion();
 
@@ -92,31 +92,31 @@ void WtExercise::DisplayCurrentQuestion()
   ui.m_box->addWidget(new Wt::WBreak);
 
   question->m_signal_submitted.connect(
-    boost::bind(&WtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
+    boost::bind(&ribi::WtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
   ui.m_box->addWidget(question);
   ui.m_box->addWidget(new Wt::WBreak);
 
 }
 
-const Exercise * WtExercise::GetExercise() const
+const ribi::Exercise * ribi::WtExercise::GetExercise() const
 {
   assert(m_exercise);
   return m_exercise.get();
 }
 
-const std::string WtExercise::GetVersion()
+const std::string ribi::WtExercise::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> WtExercise::GetVersionHistory()
+const std::vector<std::string> ribi::WtExercise::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-09-26: Version 1.0: initial version");
   return v;
 }
 
-void WtExercise::OnSubmittedAnswer(const bool answered_correct)
+void ribi::WtExercise::OnSubmittedAnswer(const bool answered_correct)
 {
   if (answered_correct) ++m_n_correct;
   ++m_n_answered;
@@ -124,28 +124,28 @@ void WtExercise::OnSubmittedAnswer(const bool answered_correct)
     Wt::WString("Score: {1}/{2}").arg(m_n_correct).arg(m_n_answered));
   Wt::WTimer::singleShot(
     answered_correct ? m_waiting_time_correct : m_waiting_time_incorrect,
-    boost::bind(&WtExercise::OnViewedAnswer,this));
+    boost::bind(&ribi::WtExercise::OnViewedAnswer,this));
 }
 
-void WtExercise::OnViewedAnswer()
+void ribi::WtExercise::OnViewedAnswer()
 {
   this->m_exercise->Next();
   this->DisplayCurrentQuestion();
 }
 
-void WtExercise::SetQuestions(const std::string& filename)
+void ribi::WtExercise::SetQuestions(const std::string& filename)
 {
   m_exercise.reset(new Exercise(filename));
   DisplayCurrentQuestion();
 }
 
-void WtExercise::SetWaitingTimeCorrect(const int msecs)
+void ribi::WtExercise::SetWaitingTimeCorrect(const int msecs)
 {
   assert(msecs >= 0);
   m_waiting_time_correct = msecs;
 }
 
-void WtExercise::SetWaitingTimeIncorrect(const int msecs)
+void ribi::WtExercise::SetWaitingTimeIncorrect(const int msecs)
 {
   assert(msecs >= 0);
   m_waiting_time_incorrect = msecs;

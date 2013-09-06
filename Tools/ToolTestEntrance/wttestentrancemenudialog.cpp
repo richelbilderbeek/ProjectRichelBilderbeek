@@ -39,9 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-namespace ToolTestEntrance {
-
-WtMenuDialog::WtMenuDialog(boost::shared_ptr<const IpAddress> ip_address)
+ribi::ToolTestEntrance::WtMenuDialog::WtMenuDialog(boost::shared_ptr<const IpAddress> ip_address)
 {
   {
     std::vector<std::string> image_names;
@@ -99,7 +97,7 @@ WtMenuDialog::WtMenuDialog(boost::shared_ptr<const IpAddress> ip_address)
   }
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
+Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewAboutDialog()
 {
   About a = MenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -109,14 +107,14 @@ Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
   return d;
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewMainDialog(boost::shared_ptr<const IpAddress> ip_address) const
+Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewMainDialog(boost::shared_ptr<const IpAddress> ip_address) const
 {
   WtMainDialog * const d = new WtMainDialog(ip_address);
   assert(d);
   return d;
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -131,6 +129,3 @@ Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolTestEntranceWelcome.png"));
   return dialog;
 }
-
-} //~namespace ToolTestEntrance
-

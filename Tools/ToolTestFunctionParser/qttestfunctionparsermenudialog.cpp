@@ -27,19 +27,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testfunctionparsermenudialog.h"
 #include "ui_qttestfunctionparsermenudialog.h"
 
-QtTestFunctionParserMenuDialog::QtTestFunctionParserMenuDialog(QWidget *parent) :
+ribi::QtTestFunctionParserMenuDialog::QtTestFunctionParserMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestFunctionParserMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestFunctionParserMenuDialog::~QtTestFunctionParserMenuDialog()
+ribi::QtTestFunctionParserMenuDialog::~QtTestFunctionParserMenuDialog()
 {
   delete ui;
 }
 
-void QtTestFunctionParserMenuDialog::on_button_start_clicked()
+void ribi::QtTestFunctionParserMenuDialog::on_button_start_clicked()
 {
   QtTestFunctionParserMainDialog d;
   d.setStyleSheet(this->styleSheet());
@@ -47,7 +47,7 @@ void QtTestFunctionParserMenuDialog::on_button_start_clicked()
   ShowChild(&d);
 }
 
-void QtTestFunctionParserMenuDialog::on_button_about_clicked()
+void ribi::QtTestFunctionParserMenuDialog::on_button_about_clicked()
 {
   About a = TestFunctionParserMenuDialog::GetAbout();
   QtAboutDialog d(a);
@@ -58,7 +58,7 @@ void QtTestFunctionParserMenuDialog::on_button_about_clicked()
   show();
 }
 
-void QtTestFunctionParserMenuDialog::on_button_quit_clicked()
+void ribi::QtTestFunctionParserMenuDialog::on_button_quit_clicked()
 {
   close();
 }

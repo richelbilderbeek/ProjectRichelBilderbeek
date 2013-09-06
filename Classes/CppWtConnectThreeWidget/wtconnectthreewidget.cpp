@@ -24,17 +24,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "connectthree.h"
 #include "connectthreewidget.h"
-#include "wtconnectthreeresources.h"
+#include "connectthreeresources.h"
 #include "wtconnectthreewidget.h"
 //---------------------------------------------------------------------------
-//Enable debugging
-#undef NDEBUG
 #include <cassert>
 //---------------------------------------------------------------------------
 ///Yes, naming the filename twice feels dumb, but
 ///I could not find enough documentation about
 ///how I should use the Wt::WPainter::Image constructor
-WtConnectThreeWidget::WtConnectThreeWidget(
+ribi::WtConnectThreeWidget::WtConnectThreeWidget(
+  const boost::shared_ptr<const ConnectThreeResources> resources,
   const std::bitset<3>& is_player_human,
   const int n_cols,
   const int n_rows)
@@ -43,28 +42,28 @@ WtConnectThreeWidget::WtConnectThreeWidget(
       {
         boost::shared_ptr<const Wt::WPainter::Image>(
           new Wt::WPainter::Image(
-            WtConnectThreeResources::GetInstance()->GetPlayersFilenames()[0],
-            WtConnectThreeResources::GetInstance()->GetPlayersFilenames()[0])),
+            resources->GetPlayersFilenames()[0],
+            resources->GetPlayersFilenames()[0])),
         boost::shared_ptr<const Wt::WPainter::Image>(
           new Wt::WPainter::Image(
-            WtConnectThreeResources::GetInstance()->GetPlayersFilenames()[1],
-            WtConnectThreeResources::GetInstance()->GetPlayersFilenames()[1])),
+            resources->GetPlayersFilenames()[1],
+            resources->GetPlayersFilenames()[1])),
         boost::shared_ptr<const Wt::WPainter::Image>(
           new Wt::WPainter::Image(
-            WtConnectThreeResources::GetInstance()->GetPlayersFilenames()[2],
-            WtConnectThreeResources::GetInstance()->GetPlayersFilenames()[2])),
+            resources->GetPlayersFilenames()[2],
+            resources->GetPlayersFilenames()[2])),
       }
     ),
     m_empty(new Wt::WPainter::Image(
-      WtConnectThreeResources::GetInstance()->GetEmptyFilename(),
-      WtConnectThreeResources::GetInstance()->GetEmptyFilename())),
+      resources->GetEmptyFilename(),
+      resources->GetEmptyFilename())),
     m_timer(new Wt::WTimer)
 {
   const int sprite_width  = m_empty->width();
   const int sprite_height = m_empty->height();
 
   this->resize(n_cols * sprite_width,n_rows * sprite_height);
-  this->mouseWentDown().connect(this, &WtConnectThreeWidget::OnClick);
+  this->mouseWentDown().connect(this, &ribi::WtConnectThreeWidget::OnClick);
   this->update();
   m_timer->setInterval(100);
   m_timer->timeout().connect(
@@ -73,7 +72,7 @@ WtConnectThreeWidget::WtConnectThreeWidget(
       m_widget.get()));
 }
 //---------------------------------------------------------------------------
-void WtConnectThreeWidget::DoComputerTurn()
+void ribi::WtConnectThreeWidget::DoComputerTurn()
 {
   assert(IsComputerTurn());
   const ConnectThree::Move move = m_widget->SuggestMove();
@@ -84,22 +83,22 @@ void WtConnectThreeWidget::DoComputerTurn()
   this->update();
 }
 //---------------------------------------------------------------------------
-int WtConnectThreeWidget::GetActivePlayer() const
+int ribi::WtConnectThreeWidget::GetActivePlayer() const
 {
   return m_widget->GetGame()->GetActivePlayer();
 }
 //---------------------------------------------------------------------------
-const std::bitset<3>& WtConnectThreeWidget::GetIsPlayerHuman() const
+const std::bitset<3>& ribi::WtConnectThreeWidget::GetIsPlayerHuman() const
 {
   return m_widget->GetIsPlayerHuman();
 }
 //---------------------------------------------------------------------------
-const std::string WtConnectThreeWidget::GetVersion()
+const std::string ribi::WtConnectThreeWidget::GetVersion()
 {
   return "2.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtConnectThreeWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtConnectThreeWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-01-08: version 1.0: initial version");
@@ -108,20 +107,20 @@ const std::vector<std::string> WtConnectThreeWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-int WtConnectThreeWidget::GetWinner() const
+int ribi::WtConnectThreeWidget::GetWinner() const
 {
   assert(m_widget);
   assert(m_widget->GetGame());
   return m_widget->GetGame()->GetWinner();
 }
 //---------------------------------------------------------------------------
-bool WtConnectThreeWidget::IsComputerTurn() const
+bool ribi::WtConnectThreeWidget::IsComputerTurn() const
 {
   assert(m_widget);
   return m_widget->IsComputerTurn();
 }
 //---------------------------------------------------------------------------
-void WtConnectThreeWidget::OnClick(const Wt::WMouseEvent& e)
+void ribi::WtConnectThreeWidget::OnClick(const Wt::WMouseEvent& e)
 {
   //Disable clicking if it's the AI's turn
   if (IsComputerTurn()) return;
@@ -142,7 +141,7 @@ void WtConnectThreeWidget::OnClick(const Wt::WMouseEvent& e)
 
 }
 //---------------------------------------------------------------------------
-void WtConnectThreeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtConnectThreeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   assert(m_widget);
@@ -163,7 +162,7 @@ void WtConnectThreeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
   }
 }
 //---------------------------------------------------------------------------
-const Wt::WPainter::Image& WtConnectThreeWidget::GetImage(const int sprite) const
+const Wt::WPainter::Image& ribi::WtConnectThreeWidget::GetImage(const int sprite) const
 {
   assert(ConnectThree::player1 == 0);
   assert(ConnectThree::player2 == 1);
@@ -178,17 +177,17 @@ const Wt::WPainter::Image& WtConnectThreeWidget::GetImage(const int sprite) cons
       return *m_players[sprite].get();
   }
   assert(!"Should not get here");
-  throw std::logic_error("Unknown WtConnectThreeWidget::GetImage value");
+  throw std::logic_error("Unknown ribi::WtConnectThreeWidget::GetImage value");
 }
 //---------------------------------------------------------------------------
-void WtConnectThreeWidget::Restart()
+void ribi::WtConnectThreeWidget::Restart()
 {
   assert(m_widget);
   m_widget->Restart();
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
+void ribi::WtConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
 {
   assert(m_widget);
   m_widget->SetIsPlayerHuman(is_player_human);

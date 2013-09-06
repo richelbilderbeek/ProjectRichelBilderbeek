@@ -31,6 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "forward_declarations.h"
 #include "state.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The state of ParticipantDialog.
 ///
@@ -98,5 +102,8 @@ struct ParticipantDialogState : public State, Wt::WObject
   ///For example: 123.456789 to 123.46
   static const std::string CurrencyToStr(const double value);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTDIALOGSTATE_H

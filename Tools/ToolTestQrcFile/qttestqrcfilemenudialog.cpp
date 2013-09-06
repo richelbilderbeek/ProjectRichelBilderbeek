@@ -28,19 +28,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testqrcfilemenudialog.h"
 #include "ui_qttestqrcfilemenudialog.h"
 
-QtTestQrcFileMenuDialog::QtTestQrcFileMenuDialog(QWidget *parent) :
+ribi::QtTestQrcFileMenuDialog::QtTestQrcFileMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestQrcFileMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestQrcFileMenuDialog::~QtTestQrcFileMenuDialog()
+ribi::QtTestQrcFileMenuDialog::~QtTestQrcFileMenuDialog()
 {
   delete ui;
 }
 
-void QtTestQrcFileMenuDialog::on_button_start_clicked()
+void ribi::QtTestQrcFileMenuDialog::on_button_start_clicked()
 {
   this->hide();
   QtTestQrcFileMainDialog d;
@@ -48,7 +48,7 @@ void QtTestQrcFileMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void QtTestQrcFileMenuDialog::on_button_about_clicked()
+void ribi::QtTestQrcFileMenuDialog::on_button_about_clicked()
 {
   this->hide();
   About a = TestQrcFileMenuDialog::GetAbout();
@@ -59,7 +59,7 @@ void QtTestQrcFileMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtTestQrcFileMenuDialog::on_button_quit_clicked()
+void ribi::QtTestQrcFileMenuDialog::on_button_quit_clicked()
 {
   close();
 }

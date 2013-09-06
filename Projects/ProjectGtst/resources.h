@@ -27,6 +27,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/noncopyable.hpp>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///Resources ensures all resources will be present
 struct Resources : public boost::noncopyable
 {
@@ -105,5 +109,8 @@ struct Resources : public boost::noncopyable
   friend void boost::checked_delete<>(Resources*);
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // RESOURCES_H

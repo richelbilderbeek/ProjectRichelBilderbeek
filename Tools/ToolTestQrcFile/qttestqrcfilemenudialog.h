@@ -27,6 +27,8 @@ namespace Ui {
 class QtTestQrcFileMenuDialog;
 }
 
+namespace ribi {
+
 class QtTestQrcFileMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -43,5 +45,7 @@ private slots:
 private:
   Ui::QtTestQrcFileMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQRCFILEMENUDIALOG_H

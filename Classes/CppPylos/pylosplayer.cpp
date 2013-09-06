@@ -27,14 +27,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "pylospositionstate.h"
 
-namespace Pylos {
 
-void Toggle(Player& player)
+
+void ribi::Pylos::Toggle(Player& player)
 {
   player = (player == Player::player1 ? Player::player2 : Player::player1);
 }
 
-Player ToPlayer(const PositionState& state)
+ribi::Pylos::Player ribi::Pylos::ToPlayer(const PositionState& state)
 {
   switch (state)
   {
@@ -46,7 +46,7 @@ Player ToPlayer(const PositionState& state)
   throw std::logic_error("Cannot convert this PositionState to a Player");
 }
 
-bool operator==(const Player& player, const PositionState& state)
+bool ribi::Pylos::operator==(const Player& player, const PositionState& state)
 {
   switch (player)
   {
@@ -56,11 +56,7 @@ bool operator==(const Player& player, const PositionState& state)
   return false;
 }
 
-bool operator!=(const Player& player, const PositionState& state)
+bool ribi::Pylos::operator!=(const Player& player, const PositionState& state)
 {
   return !(player==state);
 }
-
-} //namespace Pylos
-
-

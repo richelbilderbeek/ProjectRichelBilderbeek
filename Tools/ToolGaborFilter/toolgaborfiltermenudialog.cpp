@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtcreatorprofile.h"
 
-const About ToolGaborFilterMenuDialog::GetAbout()
+const ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +39,12 @@ const About ToolGaborFilterMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ToolGaborFilterMenuDialog::GetVersion()
+const std::string ribi::ToolGaborFilterMenuDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> ToolGaborFilterMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-xx-xx: version 1.0: initial Windows-only version");

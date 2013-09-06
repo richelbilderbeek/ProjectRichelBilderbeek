@@ -1,11 +1,6 @@
 #ifndef PVDBHELPER_H
 #define PVDBHELPER_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <array>
 #include <vector>
 #include <string>
@@ -14,12 +9,9 @@
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/shared_ptr.hpp>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 struct QRegExp;
-#else
-#include <QRegExp>
-#endif
 
+namespace ribi {
 
 
 ///Help adding constness a bit
@@ -121,5 +113,7 @@ void TestHelperFunctions();
 const std::vector<std::string> XmlToPretty(const std::string& s);
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // PVDBHELPER_H

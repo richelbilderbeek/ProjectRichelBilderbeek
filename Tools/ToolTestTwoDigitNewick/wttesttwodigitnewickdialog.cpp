@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "twodigitnewick.h"
 #include "wttesttwodigitnewickdialog.h"
 //---------------------------------------------------------------------------
-WtTestTwoDigitNewickDialog::WtTestTwoDigitNewickDialog()
+ribi::WtTestTwoDigitNewickDialog::WtTestTwoDigitNewickDialog()
   : m_edit_newick(new Wt::WLineEdit("((2,2),2)")),
     m_edit_password(new Wt::WLineEdit),
     m_edit_theta(new Wt::WLineEdit("10")),
@@ -69,13 +69,13 @@ WtTestTwoDigitNewickDialog::WtTestTwoDigitNewickDialog()
   //Wt::WPushButton * const button_about = new Wt::WPushButton("About",this);
 
   button_calculate->clicked().connect(
-    this,&WtTestTwoDigitNewickDialog::OnCalculate);
+    this,&ribi::WtTestTwoDigitNewickDialog::OnCalculate);
   //button_about->clicked().connect(
-  //  this,&WtTestTwoDigitNewickDialog::OnAbout);
+  //  this,&ribi::WtTestTwoDigitNewickDialog::OnAbout);
 
 }
 //---------------------------------------------------------------------------
-const About WtTestTwoDigitNewickDialog::GetAbout()
+const ribi::About ribi::WtTestTwoDigitNewickDialog::GetAbout()
 {
   About about(
     "Richel Bilderbeek",
@@ -95,12 +95,12 @@ const About WtTestTwoDigitNewickDialog::GetAbout()
 
 }
 //---------------------------------------------------------------------------
-const std::string WtTestTwoDigitNewickDialog::GetVersion()
+const std::string ribi::WtTestTwoDigitNewickDialog::GetVersion()
 {
   return "2.2";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtTestTwoDigitNewickDialog::GetVersionHistory()
+const std::vector<std::string> ribi::WtTestTwoDigitNewickDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-03-06: version 2.1: initial version, same versioning as QtTestTwoDigitNewickDialog");
@@ -108,13 +108,13 @@ const std::vector<std::string> WtTestTwoDigitNewickDialog::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtTestTwoDigitNewickDialog::OnAbout()
+void ribi::WtTestTwoDigitNewickDialog::OnAbout()
 {
   //Emit that about is clicked
   m_signal_about();
 }
 //---------------------------------------------------------------------------
-void WtTestTwoDigitNewickDialog::OnCalculate()
+void ribi::WtTestTwoDigitNewickDialog::OnCalculate()
 {
   {
     const std::string s = m_edit_password->text().toUTF8();

@@ -25,7 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 //---------------------------------------------------------------------------
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
 namespace ToolTestTimedServerPusher {
 //---------------------------------------------------------------------------
 ///The GUI independent part of the menu
@@ -42,5 +43,7 @@ struct MenuDialog
 };
 //---------------------------------------------------------------------------
 } //~namespace ToolTestTimedServerPusher
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TESTTIMEDSERVERPUSHERMENUDIALOG_H

@@ -46,14 +46,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 #include "wtshapewidget.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateViewResultsVoting::ParticipantDialogStateViewResultsVoting(
+ribi::gtst::ParticipantDialogStateViewResultsVoting::ParticipantDialogStateViewResultsVoting(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
 
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateViewResultsVoting::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateViewResultsVoting::RespondToTimedServerPush()
 {
   assert(GetDialog()->CanGetParticipant()
     && "Assume that only existing participants can have finished an experiment");
@@ -74,7 +74,7 @@ void ParticipantDialogStateViewResultsVoting::RespondToTimedServerPush()
   RespondToParticipant();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateViewResultsVoting::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateViewResultsVoting::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
   assert(GetDialog()->GetParticipant());

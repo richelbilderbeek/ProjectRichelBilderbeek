@@ -41,7 +41,6 @@ public:
   ~QtMaziakGameWonDialog();
 
 protected:
-  void changeEvent(QEvent *e);
   void paintEvent(QPaintEvent*);
   void mousePressEvent(QMouseEvent*);
   void keyPressEvent(QKeyEvent*);

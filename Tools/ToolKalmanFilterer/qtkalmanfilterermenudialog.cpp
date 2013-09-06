@@ -36,18 +36,6 @@ ribi::QtKalmanFiltererMenuDialog::~QtKalmanFiltererMenuDialog()
   delete ui;
 }
 
-void ribi::QtKalmanFiltererMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 void ribi::QtKalmanFiltererMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }

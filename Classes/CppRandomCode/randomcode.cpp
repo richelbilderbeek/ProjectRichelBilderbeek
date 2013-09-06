@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cstdlib>
 
-const std::vector<std::string> RandomCode::CreateRandomCode()
+const std::vector<std::string> ribi::RandomCode::CreateRandomCode()
 {
   std::vector<std::string> v;
   v.push_back("#include <iostream>");
@@ -44,7 +44,7 @@ const std::vector<std::string> RandomCode::CreateRandomCode()
   return v;
 }
 
-const std::string RandomCode::CreateRandomLine(const unsigned int length)
+const std::string ribi::RandomCode::CreateRandomLine(const unsigned int length)
 {
   std::string s = "  ";
   for (unsigned int i=0; i!=length; ++i)
@@ -55,7 +55,7 @@ const std::string RandomCode::CreateRandomLine(const unsigned int length)
   return s;
 }
 
-const std::string RandomCode::CreateRandomString()
+const std::string ribi::RandomCode::CreateRandomString()
 {
   switch (std::rand()%70)
   {
@@ -123,7 +123,7 @@ const std::string RandomCode::CreateRandomString()
   return " ";
 }
 
-const std::vector<std::string> RandomCode::GetAbout()
+const std::vector<std::string> ribi::RandomCode::GetAbout()
 {
   std::vector<std::string> v;
   v.push_back("Random Code, generates random C++ code");
@@ -138,7 +138,7 @@ const std::vector<std::string> RandomCode::GetAbout()
   return v;
 }
 
-const std::vector<std::string> RandomCode::GetLicence()
+const std::vector<std::string> ribi::RandomCode::GetLicence()
 {
   std::vector<std::string> v;
   v.push_back("Random Code, generates random C++ code");
@@ -159,12 +159,12 @@ const std::vector<std::string> RandomCode::GetLicence()
   return v;
 }
 
-const std::string RandomCode::GetVersion()
+const std::string ribi::RandomCode::GetVersion()
 {
   return "3.0";
 }
 
-const std::vector<std::string> RandomCode::GetVersionHistory()
+const std::vector<std::string> ribi::RandomCode::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: Version X.Y: [description]");

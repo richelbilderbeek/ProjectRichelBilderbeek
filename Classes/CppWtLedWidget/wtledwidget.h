@@ -29,6 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct Led;
 struct LedWidget;
 //---------------------------------------------------------------------------
@@ -75,5 +78,7 @@ struct WtLedWidget : public Wt::WPaintedWidget
   ///Wt resize: hide it from sight
   void resize(const Wt::WLength& width, const Wt::WLength& height);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTLEDWIDGET_H

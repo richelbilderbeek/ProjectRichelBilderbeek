@@ -29,7 +29,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
 //---------------------------------------------------------------------------
-#include "../../Classes/CppTicTacToe/tictactoe.h"
+#include "tictactoe.h"
+
+namespace ribi {
+
 //---------------------------------------------------------------------------
 struct WtTicTacToeWidget : public Wt::WPaintedWidget
 {
@@ -48,5 +51,7 @@ struct WtTicTacToeWidget : public Wt::WPaintedWidget
   int GetHeight() const;
   void OnClicked(const Wt::WMouseEvent& e);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTICTACTOEWIDGET_H

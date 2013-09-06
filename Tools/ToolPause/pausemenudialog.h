@@ -26,6 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 struct PauseMenuDialog
 {
   static void Execute(const int argc, const char * const argv[]);
@@ -36,5 +38,7 @@ struct PauseMenuDialog
   private:
   static void Wait(const double n_secs);
 };
+
+} //~namespace ribi
 
 #endif // PAUSEMENUDIALOG_H

@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "chooseactionoption.h"
 //---------------------------------------------------------------------------
-ChooseActionOption::ChooseActionOption(
+ribi::gtst::ChooseActionOption::ChooseActionOption(
   const double contribution,
   const double cost,
   const std::string& description,
@@ -36,51 +36,51 @@ ChooseActionOption::ChooseActionOption(
 }
 //---------------------------------------------------------------------------
 ///Get the chance of getting caught by a supervisor when not contributing
-double ChooseActionOption::GetContribution() const
+double ribi::gtst::ChooseActionOption::GetContribution() const
 {
   return m_contribution;
 }
 //---------------------------------------------------------------------------
 ///Get the cost of this supervisor/option
-double ChooseActionOption::GetCost() const
+double ribi::gtst::ChooseActionOption::GetCost() const
 {
   return m_cost;
 }
 //---------------------------------------------------------------------------
-const std::string& ChooseActionOption::GetDescription() const
+const std::string& ribi::gtst::ChooseActionOption::GetDescription() const
 {
   return m_description;
 }
 //---------------------------------------------------------------------------
-const std::string& ChooseActionOption::GetMessageChoice() const
+const std::string& ribi::gtst::ChooseActionOption::GetMessageChoice() const
 {
   return m_message_choice;
 }
 //---------------------------------------------------------------------------
-void ChooseActionOption::SetContribution(const double contribution)
+void ribi::gtst::ChooseActionOption::SetContribution(const double contribution)
 {
   m_contribution = contribution;
 }
 //---------------------------------------------------------------------------
 ///Set the cost of this supervisor/option
-void ChooseActionOption::SetCost(const double cost)
+void ribi::gtst::ChooseActionOption::SetCost(const double cost)
 {
   assert(cost >= 0.0 && "Costs typically are positive values");
   m_cost = cost;
 }
 //---------------------------------------------------------------------------
-void ChooseActionOption::SetDescription(const std::string& description)
+void ribi::gtst::ChooseActionOption::SetDescription(const std::string& description)
 {
   assert(!description.empty() && "A description must contain text");
   m_description = description;
 }
 //---------------------------------------------------------------------------
-void ChooseActionOption::SetMessageChoice(const std::string& message_choice)
+void ribi::gtst::ChooseActionOption::SetMessageChoice(const std::string& message_choice)
 {
   m_message_choice = message_choice;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ChooseActionOption& v)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ChooseActionOption& v)
 {
   os
     << "<contribution>"

@@ -12,17 +12,13 @@
 #include "pvdbconceptfactory.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-const boost::shared_ptr<pvdb::Node> pvdb::NodeFactory::Create(
-  const boost::shared_ptr<pvdb::Concept>& concept,
+const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::NodeFactory::Create(
+  const boost::shared_ptr<ribi::pvdb::Concept>& concept,
   const double x,
   const double y)
 {
   assert(concept);
-  boost::shared_ptr<pvdb::Node> node(
+  boost::shared_ptr<ribi::pvdb::Node> node(
     new pvdb::Node(
       concept,x,y
     )
@@ -34,13 +30,13 @@ const boost::shared_ptr<pvdb::Node> pvdb::NodeFactory::Create(
   return node;
 }
 
-const boost::shared_ptr<pvdb::Node> pvdb::NodeFactory::Create(
+const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::NodeFactory::Create(
   const std::string& name,
   const std::vector<std::pair<std::string,Competency> >& examples,
   const double x,
   const double y)
 {
-  boost::shared_ptr<pvdb::Node> node(
+  boost::shared_ptr<ribi::pvdb::Node> node(
     new Node(
       ConceptFactory::Create(name,examples),
       x,
@@ -55,16 +51,16 @@ const boost::shared_ptr<pvdb::Node> pvdb::NodeFactory::Create(
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<pvdb::Node> pvdb::NodeFactory::DeepCopy(
+const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::NodeFactory::DeepCopy(
   const boost::shared_ptr<const pvdb::Node>& node)
 {
   assert(node);
   assert(node->GetConcept());
-  const boost::shared_ptr<pvdb::Concept> new_concept
+  const boost::shared_ptr<ribi::pvdb::Concept> new_concept
     = ConceptFactory::DeepCopy(node->GetConcept());
   assert(new_concept);
   assert(IsEqual(*node->GetConcept(),*new_concept));
-  const boost::shared_ptr<pvdb::Node> new_node
+  const boost::shared_ptr<ribi::pvdb::Node> new_node
     = Create(new_concept,
       node->GetX(),
       node->GetY()
@@ -77,16 +73,16 @@ const boost::shared_ptr<pvdb::Node> pvdb::NodeFactory::DeepCopy(
 #endif
 
 
-const std::vector<boost::shared_ptr<pvdb::Node> > pvdb::NodeFactory::GetTests()
+const std::vector<boost::shared_ptr<ribi::pvdb::Node> > ribi::pvdb::NodeFactory::GetTests()
 {
-  std::vector<boost::shared_ptr<pvdb::Node> > nodes;
+  std::vector<boost::shared_ptr<ribi::pvdb::Node> > nodes;
   const auto v = ConceptFactory::GetTests();
   std::transform(v.begin(),v.end(),std::back_inserter(nodes),
-    [](const boost::shared_ptr<pvdb::Concept>& c)
+    [](const boost::shared_ptr<ribi::pvdb::Concept>& c)
     {
       static int x = 0;
       static int y = 1;
-      boost::shared_ptr<pvdb::Node> p(new Node(c,x,y));
+      boost::shared_ptr<ribi::pvdb::Node> p(new Node(c,x,y));
       ++x;
       ++y;
       assert(p);
@@ -95,7 +91,3 @@ const std::vector<boost::shared_ptr<pvdb::Node> > pvdb::NodeFactory::GetTests()
   );
   return nodes;
 }
-
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-} //~namespace pvdb
-#endif

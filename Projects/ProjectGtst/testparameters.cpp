@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "test.h"
 #include "server.h"
 //---------------------------------------------------------------------------
-void Test::TestParameters()
+void ribi::gtst::Test::TestParameters()
 {
   //Check setting parameters
   boost::shared_ptr<Parameters> parameters(new Parameters(m_server));

@@ -44,7 +44,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-ServerStateGroupAssign::ServerStateGroupAssign(
+ribi::gtst::ServerStateGroupAssign::ServerStateGroupAssign(
   Server * const server, const int period, const int cycle)
   : ServerState(server,period,cycle)
 {
@@ -52,7 +52,7 @@ ServerStateGroupAssign::ServerStateGroupAssign(
 }
 //---------------------------------------------------------------------------
 ///Check if this state can go to the next state.
-void ServerStateGroupAssign::AssignGroup(const boost::shared_ptr<const Participant>& participant) const
+void ribi::gtst::ServerStateGroupAssign::AssignGroup(const boost::shared_ptr<const Participant>& participant) const
 {
   const GroupAssigner * const assigner = participant->GetGroupAssigner();
   assert(assigner);
@@ -89,7 +89,7 @@ void ServerStateGroupAssign::AssignGroup(const boost::shared_ptr<const Participa
 }
 //---------------------------------------------------------------------------
 ///Check if the Participant can be assigned to a group.
-bool ServerStateGroupAssign::CanAssignGroup(
+bool ribi::gtst::ServerStateGroupAssign::CanAssignGroup(
   const boost::shared_ptr<const Participant>& participant) const
 {
   //Sure, any logged-in Participant can be assigned to a group
@@ -99,7 +99,7 @@ bool ServerStateGroupAssign::CanAssignGroup(
 ///Check if this state can go to the next state.
 ///ServerStateGroupAssign can only go to the next state if
 ///- all Participants have had their IP addresses assigned
-bool ServerStateGroupAssign::CanGoToNextState() const
+bool ribi::gtst::ServerStateGroupAssign::CanGoToNextState() const
 {
   assert(GetServer());
   assert(GetServer()->GetParameters());
@@ -112,12 +112,12 @@ bool ServerStateGroupAssign::CanGoToNextState() const
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateGroupAssign::GetStateDuration() const
+int ribi::gtst::ServerStateGroupAssign::GetStateDuration() const
 {
   return boost::numeric::bounds<int>::highest();
 }
 //---------------------------------------------------------------------------
-void ServerStateGroupAssign::OnTimer()
+void ribi::gtst::ServerStateGroupAssign::OnTimer()
 {
   if (CanGoToNextState())
   {
@@ -126,7 +126,7 @@ void ServerStateGroupAssign::OnTimer()
   }
 }
 //---------------------------------------------------------------------------
-void ServerStateGroupAssign::Start()
+void ribi::gtst::ServerStateGroupAssign::Start()
 {
   assert(GetServer());
   assert(GetServer()->GetGroups());
@@ -144,7 +144,7 @@ void ServerStateGroupAssign::Start()
   );
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateGroupAssign& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateGroupAssign& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

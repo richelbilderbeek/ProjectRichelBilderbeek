@@ -21,9 +21,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "testtimedserverpushermenudialog.h"
 //---------------------------------------------------------------------------
-namespace ToolTestTimedServerPusher {
+
 //---------------------------------------------------------------------------
-const About MenuDialog::GetAbout()
+const ribi::About ribi::ToolTestTimedServerPusher::MenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -37,17 +37,15 @@ const About MenuDialog::GetAbout()
   return a;
 }
 //---------------------------------------------------------------------------
-const std::string MenuDialog::GetVersion()
+const std::string ribi::ToolTestTimedServerPusher::MenuDialog::GetVersion()
 {
   return "1.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolTestTimedServerPusher::MenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-08-05: Version 1.0: initial version, derived from TestBroadcastServer");
   return v;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTestTimedServerPusher
 //---------------------------------------------------------------------------

@@ -42,7 +42,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "testqtroundedtextrectitemmenudialog.h"
 
-QtTestQtRoundedTextRectItemWidget::QtTestQtRoundedTextRectItemWidget(QWidget *parent)
+ribi::QtTestQtRoundedTextRectItemWidget::QtTestQtRoundedTextRectItemWidget(QWidget *parent)
   : QtKeyboardFriendlyGraphicsView(parent)
 {
   //Display with default font
@@ -51,7 +51,7 @@ QtTestQtRoundedTextRectItemWidget::QtTestQtRoundedTextRectItemWidget(QWidget *pa
   this->Display(font);
 }
 
-void QtTestQtRoundedTextRectItemWidget::Display(const QFont& font)
+void ribi::QtTestQtRoundedTextRectItemWidget::Display(const QFont& font)
 {
   assert(scene());
   scene()->clear();
@@ -104,7 +104,7 @@ void QtTestQtRoundedTextRectItemWidget::Display(const QFont& font)
 
 }
 
-void QtTestQtRoundedTextRectItemWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtTestQtRoundedTextRectItemWidget::keyPressEvent(QKeyEvent *event)
 {
 
   switch (event->key())

@@ -32,6 +32,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "forward_declarations.h"
 #include "wtserverpusherclient.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///WtAdministratorDialog contains the user interface of the administrator's dialog.
 ///
@@ -101,5 +105,8 @@ struct AdministratorDialog : public Wt::WContainerWidget, WtServerPusherClient
   } ui;
   #endif
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PROJECTGTSTADMINISTRATORDIALOG_H

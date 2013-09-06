@@ -28,16 +28,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pyloscoordinat.h"
 #include "trace.h"
 
-namespace Pylos {
 
-Move::Move()
+ribi::Pylos::Move::Move()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-Move::Move(
+ribi::Pylos::Move::Move(
   const std::vector<Coordinat>& moving,
   const std::vector<Coordinat>& removing)
 {
@@ -55,7 +54,7 @@ Move::Move(
     && "At most two marbles are removed in a move");
 }
 
-Move::Move(const std::string& s)
+ribi::Pylos::Move::Move(const std::string& s)
 {
   #ifndef NDEBUG
   Test();
@@ -110,19 +109,19 @@ Move::Move(const std::string& s)
   assert(s.size() == 34);
 }
 
-const std::string Move::GetVersion()
+const std::string ribi::Pylos::Move::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> Move::GetVersionHistory()
+const std::vector<std::string> ribi::Pylos::Move::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-05-05: version 2.0: initial release version");
   return v;
 }
 
-bool Move::IsValid() const
+bool ribi::Pylos::Move::IsValid() const
 {
   return
        m_move.size() >= 1
@@ -131,7 +130,7 @@ bool Move::IsValid() const
 }
 
 #ifndef NDEBUG
-void Move::Test()
+void ribi::Pylos::Move::Test()
 {
   static bool tested = false;
   if (tested) return;
@@ -178,7 +177,7 @@ void Move::Test()
 }
 #endif
 
-const std::string Move::ToStr() const
+const std::string ribi::Pylos::Move::ToStr() const
 {
   #ifndef NDEBUG
   if (!(m_move.size() == 1 || m_move.size() == 2)) TRACE(m_move.size());
@@ -204,17 +203,14 @@ const std::string Move::ToStr() const
   return s;
 }
 
-bool operator==(const Move& lhs, const Move& rhs)
+bool ribi::Pylos::operator==(const Move& lhs, const Move& rhs)
 {
   return lhs.m_move == rhs.m_move
     && lhs.m_remove == rhs.m_remove;
 }
 
-std::ostream& operator<<(std::ostream& os, const Move& m)
+std::ostream& ribi::Pylos::operator<<(std::ostream& os, const Move& m)
 {
   os << m.ToStr();
   return os;
 }
-
-} //~namespace Pylos
-

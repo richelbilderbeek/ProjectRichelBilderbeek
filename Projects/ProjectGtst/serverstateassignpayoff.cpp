@@ -43,7 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "votingoption.h"
 //---------------------------------------------------------------------------
-ServerStateAssignPayoff::ServerStateAssignPayoff(
+ribi::gtst::ServerStateAssignPayoff::ServerStateAssignPayoff(
   Server * const server,
   const int period,
   const int cycle,
@@ -58,23 +58,23 @@ ServerStateAssignPayoff::ServerStateAssignPayoff(
 }
 //---------------------------------------------------------------------------
 ///Check if this state can go to the next state.
-bool ServerStateAssignPayoff::CanGoToNextState() const
+bool ribi::gtst::ServerStateAssignPayoff::CanGoToNextState() const
 {
   return true;
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateAssignPayoff::GetStateDuration() const
+int ribi::gtst::ServerStateAssignPayoff::GetStateDuration() const
 {
   return boost::numeric::bounds<int>::highest();
 }
 //---------------------------------------------------------------------------
-void ServerStateAssignPayoff::OnTimer()
+void ribi::gtst::ServerStateAssignPayoff::OnTimer()
 {
   if (CanGoToNextState()) GoToNextState();
 }
 //---------------------------------------------------------------------------
-void ServerStateAssignPayoff::Start()
+void ribi::gtst::ServerStateAssignPayoff::Start()
 {
   const int period = this->GetPeriod();
   const int cycle  = this->GetCycle();
@@ -108,7 +108,7 @@ void ServerStateAssignPayoff::Start()
   );
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateAssignPayoff& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateAssignPayoff& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

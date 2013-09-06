@@ -1,25 +1,18 @@
 #ifndef PVDBCLUSTERFACTORY_H
 #define PVDBCLUSTERFACTORY_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbcluster.h"
-#endif
+
+namespace ribi {
 
 namespace pvdb {
 
 ///Factory for creating Cluster instances
 struct ClusterFactory
 {
-  static const boost::shared_ptr<pvdb::Cluster> Create(const std::vector<boost::shared_ptr<pvdb::Concept> >& v);
+  static const boost::shared_ptr<pvdb::Cluster> Create(const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v);
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
@@ -33,5 +26,7 @@ struct ClusterFactory
 };
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // PVDBCLUSTERFACTORY_H

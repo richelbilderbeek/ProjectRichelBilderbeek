@@ -27,6 +27,8 @@ namespace Ui {
   class QtRegexTesterMenuDialog;
 }
 
+namespace ribi {
+
 class QtRegexTesterMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -34,9 +36,6 @@ class QtRegexTesterMenuDialog : public QtHideAndShowDialog
 public:
   explicit QtRegexTesterMenuDialog(QWidget *parent = 0);
   ~QtRegexTesterMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtRegexTesterMenuDialog *ui;
@@ -53,5 +52,7 @@ private slots:
   void on_button_boost_regex_clicked();
   void on_button_boost_xpressive_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTREGEXTESTERMENUDIALOG_H

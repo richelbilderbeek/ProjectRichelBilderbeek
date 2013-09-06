@@ -32,18 +32,18 @@
 struct QtPvdbListWidgetItem : public QListWidgetItem
 {
   QtPvdbListWidgetItem(
-    const pvdb::Competency competency
+    const ribi::pvdb::Competency competency
     )
     : QListWidgetItem(0),
       m_competency(competency)
   {
 
   }
-  const pvdb::Competency m_competency;
+  const ribi::pvdb::Competency m_competency;
 };
 
-QtPvdbConceptEditDialog::QtPvdbConceptEditDialog(
-  const boost::shared_ptr<pvdb::Concept> concept,
+ribi::pvdb::QtPvdbConceptEditDialog::QtPvdbConceptEditDialog(
+  const boost::shared_ptr<ribi::pvdb::Concept> concept,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbConceptEditDialog),
@@ -90,12 +90,12 @@ QtPvdbConceptEditDialog::QtPvdbConceptEditDialog(
     SLOT(RemoveEmptyItem(QListWidgetItem*)));
 }
 
-QtPvdbConceptEditDialog::~QtPvdbConceptEditDialog()
+ribi::pvdb::QtPvdbConceptEditDialog::~QtPvdbConceptEditDialog()
 {
   delete ui;
 }
 
-void QtPvdbConceptEditDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbConceptEditDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
 
@@ -110,7 +110,7 @@ void QtPvdbConceptEditDialog::keyPressEvent(QKeyEvent* e)
   //QDialog::keyPressEvent(e); //Causes dialog to close unwanted?
 }
 
-void QtPvdbConceptEditDialog::on_button_add_clicked()
+void ribi::pvdb::QtPvdbConceptEditDialog::on_button_add_clicked()
 {
   //Close when the user has entered an empty edit
   if (ui->edit_text->text().isEmpty())
@@ -134,7 +134,7 @@ void QtPvdbConceptEditDialog::on_button_add_clicked()
   ui->edit_text->setFocus();
 }
 
-void QtPvdbConceptEditDialog::RemoveEmptyItem(QListWidgetItem * item)
+void ribi::pvdb::QtPvdbConceptEditDialog::RemoveEmptyItem(QListWidgetItem * item)
 {
   if (item->text().isEmpty())
   {
@@ -144,7 +144,7 @@ void QtPvdbConceptEditDialog::RemoveEmptyItem(QListWidgetItem * item)
 }
 
 #ifndef NDEBUG
-void QtPvdbConceptEditDialog::Test()
+void ribi::pvdb::QtPvdbConceptEditDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -158,11 +158,11 @@ void QtPvdbConceptEditDialog::Test()
   #endif
   {
     //Assume reading in a concept and clicking OK without modification does not modify anything
-    const auto v = pvdb::ConceptFactory::GetTests();
+    const auto v = ribi::pvdb::ConceptFactory::GetTests();
     std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<pvdb::Concept>& concept)
+      [](const boost::shared_ptr<ribi::pvdb::Concept>& concept)
       {
-        const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
+        const boost::shared_ptr<const ribi::pvdb::Concept> old_concept = ribi::pvdb::ConceptFactory::DeepCopy(concept);
         assert(concept != old_concept);
         assert(IsEqual(*concept,*old_concept));
         QtPvdbConceptEditDialog d(concept);
@@ -178,11 +178,11 @@ void QtPvdbConceptEditDialog::Test()
   }
   {
     //Assume reading in a concept and clicking OK after modification of the name does modify concept
-    const auto v = pvdb::ConceptFactory::GetTests();
+    const auto v = ribi::pvdb::ConceptFactory::GetTests();
     std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<pvdb::Concept>& concept)
+      [](const boost::shared_ptr<ribi::pvdb::Concept>& concept)
       {
-        const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
+        const boost::shared_ptr<const ribi::pvdb::Concept> old_concept = ribi::pvdb::ConceptFactory::DeepCopy(concept);
         assert(IsEqual(*concept,*old_concept));
         QtPvdbConceptEditDialog d(concept);
         d.ui->edit_concept->setText(d.ui->edit_concept->text() + "MODIFICATION");
@@ -198,11 +198,11 @@ void QtPvdbConceptEditDialog::Test()
   }
   {
     //Assume reading in a concept and clicking OK after adding an example
-    const auto v = pvdb::ConceptFactory::GetTests();
+    const auto v = ribi::pvdb::ConceptFactory::GetTests();
     std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<pvdb::Concept>& concept)
+      [](const boost::shared_ptr<ribi::pvdb::Concept>& concept)
       {
-        const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
+        const boost::shared_ptr<const ribi::pvdb::Concept> old_concept = ribi::pvdb::ConceptFactory::DeepCopy(concept);
         assert(IsEqual(*concept,*old_concept));
         QtPvdbConceptEditDialog d(concept);
         assert(d.ui->edit_text->text().isEmpty());
@@ -221,11 +221,11 @@ void QtPvdbConceptEditDialog::Test()
   {
     //Assume reading in a concept and NOT clicking OK does not change the concept,
     //even when having changed the name and examples in the GUI
-    const auto v = pvdb::ConceptFactory::GetTests();
+    const auto v = ribi::pvdb::ConceptFactory::GetTests();
     std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<pvdb::Concept>& concept)
+      [](const boost::shared_ptr<ribi::pvdb::Concept>& concept)
       {
-        const boost::shared_ptr<const pvdb::Concept> old_concept = pvdb::ConceptFactory::DeepCopy(concept);
+        const boost::shared_ptr<const ribi::pvdb::Concept> old_concept = ribi::pvdb::ConceptFactory::DeepCopy(concept);
         assert(IsEqual(*concept,*old_concept));
         QtPvdbConceptEditDialog d(concept);
         //Change name
@@ -243,7 +243,7 @@ void QtPvdbConceptEditDialog::Test()
       }
     );
   }
-  TRACE("QtPvdbConceptEditDialog::Test completed successfully");
+  TRACE("ribi::pvdb::QtPvdbConceptEditDialog::Test completed successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -253,7 +253,7 @@ void QtPvdbConceptEditDialog::Test()
 }
 #endif
 
-void QtPvdbConceptEditDialog::on_button_ok_clicked()
+void ribi::pvdb::QtPvdbConceptEditDialog::on_button_ok_clicked()
 {
   #ifndef PVDB_WRITE_TO_CONCEPT
   assert(m_concept);
@@ -278,7 +278,7 @@ void QtPvdbConceptEditDialog::on_button_ok_clicked()
   }
   assert(n_items == boost::numeric_cast<int>(v.size()));
   //Set to concept
-  const boost::shared_ptr<pvdb::Examples> examples(new pvdb::Examples(v));
+  const boost::shared_ptr<ribi::pvdb::Examples> examples(new pvdb::Examples(v));
   assert(examples);
   assert(this);
   assert(m_concept);
@@ -290,7 +290,7 @@ void QtPvdbConceptEditDialog::on_button_ok_clicked()
 }
 
 #ifdef PVDB_WRITE_TO_CONCEPT
-const boost::shared_ptr<pvdb::Concept> QtPvdbConceptEditDialog::WriteToConcept() const
+const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::QtPvdbConceptEditDialog::WriteToConcept() const
 {
   //Name
   const std::string name = ui->edit_concept->text().toStdString();
@@ -313,10 +313,10 @@ const boost::shared_ptr<pvdb::Concept> QtPvdbConceptEditDialog::WriteToConcept()
   }
   assert(n_items == boost::numeric_cast<int>(v.size()));
   //Set to concept
-  const boost::shared_ptr<pvdb::Examples> examples(new pvdb::Examples(v));
+  const boost::shared_ptr<ribi::pvdb::Examples> examples(new pvdb::Examples(v));
   assert(examples);
-  const boost::shared_ptr<pvdb::Concept> concept
-    = pvdb::ConceptFactory::Create(
+  const boost::shared_ptr<ribi::pvdb::Concept> concept
+    = ribi::pvdb::ConceptFactory::Create(
       name,
       examples,
       m_rating_complexity,

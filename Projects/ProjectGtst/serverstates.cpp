@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 #include "stopwatch.h"
 //---------------------------------------------------------------------------
-ServerStates::ServerStates(
+ribi::gtst::ServerStates::ServerStates(
   Server * const server,
   boost::shared_ptr<const Parameters> parameters,
   LogFile * const log)
@@ -71,27 +71,27 @@ ServerStates::ServerStates(
   m_v.push_back(boost::shared_ptr<ServerState>(new ServerStateFinished(server,n_periods,0)));
 }
 //---------------------------------------------------------------------------
-ServerState * ServerStates::GetCurrentState()
+ribi::gtst::ServerState * ribi::gtst::ServerStates::GetCurrentState()
 {
   assert(m_i >= 0);
   assert(m_i < boost::numeric_cast<int>(m_v.size()));
   return m_v[m_i].get();
 }
 //---------------------------------------------------------------------------
-const ServerState * ServerStates::GetCurrentState() const
+const ribi::gtst::ServerState * ribi::gtst::ServerStates::GetCurrentState() const
 {
   assert(m_i >= 0);
   assert(m_i < boost::numeric_cast<int>(m_v.size()));
   return m_v[m_i].get();
 }
 //---------------------------------------------------------------------------
-int ServerStates::GetCycles(const int period) const
+int ribi::gtst::ServerStates::GetCycles(const int period) const
 {
   assert(m_n_cycles.find(period) != m_n_cycles.end());
   return (*m_n_cycles.find(period)).second;
 }
 //---------------------------------------------------------------------------
-void ServerStates::GoToNextState()
+void ribi::gtst::ServerStates::GoToNextState()
 {
   ++m_i;
   assert(m_i >= 0);
@@ -104,7 +104,7 @@ void ServerStates::GoToNextState()
 }
 //---------------------------------------------------------------------------
 /*
-void ServerStates::SetParameters(boost::shared_ptr<const Parameters> parameters)
+void ribi::gtst::ServerStates::SetParameters(boost::shared_ptr<const Parameters> parameters)
 {
   Server * server = m_server;
 

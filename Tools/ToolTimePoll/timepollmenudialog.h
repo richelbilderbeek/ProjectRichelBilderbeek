@@ -25,7 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 //---------------------------------------------------------------------------
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
 namespace ToolTimePoll {
 //---------------------------------------------------------------------------
 ///The GUI independent version of WtTimePollMainDialog
@@ -37,5 +38,7 @@ struct TimePollMenuDialog
 };
 //---------------------------------------------------------------------------
 } //~namespace ToolTimePoll
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TIMEPOLLMAINDIALOG_H

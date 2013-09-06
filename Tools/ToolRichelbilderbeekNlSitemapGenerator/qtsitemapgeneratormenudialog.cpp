@@ -31,31 +31,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "sitemapgeneratormenudialog.h"
 #include "ui_qtsitemapgeneratormenudialog.h"
 
-QtSitemapGeneratorMenuDialog::QtSitemapGeneratorMenuDialog(QWidget *parent) :
+ribi::QtSitemapGeneratorMenuDialog::QtSitemapGeneratorMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtSitemapGeneratorMenuDialog)
 {
     ui->setupUi(this);
 }
 
-QtSitemapGeneratorMenuDialog::~QtSitemapGeneratorMenuDialog()
+ribi::QtSitemapGeneratorMenuDialog::~QtSitemapGeneratorMenuDialog()
 {
     delete ui;
 }
 
-void QtSitemapGeneratorMenuDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtSitemapGeneratorMenuDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   QtHideAndShowDialog::keyPressEvent(e);
 }
 
-void QtSitemapGeneratorMenuDialog::on_button_start_clicked()
+void ribi::QtSitemapGeneratorMenuDialog::on_button_start_clicked()
 {
   QtSitemapGeneratorMainDialog d;
   this->ShowChild(&d);
 }
 
-void QtSitemapGeneratorMenuDialog::on_button_about_clicked()
+void ribi::QtSitemapGeneratorMenuDialog::on_button_about_clicked()
 {
   About about = SitemapGeneratorMenuDialog::GetAbout();
   about.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -66,7 +66,7 @@ void QtSitemapGeneratorMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtSitemapGeneratorMenuDialog::on_button_quit_clicked()
+void ribi::QtSitemapGeneratorMenuDialog::on_button_quit_clicked()
 {
   close();
 }

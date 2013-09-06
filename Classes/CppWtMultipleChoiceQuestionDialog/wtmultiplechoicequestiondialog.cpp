@@ -20,14 +20,14 @@
 #include <Wt/WStackedWidget>
 //#include <Wt/WGroupBox>
 //---------------------------------------------------------------------------
-WtMultipleChoiceQuestionDialog::Ui::Ui()
+ribi::WtMultipleChoiceQuestionDialog::Ui::Ui()
  : m_button_submit(new Wt::WPushButton("Submit")),
    m_stacked_widget(new Wt::WStackedWidget)
 {
 
 }
 //---------------------------------------------------------------------------
-WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
+ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   const std::string& s)
   : WtQuestionDialog(
     boost::shared_ptr<QuestionDialog>(
@@ -36,19 +36,19 @@ WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   Show();
 }
 //---------------------------------------------------------------------------
-WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
+ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog)
   : WtQuestionDialog(dialog)
 {
   Show();
 }
 //---------------------------------------------------------------------------
-const std::string WtMultipleChoiceQuestionDialog::GetVersion()
+const std::string ribi::WtMultipleChoiceQuestionDialog::GetVersion()
 {
   return "1.1";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtMultipleChoiceQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::WtMultipleChoiceQuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-29: version 1.0: initial version");
@@ -56,7 +56,7 @@ const std::vector<std::string> WtMultipleChoiceQuestionDialog::GetVersionHistory
   return v;
 }
 //---------------------------------------------------------------------------
-void WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
+void ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
 {
   assert(m_dialog->CanSubmit());
 
@@ -80,7 +80,7 @@ void WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
   m_signal_submitted(m_dialog->IsAnswerCorrect());
 }
 //---------------------------------------------------------------------------
-void WtMultipleChoiceQuestionDialog::Show()
+void ribi::WtMultipleChoiceQuestionDialog::Show()
 {
   const auto question = m_dialog->GetQuestion();
   m_dialog->SetQuestion(question);
@@ -122,7 +122,7 @@ void WtMultipleChoiceQuestionDialog::Show()
     page->addWidget(ui.m_button_submit);
     page->addWidget(new Wt::WBreak);
     ui.m_button_submit->clicked().connect(
-      this,&WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked);
+      this,&ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked);
     ui.m_stacked_widget->addWidget(page);
   }
   //Create the correct page

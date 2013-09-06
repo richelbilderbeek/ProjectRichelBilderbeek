@@ -1,32 +1,23 @@
 #ifndef QTPVDBCONCEPTMAPWIDGET_H
 #define QTPVDBCONCEPTMAPWIDGET_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/noncopyable.hpp>
 #include "qtkeyboardfriendlygraphicsview.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "qtpvdbexamplesitem.h"
-#include "pvdbhints.h"
-#include "qtpvdbnodeitem.h"
-#include "qtpvdbedgeitem.h"
-#include "pvdbconceptmap.h"
-#endif
+
+namespace ribi {
+
+namespace pvdb {
 
 //An ABC View with a ConceptMap as the Model
-class QtPvdbConceptMapWidget : public QtKeyboardFriendlyGraphicsView, boost::noncopyable
+class QtPvdbConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView, boost::noncopyable
 {
   Q_OBJECT
 
 public:
   explicit QtPvdbConceptMapWidget(
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
     QWidget* parent = 0);
   virtual ~QtPvdbConceptMapWidget();
 
@@ -40,8 +31,8 @@ public:
   #endif
 
   ///Obtain the concept map
-  const boost::shared_ptr<const pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
-        boost::shared_ptr<      pvdb::ConceptMap> GetConceptMap()       { return m_concept_map; }
+  const boost::shared_ptr<const ribi::pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
+        boost::shared_ptr<      ribi::pvdb::ConceptMap> GetConceptMap()       { return m_concept_map; }
 
   ///Obtain the read-only Qt edge items
   ///Read-and-write Qt edge items are only supported for QtPvdbConceptMapEditWidget
@@ -70,11 +61,11 @@ protected:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
-  virtual void AddEdge(const boost::shared_ptr<pvdb::Edge> edge) = 0;
+  virtual void AddEdge(const boost::shared_ptr<ribi::pvdb::Edge> edge) = 0;
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtPvdbNodeConcept added to the scene
-  virtual QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node> node) = 0;
+  virtual QtPvdbNodeItem * AddNode(const boost::shared_ptr<ribi::pvdb::Node> node) = 0;
 
   ///Initialize the widget with the loaded concept map
   ///BuildQtConceptMap changes the concept map entered, by changing some GUI
@@ -94,7 +85,7 @@ protected:
     const QtPvdbNodeItem* const to) const;
 
   ///Find the QtNode containing the Node
-  QtPvdbNodeItem * FindQtNode(const boost::shared_ptr<pvdb::Node> node) const;
+  QtPvdbNodeItem * FindQtNode(const boost::shared_ptr<ribi::pvdb::Node> node) const;
 
   ///Obtain the center node
   const QtPvdbNodeItem * GetCenterNode() const;
@@ -125,14 +116,14 @@ protected:
   #ifndef NDEBUG
   ///Test the internals of this class:
   ///Does the current content really reflect the map
-  void TestMe(const boost::shared_ptr<const pvdb::ConceptMap> map) const;
+  void TestMe(const boost::shared_ptr<const ribi::pvdb::ConceptMap> map) const;
   #endif
 
 private:
 
   ///The concept map to work on, the Model
   ///m_concept_map->GetNodes()[0] contains the focal node
-  const boost::shared_ptr<pvdb::ConceptMap> m_concept_map;
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> m_concept_map;
 
   ///The item showing the examples
   QtPvdbExamplesItem * m_examples_item;
@@ -151,5 +142,9 @@ public slots:
   ///Called when an item requests a scene update
   void OnRequestSceneUpdate();
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCONCEPTMAPWIDGET_H

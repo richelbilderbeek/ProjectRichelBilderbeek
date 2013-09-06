@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "rainbow.h"
 #include "ui_qttestdialmaindialog.h"
 
-QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) :
+ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestDialMainDialog)
 {
@@ -43,36 +43,24 @@ QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) :
 
   ui->dial->GetWidget()->GetDial()->m_signal_color_changed.connect(
     boost::bind(
-      &QtTestDialMainDialog::DisplayDialColor,
+      &ribi::QtTestDialMainDialog::DisplayDialColor,
       this));
 
   ui->dial->GetWidget()->GetDial()->m_signal_position_changed.connect(
     boost::bind(
-      &QtTestDialMainDialog::DisplayDialValue,
+      &ribi::QtTestDialMainDialog::DisplayDialValue,
       this));
 
   DisplayDialColor();
   DisplayDialValue();
 }
 
-QtTestDialMainDialog::~QtTestDialMainDialog()
+ribi::QtTestDialMainDialog::~QtTestDialMainDialog()
 {
   delete ui;
 }
 
-void QtTestDialMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestDialMainDialog::DisplayDialColor()
+void ribi::QtTestDialMainDialog::DisplayDialColor()
 {
   //Check
   const unsigned char r = ui->dial->GetWidget()->GetDial()->GetRed();
@@ -90,7 +78,7 @@ void QtTestDialMainDialog::DisplayDialColor()
   ui->label_color->setText(text.c_str());
 }
 
-void QtTestDialMainDialog::DisplayDialValue()
+void ribi::QtTestDialMainDialog::DisplayDialValue()
 {
   const std::string s
     = std::string("Dial angle: ")
@@ -98,7 +86,7 @@ void QtTestDialMainDialog::DisplayDialValue()
   ui->label_angle->setText(s.c_str());
 }
 
-void QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */)
+void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */)
 {
   //Set the color
   const double min = boost::numeric_cast<double>(ui->dial_color->minimum());

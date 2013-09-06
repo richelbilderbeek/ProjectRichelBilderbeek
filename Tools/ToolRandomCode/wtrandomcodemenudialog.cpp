@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //QFile must be #included after Wt header files
 #include <QFile>
 //---------------------------------------------------------------------------
-WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
+ribi::WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
 {
   CheckResources();
   this->setContentAlignment(Wt::AlignCenter);
@@ -83,7 +83,7 @@ WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-void WtRandomCodeMenuDialog::CheckResources()
+void ribi::WtRandomCodeMenuDialog::CheckResources()
 {
  //Create resources
   std::vector<std::string> image_names;
@@ -105,7 +105,7 @@ void WtRandomCodeMenuDialog::CheckResources()
   }
 }
 //---------------------------------------------------------------------------
-WtAboutDialog * WtRandomCodeMenuDialog::CreateNewAboutDialog()
+ribi::WtAboutDialog * ribi::WtRandomCodeMenuDialog::CreateNewAboutDialog()
 {
   About a = RandomCodeMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -114,14 +114,14 @@ WtAboutDialog * WtRandomCodeMenuDialog::CreateNewAboutDialog()
   return d;
 }
 //---------------------------------------------------------------------------
-WtRandomCodeGenerateDialog * WtRandomCodeMenuDialog::CreateNewGenerateDialog() const
+ribi::WtRandomCodeGenerateDialog * ribi::WtRandomCodeMenuDialog::CreateNewGenerateDialog() const
 {
   WtRandomCodeGenerateDialog * const d = new WtRandomCodeGenerateDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtRandomCodeMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtRandomCodeMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

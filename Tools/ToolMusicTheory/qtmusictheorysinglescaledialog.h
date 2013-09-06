@@ -24,8 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDialog>
 
 namespace Ui {
-class QtMusicTheorySingleScaleDialog;
+  class QtMusicTheorySingleScaleDialog;
 }
+
+namespace ribi {
 
 class QtMusicTheorySingleScaleDialog : public QDialog
 {
@@ -46,5 +48,7 @@ private slots:
 private:
   Ui::QtMusicTheorySingleScaleDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTMUSICTHEORYSINGLESCALEDIALOG_H

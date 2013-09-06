@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 #include "wtselectfiledialog.h"
 //---------------------------------------------------------------------------
-AdministratorDialogStateNotLoggedIn::AdministratorDialogStateNotLoggedIn(
+ribi::gtst::AdministratorDialogStateNotLoggedIn::AdministratorDialogStateNotLoggedIn(
   Server * const server,
   AdministratorDialog * const dialog)
   : AdministratorDialogState(server,dialog),
@@ -43,7 +43,7 @@ AdministratorDialogStateNotLoggedIn::AdministratorDialogStateNotLoggedIn(
 
 }
 //---------------------------------------------------------------------------
-void AdministratorDialogStateNotLoggedIn::OnPassword()
+void ribi::gtst::AdministratorDialogStateNotLoggedIn::OnPassword()
 {
   assert(!GetDialog()->CanGetAdministrator() && "Assume no administrator yet");
   //Theoretical Biology beats COCON
@@ -60,12 +60,12 @@ void AdministratorDialogStateNotLoggedIn::OnPassword()
   }
 }
 //---------------------------------------------------------------------------
-void AdministratorDialogStateNotLoggedIn::OnTimer()
+void ribi::gtst::AdministratorDialogStateNotLoggedIn::OnTimer()
 {
   //Do exactly nothing...
 }
 //---------------------------------------------------------------------------
-void AdministratorDialogStateNotLoggedIn::ShowPage(AdministratorDialog * const dialog)
+void ribi::gtst::AdministratorDialogStateNotLoggedIn::ShowPage(AdministratorDialog * const dialog)
 {
   assert(dialog);
 
@@ -87,7 +87,7 @@ void AdministratorDialogStateNotLoggedIn::ShowPage(AdministratorDialog * const d
   m_edit_password->setText("TBbCaaPQ4e");
   #endif
   m_edit_password->enterPressed().connect(
-    this,&AdministratorDialogStateNotLoggedIn::OnPassword);
+    this,&ribi::gtst::AdministratorDialogStateNotLoggedIn::OnPassword);
 
 }
 //---------------------------------------------------------------------------

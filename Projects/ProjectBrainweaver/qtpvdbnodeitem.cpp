@@ -24,8 +24,8 @@
 #include "qtpvdbconceptitem.h"
 #include "trace.h"
 
-QtPvdbNodeItem::QtPvdbNodeItem(
-  const boost::shared_ptr<pvdb::Node> node,
+ribi::pvdb::QtPvdbNodeItem::QtPvdbNodeItem(
+  const boost::shared_ptr<ribi::pvdb::Node> node,
   const boost::shared_ptr<QtPvdbConceptItem> concept_item)
   : m_concept_item(concept_item),
     m_contour_pen(concept_item->GetContourPen()),
@@ -59,18 +59,18 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   m_concept_item->SetPos(m_node->GetX(),m_node->GetY());
 
   m_concept_item->m_signal_position_changed.connect(
-    boost::bind(&QtPvdbNodeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
+    boost::bind(&ribi::pvdb::QtPvdbNodeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
   m_node->m_signal_node_changed.connect(
-    boost::bind(&QtPvdbNodeItem::OnNodeChanged,this,boost::lambda::_1));
+    boost::bind(&ribi::pvdb::QtPvdbNodeItem::OnNodeChanged,this,boost::lambda::_1));
 
   m_concept_item->m_signal_item_has_updated.connect(
     boost::bind(
-      &QtPvdbNodeItem::OnItemHasUpdated,this));
+      &ribi::pvdb::QtPvdbNodeItem::OnItemHasUpdated,this));
 
   m_concept_item->m_signal_request_scene_update.connect(
     boost::bind(
-      &QtPvdbNodeItem::OnRequestsSceneUpdate,
+      &ribi::pvdb::QtPvdbNodeItem::OnRequestsSceneUpdate,
       this
     )
   );
@@ -89,13 +89,13 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   {
     rate_concept->m_signal_request_rate_concept.connect(
       boost::bind(
-        &QtPvdbNodeItem::OnItemRequestsRateConcept,
+        &ribi::pvdb::QtPvdbNodeItem::OnItemRequestsRateConcept,
         this
       )
     );
     rate_concept->m_signal_request_rate_examples.connect(
       boost::bind(
-        &QtPvdbNodeItem::OnItemRequestsRateExamples,
+        &ribi::pvdb::QtPvdbNodeItem::OnItemRequestsRateExamples,
         this
       )
     );
@@ -110,7 +110,7 @@ QtPvdbNodeItem::QtPvdbNodeItem(
   assert(this->m_concept_item->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
 
-QRectF QtPvdbNodeItem::boundingRect() const
+QRectF ribi::pvdb::QtPvdbNodeItem::boundingRect() const
 {
   //TRACE(m_concept_item->boundingRect().width());
   //TRACE(QtPvdbConceptMapItem::boundingRect().width());
@@ -122,12 +122,12 @@ QRectF QtPvdbNodeItem::boundingRect() const
   //return QtPvdbConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item
 }
 
-QBrush QtPvdbNodeItem::brush() const
+QBrush ribi::pvdb::QtPvdbNodeItem::brush() const
 {
   return m_concept_item->brush();
 }
 
-void QtPvdbNodeItem::DisableAll()
+void ribi::pvdb::QtPvdbNodeItem::DisableAll()
 {
   this->setEnabled(false);
   this->setVisible(false);
@@ -135,7 +135,7 @@ void QtPvdbNodeItem::DisableAll()
   this->m_concept_item->setVisible(false);
 }
 
-void QtPvdbNodeItem::EnableAll()
+void ribi::pvdb::QtPvdbNodeItem::EnableAll()
 {
   this->setEnabled(true);
   this->setVisible(true);
@@ -143,34 +143,34 @@ void QtPvdbNodeItem::EnableAll()
   this->m_concept_item->setVisible(true);
 }
 
-void QtPvdbNodeItem::focusInEvent(QFocusEvent*)
+void ribi::pvdb::QtPvdbNodeItem::focusInEvent(QFocusEvent*)
 {
   m_concept_item->SetContourPen(m_focus_pen); //Updates itself
   assert(!m_concept_item->hasFocus());
 }
 
-void QtPvdbNodeItem::focusOutEvent(QFocusEvent*)
+void ribi::pvdb::QtPvdbNodeItem::focusOutEvent(QFocusEvent*)
 {
   m_concept_item->SetContourPen(m_contour_pen); //Updates itself
   //m_signal_item_has_updated(0); //2013-01-20: causes Examples to get hidden //BUG
 }
 
-const boost::shared_ptr<const pvdb::Concept> QtPvdbNodeItem::GetConcept() const
+const boost::shared_ptr<const ribi::pvdb::Concept> ribi::pvdb::QtPvdbNodeItem::GetConcept() const
 {
-  const boost::shared_ptr<const pvdb::Concept> p = m_node->GetConcept();
+  const boost::shared_ptr<const ribi::pvdb::Concept> p = m_node->GetConcept();
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<pvdb::Concept> QtPvdbNodeItem::GetConcept()
+const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::QtPvdbNodeItem::GetConcept()
 {
-  const boost::shared_ptr<pvdb::Concept> p = m_node->GetConcept();
+  const boost::shared_ptr<ribi::pvdb::Concept> p = m_node->GetConcept();
   assert(p);
   return p;
 }
 
 /*
-void QtPvdbNodeItem::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
+void ribi::pvdb::QtPvdbNodeItem::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
   //m_concept_item->hoverMoveEvent(e);
@@ -179,7 +179,7 @@ void QtPvdbNodeItem::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
 }
 */
 
-void QtPvdbNodeItem::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbNodeItem::keyPressEvent(QKeyEvent *event)
 {
   assert(m_concept_item);
   assert(m_concept_item->GetConcept());
@@ -205,7 +205,7 @@ void QtPvdbNodeItem::keyPressEvent(QKeyEvent *event)
   QtPvdbConceptMapItem::keyPressEvent(event);
 }
 
-void QtPvdbNodeItem::OnItemHasUpdated()
+void ribi::pvdb::QtPvdbNodeItem::OnItemHasUpdated()
 {
   this->setRect(m_concept_item->boundingRect());
 
@@ -216,28 +216,28 @@ void QtPvdbNodeItem::OnItemHasUpdated()
   this->m_signal_item_has_updated(this);
 }
 
-void QtPvdbNodeItem::OnItemRequestsRateConcept()
+void ribi::pvdb::QtPvdbNodeItem::OnItemRequestsRateConcept()
 {
   m_signal_node_requests_rate_concept(this);
 }
 
-void QtPvdbNodeItem::OnItemRequestsRateExamples()
+void ribi::pvdb::QtPvdbNodeItem::OnItemRequestsRateExamples()
 {
   m_signal_node_requests_rate_examples(this);
 }
 
-void QtPvdbNodeItem::OnNodeChanged(const pvdb::Node * node)
+void ribi::pvdb::QtPvdbNodeItem::OnNodeChanged(const pvdb::Node * node)
 {
   //Keep the coordinats synced
   this->SetPos(node->GetX(),node->GetY());
 }
 
-void QtPvdbNodeItem::OnRequestsSceneUpdate()
+void ribi::pvdb::QtPvdbNodeItem::OnRequestsSceneUpdate()
 {
   this->m_signal_request_scene_update();
 }
 
-void QtPvdbNodeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget)
+void ribi::pvdb::QtPvdbNodeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget)
 {
 
   assert(m_concept_item);
@@ -280,17 +280,17 @@ void QtPvdbNodeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* it
   }
 }
 
-void QtPvdbNodeItem::SetConcept(const boost::shared_ptr<pvdb::Concept> concept)
+void ribi::pvdb::QtPvdbNodeItem::SetConcept(const boost::shared_ptr<ribi::pvdb::Concept> concept)
 {
   this->m_node->SetConcept(concept);
 }
 
-void QtPvdbNodeItem::SetName(const std::string& name)
+void ribi::pvdb::QtPvdbNodeItem::SetName(const std::string& name)
 {
   m_node->GetConcept()->SetName(name);
 }
 
-void QtPvdbNodeItem::SetX(const double x)
+void ribi::pvdb::QtPvdbNodeItem::SetX(const double x)
 {
   #ifndef NDEBUG
   const double epsilon = 0.000001;
@@ -312,7 +312,7 @@ void QtPvdbNodeItem::SetX(const double x)
   assert(std::abs(x - m_concept_item->pos().x()) < epsilon);
 }
 
-void QtPvdbNodeItem::SetY(const double y)
+void ribi::pvdb::QtPvdbNodeItem::SetY(const double y)
 {
   #ifndef NDEBUG
   const double epsilon = 0.000001;
@@ -335,14 +335,14 @@ void QtPvdbNodeItem::SetY(const double y)
 }
 
 #ifndef NDEBUG
-void QtPvdbNodeItem::Test()
+void ribi::pvdb::QtPvdbNodeItem::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started QtPvdbNodeItem::Test");
+  TRACE("Started ribi::pvdb::QtPvdbNodeItem::Test");
 
   //Test SetX and SetY being in sync
   {
@@ -350,7 +350,7 @@ void QtPvdbNodeItem::Test()
     for (std::size_t node_index=0; node_index!=n_nodes; ++node_index)
     {
       const auto nodes = pvdb::NodeFactory::GetTests();
-      boost::shared_ptr<pvdb::Node> node = nodes[node_index];
+      boost::shared_ptr<ribi::pvdb::Node> node = nodes[node_index];
       assert(node);
       boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(node->GetConcept()));
       boost::shared_ptr<QtPvdbNodeItem> qtnode(new QtPvdbNodeItem(node,qtconcept_item));
@@ -446,6 +446,6 @@ void QtPvdbNodeItem::Test()
       }
     }
   }
-  TRACE("Finished QtPvdbNodeItem::Test successfully");
+  TRACE("Finished ribi::pvdb::QtPvdbNodeItem::Test successfully");
 }
 #endif

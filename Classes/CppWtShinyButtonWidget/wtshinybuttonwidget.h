@@ -30,6 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintedWidget>
 //---------------------------------------------------------------------------
 namespace Wt { struct WMouseEventEvent; }
+
+namespace ribi {
+
 struct ShinyButton;
 struct ShinyButtonWidget;
 //---------------------------------------------------------------------------
@@ -86,5 +89,7 @@ struct WtShinyButtonWidget : public Wt::WPaintedWidget
   ///Respond to the widget resizing
   void OnResize();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTSHINYBUTTONWIDGET_H

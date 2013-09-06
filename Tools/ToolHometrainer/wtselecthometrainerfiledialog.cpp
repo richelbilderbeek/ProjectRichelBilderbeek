@@ -30,14 +30,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "wtselecthometrainerfiledialog.h"
 
-WtSelectHometrainerFileDialog::WtSelectHometrainerFileDialog()
+ribi::WtSelectHometrainerFileDialog::WtSelectHometrainerFileDialog()
 {
   ui.m_edit_filter->hide();
   ui.m_label_filter->hide();
   OnUpdateDialog();
 }
 
-const std::string WtSelectHometrainerFileDialog::GetFirstLineFromFile(
+const std::string ribi::WtSelectHometrainerFileDialog::GetFirstLineFromFile(
   const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
@@ -54,7 +54,7 @@ const std::string WtSelectHometrainerFileDialog::GetFirstLineFromFile(
   return "";
 }
 
-const std::vector<std::string> WtSelectHometrainerFileDialog::SelectFiles() const
+const std::vector<std::string> ribi::WtSelectHometrainerFileDialog::SelectFiles() const
 {
   //Get all filenames
   const std::vector<std::string> all_files = GetFilesInFolder(m_path);

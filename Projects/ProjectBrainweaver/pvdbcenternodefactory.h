@@ -6,12 +6,14 @@
 #include "pvdbfwd.h"
 #include "pvdbcompetency.h"
 
+namespace ribi {
+
 namespace pvdb {
 
 struct CenterNodeFactory
 {
   static const boost::shared_ptr<pvdb::CenterNode> Create(
-    const boost::shared_ptr<pvdb::Concept>& concept,
+    const boost::shared_ptr<ribi::pvdb::Concept>& concept,
     const double x = 0.0,
     const double y = 0.0);
 
@@ -28,5 +30,7 @@ struct CenterNodeFactory
 };
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // PVDBCENTERNODEFACTORY_H

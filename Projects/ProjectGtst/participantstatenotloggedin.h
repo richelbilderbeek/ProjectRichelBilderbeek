@@ -28,6 +28,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "participantstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Participant is in the StateNotLoggedIn ParticipantState
 ///
@@ -48,5 +52,8 @@ struct ParticipantStateNotLoggedIn
   ///Only let a smart pointer delete this ParticipantState
   friend void boost::checked_delete<>(ParticipantStateNotLoggedIn*);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTSTATENOTLOGGEDIN_H

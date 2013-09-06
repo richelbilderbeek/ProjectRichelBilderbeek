@@ -1,27 +1,23 @@
 #ifndef QTPVDBRATINGDIALOG_H
 #define QTPVDBRATINGDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <iosfwd>
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbfile.h"
-#endif
 
 namespace Ui { class QtPvdbRatingDialog; }
+
 struct QTableWidget;
+
+namespace ribi {
+
+namespace pvdb {
 
 ///View the current rating, optimized for humans
 ///QtPvdbPrintRatingDialog is optimized for printers
-class QtPvdbRatingDialog : public QtHideAndShowDialog
+class QtPvdbRatingDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -47,5 +43,8 @@ private:
   void Save(const std::string& filename) const;
 };
 
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBRATINGDIALOG_H

@@ -31,6 +31,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "about.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtAboutDialog : public Wt::WContainerWidget
 {
   WtAboutDialog(const About& about, const bool display_close_button = true);
@@ -47,5 +50,7 @@ struct WtAboutDialog : public Wt::WContainerWidget
   Wt::WPushButton * const m_button_close;
   void OnClose();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTABOUTDIALOG_H

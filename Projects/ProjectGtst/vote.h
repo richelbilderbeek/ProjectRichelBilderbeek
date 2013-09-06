@@ -28,6 +28,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///A Vote is a Participant its voted VotingOption
 struct Vote
 {
@@ -68,5 +72,8 @@ struct Vote
 //Forward declarations.
 //Herb Sutter. Exceptional C++. ISBN: 0-201-61562-2. Item 26: 'Never #include a header when a forward declaration will suffice'
 std::ostream& operator<<(std::ostream& os,const Vote& p);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // VOTE_H

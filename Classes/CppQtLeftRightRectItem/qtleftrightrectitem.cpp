@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent)
+ribi::QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent)
  : QGraphicsRectItem(parent),
    m_focus(Focus::left)
 {
@@ -44,12 +44,12 @@ QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent)
   this->setRect(-16.0,-16.0,32.0,32.0);
 }
 
-const std::string QtLeftRightRectItem::GetVersion()
+const std::string ribi::QtLeftRightRectItem::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> QtLeftRightRectItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtLeftRightRectItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-19: version 1.0: initial version");
@@ -57,7 +57,7 @@ const std::vector<std::string> QtLeftRightRectItem::GetVersionHistory()
   return v;
 }
 
-void QtLeftRightRectItem::keyPressEvent(QKeyEvent* event)
+void ribi::QtLeftRightRectItem::keyPressEvent(QKeyEvent* event)
 {
   switch (event->key())
   {
@@ -86,14 +86,14 @@ void QtLeftRightRectItem::keyPressEvent(QKeyEvent* event)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void QtLeftRightRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+void ribi::QtLeftRightRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
   m_signal_request_scene_update();
   QGraphicsRectItem::mouseMoveEvent(event);
 }
 #pragma GCC diagnostic pop
 
-void QtLeftRightRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* , QWidget* )
+void ribi::QtLeftRightRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* , QWidget* )
 {
 
   //Always draw the outer rect

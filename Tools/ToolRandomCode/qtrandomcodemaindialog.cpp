@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "randomcode.h"
 #include "randomcodemenudialog.h"
 
-QtRandomCodeMainDialog::QtRandomCodeMainDialog(QWidget *parent) :
+ribi::QtRandomCodeMainDialog::QtRandomCodeMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRandomCodeMainDialog)
 {
@@ -54,30 +54,17 @@ QtRandomCodeMainDialog::QtRandomCodeMainDialog(QWidget *parent) :
   ui->button_generate->click();
 }
 
-QtRandomCodeMainDialog::~QtRandomCodeMainDialog()
+ribi::QtRandomCodeMainDialog::~QtRandomCodeMainDialog()
 {
   delete ui;
 }
 
-void QtRandomCodeMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-
-void QtRandomCodeMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtRandomCodeMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtRandomCodeMainDialog::on_button_generate_clicked()
+void ribi::QtRandomCodeMainDialog::on_button_generate_clicked()
 {
   const std::vector<std::string> v = RandomCode::CreateRandomCode();
   ui->textEdit->clear();
@@ -87,7 +74,7 @@ void QtRandomCodeMainDialog::on_button_generate_clicked()
   }
 }
 
-void QtRandomCodeMainDialog::on_button_about_clicked()
+void ribi::QtRandomCodeMainDialog::on_button_about_clicked()
 {
   About about = RandomCodeMenuDialog::GetAbout();
   //about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());

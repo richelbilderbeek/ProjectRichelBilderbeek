@@ -22,79 +22,58 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPainter>
 //---------------------------------------------------------------------------
 #include "trace.h"
-#include "wtconnectthreeresources.h"
+//#include "wtconnectthreeresources.h"
 #include "wtselectplayerwidget.h"
 //---------------------------------------------------------------------------
-//Enable debugging
-#undef NDEBUG
 #include <cassert>
 //---------------------------------------------------------------------------
 ///Yes, naming the filename twice feels dumb, but
 ///I could not find enough documentation about
 ///how I should use the Wt::WPainter::Image constructor
-WtSelectPlayerWidget::WtSelectPlayerWidget()
+ribi::WtSelectPlayerWidget::WtSelectPlayerWidget(
+  const boost::shared_ptr<const ConnectThreeResources> resources)
   : m_computer_grey(new Wt::WPainter::Image(
-      WtConnectThreeResources::GetInstance()
-        ->GetComputerGreyFilename(),
-      WtConnectThreeResources::GetInstance()
-        ->GetComputerGreyFilename())
+      resources->GetComputerGreyFilename(),
+      resources->GetComputerGreyFilename())
       ),
     m_computers(
     {
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetComputersFilenames()[0],
-        WtConnectThreeResources::GetInstance()
-          ->GetComputersFilenames()[0]
+        resources->GetComputersFilenames()[0],
+        resources->GetComputersFilenames()[0]
         ),
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetComputersFilenames()[1],
-        WtConnectThreeResources::GetInstance()
-          ->GetComputersFilenames()[1]
+        resources->GetComputersFilenames()[1],
+        resources->GetComputersFilenames()[1]
         ),
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetComputersFilenames()[2],
-        WtConnectThreeResources::GetInstance()
-          ->GetComputersFilenames()[2]
+        resources->GetComputersFilenames()[2],
+        resources->GetComputersFilenames()[2]
         )
     } ),
     m_players(
     {
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersFilenames()[0],
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersFilenames()[0]),
+        resources->GetPlayersFilenames()[0],
+        resources->GetPlayersFilenames()[0]),
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersFilenames()[1],
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersFilenames()[1]),
+        resources->GetPlayersFilenames()[1],
+        resources->GetPlayersFilenames()[1]),
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersFilenames()[2],
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersFilenames()[2])
+        resources->GetPlayersFilenames()[2],
+        resources->GetPlayersFilenames()[2])
     } ),
     m_players_grey(
     {
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersGreyFilenames()[0],
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersGreyFilenames()[0]),
+        resources->GetPlayersGreyFilenames()[0],
+        resources->GetPlayersGreyFilenames()[0]),
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersGreyFilenames()[1],
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersGreyFilenames()[1]),
+        resources->GetPlayersGreyFilenames()[1],
+        resources->GetPlayersGreyFilenames()[1]),
       new Wt::WPainter::Image(
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersGreyFilenames()[2],
-        WtConnectThreeResources::GetInstance()
-          ->GetPlayersGreyFilenames()[2])
+        resources->GetPlayersGreyFilenames()[2],
+        resources->GetPlayersGreyFilenames()[2])
     } )
 {
   m_is_player_human[0] = true;
@@ -116,11 +95,11 @@ WtSelectPlayerWidget::WtSelectPlayerWidget()
   const int sprite_height = m_computer_grey->height();
 
   this->resize(2 * sprite_width,3 * sprite_height);
-  this->mouseWentDown().connect(this, &WtSelectPlayerWidget::OnClick);
+  this->mouseWentDown().connect(this, &ribi::WtSelectPlayerWidget::OnClick);
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtSelectPlayerWidget::OnClick(const Wt::WMouseEvent& e)
+void ribi::WtSelectPlayerWidget::OnClick(const Wt::WMouseEvent& e)
 {
   const int sprite_width  = m_computer_grey->width();
   const int sprite_height = m_computer_grey->height();
@@ -134,7 +113,7 @@ void WtSelectPlayerWidget::OnClick(const Wt::WMouseEvent& e)
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtSelectPlayerWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtSelectPlayerWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   const int sprite_width  = m_computer_grey->width();

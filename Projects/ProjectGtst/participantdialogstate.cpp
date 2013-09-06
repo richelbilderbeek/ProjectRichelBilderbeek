@@ -43,7 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantDialogState::ParticipantDialogState(
+ribi::gtst::ParticipantDialogState::ParticipantDialogState(
   ParticipantDialog * const dialog,
   Server * const server)
   : m_dialog(dialog),
@@ -53,7 +53,7 @@ ParticipantDialogState::ParticipantDialogState(
   assert(m_server);
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantDialogState::CurrencyToStr(const double value)
+const std::string ribi::gtst::ParticipantDialogState::CurrencyToStr(const double value)
 {
   std::stringstream s;
   s << std::setprecision(2) << std::fixed;
@@ -63,7 +63,7 @@ const std::string ParticipantDialogState::CurrencyToStr(const double value)
 //---------------------------------------------------------------------------
 ///FileToVector reads a file and converts it to a std::vector<std::string>
 ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> ParticipantDialogState::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::gtst::ParticipantDialogState::FileToVector(const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
   std::vector<std::string> v;
@@ -77,19 +77,19 @@ const std::vector<std::string> ParticipantDialogState::FileToVector(const std::s
   return v;
 }
 //---------------------------------------------------------------------------
-ParticipantDialog * ParticipantDialogState::GetDialog()
+ribi::gtst::ParticipantDialog * ribi::gtst::ParticipantDialogState::GetDialog()
 {
   assert(m_dialog);
   return m_dialog;
 }
 //---------------------------------------------------------------------------
-const ParticipantDialog * ParticipantDialogState::GetDialog() const
+const ribi::gtst::ParticipantDialog * ribi::gtst::ParticipantDialogState::GetDialog() const
 {
   assert(m_dialog);
   return m_dialog;
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogState::Logout()
+void ribi::gtst::ParticipantDialogState::Logout()
 {
   m_server->NotifyLogout(GetDialog()->GetParticipant());
   WtServerPusher::GetInstance()->Post();
@@ -97,7 +97,7 @@ void ParticipantDialogState::Logout()
 //---------------------------------------------------------------------------
 ///Respons to the Participant his/her ParticipantState, which
 ///can be changed by the Server
-void ParticipantDialogState::RespondToParticipant()
+void ribi::gtst::ParticipantDialogState::RespondToParticipant()
 {
   if (!GetDialog()->CanGetParticipant())
   {
@@ -167,7 +167,7 @@ void ParticipantDialogState::RespondToParticipant()
     std::clog << error << '\n';
     assert("Should not get here, there must be an unimplemented state");
     throw std::logic_error(
-      "Should not get here (void ParticipantDialogState::RespondToParticipant), there must be an unimplemented state");
+      "Should not get here (void ribi::gtst::ParticipantDialogState::RespondToParticipant), there must be an unimplemented state");
   }
   #define DEBUG_TEMP_2367452375825442365723832
   #ifdef  DEBUG_TEMP_2367452375825442365723832

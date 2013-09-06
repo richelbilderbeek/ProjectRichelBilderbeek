@@ -30,6 +30,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace Ui {
 class QtRichelBilderbeekMenuDialog;
 }
+
+namespace ribi {
+
 struct ShinyButtonWidget;
 
 class QtRichelBilderbeekMenuDialog : public QtHideAndShowDialog
@@ -55,5 +58,7 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTRICHELBILDERBEEKMENUDIALOG_H

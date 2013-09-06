@@ -23,11 +23,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+namespace ribi {
+
 namespace Pylos {
 
 enum class Winner { player1, player2, none };
 std::string ToStr(const Winner winner);
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // PYLOSWINNER_H

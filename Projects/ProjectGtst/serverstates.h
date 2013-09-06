@@ -28,6 +28,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///ServerStates hold all Server states
 struct ServerStates
 {
@@ -68,5 +72,8 @@ struct ServerStates
   ///The map that maps the period (= key) to the number of IPGG cycles
   std::map<int,int> m_n_cycles;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PROJECTGTSTSERVERSTATES_H

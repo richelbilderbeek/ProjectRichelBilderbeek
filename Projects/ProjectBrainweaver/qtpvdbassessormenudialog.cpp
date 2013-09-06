@@ -23,31 +23,31 @@
 #include "ui_qtpvdbassessormenudialog.h"
 
 
-QtPvdbAssessorMenuDialog::QtPvdbAssessorMenuDialog(QWidget* parent)
+ribi::pvdb::QtPvdbAssessorMenuDialog::QtPvdbAssessorMenuDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbAssessorMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtPvdbAssessorMenuDialog::~QtPvdbAssessorMenuDialog()
+ribi::pvdb::QtPvdbAssessorMenuDialog::~QtPvdbAssessorMenuDialog()
 {
   delete ui;
 }
 
-void QtPvdbAssessorMenuDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbAssessorMenuDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbAssessorMenuDialog::on_button_create_assessment_clicked()
+void ribi::pvdb::QtPvdbAssessorMenuDialog::on_button_create_assessment_clicked()
 {
   QtPvdbCreateAssessmentMenuDialog d;
   this->ShowChild(&d);
 }
 
 
-void QtPvdbAssessorMenuDialog::on_button_about_clicked()
+void ribi::pvdb::QtPvdbAssessorMenuDialog::on_button_about_clicked()
 {
   const auto d(QtPvdbAboutDialog::Get());
   this->hide();
@@ -55,12 +55,12 @@ void QtPvdbAssessorMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtPvdbAssessorMenuDialog::on_button_quit_clicked()
+void ribi::pvdb::QtPvdbAssessorMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtPvdbAssessorMenuDialog::on_button_assess_result_clicked()
+void ribi::pvdb::QtPvdbAssessorMenuDialog::on_button_assess_result_clicked()
 {
   //Load assessent file
   const auto d = pvdb::QtFileDialog::GetOpenFileDialog();

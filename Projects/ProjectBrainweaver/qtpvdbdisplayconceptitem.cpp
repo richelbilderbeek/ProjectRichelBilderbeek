@@ -20,7 +20,7 @@
 #include "qtpvdbbrushfactory.h"
 #include "trace.h"
 
-QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb::Concept>& concept)
+ribi::pvdb::QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept)
   : QtPvdbConceptItem(concept)
 {
   #ifndef NDEBUG
@@ -33,40 +33,40 @@ QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<pvdb:
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&QtPvdbDisplayConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::pvdb::QtPvdbDisplayConceptItem::OnConceptNameChanged,this)); //Obligatory
 
   GetConcept()->m_signal_examples_changed.connect( //FIX 2013-01-06 22:32
       boost::bind(
-        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 
   GetConcept()->m_signal_rating_complexity_changed.connect(
       boost::bind(
-        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_concreteness_changed.connect(
       boost::bind(
-        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_specificity_changed.connect(
       boost::bind(
-        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 }
 
-QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
+ribi::pvdb::QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
 {
   GetConcept()->m_signal_examples_changed.disconnect(
       boost::bind(
-        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
@@ -76,29 +76,29 @@ QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
   //which results in a segmentation fault
   GetConcept()->m_signal_rating_complexity_changed.disconnect(
       boost::bind(
-        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_concreteness_changed.disconnect(
       boost::bind(
-        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_specificity_changed.disconnect(
       boost::bind(
-        &QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 }
 
-void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
+void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
 {
-  //TRACE("Start of void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
+  //TRACE("Start of void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
 
@@ -188,5 +188,5 @@ void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
     this->m_signal_item_has_updated(this); //Obligatory
     this->m_signal_request_scene_update(); //Obligatory
   }
-  //TRACE("End of void QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
+  //TRACE("End of void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
 }

@@ -1,13 +1,13 @@
 #include "timepolldata.h"
 #include "stopwatch.h"
 //---------------------------------------------------------------------------
-namespace ToolTimePoll {
+
 //---------------------------------------------------------------------------
-Data * Data::m_instance = 0;
+ribi::ToolTimePoll::Data * ribi::ToolTimePoll::Data::m_instance = 0;
 //---------------------------------------------------------------------------
-std::recursive_mutex Data::m_mutex;
+std::recursive_mutex ribi::ToolTimePoll::Data::m_mutex;
 //---------------------------------------------------------------------------
-Data::Data(const int n_options)
+ribi::ToolTimePoll::Data::Data(const int n_options)
   : m_index(-1),
     m_times(n_options,0.0),
     m_stopwatch(new Stopwatch)
@@ -15,7 +15,7 @@ Data::Data(const int n_options)
 
 }
 //---------------------------------------------------------------------------
-const std::vector<double> Data::GetFractions() const
+const std::vector<double> ribi::ToolTimePoll::Data::GetFractions() const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
   std::vector<double> v = GetTimes(); //Recursion: need std::recursive_mutex
@@ -30,7 +30,7 @@ const std::vector<double> Data::GetFractions() const
   return v;
 }
 //---------------------------------------------------------------------------
-Data * Data::GetInstance()
+ribi::ToolTimePoll::Data * ribi::ToolTimePoll::Data::GetInstance()
 {
   if (m_instance == 0)
   {
@@ -45,7 +45,7 @@ Data * Data::GetInstance()
   return m_instance;
 }
 //---------------------------------------------------------------------------
-const std::vector<double> Data::GetTimes() const
+const std::vector<double> ribi::ToolTimePoll::Data::GetTimes() const
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
   std::vector<double> times = m_times;
@@ -59,7 +59,7 @@ const std::vector<double> Data::GetTimes() const
   return times;
 }
 //---------------------------------------------------------------------------
-void Data::SetIndex(const int index)
+void ribi::ToolTimePoll::Data::SetIndex(const int index)
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
   if (m_index != -1)
@@ -72,6 +72,3 @@ void Data::SetIndex(const int index)
   m_stopwatch.reset(new Stopwatch);
   m_index = index;
 }
-//---------------------------------------------------------------------------
-} //~namespace ToolTimePoll
-//---------------------------------------------------------------------------

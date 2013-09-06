@@ -15,28 +15,28 @@
 #include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbviewfilesdialog.h"
 
-QtPvdbViewFilesDialog::QtPvdbViewFilesDialog(QWidget* parent) :
+ribi::pvdb::QtPvdbViewFilesDialog::QtPvdbViewFilesDialog(QWidget* parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbViewFilesDialog)
 {
   ui->setupUi(this);
 }
 
-QtPvdbViewFilesDialog::~QtPvdbViewFilesDialog()
+ribi::pvdb::QtPvdbViewFilesDialog::~QtPvdbViewFilesDialog()
 {
   delete ui;
 }
 
-void QtPvdbViewFilesDialog::OnTimerLeft()
+void ribi::pvdb::QtPvdbViewFilesDialog::OnTimerLeft()
 {
 }
 
-void QtPvdbViewFilesDialog::OnTimerRight()
+void ribi::pvdb::QtPvdbViewFilesDialog::OnTimerRight()
 {
 
 }
 
-void QtPvdbViewFilesDialog::on_button_left_clicked()
+void ribi::pvdb::QtPvdbViewFilesDialog::on_button_left_clicked()
 {
   const auto d = pvdb::QtFileDialog::GetOpenFileDialog();
   d->setWindowTitle("Select a file to view");
@@ -62,13 +62,13 @@ void QtPvdbViewFilesDialog::on_button_left_clicked()
   ui->text_left->setPlainText(text.c_str());
 }
 
-void QtPvdbViewFilesDialog::keyPressEvent(QKeyEvent* event)
+void ribi::pvdb::QtPvdbViewFilesDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key()  == Qt::Key_Escape) { close(); return; }
   QDialog::keyPressEvent(event);
 }
 
-void QtPvdbViewFilesDialog::on_button_right_clicked()
+void ribi::pvdb::QtPvdbViewFilesDialog::on_button_right_clicked()
 {
   const auto d = pvdb::QtFileDialog::GetOpenFileDialog();
   d->setWindowTitle("Select a file to view");

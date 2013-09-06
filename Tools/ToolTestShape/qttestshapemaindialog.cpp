@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qttestshapemaindialog.h"
 
-QtTestShapeMainDialog::QtTestShapeMainDialog(QWidget *parent) :
+ribi::QtTestShapeMainDialog::QtTestShapeMainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestShapeMainDialog),
     m_dialog(new TestShapeMainDialog)
@@ -57,24 +57,12 @@ QtTestShapeMainDialog::QtTestShapeMainDialog(QWidget *parent) :
   }
 }
 
-QtTestShapeMainDialog::~QtTestShapeMainDialog()
+ribi::QtTestShapeMainDialog::~QtTestShapeMainDialog()
 {
   delete ui;
 }
 
-void QtTestShapeMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestShapeMainDialog::Test()
+void ribi::QtTestShapeMainDialog::Test()
 {
   {
     static bool is_tested = false;

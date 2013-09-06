@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantDialogStateAssignPayoff::ParticipantDialogStateAssignPayoff(
+ribi::gtst::ParticipantDialogStateAssignPayoff::ParticipantDialogStateAssignPayoff(
   ParticipantDialog * const dialog,
   Server * const server)
   : ParticipantDialogState(dialog,server)
@@ -48,7 +48,7 @@ ParticipantDialogStateAssignPayoff::ParticipantDialogStateAssignPayoff(
 
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateAssignPayoff::RespondToTimedServerPush()
+void ribi::gtst::ParticipantDialogStateAssignPayoff::RespondToTimedServerPush()
 {
   assert(GetDialog()->CanGetParticipant()
     && "Assume that only existing participants can have their payoffs assigned");
@@ -59,7 +59,7 @@ void ParticipantDialogStateAssignPayoff::RespondToTimedServerPush()
 
 }
 //---------------------------------------------------------------------------
-void ParticipantDialogStateAssignPayoff::ShowPage(ParticipantDialog * const dialog)
+void ribi::gtst::ParticipantDialogStateAssignPayoff::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
 

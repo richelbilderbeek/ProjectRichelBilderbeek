@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
+namespace ribi {
 struct TestShapeMenuDialog;
 //---------------------------------------------------------------------------
 struct WtTestShapeMenuDialog : public Wt::WContainerWidget
@@ -37,5 +38,7 @@ struct WtTestShapeMenuDialog : public Wt::WContainerWidget
 
   boost::scoped_ptr<TestShapeMenuDialog> m_dialog;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTQUESTIONMENUDIALOG_H

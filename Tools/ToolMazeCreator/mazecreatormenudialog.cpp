@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 
 
-const About MazeCreatorMenuDialog::GetAbout()
+const ribi::About ribi::MazeCreatorMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -44,12 +44,12 @@ const About MazeCreatorMenuDialog::GetAbout()
   return a;
 }
 
-const std::string MazeCreatorMenuDialog::GetVersion()
+const std::string ribi::MazeCreatorMenuDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> MazeCreatorMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::MazeCreatorMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2007-xx-xx: version 1.0: initial version.");

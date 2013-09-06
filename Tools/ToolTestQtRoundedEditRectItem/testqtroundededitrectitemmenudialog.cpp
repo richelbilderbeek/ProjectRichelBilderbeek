@@ -4,7 +4,7 @@
 
 #include "trace.h"
 
-const About TestQtRoundedEditRectItemMenuDialog::GetAbout()
+const ribi::About ribi::TestQtRoundedEditRectItemMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -20,12 +20,12 @@ const About TestQtRoundedEditRectItemMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TestQtRoundedEditRectItemMenuDialog::GetVersion()
+const std::string ribi::TestQtRoundedEditRectItemMenuDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> TestQtRoundedEditRectItemMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQtRoundedEditRectItemMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-21: version 1.0: initial version");

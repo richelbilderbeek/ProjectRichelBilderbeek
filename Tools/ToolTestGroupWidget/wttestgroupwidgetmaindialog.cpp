@@ -34,14 +34,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtgroupwidget.h"
 #include "wttestgroupwidgetmaindialog.h"
 //---------------------------------------------------------------------------
-WtTestGroupWidgetMainDialog::Ui::Ui()
+ribi::WtTestGroupWidgetMainDialog::Ui::Ui()
   : m_edit(new Wt::WLineEdit),
     m_widget(new WtGroupWidget)
 {
 
 }
 //---------------------------------------------------------------------------
-WtTestGroupWidgetMainDialog::WtTestGroupWidgetMainDialog()
+ribi::WtTestGroupWidgetMainDialog::WtTestGroupWidgetMainDialog()
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);
@@ -54,19 +54,19 @@ WtTestGroupWidgetMainDialog::WtTestGroupWidgetMainDialog()
   this->addWidget(new Wt::WBreak);
   {
     Wt::WPushButton * const button = new Wt::WPushButton("Create random groups",this);
-    button->clicked().connect(this,&WtTestGroupWidgetMainDialog::OnClicked);
+    button->clicked().connect(this,&ribi::WtTestGroupWidgetMainDialog::OnClicked);
   }
 
   ui.m_edit->resize(400,Wt::WLength::Auto);
-  ui.m_edit->changed().connect(this,&WtTestGroupWidgetMainDialog::OnChanged);
-  ui.m_edit->enterPressed().connect(this,&WtTestGroupWidgetMainDialog::OnChanged);
+  ui.m_edit->changed().connect(this,&ribi::WtTestGroupWidgetMainDialog::OnChanged);
+  ui.m_edit->enterPressed().connect(this,&ribi::WtTestGroupWidgetMainDialog::OnChanged);
   ui.m_edit->setText("1|2,3|4,5,6|7,8,9,10");
   ui.m_widget->resize(400,400);
 
   this->OnChanged();
 }
 //---------------------------------------------------------------------------
-void WtTestGroupWidgetMainDialog::OnChanged()
+void ribi::WtTestGroupWidgetMainDialog::OnChanged()
 {
   const std::vector<std::string> groups_str
     = SeperateString(ui.m_edit->text().toUTF8(),'|');
@@ -97,7 +97,7 @@ void WtTestGroupWidgetMainDialog::OnChanged()
   ui.m_widget->SetIds(groups_ids);
 }
 //---------------------------------------------------------------------------
-void WtTestGroupWidgetMainDialog::OnClicked()
+void ribi::WtTestGroupWidgetMainDialog::OnClicked()
 {
   int id = 0;
   std::vector<std::vector<int> > v;
@@ -115,7 +115,7 @@ void WtTestGroupWidgetMainDialog::OnClicked()
   ui.m_widget->SetIds(v);
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtTestGroupWidgetMainDialog::SeperateString(
+const std::vector<std::string> ribi::WtTestGroupWidgetMainDialog::SeperateString(
   const std::string& input,
   const char seperator)
 {

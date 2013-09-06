@@ -52,8 +52,8 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+ribi::pvdb::QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
   QWidget* parent)
   : QtPvdbConceptMapWidget(concept_map,parent),
     m_arrow(nullptr),
@@ -85,7 +85,7 @@ QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   #endif
 }
 
-QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget()
+ribi::pvdb::QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget()
 {
   m_tools = nullptr;
   assert(m_highlighter);
@@ -93,8 +93,8 @@ QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget()
   m_arrow = nullptr;
 }
 
-void QtPvdbConceptMapEditWidget::AddEdge(
-  const boost::shared_ptr<pvdb::Edge> edge)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(
+  const boost::shared_ptr<ribi::pvdb::Edge> edge)
 {
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
@@ -128,7 +128,7 @@ void QtPvdbConceptMapEditWidget::AddEdge(
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtedge->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtedge->scene());
@@ -149,7 +149,7 @@ void QtPvdbConceptMapEditWidget::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbNodeItem* const qt_to)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbNodeItem* const qt_to)
 {
   assert(qt_from);
   assert(qt_to);
@@ -183,16 +183,16 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
 
   //Edge does not exist yet, create a new one
   const std::vector<QtPvdbNodeItem*> qtnodes = Collect<QtPvdbNodeItem>(scene());
-  const boost::shared_ptr<pvdb::Concept> concept(pvdb::ConceptFactory::Create());
+  const boost::shared_ptr<ribi::pvdb::Concept> concept(pvdb::ConceptFactory::Create());
   assert(concept);
   const bool head_arrow = true;
   const bool tail_arrow = false;
-  const boost::shared_ptr<pvdb::Node> from = qt_from->GetNode();
+  const boost::shared_ptr<ribi::pvdb::Node> from = qt_from->GetNode();
   assert(from);
-  const boost::shared_ptr<pvdb::Node> to = qt_to->GetNode();
+  const boost::shared_ptr<ribi::pvdb::Node> to = qt_to->GetNode();
   assert(to);
   assert(from != to);
-  const boost::shared_ptr<pvdb::Edge> edge(
+  const boost::shared_ptr<ribi::pvdb::Edge> edge(
     pvdb::EdgeFactory::Create(
       concept,
       (qt_from->pos().x() + qt_to->pos().x()) / 2.0,
@@ -226,7 +226,7 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtedge->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
 
@@ -241,7 +241,7 @@ void QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbN
   this->scene()->update();
 }
 
-QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvdb::Node> node)
+ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<ribi::pvdb::Node> node)
 {
   assert(node);
   assert(node->GetConcept());
@@ -263,7 +263,7 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtnode->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtnode->scene());
@@ -285,7 +285,7 @@ QtPvdbNodeItem * QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<pvd
   return qtnode;
 }
 
-void QtPvdbConceptMapEditWidget::CleanMe()
+void ribi::pvdb::QtPvdbConceptMapEditWidget::CleanMe()
 {
   //Prepare cleaning the scene
   assert(GetExamplesItem());
@@ -311,7 +311,7 @@ void QtPvdbConceptMapEditWidget::CleanMe()
     SetExamplesItem(item);
     item->m_signal_request_scene_update.connect(
       boost::bind(
-        &QtPvdbConceptMapEditWidget::OnRequestSceneUpdate,this));
+        &ribi::pvdb::QtPvdbConceptMapEditWidget::OnRequestSceneUpdate,this));
     item->setVisible(false);
     assert(!item->scene());
     this->scene()->addItem(item);
@@ -323,7 +323,7 @@ void QtPvdbConceptMapEditWidget::CleanMe()
     m_tools = new QtPvdbToolsItem;
     m_tools->m_signal_clicked.connect(
       boost::bind(
-        &QtPvdbConceptMapEditWidget::OnToolsClicked,
+        &ribi::pvdb::QtPvdbConceptMapEditWidget::OnToolsClicked,
         this));
     assert(!m_tools->scene());
     this->scene()->addItem(m_tools);
@@ -331,17 +331,17 @@ void QtPvdbConceptMapEditWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<QtPvdbConceptMapWidget> QtPvdbConceptMapEditWidget::CreateNewDerived() const
+std::unique_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbConceptMapEditWidget::CreateNewDerived() const
 {
-  const boost::shared_ptr<pvdb::ConceptMap> concept_map
-    = pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
+    = ribi::pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t(concept_map));
   return p;
 }
 #endif
 
-void QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const qtedge)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const qtedge)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -365,7 +365,7 @@ void QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const qtedge)
 }
 
 #ifdef BELIEF_THIS_IS_A_GOOD_MEMBER_FUNCTION_20130629_723648723687
-void QtPvdbConceptMapEditWidget::DeleteLeftovers()
+void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteLeftovers()
 {
   //assert(m_edge_concepts.size() == m_arrows.size());
   bool done = true;
@@ -406,7 +406,7 @@ void QtPvdbConceptMapEditWidget::DeleteLeftovers()
 }
 #endif
 
-void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const qtnode)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const qtnode)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -441,17 +441,17 @@ void QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const qtnode)
 }
 
 #ifndef NDEBUG
-void QtPvdbConceptMapEditWidget::DoRandomStuff()
+void ribi::pvdb::QtPvdbConceptMapEditWidget::DoRandomStuff()
 {
   //this->mouseDoubleClickEvent(0); //CAUSES ACCESS VIOLATION
 
-  const boost::shared_ptr<pvdb::Concept> concept1(pvdb::ConceptFactory::Create("...", { {} } ) );
-  const boost::shared_ptr<pvdb::Node> node1(pvdb::NodeFactory::Create(concept1));
+  const boost::shared_ptr<ribi::pvdb::Concept> concept1(pvdb::ConceptFactory::Create("...", { {} } ) );
+  const boost::shared_ptr<ribi::pvdb::Node> node1(pvdb::NodeFactory::Create(concept1));
   this->GetConceptMap()->AddNode(node1);
   QtPvdbNodeItem * const qtnode1 = AddNode(node1);
 
-  const boost::shared_ptr<pvdb::Concept> concept2(pvdb::ConceptFactory::Create("...", { {} } ) );
-  const boost::shared_ptr<pvdb::Node> node2(pvdb::NodeFactory::Create(concept2));
+  const boost::shared_ptr<ribi::pvdb::Concept> concept2(pvdb::ConceptFactory::Create("...", { {} } ) );
+  const boost::shared_ptr<ribi::pvdb::Node> node2(pvdb::NodeFactory::Create(concept2));
   this->GetConceptMap()->AddNode(node2);
   QtPvdbNodeItem * const qtnode2 = AddNode(node2);
 
@@ -466,7 +466,7 @@ void QtPvdbConceptMapEditWidget::DoRandomStuff()
 
 
 
-const std::vector<QtPvdbEdgeItem *> QtPvdbConceptMapEditWidget::GetQtEdges()
+const std::vector<ribi::pvdb::QtPvdbEdgeItem *> ribi::pvdb::QtPvdbConceptMapEditWidget::GetQtEdges()
 {
   const std::vector<QtPvdbEdgeItem *> qtedges
     = Collect<QtPvdbEdgeItem>(this->scene());
@@ -476,7 +476,7 @@ const std::vector<QtPvdbEdgeItem *> QtPvdbConceptMapEditWidget::GetQtEdges()
   return qtedges;
 }
 
-const std::vector<QtPvdbNodeItem *> QtPvdbConceptMapEditWidget::GetQtNodes()
+const std::vector<ribi::pvdb::QtPvdbNodeItem *> ribi::pvdb::QtPvdbConceptMapEditWidget::GetQtNodes()
 {
   const std::vector<QtPvdbNodeItem *> qtnodes
     = Collect<QtPvdbNodeItem>(this->scene());
@@ -491,7 +491,7 @@ const std::vector<QtPvdbNodeItem *> QtPvdbConceptMapEditWidget::GetQtNodes()
   return qtnodes;
 }
 
-void QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
 {
   switch (event->key())
   {
@@ -549,11 +549,11 @@ void QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
   QtPvdbConceptMapWidget::keyPressEvent(event);
 }
 
-void QtPvdbConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  const boost::shared_ptr<pvdb::Concept> concept(
-    pvdb::ConceptFactory::Create("..."));
-  const boost::shared_ptr<pvdb::Node> node(pvdb::NodeFactory::Create(concept));
+  const boost::shared_ptr<ribi::pvdb::Concept> concept(
+    ribi::pvdb::ConceptFactory::Create("..."));
+  const boost::shared_ptr<ribi::pvdb::Node> node(pvdb::NodeFactory::Create(concept));
   assert(node);
   assert(GetConceptMap());
   GetConceptMap()->AddNode(node);
@@ -568,7 +568,7 @@ void QtPvdbConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
     && "GUI and non-GUI concept map must match");
 }
 
-void QtPvdbConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
 {
   if (m_arrow)
   {
@@ -587,7 +587,7 @@ void QtPvdbConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
   QtPvdbConceptMapWidget::mouseMoveEvent(event);
 }
 
-void QtPvdbConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
 {
   assert(m_highlighter);
   if (m_arrow) //&& m_highlighter->GetItem())
@@ -613,11 +613,11 @@ void QtPvdbConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
   }
 }
 
-void QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item)
 {
 
   //assert(item->GetConcept());
-  //const boost::shared_ptr<pvdb::Concept> new_concept = pvdb::ConceptFactory::DeepCopy(item->GetConcept());
+  //const boost::shared_ptr<ribi::pvdb::Concept> new_concept = ribi::pvdb::ConceptFactory::DeepCopy(item->GetConcept());
   //assert(new_concept);
 
   assert(this);
@@ -640,14 +640,14 @@ void QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtPvdbConceptMapIt
   this->OnItemRequestsUpdate(item);
 }
 
-void QtPvdbConceptMapEditWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   m_tools->SetBuddyItem(dynamic_cast<const QtPvdbNodeItem*>(item));
   GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
   scene()->update();
 }
 
-void QtPvdbConceptMapEditWidget::OnToolsClicked()
+void ribi::pvdb::QtPvdbConceptMapEditWidget::OnToolsClicked()
 {
   const QPointF cursor_pos_approx(
     m_tools->GetBuddyItem()->pos().x(),

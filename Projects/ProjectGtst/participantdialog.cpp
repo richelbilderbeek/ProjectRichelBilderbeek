@@ -49,7 +49,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///\note
 ///Do not make m_timer a child of this,
 ///to prevent it being delete by Wt classes
-ParticipantDialog::ParticipantDialog(
+ribi::gtst::ParticipantDialog::ParticipantDialog(
   Server * const server,
   const SafeIpAddress * const ip_address)
   : m_ip_address(new SafeIpAddress(ip_address->Get())),
@@ -62,17 +62,17 @@ ParticipantDialog::ParticipantDialog(
   m_states->GetCurrentState()->ShowPage(CreateDialogHeading());
 }
 //---------------------------------------------------------------------------
-ParticipantDialog::~ParticipantDialog()
+ribi::gtst::ParticipantDialog::~ParticipantDialog()
 {
 
 }
 //---------------------------------------------------------------------------
-bool ParticipantDialog::CanGetParticipant() const
+bool ribi::gtst::ParticipantDialog::CanGetParticipant() const
 {
   return m_participant;
 }
 //---------------------------------------------------------------------------
-ParticipantDialog * ParticipantDialog::CreateDialogHeading()
+ribi::gtst::ParticipantDialog * ribi::gtst::ParticipantDialog::CreateDialogHeading()
 {
   ParticipantDialog * const dialog = GetStates()->GetCurrentState()->GetDialog();
   dialog->clear();
@@ -90,28 +90,28 @@ ParticipantDialog * ParticipantDialog::CreateDialogHeading()
   return dialog;
 }
 //---------------------------------------------------------------------------
-void ParticipantDialog::DoSomethingRandom()
+void ribi::gtst::ParticipantDialog::DoSomethingRandom()
 {
   m_states->GetCurrentState()->DoSomethingRandom();
 }
 //---------------------------------------------------------------------------
-const boost::shared_ptr<const SafeIpAddress> ParticipantDialog::GetIpAddress() const
+const boost::shared_ptr<const ribi::SafeIpAddress> ribi::gtst::ParticipantDialog::GetIpAddress() const
 {
   return m_ip_address;
 }
 //---------------------------------------------------------------------------
-const boost::shared_ptr<const Participant>& ParticipantDialog::GetParticipant() const
+const boost::shared_ptr<const ribi::gtst::Participant>& ribi::gtst::ParticipantDialog::GetParticipant() const
 {
   assert(CanGetParticipant());
   return m_participant;
 }
 //---------------------------------------------------------------------------
-const boost::shared_ptr<const ParticipantDialogStates> ParticipantDialog::GetStates() const
+const boost::shared_ptr<const ribi::gtst::ParticipantDialogStates> ribi::gtst::ParticipantDialog::GetStates() const
 {
   return m_states;
 }
 //---------------------------------------------------------------------------
-void ParticipantDialog::OnServerPush()
+void ribi::gtst::ParticipantDialog::OnServerPush()
 {
   //If the participant is logged out, throw him/her back to the login screen
   if (!CanGetParticipant())
@@ -124,7 +124,7 @@ void ParticipantDialog::OnServerPush()
   m_states->GetCurrentState()->RespondToServerPush();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialog::OnTimedServerPush()
+void ribi::gtst::ParticipantDialog::OnTimedServerPush()
 {
   //If the participant is logged out, throw him/her back to the login screen
   if (!CanGetParticipant())
@@ -161,14 +161,14 @@ void ParticipantDialog::OnTimedServerPush()
   m_states->GetCurrentState()->RespondToTimedServerPush();
 }
 //---------------------------------------------------------------------------
-void ParticipantDialog::SetParticipant(const boost::shared_ptr<const Participant>& participant)
+void ribi::gtst::ParticipantDialog::SetParticipant(const boost::shared_ptr<const Participant>& participant)
 {
   assert(participant);
   m_participant = participant;
 }
 //---------------------------------------------------------------------------
 ///Let a State perform a transition that is logged and lets the new State be drawn to screen.
-void ParticipantDialog::SetState(ParticipantDialogState * const state)
+void ribi::gtst::ParticipantDialog::SetState(ParticipantDialogState * const state)
 {
   if (state == m_states->GetCurrentState()) return;
 

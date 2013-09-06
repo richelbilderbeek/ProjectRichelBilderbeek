@@ -25,36 +25,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 #include "wtserverpusherclient.h"
 //---------------------------------------------------------------------------
-WtServerPusherClient::WtServerPusherClient()
+ribi::WtServerPusherClient::WtServerPusherClient()
 {
   Wt::WApplication::instance()->enableUpdates(true);
   WtServerPusher::GetInstance()->Connect(
-    this,boost::bind(&WtServerPusherClient::OnServer,this));
+    this,boost::bind(&ribi::WtServerPusherClient::OnServer,this));
 
   //Never call virtual functions during construction or destruction
   //Scott Meyers, Effective C++, item 9
   //OnServer();
 }
 //---------------------------------------------------------------------------
-WtServerPusherClient::~WtServerPusherClient()
+ribi::WtServerPusherClient::~WtServerPusherClient()
 {
   Wt::WApplication::instance()->enableUpdates(false);
   WtServerPusher::GetInstance()->Disconnect(this);
 }
 //---------------------------------------------------------------------------
-const std::string WtServerPusherClient::GetVersion()
+const std::string ribi::WtServerPusherClient::GetVersion()
 {
   return "1.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtServerPusherClient::GetVersionHistory()
+const std::vector<std::string> ribi::WtServerPusherClient::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-07-27: version 1.0: initial version");
   return v;
 }
 //---------------------------------------------------------------------------
-void WtServerPusherClient::OnServer()
+void ribi::WtServerPusherClient::OnServer()
 {
   OnServerPush();
   Wt::WApplication::instance()->triggerUpdate();

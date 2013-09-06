@@ -25,13 +25,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "fparser.hh"
 #include "parametersfinished.h"
 //---------------------------------------------------------------------------
-ParametersFinished::ParametersFinished()
+ribi::gtst::ParametersFinished::ParametersFinished()
 {
   SetEarningsFunction("1.0 + (0.01 * p)");
   SetMessage("Thanks for participating in this experiment");
 }
 //---------------------------------------------------------------------------
-double ParametersFinished::CalculateEarnings(const double payoff) const
+double ribi::gtst::ParametersFinished::CalculateEarnings(const double payoff) const
 {
   FunctionParser f;
   //Parse the formula
@@ -58,7 +58,7 @@ double ParametersFinished::CalculateEarnings(const double payoff) const
 }
 //---------------------------------------------------------------------------
 ///Parse a line
-void ParametersFinished::Parse(const std::string& s)
+void ribi::gtst::ParametersFinished::Parse(const std::string& s)
 {
   if (s.size() > 8 && s.substr(0,8) == "message=")
   {
@@ -83,7 +83,7 @@ void ParametersFinished::Parse(const std::string& s)
 ///Set the function that is used to calculate the earnings of
 ///a Participant for participating, from the amount of payoff
 ///he/she has gathered
-void ParametersFinished::SetEarningsFunction(const std::string& earnings_function)
+void ribi::gtst::ParametersFinished::SetEarningsFunction(const std::string& earnings_function)
 {
   FunctionParser f;
   //Parse the formula
@@ -96,13 +96,13 @@ void ParametersFinished::SetEarningsFunction(const std::string& earnings_functio
 }
 //---------------------------------------------------------------------------
 ///Set the message shown to the Participant when the experiment has finished
-void ParametersFinished::SetMessage(const std::string& message)
+void ribi::gtst::ParametersFinished::SetMessage(const std::string& message)
 {
   assert(!message.empty());
   m_message = message;
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ParametersFinished& parameters)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersFinished& parameters)
 {
   os
     << "<parameterschat>"

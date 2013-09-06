@@ -26,6 +26,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "state.h"
 #include "participantstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///The Participant is in the StateAssignPayoff ParticipantState
 struct ParticipantStateAssignPayoff
   : public ParticipantState, StateAssignPayoff
@@ -42,5 +46,8 @@ struct ParticipantStateAssignPayoff
   ///Only let a smart pointer delete this ParticipantState
   friend void boost::checked_delete<>(ParticipantStateAssignPayoff*);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTSTATEASSIGNPAYOFF_H

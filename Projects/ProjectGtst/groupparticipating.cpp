@@ -21,10 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "groupparticipating.h"
 //---------------------------------------------------------------------------
 ///m_group_last_index contains the index given to the last group
-int GroupParticipating::m_group_last_id = 0;
+int ribi::gtst::GroupParticipating::m_group_last_id = 0;
 //---------------------------------------------------------------------------
 ///Constructor that assigns an ID
-GroupParticipating::GroupParticipating(Server * const server)
+ribi::gtst::GroupParticipating::GroupParticipating(Server * const server)
   : Group(server),
     m_id(++m_group_last_id)
 {
@@ -32,7 +32,7 @@ GroupParticipating::GroupParticipating(Server * const server)
 }
 //---------------------------------------------------------------------------
 ///Reset the m_group_last_id to zero
-void GroupParticipating::Reset()
+void ribi::gtst::GroupParticipating::Reset()
 {
   m_group_last_id = 0;
 }

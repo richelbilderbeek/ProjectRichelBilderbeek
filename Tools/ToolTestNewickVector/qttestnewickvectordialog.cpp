@@ -47,7 +47,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestnewickvectordialog.h"
 //---------------------------------------------------------------------------
 ///QtTestNewickVectorDialog constructor performs most Newick tests
-QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) :
+ribi::QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestNewickVectorDialog),
     m_timer(new QTimer),
@@ -84,26 +84,15 @@ QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) :
   this->OnAnyChange();
 }
 //---------------------------------------------------------------------------
-QtTestNewickVectorDialog::~QtTestNewickVectorDialog()
+ribi::QtTestNewickVectorDialog::~QtTestNewickVectorDialog()
 {
   m_timer->stop();
   delete ui;
   delete m_timer;
 }
 //---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::Display()
+
+void ribi::QtTestNewickVectorDialog::Display()
 {
   ui->edit_text->clear();
   const std::vector<std::string>& text = m_dialog->GetText();
@@ -114,7 +103,7 @@ void QtTestNewickVectorDialog::Display()
   }
 }
 //---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::OnAnyChange()
+void ribi::QtTestNewickVectorDialog::OnAnyChange()
 {
   m_dialog->SetMaxComplexity(ui->edit_max_complexity->text().toStdString());
   m_dialog->SetNewick(ui->edit_newick->text().toStdString());
@@ -123,7 +112,7 @@ void QtTestNewickVectorDialog::OnAnyChange()
   Display();
 }
 //---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::OnDemoTick()
+void ribi::QtTestNewickVectorDialog::OnDemoTick()
 {
   //Get any Newick
   if ((std::rand() >> 4) % 2)
@@ -140,7 +129,7 @@ void QtTestNewickVectorDialog::OnDemoTick()
   }
 }
 //---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::on_button_demo_clicked()
+void ribi::QtTestNewickVectorDialog::on_button_demo_clicked()
 {
   if (m_timer->isActive())
   {
@@ -156,13 +145,13 @@ void QtTestNewickVectorDialog::on_button_demo_clicked()
   }
 }
 //---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::on_button_about_clicked()
+void ribi::QtTestNewickVectorDialog::on_button_about_clicked()
 {
   QtAboutDialog d(TestNewickVectorDialog::GetAbout());
   d.exec();
 }
 //---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::on_button_calculate_clicked()
+void ribi::QtTestNewickVectorDialog::on_button_calculate_clicked()
 {
   m_dialog->SetMaxComplexity(ui->edit_max_complexity->text().toStdString());
   m_dialog->SetNewick(ui->edit_newick->text().toStdString());
@@ -171,13 +160,13 @@ void QtTestNewickVectorDialog::on_button_calculate_clicked()
   Display();
 }
 //---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::on_box_show_calculation_clicked()
+void ribi::QtTestNewickVectorDialog::on_box_show_calculation_clicked()
 {
   m_dialog->SetAnalyseCalculation(ui->box_show_calculation->isChecked());
   ui->box_compare->setEnabled( ui->box_show_calculation->isChecked() );
 }
 //---------------------------------------------------------------------------
-void QtTestNewickVectorDialog::on_box_compare_clicked()
+void ribi::QtTestNewickVectorDialog::on_box_compare_clicked()
 {
   m_dialog->SetCompareToTwoDigitNewick(ui->box_compare->isChecked());
 }

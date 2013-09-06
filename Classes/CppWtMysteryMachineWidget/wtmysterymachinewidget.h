@@ -31,6 +31,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintedWidget>
 //---------------------------------------------------------------------------
 namespace Wt { struct WMouseEventEvent; }
+
+namespace ribi {
+
 struct MysteryMachineWidget;
 struct WtToggleButtonWidget;
 //---------------------------------------------------------------------------
@@ -80,5 +83,7 @@ struct WtMysteryMachineWidget : public Wt::WPaintedWidget
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os, const WtMysteryMachineWidget& widget);
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTMYSTERYMACHINEWIDGET_H

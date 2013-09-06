@@ -31,6 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///LogFile is the log file.
 ///
@@ -120,5 +124,8 @@ struct LogFile : public boost::noncopyable
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const LogFile& logfile);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // LOGFILE_H

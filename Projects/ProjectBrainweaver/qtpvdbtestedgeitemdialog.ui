@@ -235,13 +235,13 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QtKeyboardFriendlyGraphicsView" name="view"/>
+    <widget class="ribi::QtKeyboardFriendlyGraphicsView" name="view"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtKeyboardFriendlyGraphicsView</class>
+   <class>ribi::QtKeyboardFriendlyGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header>qtkeyboardfriendlygraphicsview.h</header>
   </customwidget>

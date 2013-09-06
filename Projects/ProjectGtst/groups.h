@@ -33,6 +33,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Groups is a Facade for managing all Group instances
 ///
@@ -178,5 +182,8 @@ struct Groups : public boost::noncopyable
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const Groups& groups);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // GROUPS_H

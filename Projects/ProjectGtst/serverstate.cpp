@@ -45,7 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participantdialogstate.h"
 //#include "trace.h"
 //---------------------------------------------------------------------------
-ServerState::ServerState(
+ribi::gtst::ServerState::ServerState(
   Server * const server,
   const int period,
   const int cycle)
@@ -58,7 +58,7 @@ ServerState::ServerState(
   assert(m_stopwatch);
 }
 //---------------------------------------------------------------------------
-const std::string ServerState::CurrencyToStr(const double value)
+const std::string ribi::gtst::ServerState::CurrencyToStr(const double value)
 {
   std::stringstream s;
   s << std::setprecision(2) << std::fixed;
@@ -70,7 +70,7 @@ const std::string ServerState::CurrencyToStr(const double value)
 ///
 ///\note
 ///This is the only method that const_casts a Group
-Group * ServerState::FindGroup(const Group * const group) const
+ribi::gtst::Group * ribi::gtst::ServerState::FindGroup(const Group * const group) const
 {
   return GetServer()->GetGroups()->FindGroup(group);
 }
@@ -80,7 +80,7 @@ Group * ServerState::FindGroup(const Group * const group) const
 ///
 ///\note
 ///One of the most important const_casts
-boost::shared_ptr<Participant> ServerState::FindParticipant(const boost::shared_ptr<const Participant>& participant) const
+boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::ServerState::FindParticipant(const boost::shared_ptr<const Participant>& participant) const
 {
   assert(GetServer()->GetGroups()->FindMyGroup(participant));
 
@@ -88,7 +88,7 @@ boost::shared_ptr<Participant> ServerState::FindParticipant(const boost::shared_
 }
 //---------------------------------------------------------------------------
 ///Obtain all Participant's their states relevant for the current ServerState
-const std::vector<std::string> ServerState::GetParticipantStates() const
+const std::vector<std::string> ribi::gtst::ServerState::GetParticipantStates() const
 {
   assert(GetServer());
   assert(GetServer()->GetGroups());
@@ -113,24 +113,24 @@ const std::vector<std::string> ServerState::GetParticipantStates() const
 }
 //---------------------------------------------------------------------------
 ///Obtain the State its parent
-Server * ServerState::GetServer() const
+ribi::gtst::Server * ribi::gtst::ServerState::GetServer() const
 {
   assert(m_server);
   return m_server;
 }
 //---------------------------------------------------------------------------
-int ServerState::GetTimeLeft() const
+int ribi::gtst::ServerState::GetTimeLeft() const
 {
   assert(m_stopwatch);
   return m_wait_time - m_stopwatch->elapsed();
 }
 //---------------------------------------------------------------------------
-void ServerState::GoToNextState()
+void ribi::gtst::ServerState::GoToNextState()
 {
   GetServer()->GetStates()->GoToNextState();
 }
 //---------------------------------------------------------------------------
-void ServerState::ResetTimeLeft()
+void ribi::gtst::ServerState::ResetTimeLeft()
 {
   const int state_duration = GetStateDuration();
   assert(state_duration >= 0);
@@ -138,7 +138,7 @@ void ServerState::ResetTimeLeft()
   assert(GetTimeLeft() >= -1); //-1 because of a possible clock tick
 }
 //---------------------------------------------------------------------------
-void ServerState::SetTimeLeft(const int time)
+void ribi::gtst::ServerState::SetTimeLeft(const int time)
 {
   //m_stopwatch.reset(new Stopwatch);
   m_wait_time = m_stopwatch->elapsed() + time;

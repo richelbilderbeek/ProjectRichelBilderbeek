@@ -32,14 +32,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "wtserverpusher.h"
 //---------------------------------------------------------------------------
-ParticipantStateFinished::ParticipantStateFinished(
+ribi::gtst::ParticipantStateFinished::ParticipantStateFinished(
   Participant * const participant,Server * const server)
   : ParticipantState(participant,server)
 {
 
 }
 //---------------------------------------------------------------------------
-const std::string ParticipantStateFinished::ToAdminStr() const
+const std::string ribi::gtst::ParticipantStateFinished::ToAdminStr() const
 {
   assert(GetParticipant());
 

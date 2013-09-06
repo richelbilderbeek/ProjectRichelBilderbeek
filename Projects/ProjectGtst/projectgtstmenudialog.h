@@ -36,7 +36,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
-namespace ProjectGtst {
+namespace ribi {
+namespace gtst {
 //---------------------------------------------------------------------------
 ///\brief
 ///The main menu dialog
@@ -94,6 +95,7 @@ struct MenuDialog : public Wt::WContainerWidget
 
 };
 //---------------------------------------------------------------------------
-}; //~namespace ProjectGtst
-//---------------------------------------------------------------------------
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // MENUDIALOG_H

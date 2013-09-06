@@ -29,6 +29,8 @@ namespace Ui {
   class QtTestShinyButtonMenuDialog;
 }
 
+namespace ribi {
+
 struct QtShinyButtonWidget;
 
 class QtTestShinyButtonMenuDialog : public QDialog
@@ -40,7 +42,7 @@ public:
   ~QtTestShinyButtonMenuDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestShinyButtonMenuDialog *ui;
@@ -56,5 +58,7 @@ private:
 private slots:
 
 };
+
+} //~namespace ribi
 
 #endif // QTTESTSHINYBUTTONMENUDIALOG_H

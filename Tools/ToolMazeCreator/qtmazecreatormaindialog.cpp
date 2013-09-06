@@ -71,18 +71,6 @@ QtMazeCreatorMainDialog::~QtMazeCreatorMainDialog()
   delete ui;
 }
 
-void QtMazeCreatorMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 //Sets the scale of the maze
 void QtMazeCreatorMainDialog::resizeEvent(QResizeEvent*)
 {

@@ -28,6 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+namespace ribi {
+namespace gtst {
+
 ///Payoffs is a Facade to work with a collection of Payoff instances
 struct Payoffs
 {
@@ -57,5 +60,8 @@ struct Payoffs
 
   std::vector<boost::shared_ptr<Payoff> > m_v;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PROJECTGTSTPAYOFFS_H

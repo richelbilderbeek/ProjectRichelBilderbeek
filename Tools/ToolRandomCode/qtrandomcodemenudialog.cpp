@@ -32,36 +32,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 #include "ui_qtrandomcodemenudialog.h"
 
-QtRandomCodeMenuDialog::QtRandomCodeMenuDialog(QWidget *parent) :
+ribi::QtRandomCodeMenuDialog::QtRandomCodeMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRandomCodeMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtRandomCodeMenuDialog::~QtRandomCodeMenuDialog()
+ribi::QtRandomCodeMenuDialog::~QtRandomCodeMenuDialog()
 {
   delete ui;
 }
 
-void QtRandomCodeMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtRandomCodeMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtRandomCodeMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtRandomCodeMenuDialog::on_button_about_clicked()
+void ribi::QtRandomCodeMenuDialog::on_button_about_clicked()
 {
   About a = RandomCodeMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -73,12 +61,12 @@ void QtRandomCodeMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtRandomCodeMenuDialog::on_button_quit_clicked()
+void ribi::QtRandomCodeMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtRandomCodeMenuDialog::on_button_start_clicked()
+void ribi::QtRandomCodeMenuDialog::on_button_start_clicked()
 {
   QtRandomCodeMainDialog d;
   //d.setStyleSheet(this->styleSheet());

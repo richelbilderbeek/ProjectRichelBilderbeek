@@ -28,6 +28,9 @@ namespace Ui {
   class QtTestEncrangerDialog;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 class QtTestEncrangerDialog : public QDialog
 {
   Q_OBJECT
@@ -37,7 +40,7 @@ public:
   ~QtTestEncrangerDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestEncrangerDialog *ui;
@@ -50,5 +53,7 @@ private slots:
   void on_button_deencrypt_clicked();
   void on_button_encrypt_clicked();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTENCRANGERDIALOG_H

@@ -23,6 +23,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtTestLedMenuDialog : public Wt::WContainerWidget
 {
   WtTestLedMenuDialog();
@@ -31,5 +34,7 @@ struct WtTestLedMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewMainDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTLEDMENUDIALOG_H

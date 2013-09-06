@@ -40,7 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsprites.h"
 #include "ui_qtpictocodemaindialog.h"
 
-QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent) :
+ribi::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent) :
   QDialog(parent,Qt::Window),
   ui(new Ui::QtPicToCodeMainDialog)
 {
@@ -54,12 +54,12 @@ QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtPicToCodeMainDialog::~QtPicToCodeMainDialog()
+ribi::QtPicToCodeMainDialog::~QtPicToCodeMainDialog()
 {
   delete ui;
 }
 
-const PicToCodeMainDialog::YxImage QtPicToCodeMainDialog::ImageToImage(const QImage& qt_image)
+const ribi::PicToCodeMainDialog::YxImage ribi::QtPicToCodeMainDialog::ImageToImage(const QImage& qt_image)
 {
   const int width  = qt_image.width();
   const int height = qt_image.height();
@@ -82,7 +82,7 @@ const PicToCodeMainDialog::YxImage QtPicToCodeMainDialog::ImageToImage(const QIm
   return image;
 }
 
-void QtPicToCodeMainDialog::on_button_select_file_clicked()
+void ribi::QtPicToCodeMainDialog::on_button_select_file_clicked()
 {
   QFileDialog d;
   //Select only picture files
@@ -101,7 +101,7 @@ void QtPicToCodeMainDialog::on_button_select_file_clicked()
   ui->label_picture->setPixmap(QPixmap(filename));
 }
 
-void QtPicToCodeMainDialog::on_button_convert_clicked()
+void ribi::QtPicToCodeMainDialog::on_button_convert_clicked()
 {
   const std::vector<std::string> v
     = (ui->radio_nds->isChecked()
@@ -118,7 +118,7 @@ void QtPicToCodeMainDialog::on_button_convert_clicked()
 }
 
 const std::vector<std::string>
-  QtPicToCodeMainDialog::PicToNdsCode(const QImage& image) const
+  ribi::QtPicToCodeMainDialog::PicToNdsCode(const QImage& image) const
 {
   std::vector<std::string> v;
   //Function declaration
@@ -177,7 +177,7 @@ const std::vector<std::string>
 }
 
 const std::vector<std::string>
-  QtPicToCodeMainDialog::PicToQtCode(const QImage& qt_image) const
+  ribi::QtPicToCodeMainDialog::PicToQtCode(const QImage& qt_image) const
 {
   return PicToCodeMainDialog::PicToQtCode(
     ImageToImage(qt_image));

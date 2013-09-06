@@ -31,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testshapemenudialog.h"
 #include "ui_qttestshapemenudialog.h"
 
-QtTestShapeMenuDialog::QtTestShapeMenuDialog(QWidget *parent) :
+ribi::QtTestShapeMenuDialog::QtTestShapeMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestShapeMenuDialog),
   m_dialog(new TestShapeMenuDialog)
@@ -42,12 +42,12 @@ QtTestShapeMenuDialog::QtTestShapeMenuDialog(QWidget *parent) :
   #endif
 }
 
-QtTestShapeMenuDialog::~QtTestShapeMenuDialog()
+ribi::QtTestShapeMenuDialog::~QtTestShapeMenuDialog()
 {
   delete ui;
 }
 
-void QtTestShapeMenuDialog::on_button_start_clicked()
+void ribi::QtTestShapeMenuDialog::on_button_start_clicked()
 {
   hide();
   QtTestShapeMainDialog d;
@@ -55,7 +55,7 @@ void QtTestShapeMenuDialog::on_button_start_clicked()
   show();
 }
 
-void QtTestShapeMenuDialog::on_button_about_clicked()
+void ribi::QtTestShapeMenuDialog::on_button_about_clicked()
 {
   hide();
   About a = m_dialog->GetAbout();
@@ -65,12 +65,12 @@ void QtTestShapeMenuDialog::on_button_about_clicked()
   show();
 }
 
-void QtTestShapeMenuDialog::on_button_quit_clicked()
+void ribi::QtTestShapeMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtTestShapeMenuDialog::Test()
+void ribi::QtTestShapeMenuDialog::Test()
 {
   {
     static bool is_tested = false;

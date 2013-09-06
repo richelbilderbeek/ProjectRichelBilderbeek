@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "administratordialog.h"
 #include "administratordialogstate.h"
 //---------------------------------------------------------------------------
-AdministratorDialogState::AdministratorDialogState(
+ribi::gtst::AdministratorDialogState::AdministratorDialogState(
   Server * const server,
   AdministratorDialog * const dialog)
   : m_dialog(dialog),
@@ -47,7 +47,7 @@ AdministratorDialogState::AdministratorDialogState(
 //---------------------------------------------------------------------------
 ///FileToVector reads a file and converts it to a std::vector<std::string>
 ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> AdministratorDialogState::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::gtst::AdministratorDialogState::FileToVector(const std::string& filename)
 {
   assert(boost::filesystem::exists(filename));
   std::vector<std::string> v;
@@ -62,7 +62,7 @@ const std::vector<std::string> AdministratorDialogState::FileToVector(const std:
 }
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-const std::vector<std::string> AdministratorDialogState::GetFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetFilesInFolder(const std::string& folder)
 {
   std::vector<std::string> v;
 
@@ -88,7 +88,7 @@ const std::vector<std::string> AdministratorDialogState::GetFilesInFolder(const 
 }
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppGetTextFilesInFolder.htm
-const std::vector<std::string> AdministratorDialogState::GetTextFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetTextFilesInFolder(const std::string& folder)
 {
   //Get all filenames
   const std::vector<std::string> v = GetFilesInFolder(folder);
@@ -110,7 +110,7 @@ const std::vector<std::string> AdministratorDialogState::GetTextFilesInFolder(co
   return w;
 }
 //---------------------------------------------------------------------------
-bool AdministratorDialogState::IsLoggedIn() const
+bool ribi::gtst::AdministratorDialogState::IsLoggedIn() const
 {
   assert(GetDialog() && "Assume the parent can be read");
   return GetDialog()->CanGetAdministrator();

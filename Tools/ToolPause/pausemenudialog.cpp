@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/timer.hpp>
 #pragma GCC diagnostic pop
 
-void PauseMenuDialog::Execute(const int argc, const char * const argv[])
+void ribi::PauseMenuDialog::Execute(const int argc, const char * const argv[])
 {
   assert(argc >= 1);
   if (argc == 1)
@@ -51,7 +51,7 @@ void PauseMenuDialog::Execute(const int argc, const char * const argv[])
   }
 }
 
-const About PauseMenuDialog::GetAbout()
+const ribi::About ribi::PauseMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -66,12 +66,12 @@ const About PauseMenuDialog::GetAbout()
   return a;
 }
 
-const std::string PauseMenuDialog::GetVersion()
+const std::string ribi::PauseMenuDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> PauseMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::PauseMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-xx-xx: Version 1.0: initial version");
@@ -79,7 +79,7 @@ const std::vector<std::string> PauseMenuDialog::GetVersionHistory()
   return v;
 }
 
-void PauseMenuDialog::Wait(const double n_secs)
+void ribi::PauseMenuDialog::Wait(const double n_secs)
 {
   boost::timer t;
   while (t.elapsed() < n_secs) {}

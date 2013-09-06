@@ -31,7 +31,7 @@
 #include "qtpvdbconceptmapratewidget.h"
 #include "ui_qtpvdbprintratingdialog.h"
 
-QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
+ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   const boost::shared_ptr<pvdb::File>& file,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
@@ -71,12 +71,12 @@ QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   }
 }
 
-QtPvdbPrintRatingDialog::~QtPvdbPrintRatingDialog()
+ribi::pvdb::QtPvdbPrintRatingDialog::~QtPvdbPrintRatingDialog()
 {
   delete ui;
 }
 
-const std::vector<QWidget *> QtPvdbPrintRatingDialog::CollectWidgets() const
+const std::vector<QWidget *> ribi::pvdb::QtPvdbPrintRatingDialog::CollectWidgets() const
 {
   std::vector<QWidget *> v { ui->frame_header, ui->frame_concept_map, ui->label_concept_map_as_text };
   {
@@ -93,32 +93,32 @@ const std::vector<QWidget *> QtPvdbPrintRatingDialog::CollectWidgets() const
   return v;
 }
 
-QTableWidget * QtPvdbPrintRatingDialog::GetTableConcepts()
+QTableWidget * ribi::pvdb::QtPvdbPrintRatingDialog::GetTableConcepts()
 {
   return ui->table_concepts;
 }
 
-QTableWidget * QtPvdbPrintRatingDialog::GetTableExamples()
+QTableWidget * ribi::pvdb::QtPvdbPrintRatingDialog::GetTableExamples()
 {
   return ui->table_examples;
 }
 
-QTableWidget * QtPvdbPrintRatingDialog::GetTableValues()
+QTableWidget * ribi::pvdb::QtPvdbPrintRatingDialog::GetTableValues()
 {
   return ui->table_values;
 }
 
-void QtPvdbPrintRatingDialog::keyPressEvent(QKeyEvent * event)
+void ribi::pvdb::QtPvdbPrintRatingDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtPvdbPrintRatingDialog::on_button_print_clicked()
+void ribi::pvdb::QtPvdbPrintRatingDialog::on_button_print_clicked()
 {
   Print();
 }
 
-void QtPvdbPrintRatingDialog::Print()
+void ribi::pvdb::QtPvdbPrintRatingDialog::Print()
 {
   //Start save dialog
   const boost::shared_ptr<QFileDialog> print_dialog(
@@ -165,14 +165,14 @@ void QtPvdbPrintRatingDialog::Print()
 
 }
 
-void QtPvdbPrintRatingDialog::showEvent(QShowEvent *)
+void ribi::pvdb::QtPvdbPrintRatingDialog::showEvent(QShowEvent *)
 {
   //Concept map
   {
-    //const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
+    //const boost::shared_ptr<ribi::pvdb::ConceptMap> copy_concept_map
     //  = m_file->GetConceptMap();
-    //const boost::shared_ptr<pvdb::ConceptMap> copy_concept_map
-    //  = pvdb::ConceptMapFactory::DeepCopy(m_file->GetConceptMap()); //2013-05-31 REJECT DEEP COPIES
+    //const boost::shared_ptr<ribi::pvdb::ConceptMap> copy_concept_map
+    //  = ribi::pvdb::ConceptMapFactory::DeepCopy(m_file->GetConceptMap()); //2013-05-31 REJECT DEEP COPIES
     //m_widget->ReadFromConceptMap(copy_concept_map);
     m_widget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_widget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

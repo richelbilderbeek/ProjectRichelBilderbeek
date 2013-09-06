@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testshinybuttonmenudialog.h"
 #include "ui_qttestshinybuttonmenudialog.h"
 
-QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) :
+ribi::QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestShinyButtonMenuDialog),
     m_button_start(new QtShinyButtonWidget(0.25,0.25,"Start")),
@@ -41,31 +41,19 @@ QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) :
   ui->layout->addWidget(m_button_quit.get());
 
   m_button_start->GetWidget()->m_signal_clicked.connect(boost::bind(
-    &QtTestShinyButtonMenuDialog::OnButtonStartClicked,this));
+    &ribi::QtTestShinyButtonMenuDialog::OnButtonStartClicked,this));
   m_button_about->GetWidget()->m_signal_clicked.connect(boost::bind(
-    &QtTestShinyButtonMenuDialog::OnButtonAboutClicked,this));
+    &ribi::QtTestShinyButtonMenuDialog::OnButtonAboutClicked,this));
   m_button_quit->GetWidget()->m_signal_clicked.connect(boost::bind(
-    &QtTestShinyButtonMenuDialog::OnButtonQuitClicked,this));
+    &ribi::QtTestShinyButtonMenuDialog::OnButtonQuitClicked,this));
 }
 
-QtTestShinyButtonMenuDialog::~QtTestShinyButtonMenuDialog()
+ribi::QtTestShinyButtonMenuDialog::~QtTestShinyButtonMenuDialog()
 {
   delete ui;
 }
 
-void QtTestShinyButtonMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestShinyButtonMenuDialog::OnButtonStartClicked()
+void ribi::QtTestShinyButtonMenuDialog::OnButtonStartClicked()
 {
   this->hide();
   QtTestShinyButtonMainDialog d;
@@ -73,7 +61,7 @@ void QtTestShinyButtonMenuDialog::OnButtonStartClicked()
   this->show();
 }
 
-void QtTestShinyButtonMenuDialog::OnButtonAboutClicked()
+void ribi::QtTestShinyButtonMenuDialog::OnButtonAboutClicked()
 {
   this->hide();
   About a = TestShinyButtonMenuDialog::GetAbout();
@@ -83,7 +71,7 @@ void QtTestShinyButtonMenuDialog::OnButtonAboutClicked()
   this->show();
 }
 
-void QtTestShinyButtonMenuDialog::OnButtonQuitClicked()
+void ribi::QtTestShinyButtonMenuDialog::OnButtonQuitClicked()
 {
   this->close();
 }

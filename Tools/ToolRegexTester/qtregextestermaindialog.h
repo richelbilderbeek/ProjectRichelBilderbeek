@@ -25,11 +25,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qthideandshowdialog.h"
 
-struct RegexTesterMainDialog;
 
 namespace Ui {
   class QtRegexTesterMainDialog;
 }
+
+namespace ribi {
+
+struct RegexTesterMainDialog;
 
 class QtRegexTesterMainDialog : public QtHideAndShowDialog
 {
@@ -42,7 +45,7 @@ public:
   ~QtRegexTesterMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+
 
 private:
   Ui::QtRegexTesterMainDialog *ui;
@@ -52,5 +55,7 @@ private:
 private slots:
   void onAnyChange();
 };
+
+} //~namespace ribi
 
 #endif //QTREGEXTESTERMAINDIALOG_H

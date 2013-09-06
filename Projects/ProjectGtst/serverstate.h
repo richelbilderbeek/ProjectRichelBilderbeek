@@ -31,6 +31,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "forward_declarations.h"
 #include "state.h"
 //---------------------------------------------------------------------------
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///ServerState embodies the state of the server.
 ///
@@ -129,5 +132,8 @@ struct ServerState : public boost::noncopyable, State
   ///For example: 123.456789 to 123.46
   static const std::string CurrencyToStr(const double value);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ServerSTATE_H

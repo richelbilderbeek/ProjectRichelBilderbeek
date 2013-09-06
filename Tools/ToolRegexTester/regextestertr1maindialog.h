@@ -21,10 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef REGEXTESTERTR1MAINDIALOG_H
 #define REGEXTESTERTR1MAINDIALOG_H
 
-namespace ribi {
 
 //std::tr1::regex not implemented in GCC
 #ifndef __GNUC__
+namespace ribi {
 
 #include <string>
 #include <vector>
@@ -68,8 +68,8 @@ struct RegexTesterTr1MainDialog : public RegexTesterMainDialog
     const std::string& s,
     const std::tr1::regex& r);
 };
-#endif // __GNUC__
-
 } //~namespace ribi
+
+#endif // __GNUC__
 
 #endif // REGEXTESTERTR1MAINDIALOG_H

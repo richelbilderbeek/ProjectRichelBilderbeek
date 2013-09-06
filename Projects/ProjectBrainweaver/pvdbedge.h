@@ -1,20 +1,12 @@
 #ifndef PVDBEDGE_H
 #define PVDBEDGE_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbconcept.h"
-#endif
+namespace ribi {
 
 namespace pvdb {
 
@@ -24,8 +16,8 @@ struct EdgeFactory;
 ///An Edge goes from one Node to another, which must a different Node
 struct Edge : public boost::noncopyable
 {
-  const boost::shared_ptr<const pvdb::Concept>  GetConcept() const { return m_concept; }
-  const boost::shared_ptr<      pvdb::Concept>  GetConcept()       { return m_concept; }
+  const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const { return m_concept; }
+  const boost::shared_ptr<      ribi::pvdb::Concept>  GetConcept()       { return m_concept; }
 
   ///Get the Node this edge originates from
   const boost::shared_ptr<const pvdb::Node> GetFrom() const { return m_from; }
@@ -51,10 +43,10 @@ struct Edge : public boost::noncopyable
   bool HasTailArrow() const { return m_tail_arrow; }
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<pvdb::Concept> concept) { m_concept = concept; }
+  void SetConcept(const boost::shared_ptr<ribi::pvdb::Concept> concept) { m_concept = concept; }
 
   ///Set the Node index this edge originates from
-  void SetFrom(const boost::shared_ptr<pvdb::Node> from);
+  void SetFrom(const boost::shared_ptr<ribi::pvdb::Node> from);
 
   ///Set if the head has an arrow
   void SetHeadArrow(const bool has_head_arrow);
@@ -66,7 +58,7 @@ struct Edge : public boost::noncopyable
   void SetTailArrow(const bool has_tail_arrow);
 
   ///Set the Node index this edge goes to
-  void SetTo(const boost::shared_ptr<pvdb::Node> to);
+  void SetTo(const boost::shared_ptr<ribi::pvdb::Node> to);
 
   ///Set the x coordinat of the concept at the center of the node
   void SetX(const double x);
@@ -88,11 +80,11 @@ struct Edge : public boost::noncopyable
   private:
 
   ///The Concept on the Edge
-  boost::shared_ptr<pvdb::Concept> m_concept;
+  boost::shared_ptr<ribi::pvdb::Concept> m_concept;
 
   ///The Node index this edge originates from
   ///Cannot be an index, see [1] below
-  boost::shared_ptr<pvdb::Node> m_from;
+  boost::shared_ptr<ribi::pvdb::Node> m_from;
 
   ///Is there an arrowhead at the 'to' node?
   bool m_head_arrow;
@@ -102,7 +94,7 @@ struct Edge : public boost::noncopyable
 
   ///The Node index this edge goes to
   ///Cannot be an index, see [1] below
-  boost::shared_ptr<pvdb::Node> m_to;
+  boost::shared_ptr<ribi::pvdb::Node> m_to;
 
   ///The x-coordinat
   double m_x;
@@ -126,19 +118,17 @@ struct Edge : public boost::noncopyable
   ///Block constructor, except for EdgeFactory
   friend EdgeFactory;
   Edge(
-    const boost::shared_ptr<pvdb::Concept> & concept,
+    const boost::shared_ptr<ribi::pvdb::Concept> & concept,
     const double concept_x,
     const double concept_y,
-    const boost::shared_ptr<pvdb::Node> from,
+    const boost::shared_ptr<ribi::pvdb::Node> from,
     const bool tail_arrow,
-    const boost::shared_ptr<pvdb::Node> to,
+    const boost::shared_ptr<ribi::pvdb::Node> to,
     const bool head_arrow);
 
 };
 
 bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs);
-
-} //~namespace pvdb
 
 ///Notes:
 ///  [1] Node::m_from and Node::m_to cannot be indices, because of the desired copying behavior
@@ -160,8 +150,8 @@ bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs);
 ///
 ///      Indices are only used when saving and loading
 
-#ifndef PVDB_USE_FORWARD_DECLARATIONS_248738
-#include "pvdbedgefactory.h"
-#endif
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // PVDBEDGE_H

@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ledwidget.h"
 #include "wtledwidget.h"
 //---------------------------------------------------------------------------
-WtLedWidget::WtLedWidget(
+ribi::WtLedWidget::WtLedWidget(
   const double intensity,
   const unsigned char red,
   const unsigned char green,
@@ -40,17 +40,17 @@ WtLedWidget::WtLedWidget(
   assert(m_widget);
   m_widget->GetLed()->m_signal_color_changed.connect(
     boost::bind(
-      &WtLedWidget::DoRepaint,
+      &ribi::WtLedWidget::DoRepaint,
       this));
 
   m_widget->GetLed()->m_signal_intensity_changed.connect(
     boost::bind(
-      &WtLedWidget::DoRepaint,
+      &ribi::WtLedWidget::DoRepaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &WtLedWidget::OnResize,
+      &ribi::WtLedWidget::OnResize,
       this));
 
   m_widget->SetGeometry(Rect(0,0,100,100));
@@ -58,12 +58,12 @@ WtLedWidget::WtLedWidget(
   m_widget->GetLed()->SetIntensity(0.98);
 }
 //---------------------------------------------------------------------------
-void WtLedWidget::DoRepaint()
+void ribi::WtLedWidget::DoRepaint()
 {
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtLedWidget::DrawLed(
+void ribi::WtLedWidget::DrawLed(
   Wt::WPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -161,7 +161,7 @@ void WtLedWidget::DrawLed(
 
 }
 //---------------------------------------------------------------------------
-void WtLedWidget::DrawLed(
+void ribi::WtLedWidget::DrawLed(
   Wt::WPainter& painter,
   const LedWidget * const widget)
 {
@@ -174,12 +174,12 @@ void WtLedWidget::DrawLed(
     widget->GetLed());
 }
 //---------------------------------------------------------------------------
-const std::string WtLedWidget::GetVersion()
+const std::string ribi::WtLedWidget::GetVersion()
 {
   return "1.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtLedWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtLedWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -187,18 +187,18 @@ const std::vector<std::string> WtLedWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtLedWidget::OnResize()
+void ribi::WtLedWidget::OnResize()
 {
   resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
 //---------------------------------------------------------------------------
-void WtLedWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtLedWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawLed(painter,m_widget.get());
 }
 //---------------------------------------------------------------------------
-void WtLedWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
+void ribi::WtLedWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }

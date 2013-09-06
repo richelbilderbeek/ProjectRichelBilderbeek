@@ -31,19 +31,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosgame.h"
 #include "ui_qttestpylosrandomplaydialog.h"
 //---------------------------------------------------------------------------
-QtTestPylosRandomPlayDialog::QtTestPylosRandomPlayDialog(QWidget *parent) :
+ribi::QtTestPylosRandomPlayDialog::QtTestPylosRandomPlayDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestPylosRandomPlayDialog)
 {
   ui->setupUi(this);
 }
 //---------------------------------------------------------------------------
-QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog()
+ribi::QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog()
 {
   delete ui;
 }
 //---------------------------------------------------------------------------
-void QtTestPylosRandomPlayDialog::on_button_start_clicked()
+void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
 {
   const boost::shared_ptr<Pylos::Board> board =  (ui->radio_advanced->isChecked()
     ? Pylos::Board::CreateAdvancedBoard()
@@ -70,7 +70,7 @@ void QtTestPylosRandomPlayDialog::on_button_start_clicked()
   ui->bar_progress->setValue(max);
 }
 //---------------------------------------------------------------------------
-void QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QString &arg1)
+void ribi::QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QString &arg1)
 {
   try
   {

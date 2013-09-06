@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wttestselectfiledialogmaindialog.h"
 #include "wttestselectfiledialogmenudialog.h"
 //---------------------------------------------------------------------------
-WtTestSelectFileDialogMenuDialog::WtTestSelectFileDialogMenuDialog()
+ribi::WtTestSelectFileDialogMenuDialog::WtTestSelectFileDialogMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -75,7 +75,7 @@ WtTestSelectFileDialogMenuDialog::WtTestSelectFileDialogMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestSelectFileDialogMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewAboutDialog() const
 {
    About a(
     "Richel Bilderbeek",
@@ -96,7 +96,7 @@ Wt::WWidget * WtTestSelectFileDialogMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestSelectFileDialogMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewMainDialog() const
 {
   WtTestSelectFileDialogMainDialog * const d
     = new WtTestSelectFileDialogMainDialog;
@@ -104,7 +104,7 @@ Wt::WWidget * WtTestSelectFileDialogMenuDialog::CreateNewMainDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestSelectFileDialogMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -121,12 +121,12 @@ Wt::WWidget * WtTestSelectFileDialogMenuDialog::CreateNewWelcomeDialog() const
   return dialog;
 }
 //---------------------------------------------------------------------------
-const std::string WtTestSelectFileDialogMenuDialog::GetVersion()
+const std::string ribi::WtTestSelectFileDialogMenuDialog::GetVersion()
 {
   return "1.1";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtTestSelectFileDialogMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::WtTestSelectFileDialogMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-07-01: Version 1.0: initial version");

@@ -27,6 +27,8 @@ namespace Ui {
 class QtTestQtCreatorProFileMenuDialog;
 }
 
+namespace ribi {
+
 class QtTestQtCreatorProFileMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -43,5 +45,7 @@ private slots:
 private:
   Ui::QtTestQtCreatorProFileMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTCREATORPROFILEMENUDIALOG_H

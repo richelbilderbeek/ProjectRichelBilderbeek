@@ -15,7 +15,7 @@
 #include "qtpvdbnodeitem.h"
 #include "trace.h"
 
-QtPvdbItemHighlighter::QtPvdbItemHighlighter(QObject *parent)
+ribi::pvdb::QtPvdbItemHighlighter::QtPvdbItemHighlighter(QObject *parent)
   : QObject(parent),
     m_cnt(0),
     m_item(nullptr),
@@ -27,7 +27,7 @@ QtPvdbItemHighlighter::QtPvdbItemHighlighter(QObject *parent)
     this,SLOT(OnTimer()));
 }
 
-void QtPvdbItemHighlighter::SetItem(QtPvdbNodeItem* const item)
+void ribi::pvdb::QtPvdbItemHighlighter::SetItem(QtPvdbNodeItem* const item)
 {
   if (m_item == item) return;
 
@@ -45,7 +45,7 @@ void QtPvdbItemHighlighter::SetItem(QtPvdbNodeItem* const item)
 }
 
 
-void QtPvdbItemHighlighter::OnTimer()
+void ribi::pvdb::QtPvdbItemHighlighter::OnTimer()
 {
   if (m_item)
   {

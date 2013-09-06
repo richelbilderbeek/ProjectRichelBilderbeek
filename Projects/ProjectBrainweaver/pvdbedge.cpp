@@ -20,17 +20,13 @@
 #include "pvdbhelper.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-pvdb::Edge::Edge(
-  const boost::shared_ptr<pvdb::Concept> & concept,
+ribi::pvdb::Edge::Edge(
+  const boost::shared_ptr<ribi::pvdb::Concept> & concept,
   const double concept_x,
   const double concept_y,
-  const boost::shared_ptr<pvdb::Node> from,
+  const boost::shared_ptr<ribi::pvdb::Node> from,
   const bool tail_arrow,
-  const boost::shared_ptr<pvdb::Node> to,
+  const boost::shared_ptr<ribi::pvdb::Node> to,
   const bool head_arrow)
   : m_concept(concept),
     m_from(from),
@@ -52,27 +48,27 @@ pvdb::Edge::Edge(
 
   //Subscribe to all Concept signals to re-emit m_signal_edge_changed
   this->m_concept->m_signal_name_changed.connect(
-    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+    boost::bind(&ribi::pvdb::Edge::EmitSignalEdgeChanged,this));
 
   this->m_concept->m_signal_examples_changed.connect(
-    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+    boost::bind(&ribi::pvdb::Edge::EmitSignalEdgeChanged,this));
 
   this->m_concept->m_signal_rating_complexity_changed.connect(
-    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+    boost::bind(&ribi::pvdb::Edge::EmitSignalEdgeChanged,this));
 
   this->m_concept->m_signal_rating_concreteness_changed.connect(
-    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+    boost::bind(&ribi::pvdb::Edge::EmitSignalEdgeChanged,this));
 
   this->m_concept->m_signal_rating_specificity_changed.connect(
-    boost::bind(&pvdb::Edge::EmitSignalEdgeChanged,this));
+    boost::bind(&ribi::pvdb::Edge::EmitSignalEdgeChanged,this));
 }
 
-void pvdb::Edge::EmitSignalEdgeChanged()
+void ribi::pvdb::Edge::EmitSignalEdgeChanged()
 {
   m_signal_edge_changed(this);
 }
 
-void pvdb::Edge::SetFrom(const boost::shared_ptr<pvdb::Node> from)
+void ribi::pvdb::Edge::SetFrom(const boost::shared_ptr<ribi::pvdb::Node> from)
 {
   assert(from);
   if (m_from != from)
@@ -82,7 +78,7 @@ void pvdb::Edge::SetFrom(const boost::shared_ptr<pvdb::Node> from)
   }
 }
 
-void pvdb::Edge::SetHeadArrow(const bool has_head_arrow)
+void ribi::pvdb::Edge::SetHeadArrow(const bool has_head_arrow)
 {
   if (m_head_arrow != has_head_arrow)
   {
@@ -91,7 +87,7 @@ void pvdb::Edge::SetHeadArrow(const bool has_head_arrow)
   }
 }
 
-void pvdb::Edge::SetTailArrow(const bool has_tail_arrow)
+void ribi::pvdb::Edge::SetTailArrow(const bool has_tail_arrow)
 {
   if (m_tail_arrow != has_tail_arrow)
   {
@@ -100,7 +96,7 @@ void pvdb::Edge::SetTailArrow(const bool has_tail_arrow)
   }
 }
 
-void pvdb::Edge::SetTo(const boost::shared_ptr<pvdb::Node> to)
+void ribi::pvdb::Edge::SetTo(const boost::shared_ptr<ribi::pvdb::Node> to)
 {
   assert(to);
   if (m_to != to)
@@ -111,7 +107,7 @@ void pvdb::Edge::SetTo(const boost::shared_ptr<pvdb::Node> to)
   }
 }
 
-void pvdb::Edge::SetX(const double x)
+void ribi::pvdb::Edge::SetX(const double x)
 {
   if (m_x != x)
   {
@@ -120,7 +116,7 @@ void pvdb::Edge::SetX(const double x)
   }
 }
 
-void pvdb::Edge::SetY(const double y)
+void ribi::pvdb::Edge::SetY(const double y)
 {
   if (m_y != y)
   {
@@ -130,7 +126,7 @@ void pvdb::Edge::SetY(const double y)
 }
 
 #ifndef NDEBUG
-void pvdb::Edge::Test()
+void ribi::pvdb::Edge::Test()
 {
   {
     static bool is_tested = false;
@@ -143,7 +139,7 @@ void pvdb::Edge::Test()
     {
   #endif
   //Test member variables
-  TRACE("Started pvdb::Edge::Test");
+  TRACE("Started ribi::pvdb::Edge::Test");
   {
     const auto nodes = Node::GetTests();
     assert(nodes.size() >= 2);
@@ -161,7 +157,7 @@ void pvdb::Edge::Test()
       assert(IsEqual(*c->GetTo(),*node_to));
       assert(IsEqual(*c->GetTo(),*nodes[1]));
       const std::string s = ToXml(c,AddConst(nodes));
-      const boost::shared_ptr<pvdb::Edge> d = pvdb::EdgeFactory::FromXml(s,nodes);
+      const boost::shared_ptr<ribi::pvdb::Edge> d = pvdb::EdgeFactory::FromXml(s,nodes);
       assert(d);
       if (!IsEqual(*c,*d))
       {
@@ -181,7 +177,7 @@ void pvdb::Edge::Test()
 }
 #endif
 
-const std::string pvdb::Edge::ToXml(
+const std::string ribi::pvdb::Edge::ToXml(
   const boost::shared_ptr<const pvdb::Edge>& edge,
   const std::vector<boost::shared_ptr<const pvdb::Node> >& nodes)
 {
@@ -217,11 +213,7 @@ const std::string pvdb::Edge::ToXml(
   return r;
 }
 
-#ifndef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs)
+bool ribi::pvdb::IsEqual(const ribi::pvdb::Edge& lhs, const ribi::pvdb::Edge& rhs)
 {
   assert(lhs.GetConcept()); assert(rhs.GetConcept());
   #ifndef NDEBUG
@@ -242,5 +234,3 @@ bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs)
     && lhs.HasHeadArrow() == rhs.HasHeadArrow()
     && lhs.HasTailArrow() == rhs.HasTailArrow();
 }
-
-} //~namespace pvdb

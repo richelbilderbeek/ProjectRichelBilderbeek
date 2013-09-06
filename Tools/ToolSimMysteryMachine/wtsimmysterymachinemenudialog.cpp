@@ -45,7 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtSimMysteryMachineMenuDialog::WtSimMysteryMachineMenuDialog()
+ribi::WtSimMysteryMachineMenuDialog::WtSimMysteryMachineMenuDialog()
 {
   {
     std::vector<std::string> image_names;
@@ -104,7 +104,7 @@ WtSimMysteryMachineMenuDialog::WtSimMysteryMachineMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtSimMysteryMachineMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewAboutDialog() const
 {
   About a = SimMysteryMachineMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -117,14 +117,14 @@ Wt::WWidget * WtSimMysteryMachineMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtSimMysteryMachineMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewMainDialog() const
 {
   WtSimMysteryMachineMainDialog * const d = new WtSimMysteryMachineMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtSimMysteryMachineMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

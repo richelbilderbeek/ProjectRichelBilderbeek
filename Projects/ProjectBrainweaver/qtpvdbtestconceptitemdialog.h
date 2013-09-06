@@ -1,29 +1,20 @@
 #ifndef QTPVDBTESTCONCEPTITEMDIALOG_H
 #define QTPVDBTESTCONCEPTITEMDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbnode.h"
-#include "qtpvdbnodeitem.h"
-#include "qtpvdbdisplayconceptitem.h"
-#include "qtpvdbeditconceptitem.h"
-#include "qtpvdbrateconceptitem.h"
-#endif
 
 namespace Ui { class QtPvdbTestConceptItemDialog; }
 
+namespace ribi {
+
+namespace pvdb {
+
 ///Tests all QtPvdbConceptItem items, especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtPvdbTestConceptItemDialog : public QtHideAndShowDialog
+class QtPvdbTestConceptItemDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -45,18 +36,22 @@ private slots:
 
 private:
   Ui::QtPvdbTestConceptItemDialog *ui;
-  const boost::shared_ptr<pvdb::Concept> m_concept;
+  const boost::shared_ptr<ribi::pvdb::Concept> m_concept;
   QtPvdbDisplayConceptItem* m_display_concept;
   QtPvdbEditConceptItem* m_edit_concept;
   QtPvdbRateConceptItem* m_rate_concept;
 
   ///Get the Concept via the route chosen by box_edit
-  const boost::shared_ptr<pvdb::Concept> GetChosenConcept();
+  const boost::shared_ptr<ribi::pvdb::Concept> GetChosenConcept();
 
   #ifndef NDEBUG
   ///Test this class
   static void Test();
   #endif
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBTESTCONCEPTITEMDIALOG_H

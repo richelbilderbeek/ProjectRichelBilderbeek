@@ -29,23 +29,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wttimedserverpusher.h"
 //---------------------------------------------------------------------------
-boost::scoped_ptr<WtTimedServerPusher> WtTimedServerPusher::m_instance;
+boost::scoped_ptr<ribi::WtTimedServerPusher> ribi::WtTimedServerPusher::m_instance;
 //---------------------------------------------------------------------------
-WtTimedServerPusher::WtTimedServerPusher()
+ribi::WtTimedServerPusher::WtTimedServerPusher()
   : m_running(true),
-    m_thread(boost::bind(&WtTimedServerPusher::Run, this)),
+    m_thread(boost::bind(&ribi::WtTimedServerPusher::Run, this)),
     m_time(1000)
 {
 
 }
 //---------------------------------------------------------------------------
-WtTimedServerPusher::~WtTimedServerPusher()
+ribi::WtTimedServerPusher::~WtTimedServerPusher()
 {
   m_running = false;
   m_thread.join();
 }
 //---------------------------------------------------------------------------
- void WtTimedServerPusher::Connect(
+ void ribi::WtTimedServerPusher::Connect(
    WtTimedServerPusherClient * const client,
    const boost::function<void()>& function)
 {
@@ -58,7 +58,7 @@ WtTimedServerPusher::~WtTimedServerPusher()
       function));
 }
 //---------------------------------------------------------------------------
-void WtTimedServerPusher::Disconnect(const WtTimedServerPusherClient* const client)
+void ribi::WtTimedServerPusher::Disconnect(const WtTimedServerPusherClient* const client)
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   m_connections.erase(
@@ -66,25 +66,25 @@ void WtTimedServerPusher::Disconnect(const WtTimedServerPusherClient* const clie
       [client](const Connection& c) { return c.m_client == client; } ));
 }
 //---------------------------------------------------------------------------
-WtTimedServerPusher * WtTimedServerPusher::GetInstance()
+ribi::WtTimedServerPusher * ribi::WtTimedServerPusher::GetInstance()
 {
   if (!m_instance) m_instance.reset(new WtTimedServerPusher);
   return m_instance.get();
 }
 //---------------------------------------------------------------------------
-const std::string WtTimedServerPusher::GetVersion()
+const std::string ribi::WtTimedServerPusher::GetVersion()
 {
   return "1.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtTimedServerPusher::GetVersionHistory()
+const std::vector<std::string> ribi::WtTimedServerPusher::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-08-05: version 1.0: initial version");
   return v;
 }
 //---------------------------------------------------------------------------
-void WtTimedServerPusher::Run()
+void ribi::WtTimedServerPusher::Run()
 {
   while (m_running)
   {
@@ -97,7 +97,7 @@ void WtTimedServerPusher::Run()
   }
 }
 //---------------------------------------------------------------------------
-void WtTimedServerPusher::SetTime(const int time)
+void ribi::WtTimedServerPusher::SetTime(const int time)
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   if (m_running)
@@ -126,7 +126,7 @@ void WtTimedServerPusher::SetTime(const int time)
       //Start stopped WtTimedServerPusher
       m_running = true;
       m_time = time;
-      m_thread = std::thread(boost::bind(&WtTimedServerPusher::Run, this));
+      m_thread = std::thread(boost::bind(&ribi::WtTimedServerPusher::Run, this));
     }
   }
 }

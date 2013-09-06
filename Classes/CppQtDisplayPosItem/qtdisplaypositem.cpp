@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtDisplayPosItem::QtDisplayPosItem(QGraphicsItem *parent)
+ribi::QtDisplayPosItem::QtDisplayPosItem(QGraphicsItem *parent)
  : QGraphicsSimpleTextItem(parent)
 {
   this->setFlags(
@@ -41,12 +41,12 @@ QtDisplayPosItem::QtDisplayPosItem(QGraphicsItem *parent)
   this->update();
 }
 
-const std::string QtDisplayPosItem::GetVersion()
+const std::string ribi::QtDisplayPosItem::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> QtDisplayPosItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtDisplayPosItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-19: version 1.0: initial version");
@@ -57,14 +57,14 @@ const std::vector<std::string> QtDisplayPosItem::GetVersionHistory()
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void QtDisplayPosItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void ribi::QtDisplayPosItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
   m_signal_request_scene_update();
   QGraphicsSimpleTextItem::mouseMoveEvent(event);
 }
 #pragma GCC diagnostic pop
 
-void QtDisplayPosItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ribi::QtDisplayPosItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
   std::stringstream s;
   s << "(" << static_cast<int>(this->pos().x()) << "," << static_cast<int>(this->pos().y()) << ")";

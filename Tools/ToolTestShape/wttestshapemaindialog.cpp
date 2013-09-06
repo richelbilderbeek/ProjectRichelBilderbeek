@@ -36,14 +36,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtshapewidget.h"
 #include "wttestshapemaindialog.h"
 //---------------------------------------------------------------------------
-WtTestShapeMainDialog::WtTestShapeMainDialog()
+ribi::WtTestShapeMainDialog::WtTestShapeMainDialog()
   : m_dialog(new TestShapeMainDialog),
     m_label_score(0)
 {
   Show();
 }
 //---------------------------------------------------------------------------
-void WtTestShapeMainDialog::Show()
+void ribi::WtTestShapeMainDialog::Show()
 {
   clear();
   setContentAlignment(Wt::AlignCenter);

@@ -63,11 +63,13 @@ const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
 }
 
 bool ribi::RegexTesterQtMainDialog::GetRegexMatchLine(
-  const std::string& line, const std::string& regex_str) const
+  const std::string& /* line */,
+  const std::string& /* regex_str */) const
 {
-  if (!GetRegexValid(regex_str)) return false;
+  assert(!"Qt does not have a regex match algorithm");
+  //if (!GetRegexValid(regex_str)) return false;
 
-  return "Qt does not have a regex match algorithm";
+  return false;
   //const QRegExp(regex_str);
   //return boost::regex_match(line,r);
 }
@@ -82,7 +84,7 @@ const std::string ribi::RegexTesterQtMainDialog::GetRegexReplace(
 
 
 bool ribi::RegexTesterQtMainDialog::GetRegexValid(
-  const std::string& regex_str) const
+  const std::string& /* regex_str */) const
 {
   assert(!"TODO");
   //try { const boost::regex regex_temp(regex_str); }

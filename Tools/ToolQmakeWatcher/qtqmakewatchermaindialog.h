@@ -39,7 +39,7 @@ public:
   ~QtQmakeWatcherMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtQmakeWatcherMainDialog *ui;

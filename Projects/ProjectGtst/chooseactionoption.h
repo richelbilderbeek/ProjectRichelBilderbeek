@@ -31,6 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///An option of an action that can be chosen for
 ///
@@ -111,5 +115,8 @@ struct ChooseActionOption : public boost::noncopyable
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ChooseActionOption& v);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // CHOOSEACTIONOPTION_H

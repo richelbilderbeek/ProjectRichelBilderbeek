@@ -39,11 +39,9 @@ namespace Wt
   struct WTextArea;
 }
 //---------------------------------------------------------------------------
-namespace ProjectGtst
-{
-  struct MenuDialog;
-}
-//---------------------------------------------------------------------------
+namespace ribi {
+namespace gtst {
+
 struct Administrator;
 struct AdministratorDialog;
 struct AdministratorDialogState;
@@ -52,7 +50,6 @@ struct AdministratorDialogStateNotLoggedIn;
 struct Administrators;
 struct ChatMessage;
 struct ChooseActionOption;
-struct Counter;
 struct Group;
 struct GroupAssigner;
 struct GroupFinished;
@@ -61,6 +58,7 @@ struct GroupNotLoggedIn;
 struct GroupParticipating;
 struct Groups;
 struct LogFile;
+struct MenuDialog;
 struct Parameters;
 struct ParametersAssignPayoff;
 struct ParametersChat;
@@ -84,6 +82,7 @@ struct ParticipantDialogStateGroupReAssign;
 struct ParticipantDialogStateLoggedIn;
 struct ParticipantDialogStateNotLoggedIn;
 struct ParticipantDialogStateQuiz;
+struct ParticipantDialogStates;
 struct ParticipantDialogStateViewResultsGroup;
 struct ParticipantDialogStateViewResultsVoting;
 struct ParticipantDialogStateVoting;
@@ -98,7 +97,6 @@ struct ParticipantStateGroupReAssign;
 struct ParticipantStateLoggedIn;
 struct ParticipantStateNotLoggedIn;
 struct ParticipantStateQuiz;
-struct ParticipantDialogStates;
 struct ParticipantStateViewResultsGroup;
 struct ParticipantStateViewResultsVoting;
 struct ParticipantStateVoting;
@@ -107,7 +105,6 @@ struct Payoffs;
 struct RepeatAssigner;
 struct RepeatAssignerFixed;
 struct RepeatAssignerRandomUniform;
-struct SafeIpAddress;
 struct Server;
 struct ServerState;
 struct ServerStateAssignPayoff;
@@ -122,17 +119,24 @@ struct ServerStateViewResultsGroup;
 struct ServerStateViewResultsVoting;
 struct ServerStateVoting;
 struct ServerStateWaiting;
-struct Shape;
-struct ShapeWidget;
 struct State;
-struct Stopwatch;
 struct Vote;
 struct VotingOption;
+
+} //~namespace gtst
+
+struct Counter;
+struct SafeIpAddress;
+struct Shape;
+struct ShapeWidget;
+struct Stopwatch;
 struct WtAboutDialog;
-struct WtLedWidget;
 struct WtMultipleChoiceQuestionDialog;
 struct WtSelectFileDialog;
 struct WtShapeGroupWidget;
 struct WtShapeWidget;
-//---------------------------------------------------------------------------
+struct WtLedWidget;
+
+} //~namespace ribi
+
 #endif // FORWARD_DECLARATIONS_H

@@ -25,10 +25,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
 namespace Wt { struct WLabel; }
+
+namespace ribi {
 struct TestToggleButtonMenuDialog;
 struct WtDialWidget;
 struct WtToggleButtonWidget;
-//---------------------------------------------------------------------------
+
 struct WtTestToggleButtonMainDialog : public Wt::WContainerWidget
 {
   WtTestToggleButtonMainDialog();
@@ -52,5 +54,7 @@ struct WtTestToggleButtonMainDialog : public Wt::WContainerWidget
   void ShowAbout();
   void ShowMain();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTTOGGLEBUTTONDIALOG_H

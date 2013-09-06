@@ -30,19 +30,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testpylosmenudialog.h"
 #include "ui_qttestpylosmenudialog.h"
 //---------------------------------------------------------------------------
-QtTestPylosMenuDialog::QtTestPylosMenuDialog(QWidget *parent) :
+ribi::QtTestPylosMenuDialog::QtTestPylosMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestPylosMenuDialog)
 {
   ui->setupUi(this);
 }
 //---------------------------------------------------------------------------
-QtTestPylosMenuDialog::~QtTestPylosMenuDialog()
+ribi::QtTestPylosMenuDialog::~QtTestPylosMenuDialog()
 {
     delete ui;
 }
 //---------------------------------------------------------------------------
-void QtTestPylosMenuDialog::on_button_test_board_clicked()
+void ribi::QtTestPylosMenuDialog::on_button_test_board_clicked()
 {
   QtTestPylosTestBoardDialog d;
   this->hide();
@@ -50,7 +50,7 @@ void QtTestPylosMenuDialog::on_button_test_board_clicked()
   this->show();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosMenuDialog::on_button_test_game_clicked()
+void ribi::QtTestPylosMenuDialog::on_button_test_game_clicked()
 {
   QtTestPylosTestGameDialog d;
   this->hide();
@@ -58,7 +58,7 @@ void QtTestPylosMenuDialog::on_button_test_game_clicked()
   this->show();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosMenuDialog::on_button_show_game_tests_clicked()
+void ribi::QtTestPylosMenuDialog::on_button_show_game_tests_clicked()
 {
   QtTestPylosGameTestsDialog d;
   this->hide();
@@ -66,7 +66,7 @@ void QtTestPylosMenuDialog::on_button_show_game_tests_clicked()
   this->show();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosMenuDialog::on_button_about_clicked()
+void ribi::QtTestPylosMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(TestPylosMenuDialog::GetAbout());
   this->hide();
@@ -74,12 +74,12 @@ void QtTestPylosMenuDialog::on_button_about_clicked()
   this->show();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosMenuDialog::on_button_quit_clicked()
+void ribi::QtTestPylosMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 //---------------------------------------------------------------------------
-void QtTestPylosMenuDialog::on_button_random_play_clicked()
+void ribi::QtTestPylosMenuDialog::on_button_random_play_clicked()
 {
   QtTestPylosRandomPlayDialog d;
   this->hide();

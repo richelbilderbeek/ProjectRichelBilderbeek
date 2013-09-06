@@ -14,12 +14,12 @@
    <string>TestDial</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolTestDial.qrc">
+   <iconset resource="../../Games/GameBoenken/GameBoenken.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QtDialWidget" name="dial" native="true"/>
+    <widget class="ribi::QtDialWidget" name="dial" native="true"/>
    </item>
    <item>
     <widget class="QLabel" name="label_angle">
@@ -87,14 +87,14 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QtDialWidget</class>
+   <class>ribi::QtDialWidget</class>
    <extends>QWidget</extends>
    <header>qtdialwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="ToolTestDial.qrc"/>
+  <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
  </resources>
  <connections/>
 </ui>

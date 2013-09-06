@@ -35,13 +35,9 @@
 #include "pvdbnode.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
+const std::string ribi::pvdb::File::m_filename_extension = "cmp";
 
-const std::string pvdb::File::m_filename_extension = "cmp";
-
-pvdb::File::File()
+ribi::pvdb::File::File()
   : m_about("ProjectVanDenBogaart"),
     m_assessor_name(""),
     m_cluster(),
@@ -58,11 +54,11 @@ pvdb::File::File()
   assert(!m_concept_map);
 }
 
-pvdb::File::File(
+ribi::pvdb::File::File(
   const std::string& about,
   const std::string& assessor_name,
   const boost::shared_ptr<pvdb::Cluster>& cluster,
-  const boost::shared_ptr<pvdb::ConceptMap>& concept_map,
+  const boost::shared_ptr<ribi::pvdb::ConceptMap>& concept_map,
   const std::string& question,
   const std::string& student_name,
   const std::string& version)
@@ -88,13 +84,13 @@ pvdb::File::File(
   #endif
 }
 
-void pvdb::File::AutoSave() const
+void ribi::pvdb::File::AutoSave() const
 {
   this->Save("autosave1." + m_filename_extension);
   this->Save("autosave2." + m_filename_extension);
 }
 
-const std::string pvdb::File::ConvertFrom_0_1(const std::string& s)
+const std::string ribi::pvdb::File::ConvertFrom_0_1(const std::string& s)
 {
   //Put <examples> around existing <example> tags
   const std::string a = boost::algorithm::replace_all_copy(s,"</name><example>","</name><examples><example>");
@@ -109,14 +105,14 @@ const std::string pvdb::File::ConvertFrom_0_1(const std::string& s)
   return h;
 }
 
-const std::string pvdb::File::ConvertFrom_0_2(const std::string& s)
+const std::string ribi::pvdb::File::ConvertFrom_0_2(const std::string& s)
 {
   const std::string a = boost::algorithm::replace_all_copy(s,"</about><cluster>","</about><assessor_name></assessor_name><cluster>");
   const std::string b = boost::algorithm::replace_all_copy(a,"<version>0.2</version>","<version>0.3</version>");
   return b;
 }
 
-const std::string pvdb::File::ConvertFrom_0_3(const std::string& s)
+const std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
 {
   const std::string a
     = boost::algorithm::replace_all_copy(s,"<about>ProjectVanDenBogaart</about>","<about>Brainweaver</about>");
@@ -144,7 +140,7 @@ const std::string pvdb::File::ConvertFrom_0_3(const std::string& s)
 }
 
 /*
-void pvdb::File::CreateConceptMapFromCluster()
+void ribi::pvdb::File::CreateConceptMapFromCluster()
 {
   assert(GetCluster());
   assert(GetConceptMap());
@@ -154,7 +150,7 @@ void pvdb::File::CreateConceptMapFromCluster()
     file->GetConceptMap()->GetQuestion(),
     file->GetCluster());
 
-  // = pvdb::ConceptMapFactory::CreateFromCluster(
+  // = ribi::pvdb::ConceptMapFactory::CreateFromCluster(
   //    file->GetConceptMap()->GetQuestion(),
   //    file->GetCluster()
   //  );
@@ -164,7 +160,7 @@ void pvdb::File::CreateConceptMapFromCluster()
 }
 */
 
-const std::string pvdb::File::FileToStr(const std::string& filename)
+const std::string ribi::pvdb::File::FileToStr(const std::string& filename)
 {
   assert(QFile::exists(filename.c_str()));
   std::string s;
@@ -178,7 +174,7 @@ const std::string pvdb::File::FileToStr(const std::string& filename)
   return s;
 }
 
-const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
+const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string &s)
 {
   assert(s.size() >= 13);
   assert(s.substr(0,6) == std::string("<file>"));
@@ -257,22 +253,22 @@ const boost::shared_ptr<pvdb::File> pvdb::File::FromXml(const std::string &s)
   return f;
 }
 
-const std::string pvdb::File::GetQuestion() const
+const std::string ribi::pvdb::File::GetQuestion() const
 {
   return m_question;
 }
 
-const std::string pvdb::File::GetTempFileName()
+const std::string ribi::pvdb::File::GetTempFileName()
 {
   return std::string("tmp.") + m_filename_extension;
 }
 
-const std::string pvdb::File::GetTestFileName()
+const std::string ribi::pvdb::File::GetTestFileName()
 {
   return std::string("test.") + m_filename_extension;
 }
 
-const std::vector<boost::shared_ptr<pvdb::File> > pvdb::File::GetTests()
+const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTests()
 {
   std::vector<boost::shared_ptr<pvdb::File> > v;
   const int n_clusters = static_cast<int>(pvdb::ClusterFactory::GetTests().size());
@@ -287,7 +283,7 @@ const std::vector<boost::shared_ptr<pvdb::File> > pvdb::File::GetTests()
       const std::string student_name = "student_name";
       const std::string version = "version";
       const auto cluster = pvdb::ClusterFactory::GetTests()[cluster_index];
-      const auto concept_map = pvdb::ConceptMapFactory::GetAllTests()[concept_map_index];
+      const auto concept_map = ribi::pvdb::ConceptMapFactory::GetAllTests()[concept_map_index];
       if (concept_map)
       {
         assert(!concept_map->GetNodes().empty());
@@ -307,7 +303,7 @@ const std::vector<boost::shared_ptr<pvdb::File> > pvdb::File::GetTests()
   return v;
 }
 
-const boost::shared_ptr<pvdb::File> pvdb::File::Load(const std::string &filename)
+const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::string &filename)
 {
   std::string xml;
   //Read XML from file
@@ -349,7 +345,7 @@ const boost::shared_ptr<pvdb::File> pvdb::File::Load(const std::string &filename
     }
   }
 
-  const boost::shared_ptr<pvdb::File> file = pvdb::File::FromXml(xml);
+  const boost::shared_ptr<pvdb::File> file = ribi::pvdb::File::FromXml(xml);
   assert(file);
 
   assert( (!file->GetConceptMap() || !file->GetConceptMap()->GetNodes().empty() )
@@ -360,7 +356,7 @@ const boost::shared_ptr<pvdb::File> pvdb::File::Load(const std::string &filename
   return file;
 }
 
-void pvdb::File::Save(const std::string &filename) const
+void ribi::pvdb::File::Save(const std::string &filename) const
 {
   //Check for correct extension
   if (!(filename.size() > 3
@@ -386,14 +382,14 @@ void pvdb::File::Save(const std::string &filename) const
   #endif
 }
 
-void pvdb::File::SetAssessorName(const std::string& assessor_name)
+void ribi::pvdb::File::SetAssessorName(const std::string& assessor_name)
 {
   assert(assessor_name.size() > 1);
   m_assessor_name = assessor_name;
   this->AutoSave();
 }
 
-void pvdb::File::SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept_map)
+void ribi::pvdb::File::SetConceptMap(const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map)
 {
   assert(!m_concept_map && "Can only set when there is no concept map present yet");
   m_concept_map = concept_map;
@@ -403,7 +399,7 @@ void pvdb::File::SetConceptMap(const boost::shared_ptr<pvdb::ConceptMap> concept
   this->AutoSave();
 }
 
-void pvdb::File::SetCluster(const boost::shared_ptr<pvdb::Cluster>& cluster)
+void ribi::pvdb::File::SetCluster(const boost::shared_ptr<pvdb::Cluster>& cluster)
 {
   assert(cluster);
   //Don't care: m_cluster will be overwritten more often,
@@ -415,14 +411,14 @@ void pvdb::File::SetCluster(const boost::shared_ptr<pvdb::Cluster>& cluster)
   this->AutoSave();
 }
 
-void pvdb::File::SetQuestion(const std::string& question)
+void ribi::pvdb::File::SetQuestion(const std::string& question)
 {
   assert(question.size() > 1);
   m_question = question;
   this->AutoSave();
 }
 
-void pvdb::File::SetStudentName(const std::string& student_name)
+void ribi::pvdb::File::SetStudentName(const std::string& student_name)
 {
   assert(student_name.size() > 1);
   m_student_name = student_name;
@@ -430,7 +426,7 @@ void pvdb::File::SetStudentName(const std::string& student_name)
 }
 
 #ifndef NDEBUG
-void pvdb::File::Test()
+void ribi::pvdb::File::Test()
 {
   {
     static bool is_tested = false;
@@ -442,8 +438,8 @@ void pvdb::File::Test()
     []
     {
   #endif
-  TRACE("Started pvdb::File::Test");
-  const std::string tmp_filename = pvdb::File::GetTempFileName();
+  TRACE("Started ribi::pvdb::File::Test");
+  const std::string tmp_filename = ribi::pvdb::File::GetTempFileName();
   //Test copy constructor
   {
     const boost::shared_ptr<pvdb::File> f(new File);
@@ -480,8 +476,8 @@ void pvdb::File::Test()
     firstfile->SetStudentName("Richel Bilderbeek");
     const std::string question = "Focal question?";
     {
-      const boost::shared_ptr<pvdb::ConceptMap> concept_map
-        = pvdb::ConceptMapFactory::Create(question);
+      const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
+        = ribi::pvdb::ConceptMapFactory::Create(question);
       assert(!concept_map->GetNodes().empty());
       assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(concept_map->GetNodes()[0])
         && "The first node in a file's ConceptMap must be a CenterNode");
@@ -539,7 +535,7 @@ void pvdb::File::Test()
           | QFile::ExeOther
           );
         assert(success);
-        if (!success) { std::clog << "pvdb::File::Test(): Warning: !succes\n"; }
+        if (!success) { std::clog << "ribi::pvdb::File::Test(): Warning: !succes\n"; }
         file.open(QFile::ReadWrite);
         assert(file.isOpen());
         assert(file.isReadable());
@@ -548,7 +544,7 @@ void pvdb::File::Test()
         file.close();
 
         assert(QFile::exists(filename.c_str()));
-        pvdb::File::Load(filename);
+        ribi::pvdb::File::Load(filename);
         std::remove(filename.c_str());
 
         assert(!QFile::exists(filename.c_str()));
@@ -564,7 +560,7 @@ void pvdb::File::Test()
 }
 #endif
 
-const std::string pvdb::File::ToXml(const File& file)
+const std::string ribi::pvdb::File::ToXml(const File& file)
 {
   //assert(file.m_cluster);
   //assert(file.m_concept_map);
@@ -588,7 +584,7 @@ const std::string pvdb::File::ToXml(const File& file)
   return r;
 }
 
-const std::string pvdb::File::DoXpressiveRegexReplace(
+const std::string ribi::pvdb::File::DoXpressiveRegexReplace(
   const std::string& str,
   const std::string& regex_str,
   const std::string& format_str)
@@ -616,11 +612,7 @@ const std::string pvdb::File::DoXpressiveRegexReplace(
   }
 }
 
-#ifndef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-bool IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
+bool ribi::pvdb::IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
 {
   //assert(lhs.GetCluster());
   //assert(lhs.GetConceptMap());
@@ -639,5 +631,3 @@ bool IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
   && lhs.GetStudentName() == rhs.GetStudentName()
   && lhs.GetVersion() == rhs.GetVersion();
 }
-
-} //~namespace pvdb

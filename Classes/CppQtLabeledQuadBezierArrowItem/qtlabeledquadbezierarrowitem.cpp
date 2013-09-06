@@ -18,7 +18,7 @@
 
 #pragma GCC diagnostic pop
 
-QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
+ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
     const QGraphicsItem *const from,
     const bool tail,
     const std::string& text,
@@ -44,31 +44,31 @@ QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
   assert(m_arrow->GetToItem()->pos() == to->pos());
 }
 
-QRectF QtLabeledQuadBezierArrowItem::boundingRect() const
+QRectF ribi::QtLabeledQuadBezierArrowItem::boundingRect() const
 {
   return QtRoundedTextRectItem::boundingRect()
     .united(m_arrow->boundingRect().translated(-this->pos()));
 }
 
-const std::string QtLabeledQuadBezierArrowItem::GetVersion()
+const std::string ribi::QtLabeledQuadBezierArrowItem::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtLabeledQuadBezierArrowItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtLabeledQuadBezierArrowItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-01-01: version 1.0: initial version");
   return v;
 }
 
-void QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
+void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
 {
   QtRoundedTextRectItem::keyPressEvent(event);
   m_arrow->keyPressEvent(event);
 }
 
-void QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   assert(this->pos() == m_arrow->GetMidItem()->pos());
   painter->translate(-this->pos());

@@ -48,12 +48,7 @@ QtToolGaborFilterMainDialog::~QtToolGaborFilterMainDialog()
 
 void QtToolGaborFilterMainDialog::on_dial_angle_sliderMoved(int position)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   const double angle = 2.0 * pi * static_cast<double>(position)
     / static_cast<double>(ui->dial_angle->maximum());
   ui->gaborfilterwidget->GetWidget()->GetGaborFilter()->SetAngle(angle);

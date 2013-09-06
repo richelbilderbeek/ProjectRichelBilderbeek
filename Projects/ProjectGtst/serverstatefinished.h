@@ -24,6 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 #include "serverstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The Server in the state when the experiment is finished
 struct ServerStateFinished : public ServerState, StateFinished
@@ -70,5 +74,8 @@ struct ServerStateFinished : public ServerState, StateFinished
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ServerStateFinished& s);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ServerSTATEFINISHED_H

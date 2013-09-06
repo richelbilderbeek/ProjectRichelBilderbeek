@@ -84,9 +84,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //QFile must be #included after Wt header files
 #include <QFile>
 //---------------------------------------------------------------------------
-namespace ProjectGtst {
-//---------------------------------------------------------------------------
-MenuDialog::MenuDialog(const SafeIpAddress * const ip_address)
+ribi::gtst::MenuDialog::MenuDialog(const SafeIpAddress * const ip_address)
   : m_server(Server::Get())
 {
   assert(m_server);
@@ -154,7 +152,7 @@ MenuDialog::MenuDialog(const SafeIpAddress * const ip_address)
   }
 }
 //---------------------------------------------------------------------------
-WtAboutDialog * MenuDialog::CreateNewAboutDialog() const
+ribi::WtAboutDialog * ribi::gtst::MenuDialog::CreateNewAboutDialog() const
 {
   About a = GetAbout();
   WtAboutDialog * const d = new WtAboutDialog(a,false);
@@ -162,7 +160,7 @@ WtAboutDialog * MenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * MenuDialog::CreateNewAboutTheExperimentDialog() const
+Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -199,7 +197,7 @@ Wt::WContainerWidget * MenuDialog::CreateNewAboutTheExperimentDialog() const
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * MenuDialog::CreateNewAboutTheExperimentFlowDialog() const
+Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentFlowDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -217,7 +215,7 @@ Wt::WContainerWidget * MenuDialog::CreateNewAboutTheExperimentFlowDialog() const
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * MenuDialog::CreateNewAboutTheExperimentGeneralDialog() const
+Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentGeneralDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -243,7 +241,7 @@ Wt::WContainerWidget * MenuDialog::CreateNewAboutTheExperimentGeneralDialog() co
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * MenuDialog::CreateNewAboutTheExperimentParametersDialog() const
+Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentParametersDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -306,7 +304,7 @@ Wt::WContainerWidget * MenuDialog::CreateNewAboutTheExperimentParametersDialog()
   return dialog;
 }
 //---------------------------------------------------------------------------
-Wt::WContainerWidget * MenuDialog::CreateNewWelcomeDialog(
+Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewWelcomeDialog(
   const SafeIpAddress * const ip_address) const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
@@ -328,7 +326,7 @@ Wt::WContainerWidget * MenuDialog::CreateNewWelcomeDialog(
   return dialog;
 }
 //---------------------------------------------------------------------------
-const About MenuDialog::GetAbout()
+const ribi::About ribi::gtst::MenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -370,12 +368,12 @@ const About MenuDialog::GetAbout()
   return a;
 }
 //---------------------------------------------------------------------------
-const std::string MenuDialog::GetVersion()
+const std::string ribi::gtst::MenuDialog::GetVersion()
 {
   return "1.02";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::gtst::MenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-05-09: Version 0.01: initial version, then called ProjectGameTheory");
@@ -442,6 +440,4 @@ const std::vector<std::string> MenuDialog::GetVersionHistory()
   v.push_back("2011-09-11: Version 1.02: small bugfix");
   return v;
 }
-//---------------------------------------------------------------------------
-}; //~namespace ProjectGtst
 //---------------------------------------------------------------------------

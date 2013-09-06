@@ -5,6 +5,8 @@
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
+namespace ribi {
+
 struct WtSimMysteryMachineMenuDialog : public Wt::WContainerWidget
 {
   WtSimMysteryMachineMenuDialog();
@@ -15,4 +17,7 @@ struct WtSimMysteryMachineMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
 //---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTSIMMYSTERYMACHINEMENUDIALOG_H

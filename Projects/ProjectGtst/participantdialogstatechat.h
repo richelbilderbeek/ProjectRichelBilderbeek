@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "participantdialogstate.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The ParticipantDialog is in its chat state.
 struct ParticipantDialogStateChat
@@ -82,5 +86,8 @@ struct ParticipantDialogStateChat
   const std::string GetRandomDebugString() const;
   void SubmitChatText();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANTDIALOGSTATECHAT_H

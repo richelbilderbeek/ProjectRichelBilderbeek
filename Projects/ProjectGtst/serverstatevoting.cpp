@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 //#include "wtbroadcastserver.h"
 //---------------------------------------------------------------------------
-ServerStateVoting::ServerStateVoting(
+ribi::gtst::ServerStateVoting::ServerStateVoting(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersVoting>& parameters)
   : ServerState(server,period,cycle),
@@ -51,7 +51,7 @@ ServerStateVoting::ServerStateVoting(
 ///ServerStateVoting goes to the next state if
 /// - all Participants are logged in
 /// - all Participants have voted
-bool ServerStateVoting::CanGoToNextState() const
+bool ribi::gtst::ServerStateVoting::CanGoToNextState() const
 {
   typedef std::pair<boost::shared_ptr<const Participant>,bool> Pair;
   BOOST_FOREACH(const Pair& p,m_has_voted)
@@ -62,14 +62,14 @@ bool ServerStateVoting::CanGoToNextState() const
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateVoting::GetStateDuration() const
+int ribi::gtst::ServerStateVoting::GetStateDuration() const
 {
   return m_parameters->GetDuration();
 }
 //---------------------------------------------------------------------------
 ///ParticipantDialog notifies the Server of the
 ///Participant his/her vote
-void ServerStateVoting::NotifyVote(
+void ribi::gtst::ServerStateVoting::NotifyVote(
   const boost::shared_ptr<const Participant>&  participant,
   const boost::shared_ptr<VotingOption>& vote)
 {
@@ -84,13 +84,13 @@ void ServerStateVoting::NotifyVote(
   //WtBroadcastServer::GetInstance()->Post();
 }
 //---------------------------------------------------------------------------
-void ServerStateVoting::OnTimer()
+void ribi::gtst::ServerStateVoting::OnTimer()
 {
   if (CanGoToNextState()) GoToNextState();
 }
 //---------------------------------------------------------------------------
 /*
-void ServerStateVoting::SetParameters(const boost::shared_ptr<const ParametersVoting>& parameters)
+void ribi::gtst::ServerStateVoting::SetParameters(const boost::shared_ptr<const ParametersVoting>& parameters)
 {
   assert(parameters);
   m_parameters = parameters;
@@ -102,7 +102,7 @@ void ServerStateVoting::SetParameters(const boost::shared_ptr<const ParametersVo
 }
 */
 //---------------------------------------------------------------------------
-void ServerStateVoting::Start()
+void ribi::gtst::ServerStateVoting::Start()
 {
   ///Keeps track of Participants having voted
   m_has_voted.clear();
@@ -120,7 +120,7 @@ void ServerStateVoting::Start()
   assert(!CanGoToNextState());
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateVoting& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateVoting& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

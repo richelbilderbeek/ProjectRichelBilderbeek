@@ -33,13 +33,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wttestdialmaindialog.h"
 //---------------------------------------------------------------------------
-WtTestDialMainDialog::WtTestDialMainDialog()
+ribi::WtTestDialMainDialog::WtTestDialMainDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   Show();
 }
 //---------------------------------------------------------------------------
-void WtTestDialMainDialog::OnDialPositionChange()
+void ribi::WtTestDialMainDialog::OnDialPositionChange()
 {
   const double position = ui.m_dial->GetWidget()->GetDial()->GetPosition();
 
@@ -49,7 +49,7 @@ void WtTestDialMainDialog::OnDialPositionChange()
   ui.m_label_position->setText(text);
 }
 //---------------------------------------------------------------------------
-void WtTestDialMainDialog::OnDialColorChange()
+void ribi::WtTestDialMainDialog::OnDialColorChange()
 {
   //Set the color
   {
@@ -82,7 +82,7 @@ void WtTestDialMainDialog::OnDialColorChange()
   }
 }
 //---------------------------------------------------------------------------
-void WtTestDialMainDialog::Show()
+void ribi::WtTestDialMainDialog::Show()
 {
   this->clear();
   {
@@ -91,11 +91,11 @@ void WtTestDialMainDialog::Show()
     ui.m_dial->GetWidget()->SetGeometry(Rect(0,0,100,100));
     ui.m_dial->GetWidget()->GetDial()->m_signal_color_changed.connect(
       boost::bind(
-        &WtTestDialMainDialog::OnDialColorChange,
+        &ribi::WtTestDialMainDialog::OnDialColorChange,
         this));
     ui.m_dial->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
-        &WtTestDialMainDialog::OnDialPositionChange,
+        &ribi::WtTestDialMainDialog::OnDialPositionChange,
         this));
   }
   this->addWidget(new Wt::WBreak);
@@ -118,7 +118,7 @@ void WtTestDialMainDialog::Show()
     ui.m_dial_color->GetWidget()->SetGeometry(Rect(0,0,50,50));
     ui.m_dial_color->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
-        &WtTestDialMainDialog::OnDialColorChange,
+        &ribi::WtTestDialMainDialog::OnDialColorChange,
         this));
     this->addWidget(ui.m_dial_color);
   }

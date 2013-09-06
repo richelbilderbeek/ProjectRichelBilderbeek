@@ -43,7 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 //#include "wtbroadcastserver.h"
 //---------------------------------------------------------------------------
-ServerStateChooseAction::ServerStateChooseAction(
+ribi::gtst::ServerStateChooseAction::ServerStateChooseAction(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersChooseAction> parameters)
   : ServerState(server,period,cycle),
@@ -53,7 +53,7 @@ ServerStateChooseAction::ServerStateChooseAction(
 }
 //---------------------------------------------------------------------------
 ///Check if this state can go to the next state.
-bool ServerStateChooseAction::CanGoToNextState() const
+bool ribi::gtst::ServerStateChooseAction::CanGoToNextState() const
 {
   return std::find_if(
     m_has_chosen_action.begin(),
@@ -63,14 +63,14 @@ bool ServerStateChooseAction::CanGoToNextState() const
 }
 //---------------------------------------------------------------------------
 ///Obtain the duration of the state in seconds
-int ServerStateChooseAction::GetStateDuration() const
+int ribi::gtst::ServerStateChooseAction::GetStateDuration() const
 {
   return m_parameters->GetDuration();
 }
 //---------------------------------------------------------------------------
 ///The Server is notified by ParticipantDialogChooseAction
 ///of the action taken by its Participant
-void ServerStateChooseAction::NotifyChosenAction(
+void ribi::gtst::ServerStateChooseAction::NotifyChosenAction(
   const boost::shared_ptr<const Participant>& participant,
   const ChooseActionOption * const option)
 {
@@ -82,7 +82,7 @@ void ServerStateChooseAction::NotifyChosenAction(
   m_server->GetLog()->LogAction(participant);
 }
 //---------------------------------------------------------------------------
-void ServerStateChooseAction::OnTimer()
+void ribi::gtst::ServerStateChooseAction::OnTimer()
 {
   if (CanGoToNextState())
   {
@@ -91,7 +91,7 @@ void ServerStateChooseAction::OnTimer()
 }
 //---------------------------------------------------------------------------
 /*
-void ServerStateChooseAction::SetParameters(const boost::shared_ptr<const ParametersChooseAction>& parameters)
+void ribi::gtst::ServerStateChooseAction::SetParameters(const boost::shared_ptr<const ParametersChooseAction>& parameters)
 {
   assert(parameters);
   m_parameters = parameters;
@@ -101,7 +101,7 @@ void ServerStateChooseAction::SetParameters(const boost::shared_ptr<const Parame
 }
 */
 //---------------------------------------------------------------------------
-void ServerStateChooseAction::Start()
+void ribi::gtst::ServerStateChooseAction::Start()
 {
   ///Keeps track of Participants having voted
   m_has_chosen_action.clear();
@@ -121,7 +121,7 @@ void ServerStateChooseAction::Start()
   assert(!CanGoToNextState());
 }
 //---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os,const ServerStateChooseAction& s)
+std::ostream& ribi::gtst::operator<<(std::ostream& os,const ServerStateChooseAction& s)
 {
   os
     << "<state_" << s.ToStr() << ">"

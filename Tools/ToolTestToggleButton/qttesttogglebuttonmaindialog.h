@@ -6,7 +6,9 @@
 namespace Ui {
   class QtTestToggleButtonMainDialog;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 class QtTestToggleButtonMainDialog : public QDialog
 {
   Q_OBJECT
@@ -16,7 +18,7 @@ public:
   ~QtTestToggleButtonMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+
 
 private:
   Ui::QtTestToggleButtonMainDialog *ui;
@@ -27,5 +29,7 @@ private slots:
     void OnDial();
     void on_dial_sliderPressed();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTTOGGLEBUTTONMAINDIALOG_H

@@ -27,11 +27,7 @@
 #include "pvdbconceptfactory.h"
 #include "trace.h"
 
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-namespace pvdb {
-#endif
-
-void pvdb::Cluster::Test()
+void ribi::pvdb::Cluster::Test()
 {
   {
     static bool is_tested = false;
@@ -47,16 +43,16 @@ void pvdb::Cluster::Test()
   TRACE("Cluster::Test started");
   //Test operator== and operator!=
   {
-    const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_1 = pvdb::ClusterFactory::GetTests();
+    const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_1 = ribi::pvdb::ClusterFactory::GetTests();
     const int sz = static_cast<int>(tmp_tests_1.size());
     for (int i=0; i!=sz; ++i)
     {
-      const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_a = pvdb::ClusterFactory::GetTests(); //For crosscompiler
-      const boost::shared_ptr<const pvdb::Cluster> a = tmp_tests_a.at(i);
+      const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_a = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
+      const boost::shared_ptr<const ribi::pvdb::Cluster> a = tmp_tests_a.at(i);
       if (!a) continue;
       assert(a);
-      const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_b = pvdb::ClusterFactory::GetTests(); //For crosscompiler
-      const boost::shared_ptr<pvdb::Cluster> b = tmp_tests_b.at(i);
+      const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_b = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
+      const boost::shared_ptr<ribi::pvdb::Cluster> b = tmp_tests_b.at(i);
       if (!b) continue;
       assert(a); assert(b);
       assert(IsEqual(*a,*a));
@@ -65,12 +61,12 @@ void pvdb::Cluster::Test()
       assert(IsEqual(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
-        const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_c = pvdb::ClusterFactory::GetTests(); //For crosscompiler
-        const std::vector<boost::shared_ptr<pvdb::Cluster> > tmp_tests_d = pvdb::ClusterFactory::GetTests(); //For crosscompiler
-        const boost::shared_ptr<const pvdb::Cluster> c = tmp_tests_c.at(j);
+        const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_c = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
+        const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_d = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
+        const boost::shared_ptr<const ribi::pvdb::Cluster> c = tmp_tests_c.at(j);
         if (!c) continue;
         assert(c);
-        const boost::shared_ptr<pvdb::Cluster> d = tmp_tests_d.at(j);
+        const boost::shared_ptr<ribi::pvdb::Cluster> d = tmp_tests_d.at(j);
         if (!d) continue;
         assert(c); assert(d);
         assert(IsEqual(*c,*c));
@@ -96,15 +92,15 @@ void pvdb::Cluster::Test()
   }
   //Test all Clusters with each combination of Concepts
   {
-    const std::vector<std::vector<boost::shared_ptr<pvdb::Concept> > > v
+    const std::vector<std::vector<boost::shared_ptr<ribi::pvdb::Concept> > > v
       = GetCombinations(pvdb::ConceptFactory::GetTests());
     std::for_each(v.begin(),v.end(),
-      [](const std::vector<boost::shared_ptr<pvdb::Concept> >& concepts)
+      [](const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& concepts)
       {
-        const boost::shared_ptr<pvdb::Cluster> c(new pvdb::Cluster(concepts));
+        const boost::shared_ptr<ribi::pvdb::Cluster> c(new ribi::pvdb::Cluster(concepts));
         assert(c);
         const std::string s = ToXml(c);
-        const boost::shared_ptr<pvdb::Cluster> d = FromXml(s);
+        const boost::shared_ptr<ribi::pvdb::Cluster> d = FromXml(s);
         assert(d);
         assert(c != d);
         assert(IsEqual(*c,*d));
@@ -119,7 +115,3 @@ void pvdb::Cluster::Test()
   t.detach();
   #endif
 }
-
-#ifdef PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-} //~namespace pvdb
-#endif

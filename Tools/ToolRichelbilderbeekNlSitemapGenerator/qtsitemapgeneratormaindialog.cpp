@@ -43,25 +43,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "ui_qtsitemapgeneratormaindialog.h"
 
-QtSitemapGeneratorMainDialog::QtSitemapGeneratorMainDialog(QWidget *parent) :
+ribi::QtSitemapGeneratorMainDialog::QtSitemapGeneratorMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtSitemapGeneratorMainDialog)
 {
   ui->setupUi(this);
 }
 
-QtSitemapGeneratorMainDialog::~QtSitemapGeneratorMainDialog()
+ribi::QtSitemapGeneratorMainDialog::~QtSitemapGeneratorMainDialog()
 {
   delete ui;
 }
 
-void QtSitemapGeneratorMainDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtSitemapGeneratorMainDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   QtHideAndShowDialog::keyPressEvent(e);
 }
 
-const std::vector<std::string> QtSitemapGeneratorMainDialog::GetFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::GetFilesInFolder(const std::string& folder)
 {
   QDir dir(folder.c_str());
   dir.setFilter(QDir::Files);
@@ -78,7 +78,7 @@ const std::vector<std::string> QtSitemapGeneratorMainDialog::GetFilesInFolder(co
   return v;
 }
 
-const std::vector<std::string> QtSitemapGeneratorMainDialog::GetHtmlFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::GetHtmlFilesInFolder(const std::string& folder)
 {
   //Get all filenames
   const std::vector<std::string> v = GetFilesInFolder(folder);
@@ -98,7 +98,7 @@ const std::vector<std::string> QtSitemapGeneratorMainDialog::GetHtmlFilesInFolde
   return w;
 }
 
-const std::vector<std::string> QtSitemapGeneratorMainDialog::AddHeader(const std::vector<std::string>& files)
+const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::AddHeader(const std::vector<std::string>& files)
 {
   std::vector<std::string> v;
   v.push_back("# To add a list of URLs, make a space-delimited text file. The first");
@@ -120,7 +120,7 @@ const std::vector<std::string> QtSitemapGeneratorMainDialog::AddHeader(const std
   return v;
 }
 
-const std::string QtSitemapGeneratorMainDialog::GetPath(const std::string& filename)
+const std::string ribi::QtSitemapGeneratorMainDialog::GetPath(const std::string& filename)
 {
   const int a = filename.rfind("\\",filename.size());
   const int b = filename.rfind("/",filename.size());
@@ -129,18 +129,18 @@ const std::string QtSitemapGeneratorMainDialog::GetPath(const std::string& filen
   return filename.substr(0,i);
 }
 
-const std::string QtSitemapGeneratorMainDialog::GetCurrentFolder(const std::string& s)
+const std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder(const std::string& s)
 {
   return GetPath(s);
 }
 
-const std::string QtSitemapGeneratorMainDialog::GetCurrentFolder()
+const std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder()
 {
   QString s = QApplication::applicationDirPath();
   return s.toStdString();
 }
 
-const std::vector<std::string> QtSitemapGeneratorMainDialog::CreateConfigXml(
+const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::CreateConfigXml(
   const std::string& local_website_path,
   const std::string& urllist_path)
 {
@@ -307,7 +307,7 @@ const std::vector<std::string> QtSitemapGeneratorMainDialog::CreateConfigXml(
 //v.push_back("     lastmod=\"2007-07-28T01:00:00-07:00\"");
 //Returns date in YYYY-MM-DD format
 //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
-const std::string QtSitemapGeneratorMainDialog::GetDateIso8601()
+const std::string ribi::QtSitemapGeneratorMainDialog::GetDateIso8601()
 {
   const boost::gregorian::date today
     = boost::gregorian::day_clock::local_day();
@@ -328,7 +328,7 @@ const std::string QtSitemapGeneratorMainDialog::GetDateIso8601()
 //}
 
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> QtSitemapGeneratorMainDialog::FileToVector(const std::string& fileName)
+const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::FileToVector(const std::string& fileName)
 {
   assert(QFile::exists(fileName.c_str()));
   std::vector<std::string> myVector;
@@ -342,7 +342,7 @@ const std::vector<std::string> QtSitemapGeneratorMainDialog::FileToVector(const 
   return myVector;
 }
 
-void QtSitemapGeneratorMainDialog::on_button_start_clicked()
+void ribi::QtSitemapGeneratorMainDialog::on_button_start_clicked()
 {
   const std::string page_location = ui->edit_website->text().toStdString();
   const std::string sitemapgen_location = GetCurrentFolder();

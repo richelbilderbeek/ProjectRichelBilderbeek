@@ -30,9 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wttimedserverpusher.h"
 #include "wtaboutdialog.h"
 //---------------------------------------------------------------------------
-namespace ToolTestTimedServerPusher {
+
 //---------------------------------------------------------------------------
-WtMainDialog::WtMainDialog()
+ribi::ToolTestTimedServerPusher::WtMainDialog::WtMainDialog()
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);
@@ -40,7 +40,7 @@ WtMainDialog::WtMainDialog()
   OnTimedServerPush();
 }
 //---------------------------------------------------------------------------
-void WtMainDialog::OnTimedServerPush()
+void ribi::ToolTestTimedServerPusher::WtMainDialog::OnTimedServerPush()
 {
   ui.m_text->setText(ToolTestTimedServerPusher::Data::GetInstance()->GetData());
 
@@ -52,5 +52,4 @@ void WtMainDialog::OnTimedServerPush()
   }
 }
 //---------------------------------------------------------------------------
-} //namespace ToolTestTimedServerPusher
-//---------------------------------------------------------------------------
+

@@ -109,7 +109,7 @@ GetLineRectIntersections(
   return points;
 }
 
-QtPvdbNewArrow::QtPvdbNewArrow(
+ribi::pvdb::QtPvdbNewArrow::QtPvdbNewArrow(
   QtPvdbNodeItem * const from,
   const QPointF& current_to)
   : QtArrowItem(
@@ -133,7 +133,7 @@ QtPvdbNewArrow::QtPvdbNewArrow(
   assert(!(this->flags() & QGraphicsItem::ItemIsMovable ));
 }
 
-void QtPvdbNewArrow::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::pvdb::QtPvdbNewArrow::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Line;

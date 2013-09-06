@@ -31,38 +31,33 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "fparser.hh"
 #include "ui_qttestfunctionparsermaindialog.h"
 
-QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) :
+ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestFunctionParserMainDialog)
 {
   ui->setupUi(this);
 
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
-
   ui->edit_value->setText(boost::lexical_cast<std::string>(pi).c_str());
   Parse();
 }
 
-QtTestFunctionParserMainDialog::~QtTestFunctionParserMainDialog()
+ribi::QtTestFunctionParserMainDialog::~QtTestFunctionParserMainDialog()
 {
   delete ui;
 }
 
-void QtTestFunctionParserMainDialog::on_edit_value_textChanged(QString )
+void ribi::QtTestFunctionParserMainDialog::on_edit_value_textChanged(QString )
 {
   Parse();
 }
 
-void QtTestFunctionParserMainDialog::on_edit_function_textChanged(QString )
+void ribi::QtTestFunctionParserMainDialog::on_edit_function_textChanged(QString )
 {
   Parse();
 }
 
-void QtTestFunctionParserMainDialog::Parse()
+void ribi::QtTestFunctionParserMainDialog::Parse()
 {
  FunctionParser f;
 

@@ -24,6 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "administratordialogstate.h"
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The WtAdministratorDialog its state for a logged in Administrator
 struct AdministratorDialogStateLoggedIn : public AdministratorDialogState
@@ -123,5 +127,8 @@ struct AdministratorDialogStateLoggedIn : public AdministratorDialogState
 
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // ADMINISTRATORDIALOGSTATELOGGEDIN_H

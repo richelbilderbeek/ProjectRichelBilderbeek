@@ -33,36 +33,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtroundededitrectitemmaindialog.h"
 #include "ui_qttestqtroundededitrectitemmenudialog.h"
 
-QtTestQtRoundedEditRectItemMenuDialog::QtTestQtRoundedEditRectItemMenuDialog(QWidget *parent) :
+ribi::QtTestQtRoundedEditRectItemMenuDialog::QtTestQtRoundedEditRectItemMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedEditRectItemMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestQtRoundedEditRectItemMenuDialog::~QtTestQtRoundedEditRectItemMenuDialog()
+ribi::QtTestQtRoundedEditRectItemMenuDialog::~QtTestQtRoundedEditRectItemMenuDialog()
 {
   delete ui;
 }
 
-void QtTestQtRoundedEditRectItemMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTestQtRoundedEditRectItemMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtTestQtRoundedEditRectItemMenuDialog::on_button_about_clicked()
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_about_clicked()
 {
   About a = TestQtRoundedEditRectItemMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -77,12 +65,12 @@ void QtTestQtRoundedEditRectItemMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtTestQtRoundedEditRectItemMenuDialog::on_button_quit_clicked()
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtTestQtRoundedEditRectItemMenuDialog::on_button_start_clicked()
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_start_clicked()
 {
   QtTestQtRoundedEditRectItemMainDialog d;
   ShowChild(&d);

@@ -36,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "ui_qttestquestionmenudialog.h"
 
-QtTestQuestionMenuDialog::QtTestQuestionMenuDialog(QWidget *parent) :
+ribi::QtTestQuestionMenuDialog::QtTestQuestionMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestQuestionMenuDialog),
   m_dialog(new TestQuestionMenuDialog)
@@ -47,24 +47,24 @@ QtTestQuestionMenuDialog::QtTestQuestionMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-QtTestQuestionMenuDialog::~QtTestQuestionMenuDialog()
+ribi::QtTestQuestionMenuDialog::~QtTestQuestionMenuDialog()
 {
   delete ui;
 }
 
-void QtTestQuestionMenuDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtTestQuestionMenuDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void QtTestQuestionMenuDialog::on_button_start_clicked()
+void ribi::QtTestQuestionMenuDialog::on_button_start_clicked()
 {
   QtTestQuestionMainDialog d;
   d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
-void QtTestQuestionMenuDialog::on_button_about_clicked()
+void ribi::QtTestQuestionMenuDialog::on_button_about_clicked()
 {
   hide();
   About a = m_dialog->GetAbout();
@@ -78,22 +78,22 @@ void QtTestQuestionMenuDialog::on_button_about_clicked()
   show();
 }
 
-void QtTestQuestionMenuDialog::on_button_quit_clicked()
+void ribi::QtTestQuestionMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
 #ifndef NDEBUG
-void QtTestQuestionMenuDialog::Test()
+void ribi::QtTestQuestionMenuDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTestQuestionMenuDialog::Test");
+  TRACE("Starting ribi::QtTestQuestionMenuDialog::Test");
   QtTestQuestionMainDialog();
-  TRACE("Finished QtTestQuestionMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtTestQuestionMenuDialog::Test successfully");
 }
 #endif
 

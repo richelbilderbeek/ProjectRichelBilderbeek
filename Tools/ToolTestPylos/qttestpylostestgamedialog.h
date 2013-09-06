@@ -35,6 +35,9 @@ namespace Ui {
   class QtTestPylosTestGameDialog;
 }
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 class QtTestPylosTestGameDialog : public QDialog
 {
   Q_OBJECT
@@ -44,7 +47,7 @@ public:
   ~QtTestPylosTestGameDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestPylosTestGameDialog *ui;
@@ -65,5 +68,7 @@ private slots:
   void on_radio_rb_clicked();
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTPYLOSTESTGAMEDIALOG_H

@@ -27,6 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///WtGroupWidget displays a collection of ID's
 struct WtGroupWidget : public Wt::WPaintedWidget
 {
@@ -46,5 +49,7 @@ struct WtGroupWidget : public Wt::WPaintedWidget
 
   static int GetMax(const std::vector<std::vector<int> >& v);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTGROUPWIDGET_H

@@ -16,7 +16,7 @@
 #include "trace.h"
 
 #ifndef NDEBUG
-void QtPvdbConceptMapEditWidget::Test()
+void ribi::pvdb::QtPvdbConceptMapEditWidget::Test()
 {
   {
     static bool is_tested = false;
@@ -33,8 +33,8 @@ void QtPvdbConceptMapEditWidget::Test()
   }
   //Test base class (after having tested cloning of derived class)
   {
-    const auto v = pvdb::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<pvdb::ConceptMap> concept_map: v)
+    const auto v = ribi::pvdb::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map: v)
     {
       if (!concept_map) continue;
       assert(concept_map);
@@ -47,14 +47,14 @@ void QtPvdbConceptMapEditWidget::Test()
   }
   //Deletion of nodes
   {
-    const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
+    const std::size_t n_concept_maps = ribi::pvdb::ConceptMapFactory::GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
       if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
-      const std::size_t n_nodes = pvdb::ConceptMapFactory::GetAllTests()[i]->GetNodes().size();
+      const std::size_t n_nodes = ribi::pvdb::ConceptMapFactory::GetAllTests()[i]->GetNodes().size();
       for (std::size_t j=0; j!=n_nodes; ++j)
       {
-        boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+        boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetAllTests()[i];
         if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetNodes().size() == n_nodes);
@@ -71,14 +71,14 @@ void QtPvdbConceptMapEditWidget::Test()
   }
   //Deletion of edges
   {
-    const std::size_t n_concept_maps = pvdb::ConceptMapFactory::GetAllTests().size();
+    const std::size_t n_concept_maps = ribi::pvdb::ConceptMapFactory::GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
       if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
-      const std::size_t n_edges = pvdb::ConceptMapFactory::GetAllTests()[i]->GetEdges().size();
+      const std::size_t n_edges = ribi::pvdb::ConceptMapFactory::GetAllTests()[i]->GetEdges().size();
       for (std::size_t j=0; j!=n_edges; ++j)
       {
-        boost::shared_ptr<pvdb::ConceptMap> concept_map = pvdb::ConceptMapFactory::GetAllTests()[i];
+        boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetAllTests()[i];
         if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetEdges().size() == n_edges);
@@ -92,7 +92,7 @@ void QtPvdbConceptMapEditWidget::Test()
       }
     }
   }
-  TRACE("QtPvdbConceptMapEditWidget::Test finished successfully");
+  TRACE("ribi::pvdb::QtPvdbConceptMapEditWidget::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

@@ -27,6 +27,8 @@ namespace Ui {
 class QtCreateQtProjectZipFileMenuDialog;
 }
 
+namespace ribi {
+
 class QtCreateQtProjectZipFileMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -51,5 +53,7 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTCREATEQTPROJECTZIPFILEMENUDIALOG_H

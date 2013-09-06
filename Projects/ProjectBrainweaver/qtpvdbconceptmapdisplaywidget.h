@@ -1,23 +1,19 @@
 #ifndef QTPVDBCONCEPTMAPDISPLAYWIDGET_H
 #define QTPVDBCONCEPTMAPDISPLAYWIDGET_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
 
 #include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>
 #include "qtpvdbconceptmapwidget.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-
-#endif
 
 #include "pvdbnode.h"
 #include "pvdbedge.h"
+
+namespace ribi {
+
+namespace pvdb {
 
 ///QtPvdbConceptMapWidget for creation and editing of a ConceptMap
 struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
@@ -25,7 +21,7 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
   typedef QtPvdbConceptMapDisplayWidget This_t;
 
   QtPvdbConceptMapDisplayWidget(
-    const boost::shared_ptr<pvdb::ConceptMap> concept_map,
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
     QWidget* parent = 0);
   ~QtPvdbConceptMapDisplayWidget() {}
 
@@ -41,10 +37,10 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
 private:
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as it has a Concept on it that the user might want to edit
-  void AddEdge(const boost::shared_ptr<pvdb::Edge> edge);
+  void AddEdge(const boost::shared_ptr<ribi::pvdb::Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  QtPvdbNodeItem * AddNode(const boost::shared_ptr<pvdb::Node> node);
+  QtPvdbNodeItem * AddNode(const boost::shared_ptr<ribi::pvdb::Node> node);
 
   void CleanMe();
 
@@ -58,5 +54,9 @@ private:
   ///Test this class
   static void Test() {}
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBCONCEPTMAPDISPLAYWIDGET_H

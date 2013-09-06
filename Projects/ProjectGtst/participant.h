@@ -32,6 +32,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Participant is a participant.
 ///
@@ -196,5 +200,8 @@ struct Participant : public boost::noncopyable
 std::ostream& operator<<(std::ostream& os,const Participant& p);
 std::ostream& operator<<(std::ostream& os,const boost::shared_ptr<Participant>& p);
 bool operator<(const Participant& lhs,const Participant& rhs);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARTICIPANT_H

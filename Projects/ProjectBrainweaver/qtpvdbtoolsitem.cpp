@@ -13,7 +13,7 @@
 #include "qtpvdbnodeitem.h"
 #include "trace.h"
 
-QtPvdbToolsItem::QtPvdbToolsItem()
+ribi::pvdb::QtPvdbToolsItem::QtPvdbToolsItem()
   : m_signal_clicked(),
     m_item(nullptr)
 {
@@ -34,7 +34,7 @@ QtPvdbToolsItem::QtPvdbToolsItem()
 }
 
 
-QtPvdbNodeItem * QtPvdbToolsItem::GetBuddyItem()
+ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbToolsItem::GetBuddyItem()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
@@ -43,25 +43,25 @@ QtPvdbNodeItem * QtPvdbToolsItem::GetBuddyItem()
   return const_cast<QtPvdbNodeItem * >(const_cast<const QtPvdbToolsItem *>(this)->GetBuddyItem());
 }
 
-const QtPvdbNodeItem * QtPvdbToolsItem::GetBuddyItem() const
+const ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbToolsItem::GetBuddyItem() const
 {
   assert(m_item);
   return m_item;
 }
 
 
-void QtPvdbToolsItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::pvdb::QtPvdbToolsItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void QtPvdbToolsItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
+void ribi::pvdb::QtPvdbToolsItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
   QGraphicsPixmapItem::mousePressEvent(event);
   m_signal_clicked();
 }
 
-void QtPvdbToolsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::pvdb::QtPvdbToolsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   assert(m_item);
   this->setPos(
@@ -81,7 +81,7 @@ void QtPvdbToolsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* o
   }
 }
 
-void QtPvdbToolsItem::SetBuddyItem(const QtPvdbNodeItem * const item)
+void ribi::pvdb::QtPvdbToolsItem::SetBuddyItem(const QtPvdbNodeItem * const item)
 {
   if (item != m_item)
   {

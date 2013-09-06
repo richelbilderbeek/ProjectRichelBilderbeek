@@ -23,8 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #undef __STRICT_ANSI__
 #endif
 
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "wtdialwidget.h"
 
 #include <boost/bind.hpp>
@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h"
 #include "dialwidget.h"
 //---------------------------------------------------------------------------
-WtDialWidget::WtDialWidget(
+ribi::WtDialWidget::WtDialWidget(
   const double intensity,
   const unsigned char red,
   const unsigned char green,
@@ -49,30 +49,30 @@ WtDialWidget::WtDialWidget(
 
   m_widget->GetDial()->m_signal_color_changed.connect(
     boost::bind(
-      &WtDialWidget::DoRepaint,
+      &ribi::WtDialWidget::DoRepaint,
       this));
 
   m_widget->GetDial()->m_signal_position_changed.connect(
     boost::bind(
-      &WtDialWidget::DoRepaint,
+      &ribi::WtDialWidget::DoRepaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &WtDialWidget::OnResize,
+      &ribi::WtDialWidget::OnResize,
       this));
 
-  this->clicked().connect(this,&WtDialWidget::OnClicked);
+  this->clicked().connect(this,&ribi::WtDialWidget::OnClicked);
 
   m_widget->SetGeometry(Rect(0,0,32,32));
 }
 //---------------------------------------------------------------------------
-void WtDialWidget::DoRepaint()
+void ribi::WtDialWidget::DoRepaint()
 {
   this->update();
 }
 //---------------------------------------------------------------------------
-void WtDialWidget::DrawDial(
+void ribi::WtDialWidget::DrawDial(
   Wt::WPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -113,7 +113,7 @@ void WtDialWidget::DrawDial(
   painter.drawLine(left+midx,top+midy,left+pointerX,top+pointerY);
 }
 //---------------------------------------------------------------------------
-void WtDialWidget::DrawDial(
+void ribi::WtDialWidget::DrawDial(
   Wt::WPainter& painter,
   const DialWidget * const widget)
 {
@@ -126,12 +126,12 @@ void WtDialWidget::DrawDial(
     widget->GetDial());
 }
 //---------------------------------------------------------------------------
-const std::string WtDialWidget::GetVersion()
+const std::string ribi::WtDialWidget::GetVersion()
 {
   return "3.1";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtDialWidget::GetVersionHistory()
+const std::vector<std::string> ribi::WtDialWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -143,23 +143,23 @@ const std::vector<std::string> WtDialWidget::GetVersionHistory()
   return v;
 }
 //---------------------------------------------------------------------------
-void WtDialWidget::OnClicked(const Wt::WMouseEvent& e)
+void ribi::WtDialWidget::OnClicked(const Wt::WMouseEvent& e)
 {
   m_widget->Click(e.widget().x,e.widget().y);
 }
 //---------------------------------------------------------------------------
-void WtDialWidget::OnResize()
+void ribi::WtDialWidget::OnResize()
 {
   resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
 //---------------------------------------------------------------------------
-void WtDialWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+void ribi::WtDialWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   this->DrawDial(painter,m_widget.get());
 }
 //---------------------------------------------------------------------------
-void WtDialWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
+void ribi::WtDialWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }

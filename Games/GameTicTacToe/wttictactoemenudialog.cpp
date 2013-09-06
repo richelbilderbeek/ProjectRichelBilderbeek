@@ -31,11 +31,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wttictactoemenudialog.h"
 #include "wttictactoewidget.h"
 //---------------------------------------------------------------------------
-//Enable debugging
-#undef NDEBUG
 #include <cassert>
 //---------------------------------------------------------------------------
-WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
+ribi::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -69,7 +67,7 @@ WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-WtAboutDialog * WtTicTacToeMenuDialog::CreateNewAboutDialog() const
+ribi::WtAboutDialog * ribi::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
 {
   About a = TicTacToeMenuDialog::GetAbout();
   a.AddLibrary("WtTicTacToeWidget version: " + WtTicTacToeWidget::GetVersion());

@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 namespace RichelBilderbeek {
 
 struct QtResources
@@ -61,6 +63,9 @@ struct QtResources
 
 };
 
+
 } //~namespace RichelBilderbeek
+
+} //~namespace ribi
 
 #endif // QTRICHELBILDERBEEKGALLERYRESOURCES_H

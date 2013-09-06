@@ -51,18 +51,6 @@ ribi::QtMaziakGameWonDialog::~QtMaziakGameWonDialog()
   delete ui;
 }
 
-void ribi::QtMaziakGameWonDialog::changeEvent(QEvent *e)
-{
-  QWidget::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 void ribi::QtMaziakGameWonDialog::onTimer()
 {
   m_allow_close = true;

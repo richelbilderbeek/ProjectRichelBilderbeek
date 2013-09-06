@@ -30,19 +30,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtserverpusher.h"
 #include "wtaboutdialog.h"
 //---------------------------------------------------------------------------
-namespace ToolTestServerPusher {
+
 //---------------------------------------------------------------------------
-WtMainDialog::WtMainDialog()
+ribi::ToolTestServerPusher::WtMainDialog::WtMainDialog()
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);
   ui.m_edit = new Wt::WLineEdit(this);
-  ui.m_edit->keyWentUp().connect(this,&WtMainDialog::OnEditChanged);
+  ui.m_edit->keyWentUp().connect(this,&ribi::ToolTestServerPusher::WtMainDialog::OnEditChanged);
   ui.m_edit->setMinimumSize(400,Wt::WLength::Auto);
   OnServerPush();
 }
 //---------------------------------------------------------------------------
-void WtMainDialog::OnEditChanged()
+void ribi::ToolTestServerPusher::WtMainDialog::OnEditChanged()
 {
   const std::string s = ui.m_edit->text().toUTF8();
   const std::string t = ToolTestServerPusher::Data::GetInstance()->GetData();
@@ -53,10 +53,8 @@ void WtMainDialog::OnEditChanged()
   }
 }
 //---------------------------------------------------------------------------
-void WtMainDialog::OnServerPush()
+void ribi::ToolTestServerPusher::WtMainDialog::OnServerPush()
 {
   ui.m_edit->setText(ToolTestServerPusher::Data::GetInstance()->GetData());
 }
-//---------------------------------------------------------------------------
-} //namespace ToolTestServerPusher
 //---------------------------------------------------------------------------

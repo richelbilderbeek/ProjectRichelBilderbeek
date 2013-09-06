@@ -64,18 +64,6 @@ QtQmakeWatcherMainDialog::~QtQmakeWatcherMainDialog()
   delete ui;
 }
 
-void QtQmakeWatcherMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 const std::vector<std::string> QtQmakeWatcherMainDialog::FileToVector(const std::string& fileName)
 {
 

@@ -42,7 +42,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
+ribi::WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
 {
   {
     std::vector<std::string> image_names;
@@ -100,7 +100,7 @@ WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestGroupWidgetMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestGroupWidgetMenuDialog::GetAbout();
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
@@ -111,14 +111,14 @@ Wt::WWidget * WtTestGroupWidgetMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestGroupWidgetMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewMainDialog() const
 {
   WtTestGroupWidgetMainDialog * const d = new WtTestGroupWidgetMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestGroupWidgetMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

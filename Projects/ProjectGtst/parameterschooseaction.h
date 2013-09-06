@@ -31,6 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///Parameters in the choose-action state (in the smaller/IPGG cycle)
 struct ParametersChooseAction
@@ -92,5 +96,8 @@ struct ParametersChooseAction
 };
 //---------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os,const ParametersChooseAction& parameters);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // PARAMETERSCHOOSEACTION_H

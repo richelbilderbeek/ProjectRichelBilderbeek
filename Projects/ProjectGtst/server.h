@@ -34,6 +34,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "forward_declarations.h"
 #include "wttimedserverpusherclient.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///\brief
 ///The center of communication.
 ///
@@ -132,9 +136,10 @@ struct Server : public boost::noncopyable, WtTimedServerPusherClient
   friend class ServerState;
 
   ///Give friendship to the only Server::Get caller
-  friend class ProjectGtst::MenuDialog;
+  friend class MenuDialog;
 };
-//---------------------------------------------------------------------------
-//std::ostream& operator<<(std::ostream& os, const Server& server);
-//---------------------------------------------------------------------------
+
+} //~namespace gtst
+} //~namespace ribi
+
 #endif // SERVER_H

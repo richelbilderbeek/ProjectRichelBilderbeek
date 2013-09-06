@@ -27,6 +27,8 @@ namespace Ui {
   class QtTestDialMainDialog;
 }
 
+namespace ribi {
+
 class QtTestDialMainDialog : public QDialog
 {
   Q_OBJECT
@@ -36,7 +38,7 @@ public:
   ~QtTestDialMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private slots:
   void on_dial_color_valueChanged(int value);
@@ -47,5 +49,7 @@ private:
   void DisplayDialColor();
   void DisplayDialValue();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTDIALMAINDIALOG_H

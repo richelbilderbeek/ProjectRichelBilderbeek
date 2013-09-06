@@ -27,6 +27,8 @@ namespace Ui {
   class QtTestQtRoundedRectItemMenuDialog;
 }
 
+namespace ribi {
+
 class QtTestQtRoundedRectItemMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -36,7 +38,7 @@ public:
   ~QtTestQtRoundedRectItemMenuDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+
   void keyPressEvent(QKeyEvent * event);
 
 private:
@@ -47,5 +49,7 @@ private slots:
   void on_button_quit_clicked();
   void on_button_start_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTROUNDEDRECTITEMMENUDIALOG_H

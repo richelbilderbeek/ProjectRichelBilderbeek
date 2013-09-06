@@ -23,6 +23,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
 //---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtGroupWidget;
 //---------------------------------------------------------------------------
 struct WtTestGroupWidgetMainDialog : public Wt::WContainerWidget
@@ -49,5 +52,7 @@ struct WtTestGroupWidgetMainDialog : public Wt::WContainerWidget
     const char seperator);
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTGROUPWIDGETDIALOG_H

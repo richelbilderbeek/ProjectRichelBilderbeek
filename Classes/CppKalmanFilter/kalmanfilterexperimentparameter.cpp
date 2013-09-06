@@ -1,5 +1,3 @@
-
-
 #include "kalmanfilterexperimentparameter.h"
 
 #include <cassert>

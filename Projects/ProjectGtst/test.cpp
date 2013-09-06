@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///\brief Test contructor performs all tests
 ///
 ///This contructor is only called once
-Test::Test(Server * const server)
+ribi::gtst::Test::Test(Server * const server)
   : m_server(server)
 {
   assert(m_server);

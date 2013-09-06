@@ -1,19 +1,12 @@
 #ifndef PVDBEXAMPLES_H
 #define PVDBEXAMPLES_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbexample.h"
-#endif
+
+namespace ribi {
 
 namespace pvdb {
 
@@ -28,7 +21,7 @@ struct Examples
   const std::vector<boost::shared_ptr<pvdb::Example> >& Get() { return m_v; }
   const std::vector<boost::shared_ptr<const pvdb::Example> > Get() const;
 
-  static const boost::shared_ptr<pvdb::Examples> FromXml(const std::string& s);
+  static const boost::shared_ptr<ribi::pvdb::Examples> FromXml(const std::string& s);
 
   static const std::string ToXml(const boost::shared_ptr<const pvdb::Examples> &c);
 
@@ -59,21 +52,23 @@ bool IsEqual(const pvdb::Examples& lhs, const pvdb::Examples& rhs);
 ///(2) (if the sizes are equal) Alphabetically on the first different example
 bool operator<(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs);
 bool operator<(const boost::shared_ptr<const pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs);
-bool operator<(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs);
-bool operator<(const boost::shared_ptr<pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs);
+bool operator<(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs);
+bool operator<(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs);
 bool operator<=(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
 bool operator<=(const boost::shared_ptr<const pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator<=(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator<=(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
 bool operator>(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
 bool operator>(const boost::shared_ptr<const pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
-bool operator>(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
-bool operator>(const boost::shared_ptr<pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator>(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator>(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
 bool operator>=(const boost::shared_ptr<const pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
 bool operator>=(const boost::shared_ptr<const pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator>=(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, const boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
+bool operator>=(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
 
 } //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // PVDBEXAMPLES_H

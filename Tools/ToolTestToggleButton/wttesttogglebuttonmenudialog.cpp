@@ -44,7 +44,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QFile>
 //---------------------------------------------------------------------------
-WtTestToggleButtonMenuDialog::WtTestToggleButtonMenuDialog()
+ribi::WtTestToggleButtonMenuDialog::WtTestToggleButtonMenuDialog()
 {
   //Create resources
   {
@@ -104,7 +104,7 @@ WtTestToggleButtonMenuDialog::WtTestToggleButtonMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestToggleButtonMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::WtTestToggleButtonMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestToggleButtonMenuDialog::GetAbout();
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
@@ -116,14 +116,14 @@ Wt::WWidget * WtTestToggleButtonMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestToggleButtonMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::WtTestToggleButtonMenuDialog::CreateNewMainDialog() const
 {
   WtTestToggleButtonMainDialog * const d = new WtTestToggleButtonMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestToggleButtonMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::WtTestToggleButtonMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

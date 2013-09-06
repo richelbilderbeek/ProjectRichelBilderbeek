@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testledmenudialog.h"
 #include "ui_qttestleddialog.h"
 //---------------------------------------------------------------------------
-QtTestLedDialog::QtTestLedDialog(QWidget *parent) :
+ribi::QtTestLedDialog::QtTestLedDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestLedDialog)
 {
@@ -50,24 +50,13 @@ QtTestLedDialog::QtTestLedDialog(QWidget *parent) :
   ui->led_white->GetWidget()->GetLed()->SetColor(255,255,255);
 }
 //---------------------------------------------------------------------------
-QtTestLedDialog::~QtTestLedDialog()
+ribi::QtTestLedDialog::~QtTestLedDialog()
 {
   delete ui;
 }
 //---------------------------------------------------------------------------
-void QtTestLedDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
-void QtTestLedDialog::on_slider_valueChanged(int value)
+
+void ribi::QtTestLedDialog::on_slider_valueChanged(int value)
 {
   const double intensity = boost::numeric_cast<double>(value)
     / boost::numeric_cast<double>(ui->slider->maximum());
@@ -84,7 +73,7 @@ void QtTestLedDialog::on_slider_valueChanged(int value)
   ui->led_white->GetWidget()->GetLed()->SetIntensity(intensity);
 }
 //---------------------------------------------------------------------------
-void QtTestLedDialog::on_button_about_clicked()
+void ribi::QtTestLedDialog::on_button_about_clicked()
 {
   this->hide();
   About a = TestLedMenuDialog::GetAbout();

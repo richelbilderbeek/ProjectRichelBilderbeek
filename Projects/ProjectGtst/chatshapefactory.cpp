@@ -25,9 +25,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shape.h"
 #include "shapewidget.h"
 //---------------------------------------------------------------------------
-boost::scoped_ptr<ChatShapeFactory> ChatShapeFactory::m_instance;
+boost::scoped_ptr<ribi::gtst::ChatShapeFactory> ribi::gtst::ChatShapeFactory::m_instance;
 //---------------------------------------------------------------------------
-ChatShapeFactory::ChatShapeFactory()
+ribi::gtst::ChatShapeFactory::ChatShapeFactory()
   : m_widgets(CreateWidgets(56)),
     m_i(0)
 {
@@ -35,7 +35,7 @@ ChatShapeFactory::ChatShapeFactory()
 }
 //---------------------------------------------------------------------------
 ///Obtain a nice series of ShapeWidgets
-const std::vector<boost::shared_ptr<ShapeWidget> > ChatShapeFactory::CreateWidgets(const int n)
+const std::vector<boost::shared_ptr<ribi::ShapeWidget> > ribi::gtst::ChatShapeFactory::CreateWidgets(const int n)
 {
   const int width  = 24;
   const int height = 24;
@@ -70,14 +70,14 @@ const std::vector<boost::shared_ptr<ShapeWidget> > ChatShapeFactory::CreateWidge
   return v;
 }
 //---------------------------------------------------------------------------
-ChatShapeFactory * ChatShapeFactory::Get()
+ribi::gtst::ChatShapeFactory * ribi::gtst::ChatShapeFactory::Get()
 {
   if (!m_instance) m_instance.reset(new ChatShapeFactory);
   return m_instance.get();
 }
 //---------------------------------------------------------------------------
 ///Obtain the next ShapeWidget
-const boost::shared_ptr<ShapeWidget> ChatShapeFactory::GetNextWidget()
+const boost::shared_ptr<ribi::ShapeWidget> ribi::gtst::ChatShapeFactory::GetNextWidget()
 {
   assert(m_i >= 0);
   assert(m_i < boost::numeric_cast<int>(m_widgets.size()));
@@ -90,7 +90,7 @@ const boost::shared_ptr<ShapeWidget> ChatShapeFactory::GetNextWidget()
   return widget;
 }
 //---------------------------------------------------------------------------
-void ChatShapeFactory::Reset()
+void ribi::gtst::ChatShapeFactory::Reset()
 {
   m_i = 0;
 }

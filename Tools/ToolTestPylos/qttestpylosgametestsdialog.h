@@ -38,7 +38,7 @@ public:
   ~QtTestPylosGameTestsDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestPylosGameTestsDialog *ui;

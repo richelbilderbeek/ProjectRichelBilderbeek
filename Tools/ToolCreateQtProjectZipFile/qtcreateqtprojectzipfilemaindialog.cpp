@@ -39,7 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWidget *parent) :
+ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtCreateQtProjectZipFileMainDialog)
 {
@@ -51,12 +51,12 @@ QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWidget *
   ui->lineEdit->setText("Tools/ToolCreateQtProjectZipFile");
 }
 
-QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog()
+ribi::QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog()
 {
   delete ui;
 }
 
-void QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_folder)
+void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_folder)
 {
   /*
   std::stringstream s;
@@ -94,19 +94,19 @@ void QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_f
   ui->text->setPlainText(QtCreatorProFileZipScript::CreateScript(source_folder).c_str());
 }
 
-bool QtCreateQtProjectZipFileMainDialog::IsRegularFile(const std::string& filename)
+bool ribi::QtCreateQtProjectZipFileMainDialog::IsRegularFile(const std::string& filename)
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);
   return f.is_open();
 }
 
-void QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QString &arg1)
+void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QString &arg1)
 {
   const std::string source_folder = "../../" + arg1.toStdString();
 
@@ -120,7 +120,7 @@ void QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QString &
 }
 
 #ifndef NDEBUG
-void QtCreateQtProjectZipFileMainDialog::Test()
+void ribi::QtCreateQtProjectZipFileMainDialog::Test()
 {
   {
     static bool is_tested = false;

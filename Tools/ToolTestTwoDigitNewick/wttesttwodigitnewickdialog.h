@@ -31,7 +31,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WTextArea>
 //---------------------------------------------------------------------------
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtTestTwoDigitNewickDialog : public Wt::WContainerWidget
 {
   WtTestTwoDigitNewickDialog();
@@ -49,5 +51,7 @@ struct WtTestTwoDigitNewickDialog : public Wt::WContainerWidget
   void OnAbout();
   void OnCalculate();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTTESTTWODIGITNEWICKDIALOG_H

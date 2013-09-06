@@ -23,6 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "group.h"
 //---------------------------------------------------------------------------
+
+namespace ribi {
+namespace gtst {
+
 ///GroupParticipating is a Participant Group that is participating
 struct GroupParticipating : public Group
 {
@@ -60,7 +64,8 @@ struct GroupParticipating : public Group
   static int m_group_last_id;
 
 };
-//---------------------------------------------------------------------------
 
+} //~namespace gtst
+} //~namespace ribi
 
 #endif // GROUPPARTICIPATING_H

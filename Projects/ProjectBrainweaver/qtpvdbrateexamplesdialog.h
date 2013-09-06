@@ -1,31 +1,26 @@
 #ifndef QTPVDBRATEEXAMPLESDIALOG_H
 #define QTPVDBRATEEXAMPLESDIALOG_H
 
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#ifdef PVDB_USE_FORWARD_DECLARATIONS_248738
 #include "pvdbfwd.h"
-#else
-#include "pvdbconcept.h"
-#endif
 
 namespace Ui {
 class QtPvdbRateExamplesDialog;
 }
 
+namespace ribi {
+
+namespace pvdb {
+
 ///Allows the user to rate the examples of a concept
-class QtPvdbRateExamplesDialog : public QtHideAndShowDialog
+class QtPvdbRateExamplesDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtPvdbRateExamplesDialog(const boost::shared_ptr<pvdb::Concept> concept, QWidget* parent = 0);
+  explicit QtPvdbRateExamplesDialog(const boost::shared_ptr<ribi::pvdb::Concept> concept, QWidget* parent = 0);
   ~QtPvdbRateExamplesDialog();
 
 protected:
@@ -46,14 +41,18 @@ private:
 
   ///The concept, which is modified when clicking OK, but remains unmodified when
   ///the user clicks cancel
-  const boost::shared_ptr<pvdb::Concept> m_concept;
+  const boost::shared_ptr<ribi::pvdb::Concept> m_concept;
 
   ///Obtain the rated examples
-  const boost::shared_ptr<pvdb::Examples> GetRatedExamples() const;
+  const boost::shared_ptr<ribi::pvdb::Examples> GetRatedExamples() const;
 
   ///Test this class
   static void Test();
 
 };
+
+} //~namespace pvdb
+
+} //~namespace ribi
 
 #endif // QTPVDBRATEEXAMPLESDIALOG_H

@@ -76,53 +76,53 @@ int main(int argc, char *argv[])
   //Perform tests
   #ifndef NDEBUG
   std::clog << "DEBUG mode" << std::endl;
-  QtPvdbMenuDialog::Test(); //Tests all
+  ribi::pvdb::QtPvdbMenuDialog::Test(); //Tests all
   #else
   std::clog << "RELEASE mode" << std::endl;
   assert(1==2 && "Assume debugging is really disabled");
   #endif
 
   //Delete the test file
-  std::remove(pvdb::File::GetTempFileName().c_str());
+  std::remove(ribi::pvdb::File::GetTempFileName().c_str());
 
   //QtPvdbMenuDialog::Test();
   a.setStyleSheet(CreateStyleSheet().c_str());
   a.setWindowIcon(QIcon(":/images/R.png"));
 
-  QtPvdbMenuDialog d;
+  ribi::pvdb::QtPvdbMenuDialog d;
   if (argc != 1)
   {
-    const std::vector<boost::function<void(QtPvdbMenuDialog *)> > v
+    const std::vector<boost::function<void(ribi::pvdb::QtPvdbMenuDialog *)> > v
       =
       {
-        &QtPvdbMenuDialog::on_button_about_clicked,
-        &QtPvdbMenuDialog::on_button_assessor_clicked,
-        &QtPvdbMenuDialog::on_button_create_test_files_clicked,
-        &QtPvdbMenuDialog::on_button_modify_stylesheet_clicked,
-        &QtPvdbMenuDialog::on_button_overview_clicked,
-        &QtPvdbMenuDialog::on_button_print_concept_map_clicked,
-        &QtPvdbMenuDialog::on_button_print_rating_clicked,
-        &QtPvdbMenuDialog::on_button_rate_concept_auto_clicked,
-        &QtPvdbMenuDialog::on_button_rate_concept_clicked,
-        &QtPvdbMenuDialog::on_button_rate_concept_map_clicked,
-        &QtPvdbMenuDialog::on_button_rate_examples_clicked,
-        &QtPvdbMenuDialog::on_button_rating_clicked,
-        &QtPvdbMenuDialog::on_button_student_clicked,
-        &QtPvdbMenuDialog::on_button_test_arrowitems_clicked,
-        &QtPvdbMenuDialog::on_button_test_cluster_clicked,
-        &QtPvdbMenuDialog::on_button_test_conceptedit_clicked,
-        &QtPvdbMenuDialog::on_button_test_conceptitem_clicked,
-        &QtPvdbMenuDialog::on_button_test_conceptmap_clicked,
-        &QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked,
-        &QtPvdbMenuDialog::on_button_test_edge_item_clicked,
-        &QtPvdbMenuDialog::on_button_test_node_item_clicked,
-        &QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked,
-        &QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked,
-        &QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked,
-        &QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked,
-        &QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked,
-        &QtPvdbMenuDialog::on_button_view_files_clicked,
-        &QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_about_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_assessor_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_modify_stylesheet_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_overview_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_print_concept_map_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_print_rating_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_arrowitems_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_edge_item_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked,
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked
       };
     try
     {

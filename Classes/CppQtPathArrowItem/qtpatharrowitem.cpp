@@ -33,9 +33,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 
-const double QtPathArrowItem::m_click_easy_width = 10.0;
+const double ribi::QtPathArrowItem::m_click_easy_width = 10.0;
 
-QtPathArrowItem::QtPathArrowItem(
+ribi::QtPathArrowItem::QtPathArrowItem(
   const QPointF& tail_pos,
   const bool tail,
   const std::vector<QPointF>& mid_pos,
@@ -62,35 +62,35 @@ QtPathArrowItem::QtPathArrowItem(
   this->setAcceptHoverEvents(true);
 }
 
-QRectF QtPathArrowItem::boundingRect() const
+QRectF ribi::QtPathArrowItem::boundingRect() const
 {
   return shape().boundingRect();
 }
 
-double QtPathArrowItem::GetAngle(const double dx, const double dy)
+double ribi::QtPathArrowItem::GetAngle(const double dx, const double dy)
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - (std::atan(dx/dy));
 }
 
-const std::string QtPathArrowItem::GetVersion()
+const std::string ribi::QtPathArrowItem::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtPathArrowItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtPathArrowItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-12-01: version 1.0: initial version");
   return v;
 }
 
-void QtPathArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
+void ribi::QtPathArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void QtPathArrowItem::keyPressEvent(QKeyEvent *event)
+void ribi::QtPathArrowItem::keyPressEvent(QKeyEvent *event)
 {
   switch (event->key())
   {
@@ -116,13 +116,13 @@ void QtPathArrowItem::keyPressEvent(QKeyEvent *event)
 
 }
 
-void QtPathArrowItem::mouseMoveEvent(QGraphicsSceneMouseEvent*)
+void ribi::QtPathArrowItem::mouseMoveEvent(QGraphicsSceneMouseEvent*)
 {
   m_signal_item_requests_scene_update(this);
   //QGraphicsLineItem::mouseMoveEvent(event);
 }
 
-void QtPathArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void ribi::QtPathArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
   if (event->modifiers() & Qt::ShiftModifier)
   {
@@ -140,7 +140,7 @@ void QtPathArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
   QGraphicsItem::mousePressEvent(event);
 }
 
-void QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+void ribi::QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
   painter->setRenderHint(QPainter::Antialiasing);
   if (this->isSelected() || this->hasFocus())
@@ -202,7 +202,7 @@ void QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
   }
 }
 
-void QtPathArrowItem::SetArrowPath(
+void ribi::QtPathArrowItem::SetArrowPath(
   const QPointF& tail_pos,
   const std::vector<QPointF>& mid_pos,
   const QPointF& head_pos)
@@ -214,7 +214,7 @@ void QtPathArrowItem::SetArrowPath(
   this->update();
 }
 
-QPainterPath QtPathArrowItem::shape() const
+QPainterPath ribi::QtPathArrowItem::shape() const
 {
   //Thanks to norobro for posting this code at
   //http://www.qtcentre.org/threads/49201-Increase-margin-for-detecting-tooltip-events-of-QGraphicsLineItem

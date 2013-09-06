@@ -29,6 +29,8 @@ namespace Ui {
   class QtTestShinyButtonMainDialog;
 }
 
+namespace ribi {
+
 struct QtShinyButtonWidget;
 
 class QtTestShinyButtonMainDialog : public QDialog
@@ -40,7 +42,7 @@ public:
   ~QtTestShinyButtonMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
+  
 
 private:
   Ui::QtTestShinyButtonMainDialog *ui;
@@ -53,5 +55,7 @@ private slots:
   void on_dial_main_color_sliderMoved(int position);
   void on_dial_gradient_sliderMoved(int position);
 };
+
+} //~namespace ribi
 
 #endif // QTTESTSHINYBUTTONDIALOG_H

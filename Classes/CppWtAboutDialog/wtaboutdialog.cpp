@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wtaboutdialog.h"
 //---------------------------------------------------------------------------
-WtAboutDialog::WtAboutDialog(
+ribi::WtAboutDialog::WtAboutDialog(
   const About& about_original,
   const bool display_close_button)
   : m_button_close(new Wt::WPushButton)
@@ -108,16 +108,16 @@ WtAboutDialog::WtAboutDialog(
     this->addWidget(m_button_close);
     m_button_close->setText("Close");
     m_button_close->clicked().connect(
-      this,&WtAboutDialog::OnClose);
+      this,&ribi::WtAboutDialog::OnClose);
   }
 }
 //---------------------------------------------------------------------------
-const std::string WtAboutDialog::GetVersion()
+const std::string ribi::WtAboutDialog::GetVersion()
 {
   return "1.5";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> WtAboutDialog::GetVersionHistory()
+const std::vector<std::string> ribi::WtAboutDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-01-07: version 1.0: initial version");
@@ -131,12 +131,12 @@ const std::vector<std::string> WtAboutDialog::GetVersionHistory()
 //---------------------------------------------------------------------------
 ///GetWtVersion returns the version of the currently installed Wt library
 ///From http://www.richelbilderbeek.nl/CppGetWtVersion.htm
-const std::string WtAboutDialog::GetWtVersion()
+const std::string ribi::WtAboutDialog::GetWtVersion()
 {
   return WT_VERSION_STR;
 }
 //---------------------------------------------------------------------------
-void WtAboutDialog::OnClose()
+void ribi::WtAboutDialog::OnClose()
 {
   //emit that this dialog closes
   m_signal_close();
