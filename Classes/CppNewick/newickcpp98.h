@@ -29,6 +29,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/tuple/tuple.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 namespace NewickCpp98 {
 
 //Functions that do not use the C++0x standard
@@ -41,5 +43,7 @@ void Test();
 #endif
 
 } //~namespace NewickCpp98
+
+} //~namespace ribi
 
 #endif // NEWICKCPP98_H

@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //error: base class 'struct std::binary_function<double, double, bool>' has a non-virtual destructor [-Werror=effc++]
 #pragma GCC diagnostic ignored "-Weffc++"
 
+namespace ribi {
+
 ///fuzzy_equal_to is a predicate to test two doubles for equality
 ///with a certain tolerance. A tolerance of 0.0 denotes that
 ///an exact match is requested. Note that the value of 0.0 cannot
@@ -69,5 +71,7 @@ struct fuzzy_equal_to
 
 //Get back -Weffc++ warnings again
 #pragma GCC diagnostic pop
+
+} //~namespace ribi
 
 #endif // FUZZY_EQUAL_TO_H

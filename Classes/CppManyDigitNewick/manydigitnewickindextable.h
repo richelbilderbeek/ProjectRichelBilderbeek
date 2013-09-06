@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "manydigitnewickcoordinat.h"
 #pragma GCC diagnostic push
 
+namespace ribi {
+
 ///ManyDigitIndexTable manages (X,Y) -> index
 struct ManyDigitIndexTable
 {
@@ -57,5 +59,7 @@ struct ManyDigitIndexTable
     const MultiVector<int>& v,
     const int value);
 };
+
+} //~namespace ribi
 
 #endif // MANYDIGITINDEXTABLE_H

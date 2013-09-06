@@ -37,6 +37,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "widget.h"
 #include "rectangle.h"
 
+namespace ribi {
+
 struct MysteryMachine;
 struct DialWidget;
 struct ToggleButtonWidget;
@@ -75,5 +77,7 @@ struct MysteryMachineWidget : public Widget
 };
 
 std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget);
+
+} //~namespace ribi
 
 #endif // MYSTERYMACHINEWIDGET_H

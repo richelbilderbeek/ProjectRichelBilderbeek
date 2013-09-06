@@ -20,10 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef COUNTER_H
 #define COUNTER_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///Counter is a counter
 struct Counter
 {
@@ -44,5 +46,7 @@ struct Counter
   ///The count
   int m_count;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // COUNTER_H

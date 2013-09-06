@@ -20,9 +20,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef MANYDIGITNEWICKCOORDINAT_H
 #define MANYDIGITNEWICKCOORDINAT_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///ManyDigitNewickCoordinat is an any-dimensional
 ///coordinat with its indices sorted.
 struct ManyDigitNewickCoordinat
@@ -40,5 +42,7 @@ struct ManyDigitNewickCoordinat
   static const std::vector<int> Sort(std::vector<int> v);
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // MANYDIGITNEWICKCOORDINAT_H

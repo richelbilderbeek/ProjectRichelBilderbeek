@@ -5,6 +5,8 @@
 #include <boost/shared_ptr.hpp>
 #include "musicnote.h"
 
+namespace ribi {
+
 namespace Music {
 
 struct Chord;
@@ -148,5 +150,6 @@ struct ScaleMollDurSubdominant : public Scale
 
 } //~namespace Music
 
+} //~namespace ribi
 
 #endif // MUSICSCALE_H

@@ -20,7 +20,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef MANYDIGITDERIVATIVE_H
 #define MANYDIGITDERIVATIVE_H
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///ManyDigitDerivative contains
 ///the index of the derived phylogeny
 ///and the value that must be changed
@@ -59,5 +61,7 @@ struct ManyDigitNewickDerivative
   int m_value_changed;
   int m_other_value_changed;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // MANYDIGITDERIVATIVE_H

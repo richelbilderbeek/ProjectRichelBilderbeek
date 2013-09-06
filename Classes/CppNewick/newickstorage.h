@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------
 #ifndef NEWICKSTORAGE_H
 #define NEWICKSTORAGE_H
-//---------------------------------------------------------------------------
+
 #include <algorithm>
 #include <cassert>
 #include <iterator>
@@ -28,11 +28,13 @@
 #include <numeric>
 #include <stdexcept>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "trace.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 template <class NewickType>
 struct NewickStorage
 {
@@ -48,7 +50,7 @@ struct NewickStorage
   private:
   std::vector<std::map<NewickType,double> > m;
 };
-//---------------------------------------------------------------------------
+
 template <class T, class U>
 const std::vector<int> GetSizes(
   const std::vector<std::map<T,U> >& m)
@@ -64,14 +66,14 @@ const std::vector<int> GetSizes(
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 template <class T>
 NewickStorage<T>::NewickStorage(const T& n)
   : m(n.Size()+1)
 {
 
 }
-//---------------------------------------------------------------------------
+
 template <class T>
 double NewickStorage<T>::Find(const T& n) const
 {
@@ -88,7 +90,7 @@ double NewickStorage<T>::Find(const T& n) const
   }
   return 0.0;
 }
-//---------------------------------------------------------------------------
+
 template <class T>
 void NewickStorage<T>::Store(const T& n, const double p)
 {
@@ -128,7 +130,7 @@ void NewickStorage<T>::Store(const T& n, const double p)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 template <class T>
 int NewickStorage<T>::CountNewicks() const
 {
@@ -140,7 +142,7 @@ int NewickStorage<T>::CountNewicks() const
   }
   return sum;
 }
-//---------------------------------------------------------------------------
+
 template <class T>
 void NewickStorage<T>::CleanUp()
 {
@@ -179,7 +181,7 @@ void NewickStorage<T>::CleanUp()
   }
 } //~CleanUp
 
-//---------------------------------------------------------------------------
+
 
 //The memory used equals the sum of the memory used for each Newick size
 
@@ -204,6 +206,8 @@ template <class T>
     + sizeof(m);
   return sum;
 }
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif //NEWICKSTORAGE_H
 

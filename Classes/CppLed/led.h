@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///Led manages an LED lamp
 struct Led : public boost::noncopyable
 {
@@ -104,5 +106,7 @@ struct Led : public boost::noncopyable
 };
 
 std::ostream& operator<<(std::ostream& os, const Led& led);
+
+} //~namespace ribi
 
 #endif // LED_H

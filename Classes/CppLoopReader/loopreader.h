@@ -20,10 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef LOOPREADER_H
 #define LOOPREADER_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 // From http://www.richelbilderbeek.nl/CppLoopReader.htm
 //Reads a container in a loop:
 //  when the end is reached, it starts
@@ -64,5 +66,7 @@ struct LoopReader
   const Iterator end_;
   Iterator read_;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // LOOPREADER_H

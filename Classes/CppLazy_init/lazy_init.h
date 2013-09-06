@@ -21,12 +21,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef LAZY_INIT_H
 #define LAZY_INIT_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 /*
 //How to do this with variadic function templates???
 template <class T, typename ... Args> struct LazyInit
@@ -50,7 +52,7 @@ template <class T, typename ... Args> struct LazyInit
   mutable boost::scoped_ptr<T> m_data;
 };
 */
-//---------------------------------------------------------------------------
+
 template <class T> struct LazyInit0
 {
   const T& Get() const
@@ -65,7 +67,7 @@ template <class T> struct LazyInit0
   private:
   mutable boost::scoped_ptr<T> m_data;
 };
-//---------------------------------------------------------------------------
+
 template <class T, typename Arg0> struct LazyInit1
 {
   LazyInit1(const Arg0 args)
@@ -86,7 +88,7 @@ template <class T, typename Arg0> struct LazyInit1
   mutable Arg0 m_args;
   mutable boost::scoped_ptr<T> m_data;
 };
-//---------------------------------------------------------------------------
+
 template <class T, typename Arg0, typename Arg1> struct LazyInit2
 {
   LazyInit2(const Arg0 arg0, const Arg1 arg1)
@@ -108,7 +110,7 @@ template <class T, typename Arg0, typename Arg1> struct LazyInit2
   mutable Arg1 m_arg1;
   mutable boost::scoped_ptr<T> m_data;
 };
-//---------------------------------------------------------------------------
+
 struct Lazy_initVersion
 {
   ///Obtain the version of this class
@@ -117,5 +119,7 @@ struct Lazy_initVersion
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // LAZY_INIT_H

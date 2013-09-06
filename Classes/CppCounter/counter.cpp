@@ -33,5 +33,3 @@ const std::vector<std::string> Counter::GetVersionHistory()
   v.push_back("2011-08-20: Version 1.0: initial version");
   return v;
 }
-
-

@@ -20,10 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef HTMLPAGE_H
 #define HTMLPAGE_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct HtmlPage
 {
   explicit HtmlPage(const std::string& filename);
@@ -61,8 +63,10 @@ struct HtmlPage
     const std::string& replaceWithWhat);
 
 };
-//---------------------------------------------------------------------------
+
 bool operator<(const HtmlPage& lhs, const HtmlPage& rhs);
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // HTMLPAGE_H
-//---------------------------------------------------------------------------
+

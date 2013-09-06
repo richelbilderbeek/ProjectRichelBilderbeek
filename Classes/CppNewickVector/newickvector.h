@@ -31,6 +31,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "BigIntegerLibrary.hh"
 #include "newickstorage.h"
 
+namespace ribi {
+
 ///NewickVector manages a std::vector<int> resembling
 ///a binary Newick.
 struct NewickVector
@@ -91,5 +93,7 @@ struct NewickVector
 bool operator<(
   const NewickVector& lhs,
   const NewickVector& rhs);
+
+} //~namespace ribi
 
 #endif // NEWICKVECTOR_H

@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 MultiVector, any-dimensional std::vector class
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppMultiVector.htm
-
+//---------------------------------------------------------------------------
 #ifndef MULTIVECTOR_H
 #define MULTIVECTOR_H
 
@@ -30,6 +30,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 #pragma GCC diagnostic pop
+
+namespace ribi {
 
 template <class T>
 struct MultiVector
@@ -138,5 +140,7 @@ struct MultiVector
   }
 
 }; //~MultiVector
+
+} //~namespace ribi
 
 #endif // MULTIVECTOR_H

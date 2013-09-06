@@ -29,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "widget.h"
 
+namespace ribi {
+
 struct Led;
 
 ///Widget for displaying a Led
@@ -65,5 +67,7 @@ struct LedWidget : public Widget
 };
 
 std::ostream& operator<<(std::ostream& os, const LedWidget& widget);
+
+} //~namespace ribi
 
 #endif // LEDWIDGET_H

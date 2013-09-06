@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 namespace Music {
 
 ///Note class, e.g. 'C with length 1/1'
@@ -57,5 +59,7 @@ bool operator==(const Note& lhs, const Note& rhs);
 bool operator<(const Note& lhs, const Note& rhs);
 
 } //~namespace Music
+
+} //~namespace ribi
 
 #endif // MUSICNOTE_H

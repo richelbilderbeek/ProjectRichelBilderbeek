@@ -68,7 +68,6 @@ struct Approximator
   ///Test this class
   static void Test();
   #endif
-
 };
 
 

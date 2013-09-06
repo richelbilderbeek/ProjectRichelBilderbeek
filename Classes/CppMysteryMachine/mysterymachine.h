@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
   #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct DialWidget;
 struct LedWidget;
 struct ToggleButtonWidget;
@@ -97,5 +99,7 @@ struct MysteryMachine : public boost::noncopyable
 };
 
 std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine);
+
+} //~namespace ribi
 
 #endif // MYSTERYMACHINE_H

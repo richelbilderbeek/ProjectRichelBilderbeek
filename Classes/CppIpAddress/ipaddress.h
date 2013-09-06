@@ -27,6 +27,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/noncopyable.hpp>
 
+namespace ribi {
+
 ///IpAddress guarantees to contain a valid IP address
 struct IpAddress
 {
@@ -83,5 +85,7 @@ struct SafeIpAddress : public IpAddress, boost::noncopyable
 bool operator==(const IpAddress& lhs,const IpAddress& rhs);
 ///Test for equal IP addresses
 bool operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs);
+
+} //~namespace ribi
 
 #endif // IPADDRESS_H

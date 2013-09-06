@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///GaborFilter manages a Gabor filter
 struct GaborFilter : public boost::noncopyable
 {
@@ -102,5 +104,7 @@ struct GaborFilter : public boost::noncopyable
 };
 
 std::ostream& operator<<(std::ostream& os, const GaborFilter& g);
+
+} //~namespace ribi
 
 #endif // GABORFILTER_H

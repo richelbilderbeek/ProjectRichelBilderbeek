@@ -29,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "widget.h"
 
+namespace ribi {
+
 struct GaborFilter;
 
 ///Widget for displaying a GaborFilter
@@ -64,5 +66,7 @@ struct GaborFilterWidget : public Widget
 };
 
 std::ostream& operator<<(std::ostream& os, const GaborFilterWidget& widget);
+
+} //~namespace ribi
 
 #endif // GABORFILTERWIDGET_H

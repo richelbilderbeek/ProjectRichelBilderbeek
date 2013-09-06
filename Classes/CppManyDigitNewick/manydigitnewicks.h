@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "manydigitnewick.h"
 
+namespace ribi {
+
 ///ManyDigitNewicks manages ManyDigitManyDigitNewicks.
 ///ManyDigitManyDigitNewicks manage F'(index) -> { indices }
 struct ManyDigitNewicks
@@ -58,5 +60,7 @@ private:
   ///its derived indexed ManyDigitNewicks
   std::vector<ManyDigitNewick> m_v;
 };
+
+} //~namespace ribi
 
 #endif // MANYDIGITNEWICKS_H

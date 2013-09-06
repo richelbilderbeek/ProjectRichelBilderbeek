@@ -37,6 +37,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newickstorage.h"
 #include "trace.h"
 
+namespace ribi {
+
 ///namespace Newick contains general Newick functions,
 ///not using an Newick class
 namespace Newick
@@ -527,6 +529,8 @@ namespace Newick
 
 
 };
+
+} //~namespace ribi
 
 #endif // NEWICK_H
 

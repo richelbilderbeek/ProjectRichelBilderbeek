@@ -7,6 +7,8 @@
 
 #include "musicnote.h"
 
+namespace ribi {
+
 namespace Music {
 
 struct Chord
@@ -152,5 +154,7 @@ struct ChordMinor7 : public Chord
 };
 
 } //~namespace Music
+
+} //~namespace ribi
 
 #endif // MUSICCHORD_H
