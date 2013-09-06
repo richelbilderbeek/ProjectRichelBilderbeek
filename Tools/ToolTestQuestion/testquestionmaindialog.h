@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
+namespace ribi {
+
 struct MultipleChoiceQuestion;
 struct MultipleChoiceQuestionDialog;
 struct OpenQuestion;
@@ -46,6 +48,8 @@ struct TestQuestionMainDialog
 
   static std::vector<boost::shared_ptr<QuestionDialog> > CreateQuestions();
 };
+
+} //~namespace ribi
 
 
 #endif // TESTQUESTIONMAINDIALOG_H

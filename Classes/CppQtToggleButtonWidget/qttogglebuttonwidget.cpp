@@ -124,10 +124,9 @@ const std::string ribi::QtToggleButtonWidget::GetVersion()
 
 const std::vector<std::string> ribi::QtToggleButtonWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-06-16: version 1.0: initial version");
-  return v;
+  return {
+    "2011-06-16: version 1.0: initial version"
+  };
 }
 
 void ribi::QtToggleButtonWidget::mousePressEvent(QMouseEvent * e)

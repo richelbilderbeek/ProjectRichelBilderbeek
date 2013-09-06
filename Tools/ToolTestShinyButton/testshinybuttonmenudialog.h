@@ -20,14 +20,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TESTSHINYBUTTONMENUDIALOG_H
 #define TESTSHINYBUTTONMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct TestShinyButtonMenuDialog
 {
   static const About GetAbout();
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TESTSHINYBUTTONMENUDIALOG_H

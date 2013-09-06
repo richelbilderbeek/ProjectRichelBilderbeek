@@ -1,14 +1,12 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "musicscale.h"
 
 #include <stdexcept>
 #include "musicchord.h"
 #include "trace.h"
 
-namespace Music {
-
-Scale::Scale(const Note root, const std::vector<int>& intervals)
+ribi::Music::Scale::Scale(const Note root, const std::vector<int>& intervals)
   : m_root(root),
     m_intervals(intervals)
 {
@@ -18,7 +16,7 @@ Scale::Scale(const Note root, const std::vector<int>& intervals)
 
 }
 
-boost::shared_ptr<Scale> Scale::CreateScale(
+boost::shared_ptr<ribi::Music::Scale> ribi::Music::Scale::CreateScale(
     const std::string& scale_name,
     const Note root)
 {
@@ -37,7 +35,7 @@ boost::shared_ptr<Scale> Scale::CreateScale(
   return *i;
 }
 
-std::vector<boost::shared_ptr<Scale> > Scale::CreateScales(const Note root)
+std::vector<boost::shared_ptr<ribi::Music::Scale> > ribi::Music::Scale::CreateScales(const Note root)
 {
   return
   {
@@ -53,7 +51,7 @@ std::vector<boost::shared_ptr<Scale> > Scale::CreateScales(const Note root)
   };
 }
 
-bool Scale::Fits(const boost::shared_ptr<Chord>& chord) const
+bool ribi::Music::Scale::Fits(const boost::shared_ptr<Chord>& chord) const
 {
   const std::vector<Note> notes_chord = chord->GetNotes();
   const std::vector<Note> notes_scale = this->GetNotes();
@@ -71,7 +69,7 @@ bool Scale::Fits(const boost::shared_ptr<Chord>& chord) const
 }
 
 
-const std::vector<Note> Scale::GetNotes() const
+const std::vector<ribi::Music::Note> ribi::Music::Scale::GetNotes() const
 {
   std::vector<Note> notes;
   Note cur = m_root;
@@ -86,20 +84,20 @@ const std::vector<Note> Scale::GetNotes() const
   return notes;
 }
 
-const std::string Scale::GetVersion()
+const std::string ribi::Music::Scale::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> Scale::GetVersionHistory()
+const std::vector<std::string> ribi::Music::Scale::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-08-10: version 1.0: initial version with five different scales");
-  v.push_back("2012-08-11: version 1.1: added four scales");
-  return v;
+  return {
+    "2012-08-10: version 1.0: initial version with five different scales",
+    "2012-08-11: version 1.1: added four scales"
+  };
 }
 
-void Scale::Test()
+void ribi::Music::Scale::Test()
 {
   {
     static bool is_tested = false;
@@ -108,7 +106,7 @@ void Scale::Test()
   }
 }
 
-ScaleBlues::ScaleBlues(const Note root)
+ribi::Music::ScaleBlues::ScaleBlues(const Note root)
   : Scale(root, {3,2,1,1,3} )
 {
 
@@ -116,26 +114,26 @@ ScaleBlues::ScaleBlues(const Note root)
 
 //C-D-Eb-F-G-Ab-B
 // 2 1  2 2 1  3
-ScaleHarmonicMinor::ScaleHarmonicMinor(const Note root)
+ribi::Music::ScaleHarmonicMinor::ScaleHarmonicMinor(const Note root)
   : Scale(root, {2,1,2,2,1,3} )
 {
 
 }
 
-ScaleHexatonic::ScaleHexatonic(const Note root)
+ribi::Music::ScaleHexatonic::ScaleHexatonic(const Note root)
   : Scale(root, {2,2,2,2,2} )
 {
 
 }
 
-ScaleHyperMajor::ScaleHyperMajor(const Note root)
+ribi::Music::ScaleHyperMajor::ScaleHyperMajor(const Note root)
   : Scale(root, {1,3,1,3,1} )
 {
 
 }
 
 
-ScaleMajor::ScaleMajor(const Note root)
+ribi::Music::ScaleMajor::ScaleMajor(const Note root)
   : Scale(root, {2,2,1,2,2,2} )
 {
 
@@ -143,7 +141,7 @@ ScaleMajor::ScaleMajor(const Note root)
 
 //C-D-E-G-A
 // 2 2 3 2
-ScaleMajorPentatonic::ScaleMajorPentatonic(const Note root)
+ribi::Music::ScaleMajorPentatonic::ScaleMajorPentatonic(const Note root)
   : Scale(root, {2,2,3,2} )
 {
 
@@ -151,23 +149,20 @@ ScaleMajorPentatonic::ScaleMajorPentatonic(const Note root)
 
 //C-Eb-F-G_Bb
 // 3  2 2 3
-ScaleMinorPentatonic::ScaleMinorPentatonic(const Note root)
+ribi::Music::ScaleMinorPentatonic::ScaleMinorPentatonic(const Note root)
   : Scale(root, {3,2,2,3} )
 {
 
 }
 
-ScaleMollDurDominant::ScaleMollDurDominant(const Note root)
+ribi::Music::ScaleMollDurDominant::ScaleMollDurDominant(const Note root)
   : Scale(root, {2,2,1,2,1,3} )
 {
 
 }
 
-ScaleMollDurSubdominant::ScaleMollDurSubdominant(const Note root)
+ribi::Music::ScaleMollDurSubdominant::ScaleMollDurSubdominant(const Note root)
   : Scale(root, {2,2,1,2,1,2} )
 {
 
 }
-
-} //~namespace Music
-

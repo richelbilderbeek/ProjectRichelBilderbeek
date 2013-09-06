@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppHtmlPage.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "htmlpage.h"
 
 #include <fstream>
@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-HtmlPage::HtmlPage(const std::string& filename)
+ribi::HtmlPage::HtmlPage(const std::string& filename)
   : m_filename(filename)
 {
   assert(QFile::exists(filename.c_str()));
@@ -64,7 +64,7 @@ HtmlPage::HtmlPage(const std::string& filename)
   );
 }
 
-const std::vector<std::string> HtmlPage::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::HtmlPage::FileToVector(const std::string& filename)
 {
   assert(QFile::exists(filename.c_str()));
   std::vector<std::string> v;
@@ -78,21 +78,21 @@ const std::vector<std::string> HtmlPage::FileToVector(const std::string& filenam
   return v;
 }
 
-const std::string HtmlPage::GetVersion()
+const std::string ribi::HtmlPage::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> HtmlPage::GetVersionHistory()
+const std::vector<std::string> ribi::HtmlPage::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-xx-xx: version 1.0: initial version");
-  v.push_back("2012-08-12: version 1.1: started versioning this class");
-  v.push_back("2013-09-02: version 1.2: replaced Boost.Regex by Boost.Xpressive");
-  return v;
+  return {
+    "2011-xx-xx: version 1.0: initial version",
+    "2012-08-12: version 1.1: started versioning this class",
+    "2013-09-02: version 1.2: replaced Boost.Regex by Boost.Xpressive"
+  };
 }
 
-const std::string HtmlPage::ReplaceAll(
+const std::string ribi::HtmlPage::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
   const std::string& replaceWithWhat)
@@ -106,7 +106,7 @@ const std::string HtmlPage::ReplaceAll(
   return s;
 }
 
-bool operator<(const HtmlPage& lhs, const HtmlPage& rhs)
+bool ribi::operator<(const HtmlPage& lhs, const HtmlPage& rhs)
 {
   //Case insensitive compare
   return boost::algorithm::to_lower_copy(lhs.GetTitle())

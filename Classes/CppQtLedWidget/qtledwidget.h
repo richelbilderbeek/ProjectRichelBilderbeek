@@ -28,6 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"       //Needed by MOC
 #include "ledwidget.h" //Needed by MOC
 
+namespace ribi {
+
 class QtLedWidget : public QWidget
 {
   Q_OBJECT
@@ -69,5 +71,7 @@ public:
   static const std::vector<std::string> GetVersionHistory();
 
 };
+
+} //~namespace ribi
 
 #endif // QTLEDWIDGET_H

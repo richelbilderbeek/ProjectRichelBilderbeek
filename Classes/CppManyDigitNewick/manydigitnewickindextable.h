@@ -34,14 +34,20 @@ namespace ribi {
 struct ManyDigitIndexTable
 {
   typedef ManyDigitNewickCoordinat Coordinat;
+
   ///CanGetIndex returns if GetIndex can be called with success
   bool CanGetIndex(const Coordinat& indices) const;
+
   ///Find returns the x-y-coordinats of the Newick with index i
+  ///This is a linear (in this case, relatively time-intensive) method.
   const Coordinat Find(const int i) const;
+
   ///Get returns the internals of ManyDigitIndexTable
   const MultiVector<int>& Get() const { return m_v; }
+
   ///GetIndex returns m_index_table[x][y]
   int GetIndex(const Coordinat& indices) const;
+
   ///GetNumAllocated calculates the number of indices allocated
   //int GetNumAllocated() const;
   ///GetNumUsed calculates the number of indices used

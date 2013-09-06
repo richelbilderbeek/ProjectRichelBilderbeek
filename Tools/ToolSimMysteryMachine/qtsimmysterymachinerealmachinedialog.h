@@ -27,6 +27,8 @@ namespace Ui {
     class QtSimMysteryMachineRealMachineDialog;
 }
 
+namespace ribi {
+
 class QtSimMysteryMachineRealMachineDialog : public QDialog
 {
     Q_OBJECT
@@ -38,5 +40,7 @@ public:
 private:
     Ui::QtSimMysteryMachineRealMachineDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTSIMMYSTERYMACHINEREALMACHINEDIALOG_H

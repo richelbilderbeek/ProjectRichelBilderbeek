@@ -40,6 +40,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebuttonwidget.h" //For MOC
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct QtToggleButtonWidget;
 
 ///QtMysteryMachineWidget displays a MysteryMachine
@@ -91,5 +93,7 @@ struct QtMysteryMachineWidget : public QWidget
   ///Respond to mouse click
   //void OnClicked(const Wt::WMouseEvent& e);
 };
+
+} //~namespace ribi
 
 #endif // WTMYSTERYMACHINEWIDGET_H

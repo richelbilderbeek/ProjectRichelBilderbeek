@@ -26,6 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/logic/tribool.hpp>
 
+namespace ribi {
+
 ///RegexTesterMainDialog is a Strategy Design Pattern
 struct RegexTesterMainDialog
 {
@@ -74,5 +76,7 @@ struct RegexTesterMainDialog
   static const std::vector<std::string> GetTestStrings();
 
 };
+
+} //~namespace ribi
 
 #endif // REGEXTESTERMAINDIALOG_H

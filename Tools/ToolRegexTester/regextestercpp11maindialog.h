@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/logic/tribool.hpp>
 #include "regextestermaindialog.h"
 
+namespace ribi {
+
 struct RegexTesterCpp11MainDialog : public RegexTesterMainDialog
 {
   RegexTesterCpp11MainDialog() {}
@@ -69,5 +71,7 @@ struct RegexTesterCpp11MainDialog : public RegexTesterMainDialog
     const std::string& s,
     const std::regex& r) const;
 };
+
+} //~namespace ribi
 
 #endif // REGEXTESTERCPP11MAINDIALOG_H

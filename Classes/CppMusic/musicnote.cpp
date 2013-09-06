@@ -1,5 +1,5 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "musicnote.h"
 
 #include <cassert>
@@ -8,12 +8,10 @@
 
 #include "trace.h"
 
-namespace Music {
-
-Note::Note(const int i, const std::pair<int,int>& length)
-  : m_accidental(Music::Note::Accidental::none),
+ribi::Music::Note::Note(const int i, const std::pair<int,int>& length)
+  : m_accidental(ribi::Music::Note::Accidental::none),
     m_length(length),
-    m_letter(Music::Note::Letter::C)
+    m_letter(ribi::Music::Note::Letter::C)
 {
   #ifndef NDEBUG
   Test();
@@ -40,10 +38,10 @@ Note::Note(const int i, const std::pair<int,int>& length)
   }
 }
 
-Note::Note(const std::string& s, const std::pair<int,int>& length)
-  : m_accidental(Music::Note::Accidental::none),
+ribi::Music::Note::Note(const std::string& s, const std::pair<int,int>& length)
+  : m_accidental(ribi::Music::Note::Accidental::none),
     m_length(length),
-    m_letter(Music::Note::Letter::C)
+    m_letter(ribi::Music::Note::Letter::C)
 {
   #ifndef NDEBUG
   Test();
@@ -80,7 +78,7 @@ Note::Note(const std::string& s, const std::pair<int,int>& length)
   }
 }
 
-Note::Note(
+ribi::Music::Note::Note(
   const Letter letter,
   const Accidental accidental,
   const std::pair<int,int>& length)
@@ -95,7 +93,7 @@ Note::Note(
 
 }
 
-const std::vector<Note> Note::GetAllNotes()
+const std::vector<ribi::Music::Note> ribi::Music::Note::GetAllNotes()
 {
   std::vector<Note> v;
   for (int i=0; i!=12; ++i)
@@ -105,19 +103,19 @@ const std::vector<Note> Note::GetAllNotes()
   return v;
 }
 
-const std::string Note::GetVersion()
+const std::string ribi::Music::Note::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Note::GetVersionHistory()
+const std::vector<std::string> ribi::Music::Note::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-08-10: version 1.0: initial version");
-  return v;
+  return {
+    "2012-08-10: version 1.0: initial version"
+  };
 }
 
-void Note::Test()
+void ribi::Music::Note::Test()
 {
   //Test exactly once
   {
@@ -134,7 +132,7 @@ void Note::Test()
 
 }
 
-int Note::ToInt() const
+int ribi::Music::Note::ToInt() const
 {
   int x = 0;
   switch (m_letter)
@@ -159,7 +157,7 @@ int Note::ToInt() const
   return x;
 }
 
-const std::string Note::ToStr() const
+const std::string ribi::Music::Note::ToStr() const
 {
   std::string s;
   switch (m_letter)
@@ -181,16 +179,12 @@ const std::string Note::ToStr() const
   return s;
 }
 
-bool operator==(const Note& lhs, const Note& rhs)
+bool ribi::Music::operator==(const Note& lhs, const Note& rhs)
 {
   return lhs.ToInt() == rhs.ToInt();
 }
 
-bool operator<(const Note& lhs, const Note& rhs)
+bool ribi::Music::operator<(const Note& lhs, const Note& rhs)
 {
   return lhs.ToInt() < rhs.ToInt();
 }
-
-} //~namespace Music
-
-

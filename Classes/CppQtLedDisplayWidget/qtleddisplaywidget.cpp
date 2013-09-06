@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"
 #include "qtleddisplaywidget.h"
 
-QtLedDisplayWidget::QtLedDisplayWidget(
+ribi::QtLedDisplayWidget::QtLedDisplayWidget(
   QWidget *parent,
   LedWidget * const widget)
   : QWidget(parent),
@@ -39,33 +39,33 @@ QtLedDisplayWidget::QtLedDisplayWidget(
 
   m_widget->GetLed()->m_signal_color_changed.connect(
     boost::bind(
-      &QtLedDisplayWidget::repaint,
+      &ribi::QtLedDisplayWidget::repaint,
       this));
 
   m_widget->GetLed()->m_signal_intensity_changed.connect(
     boost::bind(
-      &QtLedDisplayWidget::repaint,
+      &ribi::QtLedDisplayWidget::repaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtLedDisplayWidget::repaint,
+      &ribi::QtLedDisplayWidget::repaint,
       this));
 }
 
-const std::string QtLedDisplayWidget::GetVersion()
+const std::string ribi::QtLedDisplayWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtLedDisplayWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtLedDisplayWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-10: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-04-10: Version 1.0: initial version"
+  };
 }
 
-void QtLedDisplayWidget::paintEvent(QPaintEvent *)
+void ribi::QtLedDisplayWidget::paintEvent(QPaintEvent *)
 {
   assert(m_widget && "QtLedDisplayWidget must be initialized with a Led*");
   QPainter p(this);
@@ -166,7 +166,7 @@ void QtLedDisplayWidget::paintEvent(QPaintEvent *)
 
 }
 
-void QtLedDisplayWidget::SetLed(const LedWidget * const led)
+void ribi::QtLedDisplayWidget::SetLed(const LedWidget * const led)
 {
   assert(led);
   m_widget = led;

@@ -19,19 +19,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppLazy_init.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "lazy_init.h"
 
-const std::string Lazy_initVersion::GetVersion()
+const std::string ribi::Lazy_initVersion::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Lazy_initVersion::GetVersionHistory()
+const std::vector<std::string> ribi::Lazy_initVersion::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-02-11: version 1.0: initial version");
-  return v;
+  return {
+    "2012-02-11: version 1.0: initial version"
+  };
 }
 

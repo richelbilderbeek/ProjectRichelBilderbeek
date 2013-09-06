@@ -30,6 +30,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "ledwidget.h" //Needed by MOC
 
+namespace ribi {
+
 ///QtLedDisplayWidget displays a Led without
 ///managing it.
 class QtLedDisplayWidget : public QWidget
@@ -51,5 +53,7 @@ static const std::string GetVersion();
 static const std::vector<std::string> GetVersionHistory();
 
 };
+
+} //~namespace ribi
 
 #endif // QTLEDDISPLAYWIDGET_H

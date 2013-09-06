@@ -29,6 +29,8 @@ namespace Ui {
   class QtSimMysteryMachineMainDialog;
 }
 
+namespace ribi {
+
 struct QtMysteryMachineWidget;
 
 class QtSimMysteryMachineMainDialog : public QDialog
@@ -39,14 +41,13 @@ public:
   explicit QtSimMysteryMachineMainDialog(QWidget *parent = 0);
   ~QtSimMysteryMachineMainDialog();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtSimMysteryMachineMainDialog *ui;
   boost::scoped_ptr<QtMysteryMachineWidget> m_machine;
 
 private slots:
 };
+
+} //~namespace ribi
 
 #endif // QTMYSTERYMACHINEDIALOG_H

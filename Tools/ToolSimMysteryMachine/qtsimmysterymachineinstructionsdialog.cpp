@@ -23,14 +23,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtsimmysterymachineinstructionsdialog.h"
 #include "ui_qtsimmysterymachineinstructionsdialog.h"
 
-QtSimMysteryMachineInstructionsDialog::QtSimMysteryMachineInstructionsDialog(QWidget *parent) :
+ribi::QtSimMysteryMachineInstructionsDialog::QtSimMysteryMachineInstructionsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtSimMysteryMachineInstructionsDialog)
 {
   ui->setupUi(this);
 }
 
-QtSimMysteryMachineInstructionsDialog::~QtSimMysteryMachineInstructionsDialog()
+ribi::QtSimMysteryMachineInstructionsDialog::~QtSimMysteryMachineInstructionsDialog()
 {
   delete ui;
 }

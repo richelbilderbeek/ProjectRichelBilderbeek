@@ -20,10 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef ENCRANGER_H
 #define ENCRANGER_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 //Encranger stands for 'ENCryption by RAndom Number GEneratoR'
 struct Encranger
 {
@@ -64,5 +66,7 @@ struct Encranger
   const std::vector<char> CreateCharacters() const;
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // ENCRANGER_H

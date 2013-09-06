@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "manydigitnewickindexer.h"
@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newickvector.h"
 
 //ManyDigitNewickIndexer constructor does all the work
-ManyDigitNewickIndexer::ManyDigitNewickIndexer(
+ribi::ManyDigitNewickIndexer::ManyDigitNewickIndexer(
   const NewickVector& n,
   const double theta)
   : m_newicks(CalculateReserved(n),theta),
@@ -153,7 +153,7 @@ ManyDigitNewickIndexer::ManyDigitNewickIndexer(
   #endif
 }
 
-int ManyDigitNewickIndexer::CalculateReserved(const NewickVector& n) const
+int ribi::ManyDigitNewickIndexer::CalculateReserved(const NewickVector& n) const
 {
   const std::vector<int>& v = n.Peek();
   //Count the number of elements
@@ -170,7 +170,7 @@ int ManyDigitNewickIndexer::CalculateReserved(const NewickVector& n) const
 ///ConstructNewick is for debugging purposes only,
 ///as it's the idea to work with non-full determined
 ///(that is: two-digit) Newicks
-const NewickVector ManyDigitNewickIndexer::ConstructNewick(const int i) const
+const ribi::NewickVector ribi::ManyDigitNewickIndexer::ConstructNewick(const int i) const
 {
   std::vector<int> v;
 
@@ -231,7 +231,7 @@ const NewickVector ManyDigitNewickIndexer::ConstructNewick(const int i) const
 ///{ 5,6,7 } might denote the Newick '((1,1),(1,2),(1,3))'.
 ///
 ///Allow for recursion
-const ManyDigitNewick ManyDigitNewickIndexer::CreateManyDigitDerivatives(
+const ribi::ManyDigitNewick ribi::ManyDigitNewickIndexer::CreateManyDigitDerivatives(
   const ManyDigitNewickCoordinat& coordinat, //two purposes!
   const int sum_above_zero,
   const int sum_above_one)
@@ -323,7 +323,7 @@ const ManyDigitNewick ManyDigitNewickIndexer::CreateManyDigitDerivatives(
 
 /*
 const ManyDigitNewick
-  ManyDigitNewickIndexer::CreateManyDigitDerivativesSimpleSimple(
+  ribi::ManyDigitNewickIndexer::CreateManyDigitDerivativesSimpleSimple(
   const int x, const int y)
 {
   assert(x <= y);
@@ -428,7 +428,7 @@ const ManyDigitNewick
 */
 
 /*
-const ManyDigitNewick ManyDigitNewickIndexer::CreateManyDigitDerivativesSimpleComplex(
+const ManyDigitNewick ribi::ManyDigitNewickIndexer::CreateManyDigitDerivativesSimpleComplex(
   const int x, const int y,
   const int sum_above_zero,
   const int sum_above_one)
@@ -493,7 +493,7 @@ const ManyDigitNewick ManyDigitNewickIndexer::CreateManyDigitDerivativesSimpleCo
 
 /*
 const ManyDigitNewick
-  ManyDigitNewickIndexer::CreateManyDigitDerivativesComplexComplex(
+  ribi::ManyDigitNewickIndexer::CreateManyDigitDerivativesComplexComplex(
   const int x, const int y,
   const int sum_above_zero,
   const int sum_above_one)
@@ -568,7 +568,7 @@ const ManyDigitNewick
 ///GetDeltaSumAboveZero calculates the delta in the
 ///ManyDigitNewick::m_sum_above_zero of a new Newick
 ///when an old_value is changed.
-int ManyDigitNewickIndexer::GetDeltaSumAboveZero(const int old_value) const
+int ribi::ManyDigitNewickIndexer::GetDeltaSumAboveZero(const int old_value) const
 {
   assert(old_value > 0);
   return (old_value == 1 ? 0 : -1);
@@ -577,7 +577,7 @@ int ManyDigitNewickIndexer::GetDeltaSumAboveZero(const int old_value) const
 ///GetDeltaSumAboveOne calculates the delta in the
 ///ManyDigitNewick::m_sum_above_one of a new Newick
 ///when an old_value is changed.
-int ManyDigitNewickIndexer::GetDeltaSumAboveOne(
+int ribi::ManyDigitNewickIndexer::GetDeltaSumAboveOne(
   const ManyDigitNewickDerivative& d) const
 {
   const int x = d.m_value_changed;
@@ -589,16 +589,14 @@ int ManyDigitNewickIndexer::GetDeltaSumAboveOne(
   return (d.m_other_value_changed == 1 ? 2 : 1);
 }
 
-const ManyDigitNewick& ManyDigitNewickIndexer::GetNewick(const std::vector<int>& indices) const
+const ribi::ManyDigitNewick& ribi::ManyDigitNewickIndexer::GetNewick(const std::vector<int>& indices) const
 {
   assert(m_index_table.CanGetIndex(indices));
   const int i = m_index_table.GetIndex(indices);
   return GetNewick(i);
 }
 
-///GetProbability returns the probability of the NewickVector
-///given at the constructor
-double ManyDigitNewickIndexer::GetProbability() const
+double ribi::ManyDigitNewickIndexer::GetProbability() const
 {
   assert(m_probability >= 0.0);
   assert(m_probability <= 1.00001);
@@ -612,7 +610,7 @@ double ManyDigitNewickIndexer::GetProbability() const
 
 ///IsSimple determines if an index is the index of
 ///a simple Newick
-bool ManyDigitNewickIndexer::IsSimple(const int i) const
+bool ribi::ManyDigitNewickIndexer::IsSimple(const int i) const
 {
   return i < m_reserved;
 }
@@ -626,7 +624,7 @@ bool ManyDigitNewickIndexer::IsSimple(const int i) const
 ///indices are complex (that is, equal of greater than m_reserved), the coordinat
 ///{ 5,6,7 } might denote the Newick '((1,1),(1,2),(1,3))'.
 ///Allow for recursion
-int ManyDigitNewickIndexer::SummarizeNewick(
+int ribi::ManyDigitNewickIndexer::SummarizeNewick(
   const ManyDigitNewickCoordinat& coordinat, //two purposes!
   const int sum_above_zero,
   const int sum_above_one)
@@ -682,7 +680,7 @@ int ManyDigitNewickIndexer::SummarizeNewick(
 
 ///TryToCalculateNewNewick tries to calculate the probability
 ///of Newick with index i
-void ManyDigitNewickIndexer::TryToCalculateNewNewick(const int i)
+void ribi::ManyDigitNewickIndexer::TryToCalculateNewNewick(const int i)
 {
   assert(i >= m_calculated_to_index);
   assert(i  < m_newicks.Size());
@@ -732,7 +730,7 @@ void ManyDigitNewickIndexer::TryToCalculateNewNewick(const int i)
 
 ///TryToCalculateNewNewicks tries to calculate new Newick probabilities
 ///\warning: m_calculated_to_index is not increased
-void ManyDigitNewickIndexer::TryToCalculateNewNewicks()
+void ribi::ManyDigitNewickIndexer::TryToCalculateNewNewicks()
 {
   const int sz = m_newicks.Size();
   //m_calculated_to_index == sz denotes that all Newicks'
@@ -744,7 +742,7 @@ void ManyDigitNewickIndexer::TryToCalculateNewNewicks()
   }
 }
 
-void ManyDigitNewickIndexer::UpdateCalculatedFromIndex()
+void ribi::ManyDigitNewickIndexer::UpdateCalculatedFromIndex()
 {
   const int sz = m_newicks.Size();
   while (m_calculated_to_index < sz)
@@ -765,6 +763,3 @@ void ManyDigitNewickIndexer::UpdateCalculatedFromIndex()
     }
   }
 }
-
-
-

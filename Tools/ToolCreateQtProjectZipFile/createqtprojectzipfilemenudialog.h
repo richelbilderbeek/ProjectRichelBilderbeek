@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 namespace CreateQtProjectZipFile {
 
 struct MenuDialog
@@ -42,5 +44,7 @@ struct MenuDialog
 };
 
 } //~namespace CreateQtProjectZipFile
+
+} //~namespace ribi
 
 #endif // CREATEQTPROJECTZIPFILEMENUDIALOG_H

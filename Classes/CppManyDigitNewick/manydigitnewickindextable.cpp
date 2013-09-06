@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "manydigitnewickindextable.h"
 
 #include <algorithm>
@@ -32,14 +32,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 
 ///CanGetData returns is GetData can be called with success
-bool ManyDigitIndexTable::CanGetIndex(const Coordinat& coordinat) const
+bool ribi::ManyDigitIndexTable::CanGetIndex(const Coordinat& coordinat) const
 {
   return m_v.CanRetrieve(coordinat.ToVector());
 }
 
-///Find returns the x-y-coordinats of the Newick with index i
-///This is a linear (in this case, relatively time-intensive) method.
-const ManyDigitNewickCoordinat ManyDigitIndexTable::Find(
+const ribi::ManyDigitNewickCoordinat ribi::ManyDigitIndexTable::Find(
   const int value) const
 {
   //Check indices
@@ -76,11 +74,11 @@ const ManyDigitNewickCoordinat ManyDigitIndexTable::Find(
 
   assert(!"Should not get here");
   std::stringstream s;
-  s << "Value " << value << " not found in ManyDigitIndexTable::Find";
+  s << "Value " << value << " not found in ribi::ManyDigitIndexTable::Find";
   throw std::logic_error(s.str());
 }
 
-const std::vector<int> ManyDigitIndexTable::FindInternal(
+const std::vector<int> ribi::ManyDigitIndexTable::FindInternal(
   const std::vector<int>& indices,
   const MultiVector<int>& v,
   const int value)
@@ -117,14 +115,14 @@ const std::vector<int> ManyDigitIndexTable::FindInternal(
 }
 
 ///GetIndex returns m_index_table[x][y]
-int ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices) const
+int ribi::ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices) const
 {
   assert(CanGetIndex(indices));
   return m_v.Retrieve(indices.ToVector());
 }
 
 ///GetNumAllocated calculates the number of indices allocated
-//int ManyDigitIndexTable::GetNumAllocated() const
+//int ribi::ManyDigitIndexTable::GetNumAllocated() const
 //{
 //  int n_allocated = 0;
 //  BOOST_FOREACH(const MultiVector<int>& v,m_v.PeekMultiVectors())
@@ -135,7 +133,7 @@ int ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices) const
 //}
 
 ///GetNumUsed calculates the number of indices used
-//int ManyDigitIndexTable::GetNumUsed() const
+//int ribi::ManyDigitIndexTable::GetNumUsed() const
 //{
 //  int n_non_zero = 0;
 //  BOOST_FOREACH(const MultiVector<int>& v,m_v.PeekMultiVectors())
@@ -151,7 +149,7 @@ int ManyDigitIndexTable::GetIndex(const ManyDigitNewickCoordinat& indices) const
 
 ///SetIndex sets m_index_table[x][y] == z
 ///and resized the m_index_table is necessary
-void ManyDigitIndexTable::SetIndex(
+void ribi::ManyDigitIndexTable::SetIndex(
   const ManyDigitNewickCoordinat& indices,
   const int value)
 {

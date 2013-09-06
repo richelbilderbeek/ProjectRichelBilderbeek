@@ -53,14 +53,14 @@ const std::string ribi::Dial::GetVersion()
 
 const std::vector<std::string> ribi::Dial::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-11: Version 1.0: initial version");
-  v.push_back("2011-06-03: Version 2.0: moved widget logic to DialWidget class");
-  v.push_back("2011-08-07: Version 3.0: conformized architure for MysteryMachine");
-  v.push_back("2011-08-20: Version 3.1: added operator<<");
-  v.push_back("2011-08-31: Version 3.2: allow changing the dial its color");
-  v.push_back("2013-04-30: Version 3.3: added testing, fixed bug in GetAngle");
-  return v;
+  return {
+    "2011-04-11: Version 1.0: initial version",
+    "2011-06-03: Version 2.0: moved widget logic to DialWidget class",
+    "2011-08-07: Version 3.0: conformized architure for MysteryMachine",
+    "2011-08-20: Version 3.1: added operator<<",
+    "2011-08-31: Version 3.2: allow changing the dial its color",
+    "2013-04-30: Version 3.3: added testing, fixed bug in GetAngle"
+  };
 }
 
 void ribi::Dial::SetBlue(const int b)

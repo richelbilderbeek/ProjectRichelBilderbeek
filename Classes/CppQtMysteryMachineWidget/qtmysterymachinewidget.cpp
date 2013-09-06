@@ -47,7 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtMysteryMachineWidget::QtMysteryMachineWidget(QWidget *parent)
+ribi::QtMysteryMachineWidget::QtMysteryMachineWidget(QWidget *parent)
   : QWidget(parent),
     m_widget(new MysteryMachineWidget(
     Rect(0,0,200,400)))
@@ -55,20 +55,20 @@ QtMysteryMachineWidget::QtMysteryMachineWidget(QWidget *parent)
   assert(m_widget);
 
   m_widget->GetMachine()->GetDialBack()->GetDial()->m_signal_position_changed.connect(boost::bind(
-    &QtMysteryMachineWidget::DoRepaint,this));
+    &ribi::QtMysteryMachineWidget::DoRepaint,this));
   m_widget->GetMachine()->GetDialFront()->GetDial()->m_signal_position_changed.connect(boost::bind(
-    &QtMysteryMachineWidget::DoRepaint,this));
+    &ribi::QtMysteryMachineWidget::DoRepaint,this));
   m_widget->GetMachine()->GetToggleButton()->GetToggleButton()->m_signal_toggled.connect(boost::bind(
-    &QtMysteryMachineWidget::DoRepaint,this));
+    &ribi::QtMysteryMachineWidget::DoRepaint,this));
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtMysteryMachineWidget::DoRepaint,
+      &ribi::QtMysteryMachineWidget::DoRepaint,
       this));
 
   resize(200,400);
 }
 
-QtMysteryMachineWidget::QtMysteryMachineWidget(
+ribi::QtMysteryMachineWidget::QtMysteryMachineWidget(
   const int width, const int height,
   QWidget *parent)
   : QWidget(parent),
@@ -78,45 +78,45 @@ QtMysteryMachineWidget::QtMysteryMachineWidget(
   assert(m_widget);
 
   m_widget->GetMachine()->GetDialBack()->GetDial()->m_signal_position_changed.connect(boost::bind(
-    &QtMysteryMachineWidget::DoRepaint,this));
+    &ribi::QtMysteryMachineWidget::DoRepaint,this));
   m_widget->GetMachine()->GetDialFront()->GetDial()->m_signal_position_changed.connect(boost::bind(
-    &QtMysteryMachineWidget::DoRepaint,this));
+    &ribi::QtMysteryMachineWidget::DoRepaint,this));
   m_widget->GetMachine()->GetToggleButton()->GetToggleButton()->m_signal_toggled.connect(boost::bind(
-    &QtMysteryMachineWidget::DoRepaint,this));
+    &ribi::QtMysteryMachineWidget::DoRepaint,this));
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtMysteryMachineWidget::DoRepaint,
+      &ribi::QtMysteryMachineWidget::DoRepaint,
       this));
 
   resize(width,height);
 }
 
-void QtMysteryMachineWidget::DoRepaint()
+void ribi::QtMysteryMachineWidget::DoRepaint()
 {
   this->repaint();
 }
 
-const std::string QtMysteryMachineWidget::GetVersion()
+const std::string ribi::QtMysteryMachineWidget::GetVersion()
 {
-  return "1.0";
+  return "2.0";
 }
 
-const std::vector<std::string> QtMysteryMachineWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtMysteryMachineWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-07-04: version 1.0: initial version");
-  v.push_back("2011-09-15: version 2.0: made QtMysteryMachineWidget same as WtMysteryMachineWidget");
-  return v;
+  return {
+    "YYYY-MM-DD: version X.Y: [description]",
+    "2011-07-04: version 1.0: initial version",
+    "2011-09-15: version 2.0: made QtMysteryMachineWidget same as WtMysteryMachineWidget"
+  };
 }
 
-void QtMysteryMachineWidget::mousePressEvent(QMouseEvent * e)
+void ribi::QtMysteryMachineWidget::mousePressEvent(QMouseEvent * e)
 {
   m_widget->Click(e->x(),e->y());
   this->m_signal_changed();
 }
 
-void QtMysteryMachineWidget::paintEvent(QPaintEvent *)
+void ribi::QtMysteryMachineWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   QtDialWidget::DrawDial(painter,GetWidget()->GetMachine()->GetDialBack());
@@ -133,7 +133,7 @@ void QtMysteryMachineWidget::paintEvent(QPaintEvent *)
   QtToggleButtonWidget::DrawToggleButton(painter,GetWidget()->GetMachine()->GetToggleButton());
 }
 
-void QtMysteryMachineWidget::resizeEvent(QResizeEvent *)
+void ribi::QtMysteryMachineWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }

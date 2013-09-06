@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppMysteryMachineWidget.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "mysterymachinewidget.h"
@@ -40,18 +40,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-MysteryMachineWidget::MysteryMachineWidget(
+ribi::MysteryMachineWidget::MysteryMachineWidget(
   const Rect& geometry)
   : m_machine(new MysteryMachine)
 
 {
   this->m_signal_geometry_changed.connect(boost::bind(
-    &MysteryMachineWidget::OnResize,this));
+    &ribi::MysteryMachineWidget::OnResize,this));
   SetGeometry(geometry);
 }
 
 ///Respond to the user clicking on the MysteryMachineWidget
-void MysteryMachineWidget::Click(const int x, const int y)
+void ribi::MysteryMachineWidget::Click(const int x, const int y)
 {
   if (m_machine->GetDialBack()->IsClicked(x,y))
   {
@@ -67,26 +67,25 @@ void MysteryMachineWidget::Click(const int x, const int y)
   }
 }
 
-const std::string MysteryMachineWidget::GetVersion()
+const std::string ribi::MysteryMachineWidget::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> MysteryMachineWidget::GetVersionHistory()
+const std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-07-03: version 1.0: initial version");
-  v.push_back("2011-08-20: Version 1.1: added operator<<");
-  return v;
+  return {
+    "2011-07-03: version 1.0: initial version",
+    "2011-08-20: Version 1.1: added operator<<"
+  };
 }
 
-//void MysteryMachineWidget::OnMysteryMachineChanged()
+//void ribi::MysteryMachineWidget::OnMysteryMachineChanged()
 //{
 //  m_signal_mysterymachine_changed();
 //}
 
-void MysteryMachineWidget::OnResize()
+void ribi::MysteryMachineWidget::OnResize()
 {
   const double w = boost::numeric_cast<double>(GetGeometry().GetWidth());
   const double h = boost::numeric_cast<double>(GetGeometry().GetHeight());
@@ -124,7 +123,7 @@ void MysteryMachineWidget::OnResize()
   //m_signal_mysterymachine_changed();
 }
 
-std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachineWidget& widget)
 {
   os
     << "<MysteryMachineWidget>"

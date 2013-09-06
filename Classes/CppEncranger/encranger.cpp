@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolMultiEncranger.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "encranger.h"
 
 #include <algorithm>
@@ -31,14 +31,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "loopreader.h"
 
-Encranger::Encranger(const int key)
+ribi::Encranger::Encranger(const int key)
   : characters(CreateCharacters()),
     table(CreateTable(key,characters.size()))
 {
 
 }
 
-const std::string Encranger::Encrypt(std::string s) const
+const std::string ribi::Encranger::Encrypt(std::string s) const
 {
   typedef std::string::iterator StringIterator;
   typedef std::vector<int>::const_iterator LoopReaderIteratorType;
@@ -52,7 +52,7 @@ const std::string Encranger::Encrypt(std::string s) const
   return s;
 }
 
-const std::string Encranger::Deencrypt(std::string s) const
+const std::string ribi::Encranger::Deencrypt(std::string s) const
 {
   typedef std::string::iterator StringIterator;
   LoopReader<std::vector<int>::const_iterator> table_reader(table.begin(), table.end());
@@ -65,7 +65,7 @@ const std::string Encranger::Deencrypt(std::string s) const
   return s;
 }
 
-char Encranger::Encrypt(const char c, const int d) const
+char ribi::Encranger::Encrypt(const char c, const int d) const
 {
   const int i = GetIndex(c);
   const int n_chars = static_cast<int>(characters.size());
@@ -75,7 +75,7 @@ char Encranger::Encrypt(const char c, const int d) const
   return characters[i_new];
 }
 
-char Encranger::Deencrypt(const char c, const int d) const
+char ribi::Encranger::Deencrypt(const char c, const int d) const
 {
   const int i = GetIndex(c);
   const int n_chars = static_cast<int>(characters.size());
@@ -85,7 +85,7 @@ char Encranger::Deencrypt(const char c, const int d) const
   return characters[i_new];
 }
 
-int Encranger::GetIndex(const char c) const
+int ribi::Encranger::GetIndex(const char c) const
 {
   if (c == '\t' || c == '\n') return GetIndex(' ');
   const std::vector<char>::const_iterator i
@@ -94,7 +94,7 @@ int Encranger::GetIndex(const char c) const
   return i - characters.begin();
 }
 
-const std::vector<int> Encranger::CreateTable(const int key, const unsigned int sz) const
+const std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigned int sz) const
 {
   assert(sz!=0);
 
@@ -117,7 +117,7 @@ const std::vector<int> Encranger::CreateTable(const int key, const unsigned int 
   return v;
 }
 
-const std::vector<char> Encranger::CreateCharacters() const
+const std::vector<char> ribi::Encranger::CreateCharacters() const
 {
   std::vector<char> v;
   //Uppercase
@@ -223,16 +223,16 @@ const std::vector<char> Encranger::CreateCharacters() const
   return v;
 }
 
-const std::string Encranger::GetVersion()
+const std::string ribi::Encranger::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> Encranger::GetVersionHistory()
+const std::vector<std::string> ribi::Encranger::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2010-01-05: version 1.0: initial version");
-  v.push_back("2011-01-12: version 1.1: added version info");
-  return v;
+  return {
+    "2010-01-05: version 1.0: initial version",
+    "2011-01-12: version 1.1: added version info"
+  };
 }
 

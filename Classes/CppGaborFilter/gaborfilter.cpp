@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppGaborFilter.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-GaborFilter::GaborFilter(
+ribi::GaborFilter::GaborFilter(
   const double angle,
   const double frequency,
   const double sigma)
@@ -44,7 +44,7 @@ GaborFilter::GaborFilter(
 
 }
 
-double GaborFilter::GaborFunction(const double x, const double y,
+double ribi::GaborFilter::GaborFunction(const double x, const double y,
   const double angle, const double frequency, const double sigma)
 {
   const double dx = x;
@@ -58,24 +58,24 @@ double GaborFilter::GaborFunction(const double x, const double y,
   return z;
 }
 
-double GaborFilter::GaborFunction(const double x, const double y) const
+double ribi::GaborFilter::GaborFunction(const double x, const double y) const
 {
   return GaborFunction(x,y,m_angle,m_frequency,m_sigma);
 }
 
-const std::string GaborFilter::GetVersion()
+const std::string ribi::GaborFilter::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> GaborFilter::GetVersionHistory()
+const std::vector<std::string> ribi::GaborFilter::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-07-08: version 1.0: initial version");
-  return v;
+  return {
+    "2012-07-08: version 1.0: initial version"
+  };
 }
 
-void GaborFilter::SetAngle(const double angle)
+void ribi::GaborFilter::SetAngle(const double angle)
 {
   if (angle != m_angle)
   {
@@ -84,7 +84,7 @@ void GaborFilter::SetAngle(const double angle)
   }
 }
 
-void GaborFilter::SetFrequency(const double frequency)
+void ribi::GaborFilter::SetFrequency(const double frequency)
 {
   if (frequency != m_frequency)
   {
@@ -93,7 +93,7 @@ void GaborFilter::SetFrequency(const double frequency)
   }
 }
 
-void GaborFilter::SetSigma(const double sigma)
+void ribi::GaborFilter::SetSigma(const double sigma)
 {
   if (sigma != m_sigma)
   {
@@ -102,13 +102,13 @@ void GaborFilter::SetSigma(const double sigma)
   }
 }
 
-double GaborFilter::SuggestSigma(const double width, const double height) const
+double ribi::GaborFilter::SuggestSigma(const double width, const double height) const
 {
   const double s = std::sqrt( ((width*0.5)*(width*0.5)) + ((height*0.5)*(height*0.5)));
   return std::sqrt(-(s * s) / (2.0*std::log(1.0/510.0)));
 }
 
-std::ostream& operator<<(std::ostream& os, const GaborFilter& g)
+std::ostream& ribi::operator<<(std::ostream& os, const GaborFilter& g)
 {
   os
     << "<GaborFilter>"

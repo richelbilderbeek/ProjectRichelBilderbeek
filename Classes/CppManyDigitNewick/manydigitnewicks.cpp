@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "manydigitnewicks.h"
 
 #include <cassert>
@@ -31,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "manydigitnewickderivative.h"
 #include "newickvector.h"
 
-ManyDigitNewicks::ManyDigitNewicks(const int n_reserved, const double theta)
+ribi::ManyDigitNewicks::ManyDigitNewicks(const int n_reserved, const double theta)
 {
   //Create derivatives of simplest and reserved ManyDigitNewicks
 
@@ -72,14 +70,14 @@ ManyDigitNewicks::ManyDigitNewicks(const int n_reserved, const double theta)
 }
 
 ///Empty returns if an index is empty
-bool ManyDigitNewicks::Empty(const int i) const
+bool ribi::ManyDigitNewicks::Empty(const int i) const
 {
   assert(i >= 0);
   assert(i < this->Size());
   return m_v[i].Empty();
 }
 
-const ManyDigitNewick& ManyDigitNewicks::GetNewick(
+const ribi::ManyDigitNewick& ribi::ManyDigitNewicks::GetNewick(
     const int i) const
 {
   //Check if i is in range
@@ -97,7 +95,7 @@ const ManyDigitNewick& ManyDigitNewicks::GetNewick(
   return m_v[i];
 }
 
-void ManyDigitNewicks::SetNewick(const int i, const ManyDigitNewick& v)
+void ribi::ManyDigitNewicks::SetNewick(const int i, const ManyDigitNewick& v)
 {
   TRACE_FUNC();
   //Allocate storage
@@ -124,7 +122,7 @@ void ManyDigitNewicks::SetNewick(const int i, const ManyDigitNewick& v)
   m_v[i] = v;
 }
 
-void ManyDigitNewicks::SetNewickProbability(
+void ribi::ManyDigitNewicks::SetNewickProbability(
   const int i,const double p)
 {
   assert(i >= 0);
@@ -134,7 +132,7 @@ void ManyDigitNewicks::SetNewickProbability(
   m_v[i].SetProbability(p);
 }
 
-int ManyDigitNewicks::Size() const
+int ribi::ManyDigitNewicks::Size() const
 {
   return boost::numeric_cast<int>(m_v.size());
 }

@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"
 //#include "trace.h"
 
-QtLedWidget::QtLedWidget(
+ribi::QtLedWidget::QtLedWidget(
   QWidget *parent,
   const double intensity,
   const unsigned char red,
@@ -44,17 +44,17 @@ QtLedWidget::QtLedWidget(
   assert(m_widget);
   m_widget->GetLed()->m_signal_color_changed.connect(
     boost::bind(
-      &QtLedWidget::repaint,
+      &ribi::QtLedWidget::repaint,
       this));
 
   m_widget->GetLed()->m_signal_intensity_changed.connect(
     boost::bind(
-      &QtLedWidget::repaint,
+      &ribi::QtLedWidget::repaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtLedWidget::OnResize,
+      &ribi::QtLedWidget::OnResize,
       this));
 
   this->GetWidget()->SetGeometry(Rect(0,0,100,100));
@@ -63,7 +63,7 @@ QtLedWidget::QtLedWidget(
 }
 
 ///Draw a Led from a Led
-void QtLedWidget::DrawLed(
+void ribi::QtLedWidget::DrawLed(
     QPainter& painter,
     const int left, const int top,
     const int width, const int height,
@@ -161,7 +161,7 @@ void QtLedWidget::DrawLed(
 }
 
 ///Draw a Led from a LedWidget
-void QtLedWidget::DrawLed(
+void ribi::QtLedWidget::DrawLed(
   QPainter& painter,
   const LedWidget * const widget)
 {
@@ -174,23 +174,23 @@ void QtLedWidget::DrawLed(
     widget->GetLed());
 }
 
-const std::string QtLedWidget::GetVersion()
+const std::string ribi::QtLedWidget::GetVersion()
 {
   return "1.4";
 }
 
-const std::vector<std::string> QtLedWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtLedWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-10: Version 1.0: initial version");
-  v.push_back("2011-04-11: Version 1.1: added About information");
-  v.push_back("2011-09-08: Version 1.2: removed redundant signals");
-  v.push_back("2012-07-07: Version 1.3: added resizeEvent");
-  v.push_back("2012-08-26: Version 1.4: fixed bug in resizeEvent");
-  return v;
+  return {
+    "2011-04-10: Version 1.0: initial version",
+    "2011-04-11: Version 1.1: added About information",
+    "2011-09-08: Version 1.2: removed redundant signals",
+    "2012-07-07: Version 1.3: added resizeEvent",
+    "2012-08-26: Version 1.4: fixed bug in resizeEvent"
+  };
 }
 
-void QtLedWidget::OnResize()
+void ribi::QtLedWidget::OnResize()
 {
   this->setGeometry(
     this->GetWidget()->GetGeometry().GetX(),
@@ -200,13 +200,13 @@ void QtLedWidget::OnResize()
   this->repaint();
 }
 
-void QtLedWidget::paintEvent(QPaintEvent *)
+void ribi::QtLedWidget::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
   DrawLed(p,m_widget.get());
 }
 
-void QtLedWidget::resizeEvent(QResizeEvent *)
+void ribi::QtLedWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }

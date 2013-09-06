@@ -41,7 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebuttonwidget.h"
 #include "ui_qtsimmysterymachinemaindialog.h"
 
-QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *parent)
+ribi::QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *parent)
  : QDialog(parent),
    ui(new Ui::QtSimMysteryMachineMainDialog),
    m_machine(new QtMysteryMachineWidget)
@@ -51,20 +51,7 @@ QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *parent)
   ui->my_layout->addWidget(m_machine.get());
 }
 
-QtSimMysteryMachineMainDialog::~QtSimMysteryMachineMainDialog()
+ribi::QtSimMysteryMachineMainDialog::~QtSimMysteryMachineMainDialog()
 {
   delete ui;
 }
-
-void QtSimMysteryMachineMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-

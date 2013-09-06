@@ -20,12 +20,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TESTGROUPWIDGETMENUDIALOG_H
 #define TESTGROUPWIDGETMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///The GUI independent version of WtTestGroupWidgetMenuDialog
 struct TestGroupWidgetMenuDialog
 {
@@ -33,5 +35,8 @@ struct TestGroupWidgetMenuDialog
   static const std::string GetVersion();
   static const About GetAbout();
 };
-//---------------------------------------------------------------------------
+
+
+} //~namespace ribi
+
 #endif // TESTGROUPWIDGETMENUDIALOG_H

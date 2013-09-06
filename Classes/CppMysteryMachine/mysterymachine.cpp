@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppMysteryMachine.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "mysterymachine.h"
@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-MysteryMachine::MysteryMachine()
+ribi::MysteryMachine::MysteryMachine()
   : m_dial_back(new DialWidget),
     m_dial_front(new DialWidget),
     m_led_front_1(new LedWidget(0,0,32,32,1.0,255,  0,  0)),
@@ -52,28 +52,28 @@ MysteryMachine::MysteryMachine()
     //m_front(0),
 {
   m_dial_back->GetDial()->m_signal_position_changed.connect(boost::bind(
-    &MysteryMachine::Update,this));
+    &ribi::MysteryMachine::Update,this));
   m_dial_front->GetDial()->m_signal_position_changed.connect(boost::bind(
-    &MysteryMachine::Update,this));
+    &ribi::MysteryMachine::Update,this));
   m_toggle_button->GetToggleButton()->m_signal_toggled.connect(boost::bind(
-    &MysteryMachine::Update,this));
+    &ribi::MysteryMachine::Update,this));
   Update();
 }
 
-const std::string MysteryMachine::GetVersion()
+const std::string ribi::MysteryMachine::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> MysteryMachine::GetVersionHistory()
+const std::vector<std::string> ribi::MysteryMachine::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-10: Version 1.0: initial version");
-  v.push_back("2011-08-20: Version 1.1: added operator<<");
-  return v;
+  return {
+    "2011-04-10: Version 1.0: initial version",
+    "2011-08-20: Version 1.1: added operator<<"
+  };
 }
 
-void MysteryMachine::Update()
+void ribi::MysteryMachine::Update()
 {
   const int back = static_cast<int>(GetDialBack()->GetDial()->GetPosition() * 16.0) % 3;
   const int front = static_cast<int>(GetDialFront()->GetDial()->GetPosition() * 16.0) % 3;
@@ -97,7 +97,7 @@ void MysteryMachine::Update()
   m_led_top_back->GetLed()->SetIntensity(  top == 2 ? 1.0 : 0.0);
 }
 
-std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine)
+std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachine& machine)
 {
   os
     << "<MysteryMachine>"

@@ -115,12 +115,12 @@ const std::string ribi::QtDialWidget::GetVersion()
 
 const std::vector<std::string> ribi::QtDialWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-11: Version 1.0: initial version");
-  v.push_back("2011-06-27: Version 1.1: fixed minor bug in displaying the dial its pointer");
-  v.push_back("2011-08-07: Version 2.0: conformized architure for MysteryMachine");
-  v.push_back("2011-08-31: Version 2.1: removed bloat, fixed bugs");
-  return v;
+  return {
+    "2011-04-11: Version 1.0: initial version",
+    "2011-06-27: Version 1.1: fixed minor bug in displaying the dial its pointer",
+    "2011-08-07: Version 2.0: conformized architure for MysteryMachine",
+    "2011-08-31: Version 2.1: removed bloat, fixed bugs"
+  };
 }
 
 void ribi::QtDialWidget::mousePressEvent(QMouseEvent * e)

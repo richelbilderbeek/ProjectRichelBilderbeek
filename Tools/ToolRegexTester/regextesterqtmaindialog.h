@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 struct QRegExp;
 
+namespace ribi {
+
 struct RegexTesterQtMainDialog : public RegexTesterMainDialog
 {
   RegexTesterQtMainDialog() {}
@@ -70,5 +72,7 @@ struct RegexTesterQtMainDialog : public RegexTesterMainDialog
     const QRegExp& r);
 
 };
+
+} //~namespace ribi
 
 #endif // REGEXTESTERQTMAINDIALOG_H

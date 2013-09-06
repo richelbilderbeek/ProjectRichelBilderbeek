@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "simmysterymachinemenudialog.h"
 
 
@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebuttonwidget.h"
 #include "widget.h"
 
-const About SimMysteryMachineMenuDialog::GetAbout()
+const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -57,17 +57,17 @@ const About SimMysteryMachineMenuDialog::GetAbout()
   return a;
 }
 
-const std::string SimMysteryMachineMenuDialog::GetVersion()
+const std::string ribi::SimMysteryMachineMenuDialog::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> SimMysteryMachineMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-10: Version 1.0: initial version (web application version not working yet)");
-  v.push_back("2011-09-15: Version 1.1: working web application, added picture of a physical prototype of a MysteryMachine");
-  v.push_back("2012-08-26: Version 1.2: added picture of a physical MysteryMachine, improved aesthetics");
-  return v;
+  return {
+    "2011-04-10: Version 1.0: initial version (web application version not working yet)",
+    "2011-09-15: Version 1.1: working web application, added picture of a physical prototype of a MysteryMachine",
+    "2012-08-26: Version 1.2: added picture of a physical MysteryMachine, improved aesthetics"
+  };
 }
 

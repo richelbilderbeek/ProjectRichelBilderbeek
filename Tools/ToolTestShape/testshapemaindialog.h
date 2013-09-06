@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
+namespace ribi {
+
 struct MultipleChoiceShape;
 struct MultipleChoiceShapeDialog;
 struct OpenShape;
@@ -46,5 +48,7 @@ struct TestShapeMainDialog
 
   static std::vector<boost::shared_ptr<ShapeWidget> > CreateShapes();
 };
+
+} //~namespace ribi
 
 #endif // TESTSHAPEMAINDIALOG_H

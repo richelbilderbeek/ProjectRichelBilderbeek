@@ -1,5 +1,5 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "newickcpp98.h"
 
 #pragma GCC diagnostic push
@@ -13,12 +13,12 @@
 
 #pragma GCC diagnostic pop
 
-namespace NewickCpp98 {
+
 
 ///CreateValidTrinaryNewicks creates std::strings
 ///that can be converted to a TrinaryNewickVector.
 ///From http://www.richelbilderbeek.nl/CppCreateValidTinaryNewicks.htm
-const std::vector<std::string> CreateValidTrinaryNewicks()
+const std::vector<std::string> ribi::NewickCpp98::CreateValidTrinaryNewicks()
 {
   std::vector<std::string> v;
   v.push_back("(1,1,1)");
@@ -50,7 +50,7 @@ const std::vector<std::string> CreateValidTrinaryNewicks()
   return v;
 }
 
-std::vector<boost::tuple<std::string,double,double> > GetKnownProbabilities()
+std::vector<boost::tuple<std::string,double,double> > ribi::NewickCpp98::GetKnownProbabilities()
 {
   std::vector<boost::tuple<std::string,double,double> > v;
 
@@ -203,7 +203,7 @@ std::vector<boost::tuple<std::string,double,double> > GetKnownProbabilities()
 ///((1,1),(2,2),(3,3)) -> { (1,1) , (2,2) , (3,3) }
 ///From http://www.richelbilderbeek.nl/CppGetRootBranchesBinary.htm
 const std::vector<std::vector<int> >
-  GetRootBranches(const std::vector<int>& n)
+  ribi::NewickCpp98::GetRootBranches(const std::vector<int>& n)
 {
   //#define DEBUG_GETROOTBRANCHES
   #ifdef  DEBUG_GETROOTBRANCHES
@@ -273,7 +273,7 @@ const std::vector<std::vector<int> >
 ///Its simpler Newicks are identical to those created by GetSimplerNewicks.
 ///From http://www.richelbilderbeek.nl/CppGetSimplerNewicksFrequencyPairs.htm
 const std::vector<std::pair<std::vector<int>,int> >
-  GetSimplerNewicksFrequencyPairs(const std::vector<int>& n)
+  ribi::NewickCpp98::GetSimplerNewicksFrequencyPairs(const std::vector<int>& n)
 {
   //#define DEBUG_GETSIMPLERNEWICKSFREQUENCYPAIRS
   #ifdef DEBUG_GETSIMPLERNEWICKSFREQUENCYPAIRS
@@ -511,7 +511,7 @@ const std::vector<std::pair<std::vector<int>,int> >
 
 #ifndef NDEBUG
 ///Test tests all Newick functions
-void Test()
+void ribi::NewickCpp98::Test()
 {
   TRACE("Testing basic Newick functionality");
   //Check difference between C++98 and C++0x
@@ -991,7 +991,3 @@ void Test()
   }
 }
 #endif
-
-} //~namespace NewickCpp98
-
-

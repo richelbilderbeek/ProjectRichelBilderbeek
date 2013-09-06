@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 struct TestQrcFileMenuDialog
 {
 
@@ -38,5 +40,7 @@ struct TestQrcFileMenuDialog
   ///Test the QrcFile
   static void Test();
 };
+
+} //~namespace ribi
 
 #endif // TESTQRCFILEMENUDIALOG_H

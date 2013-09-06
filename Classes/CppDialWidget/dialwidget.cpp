@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppDialWidget.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "dialwidget.h"
@@ -76,14 +76,14 @@ const std::string ribi::DialWidget::GetVersion()
 
 const std::vector<std::string> ribi::DialWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-07-03: Version 1.0: initial version");
-  v.push_back("2011-08-07: Version 2.0: conformized architure for MysteryMachine");
-  v.push_back("2011-08-20: Version 2.1: added operator<<");
-  v.push_back("2011-08-31: Version 2.2: allow changing the dial its color");
-  v.push_back("2011-09-08: Version 2.3: check for clicking on the dial, instead of its rectangle");
-  v.push_back("2013-04-30: Version 2.4: added testing, fixed bug in GetAngle");
-  return v;
+  return {
+    "2011-07-03: Version 1.0: initial version",
+    "2011-08-07: Version 2.0: conformized architure for MysteryMachine",
+    "2011-08-20: Version 2.1: added operator<<",
+    "2011-08-31: Version 2.2: allow changing the dial its color",
+    "2011-09-08: Version 2.3: check for clicking on the dial, instead of its rectangle",
+    "2013-04-30: Version 2.4: added testing, fixed bug in GetAngle"
+  };
 }
 
 double ribi::DialWidget::GetAngle(const double dx, const double dy)

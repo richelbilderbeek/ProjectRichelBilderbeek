@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 struct SimMysteryMachineMenuDialog
 {
   SimMysteryMachineMenuDialog();
@@ -30,5 +32,7 @@ struct SimMysteryMachineMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // SIMMYSTERYMACHINEMENUDIALOG_H

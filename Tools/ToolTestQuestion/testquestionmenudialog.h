@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///The logic behind the menu dialog
 struct TestQuestionMenuDialog
 {
@@ -43,5 +45,7 @@ struct TestQuestionMenuDialog
   ///Obtain the version history
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // TESTQUESTIONMENUDIALOG_H

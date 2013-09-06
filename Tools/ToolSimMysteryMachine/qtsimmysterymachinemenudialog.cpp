@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "simmysterymachinemenudialog.h"
 #include "ui_qtsimmysterymachinemenudialog.h"
 
-QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) :
+ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtSimMysteryMachineMenuDialog)
 {
@@ -60,24 +60,12 @@ QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) :
   */
 }
 
-QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog()
+ribi::QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog()
 {
   delete ui;
 }
 
-void QtSimMysteryMachineMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtSimMysteryMachineMenuDialog::on_button_start_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_start_clicked()
 {
   this->hide();
   QtSimMysteryMachineMainDialog d;
@@ -85,7 +73,7 @@ void QtSimMysteryMachineMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void QtSimMysteryMachineMenuDialog::on_button_about_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked()
 {
   this->hide();
   About a = SimMysteryMachineMenuDialog::GetAbout();
@@ -100,12 +88,12 @@ void QtSimMysteryMachineMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtSimMysteryMachineMenuDialog::on_button_quit_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
-void QtSimMysteryMachineMenuDialog::on_button_instructions_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_instructions_clicked()
 {
   this->hide();
   QtSimMysteryMachineInstructionsDialog d;
@@ -113,7 +101,7 @@ void QtSimMysteryMachineMenuDialog::on_button_instructions_clicked()
   this->show();
 }
 
-void QtSimMysteryMachineMenuDialog::on_button_real_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_real_clicked()
 {
   this->hide();
   QtSimMysteryMachineRealMachineDialog d;

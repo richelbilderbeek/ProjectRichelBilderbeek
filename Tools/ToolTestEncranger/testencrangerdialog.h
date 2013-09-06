@@ -20,13 +20,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TESTENCRANGERDIALOG_H
 #define TESTENCRANGERDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
 #include <boost/scoped_ptr.hpp>
 #include "about.h"
 #include "encranger.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct TestEncrangerDialog
 {
   TestEncrangerDialog();
@@ -51,5 +53,7 @@ struct TestEncrangerDialog
   std::string m_encrypted_text;
   boost::scoped_ptr<Encranger> m_encranger;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TESTENCRANGERDIALOG_H

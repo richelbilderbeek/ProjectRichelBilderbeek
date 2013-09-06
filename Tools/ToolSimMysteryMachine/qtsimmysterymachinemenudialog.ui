@@ -43,7 +43,7 @@ selection-background-color: white
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QtLedWidget" name="led_1" native="true"/>
+    <widget class="ribi::QtLedWidget" name="led_1" native="true"/>
    </item>
    <item row="0" column="1">
     <widget class="QPushButton" name="button_instructions">
@@ -56,7 +56,7 @@ selection-background-color: white
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QtLedWidget" name="led_2" native="true"/>
+    <widget class="ribi::QtLedWidget" name="led_2" native="true"/>
    </item>
    <item row="1" column="1">
     <widget class="QPushButton" name="button_start">
@@ -69,7 +69,7 @@ selection-background-color: white
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QtLedWidget" name="led_3" native="true"/>
+    <widget class="ribi::QtLedWidget" name="led_3" native="true"/>
    </item>
    <item row="2" column="1">
     <widget class="QPushButton" name="button_real">
@@ -82,7 +82,7 @@ selection-background-color: white
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QtLedWidget" name="led_4" native="true"/>
+    <widget class="ribi::QtLedWidget" name="led_4" native="true"/>
    </item>
    <item row="3" column="1">
     <widget class="QPushButton" name="button_about">
@@ -95,7 +95,7 @@ selection-background-color: white
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QtLedWidget" name="led_5" native="true">
+    <widget class="ribi::QtLedWidget" name="led_5" native="true">
      <property name="minimumSize">
       <size>
        <width>32</width>
@@ -119,7 +119,7 @@ selection-background-color: white
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QtLedWidget</class>
+   <class>ribi::QtLedWidget</class>
    <extends>QWidget</extends>
    <header>qtledwidget.h</header>
    <container>1</container>

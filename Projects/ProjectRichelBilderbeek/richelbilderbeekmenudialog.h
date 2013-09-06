@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 namespace RichelBilderbeek {
 
 struct Program;
@@ -60,6 +62,8 @@ struct MenuDialog
 };
 
 } //~namespace RichelBilderbeek
+
+} //~namespace ribi
 
 #endif // RICHELBILDERBEEKMENUDIALOG_H
 

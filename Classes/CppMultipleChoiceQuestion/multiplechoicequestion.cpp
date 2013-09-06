@@ -111,10 +111,10 @@ const std::string ribi::MultipleChoiceQuestion::GetVersion()
 
 const std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-27: version 1.0: initial version");
-  v.push_back("2011-09-16: version 1.1: allow parsing from std::string");
-  return v;
+  return {
+    "2011-06-27: version 1.0: initial version",
+    "2011-09-16: version 1.1: allow parsing from std::string"
+  };
 }
 
 const std::vector<std::string> ribi::MultipleChoiceQuestion::SeperateString(

@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+namespace ribi {
+
 namespace CreateQtProjectZipFile {
 
 ///Path is a tri-tuple
@@ -101,5 +103,7 @@ struct Path
 };
 
 } //~namespace CreateQtProjectZipFile
+
+} //~namespace ribi
 
 #endif // CREATEQTPROJECTZIPFILEPATH_H

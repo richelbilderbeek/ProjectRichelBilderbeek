@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppLed.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "led.h"
@@ -31,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-Led::Led(
+ribi::Led::Led(
   const double intensity,
   const unsigned char red,
   const unsigned char green,
@@ -47,21 +47,21 @@ Led::Led(
     && "An LED intensity must be equal or lower than 1.0 (that is, 100%)");
 }
 
-const std::string Led::GetVersion()
+const std::string ribi::Led::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> Led::GetVersionHistory()
+const std::vector<std::string> ribi::Led::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-10: Version 1.0: initial version");
-  v.push_back("2011-08-17: Version 1.1: emit a signal when the color is changed");
-  v.push_back("2011-08-20: Version 1.2: added operator<<");
-  return v;
+  return {
+    "2011-04-10: Version 1.0: initial version",
+    "2011-08-17: Version 1.1: emit a signal when the color is changed",
+    "2011-08-20: Version 1.2: added operator<<"
+  };
 }
 
-void Led::SetColor(
+void ribi::Led::SetColor(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
@@ -71,7 +71,7 @@ void Led::SetColor(
   SetBlue(blue);
 }
 
-void Led::SetBlue(const unsigned char blue)
+void ribi::Led::SetBlue(const unsigned char blue)
 {
   if (m_blue != blue)
   {
@@ -80,7 +80,7 @@ void Led::SetBlue(const unsigned char blue)
   }
 }
 
-void Led::SetGreen(const unsigned char green)
+void ribi::Led::SetGreen(const unsigned char green)
 {
   if (m_green != green)
   {
@@ -89,7 +89,7 @@ void Led::SetGreen(const unsigned char green)
   }
 }
 
-void Led::SetIntensity(const double intensity)
+void ribi::Led::SetIntensity(const double intensity)
 {
   assert(intensity >= 0.0
     && "An LED intensity must be a positive value");
@@ -103,7 +103,7 @@ void Led::SetIntensity(const double intensity)
   }
 }
 
-void Led::SetRed(const unsigned char red)
+void ribi::Led::SetRed(const unsigned char red)
 {
   if (m_red != red)
   {
@@ -112,7 +112,7 @@ void Led::SetRed(const unsigned char red)
   }
 }
 
-std::ostream& operator<<(std::ostream& os, const Led& led)
+std::ostream& ribi::operator<<(std::ostream& os, const Led& led)
 {
   os
     << "<Led>"

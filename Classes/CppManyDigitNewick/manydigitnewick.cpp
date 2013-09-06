@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "manydigitnewick.h"
 
 #include <cassert>
@@ -38,11 +38,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-double ManyDigitNewick::sm_theta = -1.0;
+double ribi::ManyDigitNewick::sm_theta = -1.0;
 
 ///Create an empty MyDigitNewick, to have a
 ///default contructor
-ManyDigitNewick::ManyDigitNewick()
+ribi::ManyDigitNewick::ManyDigitNewick()
   : m_probability(-1.0),
     m_denominator(-1.0),
     m_sum_terms_above_zero(-1),
@@ -51,7 +51,7 @@ ManyDigitNewick::ManyDigitNewick()
   assert(this->Empty());
 }
 
-ManyDigitNewick::ManyDigitNewick(
+ribi::ManyDigitNewick::ManyDigitNewick(
   const std::vector<ManyDigitNewickDerivative>& derivatives,
   const int sum_above_zero,
   const int sum_above_one)
@@ -65,7 +65,7 @@ ManyDigitNewick::ManyDigitNewick(
 
 }
 
-double ManyDigitNewick::CalculateDenominator(
+double ribi::ManyDigitNewick::CalculateDenominator(
   const int sum_above_zero,
   const int sum_above_one) const
 {
@@ -89,46 +89,46 @@ double ManyDigitNewick::CalculateDenominator(
 ///Calculates the probability for a certain Newick
 ///with a certain theta. This is the main (helper)
 ///function.
-double ManyDigitNewick::CalculateProbability(
+double ribi::ManyDigitNewick::CalculateProbability(
   const std::string& newick_str,
   const double theta)
 {
   TRACE_FUNC();
-  ManyDigitNewick::SetTheta(theta);
+  ribi::ManyDigitNewick::SetTheta(theta);
   const NewickVector n(newick_str);
   const ManyDigitNewickIndexer i(n,theta);
   return i.GetProbability();
 }
 
-bool ManyDigitNewick::Empty() const
+bool ribi::ManyDigitNewick::Empty() const
 {
   return m_derivatives.empty();
 }
 
-double ManyDigitNewick::GetDenominator() const
+double ribi::ManyDigitNewick::GetDenominator() const
 {
   assert(IsComplete());
   return m_denominator;
 }
 
-const std::vector<ManyDigitNewickDerivative>& ManyDigitNewick::GetDerivatives() const
+const std::vector<ribi::ManyDigitNewickDerivative>& ribi::ManyDigitNewick::GetDerivatives() const
 {
   return m_derivatives;
 }
 
-double ManyDigitNewick::GetProbability() const
+double ribi::ManyDigitNewick::GetProbability() const
 {
   assert(IsProbabilityKnown());
   return m_probability;
 }
 
-int ManyDigitNewick::GetSumTermsAboveOne() const
+int ribi::ManyDigitNewick::GetSumTermsAboveOne() const
 {
   assert(m_sum_terms_above_one >= 0);
   return m_sum_terms_above_one;
 }
 
-int ManyDigitNewick::GetSumTermsAboveZero() const
+int ribi::ManyDigitNewick::GetSumTermsAboveZero() const
 {
   if (!(m_sum_terms_above_zero >= 0))
   {
@@ -138,42 +138,42 @@ int ManyDigitNewick::GetSumTermsAboveZero() const
   return m_sum_terms_above_zero;
 }
 
-const std::string ManyDigitNewick::GetVersion()
+const std::string ribi::ManyDigitNewick::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ManyDigitNewick::GetVersionHistory()
+const std::vector<std::string> ribi::ManyDigitNewick::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2010-08-22: version 1.0: initial version");
-  v.push_back("2011-02-20: version 1.1: added version history");
-  return v;
+  return {
+    "2010-08-22: version 1.0: initial version",
+    "2011-02-20: version 1.1: added version history"
+  };
 }
 
 ///A complete ManyDigitNewick has (hopefully) all its
 ///derivatives present, as well as its sums of terms
 ///above zero and one.
-bool ManyDigitNewick::IsComplete() const
+bool ribi::ManyDigitNewick::IsComplete() const
 {
   return (!m_derivatives.empty()
     && m_sum_terms_above_zero >= 0
     && m_sum_terms_above_one  >= 0);
 }
 
-bool ManyDigitNewick::IsProbabilityKnown() const
+bool ribi::ManyDigitNewick::IsProbabilityKnown() const
 {
   return m_probability >= 0.0;
 }
 
-void ManyDigitNewick::SetProbability(const double p)
+void ribi::ManyDigitNewick::SetProbability(const double p)
 {
   assert(p >= 0.0);
   assert(p <= 1.0000001);
   m_probability = p;
 }
 
-void ManyDigitNewick::SetTheta(const double theta)
+void ribi::ManyDigitNewick::SetTheta(const double theta)
 {
   assert(theta >= 0.0);
   sm_theta = theta;
@@ -181,10 +181,10 @@ void ManyDigitNewick::SetTheta(const double theta)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-void ManyDigitNewick::Test()
+void ribi::ManyDigitNewick::Test()
 {
   const double theta = 10.0;
-  ManyDigitNewick::SetTheta(theta);
+  ribi::ManyDigitNewick::SetTheta(theta);
   const std::vector<std::string> v = Newick::CreateValidNewicks();
   BOOST_FOREACH(const std::string& s,v)
   {
@@ -193,7 +193,7 @@ void ManyDigitNewick::Test()
     {
       continue;
     }
-    ManyDigitNewick::CalculateProbability(s,theta);
+    ribi::ManyDigitNewick::CalculateProbability(s,theta);
   }
 }
 #pragma GCC diagnostic pop

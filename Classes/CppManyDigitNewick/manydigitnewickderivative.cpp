@@ -18,13 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #include "manydigitnewickderivative.h"
 
 #include <cassert>
 
-ManyDigitNewickDerivative::ManyDigitNewickDerivative(
+ribi::ManyDigitNewickDerivative::ManyDigitNewickDerivative(
   const int derived_index,
   const int value_changed,
   const int other_value_changed)
@@ -37,4 +37,3 @@ ManyDigitNewickDerivative::ManyDigitNewickDerivative(
   assert( (m_value_changed == 1 && m_other_value_changed  > 0)
        || (m_value_changed  > 1 && m_other_value_changed == 0) );
 }
-//---------------------------------------------------------------------------

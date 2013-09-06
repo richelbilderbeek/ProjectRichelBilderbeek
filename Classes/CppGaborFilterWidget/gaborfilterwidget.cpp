@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppGaborFilterWidget.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "gaborfilterwidget.h"
@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-GaborFilterWidget::GaborFilterWidget(
+ribi::GaborFilterWidget::GaborFilterWidget(
   const int x,
   const int y,
   const int width,
@@ -43,19 +43,19 @@ GaborFilterWidget::GaborFilterWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-const std::string GaborFilterWidget::GetVersion()
+const std::string ribi::GaborFilterWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> GaborFilterWidget::GetVersionHistory()
+const std::vector<std::string> ribi::GaborFilterWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-07-09: version 1.0: initial version");
-  return v;
+  return {
+    "2012-07-09: version 1.0: initial version"
+  };
 }
 
-std::ostream& operator<<(std::ostream& os, const GaborFilterWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const GaborFilterWidget& widget)
 {
   os
     << "<GaborFilterWidget>"

@@ -27,6 +27,8 @@ namespace Ui {
   class QtSimMysteryMachineMenuDialog;
 }
 
+namespace ribi {
+
 class QtSimMysteryMachineMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -34,9 +36,6 @@ class QtSimMysteryMachineMenuDialog : public QDialog
 public:
   explicit QtSimMysteryMachineMenuDialog(QWidget *parent = 0);
   ~QtSimMysteryMachineMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtSimMysteryMachineMenuDialog *ui;
@@ -48,5 +47,7 @@ private slots:
     void on_button_instructions_clicked();
     void on_button_real_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTSIMMYSTERYMACHINEMENUDIALOG_H

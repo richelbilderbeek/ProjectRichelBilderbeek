@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppNewickVector.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "newickvector.h"
@@ -47,7 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-NewickVector::NewickVector(const std::string& s)
+ribi::NewickVector::NewickVector(const std::string& s)
 {
   #ifndef NDEBUG
   Test();
@@ -56,7 +54,7 @@ NewickVector::NewickVector(const std::string& s)
   m_v = Newick::StringToNewick(s);
 }
 
-NewickVector::NewickVector(const std::vector<int>& v)
+ribi::NewickVector::NewickVector(const std::vector<int>& v)
 {
   #ifndef NDEBUG
   Test();
@@ -65,30 +63,30 @@ NewickVector::NewickVector(const std::vector<int>& v)
   m_v = v;
 }
 
-const BigInteger NewickVector::CalcComplexity() const
+const BigInteger ribi::NewickVector::CalcComplexity() const
 {
   return Newick::CalcComplexity(m_v);
 }
 
-double NewickVector::CalcDenominator(const double theta) const
+double ribi::NewickVector::CalcDenominator(const double theta) const
 {
   return Newick::CalcDenominator(Peek(),theta);
 }
 
-const BigInteger NewickVector::CalcNumOfCombinations() const
+const BigInteger ribi::NewickVector::CalcNumOfCombinations() const
 {
   assert(Newick::IsNewick(m_v));
   return Newick::CalcNumOfCombinationsBinary(m_v);
 }
 
-const BigInteger NewickVector::CalcNumOfSymmetries() const
+const BigInteger ribi::NewickVector::CalcNumOfSymmetries() const
 {
   assert(Newick::IsNewick(m_v));
   assert(Newick::IsBinaryNewick(m_v));
   return Newick::CalcNumOfSymmetriesBinary(m_v);
 }
 
-double NewickVector::CalculateProbability(
+double ribi::NewickVector::CalculateProbability(
   const std::string& newick_str,
   const double theta)
 {
@@ -102,7 +100,7 @@ double NewickVector::CalculateProbability(
     storage);
 }
 
-double NewickVector::CalculateProbabilityInternal(
+double ribi::NewickVector::CalculateProbabilityInternal(
   const NewickVector& n,
   const double theta,
   NewickStorage<NewickVector>& storage)
@@ -185,14 +183,14 @@ double NewickVector::CalculateProbabilityInternal(
   }
 }
 
-double NewickVector::CalcProbabilitySimpleNewick(const double theta) const
+double ribi::NewickVector::CalcProbabilitySimpleNewick(const double theta) const
 {
   assert(Newick::IsSimple(m_v));
   assert(theta > 0.0);
   return Newick::CalcProbabilitySimpleNewick(m_v,theta);
 }
 
-int NewickVector::FindPosAfter(const std::vector<int>& v,const int x, const int index) const
+int ribi::NewickVector::FindPosAfter(const std::vector<int>& v,const int x, const int index) const
 {
   const int sz = v.size();
   for (int i=index; i!=sz; ++i)
@@ -202,7 +200,7 @@ int NewickVector::FindPosAfter(const std::vector<int>& v,const int x, const int 
   return sz;
 }
 
-int NewickVector::FindPosBefore(const std::vector<int>& v,const int x, const int index) const
+int ribi::NewickVector::FindPosBefore(const std::vector<int>& v,const int x, const int index) const
 {
 
   for (int i=index; i!=-1; --i)
@@ -212,7 +210,7 @@ int NewickVector::FindPosBefore(const std::vector<int>& v,const int x, const int
   return -1;
 }
 
-const std::vector<NewickVector> NewickVector::GetSimplerNewicks() const
+const std::vector<ribi::NewickVector> ribi::NewickVector::GetSimplerNewicks() const
 {
   assert(Newick::IsNewick(m_v));
   const std::vector<std::vector<int> > v = Newick::GetSimplerBinaryNewicks(m_v);
@@ -220,7 +218,7 @@ const std::vector<NewickVector> NewickVector::GetSimplerNewicks() const
   return w;
 }
 
-const std::pair<NewickVector,NewickVector> NewickVector::GetRootBranches() const
+const std::pair<ribi::NewickVector,ribi::NewickVector> ribi::NewickVector::GetRootBranches() const
 {
   assert(Newick::IsNewick(m_v));
   std::pair<std::vector<int>,std::vector<int> > p
@@ -228,23 +226,23 @@ const std::pair<NewickVector,NewickVector> NewickVector::GetRootBranches() const
   return p;
 }
 
-const std::string NewickVector::GetVersion()
+const std::string ribi::NewickVector::GetVersion()
 {
   return "2.1";
 }
 
-const std::vector<std::string> NewickVector::GetVersionHistory()
+const std::vector<std::string> ribi::NewickVector::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2009-06-01: Version 1.0: Initial version");
-  v.push_back("2010-08-10: Version 1.1: Major architectural revision");
-  v.push_back("2011-02-20: Version 1.2: Removed helper functions from global namespace");
-  v.push_back("2011-02-22: Version 2.0: Changed file management");
-  v.push_back("2011-04-08: Version 2.1: fixed error forgiven by G++, but fatal for i686-pc-mingw32-qmake");
-  return v;
+  return {
+    "2009-06-01: Version 1.0: Initial version",
+    "2010-08-10: Version 1.1: Major architectural revision",
+    "2011-02-20: Version 1.2: Removed helper functions from global namespace",
+    "2011-02-22: Version 2.0: Changed file management",
+    "2011-04-08: Version 2.1: fixed error forgiven by G++, but fatal for i686-pc-mingw32-qmake"
+  };
 }
 
- bool NewickVector::IsCloseBracketRight(const int pos) const
+ bool ribi::NewickVector::IsCloseBracketRight(const int pos) const
 {
   const int sz = m_v.size();
 
@@ -263,7 +261,7 @@ const std::vector<std::string> NewickVector::GetVersionHistory()
   return true;
 }
 
-bool NewickVector::IsOpenBracketLeft(const int pos) const
+bool ribi::NewickVector::IsOpenBracketLeft(const int pos) const
 {
   assert(pos >= 0);
   assert(pos < static_cast<int>(m_v.size()));
@@ -280,7 +278,7 @@ bool NewickVector::IsOpenBracketLeft(const int pos) const
   return true;
 }
 
-bool NewickVector::IsSimple() const
+bool ribi::NewickVector::IsSimple() const
 {
   return Newick::IsSimple(m_v);
 }
@@ -300,7 +298,7 @@ bool NewickVector::IsSimple() const
 // -> bracket_close_pos = 7
 // -> sz_loss = 4 = 7 - 3 = bracket_close_pos - bracket_open_pos
 // -> new_sz = 5
-const NewickVector NewickVector::LoseBrackets(const int x, const int i) const
+const ribi::NewickVector ribi::NewickVector::LoseBrackets(const int x, const int i) const
 {
   assert(i >= 0);
   assert(i < Size());
@@ -326,7 +324,7 @@ const NewickVector NewickVector::LoseBrackets(const int x, const int i) const
   return NewickVector(v_copy);
 }
 
-bool NewickVector::NewickCompare(
+bool ribi::NewickVector::NewickCompare(
   const std::vector<int>& lhs,
   const std::vector<int>& rhs)
 {
@@ -350,12 +348,12 @@ bool NewickVector::NewickCompare(
   return false;
 }
 
-int NewickVector::Size() const
+int ribi::NewickVector::Size() const
 {
   return boost::numeric_cast<int>(m_v.size());
 }
 
-const NewickVector NewickVector::TermIsNotOne(const int i) const
+const ribi::NewickVector ribi::NewickVector::TermIsNotOne(const int i) const
 {
   assert(m_v[i]>1);
   std::vector<int> v(m_v);
@@ -386,7 +384,7 @@ const NewickVector NewickVector::TermIsNotOne(const int i) const
 //        ^    EXIT-1
 // ((1,2,3),3), string_pos 3 -> (3,3) //Might be incorrect: algorithm holds for two numbers between brackets
 //    ^
-const NewickVector NewickVector::TermIsOne(const int i) const
+const ribi::NewickVector ribi::NewickVector::TermIsOne(const int i) const
 {
   const int sz = m_v.size();
 
@@ -426,7 +424,7 @@ const NewickVector NewickVector::TermIsOne(const int i) const
 }
 
 #ifndef NDEBUG
-void NewickVector::Test()
+void ribi::NewickVector::Test()
 {
   {
     bool is_tested = false;
@@ -762,25 +760,25 @@ void NewickVector::Test()
     const std::string n1 = "((1,1),1,1)";
     const std::string n2 = "(1,(1,1),1)";
     const std::string n3 = "(1,1,(1,1))";
-    const double p1 = NewickVector::CalculateProbability(n1,theta);
-    const double p2 = NewickVector::CalculateProbability(n2,theta);
-    const double p3 = NewickVector::CalculateProbability(n3,theta);
+    const double p1 = ribi::NewickVector::CalculateProbability(n1,theta);
+    const double p2 = ribi::NewickVector::CalculateProbability(n2,theta);
+    const double p3 = ribi::NewickVector::CalculateProbability(n3,theta);
     //Calculate probability via testable binary Newicks
     const double p4
       = theta
       / Newick::CalcDenominator(Newick::StringToNewick(n1),theta)
-      * ( (2.0 * NewickVector::CalculateProbability("(1,1,2)",theta) )
-        + (2.0 * NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
+      * ( (2.0 * ribi::NewickVector::CalculateProbability("(1,1,2)",theta) )
+        + (2.0 * ribi::NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
     const double p5
       = theta
       / Newick::CalcDenominator(Newick::StringToNewick(n1),theta)
-      * ( (2.0 * NewickVector::CalculateProbability("(1,2,1)",theta) )
-        + (2.0 * NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
+      * ( (2.0 * ribi::NewickVector::CalculateProbability("(1,2,1)",theta) )
+        + (2.0 * ribi::NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
     const double p6
       = theta
       / Newick::CalcDenominator(Newick::StringToNewick(n1),theta)
-      * ( (2.0 * NewickVector::CalculateProbability("(2,1,1)",theta) )
-        + (2.0 * NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
+      * ( (2.0 * ribi::NewickVector::CalculateProbability("(2,1,1)",theta) )
+        + (2.0 * ribi::NewickVector::CalculateProbability("(2,(1,1))",theta) ) );
     //#define DEBUG_BO_1_1_BC_1_1
     #ifdef  DEBUG_BO_1_1_BC_1_1
     TRACE(boost::lexical_cast<std::string>(p1));
@@ -801,13 +799,13 @@ void NewickVector::Test()
     const double theta = 12.34;
     //Calculate probability the short way
     const std::string n = "((1,1,1),1)";
-    const double p1 = NewickVector::CalculateProbability(n,theta);
+    const double p1 = ribi::NewickVector::CalculateProbability(n,theta);
     //Calculate probability via testable binary Newicks
     const double p2
       = theta
       / Newick::CalcDenominator(Newick::StringToNewick(n),theta)
       * 6.0
-      * NewickVector::CalculateProbability("((2,1),1)",theta);
+      * ribi::NewickVector::CalculateProbability("((2,1),1)",theta);
     assert(Newick::fuzzy_equal_to()(p1,p2));
   }
 
@@ -820,7 +818,7 @@ void NewickVector::Test()
       const std::string newick_str = boost::get<0>(t);
       const double theta = boost::get<1>(t);
       const double p1 = boost::get<2>(t);
-      const double p2 = NewickVector::CalculateProbability(newick_str,theta);
+      const double p2 = ribi::NewickVector::CalculateProbability(newick_str,theta);
       assert(Newick::fuzzy_equal_to()(p1,p2));
     }
   }
@@ -828,14 +826,14 @@ void NewickVector::Test()
 }
 #endif
 
-const std::string NewickVector::ToStr() const
+const std::string ribi::NewickVector::ToStr() const
 {
   assert(Newick::IsNewick(m_v));
   return Newick::NewickToString(m_v);
 }
 
-bool operator<(const NewickVector& lhs, const NewickVector& rhs)
+bool ribi::operator<(const NewickVector& lhs, const NewickVector& rhs)
 {
-  return NewickVector::NewickCompare(lhs.Peek(),rhs.Peek());
+  return ribi::NewickVector::NewickCompare(lhs.Peek(),rhs.Peek());
 }
 
