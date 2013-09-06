@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppRubiksClockWidget.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
@@ -43,7 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-RubiksClockWidget::RubiksClockWidget(
+ribi::RubiksClockWidget::RubiksClockWidget(
   const int x,
   const int y,
   const int width,
@@ -53,13 +51,13 @@ RubiksClockWidget::RubiksClockWidget(
 {
   m_signal_geometry_changed.connect(
     boost::bind(
-      &RubiksClockWidget::OnResize,
+      &ribi::RubiksClockWidget::OnResize,
       this));
 
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-void RubiksClockWidget::Click(const int x,const int y,const bool button_left)
+void ribi::RubiksClockWidget::Click(const int x,const int y,const bool button_left)
 {
   RubiksClock::Times& times = (m_display_front ? m_clock->GetFrontTimes() : m_clock->GetBackTimes());
   RubiksClock::Pegs& pegs = m_clock->GetFrontPegs();
@@ -98,32 +96,32 @@ void RubiksClockWidget::Click(const int x,const int y,const bool button_left)
   }
 }
 
-void RubiksClockWidget::Flip()
+void ribi::RubiksClockWidget::Flip()
 {
   m_display_front = !m_display_front;
   m_signal_widget_flipped();
 }
 
-const std::string RubiksClockWidget::GetVersion()
+const std::string ribi::RubiksClockWidget::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> RubiksClockWidget::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClockWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-01: Version 1.0: initial version");
-  v.push_back("2011-09-09: Version 1.1: use of geometries");
-  v.push_back("2011-09-15: Version 1.2: allow flipping the clock");
-  return v;
+  return {
+    "2011-09-01: Version 1.0: initial version",
+    "2011-09-09: Version 1.1: use of geometries",
+    "2011-09-15: Version 1.2: allow flipping the clock"
+  };
 }
 
-void RubiksClockWidget::OnResize()
+void ribi::RubiksClockWidget::OnResize()
 {
   m_clock->SetGeometry(this->GetGeometry());
 }
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockWidget& widget)
 {
   os
     << "<RubiksClockWidget>"
@@ -132,5 +130,3 @@ std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget)
     << "</RubiksClockWidget>";
   return os;
 }
-
-

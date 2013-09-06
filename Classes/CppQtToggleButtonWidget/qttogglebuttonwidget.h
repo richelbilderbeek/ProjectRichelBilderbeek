@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QWidget>
 
+namespace ribi {
+
 struct ToggleButton;
 struct ToggleButtonWidget;
 
@@ -90,5 +92,7 @@ struct QtToggleButtonWidget : public QWidget
   ///Respond to mouse click
   void mousePressEvent(QMouseEvent * e);
 };
+
+} //~namespace ribi
 
 #endif // QTTOGGLEBUTTONWIDGET_H

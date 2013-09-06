@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "ui_qtmaziakgameoverdialog.h"
 
-QtMaziakGameOverDialog::QtMaziakGameOverDialog(QWidget *parent) :
+ribi::QtMaziakGameOverDialog::QtMaziakGameOverDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtMaziakGameOverDialog),
   m_timer(new QTimer),
@@ -44,12 +44,12 @@ QtMaziakGameOverDialog::QtMaziakGameOverDialog(QWidget *parent) :
   m_timer->start();
 }
 
-QtMaziakGameOverDialog::~QtMaziakGameOverDialog()
+ribi::QtMaziakGameOverDialog::~QtMaziakGameOverDialog()
 {
   delete ui;
 }
 
-void QtMaziakGameOverDialog::changeEvent(QEvent *e)
+void ribi::QtMaziakGameOverDialog::changeEvent(QEvent *e)
 {
   QWidget::changeEvent(e);
   switch (e->type()) {
@@ -61,13 +61,13 @@ void QtMaziakGameOverDialog::changeEvent(QEvent *e)
   }
 }
 
-void QtMaziakGameOverDialog::onTimer()
+void ribi::QtMaziakGameOverDialog::onTimer()
 {
   m_allow_close = true;
   m_timer->stop();
 }
 
-void QtMaziakGameOverDialog::paintEvent(QPaintEvent*)
+void ribi::QtMaziakGameOverDialog::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
   {
@@ -90,12 +90,12 @@ void QtMaziakGameOverDialog::paintEvent(QPaintEvent*)
   }
 }
 
-void QtMaziakGameOverDialog::mousePressEvent(QMouseEvent*)
+void ribi::QtMaziakGameOverDialog::mousePressEvent(QMouseEvent*)
 {
   if (m_allow_close) close();
 }
 
-void QtMaziakGameOverDialog::keyPressEvent(QKeyEvent*)
+void ribi::QtMaziakGameOverDialog::keyPressEvent(QKeyEvent*)
 {
   if (m_allow_close) close();
 }

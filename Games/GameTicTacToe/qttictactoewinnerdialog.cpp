@@ -23,43 +23,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoewinnerdialog.h"
 #include "ui_qttictactoewinnerdialog.h"
 
-QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
+ribi::QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTicTacToeWinnerDialog)
 {
   ui->setupUi(this);
 }
 
-QtTicTacToeWinnerDialog::~QtTicTacToeWinnerDialog()
+ribi::QtTicTacToeWinnerDialog::~QtTicTacToeWinnerDialog()
 {
   delete ui;
 }
 
-void QtTicTacToeWinnerDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTicTacToeWinnerDialog::SetDraw()
+void ribi::QtTicTacToeWinnerDialog::SetDraw()
 {
   ui->label_title->setText("Draw");
   this->setWindowTitle("Draw");
   ui->label_winner->setText(" ");
 }
 
-void QtTicTacToeWinnerDialog::SetWinnerCross()
+void ribi::QtTicTacToeWinnerDialog::SetWinnerCross()
 {
   ui->label_winner->setPixmap(QPixmap(":/images/X.png"));
 }
 
-void QtTicTacToeWinnerDialog::SetWinnerCircle()
+void ribi::QtTicTacToeWinnerDialog::SetWinnerCircle()
 {
   ui->label_winner->setPixmap(QPixmap(":/images/O.png"));
 }

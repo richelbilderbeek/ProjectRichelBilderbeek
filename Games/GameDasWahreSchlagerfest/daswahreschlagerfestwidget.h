@@ -28,6 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///DasWahreSchlagerfestWidget contains the game logic of Das Wahre Schlagerfest
 struct DasWahreSchlagerfestWidget
 {
@@ -59,5 +61,7 @@ struct DasWahreSchlagerfestWidget
   //Check for three in a rows
   void CheckThree();
 };
+
+} //~namespace ribi
 
 #endif // DASWAHRESCHLAGERFESTWIDGET_H

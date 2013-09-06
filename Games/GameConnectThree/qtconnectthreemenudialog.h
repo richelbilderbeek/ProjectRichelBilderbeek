@@ -31,6 +31,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace Ui {
   class QtConnectThreeMenuDialog;
 }
+
+namespace ribi {
+
 struct QtSelectPlayerWidget;
 
 class QtConnectThreeMenuDialog : public QDialog
@@ -40,9 +43,6 @@ class QtConnectThreeMenuDialog : public QDialog
 public:
   explicit QtConnectThreeMenuDialog(QWidget *parent = 0);
   ~QtConnectThreeMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtConnectThreeMenuDialog *ui;
@@ -57,8 +57,8 @@ private slots:
   #ifndef NDEBUG
   static void Test();
   #endif
-
-
 };
+
+} //~namespace ribi
 
 #endif // QTCONNECTTHREEMENUDIALOG_H

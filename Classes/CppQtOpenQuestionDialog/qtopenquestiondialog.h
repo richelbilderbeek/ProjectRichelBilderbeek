@@ -32,6 +32,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace Ui {
 class QtOpenQuestionDialog;
 }
+
+namespace ribi {
+
 struct Question;
 struct OpenQuestion;
 struct OpenQuestionDialog;
@@ -63,5 +66,7 @@ private:
   Ui::QtOpenQuestionDialog *ui;
   //boost::scoped_ptr<OpenQuestionDialog> m_dialog;
 };
+
+} //~namespace ribi
 
 #endif // QTOPENQUESTIONDIALOG_H

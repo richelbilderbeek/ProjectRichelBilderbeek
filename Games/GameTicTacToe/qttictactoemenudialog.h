@@ -20,13 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTICTACTOEMENUDIALOG_H
 #define QTTICTACTOEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtTicTacToeMenuDialog;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 class QtTicTacToeMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -34,9 +36,6 @@ class QtTicTacToeMenuDialog : public QDialog
 public:
   explicit QtTicTacToeMenuDialog(QWidget *parent = 0);
   ~QtTicTacToeMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtTicTacToeMenuDialog *ui;
@@ -46,5 +45,7 @@ private slots:
     void on_button_about_clicked();
     void on_button_start_clicked();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTICTACTOEMENUDIALOG_H

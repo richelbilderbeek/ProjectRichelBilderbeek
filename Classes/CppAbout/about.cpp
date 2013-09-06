@@ -162,7 +162,7 @@ const std::string ribi::About::GetAboutVersion()
 
 const std::vector<std::string> ribi::About::GetAboutVersionHistory()
 {
-  const std::vector<std::string> v {
+  return {
     "2011-01-07: version 1.0: initial version",
     "2011-01-11: version 1.1: added simple getters",
     "2011-09-12: version 1.2: added operator<<",
@@ -171,7 +171,6 @@ const std::vector<std::string> ribi::About::GetAboutVersionHistory()
     "2013-04-29: version 1.5: added #ifdefs for GCC 4.4.0"
     "2013-09-05: version 1.6: transition to namespace ribi"
   };
-  return v;
 }
 
 const std::string ribi::About::GetBoostVersion()

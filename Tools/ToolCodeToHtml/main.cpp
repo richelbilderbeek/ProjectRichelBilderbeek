@@ -18,18 +18,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <fstream>
 #include <iostream>
 
-#include <boost/filesystem.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/program_options.hpp>
+#pragma GCC diagnostic pop
 
 #include <QDir>
+#include <QFile>
 #include <QFileInfoList>
 
 #include "codetohtmldialog.h"
@@ -38,16 +36,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #include "trace.h"
 
-//From http://www.richelbilderbeek.nl/CppGetPath.htm
-const std::string GetPath(const std::string& filename)
-{
-  return boost::filesystem::path(filename).parent_path().string();
-}
-
 //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
 const std::string GetCurrentFolder(const std::string& s)
 {
-  return GetPath(s);
+  return c2h::GetPath(s);
 }
 
 //From http://www.richelbilderbeek.nl/CppGetFoldersInFolder.htm
@@ -119,13 +111,13 @@ int main(int argc, char* argv[])
 
   if (m.count("about"))
   {
-    std::cout << CodeToHtmlMenuDialog::GetAbout() << "\n";
+    std::cout << ribi::CodeToHtmlMenuDialog::GetAbout() << "\n";
     return 0;
   }
 
   if (m.count("version"))
   {
-    std::cout << CodeToHtmlMenuDialog::GetVersion() << "\n";
+    std::cout << ribi::CodeToHtmlMenuDialog::GetVersion() << "\n";
     return 0;
   }
 
@@ -189,7 +181,7 @@ int main(int argc, char* argv[])
     }
   }
 
-  if (!boost::filesystem::exists(source))
+  if (!QFile::exists(source.c_str()))
   {
     std::cout << "Source: " << source << "\n";
     std::cout << "Source exists: no\n";
@@ -224,7 +216,7 @@ int main(int argc, char* argv[])
 
     c2h::Dialog c(page_type,source,content_type,tech_info);
     const std::vector<std::string> v = c.ToHtml();
-    const std::string output_filename = boost::filesystem::basename(source) + ".htm";
+    const std::string output_filename = c2h::GetFileBasename(source) + ".htm";
     std::ofstream f(output_filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
@@ -243,7 +235,7 @@ int main(int argc, char* argv[])
       TRACE(folder_full_path);
       c2h::Dialog c(page_type,folder_full_path,content_type,tech_info);
       const std::vector<std::string> v = c.ToHtml();
-      const std::string output_filename = boost::filesystem::basename(folder_full_path) + ".htm";
+      const std::string output_filename = c2h::GetFileBasename(folder_full_path) + ".htm";
       std::ofstream f(output_filename.c_str());
       std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     }

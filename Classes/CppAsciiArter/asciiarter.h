@@ -29,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/tuple/tuple.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct AsciiArter
 {
   typedef std::vector<int> Pixel;
@@ -43,17 +45,20 @@ struct AsciiArter
   static const std::vector<char> m_gradient;
   static const std::vector<char> GetAsciiArtGradient();
 
+  //Get a pixel's greyness
   static double GetGreyness(
     const std::vector<std::vector<double> >& image,
     const int x,
     const int y);
 
+  //Get a line of pixels' average greyness
   static double GetGreyness(
     const std::vector<std::vector<double> >& image,
     const int x1,
     const int x2,
     const int y);
 
+  //Get a square of pixels' average greyness
   static double GetGreyness(
     const std::vector<std::vector<double> >& image,
     const int x1,
@@ -68,5 +73,7 @@ struct AsciiArter
     const int x2,
     const int y2);
 };
+
+} //~namespace ribi
 
 #endif // ASCIIARTER_H

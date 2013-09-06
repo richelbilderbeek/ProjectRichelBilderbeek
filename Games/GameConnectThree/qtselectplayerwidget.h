@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QImage>
 #include <QWidget>
 
+namespace ribi {
+
 class QtSelectPlayerWidget : public QWidget
 {
   Q_OBJECT
@@ -53,5 +55,7 @@ private:
   static const int m_sprite_height;
   static const int m_sprite_width;
 };
+
+} //~namespace ribi
 
 #endif // QTSELECTPLAYERWIDGET_H

@@ -34,6 +34,8 @@ namespace Ui {
 
 struct QImage;
 
+namespace ribi {
+
 class QtAsciiArterMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -43,7 +45,6 @@ public:
   ~QtAsciiArterMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
   void keyPressEvent(QKeyEvent *);
 
 private:
@@ -58,5 +59,7 @@ private slots:
   void on_edit_width_textChanged(QString );
   void on_button_load_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTASCIIARTERDIALOG_H

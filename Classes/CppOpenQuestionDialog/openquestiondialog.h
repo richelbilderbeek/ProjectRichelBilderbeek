@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "questiondialog.h"
 
+namespace ribi {
+
 struct OpenQuestion;
 
 ///Dialog for an OpenQuestion
@@ -44,5 +46,7 @@ struct OpenQuestionDialog : public QuestionDialog
   friend void boost::checked_delete<>(OpenQuestionDialog*);
   ~OpenQuestionDialog() {}
 };
+
+} //~namespace ribi
 
 #endif // OPENQUESTIONDIALOG_H

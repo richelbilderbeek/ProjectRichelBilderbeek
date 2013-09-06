@@ -20,33 +20,10 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppFreeFunction.htm">free function</a></h1>
 <p>&nbsp;</p>
-<p>A <a href="CppFreeFunction.htm">free function</a> is a non-member <a href="CppFunction.htm">function</a> 
-of a <a href="CppClass.htm">class</a>:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<!-- example from John Lakos, Large-Scale C++ Software Design. 1996. Figure 1.2. Chapter 1.1.1 -->
-<table border = "1"><tr><td><code>
-Point <b><a href="CppOperatorPlus.htm">operator+</a></b>(<b><a href="CppConst.htm">const</a></b> Point&amp; lhs, <b><a href="CppConst.htm">const</a></b> Point&amp; rhs)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Point(lhs.GetX() <a href="CppOperatorPlus.htm">+</a> rhs.GetX(), lhs.GetY() <a href="CppOperatorPlus.htm">+</a> rhs.GetY());<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Avoid <a href="CppFreeFunction.htm">free functions</a> (except operator functions) at file scope in 
-<a href="CppHeaderFile.htm">header (.h) files</a> [1]. Avoid <a href="CppFreeFunction.htm">free functions</a> 
-with <a href="CppExternalLinkage.htm">external linkage</a> (including operator functions) in 
-<a href="CppImplementationFile.htm">implementation (.cpp) files</a> [1].</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><a href="CppReferences.htm">References</a></h2>
-<p>&nbsp;</p>
-<ol>
-  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.3.2</li>
-</ol>
+<p>
+  A <a href="CppFreeFunction.htm">free function</a> is a <a href="CppHelperFunction.htm">helper function</a>.
+  See <a href="CppHelperFunction.htm">helper function</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

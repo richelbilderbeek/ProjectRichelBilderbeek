@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ui_qtrubiksclockmaindialog.h"
 
-QtRubiksClockMainDialog::QtRubiksClockMainDialog(QWidget *parent) :
+ribi::QtRubiksClockMainDialog::QtRubiksClockMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRubiksClockMainDialog)
 {
@@ -49,25 +49,24 @@ QtRubiksClockMainDialog::QtRubiksClockMainDialog(QWidget *parent) :
       case 7: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::bottomRight,(x >> 4) % 11); break;
     }
   }
-
 }
 
-QtRubiksClockMainDialog::~QtRubiksClockMainDialog()
+ribi::QtRubiksClockMainDialog::~QtRubiksClockMainDialog()
 {
   delete ui;
 }
 
-void QtRubiksClockMainDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtRubiksClockMainDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void QtRubiksClockMainDialog::on_button_flip_clicked()
+void ribi::QtRubiksClockMainDialog::on_button_flip_clicked()
 {
   ui->clock->GetWidget()->Flip();
 }
 
-void QtRubiksClockMainDialog::resizeEvent(QResizeEvent *)
+void ribi::QtRubiksClockMainDialog::resizeEvent(QResizeEvent *)
 {
   //const QRectF r(ui->widget_hold_clock->geometry().adjusted(0.0,0.0,-16.0,-16.0));
   const QRectF r(ui->clock->geometry());

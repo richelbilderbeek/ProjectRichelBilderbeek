@@ -19,8 +19,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtbeerwanterwidget.h"
 
 #include <iostream>
@@ -42,7 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "beerwantermaindialog.h"
 
-QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
+ribi::QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
   : QWidget(parent),
     m_background_rgb(
       std::make_tuple(
@@ -75,12 +73,12 @@ QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
   m_timer->start(20); //Framerate about (1000/20=) 50 fps
 }
 
-const BeerWanterMainDialog * QtBeerWanterWidget::GetBeerWanter() const
+const ribi::BeerWanterMainDialog * ribi::QtBeerWanterWidget::GetBeerWanter() const
 {
   return m_dialog.get();
 }
 
-void QtBeerWanterWidget::mouseMoveEvent(QMouseEvent * event)
+void ribi::QtBeerWanterWidget::mouseMoveEvent(QMouseEvent * event)
 {
   const int mouse_x = event->x();
   const int mouse_y = event->y();
@@ -116,7 +114,7 @@ void QtBeerWanterWidget::mouseMoveEvent(QMouseEvent * event)
   this->repaint();
 }
 
-void QtBeerWanterWidget::mousePressEvent(QMouseEvent *)
+void ribi::QtBeerWanterWidget::mousePressEvent(QMouseEvent *)
 {
   //#define DEBUG_SHOW_MOUSE_CLICK_POSITION
   #ifdef DEBUG_SHOW_MOUSE_CLICK_POSITION
@@ -137,7 +135,7 @@ void QtBeerWanterWidget::mousePressEvent(QMouseEvent *)
   this->repaint();
 }
 
-void QtBeerWanterWidget::onTimer()
+void ribi::QtBeerWanterWidget::onTimer()
 {
   m_dialog->ShakeCursor();
 
@@ -173,7 +171,7 @@ void QtBeerWanterWidget::onTimer()
   this->repaint();
 }
 
-void QtBeerWanterWidget::paintEvent(QPaintEvent *)
+void ribi::QtBeerWanterWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
 
@@ -202,7 +200,7 @@ void QtBeerWanterWidget::paintEvent(QPaintEvent *)
     *m_sprite.get());
 }
 
-void QtBeerWanterWidget::Modify(int& color)
+void ribi::QtBeerWanterWidget::Modify(int& color)
 {
   color += ((std::rand() >> 4) % 3) - 1;
   if (color > 255) color = 255;
@@ -210,7 +208,7 @@ void QtBeerWanterWidget::Modify(int& color)
 }
 
 //From http://www.richelbilderbeek.nl/CppPaint.htm
-void QtBeerWanterWidget::MyPaint(
+void ribi::QtBeerWanterWidget::MyPaint(
   QPixmap& pixmap,
   const unsigned char r,
   const unsigned char g,
@@ -239,4 +237,3 @@ void QtBeerWanterWidget::MyPaint(
   }
   pixmap = pixmap.fromImage(image);
 }
-

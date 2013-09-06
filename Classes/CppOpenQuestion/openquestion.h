@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "question.h"
 
+namespace ribi {
+
 ///class for an open question
 struct OpenQuestion : public Question
 {
@@ -62,5 +64,7 @@ struct OpenQuestion : public Question
     const char seperator);
 
 };
+
+} //~namespace ribi
 
 #endif // OPENQUESTION_H

@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 ///RectanglePolicyUseSize stores a rectangle by its topleft coordinats and its size
 /*
 template <class T>
@@ -139,5 +141,7 @@ struct Rect
 std::ostream& operator<<(std::ostream& os,const Rect& rect);
 bool operator==(const Rect& lhs, const Rect& rhs);
 bool operator!=(const Rect& lhs, const Rect& rhs);
+
+} //~namespace ribi
 
 #endif // RECTANGLE_H

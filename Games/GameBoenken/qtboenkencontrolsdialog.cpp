@@ -19,8 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtboenkencontrolsdialog.h"
 
 #pragma GCC diagnostic push
@@ -31,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtboenkenpresskeydialog.h"
 #include "ui_qtboenkencontrolsdialog.h"
 
-QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent) :
+ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtBoenkenControlsDialog)
 {
@@ -50,24 +48,12 @@ QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent) :
   showKeys();
 }
 
-QtBoenkenControlsDialog::~QtBoenkenControlsDialog()
+ribi::QtBoenkenControlsDialog::~QtBoenkenControlsDialog()
 {
   delete ui;
 }
 
-void QtBoenkenControlsDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtBoenkenControlsDialog::showKeys()
+void ribi::QtBoenkenControlsDialog::showKeys()
 {
   ui->button_accelerate_1->setText(
     boost::lexical_cast<std::string>(m_keys_accel[0]).c_str() );
@@ -80,7 +66,7 @@ void QtBoenkenControlsDialog::showKeys()
 
 }
 
-void QtBoenkenControlsDialog::onAccelerate1()
+void ribi::QtBoenkenControlsDialog::onAccelerate1()
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -89,7 +75,7 @@ void QtBoenkenControlsDialog::onAccelerate1()
   showKeys();
 }
 
-void QtBoenkenControlsDialog::onAccelerate2()
+void ribi::QtBoenkenControlsDialog::onAccelerate2()
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -98,7 +84,7 @@ void QtBoenkenControlsDialog::onAccelerate2()
   showKeys();
 }
 
-void QtBoenkenControlsDialog::onTurn1()
+void ribi::QtBoenkenControlsDialog::onTurn1()
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -107,7 +93,7 @@ void QtBoenkenControlsDialog::onTurn1()
   showKeys();
 }
 
-void QtBoenkenControlsDialog::onTurn2()
+void ribi::QtBoenkenControlsDialog::onTurn2()
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -116,17 +102,17 @@ void QtBoenkenControlsDialog::onTurn2()
   showKeys();
 }
 
-std::vector<int> QtBoenkenControlsDialog::getKeysAccel() const
+std::vector<int> ribi::QtBoenkenControlsDialog::getKeysAccel() const
 {
   return m_keys_accel;
 }
 
-std::vector<int> QtBoenkenControlsDialog::getKeysTurn() const
+std::vector<int> ribi::QtBoenkenControlsDialog::getKeysTurn() const
 {
   return m_keys_turn;
 }
 
-std::vector<std::string> QtBoenkenControlsDialog::getNames() const
+std::vector<std::string> ribi::QtBoenkenControlsDialog::getNames() const
 {
   std::vector<std::string> v;
   v.push_back(ui->edit_name1->text().toStdString());
@@ -134,7 +120,7 @@ std::vector<std::string> QtBoenkenControlsDialog::getNames() const
   return v;
 }
 
-Boenken::Controls QtBoenkenControlsDialog::GetControls() const
+ribi::Boenken::Controls ribi::QtBoenkenControlsDialog::GetControls() const
 {
   Boenken::Controls c;
   c.m_keys_accel = this->getKeysAccel();

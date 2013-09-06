@@ -94,7 +94,7 @@ ribi::QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog()
   delete ui;
 }
 
-QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type)
+ribi::QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type)
 {
   //Calls the const version of Find
   //To avoid duplication in const and non-const member functions
@@ -103,7 +103,7 @@ QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find
   return const_cast<QtKalmanFiltererParameterDialog *>(const_cast<const QtWhiteNoiseSystemParametersDialog&>(*this).Find(type));
 }
 
-const QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type) const
+const ribi::QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type) const
 {
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
   assert(m_parameters.find(type) != m_parameters.end());
@@ -118,7 +118,7 @@ int ribi::QtWhiteNoiseSystemParametersDialog::GetLag() const
   return ui->box_lag->value();
 }
 
-WhiteNoiseSystemType ribi::QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType() const
+ribi::WhiteNoiseSystemType ribi::QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType() const
 {
   switch (ui->box_white_noise_system_type->currentIndex())
   {

@@ -25,6 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 ///BeerWanterMainDialog contains the logic behind the game BeerWanter
 struct BeerWanterMainDialog
 {
@@ -82,5 +84,7 @@ struct BeerWanterMainDialog
   int GetRandomCursorShake() const;
   int GetRandomWindowShake() const;
 };
+
+} //~namespace ribi
 
 #endif // BEERWANTERMAINDIALOG_H

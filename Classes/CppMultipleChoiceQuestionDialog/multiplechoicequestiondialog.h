@@ -20,13 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef MULTIPLECHOICEQUESTIONDIALOG_H
 #define MULTIPLECHOICEQUESTIONDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "questiondialog.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct MultipleChoiceQuestion;
-//---------------------------------------------------------------------------
+
 struct MultipleChoiceQuestionDialog : public QuestionDialog
 {
   explicit MultipleChoiceQuestionDialog(
@@ -49,5 +51,7 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
   //static MultipleChoiceQuestion * CreateDefaultQuestion();
   static boost::shared_ptr<MultipleChoiceQuestion> CreateDefaultQuestion();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // MULTIPLECHOICEQUESTIONDIALOG_H

@@ -37,15 +37,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 #include <QPixmap>
 
-namespace Boenken {
-
 ///The maximum x coordinat a Sprite can have
-int Sprite::m_maxx = 320;
+int ribi::Boenken::Sprite::m_maxx = 320;
 
 ///The maximum y coordinat a Sprite can have
-int Sprite::m_maxy = 200;
+int ribi::Boenken::Sprite::m_maxy = 200;
 
-Sprite::Sprite(
+ribi::Boenken::Sprite::Sprite(
   const double x,
   const double y,
   const int size,
@@ -62,28 +60,28 @@ Sprite::Sprite(
   #endif
 }
 
-QRect Sprite::rect() const
+QRect ribi::Boenken::Sprite::rect() const
 {
   return QRect(m_x,m_y,m_size,m_size);
 }
 
-const QPixmap& Sprite::pixmap() const
+const QPixmap& ribi::Boenken::Sprite::pixmap() const
 {
   return m_pixmap;
 }
 
-void Sprite::Draw(QPainter& painter) const
+void ribi::Boenken::Sprite::Draw(QPainter& painter) const
 {
   //Draw the globe
   painter.drawPixmap(this->rect(),this->pixmap());
 }
 
-const std::string Sprite::GetVersion()
+const std::string ribi::Boenken::Sprite::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> Sprite::GetVersionHistory()
+const std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory()
 {
   return
   {
@@ -93,14 +91,14 @@ const std::vector<std::string> Sprite::GetVersionHistory()
 }
 
 
-void Sprite::setArenaSize(const int width, const int height)
+void ribi::Boenken::Sprite::setArenaSize(const int width, const int height)
 {
   m_maxx = width;
   m_maxy = height;
 }
 
 #ifndef NDEBUG
-void Sprite::Test()
+void ribi::Boenken::Sprite::Test()
 {
   {
     static bool is_tested = false;
@@ -153,7 +151,7 @@ void Sprite::Test()
 #endif
 
 //From http://www.richelbilderbeek.nl/CppDrawGlobe.htm
-QPixmap Sprite::DrawGlobe(
+QPixmap ribi::Boenken::Sprite::DrawGlobe(
   const int width,
   const int height,
   const unsigned char r,
@@ -221,14 +219,14 @@ QPixmap Sprite::DrawGlobe(
   return pixmap;
 }
 
-double Sprite::GetAngle(const double dx, const double dy)
+double ribi::Boenken::Sprite::GetAngle(const double dx, const double dy)
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - std::atan2(dx,dy);
 }
 
 //From http://www.richelbilderbeek.nl/CppDoPerfectElasticCollision.htm
-void Sprite::DoPerfectElasticCollision(
+void ribi::Boenken::Sprite::DoPerfectElasticCollision(
   const double angleCollision,
   double& angle1,
   double& speed1,
@@ -283,7 +281,3 @@ void Sprite::DoPerfectElasticCollision(
   speed1 = std::sqrt( (DdX * DdX) + (DdY * DdY) ); //Pythagoras
   speed2 = std::sqrt( (HdX * HdX) + (HdY * HdY) ); //Pythagoras
 }
-
-
-} //~namespace Boenken
-

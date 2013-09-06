@@ -29,6 +29,8 @@ namespace Ui {
   class QtPylosWonDialog;
 }
 
+namespace ribi {
+
 class QtPylosWonDialog : public QDialog
 {
   Q_OBJECT
@@ -38,11 +40,10 @@ public:
   ~QtPylosWonDialog();
   void SetWinner(const Pylos::Winner winner);
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtPylosWonDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTPYLOSWONDIALOG

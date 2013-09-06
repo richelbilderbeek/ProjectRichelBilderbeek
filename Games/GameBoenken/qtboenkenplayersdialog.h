@@ -28,6 +28,8 @@ namespace Ui {
   class QtBoenkenPlayersDialog;
 }
 
+namespace ribi {
+
 ///Dialog to connect sprites to their controllers\n
 ///A controller can be\n
 ///- a human\n
@@ -40,11 +42,10 @@ public:
   explicit QtBoenkenPlayersDialog(QWidget *parent = 0);
   ~QtBoenkenPlayersDialog();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtBoenkenPlayersDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTBOENKENPLAYERSDIALOG_H

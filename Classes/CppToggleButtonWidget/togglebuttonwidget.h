@@ -28,6 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "widget.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct ToggleButton;
 
 struct ToggleButtonWidget : public Widget
@@ -61,5 +63,7 @@ struct ToggleButtonWidget : public Widget
 };
 
 std::ostream& operator<<(std::ostream& os, const ToggleButtonWidget& button);
+
+} //~namespace ribi
 
 #endif // TOGGLEBUTTONWIDGET_H

@@ -20,18 +20,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTICTACTOEGAMEDIALOG_H
 #define QTTICTACTOEGAMEDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
-struct QtTicTacToeWidget;
+
 namespace Ui {
   class QtTicTacToeGameDialog;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
+struct QtTicTacToeWidget;
+
 class QtTicTacToeGameDialog : public QDialog
 {
   Q_OBJECT
@@ -41,10 +44,6 @@ public:
   ~QtTicTacToeGameDialog();
   static const std::string GetVersion() { return "1.2"; }
 
-protected:
-  void changeEvent(QEvent *e);
-
-
 private:
   Ui::QtTicTacToeGameDialog *ui;
   boost::shared_ptr<QtTicTacToeWidget> m_tictactoe;
@@ -52,5 +51,7 @@ private:
 private slots:
   void HasWinner();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTICTACTOEGAMEDIALOG_H

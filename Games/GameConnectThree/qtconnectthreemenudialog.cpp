@@ -31,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtselectplayerwidget.h"
 #include "ui_qtconnectthreemenudialog.h"
 
-QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
+ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtConnectThreeMenuDialog),
     m_select(new QtSelectPlayerWidget)
@@ -44,25 +44,13 @@ QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
   ui->layout_horizontal->addWidget(m_select.get());
 }
 
-QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog()
+ribi::QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog()
 {
   delete ui;
 }
 
-void QtConnectThreeMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 #ifndef NDEBUG
-void QtConnectThreeMenuDialog::Test()
+void ribi::QtConnectThreeMenuDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -74,7 +62,7 @@ void QtConnectThreeMenuDialog::Test()
 }
 #endif
 
-void QtConnectThreeMenuDialog::on_button_start_clicked()
+void ribi::QtConnectThreeMenuDialog::on_button_start_clicked()
 {
   const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
   QtConnectThreeGameDialog d(resources, nullptr,this->m_select->GetIsPlayerHuman());
@@ -85,7 +73,7 @@ void QtConnectThreeMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void QtConnectThreeMenuDialog::on_button_about_clicked()
+void ribi::QtConnectThreeMenuDialog::on_button_about_clicked()
 {
   About about = ConnectThreeMenuDialog::GetAbout();
   about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
@@ -97,7 +85,7 @@ void QtConnectThreeMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtConnectThreeMenuDialog::on_button_quit_clicked()
+void ribi::QtConnectThreeMenuDialog::on_button_quit_clicked()
 {
   close();
 }

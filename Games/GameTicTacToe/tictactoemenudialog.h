@@ -20,12 +20,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TICTACTOEMENUDIALOG_H
 #define TICTACTOEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///TicTacToeMenuDialog embodies the logic
 ///behind the TicTacToe menu
 struct TicTacToeMenuDialog
@@ -34,5 +36,7 @@ struct TicTacToeMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TICTACTOEMENUDIALOG_H

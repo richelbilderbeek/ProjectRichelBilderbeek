@@ -33,6 +33,8 @@ namespace Ui {
   class QtBoenkenControlsDialog;
 }
 
+namespace ribi {
+
 ///QtBoenkenControlsDialog
 ///
 ///This dialog connects player names to their controls
@@ -46,9 +48,6 @@ public:
   explicit QtBoenkenControlsDialog(QWidget *parent = 0);
   ~QtBoenkenControlsDialog();
   Boenken::Controls GetControls() const;
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtBoenkenControlsDialog *ui;
@@ -66,5 +65,7 @@ private slots:
   std::vector<int> getKeysTurn() const;
   std::vector<std::string> getNames() const;
 };
+
+} //~namespace ribi
 
 #endif // QTBOENKENCONTROLSDIALOG_H

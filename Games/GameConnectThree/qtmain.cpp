@@ -18,12 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
-#include <qglobal.h>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-  #include <QApplication>
-#else
-  #include <QApplication>
-#endif
+#include <QApplication>
 
 #include "qtconnectthreeresources.h"
 #include "qtconnectthreemenudialog.h"
@@ -38,14 +33,13 @@ int main(int argc, char *argv[])
 
   START_TRACE();
 
-  QtConnectThreeMenuDialog w;
+  ribi::QtConnectThreeMenuDialog w;
   {
-    QtConnectThreeResources resources;
+    ribi::QtConnectThreeResources resources;
     const std::string icon_filename = resources.GetIconFilename();
     assert(QFile::exists(icon_filename.c_str()));
     w.setWindowIcon( QIcon( QPixmap(icon_filename.c_str())));
   }
-
   w.show();
   return a.exec();
 }

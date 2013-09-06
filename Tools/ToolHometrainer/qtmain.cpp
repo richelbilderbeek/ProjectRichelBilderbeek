@@ -18,20 +18,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolHometrainer.htm
 //---------------------------------------------------------------------------
-#include <cassert>
-
-#include <boost/foreach.hpp>
-
 #include <QApplication>
-#include <QFile>
 #include "qthometrainermenudialog.h"
-//#include "trace.h"
+#include "trace.h"
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  //START_TRACE();
-  QtHometrainerMenuDialog w;
+  START_TRACE();
+  ribi::QtHometrainerMenuDialog w;
   w.show();
   return a.exec();
 }

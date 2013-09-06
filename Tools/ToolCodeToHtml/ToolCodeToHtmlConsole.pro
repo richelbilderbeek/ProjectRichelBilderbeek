@@ -51,11 +51,6 @@ HEADERS += \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.h \
     ../../Classes/CppQrcFile/qrcfile.h
 
-LIBS += \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_system
-
 OTHER_FILES += \
     ../../Classes/CppQtCreatorProFile/Licence.txt \
     ../../Classes/CppQrcFile/Licence.txt
@@ -90,10 +85,7 @@ CONFIG(release, debug|release) {
 #
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
-
 unix {
-  message(Unix)
-  #Strict error handling
   QMAKE_CXXFLAGS += -Werror
 }
 
@@ -104,15 +96,10 @@ unix {
 #
 
 unix {
-  message(Unix: Boost already in INCLUDEPATH)
-  #Don't link to Boost when crosscompiling is desired
+  LIBS += -lboost_program_options
 }
 
 win32 {
-  message(Windows: add Boost to INCLUDEPATH)
-
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
-
-  #Don't link to Boost when crosscompiling is desired
 }

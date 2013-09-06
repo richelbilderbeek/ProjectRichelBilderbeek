@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "ui_qtmaziakgamewondialog.h"
 
-QtMaziakGameWonDialog::QtMaziakGameWonDialog(QWidget *parent) :
+ribi::QtMaziakGameWonDialog::QtMaziakGameWonDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtMaziakGameWonDialog),
   m_timer(new QTimer),
@@ -46,12 +46,12 @@ QtMaziakGameWonDialog::QtMaziakGameWonDialog(QWidget *parent) :
   m_timer->start();
 }
 
-QtMaziakGameWonDialog::~QtMaziakGameWonDialog()
+ribi::QtMaziakGameWonDialog::~QtMaziakGameWonDialog()
 {
   delete ui;
 }
 
-void QtMaziakGameWonDialog::changeEvent(QEvent *e)
+void ribi::QtMaziakGameWonDialog::changeEvent(QEvent *e)
 {
   QWidget::changeEvent(e);
   switch (e->type()) {
@@ -63,13 +63,13 @@ void QtMaziakGameWonDialog::changeEvent(QEvent *e)
   }
 }
 
-void QtMaziakGameWonDialog::onTimer()
+void ribi::QtMaziakGameWonDialog::onTimer()
 {
   m_allow_close = true;
   m_timer->stop();
 }
 
-void QtMaziakGameWonDialog::paintEvent(QPaintEvent*)
+void ribi::QtMaziakGameWonDialog::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
   {
@@ -92,12 +92,12 @@ void QtMaziakGameWonDialog::paintEvent(QPaintEvent*)
   }
 }
 
-void QtMaziakGameWonDialog::mousePressEvent(QMouseEvent*)
+void ribi::QtMaziakGameWonDialog::mousePressEvent(QMouseEvent*)
 {
   if (m_allow_close) close();
 }
 
-void QtMaziakGameWonDialog::keyPressEvent(QKeyEvent*)
+void ribi::QtMaziakGameWonDialog::keyPressEvent(QKeyEvent*)
 {
   if (m_allow_close) close();
 }

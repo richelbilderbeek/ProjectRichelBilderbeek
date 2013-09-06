@@ -31,6 +31,8 @@ namespace Ui {
   class QtBoenkenMenuDialog;
 }
 
+namespace ribi {
+
 struct QtBoenkenPlayersDialog;
 struct QtBoenkenArenaDialog;
 struct QtBoenkenControlsDialog;
@@ -53,9 +55,6 @@ class QtBoenkenMenuDialog : public QDialog
 public:
   explicit QtBoenkenMenuDialog(QWidget *parent = 0);
   ~QtBoenkenMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtBoenkenMenuDialog *ui;
@@ -83,5 +82,6 @@ private slots:
   void onAboutClick();
 };
 
+} //~namespace ribi
 
 #endif // QTBOENKENMENUDIALOG_H

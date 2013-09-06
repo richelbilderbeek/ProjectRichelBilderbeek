@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <stdexcept>
 
-Question::Question(
+ribi::Question::Question(
     const std::string& filename,
     const std::string& question,
     const std::vector<std::string>& answers)
@@ -41,12 +41,12 @@ Question::Question(
   if (m_answers.empty()) throw std::logic_error("Answers must not be empty");
 }
 
-const std::string Question::GetVersion()
+const std::string ribi::Question::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> Question::GetVersionHistory()
+const std::vector<std::string> ribi::Question::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-27: version 1.0: initial version");
@@ -54,7 +54,7 @@ const std::vector<std::string> Question::GetVersionHistory()
   return v;
 }
 
-bool Question::IsCorrect(const std::string& s) const
+bool ribi::Question::IsCorrect(const std::string& s) const
 {
   return std::find(m_answers.begin(),m_answers.end(),s) != m_answers.end();
 }

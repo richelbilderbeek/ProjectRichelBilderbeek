@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multiplechoicequestion.h"
 #include "question.h"
 
-MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
+ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
   const boost::shared_ptr<MultipleChoiceQuestion>& question)
   //const MultipleChoiceQuestion * const question)
   : QuestionDialog(question)
@@ -37,7 +37,7 @@ MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
   assert(GetQuestion());
 }
 
-MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::string& question)
+ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::string& question)
   : QuestionDialog(
     boost::shared_ptr<MultipleChoiceQuestion>(new
       MultipleChoiceQuestion(question)))
@@ -47,20 +47,7 @@ MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::string& qu
   assert(GetQuestion());
 }
 
-///Create a default Question
-/*
-MultipleChoiceQuestion * MultipleChoiceQuestionDialog::CreateDefaultQuestion()
-{
-  return new MultipleChoiceQuestion(
-      "*",
-      "1+2=",
-      "3",
-      {"1","2","4","5"} );
-}
-*/
-
-///Create a default Question
-boost::shared_ptr<MultipleChoiceQuestion> MultipleChoiceQuestionDialog::CreateDefaultQuestion()
+boost::shared_ptr<ribi::MultipleChoiceQuestion> ribi::MultipleChoiceQuestionDialog::CreateDefaultQuestion()
 {
   return boost::shared_ptr<MultipleChoiceQuestion>(
     new MultipleChoiceQuestion(
@@ -72,15 +59,15 @@ boost::shared_ptr<MultipleChoiceQuestion> MultipleChoiceQuestionDialog::CreateDe
   );
 }
 
-const std::string MultipleChoiceQuestionDialog::GetVersion()
+const std::string ribi::MultipleChoiceQuestionDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> MultipleChoiceQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::MultipleChoiceQuestionDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-29: version 1.0: initial version");
-  return v;
+  return {
+    "2011-06-29: version 1.0: initial version"
+  };
 }
 

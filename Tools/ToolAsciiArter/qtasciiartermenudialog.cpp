@@ -28,30 +28,30 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtasciiartermaindialog.h"
 #include "ui_qtasciiartermenudialog.h"
 
-QtAsciiArterMenuDialog::QtAsciiArterMenuDialog(QWidget *parent) :
+ribi::QtAsciiArterMenuDialog::QtAsciiArterMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtAsciiArterMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtAsciiArterMenuDialog::~QtAsciiArterMenuDialog()
+ribi::QtAsciiArterMenuDialog::~QtAsciiArterMenuDialog()
 {
   delete ui;
 }
 
-void QtAsciiArterMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtAsciiArterMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void QtAsciiArterMenuDialog::on_button_start_clicked()
+void ribi::QtAsciiArterMenuDialog::on_button_start_clicked()
 {
   QtAsciiArterMainDialog d;
   ShowChild(&d);
 }
 
-void QtAsciiArterMenuDialog::on_button_about_clicked()
+void ribi::QtAsciiArterMenuDialog::on_button_about_clicked()
 {
   About a = AsciiArterMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -63,7 +63,7 @@ void QtAsciiArterMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtAsciiArterMenuDialog::on_button_quit_clicked()
+void ribi::QtAsciiArterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }

@@ -20,13 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTICTACTOEWINNERDIALOG_H
 #define QTTICTACTOEWINNERDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtTicTacToeWinnerDialog;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 class QtTicTacToeWinnerDialog : public QDialog
 {
   Q_OBJECT
@@ -38,11 +40,10 @@ public:
   void SetWinnerCross();
   void SetWinnerCircle();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtTicTacToeWinnerDialog *ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTICTACTOEWINNERDIALOG_H

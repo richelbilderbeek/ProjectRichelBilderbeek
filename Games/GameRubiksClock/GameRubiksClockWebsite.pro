@@ -1,20 +1,6 @@
 QT       += core
 QT       -= gui
-#CONFIG   += console
-#CONFIG   -= app_bundle
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
-LIBS += \
-  -lwt \
-  -lwthttp \
-  -lboost_date_time \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_signals \
-  -lboost_system
- # -L/usr/local/lib \
- # -L/usr/lib \
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -82,3 +68,56 @@ RESOURCES += \
 
 OTHER_FILES += \
     GameRubiksClockWelcome.png
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(debug, debug|release) {
+  message(Debug mode)
+}
+
+CONFIG(release, debug|release) {
+  message(Release mode)
+
+  #Remove all asserts and TRACE
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+#
+#
+# Platform specific
+#
+#
+
+#
+#
+# Compiler flags
+#
+#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}
+
+#
+#
+# Wt
+#
+#
+
+LIBS += -lwt -lwthttp

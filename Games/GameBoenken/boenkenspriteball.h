@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include "boenkenspritemoving.h"
 
+namespace ribi {
+
 namespace Boenken {
 
 ///SpriteBall is green per default
@@ -65,5 +67,7 @@ struct SpriteBall : public SpriteMoving
 };
 
 } //~namespace Boenken {
+
+} //~namespace ribi
 
 #endif // BOENKENSPRITEBALL_H

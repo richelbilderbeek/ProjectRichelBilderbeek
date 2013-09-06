@@ -19,8 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "boenkenspriteplayer.h"
 
 #include <cassert>
@@ -33,24 +31,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QPainter>
 
-
-namespace Boenken {
-
 ///The acceleration (i.e. change of impulse)
 ///if a player presses accelerate
-const double SpritePlayer::m_acceleration = 1.0;
+const double ribi::Boenken::SpritePlayer::m_acceleration = 1.0;
 
 ///The speed of turning around
 ///if a player presses turn
-const double SpritePlayer::m_turnspeed
+const double ribi::Boenken::SpritePlayer::m_turnspeed
   = boost::math::constants::pi<double>() / 10.0;
 
 
 ///The number of SpritePlayers.
 ///for debugging purposes
-int SpritePlayer::ms_n_players = 0;
+int ribi::Boenken::SpritePlayer::ms_n_players = 0;
 
-SpritePlayer::SpritePlayer(
+ribi::Boenken::SpritePlayer::SpritePlayer(
   const double x,
   const double y,
   const double angle,
@@ -70,7 +65,7 @@ SpritePlayer::SpritePlayer(
   //  << this->getY() << ")\n";
 }
 
-SpritePlayer::~SpritePlayer()
+ribi::Boenken::SpritePlayer::~SpritePlayer()
 {
   //std::clog << "The " << ms_n_players
   //  << "th player is destroyed\n";
@@ -78,7 +73,7 @@ SpritePlayer::~SpritePlayer()
   assert(ms_n_players >= 0);
 }
 
-void SpritePlayer::Move()
+void ribi::Boenken::SpritePlayer::Move()
 {
   ///Move the sprite
   m_x += m_dx;
@@ -122,18 +117,18 @@ void SpritePlayer::Move()
 }
 
 
-void SpritePlayer::Accelerate()
+void ribi::Boenken::SpritePlayer::Accelerate()
 {
   m_dx += (std::sin(m_angle) * m_acceleration);
   m_dy -= (std::cos(m_angle) * m_acceleration);
 }
 
-void SpritePlayer::TurnRight()
+void ribi::Boenken::SpritePlayer::TurnRight()
 {
   m_angle+=m_turnspeed;
 }
 
-void SpritePlayer::Draw(QPainter& painter) const
+void ribi::Boenken::SpritePlayer::Draw(QPainter& painter) const
 {
   //Draw the globe and possibly impulse
   SpriteMoving::Draw(painter);
@@ -146,6 +141,3 @@ void SpritePlayer::Draw(QPainter& painter) const
   const double y2 = y_mid - (std::cos(m_angle) * half_size);
   painter.drawLine(x_mid,y_mid,x2,y2);
 }
-
-} //~namespace Boenken
-

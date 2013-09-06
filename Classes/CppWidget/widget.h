@@ -34,6 +34,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "rectangle.h"
 
+namespace ribi {
+
 ///GUI indepedent widget class, modeled after the Qt and Wt architure
 struct Widget
 {
@@ -54,10 +56,12 @@ struct Widget
 
   protected:
   virtual ~Widget() {}
-  friend void boost::checked_delete<>(::Widget*);
+  friend void boost::checked_delete<>(Widget*);
 
   private:
   Rect m_geometry;
 };
+
+} //~namespace ribi
 
 #endif // WIDGET_H

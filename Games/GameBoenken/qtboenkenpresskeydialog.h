@@ -28,6 +28,8 @@ namespace Ui {
   class QtBoenkenPressKeyDialog;
 }
 
+namespace ribi {
+
 ///QtBoenkenPressKeyDialog asks the user to press
 ///any key. The key pressed can be requested
 ///later, by DialogControls.
@@ -41,12 +43,13 @@ public:
   int GetKey() const { return m_key; }
 
 protected:
-  void changeEvent(QEvent *e);
   void keyPressEvent(QKeyEvent * e);
 
 private:
   Ui::QtBoenkenPressKeyDialog *ui;
   int m_key;
 };
+
+} //~namespace ribi
 
 #endif // QTBOENKENPRESSKEYDIALOG_H

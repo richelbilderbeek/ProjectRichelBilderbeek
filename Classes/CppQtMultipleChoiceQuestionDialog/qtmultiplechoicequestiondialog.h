@@ -36,6 +36,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace Ui {
   class QtMultipleChoiceQuestionDialog;
 }
+
+namespace ribi {
+
 struct Question;
 struct MultipleChoiceQuestion;
 struct MultipleChoiceQuestionDialog;
@@ -75,5 +78,7 @@ private:
     );
 
 };
+
+} //~namespace ribi
 
 #endif // QTMULTIPLECHOICEQUESTIONDIALOG_H

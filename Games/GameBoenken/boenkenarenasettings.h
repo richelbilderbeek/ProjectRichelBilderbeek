@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <utility>
 
+namespace ribi {
+
 namespace Boenken {
 
 enum Formation
@@ -46,5 +48,7 @@ struct ArenaSettings
 };
 
 } //~namespace Boenken
+
+} //~namespace ribi
 
 #endif // BOENKENARENASETTINGS_H

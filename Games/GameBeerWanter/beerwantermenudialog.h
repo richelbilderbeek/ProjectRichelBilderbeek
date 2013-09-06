@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///BeerWanterMenuDialog contains the BeerWanter menu dialog
 struct BeerWanterMenuDialog
 {
@@ -34,5 +36,7 @@ struct BeerWanterMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // BEERWANTERMENUDIALOG_H

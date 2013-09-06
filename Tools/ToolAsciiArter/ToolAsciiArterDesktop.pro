@@ -1,6 +1,5 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -8,37 +7,38 @@ INCLUDEPATH += \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtHideAndShowDialog
 
-SOURCES += qtmain.cpp \
-    qtasciiartermaindialog.cpp \
-    asciiartermaindialog.cpp \
+SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppAsciiArter/asciiarter.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
+    asciiartermaindialog.cpp \
     asciiartermenudialog.cpp \
+    qtasciiartermaindialog.cpp \
     qtasciiartermenudialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
+    qtmain.cpp
 
 HEADERS  += \
-    qtasciiartermaindialog.h \
-    asciiartermaindialog.h \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppAsciiArter/asciiarter.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
+    asciiartermaindialog.h \
     asciiartermenudialog.h \
-    qtasciiartermenudialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
+    qtasciiartermaindialog.h \
+    qtasciiartermenudialog.h
 
 FORMS  += \
-    qtasciiartermaindialog.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
+    qtasciiartermaindialog.ui \
     qtasciiartermenudialog.ui
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppAsciiArter/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
-    Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
+    Licence.txt
 
 RESOURCES += \
     ToolAsciiArter.qrc
@@ -73,24 +73,8 @@ CONFIG(release, debug|release) {
 #
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
-
 unix {
-  message(Unix)
   QMAKE_CXXFLAGS += -Werror
-}
-
-win32 {
-  !static {
-    message(Native Windows)
-    QMAKE_CXXFLAGS += -Werror
-
-  }
-
-  static {
-    message(Crosscompiling from Lubuntu to Windows)
-    #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++0x #-Werror
-  }
 }
 
 #
@@ -99,33 +83,7 @@ win32 {
 #
 #
 
-unix {
-  message(Unix dynamic link to Boost)
-
-  LIBS += \
-  -lboost_date_time \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_regex \
-  -lboost_signals \
-  -lboost_system
-}
-
 win32 {
-
-  message(Windows dynamic link to Boost)
-
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
-
-  debug {
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
-  }
-  release {
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
-  }
 }

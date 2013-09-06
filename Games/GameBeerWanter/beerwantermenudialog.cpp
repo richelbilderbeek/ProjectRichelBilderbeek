@@ -19,8 +19,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "beerwantermenudialog.h"
 
 #include <cstdlib>
@@ -28,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
-const About BeerWanterMenuDialog::GetAbout()
+const ribi::About ribi::BeerWanterMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -43,12 +41,12 @@ const About BeerWanterMenuDialog::GetAbout()
   return a;
 }
 
-const std::string BeerWanterMenuDialog::GetVersion()
+const std::string ribi::BeerWanterMenuDialog::GetVersion()
 {
   return "7.1";
 }
 
-const std::vector<std::string> BeerWanterMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2005-11-16: version 1.0: (at that time called) 'Beerwanter 1' was programmed in C++ using the C++ Builder IDE during a 'Spass programmieren' session, which made BeerWanter a game for Windows users only.");

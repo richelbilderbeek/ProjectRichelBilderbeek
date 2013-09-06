@@ -27,6 +27,8 @@ namespace Ui {
 class QtDasWahreSchlagerfestMenuDialog;
 }
 
+namespace ribi {
+
 class QtDasWahreSchlagerfestMenuDialog : public QDialog
 {
     Q_OBJECT
@@ -45,5 +47,7 @@ private slots:
 private:
     Ui::QtDasWahreSchlagerfestMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTDASWAHRESCHLAGERFESTMENUDIALOG_H

@@ -24,26 +24,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtboenkentraindialog.h"
 #include "ui_qtboenkentraindialog.h"
 
-QtBoenkenTrainDialog::QtBoenkenTrainDialog(QWidget *parent) :
+ribi::QtBoenkenTrainDialog::QtBoenkenTrainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtBoenkenTrainDialog)
 {
   ui->setupUi(this);
 }
 
-QtBoenkenTrainDialog::~QtBoenkenTrainDialog()
+ribi::QtBoenkenTrainDialog::~QtBoenkenTrainDialog()
 {
   delete ui;
-}
-
-void QtBoenkenTrainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
 }

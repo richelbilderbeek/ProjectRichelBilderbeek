@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 Das Wahre Schlagerfest, a simple game
 Copyright (C) 2003-2012 Richel Bilderbeek
@@ -15,19 +15,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+//---------------------------------------------------------------------------
 #include "daswahreschlagerfestmenudialog.h"
 
-DasWahreSchlagerfestMenuDialog::DasWahreSchlagerfestMenuDialog()
+ribi::DasWahreSchlagerfestMenuDialog::DasWahreSchlagerfestMenuDialog()
 {
 
 }
 
-const About DasWahreSchlagerfestMenuDialog::GetAbout()
+const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout()
 {
   return About(
     "Richel Bilderbeek",
@@ -38,21 +36,20 @@ const About DasWahreSchlagerfestMenuDialog::GetAbout()
     "http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm",
     GetVersion(),
     GetVersionHistory());
-
 }
 
-const std::string DasWahreSchlagerfestMenuDialog::GetVersion()
+const std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion()
 {
   return "2.2";
 }
 
-const std::vector<std::string> DasWahreSchlagerfestMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2003-09-30: version 1.1: Windows-only version");
-  v.push_back("2012-07-21: version 2.0: ported to cross-platform");
-  v.push_back("2012-07-29: version 2.1: changed graphics to old-school");
-  v.push_back("2012-08-09: version 2.2: changed graphics, changed new tile selection (rendering the eat-it all tile) obsolete");
-  return v;
+  return {
+    "2003-09-30: version 1.1: Windows-only version",
+    "2012-07-21: version 2.0: ported to cross-platform",
+    "2012-07-29: version 2.1: changed graphics to old-school",
+    "2012-08-09: version 2.2: changed graphics, changed new tile selection (rendering the eat-it all tile) obsolete"
+  };
 }
 

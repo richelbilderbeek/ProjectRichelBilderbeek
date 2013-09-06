@@ -19,8 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppOpenQuestion
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "openquestion.h"
 
 #include <cassert>
@@ -32,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/split.hpp>
 #pragma GCC diagnostic pop
 
-OpenQuestion::OpenQuestion(const std::string& question)
+ribi::OpenQuestion::OpenQuestion(const std::string& question)
   : Question(
       SeperateString(question,',').at(0),
       SeperateString(question,',').at(1),
@@ -41,7 +39,7 @@ OpenQuestion::OpenQuestion(const std::string& question)
 
 }
 
-OpenQuestion::OpenQuestion(
+ribi::OpenQuestion::OpenQuestion(
   const std::string& filename,
   const std::string& question,
   const std::vector<std::string>& answers)
@@ -53,8 +51,7 @@ OpenQuestion::OpenQuestion(
   //assert(!correct_answers.empty() && "Correct answer must not be empty");
 }
 
-///Create a copy of the Question, depending on the derived class its type
-Question * OpenQuestion::Clone() const
+ribi::Question * ribi::OpenQuestion::Clone() const
 {
   return new OpenQuestion(
     this->GetFilename(),
@@ -62,7 +59,7 @@ Question * OpenQuestion::Clone() const
     this->GetAnswers());
 }
 
-const std::vector<std::string> OpenQuestion::ExtractAnswers(const std::string& input)
+const std::vector<std::string> ribi::OpenQuestion::ExtractAnswers(const std::string& input)
 {
   const std::vector<std::string> v = SeperateString(input,',');
   if (v.size() != 3)
@@ -78,25 +75,25 @@ const std::vector<std::string> OpenQuestion::ExtractAnswers(const std::string& i
   return w;
 }
 
-const std::vector<std::string>& OpenQuestion::GetAnswers() const
+const std::vector<std::string>& ribi::OpenQuestion::GetAnswers() const
 {
   return this->Question::GetAnswers();
 }
 
-const std::string OpenQuestion::GetVersion()
+const std::string ribi::OpenQuestion::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> OpenQuestion::GetVersionHistory()
+const std::vector<std::string> ribi::OpenQuestion::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-27: version 1.0: initial version");
-  v.push_back("2011-09-16: version 1.1: allow parsing from std::string");
-  return v;
+  return {
+    "2011-06-27: version 1.0: initial version",
+    "2011-09-16: version 1.1: allow parsing from std::string"
+  };
 }
 
-const std::vector<std::string> OpenQuestion::SeperateString(
+const std::vector<std::string> ribi::OpenQuestion::SeperateString(
   const std::string& input,
   const char seperator)
 {

@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 struct CreateGlossaryMainDialog
 {
   ///Create all glossaries
@@ -49,6 +51,8 @@ struct CreateGlossaryMainDialog
   ///From http://www.richelbilderbeek.nl/CppGetPath.htm
   static const std::string GetPath(const std::string& filename);
 };
+
+} //~namespace ribi
 
 #endif // CREATEGLOSSARYMAINDIALOG_H
 

@@ -24,9 +24,18 @@
 <p>&nbsp;</p>
 <p>Although entire books are written on this subject, here some <a href="CppAdvice.htm">advice</a> from some experts:</p>
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>General</h2>
+<p>&nbsp;</p>
 <ul>
   <li>
     Represent concepts as classes [28]
+  </li>
+  <li>
+    Be clear what <a href="CppClassType.htm">kind of class</a> you're writing [10]
   </li>
   <li>
     Follow a good <a href="CppFunctionDesign.htm">function design</a>. Note: many points of <a href="CppAdvice.htm">advice</a>!
@@ -35,6 +44,39 @@
     Follow a good <a href="CppMemberFunctionDesign.htm">member function design</a>. Note: many points of <a href="CppAdvice.htm">advice</a>!
   </li>
   <li>
+    Treat <a href="CppClassDesign.htm">class design</a> as type design [2]
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Choosing a <a href="CppClassType.htm">class type</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Prefer minimal <a href="CppClass.htm">classes</a> to monolithic classes [11]
+  </li>
+  <li>
+    Prefer a concrete type over more complicated classes and over <a href="CppPod.htm">POD</a>s, as a concrete type is the simplest kind of class [31]
+  </li>
+  <li>
+    Use <a href="CppAbstractBaseClass.htm">abstract classes</a> to focus design on the provision of clean <a href="CppInterface.htm">interfaces</a> [32]
+  </li>
+  <li>
+    Use <a href="CppPod.htm">POD</a>s only when it really is just data and no <a href="CppInvariant.htm">invariant</a> is meaningful for the data members [30]
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppInterface.htm">Interface</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
     Seperate the <a href="CppInterface.htm">interface</a> of a <a href="CppClass.htm">class</a> from its <a href="CppImplementation.htm">implementation</a> [29]:
 	allow the user not to know what kind of <a href="CppDataType.htm">data types</a> you used in the <a href="CppPrivate.htm">private</a> section of your class
   </li>
@@ -42,29 +84,17 @@
     Make <a href="CppInterface.htm">interfaces</a> easy to use correctly and hard to use incorrectly [1]
   </li>
   <li>
-    Treat <a href="CppClassDesign.htm">class design</a> as type design [2]
+    <a href="CppDeclaration.htm">Declare</a> <a href="CppMemberVariable.htm">member variables</a> <a href="CppPrivate.htm">private</a> [5,9,19,27], except in <a href="CppPod.htm">POD</a>s [19]
   </li>
   <li>
-    Use <a href="CppPod.htm">POD</a>s only when it really is just data and no <a href="CppInvariant.htm">invariant</a> is meaningful for the data members [30]
-  </li>
-  <li>
-    Declare data members <a href="CppPrivate.htm">private</a> [5,9,19,27], except in <a href="CppPod.htm">POD</a>s [19]
-  </li>
-  <li>
-    Declare non-member functions when type conversion should apply to all parameters [7]
+    Use <a href="CppHelperFunction.htm">helper functions</a> when type conversion should apply to all parameters [7]
   </li>
   <li>
     Consider support for a non-throwing <a href="CppSwap.htm">swap</a> [8]
   </li>
-  <li>
-    Be clear what kind of <a href="CppClass.htm">class</a> you're writing [10]
-  </li>
-  <li>
-    Prefer a concrete type over more complicated classes and over <a href="CppPod.htm">POD</a>s, as a concrete type is the simplest kind of class [31]
-  </li>
-  <li>
-    Prefer minimal <a href="CppClass.htm">classes</a> to monolithic classes [11]
-  </li>
+
+<!-- Inheritance -->
+
   <li>
     Prefer <a href="CppComposition.htm">composition</a> to <a href="CppInheritance.htm">inheritance</a> [12]
   </li>
@@ -84,11 +114,10 @@
     Consider making virtual functions nonpublic, and public functions nonvirtual [17]
   </li>
   <li>
-    Avoid providing implicit conversions [18]
-  </li>
-  <li>
     Don't give away your internals [20]
   </li>
+
+<!-- Mic -->
   <li>
     <a href="CppPimpl.htm">Pimpl</a> judiciously [21]
   </li>
@@ -98,6 +127,10 @@
   <li>
     If you provide any class-specific new, provide all of the standard forms (plain, in-place, and nothrow) [24]
   </li>
+  <li>
+    Avoid providing implicit conversions [18]
+  </li>
+
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -138,6 +171,7 @@
   <li><!-- 29 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[2] Seperate the interface of a class from its implementation'</li>
   <li><!-- 30 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[3] Use public data (structs) only when it really is just data and no invariant is meaningful for the data members'</li>
   <li><!-- 31 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[7] A concrete type is the simplest kind of class. Where applicable, prefer a concrete type over more complicated classes and over plain data structures'</li>
+  <li><!-- 32 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 20.7. Advice. page 611: '[3] Use abstract classes to focus design on the provision of clean interfaces'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpyloswondialog.h"
 #include "ui_qtpylosmaindialog.h"
 
-QtPylosMainDialog::QtPylosMainDialog(
+ribi::QtPylosMainDialog::QtPylosMainDialog(
   QtPylosGameWidget * const pylos_widget,
   QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -51,30 +51,18 @@ QtPylosMainDialog::QtPylosMainDialog(
   this->move( screen.center() - this->rect().center() );
 }
 
-QtPylosMainDialog::~QtPylosMainDialog()
+ribi::QtPylosMainDialog::~QtPylosMainDialog()
 {
   delete ui;
   delete m_pylos_widget;
 }
 
-void QtPylosMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-const std::string QtPylosMainDialog::GetVersion()
+const std::string ribi::QtPylosMainDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> QtPylosMainDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtPylosMainDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2010-09-22: version 1.0: initial release version");
@@ -82,12 +70,10 @@ const std::vector<std::string> QtPylosMainDialog::GetVersionHistory()
   return v;
 }
 
-void QtPylosMainDialog::OnWinner()
+void ribi::QtPylosMainDialog::OnWinner()
 {
   QtPylosWonDialog d;
   d.SetWinner(m_pylos_widget->GetPylos()->GetWinner());
   d.exec();
   close();
 }
-
-

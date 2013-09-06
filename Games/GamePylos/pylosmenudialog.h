@@ -26,6 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///PylosMenuDialog contains the BeerWanter menu dialog
 struct PylosMenuDialog
 {
@@ -41,5 +43,7 @@ struct PylosMenuDialog
 
 ///From http://www.richelbilderbeek.nl/CppIntToStr.htm
 const std::string IntToStr(const int x);
+
+} //~namespace ribi
 
 #endif // PYLOSMENUDIALOG_H

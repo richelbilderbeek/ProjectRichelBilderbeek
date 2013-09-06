@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-const About ConnectThreeMenuDialog::GetAbout()
+const ribi::About ribi::ConnectThreeMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -45,12 +45,12 @@ const About ConnectThreeMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ConnectThreeMenuDialog::GetVersion()
+const std::string ribi::ConnectThreeMenuDialog::GetVersion()
 {
   return "6.5";
 }
 
-const std::vector<std::string> ConnectThreeMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2007-xx-xx: version 1.0: initial version as part of K3OpEenRij");

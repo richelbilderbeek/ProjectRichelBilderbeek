@@ -29,11 +29,20 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #8080ff, 
       <property name="spacing">
        <number>0</number>
       </property>
-      <property name="margin">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
-       <widget class="QtRubiksClockWidget" name="clock" native="true"/>
+       <widget class="ribi::QtRubiksClockWidget" name="clock" native="true"/>
       </item>
      </layout>
     </widget>
@@ -49,7 +58,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #8080ff, 
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtRubiksClockWidget</class>
+   <class>ribi::QtRubiksClockWidget</class>
    <extends>QWidget</extends>
    <header>qtrubiksclockwidget.h</header>
    <container>1</container>

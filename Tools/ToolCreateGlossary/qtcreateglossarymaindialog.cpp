@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "createglossarymaindialog.h"
 #include "ui_qtcreateglossarymaindialog.h"
 
-QtCreateGlossaryMainDialog::QtCreateGlossaryMainDialog(QWidget *parent) :
+ribi::QtCreateGlossaryMainDialog::QtCreateGlossaryMainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtCreateGlossaryMainDialog)
 {
@@ -34,13 +34,13 @@ QtCreateGlossaryMainDialog::QtCreateGlossaryMainDialog(QWidget *parent) :
   QTimer::singleShot(100,this,SLOT(create_glossary()));
 }
 
-QtCreateGlossaryMainDialog::~QtCreateGlossaryMainDialog()
+ribi::QtCreateGlossaryMainDialog::~QtCreateGlossaryMainDialog()
 {
     delete ui;
 }
 
 
-void QtCreateGlossaryMainDialog::create_glossary()
+void ribi::QtCreateGlossaryMainDialog::create_glossary()
 {
   CreateGlossaryMainDialog();
   ui->label->setText("Done!");

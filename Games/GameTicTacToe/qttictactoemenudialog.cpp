@@ -28,31 +28,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tictactoemenudialog.h"
 #include "ui_qttictactoemenudialog.h"
 
-QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
+ribi::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTicTacToeMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog()
+ribi::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog()
 {
   delete ui;
 }
 
-void QtTicTacToeMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTicTacToeMenuDialog::on_button_start_clicked()
+void ribi::QtTicTacToeMenuDialog::on_button_start_clicked()
 {
   QtTicTacToeGameDialog d;
   this->hide();
@@ -60,7 +48,7 @@ void QtTicTacToeMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void QtTicTacToeMenuDialog::on_button_about_clicked()
+void ribi::QtTicTacToeMenuDialog::on_button_about_clicked()
 {
   About a = TicTacToeMenuDialog::GetAbout();
   a.AddLibrary("QtTicTacToeWidget version: " + QtTicTacToeWidget::GetVersion());
@@ -70,7 +58,7 @@ void QtTicTacToeMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtTicTacToeMenuDialog::on_button_quit_clicked()
+void ribi::QtTicTacToeMenuDialog::on_button_quit_clicked()
 {
   close();
 }

@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "tictactoe.h"
 
-const About TicTacToeMenuDialog::GetAbout()
+const ribi::About ribi::TicTacToeMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -40,20 +40,20 @@ const About TicTacToeMenuDialog::GetAbout()
   return a;
 }
 
-const std::string TicTacToeMenuDialog::GetVersion()
+const std::string ribi::TicTacToeMenuDialog::GetVersion()
 {
   return "1.5";
 }
 
-const std::vector<std::string> TicTacToeMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2010-09-24: Version 1.0: initial version");
-  v.push_back("2010-11-20: Version 1.1: fixed menu");
-  v.push_back("2011-01-07: version 1.2: merge with Wt TicTacToe game");
-  v.push_back("2011-01-07: version 1.3: seperated wtmain.cpp in multiple units");
-  v.push_back("2011-04-15: version 1.4: major architectural changes");
-  v.push_back("2011-04-16: version 1.5: added use of WtAutoConfig (for web application)");
-  return v;
+  return {
+    "2010-09-24: Version 1.0: initial version",
+    "2010-11-20: Version 1.1: fixed menu",
+    "2011-01-07: version 1.2: merge with Wt TicTacToe game",
+    "2011-01-07: version 1.3: seperated wtmain.cpp in multiple units",
+    "2011-04-15: version 1.4: major architectural changes",
+    "2011-04-16: version 1.5: added use of WtAutoConfig (for web application)"
+  };
 }
 

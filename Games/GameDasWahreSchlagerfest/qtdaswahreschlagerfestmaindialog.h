@@ -27,6 +27,8 @@ namespace Ui {
 class QtDasWahreSchlagerfestMainDialog;
 }
 
+namespace ribi {
+
 class QtDasWahreSchlagerfestMainDialog : public QDialog
 {
     Q_OBJECT
@@ -38,5 +40,7 @@ public:
 private:
     Ui::QtDasWahreSchlagerfestMainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTDASWAHRESCHLAGERFESTMAINDIALOG_H

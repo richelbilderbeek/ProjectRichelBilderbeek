@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-DialWidget::DialWidget(
+ribi::DialWidget::DialWidget(
   const double position,
   const int x,
   const int y,
@@ -54,7 +54,7 @@ DialWidget::DialWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-void DialWidget::Click(const int x,const int y)
+void ribi::DialWidget::Click(const int x,const int y)
 {
   if (!IsClicked(x,y)) return;
   const int midx = GetGeometry().GetX() + (GetGeometry().GetWidth()  / 2);
@@ -69,12 +69,12 @@ void DialWidget::Click(const int x,const int y)
   m_dial->SetPosition(position);
 }
 
-const std::string DialWidget::GetVersion()
+const std::string ribi::DialWidget::GetVersion()
 {
   return "2.4";
 }
 
-const std::vector<std::string> DialWidget::GetVersionHistory()
+const std::vector<std::string> ribi::DialWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-07-03: Version 1.0: initial version");
@@ -86,17 +86,17 @@ const std::vector<std::string> DialWidget::GetVersionHistory()
   return v;
 }
 
-double DialWidget::GetAngle(const double dx, const double dy)
+double ribi::DialWidget::GetAngle(const double dx, const double dy)
 {
   return Dial::GetAngle(dx,dy);
 }
 
-double DialWidget::GetDistance(const double dx, const double dy)
+double ribi::DialWidget::GetDistance(const double dx, const double dy)
 {
   return Dial::GetDistance(dx,dy);
 }
 
-bool DialWidget::IsClicked(const int x, const int y) const
+bool ribi::DialWidget::IsClicked(const int x, const int y) const
 {
   const double widget_midx
     = boost::numeric_cast<double>(GetGeometry().GetX())
@@ -110,7 +110,7 @@ bool DialWidget::IsClicked(const int x, const int y) const
     < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
 }
 
-void DialWidget::Test()
+void ribi::DialWidget::Test()
 {
   {
     static bool is_tested = false;
@@ -122,7 +122,7 @@ void DialWidget::Test()
   }
 }
 
-std::ostream& operator<<(std::ostream& os, const DialWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const DialWidget& widget)
 {
   os
     << "<DialWidget>"

@@ -20,12 +20,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <QApplication>
 #include "qttictactoemenudialog.h"
-//---------------------------------------------------------------------------
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtTicTacToeMenuDialog w;
+  ribi::QtTicTacToeMenuDialog w;
   w.show();
   return a.exec();
 }
-//---------------------------------------------------------------------------
+

@@ -27,6 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "about.h"
+
+namespace ribi {
+
 struct AsciiArter;
 
 struct AsciiArterMenuDialog
@@ -35,5 +38,7 @@ struct AsciiArterMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // ASCIIARTERMENUDIALOG_H

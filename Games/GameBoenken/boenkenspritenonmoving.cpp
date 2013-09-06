@@ -19,8 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "boenkenspritenonmoving.h"
 
 #include <cassert>
@@ -32,9 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenspritemoving.h"
 #pragma GCC diagnostic pop
 
-namespace Boenken {
-
-void SpriteNonMoving::Collision(SpriteNonMoving * const p1, SpriteMoving * const p2)
+void ribi::Boenken::SpriteNonMoving::Collision(SpriteNonMoving * const p1, SpriteMoving * const p2)
 {
   const double dx = p2->getX() - p1->getX();
   const double dy = p2->getY() - p1->getY();
@@ -83,6 +79,3 @@ void SpriteNonMoving::Collision(SpriteNonMoving * const p1, SpriteMoving * const
     #endif
   }
 }
-
-} //~namespace Boenken
-

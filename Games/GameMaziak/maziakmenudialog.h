@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///MaziakMenuDialog contains the Maziak menu dialog
 struct MaziakMenuDialog
 {
@@ -33,5 +35,7 @@ struct MaziakMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // MAZIAKMENUDIALOG_H

@@ -27,6 +27,8 @@ namespace Ui {
   class QtPylosInstructionsDialog;
 }
 
+namespace ribi {
+
 class QtPylosInstructionsDialog : public QDialog
 {
   Q_OBJECT
@@ -35,11 +37,10 @@ public:
   explicit QtPylosInstructionsDialog(QWidget *parent = 0);
   ~QtPylosInstructionsDialog();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtPylosInstructionsDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTPYLOSINSTRUCTIONSDIALOG

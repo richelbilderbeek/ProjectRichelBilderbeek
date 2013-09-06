@@ -30,12 +30,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPixmap>
 #include <QTimer>
 
-namespace Boenken { struct Game; }
-boost::shared_ptr<Boenken::Game> CreateNoBoenken();
+
 
 namespace Ui {
   class QtBoenkenMainDialog;
 }
+
+namespace ribi {
+
+namespace Boenken { struct Game; }
+boost::shared_ptr<Boenken::Game> CreateNoBoenken();
 
 ///QtBoenkenMainDialog displays Boenken and handles user events
 class QtBoenkenMainDialog : public QDialog
@@ -51,7 +55,6 @@ public:
   ~QtBoenkenMainDialog();
 
 protected:
-  void changeEvent(QEvent *e);
   void paintEvent(QPaintEvent*);
   void keyPressEvent(QKeyEvent*);
 
@@ -85,4 +88,7 @@ private slots:
   void onTimer();
   void onCountdownTimer();
 };
+
+} //~namespace ribi
+
 #endif // QTBOENKENMAINDIALOG_H

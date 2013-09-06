@@ -33,11 +33,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-const std::vector<char> AsciiArter::m_gradient
-  = AsciiArter::GetAsciiArtGradient();
+const std::vector<char> ribi::AsciiArter::m_gradient
+  = ribi::AsciiArter::GetAsciiArtGradient();
 
 //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-const std::vector<char> AsciiArter::GetAsciiArtGradient()
+const std::vector<char> ribi::AsciiArter::GetAsciiArtGradient()
 {
   std::vector<char> chars;
   chars.push_back('M');
@@ -58,7 +58,7 @@ const std::vector<char> AsciiArter::GetAsciiArtGradient()
   return chars;
 }
 
-double AsciiArter::GetGreyness(
+double ribi::AsciiArter::GetGreyness(
   const std::vector<std::vector<double> >& image,
   const int x,
   const int y)
@@ -79,8 +79,7 @@ double AsciiArter::GetGreyness(
   return greyness;
 }
 
-//Get a line of pixel's average greyness
-double AsciiArter::GetGreyness(
+double ribi::AsciiArter::GetGreyness(
   const std::vector<std::vector<double> >& image,
   const int x1,
   const int x2,
@@ -114,7 +113,7 @@ double AsciiArter::GetGreyness(
 }
 
 //Get a square of pixels' average greyness
-double AsciiArter::GetGreyness(
+double ribi::AsciiArter::GetGreyness(
   const std::vector<std::vector<double> >& image,
   const int x1,
   const int y1,
@@ -140,7 +139,7 @@ double AsciiArter::GetGreyness(
 }
 
 //Generalizes a pixel, line or rectangle to one average greyness
-double AsciiArter::GetFractionGrey(
+double ribi::AsciiArter::GetFractionGrey(
   const std::vector<std::vector<double> >& image,
   const int x1,
   const int y1,
@@ -171,23 +170,23 @@ double AsciiArter::GetFractionGrey(
   return GetGreyness(image,x1,y1,x2,y2);
 }
 
-const std::string AsciiArter::GetVersion()
+const std::string ribi::AsciiArter::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> AsciiArter::GetVersionHistory()
+const std::vector<std::string> ribi::AsciiArter::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-03-23: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-03-23: Version 1.0: initial version"
+  };
 }
 
 //'image' must be a y-x-ordered std::vector of grey values
 //ranging from [0.0,1.0], where 0.0 denotes black and
 //1.0 denotes white.
 //From http://www.richelbilderbeek.nl/CppImageToAscii.htm
-const std::vector<std::string> AsciiArter::ImageToAscii(
+const std::vector<std::string> ribi::AsciiArter::ImageToAscii(
   const std::vector<std::vector<double> >& image,
   const int width) const //How many chars the ASCII image will be wide
 {

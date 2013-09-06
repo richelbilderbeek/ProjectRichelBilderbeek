@@ -7,6 +7,8 @@ namespace Ui {
 class QtRubiksClockMainDialog;
 }
 
+namespace ribi {
+
 class QtRubiksClockMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -23,5 +25,7 @@ private slots:
 private:
   Ui::QtRubiksClockMainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTRUBIKSCLOCKMAINDIALOG_H

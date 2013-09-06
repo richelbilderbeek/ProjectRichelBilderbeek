@@ -26,11 +26,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qthideandshowdialog.h"
 
-struct QtBeerWanterWidget;
 
 namespace Ui {
   class QtBeerWanterMainDialog;
 }
+
+namespace ribi {
+
+struct QtBeerWanterWidget;
 
 class QtBeerWanterMainDialog : public QtHideAndShowDialog
 {
@@ -47,6 +50,8 @@ private slots:
   void ChangeTitle(const std::string& title);
   void OnShake(const int x, const int y);
 };
+
+} //~namespace ribi
 
 #endif // QTBEERWANTERMAINDIALOG_H
 

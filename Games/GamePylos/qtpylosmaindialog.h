@@ -31,6 +31,8 @@ namespace Ui {
   class QtPylosMainDialog;
 }
 
+namespace ribi {
+
 class QtPylosMainDialog : public QDialog
 {
   Q_OBJECT
@@ -47,9 +49,6 @@ public:
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtPylosMainDialog *ui;
   QtPylosGameWidget * const m_pylos_widget;
@@ -57,5 +56,7 @@ private:
 private slots:
   void OnWinner();
 };
+
+} //~namespace ribi
 
 #endif // QTPYLOSMAINDIALOG

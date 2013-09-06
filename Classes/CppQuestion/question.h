@@ -26,6 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <boost/checked_delete.hpp>
 
+namespace ribi {
+
 ///Class for a question
 struct Question
 {
@@ -71,5 +73,7 @@ struct Question
   ///The list of possible answers
   const std::vector<std::string> m_answers;
 };
+
+} //~namespace ribi
 
 #endif // QUESTION_H

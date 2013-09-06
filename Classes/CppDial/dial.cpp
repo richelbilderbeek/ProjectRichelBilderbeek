@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppDial.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "dial.h"
@@ -33,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-Dial::Dial(
+ribi::Dial::Dial(
   const double position,
   const unsigned char red,
   const unsigned char green,
@@ -48,12 +46,12 @@ Dial::Dial(
   SetPosition(position);
 }
 
-const std::string Dial::GetVersion()
+const std::string ribi::Dial::GetVersion()
 {
   return "3.3";
 }
 
-const std::vector<std::string> Dial::GetVersionHistory()
+const std::vector<std::string> ribi::Dial::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-04-11: Version 1.0: initial version");
@@ -65,7 +63,7 @@ const std::vector<std::string> Dial::GetVersionHistory()
   return v;
 }
 
-void Dial::SetBlue(const int b)
+void ribi::Dial::SetBlue(const int b)
 {
   assert(b >=   0);
   assert(b  < 256);
@@ -77,14 +75,14 @@ void Dial::SetBlue(const int b)
   }
 }
 
-void Dial::SetColor(const int r,const int g,const int b)
+void ribi::Dial::SetColor(const int r,const int g,const int b)
 {
   SetRed(r);
   SetGreen(g);
   SetBlue(b);
 }
 
-void Dial::SetGreen(const int g)
+void ribi::Dial::SetGreen(const int g)
 {
   assert(g >=   0);
   assert(g  < 256);
@@ -96,7 +94,7 @@ void Dial::SetGreen(const int g)
   }
 }
 
-void Dial::SetRed(const int r)
+void ribi::Dial::SetRed(const int r)
 {
   assert(r >=   0);
   assert(r  < 256);
@@ -108,7 +106,7 @@ void Dial::SetRed(const int r)
   }
 }
 
-void Dial::SetPosition(const double position)
+void ribi::Dial::SetPosition(const double position)
 {
   assert(position >= 0.0);
   assert(position <= 1.0);
@@ -119,19 +117,19 @@ void Dial::SetPosition(const double position)
   }
 }
 
-double Dial::GetAngle(const double dx, const double dy)
+double ribi::Dial::GetAngle(const double dx, const double dy)
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - (std::atan2(dx,dy));
 }
 
-double Dial::GetDistance(const double dX, const double dY)
+double ribi::Dial::GetDistance(const double dX, const double dY)
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
 #ifndef NDEBUG
-void Dial::Test()
+void ribi::Dial::Test()
 {
   {
     static bool is_tested = false;
@@ -204,7 +202,7 @@ void Dial::Test()
 }
 #endif
 
-std::ostream& operator<<(std::ostream& os, const Dial& dial)
+std::ostream& ribi::operator<<(std::ostream& os, const Dial& dial)
 {
   os
     << "<Dial>"

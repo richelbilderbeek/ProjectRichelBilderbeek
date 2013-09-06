@@ -21,9 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTRUBIKSCLOCKMENUDIALOG_H
 #define WTRUBIKSCLOCKMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtRubiksClockMenuDialog : public Wt::WContainerWidget
 {
   WtRubiksClockMenuDialog();
@@ -32,7 +34,7 @@ struct WtRubiksClockMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewMainDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
-//---------------------------------------------------------------------------
 
+} //~namespace ribi
 
 #endif // WTRUBIKSCLOCKMENUDIALOG_H

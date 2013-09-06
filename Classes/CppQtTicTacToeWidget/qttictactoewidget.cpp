@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "tictactoe.h"
 
-QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
+ribi::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   QWidget(parent),
   m_tictactoe(new TicTacToe)
 {
@@ -39,7 +39,7 @@ QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   this->setMinimumWidth(64);
 }
 
-void QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
+void ribi::QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
 {
   if (m_tictactoe->GetWinner() != TicTacToe::no_winner) return;
   const int x = 3 * e->x() / this->width();
@@ -58,7 +58,7 @@ void QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
   repaint();
 }
 
-void QtTicTacToeWidget::paintEvent(QPaintEvent *)
+void ribi::QtTicTacToeWidget::paintEvent(QPaintEvent *)
 {
   const int width  = this->width();
   const int height = this->height();
@@ -115,12 +115,12 @@ void QtTicTacToeWidget::paintEvent(QPaintEvent *)
   }
 }
 
-void QtTicTacToeWidget::resizeEvent(QResizeEvent *)
+void ribi::QtTicTacToeWidget::resizeEvent(QResizeEvent *)
 {
   repaint();
 }
 
-void QtTicTacToeWidget::Restart()
+void ribi::QtTicTacToeWidget::Restart()
 {
   m_tictactoe.reset(new TicTacToe);
   repaint();

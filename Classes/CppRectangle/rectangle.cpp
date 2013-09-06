@@ -26,20 +26,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "rectangle.h"
 
-const std::string Rect::GetVersion()
+const std::string ribi::Rect::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Rect::GetVersionHistory()
+const std::vector<std::string> ribi::Rect::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-08-20: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-08-20: Version 1.0: initial version"
+  };
 }
 
-std::ostream& operator<<(std::ostream& os,const Rect& rect)
+std::ostream& ribi::operator<<(std::ostream& os,const Rect& rect)
 {
   os
     << "<Rect>"
@@ -59,7 +58,7 @@ std::ostream& operator<<(std::ostream& os,const Rect& rect)
   return os;
 }
 
-bool operator==(const Rect& lhs, const Rect& rhs)
+bool ribi::operator==(const Rect& lhs, const Rect& rhs)
 {
   return
        lhs.x == rhs.x
@@ -68,7 +67,7 @@ bool operator==(const Rect& lhs, const Rect& rhs)
     && lhs.h == rhs.h;
 }
 
-bool operator!=(const Rect& lhs, const Rect& rhs)
+bool ribi::operator!=(const Rect& lhs, const Rect& rhs)
 {
   return !(lhs==rhs);
 }

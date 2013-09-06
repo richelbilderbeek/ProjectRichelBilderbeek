@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 
 
-const About MaziakMenuDialog::GetAbout()
+const ribi::About ribi::MaziakMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -43,12 +43,12 @@ const About MaziakMenuDialog::GetAbout()
   return a;
 }
 
-const std::string MaziakMenuDialog::GetVersion()
+const std::string ribi::MaziakMenuDialog::GetVersion()
 {
   return "2.1";
 }
 
-const std::vector<std::string> MaziakMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::MaziakMenuDialog::GetVersionHistory()
 {
   return
   {

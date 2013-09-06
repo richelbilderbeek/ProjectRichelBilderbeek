@@ -27,6 +27,8 @@ namespace Ui {
   class QtPylosMenuDialog;
 }
 
+namespace ribi {
+
 class QtPylosMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -36,7 +38,6 @@ public:
   ~QtPylosMenuDialog();
 
 protected:
-  void changeEvent(QEvent *e);
   void mousePressEvent(QMouseEvent *);
   void mouseMoveEvent(QMouseEvent * e);
 
@@ -52,5 +53,6 @@ private slots:
   void OnInstructions();
 };
 
+} //~namespace ribi
 
 #endif // QTPYLOSMENUDIALOG

@@ -26,14 +26,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtdaswahreschlagerfestwidget.h"
 #include "ui_qtdaswahreschlagerfestmaindialog.h"
 
-QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget *parent) :
+ribi::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtDasWahreSchlagerfestMainDialog)
 {
   ui->setupUi(this);
 }
 
-QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog()
+ribi::QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog()
 {
   delete ui;
 }

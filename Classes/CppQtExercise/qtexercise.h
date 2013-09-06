@@ -28,9 +28,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QDialog>
 
-struct Exercise;
 struct QGroupBox;
 struct QLabel;
+
+namespace ribi {
+
+struct Exercise;
 
 ///A QtExercise is the Qt dialog of Exercise
 struct QtExercise : public QDialog
@@ -92,5 +95,7 @@ struct QtExercise : public QDialog
   ///Respond to the client having viewed the answer of a question
   void OnViewedAnswer();
 };
+
+} //~namespace ribi
 
 #endif // QTEXERCISE_H

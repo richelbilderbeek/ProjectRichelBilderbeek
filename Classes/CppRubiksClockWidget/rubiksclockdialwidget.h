@@ -33,6 +33,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "widget.h"
 
+namespace ribi {
+
 struct RubiksClockDial;
 
 ///RubiksClockDialWidget is a class to display a RubiksClockDial
@@ -77,5 +79,7 @@ struct RubiksClockDialWidget : public Widget
 };
 
 std::ostream& operator<<(std::ostream& os, const RubiksClockDialWidget& widget);
+
+} //~namespace ribi
 
 #endif // RUBIKSCLOCKDIALWIDGET_H

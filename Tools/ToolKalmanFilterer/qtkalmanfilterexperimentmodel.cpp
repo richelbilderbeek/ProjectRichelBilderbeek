@@ -1498,7 +1498,7 @@ const std::string ribi::QtKalmanFilterExperimentModel::ToHtml() const
   return s;
 }
 
-bool operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs)
+bool ribi::operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs)
 {
   return lhs.ToDokuWiki() == rhs.ToDokuWiki();
 }

@@ -44,7 +44,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtRubiksClockWidget::QtRubiksClockWidget(
+ribi::QtRubiksClockWidget::QtRubiksClockWidget(
   const bool toggled,
   const unsigned char red,
   const unsigned char green,
@@ -55,28 +55,28 @@ QtRubiksClockWidget::QtRubiksClockWidget(
 
   m_widget->m_signal_widget_flipped.connect(
     boost::bind(
-      &QtRubiksClockWidget::DoRepaint,
+      &ribi::QtRubiksClockWidget::DoRepaint,
       this));
 
   m_widget->GetRubiksClock()->m_signal_clock_changed.connect(
     boost::bind(
-      &QtRubiksClockWidget::DoRepaint,
+      &ribi::QtRubiksClockWidget::DoRepaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtRubiksClockWidget::OnResize,
+      &ribi::QtRubiksClockWidget::OnResize,
       this));
 
   m_widget->SetGeometry(Rect(0,0,200,200));
 }
 
-void QtRubiksClockWidget::DoRepaint()
+void ribi::QtRubiksClockWidget::DoRepaint()
 {
   this->update();
 }
 
-void QtRubiksClockWidget::DrawRubiksClock(
+void ribi::QtRubiksClockWidget::DrawRubiksClock(
   QPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -137,7 +137,7 @@ void QtRubiksClockWidget::DrawRubiksClock(
   }
 }
 
-void QtRubiksClockWidget::DrawRubiksClock(
+void ribi::QtRubiksClockWidget::DrawRubiksClock(
   QPainter& painter,
   const RubiksClockWidget * const widget)
 {
@@ -151,12 +151,12 @@ void QtRubiksClockWidget::DrawRubiksClock(
     widget->GetDisplayFront());
 }
 
-const std::string QtRubiksClockWidget::GetVersion()
+const std::string ribi::QtRubiksClockWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtRubiksClockWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtRubiksClockWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -164,7 +164,7 @@ const std::vector<std::string> QtRubiksClockWidget::GetVersionHistory()
   return v;
 }
 
-void QtRubiksClockWidget::mousePressEvent(QMouseEvent * e)
+void ribi::QtRubiksClockWidget::mousePressEvent(QMouseEvent * e)
 {
   const int x = e->x();
   const int y = e->y();
@@ -173,18 +173,18 @@ void QtRubiksClockWidget::mousePressEvent(QMouseEvent * e)
   m_widget->Click(x,y,is_left_button);
 }
 
-void QtRubiksClockWidget::OnResize()
+void ribi::QtRubiksClockWidget::OnResize()
 {
   resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
 
-void QtRubiksClockWidget::paintEvent(QPaintEvent *)
+void ribi::QtRubiksClockWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawRubiksClock(painter,m_widget.get());
 }
 
-void QtRubiksClockWidget::resize(const int width, const int height)
+void ribi::QtRubiksClockWidget::resize(const int width, const int height)
 {
   QWidget::resize(width,height);
 }

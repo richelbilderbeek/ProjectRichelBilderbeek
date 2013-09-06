@@ -24,29 +24,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "asciiarter.h"
 
-AsciiArterMainDialog::AsciiArterMainDialog()
+ribi::AsciiArterMainDialog::AsciiArterMainDialog()
   : m_width(0),
     m_asciiarter(new AsciiArter)
 {
 
 }
 
-bool AsciiArterMainDialog::CanConvert() const
+bool ribi::AsciiArterMainDialog::CanConvert() const
 {
   return !m_image.empty() && m_width > 5;
 }
 
-void AsciiArterMainDialog::Convert()
+void ribi::AsciiArterMainDialog::Convert()
 {
   m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
 }
 
-void AsciiArterMainDialog::SetImage(const std::vector<std::vector<double> >& image)
+void ribi::AsciiArterMainDialog::SetImage(const std::vector<std::vector<double> >& image)
 {
   m_image = image;
 }
 
-void AsciiArterMainDialog::SetWidth(const int width)
+void ribi::AsciiArterMainDialog::SetWidth(const int width)
 {
   assert(width > 5);
   m_width = width;

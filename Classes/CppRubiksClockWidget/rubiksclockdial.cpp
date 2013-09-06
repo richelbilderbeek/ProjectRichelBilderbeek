@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 RubiksClockDial, class for displaying a Rubik's Clock Dial
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,11 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppRubiksClockWidget.htm
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "rubiksclockdial.h"
@@ -36,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-RubiksClockDial::RubiksClockDial(
+ribi::RubiksClockDial::RubiksClockDial(
   const int time,
   const int x,
   const int y,
@@ -52,19 +50,19 @@ RubiksClockDial::RubiksClockDial(
   this->Turn(-1);
 }
 
-const std::string RubiksClockDial::GetVersion()
+const std::string ribi::RubiksClockDial::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> RubiksClockDial::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClockDial::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-08: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-09-08: Version 1.0: initial version"
+  };
 }
 
-void RubiksClockDial::Turn(const int n_positions_clockwise)
+void ribi::RubiksClockDial::Turn(const int n_positions_clockwise)
 {
   if (n_positions_clockwise % 12 != 0)
   {
@@ -78,7 +76,7 @@ void RubiksClockDial::Turn(const int n_positions_clockwise)
   }
 }
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDial& widget)
 {
   os
     << "<RubiksClockDial>"

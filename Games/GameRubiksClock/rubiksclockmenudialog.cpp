@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "togglebuttonwidget.h"
 #include "trace.h"
 
-const About RubiksClockMenuDialog::GetAbout()
+const ribi::About ribi::RubiksClockMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -60,18 +60,18 @@ const About RubiksClockMenuDialog::GetAbout()
   return a;
 }
 
-const std::string RubiksClockMenuDialog::GetVersion()
+const std::string ribi::RubiksClockMenuDialog::GetVersion()
 {
   return "2.2";
 }
 
-const std::vector<std::string> RubiksClockMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClockMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2007-12-19: Version 1.0: initial Windows-only version using C++ Builder");
-  v.push_back("2011-09-08: Version 2.0: initial port to Qt using Qt Creator, but not complete yet");
-  v.push_back("2011-09-15: Version 2.1: created web application version, RubiksClock has all functionality");
-  v.push_back("2012-12-23: Version 2.2: created desktop version");
-  return v;
+  return {
+    "2007-12-19: Version 1.0: initial Windows-only version using C++ Builder",
+    "2011-09-08: Version 2.0: initial port to Qt using Qt Creator, but not complete yet",
+    "2011-09-15: Version 2.1: created web application version, RubiksClock has all functionality",
+    "2012-12-23: Version 2.2: created desktop version"
+  };
 }
 

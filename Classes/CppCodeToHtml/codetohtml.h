@@ -70,6 +70,7 @@ namespace c2h {
   const std::string GetExtension(const std::string& filename);
 
   ///Obtain the basename of a file, e.g. '/Folder/temp.txt' -> 'temp'
+  ///Replacement of boost::filesystem::basename
   ///From http://www.richelbilderbeek.nl/CppGetFileBasename.htm
   const std::string GetFileBasename(const std::string& filename);
 

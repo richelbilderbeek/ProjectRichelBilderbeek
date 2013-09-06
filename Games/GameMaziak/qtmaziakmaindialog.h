@@ -38,6 +38,8 @@ namespace Ui {
   class QtMaziakMainDialog;
 }
 
+namespace ribi {
+
 class QtMaziakMainDialog : public QDialog
 {
   Q_OBJECT
@@ -181,6 +183,9 @@ bool CanMoveTo(
     const bool showSolution);
 
 
+//Creates a maze
+// 0 : path
+// 1 : wall
 //From http://www.richelbilderbeek.nl/CppCreateMaze.htm
 std::vector<std::vector<int> > CreateMaze(const int sz);
 
@@ -205,5 +210,7 @@ const std::vector<std::pair<int,int> > GetShuffledDeadEnds(
 
 bool IsSquare(const std::vector<std::vector<QtMaziakMainDialog::MazeSquare> >& v);
 bool IsSquare(const std::vector<std::vector<int> >& v);
+
+} //~namespace ribi
 
 #endif // QTMAZIAKMAINDIALOG_H

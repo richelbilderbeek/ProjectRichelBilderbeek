@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QWidget>
 
+namespace ribi {
+
 struct TicTacToe;
 
 class QtTicTacToeWidget : public QWidget
@@ -56,5 +58,7 @@ signals:
 public slots:
 
 };
+
+} //~namespace ribi
 
 #endif // QTTICTACTOEWIDGET_H

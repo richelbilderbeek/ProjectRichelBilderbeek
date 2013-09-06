@@ -20,9 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <fstream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
 
 #include <QGroupBox>
 #include <QLabel>
@@ -38,14 +42,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtquestiondialog.h"
 #include "trace.h"
 
-QtExercise::MyUi::MyUi()
+ribi::QtExercise::MyUi::MyUi()
   : m_box(new QGroupBox),
     m_label_score(new QLabel)
 {
 
 }
 
-QtExercise::QtExercise()
+ribi::QtExercise::QtExercise()
   : m_n_answered(0),
     m_n_correct(0),
     m_waiting_time_correct(1000),
@@ -62,7 +66,7 @@ QtExercise::QtExercise()
   m_ui.m_label_score->setText("Score: 0/0");
 }
 
-void QtExercise::DisplayCurrentQuestion()
+void ribi::QtExercise::DisplayCurrentQuestion()
 {
   const std::string s = m_exercise->GetCurrentQuestion();
 
@@ -92,29 +96,29 @@ void QtExercise::DisplayCurrentQuestion()
   layout->addWidget(question);
 
   question->m_signal_submitted.connect(
-    boost::bind(&QtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
+    boost::bind(&ribi::QtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
 
 }
 
-const Exercise * QtExercise::GetExercise() const
+const ribi::Exercise * ribi::QtExercise::GetExercise() const
 {
   assert(m_exercise);
   return m_exercise.get();
 }
 
-const std::string QtExercise::GetVersion()
+const std::string ribi::QtExercise::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtExercise::GetVersionHistory()
+const std::vector<std::string> ribi::QtExercise::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-23: Version 1.0: initial version");
-  return v;
+  return {
+    "2012-12-23: Version 1.0: initial version"
+  };
 }
 
-void QtExercise::OnSubmittedAnswer(const bool answered_correct)
+void ribi::QtExercise::OnSubmittedAnswer(const bool answered_correct)
 {
   if (answered_correct) ++m_n_correct;
   ++m_n_answered;
@@ -123,28 +127,28 @@ void QtExercise::OnSubmittedAnswer(const bool answered_correct)
   QTimer::singleShot(
     answered_correct ? m_waiting_time_correct : m_waiting_time_incorrect,
     this,
-    SLOT(&QtExercise::OnViewedAnswer));
+    SLOT(&ribi::QtExercise::OnViewedAnswer));
 }
 
-void QtExercise::OnViewedAnswer()
+void ribi::QtExercise::OnViewedAnswer()
 {
   this->m_exercise->Next();
   this->DisplayCurrentQuestion();
 }
 
-void QtExercise::SetQuestions(const std::string& filename)
+void ribi::QtExercise::SetQuestions(const std::string& filename)
 {
   m_exercise.reset(new Exercise(filename));
   DisplayCurrentQuestion();
 }
 
-void QtExercise::SetWaitingTimeCorrect(const int msecs)
+void ribi::QtExercise::SetWaitingTimeCorrect(const int msecs)
 {
   assert(msecs >= 0);
   m_waiting_time_correct = msecs;
 }
 
-void QtExercise::SetWaitingTimeIncorrect(const int msecs)
+void ribi::QtExercise::SetWaitingTimeIncorrect(const int msecs)
 {
   assert(msecs >= 0);
   m_waiting_time_incorrect = msecs;

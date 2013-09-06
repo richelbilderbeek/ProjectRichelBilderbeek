@@ -30,6 +30,8 @@ namespace Ui {
   class QtMaziakGameOverDialog;
 }
 
+namespace ribi {
+
 class QtMaziakGameOverDialog : public QDialog
 {
   Q_OBJECT
@@ -53,5 +55,7 @@ private:
   void onTimer();
 
 };
+
+} //~namespace ribi
 
 #endif // QTMAZIAKGAMEOVERDIALOG_H

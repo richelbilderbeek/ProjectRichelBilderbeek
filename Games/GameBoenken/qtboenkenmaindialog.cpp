@@ -19,8 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtboenkenmaindialog.h"
 
 #include <cassert>
@@ -41,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtboenkenmaindialog.h"
 
 ///All parameters are fed into the contructor
-QtBoenkenMainDialog::QtBoenkenMainDialog(
+ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(
   QWidget *parent,
   boost::shared_ptr<Boenken::Game> boenken,
   bool is_training)
@@ -77,27 +75,14 @@ QtBoenkenMainDialog::QtBoenkenMainDialog(
   }
 }
 
-QtBoenkenMainDialog::~QtBoenkenMainDialog()
+ribi::QtBoenkenMainDialog::~QtBoenkenMainDialog()
 {
   m_timer->stop();
   m_timer_countdown->stop();
   delete ui;
 }
 
-void QtBoenkenMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-
-void QtBoenkenMainDialog::paintEvent(QPaintEvent*)
+void ribi::QtBoenkenMainDialog::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
 
@@ -131,7 +116,7 @@ void QtBoenkenMainDialog::paintEvent(QPaintEvent*)
 
 ///Handles key presses.
 ///These are ignored when the computer is training
-void QtBoenkenMainDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtBoenkenMainDialog::keyPressEvent(QKeyEvent * e)
 {
   if (m_is_training) return;
   //Assume that a key is pressed
@@ -142,7 +127,7 @@ void QtBoenkenMainDialog::keyPressEvent(QKeyEvent * e)
 
 ///This method gives the game 1000 msecs time
 ///to do those magical start-up things...
-void QtBoenkenMainDialog::onCountdownTimer()
+void ribi::QtBoenkenMainDialog::onCountdownTimer()
 {
   assert(!m_is_training);
   m_timer_countdown->stop();
@@ -152,7 +137,7 @@ void QtBoenkenMainDialog::onCountdownTimer()
 ///The main method when not training:
 ///every 50msec the Sprites
 ///move and are drawn to the screen
-void QtBoenkenMainDialog::onTimer()
+void ribi::QtBoenkenMainDialog::onTimer()
 {
   assert(!m_is_training);
   ///Boenken moves all sprites
@@ -161,7 +146,7 @@ void QtBoenkenMainDialog::onTimer()
   this->repaint();
 }
 
-void QtBoenkenMainDialog::Paint(
+void ribi::QtBoenkenMainDialog::Paint(
   QPixmap& pixmap,
   const unsigned char r,
   const unsigned char g,
@@ -191,7 +176,7 @@ void QtBoenkenMainDialog::Paint(
   pixmap = pixmap.fromImage(image);
 }
 
-void QtBoenkenMainDialog::Test()
+void ribi::QtBoenkenMainDialog::Test()
 {
   {
     static bool is_tested = false;

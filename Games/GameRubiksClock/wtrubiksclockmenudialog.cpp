@@ -19,20 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameRubiksClock.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "wtrubiksclockmenudialog.h"
 
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -41,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "rubiksclockmenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
@@ -49,10 +42,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "wtrubiksclockmaindialog.h"
 #include "wtrubiksclockwidget.h"
 #include "wttogglebuttonwidget.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
-WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
+
+ribi::WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
 {
   {
     std::vector<std::string> image_names;
@@ -110,8 +103,8 @@ WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtRubiksClockMenuDialog::CreateNewAboutDialog() const
+
+Wt::WWidget * ribi::WtRubiksClockMenuDialog::CreateNewAboutDialog() const
 {
   About a = RubiksClockMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -122,15 +115,15 @@ Wt::WWidget * WtRubiksClockMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtRubiksClockMenuDialog::CreateNewMainDialog() const
+
+Wt::WWidget * ribi::WtRubiksClockMenuDialog::CreateNewMainDialog() const
 {
   WtRubiksClockMainDialog * const d = new WtRubiksClockMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtRubiksClockMenuDialog::CreateNewWelcomeDialog() const
+
+Wt::WWidget * ribi::WtRubiksClockMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -153,4 +146,3 @@ Wt::WWidget * WtRubiksClockMenuDialog::CreateNewWelcomeDialog() const
   }
   return dialog;
 }
-//---------------------------------------------------------------------------

@@ -36,23 +36,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtDialWidget::QtDialWidget(QWidget *parent)
+ribi::QtDialWidget::QtDialWidget(QWidget *parent)
   : QWidget(parent),
     m_widget(new DialWidget)
 {
 
   m_widget->GetDial()->m_signal_color_changed.connect(
     boost::bind(
-      &QtDialWidget::OnDialChanged,
+      &ribi::QtDialWidget::OnDialChanged,
       this));
 
   m_widget->GetDial()->m_signal_position_changed.connect(
     boost::bind(
-      &QtDialWidget::OnDialChanged,
+      &ribi::QtDialWidget::OnDialChanged,
       this));
 }
 
-void QtDialWidget::DrawDial(
+void ribi::QtDialWidget::DrawDial(
   QPainter& painter,
   const DialWidget * const widget)
 {
@@ -65,7 +65,7 @@ void QtDialWidget::DrawDial(
     widget->GetDial());
 }
 
-void QtDialWidget::DrawDial(
+void ribi::QtDialWidget::DrawDial(
   QPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -108,12 +108,12 @@ void QtDialWidget::DrawDial(
   painter.setPen(initial_pen);
 }
 
-const std::string QtDialWidget::GetVersion()
+const std::string ribi::QtDialWidget::GetVersion()
 {
   return "2.1";
 }
 
-const std::vector<std::string> QtDialWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtDialWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-04-11: Version 1.0: initial version");
@@ -123,24 +123,24 @@ const std::vector<std::string> QtDialWidget::GetVersionHistory()
   return v;
 }
 
-void QtDialWidget::mousePressEvent(QMouseEvent * e)
+void ribi::QtDialWidget::mousePressEvent(QMouseEvent * e)
 {
   assert(e);
   m_widget->Click(e->x(),e->y());
 }
 
-void QtDialWidget::OnDialChanged()
+void ribi::QtDialWidget::OnDialChanged()
 {
   this->repaint();
 }
 
-void QtDialWidget::paintEvent(QPaintEvent *)
+void ribi::QtDialWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawDial(painter,0,0,width(),height(),this->m_widget->GetDial());
 }
 
-void QtDialWidget::resizeEvent(QResizeEvent *)
+void ribi::QtDialWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }

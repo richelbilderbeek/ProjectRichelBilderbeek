@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "boenkensprite.h"
 
+namespace ribi {
+
 namespace Boenken {
 
 ///SpriteMoving is an abstract base class,
@@ -68,5 +70,7 @@ struct SpriteMoving : public Sprite
 };
 
 } //~namespace Boenken
+
+} //~namespace ribi
 
 #endif // BOENKENSPRITEMOVING_H

@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "question.h"
 
-QuestionDialog::QuestionDialog(const boost::shared_ptr<Question>& question)
+ribi::QuestionDialog::QuestionDialog(const boost::shared_ptr<Question>& question)
   : m_has_submitted(false),
     m_is_correct(false)
 {
@@ -40,25 +40,25 @@ QuestionDialog::QuestionDialog(const boost::shared_ptr<Question>& question)
   }
 }
 
-const std::string QuestionDialog::GetVersion()
+const std::string ribi::QuestionDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-29: version 1.0: initial version");
   return v;
 }
 
-bool QuestionDialog::IsAnswerCorrect() const
+bool ribi::QuestionDialog::IsAnswerCorrect() const
 {
   assert(HasSubmitted());
   return m_is_correct;
 }
 
-void QuestionDialog::SetQuestion(const boost::shared_ptr<Question>& question)
+void ribi::QuestionDialog::SetQuestion(const boost::shared_ptr<Question>& question)
 {
   assert(question);
   if (question && question.get() != m_question.get())
@@ -68,7 +68,7 @@ void QuestionDialog::SetQuestion(const boost::shared_ptr<Question>& question)
   }
 }
 
-void QuestionDialog::Submit(const std::string& s)
+void ribi::QuestionDialog::Submit(const std::string& s)
 {
   assert(CanSubmit());
 

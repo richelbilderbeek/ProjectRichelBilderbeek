@@ -19,8 +19,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "beerwantermaindialog.h"
 
 #include <cstdlib>
@@ -33,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #pragma GCC diagnostic pop
 
-BeerWanterMainDialog::BeerWanterMainDialog(
+ribi::BeerWanterMainDialog::BeerWanterMainDialog(
   int screen_width,
   int screen_height,
   int sprite_width,
@@ -56,7 +54,7 @@ BeerWanterMainDialog::BeerWanterMainDialog(
   m_window_y = (m_screen_height / 2) - (m_window_height / 2);
 }
 
-bool BeerWanterMainDialog::ClickWilBeSuccess() const
+bool ribi::BeerWanterMainDialog::ClickWilBeSuccess() const
 {
   return (
        (m_cursor_x >= m_sprite_x)
@@ -65,7 +63,7 @@ bool BeerWanterMainDialog::ClickWilBeSuccess() const
     && (m_cursor_y <= m_sprite_y + m_sprite_height));
 }
 
-bool BeerWanterMainDialog::Click()
+bool ribi::BeerWanterMainDialog::Click()
 {
   if (ClickWilBeSuccess())
   {
@@ -81,31 +79,31 @@ bool BeerWanterMainDialog::Click()
   return false;
 }
 
-int BeerWanterMainDialog::GetRandomCursorShake() const
+int ribi::BeerWanterMainDialog::GetRandomCursorShake() const
 {
   return (std::rand() % (2*((m_level-1)/2)+1))
     - ((m_level-1)/2);
 }
 
-int BeerWanterMainDialog::GetRandomWindowShake() const
+int ribi::BeerWanterMainDialog::GetRandomWindowShake() const
 {
   return (std::rand() % (2*((m_level-1)/4)+1))
     - ((m_level-1)/4);
 }
 
-const std::string BeerWanterMainDialog::GetWindowTitle() const
+const std::string ribi::BeerWanterMainDialog::GetWindowTitle() const
 {
   return std::string("BeerWanter (C) 2005-2013 Richel Bilderbeek. Beer already got: ")
     + boost::lexical_cast<std::string>(m_level - 1);
 }
 
-void BeerWanterMainDialog::SetCursorPos(const int x, const int y)
+void ribi::BeerWanterMainDialog::SetCursorPos(const int x, const int y)
 {
   m_cursor_x = x;
   m_cursor_y = y;
 }
 
-void BeerWanterMainDialog::ShakeCursor()
+void ribi::BeerWanterMainDialog::ShakeCursor()
 {
   //std::clog
   //  << "ShakeCursor: ("
@@ -125,7 +123,7 @@ void BeerWanterMainDialog::ShakeCursor()
   //  << ")\n";
 }
 
-void BeerWanterMainDialog::ShakeWindow()
+void ribi::BeerWanterMainDialog::ShakeWindow()
 {
   m_window_x += GetRandomWindowShake();
   m_window_y += GetRandomWindowShake();

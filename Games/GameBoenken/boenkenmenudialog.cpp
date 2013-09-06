@@ -23,9 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 // * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "boenkenmenudialog.h"
 
-namespace Boenken {
-
-const About MenuDialog::GetAbout()
+const ribi::About ribi::Boenken::MenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -39,16 +37,14 @@ const About MenuDialog::GetAbout()
   return a;
 }
 
-const std::string MenuDialog::GetVersion()
+const std::string ribi::Boenken::MenuDialog::GetVersion()
 {
   return "4.1";
 }
 
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory()
 {
-  return
-  {
-
+  return {
     "2000-xx-xx: version 0.0: wrote QBASIC version of Boenken",
     "2007-10-18: version 1.0: port from QBASIC to C++ Builder",
     "2007-12-30: version 2.0: added old-school-graphics mode, two-button control and option to set the friction of the players",
@@ -58,6 +54,3 @@ const std::vector<std::string> MenuDialog::GetVersionHistory()
     "2012-11-17: version 4.1: added a fancy color gradient to the main menu"
   };
 }
-
-} //~namespace Boenken {
-

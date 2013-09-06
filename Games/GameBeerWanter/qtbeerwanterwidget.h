@@ -28,10 +28,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QWidget>
 #include "beerwantermaindialog.h"
 
-struct BeerWanterMainDialog;
 struct QMouseEvent;
 struct QPixmap;
 struct QTimer;
+
+namespace ribi {
+
+struct BeerWanterMainDialog;
 
 class QtBeerWanterWidget : public QWidget
 {
@@ -73,6 +76,8 @@ private:
     const unsigned char b,
     const unsigned char a = 255); //Opaque
 };
+
+} //~namespace ribi
 
 #endif // QTBEERWANTERWIDGET_H
 

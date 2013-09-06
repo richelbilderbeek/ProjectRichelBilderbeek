@@ -31,6 +31,8 @@ namespace Ui {
   class QtMaziakMenuDialog;
 }
 
+namespace ribi {
+
 class QtMaziakMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -38,9 +40,6 @@ class QtMaziakMenuDialog : public QDialog
 public:
   explicit QtMaziakMenuDialog(QWidget *parent = 0);
   ~QtMaziakMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtMaziakMenuDialog *ui;
@@ -53,9 +52,8 @@ private:
   void onStart();
   void onInstructions();
   void onAbout();
-
-private slots:
-
 };
+
+} //~namespace ribi
 
 #endif // QTMAZIAKMENUDIALOG_H

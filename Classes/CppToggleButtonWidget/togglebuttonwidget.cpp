@@ -18,23 +18,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppToggleButtonWidget.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "togglebuttonwidget.h"
 
 #include <cassert>
-#include <cmath>
+//#include <cmath>
 
-#include <boost/math/constants/constants.hpp>
+//#include <boost/math/constants/constants.hpp>
 
 #include "togglebutton.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
 
-ToggleButtonWidget::ToggleButtonWidget(
+ribi::ToggleButtonWidget::ToggleButtonWidget(
   const bool pressed,
   const unsigned char red,
   const unsigned char green,
@@ -44,27 +42,27 @@ ToggleButtonWidget::ToggleButtonWidget(
 
 }
 
-void ToggleButtonWidget::Click(const int, const int)
+void ribi::ToggleButtonWidget::Click(const int, const int)
 {
   m_button->Toggle();
 }
 
-const std::string ToggleButtonWidget::GetVersion()
+const std::string ribi::ToggleButtonWidget::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> ToggleButtonWidget::GetVersionHistory()
+const std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-07-03: version 1.0: initial version");
-  v.push_back("2011-08-20: Version 1.1: added operator<<");
-  v.push_back("2011-08-31: Version 1.2: added setting the color of a ToggleButton");
-  return v;
+  return {
+    "YYYY-MM-DD: version X.Y: [description]",
+    "2011-07-03: version 1.0: initial version",
+    "2011-08-20: Version 1.1: added operator<<",
+    "2011-08-31: Version 1.2: added setting the color of a ToggleButton"
+  };
 }
 
-std::ostream& operator<<(std::ostream& os, const ToggleButtonWidget& button)
+std::ostream& ribi::operator<<(std::ostream& os, const ToggleButtonWidget& button)
 {
   os
     << "<ToggleButtonWidget>"

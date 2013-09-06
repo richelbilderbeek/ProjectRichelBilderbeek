@@ -30,7 +30,7 @@ namespace Ui {
 class QtDasWahreSchlagerfestWidget;
 }
 
-//namespace DasWahreSchlagerfestWidget { enum class Tile; };
+namespace ribi {
 
 class QtDasWahreSchlagerfestWidget : public QWidget
 {
@@ -56,5 +56,8 @@ private:
 
   void OnChange();
 };
+
+} //~namespace ribi
+
 
 #endif // QTDASWAHRESCHLAGERFESTWIDGET_H

@@ -18,19 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
 //---------------------------------------------------------------------------
-#include <qglobal.h>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-  #include <QApplication>
-#else
-  #include <QApplication>
-#endif
+#include <QApplication>
 
 #include "qtmaziakmenudialog.h"
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtMaziakMenuDialog w;
+  ribi::QtMaziakMenuDialog w;
   w.show();
   return a.exec();
 }

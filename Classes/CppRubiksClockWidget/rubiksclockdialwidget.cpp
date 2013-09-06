@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 RubiksClockDialWidget, class for displaying a RubiksClockDial
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,11 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppRubiksClockDialWidget.htm
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "rubiksclockdialwidget.h"
@@ -38,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-RubiksClockDialWidget::RubiksClockDialWidget(
+ribi::RubiksClockDialWidget::RubiksClockDialWidget(
   const double position,
   const int x,
   const int y,
@@ -52,24 +50,24 @@ RubiksClockDialWidget::RubiksClockDialWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-double RubiksClockDialWidget::GetDistance(const double dX, const double dY)
+double ribi::RubiksClockDialWidget::GetDistance(const double dX, const double dY)
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
-const std::string RubiksClockDialWidget::GetVersion()
+const std::string ribi::RubiksClockDialWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> RubiksClockDialWidget::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClockDialWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-08: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-09-08: Version 1.0: initial version"
+  };
 }
 
-bool RubiksClockDialWidget::IsClicked(const int x, const int y) const
+bool ribi::RubiksClockDialWidget::IsClicked(const int x, const int y) const
 {
   const double widget_midx
     = boost::numeric_cast<double>(GetGeometry().GetX())
@@ -83,7 +81,7 @@ bool RubiksClockDialWidget::IsClicked(const int x, const int y) const
     < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
 }
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockDialWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDialWidget& widget)
 {
   os
     << "<RubiksClockDialWidget>"

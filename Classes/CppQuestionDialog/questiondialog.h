@@ -24,6 +24,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 
+namespace ribi {
+
 struct Question;
 
 ///Dialog for an Question
@@ -73,5 +75,7 @@ struct QuestionDialog
   ///Was the submitted answer correct?
   bool m_is_correct;
 };
+
+} //~namespace ribi
 
 #endif // OPENQUESTIONDIALOG_H

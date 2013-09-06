@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "ui_qtasciiartermaindialog.h"
 
-QtAsciiArterMainDialog::QtAsciiArterMainDialog(QWidget *parent)
+ribi::QtAsciiArterMainDialog::QtAsciiArterMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtAsciiArterMainDialog),
     m_dialog(new AsciiArterMainDialog)
@@ -55,24 +55,12 @@ QtAsciiArterMainDialog::QtAsciiArterMainDialog(QWidget *parent)
   this->move( screen.center() - this->rect().center() );
 }
 
-QtAsciiArterMainDialog::~QtAsciiArterMainDialog()
+ribi::QtAsciiArterMainDialog::~QtAsciiArterMainDialog()
 {
   delete ui;
 }
 
-void QtAsciiArterMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtAsciiArterMainDialog::DrawAsciiArt()
+void ribi::QtAsciiArterMainDialog::DrawAsciiArt()
 {
   if (!m_dialog->CanConvert()) return;
 
@@ -87,7 +75,7 @@ void QtAsciiArterMainDialog::DrawAsciiArt()
   }
 }
 
-void QtAsciiArterMainDialog::on_button_load_clicked()
+void ribi::QtAsciiArterMainDialog::on_button_load_clicked()
 {
   QFileDialog d;
   const QString filename = d.getOpenFileName();
@@ -107,7 +95,7 @@ void QtAsciiArterMainDialog::on_button_load_clicked()
 
 //Returns a Y-X-ordered std::vector of greynesses.
 const std::vector<std::vector<double> >
-  QtAsciiArterMainDialog::ConvertToGreyYx(const QImage * const i)
+  ribi::QtAsciiArterMainDialog::ConvertToGreyYx(const QImage * const i)
 {
   const int maxy = i->height();
   const int maxx = i->width();
@@ -137,12 +125,12 @@ const std::vector<std::vector<double> >
   return v;
 }
 
-void QtAsciiArterMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtAsciiArterMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void QtAsciiArterMainDialog::on_edit_width_textChanged(QString q)
+void ribi::QtAsciiArterMainDialog::on_edit_width_textChanged(QString q)
 {
   const std::string s = q.toStdString();
   try

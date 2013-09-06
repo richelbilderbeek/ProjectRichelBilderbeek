@@ -35,9 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenspriteplayer.h"
 
 
-namespace Boenken {
-
-Game::Game(
+ribi::Boenken::Game::Game(
   const ArenaSettings& arena_settings,
   const Controls& controls,
   std::vector<boost::shared_ptr<SpritePlayer   > > players,
@@ -79,7 +77,7 @@ Game::Game(
   SpriteBall::SetGoalPoles(goal_y_top,goal_y_bottom);
 }
 
-const std::vector<SpriteMoving*> Game::CollectMovingSprites(
+const std::vector<ribi::Boenken::SpriteMoving*> ribi::Boenken::Game::CollectMovingSprites(
   std::vector<boost::shared_ptr<SpritePlayer> > players,
   std::vector<boost::shared_ptr<SpriteBall  > > balls)
 {
@@ -101,7 +99,7 @@ const std::vector<SpriteMoving*> Game::CollectMovingSprites(
   return v;
 }
 
-const std::vector<Sprite*> Game::CollectSprites(
+const std::vector<ribi::Boenken::Sprite*> ribi::Boenken::Game::CollectSprites(
   std::vector<boost::shared_ptr<SpritePlayer   > > players,
   std::vector<boost::shared_ptr<SpriteBall     > > balls,
   std::vector<boost::shared_ptr<SpriteNonMoving> > obstacles)
@@ -131,7 +129,7 @@ const std::vector<Sprite*> Game::CollectSprites(
   return v;
 }
 
-void Game::drawPlayers(QPainter& painter) const
+void ribi::Boenken::Game::drawPlayers(QPainter& painter) const
 {
   BOOST_FOREACH(const Sprite * const s,m_sprites)
   {
@@ -139,23 +137,23 @@ void Game::drawPlayers(QPainter& painter) const
   }
 }
 
-int Game::getHeight() const
+int ribi::Boenken::Game::getHeight() const
 {
   return m_arena_settings.height();
 }
 
-const std::pair<int,int> Game::GetScore() const
+const std::pair<int,int> ribi::Boenken::Game::GetScore() const
 {
   return SpriteBall::GetScore();
 }
 
-int Game::getWidth() const
+int ribi::Boenken::Game::getWidth() const
 {
   return m_arena_settings.width();
 }
 
 
-void Game::pressKey(const int key)
+void ribi::Boenken::Game::pressKey(const int key)
 {
   const std::size_t n_players = m_controls.m_names.size();
   for (std::size_t i=0; i!=n_players; ++i)
@@ -190,7 +188,7 @@ void Game::pressKey(const int key)
   if (key == Qt::Key_F2) std::exit(1);
 }
 
-void Game::Test()
+void ribi::Boenken::Game::Test()
 {
   {
     static bool is_tested = false;
@@ -217,7 +215,7 @@ void Game::Test()
 }
 
 ///Moves all sprites
-void Game::tick()
+void ribi::Boenken::Game::tick()
 {
   ///Move all moving sprites
   BOOST_FOREACH(SpriteMoving* const s,m_moving_sprites)
@@ -251,6 +249,3 @@ void Game::tick()
     }
   }
 }
-
-} //~namespace Boenken {
-

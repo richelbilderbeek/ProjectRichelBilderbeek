@@ -23,26 +23,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakinstructionsdialog.h"
 #include "ui_qtmaziakinstructionsdialog.h"
 
-QtMaziakInstructionsDialog::QtMaziakInstructionsDialog(QWidget *parent) :
+ribi::QtMaziakInstructionsDialog::QtMaziakInstructionsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtMaziakInstructionsDialog)
 {
     ui->setupUi(this);
 }
 
-QtMaziakInstructionsDialog::~QtMaziakInstructionsDialog()
+ribi::QtMaziakInstructionsDialog::~QtMaziakInstructionsDialog()
 {
     delete ui;
-}
-
-void QtMaziakInstructionsDialog::changeEvent(QEvent *e)
-{
-    QDialog::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
 }

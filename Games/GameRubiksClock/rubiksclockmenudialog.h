@@ -21,12 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef RUBIKSCLOCKMENUDIALOG_H
 #define RUBIKSCLOCKMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///The GUI independent version of WtRubiksClockMenuDialog
 struct RubiksClockMenuDialog
 {
@@ -34,5 +36,7 @@ struct RubiksClockMenuDialog
   static const std::string GetVersion();
   static const About GetAbout();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // RUBIKSCLOCKMENUDIALOG_H

@@ -20,12 +20,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef EXERCISE_H
 #define EXERCISE_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///A Exercise is a collection of questions
 struct Exercise
 {
@@ -61,5 +63,7 @@ struct Exercise
   ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
   static const std::vector<std::string> FileToVector(const std::string& filename);
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // EXERCISE_H

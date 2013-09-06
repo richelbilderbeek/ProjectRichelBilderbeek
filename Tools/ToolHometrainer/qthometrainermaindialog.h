@@ -7,6 +7,8 @@ namespace Ui {
 class QtHometrainerMainDialog;
 }
 
+namespace ribi {
+
 class QtHometrainerMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -18,5 +20,7 @@ public:
 private:
   Ui::QtHometrainerMainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTHOMETRAINERMAINDIALOG_H

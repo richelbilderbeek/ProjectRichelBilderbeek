@@ -1,12 +1,5 @@
 QT       += core gui widgets
 
-QMAKE_CXXFLAGS += -std=c++11
-
-LIBS += \
-    -lboost_system \
-    -lboost_filesystem \
-    -lboost_regex
-
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppHtmlPage \
@@ -17,14 +10,15 @@ CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
 
-SOURCES += qtmain.cpp \
+SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppHtmlPage/htmlpage.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     createglossarymaindialog.cpp \
     createglossarymenudialog.cpp \
     qtcreateglossarymaindialog.cpp \
-    qtcreateglossarymenudialog.cpp
+    qtcreateglossarymenudialog.cpp \
+    qtmain.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -49,3 +43,48 @@ OTHER_FILES += \
 
 RESOURCES += \
     ToolCreateGlossary.qrc
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(debug, debug|release) {
+  message(Debug mode)
+}
+
+CONFIG(release, debug|release) {
+  message(Release mode)
+
+  #Remove all asserts and TRACE
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+#
+#
+# Platform specific
+#
+#
+
+#
+#
+# Compiler flags
+#
+#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

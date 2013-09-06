@@ -34,7 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 #include "pylosplayer.h"
 
-const About PylosMenuDialog::GetAbout()
+const ribi::About ribi::PylosMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -53,16 +53,16 @@ const About PylosMenuDialog::GetAbout()
   return a;
 }
 
-const std::string PylosMenuDialog::GetVersion()
+const std::string ribi::PylosMenuDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> PylosMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::PylosMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2010-09-22: version 1.0: initial release version");
-  v.push_back("2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek");
-  return v;
+  return {
+    "2010-09-22: version 1.0: initial release version",
+    "2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek"
+  };
 }
 

@@ -27,6 +27,8 @@ namespace Ui {
 class QtAsciiArterMenuDialog;
 }
 
+namespace ribi {
+
 class QtAsciiArterMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -48,5 +50,7 @@ private slots:
 private:
   Ui::QtAsciiArterMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTASCIIARTERMENUDIALOG_H

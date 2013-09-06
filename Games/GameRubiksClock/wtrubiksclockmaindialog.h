@@ -21,12 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTRUBIKSCLOCKDIALOG_H
 #define WTRUBIKSCLOCKDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtDialWidget;
 struct WtRubiksClockWidget;
-//---------------------------------------------------------------------------
+
 struct WtRubiksClockMainDialog : public Wt::WContainerWidget
 {
   WtRubiksClockMainDialog();
@@ -47,5 +49,7 @@ struct WtRubiksClockMainDialog : public Wt::WContainerWidget
   ///Respond to ui.m_dial_size
   void OnSizeChanged();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTRUBIKSCLOCKDIALOG_H

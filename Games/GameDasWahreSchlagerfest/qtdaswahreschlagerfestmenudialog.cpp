@@ -27,19 +27,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtdaswahreschlagerfestmaindialog.h"
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
 
-QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) :
+ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtDasWahreSchlagerfestMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog()
+ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog()
 {
   delete ui;
 }
 
-void QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked()
 {
   QtDasWahreSchlagerfestMainDialog d;
   this->hide();
@@ -47,7 +47,7 @@ void QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(DasWahreSchlagerfestMenuDialog::GetAbout());
   d.setWindowIcon(this->windowIcon());
@@ -57,7 +57,7 @@ void QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked()
 {
   close();
 }

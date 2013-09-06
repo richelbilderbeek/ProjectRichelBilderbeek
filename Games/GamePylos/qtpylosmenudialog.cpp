@@ -36,7 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpyloswidget.h"
 #include "ui_qtpylosmenudialog.h"
 
-QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
+ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtPylosMenuDialog),
   m_selected(-1),
@@ -61,24 +61,12 @@ QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
 
 }
 
-QtPylosMenuDialog::~QtPylosMenuDialog()
+ribi::QtPylosMenuDialog::~QtPylosMenuDialog()
 {
   delete ui;
 }
 
-void QtPylosMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
+void ribi::QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
 {
   if (ui->label_theme->underMouse())
   {
@@ -109,7 +97,7 @@ void QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
   }
 }
 
-void QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
+void ribi::QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
 {
   if (
        ui->label_start->underMouse()
@@ -163,7 +151,7 @@ void QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
   repaint();
 }
 
-void QtPylosMenuDialog::OnAbout()
+void ribi::QtPylosMenuDialog::OnAbout()
 {
   About a = PylosMenuDialog::GetAbout();
   a.AddLibrary("QtPylosBoardWidget version: " + QtPylosBoardWidget::GetVersion());
@@ -175,13 +163,13 @@ void QtPylosMenuDialog::OnAbout()
   d.exec();
 }
 
-void QtPylosMenuDialog::OnInstructions()
+void ribi::QtPylosMenuDialog::OnInstructions()
 {
   QtPylosInstructionsDialog d;
   d.exec();
 }
 
-void QtPylosMenuDialog::OnStart()
+void ribi::QtPylosMenuDialog::OnStart()
 {
   QtPylosGameWidget * const p = new QtPylosGameWidget();
   assert(p);

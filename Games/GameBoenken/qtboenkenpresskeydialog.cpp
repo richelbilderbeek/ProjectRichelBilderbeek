@@ -19,8 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtboenkenpresskeydialog.h"
 
 #include <cassert>
@@ -29,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "ui_qtboenkenpresskeydialog.h"
 
-QtBoenkenPressKeyDialog::QtBoenkenPressKeyDialog(QWidget *parent) :
+ribi::QtBoenkenPressKeyDialog::QtBoenkenPressKeyDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtBoenkenPressKeyDialog),
   m_key(0)
@@ -37,24 +35,12 @@ QtBoenkenPressKeyDialog::QtBoenkenPressKeyDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-QtBoenkenPressKeyDialog::~QtBoenkenPressKeyDialog()
+ribi::QtBoenkenPressKeyDialog::~QtBoenkenPressKeyDialog()
 {
   delete ui;
 }
 
-void QtBoenkenPressKeyDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtBoenkenPressKeyDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtBoenkenPressKeyDialog::keyPressEvent(QKeyEvent * e)
 {
   //According to the Qt doc, the assert below is always true
   assert(e->type() == QEvent::KeyPress);

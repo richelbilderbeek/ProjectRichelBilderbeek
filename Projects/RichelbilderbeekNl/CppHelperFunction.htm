@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>helper function</title>
+  <meta name="description" content="C++ helper function"/>
+  <meta name="keywords" content="C++ helper function code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelperFunction.htm">helper function</a></h1>
+<p>&nbsp;</p>
+<p>A <a href="CppHelperFunction.htm">helper function</a> is a non-<a href="CppMemberFunction.htm">member function</a> that belongs to a <a href="CppClass.htm">class</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<!-- example from John Lakos, Large-Scale C++ Software Design. 1996. Figure 1.2. Chapter 1.1.1 -->
+<table border = "1"><tr><td><code>
+Point <b><a href="CppOperatorPlus.htm">operator+</a></b>(<b><a href="CppConst.htm">const</a></b> Point&amp; lhs, <b><a href="CppConst.htm">const</a></b> Point&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Point(lhs.GetX() <a href="CppOperatorPlus.htm">+</a> rhs.GetX(), lhs.GetY() <a href="CppOperatorPlus.htm">+</a> rhs.GetY());<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Avoid <a href="CppHelperFunction.htm">helper functions</a> (except operator functions) 
+    at file scope in <a href="CppHeaderFile.htm">header (.h) files</a> [1]
+  </li>
+  <li>
+    Avoid <a href="CppHelperFunction.htm">helper functions</a> with <a href="CppExternalLinkage.htm">external linkage</a> 
+    (including operator functions) in  <a href="CppImplementationFile.htm">implementation (.cpp) files</a> [1].
+  </li>
+  <li>
+    Use <a href="CppNamespace.htm">namespaces</a> to associate <a href="CppHelperFunction.htm">helper functions</a> with the <a href="CppClass.htm">class</a> they work on [2]
+  </li>
+  <li>
+    Use <a href="CppHelperFunction.htm">helper functions</a> for symmetric <a href="CppOperator.htm">operators</a> [3], for example <a href="CppOperatorPlus">operator+</a> and <a href="CppOperatorPlus">operator-</a>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!--  1 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.3.2</li>
+  <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 18.5. Advice. page 548: '[7] Use namespaces to associate helper functions with "their" class'</li>
+  <li><!--  3 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 18.5. Advice. page 548: '[8] Use nonmember functions for symmetric operators'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

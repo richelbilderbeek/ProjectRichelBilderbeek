@@ -26,13 +26,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///GUI independent CreateGlossary menu dialog
 struct CreateGlossaryMenuDialog
 {
-  CreateGlossaryMenuDialog();
   static const About GetAbout();
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // CREATEGLOSSARYMENUDIALOG_H

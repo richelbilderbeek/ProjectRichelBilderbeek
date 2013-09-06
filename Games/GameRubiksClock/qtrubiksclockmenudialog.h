@@ -28,6 +28,8 @@ namespace Ui {
   class QtRubiksClockMenuDialog;
 }
 
+namespace ribi {
+
 class QtRubiksClockMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -37,7 +39,6 @@ public:
   ~QtRubiksClockMenuDialog();
 
 protected:
-  void changeEvent(QEvent *e);
   void keyPressEvent(QKeyEvent *);
 
 private:
@@ -48,5 +49,7 @@ private slots:
   void on_button_quit_clicked();
   void on_button_start_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTRUBIKSCLOCKMENUDIALOG_H

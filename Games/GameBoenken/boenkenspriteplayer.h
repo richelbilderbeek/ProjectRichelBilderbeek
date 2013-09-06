@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include "boenkenspritemoving.h"
 
+namespace ribi {
+
 namespace Boenken {
 
 ///SpritePlayer is a MovingSprite that can respond to input
@@ -63,5 +65,7 @@ struct SpritePlayer : public Boenken::SpriteMoving
 };
 
 } //~namespace Boenken
+
+} //~namespace ribi
 
 #endif // BOENKENSPRITEPLAYER_H

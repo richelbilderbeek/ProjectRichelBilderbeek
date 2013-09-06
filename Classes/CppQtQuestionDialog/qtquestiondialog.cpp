@@ -25,13 +25,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "questiondialog.h"
 
-QtQuestionDialog::QtQuestionDialog(QWidget *parent)
+ribi::QtQuestionDialog::QtQuestionDialog(QWidget *parent)
   : QDialog(parent)
 {
 
 }
 
-QtQuestionDialog::QtQuestionDialog(
+ribi::QtQuestionDialog::QtQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog,
   QWidget *parent)
   : QDialog(parent),
@@ -40,12 +40,12 @@ QtQuestionDialog::QtQuestionDialog(
   assert(m_dialog);
 }
 
-const std::string QtQuestionDialog::GetVersion()
+const std::string ribi::QtQuestionDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtQuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-30: version 1.0: initial version");

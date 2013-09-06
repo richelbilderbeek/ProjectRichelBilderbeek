@@ -30,6 +30,8 @@ namespace Ui {
   class QtMaziakGameWonDialog;
 }
 
+namespace ribi {
+
 class QtMaziakGameWonDialog : public QDialog
 {
   Q_OBJECT
@@ -52,5 +54,7 @@ private:
   private slots:
   void onTimer();
 };
+
+} //~namespace ribi
 
 #endif // QTMAZIAKGAMEWONDIALOG_H

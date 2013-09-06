@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //Must be #included after Wt header files
 #include <QFile>
 
-HometrainerResources::HometrainerResources()
+ribi::HometrainerResources::HometrainerResources()
 {
   const std::vector<std::string> files
     =

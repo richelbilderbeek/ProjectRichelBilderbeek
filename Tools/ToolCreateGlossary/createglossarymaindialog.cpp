@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-CreateGlossaryMainDialog::CreateGlossaryMainDialog()
+ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 {
   //std::cout << "Starting CreateGlossary version 1.1...\n\n";
 
@@ -56,7 +56,7 @@ CreateGlossaryMainDialog::CreateGlossaryMainDialog()
   //  << boost::filesystem::path(argv[0]).parent_path().string() << "\n";
 }
 
-const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::CreateGlossaryMainDialog::GetFilesInFolder(const std::string& folder)
 {
   QDir dir(folder.c_str());
   dir.setFilter(QDir::Files);
@@ -73,7 +73,7 @@ const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(const 
   return v;
 }
 
-const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(
+const std::vector<std::string> ribi::CreateGlossaryMainDialog::GetFilesInFolder(
   const std::string& folder,
   const std::string& regex_str)
 {
@@ -98,7 +98,7 @@ const std::vector<std::string> CreateGlossaryMainDialog::GetFilesInFolder(
   return w;
 }
 
-const std::string CreateGlossaryMainDialog::GetPath(const std::string& filename)
+const std::string ribi::CreateGlossaryMainDialog::GetPath(const std::string& filename)
 {
   const int a = filename.rfind("\\",filename.size());
   const int b = filename.rfind("/",filename.size());
@@ -107,7 +107,7 @@ const std::string CreateGlossaryMainDialog::GetPath(const std::string& filename)
   return filename.substr(0,i);
 }
 
-void CreateGlossaryMainDialog::CreatePage(
+void ribi::CreateGlossaryMainDialog::CreatePage(
   const std::string& page_name,
   const std::string& page_url,
   const std::string& regex)

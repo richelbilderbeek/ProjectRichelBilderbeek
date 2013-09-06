@@ -19,8 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtboenkenarenadialog.h"
 
 #include <cassert>
@@ -30,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "ui_qtboenkenarenadialog.h"
 
-QtBoenkenArenaDialog::QtBoenkenArenaDialog(QWidget *parent) :
+ribi::QtBoenkenArenaDialog::QtBoenkenArenaDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtBoenkenArenaDialog)
 {
@@ -38,26 +36,14 @@ QtBoenkenArenaDialog::QtBoenkenArenaDialog(QWidget *parent) :
   QObject::connect(ui->button_done,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-QtBoenkenArenaDialog::~QtBoenkenArenaDialog()
+ribi::QtBoenkenArenaDialog::~QtBoenkenArenaDialog()
 {
   delete ui;
 }
 
-void QtBoenkenArenaDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 ///The purpose of QtBoenkenArenaDialog is to create
 ///an ArenaSettings
-const Boenken::ArenaSettings QtBoenkenArenaDialog::GetSettings() const
+const ribi::Boenken::ArenaSettings ribi::QtBoenkenArenaDialog::GetSettings() const
 {
   Boenken::ArenaSettings s;
   s.formation = this->GetFormation();
@@ -68,7 +54,7 @@ const Boenken::ArenaSettings QtBoenkenArenaDialog::GetSettings() const
   return s;
 }
 
-const std::pair<int,int> QtBoenkenArenaDialog::GetScreenSize() const
+const std::pair<int,int> ribi::QtBoenkenArenaDialog::GetScreenSize() const
 {
   //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_screen_size;
@@ -92,11 +78,11 @@ const std::pair<int,int> QtBoenkenArenaDialog::GetScreenSize() const
       return std::make_pair(640,400);
     default:
       assert(!"Should not get here");
-      throw std::logic_error("QtBoenkenArenaDialog::GetScreenSize");
+      throw std::logic_error("ribi::QtBoenkenArenaDialog::GetScreenSize");
   }
 }
 
-int QtBoenkenArenaDialog::GetNballs() const
+int ribi::QtBoenkenArenaDialog::GetNballs() const
 {
   //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_nballs;
@@ -111,11 +97,11 @@ int QtBoenkenArenaDialog::GetNballs() const
       return 2;
     default:
       assert(!"Should not get here");
-      throw std::logic_error("QtBoenkenArenaDialog::GetNballs");
+      throw std::logic_error("ribi::QtBoenkenArenaDialog::GetNballs");
   }
 }
 
-int QtBoenkenArenaDialog::GetNobstacles() const
+int ribi::QtBoenkenArenaDialog::GetNobstacles() const
 {
   //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_obstacles;
@@ -130,10 +116,10 @@ int QtBoenkenArenaDialog::GetNobstacles() const
       return 2;
   }
   assert(!"Should not get here");
-  throw std::logic_error("QtBoenkenArenaDialog::GetNobstacles");
+  throw std::logic_error("ribi::QtBoenkenArenaDialog::GetNobstacles");
 }
 
-Boenken::Formation QtBoenkenArenaDialog::GetFormation() const
+ribi::Boenken::Formation ribi::QtBoenkenArenaDialog::GetFormation() const
 {
   //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_formation;
@@ -151,12 +137,11 @@ Boenken::Formation QtBoenkenArenaDialog::GetFormation() const
       return Boenken::circle_outward;
   }
   assert(!"Should not get here");
-  throw std::logic_error("QtBoenkenArenaDialog::GetFormation");
+  throw std::logic_error("ribi::QtBoenkenArenaDialog::GetFormation");
 }
 
-double QtBoenkenArenaDialog::GetFriction() const
+double ribi::QtBoenkenArenaDialog::GetFriction() const
 {
-  //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_friction;
   assert(b->count()==2);
   switch(b->currentIndex())
@@ -169,6 +154,6 @@ double QtBoenkenArenaDialog::GetFriction() const
       return 0.999;
   }
   assert(!"Should not get here");
-  throw std::logic_error("QtBoenkenArenaDialog::GetFriction");
+  throw std::logic_error("ribi::QtBoenkenArenaDialog::GetFriction");
 }
 

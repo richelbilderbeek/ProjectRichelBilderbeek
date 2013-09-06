@@ -27,6 +27,8 @@ namespace Ui {
   class QtCreateGlossaryMenuDialog;
 }
 
+namespace ribi {
+
 class QtCreateGlossaryMenuDialog : public QDialog
 {
   Q_OBJECT
@@ -34,9 +36,6 @@ class QtCreateGlossaryMenuDialog : public QDialog
 public:
   explicit QtCreateGlossaryMenuDialog(QWidget *parent = 0);
   ~QtCreateGlossaryMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtCreateGlossaryMenuDialog *ui;
@@ -46,5 +45,7 @@ private slots:
   void on_button_quit_clicked();
   void on_button_start_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTCREATEGLOSSARYMENUDIALOG_H

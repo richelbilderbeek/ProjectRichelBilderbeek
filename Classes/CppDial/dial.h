@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
   #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///Dial is a class for a dial
 struct Dial
 {
@@ -118,5 +120,7 @@ struct Dial
 };
 
 std::ostream& operator<<(std::ostream& os, const Dial& dial);
+
+} //~namespace ribi
 
 #endif // DIAL_H

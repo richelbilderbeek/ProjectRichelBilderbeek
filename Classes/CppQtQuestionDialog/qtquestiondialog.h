@@ -28,6 +28,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 #include <QDialog>
+
+namespace ribi {
+
 struct Question;
 struct QuestionDialog;
 
@@ -59,5 +62,7 @@ struct QtQuestionDialog : public QDialog
 
   boost::shared_ptr<QuestionDialog> m_dialog;
 };
+
+} //~namespace ribi
 
 #endif // CPPQTQUESTIONDIALOG_H

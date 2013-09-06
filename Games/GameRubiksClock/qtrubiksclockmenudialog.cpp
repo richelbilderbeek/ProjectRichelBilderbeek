@@ -34,36 +34,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "rubiksclockmenudialog.h"
 #include "ui_qtrubiksclockmenudialog.h"
 
-QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
+ribi::QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRubiksClockMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtRubiksClockMenuDialog::~QtRubiksClockMenuDialog()
+ribi::QtRubiksClockMenuDialog::~QtRubiksClockMenuDialog()
 {
   delete ui;
 }
 
-void QtRubiksClockMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtRubiksClockMenuDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtRubiksClockMenuDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void QtRubiksClockMenuDialog::on_button_about_clicked()
+void ribi::QtRubiksClockMenuDialog::on_button_about_clicked()
 {
   About a = RubiksClockMenuDialog::GetAbout();
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
@@ -78,12 +66,12 @@ void QtRubiksClockMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtRubiksClockMenuDialog::on_button_quit_clicked()
+void ribi::QtRubiksClockMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtRubiksClockMenuDialog::on_button_start_clicked()
+void ribi::QtRubiksClockMenuDialog::on_button_start_clicked()
 {
   QtRubiksClockMainDialog d;
   ShowChild(&d);

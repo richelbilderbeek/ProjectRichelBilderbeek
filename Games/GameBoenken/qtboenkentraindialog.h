@@ -29,6 +29,8 @@ namespace Ui {
   class QtBoenkenTrainDialog;
 }
 
+namespace ribi {
+
 class QtBoenkenTrainDialog : public QDialog
 {
   Q_OBJECT
@@ -37,11 +39,10 @@ public:
   explicit QtBoenkenTrainDialog(QWidget *parent = 0);
   ~QtBoenkenTrainDialog();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtBoenkenTrainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTBOENKENTRAINDIALOG_H

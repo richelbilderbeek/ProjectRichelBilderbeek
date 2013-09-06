@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtboenkenplayersdialog.h"
 #include "ui_qtboenkenplayersdialog.h"
 
-QtBoenkenPlayersDialog::QtBoenkenPlayersDialog(QWidget *parent) :
+ribi::QtBoenkenPlayersDialog::QtBoenkenPlayersDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtBoenkenPlayersDialog)
 {
@@ -32,19 +32,7 @@ QtBoenkenPlayersDialog::QtBoenkenPlayersDialog(QWidget *parent) :
   QObject::connect(ui->button_done,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-QtBoenkenPlayersDialog::~QtBoenkenPlayersDialog()
+ribi::QtBoenkenPlayersDialog::~QtBoenkenPlayersDialog()
 {
   delete ui;
-}
-
-void QtBoenkenPlayersDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
 }

@@ -19,8 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "boenkenspritemoving.h"
 
 #include <cassert>
@@ -31,17 +29,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 #pragma GCC diagnostic pop
 
-namespace Boenken {
-
-int SpriteMoving::sm_n_moving_sprites = 0;
+int ribi::Boenken::SpriteMoving::sm_n_moving_sprites = 0;
 
 ///The fraction of impulse that is conserved \n
 ///1.0: no friction
 ///0.9: some friction
 ///0.1: much friction
-double SpriteMoving::m_friction = 0.995;
+double ribi::Boenken::SpriteMoving::m_friction = 0.995;
 
-SpriteMoving::SpriteMoving(
+ribi::Boenken::SpriteMoving::SpriteMoving(
   const double x,
   const double y,
   const int size,
@@ -53,24 +49,24 @@ SpriteMoving::SpriteMoving(
   ++sm_n_moving_sprites;
 }
 
-double SpriteMoving::CalcImpulseAngle() const
+double ribi::Boenken::SpriteMoving::CalcImpulseAngle() const
 {
   return GetAngle(m_dx,m_dy);
 }
 
-double SpriteMoving::CalcImpulseSpeed() const
+double ribi::Boenken::SpriteMoving::CalcImpulseSpeed() const
 {
   return std::sqrt( (m_dx * m_dx) + (m_dy * m_dy) );
 }
 
-void SpriteMoving::SetFriction(const double friction)
+void ribi::Boenken::SpriteMoving::SetFriction(const double friction)
 {
   assert(friction  > 0.0);
   assert(friction <= 1.0);
   m_friction = friction;
 }
 
-void SpriteMoving::Collision(SpriteMoving * const p1, SpriteMoving * const p2)
+void ribi::Boenken::SpriteMoving::Collision(SpriteMoving * const p1, SpriteMoving * const p2)
 {
   assert(p1!=p2);
   assert(p1 > p2);
@@ -130,7 +126,7 @@ void SpriteMoving::Collision(SpriteMoving * const p1, SpriteMoving * const p2)
   }
 }
 
-void SpriteMoving::Draw(QPainter& painter) const
+void ribi::Boenken::SpriteMoving::Draw(QPainter& painter) const
 {
   //Draw the globe
   Sprite::Draw(painter);
@@ -145,7 +141,3 @@ void SpriteMoving::Draw(QPainter& painter) const
   painter.drawLine(x_mid,y_mid,x3,y3);
   #endif
 }
-
-} //~namespace Boenken
-
-

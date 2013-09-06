@@ -20,9 +20,12 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppMemberVariable.htm">member variable</a></h1>
 <p>&nbsp;</p>
-<p>A <a href="CppMemberVariable.htm">member variable</a> is a type of <a href="CppVariable.htm">variable</a>
-that is part of a <a href="CppClass.htm">class</a>. For example, a Person <a href="CppClass.htm">class</a>
-might have a <a href="CppMemberVariable.htm">member variable</a> to hold a Person his/her name.</p>
+<p>
+  A <a href="CppMemberVariable.htm">member variable</a> is a type of <a href="CppMember.htm">class member</a>
+  for an in-<a href="CppClass.htm">class</a> <a href="CppVariable.htm">variable</a>. 
+  For example, a Person <a href="CppClass.htm">class</a>
+  might have a <a href="CppMemberVariable.htm">member variable</a> to hold a Person his/her name.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
@@ -42,9 +45,41 @@ might have a <a href="CppMemberVariable.htm">member variable</a> to hold a Perso
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p><a href="CppLocalVersusGlobal.htm">LocalVersusGlobal</a> is a simple <a href="CppBenchmark.htm">benchmark</a> that tests 
-the speed of <a href="CppLocal.htm">local</a> versus <a href="CppMemberVariable.htm">member variables</a> 
-versus <a href="CppGlobal.htm">global</a> <a href="CppVariable.htm">variables</a>.</p>
+<p>
+  <a href="CppLocalVersusGlobal.htm">LocalVersusGlobal</a> is a simple <a href="CppBenchmark.htm">benchmark</a> that tests 
+  the speed of <a href="CppLocal.htm">local</a> versus <a href="CppMemberVariable.htm">member variables</a> 
+  versus <a href="CppGlobal.htm">global</a> <a href="CppVariable.htm">variables</a>.
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Use a consistent method (such as a d_ prefix) to highlight <a href="CppMemberVariable.htm">member variables</a> [1]
+  </li>
+  <li>
+    <a href="CppDeclaration.htm">Declare</a> <a href="CppMemberVariable.htm">member variables</a> <a href="CppPrivate.htm">private</a> [2-5], except in <a href="CppPod.htm">POD</a>s [4]
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!--  1 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 2.7: 'Use a consistent method (such as a d_ prefix) to highlight class data members'</li>
+  <li><!--  2 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 22: Declare data members private.</li>
+  <li><!--  3 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 11: 'Hide information'.</li>
+  <li><!--  4 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 41: 'Make data members private, except in behaviourless aggregates (C-style structs).</li>
+  <li><!--  5 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0.</li>
+</ol>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

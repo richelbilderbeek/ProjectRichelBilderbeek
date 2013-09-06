@@ -120,7 +120,7 @@ const std::string ribi::QtAboutDialog::GetVersion()
 
 const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
 {
-  const std::vector<std::string> v {
+  return {
     "2011-01-11: version 1.0: initial version of QtAboutDialog",
     "2011-04-11: version 1.1: minor changes",
     "2011-06-27: version 1.2: added date and time when source code is built",
@@ -129,6 +129,5 @@ const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
     "2012-01-27: version 1.5: abandoned use of BOOST_FOREACH, due to run-time errors",
     "2013-09-05: version 1.6: transition to namespace ribi"
   };
-  return v;
 }
 

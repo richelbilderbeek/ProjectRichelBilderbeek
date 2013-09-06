@@ -36,7 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-Exercise::Exercise(const std::string& filename)
+ribi::Exercise::Exercise(const std::string& filename)
 {
   assert(QFile::exists(filename.c_str()));
   if (!QFile::exists(filename.c_str()))
@@ -75,7 +75,7 @@ Exercise::Exercise(const std::string& filename)
   m_current = m_questions.begin();
 }
 
-const std::vector<std::string> Exercise::FileToVector(const std::string& filename)
+const std::vector<std::string> ribi::Exercise::FileToVector(const std::string& filename)
 {
   assert(QFile::exists(filename.c_str()));
   std::vector<std::string> v;
@@ -89,22 +89,22 @@ const std::vector<std::string> Exercise::FileToVector(const std::string& filenam
   return v;
 }
 
-const std::string Exercise::GetCurrentQuestion() const
+const std::string ribi::Exercise::GetCurrentQuestion() const
 {
   return *m_current;
 }
 
-int Exercise::GetNumberOfQuestions() const
+int ribi::Exercise::GetNumberOfQuestions() const
 {
   return boost::numeric_cast<int>(m_questions.size());
 }
 
-const std::string Exercise::GetVersion()
+const std::string ribi::Exercise::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> Exercise::GetVersionHistory()
+const std::vector<std::string> ribi::Exercise::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-09-26: Version 1.0: initial version");
@@ -112,7 +112,7 @@ const std::vector<std::string> Exercise::GetVersionHistory()
   return v;
 }
 
-void Exercise::Next()
+void ribi::Exercise::Next()
 {
   ++m_current;
   if (m_current == m_questions.end())

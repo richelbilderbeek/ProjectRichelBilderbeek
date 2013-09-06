@@ -24,7 +24,6 @@ INCLUDEPATH += \
     ../../Classes/CppQtToggleButtonWidget
 
 SOURCES += \
-    qtmain.cpp \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppDial/dial.cpp \
     ../../Classes/CppDialWidget/dialwidget.cpp \
@@ -41,6 +40,7 @@ SOURCES += \
     ../../Classes/CppToggleButton/togglebutton.cpp \
     ../../Classes/CppToggleButtonWidget/togglebuttonwidget.cpp \
     ../../Classes/CppWidget/widget.cpp \
+    qtmain.cpp \
     qtrubiksclockmaindialog.cpp \
     qtrubiksclockmenudialog.cpp \
     rubiksclockmenudialog.cpp
@@ -50,7 +50,6 @@ HEADERS += \
     ../../Classes/CppDial/dial.h \
     ../../Classes/CppDialWidget/dialwidget.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtDialWidget/qtdialwidget.h \
     ../../Classes/CppQtDialWidget/qtdialwidget.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppQtRubiksClockWidget/qtrubiksclockwidget.h \
@@ -82,3 +81,49 @@ FORMS += \
     qtrubiksclockmenudialog.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     qtrubiksclockmaindialog.ui
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(debug, debug|release) {
+  message(Debug mode)
+}
+
+CONFIG(release, debug|release) {
+  message(Release mode)
+
+  #Remove all asserts and TRACE
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+#
+#
+# Platform specific
+#
+#
+
+#
+#
+# Compiler flags
+#
+#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

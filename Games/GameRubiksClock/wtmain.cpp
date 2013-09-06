@@ -19,20 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameRubiksClock.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
-//---------------------------------------------------------------------------
+
 #include "trace.h"
 #include "wtautoconfig.h"
 #include "wtrubiksclockmenudialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
+
 struct WtApplication : public Wt::WApplication
 {
   WtApplication(const Wt::WEnvironment& env)
@@ -40,21 +35,20 @@ struct WtApplication : public Wt::WApplication
   {
     this->setTitle("RubiksClock");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new WtRubiksClockMenuDialog);
+    root()->addWidget(new ribi::WtRubiksClockMenuDialog);
   }
 };
-//---------------------------------------------------------------------------
+
 Wt::WApplication *createApplication(
   const Wt::WEnvironment& env)
 {
   return new WtApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
-  { START_TRACE(); }
-  WtAutoConfig a(argc,argv,createApplication);
-  WtAutoConfig::SaveDefaultStylesheet();
+  START_TRACE();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
   return a.Run();
 }
-//---------------------------------------------------------------------------

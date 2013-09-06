@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "question.h"
 
+namespace ribi {
+
 ///Class for a multiple choice question
 struct MultipleChoiceQuestion : public Question
 {
@@ -88,5 +90,7 @@ struct MultipleChoiceQuestion : public Question
     const char seperator);
 
 };
+
+} //~namespace ribi
 
 #endif // MULTIPLECHOICEQUESTION_H

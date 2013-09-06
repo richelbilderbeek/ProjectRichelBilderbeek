@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "asciiarter.h"
 
-const About AsciiArterMenuDialog::GetAbout()
+const ribi::About ribi::AsciiArterMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -39,25 +39,25 @@ const About AsciiArterMenuDialog::GetAbout()
   return a;
 }
 
-const std::string AsciiArterMenuDialog::GetVersion()
+const std::string ribi::AsciiArterMenuDialog::GetVersion()
 {
   return "5.2";
 }
 
-const std::vector<std::string> AsciiArterMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2006-12-13: Version 1.0: initial C++ Builder version, called 'AsciiArter'");
-  v.push_back("2006-12-16: Version 2.0: renamed 'AsciiArter' to 'TestAsciiArter', minor improvements");
-  v.push_back("2008-06-21: Version 3.0: minor improvements");
-  v.push_back("2011-03-23: Version 4.0: port to Qt4");
-  v.push_back("2011-03-27: Version 4.1: added web application version");
-  v.push_back("2011-04-04: Version 4.2: fix bug under the web application its Convert button");
-  v.push_back("2011-04-25: Version 4.3: removed website version\'s Close button, use of Wt::WMenu in website version");
-  v.push_back("2011-08-31: Version 4.4: added Welcome picture to website version");
-  v.push_back("2012-07-30: Version 5.0: renamed 'TestAsciiArter' to 'AsciiArter', added menu to desktop version");
-  v.push_back("2012-12-24: Version 5.1: slickened desktop application looks");
-  v.push_back("2013-07-12: Version 5.2: transitioned to Qt5 and Boost 1.54.0");
-  return v;
+  return {
+    "2006-12-13: Version 1.0: initial C++ Builder version, called 'AsciiArter'",
+    "2006-12-16: Version 2.0: renamed 'AsciiArter' to 'TestAsciiArter', minor improvements",
+    "2008-06-21: Version 3.0: minor improvements",
+    "2011-03-23: Version 4.0: port to Qt4",
+    "2011-03-27: Version 4.1: added web application version",
+    "2011-04-04: Version 4.2: fix bug under the web application its Convert button",
+    "2011-04-25: Version 4.3: removed website version\'s Close button, use of Wt::WMenu in website version",
+    "2011-08-31: Version 4.4: added Welcome picture to website version",
+    "2012-07-30: Version 5.0: renamed 'TestAsciiArter' to 'AsciiArter', added menu to desktop version",
+    "2012-12-24: Version 5.1: slickened desktop application looks",
+    "2013-07-12: Version 5.2: transitioned to Qt5 and Boost 1.54.0"
+  };
 }
 

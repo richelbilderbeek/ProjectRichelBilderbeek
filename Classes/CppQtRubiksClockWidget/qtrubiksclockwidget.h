@@ -36,6 +36,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace Wt { struct WMouseEventEvent; }
 struct QPainter;
+
+namespace ribi {
+
 struct RubiksClock;
 
 ///QtRubiksClockWidget displays a RubiksClock
@@ -149,5 +152,7 @@ void PaintVcl(TImage * const image,
   const unsigned char blue  );
 
 */
+
+} //~namespace ribi
 
 #endif // QTRUBIKSCLOCKWIDGET_H

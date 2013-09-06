@@ -30,6 +30,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct Rect;
 struct RubiksClockDialWidget;
 struct ToggleButtonWidget;
@@ -119,11 +121,15 @@ struct RubiksClock
 
 };
 
+RubiksClock::Pegs CreatePegsFromIndex(const int index);
+
 std::ostream& operator<<(std::ostream& os, const RubiksClock& r);
 std::ostream& operator<<(std::ostream& os, const RubiksClock::Times& t);
 std::ostream& operator<<(std::ostream& os, const RubiksClock::Pegs& p);
 
 bool operator==(const RubiksClock::Times& lhs, const RubiksClock::Times& rhs);
 bool operator==(const RubiksClock::Pegs& lhs, const RubiksClock::Pegs& rhs);
+
+} //~namespace ribi
 
 #endif // RUBIKSCLOCK_H

@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///ToggleButton is a class for a toggle button
 struct ToggleButton
 {
@@ -100,6 +102,8 @@ struct ToggleButton
 };
 
 std::ostream& operator<<(std::ostream& os, const ToggleButton& button);
+
+} //~namespace ribi
 
 #endif // TOGGLEBUTTON_H
 

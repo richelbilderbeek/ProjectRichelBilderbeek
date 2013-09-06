@@ -21,13 +21,21 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppClass.htm">class</a></h1>
 <p>&nbsp;</p>
 <p>
-  <a href="CppClass.htm">class</a> is a <a href="CppKeyword.htm">keyword</a> to start a <a href="CppClass.htm">class</a>
-  <a href="CppDeclaration.htm">declaration</a>. 
-  A <a href="CppClass.htm">class</a> is a user-defined <a href="CppDataType.htm">data type</a> with multiple elements and access levels. 
+  <a href="CppClass.htm">class</a> is a <a href="CppKeyword.htm">keyword</a> to start a <a href="CppClass.htm">class</a> <a href="CppDeclaration.htm">declaration</a>. 
+  A <a href="CppClass.htm">class</a> is a user-defined <a href="CppDataType.htm">data type</a> for a concept
+  There are multiple <a href="CppAccessLevel.htm">class access levels</a>.
   There are multiple <a href="CppClassType.htm">class types</a>.
   There are multiple <a href="CppClassExample.htm">class examples</a>.
-  A <a href="CppClass.htm">class</a> has <a href="CppDataMember.htm">data members</a>, <a href="CppMemberFunction.htm">member functions</a> and <a href="CppFreeFunction.htm">free functions</a>.
 </p>
+<p>&nbsp;</p>
+<p>Class elements are:</p>
+<ul>
+  <li><a href="CppConstructor.htm">constructor</a></li>
+  <li><a href="CppCopyAssignmentOperator.htm">copy assignment operator</a></li>
+  <li><a href="CppDestructor.htm">destructor</a></li>
+  <li><a href="CppMember.htm">members</a></li>
+  <li><a href="CppHelperFunction.htm">helper functions</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>The <a href="CppClass.htm">class</a> <a href="CppKeyword.htm">keyword</a> also be used to create a <a href="CppTemplateFunction.htm">template function</a>.</p>
 <p>&nbsp;</p>
@@ -97,8 +105,7 @@ and <a href="CppCopyAssignmentOperator.htm">copy assignment operator</a>:</p>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>This class called NoClass is silently converted by your <a href="CppCompiler.htm">compiler</a> to the 
-following (from [1]):</p>
+<p>This class called NoClass is silently converted by your <a href="CppCompiler.htm">compiler</a> to the following (from [1]):</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
@@ -124,58 +131,17 @@ following (from [1]):</p>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>Know what functions C++ silently writes and calls [1].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
 <p>&nbsp;</p>
-<h2>
-  <img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> 
-  Class access levels
-</h2>
-<p>&nbsp;</p>
-<p>A class has three different access levels: <b><a href="CppPublic.htm">public</a></b>,
-<b><a href="CppPrivate.htm">private</a></b> and <b><a href="CppProtected.htm">protected</a></b>.
-A class' default for functions and variables is <b><a href="CppPrivate.htm">private</a></b>.
-This is the only (!) difference with a <b><a href="CppStruct.htm">struct</a></b>,
-which has <b><a href="CppPublic.htm">public</a></b> as its default access level.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppPublic.htm">public</a></b> by <b><a href="CppDefault.htm">default</a></b>, so the keyword <b><a href="CppPublic.htm">public</a></b> below is redundant<br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>&nbsp;&nbsp; : <b><a href="CppInt.htm">int</a></b> m_<b><a href="CppPublic.htm">public</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>: <b><a href="CppInt.htm">int</a></b> m_<b><a href="CppProtected.htm">protected</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>: : <b><a href="CppInt.htm">int</a></b> m_<b><a href="CppPrivate.htm">private</a></b>;<br/>
-};<br/>
- <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;MyClass m;<br/>
-&nbsp;&nbsp;m.m_<b><a href="CppPublic.htm">public</a></b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>OK, <b><a href="CppThis.htm">this</a></b> member variable is <b><a href="CppPublic.htm">public</a></b><br/>
-&nbsp;&nbsp;m.m_<b><a href="CppProtected.htm">protected</a></b> <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Not allowed, <b><a href="CppThis.htm">this</a></b> member variable is <b><a href="CppProtected.htm">protected</a></b><br/>
-&nbsp;&nbsp;m.m_<b><a href="CppPrivate.htm">private</a></b>&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Not allowed, <b><a href="CppThis.htm">this</a></b> member variable is <b><a href="CppPrivate.htm">private</a></b><br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>
-  <img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/>
-  <a href="CppClassDesign.htm">Class design</a>
-</h2>
-<p>&nbsp;</p>
-<p>See <a href="CppClassDesign.htm">class design</a> for some guidelines on <a
-href="CppClassDesign.htm">class design</a>.</p>
-<p>&nbsp;</p>
-<p><a href="CppDesignPattern.htm">Design patterns</a> are standarized <a
-href="CppClassDesign.htm">class designs</a> to achieve a certain goal, often
-involving multiple classes.</p>
+<ul>
+  <li>
+    Know what functions C++ silently writes and calls [1]
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -184,7 +150,7 @@ involving multiple classes.</p>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 5: 'Know what functions C++ silently writes and calls'</li>
+  <li><!--  1 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 5: 'Know what functions C++ silently writes and calls'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

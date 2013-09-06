@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <numeric>
 
-DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(const int width, const int height)
+ribi::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(const int width, const int height)
   : m_v(height,std::vector<Tile>(width,Tile::empty))
 {
   assert(height == static_cast<int>(m_v.size()));
@@ -38,7 +38,7 @@ DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(const int width, const in
   m_cursor.tile = Tile::beer;
 }
 
-void DasWahreSchlagerfestWidget::CheckThree()
+void ribi::DasWahreSchlagerfestWidget::CheckThree()
 {
   assert(!m_v.empty());
   assert(!m_v[0].empty());
@@ -116,7 +116,7 @@ void DasWahreSchlagerfestWidget::CheckThree()
   CheckThree();
 }
 
-void DasWahreSchlagerfestWidget::PressKey(const DasWahreSchlagerfestWidget::Key key)
+void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfestWidget::Key key)
 {
   switch (key)
   {

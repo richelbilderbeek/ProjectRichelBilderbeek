@@ -27,6 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "about.h"
+
+namespace ribi {
+
 struct AsciiArter;
 
 struct AsciiArterMainDialog
@@ -48,5 +51,7 @@ struct AsciiArterMainDialog
 
   const boost::scoped_ptr<AsciiArter> m_asciiarter;
 };
+
+} //~namespace ribi
 
 #endif // ASCIIARTERMAINDIALOG_H

@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-QtOpenQuestionDialog::QtOpenQuestionDialog(QWidget *parent) 
+ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(QWidget *parent)
   : QtQuestionDialog(
       boost::shared_ptr<QuestionDialog>(
         new OpenQuestionDialog(
@@ -41,7 +41,7 @@ QtOpenQuestionDialog::QtOpenQuestionDialog(QWidget *parent)
   ui->setupUi(this);
 }
 
-QtOpenQuestionDialog::QtOpenQuestionDialog(
+ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog,
   QWidget *parent)
   : QtQuestionDialog(dialog,parent),
@@ -53,17 +53,17 @@ QtOpenQuestionDialog::QtOpenQuestionDialog(
   SetQuestion(dialog->GetQuestion());
 }
 
-QtOpenQuestionDialog::~QtOpenQuestionDialog()
+ribi::QtOpenQuestionDialog::~QtOpenQuestionDialog()
 {
   delete ui;
 }
 
-const std::string QtOpenQuestionDialog::GetVersion()
+const std::string ribi::QtOpenQuestionDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtOpenQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtOpenQuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-28: version 1.0: initial version");
@@ -71,7 +71,7 @@ const std::vector<std::string> QtOpenQuestionDialog::GetVersionHistory()
 }
 
 ///Set the Question
-void QtOpenQuestionDialog::SetQuestion(
+void ribi::QtOpenQuestionDialog::SetQuestion(
   const boost::shared_ptr<Question>& question)
 {
   m_dialog->SetQuestion(question);
@@ -91,7 +91,7 @@ void QtOpenQuestionDialog::SetQuestion(
   ui->label_answer->setText(q->GetAnswers()[0].c_str());
 }
 
-void QtOpenQuestionDialog::on_button_submit_clicked()
+void ribi::QtOpenQuestionDialog::on_button_submit_clicked()
 {
   assert(m_dialog->CanSubmit());
   m_dialog->Submit(this->ui->edit_answer->text().toStdString());

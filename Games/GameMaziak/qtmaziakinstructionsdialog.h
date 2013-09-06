@@ -27,6 +27,8 @@ namespace Ui {
     class QtMaziakInstructionsDialog;
 }
 
+namespace ribi {
+
 class QtMaziakInstructionsDialog : public QDialog
 {
     Q_OBJECT
@@ -35,11 +37,10 @@ public:
     explicit QtMaziakInstructionsDialog(QWidget *parent = 0);
     ~QtMaziakInstructionsDialog();
 
-protected:
-    void changeEvent(QEvent *e);
-
 private:
     Ui::QtMaziakInstructionsDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTMAZIAKINSTRUCTIONSDIALOG_H

@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 namespace Boenken {
 
 ///Controls contains the control keys
@@ -38,5 +40,7 @@ struct Controls
 };
 
 } //~namespace Boenken
+
+} //~namespace ribi
 
 #endif // BOENKENCONTROLS_H

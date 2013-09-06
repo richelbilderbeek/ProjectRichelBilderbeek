@@ -35,6 +35,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h" //For MOC
 #include "dialwidget.h" //For MOC
 
+namespace ribi {
+
 ///QtDialWidget manages and displays a Dial
 class QtDialWidget : public QWidget
 {
@@ -69,6 +71,8 @@ public:
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // QTDIALWIDGET_H
 

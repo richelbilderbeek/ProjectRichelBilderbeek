@@ -19,8 +19,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtbeerwantermaindialog.h"
 
 #include <iostream>
@@ -29,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtbeerwanterwidget.h"
 #include "ui_qtbeerwantermaindialog.h"
 
-QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
+ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtBeerWanterMainDialog),
     m_widget(new QtBeerWanterWidget)
@@ -48,17 +46,17 @@ QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
     this,SLOT(OnShake(const int,const int)));
 }
 
-QtBeerWanterMainDialog::~QtBeerWanterMainDialog()
+ribi::QtBeerWanterMainDialog::~QtBeerWanterMainDialog()
 {
   delete ui;
 }
 
-void QtBeerWanterMainDialog::ChangeTitle(const std::string& title)
+void ribi::QtBeerWanterMainDialog::ChangeTitle(const std::string& title)
 {
   this->setWindowTitle(title.c_str());
 }
 
-void QtBeerWanterMainDialog::OnShake(const int x, const int y)
+void ribi::QtBeerWanterMainDialog::OnShake(const int x, const int y)
 {
   this->setGeometry(x,y,this->width(),this->height());
   this->repaint();

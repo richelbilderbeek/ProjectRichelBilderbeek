@@ -33,6 +33,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "widget.h"
 
+namespace ribi {
+
 struct Dial;
 
 ///DialWidget is a class to display a Dial
@@ -92,5 +94,7 @@ struct DialWidget : public Widget
 };
 
 std::ostream& operator<<(std::ostream& os, const DialWidget& widget);
+
+} //~namespace ribi
 
 #endif // DIALWIDGET_H

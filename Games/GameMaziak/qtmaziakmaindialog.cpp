@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakgamewondialog.h"
 #include "ui_qtmaziakmaindialog.h"
 
-QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_size) :
+ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_size) :
     QDialog(parent,Qt::Window),
     ui(new Ui::QtMaziakMainDialog),
     //Floor
@@ -168,12 +168,12 @@ QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_size) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtMaziakMainDialog::~QtMaziakMainDialog()
+ribi::QtMaziakMainDialog::~QtMaziakMainDialog()
 {
   delete ui;
 }
 
-void QtMaziakMainDialog::changeEvent(QEvent *e)
+void ribi::QtMaziakMainDialog::changeEvent(QEvent *e)
 {
   QWidget::changeEvent(e);
   switch (e->type()) {
@@ -185,12 +185,12 @@ void QtMaziakMainDialog::changeEvent(QEvent *e)
   }
 }
 
-void QtMaziakMainDialog::resizeEvent(QResizeEvent*)
+void ribi::QtMaziakMainDialog::resizeEvent(QResizeEvent*)
 {
   this->repaint();
 }
 
-void QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
+void ribi::QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
 {
   if (mFighting > 0) repaint();
 
@@ -208,12 +208,12 @@ void QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
   }
 }
 
-void QtMaziakMainDialog::keyReleaseEvent(QKeyEvent * e)
+void ribi::QtMaziakMainDialog::keyReleaseEvent(QKeyEvent * e)
 {
   mKeys.erase(e->key());
 }
 
-void QtMaziakMainDialog::onTimerPressKey()
+void ribi::QtMaziakMainDialog::onTimerPressKey()
 {
   if (mFighting > 0) return;
   if (mKeys.empty()) { mMoveNow = none; }
@@ -272,7 +272,7 @@ void QtMaziakMainDialog::onTimerPressKey()
   }
 }
 
-void QtMaziakMainDialog::onTimerEnemy()
+void ribi::QtMaziakMainDialog::onTimerEnemy()
 {
   //Move them
   const int minx = std::max(0,mX - mViewWidth );
@@ -344,13 +344,13 @@ void QtMaziakMainDialog::onTimerEnemy()
   repaint();
 }
 
-void QtMaziakMainDialog::onTimerShowSolution()
+void ribi::QtMaziakMainDialog::onTimerShowSolution()
 {
   mShowSolution = false;
   m_timer_show_solution->stop();
 }
 
-void QtMaziakMainDialog::paintEvent(QPaintEvent *)
+void ribi::QtMaziakMainDialog::paintEvent(QPaintEvent *)
 {
   const int block_width  = 1 + ((ui->widget->width()  - 4) / mViewWidth);
   const int block_height = 1 + ((ui->widget->height() - 4) / mViewHeight);
@@ -464,7 +464,7 @@ void QtMaziakMainDialog::paintEvent(QPaintEvent *)
   }
 }
 
-void QtMaziakMainDialog::gameOver()
+void ribi::QtMaziakMainDialog::gameOver()
 {
   m_timer_press_key->stop();
   m_timer_enemy->stop();
@@ -474,7 +474,7 @@ void QtMaziakMainDialog::gameOver()
   f->exec();
 }
 
-void QtMaziakMainDialog::gameWon()
+void ribi::QtMaziakMainDialog::gameWon()
 {
   m_timer_press_key->stop();
   m_timer_enemy->stop();
@@ -486,7 +486,7 @@ void QtMaziakMainDialog::gameWon()
 }
 
 
-const QPixmap& QtMaziakMainDialog::GetPixmapFloor(const int x, const int y) const
+const QPixmap& ribi::QtMaziakMainDialog::GetPixmapFloor(const int x, const int y) const
 {
   const int sz = static_cast<int>(mMaze.size());
   assert(sz > 0);
@@ -513,7 +513,7 @@ const QPixmap& QtMaziakMainDialog::GetPixmapFloor(const int x, const int y) cons
   return *(m_pixmap_empty.get());
 }
 
-const QPixmap& QtMaziakMainDialog::GetPixmapAboveFloor(const int x, const int y) const
+const QPixmap& ribi::QtMaziakMainDialog::GetPixmapAboveFloor(const int x, const int y) const
 {
   const int sz = static_cast<int>(mMaze.size());
   if ( x < 0
@@ -540,7 +540,7 @@ const QPixmap& QtMaziakMainDialog::GetPixmapAboveFloor(const int x, const int y)
   }
 }
 
-const QPixmap& QtMaziakMainDialog::GetPixmapPlayer(
+const QPixmap& ribi::QtMaziakMainDialog::GetPixmapPlayer(
   const PlayerDirection direction,
   const PlayerMove moveNow) const
 {
@@ -622,9 +622,9 @@ const QPixmap& QtMaziakMainDialog::GetPixmapPlayer(
   //Unreachable
 }
 
-void QtMaziakMainDialog::createMaze(const int sz)
+void ribi::QtMaziakMainDialog::createMaze(const int sz)
 {
-  mIntMaze = ::CreateMaze(sz);
+  mIntMaze = ribi::CreateMaze(sz);
   mMaze = ConvertMatrix<int,MazeSquare>(mIntMaze);
 
   {
@@ -705,10 +705,10 @@ void QtMaziakMainDialog::createMaze(const int sz)
 }
 
 //Adapted from http://www.richelbilderbeek.nl/CppIsSquare.htm
-bool IsSquare(const std::vector<std::vector<QtMaziakMainDialog::MazeSquare> >& v)
+bool ribi::IsSquare(const std::vector<std::vector<ribi::QtMaziakMainDialog::MazeSquare> >& v)
 {
   assert(!v.empty());
-  BOOST_FOREACH(std::vector<QtMaziakMainDialog::MazeSquare> row, v)
+  BOOST_FOREACH(std::vector<ribi::QtMaziakMainDialog::MazeSquare> row, v)
   {
     if (row.size()!=v.size()) return false;
   }
@@ -716,7 +716,7 @@ bool IsSquare(const std::vector<std::vector<QtMaziakMainDialog::MazeSquare> >& v
 }
 
 //Adapted from http://www.richelbilderbeek.nl/CppIsSquare.htm
-bool IsSquare(const std::vector<std::vector<int> >& v)
+bool ribi::IsSquare(const std::vector<std::vector<int> >& v)
 {
   assert(!v.empty());
   BOOST_FOREACH(std::vector<int> row, v)
@@ -726,11 +726,7 @@ bool IsSquare(const std::vector<std::vector<int> >& v)
   return true;
 }
 
-//Creates a maze
-// 0 : path
-// 1 : wall
-//From http://www.richelbilderbeek.nl/CppCreateMaze.htm
-std::vector<std::vector<int> > CreateMaze(const int sz)
+std::vector<std::vector<int> > ribi::CreateMaze(const int sz)
 {
   //Assume correct size dimensions
   assert( sz > 4 && sz % 4 == 3
@@ -795,8 +791,7 @@ std::vector<std::vector<int> > CreateMaze(const int sz)
   return maze;
 }
 
-//From http://www.richelbilderbeek.nl/GetMazeDistances.htm
-std::vector<std::vector<int> > GetMazeDistances(
+std::vector<std::vector<int> > ribi::GetMazeDistances(
   const std::vector<std::vector<int> >& maze,
   const int x,
   const int y)
@@ -861,7 +856,7 @@ std::vector<std::vector<int> > GetMazeDistances(
   return distances;
 }
 
-const std::vector<std::pair<int,int> > GetShuffledDeadEnds(
+const std::vector<std::pair<int,int> > ribi::GetShuffledDeadEnds(
     const std::vector<std::vector<int> >& intMaze)
 {
   std::vector<std::pair<int,int> > deadEnds = GetDeadEnds(intMaze);
@@ -872,7 +867,7 @@ const std::vector<std::pair<int,int> > GetShuffledDeadEnds(
 #include <vector>
 
 //From http://www.richelbilderbeek.nl/CppGetDeadEnds.htm
-std::vector<std::pair<int,int> > GetDeadEnds(const std::vector<std::vector<int> >& maze)
+std::vector<std::pair<int,int> > ribi::GetDeadEnds(const std::vector<std::vector<int> >& maze)
 {
   const int size = maze.size();
 
@@ -896,7 +891,7 @@ std::vector<std::pair<int,int> > GetDeadEnds(const std::vector<std::vector<int> 
 }
 
 //From http://www.richelbilderbeek.nl/GetDistancesPath.htm
-std::vector<std::vector<int> > GetDistancesPath(
+std::vector<std::vector<int> > ribi::GetDistancesPath(
   const std::vector<std::vector<int> >& distances,
   const int playerX,
   const int playerY)
@@ -921,8 +916,8 @@ std::vector<std::vector<int> > GetDistancesPath(
   return solution;
 }
 
-bool CanMoveTo(
-  const std::vector<std::vector<QtMaziakMainDialog::MazeSquare> >& maze,
+bool ribi::CanMoveTo(
+  const std::vector<std::vector<ribi::QtMaziakMainDialog::MazeSquare> >& maze,
   const int x, const int y,
   const bool hasSword,
   const bool showSolution)
@@ -933,15 +928,15 @@ bool CanMoveTo(
   const int maxy = static_cast<int>(maze.size());
   if (y >= maxy) return false;
   if (x >= static_cast<int>(maze[y].size())) return false;
-  const QtMaziakMainDialog::MazeSquare s = maze[y][x];
+  const ribi::QtMaziakMainDialog::MazeSquare s = maze[y][x];
   //Bump into wall
-  if (s == QtMaziakMainDialog::msWall) return false;
+  if (s == ribi::QtMaziakMainDialog::msWall) return false;
   //Bump into sword
-  if (s == QtMaziakMainDialog::msSword && hasSword) return false;
+  if (s == ribi::QtMaziakMainDialog::msSword && hasSword) return false;
   //Bump into prisoner
   if (showSolution
-    && (s == QtMaziakMainDialog::msPrisoner1
-     || s == QtMaziakMainDialog::msPrisoner2) ) return false;
+    && (s == ribi::QtMaziakMainDialog::msPrisoner1
+     || s == ribi::QtMaziakMainDialog::msPrisoner2) ) return false;
   //Bump into empty/enemy/exit, so player can move there
   return true;
 }

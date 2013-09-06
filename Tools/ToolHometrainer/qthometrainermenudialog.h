@@ -7,6 +7,8 @@ namespace Ui {
   class QtHometrainerMenuDialog;
 }
 
+namespace ribi {
+
 class QtHometrainerMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -14,9 +16,6 @@ class QtHometrainerMenuDialog : public QtHideAndShowDialog
 public:
   explicit QtHometrainerMenuDialog(QWidget *parent = 0);
   ~QtHometrainerMenuDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtHometrainerMenuDialog *ui;
@@ -26,5 +25,7 @@ private slots:
   void on_button_quit_clicked();
   void on_button_start_clicked();
 };
+
+} //~namespace ribi
 
 #endif // QTHOMETRAINERMENUDIALOG_H

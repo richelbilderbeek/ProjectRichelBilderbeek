@@ -28,31 +28,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtcreateglossarymenudialog.h"
 #include "createglossarymaindialog.h"
 
-QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent) :
+ribi::QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtCreateGlossaryMenuDialog)
 {
   ui->setupUi(this);
 }
 
-QtCreateGlossaryMenuDialog::~QtCreateGlossaryMenuDialog()
+ribi::QtCreateGlossaryMenuDialog::~QtCreateGlossaryMenuDialog()
 {
   delete ui;
 }
 
-void QtCreateGlossaryMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtCreateGlossaryMenuDialog::on_button_about_clicked()
+void ribi::QtCreateGlossaryMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(CreateGlossaryMenuDialog::GetAbout());
   d.setWindowIcon(this->windowIcon());
@@ -62,12 +50,12 @@ void QtCreateGlossaryMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtCreateGlossaryMenuDialog::on_button_quit_clicked()
+void ribi::QtCreateGlossaryMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtCreateGlossaryMenuDialog::on_button_start_clicked()
+void ribi::QtCreateGlossaryMenuDialog::on_button_start_clicked()
 {
   //Make a screenshot
   QPixmap::grabWidget(this,this->window()->rect()).save("ToolCreateGlossaryMenuDialog.png");

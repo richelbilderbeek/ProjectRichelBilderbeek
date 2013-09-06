@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoewinnerdialog.h"
 #include "ui_qttictactoegamedialog.h"
 
-QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
+ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
     QDialog(parent, Qt::Window),
     ui(new Ui::QtTicTacToeGameDialog),
     m_tictactoe(new QtTicTacToeWidget)
@@ -47,24 +47,12 @@ QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtTicTacToeGameDialog::~QtTicTacToeGameDialog()
+ribi::QtTicTacToeGameDialog::~QtTicTacToeGameDialog()
 {
   delete ui;
 }
 
-void QtTicTacToeGameDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtTicTacToeGameDialog::HasWinner()
+void ribi::QtTicTacToeGameDialog::HasWinner()
 {
 
   QtTicTacToeWinnerDialog d;

@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "openquestion.h"
 //#include "trace.h"
 
-OpenQuestionDialog::OpenQuestionDialog(const std::string& question)
+ribi::OpenQuestionDialog::OpenQuestionDialog(const std::string& question)
   : QuestionDialog(boost::shared_ptr<Question>(new OpenQuestion(question)))
 {
   assert(CanSubmit());
@@ -33,7 +33,7 @@ OpenQuestionDialog::OpenQuestionDialog(const std::string& question)
   assert(GetQuestion());
 }
 
-OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<Question>& question)
+ribi::OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<Question>& question)
   : QuestionDialog(question)
 {
   assert(CanSubmit());
@@ -41,12 +41,12 @@ OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<Question>& questi
   assert(GetQuestion());
 }
 
-const std::string OpenQuestionDialog::GetVersion()
+const std::string ribi::OpenQuestionDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> OpenQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::OpenQuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-29: version 1.0: initial version");

@@ -20,29 +20,35 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppFunction.htm">function</a></h1>
 <p>&nbsp;</p>
-<p>This page is about two different <a href="CppFunction.htm">functions</a>:</p>
+<p>There are multiple classes with the name '<a href="CppFunction.htm">function</a>':</p>
 <ol>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="CppFunction.htm">function</a> (general): a piece of callable code</li>
   <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoostFunction.htm">Boost.Function</a>: the <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a></li>
   <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoostFunction.htm">boost::function</a>: the function wrapper in the <a href="CppBoostFunction.htm">Boost.Function</a> <a href="CppLibrary.htm">library</a></li>
   <li><img src="PicCpp11.png" alt="C++11"/> <a href="CppStdFunction.htm">std::function</a>: the function wrapper in the <a href="Cpp11.htm">C++11</a> <a href="CppStl.htm">STL</a></li>
 </ol>
 <p>&nbsp;</p>
+<p>
+  A <a href="CppFunction.htm">function</a> (in general) is a callable piece of code that performs a specific
+  general task with as little information as possible (<a href="CppFunctionPurpose.htm">Why would you want this? Go to this page to view
+  the purpose of using functions</a>).
+</p>
 <p>&nbsp;</p>
+<p>There are multiple types of functions:</p>
+<ul>
+  <li>Free functions: synonym for <a href="CppHelperFunction.htm">helper function</a></li>
+  <li><a href="CppHelperFunction.htm">Helper functions</a></li>
+  <li><a href="CppMemberFunction.htm">Member functions</a></li>
+  <li><a href="CppTemplateFunction.htm">Template functions</a></li>
+</ul>
+
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><img src="PicCpp98.png" alt="C++98"/> <a href="CppFunction.htm">function</a> (general)</h2>
-<p>&nbsp;</p>
-<p>A <a href="CppFunction.htm">function</a> is a callable piece of code that performs a specific
-general task with as little information as possible (<a href="CppFunctionPurpose.htm">Why would you want this? Go to this page to view
-the purpose of using functions</a>).</p>
-<p>&nbsp;</p>
-<p>A <a href="CppFunctionDeclaration.htm">function declaration</a> states what a 
-<a href="CppFunction.htm">function</a> needs and <a href="CppReturn.htm">returns</a>.
-A <a href="CppFunctionDefinition.htm">function definition</a> states how a 
-<a href="CppFunction.htm">function</a> uses its <a href="CppArgument.htm">arguments</a>
-and calculates what to <a href="CppReturn.htm">return</a>.</p>
+<p>
+  A <a href="CppFunctionDeclaration.htm">function declaration</a> states what a 
+  <a href="CppFunction.htm">function</a> needs and <a href="CppReturn.htm">returns</a>.
+  A <a href="CppFunctionDefinition.htm">function definition</a> states how a 
+  <a href="CppFunction.htm">function</a> uses its <a href="CppArgument.htm">arguments</a>
+  and calculates what to <a href="CppReturn.htm">return</a>.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
@@ -66,156 +72,21 @@ and calculates what to <a href="CppReturn.htm">return</a>.</p>
 <p>A <a href="CppFunction.htm">function</a> that accompanies a <a href="CppClass.htm">class</a> (and is 
 non-<a href="CppFriend.htm">friend</a>) is called a <a href="CppFreeFunction.htm">free function</a>.</p>
 <p>&nbsp;</p>
-<p>
-  Consider using proper <a href="CppFunctionDesign.htm">function design</a>. 
-  Assume that every <a href="CppException.htm">exception</a> that can be <a href="CppThrow.htm">thrown</a> by a <a href="CppFunction.htm">function</a> will be <a href="CppThrow.htm">thrown</a> [1]
-</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppFunction.htm">boost::function</a>: the <a href="CppBoost.htm">Boost</a>.Function <a href="CppLibrary.htm">library</a></h2>
-<p>&nbsp;</p>
-<p><a href="CppFunction.htm">boost::function</a> is part of the <a href="CppBoost.htm">Boost</a>.Function <a href="CppLibrary.htm">library</a> for
-working with <a href="CppFunction.htm">functions</a> in general, including <a href="CppMemberFunction.htm">member functions</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppFunction.htm">boost::function</a> example 1</h2>
-<p>&nbsp;</p>
-<p>Below are two pieces of near-identical code, the first using function pointers to <a href="CppGlobal.htm">global</a> functions, the second using 
-<a href="CppFunction.htm">boost::function</a>.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> f1(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) { <b><a href="CppReturn.htm">return</a></b> i <a href="CppOperatorPlus.htm">+</a> 1; }<br/>
-<b><a href="CppInt.htm">int</a></b> f2(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) { <b><a href="CppReturn.htm">return</a></b> i <a href="CppOperatorPlus.htm">+</a> 2; }<br/>
-<b><a href="CppInt.htm">int</a></b> f3(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) { <b><a href="CppReturn.htm">return</a></b> i <a href="CppOperatorPlus.htm">+</a> 3; }<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppInt.htm">int</a></b>(*<a href="CppFunction.htm">Function</a>)(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppFunction.htm">Function</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back(f1);<br/>
-&nbsp;&nbsp;v.push_back(f2);<br/>
-&nbsp;&nbsp;v.push_back(f3);<br/>
-&nbsp;&nbsp;<a href="CppRandom_shuffle.htm">std::random_shuffle</a>(v.begin(),v.end());<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">Function</a>&amp; f,v)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorAssign.htm">=</a> f(x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppFunction.htm">function</a>.hpp&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> f1(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) { <b><a href="CppReturn.htm">return</a></b> i <a href="CppOperatorPlus.htm">+</a> 1; }<br/>
-<b><a href="CppInt.htm">int</a></b> f2(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) { <b><a href="CppReturn.htm">return</a></b> i <a href="CppOperatorPlus.htm">+</a> 2; }<br/>
-<b><a href="CppInt.htm">int</a></b> f3(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) { <b><a href="CppReturn.htm">return</a></b> i <a href="CppOperatorPlus.htm">+</a> 3; }<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppFunction.htm">boost::function</a>&lt;<b><a href="CppInt.htm">int</a></b>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>)&gt; &gt; v;<br/>
-&nbsp;&nbsp;v.push_back(f1);<br/>
-&nbsp;&nbsp;v.push_back(f2);<br/>
-&nbsp;&nbsp;v.push_back(f3);<br/>
-&nbsp;&nbsp;<a href="CppRandom_shuffle.htm">std::random_shuffle</a>(v.begin(),v.end());<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">boost::function</a>&lt;<b><a href="CppInt.htm">int</a></b>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>)&gt;&amp; f,v)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorAssign.htm">=</a> f(x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Possible screen output:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-1<br/>
-4<br/>
-6<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppFunction.htm">boost::function</a> example 2</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppFunction.htm">function</a>.hpp&gt;<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> Speaker<br/>
-{<br/>
-&nbsp;&nbsp;Speaker(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> hello_message, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> bye_message)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: m_hello_message(hello_message),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_bye_message(bye_message)<br/>
-&nbsp;&nbsp;{<br/>
-<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_hello_message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayBye() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_bye_message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_hello_message;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_bye_message;<br/>
-};<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Speaker s1("Hello!","Bye!");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Speaker s2("HELLO!","BYE!");<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">boost::function</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<b><a href="CppConst.htm">const</a></b> Speaker*)&gt; say_hello_function <a href="CppOperatorAssign.htm">=</a> &amp;Speaker::SayHello;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">boost::function</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<b><a href="CppConst.htm">const</a></b> Speaker*)&gt; say_bye_function <a href="CppOperatorAssign.htm">=</a> &amp;Speaker::SayBye;<br/>
-<br/>
-&nbsp;&nbsp;say_hello_function(&amp;s1);<br/>
-&nbsp;&nbsp;say_bye_function(&amp;s1);<br/>
-<br/>
-&nbsp;&nbsp;say_hello_function(&amp;s2);<br/>
-&nbsp;&nbsp;say_bye_function(&amp;s2);<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Screen output:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-Hello!<br/>
-Bye!<br/>
-HELLO!<br/>
-BYE!<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <li>
+    Consider using proper <a href="CppFunctionDesign.htm">function design</a>. Note: many points of <a href="CppAdvice.htm">advice</a>!
+  </li>
+  <li>
+    Assume that every <a href="CppException.htm">exception</a> that can be <a href="CppThrow.htm">thrown</a> by a 
+    <a href="CppFunction.htm">function</a> will be <a href="CppThrow.htm">thrown</a> [1]
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

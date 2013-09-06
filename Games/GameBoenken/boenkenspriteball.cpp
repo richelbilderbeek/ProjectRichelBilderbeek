@@ -25,24 +25,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-namespace Boenken {
-
 ///The y-coordinat of the top goal post
-double SpriteBall::m_goal_y_top = 100.0;
+double ribi::Boenken::SpriteBall::m_goal_y_top = 100.0;
 
 ///The y-coordinat of the bottom goal post
-double SpriteBall::m_goal_y_bottom = 300.0;
+double ribi::Boenken::SpriteBall::m_goal_y_bottom = 300.0;
 
 ///The current score for the left team
-int SpriteBall::m_score_left = 0;
+int ribi::Boenken::SpriteBall::m_score_left = 0;
 
 ///The current score for the right team
-int SpriteBall::m_score_right = 0;
+int ribi::Boenken::SpriteBall::m_score_right = 0;
 
 //The number of balls, for debugging purposes
-int SpriteBall::sm_n_balls = 0;
+int ribi::Boenken::SpriteBall::sm_n_balls = 0;
 
-SpriteBall::SpriteBall(
+ribi::Boenken::SpriteBall::SpriteBall(
   const double x,
   const double y,
   const int size,
@@ -57,14 +55,14 @@ SpriteBall::SpriteBall(
   //  << this->getY() << ")\n";
 }
 
-SpriteBall::~SpriteBall()
+ribi::Boenken::SpriteBall::~SpriteBall()
 {
   --sm_n_balls;
   assert(sm_n_balls >= 0);
 }
 
 
-void SpriteBall::SetGoalPoles(
+void ribi::Boenken::SpriteBall::SetGoalPoles(
   const double goal_y_top,
   const double goal_y_bottom)
 {
@@ -74,7 +72,7 @@ void SpriteBall::SetGoalPoles(
     && "Assume the top pole is on top");
 }
 
-void SpriteBall::Move()
+void ribi::Boenken::SpriteBall::Move()
 {
   const double maxx = this->m_maxx - this->m_size;
   const double maxy = this->m_maxy - this->m_size;
@@ -133,10 +131,7 @@ void SpriteBall::Move()
   m_dy *= m_friction;
 }
 
-std::pair<int,int> SpriteBall::GetScore()
+std::pair<int,int> ribi::Boenken::SpriteBall::GetScore()
 {
   return std::make_pair(m_score_left,m_score_right);
 }
-
-} //~namespace Boenken
-

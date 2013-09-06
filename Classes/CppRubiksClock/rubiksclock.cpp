@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 RubiksClock, class for Rubik's clock
 Copyright (C) 2011 Richel Bilderbeek
@@ -15,11 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppRubiksClock.htm
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
@@ -40,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-RubiksClock::Times::Times(const bool is_front)
+ribi::RubiksClock::Times::Times(const bool is_front)
 {
   for (int y=0; y!=3; ++y)
   {
@@ -54,7 +52,7 @@ RubiksClock::Times::Times(const bool is_front)
   }
 }
 
-bool operator==(const RubiksClock::Times& lhs, const RubiksClock::Times& rhs)
+bool ribi::operator==(const ribi::RubiksClock::Times& lhs, const ribi::RubiksClock::Times& rhs)
 {
   for (int y=0; y!=3; ++y)
   {
@@ -67,7 +65,7 @@ bool operator==(const RubiksClock::Times& lhs, const RubiksClock::Times& rhs)
   return true;
 }
 
-RubiksClock::Pegs::Pegs()
+ribi::RubiksClock::Pegs::Pegs()
 {
   for (int y=0; y!=2; ++y)
   {
@@ -78,7 +76,7 @@ RubiksClock::Pegs::Pegs()
   }
 }
 
-bool operator==(const RubiksClock::Pegs& lhs, const RubiksClock::Pegs& rhs)
+bool operator==(const ribi::RubiksClock::Pegs& lhs, const ribi::RubiksClock::Pegs& rhs)
 {
   for (int y=0; y!=2; ++y)
   {
@@ -90,7 +88,7 @@ bool operator==(const RubiksClock::Pegs& lhs, const RubiksClock::Pegs& rhs)
   return true;
 }
 
-RubiksClock::Pegs CreatePegsFromIndex(const int index)
+ribi::RubiksClock::Pegs ribi::CreatePegsFromIndex(const int index)
 {
   //Index 0: (p = pressed, u = unpressed)
   // u u
@@ -141,7 +139,7 @@ RubiksClock::Pegs CreatePegsFromIndex(const int index)
   // p p
   // p p
 
-  RubiksClock::Pegs pegs;
+  ribi::RubiksClock::Pegs pegs;
   pegs.pegs[0][0].reset(new ToggleButtonWidget(((index & 1) == 1),255,255,0));
   pegs.pegs[1][0].reset(new ToggleButtonWidget(((index & 2) == 2),255,255,0));
   pegs.pegs[0][1].reset(new ToggleButtonWidget(((index & 4) == 4),255,255,0));
@@ -151,14 +149,14 @@ RubiksClock::Pegs CreatePegsFromIndex(const int index)
 
 }
 
-RubiksClock::RubiksClock()
+ribi::RubiksClock::RubiksClock()
   : mFront(Times(true)),
     mBack(Times(false))
 {
   Check();
 }
 
-void RubiksClock::SetGeometry(const Rect& r)
+void ribi::RubiksClock::SetGeometry(const Rect& r)
 {
   const int left = r.GetX();
   const int top = r.GetY();
@@ -204,7 +202,7 @@ void RubiksClock::SetGeometry(const Rect& r)
 
 }
 
-void RubiksClock::TogglePeg(const Side side)
+void ribi::RubiksClock::TogglePeg(const Side side)
 {
   const int x = (side == topLeft || side == bottomLeft ? 0 : 1);
   const int y = (side == topLeft || side == topRight ? 0 : 1);
@@ -212,7 +210,7 @@ void RubiksClock::TogglePeg(const Side side)
   m_signal_clock_changed();
 }
 
-void RubiksClock::TurnWheel(const Side side, const int nSteps)
+void ribi::RubiksClock::TurnWheel(const Side side, const int nSteps)
 {
   switch (side)
   {
@@ -227,7 +225,7 @@ void RubiksClock::TurnWheel(const Side side, const int nSteps)
   }
 }
 
-void RubiksClock::TurnWheelTopLeft(const int nSteps)
+void ribi::RubiksClock::TurnWheelTopLeft(const int nSteps)
 {
   bool turnFront[3][3];
   bool turnBack[3][3];
@@ -277,7 +275,7 @@ void RubiksClock::TurnWheelTopLeft(const int nSteps)
 
 }
 
-void RubiksClock::TurnWheelTopRight(const int nSteps)
+void ribi::RubiksClock::TurnWheelTopRight(const int nSteps)
 {
   bool turnFront[3][3];
   bool turnBack[3][3];
@@ -326,7 +324,7 @@ void RubiksClock::TurnWheelTopRight(const int nSteps)
   }
 }
 
-void RubiksClock::TurnWheelBottomLeft(const int nSteps)
+void ribi::RubiksClock::TurnWheelBottomLeft(const int nSteps)
 {
   bool turnFront[3][3];
   bool turnBack[3][3];
@@ -375,7 +373,7 @@ void RubiksClock::TurnWheelBottomLeft(const int nSteps)
   }
 }
 
-void RubiksClock::TurnWheelBottomRight(const int nSteps)
+void ribi::RubiksClock::TurnWheelBottomRight(const int nSteps)
 {
   bool turnFront[3][3];
   bool turnBack[3][3];
@@ -424,37 +422,37 @@ void RubiksClock::TurnWheelBottomRight(const int nSteps)
   }
 }
 
-const RubiksClock::Times& RubiksClock::GetFrontTimes() const
+const ribi::RubiksClock::Times& ribi::RubiksClock::GetFrontTimes() const
 {
   return mFront;
 }
 
-RubiksClock::Times& RubiksClock::GetFrontTimes()
+ribi::RubiksClock::Times& ribi::RubiksClock::GetFrontTimes()
 {
   return mFront;
 }
 
-const RubiksClock::Times& RubiksClock::GetBackTimes() const
+const ribi::RubiksClock::Times& ribi::RubiksClock::GetBackTimes() const
 {
   return mBack;
 }
 
-RubiksClock::Times& RubiksClock::GetBackTimes()
+ribi::RubiksClock::Times& ribi::RubiksClock::GetBackTimes()
 {
   return mBack;
 }
 
-const RubiksClock::Pegs& RubiksClock::GetFrontPegs() const
+const ribi::RubiksClock::Pegs& ribi::RubiksClock::GetFrontPegs() const
 {
   return mPegs;
 }
 
-RubiksClock::Pegs& RubiksClock::GetFrontPegs()
+ribi::RubiksClock::Pegs& ribi::RubiksClock::GetFrontPegs()
 {
   return mPegs;
 }
 
-const RubiksClock::Pegs RubiksClock::GetBackPegs() const
+const ribi::RubiksClock::Pegs ribi::RubiksClock::GetBackPegs() const
 {
   Pegs back;
   back.pegs[0][0].reset(new ToggleButtonWidget(!mPegs.pegs[1][0]->GetToggleButton()->IsPressed(),255,255,0));
@@ -473,7 +471,7 @@ const RubiksClock::Pegs RubiksClock::GetBackPegs() const
   return back;
 }
 
-void RubiksClock::Check()
+void ribi::RubiksClock::Check()
 {
   #ifndef NDEBUG
   const Times originalFront = mFront;
@@ -514,19 +512,19 @@ void RubiksClock::Check()
   #endif
 }
 
-const std::string RubiksClock::GetVersion()
+const std::string ribi::RubiksClock::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> RubiksClock::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClock::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-09-08: Version 1.0: initial version");
   return v;
 }
 
-std::ostream& operator<<(std::ostream& os, const RubiksClock& r)
+std::ostream& ribi::operator<<(std::ostream& os, const RubiksClock& r)
 {
   os
     << "<rubiks_clock>"
@@ -543,7 +541,7 @@ std::ostream& operator<<(std::ostream& os, const RubiksClock& r)
   return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const RubiksClock::Times& t)
+std::ostream& ribi::operator<<(std::ostream& os, const ribi::RubiksClock::Times& t)
 {
   os
     << "<rubiks_clock_times>";
@@ -568,7 +566,7 @@ std::ostream& operator<<(std::ostream& os, const RubiksClock::Times& t)
   return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const RubiksClock::Pegs& p)
+std::ostream& ribi::operator<<(std::ostream& os, const ribi::RubiksClock::Pegs& p)
 {
   os
     << "<rubiks_clock_pegs>";

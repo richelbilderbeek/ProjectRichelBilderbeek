@@ -27,14 +27,18 @@
   href="CppScope.htm">scope</a> is called the <a href="CppDestructor.htm">destructor</a>.
 </p>
 <p>&nbsp;</p>
+<p>There are multiple types of <a href="CppConstructor.htm">constructors</a>:</p>
+<ul>
+  <li><a href="CppCopyConstructor.htm">copy constructor</a></li>
+  <li><a href="CppDefaultConstructor.htm">default constructor</a></li>
+  <li><a href="CppMoveConstructor.htm">move constructor</a></li>
+</ul>
+<p>&nbsp;</p>
 <p>
   A <a href="CppClass.htm">class</a> can have multiple <a href="CppConstructor.htm">constructors</a>.
   <a href="CppConstructor.htm">Constructors</a> can have zero to multiple <a href="CppArgument.htm">arguments</a>. 
-  A <a href="CppDefaultConstructor.htm">default constructor</a> is a type of <a href="CppConstructor.htm">constructor</a> that has no 
-  <a href="CppArgument.htm">arguments</a> or only default <a href="CppArgument.htm">arguments</a>.
   <a href="CppDelegation.htm">Delegation</a> is the technique of <a href="CppConstructor.htm">constructors</a> calling each other.
   If a <a href="CppClass.htm">class</a> does not have a <a href="CppConstructor.htm">constructor</a>, it can be <a href="CppInitialize.htm">initialized</a> by <a href="CppMemberwiseInitialization.htm">memberwise initialization</a> [13].
-
 </p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -72,6 +76,12 @@
   <li>
     If a <a href="CppConstructor.htm">constructor</a> acquires a resource, its class needs a <a href="CppDestructor.htm">destructor</a> to release the resource [12]
   </li>
+  <li>
+    Give a <a href="CppClass.htm">class</a> a <a href="CppDefaultConstructor.htm">default constructor</a> if and only if there is a "natural" default value [15]
+  </li>
+  <li>
+    If a <a href="CppClass.htm">class</a> is a <a href="CppContainer.htm">container</a>, give it an initializer-list <a href="CppContructor.htm">constructor</a> [14]
+  </li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -94,6 +104,8 @@
   <li><!-- 11 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[2] Use a constructor to establish an invariant for a class'</li>
   <li><!-- 12 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[3] If a constructor acquires a resource, its class needs a destructor to release the resource'</li>
   <li><!-- 13 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[5] If a class does not have a constructor, it can be initialized by memberwise initialization'</li>
+  <li><!-- 14 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[8] If a class is a container, give it an initializer-list constructor'</li>
+  <li><!-- 15 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice, page 525: '[7] Give a class a default constructor if and only if there is a "natural" default value'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

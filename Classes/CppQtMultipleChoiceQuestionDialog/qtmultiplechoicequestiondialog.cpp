@@ -39,7 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(QWidget *parent)
+ribi::QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(QWidget *parent)
   : QtQuestionDialog(
       boost::shared_ptr<QuestionDialog>(
         new MultipleChoiceQuestionDialog(
@@ -52,7 +52,7 @@ QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(QWidget *parent)
   ui->setupUi(this);
 }
 
-QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
+ribi::QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog,
   QWidget *parent) :
   QtQuestionDialog(dialog,parent),
@@ -62,17 +62,17 @@ QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
   this->SetQuestion(dialog->GetQuestion());
 }
 
-QtMultipleChoiceQuestionDialog::~QtMultipleChoiceQuestionDialog()
+ribi::QtMultipleChoiceQuestionDialog::~QtMultipleChoiceQuestionDialog()
 {
   delete ui;
 }
 
-const std::string QtMultipleChoiceQuestionDialog::GetVersion()
+const std::string ribi::QtMultipleChoiceQuestionDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtMultipleChoiceQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtMultipleChoiceQuestionDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-06-28: version 1.0: initial version");
@@ -80,7 +80,7 @@ const std::vector<std::string> QtMultipleChoiceQuestionDialog::GetVersionHistory
 }
 
 ///Set the Question
-void QtMultipleChoiceQuestionDialog::SetQuestion(
+void ribi::QtMultipleChoiceQuestionDialog::SetQuestion(
   const boost::shared_ptr<Question>& question)
 {
   m_dialog->SetQuestion(question);
@@ -121,7 +121,7 @@ void QtMultipleChoiceQuestionDialog::SetQuestion(
 
 }
 
-void QtMultipleChoiceQuestionDialog::on_button_submit_clicked()
+void ribi::QtMultipleChoiceQuestionDialog::on_button_submit_clicked()
 {
   assert(m_dialog->CanSubmit());
   const std::vector<const QRadioButton* > buttons

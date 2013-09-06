@@ -47,7 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenspriteplayer.h"
 #include "ui_qtboenkenmenudialog.h"
 
-QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent) :
+ribi::QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtBoenkenMenuDialog),
   m_controls(new QtBoenkenControlsDialog),
@@ -68,25 +68,12 @@ QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent) :
   QObject::connect(ui->button_quit,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-QtBoenkenMenuDialog::~QtBoenkenMenuDialog()
+ribi::QtBoenkenMenuDialog::~QtBoenkenMenuDialog()
 {
   delete ui;
-  //std::clog << "~QtBoenkenMenuDialog (should only be called at the end of the program)\n";
 }
 
-void QtBoenkenMenuDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-const std::vector<boost::shared_ptr<Boenken::SpritePlayer> > QtBoenkenMenuDialog::CreatePlayers(
+const std::vector<boost::shared_ptr<ribi::Boenken::SpritePlayer> > ribi::QtBoenkenMenuDialog::CreatePlayers(
   const Boenken::ArenaSettings& a)
 {
   //Create two
@@ -153,7 +140,7 @@ const std::vector<boost::shared_ptr<Boenken::SpritePlayer> > QtBoenkenMenuDialog
   return v;
 }
 
-const std::vector<boost::shared_ptr<Boenken::SpriteBall> > QtBoenkenMenuDialog::CreateBalls(
+const std::vector<boost::shared_ptr<ribi::Boenken::SpriteBall> > ribi::QtBoenkenMenuDialog::CreateBalls(
   const Boenken::ArenaSettings& a)
 {
   const int size = 32;
@@ -202,7 +189,7 @@ const std::vector<boost::shared_ptr<Boenken::SpriteBall> > QtBoenkenMenuDialog::
 }
 
 ///Always creates the four goalposts
-const std::vector<boost::shared_ptr<Boenken::SpriteNonMoving> > QtBoenkenMenuDialog::CreateObstacles(
+const std::vector<boost::shared_ptr<ribi::Boenken::SpriteNonMoving> > ribi::QtBoenkenMenuDialog::CreateObstacles(
   const Boenken::ArenaSettings& a)
 {
   const int size = 32;
@@ -272,28 +259,28 @@ const std::vector<boost::shared_ptr<Boenken::SpriteNonMoving> > QtBoenkenMenuDia
   return v;
 }
 
-void QtBoenkenMenuDialog::onControlsClick()
+void ribi::QtBoenkenMenuDialog::onControlsClick()
 {
   this->hide();
   this->m_controls->exec();
   this->show();
 }
 
-void QtBoenkenMenuDialog::onPlayersClick()
+void ribi::QtBoenkenMenuDialog::onPlayersClick()
 {
   this->hide();
   this->m_players->exec();
   this->show();
 }
 
-void QtBoenkenMenuDialog::onArenaClick()
+void ribi::QtBoenkenMenuDialog::onArenaClick()
 {
   this->hide();
   this->m_arena->exec();
   this->show();
 }
 
-void QtBoenkenMenuDialog::onStartClick()
+void ribi::QtBoenkenMenuDialog::onStartClick()
 {
   const Boenken::ArenaSettings a = this->m_arena->GetSettings();
   const Boenken::Controls c = this->m_controls->GetControls();
@@ -309,7 +296,7 @@ void QtBoenkenMenuDialog::onStartClick()
   this->show();
 }
 
-void QtBoenkenMenuDialog::onTrainClick()
+void ribi::QtBoenkenMenuDialog::onTrainClick()
 {
   const Boenken::ArenaSettings a = this->m_arena->GetSettings();
   const Boenken::Controls c = this->m_controls->GetControls();
@@ -336,7 +323,7 @@ void QtBoenkenMenuDialog::onTrainClick()
   this->show();
 }
 
-void QtBoenkenMenuDialog::onAboutClick()
+void ribi::QtBoenkenMenuDialog::onAboutClick()
 {
   About a = Boenken::MenuDialog::GetAbout();
   QtAboutDialog d(a);
@@ -345,7 +332,7 @@ void QtBoenkenMenuDialog::onAboutClick()
   this->show();
 }
 
-void QtBoenkenMenuDialog::Test()
+void ribi::QtBoenkenMenuDialog::Test()
 {
   {
     static bool is_tested = false;

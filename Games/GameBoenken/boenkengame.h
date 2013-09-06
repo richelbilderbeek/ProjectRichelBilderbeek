@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 struct QPainter;
 
+namespace ribi {
+
 namespace Boenken {
 
 struct Sprite;
@@ -85,9 +87,8 @@ struct Game
 
 };
 
-
-
-
 } //~namespace Boenken
+
+} //~namespace ribi
 
 #endif // BOENKENGAME_H

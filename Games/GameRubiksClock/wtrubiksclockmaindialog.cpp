@@ -19,29 +19,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameRubiksClock.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "wtrubiksclockmaindialog.h"
 
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/algorithm/string/split.hpp>
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 #include <Wt/WPaintDevice>
 #include <Wt/WPainter>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "dialwidget.h"
 #include "rubiksclock.h"
@@ -49,16 +42,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "widget.h"
 #include "wtdialwidget.h"
 #include "wtrubiksclockwidget.h"
-//---------------------------------------------------------------------------
-WtRubiksClockMainDialog::Ui::Ui()
+
+ribi::WtRubiksClockMainDialog::Ui::Ui()
   : m_button_flip(new Wt::WPushButton("Flip clock")),
     m_dial_size(new WtDialWidget),
     m_label_size(new Wt::WLabel),
     m_widget(new WtRubiksClockWidget)
 {
 }
-//---------------------------------------------------------------------------
-WtRubiksClockMainDialog::WtRubiksClockMainDialog()
+
+ribi::WtRubiksClockMainDialog::WtRubiksClockMainDialog()
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);
@@ -75,11 +68,11 @@ WtRubiksClockMainDialog::WtRubiksClockMainDialog()
 
   ui.m_button_flip->clicked().connect(
     this,
-    &WtRubiksClockMainDialog::OnFlip);
+    &ribi::WtRubiksClockMainDialog::OnFlip);
 
   ui.m_dial_size->GetWidget()->GetDial()->m_signal_position_changed.connect(
     boost::bind(
-      &WtRubiksClockMainDialog::OnSizeChanged,
+      &ribi::WtRubiksClockMainDialog::OnSizeChanged,
       this));
 
   ui.m_dial_size->GetWidget()->SetGeometry(Rect(0,0,32,32));
@@ -88,13 +81,13 @@ WtRubiksClockMainDialog::WtRubiksClockMainDialog()
 
   ui.m_dial_size->GetWidget()->GetDial()->SetPosition(0.5);
 }
-//---------------------------------------------------------------------------
-void WtRubiksClockMainDialog::OnFlip()
+
+void ribi::WtRubiksClockMainDialog::OnFlip()
 {
   ui.m_widget->GetWidget()->Flip();
 }
-//---------------------------------------------------------------------------
-void WtRubiksClockMainDialog::OnSizeChanged()
+
+void ribi::WtRubiksClockMainDialog::OnSizeChanged()
 {
   const int size = boost::numeric_cast<int>(
     500.0 * ui.m_dial_size->GetWidget()->GetDial()->GetPosition());
@@ -107,4 +100,4 @@ void WtRubiksClockMainDialog::OnSizeChanged()
     + std::string(" (width x height)");
   ui.m_label_size->setText(text.c_str());
 }
-//---------------------------------------------------------------------------
+

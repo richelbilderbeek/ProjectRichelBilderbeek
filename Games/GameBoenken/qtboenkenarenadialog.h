@@ -29,6 +29,8 @@ namespace Ui {
   class QtBoenkenArenaDialog;
 }
 
+namespace ribi {
+
 ///QtBoenkenArenaDialog
 ///
 ///Dialog to setup up the arena
@@ -46,11 +48,10 @@ public:
   double GetFriction() const;
   const Boenken::ArenaSettings GetSettings() const;
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::QtBoenkenArenaDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTBOENKENARENADIALOG_H

@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/multi_array.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 ///TicTacToe is a tic-tac-toe game class.
 struct TicTacToe
 {
@@ -112,5 +114,7 @@ int IntPower(const int base, const int exponent);
 
 //YYYY-MM-DD: version X.Y: [description]
 //2010-09-19: version 1.3: made CanDoMove method a const method
+
+} //~namespace ribi
 
 #endif // TICTACTOE_H

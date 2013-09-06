@@ -23,27 +23,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpylosinstructionsdialog.h"
 #include "ui_qtpylosinstructionsdialog.h"
 
-QtPylosInstructionsDialog::QtPylosInstructionsDialog(QWidget *parent) :
+ribi::QtPylosInstructionsDialog::QtPylosInstructionsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtPylosInstructionsDialog)
 {
   ui->setupUi(this);
 }
 
-QtPylosInstructionsDialog::~QtPylosInstructionsDialog()
+ribi::QtPylosInstructionsDialog::~QtPylosInstructionsDialog()
 {
   delete ui;
 }
-
-void QtPylosInstructionsDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-

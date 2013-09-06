@@ -27,31 +27,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtpyloswondialog.h"
 #include "pyloswinner.h"
 
-QtPylosWonDialog::QtPylosWonDialog(QWidget *parent) :
+ribi::QtPylosWonDialog::QtPylosWonDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtPylosWonDialog)
 {
   ui->setupUi(this);
 }
 
-QtPylosWonDialog::~QtPylosWonDialog()
+ribi::QtPylosWonDialog::~QtPylosWonDialog()
 {
   delete ui;
 }
 
-void QtPylosWonDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtPylosWonDialog::SetWinner(const Pylos::Winner winner)
+void ribi::QtPylosWonDialog::SetWinner(const Pylos::Winner winner)
 {
   if (winner == Pylos::Winner::player1)
     ui->label_sprite->setPixmap(QPixmap(":/images/sprite_player1.png"));

@@ -19,11 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameRubiksClock.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include "trace.h"
 #include "qtrubiksclockmenudialog.h"
 
@@ -43,7 +38,7 @@ int main(int argc, char *argv[])
   assert(1==2 && "Assume debugging is really disabled");
   #endif
 
-  QtRubiksClockMenuDialog d;
+  ribi::QtRubiksClockMenuDialog d;
   d.show();
   a.exec();
 }

@@ -27,6 +27,8 @@ namespace Ui {
 class QtCreateGlossaryMainDialog;
 }
 
+namespace ribi {
+
 class QtCreateGlossaryMainDialog : public QDialog
 {
   Q_OBJECT
@@ -42,5 +44,7 @@ private:
 
   Ui::QtCreateGlossaryMainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTCREATEGLOSSARYMAINDIALOG_H

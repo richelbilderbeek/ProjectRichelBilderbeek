@@ -28,6 +28,8 @@ namespace Ui {
 class QtBeerWanterMenuDialog;
 }
 
+namespace ribi {
+
 class QtBeerWanterMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -47,5 +49,7 @@ private slots:
 private:
   Ui::QtBeerWanterMenuDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTBEERWANTERMENUDIALOG_H

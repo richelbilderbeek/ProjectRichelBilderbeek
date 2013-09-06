@@ -27,6 +27,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QPixmap>
 
+namespace ribi {
+
 namespace Boenken {
 
 ///Sprite is the ABC of anything that must be drawn on screen
@@ -122,8 +124,8 @@ struct Sprite : public boost::noncopyable
 
 };
 
-
-
 } //~namespace Boenken
+
+} //~namespace ribi
 
 #endif // SPRITE_H

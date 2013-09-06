@@ -35,12 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-HometrainerMenuDialog::HometrainerMenuDialog()
-{
-
-}
-
-const About HometrainerMenuDialog::GetAbout() const
+const ribi::About ribi::HometrainerMenuDialog::GetAbout() const
 {
   About a(
     "Richel Bilderbeek",
@@ -52,7 +47,7 @@ const About HometrainerMenuDialog::GetAbout() const
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Exercise version: " + Exercise::GetVersion());
-  a.AddLibrary("Hometrainer version: " + HometrainerMenuDialog::GetVersion());
+  a.AddLibrary("Hometrainer version: " + ribi::HometrainerMenuDialog::GetVersion());
   a.AddLibrary("MultipleChoiceQuestion version: " + MultipleChoiceQuestion::GetVersion());
   a.AddLibrary("MultipleChoiceQuestionDialog version: " + MultipleChoiceQuestionDialog::GetVersion());
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
@@ -63,25 +58,25 @@ const About HometrainerMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string HometrainerMenuDialog::GetVersion()
+const std::string ribi::HometrainerMenuDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> HometrainerMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2009-xx-xx: Version 0.9: initial version (called HomeTrainer)");
-  v.push_back("2009-04-28: Version 1.0: renamed 'HomeTrainer' to 'Hometrainer 2'");
-  v.push_back("09-05-2009: Version 1.1");
-  v.push_back("23-08-2009: Version 1.2");
-  v.push_back("29-08-2009: Version 1.3");
-  v.push_back("20-09-2009: Version 1.4");
-  v.push_back("29-10-2009: Version 1.5");
-  v.push_back("03-11-2009: Version 1.6");
-  v.push_back("07-01-2010: Version 1.7");
-  v.push_back("28-01-2010: Version 1.8");
-  v.push_back("16-10-2011: Version 2.0: initial website version, renamed 'Hometrainer 2' to 'Hometrainer'");
-  return v;
+  return {
+    "2009-xx-xx: Version 0.9: initial version (called HomeTrainer)",
+    "2009-04-28: Version 1.0: renamed 'HomeTrainer' to 'Hometrainer 2'",
+    "2009-05-09: Version 1.1",
+    "2009-08-23: Version 1.2",
+    "2009-08-29: Version 1.3",
+    "2009-09-20: Version 1.4",
+    "2009-10-29: Version 1.5",
+    "2009-11-03: Version 1.6",
+    "2010-01-07: Version 1.7",
+    "2010-01-28: Version 1.8",
+    "2011-10-16: Version 2.0: initial website version, renamed 'Hometrainer 2' to 'Hometrainer'"
+  };
 }
 

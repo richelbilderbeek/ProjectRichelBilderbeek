@@ -27,8 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPixmap>
 #include "daswahreschlagerfestwidget.h"
 
-
-QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) :
+ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) :
   QWidget(parent),
   m_widget(new DasWahreSchlagerfestWidget),
   m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
@@ -44,16 +43,16 @@ QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) :
 
   m_widget->m_signal_changed.connect(
       boost::bind(
-        &QtDasWahreSchlagerfestWidget::OnChange,
+        &ribi::QtDasWahreSchlagerfestWidget::OnChange,
         this));
 }
 
-QtDasWahreSchlagerfestWidget::~QtDasWahreSchlagerfestWidget()
+ribi::QtDasWahreSchlagerfestWidget::~QtDasWahreSchlagerfestWidget()
 {
 
 }
 
-void QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e)
+void ribi::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e)
 {
   DasWahreSchlagerfestWidget::Key key;
   switch (e->key())
@@ -67,7 +66,7 @@ void QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e)
   m_widget->PressKey(key);
 }
 
-void QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *)
+void ribi::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   const std::vector<std::vector<DasWahreSchlagerfestWidget::Tile> > & v = m_widget->GetTiles();
@@ -110,7 +109,7 @@ void QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *)
 
 
 
-const QPixmap& QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const
+const QPixmap& ribi::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const
 {
   switch (tile)
   {
@@ -120,10 +119,10 @@ const QPixmap& QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfes
     case DasWahreSchlagerfestWidget::Tile::richel   : return m_richel;
   }
   assert(!"Should not get here");
-  throw std::logic_error("QtDasWahreSchlagerfestWidget::GetPixmap");
+  throw std::logic_error("ribi::QtDasWahreSchlagerfestWidget::GetPixmap");
 }
 
-void QtDasWahreSchlagerfestWidget::OnChange()
+void ribi::QtDasWahreSchlagerfestWidget::OnChange()
 {
   this->repaint();
 }

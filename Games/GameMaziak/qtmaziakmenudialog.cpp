@@ -1,4 +1,4 @@
-
+//---------------------------------------------------------------------------
 /*
 Maziak, a simple maze game
 Copyright (C) 2007-2012 Richel Bilderbeek
@@ -15,11 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+//---------------------------------------------------------------------------
 #include "qtmaziakmenudialog.h"
 
 #include <cassert>
@@ -41,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakmaindialog.h"
 #include "ui_qtmaziakmenudialog.h"
 
-QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
+ribi::QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtMaziakMenuDialog),
     m_difficulty(easy)
@@ -53,24 +51,12 @@ QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtMaziakMenuDialog::~QtMaziakMenuDialog()
+ribi::QtMaziakMenuDialog::~QtMaziakMenuDialog()
 {
   delete ui;
 }
 
-void QtMaziakMenuDialog::changeEvent(QEvent *e)
-{
-  QWidget::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void QtMaziakMenuDialog::mousePressEvent(QMouseEvent * event)
+void ribi::QtMaziakMenuDialog::mousePressEvent(QMouseEvent * event)
 {
   if (ui->widget_easy->geometry().contains(
     event->x(), event->y()))
@@ -117,7 +103,7 @@ void QtMaziakMenuDialog::mousePressEvent(QMouseEvent * event)
   }
 }
 
-void QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   switch (event->key())
   {
@@ -150,7 +136,7 @@ void QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
   }
 }
 
-void QtMaziakMenuDialog::paintEvent(QPaintEvent*)
+void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
   {
@@ -246,7 +232,7 @@ void QtMaziakMenuDialog::paintEvent(QPaintEvent*)
 
 }
 
-void QtMaziakMenuDialog::onStart()
+void ribi::QtMaziakMenuDialog::onStart()
 {
   boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(0,getMazeSize()));
   this->hide();
@@ -254,7 +240,7 @@ void QtMaziakMenuDialog::onStart()
   this->show();
 }
 
-void QtMaziakMenuDialog::onInstructions()
+void ribi::QtMaziakMenuDialog::onInstructions()
 {
   boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
   this->hide();
@@ -262,7 +248,7 @@ void QtMaziakMenuDialog::onInstructions()
   this->show();
 }
 
-void QtMaziakMenuDialog::onAbout()
+void ribi::QtMaziakMenuDialog::onAbout()
 {
   About a = MaziakMenuDialog::GetAbout();
   boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
@@ -271,7 +257,7 @@ void QtMaziakMenuDialog::onAbout()
   this->show();
 }
 
-int QtMaziakMenuDialog::getMazeSize() const
+int ribi::QtMaziakMenuDialog::getMazeSize() const
 {
   switch (m_difficulty)
   {

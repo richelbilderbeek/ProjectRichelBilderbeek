@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtToggleButtonWidget::QtToggleButtonWidget(
+ribi::QtToggleButtonWidget::QtToggleButtonWidget(
   const bool toggled,
   const unsigned char red,
   const unsigned char green,
@@ -49,24 +49,24 @@ QtToggleButtonWidget::QtToggleButtonWidget(
   assert(m_widget);
   m_widget->GetToggleButton()->m_signal_toggled.connect(
     boost::bind(
-      &QtToggleButtonWidget::DoRepaint,
+      &ribi::QtToggleButtonWidget::DoRepaint,
       this));
   m_widget->GetToggleButton()->m_signal_color_changed.connect(
     boost::bind(
-      &QtToggleButtonWidget::DoRepaint,
+      &ribi::QtToggleButtonWidget::DoRepaint,
       this));
 
   this->resize(200,100);
   this->update();
 }
 
-void QtToggleButtonWidget::DoRepaint()
+void ribi::QtToggleButtonWidget::DoRepaint()
 {
   this->update();
   m_signal_toggled();
 }
 
-void QtToggleButtonWidget::DrawToggleButton(
+void ribi::QtToggleButtonWidget::DrawToggleButton(
   QPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -104,7 +104,7 @@ void QtToggleButtonWidget::DrawToggleButton(
     top + (maxy * 2 / 3));
 }
 
-void QtToggleButtonWidget::DrawToggleButton(
+void ribi::QtToggleButtonWidget::DrawToggleButton(
   QPainter& painter,
   const ToggleButtonWidget * const widget)
 {
@@ -117,12 +117,12 @@ void QtToggleButtonWidget::DrawToggleButton(
     widget->GetToggleButton());
 }
 
-const std::string QtToggleButtonWidget::GetVersion()
+const std::string ribi::QtToggleButtonWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtToggleButtonWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtToggleButtonWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -130,19 +130,19 @@ const std::vector<std::string> QtToggleButtonWidget::GetVersionHistory()
   return v;
 }
 
-void QtToggleButtonWidget::mousePressEvent(QMouseEvent * e)
+void ribi::QtToggleButtonWidget::mousePressEvent(QMouseEvent * e)
 {
   //m_widget its observers for a repaint
   m_widget->Click(e->x(),e->y());
 }
 
-void QtToggleButtonWidget::paintEvent(QPaintEvent *)
+void ribi::QtToggleButtonWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawToggleButton(painter,m_widget.get());
 }
 
-void QtToggleButtonWidget::resizeEvent(QResizeEvent *)
+void ribi::QtToggleButtonWidget::resizeEvent(QResizeEvent *)
 {
   this->m_widget->SetGeometry(Rect(0,0,this->width(),this->height()));
   repaint();
