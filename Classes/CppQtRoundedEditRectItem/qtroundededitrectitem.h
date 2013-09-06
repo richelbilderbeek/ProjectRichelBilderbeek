@@ -13,6 +13,9 @@
 #include <QFont>
 #include "qtroundedrectitem.h"
 
+namespace ribi {
+
+
 ///A QtRoundedRectTextItem displaying multiple lines of text
 struct QtRoundedEditRectItem : public QtRoundedRectItem
 {
@@ -84,5 +87,7 @@ private:
   ///Obtain the padded text rectangle for a single line
   const QRectF GetPaddedTextRect(const std::string& s) const;
 };
+
+} //~namespace ribi
 
 #endif // QTROUNDEDEDITRECTITEM_H

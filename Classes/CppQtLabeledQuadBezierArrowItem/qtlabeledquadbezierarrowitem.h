@@ -12,6 +12,7 @@
 #include "qtroundedtextrectitem.h"
 #include "qtquadbezierarrowitem.h"
 
+namespace ribi {
 
 ///The QtLabeledQuadBezierArrowItem is a QtRoundedTextRectItem that
 ///draws a bezier curve underneath itself, between head and tail arrowhead
@@ -44,5 +45,7 @@ private:
   const boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;
 
 };
+
+} //~namespace ribi
 
 #endif // QTLABELEDQUADBEZIERARROWITEM_H

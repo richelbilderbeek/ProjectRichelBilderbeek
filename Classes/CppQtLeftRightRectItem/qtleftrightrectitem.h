@@ -32,6 +32,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QGraphicsRectItem>
 
+namespace ribi {
+
 ///A rect item that has two focuses: left and right!
 struct QtLeftRightRectItem : public QGraphicsRectItem
 {
@@ -58,5 +60,7 @@ struct QtLeftRightRectItem : public QGraphicsRectItem
 
   enum class Focus { left, right } m_focus;
 };
+
+} //~namespace ribi
 
 #endif // QTLEFTRIGHTRECTITEM_H

@@ -35,6 +35,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shinybutton.h" //For MOC
 #include "shinybuttonwidget.h" //For MOC
 
+namespace ribi {
+
 struct QtToggleButtonWidget;
 
 ///QtShinyButtonWidget displays a ShinyButton
@@ -101,5 +103,7 @@ struct QtShinyButtonWidget : public QWidget
   ///Respond to mouse click
   //void OnClicked(const Wt::WMouseEvent& e);
 };
+
+} //~namespace ribi
 
 #endif // WTSHINYBUTTONWIDGET_H

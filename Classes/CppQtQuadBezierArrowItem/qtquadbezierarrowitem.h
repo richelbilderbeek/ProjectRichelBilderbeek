@@ -33,6 +33,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsPathItem>
 #include <QPen>
 
+namespace ribi {
+
 ///The QtQuadBezierArrowItem is a QGraphicsItem that
 ///follows the three QGraphicsItem positions
 struct QtQuadBezierArrowItem : public QGraphicsItem
@@ -160,5 +162,7 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   QPointF pos() const = delete;
 };
+
+} //~namespace ribi
 
 #endif // QTQUADBEZIERARROWITEM_H

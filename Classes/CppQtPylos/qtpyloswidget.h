@@ -40,6 +40,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 struct QPaintEvent;
 //namespace Pylos { struct Game; }
 
+namespace ribi {
+
 ///PylosWidget is the base class of QtPylosBoardWidget and QtPylosWidget
 class QtPylosWidget : public QWidget
 {
@@ -225,6 +227,8 @@ private:
   ///Note: the (x,y) position denotes the center of the marble
   const std::pair<int,int> Transform(const Pylos::Coordinat& c) const;
 };
+
+} //~namespace ribi
 
 #endif // QTPYLOSWIDGET_H
 

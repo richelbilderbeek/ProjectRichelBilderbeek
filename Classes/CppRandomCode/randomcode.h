@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 struct RandomCode
 {
   static const std::vector<std::string> CreateRandomCode();
@@ -36,5 +38,7 @@ struct RandomCode
   static const std::string CreateRandomLine(const unsigned int length);
   static const std::string CreateRandomString();
 };
+
+} //~namespace ribi
 
 #endif // RANDOMCODE_H

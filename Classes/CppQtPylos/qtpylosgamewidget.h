@@ -34,6 +34,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpyloswidget.h"
 
 struct QPaintEvent;
+
+namespace ribi {
+
 namespace Pylos { struct Game; }
 
 ///PylosWidget manages a Pylos::Game and facilitates its user interface
@@ -115,6 +118,8 @@ private:
   boost::shared_ptr<Pylos::Game> m_pylos;
 
 };
+
+} //~namespace ribi
 
 #endif // QTPYLOSGAMEWIDGET_H
 

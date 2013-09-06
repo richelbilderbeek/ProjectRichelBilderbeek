@@ -12,6 +12,8 @@
 #include <QFont>
 #include "qtroundedrectitem.h"
 
+namespace ribi {
+
 ///A QtRoundedRectItem displaying a single line of text
 struct QtRoundedTextRectItem : public QtRoundedRectItem
 {
@@ -88,5 +90,7 @@ private:
   const QRectF GetTextRect() const;
 
 };
+
+} //~namespace ribi
 
 #endif // QTROUNDEDTEXTRECTITEM_H

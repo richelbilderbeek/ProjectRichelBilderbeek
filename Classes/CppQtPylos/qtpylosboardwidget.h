@@ -36,6 +36,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 struct QPaintEvent;
 
+namespace ribi {
+
 ///PylosWidget manages a Pylos::Board and facilitates its user interface
 class QtPylosBoardWidget : public QtPylosWidget
 {
@@ -136,6 +138,8 @@ private:
   Pylos::Player m_player;
 
 };
+
+} //~namespace ribi
 
 #endif // QTPYLOSBOARDWIDGET_H
 

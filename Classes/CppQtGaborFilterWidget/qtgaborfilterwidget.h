@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "gaborfilterwidget.h"   //Needed by MOC
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 class QtGaborFilterWidget : public QWidget
 {
   Q_OBJECT
@@ -71,5 +73,7 @@ public:
   static const std::vector<std::string> GetVersionHistory();
 
 };
+
+} //~namespace ribi
 
 #endif // QTGABORFILTERWIDGET_H

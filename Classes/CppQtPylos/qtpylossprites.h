@@ -26,6 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 //#include "pylosgame.h"
 
+namespace ribi {
+
 namespace Pylos {
 
 const boost::array<int,6> GetBlackWhiteColors();
@@ -125,5 +127,7 @@ void Paint(
   const unsigned char a = 255); //Opaque
 
 } //~namespace Pylos
+
+} //~namespace ribi
 
 #endif // QTPYLOSSPRITES_H

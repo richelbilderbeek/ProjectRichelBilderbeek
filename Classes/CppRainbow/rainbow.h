@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 struct Rainbow
 {
   ///Obtain the RGB values from a relative position
@@ -39,5 +41,7 @@ struct Rainbow
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // RAINBOW_H

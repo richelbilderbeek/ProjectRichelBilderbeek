@@ -24,10 +24,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
 #include <QPixmap>
 
+namespace ribi {
+
 ///QtSprites creates images by hand
 struct QtSprites
 {
   static QPixmap DrawR();
 };
+
+} //~namespace ribi
 
 #endif // QTSPRITES_H

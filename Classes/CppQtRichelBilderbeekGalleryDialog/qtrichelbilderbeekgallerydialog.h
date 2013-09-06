@@ -27,9 +27,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qthideandshowdialog.h"
 
-struct QModelIndex;
-namespace RichelBilderbeek { struct Program; }
+
 namespace Ui { class QtRichelBilderbeekGalleryDialog; }
+
+namespace ribi {
+
+namespace RichelBilderbeek { struct Program; }
+struct QModelIndex;
+
 
 class QtRichelBilderbeekGalleryDialog : public QtHideAndShowDialog
 {
@@ -63,6 +68,8 @@ private:
   ///Show the screenshot requested by the item in [col,row]
   void ShowScreenshot(const int col, const int row);
 };
+
+} //~namespace ribi
 
 #endif // QTRICHELBILDERBEEKGALLERYDIALOG_H
 

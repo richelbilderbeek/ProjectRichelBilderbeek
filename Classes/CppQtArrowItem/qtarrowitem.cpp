@@ -18,21 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtArrowItem.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtarrowitem.h"
 
 #include <cassert>
 #include <cmath>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#ifdef __STRICT_ANSI__
 #include <boost/math/constants/constants.hpp>
-#else
-#include <cmath>
-#endif
-#pragma GCC diagnostic pop
 
 #include <QCursor>
 #include <QGraphicsScene>
@@ -42,9 +33,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-const double QtArrowItem::m_click_easy_width = 10.0;
+const double ribi::QtArrowItem::m_click_easy_width = 10.0;
 
-QtArrowItem::QtArrowItem(
+ribi::QtArrowItem::QtArrowItem(
   const double x1,
   const double y1,
   const bool tail,
@@ -71,23 +62,23 @@ QtArrowItem::QtArrowItem(
   assert(this->line().p2() == QPointF(x2,y2));
 }
 
-QRectF QtArrowItem::boundingRect() const
+QRectF ribi::QtArrowItem::boundingRect() const
 {
   return shape().boundingRect();
 }
 
-double QtArrowItem::GetAngle(const double dx, const double dy)
+double ribi::QtArrowItem::GetAngle(const double dx, const double dy)
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - (std::atan(dx/dy));
 }
 
-const std::string QtArrowItem::GetVersion()
+const std::string ribi::QtArrowItem::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> QtArrowItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtArrowItem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-11-18: version 1.0: initial version");
@@ -96,12 +87,12 @@ const std::vector<std::string> QtArrowItem::GetVersionHistory()
   return v;
 }
 
-void QtArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
+void ribi::QtArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void QtArrowItem::keyPressEvent(QKeyEvent *event)
+void ribi::QtArrowItem::keyPressEvent(QKeyEvent *event)
 {
   switch (event->key())
   {
@@ -126,13 +117,13 @@ void QtArrowItem::keyPressEvent(QKeyEvent *event)
   m_signal_item_requests_scene_update(this);
 }
 
-void QtArrowItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void ribi::QtArrowItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
   m_signal_item_requests_scene_update(this);
   QGraphicsLineItem::mouseMoveEvent(event);
 }
 
-void QtArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void ribi::QtArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
   if (event->modifiers() & Qt::ShiftModifier)
   {
@@ -149,7 +140,7 @@ void QtArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
   }
 }
 
-void QtArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *)
+void ribi::QtArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
   painter->setRenderHint(QPainter::Antialiasing);
   if (this->isSelected() || this->hasFocus())
@@ -198,12 +189,12 @@ void QtArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWi
   }
 }
 
-void QtArrowItem::SetArrowHeadClickingDistance(const double manhattan_distance)
+void ribi::QtArrowItem::SetArrowHeadClickingDistance(const double manhattan_distance)
 {
   m_arrow_head_clicking_distance = manhattan_distance;
 }
 
-void QtArrowItem::SetHeadPos(const double x, const double y)
+void ribi::QtArrowItem::SetHeadPos(const double x, const double y)
 {
   if (line().x2() != x || line().y2() != y)
   {
@@ -214,7 +205,7 @@ void QtArrowItem::SetHeadPos(const double x, const double y)
   }
 }
 
-void QtArrowItem::SetTailPos(const double x, const double y)
+void ribi::QtArrowItem::SetTailPos(const double x, const double y)
 {
   if (line().x1() != x || line().y1() != y)
   {
@@ -225,7 +216,7 @@ void QtArrowItem::SetTailPos(const double x, const double y)
   }
 }
 
-QPainterPath QtArrowItem::shape() const
+QPainterPath ribi::QtArrowItem::shape() const
 {
   //Thanks to norobro for posting this code at
   //http://www.qtcentre.org/threads/49201-Increase-margin-for-detecting-tooltip-events-of-QGraphicsLineItem

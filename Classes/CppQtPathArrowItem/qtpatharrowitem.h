@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsLineItem>
 #include <QPen>
 
+namespace ribi {
+
 ///An arrow item that has one or more midpoints
 struct QtPathArrowItem : public QGraphicsItem
 {
@@ -121,5 +123,7 @@ private:
   static double GetAngle(const double dx, const double dy);
 
 };
+
+} //~namespace ribi
 
 #endif // QTPATHARROWITEM_H

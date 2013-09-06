@@ -32,6 +32,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsLineItem>
 #include <QPen>
 
+namespace ribi {
+
 ///An arrow QGraphicsItem
 //From http://www.richelbilderbeek.nl/CppQtArrowItem.htm
 struct QtArrowItem : public QGraphicsLineItem
@@ -127,5 +129,7 @@ private:
   static double GetAngle(const double dx, const double dy);
 
 };
+
+} //~namespace ribi
 
 #endif // QTARROWITEM_H

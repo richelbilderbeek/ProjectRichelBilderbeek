@@ -32,6 +32,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QGraphicsSimpleTextItem>
 
+namespace ribi {
+
 ///A text item that displays its coordinats
 struct QtDisplayPosItem : public QGraphicsSimpleTextItem
 {
@@ -52,5 +54,7 @@ protected:
   void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
+
+} //~namespace ribi
 
 #endif // QTDISPLAYPOSITEM_H

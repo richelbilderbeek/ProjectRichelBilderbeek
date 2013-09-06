@@ -30,6 +30,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 struct QGraphicsItem;
 
+namespace ribi {
+
 ///The widget holding the items
 struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
 {
@@ -78,5 +80,7 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
   ///Give focus to a random item
   void SetRandomFocus();
 };
+
+} //~namespace ribi
 
 #endif // QTKEYBOARDFRIENDLYGRAPHICSVIEW_H

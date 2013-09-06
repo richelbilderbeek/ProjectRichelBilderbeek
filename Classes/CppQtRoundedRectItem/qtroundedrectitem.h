@@ -10,6 +10,8 @@
 #include <QGraphicsRectItem>
 #include <QPen>
 
+namespace ribi {
+
 ///Rounded rectangle item
 struct QtRoundedRectItem : public QGraphicsRectItem
 {
@@ -79,5 +81,7 @@ protected:
   ///The rounded rect corner y radius
   double m_radius_y;
 };
+
+} //~namespace ribi
 
 #endif // QTROUNDEDRECTITEM_H

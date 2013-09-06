@@ -35,6 +35,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shape.h" //For MOC
 #include "shapewidget.h" //For MOC
 
+namespace ribi {
+
 ///QtShapeWidget manages and displays a Shape
 class QtShapeWidget : public QWidget
 {
@@ -71,6 +73,8 @@ public:
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // QTSHAPEWIDGET_H
 
