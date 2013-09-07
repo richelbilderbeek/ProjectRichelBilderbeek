@@ -1666,8 +1666,8 @@ unix {
 unix {
   message(Unix dynamic link to Boost)
 
-  #LIBS += \
-  #  -lboost_date_time
+  LIBS += \
+    -lboost_date_time
   #-lboost_program_options \
   #-lboost_signals
 }

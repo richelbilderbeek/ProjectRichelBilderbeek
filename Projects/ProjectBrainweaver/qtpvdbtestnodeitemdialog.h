@@ -9,7 +9,6 @@
 namespace Ui { class QtPvdbTestNodeItemDialog; }
 
 namespace ribi {
-
 namespace pvdb {
 
 ///Tests all QtPvdbConceptItem items when being a member of a QtPvdbNodeItem,
@@ -53,7 +52,6 @@ private:
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBTESTNODEITEMDIALOG_H

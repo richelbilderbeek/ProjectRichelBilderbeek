@@ -14,7 +14,7 @@
    <string>Concept/Relatie bewerken</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ProjectVanDenBogaart.qrc">
+   <iconset resource="Brainweaver.qrc">
     <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -26,7 +26,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="edit_concept"/>
+    <widget class="QLineEdit" name="edit_concept">
+     <property name="maxLength">
+      <number>80</number>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="label_examples">
@@ -82,7 +86,7 @@
   <tabstop>button_ok</tabstop>
  </tabstops>
  <resources>
-  <include location="ProjectVanDenBogaart.qrc"/>
+  <include location="Brainweaver.qrc"/>
  </resources>
  <connections/>
 </ui>

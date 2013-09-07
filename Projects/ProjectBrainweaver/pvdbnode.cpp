@@ -1,10 +1,3 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "pvdbnode.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -20,7 +13,10 @@
 #include "pvdbhelper.h"
 #include "trace.h"
 
-ribi::pvdb::Node::Node(const boost::shared_ptr<ribi::pvdb::Concept>& concept, const double x, const double y)
+ribi::pvdb::Node::Node(
+  const boost::shared_ptr<ribi::pvdb::Concept>& concept,
+  const double x,
+  const double y)
   : m_concept(concept),
     m_x(x),
     m_y(y)
@@ -282,9 +278,10 @@ const std::string ribi::pvdb::Node::ToXml(const boost::shared_ptr<const pvdb::No
 
 bool ribi::pvdb::IsEqual(const pvdb::Node& lhs, const pvdb::Node& rhs)
 {
-  assert(lhs.GetConcept()); assert(rhs.GetConcept());
+  assert(lhs.GetConcept());
+  assert(rhs.GetConcept());
   return
        IsEqual(*lhs.GetConcept(),*rhs.GetConcept())
-    && lhs.GetX()       == rhs.GetX()
-    && lhs.GetY()       == rhs.GetY();
+    && lhs.GetX() == rhs.GetX()
+    && lhs.GetY() == rhs.GetY();
 }
